@@ -26,8 +26,26 @@
           </app-input-radio>
         </mat-grid-tile>
 
-        <ng-container *ngIf="question.isGroup">
-          <ng-container *ngTemplateOutlet="slots.group"></ng-container>
+        <ng-container *ngIf="question?.isGroup">
+          <mat-grid-tile colspan="2">
+            {{ question.label | titlecase }}
+          </mat-grid-tile>
+          <mat-grid-tile
+            *ngFor="let item of question.group"
+            [colspan]="item.cols"
+            [rowspan]="item.rows"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+            slots.group;
+            context: {
+              question,
+              form,
+              item
+            }
+            "
+            ></ng-container>
+          </mat-grid-tile>
         </ng-container>
       </ng-container>
     </mat-grid-list>
