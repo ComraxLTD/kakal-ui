@@ -1,3 +1,4 @@
+import { NavigationCardModel } from './../../utilities/models/nav-card-model';
 import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
@@ -16,6 +17,27 @@ export class DashboardComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  public status: NavigationCardModel[] = [
+    {
+      title: 'בתהליך',
+      svgUrl: 'reload',
+      badgeValue: 3,
+      hasBadge: true
+    },
+    {
+      title: 'מחכה לאישור',
+      svgUrl: 'report',
+      badgeValue: 1,
+      hasBadge: true
+    },
+    {
+      title: 'סגור',
+      svgUrl: 'flag',
+      badgeValue: 20,
+      hasBadge: true
+    },
+  ]
+
+  constructor(private breakpointObserver: BreakpointObserver) { }
 
 }

@@ -21,6 +21,7 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
+import { ToNavComponent } from './components/to-nav/to-nav.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { DashboardCardComponent } from './components/dashboard-card/dashboard-ca
     IconCardComponent,
     NavbarComponent,
     TypographyComponent,
-    DashboardCardComponent
+    DashboardCardComponent,
+    ToNavComponent
   ],
   imports: [
     BrowserModule,
