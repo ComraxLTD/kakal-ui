@@ -6,10 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./typography.component.scss'],
 })
 export class TypographyComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  @Input() color: string;
+  @Input() color: string = "text";
   @Input() variant: string = "mat-title";
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

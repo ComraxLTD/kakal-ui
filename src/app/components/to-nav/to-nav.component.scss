@@ -5,29 +5,21 @@
 }
 
 .navbar {
-  height: 90px;
+  height: 10vh;
   backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);
   background-color: #ffffff;
-  opacity: 1;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 3px solid #fbfbfb;
+  // border-bottom: 3px solid #fbfbfb;
   box-sizing: border-box;
 }
 
 // toggle button styles
 .sidebar-toggle {
-  padding: 0 15px;
+  // padding: 0 15px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
+  // flex-direction: column;
+  justify-content: space-between;
   color: color(primary);
   height: 100%;
-  width: 50px;
-  z-index: 101;
-  margin-top: 4px;
 
   &__icon {
     margin-top: auto;
@@ -57,7 +49,6 @@
 .status-container {
   display: flex;
   width: 100%;
-  justify-content: center;
 }
 
 .project-status {
@@ -70,7 +61,9 @@
   left: 50%;
   width: fit-content;
 
-  &__item {}
+  &__item {
+    transform: translateY(30%);
+  }
 
   #svg-fill {
     margin: auto;
@@ -188,3 +181,9 @@
 // ::ng-deep .list__item-svg .a {
 //   fill: #00c466 !important;
 // }
+
+.text-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}

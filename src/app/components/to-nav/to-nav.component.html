@@ -1,35 +1,29 @@
-<div class="navbar" fxLayout="row" fxLayoutAlign="space-between center">
+<div class="navbar" xLayout="row" fxLayoutAlign="start center">
   <!-- toggle menu button -->
-  <div fxFlex="5" class="sidebar-toggle" [ngClass]="{
+  <div fxFlex="5" [ngClass]="{
       closed: isOpen,
       'education-fill education-border': prefix === 'education',
       'forestry-fill forestry-border': prefix === 'forestry'
     }" (click)="toggleMenu()">
-    <span class="sidebar-toggle__icon">
-      <!-- <svg-icon id="tree-light" [ngClass]="{
-          closed: isOpen,
-          'education-fill': prefix === 'education',
-          'forestry-fill': prefix === 'forestry'
-        }" src="assets/images/{{ isOpen ? 'tree-light' : 'tree-gradient' }}.svg">
-      </svg-icon> -->
+    <div class="sidebar-toggle__icon">
       <app-icon type="svg" key="tree"></app-icon>
-    </span>
+    </div>
 
-    <span class="sidebar-toggle__text">{{
+    <div class="sidebar-toggle__text">{{
       isOpen ? " תפריט" : " סגור תפריט"
-      }}</span>
+      }}</div>
+
   </div>
 
-  <div fxFlex="10">
+  <div class="text-container" fxFlex="20">
     <app-typography variant="mat-display-1">
-      קק"ל חינוך - הזמנות טיולים
+      {{title}}
     </app-typography>
-    <!-- <p class="worker-position">קק"ל חינוך - הזמנות טיולים</p> -->
   </div>
 
   <!-- main navbar links -->
   <div *ngIf="showSteps" fxFlex="50">
-    <div class="status-container">
+    <div class="status-container" fxLayoutAlign="space-evenly">
       <div class="project-status__item" *ngFor="let item of status">
         <app-status-card [item]="item"></app-status-card>
       </div>

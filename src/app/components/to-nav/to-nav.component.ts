@@ -12,8 +12,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ToNavComponent implements OnInit {
   @Output() menuToggle = new EventEmitter();
 
-  @Input() public status: NavigationCardModel[] = [
-  ];
+  @Input() public status: NavigationCardModel[] = [];
+  @Input() public title: string = ''
 
   public isOpen: boolean = true;
   public showSteps: boolean = true;
@@ -33,27 +33,7 @@ export class ToNavComponent implements OnInit {
     // private userDataService: UserDataService
   ) {
 
-    this.prefix = 'education';
-    this.status = [
-      {
-        title: 'בתהליך',
-        svgUrl: 'reload',
-        badgeValue: 3,
-        hasBadge: true
-      },
-      {
-        title: 'מחכה לאישור',
-        svgUrl: 'report',
-        badgeValue: 1,
-        hasBadge: true
-      },
-      {
-        title: 'סגור',
-        svgUrl: 'flag',
-        badgeValue: 20,
-        hasBadge: true
-      },
-    ]
+
 
 
     this.router.events.subscribe((val: any) => {

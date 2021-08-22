@@ -1,8 +1,13 @@
-<ng-container>
-  <div class="project-status__item-icon" matBadgeOverlap matBadge="{{ item.badgeValue }}">
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="item-icon" matBadgeOverlap matBadge="{{ item.badgeValue }}">
     <div class="icon-container">
       <app-icon [color]="'default'" type="svg" [key]="item.svgUrl"></app-icon>
     </div>
   </div>
-  <span class="project-status__item-text">{{ item.title }}</span>
-</ng-container>
+  <div fxFlexAlign="center" fxLayoutGap="10px" class="item-text">
+    <app-typography variant="body-1" color="text">
+      {{ item.title }}
+    </app-typography>
+    <!-- <span class="project-status__item-text"></span> -->
+  </div>
+</div>
