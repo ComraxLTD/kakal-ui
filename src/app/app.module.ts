@@ -10,6 +10,7 @@ import { IconComponent } from './components/icon/icon.component';
 import { FormContainerComponent } from './components/form/form-container/form-container.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { InputRadioComponent } from './components/form/input-radio/input-radio.component';
+import { IconCardComponent } from './components/icon-card/icon-card.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { InputRadioComponent } from './components/form/input-radio/input-radio.c
     FormInputComponent,
     InputRadioComponent,
     IconComponent,
+    IconCardComponent,
   ],
   imports: [
     BrowserModule,
