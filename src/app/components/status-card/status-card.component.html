@@ -1,0 +1,8 @@
+<ng-container>
+  <div class="project-status__item-icon" matBadgeOverlap matBadge="{{ item.badgeValue }}">
+    <div class="icon-container">
+      <app-icon [color]="'default'" type="svg" [key]="item.svgUrl"></app-icon>
+    </div>
+  </div>
+  <span class="project-status__item-text">{{ item.title }}</span>
+</ng-container>

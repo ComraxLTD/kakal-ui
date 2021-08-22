@@ -1,6 +1,6 @@
-<div class="navbar">
+<div class="navbar" fxLayout="row" fxLayoutAlign="space-between center">
   <!-- toggle menu button -->
-  <div class="sidebar-toggle" [ngClass]="{
+  <div fxFlex="5" class="sidebar-toggle" [ngClass]="{
       closed: isOpen,
       'education-fill education-border': prefix === 'education',
       'forestry-fill forestry-border': prefix === 'forestry'
@@ -14,39 +14,36 @@
       </svg-icon> -->
       <app-icon type="svg" key="tree"></app-icon>
     </span>
+
     <span class="sidebar-toggle__text">{{
       isOpen ? " תפריט" : " סגור תפריט"
       }}</span>
   </div>
-  <p class="worker-position">קק"ל חינוך - הזמנות טיולים</p>
+
+  <div fxFlex="10">
+    <app-typography variant="mat-display-1">
+      קק"ל חינוך - הזמנות טיולים
+    </app-typography>
+    <!-- <p class="worker-position">קק"ל חינוך - הזמנות טיולים</p> -->
+  </div>
 
   <!-- main navbar links -->
-  <div class="project-status" *ngIf="showSteps">
-    <div class="project-status__item" *ngFor="let item of status">
-
-      <!-- <div class="project-status__item-badge" [ngClass]="{
-          'badge-education': prefix === 'education',
-          'badge-forestry': prefix === 'forestry'
-        }" matBadgeOverlap matBadge="{{ item.count }}"></div> -->
-
-      <div class="project-status__item-icon">
-        {{status.svgUrl}}
-        <div class="icon-container">
-          <app-icon [color]="'default'" type="svg" [key]="item.svgUrl"></app-icon>
-        </div>
+  <div *ngIf="showSteps" fxFlex="50">
+    <div class="status-container">
+      <div class="project-status__item" *ngFor="let item of status">
+        <app-status-card [item]="item"></app-status-card>
       </div>
-      <span class="project-status__item-text">{{ item.text }}</span>
     </div>
   </div>
 
-  <div class="results-header" *ngIf="!showSteps">
+  <div class="results-header" *ngIf="!showSteps" fxFlex="15">
     <a class="results-header__link" routerLink="forestry/search"><span class="results-header__text">חזור לחיפוש</span>
       <mat-icon class="results-header__icon" matPrefix>search</mat-icon>
     </a>
   </div>
 
   <!-- left side logo -->
-  <a routerLink="/" class="left-logos">
+  <a routerLink="/" class="left-logos" fxFlex="15">
     <!-- <svg-icon class="left-logo-years" src="assets/images/left-logo-years-new.svg">
     </svg-icon>
     <svg-icon src="assets/images/left-logo.svg"></svg-icon> -->

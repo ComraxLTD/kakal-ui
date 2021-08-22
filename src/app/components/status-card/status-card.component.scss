@@ -1,0 +1,69 @@
+.project-status {
+  display: flex;
+  z-index: 10111;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+
+  &__item {
+    margin-bottom: -130px;
+
+    &:not(:first-child) {
+      padding-right: 190px;
+    }
+
+    &:first-child>.project-status__item-badge {
+      margin-right: -190px;
+      background-color: sienna;
+    }
+
+    display: flex;
+    position: relative;
+
+    &-icon {
+      border-radius: 100px;
+      height: 75px;
+      width: 75px;
+      background-color: #ffffff;
+      border: 1px solid #00000029;
+      // display: flex;
+      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;
+      box-shadow: 0px 0px 0px 6px #ffffff;
+
+      .icon-container {
+        height: 100%;
+        transform: scale(1.5);
+      }
+    }
+  }
+
+  #svg-fill {
+    margin: auto;
+    width: 37.5px;
+    height: 37.5px;
+  }
+
+  #svg-fill * {
+    transform: scale(2.5);
+    fill: #747474 !important;
+    width: 37.5px;
+    height: 37.5px;
+  }
+
+  &__item-badge {
+    position: absolute;
+    top: 15px;
+    right: 199px;
+  }
+
+  &__item-text {
+    font-weight: bold;
+    align-self: flex-start;
+    margin-right: 15px;
+    margin-top: 40px;
+  }
+}

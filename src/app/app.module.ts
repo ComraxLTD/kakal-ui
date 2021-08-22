@@ -22,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
 import { ToNavComponent } from './components/to-nav/to-nav.component';
+import { StatusCardComponent } from './components/status-card/status-card.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ToNavComponent } from './components/to-nav/to-nav.component';
     NavbarComponent,
     TypographyComponent,
     DashboardCardComponent,
-    ToNavComponent
+    ToNavComponent,
+    StatusCardComponent
   ],
   imports: [
     BrowserModule,

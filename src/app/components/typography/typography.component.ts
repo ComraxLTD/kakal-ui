@@ -9,7 +9,7 @@ export class TypographyComponent implements OnInit {
   constructor() {}
 
   @Input() color: string;
-  @Input() variant: string;
+  @Input() variant: string = "mat-title";
 
   ngOnInit(): void {}
 }
