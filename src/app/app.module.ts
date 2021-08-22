@@ -10,22 +10,45 @@ import { IconComponent } from './components/icon/icon.component';
 import { FormContainerComponent } from './components/form/form-container/form-container.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { InputRadioComponent } from './components/form/input-radio/input-radio.component';
+import { IconCardComponent } from './components/icon-card/icon-card.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { AppRoutingModule } from './app-routing.module';
+import { TypographyComponent } from './components/typography/typography.component';
+import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    DashboardComponent,
     FormContainerComponent,
     FormInputComponent,
     InputRadioComponent,
     IconComponent,
+    IconCardComponent,
+    NavbarComponent,
+    TypographyComponent,
+    DashboardCardComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
     LayoutModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

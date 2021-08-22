@@ -23,6 +23,8 @@ import {
   ADD_ICON,
   PLAYGROUND_ICON,
   LIST_ICON,
+  TREE_ICON,
+  TREE_GRADIENT_ICON,
 } from './icons.list';
 
 export interface IconItem {
@@ -132,6 +134,14 @@ export class IconsService {
     {
       key: 'list',
       svgUrl: LIST_ICON,
+    },
+    {
+      key: 'tree',
+      svgUrl: TREE_ICON,
+    },
+    {
+      key: 'tree-gradient',
+      svgUrl: TREE_GRADIENT_ICON,
     },
   ];
 
