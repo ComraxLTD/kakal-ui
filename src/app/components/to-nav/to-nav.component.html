@@ -11,14 +11,14 @@
     (click)="toggleMenu()"
   >
     <div class="icon-container">
-      <app-icon type="svg" key="tree" color="primary"></app-icon>
+      <app-icon type="svg" key="tree" color="primary" [size]="40"></app-icon>
     </div>
     <div>
       {{ isOpen ? " תפריט" : " סגור תפריט" }}
     </div>
   </div>
 
-  <div class="text-container" fxFlex="21">
+  <div class="text-container" fxFlex="22">
     <app-typography variant="mat-display-1">
       {{ title }}
     </app-typography>
@@ -33,20 +33,21 @@
     </div>
   </div>
 
-  <!-- <div class="results-header" *ngIf="!showSteps" fxFlex="15">
-    <a class="results-header__link" routerLink="forestry/search"
-      ><span class="results-header__text">חזור לחיפוש</span>
-      <mat-icon class="results-header__icon" matPrefix>search</mat-icon>
-    </a>
-  </div> -->
 
   <!-- left side logo -->
 
-  <div></div>
+  <div xLayout="row" fxLayoutAlign="end center" class="logo-container" fxFlex="23">
+    <div>
+      <app-icon key="logo-year"></app-icon>
+    </div>
+    <div>
+      <app-icon key="logo"></app-icon>
+    </div>
+  </div>
 
-  <a routerLink="/" class="left-logos" fxFlex="15">
-    <!-- <svg-icon class="left-logo-years" src="assets/images/left-logo-years-new.svg">
+  <!-- <a routerLink="/" class="left-logos">
+    <svg-icon class="left-logo-years" src="assets/images/left-logo-years-new.svg">
     </svg-icon>
-    <svg-icon src="assets/images/left-logo.svg"></svg-icon> -->
-  </a>
+    <svg-icon src="assets/images/left-logo.svg"></svg-icon>
+  </a> -->
 </div>

@@ -25,6 +25,8 @@ import {
   LIST_ICON,
   TREE_ICON,
   TREE_GRADIENT_ICON,
+  LOGO,
+  LOGO_YEAR,
 } from './icons.list';
 
 export interface IconItem {
@@ -140,8 +142,12 @@ export class IconsService {
       svgUrl: TREE_ICON,
     },
     {
-      key: 'tree-gradient',
-      svgUrl: TREE_GRADIENT_ICON,
+      key: 'logo',
+      svgUrl: LOGO,
+    },
+    {
+      key: 'logo-year',
+      svgUrl: LOGO_YEAR,
     },
   ];
 

@@ -93,31 +93,6 @@
   }
 }
 
-.results-header {
-  margin-left: 50px;
-  margin-right: auto;
-
-  &__link {
-    display: flex;
-    text-decoration: none;
-    color: #a2a2a2;
-    align-self: center;
-    font-weight: 200;
-  }
-
-  &__text {
-    margin: auto 0;
-    justify-self: center;
-    font-size: 20px;
-  }
-
-  &__icon {
-    padding-right: 10px;
-    color: color(primary);
-    align-self: center;
-    font-weight: bold;
-  }
-}
 
 //left logos area
 
@@ -145,7 +120,8 @@
   display: flex;
   justify-content: flex-start;
 }
+
 .icon-container {
-  transform: scale(2);
+  // transform: scale(2);
   height: 60%;
 }
