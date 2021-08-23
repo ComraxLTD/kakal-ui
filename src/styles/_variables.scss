@@ -1,12 +1,21 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-$primary: #3f51b5;
+$primary: #448ecd;
+$accent: #d220ba;
+$default: #bababa;
+$paper: #fff;
+$text: #000000;
+$text-light: #A2A2A2;
+$success: #37c563;
 
 $colors: (
   primary: $primary,
-  paper: #fff,
-  text: black,
-  success: #1d8813,
+  accent: $accent,
+  default: $default,
+  paper: $paper,
+  text: $text,
+  text-light: $text-light,
+  success : $success
 );
 
 @function color($color-name) {

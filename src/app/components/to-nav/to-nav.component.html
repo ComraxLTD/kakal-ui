@@ -1,25 +1,21 @@
-<div class="navbar" xLayout="row" fxLayoutAlign="start center">
+<div class="navbar mat-elevation-z2" xLayout="row" fxLayoutAlign="start center">
   <!-- toggle menu button -->
-  <div
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    fxFlex="5"
-    [ngClass]="{
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="5" [ngClass]="{
       menu: true,
       closed: isOpen
-    }"
-    (click)="toggleMenu()"
-  >
+    }" (click)="toggleMenu()">
     <div class="icon-container">
       <app-icon type="svg" key="tree" color="primary" [size]="40"></app-icon>
     </div>
     <div>
-      {{ isOpen ? " תפריט" : " סגור תפריט" }}
+      <app-typography [size]="10">
+        {{ isOpen ? " תפריט" : " סגור תפריט" }}
+      </app-typography>
     </div>
   </div>
 
   <div class="text-container" fxFlex="22">
-    <app-typography variant="mat-display-1">
+    <app-typography [size]="24">
       {{ title }}
     </app-typography>
   </div>
@@ -37,12 +33,7 @@
   <div fxFlex></div>
 
   <!-- left side logo -->
-  <div
-    xLayout="row"
-    fxLayoutAlign="space-evenly center"
-    class="logo-container"
-    fxFlex="10"
-  >
+  <div xLayout="row" fxLayoutAlign="space-evenly center" class="logo-container" fxFlex="10">
     <div>
       <app-icon key="logo-year" [size]="80"></app-icon>
     </div>
