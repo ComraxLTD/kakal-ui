@@ -25,7 +25,7 @@
   </div>
 
   <!-- main navbar links -->
-  <div *ngIf="showSteps" fxFlex="50">
+  <div *ngIf="showStatus" fxFlex="50">
     <div class="status-container" fxLayoutAlign="space-evenly">
       <div class="project-status__item" *ngFor="let item of status">
         <app-status-card [item]="item"></app-status-card>
@@ -34,20 +34,20 @@
   </div>
 
 
-  <!-- left side logo -->
+  <div fxFlex></div>
 
-  <div xLayout="row" fxLayoutAlign="end center" class="logo-container" fxFlex="23">
+  <!-- left side logo -->
+  <div
+    xLayout="row"
+    fxLayoutAlign="space-evenly center"
+    class="logo-container"
+    fxFlex="10"
+  >
     <div>
-      <app-icon key="logo-year"></app-icon>
+      <app-icon key="logo-year" [size]="80"></app-icon>
     </div>
     <div>
-      <app-icon key="logo"></app-icon>
+      <app-icon key="logo" [size]="60"></app-icon>
     </div>
   </div>
-
-  <!-- <a routerLink="/" class="left-logos">
-    <svg-icon class="left-logo-years" src="assets/images/left-logo-years-new.svg">
-    </svg-icon>
-    <svg-icon src="assets/images/left-logo.svg"></svg-icon>
-  </a> -->
 </div>

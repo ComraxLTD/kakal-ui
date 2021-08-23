@@ -1,7 +1,6 @@
 import { NavigationCardModel } from './../../utilities/models/nav-card-model';
 import { Input } from '@angular/core';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -14,13 +13,9 @@ export class ToNavComponent implements OnInit {
 
   @Input() public status: NavigationCardModel[] = [];
   @Input() public title: string = ''
+  @Input() public showStatus: boolean = true;
 
   public isOpen: boolean = true;
-  public showSteps: boolean = true;
-
-  public urlAdress = 'main';
-  public componentType: string = '';
-  public prefix: string = ''
 
   public toggleMenu() {
     this.isOpen = !this.isOpen;
@@ -28,25 +23,16 @@ export class ToNavComponent implements OnInit {
   }
 
   constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    // private userDataService: UserDataService
   ) {
 
 
 
-
-    this.router.events.subscribe((val: any) => {
-
-      this.urlAdress = val.url ? val.url : this.urlAdress;
-
-      // this.showSteps =
-      //   this.urlAdress === '/education' ||
-      //     this.urlAdress === '/education/search' ||
-      //     this.urlAdress === '/education/my-tours'
-      //     ? true
-      //     : false;
-    });
+    // this.showSteps =
+    //   this.urlAdress === '/education' ||
+    //     this.urlAdress === '/education/search' ||
+    //     this.urlAdress === '/education/my-tours'
+    //     ? true
+    //     : false;
   }
 
   ngOnInit(): void { }

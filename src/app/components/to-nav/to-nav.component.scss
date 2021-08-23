@@ -8,7 +8,6 @@
   height: 10vh;
   backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);
   background-color: color(paper) !important;
-  // border-bottom: 3px solid #fbfbfb;
   box-sizing: border-box;
 }
 
@@ -17,33 +16,7 @@
   border-bottom: solid 3px color(primary);
 }
 
-// toggle button styles
-.sidebar-toggle {
-  // padding: 0 15px;
-  color: color(primary);
-  height: 100%;
 
-  &__icon {
-    margin-top: auto;
-    height: 40px;
-    margin-bottom: 3px;
-  }
-
-  &__text {
-    margin-bottom: auto;
-    font-size: 0.8rem;
-    line-height: 10px;
-    text-align: center;
-  }
-}
-
-.worker-position {
-  font-size: 28px;
-  align-self: center;
-  margin-left: auto;
-  margin-bottom: -5px;
-  font-weight: 600;
-}
 
 // main area item
 
@@ -66,62 +39,12 @@
     transform: translateY(30%);
   }
 
-  #svg-fill {
-    margin: auto;
-    width: 37.5px;
-    height: 37.5px;
-  }
-
-  #svg-fill * {
-    transform: scale(2.5);
-    fill: #747474 !important;
-    width: 37.5px;
-    height: 37.5px;
-  }
-
-  &__item-badge {
-    position: absolute;
-    top: 15px;
-    right: 199px;
-  }
-
-  &__item-text {
-    font-weight: bold;
-    align-self: flex-start;
-    margin-right: 15px;
-    margin-top: 40px;
-  }
 }
 
 
 //left logos area
 
-.left-logos {
-  margin-left: 23px;
-  min-width: fit-content;
-  flex: 0 0 auto;
-  align-self: center;
-  z-index: 101;
-  height: 90%;
-}
-
-.left-logos * {
-  margin-top: 7px;
-  display: inline;
-  height: 80%;
-}
-
-.left-logo-years {
-  padding-left: 20px;
-}
-
-.text-container {
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-}
 
 .icon-container {
-  // transform: scale(2);
   height: 60%;
 }
