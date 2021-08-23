@@ -1,4 +1,4 @@
-@use "../../../styles/styles.scss";
+@import "../../../styles/styles.scss";
 
 * {
   direction: rtl;
@@ -7,17 +7,19 @@
 .navbar {
   height: 10vh;
   backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);
-  background-color: #ffffff;
+  background-color: color(paper) !important;
   // border-bottom: 3px solid #fbfbfb;
   box-sizing: border-box;
+}
+
+.menu {
+  height: 100%;
+  border-bottom: solid 3px color(primary);
 }
 
 // toggle button styles
 .sidebar-toggle {
   // padding: 0 15px;
-  display: flex;
-  // flex-direction: column;
-  justify-content: space-between;
   color: color(primary);
   height: 100%;
 
@@ -26,7 +28,6 @@
     height: 40px;
     margin-bottom: 3px;
   }
-
 
   &__text {
     margin-bottom: auto;
@@ -140,50 +141,11 @@
   padding-left: 20px;
 }
 
-.badge-education {
-  & .mat-badge-content {
-    background-color: color(primary) !important;
-    color: #ffffff;
-  }
-}
-
-.badge-forestry {
-  & .mat-badge-content {
-    background-color: color(primary) !important;
-    color: #ffffff;
-  }
-}
-
-.education-fill {
-  color: #009eee;
-
-  & * {
-    fill: #009eee !important;
-  }
-}
-
-.education-border {
-  border-bottom: #009eee solid 3px;
-}
-
-// .forestry-fill {
-//   color: #00c466;
-
-//   & * {
-//     fill: #00c466 !important;
-//   }
-// }
-
-// .forestry-border {
-//   border-bottom: color(primary) solid 3px;
-// }
-
-// ::ng-deep .list__item-svg .a {
-//   fill: #00c466 !important;
-// }
-
 .text-container {
   width: 100%;
   display: flex;
   justify-content: flex-start;
+}
+.icon-container {
+  transform: scale(2);
 }

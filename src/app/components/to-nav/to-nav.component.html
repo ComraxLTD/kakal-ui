@@ -1,23 +1,30 @@
 <div class="navbar" xLayout="row" fxLayoutAlign="start center">
   <!-- toggle menu button -->
-  <div fxFlex="5" [ngClass]="{
+  <div
+    fxLayout="column"
+    fxLayoutAlign="end center"
+    fxFlex="5"
+    [ngClass]="{
+      menu: true,
       closed: isOpen,
-      'education-fill education-border': prefix === 'education',
-      'forestry-fill forestry-border': prefix === 'forestry'
-    }" (click)="toggleMenu()">
+      'education-fill education-border': prefix === 'education'
+    }"
+    (click)="toggleMenu()"
+  >
     <div class="sidebar-toggle__icon">
-      <app-icon type="svg" key="tree"></app-icon>
+      <div class="icon-container">
+        <app-icon type="svg" key="tree" color="primary"></app-icon>
+      </div>
     </div>
 
-    <div class="sidebar-toggle__text">{{
-      isOpen ? " תפריט" : " סגור תפריט"
-      }}</div>
-
+    <div class="sidebar-toggle__text">
+      {{ isOpen ? " תפריט" : " סגור תפריט" }}
+    </div>
   </div>
 
   <div class="text-container" fxFlex="20">
     <app-typography variant="mat-display-1">
-      {{title}}
+      {{ title }}
     </app-typography>
   </div>
 
@@ -31,7 +38,8 @@
   </div>
 
   <div class="results-header" *ngIf="!showSteps" fxFlex="15">
-    <a class="results-header__link" routerLink="forestry/search"><span class="results-header__text">חזור לחיפוש</span>
+    <a class="results-header__link" routerLink="forestry/search"
+      ><span class="results-header__text">חזור לחיפוש</span>
       <mat-icon class="results-header__icon" matPrefix>search</mat-icon>
     </a>
   </div>
