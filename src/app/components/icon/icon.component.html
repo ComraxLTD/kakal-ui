@@ -1,6 +1,6 @@
 <div class="icon-container">
   <mat-icon
-    [ngClass]="{ default: color === 'default', active: isActive }"
+    [ngClass]="{ default: default, active: isActive }"
     [ngStyle]="{ 'width.px': width, 'height.px': height }"
     *ngIf="type === 'svg'"
     [color]="color"
@@ -8,8 +8,8 @@
   >
   </mat-icon>
   <mat-icon
-    [ngClass]="{ default: color === 'default', active: isActive }"
-    [ngStyle]="{ 'width.px': width, 'height.px': height }"
+    [ngClass]="{ default: default, active: isActive }"
+    [ngStyle]="{ transform: matScale }"
     *ngIf="type === 'mat'"
     [color]="color"
     >{{ key }}</mat-icon
