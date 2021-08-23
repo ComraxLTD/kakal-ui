@@ -1,11 +1,8 @@
 <div class="navbar mat-elevation-z2" xLayout="row" fxLayoutAlign="start center">
   <!-- toggle menu button -->
-  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="5" [ngClass]="{
-      menu: true,
-      closed: isOpen
-    }" (click)="toggleMenu()">
+  <div fxLayout="column" fxLayoutAlign="center center" fxFlex="5" c class="menuButton" (click)="toggleMenu()">
     <div class="icon-container">
-      <app-icon type="svg" key="tree" color="primary" [size]="40"></app-icon>
+      <app-icon type="svg" [key]="isOpen ? 'tree-gradient' : 'tree'" color="primary" [size]="40"></app-icon>
     </div>
     <div>
       <app-typography [size]="10">
@@ -15,7 +12,7 @@
   </div>
 
   <div class="text-container" fxFlex="22">
-    <app-typography [size]="24">
+    <app-typography [size]="24" *ngIf="!showStatus">
       {{ title }}
     </app-typography>
   </div>

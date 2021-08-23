@@ -142,6 +142,10 @@ export class IconsService {
       svgUrl: TREE_ICON,
     },
     {
+      key: 'tree-gradient',
+      svgUrl: TREE_GRADIENT_ICON,
+    },
+    {
       key: 'logo',
       svgUrl: LOGO,
     },
