@@ -1,4 +1,4 @@
-import { NavigationCardModel } from './../../utilities/models/nav-card-model';
+import { NavigationCardModel } from '../../../utilities/models/nav-card-model';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({

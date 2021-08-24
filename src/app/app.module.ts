@@ -10,8 +10,7 @@ import { IconComponent } from './components/icon/icon.component';
 import { FormContainerComponent } from './components/form/form-container/form-container.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { InputRadioComponent } from './components/form/input-radio/input-radio.component';
-import { IconCardComponent } from './components/icon-card/icon-card.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -21,8 +20,9 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
-import { ToNavComponent } from './components/to-nav/to-nav.component';
-import { StatusCardComponent } from './components/status-card/status-card.component';
+import { StatusCardComponent } from './components/cards/status-card/status-card.component';
+import { IconCardComponent } from './components/cards/icon-card/icon-card.component';
+import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
 
 @NgModule({
   declarations: [
