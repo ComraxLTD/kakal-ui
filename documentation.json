@@ -4012,7 +4012,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../styles/styles.scss\";\n\n:host {\n  direction: rtl;\n}\n\n.navbar {\n  height: 10vh;\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\n  background-color: #ffffff;\n  opacity: 1;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 3px solid #fbfbfb;\n  box-sizing: border-box;\n}\n\n// toggle button styles\n.sidebar-toggle {\n  padding: 0 15px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n  // color: $--green-color-bright;\n  height: 100%;\n  width: 50px;\n  z-index: 101;\n  margin-top: 4px;\n\n  &__icon {\n    margin-top: auto;\n    height: 40px;\n    margin-bottom: 3px;\n  }\n\n\n  &__text {\n    margin-bottom: auto;\n    font-size: 0.8rem;\n    line-height: 10px;\n    text-align: center;\n  }\n}\n\n.worker-position {\n  font-size: 28px;\n  align-self: center;\n  margin-left: auto;\n  margin-bottom: -5px;\n  font-weight: 600;\n}\n\n// main area item\n\n.project-status {\n  display: flex;\n  z-index: 10111;\n  justify-content: space-between;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  width: fit-content;\n\n  &__item {\n    margin-bottom: -130px;\n    &:not(:first-child) {\n      padding-right: 190px;\n    }\n\n    &:first-child > .project-status__item-badge {\n      margin-right: -190px;\n      background-color: sienna;\n    }\n    display: flex;\n    position: relative;\n\n    &-icon {\n      border-radius: 100px;\n      height: 75px;\n      width: 75px;\n      background-color: #ffffff;\n      border: 1px solid #00000029;\n      // display: flex;\n      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\n      box-shadow: 0px 0px 0px 6px #ffffff;\n\n      .icon-container {\n        height: 100%;\n        transform: scale(1.5);\n      }\n    }\n  }\n\n  #svg-fill {\n    margin: auto;\n    width: 37.5px;\n    height: 37.5px;\n  }\n  #svg-fill * {\n    transform: scale(2.5);\n    fill: #747474 !important;\n    width: 37.5px;\n    height: 37.5px;\n  }\n\n  &__item-badge {\n    position: absolute;\n    top: 15px;\n    right: 199px;\n  }\n\n  &__item-text {\n    font-weight: bold;\n    align-self: flex-start;\n    margin-right: 15px;\n    margin-top: 40px;\n  }\n}\n\n.results-header {\n  margin-left: 50px;\n  margin-right: auto;\n\n  &__link {\n    display: flex;\n    text-decoration: none;\n    color: #a2a2a2;\n    align-self: center;\n    font-weight: 200;\n  }\n\n  &__text {\n    margin: auto 0;\n    justify-self: center;\n    font-size: 20px;\n  }\n  &__icon {\n    padding-right: 10px;\n    color: color(primary);\n    align-self: center;\n    padding-top: 2px;\n    font-weight: bold;\n  }\n}\n\n//left logos area\n\n.left-logos {\n  margin-left: 23px;\n  min-width: fit-content;\n  flex: 0 0 auto;\n  align-self: center;\n  z-index: 101;\n  height: 90%;\n}\n\n.left-logos * {\n  margin-top: 7px;\n  display: inline;\n  height: 80%;\n}\n\n.left-logo-years {\n  padding-left: 20px;\n}\n\n.badge-education {\n  & .mat-badge-content {\n    // background-color: $--green-color-bright !important;\n    color: #ffffff;\n  }\n}\n\n.badge-forestry {\n  & .mat-badge-content {\n    background-color: color(primary) !important;\n    color: #ffffff;\n  }\n}\n\n.education-fill {\n  color: #009eee;\n  & * {\n    fill: #009eee !important;\n  }\n}\n\n.education-border {\n  border-bottom: #009eee solid 3px;\n}\n\n.forestry-fill {\n  color: #00c466;\n  & * {\n    fill: #00c466 !important;\n  }\n}\n.forestry-border {\n  // border-bottom: $--green-color-bright solid 3px;\n}\n\n::ng-deep .list__item-svg .a {\n  fill: #00c466 !important;\n}\n",
+                    "data": "@import \"../../../../styles/styles.scss\";\n\n:host {\n  direction: rtl;\n}\n\n.navbar {\n  height: 10vh;\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\n  background-color: #ffffff;\n  opacity: 1;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  border-bottom: 3px solid #fbfbfb;\n  box-sizing: border-box;\n}\n\n// toggle button styles\n.sidebar-toggle {\n  padding: 0 15px;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-around;\n  align-items: center;\n  // color: $--green-color-bright;\n  height: 100%;\n  width: 50px;\n  z-index: 101;\n  margin-top: 4px;\n\n  &__icon {\n    margin-top: auto;\n    height: 40px;\n    margin-bottom: 3px;\n  }\n\n\n  &__text {\n    margin-bottom: auto;\n    font-size: 0.8rem;\n    line-height: 10px;\n    text-align: center;\n  }\n}\n\n.worker-position {\n  font-size: 28px;\n  align-self: center;\n  margin-left: auto;\n  margin-bottom: -5px;\n  font-weight: 600;\n}\n\n// main area item\n\n.project-status {\n  display: flex;\n  z-index: 10111;\n  justify-content: space-between;\n  align-items: center;\n  position: absolute;\n  top: 0;\n  left: 50%;\n  transform: translateX(-50%);\n  width: fit-content;\n\n  &__item {\n    margin-bottom: -130px;\n    &:not(:first-child) {\n      padding-right: 190px;\n    }\n\n    &:first-child > .project-status__item-badge {\n      margin-right: -190px;\n      background-color: sienna;\n    }\n    display: flex;\n    position: relative;\n\n    &-icon {\n      border-radius: 100px;\n      height: 75px;\n      width: 75px;\n      background-color: #ffffff;\n      border: 1px solid #00000029;\n      // display: flex;\n      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\n      box-shadow: 0px 0px 0px 6px #ffffff;\n\n      .icon-container {\n        height: 100%;\n        transform: scale(1.5);\n      }\n    }\n  }\n\n  #svg-fill {\n    margin: auto;\n    width: 37.5px;\n    height: 37.5px;\n  }\n  #svg-fill * {\n    transform: scale(2.5);\n    fill: #747474 !important;\n    width: 37.5px;\n    height: 37.5px;\n  }\n\n  &__item-badge {\n    position: absolute;\n    top: 15px;\n    right: 199px;\n  }\n\n  &__item-text {\n    font-weight: bold;\n    align-self: flex-start;\n    margin-right: 15px;\n    margin-top: 40px;\n  }\n}\n\n.results-header {\n  margin-left: 50px;\n  margin-right: auto;\n\n  &__link {\n    display: flex;\n    text-decoration: none;\n    color: #a2a2a2;\n    align-self: center;\n    font-weight: 200;\n  }\n\n  &__text {\n    margin: auto 0;\n    justify-self: center;\n    font-size: 20px;\n  }\n  &__icon {\n    padding-right: 10px;\n    color: color(primary);\n    align-self: center;\n    padding-top: 2px;\n    font-weight: bold;\n  }\n}\n\n//left logos area\n\n.left-logos {\n  margin-left: 23px;\n  min-width: fit-content;\n  flex: 0 0 auto;\n  align-self: center;\n  z-index: 101;\n  height: 90%;\n}\n\n.left-logos * {\n  margin-top: 7px;\n  display: inline;\n  height: 80%;\n}\n\n.left-logo-years {\n  padding-left: 20px;\n}\n\n.badge-education {\n  & .mat-badge-content {\n    // background-color: $--green-color-bright !important;\n    color: #ffffff;\n  }\n}\n\n.badge-forestry {\n  & .mat-badge-content {\n    background-color: color(primary) !important;\n    color: #ffffff;\n  }\n}\n\n.education-fill {\n  color: #009eee;\n  & * {\n    fill: #009eee !important;\n  }\n}\n\n.education-border {\n  border-bottom: #009eee solid 3px;\n}\n\n.forestry-fill {\n  color: #00c466;\n  & * {\n    fill: #00c466 !important;\n  }\n}\n.forestry-border {\n  // border-bottom: $--green-color-bright solid 3px;\n}\n\n::ng-deep .list__item-svg .a {\n  fill: #00c466 !important;\n}\n",
                     "styleUrl": "./navbar.component.scss"
                 }
             ],
@@ -4619,6 +4619,16 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "CustomDescription",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/ExpandPanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "(args: ExpendPanelComponent) => ({\n  props: args,\n  template: `<app-expend-panel ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}>\n    <span title>My Amazing title</span>\n    <span description>jnvkjsanvdjsnkj fnaskjdfndsajknf jksdnf kjnaskjfn jksadnf jknasd f</span>\n</app-expend-panel>`\n})"
+            },
+            {
                 "name": "CustomTitle",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4626,7 +4636,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "(args: ExpendPanelComponent) => ({\n  props: args,\n  template: `<app-expend-panel ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`)}>\n    <title>asdasdasd</title>\n</app-expend-panel>`\n})"
+                "defaultValue": "(args: ExpendPanelComponent) => ({\n  props: args,\n  template: `<app-expend-panel ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}>\n    <span title>My Amazing title</span>\n</app-expend-panel>`\n})"
             },
             {
                 "name": "Default",
@@ -4642,7 +4652,27 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/screens/Login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -4901,6 +4931,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarComponent>",
+                "defaultValue": "(args: NavbarComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/StatusCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -4915,7 +4955,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
-                "defaultValue": "(args: TypographyComponent) => ({\n  props: args,\n  template: `<app-typography ${Object.keys(args).length ? Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '') : ''}> Hello World </app-typography>`,\n\n})"
+                "defaultValue": "(args: TypographyComponent) => ({\n  props: args,\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}> Hello World </app-typography>`,\n\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/screens/Login.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<literal type>",
+                "defaultValue": "(args: () => {}) => ({\n  props: args,\n})"
             },
             {
                 "name": "TENT_ICON",
@@ -5257,6 +5307,16 @@
             ],
             "src/stories/ExpandPanel.stories.ts": [
                 {
+                    "name": "CustomDescription",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/ExpandPanel.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(args: ExpendPanelComponent) => ({\n  props: args,\n  template: `<app-expend-panel ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}>\n    <span title>My Amazing title</span>\n    <span description>jnvkjsanvdjsnkj fnaskjdfndsajknf jksdnf kjnaskjfn jksadnf jknasd f</span>\n</app-expend-panel>`\n})"
+                },
+                {
                     "name": "CustomTitle",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -5264,7 +5324,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "(args: ExpendPanelComponent) => ({\n  props: args,\n  template: `<app-expend-panel ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`)}>\n    <title>asdasdasd</title>\n</app-expend-panel>`\n})"
+                    "defaultValue": "(args: ExpendPanelComponent) => ({\n  props: args,\n  template: `<app-expend-panel ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}>\n    <span title>My Amazing title</span>\n</app-expend-panel>`\n})"
                 },
                 {
                     "name": "Default",
@@ -5287,6 +5347,28 @@
                     "defaultValue": "(args: ExpendPanelComponent) => ({\n  props: args,\n})"
                 }
             ],
+            "src/stories/Navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavbarComponent>",
+                    "defaultValue": "(args: NavbarComponent) => ({\n  props: args,\n})"
+                }
+            ],
             "src/stories/Typography.stories.ts": [
                 {
                     "name": "Default",
@@ -5306,7 +5388,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TypographyComponent>",
-                    "defaultValue": "(args: TypographyComponent) => ({\n  props: args,\n  template: `<app-typography ${Object.keys(args).length ? Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '') : ''}> Hello World </app-typography>`,\n\n})"
+                    "defaultValue": "(args: TypographyComponent) => ({\n  props: args,\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}> Hello World </app-typography>`,\n\n})"
                 },
                 {
                     "name": "Title",
@@ -5317,6 +5399,28 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "src/stories/screens/Login.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/screens/Login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/screens/Login.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<literal type>",
+                    "defaultValue": "(args: () => {}) => ({\n  props: args,\n})"
                 }
             ],
             "src/environments/environment.prod.ts": [
@@ -6033,6 +6137,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "CustomDescription",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/ExpandPanel.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "CustomTitle",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -6099,6 +6213,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/Navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Navbar.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/StatusCard.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -6144,6 +6278,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Title",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/screens/Login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/screens/Login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
