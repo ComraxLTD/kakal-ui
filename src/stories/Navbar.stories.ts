@@ -4,6 +4,7 @@ import {NavbarComponent} from "../app/components/navigation/navbar/navbar.compon
 import {MaterialModule} from "../material/material.module";
 import {BrowserModule} from "@angular/platform-browser";
 import {AppRoutingModule} from "../app/app-routing.module";
+import {MatToolbarModule} from "@angular/material/toolbar";
 
 export default {
   title: 'Nav Bar',
@@ -12,7 +13,7 @@ export default {
     moduleMetadata({
       declarations: [],
       providers: [{provide: APP_BASE_HREF, useValue: '/'}],
-      imports: [CommonModule, MaterialModule, BrowserModule, AppRoutingModule],
+      imports: [CommonModule, MaterialModule, MatToolbarModule, BrowserModule, AppRoutingModule],
     }),
   ],
 } as Meta;
