@@ -2582,126 +2582,6 @@
             "templateData": "<app-dashboard>\n  <!-- <app-navbar navbar title=\"jdskjdksjdks\"></app-navbar> -->\n  <app-to-nav [status]=\"status\"\n  [title]=\"title\"\n  navbar></app-to-nav>\n</app-dashboard>\n"
         },
         {
-            "name": "ButtonComponent",
-            "id": "component-ButtonComponent-642c6c4e474cd5a0ac760dfda26b2fc9",
-            "file": "src/stories/button.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-button",
-            "styleUrls": [
-                "./button.css"
-            ],
-            "styles": [],
-            "template": "<button   type=\"button\"\n   (click)=\"onClick.emit($event)\"\n   [ngClass]=\"classes\"\n   [ngStyle]=\"{ 'background-color': backgroundColor }\"\n >\n   {{ label }}\n </button>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "backgroundColor",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "What background color to use",
-                    "description": "<p>What background color to use</p>\n",
-                    "line": 26,
-                    "type": "string"
-                },
-                {
-                    "name": "label",
-                    "defaultValue": "'Button'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "jsdoctags": [
-                        {
-                            "pos": 711,
-                            "end": 724,
-                            "flags": 4227072,
-                            "modifierFlagsCache": 0,
-                            "transformFlags": 0,
-                            "kind": 317,
-                            "tagName": {
-                                "pos": 712,
-                                "end": 720,
-                                "flags": 4227072,
-                                "modifierFlagsCache": 0,
-                                "transformFlags": 0,
-                                "kind": 78,
-                                "escapedText": "required"
-                            },
-                            "comment": ""
-                        }
-                    ],
-                    "rawdescription": "Button contents",
-                    "description": "<p>Button contents</p>\n",
-                    "line": 40,
-                    "type": "string"
-                },
-                {
-                    "name": "primary",
-                    "defaultValue": "false",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "Is this the principal call to action on the page?",
-                    "description": "<p>Is this the principal call to action on the page?</p>\n",
-                    "line": 20,
-                    "type": "boolean"
-                },
-                {
-                    "name": "size",
-                    "defaultValue": "'medium'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "How large should the button be?",
-                    "description": "<p>How large should the button be?</p>\n",
-                    "line": 32,
-                    "type": "\"small\" | \"medium\" | \"large\""
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onClick",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "rawdescription": "\n\nOptional click handler\n",
-                    "description": "<p>Optional click handler</p>\n",
-                    "line": 46,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-button',\n  template: ` <button\n    type=\"button\"\n    (click)=\"onClick.emit($event)\"\n    [ngClass]=\"classes\"\n    [ngStyle]=\"{ 'background-color': backgroundColor }\"\n  >\n    {{ label }}\n  </button>`,\n  styleUrls: ['./button.css'],\n})\nexport default class ButtonComponent {\n  /**\n   * Is this the principal call to action on the page?\n   */\n  @Input()\n  primary = false;\n\n  /**\n   * What background color to use\n   */\n  @Input()\n  backgroundColor?: string;\n\n  /**\n   * How large should the button be?\n   */\n  @Input()\n  size: 'small' | 'medium' | 'large' = 'medium';\n\n  /**\n   * Button contents\n   *\n   * @required\n   */\n  @Input()\n  label = 'Button';\n\n  /**\n   * Optional click handler\n   */\n  @Output()\n  onClick = new EventEmitter<Event>();\n\n  public get classes(): string[] {\n    const mode = this.primary ? 'storybook-button--primary' : 'storybook-button--secondary';\n\n    return ['storybook-button', `storybook-button--${this.size}`, mode];\n  }\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".storybook-button {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-weight: 700;\n  border: 0;\n  border-radius: 3em;\n  cursor: pointer;\n  display: inline-block;\n  line-height: 1;\n}\n.storybook-button--primary {\n  color: white;\n  background-color: #1ea7fd;\n}\n.storybook-button--secondary {\n  color: #333;\n  background-color: transparent;\n  box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 0px 1px inset;\n}\n.storybook-button--small {\n  font-size: 12px;\n  padding: 10px 16px;\n}\n.storybook-button--medium {\n  font-size: 14px;\n  padding: 11px 20px;\n}\n.storybook-button--large {\n  font-size: 16px;\n  padding: 12px 24px;\n}\n",
-                    "styleUrl": "./button.css"
-                }
-            ],
-            "stylesData": "",
-            "accessors": {
-                "classes": {
-                    "name": "classes",
-                    "getSignature": {
-                        "name": "classes",
-                        "type": "[]",
-                        "returnType": "string[]",
-                        "line": 48
-                    }
-                }
-            }
-        },
-        {
             "name": "DashboardCardComponent",
             "id": "component-DashboardCardComponent-7bd668e54fae651bdc7676e86d91f958",
             "file": "src/app/components/dashboard-card/dashboard-card.component.ts",
@@ -3591,78 +3471,6 @@
             "templateData": "<div class=\"input-container\">\n  <div>\n    <mat-form-field\n      [color]=\"theme\"\n      appearance=\"outline\"\n      [ngClass]=\"[labelLength || 'base']\"\n    >\n      <mat-label>{{ label }}</mat-label>\n      <input\n        *ngIf=\"controlType !== 'select' && controlType !== 'textarea'\"\n        matInput\n        [type]=\"type\"\n        [disabled]=\"disabled\"\n        [formControl]=\"control\"\n        control=\"control\"\n        autocomplete=\"off\"\n        (input)=\"handleChange($event.target.value)\"\n        [name]=\"type\"\n        (focusout)=\"validate()\"\n        #input\n        [placeholder]=\"label\"\n      />\n\n      <mat-select\n        color=\"primary\"\n        [formControl]=\"control\"\n        *ngIf=\"controlType === 'select'\"\n        (change)=\"handleChange($event.value)\"\n      >\n        <mat-option>{{ label | titlecase }}</mat-option>\n        <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\n          {{ option.key }}\n        </mat-option>\n      </mat-select>\n\n      <textarea\n        rows=\"4\"\n        [formControl]=\"control\"\n        *ngIf=\"controlType === 'textarea'\"\n        matInput\n      ></textarea>\n\n      <!-- icons -->\n      <mat-icon matPrefix>{{\n        controlType === \"select\" ? \"keyboard_arrow_down\" : icon\n      }}</mat-icon>\n\n      <!-- shred input hint -->\n      <mat-hint *ngIf=\"hint\">{{ \"Please enter \" + hint }}</mat-hint>\n\n      <!-- shred input error -->\n      <mat-error *ngIf=\"control.errors\">{{ error }}</mat-error>\n    </mat-form-field>\n\n    <div></div>\n  </div>\n</div>\n"
         },
         {
-            "name": "HeaderComponent",
-            "id": "component-HeaderComponent-246e2a69dc126a3bd76c6328dd3b93e2",
-            "file": "src/stories/header.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-header",
-            "styleUrls": [
-                "./header.css"
-            ],
-            "styles": [],
-            "template": "<header>    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          primary\n          size=\"small\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </header>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 53,
-                    "type": ""
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onCreateAccount",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 62,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogin",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 56,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogout",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 59,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-header',\n  template: `<header>\n    <div class=\"wrapper\">\n      <div>\n        <svg width=\"32\" height=\"32\" viewBox=\"0 0 32 32\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M10 0h12a10 10 0 0110 10v12a10 10 0 01-10 10H10A10 10 0 010 22V10A10 10 0 0110 0z\"\n              fill=\"#FFF\"\n            />\n            <path\n              d=\"M5.3 10.6l10.4 6v11.1l-10.4-6v-11zm11.4-6.2l9.7 5.5-9.7 5.6V4.4z\"\n              fill=\"#555AB9\"\n            />\n            <path\n              d=\"M27.2 10.6v11.2l-10.5 6V16.5l10.5-6zM15.7 4.4v11L6 10l9.7-5.5z\"\n              fill=\"#91BAF8\"\n            />\n          </g>\n        </svg>\n        <h1>Acme</h1>\n      </div>\n      <div>\n        <storybook-button\n          *ngIf=\"user\"\n          size=\"small\"\n          (onClick)=\"onLogout.emit($event)\"\n          label=\"Log out\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          size=\"small\"\n          (onClick)=\"onLogin.emit($event)\"\n          label=\"Log in\"\n        ></storybook-button>\n        <storybook-button\n          *ngIf=\"!user\"\n          primary\n          size=\"small\"\n          (onClick)=\"onCreateAccount.emit($event)\"\n          label=\"Sign up\"\n        ></storybook-button>\n      </div>\n    </div>\n  </header>`,\n  styleUrls: ['./header.css'],\n})\nexport default class HeaderComponent {\n  @Input()\n  user: unknown = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": ".wrapper {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.1);\n  padding: 15px 20px;\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\nsvg {\n  display: inline-block;\n  vertical-align: top;\n}\n\nh1 {\n  font-weight: 900;\n  font-size: 20px;\n  line-height: 1;\n  margin: 6px 0 6px 10px;\n  display: inline-block;\n  vertical-align: top;\n}\n\nbutton + button {\n  margin-left: 10px;\n}\n",
-                    "styleUrl": "./header.css"
-                }
-            ],
-            "stylesData": ""
-        },
-        {
             "name": "IconCardComponent",
             "id": "component-IconCardComponent-0608ada4ac1611787aa37f0610c3d9e5",
             "file": "src/app/components/cards/icon-card/icon-card.component.ts",
@@ -3728,7 +3536,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../styles/styles.scss\";\n\n:host {\n  width: 100%;\n  height: 100%;\n}\n\n.nav-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  .svg-container {\n    mat-card {\n      height: 80px;\n      width: 80px;\n      background-color: linear-gradient(0deg, #eeeeee 0%, #fefefe 100%);\n      box-shadow: 0px 0px 1px 2px #e5e5e5;\n      border-radius: 10px;\n      cursor: pointer;\n\n      &.active {\n        background-color: color(primary) !important;\n      }\n    }\n  }\n  .title-container {\n    padding: 8px;\n  }\n}\n\n.icon-container {\n  transform: scale(3);\n}\n",
+                    "data": "@import \"../../../../styles/styles.scss\";\n\n:host {\n  width: 100%;\n  height: 100%;\n}\n\n.nav-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n\n  .svg-container {\n    mat-card {\n      height: 80px;\n      width: 80px;\n      background-color: linear-gradient(0deg, #eeeeee 0%, #fefefe 100%);\n      box-shadow: 0px 0px 1px 2px #e5e5e5;\n      border-radius: 10px;\n      cursor: pointer;\n\n      &.active {\n        background-color: color(primary) !important;\n      }\n    }\n  }\n  .title-container {\n    padding: 8px;\n  }\n}\n\n.icon-container {\n  transform: scale(3);\n}\n",
                     "styleUrl": "./icon-card.component.scss"
                 }
             ],
@@ -4265,78 +4073,6 @@
             "templateData": "<mat-toolbar class=\"navbar\">\n  <!-- toggle menu button -->\n  <div\n    class=\"sidebar-toggle\"\n    [ngClass]=\"{ closed: isOpen }\"\n    (click)=\"toggleMenu()\"\n  >\n    <div class=\"sidebar-toggle__icon\">\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\n      <div class=\"icon-container\">\n        <app-icon\n          color=\"primary\"\n          type=\"svg\"\n          key=\"tree\"\n          color=\"primary\"\n        ></app-icon>\n      </div>\n    </div>\n    <div class=\"sidebar-toggle__text\">\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\n    </div>\n  </div>\n\n  <div>\n    <app-typography [variant]=\"'mat-display-1'\">\n      {{ title }}\n    </app-typography>\n  </div>\n\n  <!-- main navbar links -->\n  <div class=\"project-status\" *ngIf=\"showSteps\">\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\n      <div\n        class=\"project-status__item-badge\"\n        matBadgeOverlap\n        matBadge=\"{{ item.count }}\"\n      ></div>\n\n      <div class=\"project-status__item-icon\">\n        <div class=\"icon-container\">\n          <app-icon\n            [color]=\"'default'\"\n            type=\"svg\"\n            [key]=\"item.svgUrl\"\n          ></app-icon>\n        </div>\n      </div>\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\n    </div>\n  </div>\n\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\n    </a>\n  </div>\n\n  <!-- left side logo -->\n  <a routerLink=\"/\" class=\"left-logos\">\n    <!-- <svg-icon\n      class=\"left-logo-years\"\n      src=\"assets/images/left-logo-years-new.svg\"\n    >\n    </svg-icon>\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\n  </a>\n</mat-toolbar>\n"
         },
         {
-            "name": "PageComponent",
-            "id": "component-PageComponent-8f196770333aa216860a88c0b6b221aa",
-            "file": "src/stories/page.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "storybook-page",
-            "styleUrls": [
-                "./page.css"
-            ],
-            "styles": [],
-            "template": "<article>    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"onLogout.emit($event)\"\n      (onLogin)=\"onLogin.emit($event)\"\n      (onCreateAccount)=\"onCreateAccount.emit($event)\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>",
-            "templateUrl": [],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "user",
-                    "defaultValue": "null",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 64,
-                    "type": ""
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "onCreateAccount",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 73,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogin",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 67,
-                    "type": "EventEmitter"
-                },
-                {
-                    "name": "onLogout",
-                    "defaultValue": "new EventEmitter<Event>()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 70,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [],
-            "methodsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, Input, Output, EventEmitter } from '@angular/core';\n\n@Component({\n  selector: 'storybook-page',\n  template: `<article>\n    <storybook-header\n      [user]=\"user\"\n      (onLogout)=\"onLogout.emit($event)\"\n      (onLogin)=\"onLogin.emit($event)\"\n      (onCreateAccount)=\"onCreateAccount.emit($event)\"\n    ></storybook-header>\n    <section>\n      <h2>Pages in Storybook</h2>\n      <p>\n        We recommend building UIs with a\n        <a href=\"https://componentdriven.org\" target=\"_blank\" rel=\"noopener noreferrer\">\n          <strong>component-driven</strong>\n        </a>\n        process starting with atomic components and ending with pages.\n      </p>\n      <p>\n        Render pages with mock data. This makes it easy to build and review page states without\n        needing to navigate to them in your app. Here are some handy patterns for managing page data\n        in Storybook:\n      </p>\n      <ul>\n        <li>\n          Use a higher-level connected component. Storybook helps you compose such data from the\n          \"args\" of child component stories\n        </li>\n        <li>\n          Assemble data in the page component from your services. You can mock these services out\n          using Storybook.\n        </li>\n      </ul>\n      <p>\n        Get a guided tutorial on component-driven development at\n        <a href=\"https://storybook.js.org/tutorials/\" target=\"_blank\" rel=\"noopener noreferrer\">\n          Storybook tutorials\n        </a>\n        . Read more in the\n        <a href=\"https://storybook.js.org/docs\" target=\"_blank\" rel=\"noopener noreferrer\"> docs </a>\n        .\n      </p>\n      <div class=\"tip-wrapper\">\n        <span class=\"tip\">Tip</span> Adjust the width of the canvas with the\n        <svg width=\"10\" height=\"10\" viewBox=\"0 0 12 12\" xmlns=\"http://www.w3.org/2000/svg\">\n          <g fill=\"none\" fillRule=\"evenodd\">\n            <path\n              d=\"M1.5 5.2h4.8c.3 0 .5.2.5.4v5.1c-.1.2-.3.3-.4.3H1.4a.5.5 0 01-.5-.4V5.7c0-.3.2-.5.5-.5zm0-2.1h6.9c.3 0 .5.2.5.4v7a.5.5 0 01-1 0V4H1.5a.5.5 0 010-1zm0-2.1h9c.3 0 .5.2.5.4v9.1a.5.5 0 01-1 0V2H1.5a.5.5 0 010-1zm4.3 5.2H2V10h3.8V6.2z\"\n              id=\"a\"\n              fill=\"#999\"\n            />\n          </g>\n        </svg>\n        Viewports addon in the toolbar\n      </div>\n    </section>\n  </article>`,\n  styleUrls: ['./page.css'],\n})\nexport default class PageComponent {\n  @Input()\n  user: unknown = null;\n\n  @Output()\n  onLogin = new EventEmitter<Event>();\n\n  @Output()\n  onLogout = new EventEmitter<Event>();\n\n  @Output()\n  onCreateAccount = new EventEmitter<Event>();\n}\n\n// export const Page = ({ user, onLogin, onLogout, onCreateAccount }) => (\n//   <article>\n//     <Header user={user} onLogin={onLogin} onLogout={onLogout} onCreateAccount={onCreateAccount} />\n\n// );\n// Page.propTypes = {\n//   user: PropTypes.shape({}),\n//   onLogin: PropTypes.func.isRequired,\n//   onLogout: PropTypes.func.isRequired,\n//   onCreateAccount: PropTypes.func.isRequired,\n// };\n\n// Page.defaultProps = {\n//   user: null,\n// };\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "section {\n  font-family: 'Nunito Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;\n  font-size: 14px;\n  line-height: 24px;\n  padding: 48px 20px;\n  margin: 0 auto;\n  max-width: 600px;\n  color: #333;\n}\n\nh2 {\n  font-weight: 900;\n  font-size: 32px;\n  line-height: 1;\n  margin: 0 0 4px;\n  display: inline-block;\n  vertical-align: top;\n}\n\np {\n  margin: 1em 0;\n}\n\na {\n  text-decoration: none;\n  color: #1ea7fd;\n}\n\nul {\n  padding-left: 30px;\n  margin: 1em 0;\n}\n\nli {\n  margin-bottom: 8px;\n}\n\n.tip {\n  display: inline-block;\n  border-radius: 1em;\n  font-size: 11px;\n  line-height: 12px;\n  font-weight: 700;\n  background: #e7fdd8;\n  color: #66bf3c;\n  padding: 4px 12px;\n  margin-right: 10px;\n  vertical-align: top;\n}\n\n.tip-wrapper {\n  font-size: 13px;\n  line-height: 20px;\n  margin-top: 40px;\n  margin-bottom: 40px;\n}\n\n.tip-wrapper svg {\n  display: inline-block;\n  height: 12px;\n  width: 12px;\n  margin-right: 4px;\n  vertical-align: top;\n  margin-top: 3px;\n}\n\n.tip-wrapper svg path {\n  fill: #1ea7fd;\n}\n",
-                    "styleUrl": "./page.css"
-                }
-            ],
-            "stylesData": ""
-        },
-        {
             "name": "StatusCardComponent",
             "id": "component-StatusCardComponent-3cb350913b41f00a73e7350fe255021c",
             "file": "src/app/components/cards/status-card/status-card.component.ts",
@@ -4784,13 +4520,13 @@
         },
         {
             "name": "MaterialModule",
-            "id": "module-MaterialModule-24d746fc651aeee52a0ac50741116955",
+            "id": "module-MaterialModule-679faf9f12ab54d3c4c5b8c968c0370c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/material/material.module.ts",
             "methods": [],
-            "sourceCode": "import { MatPaginatorModule } from '@angular/material/paginator';\nimport { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { MatGridListModule } from '@angular/material/grid-list';\nimport { MatBadgeModule } from '@angular/material/badge';\nimport {MatListModule} from '@angular/material/list';\nimport {MatSidenavModule} from '@angular/material/sidenav';\nimport {MatSelectModule} from '@angular/material/select';\nimport {MatFormFieldModule} from '@angular/material/form-field';\nimport {MatInputModule} from '@angular/material/input';\nimport {MatSortModule} from '@angular/material/sort';\nimport {MatTableModule} from '@angular/material/table';\nimport {MatRadioModule} from '@angular/material/radio';\nimport {MatTooltipModule} from '@angular/material/tooltip';\nimport {MatCheckboxModule} from '@angular/material/checkbox';\nimport { MatIconModule } from '@angular/material/icon';\nimport {MatProgressSpinnerModule} from '@angular/material/progress-spinner';\nimport {MatCardModule} from '@angular/material/card';\nimport {MatExpansionModule} from '@angular/material/expansion';\n\nimport { FlexLayoutModule } from '@angular/flex-layout';\n\n\n@NgModule({\n  imports: [\n    MatButtonModule,\n    MatToolbarModule,\n    MatGridListModule,\n    MatBadgeModule,\n    MatListModule,\n    MatSidenavModule,\n    MatSelectModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatSortModule,\n    MatTableModule,\n    MatRadioModule,\n    MatTooltipModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatProgressSpinnerModule,\n    MatPaginatorModule,\n    MatToolbarModule,\n    MatButtonModule,\n    MatSidenavModule,\n    MatIconModule,\n    MatListModule,\n    MatCardModule,\n    MatExpansionModule,\n    FlexLayoutModule\n\n  ],\n  exports: [\n    MatButtonModule,\n    MatToolbarModule,\n    MatGridListModule,\n    MatBadgeModule,\n    MatListModule,\n    MatSidenavModule,\n    MatSelectModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatSortModule,\n    MatTableModule,\n    MatRadioModule,\n    MatTooltipModule,\n    MatCheckboxModule,\n    MatIconModule,\n    MatProgressSpinnerModule,\n    MatPaginatorModule,\n    MatToolbarModule,\n    MatButtonModule,\n    MatSidenavModule,\n    MatIconModule,\n    MatListModule,\n    MatCardModule,\n    MatExpansionModule,\n    FlexLayoutModule\n  ],\n})\nexport class MaterialModule {}\n",
+            "sourceCode": "import { MatPaginatorModule } from '@angular/material/paginator';\nimport { NgModule } from '@angular/core';\nimport { MatButtonModule } from '@angular/material/button';\nimport { MatToolbarModule } from '@angular/material/toolbar';\nimport { MatGridListModule } from '@angular/material/grid-list';\nimport { MatBadgeModule } from '@angular/material/badge';\nimport {MatListModule} from '@angular/material/list';\nimport {MatSidenavModule} from '@angular/material/sidenav';\nimport {MatSelectModule} from '@angular/material/select';\nimport {MatFormFieldModule} from '@angular/material/form-field';\nimport {MatInputModule} from '@angular/material/input';\nimport {MatSortModule} from '@angular/material/sort';\nimport {MatTableModule} from '@angular/material/table';\nimport {MatRadioModule} from '@angular/material/radio';\nimport {MatTooltipModule} from '@angular/material/tooltip';\nimport {MatCheckboxModule} from '@angular/material/checkbox';\nimport { MatIconModule } from '@angular/material/icon';\nimport {MatProgressSpinnerModule} from '@angular/material/progress-spinner';\nimport {MatCardModule} from '@angular/material/card';\nimport {MatExpansionModule} from '@angular/material/expansion';\n\nimport { FlexLayoutModule } from '@angular/flex-layout';\n\n\n@NgModule({\n  imports: [\n    MatButtonModule,\n    MatToolbarModule,\n    MatGridListModule,\n    MatBadgeModule,\n    MatListModule,\n    MatSidenavModule,\n    MatSelectModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatSortModule,\n    MatTableModule,\n    MatRadioModule,\n    MatTooltipModule,\n    MatCheckboxModule,\n    MatProgressSpinnerModule,\n    MatPaginatorModule,\n    MatToolbarModule,\n    MatButtonModule,\n    MatSidenavModule,\n    MatIconModule,\n    MatListModule,\n    MatCardModule,\n    MatExpansionModule,\n    FlexLayoutModule\n\n  ],\n  exports: [\n    MatButtonModule,\n    MatToolbarModule,\n    MatGridListModule,\n    MatBadgeModule,\n    MatListModule,\n    MatSidenavModule,\n    MatSelectModule,\n    MatFormFieldModule,\n    MatInputModule,\n    MatSortModule,\n    MatTableModule,\n    MatRadioModule,\n    MatTooltipModule,\n    MatCheckboxModule,\n    MatProgressSpinnerModule,\n    MatPaginatorModule,\n    MatToolbarModule,\n    MatButtonModule,\n    MatSidenavModule,\n    MatIconModule,\n    MatListModule,\n    MatCardModule,\n    MatExpansionModule,\n    FlexLayoutModule\n  ],\n})\nexport class MaterialModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -4892,6 +4628,16 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "DESTINATION_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4962,16 +4708,6 @@
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\nwidth=\"34.105\" height=\"48.367\" viewBox=\"0 0 34.105 48.367\"><defs>\n<style>.guide{fill:\"none\";}.b{fill:none;stroke:#bababa;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-width:1.142px;}</style>\n</defs><ellipse class=\"guide\" cx=\"4.456\" cy=\"4.456\" rx=\"4.456\" ry=\"4.456\" transform=\"translate(10.162 0)\"/>\n<path class=\"guide\" d=\"M16.223,7.266c-.165-1.131-1.043-1.811-1.683-1.632l-4.649,1.3c-.639.182-.858,1.666-.678,2.311l3.83,15.727c.188.646.573.966,1.214.781l3.141-.68c2.53-2.083,2.515-3.9,2-6.4Z\" transform=\"translate(4.558 4.924)\"/>\n<path class=\"guide\" d=\"M10.428,16.109l.8,5.57s2.049,4.867,3.458,7.726c1.065,2.166,1.567,3.727.834,4.118-1.123.6-2.634-.742-4.215-3.209-2.652-4.137-4.018-6.2-4.529-7.21l-.8-2.626S9.91,17.873,10.428,16.109Z\" transform=\"translate(14.341 14.152)\"/>\n<path class=\"guide\" d=\"M10.729,20.474l6.2-6.162c.979-.986,2.44-.522,3.43.458s2.923,1.894,1.948,2.885L14.421,24.3l.874,8.513c.064,2.1-.06,3.317-1.394,3.456-1.245.13-1.794-2.461-1.924-3.116,0,0-1.595-8.155-1.788-9.3S9.878,21.343,10.729,20.474Z\" transform=\"translate(-0.038 12.092)\"/>\n<path class=\"guide\" d=\"M16.143,8.78l4.678,2.2,5.893-4.3a2.1,2.1,0,0,1,2.455,3.4l-6.355,4.6a2.4,2.4,0,0,1-2.188.364s-4.364-2.651-5.534-3.413c-1.227-.8-2.51-1.86-2.036-2.746C13.728,7.613,14.952,8.205,16.143,8.78Z\" transform=\"translate(-12.954 5.517)\"/><line class=\"b\" y2=\"35.692\" transform=\"translate(3.347 11.972)\"/>\n<path class=\"guide\" d=\"M4.048,7.594s2.788,8.652,3.21,10.028,1.9,2.329,3.981,1.694,4.245-1.51,3.907-3.945c-.37-2.652-2.876-6.175-5.049-8.44S2.96,3.881,4.048,7.594Z\" transform=\"translate(18.923 4.411)\"/>\n</svg>`"
             },
             {
-                "name": "Large",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "LIST_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -4980,46 +4716,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\nwidth=\"29.56\" height=\"32.535\" viewBox=\"0 0 29.56 32.535\"><defs>\n<style>.list{fill:\"\"none\";}</style></defs><g transform=\"translate(-22.3)\"><g transform=\"translate(22.3 0)\">\n<path class=\"list\" d=\"M26.163,4.183a.819.819,0,0,0-1.154-.007A.807.807,0,0,0,25,5.33L26.95,7.291a.817.817,0,0,0,.58.24h0a.814.814,0,0,0,.574-.24l5.931-5.9A.814.814,0,1,0,32.887.24L31.092,2.021A5.115,5.115,0,1,0,32.32,7.065a.819.819,0,0,0-1.568-.474,3.492,3.492,0,1,1-.821-3.409L27.537,5.564Z\" transform=\"translate(-22.3 0)\"/>\n<path class=\"list\" d=\"M27.417,170.6a5.117,5.117,0,1,0,5.117,5.117A5.122,5.122,0,0,0,27.417,170.6Zm0,8.6a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,179.2Z\" transform=\"translate(-22.3 -159.219)\"/>\n<path class=\"list\" d=\"M32.533,339.417a5.117,5.117,0,1,0-5.117,5.117A5.122,5.122,0,0,0,32.533,339.417Zm-5.117,3.489a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,342.906Z\" transform=\"translate(-22.3 -311.999)\"/>\n<path class=\"list\" d=\"M219.218,235h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -219.323)\"/>\n<path class=\"list\" d=\"M219.218,71.5h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -66.73)\"/>\n<path class=\"list\" d=\"M219.218,398.8h-15.9a.821.821,0,1,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -372.196)\"/></g></g>\n</svg>`"
-            },
-            {
-                "name": "LoggedIn",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedIn",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Page.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedOut",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Header.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "LoggedOut",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Page.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "LOGO",
@@ -5065,7 +4761,27 @@
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
+                "file": "src/stories/Card.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/DashboardCard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/StatusCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -5101,16 +4817,6 @@
                 "type": "literal type"
             },
             {
-                "name": "Secondary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "SHIELD_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -5131,44 +4837,44 @@
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\nwidth=\"51.598\" height=\"41.803\"\nviewBox=\"0 0 51.598 41.803\"><defs><style>\n.site{fill:\"none\";}</style></defs><g\ntransform=\"translate(0 -45.56)\">\n<path class=\"site\" d=\"M4.885,323.513,0,334.653H13L16.47,322.8a37.3,37.3,0,0,0-11.585.708Z\" transform=\"translate(0 -247.29)\"/>\n<path class=\"site\" d=\"M67.556,248.735a34.185,34.185,0,0,1,3.447.244l1.622-5.539H62.614l-2.544,5.8A43.252,43.252,0,0,1,67.556,248.735Z\" transform=\"translate(-53.613 -176.609)\"/><path class=\"site\" d=\"M203.187,255.64l-1.65-5.33a76.662,76.662,0,0,1-5.862-6.87h-2.45l-1.8,6.131a14.638,14.638,0,0,1,6.9,3.6A9.587,9.587,0,0,0,203.187,255.64Z\" transform=\"translate(-170.852 -176.609)\"/><path class=\"site\" d=\"M161.047,332.051a11.7,11.7,0,0,0-5.527-2.791l-3.31,11.306h18.553l-1.522-4.918A13.473,13.473,0,0,1,161.047,332.051Z\" transform=\"translate(-135.848 -253.203)\"/>\n<path class=\"site\" d=\"M331.672,246.9q-.672.89-1.434,1.822a78.786,78.786,0,0,1-6.528,7.055l.99,3.2h12.266Z\" transform=\"translate(-288.912 -179.697)\"/>\n<path class=\"site\" d=\"M354.882,389.23H342.2l1.5,4.86h13.308Z\" transform=\"translate(-305.415 -306.727)\"/>\n<path class=\"site\" d=\"M300.058,124.136a1.878,1.878,0,1,0-1.878-1.878A1.881,1.881,0,0,0,300.058,124.136Z\" transform=\"translate(-266.127 -66.786)\"/>\n<path class=\"site\" d=\"M222.078,66.985c1.76,2.14,3.194,3.693,4.9,5.426,3.627-3.493,10.938-12.271,10.68-16.171a10.68,10.68,0,1,0-21.359,0C216.257,58.551,218.459,62.584,222.078,66.985Zm-.205-11.513a5.1,5.1,0,1,1,5.1,5.1A5.108,5.108,0,0,1,221.873,55.472Z\" transform=\"translate(-193.044)\"/></g>\n</svg>`"
             },
             {
-                "name": "Small",
+                "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
+                "file": "src/stories/Card.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
+                "type": "Story<IconCardComponent>",
+                "defaultValue": "(args: IconCardComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Button.stories.ts",
+                "file": "src/stories/DashboardCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<Button>",
-                "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+                "type": "Story<DashboardCardComponent>",
+                "defaultValue": "(args: DashboardCardComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Header.stories.ts",
+                "file": "src/stories/Icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<Header>",
-                "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Page.stories.ts",
+                "file": "src/stories/StatusCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<Page>",
-                "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                "type": "Story<StatusCardComponent>",
+                "defaultValue": "(args: StatusCardComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "TENT_ICON",
@@ -5498,6 +5204,28 @@
                     "type": "literal type"
                 }
             ],
+            "src/stories/Icon.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<IconComponent>",
+                    "defaultValue": "(args: IconComponent) => ({\n  props: args,\n})"
+                }
+            ],
             "src/environments/environment.prod.ts": [
                 {
                     "name": "environment",
@@ -5522,42 +5250,12 @@
                     "defaultValue": "{\n  production: false\n}"
                 }
             ],
-            "src/stories/Button.stories.ts": [
-                {
-                    "name": "Large",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
+            "src/stories/Card.stories.ts": [
                 {
                     "name": "Primary",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Small",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
+                    "file": "src/stories/Card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -5567,29 +5265,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Button.stories.ts",
+                    "file": "src/stories/Card.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<Button>",
-                    "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+                    "type": "Story<IconCardComponent>",
+                    "defaultValue": "(args: IconCardComponent) => ({\n  props: args,\n})"
                 }
             ],
-            "src/stories/Header.stories.ts": [
+            "src/stories/DashboardCard.stories.ts": [
                 {
-                    "name": "LoggedIn",
+                    "name": "Primary",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Header.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "LoggedOut",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Header.stories.ts",
+                    "file": "src/stories/DashboardCard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -5599,29 +5287,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Header.stories.ts",
+                    "file": "src/stories/DashboardCard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<Header>",
-                    "defaultValue": "(args: Header) => ({\n  props: args,\n})"
+                    "type": "Story<DashboardCardComponent>",
+                    "defaultValue": "(args: DashboardCardComponent) => ({\n  props: args,\n})"
                 }
             ],
-            "src/stories/Page.stories.ts": [
+            "src/stories/StatusCard.stories.ts": [
                 {
-                    "name": "LoggedIn",
+                    "name": "Primary",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Page.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "LoggedOut",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Page.stories.ts",
+                    "file": "src/stories/StatusCard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -5631,11 +5309,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Page.stories.ts",
+                    "file": "src/stories/StatusCard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<Page>",
-                    "defaultValue": "(args: Page) => ({\n  props: args,\n})"
+                    "type": "Story<StatusCardComponent>",
+                    "defaultValue": "(args: StatusCardComponent) => ({\n  props: args,\n})"
                 }
             ]
         },
@@ -5663,7 +5341,7 @@
         ]
     },
     "coverage": {
-        "count": 1,
+        "count": 0,
         "status": "low",
         "files": [
             {
@@ -6216,17 +5894,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Large",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Button.stories.ts",
+                "filePath": "src/stories/Card.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -6236,27 +5904,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Small",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Button.stories.ts",
+                "filePath": "src/stories/Card.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -6266,27 +5914,17 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/Header.stories.ts",
+                "filePath": "src/stories/DashboardCard.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "LoggedIn",
+                "name": "Primary",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/stories/Header.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedOut",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Header.stories.ts",
+                "filePath": "src/stories/DashboardCard.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -6296,27 +5934,17 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/Page.stories.ts",
+                "filePath": "src/stories/Icon.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "LoggedIn",
+                "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/stories/Page.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LoggedOut",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Page.stories.ts",
+                "filePath": "src/stories/Icon.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -6326,30 +5954,23 @@
                 "status": "low"
             },
             {
-                "filePath": "src/stories/button.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "ButtonComponent",
-                "coveragePercent": 83,
-                "coverageCount": "5/6",
-                "status": "very-good"
-            },
-            {
-                "filePath": "src/stories/header.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "HeaderComponent",
+                "filePath": "src/stories/StatusCard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Primary",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "src/stories/page.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "PageComponent",
+                "filePath": "src/stories/StatusCard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
