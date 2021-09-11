@@ -17,7 +17,7 @@ export default {
 
 const Template: Story<TypographyComponent> = (args: TypographyComponent) => ({
   props: args,
-  template: `<app-typography ${Object.keys(args).reduce((key) => `[${key}]="${args[key]}"`)}> Hello World </app-typography>`,
+  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]="${args[key]}"`, '')}> Hello World </app-typography>`,
 
 });
 

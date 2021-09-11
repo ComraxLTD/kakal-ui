@@ -21,7 +21,6 @@ export const Primary = Template.bind({});
 Primary.args = {
   item: {
     title: 'Home',
-    path: '',
     svgUrl: '',
     isActive: true,
     hasBadge: true,
