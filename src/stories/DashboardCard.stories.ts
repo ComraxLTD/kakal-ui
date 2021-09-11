@@ -1,14 +1,19 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
-import { CommonModule } from '@angular/common';
+import {APP_BASE_HREF, CommonModule} from '@angular/common';
 import {DashboardCardComponent} from "../app/components/dashboard-card/dashboard-card.component";
+import {MaterialModule} from "../material/material.module";
+import {TypographyComponent} from "../app/components/typography/typography.component";
+import {IconComponent} from "../app/components/icon/icon.component";
+import {AppRoutingModule} from "../app/app-routing.module";
 
 export default {
   title: 'Dashboard Card',
   component: DashboardCardComponent,
   decorators: [
     moduleMetadata({
-      declarations: [],
-      imports: [CommonModule],
+      declarations: [TypographyComponent, IconComponent],
+      providers: [{provide: APP_BASE_HREF, useValue: '/'}],
+      imports: [CommonModule, MaterialModule, AppRoutingModule],
     }),
   ],
 } as Meta;
