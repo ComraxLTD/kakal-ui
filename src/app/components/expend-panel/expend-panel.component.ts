@@ -19,7 +19,7 @@ export class ExpendPanelComponent implements OnInit {
 
   @Input() subtitle: string;
   @Input() content: string;
-  @Input() actins: string;
+  @Input() actions: string;
 
   ngOnInit(): void {}
 }

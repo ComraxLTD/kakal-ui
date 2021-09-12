@@ -1,0 +1,12 @@
+<div fxLayout="row" fxLayoutAlign="space-between center">
+  <div class="item-icon" matBadgeOverlap matBadge="{{ item.badgeValue }}">
+    <div class="icon-container">
+      <app-icon  type="svg" [key]="item.svgUrl" [size]="35"></app-icon>
+    </div>
+  </div>
+  <div fxFlexAlign="end" fxLayoutGap="10px" class="item-text">
+    <app-typography [size]="14" [bold]="600">
+      {{ item.title }}
+    </app-typography>
+  </div>
+</div>

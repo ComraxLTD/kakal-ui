@@ -1,6 +1,5 @@
 @import "variables";
 
-
 html,
 body,
 app-root {
@@ -13,8 +12,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: "open sans hebrew", "Helvetica Neue", sans-serif !important;
-  src: url("../assets/fonts/opanSansHebrew/OpenSansHebrew-Regular.ttf")
-    format("opentype");
+  src: url("../assets/fonts/opanSansHebrew/OpenSansHebrew-Regular.ttf") format("opentype") !important;
   box-sizing: border-box;
 }
 
@@ -26,7 +24,7 @@ mat-grid-tile {
 }
 
 mat-grid-tile {
-  &.text > figure.mat-figure {
+  &.text>figure.mat-figure {
     display: flex;
     flex-direction: column;
   }
@@ -35,7 +33,7 @@ mat-grid-tile {
 ::ng-deep.mat-badge-content {
   width: auto;
   display: grid;
-  min-width: 30px;
+  min-width: 25px;
   // min-height: 28px;
   text-align: center;
   align-items: center;
@@ -47,6 +45,3 @@ mat-grid-tile {
 ::ng-deep .icon .mat-badge-content {
   font-family: "Material Icons";
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

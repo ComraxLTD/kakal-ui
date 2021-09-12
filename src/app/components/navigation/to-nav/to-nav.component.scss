@@ -1,0 +1,51 @@
+@import "../../../../styles/styles.scss";
+
+* {
+  direction: rtl;
+}
+
+.navbar {
+  height: 10vh;
+  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);
+  background-color: color(paper) !important;
+  box-sizing: border-box;
+}
+
+.menuButton {
+  height: 100%;
+  border-bottom: solid 3px color(primary);
+  cursor: pointer;
+}
+
+
+
+// main area item
+
+.status-container {
+  display: flex;
+  width: 100%;
+}
+
+.project-status {
+  display: flex;
+  z-index: 10111;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: fit-content;
+
+  &__item {
+    transform: translateY(30%);
+  }
+
+}
+
+
+//left logos area
+
+
+.icon-container {
+  height: 60%;
+}

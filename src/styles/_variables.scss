@@ -1,15 +1,24 @@
-@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$primary: #448ecd;
+$accent: #d220ba;
+$default: #bababa;
+$paper: #fff;
+$text: #000000;
+$text-light: #A2A2A2;
+$success: #37c563;
 
 $colors: (
-  info: #068297,
-  text: #ffffff,
-  input-error : #f44336,
-  error: #721c24,
-  warning: #f8d7da,
-  forbidden: #f3727d,
-  success: #1d8813,
+  primary: $primary,
+  accent: $accent,
+  default: $default,
+  paper: $paper,
+  text: $text,
+  text-light: $text-light,
+  success : $success
 );
 
 @function color($color-name) {
   @return map-get($colors, $color-name);
 }
+

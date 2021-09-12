@@ -1,5 +1,8 @@
 <div>
-  <span [ngClass]="[variant, color]">
+  <span
+    [ngClass]="['fontFamily', color, variant]"
+    [ngStyle]="{ fontWeight: bold, 'fontSize.px': size }"
+  >
     <ng-content></ng-content>
   </span>
 </div>
