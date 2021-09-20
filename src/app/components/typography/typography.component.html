@@ -1,8 +1,3 @@
-<div>
-  <span
-    [ngClass]="['fontFamily', color, variant]"
-    [ngStyle]="{ fontWeight: bold, 'fontSize.px': size }"
-  >
-    <ng-content></ng-content>
-  </span>
-</div>
+<span [dir]="'rtl'" [ngClass]="['fontFamily', color, underline]" [ngStyle]="{ fontWeight: bold, 'fontSize.px': size }">
+  <ng-content></ng-content>
+</span>

@@ -6,17 +6,25 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./typography.component.scss'],
 })
 export class TypographyComponent implements OnInit {
-  @Input() public color: string;
-  @Input() public size: string = '';
-  @Input() public bold: number;
-  @Input() public variant: string;
 
-  constructor() {}
+  @Input() color: string;
+  @Input() size: number | string;
+  @Input() bold: number | string;
+  @Input() underline: string;
+  @Input() classes: {
+    variant: string;
+    color: string;
+    underline: string;
+  }; 
+
+  constructor() { }
 
   ngOnInit(): void {
     this.setColor();
     this.seFontSize();
     this.setFontWeight();
+
+    this.underline = this.underline || ''
   }
 
   private setColor() {
@@ -24,11 +32,8 @@ export class TypographyComponent implements OnInit {
   }
 
   private seFontSize() {
-    if (this.size) {
-      this.variant = '';
-    } else {
-      this.variant = this.variant || 'mat-title';
-    }
+    this.size = this.size || 14;
+
   }
 
   private setFontWeight() {
