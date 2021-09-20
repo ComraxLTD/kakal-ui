@@ -2,6 +2,7 @@
 
 $primary: #448ecd;
 $accent: #d220ba;
+$warn: #d83020;
 $default: #bababa;
 $paper: #fff;
 $text: #000000;
@@ -12,6 +13,7 @@ $colors: (
   primary: $primary,
   accent: $accent,
   default: $default,
+  warn: $warn,
   paper: $paper,
   text: $text,
   text-light: $text-light,

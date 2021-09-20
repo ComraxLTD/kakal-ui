@@ -1,7 +1,7 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import {TypographyComponent} from "../app/components/typography/typography.component";
-import {MaterialModule} from "../material/material.module";
+import { TypographyComponent } from "../app/components/typography/typography.component";
+import { MaterialModule } from "../material/material.module";
 
 export default {
   title: 'Typography',
@@ -27,5 +27,11 @@ Default.args = {
 
 export const Title = Template.bind({});
 Title.args = {
-    variant: 'mat-display-1'
+  size: '16',
+  bold: 600
+};
+
+export const Underline = Template.bind({});
+Underline.args = {
+  underline: 'underline'
 };

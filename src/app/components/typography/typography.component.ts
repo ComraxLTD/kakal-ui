@@ -12,10 +12,9 @@ export class TypographyComponent implements OnInit {
   @Input() bold: number | string;
   @Input() underline: string;
   @Input() classes: {
-    variant: string;
     color: string;
     underline: string;
-  }; 
+  };
 
   constructor() { }
 
