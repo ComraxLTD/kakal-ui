@@ -33,5 +33,5 @@ Title.args = {
 
 export const Underline = Template.bind({});
 Underline.args = {
-  underline: 'underline'
+  underline: true
 };
