@@ -7,13 +7,17 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class TypographyComponent implements OnInit {
 
+
   @Input() color: string;
-  @Input() size: number | string;
-  @Input() bold: number | string;
-  @Input() underline: string;
+  @Input() size: number;
+  @Input() bold: number;
+  @Input() underline: boolean;
+
   @Input() classes: {
     color: string;
-    underline: string;
+    fontSize: number;
+    fontWeight: number;
+    underline: boolean;
   };
 
   constructor() { }
@@ -22,8 +26,7 @@ export class TypographyComponent implements OnInit {
     this.setColor();
     this.seFontSize();
     this.setFontWeight();
-
-    this.underline = this.underline || ''
+    this.setClasses()
   }
 
   private setColor() {
@@ -37,5 +40,15 @@ export class TypographyComponent implements OnInit {
 
   private setFontWeight() {
     this.bold = this.bold || 500;
+  }
+
+  private setClasses() {
+    this.classes = this.classes ||
+    {
+      fontSize:this.size,
+      fontWeight: this.bold,
+      color: this.color,
+      underline : this.underline || false
+    }
   }
 }
