@@ -17,7 +17,7 @@ export default {
 
 const Template: Story<TypographyComponent> = (args: TypographyComponent) => ({
   props: args,
-  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]="${args[key]}"`, '')}> Hello World </app-typography>`,
+  template: `<app-typography [classes]="args"> Hello World </app-typography>`,
 
 });
 
@@ -27,7 +27,7 @@ Default.args = {
 
 export const Title = Template.bind({});
 Title.args = {
-  size: '16',
+  size: 16,
   bold: 600
 };
 
