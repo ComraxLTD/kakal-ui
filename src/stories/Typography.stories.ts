@@ -1,7 +1,8 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import {TypographyComponent} from "../app/components/typography/typography.component";
-import {MaterialModule} from "../material/material.module";
+import { TypographyComponent } from "../app/components/typography/typography.component";
+import { MaterialModule } from "../material/material.module";
+import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
 
 export default {
   title: 'Typography',
@@ -9,7 +10,7 @@ export default {
 
   decorators: [
     moduleMetadata({
-      declarations: [TypographyComponent],
+      declarations: [TypographyComponent, ClassesDirective],
       imports: [CommonModule, MaterialModule],
     }),
   ],
@@ -17,7 +18,7 @@ export default {
 
 const Template: Story<TypographyComponent> = (args: TypographyComponent) => ({
   props: args,
-  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]="${args[key]}"`, '')}> Hello World </app-typography>`,
+  template: `<app-typography appClass [classes]="args.classes" > Hello World </app-typography>`
 
 });
 
@@ -27,5 +28,17 @@ Default.args = {
 
 export const Title = Template.bind({});
 Title.args = {
-    variant: 'mat-display-1'
+  size: 16,
+  bold: 600,
+  classes: {
+    fontSize: 16,
+    fontWeight: 600,
+    color: 'text',
+    underline: false
+  }
+};
+
+export const Underline = Template.bind({});
+Underline.args = {
+  underline: true
 };

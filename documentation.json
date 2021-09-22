@@ -4070,7 +4070,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-toolbar class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <div class=\"icon-container\">\r\n        <app-icon\r\n          color=\"primary\"\r\n          type=\"svg\"\r\n          key=\"tree\"\r\n          color=\"primary\"\r\n        ></app-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</mat-toolbar>\r\n"
+            "templateData": "<mat-toolbar class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <div class=\"icon-container\">\r\n        <app-icon\r\n          color=\"primary\"\r\n          type=\"svg\"\r\n          key=\"tree\"\r\n          color=\"primary\"\r\n        ></app-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <!-- <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography> -->\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</mat-toolbar>\r\n"
         },
         {
             "name": "StatusCardComponent",
@@ -4267,7 +4267,7 @@
         },
         {
             "name": "TypographyComponent",
-            "id": "component-TypographyComponent-47dd8c200a440d20469a95900b5e6cc3",
+            "id": "component-TypographyComponent-b7d65ef7a62420ee8e2b728c131d00cc",
             "file": "src/app/components/typography/typography.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4288,29 +4288,35 @@
                     "name": "bold",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
-                    "type": "number"
+                    "line": 12,
+                    "type": "number | string"
+                },
+                {
+                    "name": "classes",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "literal type"
                 },
                 {
                     "name": "color",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 9,
-                    "type": "string"
-                },
-                {
-                    "name": "size",
-                    "defaultValue": "''",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 10,
                     "type": "string"
                 },
                 {
-                    "name": "variant",
+                    "name": "size",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 11,
+                    "type": "number | string"
+                },
+                {
+                    "name": "underline",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
                     "type": "string"
                 }
             ],
@@ -4323,7 +4329,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 22,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4333,7 +4339,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 26,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -4346,7 +4352,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 22,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -4359,7 +4365,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -4374,11 +4380,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-typography',\r\n  templateUrl: './typography.component.html',\r\n  styleUrls: ['./typography.component.scss'],\r\n})\r\nexport class TypographyComponent implements OnInit {\r\n  @Input() public color: string;\r\n  @Input() public size: string = '';\r\n  @Input() public bold: number;\r\n  @Input() public variant: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.setColor();\r\n    this.seFontSize();\r\n    this.setFontWeight();\r\n  }\r\n\r\n  private setColor() {\r\n    this.color = this.color || 'text';\r\n  }\r\n\r\n  private seFontSize() {\r\n    if (this.size) {\r\n      this.variant = '';\r\n    } else {\r\n      this.variant = this.variant || 'mat-title';\r\n    }\r\n  }\r\n\r\n  private setFontWeight() {\r\n    this.bold = this.bold || 500;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-typography',\r\n  templateUrl: './typography.component.html',\r\n  styleUrls: ['./typography.component.scss'],\r\n})\r\nexport class TypographyComponent implements OnInit {\r\n\r\n  @Input() color: string;\r\n  @Input() size: number | string;\r\n  @Input() bold: number | string;\r\n  @Input() underline: string;\r\n  @Input() classes: {\r\n    variant: string;\r\n    color: string;\r\n    underline: string;\r\n  }; \r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.setColor();\r\n    this.seFontSize();\r\n    this.setFontWeight();\r\n\r\n    this.underline = this.underline || ''\r\n  }\r\n\r\n  private setColor() {\r\n    this.color = this.color || 'text';\r\n  }\r\n\r\n  private seFontSize() {\r\n    this.size = this.size || 14;\r\n\r\n  }\r\n\r\n  private setFontWeight() {\r\n    this.bold = this.bold || 500;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\n\r\n::ng-deep span.fontFamily {\r\n  font-family: \"open sans hebrew\", \"Helvetica Neue\", sans-serif !important;\r\n  src: url(\"../../../assets/fonts/opanSansHebrew/OpenSansHebrew-Regular.ttf\") format(\"opentype\") !important;\r\n}\r\n\r\nspan.text {\r\n  color: color(text);\r\n}\r\n\r\nspan.text-light {\r\n  color: color(text-light);\r\n}\r\n\r\nspan.primary {\r\n  color: color(primary);\r\n}\r\n\r\nspan.accent {\r\n  color: color(accent);\r\n}\r\n\r\nspan.warn {\r\n  color: color(warn);\r\n}\r\n\r\nspan.bold {\r\n  font-weight: 600;\r\n}\r\n",
+                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\nspan.fontFamily {\r\n  font-family: \"open sans hebrew\", \"Helvetica Neue\", sans-serif !important;\r\n  src: url(\"../../../assets/fonts/opanSansHebrew/OpenSansHebrew-Regular.ttf\") format(\"opentype\") !important;\r\n\r\n}\r\n\r\nspan.text {\r\n  color: color(text);\r\n}\r\n\r\nspan.button {\r\n  cursor: pointer;\r\n}\r\n\r\nspan.text-light {\r\n  color: color(text-light);\r\n}\r\n \r\nspan.primary {\r\n  color: color(primary);\r\n}\r\n\r\nspan.accent {\r\n  color: color(accent);\r\n}\r\n\r\nspan.warn {\r\n  color: color(warn);\r\n}\r\nspan.paper {\r\n  color: color(paper);\r\n}\r\nspan.disable {\r\n  color: color(disable);\r\n}\r\n\r\nspan.bold {\r\n  font-weight: 600;\r\n}\r\n\r\nspan.underline {\r\n  border-bottom: 3px solid color(accent);\r\n}\r\n",
                     "styleUrl": "./typography.component.scss"
                 }
             ],
@@ -4389,12 +4395,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 12
+                "line": 18
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div>\r\n  <span\r\n    [ngClass]=\"['fontFamily', color, variant]\"\r\n    [ngStyle]=\"{ fontWeight: bold, 'fontSize.px': size }\"\r\n  >\r\n    <ng-content></ng-content>\r\n  </span>\r\n</div>\r\n"
+            "templateData": "<span [dir]=\"'rtl'\" [ngClass]=\"['fontFamily', color, underline]\" [ngStyle]=\"{ fontWeight: bold, 'fontSize.px': size }\">\r\n  <ng-content></ng-content>\r\n</span>\r\n"
         }
     ],
     "modules": [
@@ -4671,7 +4677,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/DatePicker.stories.ts",
+                "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -4681,7 +4687,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/ExpandPanel.stories.ts",
+                "file": "src/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -4711,7 +4717,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Pagination.stories.ts",
+                "file": "src/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -5010,21 +5016,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/DatePicker.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ExpendPanelComponent>",
                 "defaultValue": "(args: ExpendPanelComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/DatePicker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -5070,7 +5076,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Pagination.stories.ts",
+                "file": "src/stories/Modal.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/StatusCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
@@ -5100,21 +5116,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
+                "file": "src/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Typography.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<TypographyComponent>",
-                "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}> Hello World </app-typography>`,\r\n\r\n})"
             },
             {
                 "name": "Template",
@@ -5123,8 +5129,8 @@
                 "file": "src/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                "type": "Story<TypographyComponent>",
+                "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]=\"${args[key]}\"`, '')}> Hello World </app-typography>`,\r\n\r\n})"
             },
             {
                 "name": "Template",
@@ -5626,6 +5632,28 @@
                     "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "src/stories/Modal.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Modal.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Modal.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "src/stories/Pagination.stories.ts": [
                 {
                     "name": "Default",
@@ -5722,28 +5750,6 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
-                }
-            ],
-            "src/stories/Modal.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/screens/Login.stories.ts": [
@@ -6139,7 +6145,7 @@
                 "linktype": "component",
                 "name": "TypographyComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/11",
                 "status": "low"
             },
             {

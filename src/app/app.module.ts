@@ -23,6 +23,7 @@ import { DashboardCardComponent } from './components/dashboard-card/dashboard-ca
 import { StatusCardComponent } from './components/cards/status-card/status-card.component';
 import { IconCardComponent } from './components/cards/icon-card/icon-card.component';
 import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
+import { ClassesDirective } from './utilities/directives/classes.directive';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { ToNavComponent } from './components/navigation/to-nav/to-nav.component'
     TypographyComponent,
     DashboardCardComponent,
     ToNavComponent,
-    StatusCardComponent
+    StatusCardComponent,
+    ClassesDirective
   ],
   imports: [
     BrowserModule,
