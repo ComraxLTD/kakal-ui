@@ -14,13 +14,11 @@ export class ClassesDirective implements OnInit {
     cursor: string;
     fontSize: number;
     fontWeight: number;
-    underline: boolean;
   } = {
       color: this.colors.text,
       cursor: 'initial',
       fontSize: 14,
       fontWeight: 500,
-      underline: false,
     }
 
   @HostBinding('style.color') private color: string;
@@ -39,9 +37,7 @@ export class ClassesDirective implements OnInit {
     this.fontSize = `${this.classes['fontSize']}px` || '14px'
     this.color = this.colors[this.classes.color]
 
-    if (this.classes.underline) {
-      this.borderBottom = `3px solid ${this.colors.accent}`
-    }
+
   }
 
 }

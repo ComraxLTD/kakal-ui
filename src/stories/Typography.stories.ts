@@ -18,8 +18,7 @@ export default {
 
 const Template: Story<TypographyComponent> = (args: TypographyComponent) => ({
   props: args,
-  template: `<app-typography appClass [classes]="args.classes" > Hello World </app-typography>`
-
+  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`
 });
 
 export const Default = Template.bind({});
@@ -33,12 +32,6 @@ Title.args = {
   classes: {
     fontSize: 16,
     fontWeight: 600,
-    color: 'text',
-    underline: false
+    color: 'primary',
   }
-};
-
-export const Underline = Template.bind({});
-Underline.args = {
-  underline: true
 };

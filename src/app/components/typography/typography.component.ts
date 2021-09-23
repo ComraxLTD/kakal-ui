@@ -11,13 +11,11 @@ export class TypographyComponent implements OnInit {
   @Input() color: string;
   @Input() size: number;
   @Input() bold: number;
-  @Input() underline: boolean;
 
   @Input() classes: {
     color: string;
     fontSize: number;
     fontWeight: number;
-    underline: boolean;
   };
 
   constructor() { }
@@ -48,7 +46,6 @@ export class TypographyComponent implements OnInit {
       fontSize:this.size,
       fontWeight: this.bold,
       color: this.color,
-      underline : this.underline || false
     }
   }
 }
