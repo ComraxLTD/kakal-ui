@@ -1,3 +1,4 @@
+import { ThemePalette } from '@angular/material/core';
 
 export const theme = {
   colors: {
@@ -10,3 +11,11 @@ export const theme = {
     success: '#37c563',
   }
 }
+export declare type Palette =
+  | ThemePalette
+  | 'paper'
+  | 'default'
+  | 'disable'
+  | 'table'
+  | 'text'
+  | 'success';
