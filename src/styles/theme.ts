@@ -1,16 +1,5 @@
 import { ThemePalette } from '@angular/material/core';
 
-export const theme = {
-  colors: {
-    primary: '#448ecd',
-    accent: '#d220ba',
-    warn: '#d83020',
-    default: '#bababa',
-    paper: '#fff',
-    text: '#000000',
-    success: '#37c563',
-  }
-}
 export declare type Palette =
   | ThemePalette
   | 'paper'
@@ -19,3 +8,23 @@ export declare type Palette =
   | 'table'
   | 'text'
   | 'success';
+
+export type Color = { [color in Palette]: string };
+
+export interface Theme {
+  palette: Color;
+}
+
+export const theme: Theme = {
+  palette: {
+    primary: '#d6a348',
+    accent: '#ff6f2e',
+    warn: '#d83020',
+    paper: '#fff',
+    default: '#bababa',
+    disable: '#DBDBDB',
+    table: '#F8F8F8',
+    text: '#000000',
+    success: '#59a437',
+  },
+};

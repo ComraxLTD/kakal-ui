@@ -1,0 +1,75 @@
+<div [ngClass]="type" fxLayout="column" fxLayoutAlign="center center" fxFill>
+  <div
+    class="card-svg-container"
+    (click)="onStepClick()"
+    [matBadge]="step.value"
+    matBadgeColor="accent"
+    matBadgeSize="medium"
+    fxFill
+  >
+    <mat-card
+      appVariant
+      [type]="step.type"
+      [variant]="step.variant"
+      [ngClass]="{
+        stepper: true,
+        'mat-elevation-z0': true,
+        active: step.isActive
+      }"
+    >
+      <mat-card-content>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <div fxFlex="80">
+            <app-icon
+              [color]="
+                step.isActive
+                  ? 'active'
+                  : type === 'wizard'
+                  ? 'primary'
+                  : 'text'
+              "
+              type="svg"
+              [key]="step.svgUrl || ''"
+              [scale]="step.scale || 1"
+            >
+            </app-icon>
+          </div>
+          <div
+            *ngIf="type === 'wizard'"
+            fxFlex="20"
+            [ngClass]="{ active: ($active | async) }"
+            fxLayout="column"
+            fxLayoutAlign="end center"
+          >
+            <app-typography
+              [$active]="$active"
+              [activeClasses]="{fontWeight : 600, color : 'paper'}"
+              [bold]="($active | async) ? 600 : 500"
+              [size]="11"
+              [color]="($active | async) ? 'paper' : 'text'"
+            >
+              {{ step.label }}
+            </app-typography>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  <div
+    *ngIf="type === 'step'"
+    class="label-container"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxFlex="30"
+  >
+    <app-typography
+      [ngClass]="{ active: step.isActive }"
+      [activeClasses]="{fontWeight : 600}"
+      [bold]="($active | async) ? 600 : 500"
+      [$active]="$active"
+      [size]="11"
+    >
+      {{ step.label }}
+    </app-typography>
+  </div>
+</div>

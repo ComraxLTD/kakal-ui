@@ -1,8 +1,8 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import {IconComponent} from "../app/components/icon/icon.component";
-import {MaterialModule} from "../material/material.module";
-import {MatIconModule} from "@angular/material/icon";
+import { IconComponent } from "../app/components/icon/icon.component";
+import { MaterialModule } from "../material/material.module";
+import { MatIconModule } from "@angular/material/icon";
 
 export default {
   title: 'Icon',

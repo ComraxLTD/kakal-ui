@@ -1,3 +1,9 @@
-<span [dir]="'rtl'" appClasses [classes]="classes" [ngClass]="['fontFamily']">
+<span
+  [dir]="'rtl'"
+  appClasses
+  [classes]="classes"
+  [change]="change"
+  [ngClass]="['fontFamily']"
+>
   <ng-content></ng-content>
 </span>
