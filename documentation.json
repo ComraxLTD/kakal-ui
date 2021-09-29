@@ -2515,18 +2515,18 @@
     "directives": [
         {
             "name": "ClassesDirective",
-            "id": "directive-ClassesDirective-b7372b877aa686f37a4cae3ba4beb496",
+            "id": "directive-ClassesDirective-d3dd76d343646463c45bbac279623482",
             "file": "src/app/utilities/directives/classes.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Directive, HostBinding, Input, OnInit } from '@angular/core';\r\nimport { theme } from 'src/styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appClasses]'\r\n})\r\nexport class ClassesDirective implements OnInit {\r\n\r\n  private theme = theme;\r\n  private colors = this.theme.colors;\r\n\r\n  @Input() public classes: {\r\n    color: string;\r\n    cursor: string;\r\n    fontSize: number;\r\n    fontWeight: number;\r\n    underline: boolean;\r\n  } = {\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 14,\r\n      fontWeight: 500,\r\n      underline: false,\r\n    }\r\n\r\n  @HostBinding('style.color') private color: string;\r\n  @HostBinding('style.font-weight') private fontWeight: number;\r\n  @HostBinding('style.font-size') private fontSize: string;\r\n  @HostBinding('style.cursor') private cursor: string;\r\n  @HostBinding('style.background-color') private backgroundColor: string;\r\n  @HostBinding('style.border-bottom') private borderBottom: string;\r\n\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.cursor = this.classes['cursor'] || 'initial'\r\n    this.fontWeight = this.classes.fontWeight\r\n    this.fontSize = `${this.classes['fontSize']}px` || '14px'\r\n    this.color = this.colors[this.classes.color]\r\n\r\n    if (this.classes.underline) {\r\n      this.borderBottom = `3px solid ${this.colors.accent}`\r\n    }\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Directive, HostBinding, Input, OnInit } from '@angular/core';\r\nimport { theme } from 'src/styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appClasses]'\r\n})\r\nexport class ClassesDirective implements OnInit {\r\n\r\n  private theme = theme;\r\n  private colors = this.theme.colors;\r\n\r\n  @Input() public classes: {\r\n    color: string;\r\n    cursor: string;\r\n    fontSize: number;\r\n    fontWeight: number;\r\n  } = {\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 14,\r\n      fontWeight: 500,\r\n    }\r\n\r\n  @HostBinding('style.color') private color: string;\r\n  @HostBinding('style.font-weight') private fontWeight: number;\r\n  @HostBinding('style.font-size') private fontSize: string;\r\n  @HostBinding('style.cursor') private cursor: string;\r\n  @HostBinding('style.background-color') private backgroundColor: string;\r\n  @HostBinding('style.border-bottom') private borderBottom: string;\r\n\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.cursor = this.classes['cursor'] || 'initial'\r\n    this.fontWeight = this.classes.fontWeight\r\n    this.fontSize = `${this.classes['fontSize']}px` || '14px'\r\n    this.color = this.colors[this.classes.color]\r\n\r\n\r\n  }\r\n\r\n}\r\n",
             "selector": "[appClasses]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "classes",
-                    "defaultValue": "{\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 14,\r\n      fontWeight: 500,\r\n      underline: false,\r\n    }",
+                    "defaultValue": "{\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 14,\r\n      fontWeight: 500,\r\n    }",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 12,
@@ -2541,42 +2541,42 @@
                     "name": "style.background-color",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 30,
+                    "line": 28,
                     "type": "string"
                 },
                 {
                     "name": "style.border-bottom",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 31,
+                    "line": 29,
                     "type": "string"
                 },
                 {
                     "name": "style.color",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 24,
                     "type": "string"
                 },
                 {
                     "name": "style.cursor",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 27,
                     "type": "string"
                 },
                 {
                     "name": "style.font-size",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 28,
+                    "line": 26,
                     "type": "string"
                 },
                 {
                     "name": "style.font-weight",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 27,
+                    "line": 25,
                     "type": "number"
                 }
             ],
@@ -2589,7 +2589,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 30,
+                    "line": 28,
                     "decorators": [
                         {
                             "name": "HostBinding",
@@ -2607,7 +2607,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 29,
                     "decorators": [
                         {
                             "name": "HostBinding",
@@ -2625,7 +2625,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 26,
+                    "line": 24,
                     "decorators": [
                         {
                             "name": "HostBinding",
@@ -2656,7 +2656,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 27,
                     "decorators": [
                         {
                             "name": "HostBinding",
@@ -2674,7 +2674,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 28,
+                    "line": 26,
                     "decorators": [
                         {
                             "name": "HostBinding",
@@ -2692,7 +2692,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 25,
                     "decorators": [
                         {
                             "name": "HostBinding",
@@ -2724,7 +2724,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -2738,7 +2738,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 31
+                "line": 29
             }
         }
     ],
@@ -3784,6 +3784,93 @@
             "templateData": "<div class=\"nav-container\">\r\n  <div class=\"svg-container\" (click)=\"onCardClick()\">\r\n    <mat-card [ngClass]=\"{ 'nav-container': true, active: item.isActive }\" [matBadge]=\"item.badgeValue\"\r\n      matBadgeColor=\"accent\">\r\n      <mat-card-content>\r\n        <div class=\"icon-container\">\r\n          <app-icon [isActive]=\"item.isActive\" type=\"svg\" [key]=\"item.svgUrl || 'like'\"></app-icon>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div class=\"title-container\">\r\n    <app-typography [size]=\"16\" [bold]=\"600\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
+            "name": "IconCardComponent",
+            "id": "component-IconCardComponent-c7fcc394fffb6af4e0c1c51a92d28d8e-1",
+            "file": "src/app/shared/components/icon-card/icon-card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-icon-card",
+            "styleUrls": [
+                "./icon-card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./icon-card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "item",
+                    "defaultValue": "{}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "NavigationCardModel"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onCardClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { NavigationCardModel } from 'src/app/utilities/models/nav-card-model';\r\n\r\n@Component({\r\n  selector: 'app-icon-card',\r\n  templateUrl: './icon-card.component.html',\r\n  styleUrls: ['./icon-card.component.scss'],\r\n})\r\nexport class IconCardComponent implements OnInit {\r\n  @Input() public item: NavigationCardModel = {};\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  public onCardClick(): void {}\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.nav-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n\r\n  .svg-container {\r\n    mat-card {\r\n      height: 80px;\r\n      width: 80px;\r\n      background-color: linear-gradient(0deg, #eeeeee 0%, #fefefe 100%);\r\n      box-shadow: 0px 0px 1px 2px #e5e5e5;\r\n      border-radius: 10px;\r\n      cursor: pointer;\r\n\r\n      &.active {\r\n        background-color: color(primary) !important;\r\n      }\r\n    }\r\n  }\r\n  .title-container {\r\n    padding: 8px;\r\n  }\r\n}\r\n\r\n.icon-container {\r\n  transform: scale(3);\r\n}\r\n",
+                    "styleUrl": "./icon-card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 10
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IconCardComponent-1",
+            "templateData": "<div class=\"nav-container\">\r\n  <div class=\"svg-container\" (click)=\"onCardClick()\">\r\n    <mat-card\r\n      [ngClass]=\"{ 'nav-container': true, active: item.isActive }\"\r\n      [matBadge]=\"item.badgeValue\"\r\n      matBadgeColor=\"accent\"\r\n    >\r\n      <mat-card-content>\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [isActive]=\"item.isActive\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl || 'like'\"\r\n          ></app-icon>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div class=\"title-container\">\r\n    <span class=\"mat-h1\">\r\n      {{ item.title }}\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n"
+        },
+        {
             "name": "IconComponent",
             "id": "component-IconComponent-50642751ed7c7dfe944602f2c5628344",
             "file": "src/app/components/icon/icon.component.ts",
@@ -3974,6 +4061,122 @@
                 "OnInit"
             ],
             "templateData": "<div class=\"icon-container\">\r\n  <mat-icon\r\n    [ngClass]=\"{ default: default, active: isActive }\"\r\n    [ngStyle]=\"{ 'width.px': width, 'height.px': height }\"\r\n    *ngIf=\"type === 'svg'\"\r\n    [color]=\"color\"\r\n    [svgIcon]=\"key\"\r\n  >\r\n  </mat-icon>\r\n  <mat-icon\r\n    [ngClass]=\"{ default: default, active: isActive }\"\r\n    [ngStyle]=\"{ transform: matScale }\"\r\n    *ngIf=\"type === 'mat'\"\r\n    [color]=\"color\"\r\n    >{{ key }}</mat-icon\r\n  >\r\n</div>\r\n"
+        },
+        {
+            "name": "IconComponent",
+            "id": "component-IconComponent-b065ae4e0492c25eca4016f4acf2fb10-1",
+            "file": "src/app/shared/components/icon/icon.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-icon",
+            "styleUrls": [
+                "./icon.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./icon.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "\"primary\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string"
+                },
+                {
+                    "name": "isActive",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "boolean"
+                },
+                {
+                    "name": "key",
+                    "defaultValue": "\"\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string"
+                },
+                {
+                    "name": "type",
+                    "defaultValue": "\"svg\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { IconsService } from '../../../utilities/icons/icons.service';\r\nimport { Component, OnInit, Input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-icon',\r\n  templateUrl: './icon.component.html',\r\n  styleUrls: ['./icon.component.scss']\r\n})\r\nexport class IconComponent implements OnInit {\r\n\r\n  @Input() public type: string = \"svg\"\r\n  @Input() public isActive: boolean = false\r\n  @Input() public key: string = \"\"\r\n  @Input() public color: string = \"primary\"\r\n\r\n  constructor(\r\n    private iconsService: IconsService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.iconsService.setIcon(this.key)\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".icon-container {\r\n  height: 100%;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-self: center;\r\n  align-items: center;\r\n  align-content: center;\r\n\r\n  .default {\r\n    color: #747474;\r\n  }\r\n\r\n  .active {\r\n    color: #fff;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./icon.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "iconsService",
+                        "type": "IconsService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 14,
+                "jsdoctags": [
+                    {
+                        "name": "iconsService",
+                        "type": "IconsService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IconComponent-1",
+            "templateData": "<div class=\"icon-container\">\r\n  <mat-icon\r\n    [ngClass]=\"{ default: color === 'default', active: isActive }\"\r\n    *ngIf=\"type === 'svg'\"\r\n    [color]=\"color\"\r\n    [svgIcon]=\"key\"\r\n  >\r\n  </mat-icon>\r\n  <mat-icon\r\n    [ngClass]=\"{ default: color === 'default', active: isActive }\"\r\n    *ngIf=\"type === 'mat'\"\r\n    [color]=\"color\"\r\n    >{{ key }}</mat-icon\r\n  >\r\n</div>\r\n"
         },
         {
             "name": "InputRadioComponent",
@@ -4302,6 +4505,213 @@
             "templateData": "<mat-toolbar class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <div class=\"icon-container\">\r\n        <app-icon\r\n          color=\"primary\"\r\n          type=\"svg\"\r\n          key=\"tree\"\r\n          color=\"primary\"\r\n        ></app-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <!-- <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography> -->\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</mat-toolbar>\r\n"
         },
         {
+            "name": "NavbarComponent",
+            "id": "component-NavbarComponent-af348c4c599ad4a757894d55676fed44-1",
+            "file": "src/app/navigation/components/navbar/navbar.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-navbar",
+            "styleUrls": [
+                "./navbar.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./navbar.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "menuToggle",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "componentType",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "isOpen",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "prefix",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 24,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "showSteps",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 21,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "status",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "urlAdress",
+                    "defaultValue": "'main'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggleMenu",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { ActivatedRoute, ParamMap, Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public title: string;\r\n\r\n  public status: {\r\n    text: string;\r\n    svgUrl: string;\r\n    count: number;\r\n  }[] = [];\r\n  public isOpen: boolean = true;\r\n  public showSteps: boolean = true;\r\n  public urlAdress = 'main';\r\n  public componentType: string = '';\r\n  public prefix: string = '';\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private route: ActivatedRoute\r\n  ) // private userDataService: UserDataService\r\n  {\r\n    // this.prefix = this.userDataService.user.urlPrefix;\r\n    this.status = [];\r\n\r\n    this.router.events.subscribe((val: any) => {\r\n      this.urlAdress = val.url ? val.url : this.urlAdress;\r\n\r\n      this.showSteps =\r\n        this.urlAdress === '/education' ||\r\n        this.urlAdress === '/education/search' ||\r\n        this.urlAdress === '/education/my-tours'\r\n          ? true\r\n          : false;\r\n    });\r\n  }\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: #ffffff;\r\n  opacity: 1;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  border-bottom: 3px solid #fbfbfb;\r\n  box-sizing: border-box;\r\n}\r\n\r\n// toggle button styles\r\n.sidebar-toggle {\r\n  padding: 0 15px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-around;\r\n  align-items: center;\r\n  // color: $--green-color-bright;\r\n  height: 100%;\r\n  width: 50px;\r\n  z-index: 101;\r\n  margin-top: 4px;\r\n\r\n  &__icon {\r\n    margin-top: auto;\r\n    height: 40px;\r\n    margin-bottom: 3px;\r\n  }\r\n\r\n\r\n  &__text {\r\n    margin-bottom: auto;\r\n    font-size: 0.8rem;\r\n    line-height: 10px;\r\n    text-align: center;\r\n  }\r\n}\r\n\r\n.worker-position {\r\n  font-size: 28px;\r\n  align-self: center;\r\n  margin-left: auto;\r\n  margin-bottom: -5px;\r\n  font-weight: 600;\r\n}\r\n\r\n// main area item\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    margin-bottom: -130px;\r\n    &:not(:first-child) {\r\n      padding-right: 190px;\r\n    }\r\n\r\n    &:first-child > .project-status__item-badge {\r\n      margin-right: -190px;\r\n      background-color: sienna;\r\n    }\r\n    display: flex;\r\n    position: relative;\r\n\r\n    &-icon {\r\n      border-radius: 100px;\r\n      height: 75px;\r\n      width: 75px;\r\n      background-color: #ffffff;\r\n      border: 1px solid #00000029;\r\n      // display: flex;\r\n      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n      box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n      .icon-container {\r\n        height: 100%;\r\n        transform: scale(1.5);\r\n      }\r\n    }\r\n  }\r\n\r\n  #svg-fill {\r\n    margin: auto;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n  #svg-fill * {\r\n    transform: scale(2.5);\r\n    fill: #747474 !important;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n\r\n  &__item-badge {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 199px;\r\n  }\r\n\r\n  &__item-text {\r\n    font-weight: bold;\r\n    align-self: flex-start;\r\n    margin-right: 15px;\r\n    margin-top: 40px;\r\n  }\r\n}\r\n\r\n.results-header {\r\n  margin-left: 50px;\r\n  margin-right: auto;\r\n\r\n  &__link {\r\n    display: flex;\r\n    text-decoration: none;\r\n    color: #a2a2a2;\r\n    align-self: center;\r\n    font-weight: 200;\r\n  }\r\n\r\n  &__text {\r\n    margin: auto 0;\r\n    justify-self: center;\r\n    font-size: 20px;\r\n  }\r\n  &__icon {\r\n    padding-right: 10px;\r\n    color: color(primary);\r\n    align-self: center;\r\n    padding-top: 2px;\r\n    font-weight: bold;\r\n  }\r\n}\r\n\r\n//left logos area\r\n\r\n.left-logos {\r\n  margin-left: 23px;\r\n  min-width: fit-content;\r\n  flex: 0 0 auto;\r\n  align-self: center;\r\n  z-index: 101;\r\n  height: 90%;\r\n}\r\n\r\n.left-logos * {\r\n  margin-top: 7px;\r\n  display: inline;\r\n  height: 80%;\r\n}\r\n\r\n.left-logo-years {\r\n  padding-left: 20px;\r\n}\r\n\r\n.badge-education {\r\n  & .mat-badge-content {\r\n    // background-color: $--green-color-bright !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.badge-forestry {\r\n  & .mat-badge-content {\r\n    background-color: color(primary) !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.education-fill {\r\n  color: #009eee;\r\n  & * {\r\n    fill: #009eee !important;\r\n  }\r\n}\r\n\r\n.education-border {\r\n  border-bottom: #009eee solid 3px;\r\n}\r\n\r\n.forestry-fill {\r\n  color: #00c466;\r\n  & * {\r\n    fill: #00c466 !important;\r\n  }\r\n}\r\n.forestry-border {\r\n  // border-bottom: $--green-color-bright solid 3px;\r\n}\r\n\r\n::ng-deep .list__item-svg .a {\r\n  fill: #00c466 !important;\r\n}\r\n",
+                    "styleUrl": "./navbar.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 29,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "NavbarComponent-1",
+            "templateData": "<div class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <app-icon color=\"primary\" type=\"svg\" key=\"tree\" color=\"primary\"></app-icon>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
+        },
+        {
             "name": "StatusCardComponent",
             "id": "component-StatusCardComponent-dfd79d5c49828c9cad7af264a2ecf4d5",
             "file": "src/app/components/cards/status-card/status-card.component.ts",
@@ -4370,6 +4780,79 @@
                 "OnInit"
             ],
             "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n  <div class=\"item-icon\" matBadgeOverlap matBadge=\"{{ item.badgeValue }}\">\r\n    <div class=\"icon-container\">\r\n      <app-icon  type=\"svg\" [key]=\"item.svgUrl\" [size]=\"35\"></app-icon>\r\n    </div>\r\n  </div>\r\n  <div fxFlexAlign=\"end\" fxLayoutGap=\"10px\" class=\"item-text\">\r\n    <app-typography [size]=\"14\" [bold]=\"600\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "StatusCardComponent",
+            "id": "component-StatusCardComponent-dfd79d5c49828c9cad7af264a2ecf4d5-1",
+            "file": "src/app/shared/components/status-card/status-card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-status-card",
+            "styleUrls": [
+                "./status-card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./status-card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "item",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "NavigationCardModel"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 15,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { NavigationCardModel } from '../../../utilities/models/nav-card-model';\r\nimport { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-status-card',\r\n  templateUrl: './status-card.component.html',\r\n  styleUrls: ['./status-card.component.scss']\r\n})\r\nexport class StatusCardComponent implements OnInit {\r\n\r\n  @Input() item : NavigationCardModel\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": ".item-icon {\r\n  border-radius: 100px;\r\n  height: 75px;\r\n  width: 75px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #00000029;\r\n  // display: flex;\r\n  -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n  box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n  .icon-container {\r\n    height: 100%;\r\n    transform: scale(1.5);\r\n  }\r\n}\r\n\r\n\r\n.item-text {\r\n  align-self: flex-end;\r\n  margin-right: 10px;\r\n}\r\n",
+                    "styleUrl": "./status-card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 11
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "StatusCardComponent-1",
+            "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n  <div class=\"item-icon\" matBadgeOverlap matBadge=\"{{ item.badgeValue }}\">\r\n    <div class=\"icon-container\">\r\n      <app-icon [color]=\"'default'\" type=\"svg\" [key]=\"item.svgUrl\"></app-icon>\r\n    </div>\r\n  </div>\r\n  <div fxFlexAlign=\"center\" fxLayoutGap=\"10px\" class=\"item-text\">\r\n    <app-typography variant=\"body-1\" color=\"text\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n    <!-- <span class=\"project-status__item-text\"></span> -->\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "ToNavComponent",
@@ -4495,8 +4978,211 @@
             "templateData": "<div class=\"navbar mat-elevation-z2\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"5\" c class=\"menuButton\" (click)=\"toggleMenu()\">\r\n    <div class=\"icon-container\">\r\n      <app-icon type=\"svg\" [key]=\"isOpen ? 'tree-gradient' : 'tree'\" color=\"primary\" [size]=\"40\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-typography [size]=\"10\">\r\n        {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"22\">\r\n    <app-typography [size]=\"24\" *ngIf=\"!showStatus\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showStatus\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div xLayout=\"row\" fxLayoutAlign=\"space-evenly center\" class=\"logo-container\" fxFlex=\"10\">\r\n    <div>\r\n      <app-icon key=\"logo-year\" [size]=\"80\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-icon key=\"logo\" [size]=\"60\"></app-icon>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
+            "name": "ToNavComponent",
+            "id": "component-ToNavComponent-0cfe2796b88b3f6dfe9e4cf40835a798-1",
+            "file": "src/app/navigation/components/to-nav/to-nav.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-to-nav",
+            "styleUrls": [
+                "./to-nav.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./to-nav.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "status",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "NavigationCardModel[]"
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "menuToggle",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "componentType",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "isOpen",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "prefix",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "showSteps",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "urlAdress",
+                    "defaultValue": "'main'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 21,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 52,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggleMenu",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 25,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Input } from '@angular/core';\r\nimport { Component, OnInit, EventEmitter, Output } from '@angular/core';\r\nimport { ActivatedRoute, Router } from '@angular/router';\r\nimport { NavigationCardModel } from 'src/app/utilities/models/nav-card-model';\r\n\r\n\r\n@Component({\r\n  selector: 'app-to-nav',\r\n  templateUrl: './to-nav.component.html',\r\n  styleUrls: ['./to-nav.component.scss']\r\n})\r\nexport class ToNavComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public status: NavigationCardModel[] = [];\r\n  @Input() public title: string = ''\r\n\r\n  public isOpen: boolean = true;\r\n  public showSteps: boolean = true;\r\n\r\n  public urlAdress = 'main';\r\n  public componentType: string = '';\r\n  public prefix: string = ''\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private route: ActivatedRoute,\r\n    // private userDataService: UserDataService\r\n  ) {\r\n\r\n\r\n\r\n\r\n    this.router.events.subscribe((val: any) => {\r\n\r\n      this.urlAdress = val.url ? val.url : this.urlAdress;\r\n\r\n      // this.showSteps =\r\n      //   this.urlAdress === '/education' ||\r\n      //     this.urlAdress === '/education/search' ||\r\n      //     this.urlAdress === '/education/my-tours'\r\n      //     ? true\r\n      //     : false;\r\n    });\r\n  }\r\n\r\n  ngOnInit(): void { }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../../styles/styles.scss\";\r\n\r\n* {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: #ffffff;\r\n  display: flex;\r\n  // border-bottom: 3px solid #fbfbfb;\r\n  box-sizing: border-box;\r\n}\r\n\r\n// toggle button styles\r\n.sidebar-toggle {\r\n  // padding: 0 15px;\r\n  display: flex;\r\n  // flex-direction: column;\r\n  justify-content: space-between;\r\n  color: color(primary);\r\n  height: 100%;\r\n\r\n  &__icon {\r\n    margin-top: auto;\r\n    height: 40px;\r\n    margin-bottom: 3px;\r\n  }\r\n\r\n\r\n  &__text {\r\n    margin-bottom: auto;\r\n    font-size: 0.8rem;\r\n    line-height: 10px;\r\n    text-align: center;\r\n  }\r\n}\r\n\r\n.worker-position {\r\n  font-size: 28px;\r\n  align-self: center;\r\n  margin-left: auto;\r\n  margin-bottom: -5px;\r\n  font-weight: 600;\r\n}\r\n\r\n// main area item\r\n\r\n.status-container {\r\n  display: flex;\r\n  width: 100%;\r\n}\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    transform: translateY(30%);\r\n  }\r\n\r\n  #svg-fill {\r\n    margin: auto;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n\r\n  #svg-fill * {\r\n    transform: scale(2.5);\r\n    fill: #747474 !important;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n\r\n  &__item-badge {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 199px;\r\n  }\r\n\r\n  &__item-text {\r\n    font-weight: bold;\r\n    align-self: flex-start;\r\n    margin-right: 15px;\r\n    margin-top: 40px;\r\n  }\r\n}\r\n\r\n.results-header {\r\n  margin-left: 50px;\r\n  margin-right: auto;\r\n\r\n  &__link {\r\n    display: flex;\r\n    text-decoration: none;\r\n    color: #a2a2a2;\r\n    align-self: center;\r\n    font-weight: 200;\r\n  }\r\n\r\n  &__text {\r\n    margin: auto 0;\r\n    justify-self: center;\r\n    font-size: 20px;\r\n  }\r\n\r\n  &__icon {\r\n    padding-right: 10px;\r\n    color: color(primary);\r\n    align-self: center;\r\n    padding-top: 2px;\r\n    font-weight: bold;\r\n  }\r\n}\r\n\r\n//left logos area\r\n\r\n.left-logos {\r\n  margin-left: 23px;\r\n  min-width: fit-content;\r\n  flex: 0 0 auto;\r\n  align-self: center;\r\n  z-index: 101;\r\n  height: 90%;\r\n}\r\n\r\n.left-logos * {\r\n  margin-top: 7px;\r\n  display: inline;\r\n  height: 80%;\r\n}\r\n\r\n.left-logo-years {\r\n  padding-left: 20px;\r\n}\r\n\r\n.badge-education {\r\n  & .mat-badge-content {\r\n    background-color: color(primary) !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.badge-forestry {\r\n  & .mat-badge-content {\r\n    background-color: color(primary) !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.education-fill {\r\n  color: #009eee;\r\n\r\n  & * {\r\n    fill: #009eee !important;\r\n  }\r\n}\r\n\r\n.education-border {\r\n  border-bottom: #009eee solid 3px;\r\n}\r\n\r\n// .forestry-fill {\r\n//   color: #00c466;\r\n\r\n//   & * {\r\n//     fill: #00c466 !important;\r\n//   }\r\n// }\r\n\r\n// .forestry-border {\r\n//   border-bottom: color(primary) solid 3px;\r\n// }\r\n\r\n// ::ng-deep .list__item-svg .a {\r\n//   fill: #00c466 !important;\r\n// }\r\n\r\n.text-container {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: flex-start;\r\n}\r\n",
+                    "styleUrl": "./to-nav.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 28,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "ToNavComponent-1",
+            "templateData": "<div class=\"navbar\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxFlex=\"5\" [ngClass]=\"{\r\n      closed: isOpen,\r\n      'education-fill education-border': prefix === 'education',\r\n      'forestry-fill forestry-border': prefix === 'forestry'\r\n    }\" (click)=\"toggleMenu()\">\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <app-icon type=\"svg\" key=\"tree\"></app-icon>\r\n    </div>\r\n\r\n    <div class=\"sidebar-toggle__text\">{{\r\n      isOpen ? \" תפריט\" : \" סגור תפריט\"\r\n      }}</div>\r\n\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"20\">\r\n    <app-typography variant=\"mat-display-1\">\r\n      {{title}}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showSteps\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\" fxFlex=\"15\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\" fxFlex=\"15\">\r\n    <!-- <svg-icon class=\"left-logo-years\" src=\"assets/images/left-logo-years-new.svg\">\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
+        },
+        {
             "name": "TypographyComponent",
-            "id": "component-TypographyComponent-d55ff5826c63eccec7bfda849dea3fad",
+            "id": "component-TypographyComponent-d15cc7f654c177a57beb7ee0dad577a1",
             "file": "src/app/components/typography/typography.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4524,7 +5210,7 @@
                     "name": "classes",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
+                    "line": 15,
                     "type": "literal type"
                 },
                 {
@@ -4540,13 +5226,6 @@
                     "deprecationMessage": "",
                     "line": 12,
                     "type": "number"
-                },
-                {
-                    "name": "underline",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 14,
-                    "type": "boolean"
                 }
             ],
             "outputsClass": [],
@@ -4558,7 +5237,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 25,
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -4568,7 +5247,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -4581,7 +5260,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 45,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -4594,7 +5273,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -4607,7 +5286,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -4622,7 +5301,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-typography',\r\n  templateUrl: './typography.component.html',\r\n  styleUrls: ['./typography.component.scss'],\r\n})\r\nexport class TypographyComponent implements OnInit {\r\n\r\n\r\n  @Input() color: string;\r\n  @Input() size: number;\r\n  @Input() bold: number;\r\n  @Input() underline: boolean;\r\n\r\n  @Input() classes: {\r\n    color: string;\r\n    fontSize: number;\r\n    fontWeight: number;\r\n    underline: boolean;\r\n  };\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.setColor();\r\n    this.seFontSize();\r\n    this.setFontWeight();\r\n    this.setClasses()\r\n  }\r\n\r\n  private setColor() {\r\n    this.color = this.color || 'text';\r\n  }\r\n\r\n  private seFontSize() {\r\n    this.size = this.size || 14;\r\n\r\n  }\r\n\r\n  private setFontWeight() {\r\n    this.bold = this.bold || 500;\r\n  }\r\n\r\n  private setClasses() {\r\n    this.classes = this.classes ||\r\n    {\r\n      fontSize:this.size,\r\n      fontWeight: this.bold,\r\n      color: this.color,\r\n      underline : this.underline || false\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-typography',\r\n  templateUrl: './typography.component.html',\r\n  styleUrls: ['./typography.component.scss'],\r\n})\r\nexport class TypographyComponent implements OnInit {\r\n\r\n\r\n  @Input() color: string;\r\n  @Input() size: number;\r\n  @Input() bold: number;\r\n\r\n  @Input() classes: {\r\n    color: string;\r\n    fontSize: number;\r\n    fontWeight: number;\r\n  };\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.setColor();\r\n    this.seFontSize();\r\n    this.setFontWeight();\r\n    this.setClasses()\r\n  }\r\n\r\n  private setColor() {\r\n    this.color = this.color || 'text';\r\n  }\r\n\r\n  private seFontSize() {\r\n    this.size = this.size || 14;\r\n\r\n  }\r\n\r\n  private setFontWeight() {\r\n    this.bold = this.bold || 500;\r\n  }\r\n\r\n  private setClasses() {\r\n    this.classes = this.classes ||\r\n    {\r\n      fontSize:this.size,\r\n      fontWeight: this.bold,\r\n      color: this.color,\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -4637,12 +5316,94 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 21
+                "line": 19
             },
             "implements": [
                 "OnInit"
             ],
             "templateData": "<span [dir]=\"'rtl'\" appClasses [classes]=\"classes\" [ngClass]=\"['fontFamily']\">\r\n  <ng-content></ng-content>\r\n</span>\r\n"
+        },
+        {
+            "name": "TypographyComponent",
+            "id": "component-TypographyComponent-36f84567a5cebdb8699b940d6bcf0ba9-1",
+            "file": "src/app/shared/components/typography/typography.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-typography",
+            "styleUrls": [
+                "./typography.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./typography.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "defaultValue": "\"text\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "string"
+                },
+                {
+                    "name": "variant",
+                    "defaultValue": "\"mat-title\"",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-typography',\r\n  templateUrl: './typography.component.html',\r\n  styleUrls: ['./typography.component.scss'],\r\n})\r\nexport class TypographyComponent implements OnInit {\r\n  constructor() { }\r\n\r\n  @Input() color: string = \"text\";\r\n  @Input() variant: string = \"mat-title\";\r\n\r\n  ngOnInit(): void { }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../../styles/styles.scss\";\r\n\r\nspan.primary {\r\n  color: color(primary);\r\n}\r\n\r\nspan.secondary {\r\n  color: color(secondary);\r\n}\r\nspan.warn {\r\n  color: color(warn);\r\n}\r\n\r\nspan.text {\r\n  color: black;\r\n  font-weight: 600;\r\n}\r\n",
+                    "styleUrl": "./typography.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "TypographyComponent-1",
+            "templateData": "<div>\r\n  <span [ngClass]=\"[variant, color]\">\r\n    <ng-content></ng-content>\r\n  </span>\r\n</div>\r\n"
         }
     ],
     "modules": [
@@ -4804,6 +5565,108 @@
                     "elements": []
                 }
             ]
+        },
+        {
+            "name": "NavigationModule",
+            "id": "module-NavigationModule-56b446f6920b5d6d8c65bc1724dd0f42",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/navigation/navigation.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { ToNavComponent } from './components/to-nav/to-nav.component';\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { SharedModule } from '../shared/shared.module';\r\n\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    ToNavComponent,\r\n    NavbarComponent\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    SharedModule\r\n  ],\r\n  exports : [\r\n    ToNavComponent,\r\n    NavbarComponent\r\n  ]\r\n})\r\nexport class NavigationModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "NavbarComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "SharedModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "NavbarComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "SharedModule",
+            "id": "module-SharedModule-5da217246d8e045f6a9e42960e2b1762",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "src/app/shared/shared.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { StatusCardComponent } from './components/status-card/status-card.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { MaterialModule } from 'src/material/material.module';\r\nimport { IconCardComponent } from './components/icon-card/icon-card.component';\r\n\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n    IconComponent,\r\n    IconCardComponent\r\n\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    MaterialModule\r\n  ], exports : [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n    IconComponent,\r\n    IconCardComponent\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "IconCardComponent"
+                        },
+                        {
+                            "name": "StatusCardComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": [
+                        {
+                            "name": "MaterialModule"
+                        }
+                    ]
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "IconCardComponent"
+                        },
+                        {
+                            "name": "StatusCardComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
         }
     ],
     "miscellaneous": {
@@ -4932,16 +5795,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/ExpandPanel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -4962,7 +5815,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Navbar.stories.ts",
+                "file": "src/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -4972,7 +5825,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Pagination.stories.ts",
+                "file": "src/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -4992,6 +5845,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -5002,7 +5865,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Typography.stories.ts",
+                "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -5052,21 +5915,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/environments/environment.prod.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  production: true\r\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/environments/environment.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  production: false\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: true\r\n}"
             },
             {
                 "name": "FLAG_ICON",
@@ -5271,16 +6134,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/ExpandPanel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ExpendPanelComponent>",
-                "defaultValue": "(args: ExpendPanelComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -5321,6 +6174,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Pagination.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -5331,7 +6194,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Pagination.stories.ts",
+                "file": "src/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
@@ -5351,11 +6214,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
+                "file": "src/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                "type": "Story<TypographyComponent>",
+                "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`\r\n})"
             },
             {
                 "name": "Template",
@@ -5371,11 +6234,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Typography.stories.ts",
+                "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<TypographyComponent>",
-                "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography appClass [classes]=\"args.classes\" > Hello World </app-typography>`\r\n\r\n})"
+                "type": "Story<ExpendPanelComponent>",
+                "defaultValue": "(args: ExpendPanelComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -5446,16 +6309,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nxmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"31.883\" height=\"40.875\"\r\nviewBox=\"0 0 31.883 40.875\"><defs>\r\n<style>.tree{fill:\"none\";}</style>\r\n<linearGradient id=\"a\" x1=\"0.5\" x2=\"0.5\" y2=\"1\" gradientUnits=\"objectBoundingBox\"><stop offset=\"0\" stop-color=\"#08954e\" stop-opacity=\"0.161\"/><stop offset=\"1\" stop-color=\"#08954e\"/>\r\n</linearGradient></defs><path class=\"tree\" d=\"M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z\" transform=\"translate(-557.473 -9.485)\"/>\r\n</svg>\r\n`"
-            },
-            {
-                "name": "Underline",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Typography.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "V_SIGN",
@@ -5897,28 +6750,6 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/Navbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ToNavComponent>",
-                    "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "src/stories/Pagination.stories.ts": [
                 {
                     "name": "Default",
@@ -5941,6 +6772,28 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "src/stories/Navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ToNavComponent>",
+                    "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "src/stories/Table.stories.ts": [
                 {
                     "name": "Default",
@@ -5957,28 +6810,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "src/stories/Stepper.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Stepper.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Stepper.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<any>",
@@ -6004,7 +6835,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TypographyComponent>",
-                    "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography appClass [classes]=\"args.classes\" > Hello World </app-typography>`\r\n\r\n})"
+                    "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`\r\n})"
                 },
                 {
                     "name": "Title",
@@ -6015,16 +6846,28 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
-                },
+                }
+            ],
+            "src/stories/Stepper.stories.ts": [
                 {
-                    "name": "Underline",
+                    "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Typography.stories.ts",
+                    "file": "src/stories/Stepper.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/screens/Login.stories.ts": [
@@ -6049,18 +6892,6 @@
                     "defaultValue": "(args: () => {}) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/environments/environment.prod.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  production: true\r\n}"
-                }
-            ],
             "src/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -6071,6 +6902,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  production: false\r\n}"
+                }
+            ],
+            "src/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true\r\n}"
                 }
             ],
             "src/stories/Icon.stories.ts": [
@@ -6432,7 +7275,61 @@
                 "linktype": "component",
                 "name": "TypographyComponent",
                 "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/navigation/components/navbar/navbar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavbarComponent",
+                "coveragePercent": 0,
                 "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/navigation/components/to-nav/to-nav.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ToNavComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/icon-card/icon-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconCardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/icon/icon.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "IconComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/status-card/status-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StatusCardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/4",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/shared/components/typography/typography.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TypographyComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -7085,16 +7982,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Title",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Typography.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Underline",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
