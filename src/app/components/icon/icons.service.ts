@@ -31,7 +31,6 @@ import {
   LOGO_ICON,
   TREE_LOGO,
   TREE_ICON,
-  TREE_GRADIENT_ICON,
   BOTTOM_TREE_LOGO_LANDS_ICON,
   ASSETS_ICON,
   MAIL_ICON,
@@ -50,11 +49,6 @@ import {
   SELECT_ICON,
 } from './icons.list';
 
-export interface IconItem {
-  key: string;
-  svgUrl: string;
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -63,8 +57,6 @@ export class IconsService {
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {}
-
-  public iconList: IconItem[] = [];
 
   public icons = {
 
