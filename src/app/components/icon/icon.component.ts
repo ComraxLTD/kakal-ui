@@ -1,5 +1,6 @@
-import { IconsService } from './../../utilities/icons/icons.service';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Palette } from 'src/styles/theme';
+import { IconsService } from './icons.service';
 
 @Component({
   selector: 'app-icon',
@@ -7,56 +8,50 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent implements OnInit {
-
-  // sizing svg icon
-  @Input() public size: number = 24;
-  @Input() public width: number;
-  @Input() public height: number;
-
-  // active prop for active style
-  @Input() public isActive: boolean;
-
-  // svg or materiel
-  @Input() public type: string;
-
-  // icon name as in icon-list or anguler materiel
   @Input() public key: string = '';
+  @Input() public type: string = 'svg';
+  @Input() public color: Palette = 'primary';
 
-  // color as theme (primery, warn ot warn)
-  @Input() public color: string;
+  @Input() public size: number = 24;
+  @Input() public scale: number | string = 1;
 
-  // sizing for mat-icon
-  @Input() public matScale: string;
+  @Input() public width: number = this.size;
+  @Input() public height: number = this.size;
+  @Input() public isActive: boolean = false;
+  @Input() public rotate: number = 0;
 
-  public default: boolean = true;
+  @Input() public backgroundColor: string = '';
 
-  constructor(private iconsService: IconsService) { }
+  public matScale: string = `scale(${this.scale})`;
+  public matRotate: string = `scale(${this.rotate})deg`;
+
+  constructor(private iconsService: IconsService) {}
 
   ngOnInit(): void {
     this.setIcon();
     this.setIconColor();
     this.setIconSize();
+    this.setRotate();
   }
 
   private setIcon() {
-    this.type = this.type || 'svg';
-    if (this.type === 'svg') {
-      this.iconsService.setIcon(this.key);
+    const isSvg = this.iconsService.setIcon(this.key);
+    if (!isSvg) {
+      this.type = 'mat';
     }
   }
 
   private setIconColor() {
-    if (this.color) {
-      this.default = false;
-    } else if (this.isActive) {
-      this.default = !this.isActive;
-    }
+    this.color = this.isActive ? 'paper' : this.color || 'default';
   }
 
   private setIconSize() {
     this.width = this.size;
     this.height = this.size;
-    this.matScale = this.matScale || 'scale(1)';
+    this.matScale = this.scale ? `scale(${this.scale})` : 'scale(1)';
+  }
+
+  private setRotate() {
+    this.matRotate = this.rotate ? `rotate(${this.rotate}deg)` : 'rotate(0deg)';
   }
 }
-
