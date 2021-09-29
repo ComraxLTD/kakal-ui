@@ -22,5 +22,6 @@ const Template: Story<IconComponent> = (args: IconComponent) => ({
 export const Mat = Template.bind({});
 Mat.args = {
   key: 'home',
-  type: 'mat'
+  type: 'svg',
+  color: 'black',
 };
