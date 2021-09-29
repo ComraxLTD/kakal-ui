@@ -19,9 +19,16 @@ const Template: Story<IconComponent> = (args: IconComponent) => ({
   props: args,
 });
 
-export const HOME = Template.bind({});
-HOME.args = {
+export const HOME_SVG = Template.bind({});
+HOME_SVG.args = {
   key: 'home',
   type: 'svg',
-  color: 'black',
+  color: 'primary',
+};
+
+export const HOME_MAT = Template.bind({});
+HOME_MAT.args = {
+  key: 'home',
+  type: 'mat',
+  color: 'warn',
 };

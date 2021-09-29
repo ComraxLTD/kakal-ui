@@ -1,16 +1,16 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Palette } from 'src/styles/theme';
 import { IconsService } from './icons.service';
 
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss']
+  styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent implements OnInit {
-
   @Input() public key: string = '';
   @Input() public type: string = 'svg';
-  @Input() public color: string = '';
+  @Input() public color: Palette = 'primary';
 
   @Input() public size: number = 24;
   @Input() public scale: number | string = 1;
@@ -25,26 +25,24 @@ export class IconComponent implements OnInit {
   public matScale: string = `scale(${this.scale})`;
   public matRotate: string = `scale(${this.rotate})deg`;
 
-  constructor(private iconsService: IconsService) {
-
-  }
+  constructor(private iconsService: IconsService) {}
 
   ngOnInit(): void {
     this.setIcon();
     this.setIconColor();
     this.setIconSize();
-    this.setRotate()
+    this.setRotate();
   }
 
   private setIcon() {
     const isSvg = this.iconsService.setIcon(this.key);
     if (!isSvg) {
-      this.type = 'mat'
+      this.type = 'mat';
     }
   }
 
   private setIconColor() {
-    this.color = this.isActive ? 'active' : this.color || 'default';
+    this.color = this.isActive ? 'paper' : this.color || 'default';
   }
 
   private setIconSize() {
@@ -55,6 +53,5 @@ export class IconComponent implements OnInit {
 
   private setRotate() {
     this.matRotate = this.rotate ? `rotate(${this.rotate}deg)` : 'rotate(0deg)';
-
   }
 }
