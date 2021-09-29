@@ -1,0 +1,41 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxFill>
+
+  <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
+
+    <mat-grid-list [cols]="cols" rowHeight="8vh" [gutterSize]="gutter" [dir]="'rtl'">
+
+      <ng-container *ngFor="let question of questions">
+
+        <ng-container [ngSwitch]="question.controlType">
+
+
+          <!-- GROUP INPUT SECTION -->
+          <ng-container *ngSwitchCase="'group'">
+            <app-form [group]="question.group"></app-form>
+          </ng-container>
+
+
+          <!-- DEFAULT INPUT -->
+          <ng-container *ngSwitchDefault>
+
+            <mat-grid-tile [colspan]="question?.gridProps?.cols || 1">
+              <app-form-input (selected)="onSelect($event)" [control]="formGroup.controls[question.key]" [question]="question"></app-form-input>
+            </mat-grid-tile>
+
+            <mat-grid-tile *ngIf="question?.gridProps?.offset"> </mat-grid-tile>
+
+          </ng-container>
+
+        </ng-container>
+      </ng-container>
+
+
+
+      <mat-grid-tile class="button-tile" *ngIf="hasButton">
+        <ng-container *ngTemplateOutlet="slots?.button; context: { question }">
+        </ng-container>
+      </mat-grid-tile>
+    </mat-grid-list>
+
+  </form>
+</div>

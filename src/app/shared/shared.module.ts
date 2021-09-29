@@ -23,7 +23,8 @@ import { IconCardComponent } from './components/icon-card/icon-card.component';
     StatusCardComponent,
     TypographyComponent,
     IconComponent,
-    IconCardComponent
+    IconCardComponent,
+    MaterialModule
   ]
 })
 export class SharedModule { }

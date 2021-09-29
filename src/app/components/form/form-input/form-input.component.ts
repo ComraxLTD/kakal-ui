@@ -1,92 +1,91 @@
-import { Component, OnInit, forwardRef, Input, ViewChild } from '@angular/core';
-import { NG_VALUE_ACCESSOR, FormControl } from '@angular/forms';
-import { FormService } from '../logic/form.service';
-import { QuestionBase } from '../logic/question-base';
+import { QuestionTextModel } from '../models/question-text.model';
+import { MessageService } from './../services/message.service';
+import { FormControl } from '@angular/forms';
+import { QuestionBase } from '../services/form.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { QuestionSelectModel, SelectOption } from './../models/question-select.model';
+import { GridProps, QuestionBaseModel } from '../models/question-base.model';
 
 @Component({
   selector: 'app-form-input',
   templateUrl: './form-input.component.html',
-  styleUrls: ['./form-input.component.scss'],
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => FormInputComponent),
-      multi: true,
-    },
-  ],
+  styleUrls: ['./form-input.component.scss']
 })
 export class FormInputComponent implements OnInit {
-  @ViewChild('input') input!: HTMLInputElement;
 
-  @Input() public question!: QuestionBase<string | number | Date>;
+  @Input() public question: QuestionBase;
+  @Input() public control: FormControl;
 
-  @Input() public control!: FormControl;
-  @Input() public type!: string;
-  @Input() public label!: string;
-  @Input() public hint!: string;
-  @Input() public controlType!: string;
-  @Input() public options!: [];
+  public type: string;
+  public label: string;
+  public icon: string;
+  public options: SelectOption[]
+  public error: string = ''
 
-  @Input() public labelLength: string;
-  @Input() public groupLabel!: string;
-  @Input() public theme!: string;
-  @Input() public icon!: string;
-  @Input() public status!: string;
-  @Input() public inputProps: {};
+  public gridProps: GridProps
+  public color: string;
+  public iconType: string = 'svg';
+  public iconRotate: number = 0;
 
-  @Input() public serverErrorMode!: boolean;
+  @Output() public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();
 
-  public value!: any;
-  public error!: string;
-  public serverError!: string;
-
-  public OnChange!: (event: Event) => void;
-  public onTouched!: () => void;
-  public disabled!: boolean;
-
-  constructor(private formService: FormService) {}
+  constructor(
+    private messageService: MessageService
+  ) {
+  }
 
   ngOnInit(): void {
-    this.subscribeToControl();
-    if (this.controlType == "textarea") {
+
+
+    this.gridProps = this.question.gridProps
+    this.type = this.question?.type
+    this.label = this.question?.label || ''
+    this.icon = this.question?.icon || ''
+
+    if (this.question instanceof QuestionSelectModel) {
+      this.options = this.question.options;
     }
-  }
 
-  // ControlValueAccessor logic
-
-  public writeValue(value: any): void {
-    this.value = value ? value : '';
-  }
-
-  public registerOnChange(fn: any): void {
-    this.OnChange = fn;
-  }
-
-  public registerOnTouched(fn: any): void {
-    this.onTouched = fn;
-  }
-
-  public setDisabledState?(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  public handleChange(value: any) {
-    this.value = value;
+    this.subscribeToControl()
   }
 
   // subscription section
-  private subscribeToControl() {}
+  private subscribeToControl() {
 
-  // LOGIC SECTION
+    if (this.control.disabled) {
+      this.color = 'disable';
+    }
 
-  // method to handle validation messages
-  public validate() {
-    this.error = this.formService.getErrorMessage(this.control, this.label);
-
-    this.control.valueChanges.subscribe(() => {
-      this.error = this.formService.getErrorMessage(this.control, this.label);
+    this.control.valueChanges.subscribe((value) => {
+      if (this.control.disabled) {
+        this.color = 'disable';
+      } else if (this.control.errors) {
+        this.color = 'warn';
+      } else {
+        this.color = '';
+      }
     });
   }
 
-  // end of logic section
+  public validate() {
+    this.error = this.messageService.getErrorMessage(this.control, this.label);
+
+    if (this.error) {
+      this.color = 'warn';
+    }
+
+    this.control.valueChanges.subscribe(() => {
+      this.error = this.messageService.getErrorMessage(this.control, this.label);
+    });
+  }
+
+  public onSelectChange() {
+    if (this.question instanceof QuestionSelectModel) {
+      this.selected.emit(this.question)
+      this.question.onSelectChange()
+    }
+  }
+
+
+
 }

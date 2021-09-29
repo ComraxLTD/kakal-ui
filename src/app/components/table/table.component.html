@@ -1,0 +1,141 @@
+<div>
+  <mat-table
+    (matSortChange)="onSort($event)"
+    mat-table
+    matSort
+    [dataSource]="$data | async | paginate: pagination"
+    [dir]="'rtl'"
+  >
+    <ng-container
+      *ngFor="let column of table.columns"
+      [matColumnDef]="column.columnDef"
+    >
+      <!-- COLUMN HEADER SECTION-->
+
+      <ng-container *ngIf="!column.sortable">
+        <mat-header-cell
+          *matHeaderCellDef
+          [ngClass]="{ center: column.center }"
+        >
+          <!-- DEFAULT HEADER -->
+          <app-typography [bold]="600" [size]="12" *ngIf="!column.filterable">
+            {{ column.label }}
+          </app-typography>
+
+          <ng-container
+            *ngIf="column.columnDef === 'actions' && column.slotRef"
+          >
+            <ng-container
+              *ngTemplateOutlet="
+                headerSlots[column.columnDef];
+                context: { cell: column }
+              "
+            >
+            </ng-container>
+          </ng-container>
+
+          <!-- FILTER HEADER -->
+          <app-column-filter
+            *ngIf="column.filterable"
+            [column]="column"
+          ></app-column-filter>
+        </mat-header-cell>
+      </ng-container>
+
+      <!-- SORT HEADER -->
+      <ng-container *ngIf="column.sortable">
+        <mat-header-cell
+          mat-sort-header
+          *matHeaderCellDef
+          [ngClass]="{ center: column.center }"
+          [start]="column.sortDir"
+        >
+          <app-typography [bold]="600" [size]="12">
+            {{ column.label }}
+          </app-typography>
+        </mat-header-cell>
+      </ng-container>
+
+      <!-- COLUMN CELL SECTION-->
+
+      <mat-cell
+        *matCellDef="let cell; let i = index"
+        [ngClass]="{ center: column.center }"
+        [attr.colspan]="i"
+      >
+        <!-- DEFAULT SECTION-->
+        <ng-container *ngIf="!cell.editable">
+          <ng-container [ngSwitch]="column.type">
+            <ng-container *ngSwitchCase="'date'">
+              <app-date [value]="cell.item[column.columnDef]"></app-date>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'number'">
+              {{ cell.item[column.columnDef] | number }}
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'custom'">
+              <ng-container
+                *ngTemplateOutlet="
+                  rowSlots[column.columnDef];
+                  context: { cell: this.cell, column: this.column }
+                "
+              >
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'actions'">
+              <ng-container
+                *ngTemplateOutlet="
+                  rowSlots['actions'];
+                  context: { cell: this.cell, column: this.column }
+                "
+              >
+              </ng-container>
+            </ng-container>
+
+            <ng-container *ngSwitchCase="'text'">
+              {{ cell.item[column.columnDef] }}
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <!-- FORM SECTION-->
+        <ng-container *ngIf="cell.editable">
+          <ng-container [ngSwitch]="column.type">
+            <ng-container *ngSwitchDefault>
+              <div class="cell-input">
+                <app-column-form
+                  *ngIf="column?.question"
+                  [control]="cell.formGroup.controls[column.columnDef]"
+                  [question]="column?.question"
+                ></app-column-form>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'actions'">
+              <ng-container
+                *ngTemplateOutlet="
+                  rowSlots['actions'];
+                  context: { cell: column }
+                "
+              >
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      [ngClass]="[theme]"
+      *matHeaderRowDef="columnDefs"
+    ></mat-header-row>
+
+    <mat-row
+      *matRowDef="let row; columns: columnDefs"
+      (click)="onRowClicked(row)"
+    ></mat-row>
+  </mat-table>
+
+  <app-pagination [pagination]="pagination"></app-pagination>
+</div>

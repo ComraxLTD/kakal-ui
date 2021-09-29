@@ -7,9 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material/material.module';
 import { AppComponent } from './components/root/app.component';
 import { IconComponent } from './components/icon/icon.component';
-import { FormContainerComponent } from './components/form/form-container/form-container.component';
-import { FormInputComponent } from './components/form/form-input/form-input.component';
-import { InputRadioComponent } from './components/form/input-radio/input-radio.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -24,14 +21,14 @@ import { StatusCardComponent } from './components/cards/status-card/status-card.
 import { IconCardComponent } from './components/cards/icon-card/icon-card.component';
 import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
 import { ClassesDirective } from './utilities/directives/classes.directive';
+import { FormModule } from './components/form/form.module';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
-    FormContainerComponent,
-    FormInputComponent,
-    InputRadioComponent,
     IconComponent,
     IconCardComponent,
     NavbarComponent,
@@ -39,13 +36,15 @@ import { ClassesDirective } from './utilities/directives/classes.directive';
     DashboardCardComponent,
     ToNavComponent,
     StatusCardComponent,
-    ClassesDirective
+    PaginationComponent,
+    ClassesDirective,
+    TableComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-
+    FormModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -59,4 +58,4 @@ import { ClassesDirective } from './utilities/directives/classes.directive';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
