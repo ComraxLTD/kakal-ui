@@ -25,7 +25,16 @@ export default {
 
 const CardDashboardTemplate: Story<CardDashboardComponent> = (args: CardDashboardComponent) => ({
     props: args,
-    template: `<app-card-dashboard ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-card-dashboard>`
+    template: `
+    <div style='
+    height: 100px;
+    background: black;
+    width: 100px;
+    border-radius: 12px;
+    margin: 0 auto;'>
+    <app-card-dashboard ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}>
+    </app-card-dashboard>
+    </div>`
 });
 export const Dashboard = CardDashboardTemplate.bind({});
 Dashboard.args = {
@@ -38,7 +47,14 @@ Dashboard.args = {
 };
 const CardStatusTemplate: Story<CardStatusComponent> = (args: CardStatusComponent) => ({
     props: args,
-    template: `<app-card-status ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-card-status>`
+    template: `
+    <div style='    flex-direction: row;
+    box-sizing: border-box;
+    display: flex;
+    place-content: center;
+    align-items: center;'>
+    <app-card-status ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-card-status>
+    </div>`
 });
 
 export const Status = CardStatusTemplate.bind({});
