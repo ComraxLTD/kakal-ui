@@ -26,6 +26,7 @@ import { CardDashboardComponent } from './components/cards/card-dashboard/card-d
 import { CardStatusComponent } from './components/cards/card-status/card-status.component';
 import { CardStepComponent } from './components/cards/card-step/card-step.component';
 import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';
+import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.
     CardDashboardComponent,
     CardStatusComponent,
     CardStepComponent,
-    CardWizardComponent
+    CardWizardComponent,
+    ExpandPanelComponent
   ],
   imports: [
     BrowserModule,

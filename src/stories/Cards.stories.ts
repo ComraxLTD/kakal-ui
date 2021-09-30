@@ -33,7 +33,7 @@ Dashboard.args = {
         label: 'test',
         size: 15,
         scale: 3,
-        svgUrl: "assets"
+        svgUrl: "assets",
     }
 };
 const CardStatusTemplate: Story<CardStatusComponent> = (args: CardStatusComponent) => ({
