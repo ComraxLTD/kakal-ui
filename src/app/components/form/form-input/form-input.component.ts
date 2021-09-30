@@ -1,10 +1,9 @@
-import { QuestionTextModel } from '../models/question-text.model';
 import { MessageService } from './../services/message.service';
 import { FormControl } from '@angular/forms';
 import { QuestionBase } from '../services/form.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { QuestionSelectModel, SelectOption } from './../models/question-select.model';
-import { GridProps, QuestionBaseModel } from '../models/question-base.model';
+import { GridProps } from '../models/question-base.model';
 
 @Component({
   selector: 'app-form-input',

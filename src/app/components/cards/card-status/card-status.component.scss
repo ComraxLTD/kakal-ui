@@ -1,0 +1,21 @@
+@import "../../../../styles/styles.scss";
+div {
+  height: 100%;
+}
+
+.card-status {
+  transform: translateY(2rem);
+  box-sizing: border-box;
+}
+
+.mat-badge-content {
+  color: color(paper) !important;
+}
+
+div.status {
+  width: calc(100% / 3);
+}
+
+.text-container {
+  width: fit-content;
+}

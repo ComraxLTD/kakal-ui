@@ -17,28 +17,32 @@ import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
-import { StatusCardComponent } from './components/cards/status-card/status-card.component';
-import { IconCardComponent } from './components/cards/icon-card/icon-card.component';
 import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
 import { ClassesDirective } from './utilities/directives/classes.directive';
 import { FormModule } from './components/form/form.module';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { TableComponent } from './components/table/table.component';
+import { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';
+import { CardStatusComponent } from './components/cards/card-status/card-status.component';
+import { CardStepComponent } from './components/cards/card-step/card-step.component';
+import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     IconComponent,
-    IconCardComponent,
     NavbarComponent,
     TypographyComponent,
     DashboardCardComponent,
     ToNavComponent,
-    StatusCardComponent,
     PaginationComponent,
     ClassesDirective,
-    TableComponent
+    TableComponent,
+    CardDashboardComponent,
+    CardStatusComponent,
+    CardStepComponent,
+    CardWizardComponent
   ],
   imports: [
     BrowserModule,

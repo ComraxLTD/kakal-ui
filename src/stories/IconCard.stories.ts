@@ -1,6 +1,6 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import {IconCardComponent} from "../app/components/cards/icon-card/icon-card.component";
+import { IconCardComponent } from 'src/app/shared/components/icon-card/icon-card.component';
 
 export default {
   title: 'IconCard',

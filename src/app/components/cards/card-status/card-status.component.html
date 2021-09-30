@@ -1,0 +1,24 @@
+<div class="card-status" fxLayout="row" fxLayoutAlign="center center">
+  <div
+    class="status"
+    appVariant
+    [type]="card.type"
+    [matBadge]="card?.value"
+    matBadgeColor="accent"
+    matBadgeSize="medium"
+  >
+    <div class="icon-container">
+      <app-icon [key]="card.svgUrl" [scale]="1.5"></app-icon>
+    </div>
+  </div>
+  <div
+    class="text-container"
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    [fxFlexOffset]="5"
+  >
+    <app-typography [size]="14" [bold]="600">
+      {{ card.label }}
+    </app-typography>
+  </div>
+</div>
