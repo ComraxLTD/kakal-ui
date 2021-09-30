@@ -6170,6 +6170,105 @@
             "hostListeners": []
         },
         {
+            "name": "StatusModel",
+            "id": "class-StatusModel-f215a92937bf1ab4d6ff52a42f24b1d4",
+            "file": "src/app/components/status/status.model.ts",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "type": "class",
+            "sourceCode": "export class StatusModel {\r\n\r\n  public label  : string\r\n  public value  : number\r\n\r\n  constructor(\r\n    options: {\r\n      label?: string,\r\n      value?: number,\r\n    }\r\n  ) {\r\n    this.label = options?.label;\r\n    this.value = options?.value;\r\n  }\r\n\r\n  static create(status: StatusModel) {\r\n    return new StatusModel({\r\n      label: status.label,\r\n      value: status.value,\r\n    })\r\n  }\r\n\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "options",
+                        "type": "literal type",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 5,
+                "jsdoctags": [
+                    {
+                        "name": "options",
+                        "type": "literal type",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "properties": [
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 4,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "value",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 5,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "create",
+                    "args": [
+                        {
+                            "name": "status",
+                            "type": "StatusModel",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "StatusModel",
+                    "typeParameters": [],
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        123
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "status",
+                            "type": "StatusModel",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "indexSignatures": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "hostBindings": [],
+            "hostListeners": []
+        },
+        {
             "name": "StepModel",
             "id": "class-StepModel-d9ba865afb7da38efc78a0462c4c37a6",
             "file": "src/app/components/step/step.model.ts",
@@ -9421,210 +9520,6 @@
         {
             "name": "NavbarComponent",
             "id": "component-NavbarComponent-af348c4c599ad4a757894d55676fed44",
-            "file": "src/app/navigation/components/navbar/navbar.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-navbar",
-            "styleUrls": [
-                "./navbar.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./navbar.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "title",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 13,
-                    "type": "string"
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "menuToggle",
-                    "defaultValue": "new EventEmitter()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 11,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [
-                {
-                    "name": "componentType",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 23,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "isOpen",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "optional": false,
-                    "description": "",
-                    "line": 20,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "prefix",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 24,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "showSteps",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "optional": false,
-                    "description": "",
-                    "line": 21,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "status",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "literal type[]",
-                    "optional": false,
-                    "description": "",
-                    "line": 15,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "urlAdress",
-                    "defaultValue": "'main'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 22,
-                    "modifierKind": [
-                        122
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 51,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "toggleMenu",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 26,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { ActivatedRoute, ParamMap, Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public title: string;\r\n\r\n  public status: {\r\n    text: string;\r\n    svgUrl: string;\r\n    count: number;\r\n  }[] = [];\r\n  public isOpen: boolean = true;\r\n  public showSteps: boolean = true;\r\n  public urlAdress = 'main';\r\n  public componentType: string = '';\r\n  public prefix: string = '';\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private route: ActivatedRoute\r\n  ) // private userDataService: UserDataService\r\n  {\r\n    // this.prefix = this.userDataService.user.urlPrefix;\r\n    this.status = [];\r\n\r\n    this.router.events.subscribe((val: any) => {\r\n      this.urlAdress = val.url ? val.url : this.urlAdress;\r\n\r\n      this.showSteps =\r\n        this.urlAdress === '/education' ||\r\n        this.urlAdress === '/education/search' ||\r\n        this.urlAdress === '/education/my-tours'\r\n          ? true\r\n          : false;\r\n    });\r\n  }\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@use \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: #ffffff;\r\n  opacity: 1;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  border-bottom: 3px solid #fbfbfb;\r\n  box-sizing: border-box;\r\n}\r\n\r\n// toggle button styles\r\n.sidebar-toggle {\r\n  padding: 0 15px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-around;\r\n  align-items: center;\r\n  // color: $--green-color-bright;\r\n  height: 100%;\r\n  width: 50px;\r\n  z-index: 101;\r\n  margin-top: 4px;\r\n\r\n  &__icon {\r\n    margin-top: auto;\r\n    height: 40px;\r\n    margin-bottom: 3px;\r\n  }\r\n\r\n\r\n  &__text {\r\n    margin-bottom: auto;\r\n    font-size: 0.8rem;\r\n    line-height: 10px;\r\n    text-align: center;\r\n  }\r\n}\r\n\r\n.worker-position {\r\n  font-size: 28px;\r\n  align-self: center;\r\n  margin-left: auto;\r\n  margin-bottom: -5px;\r\n  font-weight: 600;\r\n}\r\n\r\n// main area item\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    margin-bottom: -130px;\r\n    &:not(:first-child) {\r\n      padding-right: 190px;\r\n    }\r\n\r\n    &:first-child > .project-status__item-badge {\r\n      margin-right: -190px;\r\n      background-color: sienna;\r\n    }\r\n    display: flex;\r\n    position: relative;\r\n\r\n    &-icon {\r\n      border-radius: 100px;\r\n      height: 75px;\r\n      width: 75px;\r\n      background-color: #ffffff;\r\n      border: 1px solid #00000029;\r\n      // display: flex;\r\n      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n      box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n      .icon-container {\r\n        height: 100%;\r\n        transform: scale(1.5);\r\n      }\r\n    }\r\n  }\r\n\r\n  #svg-fill {\r\n    margin: auto;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n  #svg-fill * {\r\n    transform: scale(2.5);\r\n    fill: #747474 !important;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n\r\n  &__item-badge {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 199px;\r\n  }\r\n\r\n  &__item-text {\r\n    font-weight: bold;\r\n    align-self: flex-start;\r\n    margin-right: 15px;\r\n    margin-top: 40px;\r\n  }\r\n}\r\n\r\n.results-header {\r\n  margin-left: 50px;\r\n  margin-right: auto;\r\n\r\n  &__link {\r\n    display: flex;\r\n    text-decoration: none;\r\n    color: #a2a2a2;\r\n    align-self: center;\r\n    font-weight: 200;\r\n  }\r\n\r\n  &__text {\r\n    margin: auto 0;\r\n    justify-self: center;\r\n    font-size: 20px;\r\n  }\r\n  &__icon {\r\n    padding-right: 10px;\r\n    color: color(primary);\r\n    align-self: center;\r\n    padding-top: 2px;\r\n    font-weight: bold;\r\n  }\r\n}\r\n\r\n//left logos area\r\n\r\n.left-logos {\r\n  margin-left: 23px;\r\n  min-width: fit-content;\r\n  flex: 0 0 auto;\r\n  align-self: center;\r\n  z-index: 101;\r\n  height: 90%;\r\n}\r\n\r\n.left-logos * {\r\n  margin-top: 7px;\r\n  display: inline;\r\n  height: 80%;\r\n}\r\n\r\n.left-logo-years {\r\n  padding-left: 20px;\r\n}\r\n\r\n.badge-education {\r\n  & .mat-badge-content {\r\n    // background-color: $--green-color-bright !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.badge-forestry {\r\n  & .mat-badge-content {\r\n    background-color: color(primary) !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.education-fill {\r\n  color: #009eee;\r\n  & * {\r\n    fill: #009eee !important;\r\n  }\r\n}\r\n\r\n.education-border {\r\n  border-bottom: #009eee solid 3px;\r\n}\r\n\r\n.forestry-fill {\r\n  color: #00c466;\r\n  & * {\r\n    fill: #00c466 !important;\r\n  }\r\n}\r\n.forestry-border {\r\n  // border-bottom: $--green-color-bright solid 3px;\r\n}\r\n\r\n::ng-deep .list__item-svg .a {\r\n  fill: #00c466 !important;\r\n}\r\n",
-                    "styleUrl": "./navbar.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "route",
-                        "type": "ActivatedRoute",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 29,
-                "jsdoctags": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "route",
-                        "type": "ActivatedRoute",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <app-icon color=\"primary\" type=\"svg\" key=\"tree\" color=\"primary\"></app-icon>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
-        },
-        {
-            "name": "NavbarComponent",
-            "id": "component-NavbarComponent-af348c4c599ad4a757894d55676fed44-1",
             "file": "src/app/components/navigation/navbar/navbar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -9824,10 +9719,352 @@
             "implements": [
                 "OnInit"
             ],
+            "templateData": "<mat-toolbar class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <div class=\"icon-container\">\r\n        <app-icon\r\n          color=\"primary\"\r\n          type=\"svg\"\r\n          key=\"tree\"\r\n          color=\"primary\"\r\n        ></app-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <!-- <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography> -->\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</mat-toolbar>\r\n"
+        },
+        {
+            "name": "NavbarComponent",
+            "id": "component-NavbarComponent-af348c4c599ad4a757894d55676fed44-1",
+            "file": "src/app/navigation/components/navbar/navbar.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-navbar",
+            "styleUrls": [
+                "./navbar.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./navbar.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "menuToggle",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "componentType",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "isOpen",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "prefix",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 24,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "showSteps",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 21,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "status",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "literal type[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "urlAdress",
+                    "defaultValue": "'main'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggleMenu",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { ActivatedRoute, ParamMap, Router } from '@angular/router';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public title: string;\r\n\r\n  public status: {\r\n    text: string;\r\n    svgUrl: string;\r\n    count: number;\r\n  }[] = [];\r\n  public isOpen: boolean = true;\r\n  public showSteps: boolean = true;\r\n  public urlAdress = 'main';\r\n  public componentType: string = '';\r\n  public prefix: string = '';\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor(\r\n    private router: Router,\r\n    private route: ActivatedRoute\r\n  ) // private userDataService: UserDataService\r\n  {\r\n    // this.prefix = this.userDataService.user.urlPrefix;\r\n    this.status = [];\r\n\r\n    this.router.events.subscribe((val: any) => {\r\n      this.urlAdress = val.url ? val.url : this.urlAdress;\r\n\r\n      this.showSteps =\r\n        this.urlAdress === '/education' ||\r\n        this.urlAdress === '/education/search' ||\r\n        this.urlAdress === '/education/my-tours'\r\n          ? true\r\n          : false;\r\n    });\r\n  }\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@use \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: #ffffff;\r\n  opacity: 1;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  border-bottom: 3px solid #fbfbfb;\r\n  box-sizing: border-box;\r\n}\r\n\r\n// toggle button styles\r\n.sidebar-toggle {\r\n  padding: 0 15px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-around;\r\n  align-items: center;\r\n  // color: $--green-color-bright;\r\n  height: 100%;\r\n  width: 50px;\r\n  z-index: 101;\r\n  margin-top: 4px;\r\n\r\n  &__icon {\r\n    margin-top: auto;\r\n    height: 40px;\r\n    margin-bottom: 3px;\r\n  }\r\n\r\n\r\n  &__text {\r\n    margin-bottom: auto;\r\n    font-size: 0.8rem;\r\n    line-height: 10px;\r\n    text-align: center;\r\n  }\r\n}\r\n\r\n.worker-position {\r\n  font-size: 28px;\r\n  align-self: center;\r\n  margin-left: auto;\r\n  margin-bottom: -5px;\r\n  font-weight: 600;\r\n}\r\n\r\n// main area item\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    margin-bottom: -130px;\r\n    &:not(:first-child) {\r\n      padding-right: 190px;\r\n    }\r\n\r\n    &:first-child > .project-status__item-badge {\r\n      margin-right: -190px;\r\n      background-color: sienna;\r\n    }\r\n    display: flex;\r\n    position: relative;\r\n\r\n    &-icon {\r\n      border-radius: 100px;\r\n      height: 75px;\r\n      width: 75px;\r\n      background-color: #ffffff;\r\n      border: 1px solid #00000029;\r\n      // display: flex;\r\n      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n      box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n      .icon-container {\r\n        height: 100%;\r\n        transform: scale(1.5);\r\n      }\r\n    }\r\n  }\r\n\r\n  #svg-fill {\r\n    margin: auto;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n  #svg-fill * {\r\n    transform: scale(2.5);\r\n    fill: #747474 !important;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n\r\n  &__item-badge {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 199px;\r\n  }\r\n\r\n  &__item-text {\r\n    font-weight: bold;\r\n    align-self: flex-start;\r\n    margin-right: 15px;\r\n    margin-top: 40px;\r\n  }\r\n}\r\n\r\n.results-header {\r\n  margin-left: 50px;\r\n  margin-right: auto;\r\n\r\n  &__link {\r\n    display: flex;\r\n    text-decoration: none;\r\n    color: #a2a2a2;\r\n    align-self: center;\r\n    font-weight: 200;\r\n  }\r\n\r\n  &__text {\r\n    margin: auto 0;\r\n    justify-self: center;\r\n    font-size: 20px;\r\n  }\r\n  &__icon {\r\n    padding-right: 10px;\r\n    color: color(primary);\r\n    align-self: center;\r\n    padding-top: 2px;\r\n    font-weight: bold;\r\n  }\r\n}\r\n\r\n//left logos area\r\n\r\n.left-logos {\r\n  margin-left: 23px;\r\n  min-width: fit-content;\r\n  flex: 0 0 auto;\r\n  align-self: center;\r\n  z-index: 101;\r\n  height: 90%;\r\n}\r\n\r\n.left-logos * {\r\n  margin-top: 7px;\r\n  display: inline;\r\n  height: 80%;\r\n}\r\n\r\n.left-logo-years {\r\n  padding-left: 20px;\r\n}\r\n\r\n.badge-education {\r\n  & .mat-badge-content {\r\n    // background-color: $--green-color-bright !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.badge-forestry {\r\n  & .mat-badge-content {\r\n    background-color: color(primary) !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.education-fill {\r\n  color: #009eee;\r\n  & * {\r\n    fill: #009eee !important;\r\n  }\r\n}\r\n\r\n.education-border {\r\n  border-bottom: #009eee solid 3px;\r\n}\r\n\r\n.forestry-fill {\r\n  color: #00c466;\r\n  & * {\r\n    fill: #00c466 !important;\r\n  }\r\n}\r\n.forestry-border {\r\n  // border-bottom: $--green-color-bright solid 3px;\r\n}\r\n\r\n::ng-deep .list__item-svg .a {\r\n  fill: #00c466 !important;\r\n}\r\n",
+                    "styleUrl": "./navbar.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 29,
+                "jsdoctags": [
+                    {
+                        "name": "router",
+                        "type": "Router",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "route",
+                        "type": "ActivatedRoute",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "NavbarComponent-1",
-            "templateData": "<mat-toolbar class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <div class=\"icon-container\">\r\n        <app-icon\r\n          color=\"primary\"\r\n          type=\"svg\"\r\n          key=\"tree\"\r\n          color=\"primary\"\r\n        ></app-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <!-- <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography> -->\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</mat-toolbar>\r\n"
+            "templateData": "<div class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <app-icon color=\"primary\" type=\"svg\" key=\"tree\" color=\"primary\"></app-icon>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
+        },
+        {
+            "name": "PaginationComponent",
+            "id": "component-PaginationComponent-d9316612177aaec5f06ddd8a17ad91d0",
+            "file": "src/app/components/pagination/pagination.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-pagination",
+            "styleUrls": [
+                "./pagination.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./pagination.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "maxSize",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "number"
+                },
+                {
+                    "name": "pagination",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "PaginationInstance"
+                },
+                {
+                    "name": "paginationCount",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "number"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "newPage",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "EventEmitter<number>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "labels",
+                    "defaultValue": "{\r\n    previousLabel: 'הקודם',\r\n    nextLabel: 'הבא',\r\n}",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "any",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onPageChange",
+                    "args": [
+                        {
+                            "name": "number",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "number",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\n@Component({\r\n  selector: 'app-pagination',\r\n  templateUrl: './pagination.component.html',\r\n  styleUrls: ['./pagination.component.scss']\r\n})\r\nexport class PaginationComponent implements OnInit {\r\n\r\n  @Input() public pagination: PaginationInstance ;\r\n\r\n  @Input() paginationCount: number;\r\n  @Input() maxSize: number;\r\n\r\n  @Output() newPage: EventEmitter<number> = new EventEmitter();\r\n\r\n\r\n  public labels: any = {\r\n    previousLabel: 'הקודם',\r\n    nextLabel: 'הבא',\r\n};\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  public onPageChange(number) {\r\n    this.pagination.currentPage = number;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\n.pagination {\r\n\r\n  height: 5vh;\r\n\r\n  ::ng-deep .ngx-pagination .current,\r\n  .btn-info {\r\n    background-color: transparent !important;\r\n    border: 2px solid color(primary) !important;\r\n    font-weight: 550;\r\n    color: color(primary) !important;\r\n    border-radius: 5px !important;\r\n  }\r\n\r\n  ::ng-deep li.pagination-next>a,\r\n  ::ng-deep li.pagination-previous>a {\r\n    color: color(primary) !important;\r\n  }\r\n\r\n  ::ng-deep .pagination-next  {\r\n    padding-left: spacing(5) !important;\r\n  }\r\n\r\n  ::ng-deep .pagination-previous  {\r\n    padding-right: spacing(5) !important;\r\n  }\r\n\r\n  ::ng-deep .pagination-next a::after,\r\n  ::ng-deep .pagination-next.disabled::after {\r\n    display: none !important;\r\n  }\r\n\r\n  ::ng-deep li.pagination-previous a::before,\r\n  ::ng-deep li.pagination-previous.disabled::before {\r\n    display: none !important;\r\n  }\r\n}\r\n",
+                    "styleUrl": "./pagination.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 22
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"pagination\" fxLayout=\"row\" fxLayoutAlign=\"center center\" dir=\"ltr\">\r\n  <pagination-controls\r\n    *ngIf=\"pagination.totalItems > pagination.itemsPerPage\"\r\n    [previousLabel]=\"labels.previousLabel\"\r\n    [nextLabel]=\"labels.nextLabel\"\r\n    (pageChange)=\"onPageChange($event)\"\r\n    [maxSize]=\"maxSize || 5\"\r\n  ></pagination-controls>\r\n</div>\r\n"
         },
         {
             "name": "StatusCardComponent",
@@ -9971,6 +10208,141 @@
             "duplicateId": 1,
             "duplicateName": "StatusCardComponent-1",
             "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n  <div class=\"item-icon\" matBadgeOverlap matBadge=\"{{ item.badgeValue }}\">\r\n    <div class=\"icon-container\">\r\n      <app-icon [color]=\"'default'\" type=\"svg\" [key]=\"item.svgUrl\"></app-icon>\r\n    </div>\r\n  </div>\r\n  <div fxFlexAlign=\"center\" fxLayoutGap=\"10px\" class=\"item-text\">\r\n    <app-typography variant=\"body-1\" color=\"text\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n    <!-- <span class=\"project-status__item-text\"></span> -->\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "StatusComponent",
+            "id": "component-StatusComponent-a8a4030c25fd290110b4aaa70fe36456",
+            "file": "src/app/components/status/status.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-status",
+            "styleUrls": [
+                "./status.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./status.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string"
+                },
+                {
+                    "name": "cols",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "number"
+                },
+                {
+                    "name": "gutter",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "number"
+                },
+                {
+                    "name": "hasLabel",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "boolean"
+                },
+                {
+                    "name": "height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "number"
+                },
+                {
+                    "name": "slots",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "literal type"
+                },
+                {
+                    "name": "status",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "StatusModel"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "click",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "steps",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number[]",
+                    "optional": false,
+                    "description": "",
+                    "line": 22,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { StatusModel } from './status.model';\r\n\r\n@Component({\r\n  selector: 'app-status',\r\n  templateUrl: './status.component.html',\r\n  styleUrls: ['./status.component.scss'],\r\n})\r\nexport class StatusComponent implements OnInit {\r\n\r\n  @Input() public cols: number\r\n  @Input() public height: number\r\n  @Input() public gutter: number\r\n  @Input() public color: string;\r\n  @Input() public hasLabel: boolean\r\n  @Input() public status: StatusModel;\r\n\r\n  @Input() slots: {textRef: ElementRef }\r\n\r\n  @Output() click  = new EventEmitter()\r\n\r\n  public steps: number[] = [];\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n\r\n    this.cols = this.cols || 8\r\n    this.color = this.color || 'accent';\r\n\r\n    for (let i = 1; i <= this.status.value; i++) {\r\n      this.steps.push(100);\r\n    }\r\n    for (let i = [...this.steps].length; i < this.cols; i++) {\r\n      this.steps.push(0);\r\n    }\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n\r\n.status-container,\r\ndiv {\r\n  width: 100%;\r\n}\r\n\r\nmat-progress-bar.status-progress-bar {\r\n  :ng-deep .mat-progress-bar-buffer {\r\n    background-color: #90a4ae !important;\r\n  }\r\n\r\n  :ng-deep .mat-progress-bar.mat-accent.mat-progress-bar-buffer {\r\n    background-color: #90a4ae !important;\r\n  }\r\n\r\n  ::ng-deep .mat-progress-bar-buffer.mat-progress-bar-element {\r\n    background-color: color(light-text) !important;\r\n  }\r\n}\r\n\r\n.step-label {\r\n  padding-top: spacing(1);\r\n}\r\n\r\ndiv.status-bar {\r\n  height: spacing(0.5);\r\n  width: 100%;\r\n  background-color: color(disable);\r\n\r\n  &.active {\r\n    background-color: color(accent);\r\n  }\r\n}\r\n",
+                    "styleUrl": "./status.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 22
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"status-container\" fxFill fxFlex=\"row\">\r\n\r\n  <mat-grid-list [cols]=\"cols || 8\" [rowHeight]=\"(height || 2) + 'vh'\" [gutterSize]=\"(gutter || '2' +'px')\" [dir]=\"'rtl'\">\r\n    <mat-grid-tile [colspan]=\"cols || 8\">\r\n      <app-typography *ngIf=\"!slots\">\r\n        {{ status.label }}\r\n      </app-typography>\r\n\r\n      <ng-container *ngTemplateOutlet=\"slots?.textRef; context :{status}\"></ng-container>\r\n\r\n    </mat-grid-tile>\r\n    <mat-grid-tile *ngFor=\"let step of steps; let i = index\">\r\n      <div fxLayout=\"column\">\r\n        <div [ngClass]=\"{'status-bar' : true, 'active'  : !!step  }\">\r\n        </div>\r\n        <div class=\"step-label\" *ngIf=\"hasLabel\" fxLayout=\"column\" fxLayoutAlign=\"end center\">\r\n          <app-typography [color]=\"step ? 'accent' : 'disable'\" size=\"12\">\r\n            0{{i+1}}\r\n          </app-typography>\r\n        </div>\r\n      </div>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n</div>\r\n"
         },
         {
             "name": "StepComponent",
@@ -10583,7 +10955,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\nmat-table {\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: transparent !important;\r\n}\r\n\r\nmat-cell {\r\n  height: inherit;\r\n\r\n  &.center {\r\n    justify-content: center;\r\n  }\r\n}\r\n\r\nmat-header-cell {\r\n  // align-items: flex-end;\r\n  // padding-bottom: spacing(1);\r\n\r\n  &.center {\r\n    justify-content: center;\r\n  }\r\n}\r\n\r\nmat-header-row.accent {\r\n  border-bottom: color(accent) solid 3px;\r\n}\r\n\r\nmat-header-row.primary {\r\n  border-bottom: color(primary) solid 3px;\r\n}\r\n\r\nmat-row {\r\n  height: 5vh;\r\n}\r\n\r\n.cell-input {\r\n  width: 85%;\r\n\r\n  app-column-form {\r\n    width: inherit;\r\n  }\r\n}\r\n\r\n::ng-deep .mat-sort-header-arrow {\r\n  color : color(primary) !important\r\n}\r\n",
+                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\nmat-table {\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: transparent !important;\r\n}\r\n\r\nmat-cell {\r\n  height: inherit;\r\n\r\n  &.center {\r\n    justify-content: center;\r\n  }\r\n}\r\n\r\nmat-header-cell {\r\n  // align-items: flex-end;\r\n  // padding-bottom: spacing(1);\r\n\r\n  &.center {\r\n    justify-content: center;\r\n  }\r\n}\r\n\r\nmat-header-row.accent {\r\n  border-bottom: color(accent) solid 3px;\r\n}\r\n\r\nmat-header-row.primary {\r\n  border-bottom: color(primary) solid 3px;\r\n}\r\n\r\nmat-row {\r\n  height: 5vh;\r\n}\r\n\r\n.cell-input {\r\n  width: 85%;\r\n\r\n  app-column-form {\r\n    width: inherit;\r\n  }\r\n}\r\n\r\n::ng-deep .mat-sort-header-arrow {\r\n  color : color(primary) !important\r\n}\r\n",
                     "styleUrl": "./table.component.scss"
                 }
             ],
@@ -10603,7 +10975,130 @@
         },
         {
             "name": "ToNavComponent",
-            "id": "component-ToNavComponent-0cfe2796b88b3f6dfe9e4cf40835a798",
+            "id": "component-ToNavComponent-1163ab122d63d19b6fb270a2b9720b5e",
+            "file": "src/app/components/navigation/to-nav/to-nav.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-to-nav",
+            "styleUrls": [
+                "./to-nav.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./to-nav.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "showStatus",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "boolean"
+                },
+                {
+                    "name": "status",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "NavigationCardModel[]"
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "menuToggle",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "isOpen",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggleMenu",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 19,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { NavigationCardModel } from '../../../utilities/models/nav-card-model';\r\nimport { Input } from '@angular/core';\r\nimport { Component, OnInit, EventEmitter, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-to-nav',\r\n  templateUrl: './to-nav.component.html',\r\n  styleUrls: ['./to-nav.component.scss'],\r\n})\r\nexport class ToNavComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public status: NavigationCardModel[] = [];\r\n  @Input() public title: string = '';\r\n  @Input() public showStatus: boolean = true;\r\n\r\n  public isOpen: boolean = true;\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n* {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: color(paper) !important;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.menuButton {\r\n  height: 100%;\r\n  border-bottom: solid 3px color(primary);\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n\r\n// main area item\r\n\r\n.status-container {\r\n  display: flex;\r\n  width: 100%;\r\n}\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    transform: translateY(30%);\r\n  }\r\n\r\n}\r\n\r\n\r\n//left logos area\r\n\r\n\r\n.icon-container {\r\n  height: 60%;\r\n}\r\n",
+                    "styleUrl": "./to-nav.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 22
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"navbar mat-elevation-z2\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"5\" c class=\"menuButton\" (click)=\"toggleMenu()\">\r\n    <div class=\"icon-container\">\r\n      <app-icon type=\"svg\" [key]=\"isOpen ? 'tree-gradient' : 'tree'\" color=\"primary\" [size]=\"40\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-typography [size]=\"10\">\r\n        {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"22\">\r\n    <app-typography [size]=\"24\" *ngIf=\"!showStatus\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showStatus\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div xLayout=\"row\" fxLayoutAlign=\"space-evenly center\" class=\"logo-container\" fxFlex=\"10\">\r\n    <div>\r\n      <app-icon key=\"logo-year\" [size]=\"80\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-icon key=\"logo\" [size]=\"60\"></app-icon>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "ToNavComponent",
+            "id": "component-ToNavComponent-0cfe2796b88b3f6dfe9e4cf40835a798-1",
             "file": "src/app/navigation/components/to-nav/to-nav.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -10799,133 +11294,10 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"navbar\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxFlex=\"5\" [ngClass]=\"{\r\n      closed: isOpen,\r\n      'education-fill education-border': prefix === 'education',\r\n      'forestry-fill forestry-border': prefix === 'forestry'\r\n    }\" (click)=\"toggleMenu()\">\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <app-icon type=\"svg\" key=\"tree\"></app-icon>\r\n    </div>\r\n\r\n    <div class=\"sidebar-toggle__text\">{{\r\n      isOpen ? \" תפריט\" : \" סגור תפריט\"\r\n      }}</div>\r\n\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"20\">\r\n    <app-typography variant=\"mat-display-1\">\r\n      {{title}}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showSteps\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\" fxFlex=\"15\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\" fxFlex=\"15\">\r\n    <!-- <svg-icon class=\"left-logo-years\" src=\"assets/images/left-logo-years-new.svg\">\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
-        },
-        {
-            "name": "ToNavComponent",
-            "id": "component-ToNavComponent-1163ab122d63d19b6fb270a2b9720b5e-1",
-            "file": "src/app/components/navigation/to-nav/to-nav.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-to-nav",
-            "styleUrls": [
-                "./to-nav.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./to-nav.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "showStatus",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 15,
-                    "type": "boolean"
-                },
-                {
-                    "name": "status",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 13,
-                    "type": "NavigationCardModel[]"
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 14,
-                    "type": "string"
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "menuToggle",
-                    "defaultValue": "new EventEmitter()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 11,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [
-                {
-                    "name": "isOpen",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "optional": false,
-                    "description": "",
-                    "line": 17,
-                    "modifierKind": [
-                        122
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 26,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "toggleMenu",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 19,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { NavigationCardModel } from '../../../utilities/models/nav-card-model';\r\nimport { Input } from '@angular/core';\r\nimport { Component, OnInit, EventEmitter, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-to-nav',\r\n  templateUrl: './to-nav.component.html',\r\n  styleUrls: ['./to-nav.component.scss'],\r\n})\r\nexport class ToNavComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public status: NavigationCardModel[] = [];\r\n  @Input() public title: string = '';\r\n  @Input() public showStatus: boolean = true;\r\n\r\n  public isOpen: boolean = true;\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n* {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: color(paper) !important;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.menuButton {\r\n  height: 100%;\r\n  border-bottom: solid 3px color(primary);\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n\r\n// main area item\r\n\r\n.status-container {\r\n  display: flex;\r\n  width: 100%;\r\n}\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    transform: translateY(30%);\r\n  }\r\n\r\n}\r\n\r\n\r\n//left logos area\r\n\r\n\r\n.icon-container {\r\n  height: 60%;\r\n}\r\n",
-                    "styleUrl": "./to-nav.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 22
-            },
-            "implements": [
-                "OnInit"
-            ],
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "ToNavComponent-1",
-            "templateData": "<div class=\"navbar mat-elevation-z2\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"5\" c class=\"menuButton\" (click)=\"toggleMenu()\">\r\n    <div class=\"icon-container\">\r\n      <app-icon type=\"svg\" [key]=\"isOpen ? 'tree-gradient' : 'tree'\" color=\"primary\" [size]=\"40\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-typography [size]=\"10\">\r\n        {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"22\">\r\n    <app-typography [size]=\"24\" *ngIf=\"!showStatus\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showStatus\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div xLayout=\"row\" fxLayoutAlign=\"space-evenly center\" class=\"logo-container\" fxFlex=\"10\">\r\n    <div>\r\n      <app-icon key=\"logo-year\" [size]=\"80\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-icon key=\"logo\" [size]=\"60\"></app-icon>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"navbar\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxFlex=\"5\" [ngClass]=\"{\r\n      closed: isOpen,\r\n      'education-fill education-border': prefix === 'education',\r\n      'forestry-fill forestry-border': prefix === 'forestry'\r\n    }\" (click)=\"toggleMenu()\">\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <app-icon type=\"svg\" key=\"tree\"></app-icon>\r\n    </div>\r\n\r\n    <div class=\"sidebar-toggle__text\">{{\r\n      isOpen ? \" תפריט\" : \" סגור תפריט\"\r\n      }}</div>\r\n\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"20\">\r\n    <app-typography variant=\"mat-display-1\">\r\n      {{title}}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showSteps\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\" fxFlex=\"15\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\" fxFlex=\"15\">\r\n    <!-- <svg-icon class=\"left-logo-years\" src=\"assets/images/left-logo-years-new.svg\">\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
         },
         {
             "name": "TypographyComponent",
@@ -11208,18 +11580,107 @@
             "duplicateId": 1,
             "duplicateName": "TypographyComponent-1",
             "templateData": "<div>\r\n  <span [ngClass]=\"[variant, color]\">\r\n    <ng-content></ng-content>\r\n  </span>\r\n</div>\r\n"
+        },
+        {
+            "name": "UserCardComponent",
+            "id": "component-UserCardComponent-608febea0aa214ef9225a3e137831718",
+            "file": "src/app/components/user-card/user-card.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-user-card",
+            "styleUrls": [
+                "./user-card.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./user-card.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "action",
+                    "defaultValue": "'החלף משתמש'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "userInfo",
+                    "defaultValue": "{\r\n    imgSrc:\"assets/images/userImage.jpg\",\r\n    name:\"יוסי יוספוב\"\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-user-card',\r\n  templateUrl: './user-card.component.html',\r\n  styleUrls: ['./user-card.component.scss']\r\n})\r\nexport class UserCardComponent implements OnInit {\r\n\r\n\r\n  public userInfo={\r\n    imgSrc:\"assets/images/userImage.jpg\",\r\n    name:\"יוסי יוספוב\"\r\n  }\r\n\r\n  public action : string = 'החלף משתמש'\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\n.example-header-image {\r\n  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');\r\n  background-size: cover;\r\n}\r\n\r\ndiv.divider-container {\r\n  height: 100%;\r\n  width: 80%;\r\n}\r\n\r\nmat-card-title {\r\n  font-size: 16px !important;\r\n}\r\n\r\nmat-card-subtitle {\r\n  color: color(primary) !important;\r\n  font-size: 14px !important;\r\n}\r\n",
+                    "styleUrl": "./user-card.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 16
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<mat-card class=\"mat-elevation-z0\" [dir]=\"'rtl'\">\r\n  <mat-card-header>\r\n    <div mat-card-avatar class=\"example-header-image\"></div>\r\n    <mat-card-title>\r\n      {{userInfo.name}}\r\n    </mat-card-title>\r\n    <mat-card-subtitle>\r\n      {{action}}\r\n    </mat-card-subtitle>\r\n  </mat-card-header>\r\n  <div class=\"divider-container\">\r\n    <mat-divider></mat-divider>\r\n  </div>\r\n</mat-card>\r\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-ba223a7f5b2171007d764ac7b2875389",
+            "id": "module-AppModule-9f0059578a2b1f5b46df9dc38a48a3f8",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { LayoutModule } from '@angular/cdk/layout';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from 'src/material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatSidenavModule } from '@angular/material/sidenav';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\nimport { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';\r\nimport { StatusCardComponent } from './components/cards/status-card/status-card.component';\r\nimport { IconCardComponent } from './components/cards/icon-card/icon-card.component';\r\nimport { ToNavComponent } from './components/navigation/to-nav/to-nav.component';\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { FormModule } from './components/form/form.module';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    IconCardComponent,\r\n    NavbarComponent,\r\n    TypographyComponent,\r\n    DashboardCardComponent,\r\n    ToNavComponent,\r\n    StatusCardComponent,\r\n    ClassesDirective\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    FormModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    LayoutModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatSidenavModule,\r\n    MatIconModule,\r\n    MatListModule,\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { LayoutModule } from '@angular/cdk/layout';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from 'src/material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatSidenavModule } from '@angular/material/sidenav';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\nimport { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';\r\nimport { StatusCardComponent } from './components/cards/status-card/status-card.component';\r\nimport { IconCardComponent } from './components/cards/icon-card/icon-card.component';\r\nimport { ToNavComponent } from './components/navigation/to-nav/to-nav.component';\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { FormModule } from './components/form/form.module';\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    IconCardComponent,\r\n    NavbarComponent,\r\n    TypographyComponent,\r\n    DashboardCardComponent,\r\n    ToNavComponent,\r\n    StatusCardComponent,\r\n    PaginationComponent,\r\n    ClassesDirective,\r\n    TableComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    FormModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    LayoutModule,\r\n    MatToolbarModule,\r\n    MatButtonModule,\r\n    MatSidenavModule,\r\n    MatIconModule,\r\n    MatListModule,\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -11250,7 +11711,16 @@
                             "name": "NavbarComponent"
                         },
                         {
+                            "name": "PaginationComponent"
+                        },
+                        {
                             "name": "StatusCardComponent"
+                        },
+                        {
+                            "name": "TableComponent"
+                        },
+                        {
+                            "name": "ToNavComponent"
                         },
                         {
                             "name": "TypographyComponent"
@@ -11442,9 +11912,6 @@
                     "elements": [
                         {
                             "name": "NavbarComponent"
-                        },
-                        {
-                            "name": "ToNavComponent"
                         }
                     ]
                 },
@@ -11461,9 +11928,6 @@
                     "elements": [
                         {
                             "name": "NavbarComponent"
-                        },
-                        {
-                            "name": "ToNavComponent"
                         }
                     ]
                 },
@@ -11479,13 +11943,13 @@
         },
         {
             "name": "SharedModule",
-            "id": "module-SharedModule-5da217246d8e045f6a9e42960e2b1762",
+            "id": "module-SharedModule-0f601cfbf08b5543675606faf7839f07",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/shared.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { StatusCardComponent } from './components/status-card/status-card.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { MaterialModule } from 'src/material/material.module';\r\nimport { IconCardComponent } from './components/icon-card/icon-card.component';\r\n\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n    IconComponent,\r\n    IconCardComponent\r\n\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    MaterialModule\r\n  ], exports : [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n    IconComponent,\r\n    IconCardComponent\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { StatusCardComponent } from './components/status-card/status-card.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { MaterialModule } from 'src/material/material.module';\r\nimport { IconCardComponent } from './components/icon-card/icon-card.component';\r\n\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n    IconComponent,\r\n    IconCardComponent\r\n\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    MaterialModule\r\n  ], exports : [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n    IconComponent,\r\n    IconCardComponent,\r\n    MaterialModule\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -11517,6 +11981,9 @@
                             "name": "IconCardComponent"
                         },
                         {
+                            "name": "MaterialModule"
+                        },
+                        {
                             "name": "StatusCardComponent"
                         }
                     ]
@@ -11534,6 +12001,16 @@
     ],
     "miscellaneous": {
         "variables": [
+            {
+                "name": "$table",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "new BehaviorSubject<TableModel<any>>(table)"
+            },
             {
                 "name": "ADD_ICON",
                 "ctype": "miscellaneous",
@@ -11695,16 +12172,6 @@
                 "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"20.094\" height=\"20.094\" viewBox=\"0 0 20.094 20.094\"><defs>\r\n<style>.calender{fill:\"none\";}</style></defs><g transform=\"translate(21)\">\r\n<g transform=\"translate(-21)\">\r\n<ellipse class=\"calender\" cx=\"0.913\" cy=\"0.609\" rx=\"0.913\" ry=\"0.609\" transform=\"translate(14.208 7.415)\"/>\r\n<path class=\"calender\" d=\"M16.954,1.57h-1.02V.785a.785.785,0,0,0-1.57,0V1.57H10.792V.785a.785.785,0,1,0-1.57,0V1.57H5.691V.785a.785.785,0,0,0-1.57,0V1.57H3.14A3.143,3.143,0,0,0,0,4.709V16.954a3.143,3.143,0,0,0,3.14,3.14h6a.785.785,0,0,0,0-1.57h-6a1.572,1.572,0,0,1-1.57-1.57V4.709A1.572,1.572,0,0,1,3.14,3.14h.981v.785a.785.785,0,0,0,1.57,0V3.14H9.223v.785a.785.785,0,1,0,1.57,0V3.14h3.571v.785a.785.785,0,1,0,1.57,0V3.14h1.02a1.572,1.572,0,0,1,1.57,1.57V9.183a.785.785,0,1,0,1.57,0V4.709A3.143,3.143,0,0,0,16.954,1.57Z\"/>\r\n<path class=\"calender\" d=\"M274.317,270a4.317,4.317,0,1,0,4.317,4.317A4.322,4.322,0,0,0,274.317,270Zm0,7.207a2.89,2.89,0,1,1,2.89-2.89A2.893,2.893,0,0,1,274.317,277.207Z\" transform=\"translate(-258.54 -258.54)\"/>\r\n<path class=\"calender\" d=\"M372.748,331.463h-.321v-.749a.714.714,0,1,0-1.427,0v1.463a.714.714,0,0,0,.714.714h1.035a.714.714,0,1,0,0-1.427Z\" transform=\"translate(-355.937 -316.828)\"/>\r\n<ellipse class=\"calender\" cx=\"0.913\" cy=\"0.609\" rx=\"0.913\" ry=\"0.609\" transform=\"translate(10.825 7.415)\"/>\r\n<circle class=\"calender\" cx=\"0.913\" cy=\"0.913\" r=\"0.913\" transform=\"translate(7.442 10.825)\"/>\r\n<circle class=\"calender\" cx=\"0.609\" cy=\"0.609\" r=\"0.609\" transform=\"translate(4.045 7.415)\"/>\r\n<ellipse class=\"calender\" cx=\"0.609\" cy=\"0.913\" rx=\"0.609\" ry=\"0.913\" transform=\"translate(4.045 10.825)\"/>\r\n<ellipse class=\"calender\" cx=\"0.609\" cy=\"0.913\" rx=\"0.609\" ry=\"0.913\" transform=\"translate(4.045 14.208)\"/>\r\n<circle class=\"calender\" cx=\"0.913\" cy=\"0.913\" r=\"0.913\" transform=\"translate(7.442 14.208)\"/>\r\n<ellipse class=\"calender\" cx=\"0.913\" cy=\"0.609\" rx=\"0.913\" ry=\"0.609\" transform=\"translate(7.442 7.415)\"/></g></g></svg>\r\n`"
             },
             {
-                "name": "columns",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "ColumnModel[]",
-                "defaultValue": "[\r\n  new ColumnModel({ label: 'גוש', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'חלקה', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'תת חלקה', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'שטח מ\"ר', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'שטח בבעלות הימנותא', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'זכות במס', type: ColumnType.TEXT }),\r\n  new ColumnModel({ label: 'סטטוס', type: ColumnType.CUSTOM, center : true }),\r\n  new ColumnModel({ label: 'תיאור', type: ColumnType.TEXT }),\r\n  new ColumnModel({ label: 'יישוב', type: ColumnType.TEXT }),\r\n]"
-            },
-            {
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -11738,16 +12205,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/BottomNavBar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Calendar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -11759,6 +12216,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/DatePicker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/BottomNavBar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -11818,7 +12285,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Stepper.stories.ts",
+                "file": "src/stories/step.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -11828,7 +12295,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
+                "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -11848,7 +12315,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/step.stories.ts",
+                "file": "src/stories/UserCard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -12344,6 +12821,16 @@
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"51.598\" height=\"41.803\"\r\nviewBox=\"0 0 51.598 41.803\"><defs><style>\r\n.site{fill:\"none\";}</style></defs><g\r\ntransform=\"translate(0 -45.56)\">\r\n<path class=\"site\" d=\"M4.885,323.513,0,334.653H13L16.47,322.8a37.3,37.3,0,0,0-11.585.708Z\" transform=\"translate(0 -247.29)\"/>\r\n<path class=\"site\" d=\"M67.556,248.735a34.185,34.185,0,0,1,3.447.244l1.622-5.539H62.614l-2.544,5.8A43.252,43.252,0,0,1,67.556,248.735Z\" transform=\"translate(-53.613 -176.609)\"/><path class=\"site\" d=\"M203.187,255.64l-1.65-5.33a76.662,76.662,0,0,1-5.862-6.87h-2.45l-1.8,6.131a14.638,14.638,0,0,1,6.9,3.6A9.587,9.587,0,0,0,203.187,255.64Z\" transform=\"translate(-170.852 -176.609)\"/><path class=\"site\" d=\"M161.047,332.051a11.7,11.7,0,0,0-5.527-2.791l-3.31,11.306h18.553l-1.522-4.918A13.473,13.473,0,0,1,161.047,332.051Z\" transform=\"translate(-135.848 -253.203)\"/>\r\n<path class=\"site\" d=\"M331.672,246.9q-.672.89-1.434,1.822a78.786,78.786,0,0,1-6.528,7.055l.99,3.2h12.266Z\" transform=\"translate(-288.912 -179.697)\"/>\r\n<path class=\"site\" d=\"M354.882,389.23H342.2l1.5,4.86h13.308Z\" transform=\"translate(-305.415 -306.727)\"/>\r\n<path class=\"site\" d=\"M300.058,124.136a1.878,1.878,0,1,0-1.878-1.878A1.881,1.881,0,0,0,300.058,124.136Z\" transform=\"translate(-266.127 -66.786)\"/>\r\n<path class=\"site\" d=\"M222.078,66.985c1.76,2.14,3.194,3.693,4.9,5.426,3.627-3.493,10.938-12.271,10.68-16.171a10.68,10.68,0,1,0-21.359,0C216.257,58.551,218.459,62.584,222.078,66.985Zm-.205-11.513a5.1,5.1,0,1,1,5.1,5.1A5.108,5.108,0,0,1,221.873,55.472Z\" transform=\"translate(-193.044)\"/></g>\r\n</svg>`"
             },
             {
+                "name": "status",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "`\r\n <ng-template #status let-cell=\"cell\">\r\n <div class=\"status\">\r\n   <app-status [status]=\"cell.item?.status\"></app-status>\r\n </div>\r\n</ng-template>\r\n `"
+            },
+            {
                 "name": "SUPERVISION_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -12354,14 +12841,14 @@
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"32.581\" height=\"31.224\"\r\nviewBox=\"0 0 32.581 31.224\"><defs>\r\n<style>.supervision{fill:\"none\";}</style></defs><g transform=\"translate(0 -10.664)\"><g transform=\"translate(0 10.664)\">\r\n<path class=\"supervision\" d=\"M25.793,28.312a6.752,6.752,0,0,0-3.182.791l-1.488-2.232a8.824,8.824,0,1,0-9.685-.013l-1.5,2.23a6.8,6.8,0,1,0,1.132.749l1.555-2.319a8.844,8.844,0,0,0,7.3.01l1.552,2.329a6.788,6.788,0,1,0,4.311-1.545ZM6.788,40.53a5.389,5.389,0,0,1-3.5-1.28,5.139,5.139,0,0,0,.661-.27c.05-.024.1-.047.122-.056a3.879,3.879,0,0,0,1.66-1.011,2,2,0,0,0,1.059.4,2,2,0,0,0,1.059-.4,3.884,3.884,0,0,0,1.661,1.012c.023.008.071.031.121.055a5.154,5.154,0,0,0,.66.27A5.388,5.388,0,0,1,6.788,40.53ZM5.307,34.767a1.5,1.5,0,1,1,2.962,0,2.458,2.458,0,0,1-.609,1.487,2.17,2.17,0,0,1-.872.692,2.166,2.166,0,0,1-.872-.692A2.455,2.455,0,0,1,5.307,34.767Zm6.911.332a5.39,5.39,0,0,1-.951,3.072A1.207,1.207,0,0,0,11,38.046l-.037-.01a5.855,5.855,0,0,1-.974-.381c-.863-.329-1.087-.566-1.144-.677l-.005-.012v-.019a3.729,3.729,0,0,0,.786-2.18,2.847,2.847,0,1,0-5.677,0,3.724,3.724,0,0,0,.786,2.179v.02a.117.117,0,0,1-.006.012c-.057.111-.281.348-1.144.677a5.841,5.841,0,0,1-.974.381l-.038.01a1.227,1.227,0,0,0-.265.125,5.431,5.431,0,0,1,8.319-6.911A5.393,5.393,0,0,1,12.218,35.1ZM10.865,23.921l-.049.014a1.566,1.566,0,0,0-.381.186,7.467,7.467,0,1,1,11.71,0,1.545,1.545,0,0,0-.382-.186l-.048-.014a7.615,7.615,0,0,1-1.266-.493c-1.121-.427-1.411-.735-1.486-.88a.084.084,0,0,0-.007-.016l-.007-.979a4.844,4.844,0,0,0,1.028-2.84,3.7,3.7,0,1,0-7.374,0,4.844,4.844,0,0,0,1.028,2.84l-.007.979-.007.016c-.075.145-.366.453-1.486.88A7.6,7.6,0,0,1,10.865,23.921Zm7.754-5.209a3.635,3.635,0,0,1-.974,2.3,2.622,2.622,0,0,1-1.354.945,2.618,2.618,0,0,1-1.354-.945,3.634,3.634,0,0,1-.975-2.3,2.738,2.738,0,0,1,.7-1.946,2.306,2.306,0,0,1,3.256,0A2.74,2.74,0,0,1,18.619,18.713ZM16.29,26.954a7.41,7.41,0,0,1-4.846-1.786,6.263,6.263,0,0,0,.982-.386c.079-.038.141-.068.188-.086a3.787,3.787,0,0,0,2.209-1.525c.019-.036.033-.068.043-.09l.109-.242a2.538,2.538,0,0,0,1.315.474A2.53,2.53,0,0,0,17.6,22.84l.113.246c.01.021.023.049.04.082A3.777,3.777,0,0,0,19.968,24.7c.046.017.108.047.187.086a6.278,6.278,0,0,0,.982.386A7.411,7.411,0,0,1,16.29,26.954Zm9.5,13.575a5.387,5.387,0,0,1-3.5-1.28,5.252,5.252,0,0,0,.66-.27c.05-.024.1-.047.121-.056a3.885,3.885,0,0,0,1.66-1.011,2,2,0,0,0,1.059.4,2,2,0,0,0,1.059-.4,3.892,3.892,0,0,0,1.661,1.012c.023.008.071.031.12.055a5.21,5.21,0,0,0,.661.27A5.389,5.389,0,0,1,25.793,40.53Zm-1.48-5.763a1.5,1.5,0,1,1,2.961,0,2.451,2.451,0,0,1-.608,1.487,2.173,2.173,0,0,1-.872.692,2.174,2.174,0,0,1-.872-.692A2.457,2.457,0,0,1,24.313,34.767Zm5.96,3.4a1.215,1.215,0,0,0-.264-.125l-.038-.01A5.854,5.854,0,0,1,29,37.655c-.863-.329-1.087-.566-1.144-.677l0-.012v-.019a3.732,3.732,0,0,0,.786-2.18,2.847,2.847,0,1,0-5.677,0,3.727,3.727,0,0,0,.786,2.179v.02l0,.012c-.058.111-.281.348-1.144.677a5.813,5.813,0,0,1-.974.381l-.038.01a1.211,1.211,0,0,0-.264.125,5.43,5.43,0,1,1,8.958,0Z\" transform=\"translate(0 -10.664)\"/></g></g>\r\n</svg>`"
             },
             {
-                "name": "Template",
+                "name": "table",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/BottomNavBar.stories.ts",
+                "file": "src/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                "type": "",
+                "defaultValue": "new TableModel({ data, type, columns })"
             },
             {
                 "name": "Template",
@@ -12388,6 +12875,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/DatePicker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/BottomNavBar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
@@ -12430,8 +12927,8 @@
                 "file": "src/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -12477,21 +12974,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Stepper.stories.ts",
+                "file": "src/stories/step.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<StepperComponent>",
-                "defaultValue": "(args: StepperComponent) => ({\r\n  props: args,\r\n  template: `<app-stepper ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-stepper>`\r\n})"
+                "type": "Story<StepComponent>",
+                "defaultValue": "(args: StepComponent) => ({\r\n    props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
+                "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<TableComponent<any>>",
-                "defaultValue": "(args: TableComponent<any>) => ({\r\n  props: args,\r\n  template: `<app-table ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-table>`\r\n})"
+                "type": "Story<StepperComponent>",
+                "defaultValue": "(args: StepperComponent) => ({\r\n  props: args,\r\n  template: `<app-stepper ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-stepper>`\r\n})"
             },
             {
                 "name": "Template",
@@ -12507,11 +13004,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/step.stories.ts",
+                "file": "src/stories/UserCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<StepComponent>",
-                "defaultValue": "(args: StepComponent) => ({\r\n    props: args,\r\n})"
+                "type": "Story<UserCardComponent>",
+                "defaultValue": "(args: UserCardComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TableComponent<any>>",
+                "defaultValue": "(args: TableComponent<any>) => ({\r\n  props: args\r\n})"
             },
             {
                 "name": "Template",
@@ -12652,6 +13159,15 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`\r\n  < svg xmlns = \"http://www.w3.org/2000/svg\" width = \"45\" height = \"55.625\"\r\nviewBox = \"0 0 45 55.625\" > <defs>\r\n  <style>.tree - logo{ fill:#008f63; }.b,.d{ fill:#e85625; }.c{ fill:#1b9bdc; }.d{ stroke:#6f1500; stroke - width: 0.2px; }.e{ fill:#6f1500; }.f{ fill:#2b1b28; }.g{ fill:#1a231e; }.h,.j{ fill:#0b6f55; font - size: 5px; }.h{ font - family: LucidaGrande - Bold, Lucida Grande; font - weight: 700; }.i,.j{ font - family: OpenSans - Semibold, Open Sans; font - weight: 600; }.k,.m{ stroke: none; }.l{ fill: none; }.m{ fill:#2b1b28; } </style></defs > <g transform=\"translate(-1760 -16.375)\" >\r\n  <path class=\"tree-logo\" d = \"M-5572.5-231.625l-3.1,6.83-1.288,2.837-10.363,22.833h28.75Z\" transform = \"translate(7355.25 248)\" />\r\n  <path class=\"b\" d = \"M-5578.25-192.687h10.625v-6.437h-10.625\" transform = \"translate(7355.25 248)\" />\r\n  <path class=\"c\" d = \"M-5580.781-189.8a4.331,4.331,0,0,1,3.266-3.172c-.218.035,10.212,0,10.212,0a5.055,5.055,0,0,1,2.835,3.172Z\" transform = \"translate(7354.781 248.156)\" />\r\n  <path class=\"b\" d = \"M-5585.437-211.5l12.5,4.5a5.384,5.384,0,0,1-4.375,3.125c-3.135.188-8.094-4.031-8.375-4.922A6.477,6.477,0,0,1-5585.437-211.5Z\" transform = \"translate(7356.354 247.869)\" />\r\n  <path class=\"c\" d = \"M-5567.2-221.222s3.75-1.062,5.875,4.25c-.84,1.064-3.375,1.75-3.375,1.75Z\" transform = \"translate(7354.516 248.222)\" />\r\n  <path class=\"b\" d = \"M-5573.812-211.931-5586-205.869a6.6,6.6,0,0,0,4.605,1.994c3.135.188,7.777-3.984,8.375-4.922S-5573.812-211.931-5573.812-211.931Z\" transform = \"translate(7366.87 242.869)\" />\r\n  <path class=\"c\" d = \"M-5583-215.094c-.051,0,.754-.082.4,0a4.033,4.033,0,0,0-2.834,3.4c-.031,0,2.438.834,2.438.834l1.568-3.531A2.344,2.344,0,0,0-5583-215.094Z\" transform = \"translate(7356.354 248.098)\" />\r\n  <path class=\"b\" d = \"M-5583.687-216.9s1.359,4.512,6.984,3.832,4.945-7.973,4.945-7.973l-.556-1.607-5.625-2.225Z\" transform = \"translate(7356.149 248)\" /> <g class=\"d\" transform = \"translate(1775.438 31)\" > <circle class=\"k\" cx = \"1.5\" cy = \"1.5\" r = \"1.5\" /> <circle class=\"l\" cx = \"1.5\" cy = \"1.5\" r = \"1.4\" /> </g><g class=\"d\" transform=\"translate(1780.87 27.563)\"><circle class=\"k\" cx=\"1.5\" cy=\"1.5\" r=\"1.5\"/ > <circle class=\"l\" cx = \"1.5\" cy = \"1.5\" r = \"1.4\" /> </g>\r\n  <path class=\"e\" d=\"M-5577.228-215.945c1.84,1.334,3.363.841,3.227-1.184a.28.28,0,0,0,.175.02s.275,1.664-1.053,2.062a2.866,2.866,0,0,1-2.517-.753S-5577.211-215.957-5577.228-215.945Z\" transform=\"translate(7295.079 -819.314) rotate(-11)\"/ > <g class=\"f\" transform = \"translate(-5592.482 -606.884) rotate(3)\" >\r\n  <path class=\"k\" d = \"M 7392.79052734375 254.2174987792969 C 7392.2705078125 254.2174987792969 7391.79150390625 253.9266357421875 7391.55029296875 253.4706573486328 L 7393.52783203125 251.6287841796875 C 7393.93798828125 251.8837127685547 7394.18994140625 252.3330078125 7394.18994140625 252.8180694580078 C 7394.18994140625 253.5897216796875 7393.56201171875 254.2174987792969 7392.79052734375 254.2174987792969 Z\" />\r\n  <path class=\"m\" d = \"M 7392.79052734375 254.1175079345703 C 7393.5068359375 254.1175079345703 7394.08984375 253.5345764160156 7394.08984375 252.8180694580078 C 7394.08984375 252.3931732177734 7393.8818359375 251.9978332519531 7393.53857421875 251.7556610107422 L 7391.67626953125 253.4900512695312 C 7391.91015625 253.8752899169922 7392.33349609375 254.1175079345703 7392.79052734375 254.1175079345703 M 7392.79052734375 254.3175048828125 C 7392.2080078125 254.3175048828125 7391.6728515625 253.976318359375 7391.427734375 253.4482879638672 L 7393.51416015625 251.5048675537109 C 7393.9931640625 251.7696533203125 7394.2900390625 252.2728881835938 7394.2900390625 252.8180694580078 C 7394.2900390625 253.6448669433594 7393.6171875 254.3175048828125 7392.79052734375 254.3175048828125 Z\" /> </g><g class=\"f\" transform=\"translate(-5524.492 -1122.833) rotate(7)\">\r\n  <path class=\"k\" d=\"M 7392.79052734375 254.2174987792969 C 7392.2705078125 254.2174987792969 7391.79150390625 253.9266357421875 7391.55029296875 253.4706573486328 L 7393.52783203125 251.6287841796875 C 7393.93798828125 251.8837127685547 7394.18994140625 252.3330078125 7394.18994140625 252.8180694580078 C 7394.18994140625 253.5897216796875 7393.56201171875 254.2174987792969 7392.79052734375 254.2174987792969 Z\"/ >\r\n  <path class=\"m\" d = \"M 7392.79052734375 254.1175079345703 C 7393.5068359375 254.1175079345703 7394.08984375 253.5345764160156 7394.08984375 252.8180694580078 C 7394.08984375 252.3931732177734 7393.8818359375 251.9978332519531 7393.53857421875 251.7556610107422 L 7391.67626953125 253.4900512695312 C 7391.91015625 253.8752899169922 7392.33349609375 254.1175079345703 7392.79052734375 254.1175079345703 M 7392.79052734375 254.3175048828125 C 7392.2080078125 254.3175048828125 7391.6728515625 253.976318359375 7391.427734375 253.4482879638672 L 7393.51416015625 251.5048675537109 C 7393.9931640625 251.7696533203125 7394.2900390625 252.2728881835938 7394.2900390625 252.8180694580078 C 7394.2900390625 253.6448669433594 7393.6171875 254.3175048828125 7392.79052734375 254.3175048828125 Z\" /> </g>\r\n  <path class=\"g\" d=\"M-5583.417-216.98l11.245-5.739s.6-.142.6.279a1.1,1.1,0,0,1-.469,1.047c-1.437.8-2.062.375-2.641.875s-2.411,2.531-2.411,2.531c-.433.188.083-.151,0-.734s-1.344,1.987-3.479,2.438S-5583.417-216.98-5583.417-216.98Z\" transform=\"translate(7355.573 247.721)\"/ >\r\n  <path class=\"c\" d = \"M-5584.587-217.1c1.313,1.063,6.938-2.875,6.938-2.875a62.717,62.717,0,0,1,6.125-3.125c-3.469-4.844-7.381-5.933-7.381-5.933a5.044,5.044,0,0,0-4.75,1.094C-5585.906-225.969-5584.587-219.661-5584.587-217.1Z\" transform = \"translate(7355.962 247.973)\" /> <text class=\"h\" transform = \"translate(1771 65)\" > <tspan x=\"0\" y = \"0\" > ונוער < /tspan><tspan class=\"i\" y=\"0\"> </tspan > <tspan y=\"0\" > חינוך < /tspan></text > <text class=\"j\" transform = \"translate(1760 71)\" > <tspan x=\"0\" y = \"0\" > Youth & amp; Education < /tspan></text > </g>\r\n    < /svg>\r\n      `"
+            },
+            {
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  type: new AssetsModel(),\r\n  data: [\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 10,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: 748,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לטיפול עורך דין',\r\n          value: 4,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'שוריין ע\"י פיננסים',\r\n          value: 5,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 24,\r\n        block: 24,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לרו\"ח',\r\n          value: 3,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 54,\r\n        subdivision: 0,\r\n        area: 1037,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'התקבלה עסקה חדשה',\r\n          value: 1,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 680,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לפיננסים',\r\n          value: 1,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: 748,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לטיפול עורך דין',\r\n          value: 4,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'חלקה', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'תת חלקה', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'זכות במס', type: ColumnType.TEXT }),\r\n    new ColumnModel({ label: 'סטטוס', type: ColumnType.CUSTOM, center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: ColumnType.TEXT }),\r\n    new ColumnModel({ label: 'יישוב', type: ColumnType.TEXT }),\r\n  ]\r\n}"
             },
             {
                 "name": "V_SIGN",
@@ -12998,6 +13514,67 @@
             }
         ],
         "groupedVariables": {
+            "src/stories/Table.stories.ts": [
+                {
+                    "name": "$table",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new BehaviorSubject<TableModel<any>>(table)"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "status",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "`\r\n <ng-template #status let-cell=\"cell\">\r\n <div class=\"status\">\r\n   <app-status [status]=\"cell.item?.status\"></app-status>\r\n </div>\r\n</ng-template>\r\n `"
+                },
+                {
+                    "name": "table",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "new TableModel({ data, type, columns })"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TableComponent<any>>",
+                    "defaultValue": "(args: TableComponent<any>) => ({\r\n  props: args\r\n})"
+                },
+                {
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  type: new AssetsModel(),\r\n  data: [\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 10,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: 748,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לטיפול עורך דין',\r\n          value: 4,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'שוריין ע\"י פיננסים',\r\n          value: 5,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 24,\r\n        block: 24,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לרו\"ח',\r\n          value: 3,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 54,\r\n        subdivision: 0,\r\n        area: 1037,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'התקבלה עסקה חדשה',\r\n          value: 1,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 680,\r\n        areaOwn: null,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לפיננסים',\r\n          value: 1,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n      {\r\n        id: 20,\r\n        block: 20,\r\n        division: 20,\r\n        subdivision: 0,\r\n        area: 2692,\r\n        areaOwn: 748,\r\n        property: '',\r\n        status: {\r\n          label: 'ממתין לטיפול עורך דין',\r\n          value: 4,\r\n        },\r\n        description: '',\r\n        location: 'קריית שמונה'\r\n      },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'חלקה', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'תת חלקה', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: ColumnType.NUMBER }),\r\n    new ColumnModel({ label: 'זכות במס', type: ColumnType.TEXT }),\r\n    new ColumnModel({ label: 'סטטוס', type: ColumnType.CUSTOM, center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: ColumnType.TEXT }),\r\n    new ColumnModel({ label: 'יישוב', type: ColumnType.TEXT }),\r\n  ]\r\n}"
+                }
+            ],
             "src/app/components/icon/icons.list.ts": [
                 {
                     "name": "ADD_ICON",
@@ -13712,38 +14289,6 @@
                     "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\n width=\"17.956\" height=\"17.331\" viewBox=\"0 0 17.956 17.331\">\r\n <defs><style>.v-sign{fill:#fff;opacity:0;}.b{fill:none;stroke:#6dc066;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;}.c,.d{stroke:none;}.d{fill:#dfdfdf;}</style></defs><g transform=\"translate(0.332 0.331)\"><g class=\"v-sign\"><path class=\"c\" d=\"M 8.5 16.25 C 4.226640224456787 16.25 0.75 12.77336025238037 0.75 8.5 C 0.75 6.115330219268799 1.804280042648315 3.984380006790161 3.798870086669922 2.337510108947754 C 4.990379810333252 1.342460036277771 6.746600151062012 0.75 8.5 0.75 C 12.77336025238037 0.75 16.25 4.226640224456787 16.25 8.5 C 16.25 12.77336025238037 12.77336025238037 16.25 8.5 16.25 Z\"/><path class=\"d\" d=\"M 8.5 1.5 C 6.916910171508789 1.5 5.340410232543945 2.027279853820801 4.28285026550293 2.910479545593262 L 4.276379585266113 2.915849685668945 C 2.460060119628906 4.415530204772949 1.5 6.346500396728516 1.5 8.5 C 1.5 12.35980987548828 4.640190124511719 15.5 8.5 15.5 C 12.35980987548828 15.5 15.5 12.35980987548828 15.5 8.5 C 15.5 4.640190124511719 12.35980987548828 1.5 8.5 1.5 M 8.5 0 C 13.19441986083984 0 17 3.805580139160156 17 8.5 C 17 13.19441986083984 13.19441986083984 17 8.5 17 C 3.805580139160156 17 0 13.19441986083984 0 8.5 C 0 5.866430282592773 1.197699546813965 3.512599945068359 3.32135009765625 1.759169578552246 C 4.549599647521973 0.7334194183349609 6.439149856567383 0 8.5 0 Z\"/></g><g transform=\"translate(0.631 0.581)\"><path class=\"b\" d=\"M18.933,9.965v.706a7.72,7.72,0,0,1-5.708,7.357,8.116,8.116,0,0,1-8.942-3.183A7.456,7.456,0,0,1,4.911,5.68a8.171,8.171,0,0,1,9.3-2.024\" transform=\"translate(-3 -2.991)\"/><path class=\"b\" d=\"M23.856,6,15.89,13.974l-2.39-2.39\"\r\n transform=\"translate(-7.923 -4.402)\"/></g></g></svg>`"
                 }
             ],
-            "src/stories/Table.stories.ts": [
-                {
-                    "name": "columns",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "ColumnModel[]",
-                    "defaultValue": "[\r\n  new ColumnModel({ label: 'גוש', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'חלקה', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'תת חלקה', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'שטח מ\"ר', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'שטח בבעלות הימנותא', type: ColumnType.NUMBER }),\r\n  new ColumnModel({ label: 'זכות במס', type: ColumnType.TEXT }),\r\n  new ColumnModel({ label: 'סטטוס', type: ColumnType.CUSTOM, center : true }),\r\n  new ColumnModel({ label: 'תיאור', type: ColumnType.TEXT }),\r\n  new ColumnModel({ label: 'יישוב', type: ColumnType.TEXT }),\r\n]"
-                },
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<TableComponent<any>>",
-                    "defaultValue": "(args: TableComponent<any>) => ({\r\n  props: args,\r\n  template: `<app-table ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-table>`\r\n})"
-                }
-            ],
             "src/test.ts": [
                 {
                     "name": "context",
@@ -13807,28 +14352,6 @@
                     "defaultValue": "(args: ExpendPanelComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/BottomNavBar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/BottomNavBar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/BottomNavBar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "src/stories/Calendar.stories.ts": [
                 {
                     "name": "Default",
@@ -13873,6 +14396,28 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "src/stories/BottomNavBar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/BottomNavBar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/BottomNavBar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "src/stories/Menu.stories.ts": [
                 {
                     "name": "Default",
@@ -13891,8 +14436,8 @@
                     "file": "src/stories/Menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/Modal.stories.ts": [
@@ -13961,6 +14506,28 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "src/stories/step.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/step.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/step.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<StepComponent>",
+                    "defaultValue": "(args: StepComponent) => ({\r\n    props: args,\r\n})"
+                }
+            ],
             "src/stories/Stepper.stories.ts": [
                 {
                     "name": "Default",
@@ -14015,12 +14582,12 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "src/stories/step.stories.ts": [
+            "src/stories/UserCard.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/step.stories.ts",
+                    "file": "src/stories/UserCard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -14030,11 +14597,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/step.stories.ts",
+                    "file": "src/stories/UserCard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<StepComponent>",
-                    "defaultValue": "(args: StepComponent) => ({\r\n    props: args,\r\n})"
+                    "type": "Story<UserCardComponent>",
+                    "defaultValue": "(args: UserCardComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/screens/Login.stories.ts": [
@@ -15330,12 +15897,39 @@
                 "status": "low"
             },
             {
+                "filePath": "src/app/components/pagination/pagination.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "PaginationComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
                 "filePath": "src/app/components/root/app.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "AppComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/status/status.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "StatusComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/status/status.model.ts",
+                "type": "class",
+                "linktype": "classe",
+                "name": "StatusModel",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -15435,6 +16029,15 @@
                 "name": "TypographyComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/17",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/user-card/user-card.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "UserCardComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -16154,7 +16757,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "columns",
+                "name": "$table",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -16174,7 +16777,36 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "status",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "table",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -16205,6 +16837,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Title",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/UserCard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/UserCard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

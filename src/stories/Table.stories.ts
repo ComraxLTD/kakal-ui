@@ -4,11 +4,9 @@ import { TableComponent } from 'src/app/components/table/table.component';
 import { ColumnModel, ColumnType } from 'src/app/components/table/models/column.model';
 import { TableModel } from 'src/app/components/table/models/table.model';
 import { AssetsModel } from 'src/app/utilities/models/assets.model';
-import { NgxPaginationModule, PaginatePipe } from 'ngx-pagination';
-import { MatTable } from '@angular/material/table';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from 'src/app/components/pagination/pagination.component';
 import { BehaviorSubject } from 'rxjs';
-import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/material/material.module';
 import { TypographyComponent } from 'src/app/components/typography/typography.component';
 import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
@@ -157,3 +155,4 @@ export const Default = Template.bind({});
 Default.args = {
   $table: $table, rowSlots: {status}
 };
+
