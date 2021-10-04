@@ -51,7 +51,7 @@ export class IconComponent implements OnInit {
   }
 
   private setColor() {
-    this.color$ = new BehaviorSubject(this.color || 'default');
+    this.color$ = new BehaviorSubject<Palette>(this.color || 'default');
   }
 
   private setSize() {

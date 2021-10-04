@@ -11,7 +11,7 @@ import { VariantDirective } from 'src/app/utilities/directives/variant.directive
 import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
 
 export default {
-  title: 'step',
+  title: 'Step',
   component: StepComponent,
   decorators: [
     moduleMetadata({
@@ -35,7 +35,6 @@ Default.args = {
   step: new StepModel({
     variant: 'square',
     type: 'wizard',
-    size: 80,
     isActive: false,
     path: 'assets',
     svgUrl: 'assets',

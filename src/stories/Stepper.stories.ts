@@ -88,6 +88,5 @@ Default.args = {
     }),
   ],
   double: 2,
-  direction: 'row',
-  routePrefix: 'lands/assets/book',
+  direction: 'column',
 };

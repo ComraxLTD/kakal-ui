@@ -37,7 +37,7 @@ export class StepModel extends MenuItemModel {
     this.svgUrl = options?.svgUrl || '';
     this.variant = options?.variant || 'circle';
     this.type = options?.type || 'step';
-    this.size = options?.size || 80;
+    this.size = options?.size || 8;
     this.value = options?.value || null;
     this.divider = options?.divider || 0;
     this.spacer = options?.spacer || false;

@@ -1,6 +1,6 @@
 <div [fxLayout]="direction" class="steps-container" fxLayoutAlign="center center">
   <ng-container *ngFor="let step of steps; let i = index">
-    <div class="card" appSize [size]="step.size" [type]="step.type"  (click)="onStepClick(step)">
+    <div class="card" appSize [size]="step.size" [type]="step.type">
 
       <app-step *ngIf="!stepRef" [step]="step" (onStepChange)="onStepChange(step)"></app-step>
 

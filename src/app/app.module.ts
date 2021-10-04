@@ -29,6 +29,8 @@ import { SizeDirective } from './utilities/directives/size.directive';
 import { ButtonDirective } from './utilities/directives/button.directive';
 import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { VariantDirective } from './utilities/directives/variant.directive';
+import { StepComponent } from './components/step/step.component';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { VariantDirective } from './utilities/directives/variant.directive';
     DashboardCardComponent,
     ToNavComponent,
     StatusCardComponent,
+    StepComponent,
+    StepperComponent,
     
     ClassesDirective,
     ColorDirective,
@@ -60,12 +64,6 @@ import { VariantDirective } from './utilities/directives/variant.directive';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
