@@ -1,5 +1,5 @@
 import { Directive, Input, HostBinding } from '@angular/core';
-import { StepType, StepVariant } from '../components/step/step.model';
+import { StepVariant, StepType } from 'src/app/components/step/step.model';
 
 @Directive({
   selector: '[appVariant]',

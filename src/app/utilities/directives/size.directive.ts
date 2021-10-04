@@ -1,5 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { StepType } from '../components/step/step.model';
+import { StepType } from '../../components/step/step.model';
 
 @Directive({
   selector: '[appSize]',
