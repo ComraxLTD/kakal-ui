@@ -4,8 +4,9 @@ import {
   Output,
   EventEmitter,
   ElementRef,
+  OnInit,
 } from '@angular/core';
-import { StepModel } from '../step/step.model';
+import { StepModel, StepperDirection } from '../step/step.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -13,19 +14,20 @@ import { Observable } from 'rxjs';
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
 })
-export class StepperComponent {
-
+export class StepperComponent implements OnInit {
   @Input() steps: StepModel[];
 
   @Input() steps$: Observable<StepModel[]>;
 
-  @Input() direction: string;
-  @Input() double: number;
+  @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
 
   @Output() changStep = new EventEmitter<StepModel>();
 
-  constructor() { }
+  constructor() {}
+
+  ngOnInit() {
+  }
 
   public onStepChange(step: StepModel) {
     this.changStep.emit(step);

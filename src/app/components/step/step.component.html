@@ -9,7 +9,7 @@
       <mat-card-content appButton>
         <div fxLayout="column" fxLayoutAlign="center center">
           <div fxFlex="80">
-            <app-icon [active$]="active$" [color]="type === 'wizard'? 'primary': 'disable'" [key]="step.svgUrl" [size]="step.size">
+            <app-icon  [active$]="active$" [color]="type === 'wizard'? 'primary': 'disable'" [key]="step.svgUrl" [size]="step.size">
             </app-icon>
           </div>
           <div *ngIf="type === 'wizard'" fxFlex="15" [ngClass]="{ active: (active$ | async) }" fxLayout="column"
