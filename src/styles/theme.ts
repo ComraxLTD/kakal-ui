@@ -28,4 +28,3 @@ export const theme: Theme = {
     success: '#59a437',
   },
 };
-
