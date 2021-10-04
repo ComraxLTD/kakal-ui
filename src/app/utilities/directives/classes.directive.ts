@@ -7,7 +7,7 @@ import { theme } from 'src/styles/theme';
 export class ClassesDirective implements OnInit {
 
   private theme = theme;
-  private colors = this.theme.colors;
+  private colors = this.theme.palette;
 
   @Input() public classes: {
     color: string;
@@ -17,7 +17,7 @@ export class ClassesDirective implements OnInit {
   } = {
       color: this.colors.text,
       cursor: 'initial',
-      fontSize: 14,
+      fontSize: 1.4,
       fontWeight: 500,
     }
 
