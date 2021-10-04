@@ -9,38 +9,6 @@
   align-self: center;
   align-items: center;
   align-content: center;
-
-  .white {
-    color: white;
-  }
-
-  .primary {
-    color: color(primary);
-  }
-
-  .accent {
-    color: color(accent);
-  }
-
-  .warn {
-    color: color(warn);
-  }
-
-  .default {
-    color: color(default);
-  }
-
-  .success {
-    color: color(success);
-  }
-
-  .disable {
-    color: color(disable);
-  }
-
-  .paper {
-    color: color(paper) !important;
-  }
 }
 
 mat-icon {
