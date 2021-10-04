@@ -197,12 +197,12 @@
         },
         {
             "name": "Theme",
-            "id": "interface-Theme-d0a1b3b86a244e19cd66aee08b74a827",
+            "id": "interface-Theme-95964a1ac42ed28ac2b5cfe08a8c479e",
             "file": "src/styles/theme.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ThemePalette } from '@angular/material/core';\r\n\r\nexport declare type Palette =\r\n  | ThemePalette\r\n  | 'paper'\r\n  | 'default'\r\n  | 'disable'\r\n  | 'table'\r\n  | 'text'\r\n  | 'success';\r\n\r\nexport type Color = { [color in Palette]: string };\r\n\r\nexport interface Theme {\r\n  palette: Color;\r\n}\r\n\r\nexport const theme: Theme = {\r\n  palette: {\r\n    primary: '#d6a348',\r\n    accent: '#ff6f2e',\r\n    warn: '#d83020',\r\n    paper: '#fff',\r\n    default: '#bababa',\r\n    disable: ' rgba(0, 0, 0, 0.26)',\r\n    table: '#F8F8F8',\r\n    text: '#000000',\r\n    success: '#59a437',\r\n  },\r\n};\r\n\r\n",
+            "sourceCode": "import { ThemePalette } from '@angular/material/core';\r\n\r\nexport declare type Palette =\r\n  | ThemePalette\r\n  | 'paper'\r\n  | 'default'\r\n  | 'disable'\r\n  | 'table'\r\n  | 'text'\r\n  | 'success';\r\n\r\nexport type Color = { [color in Palette]: string };\r\n\r\nexport interface Theme {\r\n  palette: Color;\r\n}\r\n\r\nexport const theme: Theme = {\r\n  palette: {\r\n    primary: '#d6a348',\r\n    accent: '#ff6f2e',\r\n    warn: '#d83020',\r\n    paper: '#fff',\r\n    default: '#bababa',\r\n    disable: '#DBDBDB',\r\n    table: '#F8F8F8',\r\n    text: '#000000',\r\n    success: '#59a437',\r\n  },\r\n};\r\n",
             "properties": [
                 {
                     "name": "palette",
@@ -2690,18 +2690,18 @@
     "directives": [
         {
             "name": "ClassesDirective",
-            "id": "directive-ClassesDirective-d3dd76d343646463c45bbac279623482",
+            "id": "directive-ClassesDirective-74bf3ecebb6286fa9ff4b2904a61b600",
             "file": "src/app/utilities/directives/classes.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Directive, HostBinding, Input, OnInit } from '@angular/core';\r\nimport { theme } from 'src/styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appClasses]'\r\n})\r\nexport class ClassesDirective implements OnInit {\r\n\r\n  private theme = theme;\r\n  private colors = this.theme.colors;\r\n\r\n  @Input() public classes: {\r\n    color: string;\r\n    cursor: string;\r\n    fontSize: number;\r\n    fontWeight: number;\r\n  } = {\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 14,\r\n      fontWeight: 500,\r\n    }\r\n\r\n  @HostBinding('style.color') private color: string;\r\n  @HostBinding('style.font-weight') private fontWeight: number;\r\n  @HostBinding('style.font-size') private fontSize: string;\r\n  @HostBinding('style.cursor') private cursor: string;\r\n  @HostBinding('style.background-color') private backgroundColor: string;\r\n  @HostBinding('style.border-bottom') private borderBottom: string;\r\n\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.cursor = this.classes['cursor'] || 'initial'\r\n    this.fontWeight = this.classes.fontWeight\r\n    this.fontSize = `${this.classes['fontSize']}px` || '14px'\r\n    this.color = this.colors[this.classes.color]\r\n\r\n\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Directive, HostBinding, Input, OnInit } from '@angular/core';\r\nimport { theme } from 'src/styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appClasses]'\r\n})\r\nexport class ClassesDirective implements OnInit {\r\n\r\n  private theme = theme;\r\n  private colors = this.theme.palette;\r\n\r\n  @Input() public classes: {\r\n    color: string;\r\n    cursor: string;\r\n    fontSize: number;\r\n    fontWeight: number;\r\n  } = {\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 1.4,\r\n      fontWeight: 500,\r\n    }\r\n\r\n  @HostBinding('style.color') private color: string;\r\n  @HostBinding('style.font-weight') private fontWeight: number;\r\n  @HostBinding('style.font-size') private fontSize: string;\r\n  @HostBinding('style.cursor') private cursor: string;\r\n  @HostBinding('style.background-color') private backgroundColor: string;\r\n  @HostBinding('style.border-bottom') private borderBottom: string;\r\n\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.cursor = this.classes['cursor'] || 'initial'\r\n    this.fontWeight = this.classes.fontWeight\r\n    this.fontSize = `${this.classes['fontSize']}px` || '14px'\r\n    this.color = this.colors[this.classes.color]\r\n\r\n\r\n  }\r\n\r\n}\r\n",
             "selector": "[appClasses]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "classes",
-                    "defaultValue": "{\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 14,\r\n      fontWeight: 500,\r\n    }",
+                    "defaultValue": "{\r\n      color: this.colors.text,\r\n      cursor: 'initial',\r\n      fontSize: 1.4,\r\n      fontWeight: 500,\r\n    }",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 12,
@@ -2813,7 +2813,7 @@
                 },
                 {
                     "name": "colors",
-                    "defaultValue": "this.theme.colors",
+                    "defaultValue": "this.theme.palette",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -4287,7 +4287,7 @@
         },
         {
             "name": "IconComponent",
-            "id": "component-IconComponent-b065ae4e0492c25eca4016f4acf2fb10-1",
+            "id": "component-IconComponent-d2fd125519540a8f7f409a0a74e118ec-1",
             "file": "src/app/shared/components/icon/icon.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -4358,7 +4358,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { IconsService } from '../../../utilities/icons/icons.service';\r\nimport { Component, OnInit, Input } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-icon',\r\n  templateUrl: './icon.component.html',\r\n  styleUrls: ['./icon.component.scss']\r\n})\r\nexport class IconComponent implements OnInit {\r\n\r\n  @Input() public type: string = \"svg\"\r\n  @Input() public isActive: boolean = false\r\n  @Input() public key: string = \"\"\r\n  @Input() public color: string = \"primary\"\r\n\r\n  constructor(\r\n    private iconsService: IconsService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.iconsService.setIcon(this.key)\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit, Input } from '@angular/core';\r\nimport { IconsService } from 'src/app/components/icon/icons.service';\r\n\r\n@Component({\r\n  selector: 'app-icon',\r\n  templateUrl: './icon.component.html',\r\n  styleUrls: ['./icon.component.scss']\r\n})\r\nexport class IconComponent implements OnInit {\r\n\r\n  @Input() public type: string = \"svg\"\r\n  @Input() public isActive: boolean = false\r\n  @Input() public key: string = \"\"\r\n  @Input() public color: string = \"primary\"\r\n\r\n  constructor(\r\n    private iconsService: IconsService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.iconsService.setIcon(this.key)\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -6078,16 +6078,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Modal.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -6098,7 +6088,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Stepper.stories.ts",
+                "file": "src/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -6108,7 +6098,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
+                "file": "src/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -6128,7 +6118,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Pagination.stories.ts",
+                "file": "src/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -6275,6 +6275,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "HOME_SVG",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "LIST_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -6283,16 +6293,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"29.56\" height=\"32.535\" viewBox=\"0 0 29.56 32.535\"><defs>\r\n<style>.list{fill:\"\"none\";}</style></defs><g transform=\"translate(-22.3)\"><g transform=\"translate(22.3 0)\">\r\n<path class=\"list\" d=\"M26.163,4.183a.819.819,0,0,0-1.154-.007A.807.807,0,0,0,25,5.33L26.95,7.291a.817.817,0,0,0,.58.24h0a.814.814,0,0,0,.574-.24l5.931-5.9A.814.814,0,1,0,32.887.24L31.092,2.021A5.115,5.115,0,1,0,32.32,7.065a.819.819,0,0,0-1.568-.474,3.492,3.492,0,1,1-.821-3.409L27.537,5.564Z\" transform=\"translate(-22.3 0)\"/>\r\n<path class=\"list\" d=\"M27.417,170.6a5.117,5.117,0,1,0,5.117,5.117A5.122,5.122,0,0,0,27.417,170.6Zm0,8.6a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,179.2Z\" transform=\"translate(-22.3 -159.219)\"/>\r\n<path class=\"list\" d=\"M32.533,339.417a5.117,5.117,0,1,0-5.117,5.117A5.122,5.122,0,0,0,32.533,339.417Zm-5.117,3.489a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,342.906Z\" transform=\"translate(-22.3 -311.999)\"/>\r\n<path class=\"list\" d=\"M219.218,235h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -219.323)\"/>\r\n<path class=\"list\" d=\"M219.218,71.5h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -66.73)\"/>\r\n<path class=\"list\" d=\"M219.218,398.8h-15.9a.821.821,0,1,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -372.196)\"/></g></g>\r\n</svg>`"
-            },
-            {
-                "name": "LOCATION_ICON",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/icon/icons.list.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"18\" height=\"25.609\"\r\nviewBox=\"0 0 18 25.609\">\r\n<defs><style>.location{fill:\"none\";}</style></defs>\r\n<path class=\"location\" d=\"M170.592,99a4.5,4.5,0,1,0-4.5-4.5A4.505,4.505,0,0,0,170.592,99Zm0-7.5a3,3,0,1,1-3,3A3,3,0,0,1,170.592,91.5Z\" transform=\"translate(-161.592 -85.5)\"/>\r\n<path class=\"location\" d=\"M92.562,14.021a9,9,0,1,0-14.941,0l7.47,11.588ZM85.092,1.5a7.5,7.5,0,0,1,6.36,11.475l-6.36,9.866-6.36-9.866A7.5,7.5,0,0,1,85.092,1.5Z\" transform=\"translate(-76.092 0)\"/>\r\n</svg>\r\n`"
             },
             {
                 "name": "LOGO_ICON",
@@ -6557,11 +6557,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/IconCard.stories.ts",
+                "file": "src/stories/Icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<IconCardComponent>",
-                "defaultValue": "(args: IconCardComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -6577,21 +6577,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Modal.stories.ts",
+                "file": "src/stories/IconCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Navbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ToNavComponent>",
-                "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<IconCardComponent>",
+                "defaultValue": "(args: IconCardComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -6607,7 +6597,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Stepper.stories.ts",
+                "file": "src/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
@@ -6618,6 +6608,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
@@ -6647,11 +6647,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/StatusCard.stories.ts",
+                "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<StatusCardComponent>",
-                "defaultValue": "(args: StatusCardComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -6681,7 +6681,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Theme",
-                "defaultValue": "{\r\n  palette: {\r\n    primary: '#d6a348',\r\n    accent: '#ff6f2e',\r\n    warn: '#d83020',\r\n    paper: '#fff',\r\n    default: '#bababa',\r\n    disable: ' rgba(0, 0, 0, 0.26)',\r\n    table: '#F8F8F8',\r\n    text: '#000000',\r\n    success: '#59a437',\r\n  },\r\n}"
+                "defaultValue": "{\r\n  palette: {\r\n    primary: '#d6a348',\r\n    accent: '#ff6f2e',\r\n    warn: '#d83020',\r\n    paper: '#fff',\r\n    default: '#bababa',\r\n    disable: '#DBDBDB',\r\n    table: '#F8F8F8',\r\n    text: '#000000',\r\n    success: '#59a437',\r\n  },\r\n}"
             },
             {
                 "name": "THUMBUP_ICON",
@@ -7404,12 +7404,12 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/Modal.stories.ts": [
+            "src/stories/Navbar.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Modal.stories.ts",
+                    "file": "src/stories/Navbar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -7419,11 +7419,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Modal.stories.ts",
+                    "file": "src/stories/Navbar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                    "type": "Story<ToNavComponent>",
+                    "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/Navbar.stories.ts": [
@@ -7448,12 +7448,12 @@
                     "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/Stepper.stories.ts": [
+            "src/stories/Modal.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Stepper.stories.ts",
+                    "file": "src/stories/Modal.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -7463,29 +7463,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Stepper.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "src/stories/Table.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Table.stories.ts",
+                    "file": "src/stories/Modal.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<any>",
@@ -7522,6 +7500,50 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "src/stories/Table.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/stories/Stepper.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/Pagination.stories.ts": [
@@ -7699,7 +7721,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Theme",
-                    "defaultValue": "{\r\n  palette: {\r\n    primary: '#d6a348',\r\n    accent: '#ff6f2e',\r\n    warn: '#d83020',\r\n    paper: '#fff',\r\n    default: '#bababa',\r\n    disable: ' rgba(0, 0, 0, 0.26)',\r\n    table: '#F8F8F8',\r\n    text: '#000000',\r\n    success: '#59a437',\r\n  },\r\n}"
+                    "defaultValue": "{\r\n  palette: {\r\n    primary: '#d6a348',\r\n    accent: '#ff6f2e',\r\n    warn: '#d83020',\r\n    paper: '#fff',\r\n    default: '#bababa',\r\n    disable: '#DBDBDB',\r\n    table: '#F8F8F8',\r\n    text: '#000000',\r\n    success: '#59a437',\r\n  },\r\n}"
                 }
             ]
         },
