@@ -25,6 +25,10 @@ import { IconCardComponent } from './components/cards/icon-card/icon-card.compon
 import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
 import { ClassesDirective } from './utilities/directives/classes.directive';
 import { ColorDirective } from './utilities/directives/color.directive';
+import { SizeDirective } from './utilities/directives/size.directive';
+import { ButtonDirective } from './utilities/directives/button.directive';
+import { UnderlineDirective } from './utilities/directives/underline.directive';
+import { VariantDirective } from './utilities/directives/variant.directive';
 
 @NgModule({
   declarations: [
@@ -42,7 +46,11 @@ import { ColorDirective } from './utilities/directives/color.directive';
     StatusCardComponent,
     
     ClassesDirective,
-    ColorDirective
+    ColorDirective,
+    SizeDirective,
+    ButtonDirective,
+    UnderlineDirective,
+    VariantDirective
   ],
   imports: [
     BrowserModule,

@@ -23,13 +23,12 @@ const Template: Story<IconComponent> = (args: IconComponent) => ({
 export const HOME_SVG = Template.bind({});
 HOME_SVG.args = {
   key: 'home',
-  type: 'svg',
   color: 'primary',
 };
 
 export const HOME_MAT = Template.bind({});
 HOME_MAT.args = {
-  key: 'home',
+  key: 'menu',
   type: 'mat',
   color: 'warn',
 };

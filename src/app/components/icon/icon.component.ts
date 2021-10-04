@@ -10,6 +10,7 @@ import { IconsService } from './icons.service';
   styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent implements OnInit {
+  
   @Input() public key: string;
   @Input() public type: IconType
   @Input() public size: number;
@@ -43,7 +44,7 @@ export class IconComponent implements OnInit {
 
   private setIcon() {
     const isSvg = this.iconsService.setIcon(this.key);
-    this.type = isSvg ? 'svg' : 'mat';
+    this.type = this.type || isSvg ? 'svg' : 'mat';
 
   }
 
