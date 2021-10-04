@@ -6,13 +6,11 @@ import { StepType } from '../../components/step/step.model';
 })
 export class SizeDirective {
   @Input() size: number;
-  @Input() scale: number;
   @Input() type: StepType;
   @Input() divider: number ;
 
   @HostBinding('style.height') public height: string;
   @HostBinding('style.width') public width: string;
-  @HostBinding('style.transform.scale') public matScale: string;
 
   constructor() { }
 
@@ -33,7 +31,6 @@ export class SizeDirective {
       default:
         this.width = `${this.size * (this.divider || 1)}rem`;
         this.height = `${this.size}rem`;
-        this.matScale = `scale(${this.scale})`
     }
   }
 }

@@ -10,9 +10,8 @@ import { IconsService } from './icons.service';
   styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent implements OnInit {
-  
   @Input() public key: string;
-  @Input() public type: IconType
+  @Input() public type: IconType;
   @Input() public size: number;
 
   @Input() public color: Palette;
@@ -25,45 +24,47 @@ export class IconComponent implements OnInit {
   public scale: string;
   public color$: BehaviorSubject<Palette>;
 
-  private subscription: Subscription
+  private subscription: Subscription;
 
-  constructor(private iconsService: IconsService) { }
+  constructor(private iconsService: IconsService) {}
 
   ngOnInit(): void {
     this.setIcon();
     this.setColor();
     this.setSize();
-    this.subscribeToActive()
+    this.subscribeToActive();
   }
 
   ngOnDestroy(): void {
     if (this.subscription) {
-      this.subscription.unsubscribe()
+      this.subscription.unsubscribe();
     }
   }
 
   private setIcon() {
     const isSvg = this.iconsService.setIcon(this.key);
-    this.type = this.type || isSvg ? 'svg' : 'mat';
-
+    if (this.type) {
+      this.type = this.type;
+    } else {
+      this.type = isSvg ? 'svg' : 'mat';
+    }
   }
 
   private setColor() {
-    this.color$ = new BehaviorSubject(this.color || 'default')
+    this.color$ = new BehaviorSubject(this.color || 'default');
   }
 
   private setSize() {
-    this.size = this.size;
     this.scale = `scale(${this.size || 1})`;
   }
 
   private subscribeToActive() {
     if (this.active$) {
-      this.subscription = this.active$.subscribe(
-        (active: boolean) => {
-          active ? this.color$.next(this.activeColor || 'paper') : this.color$.next(this.color)
-        }
-      )
+      this.subscription = this.active$.subscribe((active: boolean) => {
+        active
+          ? this.color$.next(this.activeColor || 'paper')
+          : this.color$.next(this.color);
+      });
     }
   }
 }
