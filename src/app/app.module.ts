@@ -26,6 +26,7 @@ import { CardDashboardComponent } from './components/cards/card-dashboard/card-d
 import { CardStatusComponent } from './components/cards/card-status/card-status.component';
 import { CardStepComponent } from './components/cards/card-step/card-step.component';
 import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';
+import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 
 import { ColorDirective } from './utilities/directives/color.directive';
 import { SizeDirective } from './utilities/directives/size.directive';
@@ -80,6 +81,7 @@ import { CardUserComponent } from './components/cards/card-user/card-user.compon
     UnderlineDirective,
     VariantDirective,
     CardUserComponent,
+    ExpandPanelComponent
   ],
   imports: [
     BrowserModule,
