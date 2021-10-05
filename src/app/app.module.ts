@@ -26,6 +26,7 @@ import { VariantDirective } from './utilities/directives/variant.directive';
 import { StepComponent } from './components/step/step.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { NavigationComponent } from './exemples/navigation/navigation.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { NavigationComponent } from './exemples/navigation/navigation.component'
     StepComponent,
     StepperComponent,
     NavigationComponent,
+    MenuComponent,
     
     ClassesDirective,
     ColorDirective,
