@@ -3,7 +3,7 @@
     (matSortChange)="onSort($event)"
     mat-table
     matSort
-    [dataSource]="$data | async | paginate: pagination"
+    [dataSource]="$data | async | paginate : pagination"
     [dir]="'rtl'"
   >
     <ng-container
