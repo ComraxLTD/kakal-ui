@@ -6,26 +6,40 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./expand-panel.component.scss']
 })
 export class ExpandPanelComponent implements OnInit {
+ // prop for custom class
+ @Input() public variant: string;
+ @Input() public hideToggle: boolean;
+ @Input() public showHeader: boolean;
+ @Input() public disabled: boolean;
 
-  public panelOpenState = false;
+ @Input() public expanded: boolean;
 
-  @Input() header: string;
-  @Input() description: string;
-  @Input() content: string;
-  @Input() actions: boolean;
+ public panelOpenState = false;
 
-  @Input() hideToggle: boolean = false;
-  @Input() flat: boolean = true;
+ @Output() expand: EventEmitter<void> = new EventEmitter();
+ @Output() closed: EventEmitter<void> = new EventEmitter();
+ @Output() opened: EventEmitter<void> = new EventEmitter();
 
-  @Output() opened : EventEmitter<boolean> = new EventEmitter()
+ constructor() {}
 
-  constructor() { }
+ ngOnInit(): void {
+   this.variant = this.variant || '';
+   this.expanded = this.expanded || false;
+   this.hideToggle = this.hideToggle || false;
+   this.showHeader = this.showHeader || false;
+ }
 
-  ngOnInit(): void {
-  }
+ public onPanelExpend() {
+   this.expand.emit();
+ }
 
-  public onOpened() {
-    this.opened.emit(this.panelOpenState)
-  }
+ public onPanelClosed() {
+   this.panelOpenState = false
+   this.closed.emit();
+ }
 
+ public onPanelOpen() {
+   this.panelOpenState = true
+   this.opened.emit();
+ }
 }
