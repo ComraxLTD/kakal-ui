@@ -1,17 +1,13 @@
-import { BehaviorSubject, Observable } from 'rxjs';
-import { MenuItemModel } from './../menu/menu.model';
+import { Observable } from 'rxjs';
+import { MenuItemModel } from '../menu-item/menu-item.model';
 
-export type StepVariant = 'circle' | 'square'
+export type StepVariant = 'circle' | 'square';
 
+export type StepType = 'wizard' | 'status' | 'step' | 'info' | 'card';
 
-export type StepType = 'wizard' | 'status' | 'step' | 'info' | 'card'
-
-
-export type StepperDirection = 'column' | 'row'
-
+export type StepperDirection = 'column' | 'row';
 
 export class StepModel extends MenuItemModel {
-
   public variant?: StepVariant;
   public type?: StepType;
   public size?: number;
@@ -20,7 +16,6 @@ export class StepModel extends MenuItemModel {
   public value?: number;
 
   constructor(options?: {
-    
     label?: string;
     path?: string;
     svgUrl?: string;
@@ -32,7 +27,7 @@ export class StepModel extends MenuItemModel {
     spacer?: boolean;
     value?: number;
   }) {
-    super(options)
+    super(options);
     this.label = options?.label || '';
     this.path = options?.path || '';
     this.isActive = options?.isActive || false;
@@ -46,10 +41,6 @@ export class StepModel extends MenuItemModel {
   }
 
   public getActiveObs(): Observable<boolean> {
-    return super.getActiveObs()
+    return super.getActiveObs();
   }
-
-
-
-
 }

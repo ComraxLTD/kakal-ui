@@ -1,29 +1,32 @@
-<div class="links themed-element">
-  <!-- <app-user-card></app-user-card> -->
-  <mat-accordion class="menu"  [dir]="'rtl'">
-    <mat-expansion-panel class="mat-elevation-z0" *ngFor="let list of menu; let i = index">
+<div class="links themed-element" [dir]="'rtl'">
+  <app-card-user></app-card-user>
+  <mat-accordion class="menu">
+    <mat-expansion-panel
+      class="mat-elevation-z0"
+      *ngFor="let list of menu; let i = index"
+    >
       <mat-expansion-panel-header>
         <div mat-subheader>
           <app-typography variant="button" color="primary" [bold]="600">
-            {{list.label}}
+            {{ list.label }}
           </app-typography>
         </div>
       </mat-expansion-panel-header>
       <mat-list>
-        <mat-list-item *ngFor="let link of list?.links; let i = index" [ngClass]="{active : link.isActive}"
-          (click)="onLinkClick(link, list.prefix)">
-          <mat-icon mat-list-icon>{{link.svgUrl}}</mat-icon>
-          <div class="bold" mat-line>{{link.label}}</div>
-        </mat-list-item>
+        <app-menu-item
+          *ngFor="let link of list?.links; let i = index"
+          [link]="link"
+          (click)="onLinkClick(link, list.prefix)"
+        ></app-menu-item>
       </mat-list>
     </mat-expansion-panel>
   </mat-accordion>
-  <mat-list [dir]="'rtl'">
-    <mat-list-item>
-      <mat-icon color="primary" mat-list-icon>{{logoutItem.svgUrl}}</mat-icon>
+  <mat-list>
+    <mat-list-item appButton>
+      <app-icon color="primary" mat-list-icon [key]="logoutItem.svgUrl"></app-icon>
       <div class="logout" mat-line>
         <app-typography variant="button" color="primary" [bold]="600">
-          {{logoutItem.label}}
+          {{ logoutItem.label }}
         </app-typography>
       </div>
     </mat-list-item>

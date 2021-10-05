@@ -1,19 +1,13 @@
-export enum ListItemKeys {
-  PATH = 'path',
-  LABEL = 'label',
-  svgUrl = 'svgUrl',
-}
+export declare type ListItemKeys = 'path' | 'label' | 'svgUrl';
 
 export interface ListItem {
   type?: string,
   key?: string,
+  selector? : string[],
   label?: string,
   size?: number,
   value?: any,
-  path?: string,
   svgUrl?: string,
-  scale?: number,
-
 } 
 
 export abstract class ListItemModel implements ListItem {
@@ -22,9 +16,7 @@ export abstract class ListItemModel implements ListItem {
     public key?: string,
     public type?: string,
     public label?: string,
-    public path?: string,
     public svgUrl?: string,
-    public scale?: number,
     public size?: number,
   ) {
   }

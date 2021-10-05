@@ -1,22 +1,29 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { MenuComponent } from 'src/app/components/menu/menu.component';
-import { MenuItemModel } from 'src/app/components/menu/menu.model';
 import { AppRoutingModule } from 'src/app/app-routing.module';
-import { UserCardComponent } from 'src/app/components/user-card/user-card.component';
 import { MaterialModule } from 'src/material/material.module';
 import { TypographyComponent } from 'src/app/components/typography/typography.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
+import { CardUserComponent } from 'src/app/components/cards/card-user/card-user.component';
+import { MenuItemComponent } from 'src/app/components/menu-item/menu-item.component';
+import { IconComponent } from 'src/app/components/icon/icon.component';
+import { ColorDirective } from 'src/app/utilities/directives/color.directive';
 
 export default {
   title: 'Menu',
   component: MenuComponent,
   decorators: [
     moduleMetadata({
-      declarations: [UserCardComponent,TypographyComponent,ClassesDirective],
-      providers:[{provide: APP_BASE_HREF, useValue: '/'}],
-      imports: [CommonModule,AppRoutingModule,MaterialModule,BrowserAnimationsModule],
+      declarations: [MenuItemComponent, CardUserComponent, TypographyComponent, IconComponent, ColorDirective, ClassesDirective],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+      imports: [
+        CommonModule,
+        AppRoutingModule,
+        MaterialModule,
+        BrowserAnimationsModule,
+      ],
     }),
   ],
 } as Meta;
@@ -31,13 +38,7 @@ Default.args = {
     {
       label: 'ראשי',
       prefix: 'assets',
-      links: [
-        new MenuItemModel({ label: 'ספר נכסים', path: 'assets' }),
-        new MenuItemModel({ label: 'חיפוש נכס', path: 'search' }),
-        new MenuItemModel({ label: 'עסקאות', path: 'transactions' }),
-        new MenuItemModel({ label: 'תבניות מייל', path: 'mail' }),
-        new MenuItemModel({ label: 'רשימת עורכי דין', path: 'loyer' }),
-      ],
+      links: [],
     },
     {
       label: 'פיקוח',
@@ -64,5 +65,5 @@ Default.args = {
       prefix: 'design',
       links: [],
     },
-  ]
+  ],
 };

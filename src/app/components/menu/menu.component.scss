@@ -1,45 +1,19 @@
 @import "../../../styles/styles.scss";
 
-
-mat-icon {
-  transform: rotate(180deg)
-}
-
-mat-accordion.menu {
-
+::ng-deep mat-accordion.menu {
   width: inherit;
 
-  ::ng-deep mat-expansion-panel-header {
+  mat-expansion-panel-header {
     padding-right: 0px;
     width: inherit;
-    height: 50px;
+    height: 4rem !important;
   }
 
-  ::ng-deep div.mat-expansion-panel-body {
-    padding: 0px !important
+  div.mat-expansion-panel-body {
+    padding: 0px !important;
   }
 
   ::ng-deep span.mat-expansion-indicator {
     display: none;
   }
-}
-
-mat-list-item {
-
-  cursor: pointer;
-  height: 50px !important;
-
-
-
-  &.active {
-    background-color: color(primary);
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-    color: color(paper) !important;
-    width: 90%;
-  }
-}
-
-div.mat-list-text>div.mat-line.bold {
-  font-weight: 600 !important;
 }
