@@ -26,7 +26,6 @@ import { CardDashboardComponent } from './components/cards/card-dashboard/card-d
 import { CardStatusComponent } from './components/cards/card-status/card-status.component';
 import { CardStepComponent } from './components/cards/card-step/card-step.component';
 import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';
-import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 
 import { ColorDirective } from './utilities/directives/color.directive';
 import { SizeDirective } from './utilities/directives/size.directive';
@@ -42,6 +41,8 @@ import { FormInputComponent } from './components/form/form-input/form-input.comp
 import { FormGroupComponent } from './components/form/form-group/form-group.component';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
 import { CardUserComponent } from './components/cards/card-user/card-user.component';
+import { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';
+import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { CardUserComponent } from './components/cards/card-user/card-user.compon
     FormInputComponent,
     FormGroupComponent,
     FormRadioComponent,
+    FormAutocompleteComponent,
 
     PaginationComponent,
     TableComponent,

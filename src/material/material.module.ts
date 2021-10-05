@@ -18,6 +18,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -47,6 +48,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     MatExpansionModule,
     FlexLayoutModule,
+    MatAutocompleteModule
   ],
   exports: [
     MatButtonModule,
@@ -73,6 +75,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatCardModule,
     MatExpansionModule,
     FlexLayoutModule,
+    MatAutocompleteModule
   ],
 })
 export class MaterialModule {}
