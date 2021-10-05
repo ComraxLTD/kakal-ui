@@ -1243,10 +1243,7 @@
                     }
                 ]
             },
-            "type": "injectable",
-            "isDuplicate": true,
-            "duplicateId": 1,
-            "duplicateName": "IconsService-1"
+            "type": "injectable"
         },
         {
             "name": "MenuService",
@@ -7712,6 +7709,132 @@
             }
         },
         {
+            "name": "SizeDirective",
+            "id": "directive-SizeDirective-2d06726ec4025af8978b8a03c828b462",
+            "file": "src/app/utilities/directives/size.directive.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { StepType } from '../../components/step/step.model';\r\n\r\n@Directive({\r\n  selector: '[appSize]',\r\n})\r\nexport class SizeDirective {\r\n\r\n  @Input() size: number = 2;\r\n  @Input() type: StepType;\r\n  @Input() divider: boolean = false;\r\n\r\n  private double: number\r\n\r\n  @HostBinding('style.height') public height: string;\r\n  @HostBinding('style.width') public width: string;\r\n\r\n  constructor() {\r\n\r\n  }\r\n\r\n  ngOnInit() {\r\n\r\n\r\n\r\n    switch (this.type) {\r\n      case StepType.WIZARD:\r\n        this.width = '4rem'\r\n        this.height = '4.5rem'\r\n        break;\r\n      case StepType.STATUS:\r\n        this.width = `${(this.size * 3)}rem`;\r\n        this.height = `${this.size}rem`;\r\n        break;\r\n      default:\r\n        this.double = this.divider ? 2 : 1\r\n        this.width = `${(this.size * this.double)}rem`;\r\n        this.height = `${this.size}rem`;\r\n    }\r\n  }\r\n}\r\n",
+            "selector": "[appSize]",
+            "providers": [],
+            "inputsClass": [
+                {
+                    "name": "divider",
+                    "defaultValue": "false",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "boolean"
+                },
+                {
+                    "name": "size",
+                    "defaultValue": "2",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 9,
+                    "type": "number"
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "StepType"
+                }
+            ],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "style.height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "string"
+                },
+                {
+                    "name": "style.width",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "string"
+                }
+            ],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "double",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.height'"
+                        }
+                    ],
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "width",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.width'"
+                        }
+                    ],
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 22,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 16
+            }
+        },
+        {
             "name": "VariantDirective",
             "id": "directive-VariantDirective-6726cbc89bb7de9b63933ff5e72f08d7",
             "file": "src/app/utilities/directives/variant.directive.ts",
@@ -9057,9 +9180,9 @@
             "templateData": "<div>\r\n\r\n  <mat-form-field  [appearance]=\"control.disabled ? 'fill' : 'outline'\">\r\n    <mat-label>{{label}}</mat-label>\r\n\r\n    <ng-container [ngSwitch]=\"type\">\r\n      <ng-container *ngSwitchCase=\"'textarea'\">\r\n        <textarea matInput [rows]=\"question.rows\" [formControl]=\"control\" [name]=\"question.key\" (focusout)=\"validate()\"\r\n          #textarea></textarea>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'select'\">\r\n        <mat-select (selectionChange)=\"onSelectChange()\" [formControl]=\"control\" [name]=\"question.key\" required (focusout)=\"validate()\">\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-select>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchDefault>\r\n        <input matInput autocomplete=\"off\" required [formControl]=\"control\" [name]=\"question.key\"\r\n          (focusout)=\"validate()\" #input />\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <app-icon *ngIf=\"icon\" matSuffix [color]=\"color || 'primary'\" [key]=\"icon\" [type]=\"iconType\" [rotate]=\"iconRotate\"></app-icon>\r\n\r\n    <mat-error>{{ error }}</mat-error>\r\n  </mat-form-field>\r\n</div>\r\n"
         },
         {
-            "name": "FormRadioComponent",
-            "id": "component-FormRadioComponent-78bb51f3f5a942af1cfa5e7ba762e897",
-            "file": "src/app/components/form/form-radio/form-radio.component.ts",
+            "name": "IconCardComponent",
+            "id": "component-IconCardComponent-c7fcc394fffb6af4e0c1c51a92d28d8e",
+            "file": "src/app/components/cards/icon-card/icon-card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -9146,8 +9269,8 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "mat-radio-group,\r\ndiv {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n::ng-deep span.mat-radio-label-content {\r\n  padding-right: spacing(2) !important;\r\n}\r\n",
-                    "styleUrl": "./form-radio.component.scss"
+                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.nav-container {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n\r\n  .svg-container {\r\n    mat-card {\r\n      height: 80px;\r\n      width: 80px;\r\n      background-color: linear-gradient(0deg, #eeeeee 0%, #fefefe 100%);\r\n      box-shadow: 0px 0px 1px 2px #e5e5e5;\r\n      border-radius: 10px;\r\n      cursor: pointer;\r\n\r\n      &.active {\r\n        background-color: color(primary) !important;\r\n      }\r\n    }\r\n  }\r\n  .title-container {\r\n    padding: 8px;\r\n  }\r\n}\r\n\r\n.icon-container {\r\n  transform: scale(3);\r\n}\r\n",
+                    "styleUrl": "./icon-card.component.scss"
                 }
             ],
             "stylesData": "",
@@ -9162,11 +9285,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div dir=\"rtl\">\r\n  <mat-radio-group [formControl]=\"control\" [name]=\"question.key\" (change)=\"handleChange($event)\">\r\n    <div fxLayout=\"column\" fxLayoutGap=\"10px\" fxLayoutAlign=\"start start\">\r\n      <div fxLayout=\"row\" fxFlex=\"20\" fxLayoutAlign=\"end center\">\r\n        <label>\r\n          {{ question.label }}\r\n        </label>\r\n      </div>\r\n      <div fxLayout=\"row\" fxFlex=\"20\" class=\"radio-button\" fxLayoutAlign=\"space-between center\">\r\n        <mat-radio-button color=\"primary\" *ngFor=\"let option of question.options\" [value]=\"option.value\">{{\r\n          option.key }}\r\n        </mat-radio-button>\r\n      </div>\r\n    </div>\r\n  </mat-radio-group>\r\n</div>\r\n"
+            "templateData": "<div class=\"nav-container\">\r\n  <div class=\"svg-container\" (click)=\"onCardClick()\">\r\n    <mat-card [ngClass]=\"{ 'nav-container': true, active: item.isActive }\" [matBadge]=\"item.badgeValue\"\r\n      matBadgeColor=\"accent\">\r\n      <mat-card-content>\r\n        <div class=\"icon-container\">\r\n          <app-icon [isActive]=\"item.isActive\" type=\"svg\" [key]=\"item.svgUrl || 'like'\"></app-icon>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div class=\"title-container\">\r\n    <app-typography [size]=\"16\" [bold]=\"600\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "IconCardComponent",
-            "id": "component-IconCardComponent-c7fcc394fffb6af4e0c1c51a92d28d8e",
+            "id": "component-IconCardComponent-c7fcc394fffb6af4e0c1c51a92d28d8e-1",
             "file": "src/app/shared/components/icon-card/icon-card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -9246,6 +9369,9 @@
             "implements": [
                 "OnInit"
             ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "IconCardComponent-1",
             "templateData": "<div class=\"nav-container\">\r\n  <div class=\"svg-container\" (click)=\"onCardClick()\">\r\n    <mat-card\r\n      [ngClass]=\"{ 'nav-container': true, active: item.isActive }\"\r\n      [matBadge]=\"item.badgeValue\"\r\n      matBadgeColor=\"accent\"\r\n    >\r\n      <mat-card-content>\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [isActive]=\"item.isActive\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl || 'like'\"\r\n          ></app-icon>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div class=\"title-container\">\r\n    <span class=\"mat-h1\">\r\n      {{ item.title }}\r\n    </span>\r\n  </div>\r\n</div>\r\n\r\n"
         },
         {
@@ -9825,7 +9951,7 @@
         {
             "name": "NavbarComponent",
             "id": "component-NavbarComponent-af348c4c599ad4a757894d55676fed44",
-            "file": "src/app/navigation/components/navbar/navbar.component.ts",
+            "file": "src/app/components/navigation/navbar/navbar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -9975,7 +10101,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@use \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: #ffffff;\r\n  opacity: 1;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  border-bottom: 3px solid #fbfbfb;\r\n  box-sizing: border-box;\r\n}\r\n\r\n// toggle button styles\r\n.sidebar-toggle {\r\n  padding: 0 15px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-around;\r\n  align-items: center;\r\n  // color: $--green-color-bright;\r\n  height: 100%;\r\n  width: 50px;\r\n  z-index: 101;\r\n  margin-top: 4px;\r\n\r\n  &__icon {\r\n    margin-top: auto;\r\n    height: 40px;\r\n    margin-bottom: 3px;\r\n  }\r\n\r\n\r\n  &__text {\r\n    margin-bottom: auto;\r\n    font-size: 0.8rem;\r\n    line-height: 10px;\r\n    text-align: center;\r\n  }\r\n}\r\n\r\n.worker-position {\r\n  font-size: 28px;\r\n  align-self: center;\r\n  margin-left: auto;\r\n  margin-bottom: -5px;\r\n  font-weight: 600;\r\n}\r\n\r\n// main area item\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    margin-bottom: -130px;\r\n    &:not(:first-child) {\r\n      padding-right: 190px;\r\n    }\r\n\r\n    &:first-child > .project-status__item-badge {\r\n      margin-right: -190px;\r\n      background-color: sienna;\r\n    }\r\n    display: flex;\r\n    position: relative;\r\n\r\n    &-icon {\r\n      border-radius: 100px;\r\n      height: 75px;\r\n      width: 75px;\r\n      background-color: #ffffff;\r\n      border: 1px solid #00000029;\r\n      // display: flex;\r\n      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n      box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n      .icon-container {\r\n        height: 100%;\r\n        transform: scale(1.5);\r\n      }\r\n    }\r\n  }\r\n\r\n  #svg-fill {\r\n    margin: auto;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n  #svg-fill * {\r\n    transform: scale(2.5);\r\n    fill: #747474 !important;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n\r\n  &__item-badge {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 199px;\r\n  }\r\n\r\n  &__item-text {\r\n    font-weight: bold;\r\n    align-self: flex-start;\r\n    margin-right: 15px;\r\n    margin-top: 40px;\r\n  }\r\n}\r\n\r\n.results-header {\r\n  margin-left: 50px;\r\n  margin-right: auto;\r\n\r\n  &__link {\r\n    display: flex;\r\n    text-decoration: none;\r\n    color: #a2a2a2;\r\n    align-self: center;\r\n    font-weight: 200;\r\n  }\r\n\r\n  &__text {\r\n    margin: auto 0;\r\n    justify-self: center;\r\n    font-size: 20px;\r\n  }\r\n  &__icon {\r\n    padding-right: 10px;\r\n    color: color(primary);\r\n    align-self: center;\r\n    padding-top: 2px;\r\n    font-weight: bold;\r\n  }\r\n}\r\n\r\n//left logos area\r\n\r\n.left-logos {\r\n  margin-left: 23px;\r\n  min-width: fit-content;\r\n  flex: 0 0 auto;\r\n  align-self: center;\r\n  z-index: 101;\r\n  height: 90%;\r\n}\r\n\r\n.left-logos * {\r\n  margin-top: 7px;\r\n  display: inline;\r\n  height: 80%;\r\n}\r\n\r\n.left-logo-years {\r\n  padding-left: 20px;\r\n}\r\n\r\n.badge-education {\r\n  & .mat-badge-content {\r\n    // background-color: $--green-color-bright !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.badge-forestry {\r\n  & .mat-badge-content {\r\n    background-color: color(primary) !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.education-fill {\r\n  color: #009eee;\r\n  & * {\r\n    fill: #009eee !important;\r\n  }\r\n}\r\n\r\n.education-border {\r\n  border-bottom: #009eee solid 3px;\r\n}\r\n\r\n.forestry-fill {\r\n  color: #00c466;\r\n  & * {\r\n    fill: #00c466 !important;\r\n  }\r\n}\r\n.forestry-border {\r\n  // border-bottom: $--green-color-bright solid 3px;\r\n}\r\n\r\n::ng-deep .list__item-svg .a {\r\n  fill: #00c466 !important;\r\n}\r\n",
+                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: #ffffff;\r\n  opacity: 1;\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  border-bottom: 3px solid #fbfbfb;\r\n  box-sizing: border-box;\r\n}\r\n\r\n// toggle button styles\r\n.sidebar-toggle {\r\n  padding: 0 15px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-around;\r\n  align-items: center;\r\n  // color: $--green-color-bright;\r\n  height: 100%;\r\n  width: 50px;\r\n  z-index: 101;\r\n  margin-top: 4px;\r\n\r\n  &__icon {\r\n    margin-top: auto;\r\n    height: 40px;\r\n    margin-bottom: 3px;\r\n  }\r\n\r\n\r\n  &__text {\r\n    margin-bottom: auto;\r\n    font-size: 0.8rem;\r\n    line-height: 10px;\r\n    text-align: center;\r\n  }\r\n}\r\n\r\n.worker-position {\r\n  font-size: 28px;\r\n  align-self: center;\r\n  margin-left: auto;\r\n  margin-bottom: -5px;\r\n  font-weight: 600;\r\n}\r\n\r\n// main area item\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  transform: translateX(-50%);\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    margin-bottom: -130px;\r\n    &:not(:first-child) {\r\n      padding-right: 190px;\r\n    }\r\n\r\n    &:first-child > .project-status__item-badge {\r\n      margin-right: -190px;\r\n      background-color: sienna;\r\n    }\r\n    display: flex;\r\n    position: relative;\r\n\r\n    &-icon {\r\n      border-radius: 100px;\r\n      height: 75px;\r\n      width: 75px;\r\n      background-color: #ffffff;\r\n      border: 1px solid #00000029;\r\n      // display: flex;\r\n      -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n      box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n      .icon-container {\r\n        height: 100%;\r\n        transform: scale(1.5);\r\n      }\r\n    }\r\n  }\r\n\r\n  #svg-fill {\r\n    margin: auto;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n  #svg-fill * {\r\n    transform: scale(2.5);\r\n    fill: #747474 !important;\r\n    width: 37.5px;\r\n    height: 37.5px;\r\n  }\r\n\r\n  &__item-badge {\r\n    position: absolute;\r\n    top: 15px;\r\n    right: 199px;\r\n  }\r\n\r\n  &__item-text {\r\n    font-weight: bold;\r\n    align-self: flex-start;\r\n    margin-right: 15px;\r\n    margin-top: 40px;\r\n  }\r\n}\r\n\r\n.results-header {\r\n  margin-left: 50px;\r\n  margin-right: auto;\r\n\r\n  &__link {\r\n    display: flex;\r\n    text-decoration: none;\r\n    color: #a2a2a2;\r\n    align-self: center;\r\n    font-weight: 200;\r\n  }\r\n\r\n  &__text {\r\n    margin: auto 0;\r\n    justify-self: center;\r\n    font-size: 20px;\r\n  }\r\n  &__icon {\r\n    padding-right: 10px;\r\n    color: color(primary);\r\n    align-self: center;\r\n    padding-top: 2px;\r\n    font-weight: bold;\r\n  }\r\n}\r\n\r\n//left logos area\r\n\r\n.left-logos {\r\n  margin-left: 23px;\r\n  min-width: fit-content;\r\n  flex: 0 0 auto;\r\n  align-self: center;\r\n  z-index: 101;\r\n  height: 90%;\r\n}\r\n\r\n.left-logos * {\r\n  margin-top: 7px;\r\n  display: inline;\r\n  height: 80%;\r\n}\r\n\r\n.left-logo-years {\r\n  padding-left: 20px;\r\n}\r\n\r\n.badge-education {\r\n  & .mat-badge-content {\r\n    // background-color: $--green-color-bright !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.badge-forestry {\r\n  & .mat-badge-content {\r\n    background-color: color(primary) !important;\r\n    color: #ffffff;\r\n  }\r\n}\r\n\r\n.education-fill {\r\n  color: #009eee;\r\n  & * {\r\n    fill: #009eee !important;\r\n  }\r\n}\r\n\r\n.education-border {\r\n  border-bottom: #009eee solid 3px;\r\n}\r\n\r\n.forestry-fill {\r\n  color: #00c466;\r\n  & * {\r\n    fill: #00c466 !important;\r\n  }\r\n}\r\n.forestry-border {\r\n  // border-bottom: $--green-color-bright solid 3px;\r\n}\r\n\r\n::ng-deep .list__item-svg .a {\r\n  fill: #00c466 !important;\r\n}\r\n",
                     "styleUrl": "./navbar.component.scss"
                 }
             ],
@@ -10024,12 +10150,12 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <app-icon color=\"primary\" type=\"svg\" key=\"tree\" color=\"primary\"></app-icon>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
+            "templateData": "<mat-toolbar class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <div class=\"icon-container\">\r\n        <app-icon\r\n          color=\"primary\"\r\n          type=\"svg\"\r\n          key=\"tree\"\r\n          color=\"primary\"\r\n        ></app-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <!-- <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography> -->\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</mat-toolbar>\r\n"
         },
         {
             "name": "NavbarComponent",
             "id": "component-NavbarComponent-af348c4c599ad4a757894d55676fed44-1",
-            "file": "src/app/components/navigation/navbar/navbar.component.ts",
+            "file": "src/app/navigation/components/navbar/navbar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -10231,7 +10357,7 @@
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "NavbarComponent-1",
-            "templateData": "<mat-toolbar class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <div class=\"icon-container\">\r\n        <app-icon\r\n          color=\"primary\"\r\n          type=\"svg\"\r\n          key=\"tree\"\r\n          color=\"primary\"\r\n        ></app-icon>\r\n      </div>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <!-- <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography> -->\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</mat-toolbar>\r\n"
+            "templateData": "<div class=\"navbar\">\r\n  <!-- toggle menu button -->\r\n  <div\r\n    class=\"sidebar-toggle\"\r\n    [ngClass]=\"{ closed: isOpen }\"\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <!-- <app-icon type=\"svg\" key=\"tree\" color=\"primary\"></app-icon> -->\r\n      <app-icon color=\"primary\" type=\"svg\" key=\"tree\" color=\"primary\"></app-icon>\r\n    </div>\r\n    <div class=\"sidebar-toggle__text\">\r\n      {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n    </div>\r\n  </div>\r\n\r\n  <div>\r\n    <app-typography [variant]=\"'mat-display-1'\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div class=\"project-status\" *ngIf=\"showSteps\">\r\n    <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n      <div\r\n        class=\"project-status__item-badge\"\r\n        matBadgeOverlap\r\n        matBadge=\"{{ item.count }}\"\r\n      ></div>\r\n\r\n      <div class=\"project-status__item-icon\">\r\n        <div class=\"icon-container\">\r\n          <app-icon\r\n            [color]=\"'default'\"\r\n            type=\"svg\"\r\n            [key]=\"item.svgUrl\"\r\n          ></app-icon>\r\n        </div>\r\n      </div>\r\n      <span class=\"project-status__item-text\">{{ item.text }}</span>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"\r\n      ><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\">\r\n    <!-- <svg-icon\r\n      class=\"left-logo-years\"\r\n      src=\"assets/images/left-logo-years-new.svg\"\r\n    >\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
         },
         {
             "name": "PaginationComponent",
@@ -10374,7 +10500,7 @@
         {
             "name": "StatusCardComponent",
             "id": "component-StatusCardComponent-dfd79d5c49828c9cad7af264a2ecf4d5",
-            "file": "src/app/shared/components/status-card/status-card.component.ts",
+            "file": "src/app/components/cards/status-card/status-card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -10423,7 +10549,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".item-icon {\r\n  border-radius: 100px;\r\n  height: 75px;\r\n  width: 75px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #00000029;\r\n  // display: flex;\r\n  -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n  box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n  .icon-container {\r\n    height: 100%;\r\n    transform: scale(1.5);\r\n  }\r\n}\r\n\r\n\r\n.item-text {\r\n  align-self: flex-end;\r\n  margin-right: 10px;\r\n}\r\n",
+                    "data": ".item-icon {\r\n  border-radius: 100px;\r\n  height: 75px;\r\n  width: 75px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #00000029;\r\n  -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n  box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n  .icon-container {\r\n    height: 100%;\r\n  }\r\n}\r\n\r\n\r\n.item-text {\r\n  align-self: flex-end;\r\n  transform: translate(-10%, -50%);\r\n}\r\n",
                     "styleUrl": "./status-card.component.scss"
                 }
             ],
@@ -10439,12 +10565,12 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n  <div class=\"item-icon\" matBadgeOverlap matBadge=\"{{ item.badgeValue }}\">\r\n    <div class=\"icon-container\">\r\n      <app-icon [color]=\"'default'\" type=\"svg\" [key]=\"item.svgUrl\"></app-icon>\r\n    </div>\r\n  </div>\r\n  <div fxFlexAlign=\"center\" fxLayoutGap=\"10px\" class=\"item-text\">\r\n    <app-typography variant=\"body-1\" color=\"text\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n    <!-- <span class=\"project-status__item-text\"></span> -->\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n  <div class=\"item-icon\" matBadgeOverlap matBadge=\"{{ item.badgeValue }}\">\r\n    <div class=\"icon-container\">\r\n      <app-icon  type=\"svg\" [key]=\"item.svgUrl\" [size]=\"35\"></app-icon>\r\n    </div>\r\n  </div>\r\n  <div fxFlexAlign=\"end\" fxLayoutGap=\"10px\" class=\"item-text\">\r\n    <app-typography [size]=\"14\" [bold]=\"600\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
-            "name": "StatusComponent",
-            "id": "component-StatusComponent-a8a4030c25fd290110b4aaa70fe36456",
-            "file": "src/app/components/status/status.component.ts",
+            "name": "StatusCardComponent",
+            "id": "component-StatusCardComponent-dfd79d5c49828c9cad7af264a2ecf4d5-1",
+            "file": "src/app/shared/components/status-card/status-card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -10558,8 +10684,8 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n\r\n.status-container,\r\ndiv {\r\n  width: 100%;\r\n}\r\n\r\nmat-progress-bar.status-progress-bar {\r\n  :ng-deep .mat-progress-bar-buffer {\r\n    background-color: #90a4ae !important;\r\n  }\r\n\r\n  :ng-deep .mat-progress-bar.mat-accent.mat-progress-bar-buffer {\r\n    background-color: #90a4ae !important;\r\n  }\r\n\r\n  ::ng-deep .mat-progress-bar-buffer.mat-progress-bar-element {\r\n    background-color: color(light-text) !important;\r\n  }\r\n}\r\n\r\n.step-label {\r\n  padding-top: spacing(1);\r\n}\r\n\r\ndiv.status-bar {\r\n  height: spacing(0.5);\r\n  width: 100%;\r\n  background-color: color(disable);\r\n\r\n  &.active {\r\n    background-color: color(accent);\r\n  }\r\n}\r\n",
-                    "styleUrl": "./status.component.scss"
+                    "data": ".item-icon {\r\n  border-radius: 100px;\r\n  height: 75px;\r\n  width: 75px;\r\n  background-color: #ffffff;\r\n  border: 1px solid #00000029;\r\n  // display: flex;\r\n  -webkit-box-shadow: 0px 5px 0px 5px #ffffff;\r\n  box-shadow: 0px 0px 0px 6px #ffffff;\r\n\r\n  .icon-container {\r\n    height: 100%;\r\n    transform: scale(1.5);\r\n  }\r\n}\r\n\r\n\r\n.item-text {\r\n  align-self: flex-end;\r\n  margin-right: 10px;\r\n}\r\n",
+                    "styleUrl": "./status-card.component.scss"
                 }
             ],
             "stylesData": "",
@@ -10574,7 +10700,10 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"status-container\" fxFill fxFlex=\"row\">\r\n\r\n  <mat-grid-list [cols]=\"cols || 8\" [rowHeight]=\"(height || 2) + 'vh'\" [gutterSize]=\"(gutter || '2' +'px')\" [dir]=\"'rtl'\">\r\n    <mat-grid-tile [colspan]=\"cols || 8\">\r\n      <app-typography *ngIf=\"!slots\">\r\n        {{ status.label }}\r\n      </app-typography>\r\n\r\n      <ng-container *ngTemplateOutlet=\"slots?.textRef; context :{status}\"></ng-container>\r\n\r\n    </mat-grid-tile>\r\n    <mat-grid-tile *ngFor=\"let step of steps; let i = index\">\r\n      <div fxLayout=\"column\">\r\n        <div [ngClass]=\"{'status-bar' : true, 'active'  : !!step  }\">\r\n        </div>\r\n        <div class=\"step-label\" *ngIf=\"hasLabel\" fxLayout=\"column\" fxLayoutAlign=\"end center\">\r\n          <app-typography [color]=\"step ? 'accent' : 'disable'\" size=\"12\">\r\n            0{{i+1}}\r\n          </app-typography>\r\n        </div>\r\n      </div>\r\n    </mat-grid-tile>\r\n  </mat-grid-list>\r\n</div>\r\n"
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "StatusCardComponent-1",
+            "templateData": "<div fxLayout=\"row\" fxLayoutAlign=\"space-between center\">\r\n  <div class=\"item-icon\" matBadgeOverlap matBadge=\"{{ item.badgeValue }}\">\r\n    <div class=\"icon-container\">\r\n      <app-icon [color]=\"'default'\" type=\"svg\" [key]=\"item.svgUrl\"></app-icon>\r\n    </div>\r\n  </div>\r\n  <div fxFlexAlign=\"center\" fxLayoutGap=\"10px\" class=\"item-text\">\r\n    <app-typography variant=\"body-1\" color=\"text\">\r\n      {{ item.title }}\r\n    </app-typography>\r\n    <!-- <span class=\"project-status__item-text\"></span> -->\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "StepComponent",
@@ -11187,8 +11316,8 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\nmat-table {\r\n  width: 100%;\r\n  height: 100%;\r\n  background-color: transparent !important;\r\n}\r\n\r\nmat-cell {\r\n  height: inherit;\r\n\r\n  &.center {\r\n    justify-content: center;\r\n  }\r\n}\r\n\r\nmat-header-cell {\r\n  // align-items: flex-end;\r\n  // padding-bottom: spacing(1);\r\n\r\n  &.center {\r\n    justify-content: center;\r\n  }\r\n}\r\n\r\nmat-header-row.accent {\r\n  border-bottom: color(accent) solid 3px;\r\n}\r\n\r\nmat-header-row.primary {\r\n  border-bottom: color(primary) solid 3px;\r\n}\r\n\r\nmat-row {\r\n  height: 5vh;\r\n}\r\n\r\n.cell-input {\r\n  width: 85%;\r\n\r\n  app-column-form {\r\n    width: inherit;\r\n  }\r\n}\r\n\r\n::ng-deep .mat-sort-header-arrow {\r\n  color : color(primary) !important\r\n}\r\n",
-                    "styleUrl": "./table.component.scss"
+                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\n.steps-container {\r\n  width: 100%;\r\n  height: 100%;\r\n\r\n  .divider-container {\r\n    width: 100%;\r\n\r\n    .divider {\r\n      width: 100%;\r\n      height: 8px;\r\n      background-color: #e4e4e4;\r\n      transform: translateY(-50%);\r\n    }\r\n  }\r\n}\r\n\r\n",
+                    "styleUrl": "./stepper.component.scss"
                 }
             ],
             "stylesData": "",
@@ -11207,7 +11336,130 @@
         },
         {
             "name": "ToNavComponent",
-            "id": "component-ToNavComponent-0cfe2796b88b3f6dfe9e4cf40835a798",
+            "id": "component-ToNavComponent-1163ab122d63d19b6fb270a2b9720b5e",
+            "file": "src/app/components/navigation/to-nav/to-nav.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-to-nav",
+            "styleUrls": [
+                "./to-nav.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./to-nav.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "showStatus",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "boolean"
+                },
+                {
+                    "name": "status",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "NavigationCardModel[]"
+                },
+                {
+                    "name": "title",
+                    "defaultValue": "''",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "menuToggle",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "isOpen",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 17,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 26,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "toggleMenu",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 19,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { NavigationCardModel } from '../../../utilities/models/nav-card-model';\r\nimport { Input } from '@angular/core';\r\nimport { Component, OnInit, EventEmitter, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-to-nav',\r\n  templateUrl: './to-nav.component.html',\r\n  styleUrls: ['./to-nav.component.scss'],\r\n})\r\nexport class ToNavComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public status: NavigationCardModel[] = [];\r\n  @Input() public title: string = '';\r\n  @Input() public showStatus: boolean = true;\r\n\r\n  public isOpen: boolean = true;\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n* {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: color(paper) !important;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.menuButton {\r\n  height: 100%;\r\n  border-bottom: solid 3px color(primary);\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n\r\n// main area item\r\n\r\n.status-container {\r\n  display: flex;\r\n  width: 100%;\r\n}\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    transform: translateY(30%);\r\n  }\r\n\r\n}\r\n\r\n\r\n//left logos area\r\n\r\n\r\n.icon-container {\r\n  height: 60%;\r\n}\r\n",
+                    "styleUrl": "./to-nav.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 22
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"navbar mat-elevation-z2\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"5\" c class=\"menuButton\" (click)=\"toggleMenu()\">\r\n    <div class=\"icon-container\">\r\n      <app-icon type=\"svg\" [key]=\"isOpen ? 'tree-gradient' : 'tree'\" color=\"primary\" [size]=\"40\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-typography [size]=\"10\">\r\n        {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"22\">\r\n    <app-typography [size]=\"24\" *ngIf=\"!showStatus\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showStatus\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div xLayout=\"row\" fxLayoutAlign=\"space-evenly center\" class=\"logo-container\" fxFlex=\"10\">\r\n    <div>\r\n      <app-icon key=\"logo-year\" [size]=\"80\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-icon key=\"logo\" [size]=\"60\"></app-icon>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "ToNavComponent",
+            "id": "component-ToNavComponent-0cfe2796b88b3f6dfe9e4cf40835a798-1",
             "file": "src/app/navigation/components/to-nav/to-nav.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -11403,133 +11655,10 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"navbar\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxFlex=\"5\" [ngClass]=\"{\r\n      closed: isOpen,\r\n      'education-fill education-border': prefix === 'education',\r\n      'forestry-fill forestry-border': prefix === 'forestry'\r\n    }\" (click)=\"toggleMenu()\">\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <app-icon type=\"svg\" key=\"tree\"></app-icon>\r\n    </div>\r\n\r\n    <div class=\"sidebar-toggle__text\">{{\r\n      isOpen ? \" תפריט\" : \" סגור תפריט\"\r\n      }}</div>\r\n\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"20\">\r\n    <app-typography variant=\"mat-display-1\">\r\n      {{title}}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showSteps\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\" fxFlex=\"15\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\" fxFlex=\"15\">\r\n    <!-- <svg-icon class=\"left-logo-years\" src=\"assets/images/left-logo-years-new.svg\">\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
-        },
-        {
-            "name": "ToNavComponent",
-            "id": "component-ToNavComponent-1163ab122d63d19b6fb270a2b9720b5e-1",
-            "file": "src/app/components/navigation/to-nav/to-nav.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-to-nav",
-            "styleUrls": [
-                "./to-nav.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./to-nav.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [
-                {
-                    "name": "showStatus",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 15,
-                    "type": "boolean"
-                },
-                {
-                    "name": "status",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 13,
-                    "type": "NavigationCardModel[]"
-                },
-                {
-                    "name": "title",
-                    "defaultValue": "''",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 14,
-                    "type": "string"
-                }
-            ],
-            "outputsClass": [
-                {
-                    "name": "menuToggle",
-                    "defaultValue": "new EventEmitter()",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 11,
-                    "type": "EventEmitter"
-                }
-            ],
-            "propertiesClass": [
-                {
-                    "name": "isOpen",
-                    "defaultValue": "true",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "boolean",
-                    "optional": false,
-                    "description": "",
-                    "line": 17,
-                    "modifierKind": [
-                        122
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 26,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "toggleMenu",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 19,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { NavigationCardModel } from '../../../utilities/models/nav-card-model';\r\nimport { Input } from '@angular/core';\r\nimport { Component, OnInit, EventEmitter, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-to-nav',\r\n  templateUrl: './to-nav.component.html',\r\n  styleUrls: ['./to-nav.component.scss'],\r\n})\r\nexport class ToNavComponent implements OnInit {\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  @Input() public status: NavigationCardModel[] = [];\r\n  @Input() public title: string = '';\r\n  @Input() public showStatus: boolean = true;\r\n\r\n  public isOpen: boolean = true;\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n* {\r\n  direction: rtl;\r\n}\r\n\r\n.navbar {\r\n  height: 10vh;\r\n  backdrop-filter: blur(15px) saturate(70%) contrast(70%) brightness(130%);\r\n  background-color: color(paper) !important;\r\n  box-sizing: border-box;\r\n}\r\n\r\n.menuButton {\r\n  height: 100%;\r\n  border-bottom: solid 3px color(primary);\r\n  cursor: pointer;\r\n}\r\n\r\n\r\n\r\n// main area item\r\n\r\n.status-container {\r\n  display: flex;\r\n  width: 100%;\r\n}\r\n\r\n.project-status {\r\n  display: flex;\r\n  z-index: 10111;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  position: absolute;\r\n  top: 0;\r\n  left: 50%;\r\n  width: fit-content;\r\n\r\n  &__item {\r\n    transform: translateY(30%);\r\n  }\r\n\r\n}\r\n\r\n\r\n//left logos area\r\n\r\n\r\n.icon-container {\r\n  height: 60%;\r\n}\r\n",
-                    "styleUrl": "./to-nav.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 22
-            },
-            "implements": [
-                "OnInit"
-            ],
             "isDuplicate": true,
             "duplicateId": 1,
             "duplicateName": "ToNavComponent-1",
-            "templateData": "<div class=\"navbar mat-elevation-z2\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"5\" c class=\"menuButton\" (click)=\"toggleMenu()\">\r\n    <div class=\"icon-container\">\r\n      <app-icon type=\"svg\" [key]=\"isOpen ? 'tree-gradient' : 'tree'\" color=\"primary\" [size]=\"40\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-typography [size]=\"10\">\r\n        {{ isOpen ? \" תפריט\" : \" סגור תפריט\" }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"22\">\r\n    <app-typography [size]=\"24\" *ngIf=\"!showStatus\">\r\n      {{ title }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showStatus\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div xLayout=\"row\" fxLayoutAlign=\"space-evenly center\" class=\"logo-container\" fxFlex=\"10\">\r\n    <div>\r\n      <app-icon key=\"logo-year\" [size]=\"80\"></app-icon>\r\n    </div>\r\n    <div>\r\n      <app-icon key=\"logo\" [size]=\"60\"></app-icon>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"navbar\" xLayout=\"row\" fxLayoutAlign=\"start center\">\r\n  <!-- toggle menu button -->\r\n  <div fxFlex=\"5\" [ngClass]=\"{\r\n      closed: isOpen,\r\n      'education-fill education-border': prefix === 'education',\r\n      'forestry-fill forestry-border': prefix === 'forestry'\r\n    }\" (click)=\"toggleMenu()\">\r\n    <div class=\"sidebar-toggle__icon\">\r\n      <app-icon type=\"svg\" key=\"tree\"></app-icon>\r\n    </div>\r\n\r\n    <div class=\"sidebar-toggle__text\">{{\r\n      isOpen ? \" תפריט\" : \" סגור תפריט\"\r\n      }}</div>\r\n\r\n  </div>\r\n\r\n  <div class=\"text-container\" fxFlex=\"20\">\r\n    <app-typography variant=\"mat-display-1\">\r\n      {{title}}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div *ngIf=\"showSteps\" fxFlex=\"50\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"space-evenly\">\r\n      <div class=\"project-status__item\" *ngFor=\"let item of status\">\r\n        <app-status-card [item]=\"item\"></app-status-card>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div class=\"results-header\" *ngIf=\"!showSteps\" fxFlex=\"15\">\r\n    <a class=\"results-header__link\" routerLink=\"forestry/search\"><span class=\"results-header__text\">חזור לחיפוש</span>\r\n      <mat-icon class=\"results-header__icon\" matPrefix>search</mat-icon>\r\n    </a>\r\n  </div>\r\n\r\n  <!-- left side logo -->\r\n  <a routerLink=\"/\" class=\"left-logos\" fxFlex=\"15\">\r\n    <!-- <svg-icon class=\"left-logo-years\" src=\"assets/images/left-logo-years-new.svg\">\r\n    </svg-icon>\r\n    <svg-icon src=\"assets/images/left-logo.svg\"></svg-icon> -->\r\n  </a>\r\n</div>\r\n"
         },
         {
             "name": "TypographyComponent",
@@ -11958,6 +12087,9 @@
                             "name": "TableComponent"
                         },
                         {
+                            "name": "ToNavComponent"
+                        },
+                        {
                             "name": "TypographyComponent"
                         }
                     ]
@@ -12147,9 +12279,6 @@
                     "elements": [
                         {
                             "name": "NavbarComponent"
-                        },
-                        {
-                            "name": "ToNavComponent"
                         }
                     ]
                 },
@@ -12166,9 +12295,6 @@
                     "elements": [
                         {
                             "name": "NavbarComponent"
-                        },
-                        {
-                            "name": "ToNavComponent"
                         }
                     ]
                 },
@@ -12343,16 +12469,6 @@
                 "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\"\r\nwidth=\"251.827\" height=\"97.18\" viewBox=\"0 0 251.827 97.18\"><defs>\r\n<style> .bottom-tree-lands{opacity:0.2;fill:url(#bottom-tree-lands);}</style><linearGradient id=\"bottom-tree-lands\" x1=\"0.5\" x2=\"0.5\" y2=\"1\" gradientUnits=\"objectBoundingBox\">\r\n<stop offset=\"0\" stop-color=\"#fff\"/><stop offset=\"1\" stop-color=\"#d6a348\"/></linearGradient></defs>\r\n<path class=\"bottom-tree-lands\" d=\"M813.255,106.665V96.41H785.183l16.449-16.428-4.123-8.908-7.52,7.541V57.4L778.348,45.759V90.237l-23.264,7.541H715.391l19.847-19.846h30.12V66.972H745.512l28.05-28.05-9.571-8.908L744.828,49.177v-26l-9.59-9.592V63.534l-17.8,17.8v-34.2L705.82,58.769V91.6l-12.327,12.305V49.861L728.4,14.954H714.024l-20.53,20.53v-26H681.189v26l-20.53-20.53H646.282l34.907,34.907v54.049L668.862,91.6V58.769L657.241,47.126v34.2l-17.8-17.8V13.587l-9.592,9.592v26L610.712,30.015l-9.592,8.908,28.05,28.05H609.344V77.931h30.1L659.29,97.777H619.6l-23.264-7.541V45.759L584.691,57.4V78.615l-7.519-7.541-4.1,8.908L589.5,96.41H561.428v10.255Z\" transform=\"translate(-561.428 -9.485)\"/>\r\n</svg>\r\n    `"
             },
             {
-                "name": "BOYS_GIRLS_ICON",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/utilities/icons/icons.list.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" width=\"47\" height=\"47\" viewBox=\"0 0 47 47\"><defs>\r\n<style>.gender{fill:\"none\";opacity:0.74;}.b{filter:url(#a);}</style>\r\n<filter id=\"a\" x=\"0\" y=\"0\" width=\"47\" height=\"47\" filterUnits=\"userSpaceOnUse\"><feOffset dy=\"3\" input=\"SourceAlpha\"/><feGaussianBlur stdDeviation=\"3\" result=\"b\"/>\r\n<feFlood flood-opacity=\"0.161\"/><feComposite operator=\"in\" in2=\"b\"/><feComposite in=\"SourceGraphic\"/></filter></defs>\r\n<g class=\"b\" transform=\"matrix(1, 0, 0, 1, 0, 0)\">\r\n<rect class=\"gender\" width=\"29\" height=\"29\" rx=\"5\" transform=\"translate(9 6)\"/></g></svg>`"
-            },
-            {
                 "name": "BUILDING_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -12456,36 +12572,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Calendar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/BottomNavBar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Cards.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "CardDashboardTemplate.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12526,7 +12612,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Pagination.stories.ts",
+                "file": "src/stories/Calendar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -12546,6 +12632,26 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Pagination.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/BottomNavBar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/step.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12556,17 +12662,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
+                "file": "src/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -12586,7 +12682,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/UserCard.stories.ts",
+                "file": "src/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -12596,21 +12692,21 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/screens/Login.stories.ts",
+                "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "DESTINATION_ICON",
+                "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/icon/icons.list.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"26.76\" height=\"26.76\"\r\nviewBox=\"0 0 26.76 26.76\"><defs>\r\n<style>.destination{fill:\"none\";}</style>\r\n</defs>\r\n<g transform=\"translate(0 -2.388)\">\r\n<g transform=\"translate(0 2.388)\"><path\r\nd=\"M325.218,255.626v-1.493h.32a.32.32,0,0,0,.32-.32V252.32a.32.32,0,0,0-.32-.32H322.6a.32.32,0,0,0-.25.12l-.6.747a.32.32,0,0,0,0,.4l.6.747a.32.32,0,0,0,.25.12h1.339v1.493Z\" transform=\"translate(-304.835 -238.895)\"/><path class=\"destination\" d=\"M213.108,181.28h6.318a.64.64,0,0,0,0-1.28h-7.919A7.864,7.864,0,0,1,213.108,181.28Z\" transform=\"translate(-200.495 -170.711)\"/><path class=\"destination\" d=\"M199.491,332h-6.65a9.1,9.1,0,0,1-.4,1.28h7.052a3.419,3.419,0,1,1,.009,6.838l-10.885.042a.64.64,0,1,0,0,1.28h0l10.884-.042a4.7,4.7,0,0,0-.014-9.4Z\" transform=\"translate(-178.337 -314.68)\"/><path class=\"destination\" d=\"M281.154,109.68a1.454,1.454,0,0,0,1.454-1.454c0-.8-.789-2.226-1.454-2.226s-1.454,1.423-1.454,2.226A1.454,1.454,0,0,0,281.154,109.68Z\" transform=\"translate(-265.053 -100.641)\"/><path class=\"destination\" d=\"M223.235,109.68a1.454,1.454,0,0,0,1.454-1.454c0-.8-.789-2.226-1.454-2.226s-1.454,1.423-1.454,2.226A1.454,1.454,0,0,0,223.235,109.68Z\" transform=\"translate(-210.185 -100.641)\"/><path class=\"destination\" d=\"M328.219,388c0-1.082-1.064-3-1.959-3s-1.959,1.918-1.959,3a1.959,1.959,0,0,0,3.919,0Z\" transform=\"translate(-307.313 -364.854)\"/><path class=\"destination\" d=\"M248.178,389.96A1.959,1.959,0,0,0,250.137,388c0-1.082-1.064-3-1.959-3s-1.959,1.918-1.959,3A1.959,1.959,0,0,0,248.178,389.96Z\" transform=\"translate(-233.341 -364.854)\"/><path class=\"destination\" d=\"M8.749,170.984a7.177,7.177,0,0,0-7.168,7.168c0,4.488,6.462,10.44,6.737,10.691a.64.64,0,0,0,.863,0c.275-.251,6.737-6.2,6.737-10.691A7.177,7.177,0,0,0,8.749,170.984Zm0,11.861a4.693,4.693,0,1,1,4.693-4.693,4.693,4.693,0,0,1-4.693,4.693Z\" transform=\"translate(-1.581 -162.251)\"/><path class=\"destination\" d=\"M345.087,15.531a.64.64,0,0,0,.786,0,17.239,17.239,0,0,0,2-1.89,6.659,6.659,0,0,0,2.084-4.161,4.48,4.48,0,0,0-8.959,0,6.659,6.659,0,0,0,2.084,4.161A17.234,17.234,0,0,0,345.087,15.531Zm.393-8.185a2.133,2.133,0,1,1-2.133,2.133A2.133,2.133,0,0,1,345.48,7.346Z\"\r\ntransform=\"translate(-323.2 -5)\"/>\r\n</svg>`"
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "DESTINATION_ICON",
@@ -12763,6 +12859,36 @@
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"30.237\" height=\"26.954\" viewBox=\"0 0 30.237 26.954\">\r\n  <g id=\"home\" transform=\"translate(0.001 -27.798)\">\r\n    <g id=\"Group_891\" data-name=\"Group 891\" transform=\"translate(-0.001 27.798)\">\r\n      <g id=\"Group_890\" data-name=\"Group 890\" transform=\"translate(0 0)\">\r\n        <path id=\"Path_639\" data-name=\"Path 639\" d=\"M29.915,38.443,15.582,27.949a.785.785,0,0,0-.928,0L.321,38.443a.786.786,0,1,0,.928,1.268L15.118,29.557,28.986,39.711a.786.786,0,0,0,.928-1.268Z\" transform=\"translate(0.001 -27.798)\"\r\n        fill=\"'none'\"/>\r\n      </g>\r\n    </g>\r\n    <g id=\"Group_893\" data-name=\"Group 893\" transform=\"translate(3.333 39.889)\">\r\n      <g id=\"Group_892\" data-name=\"Group 892\" transform=\"translate(0 0)\">\r\n        <path id=\"Path_640\" data-name=\"Path 640\" d=\"M79.235,232.543a.786.786,0,0,0-.786.786v12.505H72.165v-6.826a3.928,3.928,0,0,0-7.857,0v6.826H58.023V233.329a.786.786,0,0,0-1.571,0v13.291a.786.786,0,0,0,.786.786h7.856a.785.785,0,0,0,.783-.724.592.592,0,0,0,0-.061v-7.612a2.357,2.357,0,0,1,4.714,0v7.612a.578.578,0,0,0,0,.06.785.785,0,0,0,.783.725h7.856a.786.786,0,0,0,.786-.786V233.329A.786.786,0,0,0,79.235,232.543Z\" transform=\"translate(-56.452 -232.543)\"\r\n        fill=\"'none'\"/>\r\n      </g>\r\n    </g>\r\n  </g>\r\n</svg>\r\n`"
             },
             {
+                "name": "HOME_MAT",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/components/icon/icons.list.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "HOME_SVG",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/app/utilities/icons/icons.list.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "HOME_SVG",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "LIST_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -12771,36 +12897,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"29.56\" height=\"32.535\" viewBox=\"0 0 29.56 32.535\"><defs>\r\n<style>.list{fill:\"\"none\";}</style></defs><g transform=\"translate(-22.3)\"><g transform=\"translate(22.3 0)\">\r\n<path class=\"list\" d=\"M26.163,4.183a.819.819,0,0,0-1.154-.007A.807.807,0,0,0,25,5.33L26.95,7.291a.817.817,0,0,0,.58.24h0a.814.814,0,0,0,.574-.24l5.931-5.9A.814.814,0,1,0,32.887.24L31.092,2.021A5.115,5.115,0,1,0,32.32,7.065a.819.819,0,0,0-1.568-.474,3.492,3.492,0,1,1-.821-3.409L27.537,5.564Z\" transform=\"translate(-22.3 0)\"/>\r\n<path class=\"list\" d=\"M27.417,170.6a5.117,5.117,0,1,0,5.117,5.117A5.122,5.122,0,0,0,27.417,170.6Zm0,8.6a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,179.2Z\" transform=\"translate(-22.3 -159.219)\"/>\r\n<path class=\"list\" d=\"M32.533,339.417a5.117,5.117,0,1,0-5.117,5.117A5.122,5.122,0,0,0,32.533,339.417Zm-5.117,3.489a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,342.906Z\" transform=\"translate(-22.3 -311.999)\"/>\r\n<path class=\"list\" d=\"M219.218,235h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -219.323)\"/>\r\n<path class=\"list\" d=\"M219.218,71.5h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -66.73)\"/>\r\n<path class=\"list\" d=\"M219.218,398.8h-15.9a.821.821,0,1,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -372.196)\"/></g></g>\r\n</svg>`"
-            },
-            {
-                "name": "LIST_ICON",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/utilities/icons/icons.list.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"29.56\" height=\"32.535\" viewBox=\"0 0 29.56 32.535\"><defs>\r\n<style>.list{fill:\"\"none\";}</style></defs><g transform=\"translate(-22.3)\"><g transform=\"translate(22.3 0)\">\r\n<path class=\"list\" d=\"M26.163,4.183a.819.819,0,0,0-1.154-.007A.807.807,0,0,0,25,5.33L26.95,7.291a.817.817,0,0,0,.58.24h0a.814.814,0,0,0,.574-.24l5.931-5.9A.814.814,0,1,0,32.887.24L31.092,2.021A5.115,5.115,0,1,0,32.32,7.065a.819.819,0,0,0-1.568-.474,3.492,3.492,0,1,1-.821-3.409L27.537,5.564Z\" transform=\"translate(-22.3 0)\"/>\r\n<path class=\"list\" d=\"M27.417,170.6a5.117,5.117,0,1,0,5.117,5.117A5.122,5.122,0,0,0,27.417,170.6Zm0,8.6a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,179.2Z\" transform=\"translate(-22.3 -159.219)\"/>\r\n<path class=\"list\" d=\"M32.533,339.417a5.117,5.117,0,1,0-5.117,5.117A5.122,5.122,0,0,0,32.533,339.417Zm-5.117,3.489a3.482,3.482,0,1,1,3.482-3.482A3.485,3.485,0,0,1,27.417,342.906Z\" transform=\"translate(-22.3 -311.999)\"/>\r\n<path class=\"list\" d=\"M219.218,235h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -219.323)\"/>\r\n<path class=\"list\" d=\"M219.218,71.5h-15.9a.821.821,0,0,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -66.73)\"/>\r\n<path class=\"list\" d=\"M219.218,398.8h-15.9a.821.821,0,1,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z\" transform=\"translate(-190.479 -372.196)\"/></g></g>\r\n</svg>`"
-            },
-            {
-                "name": "LOCATION_ICON",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/components/icon/icons.list.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"18\" height=\"25.609\"\r\nviewBox=\"0 0 18 25.609\">\r\n<defs><style>.location{fill:\"none\";}</style></defs>\r\n<path class=\"location\" d=\"M170.592,99a4.5,4.5,0,1,0-4.5-4.5A4.505,4.505,0,0,0,170.592,99Zm0-7.5a3,3,0,1,1-3,3A3,3,0,0,1,170.592,91.5Z\" transform=\"translate(-161.592 -85.5)\"/>\r\n<path class=\"location\" d=\"M92.562,14.021a9,9,0,1,0-14.941,0l7.47,11.588ZM85.092,1.5a7.5,7.5,0,0,1,6.36,11.475l-6.36,9.866-6.36-9.866A7.5,7.5,0,0,1,85.092,1.5Z\" transform=\"translate(-76.092 0)\"/>\r\n</svg>\r\n`"
-            },
-            {
-                "name": "LOGO",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/utilities/icons/icons.list.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"43\" height=\"56.067\" viewBox=\"0 0 43 56.067\"><defs><style>.a{fill:#1a1818;}.b{fill:#fff;}.c{fill:#59a437;}.d{fill:#82511b;}.e{fill:#0061ad;}.f{fill:#040506;}</style></defs><g transform=\"translate(-555.698 -7.567)\"><g transform=\"translate(555.698 7.567)\"><path class=\"a\" d=\"M595.856,42.745h2.406l-1.209,2.724h.439l1.173-2.724V42.42h-2.81Zm.475,3.778V43.461l-.41.238v2.823Zm-2.589-4.1H592.7v.325h1.02c.528,0,.8.372.8.914v1.81h.41V43.718c0-1.03-.61-1.3-1.185-1.3m-1.891,0h-.411v4.1h.411Zm-6.468.325h2.4L586.58,45.47h.439l1.173-2.725V42.42h-2.809Zm.475,3.778V43.461l-.41.238v2.823Zm-1.391-2.445V42.42h-.41V44.3l.41-.221Zm-4.344-1.658a3.961,3.961,0,0,1,.375,1.448c-.012.1-.041.21-.053.285,0,0-.228,1.123-.252,1.315h.41l.23-1.134c.164-.809.492-1.659,1.114-1.659.48,0,.768.716.768,1.315,0,.676-.257,1.23-.827,1.23a.973.973,0,0,1-.538-.135v.35a1.612,1.612,0,0,0,.557.122c.5,0,1.233-.337,1.233-1.577,0-.809-.34-1.63-1.156-1.63-.657,0-.921.494-1.144.926a7.273,7.273,0,0,0-.276-.855Zm-3.043,2.432V42.745h.9c.563,0,.757.414.757.88V45.47h.41V43.5a1.063,1.063,0,0,0-1.132-1.076h-1.936v.325h.587v2.037c0,.559-.523.372-.652.314v.314c.206.122,1.062.245,1.062-.559m-4.474-2.107-1.138,2.725h.446l1.138-2.672V42.42h-1.824V41.383h-.412v1.362Zm-2.617,1.333V42.42h-.41V44.3l.41-.221ZM568.1,42.42V43.9a1.159,1.159,0,0,1-1.326,1.316.973.973,0,0,1-1.068-.78,2.321,2.321,0,0,0,1-.267.815.815,0,0,0,.381-.779V42.42h-.41v1c0,.406-.106.465-.3.581a1.707,1.707,0,0,1-.7.157V42.42h-.41v1.739a1.358,1.358,0,0,0,1.525,1.374c1.085,0,1.725-.46,1.725-1.658V42.42Zm-5.077,0h-1.044v.325H563c.528,0,.8.373.8.914v1.81h.412V43.718c0-1.03-.611-1.3-1.185-1.3m-2.488,1.734a1.454,1.454,0,0,0,.61-1.374v-.36h-.421v.418c0,.316.005.828-.376,1.066-.087-.088-.557-.7-1.255-1.484h-.552c.465.494.851.972.851.972a1.873,1.873,0,0,0-.54.7,3.28,3.28,0,0,0-.158,1.374h.416a4.572,4.572,0,0,1,.141-1.316,1.36,1.36,0,0,1,.352-.524,10.74,10.74,0,0,1,1.3,1.84h.463a11.215,11.215,0,0,0-.834-1.316m-3.021-1.409-1.138,2.725h.445l1.138-2.672V42.42h-1.824V41.383h-.41v1.362Z\" transform=\"translate(-555.689 3.33)\"/><path class=\"b\" d=\"M555.728,7.567h42.961V50.629H555.728Z\" transform=\"translate(-555.689 -7.567)\"/><path class=\"c\" d=\"M569.284,33.176l15-25.609h13.3l-15,25.609Zm-9.965,17.018,9.139-15.607v1.728h9.216l-5.911,10.3V38.3h-3.3V50.194Z\" transform=\"translate(-554.578 -7.567)\"/><path class=\"c\" d=\"M568.74,40.931V37.508h2.832l-1.986,3.423Z\" transform=\"translate(-551.52 2.023)\"/><path class=\"d\" d=\"M582.777,49.771V46.348h3.352l7.756-13.424V49.771Zm11.108-17.018H580.058L593.884,8.935ZM570.179,49.771,579.5,33.713v2.18h9.136l-5.86,10.3V37.878H579.5V49.771Z\" transform=\"translate(-550.884 -7.144)\"/><path class=\"e\" d=\"M555.728,7.567h28.436L569.3,33.176H558.537V29.744h-2.809Zm5.675,39.2-1.988,3.423h-3.687V36.316h8.667l-5.947,10.455Z\" transform=\"translate(-555.689 -7.567)\"/><path class=\"b\" d=\"M565.43,31.11h.953V25.532l1.859-1.861h1.946l.649-.648h-2.12l1.6-1.6h3.114l.779-.779H571.1l1.168-1.168h1.773v-.691h-1.082L574.34,17.4v-1l-1.557,1.557V16.1l-.736.735v1.73l-1.124,1.125v-1.6l-.779.778v1.688l-1.6,1.6V20.471l-.779.779v1.73l-1.47,1.47c.043-.042,0-3.416,0-3.416l1.557-1.558h1.558v-.648h-1.082l3.2-3.2h2.336v-.648h-1.774l1.04-1.038-.261-.563-.475.477V12.514l-.736-.736v2.811l-3.546,3.547V16.362l-.649.649v1.816l-1.211,1.211v-3.33l.952-.952H569.5l.691-.691H567.68l1.254-1.254h1.9v-.693h-1.254l1.773-1.773-.6-.563-1.211,1.211V10.351l-.606-.606V12.9l-1.125,1.125V11.864l-.735.736v2.075l-.779.778V12.037L568.5,9.831h-.909l-1.3,1.3V9.485h-.778v1.643l-1.3-1.3h-.909l2.206,2.206v3.416l-.779-.778V12.6L564,11.864v2.162L562.879,12.9V9.744l-.606.606v1.643l-1.21-1.211-.606.563,1.773,1.773h-1.253v.693h1.9l1.254,1.254h-2.509l.691.691h2.293l.952.952v3.33l-1.211-1.211V17.011l-.649-.649v1.774l-3.546-3.547V11.778l-.736.736v1.341l-.475-.477-.259.563,1.038,1.038h-1.774v.648h2.336l3.2,3.2H562.4v.648h1.558l1.557,1.558s-.045,3.374,0,3.416l-1.47-1.47V21.25l-.779-.779v1.688l-1.6-1.6V18.871l-.779-.778v1.6l-1.123-1.125v-1.73l-.736-.735v1.858l-1.557-1.557v1l1.384,1.384h-1.082v.691h1.773l1.168,1.168H557.6l.779.779H561.5l1.6,1.6h-2.119l.648.648h1.946l1.859,1.861V31.11Z\" transform=\"translate(-555.149 -6.974)\"/><path class=\"f\" d=\"M555.7,50.812h.467V49.588l.577-.541,1.269,1.765h.628l-1.545-2.1,1.514-1.418h-.67l-1.772,1.719V47.3H555.7v3.513Zm7.2,0h.468V49.588l.577-.541,1.269,1.765h.627l-1.544-2.1,1.514-1.418h-.672l-1.771,1.719V47.3H562.9v3.513Zm7.2,0h2.257v-.418h-1.778V47.3H570.1v3.513Zm6.481-1.143h1.21v-.443h-1.21Zm7.462-2.37h-.475V49.64a1.664,1.664,0,0,1-.073.6.494.494,0,0,1-.5.261.508.508,0,0,1-.4-.144.627.627,0,0,1-.129-.432v-.25h-.451v.25a.9.9,0,0,0,.282.762,1.094,1.094,0,0,0,.681.215.969.969,0,0,0,.936-.45,1.473,1.473,0,0,0,.133-.691V47.3Zm4.635,3.513h.458V47.977l1.792,2.835h.538V47.3H591v2.839L589.239,47.3h-.565v3.513Zm7.518,0h.479v-1.6h1.738V48.8h-1.738V47.728h1.977V47.3h-2.456v3.513Zm-40.494,0h.467V49.588l.577-.541,1.269,1.765h.628l-1.545-2.1,1.514-1.418h-.67l-1.772,1.721V47.3H555.7v3.513Zm7.2,0h.468V49.588l.577-.541,1.269,1.765h.627l-1.544-2.1,1.514-1.418h-.672l-1.771,1.721V47.3H562.9v3.513Zm7.2,0h2.257v-.418h-1.778V47.3H570.1v3.513Zm6.481-1.143h1.21v-.443h-1.21Zm7.462-2.37h-.475V49.64a1.664,1.664,0,0,1-.073.6.494.494,0,0,1-.5.261.508.508,0,0,1-.4-.144.626.626,0,0,1-.129-.431v-.251h-.451v.251a.9.9,0,0,0,.282.761,1.094,1.094,0,0,0,.681.215.969.969,0,0,0,.936-.45,1.473,1.473,0,0,0,.133-.691V47.3Zm4.635,3.513h.458V47.977l1.792,2.835h.538V47.3H591v2.839L589.239,47.3h-.565v3.513Zm7.518,0h.479v-1.6h1.738V48.8h-1.738V47.728h1.977V47.3h-2.456v3.513Z\" transform=\"translate(-555.698 5.161)\"/></g></g></svg>`"
             },
             {
                 "name": "LOGO_ICON",
@@ -12811,16 +12907,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`\r\n\r\n<svg id=\"a40f30f4-7b59-4cc2-b8ab-2f75bedc37aa\" data-name=\"svg2\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 285.66 372.46\">\r\n  <defs>\r\n    <style>\r\n      .b2a1ef2a-6793-434d-a7e0-20c88af27ed9 {\r\n        fill: #221f20;\r\n      }\r\n\r\n      .f046d93e-32f3-4ce4-9af7-9ca16d569ad3 {\r\n        fill: #fff;\r\n      }\r\n\r\n      .ee0ddef0-4399-47a0-9b46-7f47d1f34c28 {\r\n        fill: #51b848;\r\n      }\r\n\r\n      .be161e8d-927e-4327-82ae-5dfb3ea4f0d6 {\r\n        fill: #926427;\r\n      }\r\n\r\n      .e0610833-ce90-473b-b097-3aa4f8c2dfec {\r\n        fill: #0572ba;\r\n      }\r\n    </style>\r\n  </defs>\r\n  <g id=\"b5d28e50-a32d-405e-a2b4-83744c5d9f68\" data-name=\"g12\">\r\n    <g id=\"a143c8ea-b8d3-4ff5-9188-125edf6a6c82\" data-name=\"g3312\">\r\n      <path id=\"b29c9843-4db3-4d85-bd5c-514ef3ee3669\" data-name=\"path224\" class=\"b2a1ef2a-6793-434d-a7e0-20c88af27ed9\" d=\"M266.84,305.57h16l-8,18.23h2.92l7.8-18.23v-2.18H266.84ZM270,330.86v-20.5l-2.73,1.6v18.9Zm-17.2-27.47h-6.94v2.17h6.78c3.51,0,5.3,2.5,5.3,6.12V323.8h2.73V312.08c0-6.9-4.06-8.69-7.87-8.69m-12.57,0h-2.72v27.47h2.72Zm-43,2.18h16l-8,18.23h2.92l7.79-18.23v-2.18H197.26Zm3.16,25.29v-20.5L197.7,312v18.9Zm-9.24-16.37v-11.1h-2.72V316l2.72-1.48Zm-28.86-11.1c1.37,3.15,2.73,7.79,2.5,9.7-.08.66-.28,1.4-.35,1.91,0,0-1.52,7.52-1.68,8.8h2.73l1.52-7.6c1.09-5.41,3.27-11.1,7.4-11.1,3.19,0,5.11,4.79,5.11,8.8,0,4.52-1.72,8.23-5.5,8.23a6.42,6.42,0,0,1-3.58-.9v2.34a10.55,10.55,0,0,0,3.7.82c3.31,0,8.18-2.26,8.18-10.56,0-5.42-2.26-10.92-7.67-10.92-4.37,0-6.12,3.31-7.6,6.2a47.66,47.66,0,0,0-1.84-5.72Zm-20.21,16.28v-14.1h6c3.74,0,5,2.76,5,5.88V323.8h2.73V310.6c0-4.1-3-7.21-7.52-7.21H135.48v2.18h3.9V319.2c0,3.75-3.47,2.5-4.33,2.11v2.1c1.37.82,7.06,1.64,7.06-3.74m-29.72-14.1-7.56,18.23h3l7.56-17.88v-2.53H103.24v-6.94H100.5v9.12ZM95,314.49v-11.1H92.28V316L95,314.49Zm-12.55-11.1v9.89c0,6.78-3.74,8.81-8.81,8.81s-6.9-3.43-7.09-5.22a15.29,15.29,0,0,0,6.66-1.8c1-.62,2.53-1.9,2.53-5.21v-6.47H73v6.66c0,2.72-.7,3.12-2,3.9A11.59,11.59,0,0,1,66.32,315V303.39H63.6V315c0,5.46,3.78,9.19,10.13,9.19,7.21,0,11.46-3.08,11.46-11.1v-9.74Zm-33.73,0H41.8v2.17h6.78c3.5,0,5.29,2.5,5.29,6.13V323.8h2.74V312.08c0-6.9-4.06-8.69-7.88-8.69M32.21,315c3.79-2.68,4-5.95,4-9.19v-2.41h-2.8v2.8c0,2.11,0,5.53-2.49,7.13-.59-.59-3.71-4.72-8.34-9.93H19c3.08,3.31,5.65,6.5,5.65,6.5A12.74,12.74,0,0,0,21,314.61c-1.28,3-1,5.65-1.05,9.19h2.77s-.16-6.12.93-8.81a9.23,9.23,0,0,1,2.34-3.5,71.56,71.56,0,0,1,8.65,12.31h3.08A76,76,0,0,0,32.21,315m-20.07-9.42L4.58,323.8h3l7.56-17.88v-2.53H3v-6.94H.26v9.12Z\" transform=\"translate(0 0)\"/>\r\n      <path id=\"edc77653-564b-4e52-b936-af1f34f3da02\" data-name=\"path226\" class=\"f046d93e-32f3-4ce4-9af7-9ca16d569ad3\" d=\"M.27,0H285.66V285.39H.27Z\" transform=\"translate(0 0)\"/>\r\n      <path id=\"a3a1c636-2859-45bb-b8a9-237b3d094d91\" data-name=\"path234\" class=\"ee0ddef0-4399-47a0-9b46-7f47d1f34c28\" d=\"M97.89,171.45,197.41,0h88.25L186.14,171.45ZM31.74,285.39,92.41,180.9v11.57h61.15l-39.23,69V205.77H92.41v79.62Z\" transform=\"translate(0 0)\"/>\r\n      <path id=\"ffc24ad4-3130-4414-807b-83899d7ff7a4\" data-name=\"path238\" class=\"ee0ddef0-4399-47a0-9b46-7f47d1f34c28\" d=\"M114.33,285.39V262.48h19L120,285.39Z\" transform=\"translate(0 0)\"/>\r\n      <path id=\"a1603cb4-0041-4e52-a8e5-cad044e2ebc0\" data-name=\"path250\" class=\"be161e8d-927e-4327-82ae-5dfb3ea4f0d6\" d=\"M211.29,285.39V262.48h22.44l51.93-89.88V285.39Zm74.37-113.94H193.1L285.66,12ZM127,285.39l62.4-107.51v14.59h61.16l-39.23,69V205.77H189.36v79.62Z\" transform=\"translate(0 0)\"/>\r\n      <path id=\"facfbe89-2f5b-4ac9-92b9-4862caab4c9e\" data-name=\"path258\" class=\"e0610833-ce90-473b-b097-3aa4f8c2dfec\" d=\"M.27,0H190.65L91.11,171.45h-72v-23H.27Zm38,262.48L25,285.39H.27V192.47h58l-39.82,70Z\" transform=\"translate(0 0)\"/>\r\n      <path id=\"fad46169-dc8d-4b7f-af28-a69e6185b0c8\" data-name=\"path270\" class=\"f046d93e-32f3-4ce4-9af7-9ca16d569ad3\" d=\"M68.84,161.59h6.38V124.24l12.44-12.45h13l4.34-4.34H90.85l10.72-10.71h20.84l5.22-5.22H106.78l7.82-7.82h11.87V79.07h-7.24l9.26-9.26V63.15L118.07,73.57V61.12L113.15,66V77.63l-7.53,7.52V74.44l-5.21,5.21V91L89.69,101.66V90.36l-5.21,5.22v11.58L74.63,117c.29-.29,0-22.88,0-22.88L85.06,83.7H95.48V79.36H88.25l21.43-21.42h15.63V53.59H113.44l7-7-1.74-3.77-3.19,3.19v-9l-4.92-4.92V51L86.8,74.73V62.86L82.45,67.2V79.36l-8.1,8.11V65.17l6.37-6.37H96.06l4.64-4.63H83.9l8.4-8.4H105V41.14h-8.4l11.88-11.88-4-3.76-8.12,8.11v-11l-4-4.05V39.69l-7.53,7.53V32.74l-4.92,4.92v13.9l-5.22,5.21V33.9L89.4,19.13H83.32l-8.69,8.69v-11H69.42v11l-8.68-8.69H54.65L69.42,33.9V56.77l-5.21-5.21V37.66l-4.92-4.92V47.22l-7.53-7.53V18.55L47.7,22.6v11L39.6,25.5l-4.06,3.76L47.41,41.14H39v4.63H51.76l8.39,8.4H43.36L48,58.8H63.34l6.37,6.37v22.3L61.6,79.36V67.2l-4.34-4.34V74.73L33.52,51V32.16l-4.93,4.92v9l-3.18-3.19-1.74,3.77,7,7H18.75v4.35H34.38L55.81,79.36H48.57V83.7H59L69.42,94.13s-.29,22.59,0,22.88l-9.84-9.85V95.58l-5.21-5.22v11.3L43.65,91V79.65l-5.21-5.21V85.16l-7.53-7.53V66L26,61.12V73.57L15.56,63.15v6.66l9.27,9.26H17.59V83.7H29.46l7.82,7.82H16.43l5.21,5.22H42.49l10.72,10.71H39l4.34,4.34h13l12.45,12.45v37.35Z\" transform=\"translate(0 0)\"/>\r\n      <path id=\"e031cbcf-7fbd-41f6-a7b7-c8e4b48cfbbe\" data-name=\"path278\" d=\"M0,371.83H3.11v-8.2L6.94,360l8.43,11.82h4.17l-10.26-14,10-9.49H14.88L3.11,359.82V348.31H0v23.52Zm47.83,0h3.1v-8.2L54.77,360l8.43,11.82h4.17l-10.26-14,10-9.49H62.7L50.93,359.82V348.31h-3.1v23.52Zm47.82,0h15V369H98.84V348.31H95.65v23.52Zm43.06-7.65h8v-3h-8Zm49.57-15.87h-3.16V364a11.46,11.46,0,0,1-.47,4.05c-.53,1.16-1.64,1.74-3.34,1.74a3.4,3.4,0,0,1-2.67-1,4.23,4.23,0,0,1-.86-2.89v-1.69h-3v1.69c0,2.44.62,4.14,1.88,5.1a7.26,7.26,0,0,0,4.52,1.43c3,0,5.13-1,6.22-3a9.92,9.92,0,0,0,.88-4.63V348.31Zm30.79,23.52h3v-19l11.91,19h3.58V348.31h-3v19l-11.73-19h-3.75v23.52Zm49.94,0h3.19v-10.7h11.54v-2.8H272.2v-7.14h13.13v-2.88H269v23.52Zm-269,0H3.11v-8.2L6.94,360l8.43,11.82h4.17l-10.26-14,10-9.49H14.88L3.11,359.82V348.31H0v23.52Zm47.83,0h3.1v-8.2L54.77,360l8.43,11.82h4.17l-10.26-14,10-9.49H62.7L50.93,359.82V348.31h-3.1v23.52Zm47.82,0h15V369H98.84V348.31H95.65v23.52Zm43.06-7.65h8v-3h-8Zm49.57-15.87h-3.16V364a11.46,11.46,0,0,1-.47,4.05c-.53,1.16-1.64,1.74-3.34,1.74a3.4,3.4,0,0,1-2.67-1,4.21,4.21,0,0,1-.86-2.89v-1.69h-3v1.69c0,2.44.62,4.14,1.88,5.1a7.26,7.26,0,0,0,4.52,1.43c3,0,5.13-1,6.22-3a9.92,9.92,0,0,0,.88-4.63V348.31Zm30.79,23.52h3v-19l11.91,19h3.58V348.31h-3v19l-11.73-19h-3.75v23.52Zm49.94,0h3.19V361.14h11.54v-2.81H272.2v-7.14h13.13v-2.88H269v23.52Z\" transform=\"translate(0 0)\"/>\r\n    </g>\r\n  </g>\r\n</svg>\r\n`"
-            },
-            {
-                "name": "LOGO_YEAR",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/app/utilities/icons/icons.list.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "`<svg id=\"Layer_1\" data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 72.1 56.38\"><defs><style>.cls-1{fill:#966427;}.cls-2{fill:#88c63d;}.cls-3{fill:#0d5736;}.cls-4{fill:#8d6520;}.cls-5,.cls-6{isolation:isolate;}.cls-6{font-size:6.01px;font-family:MyriadHebrew-Regular, Myriad Hebrew;}</style></defs><g id=\"Group_676\" data-name=\"Group 676\"><path id=\"Path_456\" data-name=\"Path 456\" class=\"cls-1\" d=\"M5.28,10.05h8.59v33.7H9.49v-30H5.28Z\" transform=\"translate(-5.28 -3.57)\"/><path id=\"Path_457\" data-name=\"Path 457\" class=\"cls-2\" d=\"M59.72,3.57,69.38,21s4.76,14.18-9,16.45c0,.32-13.45-1.14-10.54-14.75C50.75,19.37,59.72,3.57,59.72,3.57Z\" transform=\"translate(-5.28 -3.57)\"/><path id=\"Path_458\" data-name=\"Path 458\" class=\"cls-3\" d=\"M54.93,26.9l-1.14,1L59,33.06V49.91H60.6v-22l5.34-5.5-1.46-1.3L60.6,25.93v-9.4H59v14.1Z\" transform=\"translate(-5.28 -3.57)\"/><path id=\"Subtraction_5\" data-name=\"Subtraction 5\" class=\"cls-4\" d=\"M57.13,43.92h0A17.83,17.83,0,0,1,54,9.31l-2.79,6.9A13.06,13.06,0,0,0,57.13,39.1v4.81Zm5.66-.13h0V38.92A13.06,13.06,0,0,0,69,17.23l-1.09-2.44L65.28,9.37A17.83,17.83,0,0,1,62.8,43.79Z\" transform=\"translate(-5.28 -3.57)\"/><path id=\"Path_460\" data-name=\"Path 460\" class=\"cls-1\" d=\"M17.11,20.52c.16.23,3.88-.1,3.88-.1S21,12.48,29.1,13c.16,0,6.8,1,7,6.64s-6.15,10.86-6.15,10.86l-12.8,13H41.57V39.54h-16l11.83-12S44.81,17.67,35.09,11C35.09,10.86,21,4.1,17.11,20.52Z\" transform=\"translate(-5.28 -3.57)\"/></g><g class=\"cls-5\"><path d=\"M65.83,58.4h-.91V55.5l0-.44a4,4,0,0,1-.32.29l-.49.4-.44-.55,1.38-1.1h.75Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M70.15,58.4h-3v-.64l1.07-1.09c.32-.32.53-.55.63-.67a1.38,1.38,0,0,0,.21-.36.92.92,0,0,0,.06-.33.49.49,0,0,0-.14-.39.56.56,0,0,0-.38-.12,1.13,1.13,0,0,0-.48.11,2.63,2.63,0,0,0-.49.33l-.5-.59a3.45,3.45,0,0,1,.53-.38,2.2,2.2,0,0,1,.45-.17,2.4,2.4,0,0,1,.56-.06,1.64,1.64,0,0,1,.71.15,1.2,1.2,0,0,1,.48.41,1.13,1.13,0,0,1,.17.6,1.47,1.47,0,0,1-.11.56,2.34,2.34,0,0,1-.32.53,7.58,7.58,0,0,1-.77.78l-.55.52v0h1.87Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M73.68,56.25a2.94,2.94,0,0,1-.37,1.66,1.43,1.43,0,0,1-2.25,0,3.88,3.88,0,0,1,0-3.33,1.43,1.43,0,0,1,2.25,0A3,3,0,0,1,73.68,56.25Zm-2.1,0a3.33,3.33,0,0,0,.14,1.13.46.46,0,0,0,.46.34.48.48,0,0,0,.46-.34,3.37,3.37,0,0,0,.14-1.13,3.11,3.11,0,0,0-.15-1.14.47.47,0,0,0-.91,0A3.4,3.4,0,0,0,71.58,56.25Z\" transform=\"translate(-5.28 -3.57)\"/></g><text class=\"cls-6\" transform=\"translate(64.44 54.43)\">‏</text><path d=\"M12,54.6a2.28,2.28,0,0,1,1,.18,1.38,1.38,0,0,1,.29.22.82.82,0,0,1,.17.29,1.4,1.4,0,0,1,.08.34,2.58,2.58,0,0,1,0,.42v2.4H12.42v-2.4a.51.51,0,0,0-.58-.57,12,12,0,0,0-1.22.08l-.24,0v-.87A10.64,10.64,0,0,1,12,54.6Zm-.43,3.85H10.38V56.24h1.14Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M14.31,57.23V54.66h1.14v1.77l-.63.8Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M16.17,57.23V54.66h1.14v1.77l-.63.8Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M19.89,58.45H18.23l-.32-3.79H19l.14,1.76a.12.12,0,0,0,.08,0,.16.16,0,0,0,.08-.06.22.22,0,0,0,.07-.12.53.53,0,0,0,0-.19l.12-1.37h1.1L20.53,56a1.83,1.83,0,0,1-.08.43,1.19,1.19,0,0,1-.15.32,1.34,1.34,0,0,1-.2.21,1.28,1.28,0,0,1-.23.15l-.22.07a1.55,1.55,0,0,1-.37,0h-.05l0,.35H20a.76.76,0,0,0,.6-.29,1.61,1.61,0,0,0,.3-.92l.15-1.71h1.1L22,56.39a3,3,0,0,1-.19.87,1.88,1.88,0,0,1-.33.6,1.47,1.47,0,0,1-.46.36,2.57,2.57,0,0,1-.55.19A3.74,3.74,0,0,1,19.89,58.45Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M26,54.66l-.15,1.67a2.88,2.88,0,0,1-.17.83,2.1,2.1,0,0,1-1.82,1.29l-1.31.21v-.9l.91-.14-.8-3h1.13l.46,1.65.19.95a1.6,1.6,0,0,0,.28-.88l.15-1.72Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M27.77,58.45H26.64V54.66h1.13Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M31.15,56.05v3.79H30V56.05a5.52,5.52,0,0,0-.05-.71,3.79,3.79,0,0,0-.1-.51l-.05-.17H31s0,.1.06.18a4.87,4.87,0,0,1,.08.49A4.37,4.37,0,0,1,31.15,56.05Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M33.07,58.45H31.94V54.66h1.13Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M35.54,54.66v.82a1.28,1.28,0,0,0-.26.3,2.06,2.06,0,0,0-.16.34,1.37,1.37,0,0,0-.08.35,2.23,2.23,0,0,0,0,.32v1.66H33.87v-1.3a2,2,0,0,1,.62-1.61h-.75v-.88Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M36,58.45V54.71a10.54,10.54,0,0,1,1.57-.11,2.48,2.48,0,0,1,1,.17,1.27,1.27,0,0,1,.29.21.78.78,0,0,1,.17.28,1.55,1.55,0,0,1,.08.36,2.75,2.75,0,0,1,0,.43v2.4H38v-2.4a.5.5,0,0,0-.57-.57h-.33v3Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M42.41,54.66h1.91v.69L43.82,57h0l-.32,1.41H42.38L42.71,57l.44-1.46H41.27V53.91h1.14Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M46.67,58.45H45l-.32-3.79h1.1l.15,1.76a.13.13,0,0,0,.08,0,.16.16,0,0,0,.08-.06.31.31,0,0,0,.07-.12.53.53,0,0,0,0-.19l.12-1.37h1.09L47.31,56a1.83,1.83,0,0,1-.08.43,2.44,2.44,0,0,1-.15.32,1,1,0,0,1-.21.21,1.23,1.23,0,0,1-.22.15l-.23.07a1.5,1.5,0,0,1-.37,0h0l0,.35h.76a.76.76,0,0,0,.61-.29,1.69,1.69,0,0,0,.3-.92l.14-1.71H49l-.16,1.73a3.33,3.33,0,0,1-.18.87,2.1,2.1,0,0,1-.33.6,1.51,1.51,0,0,1-.47.36,2.32,2.32,0,0,1-.54.19A3.74,3.74,0,0,1,46.67,58.45Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M52.7,54.6a2.23,2.23,0,0,1,1,.18A1.16,1.16,0,0,1,54,55a.71.71,0,0,1,.18.29,2.09,2.09,0,0,1,.08.34c0,.12,0,.26,0,.42v2.4H53.16v-2.4a.5.5,0,0,0-.57-.57,11.79,11.79,0,0,0-1.22.08l-.25,0v-.87A10.68,10.68,0,0,1,52.7,54.6Zm-.44,3.85H51.13V56.24h1.13Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M55.06,54.65a3.09,3.09,0,0,1,.59,0,1.83,1.83,0,0,1,.58.07.87.87,0,0,1,.36.18.88.88,0,0,1,.22.28,1.5,1.5,0,0,1,.11.34,2.41,2.41,0,0,1,0,.4v1.4q0,.27,0,.57c0,.2-.05.35-.07.46l0,.15H54.89v-.87h.89a1.55,1.55,0,0,0,0-.31v-1.4a.53.53,0,0,0-.06-.26.25.25,0,0,0-.22-.11l-.4,0h-.07Z\" transform=\"translate(-5.28 -3.57)\"/><path d=\"M59.57,58.45H57.9l-.32-3.79h1.11l.14,1.76a.15.15,0,0,0,.09,0,.21.21,0,0,0,.08-.06.33.33,0,0,0,.06-.12.53.53,0,0,0,0-.19l.11-1.37h1.1L60.21,56a1.82,1.82,0,0,1-.09.43,1.19,1.19,0,0,1-.15.32.8.8,0,0,1-.2.21,1.23,1.23,0,0,1-.22.15l-.23.07a1.5,1.5,0,0,1-.37,0H58.9l0,.35h.76a.78.78,0,0,0,.61-.29,1.61,1.61,0,0,0,.29-.92l.15-1.71h1.11l-.16,1.73a3.33,3.33,0,0,1-.18.87,2.1,2.1,0,0,1-.34.6,1.47,1.47,0,0,1-.46.36,2.32,2.32,0,0,1-.54.19A3.91,3.91,0,0,1,59.57,58.45Z\" transform=\"translate(-5.28 -3.57)\"/></svg>`"
             },
             {
                 "name": "LOYER_ICON",
@@ -12841,16 +12927,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"60.081\" height=\"60.317\" viewBox=\"0 0 60.081 60.317\"><defs>\r\n<style>.a-mail{fill:\"none\";}</style>\r\n</defs><g transform=\"translate(-1 0)\">\r\n<path class=\"a-mail\" d=\"M60.446,24.206l-8.789-7.324V7.893A1.767,1.767,0,0,0,49.89,6.126H38.768L32.2.432a1.767,1.767,0,0,0-2.315,0l-6.57,5.694H12.192a1.767,1.767,0,0,0-1.767,1.767v8.989L1.636,24.206A1.767,1.767,0,0,0,1,25.564V58.55a1.767,1.767,0,0,0,1.767,1.767H59.314a1.767,1.767,0,0,0,1.767-1.767V25.564a1.767,1.767,0,0,0-.636-1.357ZM21.094,42.057,4.534,54.937V29.177Zm3.485,1.767H37.5L54.164,56.783H7.917Zm16.409-1.767,16.56-12.88v25.76ZM56.5,25.516l-4.84,3.765v-7.8ZM31.041,4.105l2.331,2.02H28.709ZM48.123,9.66V32.03L37.5,40.29H24.579l-10.62-8.26V9.66Zm-37.7,19.621-4.84-3.765,4.84-4.033Z\" transform=\"translate(0 0)\"/>\r\n<path class=\"a-mail\" d=\"M151.645,125.149a13.063,13.063,0,0,0,7.612,2.739h.05a1.767,1.767,0,0,0,.048-3.533,9.426,9.426,0,0,1-2.6-18.4,9.424,9.424,0,0,1,11.875,6.228,8.227,8.227,0,0,1-.522,5.457,2.48,2.48,0,0,1-2.256,1.7.57.57,0,0,1-.368-.188,1.151,1.151,0,0,1-.319-.8l.049-9.817a1.767,1.767,0,0,0-1.758-1.776h-.009a1.767,1.767,0,0,0-1.735,1.438,5.59,5.59,0,0,0-2.618-.642,6.194,6.194,0,0,0-4.561,2.093,7.659,7.659,0,0,0-1.889,5.167,8.217,8.217,0,0,0,1.775,5.223,5.947,5.947,0,0,0,4.556,2.275,5.5,5.5,0,0,0,3.5-1.272,4.53,4.53,0,0,0,.505.608,4.045,4.045,0,0,0,2.873,1.229,5.976,5.976,0,0,0,5.541-3.929,11.633,11.633,0,0,0,.645-7.7c0-.018-.01-.037-.016-.055a12.958,12.958,0,1,0-20.377,13.961Zm7.33-6.374c-1.351,0-2.8-1.593-2.8-3.964,0-2.332,1.483-3.726,2.916-3.726,1.459,0,2.492,1.424,2.556,3.488l0,.444C161.564,117.11,160.4,118.775,158.975,118.775Z\" transform=\"translate(-128.498 -89.955)\"/></g>\r\n</svg>\r\n`"
-            },
-            {
-                "name": "Mat",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Icon.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "MEASUREMENTS_ICON",
@@ -13115,26 +13191,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Calendar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/BottomNavBar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/DashboardCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13185,6 +13241,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "src/stories/Menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "src/stories/IconCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13195,11 +13261,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Modal.stories.ts",
+                "file": "src/stories/Calendar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -13215,11 +13291,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Navbar.stories.ts",
+                "file": "src/stories/BottomNavBar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ToNavComponent>",
-                "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -13228,8 +13304,8 @@
                 "file": "src/stories/StatusCard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<StatusCardComponent>",
-                "defaultValue": "(args: StatusCardComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -13255,16 +13331,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<TableComponent<any>>",
-                "defaultValue": "(args: TableComponent<any>) => ({\r\n  props: args\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13275,31 +13341,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/UserCard.stories.ts",
+                "file": "src/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<UserCardComponent>",
-                "defaultValue": "(args: UserCardComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/screens/Login.stories.ts",
+                "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<literal type>",
-                "defaultValue": "(args: () => {}) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
-                "name": "TENT_ICON",
+                "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/app/components/icon/icons.list.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"64.367\" height=\"41.536\" viewBox=\"0 0 64.367 41.536\"><defs>\r\n<style>.tent{fill:\"none\";}</style></defs><g transform=\"translate(-0.001 -97.247)\">\r\n<g transform=\"translate(0.001 97.247)\">\r\n<path class=\"tent\" d=\"M247.187,97.973a2.069,2.069,0,0,0-1.455-.726H232.823c-.458,0-.474.345-.247.742L255.4,137.62a1,1,0,0,0,1.2.289l12.448-3.935a.692.692,0,0,0,.354-1.042Z\" transform=\"translate(-205.148 -97.247)\"/>\r\n<path class=\"tent\" d=\"M11.1,143.641l11.012-23.506v22.742c0,2.035,2.158,1.919,2.616,1.919H46.188c.458,0,.644-.737.418-1.135l-22.173-39.3a.431.431,0,0,0-.821,0l-5.552,9.749a3.488,3.488,0,0,1-1.135,1.122c-5.616,3.116-13.19,7.278-16.546,8.75A.737.737,0,0,0,.3,125.22a37.463,37.463,0,0,1,3.8,4.409A23.5,23.5,0,0,1,6.3,133.4a1.8,1.8,0,0,1-.068,1.475L1.464,143.66c-.224.4-.037,1.135.421,1.135H9.895C10.352,144.795,10.891,144.049,11.1,143.641Zm-6.4-18.11a.312.312,0,0,1,.062-.552c2.363-1.237,13.542-7.1,16.651-9.005.235-.144.32-.067.2.177l-10.6,20.823c-.125.245-.267.225-.328-.044C10.28,135.17,8.662,129.04,4.695,125.531Z\" transform=\"translate(-0.001 -103.26)\"/></g></g>\r\n</svg>`"
+                "type": "Story<literal type>",
+                "defaultValue": "(args: () => {}) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "TENT_ICON",
@@ -14635,50 +14701,6 @@
                     "defaultValue": "(args: ExpendPanelComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/Calendar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Calendar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Calendar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "src/stories/BottomNavBar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/BottomNavBar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/BottomNavBar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "src/stories/DatePicker.stories.ts": [
                 {
                     "name": "Default",
@@ -14719,8 +14741,8 @@
                     "file": "src/stories/Menu.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/Modal.stories.ts": [
@@ -14741,152 +14763,33 @@
                     "file": "src/stories/Modal.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/stories/Calendar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Calendar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Calendar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/Pagination.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Pagination.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Pagination.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "src/stories/Navbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ToNavComponent>",
-                    "defaultValue": "(args: ToNavComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "src/stories/step.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/step.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/step.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<StepComponent>",
-                    "defaultValue": "(args: StepComponent) => ({\r\n    props: args,\r\n})"
-                }
-            ],
-            "src/stories/Stepper.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Stepper.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Stepper.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<StepperComponent>",
-                    "defaultValue": "(args: StepperComponent) => ({\r\n  props: args,\r\n  template: `<app-stepper ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-stepper>`\r\n})"
-                }
-            ],
-            "src/stories/Typography.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<TypographyComponent>",
-                    "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`\r\n})"
-                },
-                {
-                    "name": "Title",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                }
-            ],
-            "src/stories/UserCard.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/UserCard.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/UserCard.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<UserCardComponent>",
-                    "defaultValue": "(args: UserCardComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
+         
             "src/stories/screens/Login.stories.ts": [
                 {
                     "name": "Default",
@@ -14935,7 +14838,17 @@
             ],
             "src/stories/Icon.stories.ts": [
                 {
-                    "name": "Mat",
+                    "name": "HOME_MAT",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "HOME_SVG",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/Icon.stories.ts",
@@ -16356,6 +16269,397 @@
                 "linktype": "component",
                 "name": "NavbarComponent",
                 "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "GENDER_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "GROUP_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "GUIDE_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "HOME_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LIST_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LOCATION_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/20",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/utilities/directives/classes.directive.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Classes",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/utilities/directives/size.directive.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "SizeDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/utilities/directives/variant.directive.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "VariantDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LOGO_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "LOYER_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MAIL_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MEASUREMENTS_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "MUSIC_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "OPEN_PLUS",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PLANING_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PLAYGROUND_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "PRINT_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "RELOAD_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "REPORTS_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "RESTAURANT_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SAVE_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SELECT_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SHIELD_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SITE_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "SUPERVISION_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TENT_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "THUMBUP_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TRANSACTION_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TREE_GRADIENT_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TREE_GRADIENT_LANDS_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TREE_ICON",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TREE_LOGO",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.list.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "V_SIGN",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/icon/icons.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "IconsService",
+                "coveragePercent": 0,
+                "coverageCount": "0/7",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/navigation/navbar/navbar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavbarComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/navigation/to-nav/to-nav.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "ToNavComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/9",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/root/app.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "AppComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/components/typography/typography.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TypographyComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
+                "filePath": "src/app/navigation/components/navbar/navbar.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "NavbarComponent",
+                "coveragePercent": 0,
                 "coverageCount": "0/12",
                 "status": "low"
             },
@@ -16410,302 +16714,7 @@
                 "linktype": "directive",
                 "name": "ClassesDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/20",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/directives/classes.directive.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "Classes",
-                "coveragePercent": 0,
-                "coverageCount": "0/5",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/directives/size.directive.ts",
-                "type": "directive",
-                "linktype": "directive",
-                "name": "SizeDirective",
-                "coveragePercent": 0,
-                "coverageCount": "0/11",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/directives/variant.directive.ts",
-                "type": "directive",
-                "linktype": "directive",
-                "name": "VariantDirective",
-                "coveragePercent": 0,
-                "coverageCount": "0/15",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "ADD_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "BED_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "BELL_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "BOYS_GIRLS_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "BUS_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "BUTTON_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "DESTINATION_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "DINNER_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "EDIT_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "FLAG_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "GUIDE_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LIST_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LOGO",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "LOGO_YEAR",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "MUSIC_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "PLAYGROUND_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "RELOAD_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "REPORTS_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "SHIELD_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "SITE_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "TENT_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "THUMBUP_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "TREE_GRADIENT_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "TREE_ICON",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.list.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "V_SIGN",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.service.ts",
-                "type": "injectable",
-                "linktype": "injectable",
-                "name": "IconsService",
-                "coveragePercent": 0,
-                "coverageCount": "0/6",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/icons/icons.service.ts",
-                "type": "interface",
-                "linktype": "interface",
-                "name": "IconItem",
-                "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/18",
                 "status": "low"
             },
             {
@@ -16927,7 +16936,17 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Mat",
+                "name": "HOME_MAT",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "HOME_SVG",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -17229,6 +17248,15 @@
                 "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/styles/theme.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Theme",
+                "coveragePercent": 0,
+                "coverageCount": "0/2",
                 "status": "low"
             },
             {

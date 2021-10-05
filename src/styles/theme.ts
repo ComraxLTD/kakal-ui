@@ -22,7 +22,7 @@ export const theme: Theme = {
     warn: '#d83020',
     paper: '#fff',
     default: '#bababa',
-    disable: '#DBDBDB',
+    disable: ' rgba(0, 0, 0, 0.26)',
     table: '#F8F8F8',
     text: '#000000',
     success: '#59a437',

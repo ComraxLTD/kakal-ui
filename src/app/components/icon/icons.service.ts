@@ -22,13 +22,32 @@ import {
   HOME_ICON,
   SAVE_ICON,
   PRINT_ICON,
-  SELECT_ICON
+  SELECT_ICON,
+  BED_ICON,
+  BELL_ICON,
+  BOTTOM_TREE_LOGO,
+  BUS_ICON,
+  BUTTON_ICON,
+  DESTINATION_ICON,
+  DINNER_ICON,
+  EDIT_ICON,
+  FLAG_ICON,
+  GENDER_ICON,
+  GROUP_ICON,
+  GUIDE_ICON,
+  MUSIC_ICON,
+  OPEN_PLUS,
+  PLAYGROUND_ICON,
+  RELOAD_ICON,
+  REPORTS_ICON,
+  RESTAURANT_ICON,
+  SHIELD_ICON,
+  SITE_ICON,
+  TENT_ICON,
+  THUMBUP_ICON,
+  TREE_LOGO,
+  V_SIGN,
 } from './icons.list';
-
-export interface IconItem {
-  key: string;
-  svgUrl: string;
-}
 
 @Injectable({
   providedIn: 'root',
@@ -37,19 +56,24 @@ export class IconsService {
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
-  ) { }
-
+  ) {}
 
   public icons = {
+
+    like: THUMBUP_ICON,
+    button: BUTTON_ICON,
     select: SELECT_ICON,
+
+    list: LIST_ICON,
+    add: ADD_ICON,
+
     print: PRINT_ICON,
     save: SAVE_ICON,
+
     home: HOME_ICON,
     location: LOCATION_ICON,
     building: BUILDING_ICON,
     measurements: MEASUREMENTS_ICON,
-    list: LIST_ICON,
-    add: ADD_ICON,
     supervision: SUPERVISION_ICON,
     evaluation: EVALUATION_ICON,
     planing: PLANING_ICON,
@@ -62,10 +86,37 @@ export class IconsService {
     mail: MAIL_ICON,
     logo: LOGO_ICON,
     calendar: CALENDAR_ICON,
-  }
+    openPlus: OPEN_PLUS,
+
+    destination: DESTINATION_ICON,
+    vSign: V_SIGN,
+    edit: EDIT_ICON,
+
+    gender: GENDER_ICON,
+
+    report: REPORTS_ICON,
+    reload: RELOAD_ICON,
+    flag: FLAG_ICON,
+    shield: SHIELD_ICON,
+    restaurant: RESTAURANT_ICON,
+
+    bus: BUS_ICON,
+    site: SITE_ICON,
+    bed: BED_ICON,
+    tent: TENT_ICON,
+    guide: GUIDE_ICON,
+    dinner: DINNER_ICON,
+    music: MUSIC_ICON,
+    playground: PLAYGROUND_ICON,
+
+    bell: BELL_ICON,
+    bottomTreeLogo: BOTTOM_TREE_LOGO,
+    group: GROUP_ICON,
+    treeLogo: TREE_LOGO,
+  };
 
   private findIcon(key: string): string {
-    const icon = this.icons[key.toLocaleLowerCase()]
+    const icon = this.icons[key.toLocaleLowerCase()];
     return icon ? icon : null;
   }
 
@@ -77,17 +128,14 @@ export class IconsService {
   }
 
   public setIcon(key: string): boolean {
-
-    const icon = this.findIcon(key)
+    const icon = this.findIcon(key);
 
     if (icon) {
-      this.registerIcon(key, icon)
-      return true
-
+      this.registerIcon(key, icon);
+      return true;
     }
 
-    return false
-
+    return false;
   }
 
   public setIconsList(items: any[]) {

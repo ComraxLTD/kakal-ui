@@ -1,22 +1,13 @@
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MenuItemModel } from './../menu/menu.model';
 
-export enum StepVariant {
-  CIRCLE = 'circle',
-  SQUARE = 'square',
-}
+export type StepVariant = 'circle' | 'square'
 
-export enum StepType {
-  WIZARD = 'wizard',
-  STATUS = 'status',
-  STEP = 'step',
-  INFO = 'info',
-  CARD = 'card',
-}
 
-export enum StepperDirection {
-  COLUMN = 'column',
-  ROW = 'row',
-}
+export type StepType = 'wizard' | 'status' | 'step' | 'info' | 'card'
+
+
+export type StepperDirection = 'column' | 'row'
 
 
 export class StepModel extends MenuItemModel {
@@ -24,12 +15,12 @@ export class StepModel extends MenuItemModel {
   public variant?: StepVariant;
   public type?: StepType;
   public size?: number;
-  public scale?: number;
-  public divider?: boolean;
+  public divider?: number;
   public spacer?: boolean;
   public value?: number;
 
   constructor(options?: {
+    
     label?: string;
     path?: string;
     svgUrl?: string;
@@ -37,8 +28,7 @@ export class StepModel extends MenuItemModel {
     variant?: StepVariant;
     type?: StepType;
     size?: number;
-    scale?: number;
-    divider?: boolean;
+    divider?: number;
     spacer?: boolean;
     value?: number;
   }) {
@@ -47,14 +37,18 @@ export class StepModel extends MenuItemModel {
     this.path = options?.path || '';
     this.isActive = options?.isActive || false;
     this.svgUrl = options?.svgUrl || '';
-    this.variant = options?.variant || StepVariant.CIRCLE;
-    this.type = options?.type || StepType.STEP;
-    this.size = options?.size || 80;
-    this.scale = options?.scale || 1;
+    this.variant = options?.variant || 'circle';
+    this.type = options?.type || 'step';
+    this.size = options?.size || 3;
     this.value = options?.value || null;
-    this.divider = options?.divider || false;
+    this.divider = options?.divider || 0;
     this.spacer = options?.spacer || false;
   }
+
+  public getActiveObs(): Observable<boolean> {
+    return super.getActiveObs()
+  }
+
 
 
 

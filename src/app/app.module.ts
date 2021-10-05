@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LayoutModule } from '@angular/cdk/layout';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material/material.module';
@@ -9,11 +8,6 @@ import { AppComponent } from './components/root/app.component';
 import { IconComponent } from './components/icon/icon.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
@@ -26,8 +20,15 @@ import { CardDashboardComponent } from './components/cards/card-dashboard/card-d
 import { CardStatusComponent } from './components/cards/card-status/card-status.component';
 import { CardStepComponent } from './components/cards/card-step/card-step.component';
 import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';
-import { VariantDirective } from './utilities/directives/variant.directive';
+import { ColorDirective } from './utilities/directives/color.directive';
 import { SizeDirective } from './utilities/directives/size.directive';
+import { ButtonDirective } from './utilities/directives/button.directive';
+import { UnderlineDirective } from './utilities/directives/underline.directive';
+import { VariantDirective } from './utilities/directives/variant.directive';
+import { StepComponent } from './components/step/step.component';
+import { StepperComponent } from './components/stepper/stepper.component';
+import { NavigationComponent } from './exemples/navigation/navigation.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,19 @@ import { SizeDirective } from './utilities/directives/size.directive';
 
     ClassesDirective,
     VariantDirective,
-    SizeDirective
+    SizeDirective,
+    
+    StepComponent,
+    StepperComponent,
+    NavigationComponent,
+    MenuComponent,
+    
+    ClassesDirective,
+    ColorDirective,
+    SizeDirective,
+    ButtonDirective,
+    UnderlineDirective,
+    VariantDirective,
   ],
   imports: [
     BrowserModule,
@@ -58,12 +71,6 @@ import { SizeDirective } from './utilities/directives/size.directive';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

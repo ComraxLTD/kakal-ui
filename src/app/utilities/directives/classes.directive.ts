@@ -3,7 +3,6 @@ import {
   HostBinding,
   Input,
   OnInit,
-  EventEmitter,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
 import { theme, Palette } from 'src/styles/theme';
@@ -24,12 +23,12 @@ export class ClassesDirective implements OnInit {
 
   @Input() public classes: Classes = {
     color: 'text',
-    cursor: 'pointer',
-    fontSize: 14,
+    cursor: 'initial',
+    fontSize: 1.4,
     fontWeight: 500,
   };
 
-  @Input() change: Observable<Classes>;
+  @Input() classes$: Observable<Classes>;
 
   @HostBinding('style.color') private color: string;
   @HostBinding('style.font-weight') private fontWeight: number;
@@ -51,15 +50,14 @@ export class ClassesDirective implements OnInit {
   }
 
   private setStyle() {
-    this.cursor = this.classes.cursor;
     this.fontWeight = this.classes.fontWeight;
-    this.fontSize = `${this.classes['fontSize']}px` || '14px';
+    this.fontSize = `${this.classes.fontSize}rem`;
     this.color = this.palette[this.classes.color];
   }
 
   private subscribeToChange() {
-    if (this.change) {
-      this.unsubscribe = this.change.subscribe((classes) => {
+    if (this.classes$) {
+      this.unsubscribe = this.classes$.subscribe((classes) => {
         this.classes = classes;
         this.setStyle();
       });

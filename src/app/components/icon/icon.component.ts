@@ -1,60 +1,70 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Observable, BehaviorSubject, Subscription } from 'rxjs';
+import { Palette } from 'src/styles/theme';
+import { IconType } from './icon.model';
 import { IconsService } from './icons.service';
 
 @Component({
   selector: 'app-icon',
   templateUrl: './icon.component.html',
-  styleUrls: ['./icon.component.scss']
+  styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent implements OnInit {
+  @Input() public key: string;
+  @Input() public type: IconType;
+  @Input() public size: number;
 
-  @Input() public key: string = '';
-  @Input() public type: string = 'svg';
-  @Input() public color: string = '';
+  @Input() public color: Palette;
+  @Input() public activeColor: Palette;
 
-  @Input() public size: number = 24;
-  @Input() public scale: number | string = 1;
+  @Input() public active$: Observable<boolean>;
 
-  @Input() public width: number = this.size;
-  @Input() public height: number = this.size;
-  @Input() public isActive: boolean = false;
-  @Input() public rotate: number = 0;
+  @Input() public backgroundColor: Palette;
 
-  @Input() public backgroundColor: string = '';
+  public scale: string;
+  public color$: BehaviorSubject<Palette>;
 
-  public matScale: string = `scale(${this.scale})`;
-  public matRotate: string = `scale(${this.rotate})deg`;
+  private subscription: Subscription;
 
-  constructor(private iconsService: IconsService) {
-
-  }
+  constructor(private iconsService: IconsService) {}
 
   ngOnInit(): void {
     this.setIcon();
-    this.setIconColor();
-    this.setIconSize();
-    this.setRotate()
+    this.setColor();
+    this.setSize();
+    this.subscribeToActive();
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   private setIcon() {
     const isSvg = this.iconsService.setIcon(this.key);
-    if (!isSvg) {
-      this.type = 'mat'
+    if (this.type) {
+      this.type = this.type;
+    } else {
+      this.type = isSvg ? 'svg' : 'mat';
     }
   }
 
-  private setIconColor() {
-    this.color = this.isActive ? 'active' : this.color || 'default';
+  private setColor() {
+    this.color$ = new BehaviorSubject<Palette>(this.color || 'default');
   }
 
-  private setIconSize() {
-    this.width = this.size;
-    this.height = this.size;
-    this.matScale = this.scale ? `scale(${this.scale})` : 'scale(1)';
+  private setSize() {
+    this.scale = `scale(${this.size || 1})`;
   }
 
-  private setRotate() {
-    this.matRotate = this.rotate ? `rotate(${this.rotate}deg)` : 'rotate(0deg)';
-
+  private subscribeToActive() {
+    if (this.active$) {
+      this.subscription = this.active$.subscribe((active: boolean) => {
+        active
+          ? this.color$.next(this.activeColor || 'paper')
+          : this.color$.next(this.color);
+      });
+    }
   }
 }
