@@ -1,49 +1,45 @@
-import {Meta, moduleMetadata, Story} from '@storybook/angular';
-import {APP_BASE_HREF, CommonModule} from '@angular/common';
-import {MaterialModule} from "../material/material.module";
-import {BrowserModule} from "@angular/platform-browser";
-import {AppRoutingModule} from "../app/app-routing.module";
-import {MatToolbarModule} from "@angular/material/toolbar";
-import {ToNavComponent} from "../app/components/navigation/to-nav/to-nav.component";
-import {IconComponent} from "../app/components/icon/icon.component";
-import { StatusCardComponent } from 'src/app/shared/components/status-card/status-card.component';
+import { Meta, moduleMetadata, Story } from '@storybook/angular';
+import { APP_BASE_HREF, CommonModule } from '@angular/common';
+import { MaterialModule } from '../material/material.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from '../app/app-routing.module';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { IconComponent } from '../app/components/icon/icon.component';
+import { CardStatusComponent } from 'src/app/components/cards/card-status/card-status.component';
+import { TypographyComponent } from 'src/app/components/typography/typography.component';
+import { NavbarComponent } from 'src/app/components/navigation/navbar/navbar.component';
+import { StepModel } from 'src/app/components/step/step.model';
 
 export default {
-  title: 'Nav Bar',
-  component: ToNavComponent,
+  title: 'Navbar',
+  component: NavbarComponent,
   decorators: [
     moduleMetadata({
-      declarations: [StatusCardComponent, IconComponent],
-      providers: [{provide: APP_BASE_HREF, useValue: '/'}],
-      imports: [CommonModule, MaterialModule, MatToolbarModule, BrowserModule, AppRoutingModule],
+      declarations: [CardStatusComponent, IconComponent, TypographyComponent],
+      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+      imports: [
+        CommonModule,
+        MaterialModule,
+        MatToolbarModule,
+        BrowserModule,
+        AppRoutingModule,
+      ],
     }),
   ],
 } as Meta;
 
-const Template: Story<ToNavComponent> = (args: ToNavComponent) => ({
+const Template: Story<NavbarComponent> = (args: NavbarComponent) => ({
   props: args,
 });
 
 export const Default = Template.bind({});
 Default.args = {
   status: [
-    {
-      title: 'בתהליך',
+    new StepModel({
+      label: 'בתהליך',
       svgUrl: 'reload',
-      badgeValue: 3,
-      hasBadge: true
-    },
-    {
-      title: 'מחכה לאישור',
-      svgUrl: 'report',
-      badgeValue: 1,
-      hasBadge: true
-    },
-    {
-      title: 'סגור',
-      svgUrl: 'flag',
-      badgeValue: 20,
-      hasBadge: true
-    },
+      value: 6,
+      size: 6,
+    }),
   ],
 };
