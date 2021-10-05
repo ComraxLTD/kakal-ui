@@ -1,24 +1,20 @@
-<mat-expansion-panel
-color="primary"
-  (opened)="panelOpenState = true"
-  (closed)="panelOpenState = false"
->
+<mat-expansion-panel (click)="onOpened()" [ngClass]="{'mat-elevation-z0' : flat, 'data' : true}" [hideToggle]="true"
+  (opened)="panelOpenState = true" (closed)="panelOpenState = false" dir="rtl">
   <mat-expansion-panel-header>
     <mat-panel-title>
       <ng-content select="[title]"></ng-content>
     </mat-panel-title>
     <mat-panel-description>
       <ng-content select="[description]"></ng-content>
+      <app-icon *ngIf="!hideToggle" key="select" color="primary"></app-icon>
     </mat-panel-description>
   </mat-expansion-panel-header>
 
   <div class="content">
     <ng-content select="[content]"></ng-content>
-    {{ content }}
   </div>
 
-  <mat-action-row>
-    <button mat-button color="warn">Previous</button>
-    <button mat-button color="primary">End</button>
+  <mat-action-row *ngIf="actions">
+    <ng-content select="[actions]"></ng-content>
   </mat-action-row>
 </mat-expansion-panel>

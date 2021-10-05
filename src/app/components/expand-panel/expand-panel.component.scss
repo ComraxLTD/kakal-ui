@@ -1,0 +1,30 @@
+@import "../../../styles/styles.scss";
+
+mat-expansion-panel {
+  margin-bottom: spacing(2) !important;
+
+
+  ::ng-deep &.data {
+
+
+    mat-expansion-panel-header {
+
+      ::ng-deep span.mat-expansion-indicator {
+        color: color(primary) !important;
+      }
+
+      background-color: color(table) !important;
+
+    }
+
+    .mat-expansion-panel-content,
+    .mat-expansion-panel-body {
+      background-color: color(table) !important;
+    }
+
+    mat-panel-description {
+      justify-content: flex-end;
+    }
+  }
+
+}
