@@ -45,6 +45,8 @@ import { MenuComponent } from './components/menu/menu.component';
     CardStepComponent,
     CardWizardComponent,
 
+    
+
     ClassesDirective,
     VariantDirective,
     SizeDirective,
