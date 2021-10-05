@@ -1,4 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { BreakpointService } from 'src/app/utilities/services/breakpoint.service';
 import { CardDashboardModel } from './card-dashboard.model';
 
 @Component({
@@ -8,23 +10,30 @@ import { CardDashboardModel } from './card-dashboard.model';
 })
 export class CardDashboardComponent implements OnInit {
 
-  @Input() card: CardDashboardModel
+  
+  @Input() card: CardDashboardModel;
+  @Output() onClick = new EventEmitter<CardDashboardModel>();
 
-  @Output() onClick = new EventEmitter<CardDashboardModel>()
-
-  constructor(
-  ) { }
+  private subscription: Subscription;
+  constructor(private breakpointService: BreakpointService) {}
 
   ngOnInit(): void {
-    this.card = new CardDashboardModel({
-      ...this.card,
-      size: 15,
-      scale: 3,
-    })
+    this.subscribeToTablet();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   public onCardClick() {
-    this.onClick.emit(this.card)
+    this.onClick.emit(this.card);
   }
 
+  private subscribeToTablet() {
+    this.subscription = this.breakpointService
+      .isTablet()
+      .subscribe((table: boolean) => {
+        this.card.size = table ? 6 : 8;
+      });
+  }
 }
