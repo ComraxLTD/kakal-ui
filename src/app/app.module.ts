@@ -6,18 +6,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material/material.module';
 import { AppComponent } from './components/root/app.component';
 import { IconComponent } from './components/icon/icon.component';
-import { FormContainerComponent } from './components/form/form-container/form-container.component';
-import { FormInputComponent } from './components/form/form-input/form-input.component';
-import { InputRadioComponent } from './components/form/input-radio/input-radio.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
-import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
-import { StatusCardComponent } from './components/cards/status-card/status-card.component';
-import { IconCardComponent } from './components/cards/icon-card/icon-card.component';
 import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
 import { ClassesDirective } from './utilities/directives/classes.directive';
+import { FormModule } from './components/form/form.module';
+import { PaginationComponent } from './components/pagination/pagination.component';
+import { TableComponent } from './components/table/table.component';
+import { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';
+import { CardStatusComponent } from './components/cards/card-status/card-status.component';
+import { CardStepComponent } from './components/cards/card-step/card-step.component';
+import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';
 import { ColorDirective } from './utilities/directives/color.directive';
 import { SizeDirective } from './utilities/directives/size.directive';
 import { ButtonDirective } from './utilities/directives/button.directive';
@@ -32,16 +33,22 @@ import { MenuComponent } from './components/menu/menu.component';
   declarations: [
     AppComponent,
     DashboardComponent,
-    FormContainerComponent,
-    FormInputComponent,
-    InputRadioComponent,
     IconComponent,
-    IconCardComponent,
     NavbarComponent,
     TypographyComponent,
-    DashboardCardComponent,
     ToNavComponent,
-    StatusCardComponent,
+    PaginationComponent,
+    TableComponent,
+    
+    CardDashboardComponent,
+    CardStatusComponent,
+    CardStepComponent,
+    CardWizardComponent,
+
+    ClassesDirective,
+    VariantDirective,
+    SizeDirective,
+
     StepComponent,
     StepperComponent,
     NavigationComponent,
@@ -58,7 +65,7 @@ import { MenuComponent } from './components/menu/menu.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-
+    FormModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
@@ -66,4 +73,4 @@ import { MenuComponent } from './components/menu/menu.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

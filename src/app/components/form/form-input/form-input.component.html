@@ -1,57 +1,30 @@
-<div class="input-container">
-  <div>
-    <mat-form-field
-      [color]="theme"
-      appearance="outline"
-      [ngClass]="[labelLength || 'base']"
-    >
-      <mat-label>{{ label }}</mat-label>
-      <input
-        *ngIf="controlType !== 'select' && controlType !== 'textarea'"
-        matInput
-        [type]="type"
-        [disabled]="disabled"
-        [formControl]="control"
-        control="control"
-        autocomplete="off"
-        (input)="handleChange($event.target.value)"
-        [name]="type"
-        (focusout)="validate()"
-        #input
-        [placeholder]="label"
-      />
+<div>
 
-      <mat-select
-        color="primary"
-        [formControl]="control"
-        *ngIf="controlType === 'select'"
-        (change)="handleChange($event.value)"
-      >
-        <mat-option>{{ label | titlecase }}</mat-option>
-        <mat-option *ngFor="let option of options" [value]="option.value">
-          {{ option.key }}
-        </mat-option>
-      </mat-select>
+  <mat-form-field  [appearance]="control.disabled ? 'fill' : 'outline'">
+    <mat-label>{{label}}</mat-label>
 
-      <textarea
-        rows="4"
-        [formControl]="control"
-        *ngIf="controlType === 'textarea'"
-        matInput
-      ></textarea>
+    <ng-container [ngSwitch]="type">
+      <ng-container *ngSwitchCase="'textarea'">
+        <textarea matInput [rows]="question.rows" [formControl]="control" [name]="question.key" (focusout)="validate()"
+          #textarea></textarea>
+      </ng-container>
 
-      <!-- icons -->
-      <mat-icon matPrefix>{{
-        controlType === "select" ? "keyboard_arrow_down" : icon
-      }}</mat-icon>
+      <ng-container *ngSwitchCase="'select'">
+        <mat-select (selectionChange)="onSelectChange()" [formControl]="control" [name]="question.key" required (focusout)="validate()">
+          <mat-option *ngFor="let option of options" [value]="option.value">
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </ng-container>
 
-      <!-- shred input hint -->
-      <mat-hint *ngIf="hint">{{ "Please enter " + hint }}</mat-hint>
+      <ng-container *ngSwitchDefault>
+        <input matInput autocomplete="off" required [formControl]="control" [name]="question.key"
+          (focusout)="validate()" #input />
+      </ng-container>
+    </ng-container>
 
-      <!-- shred input error -->
-      <mat-error *ngIf="control.errors">{{ error }}</mat-error>
-    </mat-form-field>
+    <app-icon *ngIf="icon" matSuffix [color]="color || 'primary'" [key]="icon" [type]="iconType" [rotate]="iconRotate"></app-icon>
 
-    <div></div>
-  </div>
+    <mat-error>{{ error }}</mat-error>
+  </mat-form-field>
 </div>

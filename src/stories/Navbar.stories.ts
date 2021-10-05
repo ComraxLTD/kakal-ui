@@ -5,8 +5,8 @@ import {BrowserModule} from "@angular/platform-browser";
 import {AppRoutingModule} from "../app/app-routing.module";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {ToNavComponent} from "../app/components/navigation/to-nav/to-nav.component";
-import {StatusCardComponent} from "../app/components/cards/status-card/status-card.component";
 import {IconComponent} from "../app/components/icon/icon.component";
+import { StatusCardComponent } from 'src/app/shared/components/status-card/status-card.component';
 
 export default {
   title: 'Nav Bar',

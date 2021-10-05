@@ -1,0 +1,24 @@
+<div class="status-container" fxFill fxFlex="row">
+
+  <mat-grid-list [cols]="cols || 8" [rowHeight]="(height || 2) + 'vh'" [gutterSize]="(gutter || '2' +'px')" [dir]="'rtl'">
+    <mat-grid-tile [colspan]="cols || 8">
+      <app-typography *ngIf="!slots">
+        {{ status.label }}
+      </app-typography>
+
+      <ng-container *ngTemplateOutlet="slots?.textRef; context :{status}"></ng-container>
+
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let step of steps; let i = index">
+      <div fxLayout="column">
+        <div [ngClass]="{'status-bar' : true, 'active'  : !!step  }">
+        </div>
+        <div class="step-label" *ngIf="hasLabel" fxLayout="column" fxLayoutAlign="end center">
+          <app-typography [color]="step ? 'accent' : 'disable'" size="12">
+            0{{i+1}}
+          </app-typography>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

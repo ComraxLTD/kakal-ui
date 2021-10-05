@@ -1,0 +1,9 @@
+mat-radio-group,
+div {
+  width: 100%;
+  height: 100%;
+}
+
+::ng-deep span.mat-radio-label-content {
+  padding-right: spacing(2) !important;
+}

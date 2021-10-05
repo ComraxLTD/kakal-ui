@@ -1,0 +1,10 @@
+<div class="card" fxLayout="column" fxLayoutAlign="center center" (click)="onCardClick()">
+  <div fxFlex="80">
+    <app-icon [size]="card.size" type="svg" [color]="'primary'" [key]="card.svgUrl"></app-icon>
+  </div>
+  <div fxLayout="column" fxLayoutAlign="start center" fxFlex="30">
+    <app-typography [size]="1.8">
+      {{ card.label }}
+    </app-typography>
+  </div>
+</div>
