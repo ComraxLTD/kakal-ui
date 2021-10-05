@@ -19,7 +19,7 @@ import { MenuComponent } from './components/menu/menu.component';
 
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { TableComponent } from './components/table/table.component';
-import { NgxPaginationModule } from 'ngx-pagination'; // <-- import the module
+import { NgxPaginationModule } from 'ngx-pagination';
 
 import { ClassesDirective } from './utilities/directives/classes.directive';
 import { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';
@@ -40,6 +40,7 @@ import { FormComponent } from './components/form/form/form.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { FormGroupComponent } from './components/form/form-group/form-group.component';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
+import { CardUserComponent } from './components/cards/card-user/card-user.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { FormRadioComponent } from './components/form/form-radio/form-radio.comp
     ButtonDirective,
     UnderlineDirective,
     VariantDirective,
+    CardUserComponent,
   ],
   imports: [
     BrowserModule,

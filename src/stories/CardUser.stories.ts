@@ -1,11 +1,11 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { UserCardComponent } from 'src/app/components/user-card/user-card.component';
 import { MaterialModule } from 'src/material/material.module';
+import { CardUserComponent } from 'src/app/components/cards/card-user/card-user.component';
 
 export default {
   title: 'User Card',
-  component: UserCardComponent,
+  component: CardUserComponent,
   decorators: [
     moduleMetadata({
       declarations: [],
@@ -14,7 +14,7 @@ export default {
   ],
 } as Meta;
 
-const Template: Story<UserCardComponent> = (args: UserCardComponent) => ({
+const Template: Story<CardUserComponent> = (args: CardUserComponent) => ({
   props: args,
 });
 

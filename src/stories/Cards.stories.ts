@@ -6,10 +6,10 @@ import { TypographyComponent } from 'src/app/components/typography/typography.co
 import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
 import { MaterialModule } from 'src/material/material.module';
 import { CardStatusComponent } from 'src/app/components/cards/card-status/card-status.component';
-import { StepModel, StepType, StepVariant } from 'src/app/components/step/step.model';
 import { VariantDirective } from 'src/app/utilities/directives/variant.directive';
 import { CardStepComponent } from 'src/app/components/cards/card-step/card-step.component';
 import { CardWizardComponent } from 'src/app/components/cards/card-wizard/card-wizard.component';
+import { StepModel } from 'src/app/components/step/step.model';
 
 export default {
     title: 'Cards',
@@ -32,7 +32,6 @@ Dashboard.args = {
     card: {
         label: 'test',
         size: 15,
-        scale: 3,
         svgUrl: "assets"
     }
 };
@@ -43,11 +42,10 @@ const CardStatusTemplate: Story<CardStatusComponent> = (args: CardStatusComponen
 
 export const Status = CardStatusTemplate.bind({});
 Status.args = {
-    card: new StepModel({
-        variant: StepVariant.CIRCLE,
-        type: StepType.STATUS,
-        size: 80,
-        scale: 1,
+    status: new StepModel({
+        variant: 'circle',
+        type: 'status',
+        size: 8,
         isActive: false,
         path: "assets",
         svgUrl: "assets",
