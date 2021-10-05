@@ -10,7 +10,6 @@ import { NavbarComponent } from './components/navigation/navbar/navbar.component
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
-import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
 import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
 import { ClassesDirective } from './utilities/directives/classes.directive';
 import { FormModule } from './components/form/form.module';
@@ -37,7 +36,6 @@ import { MenuComponent } from './components/menu/menu.component';
     IconComponent,
     NavbarComponent,
     TypographyComponent,
-    DashboardCardComponent,
     ToNavComponent,
     PaginationComponent,
     TableComponent,
@@ -50,7 +48,7 @@ import { MenuComponent } from './components/menu/menu.component';
     ClassesDirective,
     VariantDirective,
     SizeDirective,
-    
+
     StepComponent,
     StepperComponent,
     NavigationComponent,
