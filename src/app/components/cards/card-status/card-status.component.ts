@@ -8,7 +8,7 @@ import { StepModel } from '../../step/step.model';
 })
 export class CardStatusComponent implements OnInit {
 
-  @Input() public card: StepModel;
+  @Input() public status: StepModel;
 
   constructor() {}
 

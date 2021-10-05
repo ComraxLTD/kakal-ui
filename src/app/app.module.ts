@@ -26,6 +26,8 @@ import { CardDashboardComponent } from './components/cards/card-dashboard/card-d
 import { CardStatusComponent } from './components/cards/card-status/card-status.component';
 import { CardStepComponent } from './components/cards/card-step/card-step.component';
 import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';
+import { VariantDirective } from './utilities/directives/variant.directive';
+import { SizeDirective } from './utilities/directives/size.directive';
 
 @NgModule({
   declarations: [
@@ -37,12 +39,16 @@ import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.
     DashboardCardComponent,
     ToNavComponent,
     PaginationComponent,
-    ClassesDirective,
     TableComponent,
+    
     CardDashboardComponent,
     CardStatusComponent,
     CardStepComponent,
-    CardWizardComponent
+    CardWizardComponent,
+
+    ClassesDirective,
+    VariantDirective,
+    SizeDirective
   ],
   imports: [
     BrowserModule,

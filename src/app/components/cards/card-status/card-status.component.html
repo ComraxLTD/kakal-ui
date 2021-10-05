@@ -2,23 +2,23 @@
   <div
     class="status"
     appVariant
-    [type]="card.type"
-    [matBadge]="card?.value"
+    [type]="status.type"
+    [matBadge]="status?.value"
     matBadgeColor="accent"
     matBadgeSize="medium"
   >
     <div class="icon-container">
-      <app-icon [key]="card.svgUrl" [scale]="1.5"></app-icon>
+      <app-icon [key]="status.svgUrl" [size]="3.5"></app-icon>
     </div>
   </div>
   <div
     class="text-container"
     fxLayout="column"
-    fxLayoutAlign="center start"
+    fxLayoutAlign="end start"
     [fxFlexOffset]="5"
   >
-    <app-typography [size]="14" [bold]="600">
-      {{ card.label }}
+    <app-typography [size]="1.2" [bold]="600">
+      {{ status.label }}
     </app-typography>
   </div>
 </div>
