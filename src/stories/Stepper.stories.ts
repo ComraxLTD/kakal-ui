@@ -2,21 +2,17 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/material/material.module';
 import { StepperComponent } from 'src/app/components/stepper/stepper.component';
-import {
-  StepModel,
-  StepperDirection,
-  StepType,
-  StepVariant,
-} from 'src/app/components/step/step.model';
+import { StepModel } from 'src/app/components/step/step.model';
 
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { BrowserModule } from '@angular/platform-browser';
 import { SizeDirective } from 'src/app/utilities/directives/size.directive';
 import { StepComponent } from 'src/app/components/step/step.component';
 import { IconComponent } from 'src/app/components/icon/icon.component';
 import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
 import { VariantDirective } from 'src/app/utilities/directives/variant.directive';
 import { TypographyComponent } from 'src/app/components/typography/typography.component';
+import { NavigationComponent } from 'src/app/exemples/navigation/navigation.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ButtonDirective } from 'src/app/utilities/directives/button.directive';
 
 export default {
   title: 'Stepper',
@@ -30,64 +26,104 @@ export default {
         IconComponent,
         VariantDirective,
         ClassesDirective,
+        ButtonDirective,
         TypographyComponent,
+        NavigationComponent
       ],
-      imports: [CommonModule, MaterialModule, AppRoutingModule, BrowserModule],
+      imports: [CommonModule, MaterialModule, FlexLayoutModule],
     }),
   ],
 } as Meta;
 
-const Template: Story<StepperComponent> = (args: StepperComponent) => ({
+const Template: Story<NavigationComponent> = (args: NavigationComponent) => ({
   props: args,
-  template: `<app-stepper ${Object.keys(args).reduce(
-    (acc, key) =>
-      `${acc} [${key}]='${
-        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]
-      }'`,
-    ''
-  )}></app-stepper>`,
+  template: `<app-navigation ${Object.keys(args).reduce(
+    (acc, key) =>`${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`,'')} ></app-navigation>`,
 });
 
-export const Default = Template.bind({});
-Default.args = {
+export const Stepper = Template.bind({});
+
+Stepper.args = {
   steps: [
     new StepModel({
-      type: 'wizard',
-      variant: 'square',
       label: 'פירוט הנכס',
       svgUrl: 'home',
       path: 'details',
+      size: 3,
+      divider: 5,
     }),
     new StepModel({
-      type: 'wizard',
-      variant: 'square',
       label: 'תנועות',
       svgUrl: 'list',
       path: 'movements',
+      size: 3,
+      divider: 5,
     }),
     new StepModel({
-      type: 'wizard',
-      variant: 'square',
       label: 'עסקאות',
       svgUrl: 'transactions',
       path: 'transactions',
+      size: 3,
+      divider: 5,
     }),
     new StepModel({
-      type: 'wizard',
-      variant: 'square',
       label: 'תתי חלקה',
       svgUrl: 'building',
       path: 'subdivision',
+      size: 3,
+      divider: 5,
     }),
     new StepModel({
-      type: 'wizard',
-      variant: 'square',
       label: 'פרצליציה',
       svgUrl: 'add',
       path: 'parcellation',
+      size: 3,
     }),
   ],
-  double: 2,
-  direction: 'row',
-  routePrefix: 'lands/assets/book',
+  direction : 'row'
+};
+
+
+// TODO - direction prop dont show
+// TODO - FIX step method not a function error
+export const Wizard = Template.bind({});
+
+Wizard.args = {
+  steps: [
+    new StepModel({
+      label: 'פירוט הנכס',
+      svgUrl: 'home',
+      path: 'details',
+      size: 3,
+      divider: 5,
+    }),
+    new StepModel({
+      label: 'תנועות',
+      svgUrl: 'list',
+      path: 'movements',
+      size: 3,
+      divider: 5,
+    }),
+    new StepModel({
+      label: 'עסקאות',
+      svgUrl: 'transactions',
+      path: 'transactions',
+      size: 3,
+      divider: 5,
+    }),
+    new StepModel({
+      label: 'תתי חלקה',
+      svgUrl: 'building',
+      path: 'subdivision',
+      size: 3,
+      divider: 5,
+    }),
+    new StepModel({
+      label: 'פרצליציה',
+      svgUrl: 'add',
+      path: 'parcellation',
+      size: 3,
+    }),
+  ],
+  direction : 'column'
 };

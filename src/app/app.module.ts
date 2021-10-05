@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LayoutModule } from '@angular/cdk/layout';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from 'src/material/material.module';
@@ -12,11 +11,6 @@ import { FormInputComponent } from './components/form/form-input/form-input.comp
 import { InputRadioComponent } from './components/form/input-radio/input-radio.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { AppRoutingModule } from './app-routing.module';
 import { TypographyComponent } from './components/typography/typography.component';
 import { DashboardCardComponent } from './components/dashboard-card/dashboard-card.component';
@@ -29,6 +23,9 @@ import { SizeDirective } from './utilities/directives/size.directive';
 import { ButtonDirective } from './utilities/directives/button.directive';
 import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { VariantDirective } from './utilities/directives/variant.directive';
+import { StepComponent } from './components/step/step.component';
+import { StepperComponent } from './components/stepper/stepper.component';
+import { NavigationComponent } from './exemples/navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -44,13 +41,16 @@ import { VariantDirective } from './utilities/directives/variant.directive';
     DashboardCardComponent,
     ToNavComponent,
     StatusCardComponent,
+    StepComponent,
+    StepperComponent,
+    NavigationComponent,
     
     ClassesDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
     UnderlineDirective,
-    VariantDirective
+    VariantDirective,
   ],
   imports: [
     BrowserModule,
@@ -60,12 +60,6 @@ import { VariantDirective } from './utilities/directives/variant.directive';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    LayoutModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
