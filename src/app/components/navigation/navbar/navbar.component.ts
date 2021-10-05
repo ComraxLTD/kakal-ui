@@ -1,6 +1,9 @@
 // import { UserDataService } from './../../utilities/services/user-data.service';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IconModel } from '../../icon/icon.model';
+import { StepModel } from '../../step/step.model';
 
 @Component({
   selector: 'app-navbar',
@@ -8,45 +11,26 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  @Input() public status: StepModel[];
+  @Input() public title: string;
+  @Input() public openIcon: string;
+  @Input() public logos: IconModel[];
+
+  @Input() public title$: Observable<string>;
+  @Input() public status$: Observable<StepModel>;
+
+  public isOpen: boolean = false;
+  public openLabel: string = 'תפריט';
+  public closeLabel: string = 'סגור תפריט';
+
   @Output() menuToggle = new EventEmitter();
 
-  @Input() public title: string;
+  constructor() {}
 
-  public status: {
-    text: string;
-    svgUrl: string;
-    count: number;
-  }[] = [];
-  public isOpen: boolean = true;
-  public showSteps: boolean = true;
-  public urlAdress = 'main';
-  public componentType: string = '';
-  public prefix: string = '';
+  ngOnInit(): void {}
 
   public toggleMenu() {
     this.isOpen = !this.isOpen;
     this.menuToggle.emit();
   }
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute
-  ) // private userDataService: UserDataService
-  {
-    // this.prefix = this.userDataService.user.urlPrefix;
-    this.status = [];
-
-    this.router.events.subscribe((val: any) => {
-      this.urlAdress = val.url ? val.url : this.urlAdress;
-
-      this.showSteps =
-        this.urlAdress === '/education' ||
-        this.urlAdress === '/education/search' ||
-        this.urlAdress === '/education/my-tours'
-          ? true
-          : false;
-    });
-  }
-
-  ngOnInit(): void {}
 }
