@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardUserComponent implements OnInit {
 
-  constructor() { }
+  public userInfo = {
+    imgSrc: 'assets/images/userImage.jpg',
+    name: 'יוסי יוספוב',
+  };
 
-  ngOnInit(): void {
-  }
+  public action: string = 'החלף משתמש';
 
+  constructor() {}
+
+  ngOnInit(): void {}
 }
