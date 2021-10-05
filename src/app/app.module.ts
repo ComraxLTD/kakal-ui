@@ -43,6 +43,8 @@ import { FormRadioComponent } from './components/form/form-radio/form-radio.comp
 import { CardUserComponent } from './components/cards/card-user/card-user.component';
 import { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';
 import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
+import { MenuItemComponent } from './components/menu-item/menu-item.component';
+import { ListItemComponent } from './components/list-item/list-item.component';
 
 @NgModule({
   declarations: [
@@ -66,6 +68,7 @@ import { ExpandPanelComponent } from './components/expand-panel/expand-panel.com
     CardStatusComponent,
     CardStepComponent,
     CardWizardComponent,
+    CardUserComponent,
 
     ClassesDirective,
     VariantDirective,
@@ -75,15 +78,19 @@ import { ExpandPanelComponent } from './components/expand-panel/expand-panel.com
     StepperComponent,
     NavigationComponent,
     MenuComponent,
+    MenuItemComponent,
 
+    ListItemComponent,
+    
+    ExpandPanelComponent,
+    
     ClassesDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
     UnderlineDirective,
     VariantDirective,
-    CardUserComponent,
-    ExpandPanelComponent
+    
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { ListItem } from "../../menu/list-item.model";
+import { ListItem } from "../../list-item/list-item.model";
 
 export class CardDashboardModel implements ListItem {
   public label?: string;

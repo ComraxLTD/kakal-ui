@@ -1,71 +1,70 @@
-import { ListItemKeys } from './list-item.model';
+import { ListItemKeys } from '../list-item/list-item.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { MenuService } from './menu.service';
-import { StepModel } from '../step/step.model';
-import { MenuListModel } from './menu.model';
-
+import { Subscription } from 'rxjs';
+import { RouterService } from 'src/app/utilities/services/route.rservice';
+import { MenuItemModel } from '../menu-item/menu-item.model';
+import { MenuModel } from './menu.model';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
 })
-
 export class MenuComponent implements OnInit {
+  @Input() public menu: MenuModel[];
+  @Input() private routePrefix: string;
 
-  @Input() public menu: MenuListModel[];
+  public logoutItem: MenuItemModel = new MenuItemModel({
+    label: 'יציאה',
+    isActive: false,
+    path: '',
+    svgUrl: 'logout',
+  });
 
-  public logoutItem: StepModel =
-    new StepModel({ label: 'יציאה', isActive: false, path: '', svgUrl: 'logout' })
+  private routerSubscription: Subscription;
+  private prefixSubscription: Subscription;
 
   constructor(
     private menuService: MenuService,
-  ) { }
+    private routerService: RouterService
+  ) {}
 
   ngOnInit(): void {
-    this.subscribeToPrefix()
-    this.subscribeToLastPath()
+    this.subscribeToPrefix();
   }
 
-  private setRouteState() {
-    const path: string = this.menuService.getCurrentPath()
-    this.updateLinkStatus(path)
+  ngOnDestroy(): void {
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
+    if (this.prefixSubscription) {
+      this.prefixSubscription.unsubscribe();
+    }
   }
+
   private updateLinkStatus(path: string) {
-    this.menu = this.menuService.setList(this.menu, ListItemKeys.PATH, path)
+    this.menu = this.menuService.setList(this.menu, 'path', path);
   }
 
   // UPDATE METHOD WHEN CHANGE MODULE
   private subscribeToPrefix() {
-    this.menuService.getPrefixObs().subscribe(
-      (prefix) => {
+    this.prefixSubscription = this.routerService
+      .getModulePrefixObs()
+      .subscribe((prefix) => {
         this.menuService.setPrefix(prefix);
-        this.setRouteState()
-
-      })
+        const path: string = this.routerService.getCurrentPath();
+        this.updateLinkStatus(path);
+      });
   }
-
-  // UPDATE METHOD WHEN CHANGE ROUTE
-  private subscribeToLastPath() {
-    this.menuService.subscribeToLastPath().subscribe(
-      (path: string) => {
-        this.updateLinkStatus(path)
-      }
-    )
-  }
-
 
   // UPDATE METHOD WHEN CLICK ON STEP
-  public onLinkClick(link: StepModel, prefix: string) {
-
+  public onLinkClick(link: MenuItemModel, prefix: string) {
     if (!link.isActive) {
-
-      const url = `lands/${prefix}`;
+      const url = `/${this.routePrefix}/${prefix}`;
       const path = link.path !== prefix ? `${url}/${link.path}` : url;
-
       this.updateLinkStatus(link.path);
-      this.menuService.navigate(path);
+      this.routerService.navigate(path);
     }
   }
-
 }
