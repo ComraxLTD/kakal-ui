@@ -11,7 +11,6 @@ export class CardDashboardModel implements ListItem {
     path?: string;
     svgUrl?: string;
     size?: number;
-    isActive?: boolean;
   }) {
     this.label = options?.label;
     this.path = options?.path;
