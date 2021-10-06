@@ -7,14 +7,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from 'src/material/material.module';
 import { AppComponent } from './components/root/app.component';
 
+import { NavigationComponent } from './exemples/navigation/navigation.component';
+
+
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { IconComponent } from './components/icon/icon.component';
 import { TypographyComponent } from './components/typography/typography.component';
 
-import { ToNavComponent } from './components/navigation/to-nav/to-nav.component';
 import { NavbarComponent } from './components/navigation/navbar/navbar.component';
-import { NavigationComponent } from './exemples/navigation/navigation.component';
 import { MenuComponent } from './components/menu/menu.component';
 
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -45,15 +46,14 @@ import { FormAutocompleteComponent } from './components/form/form-autocomplete/f
 import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
+import { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     IconComponent,
-    NavbarComponent,
     TypographyComponent,
-    ToNavComponent,
 
     FormComponent,
     FormInputComponent,
@@ -70,16 +70,14 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     CardWizardComponent,
     CardUserComponent,
 
-    ClassesDirective,
-    VariantDirective,
-    SizeDirective,
-
     StepComponent,
     StepperComponent,
-    NavigationComponent,
+    
     MenuComponent,
     MenuItemComponent,
-
+    NavbarComponent,
+    NavbarBottomComponent,
+    
     ListItemComponent,
     
     ExpandPanelComponent,
@@ -91,6 +89,7 @@ import { ListItemComponent } from './components/list-item/list-item.component';
     UnderlineDirective,
     VariantDirective,
     
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,
