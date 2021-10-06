@@ -9,6 +9,7 @@ import { IconComponent } from 'src/app/components/icon/icon.component';
 import { TypographyComponent } from 'src/app/components/typography/typography.component';
 import { VariantDirective } from 'src/app/utilities/directives/variant.directive';
 import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
+import { ColorDirective } from 'src/app/utilities/directives/color.directive';
 
 export default {
   title: 'Step',
@@ -19,6 +20,7 @@ export default {
         IconComponent,
         TypographyComponent,
         VariantDirective,
+        ColorDirective,
         ClassesDirective,
       ],
       imports: [CommonModule, MaterialModule],

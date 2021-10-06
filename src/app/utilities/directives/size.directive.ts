@@ -25,7 +25,6 @@ export class SizeDirective {
         this.height = `${this.size}rem`;
         break;
       case 'step':
-        console.log('step')
         this.width = `7rem`;
         this.height = `7rem`;
         break;
