@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { StepModel } from '../../step/step.model';
 
 @Component({
@@ -6,12 +6,9 @@ import { StepModel } from '../../step/step.model';
   templateUrl: './card-status.component.html',
   styleUrls: ['./card-status.component.scss'],
 })
-export class CardStatusComponent implements OnInit {
+export class CardStatusComponent  {
 
   @Input() public status: StepModel;
 
   constructor() {}
-
-  ngOnInit(): void {
-  }
 }

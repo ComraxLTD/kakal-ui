@@ -30,10 +30,9 @@ export class StepComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.step);
     this.type = this.step.type;
     if (this.step) {
-      // this.active$ = this.step.getActiveObs();
+      this.active$ = this.step.getActiveObs();
     }
   }
 

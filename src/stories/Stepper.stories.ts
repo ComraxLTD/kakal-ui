@@ -13,6 +13,7 @@ import { TypographyComponent } from 'src/app/components/typography/typography.co
 import { NavigationComponent } from 'src/app/exemples/navigation/navigation.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ButtonDirective } from 'src/app/utilities/directives/button.directive';
+import { ColorDirective } from 'src/app/utilities/directives/color.directive';
 
 export default {
   title: 'Stepper',
@@ -27,6 +28,7 @@ export default {
         VariantDirective,
         ClassesDirective,
         ButtonDirective,
+        ColorDirective,
         TypographyComponent,
         NavigationComponent
       ],

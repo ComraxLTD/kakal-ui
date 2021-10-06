@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { MenuItemModel } from '../menu-item/menu-item.model';
 
 export type StepVariant = 'circle' | 'square';
@@ -15,6 +15,8 @@ export class StepModel extends MenuItemModel {
   public spacer?: boolean;
   public value?: number;
 
+  protected $active: BehaviorSubject<boolean>;
+
   constructor(options?: {
     label?: string;
     path?: string;
@@ -22,10 +24,10 @@ export class StepModel extends MenuItemModel {
     isActive?: boolean;
     variant?: StepVariant;
     type?: StepType;
+    value?: number;
     size?: number;
     divider?: number;
     spacer?: boolean;
-    value?: number;
   }) {
     super(options);
     this.label = options?.label || '';
@@ -38,9 +40,10 @@ export class StepModel extends MenuItemModel {
     this.value = options?.value || null;
     this.divider = options?.divider || 0;
     this.spacer = options?.spacer || false;
+    this.$active = new BehaviorSubject(this.isActive)
   }
 
   public getActiveObs(): Observable<boolean> {
-    return super.getActiveObs();
+    return this.$active.asObservable()
   }
 }
