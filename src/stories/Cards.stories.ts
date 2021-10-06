@@ -10,13 +10,17 @@ import { StepModel, StepType, StepVariant } from 'src/app/components/step/step.m
 import { VariantDirective } from 'src/app/utilities/directives/variant.directive';
 import { CardStepComponent } from 'src/app/components/cards/card-step/card-step.component';
 import { CardWizardComponent } from 'src/app/components/cards/card-wizard/card-wizard.component';
+import { CardFilterComponent } from 'src/app/components/cards/card-filter/card-filter.component';
+import { FilterModel } from 'src/app/components/cards/card-filter/card-filter.model';
+import { ColorDirective } from 'src/app/utilities/directives/color.directive';
+import { SizeDirective } from 'src/app/utilities/directives/size.directive';
 
 export default {
     title: 'Cards',
     decorators: [
         moduleMetadata({
             declarations: [ClassesDirective, VariantDirective, CardDashboardComponent,
-                CardStatusComponent, IconComponent, TypographyComponent, CardStepComponent,CardWizardComponent],
+                SizeDirective, ColorDirective,CardStatusComponent, IconComponent, TypographyComponent, CardStepComponent,CardWizardComponent, CardFilterComponent],
             imports: [CommonModule, MaterialModule],
         }),
     ],
@@ -32,9 +36,21 @@ Dashboard.args = {
     card: {
         label: 'test',
         size: 15,
-        scale: 3,
         svgUrl: "assets"
     }
+};
+
+const CardFilterComponentTemplate: Story<CardFilterComponent> = (args: CardFilterComponent) => ({
+    props: args,
+    template: `<app-card-filter ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')}></app-card-filter>`
+});
+export const Filter = CardFilterComponentTemplate.bind({});
+Filter.args = {
+    filter: new FilterModel({
+        label: 'test',
+        value: 15,
+        svgUrl: "assets",
+    })
 };
 const CardStatusTemplate: Story<CardStatusComponent> = (args: CardStatusComponent) => ({
     props: args,
@@ -43,11 +59,10 @@ const CardStatusTemplate: Story<CardStatusComponent> = (args: CardStatusComponen
 
 export const Status = CardStatusTemplate.bind({});
 Status.args = {
-    card: new StepModel({
-        variant: StepVariant.CIRCLE,
-        type: StepType.STATUS,
+    status: new StepModel({
+        variant:'circle',
+        type: 'status',
         size: 80,
-        scale: 1,
         isActive: false,
         path: "assets",
         svgUrl: "assets",

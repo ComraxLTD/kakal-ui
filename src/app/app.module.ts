@@ -40,6 +40,8 @@ import { FormComponent } from './components/form/form/form.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { FormGroupComponent } from './components/form/form-group/form-group.component';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
+import { CardFilterComponent } from './components/cards/card-filter/card-filter.component';
+import { FiltersComponent } from './exemples/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,7 @@ import { FormRadioComponent } from './components/form/form-radio/form-radio.comp
     CardStatusComponent,
     CardStepComponent,
     CardWizardComponent,
+    CardFilterComponent,
 
     
 
@@ -80,6 +83,7 @@ import { FormRadioComponent } from './components/form/form-radio/form-radio.comp
     ButtonDirective,
     UnderlineDirective,
     VariantDirective,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,

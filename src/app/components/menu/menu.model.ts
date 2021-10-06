@@ -6,11 +6,11 @@ export class MenuItemModel implements ListItem {
   public label?: string;
   public path?: string;
   public svgUrl?: string;
-  public scale?: number;
+  // public scale?: number;
   public size?: number;
   public isActive?: boolean;
-
   private $active?: BehaviorSubject<boolean>;
+
 
   constructor(options: {
     label?: string;

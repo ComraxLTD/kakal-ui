@@ -1,14 +1,15 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import {APP_BASE_HREF, CommonModule} from '@angular/common';
-import {DashboardCardComponent} from "../app/components/dashboard-card/dashboard-card.component";
+
 import {MaterialModule} from "../material/material.module";
 import {TypographyComponent} from "../app/components/typography/typography.component";
 import {IconComponent} from "../app/components/icon/icon.component";
 import {AppRoutingModule} from "../app/app-routing.module";
+import { CardDashboardComponent } from 'src/app/components/cards/card-dashboard/card-dashboard.component';
 
 export default {
   title: 'Dashboard Card',
-  component: DashboardCardComponent,
+  component: CardDashboardComponent,
   decorators: [
     moduleMetadata({
       declarations: [TypographyComponent, IconComponent],
@@ -18,17 +19,15 @@ export default {
   ],
 } as Meta;
 
-const Template: Story<DashboardCardComponent> = (args: DashboardCardComponent) => ({
+const Template: Story<CardDashboardComponent> = (args: CardDashboardComponent) => ({
   props: args,
 });
 
 export const Primary = Template.bind({});
 Primary.args = {
-  item: {
-    title: 'Home',
+  card: {
+    label: 'Home',
     svgUrl: '',
-    isActive: true,
-    hasBadge: true,
-    badgeValue: 10
+
   }
 };
