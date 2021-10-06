@@ -10,7 +10,7 @@ export class MenuItemModel implements ListItem {
   public size?: number;
   public isActive?: boolean;
 
-  private $active: BehaviorSubject<boolean>;
+  protected $active: BehaviorSubject<boolean>;
 
   constructor(options: {
     label?: string;
