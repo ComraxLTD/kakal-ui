@@ -3,7 +3,6 @@ import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app/app-routing.module';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { IconComponent } from '../app/components/icon/icon.component';
 import { CardStatusComponent } from 'src/app/components/cards/card-status/card-status.component';
 import { TypographyComponent } from 'src/app/components/typography/typography.component';
@@ -20,7 +19,6 @@ export default {
       imports: [
         CommonModule,
         MaterialModule,
-        MatToolbarModule,
         BrowserModule,
         AppRoutingModule,
       ],
