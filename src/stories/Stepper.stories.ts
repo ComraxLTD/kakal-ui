@@ -39,8 +39,7 @@ export default {
 
 const Template: Story<NavigationComponent> = (args: NavigationComponent) => ({
   props: args,
-  template: `<app-navigation ${Object.keys(args).reduce(
-    (acc, key) =>`${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`,'')} ></app-navigation>`,
+  template: `<app-navigation></app-navigation>`,
 });
 
 export const Stepper = Template.bind({});
