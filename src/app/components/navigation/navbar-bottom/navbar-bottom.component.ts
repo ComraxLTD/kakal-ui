@@ -17,7 +17,9 @@ export class NavbarBottomComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.hasSave)
+  }
 
   public onPrevious(): void {
     this.previous.emit();

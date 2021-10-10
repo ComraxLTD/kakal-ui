@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/material/material.module';
 
-
-
 @NgModule({
   declarations: [
 
@@ -14,4 +12,4 @@ import { MaterialModule } from 'src/material/material.module';
   ], exports : [
   ]
 })
-export class SharedModule { }
+export class SharedModule {}

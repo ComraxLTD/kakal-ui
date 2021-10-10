@@ -88,5 +88,5 @@ Wizard.args = {
       size: 3,
     }),
   ],
-  direction : 'column'
+  direction: 'column',
 };
