@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { StepModel } from 'src/app/components/step/step.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { CardStepModel } from 'src/app/components/cards/card-step/card-step.model';
+import { StepModel, StepperDirection } from 'src/app/components/step/step.model';
 import { StepperService } from 'src/app/components/stepper/stepper.service';
 
 @Component({
@@ -11,47 +12,14 @@ export class StepperExComponent implements OnInit {
 
   constructor(private stepperService: StepperService) {}
 
-  ngOnInit(): void {}
+  @Input() public steps : CardStepModel[]
 
-  public steps = [
-    new StepModel({
-      label: 'פירוט הנכס',
-      svgUrl: 'home',
-      path: 'details',
-      isActive: true,
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'תנועות',
-      svgUrl: 'list',
-      path: 'movements',
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'עסקאות',
-      svgUrl: 'transactions',
-      path: 'transactions',
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'תתי חלקה',
-      svgUrl: 'building',
-      path: 'subdivision',
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'פרצליציה',
-      svgUrl: 'add',
-      path: 'parcellation',
-      size: 3,
-    }),
-  ];
+  ngOnInit(): void {
+    console.log(this.steps)
+  }
 
-  public direction: string = 'row';
+
+  @Input() public direction: StepperDirection;
 
   public onStepChange(step: StepModel) {
     this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);

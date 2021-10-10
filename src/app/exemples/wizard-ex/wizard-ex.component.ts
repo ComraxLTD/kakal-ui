@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { StepModel } from 'src/app/components/step/step.model';
+import { CardStepModel } from 'src/app/components/cards/card-step/card-step.model';
 import { StepperService } from 'src/app/components/stepper/stepper.service';
 
 @Component({
@@ -15,7 +15,7 @@ export class WizardExComponent implements OnInit {
   ngOnInit(): void {}
 
   public steps = [
-    new StepModel({
+    new CardStepModel({
       label: 'פירוט הנכס',
       svgUrl: 'home',
       path: 'details',
@@ -24,7 +24,7 @@ export class WizardExComponent implements OnInit {
       variant : 'square',
       type : 'wizard'
     }),
-    new StepModel({
+    new CardStepModel({
       label: 'תנועות',
       svgUrl: 'list',
       path: 'movements',
@@ -32,7 +32,7 @@ export class WizardExComponent implements OnInit {
       variant : 'square',
       type : 'wizard'
     }),
-    new StepModel({
+    new CardStepModel({
       label: 'עסקאות',
       svgUrl: 'transactions',
       path: 'transactions',
@@ -40,7 +40,7 @@ export class WizardExComponent implements OnInit {
       variant : 'square',
       type : 'wizard'
     }),
-    new StepModel({
+    new CardStepModel({
       label: 'תתי חלקה',
       svgUrl: 'building',
       path: 'subdivision',
@@ -48,7 +48,7 @@ export class WizardExComponent implements OnInit {
       variant : 'square',
       type : 'wizard'
     }),
-    new StepModel({
+    new CardStepModel({
       label: 'פרצליציה',
       svgUrl: 'add',
       path: 'parcellation',
@@ -60,7 +60,7 @@ export class WizardExComponent implements OnInit {
 
   public direction: string = 'column';
 
-  public onStepChange(step: StepModel) {
+  public onStepChange(step: CardStepModel) {
     this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);
   }
 }
