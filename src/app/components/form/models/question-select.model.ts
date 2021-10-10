@@ -1,5 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBaseModel, QuestionType } from "./question-base.model";
+import { GridProps, QuestionBaseModel } from "./question-base.model";
 
 export interface SelectOption {
   label: string;
@@ -9,23 +9,25 @@ export interface SelectOption {
 export class QuestionSelectModel extends QuestionBaseModel<string>{
 
   public options?: SelectOption[];
-  public onSelectChange?: Function
+  public onSelectChange?: Function;
+  public multi?: boolean;
 
   constructor(options?: {
-
     key: string,
     label: string,
     validations?: ValidatorFn[],
     gridProps?: GridProps
+    options?: SelectOption[];
     icon?: string;
-    options?: SelectOption[]
-    onSelectChange?: Function
+    multi?: boolean;
+    onSelectChange?: Function;
   }) {
     super(options)
     this.type = 'select'
-    this.controlType = QuestionType.SELECT
+    this.controlType = 'select'
     this.options = options.options || []
-    this.icon = this.icon || 'select'
+    this.icon = options.icon || 'keyboard_arrow_down'
+    this.multi = options.multi || false
     this.onSelectChange = options.onSelectChange || (() => console.log('select'))
   }
 }

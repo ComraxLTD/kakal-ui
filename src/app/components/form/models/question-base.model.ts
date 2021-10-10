@@ -7,18 +7,16 @@ export interface GridProps {
   gutter?: number;
   fullWidth?: boolean;
 }
-
-export enum QuestionType {
-  TEXT = "text",
-  NUMBER = 'number',
-  TEXTAREA = 'textarea',
-  SELECT = 'select',
-  CALENDER = 'calender',
-  RADIO = 'radio',
-  DATE = 'date',
-  GROUP = 'group',
-
-}
+export type QuestionType =
+  "text" |
+  'number' |
+  'textarea' |
+  'select' |
+  'calender' |
+  'radio' |
+  'date' |
+  'group' |
+  'autocomplete'
 
 export abstract class QuestionBaseModel<T>  {
   public value?: T | undefined;
@@ -50,7 +48,7 @@ export abstract class QuestionBaseModel<T>  {
     this.value = options.value;
     this.label = options.label || '';
     this.type = options.type || 'text';
-    this.controlType = options.controlType || QuestionType.TEXT;
+    this.controlType = options.controlType || 'text';
     this.disabled = this.disabled || false;
     this.validations = options.validations || [];
     this.gridProps = options.gridProps || { cols: 1, rows: 1, gutter: 0, offset: 0, fullWidth: false };
