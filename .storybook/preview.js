@@ -12,7 +12,7 @@ export const parameters = {
   },
   docs: { inlineStories: true },
   backgrounds: {
-    default: 'twitter',
+    default: 'form',
     values: [
       {
         name: 'twitter',
