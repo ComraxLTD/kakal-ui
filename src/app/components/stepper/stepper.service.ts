@@ -7,7 +7,7 @@ import { StepModel } from '../step/step.model';
   providedIn: 'root',
 })
 export class StepperService {
-  constructor(private routerService: RouterService) {}
+  constructor() {}
 
   private activeStep(items: StepModel[], key: ListItemKeys, value: any) {
     items.find((item) => {

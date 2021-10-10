@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 
 export default {
-  title: 'Bottom Bav Bar',
+  title: 'Bottom Navbar',
   decorators: [
     moduleMetadata({
       declarations: [],

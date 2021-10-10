@@ -47,6 +47,9 @@ import { ExpandPanelComponent } from './components/expand-panel/expand-panel.com
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';
+import { StepperExComponent } from './exemples/stepper-ex/stepper-ex.component';
+import { InputExComponent } from './exemples/input-ex/input-ex.component';
+import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +93,9 @@ import { NavbarBottomComponent } from './components/navigation/navbar-bottom/nav
     VariantDirective,
     
     NavigationComponent,
+          StepperExComponent,
+          InputExComponent,
+          WizardExComponent,
   ],
   imports: [
     BrowserModule,

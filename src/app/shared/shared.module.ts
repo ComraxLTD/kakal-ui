@@ -3,8 +3,13 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from 'src/material/material.module';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, MaterialModule],
-  exports: [],
+  declarations: [
+
+  ],
+  imports: [
+    CommonModule,
+    MaterialModule
+  ], exports : [
+  ]
 })
 export class SharedModule {}
