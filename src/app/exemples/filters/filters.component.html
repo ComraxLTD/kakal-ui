@@ -1,0 +1,9 @@
+<div
+  class="container"
+  fxLayout="row"
+  fxLayoutAlign="space-evenly center"
+  dir="rtl"
+  fxFill
+>
+    <app-card-filter class="app-filter-card" *ngFor="let filter of filters" [filter]="filter"></app-card-filter>
+</div>
