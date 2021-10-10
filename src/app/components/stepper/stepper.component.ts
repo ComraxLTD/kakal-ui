@@ -4,34 +4,29 @@ import {
   Output,
   EventEmitter,
   ElementRef,
-  OnInit,
 } from '@angular/core';
-import { StepModel, StepperDirection } from '../step/step.model';
 import { Observable } from 'rxjs';
+import { CardStepModel } from '../cards/card-step/card-step.model';
 
 @Component({
   selector: 'app-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
 })
-export class StepperComponent implements OnInit {
-  @Input() steps: StepModel[];
+export class StepperComponent {
 
-  @Input() steps$: Observable<StepModel[]>;
+  @Input() steps: CardStepModel[];
 
-  @Input() direction: StepperDirection;
+  @Input() steps$: Observable<CardStepModel[]>;
+
+  @Input() direction: string;
   @Input() stepRef: ElementRef;
 
-  @Output() changStep = new EventEmitter<StepModel>();
+  @Output() changStep = new EventEmitter<CardStepModel>();
 
-  constructor() {
-    
-  }
+  constructor() { }
 
-  ngOnInit() {
-  }
-
-  public onStepChange(step: StepModel) {
+  public onStepChange(step: CardStepModel) {
     this.changStep.emit(step);
   }
 }

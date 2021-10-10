@@ -28,7 +28,6 @@ import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.
 import { ColorDirective } from './utilities/directives/color.directive';
 import { SizeDirective } from './utilities/directives/size.directive';
 import { ButtonDirective } from './utilities/directives/button.directive';
-import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { VariantDirective } from './utilities/directives/variant.directive';
 
 import { StepComponent } from './components/step/step.component';
@@ -46,7 +45,6 @@ import { ListItemComponent } from './components/list-item/list-item.component';
 import { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';
 import { StepperExComponent } from './exemples/stepper-ex/stepper-ex.component';
 import { InputExComponent } from './exemples/input-ex/input-ex.component';
-import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
 import { FormExComponent } from './exemples/form-ex/form-ex.component';
 import { CardFilterComponent } from './components/cards/card-filter/card-filter.component';
 import { FiltersComponent } from './exemples/filters/filters.component';
@@ -96,12 +94,10 @@ import { FiltersComponent } from './exemples/filters/filters.component';
     ColorDirective,
     SizeDirective,
     ButtonDirective,
-    UnderlineDirective,
     VariantDirective,
 
     StepperExComponent,
     InputExComponent,
-    WizardExComponent,
     FormExComponent,
     FiltersComponent,
   ],

@@ -1,7 +1,6 @@
 import { ListItemKeys } from '../list-item/list-item.model';
-import { RouterService } from 'src/app/utilities/services/route.rservice';
 import { Injectable } from '@angular/core';
-import { StepModel } from '../step/step.model';
+import { CardStepModel } from '../cards/card-step/card-step.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,15 +8,7 @@ import { StepModel } from '../step/step.model';
 export class StepperService {
   constructor() {}
 
-  private activeStep(items: StepModel[], key: ListItemKeys, value: any) {
-    items.find((item) => {
-      if (item[key] === value) {
-        item.active();
-      }
-    });
-  }
-
-  private unactiveStep(items: StepModel[]) {
+  private unactiveStep(items: CardStepModel[]) {
     items.find((item) => {
       if (item.isActive) {
         item.unactive();
@@ -25,21 +16,32 @@ export class StepperService {
     });
   }
 
+  private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {
+    items.find((item) => {
+      if (item[key] === value) {
+        item.active();
+      }
+    });
+  }
+  
+  
   public setStepsStatus(
-    items: StepModel[],
+    items: CardStepModel[],
     key: ListItemKeys,
     value: string
-  ): StepModel[] {
+  ): CardStepModel[] {
     this.unactiveStep(items);
     this.activeStep(items, key, value);
     return [...items];
   }
 
   public setSteps(
-    steps: StepModel[],
+    steps: CardStepModel[],
     key: ListItemKeys,
-    path: string
-  ): StepModel[] {
+    path: string,
+  ): CardStepModel[] {
     return this.setStepsStatus(steps, key, path);
   }
+
+
 }

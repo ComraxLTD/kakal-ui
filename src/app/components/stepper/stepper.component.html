@@ -1,17 +1,39 @@
-<div [fxLayout]="direction" class="steps-container" fxLayoutAlign="center center">
+<div
+  [fxLayout]="direction"
+  class="steps-container"
+  fxLayoutAlign="center center"
+>
   <ng-container *ngFor="let step of steps; let i = index">
-    <div appSize [size]="step.size" [type]="step.type" appButton>
-
-      <app-step *ngIf="!stepRef" [step]="step" (onStepChange)="onStepChange(step)"></app-step>
-
-      <ng-container *ngTemplateOutlet="stepRef; context: {step}">
-
+    <div appSize [type]="step.type">
+      <ng-container *ngIf="!stepRef">
+        <ng-container [ngSwitch]="step.type">
+          <ng-container *ngSwitchCase="'step'">
+            <app-card-step
+              (onStepChange)="onStepChange(step)"
+              [step]="step"
+            ></app-card-step>
+          </ng-container>
+          <ng-container *ngSwitchCase="'wizard'">
+            <app-card-wizard
+              (onStepChange)="onStepChange(step)"
+              [step]="step"
+            ></app-card-wizard>
+          </ng-container>
+        </ng-container>
       </ng-container>
 
-
+      <ng-container *ngTemplateOutlet="stepRef; context: { step: this.step }">
+      </ng-container>
     </div>
-    <div *ngIf="step.divider" appSize [size]="step.size" [divider]="step.divider" class="divider-container"
-      fxLayout="column" fxLayoutAlign="center center">
+    <div
+      *ngIf="step.divider"
+      appSize
+      [size]="2"
+      [divider]="step.divider"
+      class="divider-container"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
       <div *ngIf="step.divider" class="divider"></div>
     </div>
   </ng-container>
