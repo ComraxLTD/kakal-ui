@@ -1,4 +1,4 @@
-import { MenuItemModel } from "../../menu/menu.model";
+import { MenuItemModel } from "../../menu-item/menu-item.model";
 
 
 

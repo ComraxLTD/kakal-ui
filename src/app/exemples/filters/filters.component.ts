@@ -4,15 +4,12 @@ import { FilterModel } from 'src/app/components/cards/card-filter/card-filter.mo
 @Component({
   selector: 'app-filters',
   templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss']
+  styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
+  @Input() filters: FilterModel[];
 
-@Input() filters:FilterModel[]=[]
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
