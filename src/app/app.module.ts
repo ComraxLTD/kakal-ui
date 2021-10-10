@@ -7,9 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from 'src/material/material.module';
 import { AppComponent } from './components/root/app.component';
 
-import { NavigationComponent } from './exemples/navigation/navigation.component';
-
-
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { IconComponent } from './components/icon/icon.component';
@@ -50,6 +47,7 @@ import { NavbarBottomComponent } from './components/navigation/navbar-bottom/nav
 import { StepperExComponent } from './exemples/stepper-ex/stepper-ex.component';
 import { InputExComponent } from './exemples/input-ex/input-ex.component';
 import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
+import { FormExComponent } from './exemples/form-ex/form-ex.component';
 
 @NgModule({
   declarations: [
@@ -75,27 +73,27 @@ import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
 
     StepComponent,
     StepperComponent,
-    
+
     MenuComponent,
     MenuItemComponent,
     NavbarComponent,
     NavbarBottomComponent,
-    
+
     ListItemComponent,
-    
+
     ExpandPanelComponent,
-    
+
     ClassesDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
     UnderlineDirective,
     VariantDirective,
-    
-    NavigationComponent,
-          StepperExComponent,
-          InputExComponent,
-          WizardExComponent,
+
+    StepperExComponent,
+    InputExComponent,
+    WizardExComponent,
+    FormExComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +102,7 @@ import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -12,7 +12,7 @@ export const parameters = {
   },
   docs: { inlineStories: true },
   backgrounds: {
-    default: 'twitter',
+    default: 'form',
     values: [
       {
         name: 'twitter',
@@ -21,6 +21,10 @@ export const parameters = {
       {
         name: 'facebook',
         value: '#3b5998',
+      },
+      {
+        name: 'form',
+        value: '#fff',
       },
     ],
   },

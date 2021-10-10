@@ -13,8 +13,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class FormInputComponent implements OnInit {
 
-  
-  @Input() public question: QuestionBase;
+    @Input() public question: QuestionBase;
   @Input() public control: FormControl;
 
   public type: string;
@@ -41,6 +40,7 @@ export class FormInputComponent implements OnInit {
   ngOnInit(): void {
 
     this.gridProps = this.question.gridProps
+    console.log(this.gridProps)
     this.type = this.question?.type
     this.controlType = this.question?.controlType
     this.label = this.question?.label || ''

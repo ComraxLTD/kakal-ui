@@ -10,8 +10,8 @@ export class QuestionGroupModel {
   public type?: GroupType;
   public controlType?: QuestionType;
   public formGroup?: FormGroup;
-  public questions?: Question[];
-  public gridProps: GridProps;
+  public questions: Question[];
+  public gridProps?: GridProps;
   public hasButton?: boolean;
 
   constructor(options?: {
