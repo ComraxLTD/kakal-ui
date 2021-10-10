@@ -1,7 +1,4 @@
-import {
-  QuestionSelectModel,
-  SelectOption,
-} from '../models/question-select.model';
+
 import { Injectable } from '@angular/core';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionCalendar } from '../models/question-calendar';
@@ -10,6 +7,8 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { QuestionGroupModel } from '../models/question-group.model';
 import { QuestionBaseModel, QuestionType } from '../models/question-base.model';
 import { QuestionNumberModel } from '../models/question-number.model';
+import { QuestionAutocompleteModel } from '../models/question-autocomplete';
+import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
 
 export type QuestionBase = QuestionBaseModel<string | number | Date>;
 export type Question =
@@ -18,13 +17,14 @@ export type Question =
   | QuestionCalendar
   | QuestionTextareaModel
   | QuestionNumberModel
+  | QuestionAutocompleteModel
   | QuestionGroupModel;
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormService {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   public getFieldControl(question): FormControl {
     return this.fb.control(this.setFieldControl(question));
@@ -84,25 +84,7 @@ export class FormService {
 
   public setQuestionList(questions: Question[]): Question[] {
     return questions.map((question: Question) => {
-      switch (question.controlType) {
-        case QuestionType.TEXT:
-          return new QuestionTextModel(question);
-          break;
-        case QuestionType.NUMBER:
-          question = new QuestionNumberModel(question);
-          break;
-        case QuestionType.SELECT:
-          question = new QuestionSelectModel(question);
-          break;
-        case QuestionType.TEXTAREA:
-          question = new QuestionTextareaModel(question);
-          break;
-        case QuestionType.CALENDER:
-          question = new QuestionCalendar(question);
-          break;
-      }
-
-      return question;
+      return this.setQuestion(question.controlType, { ...question })
     });
   }
 
@@ -111,20 +93,23 @@ export class FormService {
     options: { key: string; label: string; options?: SelectOption[] }
   ) {
     switch (controlType) {
-      case QuestionType.TEXT:
+      case 'text':
         return new QuestionTextModel(options);
 
-      case QuestionType.NUMBER:
+      case 'number':
         return new QuestionNumberModel(options);
 
-      case QuestionType.SELECT:
+      case 'select':
         return new QuestionSelectModel(options);
 
-      case QuestionType.TEXTAREA:
+      case 'textarea':
         return new QuestionTextareaModel(options);
 
-      case QuestionType.CALENDER:
+      case 'calender':
         return new QuestionCalendar(options);
+
+      case 'autocomplete':
+        return new QuestionAutocompleteModel(options);
       default:
         return new QuestionTextModel(options);
     }
