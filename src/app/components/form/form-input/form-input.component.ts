@@ -4,6 +4,7 @@ import { QuestionBase } from '../services/form.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { QuestionSelectModel, SelectOption } from './../models/question-select.model';
 import { GridProps } from '../models/question-base.model';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-form-input',
@@ -12,10 +13,12 @@ import { GridProps } from '../models/question-base.model';
 })
 export class FormInputComponent implements OnInit {
 
+  
   @Input() public question: QuestionBase;
   @Input() public control: FormControl;
 
   public type: string;
+  public controlType: string;
   public label: string;
   public icon: string;
   public options: SelectOption[]
@@ -27,6 +30,8 @@ export class FormInputComponent implements OnInit {
   public iconRotate: number = 0;
 
   @Output() public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();
+  @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter()
+  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter()
 
   constructor(
     private messageService: MessageService
@@ -35,9 +40,9 @@ export class FormInputComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.gridProps = this.question.gridProps
     this.type = this.question?.type
+    this.controlType = this.question?.controlType
     this.label = this.question?.label || ''
     this.icon = this.question?.icon || ''
 
@@ -83,6 +88,13 @@ export class FormInputComponent implements OnInit {
       this.selected.emit(this.question)
       this.question.onSelectChange()
     }
+  }
+  public onAutocomplete() {
+    this.autocomplete.emit(this.control)
+  }
+
+  public onOptionSelected(event: MatAutocompleteSelectedEvent) {
+    this.optionSelected.emit(event)
   }
 
 

@@ -14,7 +14,7 @@ export class QuestionNumberModel extends QuestionBaseModel<number>{
     this.key = options.key
     this.label = options.label
     this.type = 'number'
-    this.controlType = QuestionType.NUMBER
+    this.controlType = 'number'
     this.gridProps = options.gridProps
     this.validations = options.validations
   }

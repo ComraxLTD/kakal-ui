@@ -1,5 +1,5 @@
 import { ValidatorFn } from "@angular/forms";
-import { GridProps, QuestionBaseModel, QuestionType } from "./question-base.model";
+import { GridProps, QuestionBaseModel } from "./question-base.model";
 
 export class QuestionTextareaModel extends QuestionBaseModel<string>{
 
@@ -15,7 +15,7 @@ export class QuestionTextareaModel extends QuestionBaseModel<string>{
     super(options)
     this.key = options.key
     this.type = 'textarea'
-    this.controlType = QuestionType.TEXTAREA
+    this.controlType = 'textarea'
     this.label = options.label
     this.gridProps = options.gridProps
     this.icon = options.icon

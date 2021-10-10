@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  StepModel,
-} from 'src/app/components/step/step.model';
+import { StepModel } from 'src/app/components/step/step.model';
 import { StepperService } from 'src/app/components/stepper/stepper.service';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.scss'],
+  selector: 'app-stepper-ex',
+  templateUrl: './stepper-ex.component.html',
+  styleUrls: ['./stepper-ex.component.scss']
 })
-export class NavigationComponent implements OnInit {
+export class StepperExComponent implements OnInit {
+
   constructor(private stepperService: StepperService) {}
 
   ngOnInit(): void {}

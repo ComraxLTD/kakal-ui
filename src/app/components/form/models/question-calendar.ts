@@ -1,25 +1,24 @@
 import { ValidatorFn } from '@angular/forms';
-import { QuestionBaseModel, QuestionType, GridProps } from './question-base.model';
+import { QuestionBaseModel, GridProps } from './question-base.model';
 
 export class QuestionCalendar extends QuestionBaseModel<Date> {
-
-
+  public options?: any[];
   constructor(options: {
     key: string;
     label: string;
-    gridProps?: GridProps
+    gridProps?: GridProps;
     icon?: string;
-    validations?: ValidatorFn[]
-  }
-  ) {
-    super(options)
-    this.key = options.key
-    this.label = options.label
+    validations?: ValidatorFn[];
+    options?: any[];
+  }) {
+    super(options);
+    this.key = options.key;
+    this.label = options.label;
     this.type = 'date';
-    this.controlType = QuestionType.CALENDER;
-    this.gridProps = options.gridProps
-    this.icon = 'calendar'
-    this.validations = options.validations
+    this.controlType = 'calender';
+    this.gridProps = options.gridProps;
+    this.icon = 'calendar';
+    this.validations = options.validations;
+    this.options = options.options;
   }
-
 }
