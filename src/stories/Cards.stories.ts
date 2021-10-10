@@ -11,14 +11,14 @@ import { CardStepComponent } from 'src/app/components/cards/card-step/card-step.
 import { CardWizardComponent } from 'src/app/components/cards/card-wizard/card-wizard.component';
 import { StepModel } from 'src/app/components/step/step.model';
 import { CardUserComponent } from 'src/app/components/cards/card-user/card-user.component';
+import { ColorDirective } from 'src/app/utilities/directives/color.directive';
+import { SizeDirective } from 'src/app/utilities/directives/size.directive';
 
 export default {
   title: 'Cards',
   decorators: [
     moduleMetadata({
       declarations: [
-        ClassesDirective,
-        VariantDirective,
         IconComponent,
         TypographyComponent,
         CardDashboardComponent,
@@ -26,6 +26,10 @@ export default {
         CardStepComponent,
         CardUserComponent,
         CardWizardComponent,
+        ClassesDirective,
+        VariantDirective,
+        ColorDirective,
+        SizeDirective,
       ],
       imports: [CommonModule, MaterialModule],
     }),

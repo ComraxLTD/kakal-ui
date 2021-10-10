@@ -48,6 +48,8 @@ import { StepperExComponent } from './exemples/stepper-ex/stepper-ex.component';
 import { InputExComponent } from './exemples/input-ex/input-ex.component';
 import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
 import { FormExComponent } from './exemples/form-ex/form-ex.component';
+import { CardFilterComponent } from './components/cards/card-filter/card-filter.component';
+import { FiltersComponent } from './exemples/filters/filters.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,13 @@ import { FormExComponent } from './exemples/form-ex/form-ex.component';
     CardStepComponent,
     CardWizardComponent,
     CardUserComponent,
+    CardFilterComponent,
+
+    
+
+    ClassesDirective,
+    VariantDirective,
+    SizeDirective,
 
     StepComponent,
     StepperComponent,
@@ -94,6 +103,7 @@ import { FormExComponent } from './exemples/form-ex/form-ex.component';
     InputExComponent,
     WizardExComponent,
     FormExComponent,
+    FiltersComponent,
   ],
   imports: [
     BrowserModule,

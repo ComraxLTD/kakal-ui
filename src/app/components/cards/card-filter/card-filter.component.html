@@ -1,0 +1,13 @@
+<div class="filter" fxLayout="column" fxLayoutAlign="space-evenly center">
+  <app-icon
+    [color]="'primary'"
+    [key]="filter.svgUrl"
+    class="filter-svg"
+  ></app-icon>
+  <app-typography [active$]="active$" size="1.8">
+    {{ filter.label }}
+  </app-typography>
+  <app-typography [active$]="active$" size="1.8">
+    {{ filter.value }}
+  </app-typography>
+</div>
