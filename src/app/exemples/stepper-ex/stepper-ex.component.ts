@@ -22,5 +22,6 @@ export class StepperExComponent implements OnInit {
 
   public onStepChange(step: StepModel) {
     this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);
+    console.log(this.steps)
   }
 }

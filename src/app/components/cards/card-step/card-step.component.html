@@ -41,7 +41,6 @@
       <app-typography
         [ngClass]="{ active: (active$ | async) }"
         [activeClasses]="{ fontWeight: 600 }"
-        [bold]="(active$ | async) ? 600 : 500"
         [active$]="active$"
         [size]="1.1"
       >

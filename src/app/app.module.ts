@@ -28,7 +28,6 @@ import { CardWizardComponent } from './components/cards/card-wizard/card-wizard.
 import { ColorDirective } from './utilities/directives/color.directive';
 import { SizeDirective } from './utilities/directives/size.directive';
 import { ButtonDirective } from './utilities/directives/button.directive';
-import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { VariantDirective } from './utilities/directives/variant.directive';
 
 import { StepComponent } from './components/step/step.component';
@@ -95,7 +94,6 @@ import { FiltersComponent } from './exemples/filters/filters.component';
     ColorDirective,
     SizeDirective,
     ButtonDirective,
-    UnderlineDirective,
     VariantDirective,
 
     StepperExComponent,
