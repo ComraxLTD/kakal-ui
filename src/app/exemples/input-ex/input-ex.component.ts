@@ -21,8 +21,6 @@ export class InputExComponent implements OnInit {
   ngOnInit(): void {
     const questions = this.formService.setQuestionList(this.questions);
     this.question = questions[0];
-    console.log(this.question);
     this.control = this.formService.getFieldControl(this.question);
-    console.log(this.control);
   }
 }

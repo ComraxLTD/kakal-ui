@@ -62,6 +62,7 @@ Select.args = {
     },
   ],
 };
+
 export const Text = Template.bind({});
 Text.args = {
   questions: [
@@ -69,7 +70,21 @@ Text.args = {
       controlType: 'text',
       key: 'value',
       label: 'הכנס טקסט',
-      validations : [Validators.required]
+      validations: [Validators.required],
+    },
+  ],
+};
+export const Textarea = Template.bind({});
+Textarea.args = {
+  questions: [
+    {
+      controlType: 'textarea',
+      key: 'value',
+      label: 'הכנס טקסט',
+      validations: [Validators.required],
+      gridProps: {
+        rows: 5,
+      },
     },
   ],
 };

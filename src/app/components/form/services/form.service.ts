@@ -42,7 +42,6 @@ export class FormService {
 
   public getFieldControl(question): FormControl {
     const template = this.setFieldControl(question);
-    console.log(template);
     return this.fb.control(template[0], template[1]);
   }
 
