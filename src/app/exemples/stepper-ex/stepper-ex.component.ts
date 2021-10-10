@@ -15,7 +15,6 @@ export class StepperExComponent implements OnInit {
   @Input() public steps : CardStepModel[]
 
   ngOnInit(): void {
-    console.log(this.steps)
   }
 
 
