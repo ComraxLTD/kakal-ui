@@ -13,10 +13,13 @@ import { Question } from '../services/form.service';
 })
 export class FormComponent implements OnInit {
 
+  
   @Input() public group: QuestionGroupModel;
   @Input() public questions: Question[];
-  @Input() private $questions: Observable<Question[]>;
   @Input() public editMode: boolean;
+  @Input() public rowHeight: number;
+
+  @Input() private $questions: Observable<Question[]>;
 
   @Input() public slots: {
     button?: ElementRef;
@@ -26,23 +29,23 @@ export class FormComponent implements OnInit {
   @Output() register: EventEmitter<FormGroup> = new EventEmitter();
 
   public formGroup: FormGroup;
-  public grid: GridProps
+  public grid: GridProps;
   public hasButton: boolean = false;
   public cols: string | number;
-  public gutter: string;
+  public gutter: number;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    this.formGroup = this.group.formGroup
-    this.questions = this.questions || this.group.questions
-    this.grid = this.group.gridProps
-    this.cols = this.group.gridProps?.cols || 1
-    this.gutter = `${this.group.gridProps?.gutter}px` || '3px'
-    this.hasButton = this.group.hasButton || false
+    this.formGroup = this.group.formGroup;
+    this.questions = this.questions || this.group.questions;
+    this.grid = this.group.gridProps;
+    this.cols = this.group.gridProps?.cols || 1;
+    this.gutter = this.group.gridProps?.gutter || 1;
+    this.hasButton = this.group.hasButton || false;
 
     if (this.group.formGroup) {
-      this.subscribeToFormValues();
+    this.register.emit(this.formGroup);
     }
 
     if (this.editMode) {
@@ -60,7 +63,7 @@ export class FormComponent implements OnInit {
     });
   }
 
-  public onSelect(question : QuestionSelectModel) {
-    console.log(question)
+  public onSelect(question: QuestionSelectModel) {
+    console.log(question);
   }
 }

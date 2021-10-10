@@ -2,7 +2,7 @@
 
   <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
 
-    <mat-grid-list [cols]="cols" rowHeight="8vh" [gutterSize]="gutter" [dir]="'rtl'">
+    <mat-grid-list [cols]="cols" [rowHeight]="(rowHeight || 9) + 'rem'" [gutterSize]="(gutter) + 'rem'" [dir]="'rtl'">
 
       <ng-container *ngFor="let question of questions">
 
@@ -31,7 +31,7 @@
 
 
 
-      <mat-grid-tile class="button-tile" *ngIf="hasButton">
+      <mat-grid-tile  *ngIf="hasButton">
         <ng-container *ngTemplateOutlet="slots?.button; context: { question }">
         </ng-container>
       </mat-grid-tile>
