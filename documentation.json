@@ -12060,13 +12060,13 @@
         },
         {
             "name": "SharedModule",
-            "id": "module-SharedModule-417a86de28d70975427b14f0ff945bb3",
+            "id": "module-SharedModule-fc022e0c4c1463faa3145a36086893ce",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/shared/shared.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { StatusCardComponent } from './components/status-card/status-card.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\nimport { MaterialModule } from 'src/material/material.module';\r\n\r\n\r\n\r\n@NgModule({\r\n  declarations: [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n\r\n  ],\r\n  imports: [\r\n    CommonModule,\r\n    MaterialModule\r\n  ], exports : [\r\n    StatusCardComponent,\r\n    TypographyComponent,\r\n  ]\r\n})\r\nexport class SharedModule { }\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { CommonModule } from '@angular/common';\r\nimport { MaterialModule } from 'src/material/material.module';\r\n\r\n@NgModule({\r\n  declarations: [],\r\n  imports: [CommonModule, MaterialModule],\r\n  exports: [],\r\n})\r\nexport class SharedModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -12074,11 +12074,7 @@
                 },
                 {
                     "type": "declarations",
-                    "elements": [
-                        {
-                            "name": "TypographyComponent"
-                        }
-                    ]
+                    "elements": []
                 },
                 {
                     "type": "imports",
@@ -12090,11 +12086,7 @@
                 },
                 {
                     "type": "exports",
-                    "elements": [
-                        {
-                            "name": "TypographyComponent"
-                        }
-                    ]
+                    "elements": []
                 },
                 {
                     "type": "bootstrap",
@@ -12323,16 +12315,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/DatePicker.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12343,7 +12325,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Menu.stories.ts",
+                "file": "src/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -12414,6 +12396,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -12872,16 +12864,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/DatePicker.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -12902,11 +12884,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Menu.stories.ts",
+                "file": "src/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -12987,6 +12969,16 @@
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
                 "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -14113,28 +14105,6 @@
                     "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/DatePicker.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "src/stories/ExpandPanel.stories.ts": [
                 {
                     "name": "Default",
@@ -14157,12 +14127,12 @@
                     "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<app-expand-panel>\r\n  <app-typography bold=\"600\" title>example</app-typography>\r\n  <p content>example</p>\r\n  </app-expand-panel>`\r\n})"
                 }
             ],
-            "src/stories/Menu.stories.ts": [
+            "src/stories/DatePicker.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Menu.stories.ts",
+                    "file": "src/stories/DatePicker.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -14172,11 +14142,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Menu.stories.ts",
+                    "file": "src/stories/DatePicker.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/Modal.stories.ts": [
@@ -14329,6 +14299,28 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "src/stories/Menu.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/screens/Login.stories.ts": [
