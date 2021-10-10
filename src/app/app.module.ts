@@ -7,9 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from 'src/material/material.module';
 import { AppComponent } from './components/root/app.component';
 
-import { NavigationComponent } from './exemples/navigation/navigation.component';
-
-
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 import { IconComponent } from './components/icon/icon.component';
@@ -75,27 +72,26 @@ import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
 
     StepComponent,
     StepperComponent,
-    
+
     MenuComponent,
     MenuItemComponent,
     NavbarComponent,
     NavbarBottomComponent,
-    
+
     ListItemComponent,
-    
+
     ExpandPanelComponent,
-    
+
     ClassesDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
     UnderlineDirective,
     VariantDirective,
-    
-    NavigationComponent,
-          StepperExComponent,
-          InputExComponent,
-          WizardExComponent,
+
+    StepperExComponent,
+    InputExComponent,
+    WizardExComponent,
   ],
   imports: [
     BrowserModule,
@@ -104,7 +100,7 @@ import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
