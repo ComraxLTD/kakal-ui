@@ -23,7 +23,7 @@ export class StepperService {
       }
     });
   }
-
+  
   public setStepsStatus(
     items: CardStepModel[],
     key: ListItemKeys,
@@ -37,8 +37,10 @@ export class StepperService {
   public setSteps(
     steps: CardStepModel[],
     key: ListItemKeys,
-    path: string
+    path: string,
   ): CardStepModel[] {
     return this.setStepsStatus(steps, key, path);
   }
+
+
 }
