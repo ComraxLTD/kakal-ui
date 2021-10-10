@@ -13,11 +13,10 @@ export class MessageService {
     if (control.hasError('required')) {
       return 'שדה חובה ';
     }
-
-    if (control.hasError('min')) {
+    if (control.hasError('minlength')) {
       return 'ערך קצר מידי ';
     }
-
+    
     if (control.hasError('pattern')) {
       return `invalid ${placeHolder} format`;
     }

@@ -2,7 +2,7 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { FormComponent } from 'src/app/components/form/form/form.component';
 import { MaterialModule } from 'src/material/material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { FormInputComponent } from 'src/app/components/form/form-input/form-input.component';
 import { FormGroupComponent } from 'src/app/components/form/form-group/form-group.component';
 import { FormRadioComponent } from 'src/app/components/form/form-radio/form-radio.component';
@@ -29,8 +29,14 @@ export default {
         SizeDirective,
         ColorDirective,
       ],
-      providers : [FormService, MessageService],
-      imports: [MaterialModule, FormsModule, ReactiveFormsModule, CommonModule, BrowserAnimationsModule],
+      providers: [FormService, MessageService],
+      imports: [
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        BrowserAnimationsModule,
+      ],
     }),
   ],
 } as Meta;
@@ -39,5 +45,31 @@ const Template: Story<InputExComponent> = (args: InputExComponent) => ({
   props: args,
 });
 
-export const Default = Template.bind({});
-Default.args = {};
+export const Select = Template.bind({});
+Select.args = {
+  questions: [
+    {
+      controlType: 'select',
+      key: 'record',
+      label: 'סוג רישום',
+      options: [
+        { label: 'גוש חלקה', value: 'שם נוסף' },
+        { label: 'דף ספר', value: 'עוד לקוח' },
+        { label: 'מגרש', value: 'לקוח מספר שלוש' },
+        { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
+      ],
+      onSelectChange: () => {},
+    },
+  ],
+};
+export const Text = Template.bind({});
+Text.args = {
+  questions: [
+    {
+      controlType: 'text',
+      key: 'value',
+      label: 'הכנס טקסט',
+      validations : [Validators.required]
+    },
+  ],
+};

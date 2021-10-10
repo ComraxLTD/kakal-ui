@@ -1,15 +1,29 @@
-
 import { Injectable } from '@angular/core';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionCalendar } from '../models/question-calendar';
 import { QuestionTextModel } from '../models/question-text.model';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import {
+  AbstractControlOptions,
+  AsyncValidatorFn,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+} from '@angular/forms';
 import { QuestionGroupModel } from '../models/question-group.model';
 import { QuestionBaseModel, QuestionType } from '../models/question-base.model';
 import { QuestionNumberModel } from '../models/question-number.model';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
-import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
+import {
+  QuestionSelectModel,
+  SelectOption,
+} from '../models/question-select.model';
 
+export type ControlTemplate = [
+  state: any,
+  validatorOrOpts?: ValidatorFn | AbstractControlOptions | ValidatorFn[],
+  asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[]
+]
 export type QuestionBase = QuestionBaseModel<string | number | Date>;
 export type Question =
   | QuestionSelectModel
@@ -24,15 +38,17 @@ export type Question =
   providedIn: 'root',
 })
 export class FormService {
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   public getFieldControl(question): FormControl {
-    return this.fb.control(this.setFieldControl(question));
+    const template = this.setFieldControl(question);
+    console.log(template);
+    return this.fb.control(template[0], template[1]);
   }
 
-  private setFieldControl(question: QuestionBase) {
+  private setFieldControl(question: QuestionBase): ControlTemplate {
     const { value, validations } = question;
-    return [value || '', validations];
+    return [value || '', [...validations]];
   }
 
   private setGroupControl(control: QuestionGroupModel) {
@@ -84,7 +100,7 @@ export class FormService {
 
   public setQuestionList(questions: Question[]): Question[] {
     return questions.map((question: Question) => {
-      return this.setQuestion(question.controlType, { ...question })
+      return this.setQuestion(question.controlType, { ...question });
     });
   }
 

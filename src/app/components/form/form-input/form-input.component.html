@@ -27,7 +27,7 @@
       </ng-container>
 
       <ng-container *ngSwitchDefault>
-        <input matInput autocomplete="off" required [formControl]="control" [name]="question.key"
+        <input matInput autocomplete="off" [formControl]="control" [name]="question.key"
           (focusout)="validate()" #input />
       </ng-container>
     </ng-container>
