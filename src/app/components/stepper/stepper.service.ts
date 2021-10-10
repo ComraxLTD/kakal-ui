@@ -8,14 +8,6 @@ import { CardStepModel } from '../cards/card-step/card-step.model';
 export class StepperService {
   constructor() {}
 
-  private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {
-    items.find((item) => {
-      if (item[key] === value) {
-        item.active();
-      }
-    });
-  }
-
   private unactiveStep(items: CardStepModel[]) {
     items.find((item) => {
       if (item.isActive) {
@@ -23,6 +15,15 @@ export class StepperService {
       }
     });
   }
+
+  private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {
+    items.find((item) => {
+      if (item[key] === value) {
+        item.active();
+      }
+    });
+  }
+  
   
   public setStepsStatus(
     items: CardStepModel[],

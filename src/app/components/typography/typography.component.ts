@@ -65,7 +65,6 @@ export class TypographyComponent implements OnInit {
   private subscribeToActive() {
     if (this.active$) {
       this.unsubscribe = this.active$.subscribe((active) => {
-        console.log(active)
         active
           ? this.typographyService.updateClasses(this.activeClasses)
           : this.typographyService.updateClasses(this.classes)

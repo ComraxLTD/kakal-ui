@@ -99,7 +99,6 @@ Wizard.args = {
       label: 'פירוט הנכס',
       svgUrl: 'home',
       path: 'details',
-      isActive: true,
       size: 3,
       variant : 'square',
       type : 'wizard'
@@ -109,6 +108,7 @@ Wizard.args = {
       svgUrl: 'list',
       path: 'movements',
       size: 3,
+      isActive: true,
       variant : 'square',
       type : 'wizard'
     }),
