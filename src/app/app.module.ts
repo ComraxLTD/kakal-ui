@@ -47,6 +47,7 @@ import { NavbarBottomComponent } from './components/navigation/navbar-bottom/nav
 import { StepperExComponent } from './exemples/stepper-ex/stepper-ex.component';
 import { InputExComponent } from './exemples/input-ex/input-ex.component';
 import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
+import { FormExComponent } from './exemples/form-ex/form-ex.component';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';
     StepperExComponent,
     InputExComponent,
     WizardExComponent,
+    FormExComponent,
   ],
   imports: [
     BrowserModule,
