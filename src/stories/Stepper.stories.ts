@@ -10,10 +10,10 @@ import { IconComponent } from 'src/app/components/icon/icon.component';
 import { ClassesDirective } from 'src/app/utilities/directives/classes.directive';
 import { VariantDirective } from 'src/app/utilities/directives/variant.directive';
 import { TypographyComponent } from 'src/app/components/typography/typography.component';
-import { NavigationComponent } from 'src/app/exemples/navigation/navigation.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ButtonDirective } from 'src/app/utilities/directives/button.directive';
 import { ColorDirective } from 'src/app/utilities/directives/color.directive';
+import { StepperExComponent } from 'src/app/exemples/stepper-ex/stepper-ex.component';
 
 export default {
   title: 'Stepper',
@@ -30,7 +30,7 @@ export default {
         ButtonDirective,
         ColorDirective,
         TypographyComponent,
-        NavigationComponent
+        StepperExComponent
       ],
       
       imports: [CommonModule, MaterialModule, FlexLayoutModule],
@@ -38,9 +38,9 @@ export default {
   ],
 } as Meta;
 
-const Template: Story<NavigationComponent> = (args: NavigationComponent) => ({
+const Template: Story<StepperExComponent> = (args: StepperExComponent) => ({
   props: args,
-  template: `<app-navigation></app-navigation>`,
+  template: `<app-stepper-ex></app-stepper-ex>`,
 });
 
 export const Stepper = Template.bind({});
