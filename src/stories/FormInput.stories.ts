@@ -11,10 +11,12 @@ import { IconComponent } from 'src/app/components/icon/icon.component';
 import { SizeDirective } from 'src/app/utilities/directives/size.directive';
 import { ColorDirective } from 'src/app/utilities/directives/color.directive';
 import { MessageService } from 'src/app/components/form/services/message.service';
+import { InputExComponent } from 'src/app/exemples/input-ex/input-ex.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'FormInput',
-  component: FormInputComponent,
+  component: InputExComponent,
   decorators: [
     moduleMetadata({
       declarations: [
@@ -28,12 +30,12 @@ export default {
         ColorDirective,
       ],
       providers : [FormService, MessageService],
-      imports: [MaterialModule, FormsModule, ReactiveFormsModule, CommonModule],
+      imports: [MaterialModule, FormsModule, ReactiveFormsModule, CommonModule, BrowserAnimationsModule],
     }),
   ],
 } as Meta;
 
-const Template: Story<FormInputComponent> = (args: FormInputComponent) => ({
+const Template: Story<InputExComponent> = (args: InputExComponent) => ({
   props: args,
 });
 

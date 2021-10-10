@@ -13,8 +13,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class FormInputComponent implements OnInit {
 
-  
-  @Input() public question: QuestionBase;
+    @Input() public question: QuestionBase;
   @Input() public control: FormControl;
 
   public type: string;

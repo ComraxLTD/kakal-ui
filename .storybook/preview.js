@@ -22,6 +22,10 @@ export const parameters = {
         name: 'facebook',
         value: '#3b5998',
       },
+      {
+        name: 'form',
+        value: '#fff',
+      },
     ],
   },
 }
