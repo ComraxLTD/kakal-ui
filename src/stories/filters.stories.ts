@@ -17,7 +17,7 @@ import { ColorDirective } from 'src/app/utilities/directives/color.directive';
 
 
 export default {
-  title: 'filters',
+  title: 'Filters',
   decorators: [
     moduleMetadata({
       providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
@@ -33,7 +33,7 @@ export default {
         TypographyComponent,
         CardFilterComponent
       ],
-      imports: [CommonModule, MaterialModule, FlexLayoutModule],
+      imports: [CommonModule, MaterialModule],
     }),
   ],
 } as Meta;
