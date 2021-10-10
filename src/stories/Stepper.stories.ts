@@ -32,6 +32,7 @@ export default {
         TypographyComponent,
         NavigationComponent
       ],
+      
       imports: [CommonModule, MaterialModule, FlexLayoutModule],
     }),
   ],
@@ -39,55 +40,15 @@ export default {
 
 const Template: Story<NavigationComponent> = (args: NavigationComponent) => ({
   props: args,
-  template: `<app-navigation ${Object.keys(args).reduce(
-    (acc, key) =>`${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`,'')} ></app-navigation>`,
+  template: `<app-navigation></app-navigation>`,
 });
 
 export const Stepper = Template.bind({});
 
 Stepper.args = {
-  steps: [
-    new StepModel({
-      label: 'פירוט הנכס',
-      svgUrl: 'home',
-      path: 'details',
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'תנועות',
-      svgUrl: 'list',
-      path: 'movements',
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'עסקאות',
-      svgUrl: 'transactions',
-      path: 'transactions',
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'תתי חלקה',
-      svgUrl: 'building',
-      path: 'subdivision',
-      size: 3,
-      divider: 5,
-    }),
-    new StepModel({
-      label: 'פרצליציה',
-      svgUrl: 'add',
-      path: 'parcellation',
-      size: 3,
-    }),
-  ],
-  direction : 'row'
+
 };
 
-
-// TODO - direction prop dont show
-// TODO - FIX step method not a function error
 export const Wizard = Template.bind({});
 
 Wizard.args = {

@@ -1,5 +1,5 @@
 <div class="container" fxLayout="column" fxLayoutAlign="center center" dir="rtl" fxFill> 
   <div fxFlex="20">
-    <app-stepper [steps]="steps" [direction]="direction"></app-stepper>
+    <app-stepper (changStep)="onStepChange($event)" [steps]="steps" [direction]="direction"></app-stepper>
   </div>
 </div>

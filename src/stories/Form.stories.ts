@@ -10,9 +10,11 @@ import { FormService } from 'src/app/components/form/services/form.service';
 import { IconComponent } from 'src/app/components/icon/icon.component';
 import { SizeDirective } from 'src/app/utilities/directives/size.directive';
 import { ColorDirective } from 'src/app/utilities/directives/color.directive';
+import { MessageService } from 'src/app/components/form/services/message.service';
 
 export default {
-  title: 'Form',
+  title: 'FormInput',
+  component: FormInputComponent,
   decorators: [
     moduleMetadata({
       declarations: [
@@ -21,11 +23,11 @@ export default {
         FormGroupComponent,
         FormRadioComponent,
         FormRadioComponent,
-        FormService,
         IconComponent,
         SizeDirective,
-        ColorDirective
+        ColorDirective,
       ],
+      providers : [FormService, MessageService],
       imports: [MaterialModule, FormsModule, ReactiveFormsModule, CommonModule],
     }),
   ],
@@ -36,6 +38,4 @@ const Template: Story<FormInputComponent> = (args: FormInputComponent) => ({
 });
 
 export const Default = Template.bind({});
-Default.args = {
-
-};
+Default.args = {};
