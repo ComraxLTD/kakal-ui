@@ -11,7 +11,8 @@ export class NavigationComponent implements OnInit {
   @Input() public steps : StepModel[]
   @Input() public direction : StepperDirection
 
-  constructor() { }
+  constructor() {
+   }
 
   ngOnInit(): void {
 

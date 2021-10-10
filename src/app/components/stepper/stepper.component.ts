@@ -24,7 +24,9 @@ export class StepperComponent implements OnInit {
 
   @Output() changStep = new EventEmitter<StepModel>();
 
-  constructor() {}
+  constructor() {
+    
+  }
 
   ngOnInit() {
   }

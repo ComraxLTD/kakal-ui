@@ -30,7 +30,7 @@ export default {
         ButtonDirective,
         ColorDirective,
         TypographyComponent,
-        NavigationComponent
+        NavigationComponent,
       ],
       imports: [CommonModule, MaterialModule, FlexLayoutModule],
     }),
@@ -39,7 +39,6 @@ export default {
 
 const Template: Story<NavigationComponent> = (args: NavigationComponent) => ({
   props: args,
-  template: `<app-navigation></app-navigation>`,
 });
 
 export const Stepper = Template.bind({});
@@ -81,12 +80,9 @@ Stepper.args = {
       size: 3,
     }),
   ],
-  direction : 'row'
+  direction: 'row',
 };
 
-
-// TODO - direction prop dont show
-// TODO - FIX step method not a function error
 export const Wizard = Template.bind({});
 
 Wizard.args = {
@@ -126,5 +122,5 @@ Wizard.args = {
       size: 3,
     }),
   ],
-  direction : 'column'
+  direction: 'column',
 };
