@@ -13,10 +13,10 @@ import { TypographyComponent } from 'src/app/components/typography/typography.co
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ButtonDirective } from 'src/app/utilities/directives/button.directive';
 import { ColorDirective } from 'src/app/utilities/directives/color.directive';
-import { StepperExComponent } from 'src/app/exemples/stepper-ex/stepper-ex.component';
+import { WizardExComponent } from 'src/app/exemples/wizard-ex/wizard-ex.component';
 
 export default {
-  title: 'Stepper',
+  title: 'Wizard',
   decorators: [
     moduleMetadata({
       providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
@@ -30,7 +30,7 @@ export default {
         ButtonDirective,
         ColorDirective,
         TypographyComponent,
-        StepperExComponent
+        WizardExComponent
       ],
       
       imports: [CommonModule, MaterialModule, FlexLayoutModule],
@@ -38,9 +38,9 @@ export default {
   ],
 } as Meta;
 
-const Template: Story<StepperExComponent> = (args: StepperExComponent) => ({
+const Template: Story<WizardExComponent> = (args: WizardExComponent) => ({
   props: args,
-  template: `<app-stepper-ex></app-stepper-ex>`,
+  template : '<app-wizard-ex></app-wizard-ex>'
 });
 
 export const Stepper = Template.bind({});

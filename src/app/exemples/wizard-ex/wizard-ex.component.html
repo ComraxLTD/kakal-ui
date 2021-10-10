@@ -1,1 +1,7 @@
-<p>wizard-ex works!</p>
+<div class="wizard">
+  <app-stepper
+    (changStep)="onStepChange($event)"
+    [steps]="steps"
+    [direction]="direction"
+  ></app-stepper>
+</div>
