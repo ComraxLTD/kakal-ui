@@ -1,6 +1,6 @@
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
-import { ColumnModel } from './column.model';
+import { ColumnModel } from '../../columns/column.model';
 import { RowModel } from './row.model';
 
 export class TableModel<T> {

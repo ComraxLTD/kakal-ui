@@ -54,6 +54,7 @@ import { AreaPipe } from './utilities/pipes/area.pipe';
 import { FormatPipe } from './utilities/pipes/format.pipe';
 import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from './components/columns/column-form/column-form.component';
+import { StatusComponent } from './components/status/status.component';
 
 @NgModule({
   declarations: [
@@ -102,6 +103,7 @@ import { ColumnFormComponent } from './components/columns/column-form/column-for
     SizeDirective,
     ButtonDirective,
     VariantDirective,
+    StatusComponent,
 
     StepperExComponent,
     InputExComponent,

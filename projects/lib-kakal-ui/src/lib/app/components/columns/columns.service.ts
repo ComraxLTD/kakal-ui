@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ColumnModel } from '../table/models/column.model';
+import { ColumnModel } from './column.model';
 
 export interface ColumnsData<T> {
   columns: ColumnModel[];
