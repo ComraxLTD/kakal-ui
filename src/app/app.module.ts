@@ -43,12 +43,12 @@ import { ExpandPanelComponent } from './components/expand-panel/expand-panel.com
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
 import { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';
-import { StepperExComponent } from './exemples/stepper-ex/stepper-ex.component';
-import { InputExComponent } from './exemples/input-ex/input-ex.component';
-import { FormExComponent } from './exemples/form-ex/form-ex.component';
+import { FormExComponent } from './examples/form-ex/form-ex.component';
 import { CardFilterComponent } from './components/cards/card-filter/card-filter.component';
-import { FiltersComponent } from './exemples/filters/filters.component';
 import { TableExComponent } from './examples/table-ex/table-ex.component';
+import { InputExComponent } from './examples/input-ex/input-ex.component';
+import { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';
+import { FiltersExComponent } from './examples/filters-ex/filters-ex.component';
 
 @NgModule({
   declarations: [
@@ -100,8 +100,8 @@ import { TableExComponent } from './examples/table-ex/table-ex.component';
     StepperExComponent,
     InputExComponent,
     FormExComponent,
-    FiltersComponent,
     TableExComponent,
+    FiltersExComponent,
   ],
   imports: [
     BrowserModule,

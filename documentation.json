@@ -1733,7 +1733,7 @@
         },
         {
             "name": "StepperService",
-            "id": "injectable-StepperService-d1920b2da792e88d1c35c261c5a6a66a",
+            "id": "injectable-StepperService-02d7a9b3a4e670d0a440d5aa1388576c",
             "file": "src/app/components/stepper/stepper.service.ts",
             "properties": [],
             "methods": [
@@ -1762,7 +1762,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 11,
+                    "line": 19,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1823,7 +1823,7 @@
                     "optional": false,
                     "returnType": "CardStepModel[]",
                     "typeParameters": [],
-                    "line": 37,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1884,7 +1884,7 @@
                     "optional": false,
                     "returnType": "CardStepModel[]",
                     "typeParameters": [],
-                    "line": 27,
+                    "line": 28,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1933,7 +1933,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 19,
+                    "line": 11,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -1956,7 +1956,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { ListItemKeys } from '../list-item/list-item.model';\r\nimport { Injectable } from '@angular/core';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class StepperService {\r\n  constructor() {}\r\n\r\n  private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {\r\n    items.find((item) => {\r\n      if (item[key] === value) {\r\n        item.active();\r\n      }\r\n    });\r\n  }\r\n\r\n  private unactiveStep(items: CardStepModel[]) {\r\n    items.find((item) => {\r\n      if (item.isActive) {\r\n        item.unactive();\r\n      }\r\n    });\r\n  }\r\n\r\n  public setStepsStatus(\r\n    items: CardStepModel[],\r\n    key: ListItemKeys,\r\n    value: string\r\n  ): CardStepModel[] {\r\n    this.unactiveStep(items);\r\n    this.activeStep(items, key, value);\r\n    return [...items];\r\n  }\r\n\r\n  public setSteps(\r\n    steps: CardStepModel[],\r\n    key: ListItemKeys,\r\n    path: string\r\n  ): CardStepModel[] {\r\n    return this.setStepsStatus(steps, key, path);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ListItemKeys } from '../list-item/list-item.model';\r\nimport { Injectable } from '@angular/core';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class StepperService {\r\n  constructor() {}\r\n\r\n  private unactiveStep(items: CardStepModel[]) {\r\n    items.find((item) => {\r\n      if (item.isActive) {\r\n        item.unactive();\r\n      }\r\n    });\r\n  }\r\n\r\n  private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {\r\n    items.find((item) => {\r\n      if (item[key] === value) {\r\n        item.active();\r\n      }\r\n    });\r\n  }\r\n  \r\n  \r\n  public setStepsStatus(\r\n    items: CardStepModel[],\r\n    key: ListItemKeys,\r\n    value: string\r\n  ): CardStepModel[] {\r\n    this.unactiveStep(items);\r\n    this.activeStep(items, key, value);\r\n    return [...items];\r\n  }\r\n\r\n  public setSteps(\r\n    steps: CardStepModel[],\r\n    key: ListItemKeys,\r\n    path: string,\r\n  ): CardStepModel[] {\r\n    return this.setStepsStatus(steps, key, path);\r\n  }\r\n\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -8076,92 +8076,6 @@
             }
         },
         {
-            "name": "UnderlineDirective",
-            "id": "directive-UnderlineDirective-41ae0b84f6ce2c1be249bf85cdcc80ae",
-            "file": "src/app/utilities/directives/underline.directive.ts",
-            "type": "directive",
-            "description": "",
-            "rawdescription": "\n",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { Palette, theme } from 'src/styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appUnderline]',\r\n})\r\nexport class UnderlineDirective {\r\n  private palette = theme.palette;\r\n\r\n  @Input() color: Palette;\r\n\r\n  @HostBinding('style.border-bottom') private underline: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.underline = `3px solid ${this.palette[this.color || 'primary']}`;\r\n  }\r\n}\r\n",
-            "selector": "[appUnderline]",
-            "providers": [],
-            "inputsClass": [
-                {
-                    "name": "color",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 10,
-                    "type": "Palette"
-                }
-            ],
-            "outputsClass": [],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [
-                {
-                    "name": "style.border-bottom",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 12,
-                    "type": "string"
-                }
-            ],
-            "hostListeners": [],
-            "propertiesClass": [
-                {
-                    "name": "palette",
-                    "defaultValue": "theme.palette",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "optional": false,
-                    "description": "",
-                    "line": 8,
-                    "modifierKind": [
-                        120
-                    ]
-                },
-                {
-                    "name": "underline",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 12,
-                    "decorators": [
-                        {
-                            "name": "HostBinding",
-                            "stringifiedArguments": "'style.border-bottom'"
-                        }
-                    ],
-                    "modifierKind": [
-                        120
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 16,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ],
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [],
-                "line": 12
-            }
-        },
-        {
             "name": "VariantDirective",
             "id": "directive-VariantDirective-5008d82ffb5ebb42626f2e2b2606c8d4",
             "file": "src/app/utilities/directives/variant.directive.ts",
@@ -8824,7 +8738,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n    <div\r\n      appSize\r\n      [size]=\"6\"\r\n      (click)=\"onStepClick()\"\r\n      [matBadge]=\"step.value\"\r\n      matBadgeColor=\"accent\"\r\n      matBadgeSize=\"medium\"\r\n    >\r\n      <mat-card\r\n        appVariant\r\n        [type]=\"step.type\"\r\n        [variant]=\"step.variant\"\r\n        [ngClass]=\"{\r\n          'mat-elevation-z0': true,\r\n          active: (active$ | async)\r\n        }\"\r\n      >\r\n        <mat-card-content appButton>\r\n          <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n            <div fxFlex=\"80\">\r\n              <app-icon\r\n                [active$]=\"active$\"\r\n                [color]=\"'default'\"\r\n                type=\"svg\"\r\n                [key]=\"step.svgUrl || ''\"\r\n                [size]=\"step.size\"\r\n              >\r\n              </app-icon>\r\n            </div>\r\n          </div>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n    <div\r\n      class=\"label-container\"\r\n      fxLayout=\"column\"\r\n      fxLayoutAlign=\"center center\"\r\n      fxFlex=\"40\"\r\n    >\r\n      <app-typography\r\n        [ngClass]=\"{ active: (active$ | async) }\"\r\n        [activeClasses]=\"{ fontWeight: 600 }\"\r\n        [bold]=\"(active$ | async) ? 600 : 500\"\r\n        [active$]=\"active$\"\r\n        [size]=\"1.1\"\r\n      >\r\n        {{ step.label }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n  "
+            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <div\r\n    appSize\r\n    [size]=\"6\"\r\n    (click)=\"onStepClick()\"\r\n    [matBadge]=\"step.value\"\r\n    matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\"\r\n  >\r\n    <mat-card\r\n      appVariant\r\n      [type]=\"step.type\"\r\n      [variant]=\"step.variant\"\r\n      [ngClass]=\"{\r\n        'mat-elevation-z0': true,\r\n        active: (active$ | async)\r\n      }\"\r\n    >\r\n      <mat-card-content appButton>\r\n        <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n          <div fxFlex=\"80\">\r\n            <app-icon\r\n              [active$]=\"active$\"\r\n              [color]=\"'default'\"\r\n              type=\"svg\"\r\n              [key]=\"step.svgUrl || ''\"\r\n              [size]=\"step.size\"\r\n            >\r\n            </app-icon>\r\n          </div>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div\r\n    class=\"label-container\"\r\n    fxLayout=\"column\"\r\n    fxLayoutAlign=\"center center\"\r\n    fxFlex=\"40\"\r\n  >\r\n    <app-typography\r\n      [ngClass]=\"{ active: (active$ | async) }\"\r\n      [classes]=\"stepTextClasses\"\r\n      [activeClasses]=\"activeStepTextClasses\"\r\n      [active$]=\"active$\"\r\n      [size]=\"1.1\"\r\n    >\r\n      {{ step.label }}\r\n    </app-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardUserComponent",
@@ -8917,7 +8831,7 @@
         },
         {
             "name": "CardWizardComponent",
-            "id": "component-CardWizardComponent-6acff8724e7e505b7ffda79af906256d",
+            "id": "component-CardWizardComponent-a471cd66b384a8bb6934e58d067e43ec",
             "file": "src/app/components/cards/card-wizard/card-wizard.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -8933,9 +8847,77 @@
                 "./card-wizard.component.html"
             ],
             "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [],
+            "inputsClass": [
+                {
+                    "name": "step",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 13,
+                    "type": "CardStepModel"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "onStepChange",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "EventEmitter<CardStepModel>"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "active$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "activeWizardClasses",
+                    "defaultValue": "{\r\n    ...this.wizardClasses,\r\n    color: 'paper',\r\n    fontWeight: 600,\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Classes",
+                    "optional": false,
+                    "description": "",
+                    "line": 24,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "StepType",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "wizardClasses",
+                    "defaultValue": "{\r\n    color: 'text',\r\n    fontWeight: 500,\r\n    fontSize: 1.1\r\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Classes",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "ngOnInit",
@@ -8943,9 +8925,22 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 34,
                     "deprecated": false,
                     "deprecationMessage": ""
+                },
+                {
+                    "name": "onStepClick",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
                 }
             ],
             "deprecated": false,
@@ -8955,11 +8950,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-card-wizard',\r\n  templateUrl: './card-wizard.component.html',\r\n  styleUrls: ['./card-wizard.component.scss']\r\n})\r\nexport class CardWizardComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { Classes } from 'src/app/utilities/directives/classes.directive';\r\nimport { CardStepModel, StepType } from '../card-step/card-step.model';\r\n\r\n@Component({\r\n  selector: 'app-card-wizard',\r\n  templateUrl: './card-wizard.component.html',\r\n  styleUrls: ['./card-wizard.component.scss']\r\n})\r\nexport class CardWizardComponent implements OnInit {\r\n\r\n  @Input() public step: CardStepModel;\r\n\r\n  public type: StepType;\r\n  public active$: Observable<boolean>;\r\n\r\n\r\n  public wizardClasses: Classes = {\r\n    color: 'text',\r\n    fontWeight: 500,\r\n    fontSize: 1.1\r\n  }\r\n  public activeWizardClasses: Classes = {\r\n    ...this.wizardClasses,\r\n    color: 'paper',\r\n    fontWeight: 600,\r\n  }\r\n\r\n  @Output() onStepChange: EventEmitter<CardStepModel> = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.type = this.step.type;\r\n    this.active$ = this.step.getActiveObs();\r\n  }\r\n\r\n  public onStepClick(): void {\r\n    if (!this.step.isActive) {\r\n      this.onStepChange.emit(this.step);\r\n    }\r\n  }\r\n\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": "@import \"../../../../styles/styles.scss\";\r\n\r\n:host {\r\n    height: 100%;\r\n    width: 100%;\r\n  }\r\n  \r\n  div {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n  \r\n  mat-card,\r\n  mat-card-content {\r\n    width: 100% !important;\r\n    height: 100% !important;\r\n    padding: 0px !important;\r\n  \r\n  \r\n    &.active {\r\n      background: color(primary) !important;\r\n  \r\n    }\r\n  }\r\n  \r\n  div.label-container {\r\n    padding-top: spacing(3);\r\n  \r\n  }\r\n  ",
                     "styleUrl": "./card-wizard.component.scss"
                 }
             ],
@@ -8970,12 +8965,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 8
+                "line": 30
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<p>card-wizard works!</p>\r\n"
+            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n    <div class=\"card-svg-container\" (click)=\"onStepClick()\" [matBadge]=\"step.value\" matBadgeColor=\"accent\"\r\n      matBadgeSize=\"medium\" fxFill>\r\n      <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n          'mat-elevation-z0': true,\r\n          active: (active$ | async)\r\n        }\">\r\n        <mat-card-content appButton>\r\n          <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n            <div fxFlex=\"80\">\r\n              <app-icon  [active$]=\"active$\" [color]=\"'primary'\" [key]=\"step.svgUrl\" [size]=\"step.size\">\r\n              </app-icon>\r\n            </div>\r\n            <div fxFlex=\"15\" [ngClass]=\"{ active: (active$ | async) }\" fxLayout=\"column\"\r\n              fxLayoutAlign=\"end center\">\r\n              <app-typography [active$]=\"active$\" [classes]=\"wizardClasses\" [activeClasses]=\"activeWizardClasses\">\r\n                {{ step.label }}\r\n              </app-typography>\r\n            </div>\r\n          </div>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n  "
         },
         {
             "name": "DashboardComponent",
@@ -9231,21 +9226,21 @@
             "templateData": "<mat-expansion-panel\r\n  dir=\"rtl\"\r\n  [hideToggle]=\"hideToggle\"\r\n  [expanded]=\"expanded\"\r\n  [disabled]=\"disabled\"\r\n  [ngClass]=\"[variant, 'default', 'mat-elevation-z0']\"\r\n  (closed)=\"onPanelClosed()\"\r\n  (opened)=\"onPanelOpen()\"\r\n>\r\n  <mat-expansion-panel-header\r\n    *ngIf=\"!showHeader\"\r\n    [ngClass]=\"[variant]\"\r\n    (click)=\"onPanelExpend()\"\r\n  >\r\n    <mat-panel-title [ngClass]=\"[variant, 'default']\">\r\n      <ng-content select=\"[title]\"></ng-content>\r\n    </mat-panel-title>\r\n    <mat-panel-description>\r\n      <ng-content select=\"[description]\"></ng-content>\r\n    </mat-panel-description>\r\n  </mat-expansion-panel-header>\r\n\r\n  <div class=\"content\">\r\n    <ng-content select=\"[content]\"></ng-content>\r\n  </div>\r\n</mat-expansion-panel>\r\n"
         },
         {
-            "name": "FiltersComponent",
-            "id": "component-FiltersComponent-ad12a793eeb9fc8368c0876be6e41074",
-            "file": "src/app/exemples/filters/filters.component.ts",
+            "name": "FiltersExComponent",
+            "id": "component-FiltersExComponent-7c848c9b60ace7f55d42318926cac59b",
+            "file": "src/app/examples/filters-ex/filters-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-filters",
+            "selector": "app-filters-ex",
             "styleUrls": [
-                "./filters.component.scss"
+                "./filters-ex.component.scss"
             ],
             "styles": [],
             "templateUrl": [
-                "./filters.component.html"
+                "./filters-ex.component.html"
             ],
             "viewProviders": [],
             "inputsClass": [
@@ -9253,7 +9248,7 @@
                     "name": "filters",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 10,
+                    "line": 11,
                     "type": "FilterModel[]"
                 }
             ],
@@ -9266,7 +9261,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 14,
+                    "line": 15,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -9278,12 +9273,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FilterModel } from 'src/app/components/cards/card-filter/card-filter.model';\r\n\r\n@Component({\r\n  selector: 'app-filters',\r\n  templateUrl: './filters.component.html',\r\n  styleUrls: ['./filters.component.scss'],\r\n})\r\nexport class FiltersComponent implements OnInit {\r\n  @Input() filters: FilterModel[];\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { FilterModel } from 'src/app/components/cards/card-filter/card-filter.model';\n\n@Component({\n  selector: 'app-filters-ex',\n  templateUrl: './filters-ex.component.html',\n  styleUrls: ['./filters-ex.component.scss']\n})\nexport class FiltersExComponent implements OnInit {\n\n  @Input() filters: FilterModel[];\n\n  constructor() {}\n\n  ngOnInit(): void {}\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
                     "data": ".container {\r\n    display: flex;\r\n    width: calc(100%); \r\n    flex-direction: row-reverse;\r\n    font-size: inherit;\r\n    gap: 2rem;\r\n    margin: 3rem 0;\r\n}\r\n\r\n.app-filter-card{\r\n    flex: 1; \r\n}\r\n",
-                    "styleUrl": "./filters.component.scss"
+                    "styleUrl": "./filters-ex.component.scss"
                 }
             ],
             "stylesData": "",
@@ -9293,12 +9288,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 10
+                "line": 11
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div fxFill fxLayout=\"row\" fxLayoutAlign=\"center\">\r\n  <div\r\n    class=\"container\"\r\n    fxLayout=\"row\"\r\n    fxLayoutAlign=\"space-evenly start\"\r\n    dir=\"rtl\"\r\n    fxFlex=\"80\"\r\n  >\r\n    <app-card-filter\r\n      class=\"app-filter-card\"\r\n      *ngFor=\"let filter of filters\"\r\n      [filter]=\"filter\"\r\n    ></app-card-filter>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div fxFill fxLayout=\"row\" fxLayoutAlign=\"center\">\n    <div\n      class=\"container\"\n      fxLayout=\"row\"\n      fxLayoutAlign=\"space-evenly start\"\n      dir=\"rtl\"\n      fxFlex=\"80\"\n    >\n      <app-card-filter\n        class=\"app-filter-card\"\n        *ngFor=\"let filter of filters\"\n        [filter]=\"filter\"\n      ></app-card-filter>\n    </div>\n  </div>\n  "
         },
         {
             "name": "FormAutocompleteComponent",
@@ -9732,7 +9727,7 @@
         {
             "name": "FormExComponent",
             "id": "component-FormExComponent-9d4fe11c534d261bf8130025cf4521aa",
-            "file": "src/app/exemples/form-ex/form-ex.component.ts",
+            "file": "src/app/examples/form-ex/form-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -10559,7 +10554,7 @@
         {
             "name": "InputExComponent",
             "id": "component-InputExComponent-1e3688567c745273b5c96245a8195f99",
-            "file": "src/app/exemples/input-ex/input-ex.component.ts",
+            "file": "src/app/examples/input-ex/input-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -11961,8 +11956,8 @@
         },
         {
             "name": "StepperExComponent",
-            "id": "component-StepperExComponent-c9dd6cd8d77be20b9bed243b3b768592",
-            "file": "src/app/exemples/stepper-ex/stepper-ex.component.ts",
+            "id": "component-StepperExComponent-b58ca2a5066bcd509baeeb13270d6617",
+            "file": "src/app/examples/stepper-ex/stepper-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -11980,33 +11975,22 @@
             "inputsClass": [
                 {
                     "name": "direction",
-                    "defaultValue": "'row'",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 22,
-                    "type": "string"
+                    "line": 18,
+                    "type": "StepperDirection"
                 },
                 {
                     "name": "steps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 17,
                     "type": "CardStepModel[]"
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [],
             "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 17,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
                 {
                     "name": "onStepChange",
                     "args": [
@@ -12020,7 +12004,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 24,
+                    "line": 20,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12046,11 +12030,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { CardStepModel } from 'src/app/components/cards/card-step/card-step.model';\r\nimport { StepModel } from 'src/app/components/step/step.model';\r\nimport { StepperService } from 'src/app/components/stepper/stepper.service';\r\n\r\n@Component({\r\n  selector: 'app-stepper-ex',\r\n  templateUrl: './stepper-ex.component.html',\r\n  styleUrls: ['./stepper-ex.component.scss']\r\n})\r\nexport class StepperExComponent implements OnInit {\r\n\r\n  constructor(private stepperService: StepperService) {}\r\n  \r\n  @Input() public steps : CardStepModel[]\r\n\r\n  ngOnInit(): void {\r\n    console.log(this.steps)\r\n  }\r\n\r\n\r\n  @Input() public direction: string = 'row';\r\n\r\n  public onStepChange(step: StepModel) {\r\n    this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { CardStepModel } from 'src/app/components/cards/card-step/card-step.model';\r\nimport {\r\n  StepModel,\r\n  StepperDirection,\r\n} from 'src/app/components/step/step.model';\r\nimport { StepperService } from 'src/app/components/stepper/stepper.service';\r\n\r\n@Component({\r\n  selector: 'app-stepper-ex',\r\n  templateUrl: './stepper-ex.component.html',\r\n  styleUrls: ['./stepper-ex.component.scss'],\r\n})\r\nexport class StepperExComponent {\r\n  constructor(private stepperService: StepperService) {}\r\n\r\n  @Input() public steps: CardStepModel[];\r\n  @Input() public direction: StepperDirection;\r\n\r\n  public onStepChange(step: StepModel) {\r\n    this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ":host {\r\n    height: 100%;\r\n  }\r\n  \r\n  div {\r\n    width: 100%;\r\n    height: 100%;\r\n  }\r\n  \r\n",
+                    "data": ":host {\r\n    height: 100%;\r\n  }\r\n  \r\n  div {\r\n    height: 100%;\r\n  }\r\n  \r\n  .wizard {\r\n    height: 100%;\r\n    width: 100px;\r\n  }\r\n  ",
                     "styleUrl": "./stepper-ex.component.scss"
                 }
             ],
@@ -12068,7 +12052,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 11,
+                "line": 14,
                 "jsdoctags": [
                     {
                         "name": "stepperService",
@@ -12081,10 +12065,7 @@
                     }
                 ]
             },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\" fxFill> \r\n    <div fxFlex=\"20\">\r\n      <app-stepper (changStep)=\"onStepChange($event)\" [steps]=\"steps\" [direction]=\"direction\"></app-stepper>\r\n    </div>\r\n  </div>\r\n  "
+            "templateData": "<div *ngIf=\"direction === 'row'\" class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\" fxFill> \r\n    <div fxFlex=\"20\">\r\n      <app-stepper (changStep)=\"onStepChange($event)\" [steps]=\"steps\" [direction]=\"direction\"></app-stepper>\r\n    </div>\r\n  </div>\r\n  \r\n  <div *ngIf=\"direction === 'column'\" class=\"wizard\">\r\n    <app-stepper\r\n      (changStep)=\"onStepChange($event)\"\r\n      [steps]=\"steps\"\r\n      [direction]=\"direction\"\r\n    ></app-stepper>\r\n  </div>\r\n  "
         },
         {
             "name": "TableComponent",
@@ -12398,6 +12379,68 @@
             "templateData": "<div>\r\n  <mat-table\r\n    (matSortChange)=\"onSort($event)\"\r\n    mat-table\r\n    matSort\r\n    [dataSource]=\"$data | async | paginate : pagination\"\r\n    [dir]=\"'rtl'\"\r\n  >\r\n    <ng-container\r\n      *ngFor=\"let column of table.columns\"\r\n      [matColumnDef]=\"column.columnDef\"\r\n    >\r\n      <!-- COLUMN HEADER SECTION-->\r\n\r\n      <ng-container *ngIf=\"!column.sortable\">\r\n        <mat-header-cell\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{ center: column.center }\"\r\n        >\r\n          <!-- DEFAULT HEADER -->\r\n          <app-typography [bold]=\"600\" [size]=\"12\" *ngIf=\"!column.filterable\">\r\n            {{ column.label }}\r\n          </app-typography>\r\n\r\n          <ng-container\r\n            *ngIf=\"column.columnDef === 'actions' && column.slotRef\"\r\n          >\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                headerSlots[column.columnDef];\r\n                context: { cell: column }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <!-- FILTER HEADER -->\r\n          <app-column-filter\r\n            *ngIf=\"column.filterable\"\r\n            [column]=\"column\"\r\n          ></app-column-filter>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <!-- SORT HEADER -->\r\n      <ng-container *ngIf=\"column.sortable\">\r\n        <mat-header-cell\r\n          mat-sort-header\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{ center: column.center }\"\r\n          [start]=\"column.sortDir\"\r\n        >\r\n          <app-typography [bold]=\"600\" [size]=\"12\">\r\n            {{ column.label }}\r\n          </app-typography>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <!-- COLUMN CELL SECTION-->\r\n\r\n      <mat-cell\r\n        *matCellDef=\"let cell; let i = index\"\r\n        [ngClass]=\"{ center: column.center }\"\r\n        [attr.colspan]=\"i\"\r\n      >\r\n        <!-- DEFAULT SECTION-->\r\n        <ng-container *ngIf=\"!cell.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngSwitchCase=\"'date'\">\r\n              <app-date [value]=\"cell.item[column.columnDef]\"></app-date>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'number'\">\r\n              {{ cell.item[column.columnDef] | number }}\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'custom'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots[column.columnDef];\r\n                  context: { cell: this.cell, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { cell: this.cell, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'text'\">\r\n              {{ cell.item[column.columnDef] }}\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n\r\n        <!-- FORM SECTION-->\r\n        <ng-container *ngIf=\"cell.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngSwitchDefault>\r\n              <div class=\"cell-input\">\r\n                <app-column-form\r\n                  *ngIf=\"column?.question\"\r\n                  [control]=\"cell.formGroup.controls[column.columnDef]\"\r\n                  [question]=\"column?.question\"\r\n                ></app-column-form>\r\n              </div>\r\n            </ng-container>\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { cell: column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row\r\n      [ngClass]=\"[theme]\"\r\n      *matHeaderRowDef=\"columnDefs\"\r\n    ></mat-header-row>\r\n\r\n    <mat-row\r\n      *matRowDef=\"let row; columns: columnDefs\"\r\n      (click)=\"onRowClicked(row)\"\r\n    ></mat-row>\r\n  </mat-table>\r\n\r\n  <app-pagination [pagination]=\"pagination\"></app-pagination>\r\n</div>\r\n"
         },
         {
+            "name": "TableExComponent",
+            "id": "component-TableExComponent-3ec4094376c06f8ebbf485ca3230cdc2",
+            "file": "src/app/examples/table-ex/table-ex.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-table-ex",
+            "styleUrls": [
+                "./table-ex.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./table-ex.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-table-ex',\n  templateUrl: './table-ex.component.html',\n  styleUrls: ['./table-ex.component.scss']\n})\nexport class TableExComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./table-ex.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p>table-ex works!</p>\n"
+        },
+        {
             "name": "TypographyComponent",
             "id": "component-TypographyComponent-ecba3072a36ca1058b07876056db104a",
             "file": "src/app/components/typography/typography.component.ts",
@@ -12613,156 +12656,18 @@
                 "OnInit"
             ],
             "templateData": "<span\r\n  [dir]=\"'rtl'\"\r\n  appClasses\r\n  [classes]=\"classes\"\r\n  [classes$]=\"classes$\"\r\n  [ngClass]=\"['fontFamily']\"\r\n>\r\n  <ng-content></ng-content>\r\n</span>\r\n"
-        },
-        {
-            "name": "WizardExComponent",
-            "id": "component-WizardExComponent-f57700b1786e8d1060304f8df3ed9ea1",
-            "file": "src/app/exemples/wizard-ex/wizard-ex.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "app-wizard-ex",
-            "styleUrls": [
-                "./wizard-ex.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./wizard-ex.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [
-                {
-                    "name": "direction",
-                    "defaultValue": "'column'",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 61,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "steps",
-                    "defaultValue": "[\r\n    new CardStepModel({\r\n      label: 'פירוט הנכס',\r\n      svgUrl: 'home',\r\n      path: 'details',\r\n      isActive: true,\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'תנועות',\r\n      svgUrl: 'list',\r\n      path: 'movements',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'עסקאות',\r\n      svgUrl: 'transactions',\r\n      path: 'transactions',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'תתי חלקה',\r\n      svgUrl: 'building',\r\n      path: 'subdivision',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'פרצליציה',\r\n      svgUrl: 'add',\r\n      path: 'parcellation',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n  ]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "[]",
-                    "optional": false,
-                    "description": "",
-                    "line": 17,
-                    "modifierKind": [
-                        122
-                    ]
-                }
-            ],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 15,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "onStepChange",
-                    "args": [
-                        {
-                            "name": "step",
-                            "type": "CardStepModel",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 63,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "step",
-                            "type": "CardStepModel",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
-            "deprecated": false,
-            "deprecationMessage": "",
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "\n",
-            "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport { CardStepModel } from 'src/app/components/cards/card-step/card-step.model';\r\nimport { StepperService } from 'src/app/components/stepper/stepper.service';\r\n\r\n@Component({\r\n  selector: 'app-wizard-ex',\r\n  templateUrl: './wizard-ex.component.html',\r\n  styleUrls: ['./wizard-ex.component.scss']\r\n})\r\nexport class WizardExComponent implements OnInit {\r\n\r\n  \r\n  constructor(private stepperService: StepperService) {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  public steps = [\r\n    new CardStepModel({\r\n      label: 'פירוט הנכס',\r\n      svgUrl: 'home',\r\n      path: 'details',\r\n      isActive: true,\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'תנועות',\r\n      svgUrl: 'list',\r\n      path: 'movements',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'עסקאות',\r\n      svgUrl: 'transactions',\r\n      path: 'transactions',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'תתי חלקה',\r\n      svgUrl: 'building',\r\n      path: 'subdivision',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n    new CardStepModel({\r\n      label: 'פרצליציה',\r\n      svgUrl: 'add',\r\n      path: 'parcellation',\r\n      size: 3,\r\n      variant : 'square',\r\n      type : 'wizard'\r\n    }),\r\n  ];\r\n\r\n  public direction: string = 'column';\r\n\r\n  public onStepChange(step: CardStepModel) {\r\n    this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);\r\n  }\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "div {\r\n  height: 100%;\r\n}\r\n\r\n.wizard {\r\n  height: 100%;\r\n  width: 100px;\r\n}\r\n",
-                    "styleUrl": "./wizard-ex.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "stepperService",
-                        "type": "StepperService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 10,
-                "jsdoctags": [
-                    {
-                        "name": "stepperService",
-                        "type": "StepperService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"wizard\">\r\n  <app-stepper\r\n    (changStep)=\"onStepChange($event)\"\r\n    [steps]=\"steps\"\r\n    [direction]=\"direction\"\r\n  ></app-stepper>\r\n</div>\r\n"
         }
     ],
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-253c529427557132219e03713ed01b07",
+            "id": "module-AppModule-0b313730f29c9d5e6735f87e8c034589",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "src/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from 'src/material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\nimport { StepperExComponent } from './exemples/stepper-ex/stepper-ex.component';\r\nimport { InputExComponent } from './exemples/input-ex/input-ex.component';\r\nimport { WizardExComponent } from './exemples/wizard-ex/wizard-ex.component';\r\nimport { FormExComponent } from './exemples/form-ex/form-ex.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\nimport { FiltersComponent } from './exemples/filters/filters.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    \r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    UnderlineDirective,\r\n    VariantDirective,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    WizardExComponent,\r\n    FormExComponent,\r\n    FiltersComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from 'src/material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    \r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -12811,7 +12716,7 @@
                             "name": "ExpandPanelComponent"
                         },
                         {
-                            "name": "FiltersComponent"
+                            "name": "FiltersExComponent"
                         },
                         {
                             "name": "FormAutocompleteComponent"
@@ -12874,19 +12779,16 @@
                             "name": "TableComponent"
                         },
                         {
+                            "name": "TableExComponent"
+                        },
+                        {
                             "name": "TypographyComponent"
                         },
                         {
-                            "name": "UnderlineDirective"
-                        },
-                        {
                             "name": "VariantDirective"
                         },
                         {
                             "name": "VariantDirective"
-                        },
-                        {
-                            "name": "WizardExComponent"
                         }
                     ]
                 },
@@ -13248,16 +13150,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/DatePicker.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13279,6 +13171,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -13328,16 +13230,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Navbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13349,6 +13241,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -13428,7 +13330,7 @@
                 "name": "Filters",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/filters.stories.ts",
+                "file": "src/stories/Filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -13774,16 +13676,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "Stepper",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/Wizard.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "SUPERVISION_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -13817,21 +13709,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Calendar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Card.Dashboardstories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CardDashboardComponent>",
                 "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Calendar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -13847,16 +13739,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/DatePicker.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -13867,11 +13749,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/filters.stories.ts",
+                "file": "src/stories/Filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FiltersComponent>",
-                "defaultValue": "(args: FiltersComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>`${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`,'')} ></app-filters>`,\r\n})"
+                "type": "Story<FiltersExComponent>",
+                "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
             },
             {
                 "name": "Template",
@@ -13882,6 +13764,16 @@
                 "deprecationMessage": "",
                 "type": "Story<FormExComponent>",
                 "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/FormInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<InputExComponent>",
+                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -13907,11 +13799,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/FormInput.stories.ts",
+                "file": "src/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<InputExComponent>",
-                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<NavbarComponent>",
+                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -13957,21 +13849,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Navbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarComponent>",
-                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "src/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<StepperExComponent>",
-                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n  // template: `<app-stepper-ex></app-stepper-ex>`,\r\n})"
+                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -13997,11 +13879,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/Wizard.stories.ts",
+                "file": "src/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<WizardExComponent>",
-                "defaultValue": "(args: WizardExComponent) => ({\r\n  props: args,\r\n  template : '<app-wizard-ex></app-wizard-ex>'\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -14142,6 +14024,16 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "CardWizardTemplate.bind({})"
+            },
+            {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "ctype": "miscellaneous",
@@ -15116,28 +15008,6 @@
                     "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/DatePicker.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "src/stories/ExpandPanel.stories.ts": [
                 {
                     "name": "Default",
@@ -15202,6 +15072,28 @@
                     "deprecationMessage": "",
                     "type": "Story<MenuComponent>",
                     "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "src/stories/Navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavbarComponent>",
+                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/Modal.stories.ts": [
@@ -15302,28 +15194,6 @@
                     "defaultValue": "(args: StepComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "src/stories/Navbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<NavbarComponent>",
-                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "src/stories/Typography.stories.ts": [
                 {
                     "name": "Default",
@@ -15354,6 +15224,28 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "src/stories/DatePicker.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/DatePicker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/DatePicker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "src/stories/screens/Login.stories.ts": [
@@ -15402,12 +15294,12 @@
                     "defaultValue": "{\r\n  production: false\r\n}"
                 }
             ],
-            "src/stories/filters.stories.ts": [
+            "src/stories/Filters.stories.ts": [
                 {
                     "name": "Filters",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/filters.stories.ts",
+                    "file": "src/stories/Filters.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -15417,11 +15309,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/filters.stories.ts",
+                    "file": "src/stories/Filters.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<FiltersComponent>",
-                    "defaultValue": "(args: FiltersComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>`${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`,'')} ></app-filters>`,\r\n})"
+                    "type": "Story<FiltersExComponent>",
+                    "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
                 }
             ],
             "src/stories/Icon.stories.ts": [
@@ -15549,29 +15441,17 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<StepperExComponent>",
-                    "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n  // template: `<app-stepper-ex></app-stepper-ex>`,\r\n})"
-                }
-            ],
-            "src/stories/Wizard.stories.ts": [
+                    "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
+                },
                 {
-                    "name": "Stepper",
+                    "name": "Wizard",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "src/stories/Wizard.stories.ts",
+                    "file": "src/stories/Stepper.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/Wizard.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<WizardExComponent>",
-                    "defaultValue": "(args: WizardExComponent) => ({\r\n  props: args,\r\n  template : '<app-wizard-ex></app-wizard-ex>'\r\n})"
                 }
             ],
             "src/styles/theme.ts": [
@@ -15947,7 +15827,7 @@
                 "linktype": "component",
                 "name": "CardWizardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/10",
                 "status": "low"
             },
             {
@@ -16861,16 +16741,16 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/exemples/filters/filters.component.ts",
+                "filePath": "src/app/examples/filters-ex/filters-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "FiltersComponent",
+                "name": "FiltersExComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/4",
                 "status": "low"
             },
             {
-                "filePath": "src/app/exemples/form-ex/form-ex.component.ts",
+                "filePath": "src/app/examples/form-ex/form-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "FormExComponent",
@@ -16879,7 +16759,7 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/exemples/input-ex/input-ex.component.ts",
+                "filePath": "src/app/examples/input-ex/input-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "InputExComponent",
@@ -16888,21 +16768,21 @@
                 "status": "low"
             },
             {
-                "filePath": "src/app/exemples/stepper-ex/stepper-ex.component.ts",
+                "filePath": "src/app/examples/stepper-ex/stepper-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "StepperExComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
-                "filePath": "src/app/exemples/wizard-ex/wizard-ex.component.ts",
+                "filePath": "src/app/examples/table-ex/table-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "WizardExComponent",
+                "name": "TableExComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -16948,15 +16828,6 @@
                 "name": "SizeDirective",
                 "coveragePercent": 0,
                 "coverageCount": "0/15",
-                "status": "low"
-            },
-            {
-                "filePath": "src/app/utilities/directives/underline.directive.ts",
-                "type": "directive",
-                "linktype": "directive",
-                "name": "UnderlineDirective",
-                "coveragePercent": 0,
-                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -17272,6 +17143,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/Filters.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Filters",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/Filters.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/Form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -17502,6 +17393,16 @@
                 "status": "low"
             },
             {
+                "filePath": "src/stories/Stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Wizard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/stories/Table.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -17586,46 +17487,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Title",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Wizard.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Stepper",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/Wizard.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/filters.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Filters",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/filters.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
