@@ -1,5 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps } from "./question-base.model";
+import { GridProps } from "./question.model";
 import { QuestionSelectModel, SelectOption } from './question-select.model';
 
 
@@ -18,7 +18,6 @@ export class QuestionAutocompleteModel extends QuestionSelectModel{
     onOptionSelect?: Function
   }) {
     super(options)
-    this.type = 'text'
     this.controlType = 'autocomplete',
     this.options = options.options || []
     this.onOptionSelect = options.onOptionSelect || (() => console.log('select'))

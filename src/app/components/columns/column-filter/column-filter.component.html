@@ -1,0 +1,17 @@
+<ng-container>
+  <app-typography [bold]="600" [size]="1.2">
+    {{ label }}
+  </app-typography>
+  <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
+    <mat-icon> arrow_drop_down </mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" xPosition="before">
+    <button
+      mat-menu-item
+      *ngFor="let option of options"
+      (click)="onCOptionSelect(option.value)"
+    >
+      <app-typography> {{ option.label }}</app-typography>
+    </button>
+  </mat-menu>
+</ng-container>

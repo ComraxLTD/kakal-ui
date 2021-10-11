@@ -1,5 +1,5 @@
 import { ValidatorFn } from "@angular/forms";
-import { GridProps, QuestionBaseModel, QuestionType } from "./question-base.model";
+import { GridProps, QuestionBaseModel } from "./question.model";
 
 export class QuestionNumberModel extends QuestionBaseModel<number>{
   constructor(options?: {
@@ -13,7 +13,6 @@ export class QuestionNumberModel extends QuestionBaseModel<number>{
     super(options)
     this.key = options.key
     this.label = options.label
-    this.type = 'number'
     this.controlType = 'number'
     this.gridProps = options.gridProps
     this.validations = options.validations

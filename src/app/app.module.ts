@@ -49,6 +49,11 @@ import { TableExComponent } from './examples/table-ex/table-ex.component';
 import { InputExComponent } from './examples/input-ex/input-ex.component';
 import { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';
 import { FiltersExComponent } from './examples/filters-ex/filters-ex.component';
+import { DecimalPipe, DatePipe } from '@angular/common';
+import { AreaPipe } from './utilities/pipes/area.pipe';
+import { FormatPipe } from './utilities/pipes/format.pipe';
+import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
+import { ColumnFormComponent } from './components/columns/column-form/column-form.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +70,9 @@ import { FiltersExComponent } from './examples/filters-ex/filters-ex.component';
 
     PaginationComponent,
     TableComponent,
+    ColumnFilterComponent,
+    ColumnFormComponent,
+
 
     CardDashboardComponent,
     CardStatusComponent,
@@ -72,8 +80,6 @@ import { FiltersExComponent } from './examples/filters-ex/filters-ex.component';
     CardWizardComponent,
     CardUserComponent,
     CardFilterComponent,
-
-    
 
     ClassesDirective,
     VariantDirective,
@@ -112,7 +118,7 @@ import { FiltersExComponent } from './examples/filters-ex/filters-ex.component';
     ReactiveFormsModule,
     NgxPaginationModule,
   ],
-  providers: [],
+  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
