@@ -2,7 +2,7 @@ import { RowModel } from './models/row.model';
 import { TableModel } from './models/table.model';
 import { Injectable } from '@angular/core';
 import { FormService, Question } from '../form/services/form.service';
-import { ColumnModel, ColumnType } from './models/column.model';
+import { ColumnModel } from '../columns/column.model';
 import { ColumnsService, ColumnsData } from '../columns/columns.service';
 
 @Injectable({
@@ -99,7 +99,7 @@ export class TableService<T> {
 
     if (columns) {
       return columns
-        .filter((column) => column.type !== ColumnType.ACTIONS)
+        .filter((column) => column.type !== 'actions')
         .map((column: ColumnModel) => {
           const question = this.formService.setQuestion(column.control, {
             key: column.columnDef,

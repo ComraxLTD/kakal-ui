@@ -1,15 +1,22 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { ColumnModel } from 'src/app/components/columns/column.model';
+import { TableOptions } from 'src/app/components/table/table.component';
 
 @Component({
   selector: 'app-table-ex',
   templateUrl: './table-ex.component.html',
-  styleUrls: ['./table-ex.component.scss']
+  styleUrls: ['./table-ex.component.scss'],
 })
-export class TableExComponent implements OnInit {
+export class TableExComponent<T> implements OnInit {
+  @Input() public theme: ThemePalette;
 
-  constructor() { }
+  @Input() public data: T[];
+  @Input() public columns: ColumnModel[];
+  @Input() public model: T;
+  @Input() public options: TableOptions<T>;
+  
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

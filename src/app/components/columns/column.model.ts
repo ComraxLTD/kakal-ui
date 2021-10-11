@@ -1,19 +1,18 @@
-import { SelectOption } from './../../form/models/question-select.model';
+import { SelectOption } from '../form/models/question-select.model';
 import { ElementRef } from '@angular/core';
-import { FormService, Question } from '../../form/services/form.service';
+import { FormService, Question } from '../form/services/form.service';
 import { FormBuilder } from '@angular/forms';
-import { ControlType } from '../../form/models/question.model';
+import { ControlType } from '../form/models/question.model';
 
 export declare type SortDir = 'desc' | 'asc';
 
-export enum ColumnType {
-  NUMBER = 'number',
-  DATE = 'date',
-  TEXT = 'text',
-  CUSTOM = 'custom',
-  ACTIONS = 'actions',
-  EXPEND = 'expend',
-}
+export declare type ColumnType =
+  | 'number'
+  | 'date'
+  | 'text'
+  | 'custom'
+  | 'actions'
+  | 'expend';
 
 export class ColumnModel {
   public columnDef?: any;
@@ -50,7 +49,7 @@ export class ColumnModel {
   }) {
     this.columnDef = options?.columnDef || '';
     this.label = options?.label || '';
-    this.type = options?.type || ColumnType.TEXT;
+    this.type = options?.type || 'text';
     this.cell = (element) => `${element[this.columnDef]}`;
     this.control = options?.control;
     this.question = options?.question;

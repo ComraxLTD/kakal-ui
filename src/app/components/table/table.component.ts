@@ -15,7 +15,7 @@ import { Sort } from '@angular/material/sort';
 import { TableService } from './table.service';
 import { EditRow, TableDataSource } from './table-datasource';
 import { FormatPipe } from 'src/app/utilities/pipes/format.pipe';
-import { ColumnModel } from './models/column.model';
+import { ColumnModel } from '../columns/column.model';
 
 declare type id = string | number;
 
@@ -56,7 +56,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
   public dataSource: TableDataSource<T>;
 
   public columnDefs: (string | keyof T)[];
-  public table: TableModel<T>;
 
   public $data: Observable<RowModel<T>[]>;
   public $columnDefs: Observable<string[]>;
@@ -67,10 +66,7 @@ export class TableComponent<T> implements OnInit, Table<T> {
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
   @Output() filter: EventEmitter<RowModel<T>> = new EventEmitter();
 
-  constructor(
-    private tableService: TableService<T>,
-    private format: FormatPipe
-  ) {}
+  constructor(private tableService: TableService<T>) {}
 
   ngOnInit() {
     this.theme = this.theme || 'accent';
@@ -93,7 +89,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
     this.tableColumns = columns;
     this.columnDefs = columnsDefs;
     this.pagination = pagination;
-
     this.register.emit(this.dataSource);
 
     this.subscribeToRowEdit();
