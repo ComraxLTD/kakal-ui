@@ -48,6 +48,7 @@ import { InputExComponent } from './exemples/input-ex/input-ex.component';
 import { FormExComponent } from './exemples/form-ex/form-ex.component';
 import { CardFilterComponent } from './components/cards/card-filter/card-filter.component';
 import { FiltersComponent } from './exemples/filters/filters.component';
+import { TableExComponent } from './examples/table-ex/table-ex.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { FiltersComponent } from './exemples/filters/filters.component';
     InputExComponent,
     FormExComponent,
     FiltersComponent,
+    TableExComponent,
   ],
   imports: [
     BrowserModule,
