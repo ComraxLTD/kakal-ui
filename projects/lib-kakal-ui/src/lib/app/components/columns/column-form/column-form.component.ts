@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { GridProps } from '../../form/models/question.model';
 import { QuestionSelectModel, SelectOption } from '../../form/models/question-select.model';
 import { QuestionBase } from '../../form/services/form.service';
 import { MessageService } from '../../form/services/message.service';

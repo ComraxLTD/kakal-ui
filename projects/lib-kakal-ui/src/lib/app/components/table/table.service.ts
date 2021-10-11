@@ -2,8 +2,8 @@ import { RowModel } from './models/row.model';
 import { TableModel } from './models/table.model';
 import { Injectable } from '@angular/core';
 import { FormService, Question } from '../form/services/form.service';
-import { ColumnModel } from '../columns/column.model';
 import { ColumnsService, ColumnsData } from '../columns/columns.service';
+import { ColumnModel } from 'projects/lib-kakal-ui/src/lib/app/components/columns/column.model';
 
 @Injectable({
   providedIn: 'root',

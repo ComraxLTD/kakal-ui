@@ -1,4 +1,3 @@
-import { QuestionType } from '../../form/models/question-base.model';
 import { SelectOption } from '../../form/models/question-select.model';
 import { ElementRef } from "@angular/core";
 import { FormService, Question } from '../../form/services/form.service';
@@ -30,9 +29,6 @@ export class ColumnModel {
   public sortDir?: SortDir;
   public filterable?: boolean;
   public filterOptions?: SelectOption[];
-
-  private formService : FormService = new FormService(new FormBuilder())
-
 
   constructor(options?: {
     columnDef?: string;

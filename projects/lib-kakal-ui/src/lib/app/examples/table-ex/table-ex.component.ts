@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { ColumnModel } from 'src/app/components/columns/column.model';
-import { TableOptions } from 'src/app/components/table/table.component';
+import { ColumnModel } from 'projects/lib-kakal-ui/src/lib/app/components/columns/column.model';
+import { TableOptions } from '../../components/table/table.component';
 
 @Component({
   selector: 'app-table-ex',

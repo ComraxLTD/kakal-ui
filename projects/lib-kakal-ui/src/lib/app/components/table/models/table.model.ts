@@ -1,6 +1,6 @@
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
-import { ColumnModel } from '../../columns/column.model';
+import { ColumnModel } from 'projects/lib-kakal-ui/src/lib/app/components/columns/column.model';
 import { RowModel } from './row.model';
 
 export class TableModel<T> {

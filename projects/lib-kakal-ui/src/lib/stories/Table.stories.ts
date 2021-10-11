@@ -4,7 +4,6 @@ import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
-import { ColumnModel } from 'src/app/components/columns/column.model';
 import { ColumnFilterComponent } from '../app/components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from '../app/components/columns/column-form/column-form.component';
 import { ColumnsService } from '../app/components/columns/columns.service';
@@ -20,6 +19,7 @@ import { AssetsModel } from '../app/utilities/models/assets.model';
 import { AreaPipe } from '../app/utilities/pipes/area.pipe';
 import { FormatPipe } from '../app/utilities/pipes/format.pipe';
 import { MaterialModule } from '../material/material.module';
+import { ColumnModel } from '../app/components/columns/column.model';
 
 export default {
   title: 'Table',
@@ -180,12 +180,6 @@ const { data, columns, options } = {
   },
 };
 
-const filterColumns = columns.map((column) => {
-  column.filterable = true;
-  column.filterOptions = [{ label: 'ex', value: 'ex' }];
-  return column;
-});
-
 export const Default = Template.bind({});
 Default.args = {
   data: data,
@@ -193,10 +187,4 @@ Default.args = {
   model: new AssetsModel(),
   options: options,
 };
-export const Filter = Template.bind({});
-Filter.args = {
-  data: data,
-  columns: [...filterColumns],
-  model: new AssetsModel(),
-  options: options,
-};
+

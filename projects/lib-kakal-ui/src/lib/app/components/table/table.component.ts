@@ -8,13 +8,12 @@ import {
 } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable, Subscription } from 'rxjs';
-import { TableModel } from './models/table.model';
 import { RowModel } from './models/row.model';
 import { ThemePalette } from '@angular/material/core';
 import { Sort } from '@angular/material/sort';
 import { TableService } from './table.service';
 import { EditRow, TableDataSource } from './table-datasource';
-import { ColumnModel } from './models/column.model';
+import { ColumnModel } from '../columns/column.model';
 
 declare type id = string | number;
 
