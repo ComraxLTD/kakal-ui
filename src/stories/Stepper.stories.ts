@@ -12,10 +12,10 @@ import { TypographyComponent } from 'src/app/components/typography/typography.co
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ButtonDirective } from 'src/app/utilities/directives/button.directive';
 import { ColorDirective } from 'src/app/utilities/directives/color.directive';
-import { StepperExComponent } from 'src/app/exemples/stepper-ex/stepper-ex.component';
 import { CardStepComponent } from 'src/app/components/cards/card-step/card-step.component';
 import { CardStepModel } from 'src/app/components/cards/card-step/card-step.model';
 import { CardWizardComponent } from 'src/app/components/cards/card-wizard/card-wizard.component';
+import { StepperExComponent } from 'src/app/examples/stepper-ex/stepper-ex.component';
 
 export default {
   title: 'Stepper',

@@ -11,8 +11,8 @@ import { IconComponent } from 'src/app/components/icon/icon.component';
 import { SizeDirective } from 'src/app/utilities/directives/size.directive';
 import { ColorDirective } from 'src/app/utilities/directives/color.directive';
 import { MessageService } from 'src/app/components/form/services/message.service';
-import { InputExComponent } from 'src/app/exemples/input-ex/input-ex.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InputExComponent } from 'src/app/examples/input-ex/input-ex.component';
 
 export default {
   title: 'FormInput',
