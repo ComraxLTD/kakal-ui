@@ -14191,7 +14191,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "",
+                    "data": ".table {\r\n  width: 95%;\r\n}\r\n",
                     "styleUrl": "./table-ex.component.scss"
                 }
             ],
@@ -14918,6 +14918,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -14929,16 +14939,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -14978,6 +14978,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -15008,7 +15018,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15019,16 +15029,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15103,26 +15103,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"50\" height=\"28.626\" viewBox=\"0 0 28.626 28.626\" style=\"transform: translateX(.24rem)\">\r\n<defs><style>.evaluation{fill:\"none\" } </style></defs><g >\r\n<g>\r\n<path class=\"evaluation\" d=\"M27.9,9.009a2.519,2.519,0,0,0-3.558,0l-2.523,2.525V4.888a2.5,2.5,0,0,0-.737-1.779L18.714.737A2.5,2.5,0,0,0,16.935,0H2.534A2.519,2.519,0,0,0,.018,2.516V26.11a2.519,2.519,0,0,0,2.516,2.516H19.307a2.519,2.519,0,0,0,2.516-2.516V18.653L27.9,12.567A2.514,2.514,0,0,0,27.9,9.009ZM16.791,1.677a.915.915,0,0,1,.737.246L19.9,4.295a.915.915,0,0,1,.246.737H16.791ZM20.146,26.11a.84.84,0,0,1-.839.839H2.534A.84.84,0,0,1,1.7,26.11V2.516a.84.84,0,0,1,.839-.839h12.58V5.871a.839.839,0,0,0,.839.839h4.193v6.5l-2.474,2.476-1.185,1.186a.839.839,0,0,0-.2.328L15.1,20.761a.839.839,0,0,0,1.061,1.061l3.558-1.186a.838.838,0,0,0,.328-.2l.1-.1V26.11Zm-1.881-8.642,1.186,1.186L19,19.107l-1.779.593.593-1.779Zm2.372,0-1.186-1.186,4.031-4.035,1.186,1.186Zm6.081-6.087-.865.865L24.667,11.06l.865-.866a.839.839,0,1,1,1.186,1.186Z\" transform=\"translate(-0.018 0)\"/></g><g transform=\"translate(3.373 8.386)\">\r\n<path class=\"evaluation\" d=\"M72.6,150H60.857a.839.839,0,1,0,0,1.677H72.6a.839.839,0,1,0,0-1.677Z\" transform=\"translate(-60.018 -150)\"/></g><g transform=\"translate(3.373 11.741)\">\r\n<path class=\"evaluation\" d=\"M69.243,210H60.857a.839.839,0,0,0,0,1.677h8.386a.839.839,0,1,0,0-1.677Z\" transform=\"translate(-60.018 -210)\"/></g><g transform=\"translate(3.373 15.096)\">\r\n<path class=\"evaluation\" d=\"M69.243,270H60.857a.839.839,0,1,0,0,1.677h8.386a.839.839,0,1,0,0-1.677Z\" transform=\"translate(-60.018 -270)\"/></g><g transform=\"translate(3.373 18.45)\">\r\n<path class=\"evaluation\" d=\"M69.243,330H60.857a.839.839,0,1,0,0,1.677h8.386a.839.839,0,1,0,0-1.677Z\" transform=\"translate(-60.018 -330)\"/></g><g transform=\"translate(10.082 23.594)\">\r\n<path class=\"evaluation\" d=\"M185.889,422h-5.032a.839.839,0,1,0,0,1.677h5.032a.839.839,0,1,0,0-1.677Z\" transform=\"translate(-180.018 -422)\"/></g></g>\r\n</svg>`"
-            },
-            {
-                "name": "Filter",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "filterColumns",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "columns.map((column) => {\r\n  column.filterable = true;\r\n  column.filterOptions = [{ label: 'ex', value: 'ex' }];\r\n  return column;\r\n})"
             },
             {
                 "name": "Filters",
@@ -15526,6 +15506,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CardUserComponent>",
+                "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -15536,31 +15526,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FiltersExComponent>",
-                "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ExpandPanelComponent>",
                 "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<app-expand-panel>\r\n  <app-typography bold=\"600\" title>example</app-typography>\r\n  <p content>example</p>\r\n  </app-expand-panel>`\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<CardUserComponent>",
-                "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -15586,6 +15556,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -15601,6 +15581,16 @@
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarComponent>",
+                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -15636,31 +15626,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarComponent>",
-                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<StepperExComponent>",
                 "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<TypographyComponent>",
-                "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`\r\n})"
             },
             {
                 "name": "Template",
@@ -15676,11 +15646,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Icon.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<IconComponent>",
-                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<FiltersExComponent>",
+                "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TypographyComponent>",
+                "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`\r\n})"
             },
             {
                 "name": "Template",
@@ -15823,6 +15803,16 @@
                 "defaultValue": "CardWizardTemplate.bind({})"
             },
             {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
@@ -15840,16 +15830,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\n width=\"17.956\" height=\"17.331\" viewBox=\"0 0 17.956 17.331\">\r\n <defs>\r\n <style>.v-sign{fill:\"none\";opacity:0;}\r\n .b-v-sign{fill:none;stroke:#6dc066;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;}\r\n .c,.d{stroke:none;}.d{fill:#dfdfdf;}</style></defs><g transform=\"translate(0.332 0.331)\">\r\n <g class=\"v-sign\">\r\n\r\n\r\n <path class=\"c\" d=\"M 8.5 16.25 C 4.226640224456787 16.25 0.75 12.77336025238037 0.75 8.5 C 0.75 6.115330219268799 1.804280042648315 3.984380006790161 3.798870086669922 2.337510108947754 C 4.990379810333252 1.342460036277771 6.746600151062012 0.75 8.5 0.75 C 12.77336025238037 0.75 16.25 4.226640224456787 16.25 8.5 C 16.25 12.77336025238037 12.77336025238037 16.25 8.5 16.25 Z\"/>\r\n\r\n <path class=\"d\" d=\"M 8.5 1.5 C 6.916910171508789 1.5 5.340410232543945 2.027279853820801 4.28285026550293 2.910479545593262 L 4.276379585266113 2.915849685668945 C 2.460060119628906 4.415530204772949 1.5 6.346500396728516 1.5 8.5 C 1.5 12.35980987548828 4.640190124511719 15.5 8.5 15.5 C 12.35980987548828 15.5 15.5 12.35980987548828 15.5 8.5 C 15.5 4.640190124511719 12.35980987548828 1.5 8.5 1.5 M 8.5 0 C 13.19441986083984 0 17 3.805580139160156 17 8.5 C 17 13.19441986083984 13.19441986083984 17 8.5 17 C 3.805580139160156 17 0 13.19441986083984 0 8.5 C 0 5.866430282592773 1.197699546813965 3.512599945068359 3.32135009765625 1.759169578552246 C 4.549599647521973 0.7334194183349609 6.439149856567383 0 8.5 0 Z\"/></g><g transform=\"translate(0.631 0.581)\">\r\n\r\n <path class=\"b-v-sign\" d=\"M18.933,9.965v.706a7.72,7.72,0,0,1-5.708,7.357,8.116,8.116,0,0,1-8.942-3.183A7.456,7.456,0,0,1,4.911,5.68a8.171,8.171,0,0,1,9.3-2.024\" transform=\"translate(-3 -2.991)\"/>\r\n <path class=\"b-v-sign\" d=\"M23.856,6,15.89,13.974l-2.39-2.39\"\r\n transform=\"translate(-7.923 -4.402)\"/></g></g></svg>`"
-            },
-            {
-                "name": "Wizard",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
             }
         ],
         "functions": [],
@@ -16786,6 +16766,28 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<CardUserComponent>",
+                    "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts": [
                 {
                     "name": "Default",
@@ -16828,28 +16830,6 @@
                     "deprecationMessage": "",
                     "type": "Story<ExpandPanelComponent>",
                     "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<app-expand-panel>\r\n  <app-typography bold=\"600\" title>example</app-typography>\r\n  <p content>example</p>\r\n  </app-expand-panel>`\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<CardUserComponent>",
-                    "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts": [
@@ -16916,6 +16896,28 @@
                     "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavbarComponent>",
+                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
@@ -16994,26 +16996,45 @@
                     "defaultValue": "(args: StepComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
                 {
+                    "name": "pagination",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "PaginationInstance",
+                    "defaultValue": "{\r\n  itemsPerPage: 6,\r\n  currentPage: 1,\r\n  totalItems: 12,\r\n}"
+                },
+                {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<NavbarComponent>",
-                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
+                    "type": "Story<TableExComponent<any>>",
+                    "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  data: [\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 10,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'שוריין ע\"י פיננסים',\r\n        value: 5,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 24,\r\n      block: 24,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לרו\"ח',\r\n        value: 3,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 54,\r\n      subdivision: 0,\r\n      area: 1037,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'התקבלה עסקה חדשה',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 680,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לפיננסים',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: 'number' }),\r\n    new ColumnModel({ label: 'חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'תת חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),\r\n    new ColumnModel({ label: 'זכות במס', type: 'text' }),\r\n    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: 'text' }),\r\n    new ColumnModel({ label: 'יישוב', type: 'text' }),\r\n  ],\r\n  options: {\r\n    pagination: pagination,\r\n    filters: ['id', '_constructor-name_'],\r\n  },\r\n}"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts": [
@@ -17046,67 +17067,6 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Filter",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "filterColumns",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "columns.map((column) => {\r\n  column.filterable = true;\r\n  column.filterOptions = [{ label: 'ex', value: 'ex' }];\r\n  return column;\r\n})"
-                },
-                {
-                    "name": "pagination",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "PaginationInstance",
-                    "defaultValue": "{\r\n  itemsPerPage: 6,\r\n  currentPage: 1,\r\n  totalItems: 12,\r\n}"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<TableExComponent<any>>",
-                    "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
-                },
-                {
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  data: [\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 10,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'שוריין ע\"י פיננסים',\r\n        value: 5,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 24,\r\n      block: 24,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לרו\"ח',\r\n        value: 3,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 54,\r\n      subdivision: 0,\r\n      area: 1037,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'התקבלה עסקה חדשה',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 680,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לפיננסים',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: 'number' }),\r\n    new ColumnModel({ label: 'חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'תת חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),\r\n    new ColumnModel({ label: 'זכות במס', type: 'text' }),\r\n    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: 'text' }),\r\n    new ColumnModel({ label: 'יישוב', type: 'text' }),\r\n  ],\r\n  options: {\r\n    pagination: pagination,\r\n    filters: ['id', '_constructor-name_'],\r\n  },\r\n}"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts": [
@@ -19417,26 +19377,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Filter",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "filterColumns",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
