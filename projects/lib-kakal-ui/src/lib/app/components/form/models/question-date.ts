@@ -1,5 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
-import { QuestionBaseModel, GridProps } from './question-base.model';
+import { QuestionBaseModel, GridProps } from './question.model';
 
 export class QuestionDate extends QuestionBaseModel<Date> {
 
@@ -15,7 +15,6 @@ export class QuestionDate extends QuestionBaseModel<Date> {
     super(options)
     this.key = options.key
     this.label = options.label
-    this.type = 'date';
     this.controlType = 'date';
     this.gridProps = options.gridProps
     this.icon = this.icon

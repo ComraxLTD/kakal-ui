@@ -15,8 +15,6 @@ mat-cell {
 }
 
 mat-header-cell {
-  // align-items: flex-end;
-  // padding-bottom: spacing(1);
 
   &.center {
     justify-content: center;
@@ -32,7 +30,7 @@ mat-header-row.primary {
 }
 
 mat-row {
-  height: 5vh;
+  height: 5rem;
 }
 
 .cell-input {
@@ -46,3 +44,4 @@ mat-row {
 ::ng-deep .mat-sort-header-arrow {
   color : color(primary) !important
 }
+

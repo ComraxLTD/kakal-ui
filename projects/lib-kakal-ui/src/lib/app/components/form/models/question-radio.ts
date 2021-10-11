@@ -1,29 +1,29 @@
-import { ValidatorFn } from "@angular/forms";
-import { GridProps, QuestionBaseModel } from "./question-base.model";
-import { SelectOption } from "./question-select.model";
+import { ValidatorFn } from '@angular/forms';
+import { GridProps, QuestionBaseModel } from './question.model';
 
-export class QuestionRadio extends QuestionBaseModel<string>{
+export interface RadioOption {
+  label: string;
+  value: any;
+  checked?: boolean;
+}
 
-  public options?: SelectOption[];
+export class QuestionRadio extends QuestionBaseModel<string> {
+  public options?: RadioOption[];
 
   constructor(options?: {
     key: string;
     label: string;
-    gridProps?: GridProps
+    gridProps?: GridProps;
     icon?: string;
-    validations?: ValidatorFn[],
-    options?: SelectOption[]
-
+    validations?: ValidatorFn[];
+    options?: RadioOption[];
+  }) {
+    super(options);
+    this.key = options.key;
+    this.label = options.label;
+    this.controlType = 'radio';
+    this.gridProps = options.gridProps;
+    this.validations = options.validations;
+    this.options = options.options;
   }
-  ) {
-    super(options)
-    this.key = options.key
-    this.label = options.label
-    this.type = 'radio'
-    this.controlType = 'radio',
-    this.gridProps = options.gridProps
-    this.validations = options.validations
-    this.options = options.options
-  }
-
 }

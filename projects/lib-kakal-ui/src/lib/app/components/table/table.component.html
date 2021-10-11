@@ -3,11 +3,11 @@
     (matSortChange)="onSort($event)"
     mat-table
     matSort
-    [dataSource]="$data | async | paginate : pagination"
+    [dataSource]="$data | async | paginate: pagination"
     [dir]="'rtl'"
   >
     <ng-container
-      *ngFor="let column of table.columns"
+      *ngFor="let column of tableColumns || table.columns"
       [matColumnDef]="column.columnDef"
     >
       <!-- COLUMN HEADER SECTION-->
@@ -18,7 +18,7 @@
           [ngClass]="{ center: column.center }"
         >
           <!-- DEFAULT HEADER -->
-          <app-typography [bold]="600" [size]="12" *ngIf="!column.filterable">
+          <app-typography [bold]="600" *ngIf="!column.filterable">
             {{ column.label }}
           </app-typography>
 
@@ -28,7 +28,7 @@
             <ng-container
               *ngTemplateOutlet="
                 headerSlots[column.columnDef];
-                context: { cell: column }
+                context: { $implicit: column }
               "
             >
             </ng-container>
@@ -50,7 +50,7 @@
           [ngClass]="{ center: column.center }"
           [start]="column.sortDir"
         >
-          <app-typography [bold]="600" [size]="12">
+          <app-typography [bold]="600" [size]="1.2">
             {{ column.label }}
           </app-typography>
         </mat-header-cell>
@@ -66,14 +66,6 @@
         <!-- DEFAULT SECTION-->
         <ng-container *ngIf="!cell.editable">
           <ng-container [ngSwitch]="column.type">
-            <ng-container *ngSwitchCase="'date'">
-              <app-date [value]="cell.item[column.columnDef]"></app-date>
-            </ng-container>
-
-            <ng-container *ngSwitchCase="'number'">
-              {{ cell.item[column.columnDef] | number }}
-            </ng-container>
-
             <ng-container *ngSwitchCase="'custom'">
               <ng-container
                 *ngTemplateOutlet="
@@ -94,8 +86,10 @@
               </ng-container>
             </ng-container>
 
-            <ng-container *ngSwitchCase="'text'">
-              {{ cell.item[column.columnDef] }}
+            <ng-container *ngSwitchDefault>
+              <app-typography>
+                {{ cell.item[column.columnDef] | format: type }}
+              </app-typography>
             </ng-container>
           </ng-container>
         </ng-container>
@@ -116,7 +110,7 @@
               <ng-container
                 *ngTemplateOutlet="
                   rowSlots['actions'];
-                  context: { cell: column }
+                  context: { cell: this.cell, column: this.column }
                 "
               >
               </ng-container>

@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionCalendar } from '../models/question-calendar';
@@ -11,20 +12,19 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { QuestionGroupModel } from '../models/question-group.model';
-import { QuestionBaseModel, QuestionType } from '../models/question-base.model';
+import { QuestionBaseModel, ControlType } from '../models/question.model';
 import { QuestionNumberModel } from '../models/question-number.model';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
-import {
-  QuestionSelectModel,
-  SelectOption,
-} from '../models/question-select.model';
+import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
 
 export type ControlTemplate = [
   state: any,
   validatorOrOpts?: ValidatorFn | AbstractControlOptions | ValidatorFn[],
   asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[]
-]
+];
+
 export type QuestionBase = QuestionBaseModel<string | number | Date>;
+
 export type Question =
   | QuestionSelectModel
   | QuestionTextModel
@@ -40,25 +40,25 @@ export type Question =
 export class FormService {
   constructor(private fb: FormBuilder) {}
 
-  public getFieldControl(question): FormControl {
+  private setFieldControl(question: QuestionBase): ControlTemplate {
+    const { value, validations } = question;
+    return [value || '', validations];
+  }
+
+  public getFieldControl(question: Question): FormControl {
     const template = this.setFieldControl(question);
     return this.fb.control(template[0], template[1]);
   }
 
-  private setFieldControl(question: QuestionBase): ControlTemplate {
-    const { value, validations } = question;
-    return [value || '', [...validations]];
-  }
-
-  private setGroupControl(control: QuestionGroupModel) {
+  private setGroupControl(control: QuestionGroupModel): FormGroup {
     const { questions } = control;
     return this.fb.group(this.setGroup(questions));
   }
 
   private setGroup(questions: Question[]): { [x: string]: any } {
     return questions
-      .map((question) => question)
-      .reduce((acc, control) => {
+      .map((question: Question) => question)
+      .reduce((acc, control: Question) => {
         let template;
         const { key } = control;
 
@@ -78,7 +78,7 @@ export class FormService {
   }
 
   public setFormGroup(questions: Question[]): FormGroup {
-    const template = this.setGroup(questions);
+    const template = this.setGroup(this.setQuestionList(questions));
     return this.fb.group(template);
   }
 
@@ -104,14 +104,11 @@ export class FormService {
   }
 
   public setQuestion(
-    controlType: QuestionType,
+    controlType: ControlType,
     options: { key: string; label: string; options?: SelectOption[] }
   ) {
     switch (controlType) {
-      case 'text':
-        return new QuestionTextModel(options);
-
-      case 'number':
+        case 'number':
         return new QuestionNumberModel(options);
 
       case 'select':

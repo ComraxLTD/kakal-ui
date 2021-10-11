@@ -11,7 +11,7 @@ import { IconComponent } from '../app/components/icon/icon.component';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { MessageService } from '../app/components/form/services/message.service';
-import { InputExComponent } from '../app/exemples/input-ex/input-ex.component';
+import { InputExComponent } from '../app/examples/input-ex/input-ex.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {

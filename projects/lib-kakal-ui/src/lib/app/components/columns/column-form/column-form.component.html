@@ -1,0 +1,12 @@
+<div class="column-input">
+  <input
+    [ngClass]="{ error: error }"
+    matInput
+    autocomplete="off"
+    required
+    [formControl]="control"
+    [name]="question.key"
+    (focusout)="validate()"
+    #input
+  />
+</div>

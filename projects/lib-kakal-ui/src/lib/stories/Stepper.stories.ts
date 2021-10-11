@@ -12,7 +12,7 @@ import { TypographyComponent } from '../app/components/typography/typography.com
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
-import { StepperExComponent } from '../app/exemples/stepper-ex/stepper-ex.component';
+import { StepperExComponent } from '../app/examples/stepper-ex/stepper-ex.component';
 import { CardStepComponent } from '../app/components/cards/card-step/card-step.component';
 import { CardStepModel } from '../app/components/cards/card-step/card-step.model';
 import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';

@@ -18,64 +18,44 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
-  imports: [
-    MatButtonModule,
-    MatToolbarModule,
-    MatGridListModule,
-    MatBadgeModule,
-    MatListModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSortModule,
-    MatTableModule,
-    MatRadioModule,
-    MatTooltipModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule,
-    MatPaginatorModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatListModule,
-    MatCardModule,
-    MatExpansionModule,
-    FlexLayoutModule,
-    MatAutocompleteModule
-  ],
+  imports: [],
   exports: [
-    MatButtonModule,
-    MatToolbarModule,
+    LayoutModule,
     MatGridListModule,
-    MatBadgeModule,
-    MatListModule,
-    MatSidenavModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSortModule,
-    MatTableModule,
-    MatRadioModule,
-    MatTooltipModule,
-    MatCheckboxModule,
-    MatProgressSpinnerModule,
-    MatPaginatorModule,
     MatToolbarModule,
-    MatButtonModule,
     MatSidenavModule,
+    MatButtonModule,
     MatIconModule,
     MatListModule,
+    MatMenuModule,
     MatCardModule,
+
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+
+    MatProgressBarModule,
+    MatProgressSpinnerModule,
+
+    MatRadioModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+
     MatExpansionModule,
+    MatBadgeModule,
+    MatCheckboxModule,
+    MatTooltipModule,
     FlexLayoutModule,
-    MatAutocompleteModule
   ],
 })
 export class MaterialModule {}

@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FilterModel } from '../../components/cards/card-filter/card-filter.model';
 
 @Component({
-  selector: 'app-filters',
-  templateUrl: './filters.component.html',
-  styleUrls: ['./filters.component.scss'],
+  selector: 'app-filters-ex',
+  templateUrl: './filters-ex.component.html',
+  styleUrls: ['./filters-ex.component.scss']
 })
-export class FiltersComponent implements OnInit {
+export class FiltersExComponent implements OnInit {
+
   @Input() filters: FilterModel[];
 
   constructor() {}
