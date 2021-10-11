@@ -8,8 +8,8 @@
     ]
   },
   "files": [
-    "src/test.ts",
-    "src/polyfills.ts"
+    "projects/lib-kakal-ui/src/lib/test.ts",
+    "projects/lib-kakal-ui/src/lib/polyfills.ts"
   ],
   "include": [
     "src/**/*.spec.ts",
