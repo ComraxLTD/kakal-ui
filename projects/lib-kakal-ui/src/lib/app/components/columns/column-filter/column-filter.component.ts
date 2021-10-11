@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { SelectOption } from '../../form/models/question-select.model';
-import { ColumnModel } from '../../table/models/column.model';
+import { ColumnModel } from '../column.model';
 
 @Component({
   selector: 'app-column-filter',
@@ -8,18 +8,19 @@ import { ColumnModel } from '../../table/models/column.model';
 })
 export class ColumnFilterComponent implements OnInit {
   @Input() column: ColumnModel;
-  @Input() label: string;
-  @Input() options: SelectOption[];
+  public label: string;
+  public options: SelectOption[];
 
-  @Output() optionSelect : EventEmitter<any> = new EventEmitter()
+  @Output() optionSelect: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
     this.label = this.column.label;
+    this.options = this.column.filterOptions;
   }
 
   public onOptionSelect(value) {
-    this.optionSelect.emit(value)
+    this.optionSelect.emit(value);
   }
 }
