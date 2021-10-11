@@ -12,7 +12,7 @@ import { SizeDirective } from 'src/app/utilities/directives/size.directive';
 import { ColorDirective } from 'src/app/utilities/directives/color.directive';
 import { MessageService } from 'src/app/components/form/services/message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormExComponent } from 'src/app/exemples/form-ex/form-ex.component';
+import { FormExComponent } from 'src/app/examples/form-ex/form-ex.component';
 
 export default {
   title: 'Form',

@@ -1,6 +1,6 @@
 import { FormGroup } from '@angular/forms';
 import { Question } from '../services/form.service';
-import { QuestionType, GridProps } from './question-base.model';
+import { ControlType, GridProps } from './question.model';
 
 export type GroupType = 'default' | 'group' | 'custom';
 
@@ -8,7 +8,7 @@ export class QuestionGroupModel {
   public key: string;
   public label: string;
   public type?: GroupType;
-  public controlType?: QuestionType;
+  public controlType?: ControlType;
   public formGroup?: FormGroup;
   public questions: Question[];
   public gridProps?: GridProps;

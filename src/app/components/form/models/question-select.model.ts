@@ -1,5 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBaseModel } from "./question-base.model";
+import { GridProps, QuestionBaseModel } from "./question.model";
 
 export interface SelectOption {
   label: string;
@@ -23,7 +23,6 @@ export class QuestionSelectModel extends QuestionBaseModel<string>{
     onSelectChange?: Function;
   }) {
     super(options)
-    this.type = 'select'
     this.controlType = 'select'
     this.options = options.options || []
     this.icon = options.icon || 'keyboard_arrow_down'

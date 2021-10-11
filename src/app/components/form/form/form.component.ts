@@ -1,6 +1,6 @@
 import { QuestionSelectModel } from '../models/question-select.model';
 import { Observable } from 'rxjs';
-import { GridProps } from './../models/question-base.model';
+import { GridProps } from '../models/question.model';
 import { QuestionGroupModel } from './../models/question-group.model';
 import { FormGroup } from '@angular/forms';
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
