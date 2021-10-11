@@ -9,6 +9,12 @@
     "strictPropertyInitialization": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "lib-kakal-ui": [
+        "dist/lib-kakal-ui/lib-kakal-ui",
+        "dist/lib-kakal-ui"
+      ]
+    },
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
