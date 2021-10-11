@@ -2,11 +2,9 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { TableComponent } from '../app/components/table/table.component';
 import { ColumnModel, ColumnType } from '../app/components/table/models/column.model';
-import { TableModel } from '../app/components/table/models/table.model';
 import { AssetsModel } from '../app/utilities/models/assets.model';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { PaginationComponent } from '../app/components/pagination/pagination.component';
-import { BehaviorSubject } from 'rxjs';
 import { MaterialModule } from '../material/material.module';
 import { TypographyComponent } from '../app/components/typography/typography.component';
 import { ClassesDirective } from '../app/utilities/directives/classes.directive';
@@ -139,9 +137,6 @@ const { data, type, columns, } = {
     new ColumnModel({ label: 'יישוב', type: ColumnType.TEXT }),
   ]
 };
-const table = new TableModel({ data, type, columns });
-table.setTable();
-const $table = new BehaviorSubject<TableModel<any>>(table);
 
  const status = `
  <ng-template #status let-cell="cell">
@@ -153,6 +148,5 @@ const $table = new BehaviorSubject<TableModel<any>>(table);
 
 export const Default = Template.bind({});
 Default.args = {
-  $table: $table, rowSlots: {status}
 };
 
