@@ -7,7 +7,7 @@
     [dir]="'rtl'"
   >
     <ng-container
-      *ngFor="let column of tableColumns || table.columns"
+      *ngFor="let column of tableColumns"
       [matColumnDef]="column.columnDef"
     >
       <!-- COLUMN HEADER SECTION-->
