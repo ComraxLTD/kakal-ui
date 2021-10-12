@@ -20,7 +20,7 @@ export default {
         CommonModule,
         MaterialModule,
         BrowserModule,
-        AppRoutingModule,
+        // AppRoutingModule,
       ],
     }),
   ],
