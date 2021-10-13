@@ -10669,7 +10669,7 @@
         },
         {
             "name": "ExpandPanelComponent",
-            "id": "component-ExpandPanelComponent-3d24ea86d6df82759a2b62c2cb4510b5",
+            "id": "component-ExpandPanelComponent-6f3469cfa4270402aba286da6f79863e",
             "file": "projects/lib-kakal-ui/src/lib/app/components/expand-panel/expand-panel.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -10697,7 +10697,14 @@
                     "name": "expanded",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 16,
+                    "type": "boolean"
+                },
+                {
+                    "name": "hideHeader",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
                     "type": "boolean"
                 },
                 {
@@ -10705,13 +10712,6 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 11,
-                    "type": "boolean"
-                },
-                {
-                    "name": "showHeader",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 12,
                     "type": "boolean"
                 },
                 {
@@ -10728,7 +10728,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
+                    "line": 21,
                     "type": "EventEmitter<void>"
                 },
                 {
@@ -10736,7 +10736,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 20,
                     "type": "EventEmitter<void>"
                 },
                 {
@@ -10744,7 +10744,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
+                    "line": 22,
                     "type": "EventEmitter<void>"
                 }
             ],
@@ -10757,7 +10757,7 @@
                     "type": "",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 18,
                     "modifierKind": [
                         122
                     ]
@@ -10770,7 +10770,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 25,
+                    "line": 26,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -10780,7 +10780,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 37,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -10793,7 +10793,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -10806,7 +10806,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 41,
+                    "line": 42,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -10821,11 +10821,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-expand-panel',\r\n  templateUrl: './expand-panel.component.html',\r\n  styleUrls: ['./expand-panel.component.scss']\r\n})\r\nexport class ExpandPanelComponent implements OnInit {\r\n // prop for custom class\r\n @Input() public variant: string;\r\n @Input() public hideToggle: boolean;\r\n @Input() public showHeader: boolean;\r\n @Input() public disabled: boolean;\r\n\r\n @Input() public expanded: boolean;\r\n\r\n public panelOpenState = false;\r\n\r\n @Output() expand: EventEmitter<void> = new EventEmitter();\r\n @Output() closed: EventEmitter<void> = new EventEmitter();\r\n @Output() opened: EventEmitter<void> = new EventEmitter();\r\n\r\n constructor() {}\r\n\r\n ngOnInit(): void {\r\n   this.variant = this.variant || '';\r\n   this.expanded = this.expanded || false;\r\n   this.hideToggle = this.hideToggle || false;\r\n   this.showHeader = this.showHeader || false;\r\n }\r\n\r\n public onPanelExpend() {\r\n   this.expand.emit();\r\n }\r\n\r\n public onPanelClosed() {\r\n   this.panelOpenState = false\r\n   this.closed.emit();\r\n }\r\n\r\n public onPanelOpen() {\r\n   this.panelOpenState = true\r\n   this.opened.emit();\r\n }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-expand-panel',\r\n  templateUrl: './expand-panel.component.html',\r\n  styleUrls: ['./expand-panel.component.scss']\r\n})\r\nexport class ExpandPanelComponent implements OnInit {\r\n // prop for custom class\r\n @Input() public variant: string;\r\n @Input() public hideToggle: boolean;\r\n @Input() public hideHeader: boolean;\r\n @Input() public disabled: boolean;\r\n\r\n\r\n @Input() public expanded: boolean;\r\n\r\n public panelOpenState = false;\r\n\r\n @Output() expand: EventEmitter<void> = new EventEmitter();\r\n @Output() closed: EventEmitter<void> = new EventEmitter();\r\n @Output() opened: EventEmitter<void> = new EventEmitter();\r\n\r\n constructor() {}\r\n\r\n ngOnInit(): void {\r\n  this.variant = this.variant || '';\r\n  this.expanded = this.expanded || false;\r\n  this.hideToggle = this.hideToggle || false;\r\n  this.hideHeader = this.hideHeader || false;\r\n }\r\n\r\n public onPanelExpend() {\r\n   this.expand.emit();\r\n }\r\n\r\n public onPanelClosed() {\r\n   this.panelOpenState = false\r\n   this.closed.emit();\r\n }\r\n\r\n public onPanelOpen() {\r\n   this.panelOpenState = true\r\n   this.opened.emit();\r\n }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../styles/styles\";\r\n\r\nmat-expansion-panel {\r\n  margin-bottom: spacing(2) !important;\r\n\r\n ::ng-deep &.table {\r\n    .mat-expansion-panel-content,\r\n    .mat-expansion-panel-body {\r\n      background-color: color(table) !important;\r\n      padding: 0px !important;\r\n    }\r\n  }\r\n\r\n  &.tour {\r\n    border-bottom: 1px solid color(primary);\r\n  }\r\n\r\n  &.form {\r\n    background-color: color(paper);\r\n    border-radius: 0px !important;\r\n  }\r\n}\r\n\r\n:ng-deep mat-expansion-panel-header {\r\n\r\n  &.form {\r\n    background-color: color(warn) !important;\r\n  }\r\n\r\n  &:hover {\r\n    background-color: color(paper) !important;\r\n  }\r\n\r\n  background-color: inherit !important;\r\n}\r\n\r\n.content {\r\n  font-size: 16px !important;\r\n}\r\n\r\n// override indicator color\r\n::ng-deep span.mat-expansion-indicator::after {\r\n  color: color(primary) !important;\r\n}\r\n",
+                    "data": "@import \"../../../styles/styles\";\r\n\r\n::ng-deep mat-expansion-panel {\r\n  margin-bottom: spacing(2) !important;\r\n\r\n  &.table {\r\n    .mat-expansion-panel-content,\r\n    .mat-expansion-panel-body {\r\n      background-color: color(table);\r\n      padding: 0px !important;\r\n    }\r\n  }\r\n\r\n  &.tour {\r\n    border-bottom: 1px solid color(primary);\r\n  }\r\n\r\n  &.form {\r\n    border-radius: 0px !important;\r\n    border-bottom-left-radius: 1rem !important;\r\n    border-bottom-right-radius: 1rem !important;\r\n  }\r\n\r\n  &.search {\r\n    border-radius: 0px !important;\r\n    border-bottom-left-radius: 1rem !important;\r\n    border-bottom-right-radius: 1rem !important;\r\n  }\r\n}\r\n\r\n::ng-deep mat-expansion-panel.search .mat-expansion-panel-body{\r\n  background-color: rgba($color: #fff, $alpha: 0.7) !important\r\n}\r\n\r\n::ng-deep mat-expansion-panel-header {\r\n  &.table {\r\n    padding-right: 0px !important;\r\n  }\r\n\r\n  &.form {\r\n    background-color: color(warn) !important;\r\n  }\r\n\r\n  &:hover {\r\n    background-color: color(paper) !important;\r\n  }\r\n\r\n  background-color: inherit !important;\r\n}\r\n\r\n.content {\r\n  font-size: 16px !important;\r\n}\r\n\r\n// override indicator color\r\n::ng-deep span.mat-expansion-indicator::after {\r\n  color: color(primary) !important;\r\n}\r\n",
                     "styleUrl": "./expand-panel.component.scss"
                 }
             ],
@@ -10836,12 +10836,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 21
+                "line": 22
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-expansion-panel\r\n  dir=\"rtl\"\r\n  [hideToggle]=\"hideToggle\"\r\n  [expanded]=\"expanded\"\r\n  [disabled]=\"disabled\"\r\n  [ngClass]=\"[variant, 'default', 'mat-elevation-z0']\"\r\n  (closed)=\"onPanelClosed()\"\r\n  (opened)=\"onPanelOpen()\"\r\n>\r\n  <mat-expansion-panel-header\r\n    *ngIf=\"!showHeader\"\r\n    [ngClass]=\"[variant]\"\r\n    (click)=\"onPanelExpend()\"\r\n  >\r\n    <mat-panel-title [ngClass]=\"[variant, 'default']\">\r\n      <ng-content select=\"[title]\"></ng-content>\r\n    </mat-panel-title>\r\n    <mat-panel-description>\r\n      <ng-content select=\"[description]\"></ng-content>\r\n    </mat-panel-description>\r\n  </mat-expansion-panel-header>\r\n\r\n  <div class=\"content\">\r\n    <ng-content select=\"[content]\"></ng-content>\r\n  </div>\r\n</mat-expansion-panel>\r\n"
+            "templateData": "<mat-expansion-panel\r\n  dir=\"rtl\"\r\n  [hideToggle]=\"hideToggle\"\r\n  [expanded]=\"expanded\"\r\n  [disabled]=\"disabled\"\r\n  [ngClass]=\"[variant, 'default', 'mat-elevation-z0']\"\r\n  (closed)=\"onPanelClosed()\"\r\n  (opened)=\"onPanelOpen()\"\r\n>\r\n  <mat-expansion-panel-header\r\n    *ngIf=\"!hideHeader\"\r\n    [ngClass]=\"[variant]\"\r\n    (click)=\"onPanelExpend()\"\r\n  >\r\n    <mat-panel-title [ngClass]=\"[variant, 'default']\">\r\n      <ng-content select=\"[title]\"></ng-content>\r\n    </mat-panel-title>\r\n    <mat-panel-description>\r\n      <ng-content select=\"[description]\"></ng-content>\r\n    </mat-panel-description>\r\n  </mat-expansion-panel-header>\r\n\r\n  <div class=\"content\">\r\n    <ng-content select=\"[content]\"></ng-content>\r\n  </div>\r\n</mat-expansion-panel>\r\n"
         },
         {
             "name": "FiltersExComponent",
@@ -12284,7 +12284,7 @@
         },
         {
             "name": "LayoutComponent",
-            "id": "component-LayoutComponent-05041f578bab23a71461cc994fc485d8",
+            "id": "component-LayoutComponent-812615b1ee9ff3e79938b4bcc8d2cb83",
             "file": "projects/lib-kakal-ui/src/lib/app/lib/components/layout/layout.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12322,7 +12322,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'kkl-layout',\n  templateUrl: './layout.component.html',\n  styleUrls: ['./layout.component.css']\n})\nexport class LayoutComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-layout',\r\n  templateUrl: './layout.component.html',\r\n  styleUrls: ['./layout.component.css']\r\n})\r\nexport class LayoutComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12342,7 +12342,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<p>layout works!</p>\n"
+            "templateData": "<p>layout works!</p>\r\n"
         },
         {
             "name": "ListItemComponent",
@@ -12408,7 +12408,7 @@
         },
         {
             "name": "MenuComponent",
-            "id": "component-MenuComponent-7a94ac434ec216bb788dd74b24ba22b1",
+            "id": "component-MenuComponent-b618b416740db158f76c446fdb2ee022",
             "file": "projects/lib-kakal-ui/src/lib/app/components/menu/menu.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12426,21 +12426,38 @@
             "viewProviders": [],
             "inputsClass": [
                 {
+                    "name": "hasLogin",
+                    "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "boolean"
+                },
+                {
+                    "name": "masterPrefix",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "string"
+                },
+                {
                     "name": "menu",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 13,
                     "type": "MenuModel[]"
-                },
-                {
-                    "name": "routePrefix",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 16,
-                    "type": "string"
                 }
             ],
-            "outputsClass": [],
+            "outputsClass": [
+                {
+                    "name": "changePath",
+                    "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "EventEmitter<literal type>"
+                }
+            ],
             "propertiesClass": [
                 {
                     "name": "logoutItem",
@@ -12450,68 +12467,24 @@
                     "type": "MenuItemModel",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 16,
                     "modifierKind": [
                         122
-                    ]
-                },
-                {
-                    "name": "prefixSubscription",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Subscription",
-                    "optional": false,
-                    "description": "",
-                    "line": 26,
-                    "modifierKind": [
-                        120
-                    ]
-                },
-                {
-                    "name": "routerSubscription",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Subscription",
-                    "optional": false,
-                    "description": "",
-                    "line": 25,
-                    "modifierKind": [
-                        120
                     ]
                 }
             ],
             "methodsClass": [
                 {
-                    "name": "ngOnDestroy",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 37,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 33,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                },
-                {
                     "name": "onLinkClick",
                     "args": [
                         {
-                            "name": "link",
+                            "name": "item",
                             "type": "MenuItemModel",
                             "deprecated": false,
                             "deprecationMessage": ""
                         },
                         {
-                            "name": "prefix",
+                            "name": "modulePrefix",
                             "type": "string",
                             "deprecated": false,
                             "deprecationMessage": ""
@@ -12520,7 +12493,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 62,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12528,7 +12501,7 @@
                     ],
                     "jsdoctags": [
                         {
-                            "name": "link",
+                            "name": "item",
                             "type": "MenuItemModel",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -12537,51 +12510,7 @@
                             }
                         },
                         {
-                            "name": "prefix",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "subscribeToPrefix",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 51,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        120
-                    ]
-                },
-                {
-                    "name": "updateLinkStatus",
-                    "args": [
-                        {
-                            "name": "path",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 46,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        120
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "path",
+                            "name": "modulePrefix",
                             "type": "string",
                             "deprecated": false,
                             "deprecationMessage": "",
@@ -12599,7 +12528,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ListItemKeys } from '../list-item/list-item.model';\r\nimport { Component, Input, OnInit } from '@angular/core';\r\nimport { MenuService } from './menu.service';\r\nimport { Subscription } from 'rxjs';\r\nimport { RouterService } from '../../utilities/services/route.rservice';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'app-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent implements OnInit {\r\n  @Input() public menu: MenuModel[];\r\n  @Input() private routePrefix: string;\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  });\r\n\r\n  private routerSubscription: Subscription;\r\n  private prefixSubscription: Subscription;\r\n\r\n  constructor(\r\n    private menuService: MenuService,\r\n    private routerService: RouterService\r\n  ) {}\r\n\r\n  ngOnInit(): void {\r\n    this.subscribeToPrefix();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    if (this.routerSubscription) {\r\n      this.routerSubscription.unsubscribe();\r\n    }\r\n    if (this.prefixSubscription) {\r\n      this.prefixSubscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n  private updateLinkStatus(path: string) {\r\n    this.menu = this.menuService.setList(this.menu, 'path', path);\r\n  }\r\n\r\n  // UPDATE METHOD WHEN CHANGE MODULE\r\n  private subscribeToPrefix() {\r\n    this.prefixSubscription = this.routerService\r\n      .getModulePrefixObs()\r\n      .subscribe((prefix) => {\r\n        this.menuService.setPrefix(prefix);\r\n        const path: string = this.routerService.getCurrentPath();\r\n        this.updateLinkStatus(path);\r\n      });\r\n  }\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(link: MenuItemModel, prefix: string) {\r\n    if (!link.isActive) {\r\n      const url = `/${this.routePrefix}/${prefix}`;\r\n      const path = link.path !== prefix ? `${url}/${link.path}` : url;\r\n      this.updateLinkStatus(link.path);\r\n      this.routerService.navigate(path);\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'app-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent {\r\n\r\n  @Input() public masterPrefix: string\r\n  @Input() public menu: MenuModel[];\r\n  @Input() public hasLogin: boolean = true\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  });\r\n  \r\n  @Output() changePath: EventEmitter<{ path: string, link: string }> = new EventEmitter();\r\n\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(item: MenuItemModel, modulePrefix: string) {\r\n\r\n    if (!item.isActive) {\r\n      const url = `${this.masterPrefix}/${modulePrefix}`;\r\n      const link = item.path !== modulePrefix ? `${url}/${item.path}` : url;\r\n      this.changePath.emit({ link, path: item.path })\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12608,51 +12537,7 @@
                 }
             ],
             "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "menuService",
-                        "type": "MenuService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "routerService",
-                        "type": "RouterService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 26,
-                "jsdoctags": [
-                    {
-                        "name": "menuService",
-                        "type": "MenuService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "routerService",
-                        "type": "RouterService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <app-card-user></app-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of menu; let i = index\"\r\n    >\r\n      <mat-expansion-panel-header>\r\n        <div mat-subheader>\r\n          <app-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </app-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <app-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></app-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <app-icon color=\"primary\" mat-list-icon [key]=\"logoutItem.svgUrl\"></app-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <app-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </app-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
+            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <app-card-user></app-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of menu; let i = index\"\r\n    >\r\n      <mat-expansion-panel-header *ngIf=\"list.label\">\r\n        <div mat-subheader>\r\n          <app-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </app-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <app-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></app-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <mat-icon color=\"primary\" mat-list-icon>{{ logoutItem.svgUrl }}</mat-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <app-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </app-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
         },
         {
             "name": "MenuItemComponent",
@@ -14492,13 +14377,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-e3f299b048875bbf7338c351ddbd21f5",
+            "id": "module-AppModule-88a0196d35a9668ad794e78d37a5f9d5",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\nimport { LayoutComponent } from './lib/components/layout/layout.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    LayoutComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './lib/components/layout/layout.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    LayoutComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -14958,16 +14843,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "CardDashboardTemplate.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/BottomNavBar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Default",
@@ -15536,16 +15411,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"32.581\" height=\"31.224\"\r\nviewBox=\"0 0 32.581 31.224\"><defs>\r\n<style>.supervision{fill:\"none\";}</style></defs><g transform=\"translate(0 -10.664)\"><g transform=\"translate(0 10.664)\">\r\n<path class=\"supervision\" d=\"M25.793,28.312a6.752,6.752,0,0,0-3.182.791l-1.488-2.232a8.824,8.824,0,1,0-9.685-.013l-1.5,2.23a6.8,6.8,0,1,0,1.132.749l1.555-2.319a8.844,8.844,0,0,0,7.3.01l1.552,2.329a6.788,6.788,0,1,0,4.311-1.545ZM6.788,40.53a5.389,5.389,0,0,1-3.5-1.28,5.139,5.139,0,0,0,.661-.27c.05-.024.1-.047.122-.056a3.879,3.879,0,0,0,1.66-1.011,2,2,0,0,0,1.059.4,2,2,0,0,0,1.059-.4,3.884,3.884,0,0,0,1.661,1.012c.023.008.071.031.121.055a5.154,5.154,0,0,0,.66.27A5.388,5.388,0,0,1,6.788,40.53ZM5.307,34.767a1.5,1.5,0,1,1,2.962,0,2.458,2.458,0,0,1-.609,1.487,2.17,2.17,0,0,1-.872.692,2.166,2.166,0,0,1-.872-.692A2.455,2.455,0,0,1,5.307,34.767Zm6.911.332a5.39,5.39,0,0,1-.951,3.072A1.207,1.207,0,0,0,11,38.046l-.037-.01a5.855,5.855,0,0,1-.974-.381c-.863-.329-1.087-.566-1.144-.677l-.005-.012v-.019a3.729,3.729,0,0,0,.786-2.18,2.847,2.847,0,1,0-5.677,0,3.724,3.724,0,0,0,.786,2.179v.02a.117.117,0,0,1-.006.012c-.057.111-.281.348-1.144.677a5.841,5.841,0,0,1-.974.381l-.038.01a1.227,1.227,0,0,0-.265.125,5.431,5.431,0,0,1,8.319-6.911A5.393,5.393,0,0,1,12.218,35.1ZM10.865,23.921l-.049.014a1.566,1.566,0,0,0-.381.186,7.467,7.467,0,1,1,11.71,0,1.545,1.545,0,0,0-.382-.186l-.048-.014a7.615,7.615,0,0,1-1.266-.493c-1.121-.427-1.411-.735-1.486-.88a.084.084,0,0,0-.007-.016l-.007-.979a4.844,4.844,0,0,0,1.028-2.84,3.7,3.7,0,1,0-7.374,0,4.844,4.844,0,0,0,1.028,2.84l-.007.979-.007.016c-.075.145-.366.453-1.486.88A7.6,7.6,0,0,1,10.865,23.921Zm7.754-5.209a3.635,3.635,0,0,1-.974,2.3,2.622,2.622,0,0,1-1.354.945,2.618,2.618,0,0,1-1.354-.945,3.634,3.634,0,0,1-.975-2.3,2.738,2.738,0,0,1,.7-1.946,2.306,2.306,0,0,1,3.256,0A2.74,2.74,0,0,1,18.619,18.713ZM16.29,26.954a7.41,7.41,0,0,1-4.846-1.786,6.263,6.263,0,0,0,.982-.386c.079-.038.141-.068.188-.086a3.787,3.787,0,0,0,2.209-1.525c.019-.036.033-.068.043-.09l.109-.242a2.538,2.538,0,0,0,1.315.474A2.53,2.53,0,0,0,17.6,22.84l.113.246c.01.021.023.049.04.082A3.777,3.777,0,0,0,19.968,24.7c.046.017.108.047.187.086a6.278,6.278,0,0,0,.982.386A7.411,7.411,0,0,1,16.29,26.954Zm9.5,13.575a5.387,5.387,0,0,1-3.5-1.28,5.252,5.252,0,0,0,.66-.27c.05-.024.1-.047.121-.056a3.885,3.885,0,0,0,1.66-1.011,2,2,0,0,0,1.059.4,2,2,0,0,0,1.059-.4,3.892,3.892,0,0,0,1.661,1.012c.023.008.071.031.12.055a5.21,5.21,0,0,0,.661.27A5.389,5.389,0,0,1,25.793,40.53Zm-1.48-5.763a1.5,1.5,0,1,1,2.961,0,2.451,2.451,0,0,1-.608,1.487,2.173,2.173,0,0,1-.872.692,2.174,2.174,0,0,1-.872-.692A2.457,2.457,0,0,1,24.313,34.767Zm5.96,3.4a1.215,1.215,0,0,0-.264-.125l-.038-.01A5.854,5.854,0,0,1,29,37.655c-.863-.329-1.087-.566-1.144-.677l0-.012v-.019a3.732,3.732,0,0,0,.786-2.18,2.847,2.847,0,1,0-5.677,0,3.727,3.727,0,0,0,.786,2.179v.02l0,.012c-.058.111-.281.348-1.144.677a5.813,5.813,0,0,1-.974.381l-.038.01a1.211,1.211,0,0,0-.264.125,5.43,5.43,0,1,1,8.958,0Z\" transform=\"translate(0 -10.664)\"/></g></g>\r\n</svg>`"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/BottomNavBar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16785,28 +16650,6 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "literal type"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/BottomNavBar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/BottomNavBar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/BottomNavBar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts": [
@@ -18548,7 +18391,7 @@
                 "linktype": "component",
                 "name": "MenuComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/12",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -18963,26 +18806,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "environment",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/BottomNavBar.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/BottomNavBar.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
