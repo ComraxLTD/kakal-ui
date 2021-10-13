@@ -1,6 +1,4 @@
-// import { UserDataService } from './../../utilities/services/user-data.service';
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { IconModel } from '../../icon/icon.model';
 import { StepModel } from '../../step/step.model';

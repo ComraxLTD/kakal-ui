@@ -15,7 +15,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "kkl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -114,8 +114,8 @@
     "lib-kakal-ui": {
       "projectType": "library",
       "root": "projects/lib-kakal-ui",
-      "sourceRoot": "projects/lib-kakal-ui/src",
-      "prefix": "lib",
+      "sourceRoot": "projects/lib-kakal-ui/src/lib/app",
+      "prefix": "kkl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",

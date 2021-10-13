@@ -1,26 +1,30 @@
+import { CommonModule } from '@angular/common';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppRoutingModule } from '../app/app-routing.module';
-import { IconComponent } from '../app/components/icon/icon.component';
-import { CardStatusComponent } from '../app/components/cards/card-status/card-status.component';
-import { TypographyComponent } from '../app/components/typography/typography.component';
+
 import { NavbarComponent } from '../app/components/navigation/navbar/navbar.component';
+import { CardStatusComponent } from '../app/components/cards/card-status/card-status.component';
+import { IconComponent } from '../app/components/icon/icon.component';
+import { TypographyComponent } from '../app/components/typography/typography.component';
+
 import { StepModel } from '../app/components/step/step.model';
+
+import { SizeDirective } from './../app/utilities/directives/size.directive';
+import { ButtonDirective } from '../app/utilities/directives/button.directive';
+import { ColorDirective } from '../app/utilities/directives/color.directive';
+import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 
 export default {
   title: 'Navbar',
   component: NavbarComponent,
   decorators: [
     moduleMetadata({
-      declarations: [CardStatusComponent, IconComponent, TypographyComponent],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
+      declarations: [SizeDirective, ColorDirective, ClassesDirective, ButtonDirective, CardStatusComponent, IconComponent, TypographyComponent],
       imports: [
         CommonModule,
         MaterialModule,
         BrowserModule,
-        // AppRoutingModule,
       ],
     }),
   ],

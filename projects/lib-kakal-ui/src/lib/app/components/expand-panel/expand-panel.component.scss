@@ -1,12 +1,12 @@
 @import "../../../styles/styles";
 
-mat-expansion-panel {
+::ng-deep mat-expansion-panel {
   margin-bottom: spacing(2) !important;
 
- ::ng-deep &.table {
+  &.table {
     .mat-expansion-panel-content,
     .mat-expansion-panel-body {
-      background-color: color(table) !important;
+      background-color: color(table);
       padding: 0px !important;
     }
   }
@@ -16,12 +16,26 @@ mat-expansion-panel {
   }
 
   &.form {
-    background-color: color(paper);
     border-radius: 0px !important;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+  }
+
+  &.search {
+    border-radius: 0px !important;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
   }
 }
 
-:ng-deep mat-expansion-panel-header {
+::ng-deep mat-expansion-panel.search .mat-expansion-panel-body{
+  background-color: rgba($color: #fff, $alpha: 0.7) !important
+}
+
+::ng-deep mat-expansion-panel-header {
+  &.table {
+    padding-right: 0px !important;
+  }
 
   &.form {
     background-color: color(warn) !important;

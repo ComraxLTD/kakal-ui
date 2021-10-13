@@ -34,6 +34,7 @@ export default {
         MaterialModule,
         FormsModule,
         ReactiveFormsModule,
+        FormsModule,
         CommonModule,
         BrowserAnimationsModule,
       ],

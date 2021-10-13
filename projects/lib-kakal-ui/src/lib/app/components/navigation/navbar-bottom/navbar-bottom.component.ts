@@ -18,7 +18,6 @@ export class NavbarBottomComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.hasSave)
   }
 
   public onPrevious(): void {
