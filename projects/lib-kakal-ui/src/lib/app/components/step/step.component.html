@@ -9,23 +9,24 @@
       <mat-card-content appButton>
         <div fxLayout="column" fxLayoutAlign="center center">
           <div fxFlex="80">
-            <app-icon  [active$]="active$" [color]="type === 'wizard'? 'primary': 'disable'" [key]="step.svgUrl" [size]="step.size">
-            </app-icon>
+            <kkl-icon [active$]="active$" [color]="type === 'wizard'? 'primary': 'disable'" [key]="step.svgUrl"
+              [size]="step.size">
+            </kkl-icon>
           </div>
           <div *ngIf="type === 'wizard'" fxFlex="15" [ngClass]="{ active: (active$ | async) }" fxLayout="column"
             fxLayoutAlign="end center">
-            <app-typography [active$]="active$" [classes]="wizardClasses" [activeClasses]="activeWizardClasses">
+            <kkl-typography [active$]="active$" [classes]="wizardClasses" [activeClasses]="activeWizardClasses">
               {{ step.label }}
-            </app-typography>
+            </kkl-typography>
           </div>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
   <div *ngIf="type === 'step'" class="label-container" fxLayout="column" fxLayoutAlign="center center" fxFlex="30">
-    <app-typography [ngClass]="{ underline: (active$ | async) }" [classes]="{fontWeight : 500}" [activeClasses]="{fontWeight : 600}"
-     [active$]="active$" [size]="1.2">
+    <kkl-typography [ngClass]="{ underline: (active$ | async) }" [classes]="{fontWeight : 500}"
+      [activeClasses]="{fontWeight : 600}" [active$]="active$" [size]="1.2">
       {{ step.label }}
-    </app-typography>
+    </kkl-typography>
   </div>
 </div>

@@ -6,9 +6,9 @@
     [dir]="'rtl'"
   >
     <mat-grid-tile [colspan]="cols || 8">
-      <app-typography *ngIf="!slots">
+      <kkl-typography *ngIf="!slots">
         {{ status.label }}
-      </app-typography>
+      </kkl-typography>
 
       <ng-container
         *ngTemplateOutlet="slots?.textRef; context :{status}"
@@ -23,9 +23,9 @@
           fxLayout="column"
           fxLayoutAlign="end center"
         >
-          <app-typography [color]="step ? 'accent' : 'disable'" size="12">
+          <kkl-typography [color]="step ? 'accent' : 'disable'" size="12">
             0{{ i + 1 }}
-          </app-typography>
+          </kkl-typography>
         </div>
       </div>
     </mat-grid-tile>

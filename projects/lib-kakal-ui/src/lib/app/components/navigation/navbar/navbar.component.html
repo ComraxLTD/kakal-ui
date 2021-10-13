@@ -14,39 +14,39 @@
     (click)="toggleMenu()"
   >
     <div fxFlex="40">
-      <app-icon
+      <kkl-icon
         *ngIf="!isOpen"
         type="svg"
         key="tree"
         color="primary"
         [size]="4"
-      ></app-icon>
-      <app-icon
+      ></kkl-icon>
+      <kkl-icon
         *ngIf="isOpen"
         type="svg"
         [key]="openIcon"
         color="primary"
         [size]="4"
-      ></app-icon>
+      ></kkl-icon>
     </div>
     <div fxFlex="10" fxLayout="column" fxLayoutAlign="start center">
-      <app-typography [size]="1" color="primary">
+      <kkl-typography [size]="1" color="primary">
         {{ isOpen ? closeLabel : openLabel }}
-      </app-typography>
+      </kkl-typography>
     </div>
   </div>
 
   <div fxLayout="column" fxLayoutAlign="center start" fxFlex="10">
-    <app-typography [size]="2.4">
+    <kkl-typography [size]="2.4">
       {{ (title$ | async) }}
-    </app-typography>
+    </kkl-typography>
   </div>
 
   <!-- main navbar links -->
   <div fxFlex="grow">
     <div class="status-container" fxLayoutAlign="center center">
       <div fxLayout="row" *ngFor="let status of (status$ | async)">
-        <app-card-status [status]="status"></app-card-status>
+        <kkl-card-status [status]="status"></kkl-card-status>
       </div>
     </div>
   </div>
@@ -61,7 +61,7 @@
     fxFlex="10"
   >
     <div *ngFor="let logo of logos">
-      <app-icon [key]="logo.key" [size]="logo.size"></app-icon>
+      <kkl-icon [key]="logo.key" [size]="logo.size"></kkl-icon>
     </div>
   </div>
 </mat-toolbar>

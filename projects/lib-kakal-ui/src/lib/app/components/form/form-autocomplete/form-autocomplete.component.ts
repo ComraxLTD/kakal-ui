@@ -5,7 +5,7 @@ import { SelectOption } from '../models/question-select.model';
 import { QuestionBase } from '../services/form.service';
 
 @Component({
-  selector: 'app-form-autocomplete',
+  selector: 'kkl-form-autocomplete',
   templateUrl: './form-autocomplete.component.html',
   styleUrls: ['./form-autocomplete.component.scss']
 })

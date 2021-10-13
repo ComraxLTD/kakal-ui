@@ -21,7 +21,7 @@ export default {
 const Template: Story<ExpandPanelComponent> = (args: ExpandPanelComponent) => ({
   props: args,
   template: `<app-expand-panel>
-  <app-typography bold="600" title>example</app-typography>
+  <kkl-typography bold="600" title>example</kkl-typography>
   <p content>example</p>
   </app-expand-panel>`
 });

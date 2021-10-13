@@ -7,7 +7,7 @@ import { GridProps } from '../models/question.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
-  selector: 'app-form-input',
+  selector: 'kkl-form-input',
   templateUrl: './form-input.component.html',
   styleUrls: ['./form-input.component.scss']
 })

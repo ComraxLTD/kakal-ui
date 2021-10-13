@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-expand-panel',
+  selector: 'kkl-expand-panel',
   templateUrl: './expand-panel.component.html',
   styleUrls: ['./expand-panel.component.scss']
 })

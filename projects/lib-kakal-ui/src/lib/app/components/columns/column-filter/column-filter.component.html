@@ -1,7 +1,7 @@
 <ng-container>
-  <app-typography [bold]="600" [size]="1.2">
+  <kkl-typography [bold]="600" [size]="1.2">
     {{ label }}
-  </app-typography>
+  </kkl-typography>
   <button mat-icon-button color="primary" [matMenuTriggerFor]="menu">
     <mat-icon> arrow_drop_down </mat-icon>
   </button>
@@ -11,7 +11,7 @@
       *ngFor="let option of options"
       (click)="onCOptionSelect(option.value)"
     >
-      <app-typography> {{ option.label }}</app-typography>
+      <kkl-typography> {{ option.label }}</kkl-typography>
     </button>
   </mat-menu>
 </ng-container>

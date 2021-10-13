@@ -18,7 +18,7 @@ export default {
 
 const Template: Story<TypographyComponent> = (args: TypographyComponent) => ({
   props: args,
-  template: `<app-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </app-typography>`
+  template: `<kkl-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </kkl-typography>`
 });
 
 export const Default = Template.bind({});

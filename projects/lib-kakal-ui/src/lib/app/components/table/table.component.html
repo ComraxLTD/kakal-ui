@@ -18,9 +18,9 @@
           [ngClass]="{ center: column.center }"
         >
           <!-- DEFAULT HEADER -->
-          <app-typography [bold]="600" *ngIf="!column.filterable">
+          <kkl-typography [bold]="600" *ngIf="!column.filterable">
             {{ column.label }}
-          </app-typography>
+          </kkl-typography>
 
           <ng-container
             *ngIf="column.columnDef === 'actions' && column.slotRef"
@@ -50,9 +50,9 @@
           [ngClass]="{ center: column.center }"
           [start]="column.sortDir"
         >
-          <app-typography [bold]="600" [size]="1.2">
+          <kkl-typography [bold]="600" [size]="1.2">
             {{ column.label }}
-          </app-typography>
+          </kkl-typography>
         </mat-header-cell>
       </ng-container>
 
@@ -87,9 +87,9 @@
             </ng-container>
 
             <ng-container *ngSwitchDefault>
-              <app-typography>
+              <kkl-typography>
                 {{ cell.item[column.columnDef] | format: type }}
-              </app-typography>
+              </kkl-typography>
             </ng-container>
           </ng-container>
         </ng-container>
