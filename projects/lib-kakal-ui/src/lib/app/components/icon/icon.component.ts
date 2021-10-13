@@ -5,7 +5,7 @@ import { IconType } from './icon.model';
 import { IconsService } from './icons.service';
 
 @Component({
-  selector: 'app-icon',
+  selector: 'kkl-icon',
   templateUrl: './icon.component.html',
   styleUrls: ['./icon.component.scss'],
 })

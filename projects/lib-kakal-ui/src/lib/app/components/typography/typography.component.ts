@@ -5,7 +5,7 @@ import { Palette } from '../../../styles/theme';
 import { TypographyService } from './typography.service';
 
 @Component({
-  selector: 'app-typography',
+  selector: 'kkl-typography',
   templateUrl: './typography.component.html',
   styleUrls: ['./typography.component.scss'],
 })

@@ -1,16 +1,20 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { CardDashboardComponent } from '../app/components/cards/card-dashboard/card-dashboard.component';
-import { IconComponent } from '../app/components/icon/icon.component';
-import { TypographyComponent } from '../app/components/typography/typography.component';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { MaterialModule } from '../material/material.module';
+
+import { TypographyComponent } from '../app/components/typography/typography.component';
+import { IconComponent } from '../app/components/icon/icon.component';
+
+import { CardDashboardComponent } from '../app/components/cards/card-dashboard/card-dashboard.component';
 import { CardStatusComponent } from '../app/components/cards/card-status/card-status.component';
-import { VariantDirective } from '../app/utilities/directives/variant.directive';
 import { CardStepComponent } from '../app/components/cards/card-step/card-step.component';
 import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
-import { StepModel } from '../app/components/step/step.model';
 import { CardUserComponent } from '../app/components/cards/card-user/card-user.component';
+
+import { StepModel } from '../app/components/step/step.model';
+
+import { VariantDirective } from '../app/utilities/directives/variant.directive';
+import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
 
@@ -57,6 +61,7 @@ const CardDashboardTemplate: Story<CardDashboardComponent> = (
     </app-card-dashboard>
     </div>`,
 });
+
 export const Dashboard = CardDashboardTemplate.bind({});
 Dashboard.args = {
   card: {
@@ -65,6 +70,7 @@ Dashboard.args = {
     svgUrl: 'assets',
   },
 };
+
 const CardStatusTemplate: Story<CardStatusComponent> = (
   args: CardStatusComponent
 ) => ({

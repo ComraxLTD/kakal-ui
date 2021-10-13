@@ -19,14 +19,14 @@
       <mat-card-content appButton>
         <div fxLayout="column" fxLayoutAlign="center center">
           <div fxFlex="80">
-            <app-icon
+            <kkl-icon
               [active$]="active$"
               [color]="'default'"
               type="svg"
               [key]="step.svgUrl || ''"
               [size]="step.size"
             >
-            </app-icon>
+            </kkl-icon>
           </div>
         </div>
       </mat-card-content>
@@ -38,7 +38,7 @@
     fxLayoutAlign="center center"
     fxFlex="40"
   >
-    <app-typography
+    <kkl-typography
       [ngClass]="{ active: (active$ | async) }"
       [classes]="stepTextClasses"
       [activeClasses]="activeStepTextClasses"
@@ -46,6 +46,6 @@
       [size]="1.1"
     >
       {{ step.label }}
-    </app-typography>
+    </kkl-typography>
   </div>
 </div>

@@ -5,7 +5,7 @@ import { SelectOption } from '../models/question-select.model';
 import { MatRadioChange } from '@angular/material/radio';
 
 @Component({
-  selector: 'app-form-radio',
+  selector: 'kkl-form-radio',
   templateUrl: './form-radio.component.html',
   styleUrls: ['./form-radio.component.scss']
 })

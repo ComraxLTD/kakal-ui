@@ -1,41 +1,41 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
-import { APP_BASE_HREF, CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
-import { StepperComponent } from '../app/components/stepper/stepper.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
-import { SizeDirective } from '../app/utilities/directives/size.directive';
-import { StepComponent } from '../app/components/step/step.component';
+import { CardStepModel } from '../app/components/cards/card-step/card-step.model';
+
+import { StepperExComponent } from '../app/examples/stepper-ex/stepper-ex.component';
+
+import { StepperComponent } from '../app/components/stepper/stepper.component';
 import { IconComponent } from '../app/components/icon/icon.component';
+import { TypographyComponent } from '../app/components/typography/typography.component';
+import { CardStepComponent } from '../app/components/cards/card-step/card-step.component';
+import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
+
+import { ButtonDirective } from '../app/utilities/directives/button.directive';
 import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { VariantDirective } from '../app/utilities/directives/variant.directive';
-import { TypographyComponent } from '../app/components/typography/typography.component';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { ButtonDirective } from '../app/utilities/directives/button.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
-import { StepperExComponent } from '../app/examples/stepper-ex/stepper-ex.component';
-import { CardStepComponent } from '../app/components/cards/card-step/card-step.component';
-import { CardStepModel } from '../app/components/cards/card-step/card-step.model';
-import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
+import { SizeDirective } from '../app/utilities/directives/size.directive';
 
 export default {
   title: 'Stepper',
   component: StepperExComponent,
   decorators: [
     moduleMetadata({
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
       declarations: [
         StepperComponent,
-        SizeDirective,
-        StepComponent,
         IconComponent,
+        TypographyComponent,
+        SizeDirective,
+        CardStepComponent,
+        CardWizardComponent,
+        StepperExComponent,
         VariantDirective,
         ClassesDirective,
         ButtonDirective,
         ColorDirective,
-        TypographyComponent,
-        CardStepComponent,
-        CardWizardComponent,
-        StepperExComponent,
       ],
 
       imports: [CommonModule, MaterialModule, FlexLayoutModule],

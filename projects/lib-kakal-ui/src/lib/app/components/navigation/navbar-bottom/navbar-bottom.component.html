@@ -6,12 +6,12 @@
           mat-icon-button
           (click)="onPrevious()"
         >
-          <app-icon type="mat" key="chevron_right"></app-icon>
+          <kkl-icon type="mat" key="chevron_right"></kkl-icon>
         </button>
       </div>
     </div>
     <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
-      <app-icon type="svg" [size]="27.5" key="bottomTreeLands"></app-icon>
+      <kkl-icon type="svg" [size]="27.5" key="bottomTreeLands"></kkl-icon>
     </div>
     <div
       fxFlex="10"
@@ -19,7 +19,7 @@
       [fxLayoutAlign]="hasSave ? 'space-between center' : 'end center'"
     >
       <button *ngIf="hasSave" mat-raised-button color="primary" (click)="onSave()" >
-        <app-typography color="paper"> שמירה </app-typography>
+        <kkl-typography color="paper"> שמירה </kkl-typography>
       </button>
       <button
         *ngIf="hasNext"
@@ -29,12 +29,12 @@
         (click)="onNext()"
       >
         <div fxLayout="row" fxLayoutAlign="space-between center">
-          <app-typography color="paper"> {{ buttonText || "המשך" }} </app-typography>
-          <app-icon
+          <kkl-typography color="paper"> {{ buttonText || "המשך" }} </kkl-typography>
+          <kkl-icon
             [color]="hasNext ? 'paper' : 'disable'"
             type="mat"
             key="chevron_left"
-          ></app-icon>
+          ></kkl-icon>
         </div>
       </button>
     </div>

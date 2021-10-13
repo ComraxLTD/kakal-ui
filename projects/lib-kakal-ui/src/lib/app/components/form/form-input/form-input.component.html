@@ -4,26 +4,13 @@
 
     <ng-container [ngSwitch]="controlType">
       <ng-container *ngSwitchCase="'textarea'">
-        <textarea
-          matInput
-          [rows]="gridProps.rows"
-          [formControl]="control"
-          [name]="question.key"
-          (focusout)="validate()"
-          #textarea
-        ></textarea
-        >
+        <textarea matInput [rows]="gridProps.rows" [formControl]="control" [name]="question.key" (focusout)="validate()"
+          #textarea></textarea>
       </ng-container>
 
       <ng-container *ngSwitchCase="'select'">
-        <mat-select
-          [multiple]="question.multi"
-          (selectionChange)="onSelectChange()"
-          [formControl]="control"
-          [attr.data-name]="question.key"
-          required
-          (focusout)="validate()"
-        >
+        <mat-select [multiple]="question.multi" (selectionChange)="onSelectChange()" [formControl]="control"
+          [attr.data-name]="question.key" (focusout)="validate()">
           <mat-option *ngFor="let option of options" [value]="option.value">
             {{ option.label }}
           </mat-option>
@@ -31,17 +18,8 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'autocomplete'">
-        <input
-          type="text"
-          matInput
-          [formControl]="control"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete
-          autoActiveFirstOption
-          #auto="matAutocomplete"
-          (optionSelected)="onOptionSelected($event)"
-        >
+        <input type="text" matInput [formControl]="control" [matAutocomplete]="auto" />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
           <mat-option *ngFor="let option of options" [value]="option.value">
             {{ option.label }}
           </mat-option>
@@ -49,24 +27,12 @@
       </ng-container>
 
       <ng-container *ngSwitchDefault>
-        <input
-          matInput
-          autocomplete="off"
-          [formControl]="control"
-          [name]="question.key"
-          (focusout)="validate()"
-          required
-          #input
-        />
+        <input matInput autocomplete="off" [formControl]="control" [name]="question.key" (focusout)="validate()"
+          #input />
       </ng-container>
     </ng-container>
 
-    <app-icon
-      *ngIf="icon"
-      matSuffix
-      [color]="color || 'primary'"
-      [key]="icon"
-    ></app-icon>
+    <kkl-icon *ngIf="icon" matSuffix [color]="color || 'primary'" [key]="icon"></kkl-icon>
 
     <mat-error>{{ error }}</mat-error>
   </mat-form-field>

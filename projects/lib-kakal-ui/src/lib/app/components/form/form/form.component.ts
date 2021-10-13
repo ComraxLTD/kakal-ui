@@ -7,7 +7,7 @@ import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@ang
 import { Question } from '../services/form.service';
 
 @Component({
-  selector: 'app-form',
+  selector: 'kkl-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss']
 })

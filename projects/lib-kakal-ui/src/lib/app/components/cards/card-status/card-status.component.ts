@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { StepModel } from '../../step/step.model';
 
 @Component({
-  selector: 'app-card-status',
+  selector: 'kkl-card-status',
   templateUrl: './card-status.component.html',
   styleUrls: ['./card-status.component.scss'],
 })
