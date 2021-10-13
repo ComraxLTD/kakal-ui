@@ -4,7 +4,7 @@ import { BreakpointService } from '../../../utilities/services/breakpoint.servic
 import { CardDashboardModel } from './card-dashboard.model';
 
 @Component({
-  selector: 'app-card-dashboard',
+  selector: 'kkl-card-dashboard',
   templateUrl: './card-dashboard.component.html',
   styleUrls: ['./card-dashboard.component.scss']
 })
