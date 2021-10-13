@@ -20,7 +20,7 @@
           [multiple]="question.multi"
           (selectionChange)="onSelectChange()"
           [formControl]="control"
-          [name]="question.key"
+          [attr.data-name]="question.key"
           required
           (focusout)="validate()"
         >

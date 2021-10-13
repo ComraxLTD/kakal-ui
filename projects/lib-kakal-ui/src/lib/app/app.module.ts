@@ -55,6 +55,7 @@ import { FormatPipe } from './utilities/pipes/format.pipe';
 import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from './components/columns/column-form/column-form.component';
 import { StatusComponent } from './components/status/status.component';
+import { LayoutComponent } from './lib/components/layout/layout.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { StatusComponent } from './components/status/status.component';
     FormExComponent,
     TableExComponent,
     FiltersExComponent,
+    LayoutComponent,
   ],
   imports: [
     BrowserModule,
