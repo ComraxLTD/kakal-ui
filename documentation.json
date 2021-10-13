@@ -11830,7 +11830,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div>\r\n  <mat-form-field [appearance]=\"control.disabled ? 'fill' : 'outline'\">\r\n    <mat-label>{{ label }}</mat-label>\r\n\r\n    <ng-container [ngSwitch]=\"controlType\">\r\n      <ng-container *ngSwitchCase=\"'textarea'\">\r\n        <textarea\r\n          matInput\r\n          [rows]=\"gridProps.rows\"\r\n          [formControl]=\"control\"\r\n          [name]=\"question.key\"\r\n          (focusout)=\"validate()\"\r\n          #textarea\r\n        ></textarea\r\n        >\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'select'\">\r\n        <mat-select\r\n          [multiple]=\"question.multi\"\r\n          (selectionChange)=\"onSelectChange()\"\r\n          [formControl]=\"control\"\r\n          [name]=\"question.key\"\r\n          required\r\n          (focusout)=\"validate()\"\r\n        >\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-select>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'autocomplete'\">\r\n        <input\r\n          type=\"text\"\r\n          matInput\r\n          [formControl]=\"control\"\r\n          [matAutocomplete]=\"auto\"\r\n        />\r\n        <mat-autocomplete\r\n          autoActiveFirstOption\r\n          #auto=\"matAutocomplete\"\r\n          (optionSelected)=\"onOptionSelected($event)\"\r\n        >\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-autocomplete>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchDefault>\r\n        <input\r\n          matInput\r\n          autocomplete=\"off\"\r\n          [formControl]=\"control\"\r\n          [name]=\"question.key\"\r\n          (focusout)=\"validate()\"\r\n          required\r\n          #input\r\n        />\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <app-icon\r\n      *ngIf=\"icon\"\r\n      matSuffix\r\n      [color]=\"color || 'primary'\"\r\n      [key]=\"icon\"\r\n    ></app-icon>\r\n\r\n    <mat-error>{{ error }}</mat-error>\r\n  </mat-form-field>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <mat-form-field [appearance]=\"control.disabled ? 'fill' : 'outline'\">\r\n    <mat-label>{{ label }}</mat-label>\r\n\r\n    <ng-container [ngSwitch]=\"controlType\">\r\n      <ng-container *ngSwitchCase=\"'textarea'\">\r\n        <textarea\r\n          matInput\r\n          [rows]=\"gridProps.rows\"\r\n          [formControl]=\"control\"\r\n          [name]=\"question.key\"\r\n          (focusout)=\"validate()\"\r\n          #textarea\r\n        ></textarea\r\n        >\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'select'\">\r\n        <mat-select\r\n          [multiple]=\"question.multi\"\r\n          (selectionChange)=\"onSelectChange()\"\r\n          [formControl]=\"control\"\r\n          [attr.data-name]=\"question.key\"\r\n          required\r\n          (focusout)=\"validate()\"\r\n        >\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-select>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'autocomplete'\">\r\n        <input\r\n          type=\"text\"\r\n          matInput\r\n          [formControl]=\"control\"\r\n          [matAutocomplete]=\"auto\"\r\n        />\r\n        <mat-autocomplete\r\n          autoActiveFirstOption\r\n          #auto=\"matAutocomplete\"\r\n          (optionSelected)=\"onOptionSelected($event)\"\r\n        >\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-autocomplete>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchDefault>\r\n        <input\r\n          matInput\r\n          autocomplete=\"off\"\r\n          [formControl]=\"control\"\r\n          [name]=\"question.key\"\r\n          (focusout)=\"validate()\"\r\n          required\r\n          #input\r\n        />\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <app-icon\r\n      *ngIf=\"icon\"\r\n      matSuffix\r\n      [color]=\"color || 'primary'\"\r\n      [key]=\"icon\"\r\n    ></app-icon>\r\n\r\n    <mat-error>{{ error }}</mat-error>\r\n  </mat-form-field>\r\n</div>\r\n"
         },
         {
             "name": "FormRadioComponent",
@@ -12283,6 +12283,68 @@
             "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" >\r\n    <div class=\"input\" dir=\"rtl\">\r\n    <app-form-input [question]=\"question\" [control]=\"control\"></app-form-input>\r\n  </div>\r\n</div>\r\n"
         },
         {
+            "name": "LayoutComponent",
+            "id": "component-LayoutComponent-05041f578bab23a71461cc994fc485d8",
+            "file": "projects/lib-kakal-ui/src/lib/app/lib/components/layout/layout.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-layout",
+            "styleUrls": [
+                "./layout.component.css"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./layout.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'kkl-layout',\n  templateUrl: './layout.component.html',\n  styleUrls: ['./layout.component.css']\n})\nexport class LayoutComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./layout.component.css"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<p>layout works!</p>\n"
+        },
+        {
             "name": "ListItemComponent",
             "id": "component-ListItemComponent-389b83ee6c377c2e233594877b817b51",
             "file": "projects/lib-kakal-ui/src/lib/app/components/list-item/list-item.component.ts",
@@ -12724,7 +12786,7 @@
         },
         {
             "name": "NavbarBottomComponent",
-            "id": "component-NavbarBottomComponent-2be4648e2ef8b3f27b2cd77781cacda2",
+            "id": "component-NavbarBottomComponent-4f49eea94248438acb1f218d8454949b",
             "file": "projects/lib-kakal-ui/src/lib/app/components/navigation/navbar-bottom/navbar-bottom.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12808,7 +12870,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12821,7 +12883,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 24,
+                    "line": 23,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12834,7 +12896,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 31,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12849,7 +12911,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-navbar-bottom',\r\n  templateUrl: './navbar-bottom.component.html',\r\n  styleUrls: ['./navbar-bottom.component.scss']\r\n})\r\nexport class NavbarBottomComponent implements OnInit {\r\n\r\n  @Input() buttonText: string = '';\r\n  @Input() hasNext: boolean;\r\n  @Input() hasSave: boolean;\r\n\r\n  @Output() previous = new EventEmitter();\r\n  @Output() next = new EventEmitter();\r\n  @Output() save = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    console.log(this.hasSave)\r\n  }\r\n\r\n  public onPrevious(): void {\r\n    this.previous.emit();\r\n  }\r\n\r\n  public onNext(): void {\r\n    this.next.emit();\r\n  }\r\n\r\n  public onSave(): void {\r\n    this.save.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-navbar-bottom',\r\n  templateUrl: './navbar-bottom.component.html',\r\n  styleUrls: ['./navbar-bottom.component.scss']\r\n})\r\nexport class NavbarBottomComponent implements OnInit {\r\n\r\n  @Input() buttonText: string = '';\r\n  @Input() hasNext: boolean;\r\n  @Input() hasSave: boolean;\r\n\r\n  @Output() previous = new EventEmitter();\r\n  @Output() next = new EventEmitter();\r\n  @Output() save = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  public onPrevious(): void {\r\n    this.previous.emit();\r\n  }\r\n\r\n  public onNext(): void {\r\n    this.next.emit();\r\n  }\r\n\r\n  public onSave(): void {\r\n    this.save.emit();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12873,7 +12935,7 @@
         },
         {
             "name": "NavbarComponent",
-            "id": "component-NavbarComponent-55a51b2cefb3f370c98cf6c6dff650ce",
+            "id": "component-NavbarComponent-c549f6a612ea07fc3c34bf2667d780d2",
             "file": "projects/lib-kakal-ui/src/lib/app/components/navigation/navbar/navbar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12894,42 +12956,42 @@
                     "name": "logos",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 15,
                     "type": "IconModel[]"
                 },
                 {
                     "name": "openIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 16,
+                    "line": 14,
                     "type": "string"
                 },
                 {
                     "name": "status",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 12,
                     "type": "StepModel[]"
                 },
                 {
                     "name": "status$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
+                    "line": 18,
                     "type": "Observable<StepModel>"
                 },
                 {
                     "name": "title",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 13,
                     "type": "string"
                 },
                 {
                     "name": "title$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 17,
                     "type": "Observable<string>"
                 }
             ],
@@ -12939,7 +13001,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 26,
+                    "line": 24,
                     "type": "EventEmitter"
                 }
             ],
@@ -12952,7 +13014,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 24,
+                    "line": 22,
                     "modifierKind": [
                         122
                     ]
@@ -12965,7 +13027,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 22,
+                    "line": 20,
                     "modifierKind": [
                         122
                     ]
@@ -12978,7 +13040,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 23,
+                    "line": 21,
                     "modifierKind": [
                         122
                     ]
@@ -12991,7 +13053,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 28,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -13001,7 +13063,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 30,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -13016,7 +13078,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { ActivatedRoute, ParamMap, Router } from '@angular/router';\r\nimport { Observable } from 'rxjs';\r\nimport { IconModel } from '../../icon/icon.model';\r\nimport { StepModel } from '../../step/step.model';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n  @Input() public status: StepModel[];\r\n  @Input() public title: string;\r\n  @Input() public openIcon: string;\r\n  @Input() public logos: IconModel[];\r\n\r\n  @Input() public title$: Observable<string>;\r\n  @Input() public status$: Observable<StepModel>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { IconModel } from '../../icon/icon.model';\r\nimport { StepModel } from '../../step/step.model';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n  @Input() public status: StepModel[];\r\n  @Input() public title: string;\r\n  @Input() public openIcon: string;\r\n  @Input() public logos: IconModel[];\r\n\r\n  @Input() public title$: Observable<string>;\r\n  @Input() public status$: Observable<StepModel>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13031,12 +13093,12 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 26
+                "line": 24
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-toolbar\r\n  dir=\"rtl\"\r\n  class=\"navbar mat-elevation-z4\"\r\n  xLayout=\"row\"\r\n  fxLayoutAlign=\"start center\"\r\n>\r\n  <!-- toggle menu button -->\r\n  <div\r\n    fxLayout=\"column\"\r\n    fxLayoutAlign=\"center center\"\r\n    fxFlex=\"5\"\r\n    appUnderline\r\n    appButton\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div fxFlex=\"40\">\r\n      <app-icon\r\n        *ngIf=\"!isOpen\"\r\n        type=\"svg\"\r\n        key=\"tree\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></app-icon>\r\n      <app-icon\r\n        *ngIf=\"isOpen\"\r\n        type=\"svg\"\r\n        [key]=\"openIcon\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></app-icon>\r\n    </div>\r\n    <div fxFlex=\"10\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\r\n      <app-typography [size]=\"1\" color=\"primary\">\r\n        {{ isOpen ? closeLabel : openLabel }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center start\" fxFlex=\"10\">\r\n    <app-typography [size]=\"2.4\">\r\n      {{ (title$ | async) }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div fxFlex=\"grow\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"center center\">\r\n      <div fxLayout=\"row\" *ngFor=\"let status of (status$ | async)\">\r\n        <app-card-status [status]=\"status\"></app-card-status>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div\r\n    fxLayout=\"row\"\r\n    fxLayoutAlign=\"end center\"\r\n    class=\"logo-container\"\r\n    fxFlex=\"10\"\r\n  >\r\n    <div *ngFor=\"let logo of logos\">\r\n      <app-icon [key]=\"logo.key\" [size]=\"logo.size\"></app-icon>\r\n    </div>\r\n  </div>\r\n</mat-toolbar>\r\n"
+            "templateData": "<mat-toolbar\r\n  dir=\"rtl\"\r\n  class=\"navbar mat-elevation-z4\"\r\n  fxLayout=\"row\"\r\n  fxLayoutAlign=\"start center\"\r\n>\r\n  <!-- toggle menu button -->\r\n  <div\r\n    fxLayout=\"column\"\r\n    fxLayoutAlign=\"center center\"\r\n    fxFlex=\"5\"\r\n    appUnderline\r\n    appButton\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div fxFlex=\"40\">\r\n      <app-icon\r\n        *ngIf=\"!isOpen\"\r\n        type=\"svg\"\r\n        key=\"tree\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></app-icon>\r\n      <app-icon\r\n        *ngIf=\"isOpen\"\r\n        type=\"svg\"\r\n        [key]=\"openIcon\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></app-icon>\r\n    </div>\r\n    <div fxFlex=\"10\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\r\n      <app-typography [size]=\"1\" color=\"primary\">\r\n        {{ isOpen ? closeLabel : openLabel }}\r\n      </app-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center start\" fxFlex=\"10\">\r\n    <app-typography [size]=\"2.4\">\r\n      {{ (title$ | async) }}\r\n    </app-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div fxFlex=\"grow\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"center center\">\r\n      <div fxLayout=\"row\" *ngFor=\"let status of (status$ | async)\">\r\n        <app-card-status [status]=\"status\"></app-card-status>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div\r\n    fxLayout=\"row\"\r\n    fxLayoutAlign=\"end center\"\r\n    class=\"logo-container\"\r\n    fxFlex=\"10\"\r\n  >\r\n    <div *ngFor=\"let logo of logos\">\r\n      <app-icon [key]=\"logo.key\" [size]=\"logo.size\"></app-icon>\r\n    </div>\r\n  </div>\r\n</mat-toolbar>\r\n"
         },
         {
             "name": "PaginationComponent",
@@ -14430,13 +14492,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-e843ae9682ed9a57b21131aac2af30f2",
+            "id": "module-AppModule-e3f299b048875bbf7338c351ddbd21f5",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './components/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\nimport { LayoutComponent } from './lib/components/layout/layout.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    LayoutComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -14516,6 +14578,9 @@
                         },
                         {
                             "name": "InputExComponent"
+                        },
+                        {
+                            "name": "LayoutComponent"
                         },
                         {
                             "name": "ListItemComponent"
@@ -14601,13 +14666,13 @@
         },
         {
             "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-d47796a4d0bc198d42ed57b12b4bd877",
+            "id": "module-AppRoutingModule-8166d7aeda5fb8390bdd708443a771a8",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app-routing.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule, Routes } from '@angular/router';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nconst routes: Routes = [{ path: '', component: AppComponent }];\r\n\r\n@NgModule({\r\n  imports: [RouterModule.forRoot(routes)],\r\n  exports: [RouterModule],\r\n})\r\nexport class AppRoutingModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n\r\n@NgModule({\r\n  exports: [RouterModule],\r\n})\r\nexport class AppRoutingModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -15008,7 +15073,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15108,7 +15173,7 @@
                 "name": "Filters",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15536,7 +15601,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FiltersExComponent>",
@@ -15626,7 +15691,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<StepComponent>",
@@ -16974,12 +17039,12 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/step.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -16989,7 +17054,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<StepComponent>",
@@ -17115,12 +17180,12 @@
                     "defaultValue": "{\r\n  production: false\r\n}"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts": [
                 {
                     "name": "Filters",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -17130,7 +17195,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FiltersExComponent>",
@@ -17598,25 +17663,7 @@
             ]
         }
     },
-    "routes": {
-        "name": "<root>",
-        "kind": "module",
-        "className": "AppModule",
-        "children": [
-            {
-                "name": "routes",
-                "filename": "projects/lib-kakal-ui/src/lib/app/app-routing.module.ts",
-                "module": "AppRoutingModule",
-                "children": [
-                    {
-                        "path": "",
-                        "component": "AppComponent"
-                    }
-                ],
-                "kind": "module"
-            }
-        ]
-    },
+    "routes": [],
     "coverage": {
         "count": 0,
         "status": "low",
@@ -18757,6 +18804,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/lib/components/layout/layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/app/utilities/directives/button.directive.ts",
                 "type": "directive",
                 "linktype": "directive",
@@ -19132,6 +19188,26 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Filters",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -19342,6 +19418,26 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -19441,26 +19537,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Filters",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -19472,26 +19548,6 @@
             },
             {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

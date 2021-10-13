@@ -9,8 +9,9 @@ export class ExpandPanelComponent implements OnInit {
  // prop for custom class
  @Input() public variant: string;
  @Input() public hideToggle: boolean;
- @Input() public showHeader: boolean;
+ @Input() public hideHeader: boolean;
  @Input() public disabled: boolean;
+
 
  @Input() public expanded: boolean;
 
@@ -23,10 +24,10 @@ export class ExpandPanelComponent implements OnInit {
  constructor() {}
 
  ngOnInit(): void {
-   this.variant = this.variant || '';
-   this.expanded = this.expanded || false;
-   this.hideToggle = this.hideToggle || false;
-   this.showHeader = this.showHeader || false;
+  this.variant = this.variant || '';
+  this.expanded = this.expanded || false;
+  this.hideToggle = this.hideToggle || false;
+  this.hideHeader = this.hideHeader || false;
  }
 
  public onPanelExpend() {

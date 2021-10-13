@@ -1,12 +1,15 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PaginationComponent } from '../app/components/pagination/pagination.component';
 
 export default {
   title: 'Pagination',
+  component : PaginationComponent,
   decorators: [
     moduleMetadata({
       declarations: [],
-      imports: [CommonModule],
+      imports: [CommonModule, NgxPaginationModule],
     }),
   ],
 } as Meta;
