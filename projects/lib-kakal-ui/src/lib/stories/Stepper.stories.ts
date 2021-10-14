@@ -25,20 +25,23 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [
-        StepperComponent,
         IconComponent,
         TypographyComponent,
-        SizeDirective,
+
+        StepperExComponent,
+        
+        StepperComponent,
         CardStepComponent,
         CardWizardComponent,
-        StepperExComponent,
+
+        SizeDirective,
         VariantDirective,
         ClassesDirective,
         ButtonDirective,
         ColorDirective,
       ],
 
-      imports: [CommonModule, MaterialModule, FlexLayoutModule],
+      imports: [CommonModule, MaterialModule],
     }),
   ],
 } as Meta;

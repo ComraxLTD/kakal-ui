@@ -21,22 +21,36 @@ import { NavbarComponent } from '../../app/components/navigation/navbar/navbar.c
 import { StepperComponent } from '../../app/components/stepper/stepper.component';
 import { MenuService } from '../../app/components/menu/menu.service';
 import { LayoutService } from '../../app/screens/layout/layout.service';
+import { LayoutExComponent } from '../../app/examples/layout-ex/layout-ex.component';
+import { CardStatusComponent } from '../../app/components/cards/card-status/card-status.component';
+import { CardStepComponent } from '../../app/components/cards/card-step/card-step.component';
+import { CardUserComponent } from '../../app/components/cards/card-user/card-user.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CardStepModel } from '../../app/components/cards/card-step/card-step.model';
 
 export default {
   title: 'Screen - Layout',
-  component: DashboardExComponent,
+  component: LayoutExComponent,
   decorators: [
     moduleMetadata({
       declarations: [
         IconComponent,
         TypographyComponent,
 
+        LayoutExComponent,
+
         LayoutComponent,
+
         NavbarComponent,
-        StepperComponent,
+        CardStatusComponent,
+        CardUserComponent,
+
         MenuComponent,
         MenuItemComponent,
+
+        StepperComponent,
         CardWizardComponent,
+        CardStepComponent,
 
         SizeDirective,
         VariantDirective,
@@ -46,57 +60,61 @@ export default {
       ],
 
       providers: [LayoutService, NavbarService, MenuService, BreakpointService],
-      imports: [CommonModule, MaterialModule],
+      imports: [CommonModule, MaterialModule, BrowserAnimationsModule],
     }),
   ],
 } as Meta;
 
-const Template: Story<DashboardExComponent> = (args: DashboardExComponent) => ({
+const Template: Story<LayoutExComponent> = (args: LayoutExComponent) => ({
   props: args,
 });
 
-export const Dashboard = Template.bind({});
+export const Defualt = Template.bind({});
 
-Dashboard.args = {
-  cards: [
-    new CardDashboardModel({
+Defualt.args = {
+  steps: [
+    new CardStepModel({
       label: 'פירוט הנכס',
       svgUrl: 'home',
       path: 'details',
+      size: 2,
+      variant: 'square',
+      type: 'wizard'
     }),
-    new CardDashboardModel({
+    new CardStepModel({
       label: 'תנועות',
       svgUrl: 'list',
       path: 'movements',
+      size: 2,
+      isActive: true,
+      variant: 'square',
+      type: 'wizard'
     }),
-    new CardDashboardModel({
+    new CardStepModel({
       label: 'עסקאות',
       svgUrl: 'transactions',
       path: 'transactions',
+      size: 2,
+      variant: 'square',
+      type: 'wizard'
     }),
-    new CardDashboardModel({
+    new CardStepModel({
       label: 'תתי חלקה',
       svgUrl: 'building',
       path: 'subdivision',
+      size: 2,
+      variant: 'square',
+      type: 'wizard'
+    }),
+    new CardStepModel({
+      label: 'פרצליציה',
+      svgUrl: 'add',
+      path: 'parcellation',
+      size: 2,
+      variant: 'square',
+      type: 'wizard'
     }),
   ],
-  width: 50
+
 };
 
-export const Foresrty = Template.bind({});
-
-Foresrty.args = {
-  cards: [
-    new CardDashboardModel({
-      label: 'פירוט הנכס',
-      svgUrl: 'home',
-      path: 'details',
-    }),
-    new CardDashboardModel({
-      label: 'תנועות',
-      svgUrl: 'list',
-      path: 'movements',
-    }),
-  ],
-  width: 50
-};

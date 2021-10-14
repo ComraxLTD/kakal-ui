@@ -24,7 +24,7 @@ export class LayoutComponent implements OnInit {
   constructor(
     private layoutService: LayoutService,
     private navbarService: NavbarService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.getCurrentPath();
@@ -33,7 +33,9 @@ export class LayoutComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    this.statusSubscription.unsubscribe();
+    if (this.statusSubscription) {
+      this.statusSubscription.unsubscribe();
+    }
   }
 
 
@@ -59,11 +61,11 @@ export class LayoutComponent implements OnInit {
   }
 
   private subscribeToLastPath() {
-  //   this.routerSubscription = this.routerService
-  //     .getLastPathObs()
-  //     .subscribe((path) => {
-  //       this.handleShowState(path);
-  //     });
-  // }
+    //   this.routerSubscription = this.routerService
+    //     .getLastPathObs()
+    //     .subscribe((path) => {
+    //       this.handleShowState(path);
+    //     });
+    // }
   }
 }

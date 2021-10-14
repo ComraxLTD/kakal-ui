@@ -20,7 +20,13 @@ export default {
   component: MenuComponent,
   decorators: [
     moduleMetadata({
-      declarations: [MenuItemComponent, CardUserComponent, TypographyComponent, IconComponent, SizeDirective, ColorDirective, ClassesDirective, ButtonDirective],
+      declarations: [
+        MenuItemComponent,
+        CardUserComponent,
+        TypographyComponent,
+        IconComponent,
+
+        SizeDirective, ColorDirective, ClassesDirective, ButtonDirective],
       providers: [],
       imports: [
         CommonModule,
