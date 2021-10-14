@@ -7,7 +7,7 @@ import {
 import { StepperService } from '../../components/stepper/stepper.service';
 
 @Component({
-  selector: 'app-stepper-ex',
+  selector: 'kkl-stepper-ex',
   templateUrl: './stepper-ex.component.html',
   styleUrls: ['./stepper-ex.component.scss'],
 })

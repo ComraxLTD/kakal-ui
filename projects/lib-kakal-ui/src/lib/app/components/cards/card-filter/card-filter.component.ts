@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { FilterModel } from './card-filter.model';
 
 @Component({
-  selector: 'app-card-filter',
+  selector: 'kkl-card-filter',
   templateUrl: './card-filter.component.html',
   styleUrls: ['./card-filter.component.scss'],
 })

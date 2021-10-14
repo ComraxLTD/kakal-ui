@@ -14,13 +14,26 @@ import { SizeDirective } from './../app/utilities/directives/size.directive';
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { ClassesDirective } from '../app/utilities/directives/classes.directive';
+import { NavbarService } from '../app/components/navigation/navbar/navbar.service';
+import { IconModel } from '../app/components/icon/icon.model';
 
 export default {
   title: 'Navbar',
   component: NavbarComponent,
   decorators: [
     moduleMetadata({
-      declarations: [SizeDirective, ColorDirective, ClassesDirective, ButtonDirective, CardStatusComponent, IconComponent, TypographyComponent],
+      declarations: [
+        IconComponent,
+        TypographyComponent,
+
+        CardStatusComponent,
+
+        SizeDirective,
+        ColorDirective,
+        ClassesDirective,
+        ButtonDirective,
+      ],
+      providers: [NavbarService],
       imports: [
         CommonModule,
         MaterialModule,
@@ -36,12 +49,6 @@ const Template: Story<NavbarComponent> = (args: NavbarComponent) => ({
 
 export const Default = Template.bind({});
 Default.args = {
-  status: [
-    new StepModel({
-      label: 'בתהליך',
-      svgUrl: 'reload',
-      value: 6,
-      size: 6,
-    }),
-  ],
+  openIcon: 'treegradientlands',
+  logos: [new IconModel('logo', 7)],
 };

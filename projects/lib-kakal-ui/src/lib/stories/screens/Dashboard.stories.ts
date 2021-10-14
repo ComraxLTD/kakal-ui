@@ -1,22 +1,22 @@
-import { CardDashboardModel } from './../app/components/cards/card-dashboard/card-dashboard.model';
+import { CardDashboardModel } from '../../app/components/cards/card-dashboard/card-dashboard.model';
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../../material/material.module';
 
-import { SizeDirective } from '../app/utilities/directives/size.directive';
-import { IconComponent } from '../app/components/icon/icon.component';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
-import { VariantDirective } from '../app/utilities/directives/variant.directive';
-import { TypographyComponent } from '../app/components/typography/typography.component';
-import { ButtonDirective } from '../app/utilities/directives/button.directive';
-import { ColorDirective } from '../app/utilities/directives/color.directive';
-import { DashboardExComponent } from '../app/examples/dashboard-ex/dashboard-ex.component';
-import { CardDashboardComponent } from '../app/components/cards/card-dashboard/card-dashboard.component';
-import { BreakpointService } from '../app/utilities/services/breakpoint.service';
-import { DashboardComponent } from '../app/screens/dashboard/dashboard.component';
+import { SizeDirective } from '../../app/utilities/directives/size.directive';
+import { IconComponent } from '../../app/components/icon/icon.component';
+import { ClassesDirective } from '../../app/utilities/directives/classes.directive';
+import { VariantDirective } from '../../app/utilities/directives/variant.directive';
+import { TypographyComponent } from '../../app/components/typography/typography.component';
+import { ButtonDirective } from '../../app/utilities/directives/button.directive';
+import { ColorDirective } from '../../app/utilities/directives/color.directive';
+import { DashboardExComponent } from '../../app/examples/dashboard-ex/dashboard-ex.component';
+import { CardDashboardComponent } from '../../app/components/cards/card-dashboard/card-dashboard.component';
+import { BreakpointService } from '../../app/utilities/services/breakpoint.service';
+import { DashboardComponent } from '../../app/screens/dashboard/dashboard.component';
 
 export default {
-  title: 'Dashboard',
+  title: 'Screen - Dashboard',
   component: DashboardExComponent,
   decorators: [
     moduleMetadata({

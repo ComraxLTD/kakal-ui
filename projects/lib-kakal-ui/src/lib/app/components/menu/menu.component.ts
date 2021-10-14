@@ -3,7 +3,7 @@ import { MenuItemModel } from '../menu-item/menu-item.model';
 import { MenuModel } from './menu.model';
 
 @Component({
-  selector: 'app-menu',
+  selector: 'kkl-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
 })
@@ -19,7 +19,7 @@ export class MenuComponent {
     path: '',
     svgUrl: 'logout',
   });
-  
+
   @Output() changePath: EventEmitter<{ path: string, link: string }> = new EventEmitter();
 
 

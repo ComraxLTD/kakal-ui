@@ -4,20 +4,20 @@
   fxLayoutAlign="center center"
 >
   <ng-container *ngFor="let step of steps; let i = index">
-    <div appSize [type]="step.type">
+    <div appButton appSize [type]="step.type">
       <ng-container *ngIf="!stepRef">
         <ng-container [ngSwitch]="step.type">
           <ng-container *ngSwitchCase="'step'">
-            <app-card-step
+            <kkl-card-step
               (onStepChange)="onStepChange(step)"
               [step]="step"
-            ></app-card-step>
+            ></kkl-card-step>
           </ng-container>
           <ng-container *ngSwitchCase="'wizard'">
-            <app-card-wizard
+            <kkl-card-wizard
               (onStepChange)="onStepChange(step)"
               [step]="step"
-            ></app-card-wizard>
+            ></kkl-card-wizard>
           </ng-container>
         </ng-container>
       </ng-container>

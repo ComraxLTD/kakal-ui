@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 
 @Component({
-  selector: 'app-stepper',
+  selector: 'kkl-stepper',
   templateUrl: './stepper.component.html',
   styleUrls: ['./stepper.component.scss'],
 })

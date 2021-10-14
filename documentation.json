@@ -1833,6 +1833,85 @@
             "type": "injectable"
         },
         {
+            "name": "LayoutService",
+            "id": "injectable-LayoutService-b001de55f6e3d96c1cb0c3c0fa5d6d4f",
+            "file": "projects/lib-kakal-ui/src/lib/app/screens/layout/layout.service.ts",
+            "properties": [
+                {
+                    "name": "hideWizard$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "BehaviorSubject<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "getWizardObs",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "toggleWizard",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class LayoutService {\r\n  private hideWizard$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.hideWizard$ = new BehaviorSubject<boolean>(false);\r\n  }\r\n\r\n  public getWizardObs(): Observable<boolean> {\r\n    return this.hideWizard$.asObservable();\r\n  }\r\n\r\n  public toggleWizard(value: boolean) {\r\n    return this.hideWizard$.next(value);\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 8
+            },
+            "type": "injectable"
+        },
+        {
             "name": "MenuService",
             "id": "injectable-MenuService-452a00c73269df4b64a97fa8d48ca6d4",
             "file": "projects/lib-kakal-ui/src/lib/app/components/menu/menu.service.ts",
@@ -2261,6 +2340,243 @@
                 "deprecationMessage": "",
                 "args": [],
                 "line": 7
+            },
+            "type": "injectable"
+        },
+        {
+            "name": "NavbarService",
+            "id": "injectable-NavbarService-dfed8d70c9d903d8a2b83b085d72e15d",
+            "file": "projects/lib-kakal-ui/src/lib/app/components/navigation/navbar/navbar.service.ts",
+            "properties": [
+                {
+                    "name": "showStatus$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "BehaviorSubject<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "status$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "BehaviorSubject<CardStepModel[]>",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "title$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "BehaviorSubject<string>",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "methods": [
+                {
+                    "name": "emitShowStatus",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 39,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "emitStatus",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "CardStepModel[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 31,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "CardStepModel[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "emitTitle",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "any",
+                    "typeParameters": [],
+                    "line": 23,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getShowStatusObs",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<boolean>",
+                    "typeParameters": [],
+                    "line": 35,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "getStatusObs",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<CardStepModel[]>",
+                    "typeParameters": [],
+                    "line": 27,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "getTitleObs",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "Observable<string>",
+                    "typeParameters": [],
+                    "line": 19,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "toggleStatus",
+                    "args": [
+                        {
+                            "name": "show",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "status",
+                            "type": "CardStepModel[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "show",
+                            "type": "boolean",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "status",
+                            "type": "CardStepModel[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\nimport { CardStepModel } from '../../cards/card-step/card-step.model';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class NavbarService {\r\n  private title$: BehaviorSubject<string>;\r\n  private status$: BehaviorSubject<CardStepModel[]>;\r\n  private showStatus$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.title$ = new BehaviorSubject<string>('');\r\n    this.status$ = new BehaviorSubject<CardStepModel[]>([]);\r\n    this.showStatus$  = new BehaviorSubject<boolean>(false)\r\n  }\r\n\r\n  public getTitleObs(): Observable<string> {\r\n    return this.title$.asObservable();\r\n  }\r\n\r\n  public emitTitle(value: string) {\r\n    return this.title$.next(value);\r\n  }\r\n\r\n  public getStatusObs(): Observable<CardStepModel[]> {\r\n    return this.status$.asObservable();\r\n  }\r\n\r\n  public emitStatus(value: CardStepModel[]): void {\r\n    this.status$.next(value);\r\n  }\r\n\r\n  public getShowStatusObs(): Observable<boolean> {\r\n    return this.showStatus$.asObservable();\r\n  }\r\n\r\n  public emitShowStatus(value: boolean): void {\r\n    this.showStatus$.next(value);\r\n  }\r\n\r\n  public toggleStatus(show: boolean, status: CardStepModel[]): void {\r\n    show ? this.emitStatus(status) : this.emitStatus([]);\r\n  }\r\n}\r\n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 11
             },
             "type": "injectable"
         },
@@ -10776,7 +11092,7 @@
         },
         {
             "name": "DashboardExComponent",
-            "id": "component-DashboardExComponent-39f03817247b7decdeff9530a839f95f",
+            "id": "component-DashboardExComponent-070b129924cff56616480ee3fe4a1ba1",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/dashboard-ex/dashboard-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -10836,11 +11152,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { CardDashboardModel } from '../../components/cards/card-dashboard/card-dashboard.model';\n\n@Component({\n  selector: 'kkl-dashboard-ex',\n  templateUrl: './dashboard-ex.component.html',\n  styleUrls: ['./dashboard-ex.component.scss']\n})\nexport class DashboardExComponent implements OnInit {\n\n  @Input() public cards: CardDashboardModel[];\n  @Input() public width: number;\n  @Input() public moduleTitle: string;\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { CardDashboardModel } from '../../components/cards/card-dashboard/card-dashboard.model';\r\n\r\n@Component({\r\n  selector: 'kkl-dashboard-ex',\r\n  templateUrl: './dashboard-ex.component.html',\r\n  styleUrls: ['./dashboard-ex.component.scss']\r\n})\r\nexport class DashboardExComponent implements OnInit {\r\n\r\n  @Input() public cards: CardDashboardModel[];\r\n  @Input() public width: number;\r\n  @Input() public moduleTitle: string;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "div {\r\n  height: 100%;\r\n  background-image: url(\"../../../assets/images/background-lands.jpg\");\r\n  background-position: center;\r\n  background-repeat: no-repeat;\r\n}\r\n",
+                    "data": "div {\r\n  background-color: lightgray;\r\n  height: 100%;\r\n}\r\n",
                     "styleUrl": "./dashboard-ex.component.scss"
                 }
             ],
@@ -10856,7 +11172,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div>\n  <kkl-dashboard [cards]=\"cards\" [moduleTitle]=\"moduleTitle\" [width]=\"width\"></kkl-dashboard>\n</div>"
+            "templateData": "<div>\r\n  <kkl-dashboard [cards]=\"cards\" [moduleTitle]=\"moduleTitle\" [width]=\"width\"></kkl-dashboard>\r\n</div>\r\n"
         },
         {
             "name": "ExpandPanelComponent",
@@ -12474,6 +12790,299 @@
             "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" >\r\n    <div class=\"input\" dir=\"rtl\">\r\n    <kkl-form-input [question]=\"question\" [control]=\"control\"></kkl-form-input>\r\n  </div>\r\n</div>\r\n"
         },
         {
+            "name": "LayoutComponent",
+            "id": "component-LayoutComponent-10c7788484db046f80452abaee2fdcf4",
+            "file": "projects/lib-kakal-ui/src/lib/app/screens/layout/layout.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-layout",
+            "styleUrls": [
+                "./layout.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./layout.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "hideWizardPath",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20,
+                    "type": "string[]"
+                },
+                {
+                    "name": "logos",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "IconModel[]"
+                },
+                {
+                    "name": "openIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "string"
+                },
+                {
+                    "name": "showStatusPath",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "statusSubscription",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Subscription",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "wizard$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<boolean>",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "findPath",
+                    "args": [
+                        {
+                            "name": "list",
+                            "type": "any[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "boolean",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "list",
+                            "type": "any[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "value",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "getCurrentPath",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 57,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "handleShowState",
+                    "args": [
+                        {
+                            "name": "path",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 51,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "path",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "handleStatusState",
+                    "args": [
+                        {
+                            "name": "path",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 47,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "path",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 30,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "subscribeToLastPath",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 62,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { Subscription, Observable } from 'rxjs';\nimport { IconModel } from '../../components/icon/icon.model';\nimport { NavbarService } from '../../components/navigation/navbar/navbar.service';\nimport { LayoutService } from './layout.service';\n\n@Component({\n  selector: 'kkl-layout',\n  templateUrl: './layout.component.html',\n  styleUrls: ['./layout.component.scss']\n})\nexport class LayoutComponent implements OnInit {\n\n\n  private statusSubscription: Subscription;\n\n  @Input() public openIcon: string;\n  @Input() public logos: IconModel[];\n\n  @Input() public hideWizardPath: string[];\n  @Input() public showStatusPath: string[];\n\n  public wizard$: Observable<boolean>;\n\n  constructor(\n    private layoutService: LayoutService,\n    private navbarService: NavbarService\n  ) {}\n\n  ngOnInit(): void {\n    this.getCurrentPath();\n    this.subscribeToLastPath();\n    this.wizard$ = this.layoutService.getWizardObs();\n  }\n\n  ngOnDestroy(): void {\n    this.statusSubscription.unsubscribe();\n  }\n\n\n  // VIEW METHODS SECTION\n\n  private findPath(list: any[], value: string): boolean {\n    return !!list.find((path: string) => path == value);\n  }\n\n  private handleStatusState(path: string) {\n    this.navbarService.emitShowStatus(this.findPath(this.showStatusPath, path));\n  }\n\n  private handleShowState(path: string) {\n    this.layoutService.toggleWizard(this.findPath(this.hideWizardPath, path));\n    this.handleStatusState(path);\n  }\n\n  // ROUTE METHODS SECTION\n  private getCurrentPath() {\n    // const path = this.routerService.getCurrentPath();\n    // this.handleShowState(path);\n  }\n\n  private subscribeToLastPath() {\n  //   this.routerSubscription = this.routerService\n  //     .getLastPathObs()\n  //     .subscribe((path) => {\n  //       this.handleShowState(path);\n  //     });\n  // }\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../styles/styles\";\r\n\r\n\r\n.sidenav-container {\r\n  height: 100%;\r\n\r\n}\r\n\r\nmat-sidenav-content {\r\n  margin: 0px !important;\r\n  overflow-x: hidden;\r\n}\r\n\r\nmat-sidenav {\r\n\r\n  &.menu {\r\n    width: 246px;\r\n    top: $toolbar-height;\r\n    height: $content-height;\r\n    z-index: 100;\r\n\r\n\r\n    div.menu-container {\r\n      height: inherit;\r\n      padding-right : spacing(1);\r\n    }\r\n\r\n  }\r\n\r\n  &.wizard {\r\n    background-color: transparent !important;\r\n    width: 80px;\r\n    height: 100%;\r\n    border: none;\r\n\r\n    div.stepper-container {\r\n      height: 100%;\r\n    }\r\n  }\r\n}\r\n\r\n\r\n",
+                    "styleUrl": "./layout.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "layoutService",
+                        "type": "LayoutService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 23,
+                "jsdoctags": [
+                    {
+                        "name": "layoutService",
+                        "type": "LayoutService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav-content>\n    <app-navbar\n      [logos]=\"logos\"\n      [openIcon]=\"openIcon\"\n      (menuToggle)=\"menuDrawer.toggle()\"\n    ></app-navbar>\n\n    <mat-sidenav\n      class=\"wizard\"\n      opened=\"true\"\n      mode=\"side\"\n      position=\"start\"\n      *ngIf=\"!(wizard$ | async)\"\n    >\n      <div\n        class=\"stepper-container\"\n        fxLayout=\"column\"\n        fxLayoutAlign=\"center center\"\n      >\n        <ng-content select=\"[wizard]\"></ng-content>\n      </div>\n    </mat-sidenav>\n\n    <mat-sidenav #menuDrawer class=\"menu\" mode=\"side\" position=\"end\">\n      <div class=\"menu-container\" fxLayout=\"column\" fxLayoutAlign=\"start end\">\n        <ng-content select=\"[menu]\"></ng-content>\n      </div>\n    </mat-sidenav>\n\n    <ng-content></ng-content>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+        },
+        {
             "name": "ListItemComponent",
             "id": "component-ListItemComponent-389b83ee6c377c2e233594877b817b51",
             "file": "projects/lib-kakal-ui/src/lib/app/components/list-item/list-item.component.ts",
@@ -12544,7 +13153,7 @@
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-menu",
+            "selector": "kkl-menu",
             "styleUrls": [
                 "./menu.component.scss"
             ],
@@ -12657,7 +13266,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'app-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent {\r\n\r\n  @Input() public masterPrefix: string\r\n  @Input() public menu: MenuModel[];\r\n  @Input() public hasLogin: boolean = true\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  });\r\n  \r\n  @Output() changePath: EventEmitter<{ path: string, link: string }> = new EventEmitter();\r\n\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(item: MenuItemModel, modulePrefix: string) {\r\n\r\n    if (!item.isActive) {\r\n      const url = `${this.masterPrefix}/${modulePrefix}`;\r\n      const link = item.path !== modulePrefix ? `${url}/${item.path}` : url;\r\n      this.changePath.emit({ link, path: item.path })\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'kkl-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent {\r\n\r\n  @Input() public masterPrefix: string\r\n  @Input() public menu: MenuModel[];\r\n  @Input() public hasLogin: boolean = true\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  });\r\n  \r\n  @Output() changePath: EventEmitter<{ path: string, link: string }> = new EventEmitter();\r\n\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(item: MenuItemModel, modulePrefix: string) {\r\n\r\n    if (!item.isActive) {\r\n      const url = `${this.masterPrefix}/${modulePrefix}`;\r\n      const link = item.path !== modulePrefix ? `${url}/${item.path}` : url;\r\n      this.changePath.emit({ link, path: item.path })\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12666,7 +13275,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <app-card-user></app-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of menu; let i = index\"\r\n    >\r\n      <mat-expansion-panel-header *ngIf=\"list.label\">\r\n        <div mat-subheader>\r\n          <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </kkl-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <app-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></app-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <mat-icon color=\"primary\" mat-list-icon>{{ logoutItem.svgUrl }}</mat-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </kkl-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
+            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <app-card-user></app-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of menu; let i = index\"\r\n    >\r\n      <mat-expansion-panel-header *ngIf=\"list.label\">\r\n        <div mat-subheader>\r\n          <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </kkl-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <kkl-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></kkl-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <mat-icon color=\"primary\" mat-list-icon>{{ logoutItem.svgUrl }}</mat-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </kkl-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
         },
         {
             "name": "MenuItemComponent",
@@ -12677,7 +13286,7 @@
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-menu-item",
+            "selector": "kkl-menu-item",
             "styleUrls": [
                 "./menu-item.component.scss"
             ],
@@ -12776,7 +13385,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { MenuItemModel } from './menu-item.model';\r\n\r\n@Component({\r\n  selector: 'app-menu-item',\r\n  templateUrl: './menu-item.component.html',\r\n  styleUrls: ['./menu-item.component.scss']\r\n})\r\nexport class MenuItemComponent implements OnInit {\r\n\r\n  @Input() public link: MenuItemModel;\r\n\r\n  public active$: Observable<boolean>;\r\n  private isActive: boolean;\r\n\r\n  @Output() click: EventEmitter<void> = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.active$ = this.link.getActiveObs();\r\n  }\r\n\r\n  public onLinkClick() {\r\n    this.click.emit();\r\n  }\r\n\r\n  private subscribeToActive() {\r\n    this.active$.subscribe((active: boolean) => {\r\n      this.isActive = active;\r\n    });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { MenuItemModel } from './menu-item.model';\r\n\r\n@Component({\r\n  selector: 'kkl-menu-item',\r\n  templateUrl: './menu-item.component.html',\r\n  styleUrls: ['./menu-item.component.scss']\r\n})\r\nexport class MenuItemComponent implements OnInit {\r\n\r\n  @Input() public link: MenuItemModel;\r\n\r\n  public active$: Observable<boolean>;\r\n  private isActive: boolean;\r\n\r\n  @Output() click: EventEmitter<void> = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.active$ = this.link.getActiveObs();\r\n  }\r\n\r\n  public onLinkClick() {\r\n    this.click.emit();\r\n  }\r\n\r\n  private subscribeToActive() {\r\n    this.active$.subscribe((active: boolean) => {\r\n      this.isActive = active;\r\n    });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13539,7 +14148,7 @@
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-stepper",
+            "selector": "kkl-stepper",
             "styleUrls": [
                 "./stepper.component.scss"
             ],
@@ -13629,7 +14238,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ElementRef,\r\n} from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\n\r\n@Component({\r\n  selector: 'app-stepper',\r\n  templateUrl: './stepper.component.html',\r\n  styleUrls: ['./stepper.component.scss'],\r\n})\r\nexport class StepperComponent {\r\n\r\n  @Input() steps: CardStepModel[];\r\n\r\n  @Input() steps$: Observable<CardStepModel[]>;\r\n\r\n  @Input() direction: string;\r\n  @Input() stepRef: ElementRef;\r\n\r\n  @Output() changStep = new EventEmitter<CardStepModel>();\r\n\r\n  constructor() { }\r\n\r\n  public onStepChange(step: CardStepModel) {\r\n    this.changStep.emit(step);\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  Input,\r\n  Output,\r\n  EventEmitter,\r\n  ElementRef,\r\n} from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\n\r\n@Component({\r\n  selector: 'kkl-stepper',\r\n  templateUrl: './stepper.component.html',\r\n  styleUrls: ['./stepper.component.scss'],\r\n})\r\nexport class StepperComponent {\r\n\r\n  @Input() steps: CardStepModel[];\r\n\r\n  @Input() steps$: Observable<CardStepModel[]>;\r\n\r\n  @Input() direction: string;\r\n  @Input() stepRef: ElementRef;\r\n\r\n  @Output() changStep = new EventEmitter<CardStepModel>();\r\n\r\n  constructor() { }\r\n\r\n  public onStepChange(step: CardStepModel) {\r\n    this.changStep.emit(step);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13657,7 +14266,7 @@
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-stepper-ex",
+            "selector": "kkl-stepper-ex",
             "styleUrls": [
                 "./stepper-ex.component.scss"
             ],
@@ -13724,7 +14333,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { CardStepModel } from '../../components/cards/card-step/card-step.model';\r\nimport {\r\n  StepModel,\r\n  StepperDirection,\r\n} from '../../components/step/step.model';\r\nimport { StepperService } from '../../components/stepper/stepper.service';\r\n\r\n@Component({\r\n  selector: 'app-stepper-ex',\r\n  templateUrl: './stepper-ex.component.html',\r\n  styleUrls: ['./stepper-ex.component.scss'],\r\n})\r\nexport class StepperExComponent {\r\n  constructor(private stepperService: StepperService) {}\r\n\r\n  @Input() public steps: CardStepModel[];\r\n  @Input() public direction: StepperDirection;\r\n\r\n  public onStepChange(step: StepModel) {\r\n    this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { CardStepModel } from '../../components/cards/card-step/card-step.model';\r\nimport {\r\n  StepModel,\r\n  StepperDirection,\r\n} from '../../components/step/step.model';\r\nimport { StepperService } from '../../components/stepper/stepper.service';\r\n\r\n@Component({\r\n  selector: 'kkl-stepper-ex',\r\n  templateUrl: './stepper-ex.component.html',\r\n  styleUrls: ['./stepper-ex.component.scss'],\r\n})\r\nexport class StepperExComponent {\r\n  constructor(private stepperService: StepperService) {}\r\n\r\n  @Input() public steps: CardStepModel[];\r\n  @Input() public direction: StepperDirection;\r\n\r\n  public onStepChange(step: StepModel) {\r\n    this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13759,7 +14368,7 @@
                     }
                 ]
             },
-            "templateData": "<div *ngIf=\"direction === 'row'\" class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\" fxFill> \r\n    <div fxFlex=\"20\">\r\n      <app-stepper (changStep)=\"onStepChange($event)\" [steps]=\"steps\" [direction]=\"direction\"></app-stepper>\r\n    </div>\r\n  </div>\r\n  \r\n  <div *ngIf=\"direction === 'column'\" class=\"wizard\">\r\n    <app-stepper\r\n      (changStep)=\"onStepChange($event)\"\r\n      [steps]=\"steps\"\r\n      [direction]=\"direction\"\r\n    ></app-stepper>\r\n  </div>\r\n  "
+            "templateData": "<div *ngIf=\"direction === 'row'\" class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\" fxFill> \r\n    <div fxFlex=\"20\">\r\n      <kkl-stepper (changStep)=\"onStepChange($event)\" [steps]=\"steps\" [direction]=\"direction\"></kkl-stepper>\r\n    </div>\r\n  </div>\r\n  \r\n  <div *ngIf=\"direction === 'column'\" class=\"wizard\">\r\n    <kkl-stepper\r\n      (changStep)=\"onStepChange($event)\"\r\n      [steps]=\"steps\"\r\n      [direction]=\"direction\"\r\n    ></kkl-stepper>\r\n  </div>\r\n  "
         },
         {
             "name": "TableComponent",
@@ -14506,13 +15115,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-e9ba6ea0013ebbb38f9b60fe06bf6079",
+            "id": "module-AppModule-1ee00976dd03308fad0556c6238e7226",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n    DashboardComponent,\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -14595,6 +15204,9 @@
                         },
                         {
                             "name": "InputExComponent"
+                        },
+                        {
+                            "name": "LayoutComponent"
                         },
                         {
                             "name": "ListItemComponent"
@@ -15882,16 +16494,6 @@
                 "defaultValue": "CardUserTemplate.bind({})"
             },
             {
-                "name": "Wizard",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
@@ -15919,6 +16521,16 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "CardWizardTemplate.bind({})"
+            },
+            {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             }
         ],
         "functions": [],
@@ -18613,6 +19225,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/components/navigation/navbar/navbar.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "NavbarService",
+                "coveragePercent": 0,
+                "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/app/components/pagination/pagination.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -18844,6 +19465,24 @@
                 "name": "DashboardComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/12",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/screens/layout/layout.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LayoutComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/15",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/screens/layout/layout.service.ts",
+                "type": "injectable",
+                "linktype": "injectable",
+                "name": "LayoutService",
+                "coveragePercent": 0,
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {

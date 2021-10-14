@@ -1,0 +1,16 @@
+<kkl-layout
+  [logos]="logos"
+  [openIcon]="openIcon"
+  [hideWizardPath]="hideWizardPath"
+  [showStatusPath]="showStatusPath"
+>
+  <kkl-stepper
+    class="mat-elevation-z6"
+    wizard
+    [steps]="steps"
+    [direction]="direction"
+    (changStep)="onChangeStep($event)"
+  ></kkl-stepper>
+  <kkl-menu [masterPrefix]="prefix" (changePath)="onChangePath($event)" menu [menu]="menu"> </kkl-menu>
+  <ng-content></ng-content>
+</kkl-layout>
