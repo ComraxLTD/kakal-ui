@@ -7,7 +7,6 @@ import { MenuService } from '../../components/menu/menu.service';
 import { NavbarService } from '../../components/navigation/navbar/navbar.service';
 import { StepperDirection } from '../../components/step/step.model';
 import { StepperService } from '../../components/stepper/stepper.service';
-import { RouterService } from '../../utilities/services/route.rservice';
 
 @Component({
   selector: 'kkl-layout-ex',
@@ -17,10 +16,14 @@ import { RouterService } from '../../utilities/services/route.rservice';
 export class LayoutExComponent implements OnInit {
 
   // NAVBAR DATA SECTION
-  @Input() public openIcon: string = 'treegradientlands';
+
+  // uniqu gradient icon per project
+  @Input() public openIcon: string;
+
   @Input() public logos: IconModel[];
   @Input() public showStatusPath: string[] = [];
   @Input() public prefix: string;
+  @Input() public status: CardStepModel[];
 
   // WIZARD SECTION
   @Input() public steps: CardStepModel[];
@@ -32,6 +35,8 @@ export class LayoutExComponent implements OnInit {
 
   constructor(
     private stepperService: StepperService,
+    private menuService: MenuService,
+    private navbarService: NavbarService,
   ) { }
 
   ngOnInit(): void {
@@ -42,7 +47,10 @@ export class LayoutExComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-
+    if (this.status) {
+      console.log(1)
+      this.navbarService.emitStatus(this.status);
+    }
   }
 
   // SET PROPS METHOD

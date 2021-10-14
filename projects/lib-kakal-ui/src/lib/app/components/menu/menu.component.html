@@ -1,5 +1,5 @@
 <div class="links themed-element" [dir]="'rtl'">
-  <app-card-user></app-card-user>
+  <kkl-card-user></kkl-card-user>
   <mat-accordion class="menu">
     <mat-expansion-panel
       class="mat-elevation-z0"
@@ -23,7 +23,7 @@
   </mat-accordion>
   <mat-list>
     <mat-list-item appButton>
-      <mat-icon color="primary" mat-list-icon>{{ logoutItem.svgUrl }}</mat-icon>
+      <kkl-icon color="primary" [key]="logoutItem.svgUrl" mat-list-icon></kkl-icon>
       <div class="logout" mat-line>
         <kkl-typography variant="button" color="primary" [bold]="600">
           {{ logoutItem.label }}

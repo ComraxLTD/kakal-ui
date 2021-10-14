@@ -27,6 +27,8 @@ import { CardStepComponent } from '../../app/components/cards/card-step/card-ste
 import { CardUserComponent } from '../../app/components/cards/card-user/card-user.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CardStepModel } from '../../app/components/cards/card-step/card-step.model';
+import { MenuItemModel } from '../../app/components/menu-item/menu-item.model';
+import { IconModel } from '../../app/components/icon/icon.model';
 
 export default {
   title: 'Screen - Layout',
@@ -69,9 +71,25 @@ const Template: Story<LayoutExComponent> = (args: LayoutExComponent) => ({
   props: args,
 });
 
+
+//  titles: Map<string, string> = new Map([
+//   ['lands', 'מקרקעין'],
+//   ['neches', 'מנהלת ספר הכסים'],
+// ]);
+
 export const Defualt = Template.bind({});
 
 Defualt.args = {
+  openIcon: 'treegradientlands',
+  logos: [new IconModel('logo', 7)],
+};
+
+export const WithWizard = Template.bind({});
+
+WithWizard.args = {
+  openIcon: 'treegradientlands',
+
+  logos: [new IconModel('logo', 7)],
   steps: [
     new CardStepModel({
       label: 'פירוט הנכס',
@@ -116,5 +134,103 @@ Defualt.args = {
     }),
   ],
 
+};
+
+export const WithMenu = Template.bind({});
+
+WithMenu.args = {
+  openIcon: 'treegradientlands',
+  logos: [new IconModel('logo', 7)],
+
+  menu: [
+    {
+      label: 'ראשי',
+      prefix: 'neches',
+      links: [
+        new MenuItemModel({ label: 'ספר נכסים', path: 'neches' }),
+        new MenuItemModel({ label: 'חיפוש נכס', path: 'search' }),
+        new MenuItemModel({ label: 'עסקאות', path: 'transactions' }),
+        new MenuItemModel({ label: 'תבניות מייל', path: 'mail' }),
+        new MenuItemModel({ label: 'רשימת עורכי דין', path: 'loyer' }),
+      ],
+    },
+    {
+      label: 'פיקוח',
+      prefix: 'supervision',
+      links: [],
+    },
+    {
+      label: 'שומה',
+      prefix: 'evaluation',
+      links: [],
+    },
+    {
+      label: 'עסקאות',
+      prefix: 'transactions',
+      links: [],
+    },
+    {
+      label: 'מדידות',
+      prefix: 'measurements',
+      links: [],
+    },
+    {
+      label: 'תכנון',
+      prefix: 'design',
+      links: [],
+    },
+  ],
+
+};
+
+export const WithStatus = Template.bind({});
+
+WithStatus.args = {
+  openIcon: 'treegradientlands',
+  logos: [new IconModel('logo', 7)],
+  status: [
+    new CardStepModel({
+      label: 'איזור תנועות',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'הערת אזהרה',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'דיווח לרשות המיסים',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'העברת חזקה',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'רישום בטאבו',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'עדכון ספר נכסים',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+  ]
 };
 

@@ -13,7 +13,7 @@ export class NavbarService {
   constructor() {
     this.title$ = new BehaviorSubject<string>('');
     this.status$ = new BehaviorSubject<CardStepModel[]>([]);
-    this.showStatus$  = new BehaviorSubject<boolean>(false)
+    this.showStatus$  = new BehaviorSubject<boolean>(true)
   }
 
   public getTitleObs(): Observable<string> {
@@ -29,6 +29,7 @@ export class NavbarService {
   }
 
   public emitStatus(value: CardStepModel[]): void {
+    console.log(value)
     this.status$.next(value);
   }
 

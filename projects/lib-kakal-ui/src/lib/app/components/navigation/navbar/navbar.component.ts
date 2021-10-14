@@ -1,7 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { IconModel } from '../../icon/icon.model';
 import { StepModel } from '../../step/step.model';
+import { NavbarService } from './navbar.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,14 @@ import { StepModel } from '../../step/step.model';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  @Input() public status: StepModel[];
-  @Input() public title: string;
+
+
   @Input() public openIcon: string;
   @Input() public logos: IconModel[];
 
-  @Input() public title$: Observable<string>;
-  @Input() public status$: Observable<StepModel>;
+  public title$: Observable<string>;
+  public status$: Observable<CardStepModel[]>;
+  public showStatus$: Observable<boolean>;
 
   public isOpen: boolean = false;
   public openLabel: string = 'תפריט';
@@ -23,9 +26,16 @@ export class NavbarComponent implements OnInit {
 
   @Output() menuToggle = new EventEmitter();
 
-  constructor() {}
+  constructor(private navbarService : NavbarService) {
 
-  ngOnInit(): void {}
+  }
+
+  ngOnInit(): void {
+    this.title$ = this.navbarService.getTitleObs()
+    this.status$ = this.navbarService.getStatusObs();
+   this.showStatus$ = this.navbarService.getShowStatusObs()
+
+  }
 
   public toggleMenu() {
     this.isOpen = !this.isOpen;

@@ -7,7 +7,7 @@ export class IconModel {
   constructor(
     public key : string,
     public size : number,
-    public type : IconType,
+    public type? : IconType,
     public color? : Palette,
   ) {}
 }
