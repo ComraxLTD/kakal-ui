@@ -60,11 +60,16 @@ import { FormatPipe } from './utilities/pipes/format.pipe';
 import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from './components/columns/column-form/column-form.component';
 import { StatusComponent } from './components/status/status.component';
+import { LayoutComponent } from './screens/layout/layout.component';
+import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
 
 @NgModule({
   declarations: [
+
     AppComponent,
     DashboardComponent,
+    LayoutComponent,
+
     IconComponent,
     TypographyComponent,
 
@@ -115,7 +120,8 @@ import { StatusComponent } from './components/status/status.component';
     FormExComponent,
     TableExComponent,
     FiltersExComponent,
-    DashboardExComponent
+    DashboardExComponent,
+    LayoutExComponent
   ],
   imports: [
     BrowserModule,

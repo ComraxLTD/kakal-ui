@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { MenuItemModel } from './menu-item.model';
 
 @Component({
-  selector: 'app-menu-item',
+  selector: 'kkl-menu-item',
   templateUrl: './menu-item.component.html',
   styleUrls: ['./menu-item.component.scss']
 })

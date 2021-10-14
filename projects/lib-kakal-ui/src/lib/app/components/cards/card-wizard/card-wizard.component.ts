@@ -4,7 +4,7 @@ import { Classes } from '../../../utilities/directives/classes.directive';
 import { CardStepModel, StepType } from '../card-step/card-step.model';
 
 @Component({
-  selector: 'app-card-wizard',
+  selector: 'kkl-card-wizard',
   templateUrl: './card-wizard.component.html',
   styleUrls: ['./card-wizard.component.scss']
 })
