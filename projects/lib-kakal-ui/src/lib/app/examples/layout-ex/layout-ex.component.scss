@@ -1,0 +1,17 @@
+kkl-layout {
+  width: 100%;
+  height: 100;
+  background-image: url("../../../../assets/images/background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+kkl-stepper {
+  background-color: color(paper);
+  box-shadow: -3px 0px 12px #00000029;
+  padding: spacing(1) 0 spacing(1) 0;
+}
+
+kkl-menu {
+  width: 100%;
+}

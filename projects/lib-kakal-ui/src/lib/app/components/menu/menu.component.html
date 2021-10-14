@@ -13,11 +13,11 @@
         </div>
       </mat-expansion-panel-header>
       <mat-list>
-        <app-menu-item
+        <kkl-menu-item
           *ngFor="let link of list?.links; let i = index"
           [link]="link"
           (click)="onLinkClick(link, list.prefix)"
-        ></app-menu-item>
+        ></kkl-menu-item>
       </mat-list>
     </mat-expansion-panel>
   </mat-accordion>

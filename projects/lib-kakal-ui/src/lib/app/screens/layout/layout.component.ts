@@ -11,7 +11,6 @@ import { LayoutService } from './layout.service';
 })
 export class LayoutComponent implements OnInit {
 
-
   private statusSubscription: Subscription;
 
   @Input() public openIcon: string;
