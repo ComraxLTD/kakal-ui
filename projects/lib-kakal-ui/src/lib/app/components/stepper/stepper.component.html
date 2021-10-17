@@ -3,7 +3,7 @@
   class="steps-container"
   fxLayoutAlign="center center"
 >
-  <ng-container *ngFor="let step of steps; let i = index">
+  <ng-container *ngFor="let step of steps; let i = index" dir="rtl">
     <div appButton appSize [type]="step.type">
       <ng-container *ngIf="!stepRef">
         <ng-container [ngSwitch]="step.type">

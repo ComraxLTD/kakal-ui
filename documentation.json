@@ -16347,6 +16347,16 @@
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"46.508\" height=\"46.507\" viewBox=\"0 0 46.508 46.507\"><defs>\r\n<style>.music{fill:\"none\";}</style></defs>\r\n<g transform=\"translate(0 -0.003)\">\r\n<g transform=\"translate(0 0.003)\">\r\n<path class=\"music\" d=\"M19.012,9.674a27.765,27.765,0,0,1-6.77-6.71L10.671.609a1.362,1.362,0,0,0-2.5.756V22.742a5.388,5.388,0,0,0-2.725-.758,5.45,5.45,0,1,0,5.45,5.45V5.838a33.585,33.585,0,0,0,6.5,6.033,4.088,4.088,0,0,1-2.412,7.387,1.363,1.363,0,0,0,0,2.725A6.813,6.813,0,0,0,19.012,9.674Z\" transform=\"translate(0 -0.003)\"/></g><g transform=\"translate(16.35 11.084)\">\r\n<path class=\"music\" d=\"M208.421,122.044l-19.257,5.45a1.364,1.364,0,0,0-.989,1.311v18.471a5.388,5.388,0,0,0-2.725-.758,5.45,5.45,0,1,0,5.45,5.45V135.283l16.532-4.672v11.214a5.388,5.388,0,0,0-2.725-.758,5.45,5.45,0,1,0,5.45,5.45V123.355A1.364,1.364,0,0,0,208.421,122.044Z\" transform=\"translate(-180 -121.991)\"/></g></g>\r\n</svg>`"
             },
             {
+                "name": "Navigation",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "OPEN_PLUS",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -18363,6 +18373,48 @@
                     "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts": [
+                {
+                    "name": "Navigation",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Stepper",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<StepperExComponent>",
+                    "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "Wizard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/Card.Dashboardstories.ts": [
                 {
                     "name": "Primary",
@@ -18431,38 +18483,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts": [
-                {
-                    "name": "Stepper",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<StepperExComponent>",
-                    "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
-                },
-                {
-                    "name": "Wizard",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -20578,6 +20598,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Navigation",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

@@ -1,6 +1,5 @@
 <div [ngClass]="type" fxLayout="column" fxLayoutAlign="center center" fxFill>
-    <div class="card-svg-container" (click)="onStepClick()" [matBadge]="step.value" matBadgeColor="accent"
-      matBadgeSize="medium" fxFill>
+    <div class="card-svg-container" (click)="onStepClick()" fxFill>
       <mat-card appVariant [type]="step.type" [variant]="step.variant" [ngClass]="{
           'mat-elevation-z0': true,
           active: (active$ | async)

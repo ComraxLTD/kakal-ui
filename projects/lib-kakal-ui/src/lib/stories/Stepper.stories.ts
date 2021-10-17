@@ -1,8 +1,6 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-
 import { CardStepModel } from '../app/components/cards/card-step/card-step.model';
 
 import { StepperExComponent } from '../app/examples/stepper-ex/stepper-ex.component';
@@ -104,40 +102,55 @@ Navigation.args = {
       path: 'details',
       isActive: true,
       size: 3,
-      value : 4,
-      variant : 'square'
+      value: 4,
+      variant: 'square',
+      type: 'step'
+
+
     }),
     new CardStepModel({
       label: 'תנועות',
       svgUrl: 'list',
       path: 'movements',
       size: 3,
-      value : 4,
-      variant : 'square'
+      value: 4,
+      variant: 'square',
+      type: 'step'
+
+
     }),
     new CardStepModel({
       label: 'עסקאות',
       svgUrl: 'transactions',
       path: 'transactions',
       size: 3,
-      value : 4,
-      variant : 'square'
+      value: 4,
+      variant: 'square',
+      type: 'step'
+
+
     }),
     new CardStepModel({
       label: 'תתי חלקה',
       svgUrl: 'building',
       path: 'subdivision',
       size: 3,
-      value : 4,
-      variant : 'square'
+      value: 4,
+      variant: 'square',
+      type: 'step'
+
+
     }),
     new CardStepModel({
       label: 'פרצליציה',
       svgUrl: 'add',
       path: 'parcellation',
       size: 3,
-      value : 4,
-      variant : 'square'
+      value: 4,
+      variant: 'square',
+      type: 'step'
+
+
     }),
   ],
 
@@ -153,8 +166,8 @@ Wizard.args = {
       svgUrl: 'home',
       path: 'details',
       size: 3,
-      variant : 'square',
-      type : 'wizard'
+      variant: 'square',
+      type: 'wizard'
     }),
     new CardStepModel({
       label: 'תנועות',
@@ -162,32 +175,32 @@ Wizard.args = {
       path: 'movements',
       size: 3,
       isActive: true,
-      variant : 'square',
-      type : 'wizard'
+      variant: 'square',
+      type: 'wizard'
     }),
     new CardStepModel({
       label: 'עסקאות',
       svgUrl: 'transactions',
       path: 'transactions',
       size: 3,
-      variant : 'square',
-      type : 'wizard'
+      variant: 'square',
+      type: 'wizard'
     }),
     new CardStepModel({
       label: 'תתי חלקה',
       svgUrl: 'building',
       path: 'subdivision',
       size: 3,
-      variant : 'square',
-      type : 'wizard'
+      variant: 'square',
+      type: 'wizard'
     }),
     new CardStepModel({
       label: 'פרצליציה',
       svgUrl: 'add',
       path: 'parcellation',
       size: 3,
-      variant : 'square',
-      type : 'wizard'
+      variant: 'square',
+      type: 'wizard'
     }),
   ],
 
