@@ -9444,12 +9444,12 @@
         },
         {
             "name": "SizeDirective",
-            "id": "directive-SizeDirective-0cb2967297bd8a04e64a1a0c8e1fdef7",
+            "id": "directive-SizeDirective-fbeb8b29151fd6a43ab99d61c907e2f0",
             "file": "projects/lib-kakal-ui/src/lib/app/utilities/directives/size.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { Observable, Subscription } from 'rxjs';\r\nimport { StepType } from '../../components/step/step.model';\r\nimport { BreakpointService } from '../services/breakpoint.service';\r\n\r\n@Directive({\r\n  selector: '[appSize]',\r\n})\r\nexport class SizeDirective {\r\n  @Input() size: number;\r\n  @Input() type: StepType;\r\n  @Input() divider: number;\r\n  private tablet$: Observable<boolean>;\r\n\r\n  private subscription: Subscription;\r\n\r\n  @HostBinding('style.height') public height: string;\r\n  @HostBinding('style.width') public width: string;\r\n\r\n  constructor(private breakpointService: BreakpointService) {}\r\n\r\n\r\n  ngOnInit(): void {\r\n    this.setSize();\r\n    this.tablet$ = this.breakpointService.isTablet();\r\n    this.subscribeToBreakpoint();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.subscription.unsubscribe();\r\n  }\r\n\r\n  private setSize() {\r\n    switch (this.type) {\r\n      case 'wizard':\r\n        this.width = '6rem';\r\n        this.height = '7.5rem';\r\n        break;\r\n      case 'status':\r\n        this.width = `6rem`;\r\n        this.height = `6rem`;\r\n        break;\r\n      case 'step':\r\n        this.width = `8rem`;\r\n        this.height = `12rem`;\r\n        break;\r\n      default:\r\n        this.width = `${this.size * (this.divider || 1)}rem`;\r\n        this.height = `${this.size}rem`;\r\n    }\r\n  }\r\n\r\n  private subscribeToBreakpoint() {\r\n    this.subscription = this.tablet$.subscribe((tablet: boolean) => {\r\n      this.setSize();\r\n    });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { Observable, Subscription } from 'rxjs';\r\nimport { StepType } from '../../components/step/step.model';\r\nimport { BreakpointService } from '../services/breakpoint.service';\r\n\r\n@Directive({\r\n  selector: '[appSize]',\r\n})\r\nexport class SizeDirective {\r\n  @Input() size: number;\r\n  @Input() type: StepType;\r\n  @Input() divider: number;\r\n  private tablet$: Observable<boolean>;\r\n\r\n  private subscription: Subscription;\r\n\r\n  @HostBinding('style.height') public height: string;\r\n  @HostBinding('style.width') public width: string;\r\n\r\n  constructor(private breakpointService: BreakpointService) {}\r\n\r\n\r\n  ngOnInit(): void {\r\n    this.setSize();\r\n    this.tablet$ = this.breakpointService.isTablet();\r\n    this.subscribeToBreakpoint();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.subscription.unsubscribe();\r\n  }\r\n\r\n  private setSize() {\r\n    switch (this.type) {\r\n      case 'wizard':\r\n        this.width = '6rem';\r\n        this.height = '7.5rem';\r\n        break;\r\n      case 'status':\r\n        this.width = `${6 * (this.divider || 1)}rem`;\r\n        this.height = `6rem`;\r\n        break;\r\n      case 'step':\r\n        this.width = `8rem`;\r\n        this.height = `12rem`;\r\n        break;\r\n      default:\r\n        this.width = `${this.size * (this.divider || 1)}rem`;\r\n        this.height = `${this.size}rem`;\r\n    }\r\n  }\r\n\r\n  private subscribeToBreakpoint() {\r\n    this.subscription = this.tablet$.subscribe((tablet: boolean) => {\r\n      this.setSize();\r\n    });\r\n  }\r\n}\r\n",
             "selector": "[appSize]",
             "providers": [],
             "inputsClass": [
@@ -9634,12 +9634,12 @@
         },
         {
             "name": "VariantDirective",
-            "id": "directive-VariantDirective-b2b51755d5808cecb78b6ee8843e1626",
+            "id": "directive-VariantDirective-5f024ff380238c0a5845457c8b8c0a2d",
             "file": "projects/lib-kakal-ui/src/lib/app/utilities/directives/variant.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Directive, Input, HostBinding } from '@angular/core';\r\nimport { StepVariant, StepType } from '../../components/step/step.model';\r\n\r\n@Directive({\r\n  selector: '[appVariant]',\r\n})\r\nexport class VariantDirective {\r\n  @Input() variant: StepVariant = 'circle';\r\n  @Input() type: StepType;\r\n\r\n  @HostBinding('style.border') private border: string;\r\n  @HostBinding('style.border-radius') private radius: string;\r\n  @HostBinding('style.box-shadow') private boxShadow: string;\r\n  @HostBinding('style.background') private background: string;\r\n  @HostBinding('style.background-color') private backgroundColor: string;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n\r\n    switch (this.variant) {\r\n      case 'circle':\r\n\r\n        this.radius = `${5}rem`;\r\n\r\n        switch (this.type) {\r\n\r\n          case 'step':\r\n            this.boxShadow =\r\n              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';\r\n            this.background = `linear-gradient(\r\n          0deg, #eeeeee 0%, #fefefe 100%`;\r\n\r\n            break;\r\n\r\n          case 'status':\r\n            this.boxShadow = '0px 0px 0px 6px #ffffff !important';\r\n            this.backgroundColor = '#ffffff !important';\r\n            this.border = `1px solid #00000029`;\r\n            break;\r\n        }\r\n\r\n        break\r\n\r\n      case 'square':\r\n\r\n        switch (this.type) {\r\n\r\n\r\n          case 'step':\r\n            break\r\n        }\r\n\r\n    }\r\n\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Directive, Input, HostBinding } from '@angular/core';\r\nimport { StepVariant, StepType } from '../../components/step/step.model';\r\n\r\n@Directive({\r\n  selector: '[appVariant]',\r\n})\r\nexport class VariantDirective {\r\n  @Input() variant: StepVariant = 'circle';\r\n  @Input() type: StepType;\r\n\r\n  @HostBinding('style.border') private border: string;\r\n  @HostBinding('style.border-radius') private radius: string;\r\n  @HostBinding('style.box-shadow') private boxShadow: string;\r\n  @HostBinding('style.background') private background: string;\r\n  @HostBinding('style.background-color') private backgroundColor: string;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n\r\n    switch (this.variant) {\r\n      case 'circle':\r\n\r\n        this.radius = `${5}rem`;\r\n\r\n        switch (this.type) {\r\n\r\n          case 'step':\r\n            this.boxShadow ='0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec';\r\n            this.background = `linear-gradient(0deg, #eeeeee 0%, #fefefe 100%)`;\r\n\r\n            break;\r\n\r\n          case 'status':\r\n            this.boxShadow = '0px 0px 0px 6px #ffffff !important';\r\n            this.backgroundColor = '#ffffff !important';\r\n            this.border = `1px solid #00000029`;\r\n            break;\r\n        }\r\n\r\n        break\r\n\r\n      case 'square':\r\n\r\n        switch (this.type) {\r\n\r\n          case 'step':\r\n                      this.background = `linear-gradient(0deg, #eeeeee 0%, #fefefe 100%)`;\r\n\r\n            break;\r\n        }\r\n\r\n    }\r\n\r\n  }\r\n}\r\n",
             "selector": "[appVariant]",
             "providers": [],
             "inputsClass": [
@@ -10152,7 +10152,7 @@
                 "args": [],
                 "line": 11
             },
-            "templateData": "<div class=\"kkl-card-status\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n  <div appVariant appSize class=\"status\" [type]=\"status.type\" [matBadge]=\"status?.value\" matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\">\r\n    <div class=\"icon-container\">\r\n      <kkl-icon [key]=\"status.svgUrl\" [size]=\"3.5\"></kkl-icon>\r\n    </div>\r\n  </div>\r\n  <div class=\"text-container\" fxLayout=\"column\" fxLayoutAlign=\"end start\" [fxFlexOffset]=\"5\">\r\n    <kkl-typography [size]=\"1.2\" [bold]=\"600\">\r\n      {{ status.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"kkl-card-status\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n  <div appVariant appSize  [type]=\"status.type\" [matBadge]=\"status?.value\" matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\">\r\n    <div class=\"icon-container\">\r\n      <kkl-icon [key]=\"status.svgUrl\" [size]=\"3.5\"></kkl-icon>\r\n    </div>\r\n  </div>\r\n  <div class=\"text-container\" fxLayout=\"column\" fxLayoutAlign=\"end start\" [fxFlexOffset]=\"5\">\r\n    <kkl-typography [size]=\"1.2\" [bold]=\"600\">\r\n      {{ status.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardStepComponent",
@@ -10295,7 +10295,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <div\r\n    appSize\r\n    [size]=\"6\"\r\n    (click)=\"onStepClick()\"\r\n    [matBadge]=\"step.value\"\r\n    matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\"\r\n  >\r\n    <mat-card\r\n      appVariant\r\n      [type]=\"step.type\"\r\n      [variant]=\"step.variant\"\r\n      [ngClass]=\"{\r\n        'mat-elevation-z0': true,\r\n        active: (active$ | async)\r\n      }\"\r\n    >\r\n      <mat-card-content appButton>\r\n        <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n          <div fxFlex=\"80\">\r\n            <kkl-icon\r\n              [active$]=\"active$\"\r\n              [color]=\"'default'\"\r\n              type=\"svg\"\r\n              [key]=\"step.svgUrl || ''\"\r\n              [size]=\"step.size\"\r\n            >\r\n            </kkl-icon>\r\n          </div>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div\r\n    class=\"label-container\"\r\n    fxLayout=\"column\"\r\n    fxLayoutAlign=\"center center\"\r\n    fxFlex=\"40\"\r\n  >\r\n    <kkl-typography\r\n      [ngClass]=\"{ active: (active$ | async) }\"\r\n      [classes]=\"stepTextClasses\"\r\n      [activeClasses]=\"activeStepTextClasses\"\r\n      [active$]=\"active$\"\r\n      [size]=\"1.1\"\r\n    >\r\n      {{ step.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n  <div appSize [size]=\"6\" (click)=\"onStepClick()\" [matBadge]=\"step.value\" matBadgeColor=\"accent\" matBadgeSize=\"medium\">\r\n    <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n        'mat-elevation-z0': true,\r\n        active: (active$ | async)\r\n      }\">\r\n      <mat-card-content appButton dir=\"rtl\">\r\n        <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n          <div fxFlex=\"80\">\r\n            <kkl-icon [active$]=\"active$\" [color]=\"'default'\" type=\"svg\" [key]=\"step.svgUrl || ''\" [size]=\"step.size\">\r\n            </kkl-icon>\r\n          </div>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div class=\"label-container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"40\">\r\n    <kkl-typography [ngClass]=\"{ active: (active$ | async) }\" [classes]=\"stepTextClasses\"\r\n      [activeClasses]=\"activeStepTextClasses\" [active$]=\"active$\" [size]=\"1.1\">\r\n      {{ step.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>"
         },
         {
             "name": "CardUserComponent",
@@ -10527,7 +10527,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n    <div class=\"card-svg-container\" (click)=\"onStepClick()\" [matBadge]=\"step.value\" matBadgeColor=\"accent\"\r\n      matBadgeSize=\"medium\" fxFill>\r\n      <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n          'mat-elevation-z0': true,\r\n          active: (active$ | async)\r\n        }\">\r\n        <mat-card-content kklButton>\r\n          <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n            <div fxFlex=\"80\">\r\n              <kkl-icon  [active$]=\"active$\" [color]=\"'primary'\" [key]=\"step.svgUrl\" [size]=\"step.size\">\r\n              </kkl-icon>\r\n            </div>\r\n            <div fxFlex=\"15\" [ngClass]=\"{ active: (active$ | async) }\" fxLayout=\"column\"\r\n              fxLayoutAlign=\"end center\">\r\n              <kkl-typography [active$]=\"active$\" [classes]=\"wizardClasses\" [activeClasses]=\"activeWizardClasses\">\r\n                {{ step.label }}\r\n              </kkl-typography>\r\n            </div>\r\n          </div>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n  "
+            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n    <div class=\"card-svg-container\" (click)=\"onStepClick()\" fxFill>\r\n      <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n          'mat-elevation-z0': true,\r\n          active: (active$ | async)\r\n        }\">\r\n        <mat-card-content kklButton>\r\n          <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n            <div fxFlex=\"80\">\r\n              <kkl-icon  [active$]=\"active$\" [color]=\"'primary'\" [key]=\"step.svgUrl\" [size]=\"step.size\">\r\n              </kkl-icon>\r\n            </div>\r\n            <div fxFlex=\"15\" [ngClass]=\"{ active: (active$ | async) }\" fxLayout=\"column\"\r\n              fxLayoutAlign=\"end center\">\r\n              <kkl-typography [active$]=\"active$\" [classes]=\"wizardClasses\" [activeClasses]=\"activeWizardClasses\">\r\n                {{ step.label }}\r\n              </kkl-typography>\r\n            </div>\r\n          </div>\r\n        </mat-card-content>\r\n      </mat-card>\r\n    </div>\r\n  </div>\r\n  "
         },
         {
             "name": "ColumnFilterComponent",
@@ -14633,7 +14633,7 @@
                 "args": [],
                 "line": 25
             },
-            "templateData": "<div\r\n  [fxLayout]=\"direction\"\r\n  class=\"steps-container\"\r\n  fxLayoutAlign=\"center center\"\r\n>\r\n  <ng-container *ngFor=\"let step of steps; let i = index\">\r\n    <div appButton appSize [type]=\"step.type\">\r\n      <ng-container *ngIf=\"!stepRef\">\r\n        <ng-container [ngSwitch]=\"step.type\">\r\n          <ng-container *ngSwitchCase=\"'step'\">\r\n            <kkl-card-step\r\n              (onStepChange)=\"onStepChange(step)\"\r\n              [step]=\"step\"\r\n            ></kkl-card-step>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'wizard'\">\r\n            <kkl-card-wizard\r\n              (onStepChange)=\"onStepChange(step)\"\r\n              [step]=\"step\"\r\n            ></kkl-card-wizard>\r\n          </ng-container>\r\n        </ng-container>\r\n      </ng-container>\r\n\r\n      <ng-container *ngTemplateOutlet=\"stepRef; context: { step: this.step }\">\r\n      </ng-container>\r\n    </div>\r\n    <div\r\n      *ngIf=\"step.divider\"\r\n      appSize\r\n      [size]=\"2\"\r\n      [divider]=\"step.divider\"\r\n      class=\"divider-container\"\r\n      fxLayout=\"column\"\r\n      fxLayoutAlign=\"center center\"\r\n    >\r\n      <div *ngIf=\"step.divider\" class=\"divider\"></div>\r\n    </div>\r\n  </ng-container>\r\n</div>\r\n"
+            "templateData": "<div [fxLayout]=\"direction\" class=\"steps-container\" fxLayoutAlign=\"center center\">\r\n  <ng-container *ngFor=\"let step of steps; let i = index\" dir=\"rtl\">\r\n    <div appButton appSize [divider]=\"3\" [type]=\"step.type\">\r\n      <ng-container *ngIf=\"!stepRef\">\r\n        <ng-container [ngSwitch]=\"step.type\">\r\n          <ng-container *ngSwitchCase=\"'step'\">\r\n            <kkl-card-step (onStepChange)=\"onStepChange(step)\" [step]=\"step\"></kkl-card-step>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'wizard'\">\r\n            <kkl-card-wizard (onStepChange)=\"onStepChange(step)\" [step]=\"step\"></kkl-card-wizard>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'status'\">\r\n            <kkl-card-status [status]=\"step\"></kkl-card-status>\r\n          </ng-container>\r\n        </ng-container>\r\n      </ng-container>\r\n\r\n      <ng-container *ngTemplateOutlet=\"stepRef; context: { step: this.step }\">\r\n      </ng-container>\r\n    </div>\r\n    <div *ngIf=\"step.divider\" appSize [size]=\"2\" [divider]=\"step.divider\" class=\"divider-container\" fxLayout=\"column\"\r\n      fxLayoutAlign=\"center center\">\r\n      <div *ngIf=\"step.divider\" class=\"divider\"></div>\r\n    </div>\r\n  </ng-container>\r\n</div>"
         },
         {
             "name": "StepperExComponent",
@@ -16060,7 +16060,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16070,7 +16070,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16545,6 +16545,16 @@
                 "defaultValue": "CardStatusTemplate.bind({})"
             },
             {
+                "name": "Status",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "Step",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -16698,21 +16708,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarBottomComponent>",
-                "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarBottomComponent>",
+                "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18072,6 +18082,28 @@
                     "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
                 {
                     "name": "Default",
@@ -18102,28 +18134,6 @@
                     "deprecationMessage": "",
                     "type": "Story<NavbarBottomComponent>",
                     "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts": [
@@ -18376,6 +18386,16 @@
             "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts": [
                 {
                     "name": "Navigation",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Status",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
@@ -20608,6 +20628,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Navigation",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Status",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
