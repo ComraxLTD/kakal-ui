@@ -37,7 +37,7 @@ export class SizeDirective {
         this.height = '7.5rem';
         break;
       case 'status':
-        this.width = `6rem`;
+        this.width = `${6 * (this.divider || 1)}rem`;
         this.height = `6rem`;
         break;
       case 'step':

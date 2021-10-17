@@ -1,3 +1,4 @@
+import { CardStatusComponent } from './../app/components/cards/card-status/card-status.component';
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
@@ -31,6 +32,7 @@ export default {
         StepperComponent,
         CardStepComponent,
         CardWizardComponent,
+        CardStatusComponent,
 
         SizeDirective,
         VariantDirective,
@@ -154,6 +156,55 @@ Navigation.args = {
     }),
   ],
 
+  direction: 'row',
+};
+export const Status = Template.bind({});
+
+Status.args = {
+  steps: [
+    new CardStepModel({
+      label: 'איזור תנועות',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'הערת אזהרה',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'דיווח לרשות המיסים',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'העברת חזקה',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'רישום בטאבו',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+    new CardStepModel({
+      label: 'עדכון ספר נכסים',
+      svgUrl: 'reload',
+      value: 6,
+      size: 6,
+      type: 'status',
+    }),
+  ],
   direction: 'row',
 };
 
