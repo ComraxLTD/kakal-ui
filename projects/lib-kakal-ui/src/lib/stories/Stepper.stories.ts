@@ -29,7 +29,7 @@ export default {
         TypographyComponent,
 
         StepperExComponent,
-        
+
         StepperComponent,
         CardStepComponent,
         CardWizardComponent,
@@ -88,6 +88,56 @@ Stepper.args = {
       svgUrl: 'add',
       path: 'parcellation',
       size: 3,
+    }),
+  ],
+
+  direction: 'row',
+};
+
+export const Navigation = Template.bind({});
+
+Navigation.args = {
+  steps: [
+    new CardStepModel({
+      label: 'פירוט הנכס',
+      svgUrl: 'home',
+      path: 'details',
+      isActive: true,
+      size: 3,
+      value : 4,
+      variant : 'square'
+    }),
+    new CardStepModel({
+      label: 'תנועות',
+      svgUrl: 'list',
+      path: 'movements',
+      size: 3,
+      value : 4,
+      variant : 'square'
+    }),
+    new CardStepModel({
+      label: 'עסקאות',
+      svgUrl: 'transactions',
+      path: 'transactions',
+      size: 3,
+      value : 4,
+      variant : 'square'
+    }),
+    new CardStepModel({
+      label: 'תתי חלקה',
+      svgUrl: 'building',
+      path: 'subdivision',
+      size: 3,
+      value : 4,
+      variant : 'square'
+    }),
+    new CardStepModel({
+      label: 'פרצליציה',
+      svgUrl: 'add',
+      path: 'parcellation',
+      size: 3,
+      value : 4,
+      variant : 'square'
     }),
   ],
 

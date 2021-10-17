@@ -2345,7 +2345,7 @@
         },
         {
             "name": "NavbarService",
-            "id": "injectable-NavbarService-dfed8d70c9d903d8a2b83b085d72e15d",
+            "id": "injectable-NavbarService-246b6797cb5b41aad39a2892ba50e60e",
             "file": "projects/lib-kakal-ui/src/lib/app/components/navigation/navbar/navbar.service.ts",
             "properties": [
                 {
@@ -2399,7 +2399,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 39,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2485,7 +2485,7 @@
                     "optional": false,
                     "returnType": "Observable<boolean>",
                     "typeParameters": [],
-                    "line": 35,
+                    "line": 36,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2537,7 +2537,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2569,7 +2569,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\nimport { CardStepModel } from '../../cards/card-step/card-step.model';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class NavbarService {\r\n  private title$: BehaviorSubject<string>;\r\n  private status$: BehaviorSubject<CardStepModel[]>;\r\n  private showStatus$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.title$ = new BehaviorSubject<string>('');\r\n    this.status$ = new BehaviorSubject<CardStepModel[]>([]);\r\n    this.showStatus$  = new BehaviorSubject<boolean>(false)\r\n  }\r\n\r\n  public getTitleObs(): Observable<string> {\r\n    return this.title$.asObservable();\r\n  }\r\n\r\n  public emitTitle(value: string) {\r\n    return this.title$.next(value);\r\n  }\r\n\r\n  public getStatusObs(): Observable<CardStepModel[]> {\r\n    return this.status$.asObservable();\r\n  }\r\n\r\n  public emitStatus(value: CardStepModel[]): void {\r\n    this.status$.next(value);\r\n  }\r\n\r\n  public getShowStatusObs(): Observable<boolean> {\r\n    return this.showStatus$.asObservable();\r\n  }\r\n\r\n  public emitShowStatus(value: boolean): void {\r\n    this.showStatus$.next(value);\r\n  }\r\n\r\n  public toggleStatus(show: boolean, status: CardStepModel[]): void {\r\n    show ? this.emitStatus(status) : this.emitStatus([]);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\nimport { CardStepModel } from '../../cards/card-step/card-step.model';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class NavbarService {\r\n  private title$: BehaviorSubject<string>;\r\n  private status$: BehaviorSubject<CardStepModel[]>;\r\n  private showStatus$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.title$ = new BehaviorSubject<string>('');\r\n    this.status$ = new BehaviorSubject<CardStepModel[]>([]);\r\n    this.showStatus$  = new BehaviorSubject<boolean>(true)\r\n  }\r\n\r\n  public getTitleObs(): Observable<string> {\r\n    return this.title$.asObservable();\r\n  }\r\n\r\n  public emitTitle(value: string) {\r\n    return this.title$.next(value);\r\n  }\r\n\r\n  public getStatusObs(): Observable<CardStepModel[]> {\r\n    return this.status$.asObservable();\r\n  }\r\n\r\n  public emitStatus(value: CardStepModel[]): void {\r\n    console.log(value)\r\n    this.status$.next(value);\r\n  }\r\n\r\n  public getShowStatusObs(): Observable<boolean> {\r\n    return this.showStatus$.asObservable();\r\n  }\r\n\r\n  public emitShowStatus(value: boolean): void {\r\n    this.showStatus$.next(value);\r\n  }\r\n\r\n  public toggleStatus(show: boolean, status: CardStepModel[]): void {\r\n    show ? this.emitStatus(status) : this.emitStatus([]);\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -2583,7 +2583,7 @@
         {
             "name": "RouterService",
             "id": "injectable-RouterService-6d7001e858c129c34a5e60d7b296e0b9",
-            "file": "projects/lib-kakal-ui/src/lib/app/utilities/services/route.rservice.ts",
+            "file": "projects/lib-kakal-ui/src/lib/app/utilities/services/route.service.ts",
             "properties": [
                 {
                     "name": "$modulePrefix",
@@ -5245,12 +5245,12 @@
         },
         {
             "name": "IconModel",
-            "id": "class-IconModel-9f0889c022b77756a3f5b7f94b8d18a9",
+            "id": "class-IconModel-ceb05e14a3c07c8f6905249839426a0a",
             "file": "projects/lib-kakal-ui/src/lib/app/components/icon/icon.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { Palette } from \"../../../styles/theme\";\r\n\r\nexport declare type IconType = 'mat' | 'svg'\r\n\r\nexport class IconModel {\r\n\r\n  constructor(\r\n    public key : string,\r\n    public size : number,\r\n    public type : IconType,\r\n    public color? : Palette,\r\n  ) {}\r\n}\r\n",
+            "sourceCode": "import { Palette } from \"../../../styles/theme\";\r\n\r\nexport declare type IconType = 'mat' | 'svg'\r\n\r\nexport class IconModel {\r\n\r\n  constructor(\r\n    public key : string,\r\n    public size : number,\r\n    public type? : IconType,\r\n    public color? : Palette,\r\n  ) {}\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -5273,7 +5273,8 @@
                         "name": "type",
                         "type": "IconType",
                         "deprecated": false,
-                        "deprecationMessage": ""
+                        "deprecationMessage": "",
+                        "optional": true
                     },
                     {
                         "name": "color",
@@ -5308,6 +5309,7 @@
                         "type": "IconType",
                         "deprecated": false,
                         "deprecationMessage": "",
+                        "optional": true,
                         "tagName": {
                             "text": "param"
                         }
@@ -5366,7 +5368,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "IconType",
-                    "optional": false,
+                    "optional": true,
                     "description": "",
                     "line": 10,
                     "modifierKind": [
@@ -10015,14 +10017,14 @@
         },
         {
             "name": "CardFilterComponent",
-            "id": "component-CardFilterComponent-3ae0387fb15dbdd21f4dbef7dc55c2f5",
+            "id": "component-CardFilterComponent-7cf7a827fdc675fdbb974e5e550d2e42",
             "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-filter/card-filter.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-card-filter",
+            "selector": "kkl-card-filter",
             "styleUrls": [
                 "./card-filter.component.scss"
             ],
@@ -10074,7 +10076,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { FilterModel } from './card-filter.model';\r\n\r\n@Component({\r\n  selector: 'app-card-filter',\r\n  templateUrl: './card-filter.component.html',\r\n  styleUrls: ['./card-filter.component.scss'],\r\n})\r\nexport class CardFilterComponent implements OnInit {\r\n  @Input() filter!: FilterModel;\r\n\r\n  public active$: Observable<boolean>;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit, EventEmitter, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { FilterModel } from './card-filter.model';\r\n\r\n@Component({\r\n  selector: 'kkl-card-filter',\r\n  templateUrl: './card-filter.component.html',\r\n  styleUrls: ['./card-filter.component.scss'],\r\n})\r\nexport class CardFilterComponent implements OnInit {\r\n  @Input() filter!: FilterModel;\r\n\r\n  public active$: Observable<boolean>;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -10137,7 +10139,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../../styles/styles\";\r\ndiv {\r\n  height: 100%;\r\n}\r\n\r\n.card-status {\r\n  transform: translateY(2.5rem);\r\n  box-sizing: border-box;\r\n}\r\n\r\n.mat-badge-content {\r\n  color: color(paper) !important;\r\n}\r\n\r\n\r\n.text-container {\r\n  width: fit-content;\r\n  height: 5rem;\r\n}\r\n",
+                    "data": "@import \"../../../../styles/styles\";\r\ndiv {\r\n  height: 100%;\r\n}\r\n\r\n.kkl-card-status {\r\n  transform: translateY(2.5rem);\r\n  box-sizing: border-box;\r\n}\r\n\r\n.mat-badge-content {\r\n  color: color(paper) !important;\r\n}\r\n\r\n\r\n.text-container {\r\n  width: fit-content;\r\n  height: 5rem;\r\n}\r\n",
                     "styleUrl": "./card-status.component.scss"
                 }
             ],
@@ -10150,18 +10152,18 @@
                 "args": [],
                 "line": 11
             },
-            "templateData": "<div class=\"card-status\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n  <div\r\n    class=\"status\"\r\n    appVariant\r\n    appSize\r\n    [type]=\"status.type\"\r\n    [matBadge]=\"status?.value\"\r\n    matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\"\r\n  >\r\n    <div class=\"icon-container\">\r\n      <kkl-icon [key]=\"status.svgUrl\" [size]=\"3.5\"></kkl-icon>\r\n    </div>\r\n  </div>\r\n  <div\r\n    class=\"text-container\"\r\n    fxLayout=\"column\"\r\n    fxLayoutAlign=\"end start\"\r\n    [fxFlexOffset]=\"5\"\r\n  >\r\n    <kkl-typography [size]=\"1.2\" [bold]=\"600\">\r\n      {{ status.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"kkl-card-status\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n  <div appVariant appSize class=\"status\" [type]=\"status.type\" [matBadge]=\"status?.value\" matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\">\r\n    <div class=\"icon-container\">\r\n      <kkl-icon [key]=\"status.svgUrl\" [size]=\"3.5\"></kkl-icon>\r\n    </div>\r\n  </div>\r\n  <div class=\"text-container\" fxLayout=\"column\" fxLayoutAlign=\"end start\" [fxFlexOffset]=\"5\">\r\n    <kkl-typography [size]=\"1.2\" [bold]=\"600\">\r\n      {{ status.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardStepComponent",
-            "id": "component-CardStepComponent-36fd228e530f3771b00b8cdfeebe10e3",
+            "id": "component-CardStepComponent-4bf12abb9313888489b8f70e45145c61",
             "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-step/card-step.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-card-step",
+            "selector": "kkl-card-step",
             "styleUrls": [
                 "./card-step.component.scss"
             ],
@@ -10273,7 +10275,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { Classes } from '../../../utilities/directives/classes.directive';\r\nimport { CardStepModel, StepType } from './card-step.model';\r\n\r\n@Component({\r\n  selector: 'app-card-step',\r\n  templateUrl: './card-step.component.html',\r\n  styleUrls: ['./card-step.component.scss']\r\n})\r\nexport class CardStepComponent implements OnInit {\r\n\r\n  @Input() public step: CardStepModel;\r\n\r\n  public type: StepType;\r\n  public active$: Observable<boolean>;\r\n\r\n\r\n  public stepTextClasses: Classes = {\r\n    color: 'text',\r\n    fontWeight: 500,\r\n    fontSize: 1.1\r\n  }\r\n  public activeStepTextClasses: Classes = {\r\n    ...this.stepTextClasses,\r\n    fontWeight: 600,\r\n  }\r\n\r\n\r\n  @Output() onStepChange: EventEmitter<CardStepModel> = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.type = this.step.type;\r\n    this.active$ = this.step.getActiveObs();\r\n  }\r\n\r\n  public onStepClick(): void {\r\n    if (!this.step.isActive) {\r\n      this.onStepChange.emit(this.step);\r\n    }\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { Classes } from '../../../utilities/directives/classes.directive';\r\nimport { CardStepModel, StepType } from './card-step.model';\r\n\r\n@Component({\r\n  selector: 'kkl-card-step',\r\n  templateUrl: './card-step.component.html',\r\n  styleUrls: ['./card-step.component.scss']\r\n})\r\nexport class CardStepComponent implements OnInit {\r\n\r\n  @Input() public step: CardStepModel;\r\n\r\n  public type: StepType;\r\n  public active$: Observable<boolean>;\r\n\r\n\r\n  public stepTextClasses: Classes = {\r\n    color: 'text',\r\n    fontWeight: 500,\r\n    fontSize: 1.1\r\n  }\r\n  public activeStepTextClasses: Classes = {\r\n    ...this.stepTextClasses,\r\n    fontWeight: 600,\r\n  }\r\n\r\n\r\n  @Output() onStepChange: EventEmitter<CardStepModel> = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.type = this.step.type;\r\n    this.active$ = this.step.getActiveObs();\r\n  }\r\n\r\n  public onStepClick(): void {\r\n    if (!this.step.isActive) {\r\n      this.onStepChange.emit(this.step);\r\n    }\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -10297,14 +10299,14 @@
         },
         {
             "name": "CardUserComponent",
-            "id": "component-CardUserComponent-0556e40e72cb3a0e38be86a85cc55cab",
+            "id": "component-CardUserComponent-82bbfc86dce8af7b4f0fff038cc87a0f",
             "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-user/card-user.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-card-user",
+            "selector": "kkl-card-user",
             "styleUrls": [
                 "./card-user.component.scss"
             ],
@@ -10362,7 +10364,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-card-user',\r\n  templateUrl: './card-user.component.html',\r\n  styleUrls: ['./card-user.component.scss']\r\n})\r\nexport class CardUserComponent implements OnInit {\r\n\r\n  public userInfo = {\r\n    imgSrc: 'assets/images/userImage.jpg',\r\n    name: 'יוסי יוספוב',\r\n  };\r\n\r\n  public action: string = 'החלף משתמש';\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-card-user',\r\n  templateUrl: './card-user.component.html',\r\n  styleUrls: ['./card-user.component.scss']\r\n})\r\nexport class CardUserComponent implements OnInit {\r\n\r\n  public userInfo = {\r\n    imgSrc: 'assets/images/userImage.jpg',\r\n    name: 'יוסי יוספוב',\r\n  };\r\n\r\n  public action: string = 'החלף משתמש';\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -10386,14 +10388,14 @@
         },
         {
             "name": "CardWizardComponent",
-            "id": "component-CardWizardComponent-87023211ecd2d3dfed01b36eae57d8c1",
+            "id": "component-CardWizardComponent-eefbb515ab7cb39a80e8ed29bfa97da3",
             "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-wizard/card-wizard.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-card-wizard",
+            "selector": "kkl-card-wizard",
             "styleUrls": [
                 "./card-wizard.component.scss"
             ],
@@ -10505,7 +10507,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { Classes } from '../../../utilities/directives/classes.directive';\r\nimport { CardStepModel, StepType } from '../card-step/card-step.model';\r\n\r\n@Component({\r\n  selector: 'app-card-wizard',\r\n  templateUrl: './card-wizard.component.html',\r\n  styleUrls: ['./card-wizard.component.scss']\r\n})\r\nexport class CardWizardComponent implements OnInit {\r\n\r\n  @Input() public step: CardStepModel;\r\n\r\n  public type: StepType;\r\n  public active$: Observable<boolean>;\r\n\r\n\r\n  public wizardClasses: Classes = {\r\n    color: 'text',\r\n    fontWeight: 500,\r\n    fontSize: 1.1\r\n  }\r\n  public activeWizardClasses: Classes = {\r\n    ...this.wizardClasses,\r\n    color: 'paper',\r\n    fontWeight: 600,\r\n  }\r\n\r\n  @Output() onStepChange: EventEmitter<CardStepModel> = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.type = this.step.type;\r\n    this.active$ = this.step.getActiveObs();\r\n  }\r\n\r\n  public onStepClick(): void {\r\n    if (!this.step.isActive) {\r\n      this.onStepChange.emit(this.step);\r\n    }\r\n  }\r\n\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { Classes } from '../../../utilities/directives/classes.directive';\r\nimport { CardStepModel, StepType } from '../card-step/card-step.model';\r\n\r\n@Component({\r\n  selector: 'kkl-card-wizard',\r\n  templateUrl: './card-wizard.component.html',\r\n  styleUrls: ['./card-wizard.component.scss']\r\n})\r\nexport class CardWizardComponent implements OnInit {\r\n\r\n  @Input() public step: CardStepModel;\r\n\r\n  public type: StepType;\r\n  public active$: Observable<boolean>;\r\n\r\n\r\n  public wizardClasses: Classes = {\r\n    color: 'text',\r\n    fontWeight: 500,\r\n    fontSize: 1.1\r\n  }\r\n  public activeWizardClasses: Classes = {\r\n    ...this.wizardClasses,\r\n    color: 'paper',\r\n    fontWeight: 600,\r\n  }\r\n\r\n  @Output() onStepChange: EventEmitter<CardStepModel> = new EventEmitter();\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.type = this.step.type;\r\n    this.active$ = this.step.getActiveObs();\r\n  }\r\n\r\n  public onStepClick(): void {\r\n    if (!this.step.isActive) {\r\n      this.onStepChange.emit(this.step);\r\n    }\r\n  }\r\n\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -11352,14 +11354,14 @@
         },
         {
             "name": "FiltersExComponent",
-            "id": "component-FiltersExComponent-ca8fc89a7a88f6499cb8142ff4ba46fb",
+            "id": "component-FiltersExComponent-d479af3d75a0a9d93802fe714a76820d",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/filters-ex/filters-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "app-filters-ex",
+            "selector": "kkl-filters-ex",
             "styleUrls": [
                 "./filters-ex.component.scss"
             ],
@@ -11398,11 +11400,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FilterModel } from '../../components/cards/card-filter/card-filter.model';\r\n\r\n@Component({\r\n  selector: 'app-filters-ex',\r\n  templateUrl: './filters-ex.component.html',\r\n  styleUrls: ['./filters-ex.component.scss']\r\n})\r\nexport class FiltersExComponent implements OnInit {\r\n\r\n  @Input() filters: FilterModel[];\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FilterModel } from '../../components/cards/card-filter/card-filter.model';\r\n\r\n@Component({\r\n  selector: 'kkl-filters-ex',\r\n  templateUrl: './filters-ex.component.html',\r\n  styleUrls: ['./filters-ex.component.scss']\r\n})\r\nexport class FiltersExComponent implements OnInit {\r\n\r\n  @Input() filters: FilterModel[];\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".container {\r\n    display: flex;\r\n    width: calc(100%); \r\n    flex-direction: row-reverse;\r\n    font-size: inherit;\r\n    gap: 2rem;\r\n    margin: 3rem 0;\r\n}\r\n\r\n.app-filter-card{\r\n    flex: 1; \r\n}\r\n",
+                    "data": ".container {\r\n    display: flex;\r\n    width: calc(100%);\r\n    flex-direction: row-reverse;\r\n    font-size: inherit;\r\n    gap: 2rem;\r\n    margin: 3rem 0;\r\n}\r\n\r\n.kkl-filter-card{\r\n    flex: 1;\r\n}\r\n",
                     "styleUrl": "./filters-ex.component.scss"
                 }
             ],
@@ -11418,7 +11420,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div fxFill fxLayout=\"row\" fxLayoutAlign=\"center\">\r\n    <div\r\n      class=\"container\"\r\n      fxLayout=\"row\"\r\n      fxLayoutAlign=\"space-evenly start\"\r\n      dir=\"rtl\"\r\n      fxFlex=\"80\"\r\n    >\r\n      <app-card-filter\r\n        class=\"app-filter-card\"\r\n        *ngFor=\"let filter of filters\"\r\n        [filter]=\"filter\"\r\n      ></app-card-filter>\r\n    </div>\r\n  </div>\r\n  "
+            "templateData": "<div fxFill fxLayout=\"row\" fxLayoutAlign=\"center\">\r\n    <div\r\n      class=\"container\"\r\n      fxLayout=\"row\"\r\n      fxLayoutAlign=\"space-evenly start\"\r\n      dir=\"rtl\"\r\n      fxFlex=\"80\"\r\n    >\r\n      <kkl-card-filter\r\n        class=\"kkl-filter-card\"\r\n        *ngFor=\"let filter of filters\"\r\n        [filter]=\"filter\"\r\n      ></kkl-card-filter>\r\n    </div>\r\n  </div>\r\n"
         },
         {
             "name": "FormAutocompleteComponent",
@@ -12791,7 +12793,7 @@
         },
         {
             "name": "LayoutComponent",
-            "id": "component-LayoutComponent-10c7788484db046f80452abaee2fdcf4",
+            "id": "component-LayoutComponent-d7cdf3cef76ef57ad2e496344106b9bf",
             "file": "projects/lib-kakal-ui/src/lib/app/screens/layout/layout.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12812,28 +12814,28 @@
                     "name": "hideWizardPath",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
+                    "line": 19,
                     "type": "string[]"
                 },
                 {
                     "name": "logos",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 18,
+                    "line": 17,
                     "type": "IconModel[]"
                 },
                 {
                     "name": "openIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 17,
+                    "line": 16,
                     "type": "string"
                 },
                 {
                     "name": "showStatusPath",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
+                    "line": 20,
                     "type": "string[]"
                 }
             ],
@@ -12846,7 +12848,7 @@
                     "type": "Subscription",
                     "optional": false,
                     "description": "",
-                    "line": 15,
+                    "line": 14,
                     "modifierKind": [
                         120
                     ]
@@ -12858,7 +12860,7 @@
                     "type": "Observable<boolean>",
                     "optional": false,
                     "description": "",
-                    "line": 23,
+                    "line": 22,
                     "modifierKind": [
                         122
                     ]
@@ -12884,7 +12886,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 43,
+                    "line": 44,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12917,7 +12919,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 58,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12937,7 +12939,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 51,
+                    "line": 52,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12968,7 +12970,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12992,7 +12994,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -13002,7 +13004,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 29,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -13012,7 +13014,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 62,
+                    "line": 63,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -13027,7 +13029,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { Subscription, Observable } from 'rxjs';\nimport { IconModel } from '../../components/icon/icon.model';\nimport { NavbarService } from '../../components/navigation/navbar/navbar.service';\nimport { LayoutService } from './layout.service';\n\n@Component({\n  selector: 'kkl-layout',\n  templateUrl: './layout.component.html',\n  styleUrls: ['./layout.component.scss']\n})\nexport class LayoutComponent implements OnInit {\n\n\n  private statusSubscription: Subscription;\n\n  @Input() public openIcon: string;\n  @Input() public logos: IconModel[];\n\n  @Input() public hideWizardPath: string[];\n  @Input() public showStatusPath: string[];\n\n  public wizard$: Observable<boolean>;\n\n  constructor(\n    private layoutService: LayoutService,\n    private navbarService: NavbarService\n  ) {}\n\n  ngOnInit(): void {\n    this.getCurrentPath();\n    this.subscribeToLastPath();\n    this.wizard$ = this.layoutService.getWizardObs();\n  }\n\n  ngOnDestroy(): void {\n    this.statusSubscription.unsubscribe();\n  }\n\n\n  // VIEW METHODS SECTION\n\n  private findPath(list: any[], value: string): boolean {\n    return !!list.find((path: string) => path == value);\n  }\n\n  private handleStatusState(path: string) {\n    this.navbarService.emitShowStatus(this.findPath(this.showStatusPath, path));\n  }\n\n  private handleShowState(path: string) {\n    this.layoutService.toggleWizard(this.findPath(this.hideWizardPath, path));\n    this.handleStatusState(path);\n  }\n\n  // ROUTE METHODS SECTION\n  private getCurrentPath() {\n    // const path = this.routerService.getCurrentPath();\n    // this.handleShowState(path);\n  }\n\n  private subscribeToLastPath() {\n  //   this.routerSubscription = this.routerService\n  //     .getLastPathObs()\n  //     .subscribe((path) => {\n  //       this.handleShowState(path);\n  //     });\n  // }\n  }\n}\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { Subscription, Observable } from 'rxjs';\r\nimport { IconModel } from '../../components/icon/icon.model';\r\nimport { NavbarService } from '../../components/navigation/navbar/navbar.service';\r\nimport { LayoutService } from './layout.service';\r\n\r\n@Component({\r\n  selector: 'kkl-layout',\r\n  templateUrl: './layout.component.html',\r\n  styleUrls: ['./layout.component.scss']\r\n})\r\nexport class LayoutComponent implements OnInit {\r\n\r\n  private statusSubscription: Subscription;\r\n\r\n  @Input() public openIcon: string;\r\n  @Input() public logos: IconModel[];\r\n\r\n  @Input() public hideWizardPath: string[];\r\n  @Input() public showStatusPath: string[];\r\n\r\n  public wizard$: Observable<boolean>;\r\n\r\n  constructor(\r\n    private layoutService: LayoutService,\r\n    private navbarService: NavbarService\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.getCurrentPath();\r\n    this.subscribeToLastPath();\r\n    this.wizard$ = this.layoutService.getWizardObs();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    if (this.statusSubscription) {\r\n      this.statusSubscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n\r\n  // VIEW METHODS SECTION\r\n\r\n  private findPath(list: any[], value: string): boolean {\r\n    return !!list.find((path: string) => path == value);\r\n  }\r\n\r\n  private handleStatusState(path: string) {\r\n    this.navbarService.emitShowStatus(this.findPath(this.showStatusPath, path));\r\n  }\r\n\r\n  private handleShowState(path: string) {\r\n    this.layoutService.toggleWizard(this.findPath(this.hideWizardPath, path));\r\n    this.handleStatusState(path);\r\n  }\r\n\r\n  // ROUTE METHODS SECTION\r\n  private getCurrentPath() {\r\n    // const path = this.routerService.getCurrentPath();\r\n    // this.handleShowState(path);\r\n  }\r\n\r\n  private subscribeToLastPath() {\r\n    //   this.routerSubscription = this.routerService\r\n    //     .getLastPathObs()\r\n    //     .subscribe((path) => {\r\n    //       this.handleShowState(path);\r\n    //     });\r\n    // }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13055,7 +13057,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 23,
+                "line": 22,
                 "jsdoctags": [
                     {
                         "name": "layoutService",
@@ -13080,7 +13082,357 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-sidenav-container class=\"sidenav-container\">\n  <mat-sidenav-content>\n    <app-navbar\n      [logos]=\"logos\"\n      [openIcon]=\"openIcon\"\n      (menuToggle)=\"menuDrawer.toggle()\"\n    ></app-navbar>\n\n    <mat-sidenav\n      class=\"wizard\"\n      opened=\"true\"\n      mode=\"side\"\n      position=\"start\"\n      *ngIf=\"!(wizard$ | async)\"\n    >\n      <div\n        class=\"stepper-container\"\n        fxLayout=\"column\"\n        fxLayoutAlign=\"center center\"\n      >\n        <ng-content select=\"[wizard]\"></ng-content>\n      </div>\n    </mat-sidenav>\n\n    <mat-sidenav #menuDrawer class=\"menu\" mode=\"side\" position=\"end\">\n      <div class=\"menu-container\" fxLayout=\"column\" fxLayoutAlign=\"start end\">\n        <ng-content select=\"[menu]\"></ng-content>\n      </div>\n    </mat-sidenav>\n\n    <ng-content></ng-content>\n  </mat-sidenav-content>\n</mat-sidenav-container>\n"
+            "templateData": "<mat-sidenav-container class=\"sidenav-container\">\r\n  <mat-sidenav-content>\r\n    <app-navbar\r\n      [logos]=\"logos\"\r\n      [openIcon]=\"openIcon\"\r\n      (menuToggle)=\"menuDrawer.toggle()\"\r\n    ></app-navbar>\r\n\r\n    <mat-sidenav\r\n      class=\"wizard\"\r\n      opened=\"true\"\r\n      mode=\"side\"\r\n      position=\"start\"\r\n      *ngIf=\"!(wizard$ | async)\"\r\n    >\r\n      <div\r\n        class=\"stepper-container\"\r\n        fxLayout=\"column\"\r\n        fxLayoutAlign=\"center center\"\r\n      >\r\n        <ng-content select=\"[wizard]\"></ng-content>\r\n      </div>\r\n    </mat-sidenav>\r\n\r\n    <mat-sidenav #menuDrawer class=\"menu\" mode=\"side\" position=\"end\">\r\n      <div class=\"menu-container\" fxLayout=\"column\" fxLayoutAlign=\"start end\">\r\n        <ng-content select=\"[menu]\"></ng-content>\r\n      </div>\r\n    </mat-sidenav>\r\n\r\n    <ng-content></ng-content>\r\n  </mat-sidenav-content>\r\n</mat-sidenav-container>\r\n"
+        },
+        {
+            "name": "LayoutExComponent",
+            "id": "component-LayoutExComponent-642beb2eee75c850bfa0d87a2bf81000",
+            "file": "projects/lib-kakal-ui/src/lib/app/examples/layout-ex/layout-ex.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-layout-ex",
+            "styleUrls": [
+                "./layout-ex.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./layout-ex.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "direction",
+                    "defaultValue": "'column'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 30,
+                    "type": "StepperDirection"
+                },
+                {
+                    "name": "hideWizardPath",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 31,
+                    "type": "string[]"
+                },
+                {
+                    "name": "logos",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "IconModel[]"
+                },
+                {
+                    "name": "menu",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "MenuModel[]"
+                },
+                {
+                    "name": "openIcon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "string"
+                },
+                {
+                    "name": "prefix",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 25,
+                    "type": "string"
+                },
+                {
+                    "name": "showStatusPath",
+                    "defaultValue": "[]",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 24,
+                    "type": "string[]"
+                },
+                {
+                    "name": "status",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 26,
+                    "type": "CardStepModel[]"
+                },
+                {
+                    "name": "steps",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 29,
+                    "type": "CardStepModel[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnDestroy",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 49,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "onChangePath",
+                    "args": [
+                        {
+                            "name": "data",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 81,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "data",
+                            "type": "literal type",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "onChangeStep",
+                    "args": [
+                        {
+                            "name": "step",
+                            "type": "CardStepModel",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 78,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "step",
+                            "type": "CardStepModel",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setMenu",
+                    "args": [
+                        {
+                            "name": "path",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 75,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "path",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "setProps",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 57,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "setSteps",
+                    "args": [
+                        {
+                            "name": "modulePrefix",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 67,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "modulePrefix",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "subscribeToModulePrefix",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "subscribeToRouter",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 61,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Inject, Input, OnInit } from '@angular/core';\r\nimport { Subscription } from 'rxjs';\r\nimport { CardStepModel } from '../../components/cards/card-step/card-step.model';\r\nimport { IconModel } from '../../components/icon/icon.model';\r\nimport { MenuModel } from '../../components/menu/menu.model';\r\nimport { MenuService } from '../../components/menu/menu.service';\r\nimport { NavbarService } from '../../components/navigation/navbar/navbar.service';\r\nimport { StepperDirection } from '../../components/step/step.model';\r\nimport { StepperService } from '../../components/stepper/stepper.service';\r\n\r\n@Component({\r\n  selector: 'kkl-layout-ex',\r\n  templateUrl: './layout-ex.component.html',\r\n  styleUrls: ['./layout-ex.component.scss']\r\n})\r\nexport class LayoutExComponent implements OnInit {\r\n\r\n  // NAVBAR DATA SECTION\r\n\r\n  // uniqu gradient icon per project\r\n  @Input() public openIcon: string;\r\n\r\n  @Input() public logos: IconModel[];\r\n  @Input() public showStatusPath: string[] = [];\r\n  @Input() public prefix: string;\r\n  @Input() public status: CardStepModel[];\r\n\r\n  // WIZARD SECTION\r\n  @Input() public steps: CardStepModel[];\r\n  @Input() public direction: StepperDirection = 'column';\r\n  @Input() public hideWizardPath: string[] = [];\r\n\r\n  // MENU SECTION\r\n  @Input() public menu: MenuModel[];\r\n\r\n  constructor(\r\n    private stepperService: StepperService,\r\n    private menuService: MenuService,\r\n    private navbarService: NavbarService,\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.subscribeToModulePrefix();\r\n    this.subscribeToRouter();\r\n    this.setProps();\r\n\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    if (this.status) {\r\n      console.log(1)\r\n      this.navbarService.emitStatus(this.status);\r\n    }\r\n  }\r\n\r\n  // SET PROPS METHOD\r\n  private setProps() {\r\n\r\n  }\r\n\r\n  private subscribeToRouter() {\r\n  }\r\n\r\n  private subscribeToModulePrefix() {\r\n  }\r\n\r\n  private setSteps(modulePrefix: string) {\r\n    this.steps = this.stepperService.setSteps(\r\n      this.steps,\r\n      'path',\r\n      modulePrefix\r\n    );\r\n  }\r\n\r\n  private setMenu(path: string) {\r\n  }\r\n\r\n  public onChangeStep(step: CardStepModel) {\r\n  }\r\n\r\n  public onChangePath(data: { link: string, path: string }) {\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "kkl-layout {\r\n  width: 100%;\r\n  height: 100;\r\n  background-color: lightgray\r\n}\r\n\r\nkkl-stepper {\r\n  background-color: color(paper);\r\n  box-shadow: -3px 0px 12px #00000029;\r\n  padding: spacing(1) 0 spacing(1) 0;\r\n}\r\n\r\nkkl-menu {\r\n  width: 100%;\r\n}\r\n",
+                    "styleUrl": "./layout-ex.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "stepperService",
+                        "type": "StepperService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "menuService",
+                        "type": "MenuService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    },
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 34,
+                "jsdoctags": [
+                    {
+                        "name": "stepperService",
+                        "type": "StepperService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "menuService",
+                        "type": "MenuService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    },
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<kkl-layout\r\n  [logos]=\"logos\"\r\n  [openIcon]=\"openIcon\"\r\n  [hideWizardPath]=\"hideWizardPath\"\r\n  [showStatusPath]=\"showStatusPath\"\r\n>\r\n  <kkl-stepper\r\n    class=\"mat-elevation-z6\"\r\n    wizard\r\n    [steps]=\"steps\"\r\n    [direction]=\"direction\"\r\n    (changStep)=\"onChangeStep($event)\"\r\n  ></kkl-stepper>\r\n  <kkl-menu [masterPrefix]=\"prefix\" (changePath)=\"onChangePath($event)\" menu [menu]=\"menu\"> </kkl-menu>\r\n  <ng-content></ng-content>\r\n</kkl-layout>\r\n"
         },
         {
             "name": "ListItemComponent",
@@ -13146,7 +13498,7 @@
         },
         {
             "name": "MenuComponent",
-            "id": "component-MenuComponent-b618b416740db158f76c446fdb2ee022",
+            "id": "component-MenuComponent-96aa5d9aa94f918e536df5ec731d81ba",
             "file": "projects/lib-kakal-ui/src/lib/app/components/menu/menu.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -13266,7 +13618,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'kkl-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent {\r\n\r\n  @Input() public masterPrefix: string\r\n  @Input() public menu: MenuModel[];\r\n  @Input() public hasLogin: boolean = true\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  });\r\n  \r\n  @Output() changePath: EventEmitter<{ path: string, link: string }> = new EventEmitter();\r\n\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(item: MenuItemModel, modulePrefix: string) {\r\n\r\n    if (!item.isActive) {\r\n      const url = `${this.masterPrefix}/${modulePrefix}`;\r\n      const link = item.path !== modulePrefix ? `${url}/${item.path}` : url;\r\n      this.changePath.emit({ link, path: item.path })\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'kkl-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent {\r\n\r\n  @Input() public masterPrefix: string\r\n  @Input() public menu: MenuModel[];\r\n  @Input() public hasLogin: boolean = true\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  });\r\n\r\n  @Output() changePath: EventEmitter<{ path: string, link: string }> = new EventEmitter();\r\n\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(item: MenuItemModel, modulePrefix: string) {\r\n\r\n    if (!item.isActive) {\r\n      const url = `${this.masterPrefix}/${modulePrefix}`;\r\n      const link = item.path !== modulePrefix ? `${url}/${item.path}` : url;\r\n      this.changePath.emit({ link, path: item.path })\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13275,11 +13627,11 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <app-card-user></app-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of menu; let i = index\"\r\n    >\r\n      <mat-expansion-panel-header *ngIf=\"list.label\">\r\n        <div mat-subheader>\r\n          <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </kkl-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <kkl-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></kkl-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <mat-icon color=\"primary\" mat-list-icon>{{ logoutItem.svgUrl }}</mat-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </kkl-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
+            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <kkl-card-user></kkl-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of menu; let i = index\"\r\n    >\r\n      <mat-expansion-panel-header *ngIf=\"list.label\">\r\n        <div mat-subheader>\r\n          <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </kkl-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <kkl-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></kkl-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <kkl-icon color=\"primary\" [key]=\"logoutItem.svgUrl\" mat-list-icon></kkl-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </kkl-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
         },
         {
             "name": "MenuItemComponent",
-            "id": "component-MenuItemComponent-2224adab3ea911a08a6be3e025faf5ad",
+            "id": "component-MenuItemComponent-d98dba4106751a2d78a3ebd65cefd541",
             "file": "projects/lib-kakal-ui/src/lib/app/components/menu-item/menu-item.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -13558,7 +13910,7 @@
         },
         {
             "name": "NavbarComponent",
-            "id": "component-NavbarComponent-c549f6a612ea07fc3c34bf2667d780d2",
+            "id": "component-NavbarComponent-42ac192b970d26265abb83bd7a9ff9ed",
             "file": "projects/lib-kakal-ui/src/lib/app/components/navigation/navbar/navbar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -13579,43 +13931,15 @@
                     "name": "logos",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 17,
                     "type": "IconModel[]"
                 },
                 {
                     "name": "openIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 16,
                     "type": "string"
-                },
-                {
-                    "name": "status",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 12,
-                    "type": "StepModel[]"
-                },
-                {
-                    "name": "status$",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 18,
-                    "type": "Observable<StepModel>"
-                },
-                {
-                    "name": "title",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 13,
-                    "type": "string"
-                },
-                {
-                    "name": "title$",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 17,
-                    "type": "Observable<string>"
                 }
             ],
             "outputsClass": [
@@ -13624,7 +13948,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 27,
                     "type": "EventEmitter"
                 }
             ],
@@ -13637,7 +13961,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 22,
+                    "line": 25,
                     "modifierKind": [
                         122
                     ]
@@ -13650,7 +13974,7 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 20,
+                    "line": 23,
                     "modifierKind": [
                         122
                     ]
@@ -13663,7 +13987,43 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
+                    "line": 24,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "showStatus$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<boolean>",
+                    "optional": false,
+                    "description": "",
                     "line": 21,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "status$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<CardStepModel[]>",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "title$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Observable<string>",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
                     "modifierKind": [
                         122
                     ]
@@ -13676,7 +14036,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 33,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -13686,7 +14046,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -13701,7 +14061,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { IconModel } from '../../icon/icon.model';\r\nimport { StepModel } from '../../step/step.model';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n  @Input() public status: StepModel[];\r\n  @Input() public title: string;\r\n  @Input() public openIcon: string;\r\n  @Input() public logos: IconModel[];\r\n\r\n  @Input() public title$: Observable<string>;\r\n  @Input() public status$: Observable<StepModel>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {}\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardStepModel } from '../../cards/card-step/card-step.model';\r\nimport { IconModel } from '../../icon/icon.model';\r\nimport { StepModel } from '../../step/step.model';\r\nimport { NavbarService } from './navbar.service';\r\n\r\n@Component({\r\n  selector: 'app-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n\r\n\r\n  @Input() public openIcon: string;\r\n  @Input() public logos: IconModel[];\r\n\r\n  public title$: Observable<string>;\r\n  public status$: Observable<CardStepModel[]>;\r\n  public showStatus$: Observable<boolean>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor(private navbarService : NavbarService) {\r\n\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.title$ = this.navbarService.getTitleObs()\r\n    this.status$ = this.navbarService.getStatusObs();\r\n   this.showStatus$ = this.navbarService.getShowStatusObs()\r\n\r\n  }\r\n\r\n  public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -13715,13 +14075,31 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 24
+                "args": [
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 27,
+                "jsdoctags": [
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-toolbar\r\n  dir=\"rtl\"\r\n  class=\"navbar mat-elevation-z4\"\r\n  fxLayout=\"row\"\r\n  fxLayoutAlign=\"start center\"\r\n>\r\n  <!-- toggle menu button -->\r\n  <div\r\n    fxLayout=\"column\"\r\n    fxLayoutAlign=\"center center\"\r\n    fxFlex=\"5\"\r\n    appUnderline\r\n    appButton\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div fxFlex=\"40\">\r\n      <kkl-icon\r\n        *ngIf=\"!isOpen\"\r\n        type=\"svg\"\r\n        key=\"tree\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></kkl-icon>\r\n      <kkl-icon\r\n        *ngIf=\"isOpen\"\r\n        type=\"svg\"\r\n        [key]=\"openIcon\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></kkl-icon>\r\n    </div>\r\n    <div fxFlex=\"10\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\r\n      <kkl-typography [size]=\"1\" color=\"primary\">\r\n        {{ isOpen ? closeLabel : openLabel }}\r\n      </kkl-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center start\" fxFlex=\"10\">\r\n    <kkl-typography [size]=\"2.4\">\r\n      {{ (title$ | async) }}\r\n    </kkl-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div fxFlex=\"grow\">\r\n    <div class=\"status-container\" fxLayoutAlign=\"center center\">\r\n      <div fxLayout=\"row\" *ngFor=\"let status of (status$ | async)\">\r\n        <kkl-card-status [status]=\"status\"></kkl-card-status>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div\r\n    fxLayout=\"row\"\r\n    fxLayoutAlign=\"end center\"\r\n    class=\"logo-container\"\r\n    fxFlex=\"10\"\r\n  >\r\n    <div *ngFor=\"let logo of logos\">\r\n      <kkl-icon [key]=\"logo.key\" [size]=\"logo.size\"></kkl-icon>\r\n    </div>\r\n  </div>\r\n</mat-toolbar>\r\n"
+            "templateData": "<mat-toolbar\r\n  dir=\"rtl\"\r\n  class=\"navbar mat-elevation-z4\"\r\n  xLayout=\"row\"\r\n  fxLayoutAlign=\"start center\"\r\n>\r\n  <!-- toggle menu button -->\r\n  <div\r\n    fxLayout=\"column\"\r\n    fxLayoutAlign=\"center center\"\r\n    fxFlex=\"5\"\r\n    appUnderline\r\n    appButton\r\n    (click)=\"toggleMenu()\"\r\n  >\r\n    <div fxFlex=\"40\">\r\n      <kkl-icon\r\n        *ngIf=\"!isOpen\"\r\n        type=\"svg\"\r\n        key=\"tree\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></kkl-icon>\r\n      <kkl-icon\r\n        *ngIf=\"isOpen\"\r\n        type=\"svg\"\r\n        [key]=\"openIcon\"\r\n        color=\"primary\"\r\n        [size]=\"4\"\r\n      ></kkl-icon>\r\n    </div>\r\n    <div fxFlex=\"10\" fxLayout=\"column\" fxLayoutAlign=\"start center\">\r\n      <kkl-typography [size]=\"1\" color=\"primary\">\r\n        {{ isOpen ? closeLabel : openLabel }}\r\n      </kkl-typography>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"center start\" fxFlex=\"10\">\r\n    <kkl-typography [size]=\"2.4\">\r\n      {{ title$ | async }}\r\n    </kkl-typography>\r\n  </div>\r\n\r\n  <!-- main navbar links -->\r\n  <div fxFlex=\"grow\">\r\n    <div\r\n      class=\"status-container\"\r\n      fxLayoutAlign=\"center center\"\r\n    >\r\n      <div fxLayout=\"row\" *ngFor=\"let status of (status$ | async)\">\r\n        <kkl-card-status [status]=\"status\"></kkl-card-status>\r\n      </div>\r\n    </div>\r\n  </div>\r\n\r\n  <div fxFlex></div>\r\n\r\n  <!-- left side logo -->\r\n  <div\r\n    fxLayout=\"row\"\r\n    fxLayoutAlign=\"end center\"\r\n    class=\"logo-container\"\r\n    fxFlex=\"10\"\r\n  >\r\n    <div *ngFor=\"let logo of logos\">\r\n      <kkl-icon [key]=\"logo.key\" [size]=\"logo.size\"></kkl-icon>\r\n    </div>\r\n  </div>\r\n</mat-toolbar>\r\n"
         },
         {
             "name": "PaginationComponent",
@@ -14141,7 +14519,7 @@
         },
         {
             "name": "StepperComponent",
-            "id": "component-StepperComponent-cd1eedd6887f401899a83e70c0b6c4c1",
+            "id": "component-StepperComponent-f28226f791a3146e24b84e5f47d741ad",
             "file": "projects/lib-kakal-ui/src/lib/app/components/stepper/stepper.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -14255,11 +14633,11 @@
                 "args": [],
                 "line": 25
             },
-            "templateData": "<div\r\n  [fxLayout]=\"direction\"\r\n  class=\"steps-container\"\r\n  fxLayoutAlign=\"center center\"\r\n>\r\n  <ng-container *ngFor=\"let step of steps; let i = index\">\r\n    <div appSize [type]=\"step.type\">\r\n      <ng-container *ngIf=\"!stepRef\">\r\n        <ng-container [ngSwitch]=\"step.type\">\r\n          <ng-container *ngSwitchCase=\"'step'\">\r\n            <app-card-step\r\n              (onStepChange)=\"onStepChange(step)\"\r\n              [step]=\"step\"\r\n            ></app-card-step>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'wizard'\">\r\n            <app-card-wizard\r\n              (onStepChange)=\"onStepChange(step)\"\r\n              [step]=\"step\"\r\n            ></app-card-wizard>\r\n          </ng-container>\r\n        </ng-container>\r\n      </ng-container>\r\n\r\n      <ng-container *ngTemplateOutlet=\"stepRef; context: { step: this.step }\">\r\n      </ng-container>\r\n    </div>\r\n    <div\r\n      *ngIf=\"step.divider\"\r\n      appSize\r\n      [size]=\"2\"\r\n      [divider]=\"step.divider\"\r\n      class=\"divider-container\"\r\n      fxLayout=\"column\"\r\n      fxLayoutAlign=\"center center\"\r\n    >\r\n      <div *ngIf=\"step.divider\" class=\"divider\"></div>\r\n    </div>\r\n  </ng-container>\r\n</div>\r\n"
+            "templateData": "<div\r\n  [fxLayout]=\"direction\"\r\n  class=\"steps-container\"\r\n  fxLayoutAlign=\"center center\"\r\n>\r\n  <ng-container *ngFor=\"let step of steps; let i = index\">\r\n    <div appButton appSize [type]=\"step.type\">\r\n      <ng-container *ngIf=\"!stepRef\">\r\n        <ng-container [ngSwitch]=\"step.type\">\r\n          <ng-container *ngSwitchCase=\"'step'\">\r\n            <kkl-card-step\r\n              (onStepChange)=\"onStepChange(step)\"\r\n              [step]=\"step\"\r\n            ></kkl-card-step>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'wizard'\">\r\n            <kkl-card-wizard\r\n              (onStepChange)=\"onStepChange(step)\"\r\n              [step]=\"step\"\r\n            ></kkl-card-wizard>\r\n          </ng-container>\r\n        </ng-container>\r\n      </ng-container>\r\n\r\n      <ng-container *ngTemplateOutlet=\"stepRef; context: { step: this.step }\">\r\n      </ng-container>\r\n    </div>\r\n    <div\r\n      *ngIf=\"step.divider\"\r\n      appSize\r\n      [size]=\"2\"\r\n      [divider]=\"step.divider\"\r\n      class=\"divider-container\"\r\n      fxLayout=\"column\"\r\n      fxLayoutAlign=\"center center\"\r\n    >\r\n      <div *ngIf=\"step.divider\" class=\"divider\"></div>\r\n    </div>\r\n  </ng-container>\r\n</div>\r\n"
         },
         {
             "name": "StepperExComponent",
-            "id": "component-StepperExComponent-60210402e81ccb2a7ebe11a98e5c5705",
+            "id": "component-StepperExComponent-468355d93c503ccc8aead9a6fa5e8541",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/stepper-ex/stepper-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -14368,7 +14746,7 @@
                     }
                 ]
             },
-            "templateData": "<div *ngIf=\"direction === 'row'\" class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\" fxFill> \r\n    <div fxFlex=\"20\">\r\n      <kkl-stepper (changStep)=\"onStepChange($event)\" [steps]=\"steps\" [direction]=\"direction\"></kkl-stepper>\r\n    </div>\r\n  </div>\r\n  \r\n  <div *ngIf=\"direction === 'column'\" class=\"wizard\">\r\n    <kkl-stepper\r\n      (changStep)=\"onStepChange($event)\"\r\n      [steps]=\"steps\"\r\n      [direction]=\"direction\"\r\n    ></kkl-stepper>\r\n  </div>\r\n  "
+            "templateData": "<div *ngIf=\"direction === 'row'\" class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\" fxFill>\r\n    <div fxFlex=\"20\">\r\n      <kkl-stepper (changStep)=\"onStepChange($event)\" [steps]=\"steps\" [direction]=\"direction\"></kkl-stepper>\r\n    </div>\r\n  </div>\r\n\r\n  <div *ngIf=\"direction === 'column'\" class=\"wizard\">\r\n    <kkl-stepper\r\n      (changStep)=\"onStepChange($event)\"\r\n      [steps]=\"steps\"\r\n      [direction]=\"direction\"\r\n    ></kkl-stepper>\r\n  </div>\r\n"
         },
         {
             "name": "TableComponent",
@@ -15115,13 +15493,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-1ee00976dd03308fad0556c6238e7226",
+            "id": "module-AppModule-5c992f4694c78947536a01a7d3092f6a",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent,\r\n    LayoutExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    AppRoutingModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -15207,6 +15585,9 @@
                         },
                         {
                             "name": "LayoutComponent"
+                        },
+                        {
+                            "name": "LayoutExComponent"
                         },
                         {
                             "name": "ListItemComponent"
@@ -15328,13 +15709,13 @@
         },
         {
             "name": "MaterialModule",
-            "id": "module-MaterialModule-da3b0c6780d5838c80e1267905b0cc93",
+            "id": "module-MaterialModule-ab61345bbd44adba66245214c3df6a3b",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/material/material.module.ts",
             "methods": [],
-            "sourceCode": "import { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { NgModule } from '@angular/core';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatBadgeModule } from '@angular/material/badge';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatSidenavModule } from '@angular/material/sidenav';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatRadioModule } from '@angular/material/radio';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatCheckboxModule } from '@angular/material/checkbox';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatProgressSpinnerModule } from '@angular/material/progress-spinner';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatAutocompleteModule } from '@angular/material/autocomplete';\r\nimport { MatMenuModule } from '@angular/material/menu';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\n\r\nimport { FlexLayoutModule } from '@angular/flex-layout';\r\nimport { LayoutModule } from '@angular/cdk/layout';\r\n\r\n@NgModule({\r\n  imports: [],\r\n  exports: [\r\n    LayoutModule,\r\n    MatGridListModule,\r\n    MatToolbarModule,\r\n    MatSidenavModule,\r\n    MatButtonModule,\r\n    MatIconModule,\r\n    MatListModule,\r\n    MatMenuModule,\r\n    MatCardModule,\r\n\r\n    MatTableModule,\r\n    MatPaginatorModule,\r\n    MatSortModule,\r\n\r\n    MatProgressBarModule,\r\n    MatProgressSpinnerModule,\r\n\r\n    MatRadioModule,\r\n    MatAutocompleteModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatSelectModule,\r\n\r\n    MatExpansionModule,\r\n    MatBadgeModule,\r\n    MatCheckboxModule,\r\n    MatTooltipModule,\r\n    FlexLayoutModule,\r\n  ],\r\n})\r\nexport class MaterialModule {}\r\n",
+            "sourceCode": "import { MatPaginatorModule } from '@angular/material/paginator';\r\nimport { NgModule } from '@angular/core';\r\nimport { MatButtonModule } from '@angular/material/button';\r\nimport { MatToolbarModule } from '@angular/material/toolbar';\r\nimport { MatGridListModule } from '@angular/material/grid-list';\r\nimport { MatBadgeModule } from '@angular/material/badge';\r\nimport { MatListModule } from '@angular/material/list';\r\nimport { MatSidenavModule } from '@angular/material/sidenav';\r\nimport { MatSelectModule } from '@angular/material/select';\r\nimport { MatFormFieldModule } from '@angular/material/form-field';\r\nimport { MatInputModule } from '@angular/material/input';\r\nimport { MatSortModule } from '@angular/material/sort';\r\nimport { MatTableModule } from '@angular/material/table';\r\nimport { MatRadioModule } from '@angular/material/radio';\r\nimport { MatTooltipModule } from '@angular/material/tooltip';\r\nimport { MatCheckboxModule } from '@angular/material/checkbox';\r\nimport { MatIconModule } from '@angular/material/icon';\r\nimport { MatProgressSpinnerModule } from '@angular/material/progress-spinner';\r\nimport { MatCardModule } from '@angular/material/card';\r\nimport { MatExpansionModule } from '@angular/material/expansion';\r\nimport { MatAutocompleteModule } from '@angular/material/autocomplete';\r\nimport { MatMenuModule } from '@angular/material/menu';\r\nimport { MatProgressBarModule } from '@angular/material/progress-bar';\r\n\r\nimport { LayoutModule } from '@angular/cdk/layout';\r\nimport { FlexLayoutModule } from '@angular/flex-layout';\r\n\r\n@NgModule({\r\n  imports: [],\r\n  exports: [\r\n    LayoutModule,\r\n    MatGridListModule,\r\n    MatToolbarModule,\r\n    MatSidenavModule,\r\n    MatButtonModule,\r\n    MatIconModule,\r\n    MatListModule,\r\n    MatMenuModule,\r\n    MatCardModule,\r\n\r\n    MatTableModule,\r\n    MatPaginatorModule,\r\n    MatSortModule,\r\n\r\n    MatProgressBarModule,\r\n    MatProgressSpinnerModule,\r\n\r\n    MatRadioModule,\r\n    MatAutocompleteModule,\r\n    MatFormFieldModule,\r\n    MatInputModule,\r\n    MatSelectModule,\r\n\r\n    MatExpansionModule,\r\n    MatBadgeModule,\r\n    MatCheckboxModule,\r\n    MatTooltipModule,\r\n    FlexLayoutModule,\r\n  ],\r\n})\r\nexport class MaterialModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -15589,7 +15970,7 @@
                 "name": "Dashboard",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15736,6 +16117,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Defualt",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "DESTINATION_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -15819,7 +16210,7 @@
                 "name": "Foresrty",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16207,16 +16598,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<DashboardExComponent>",
-                "defaultValue": "(args: DashboardExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16367,6 +16748,26 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<DashboardExComponent>",
+                "defaultValue": "(args: DashboardExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LayoutExComponent>",
+                "defaultValue": "(args: LayoutExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16494,6 +16895,26 @@
                 "defaultValue": "CardUserTemplate.bind({})"
             },
             {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Cards.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "CardWizardTemplate.bind({})"
+            },
+            {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
@@ -16513,20 +16934,30 @@
                 "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\n width=\"17.956\" height=\"17.331\" viewBox=\"0 0 17.956 17.331\">\r\n <defs>\r\n <style>.v-sign{fill:\"none\";opacity:0;}\r\n .b-v-sign{fill:none;stroke:#6dc066;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;}\r\n .c,.d{stroke:none;}.d{fill:#dfdfdf;}</style></defs><g transform=\"translate(0.332 0.331)\">\r\n <g class=\"v-sign\">\r\n\r\n\r\n <path class=\"c\" d=\"M 8.5 16.25 C 4.226640224456787 16.25 0.75 12.77336025238037 0.75 8.5 C 0.75 6.115330219268799 1.804280042648315 3.984380006790161 3.798870086669922 2.337510108947754 C 4.990379810333252 1.342460036277771 6.746600151062012 0.75 8.5 0.75 C 12.77336025238037 0.75 16.25 4.226640224456787 16.25 8.5 C 16.25 12.77336025238037 12.77336025238037 16.25 8.5 16.25 Z\"/>\r\n\r\n <path class=\"d\" d=\"M 8.5 1.5 C 6.916910171508789 1.5 5.340410232543945 2.027279853820801 4.28285026550293 2.910479545593262 L 4.276379585266113 2.915849685668945 C 2.460060119628906 4.415530204772949 1.5 6.346500396728516 1.5 8.5 C 1.5 12.35980987548828 4.640190124511719 15.5 8.5 15.5 C 12.35980987548828 15.5 15.5 12.35980987548828 15.5 8.5 C 15.5 4.640190124511719 12.35980987548828 1.5 8.5 1.5 M 8.5 0 C 13.19441986083984 0 17 3.805580139160156 17 8.5 C 17 13.19441986083984 13.19441986083984 17 8.5 17 C 3.805580139160156 17 0 13.19441986083984 0 8.5 C 0 5.866430282592773 1.197699546813965 3.512599945068359 3.32135009765625 1.759169578552246 C 4.549599647521973 0.7334194183349609 6.439149856567383 0 8.5 0 Z\"/></g><g transform=\"translate(0.631 0.581)\">\r\n\r\n <path class=\"b-v-sign\" d=\"M18.933,9.965v.706a7.72,7.72,0,0,1-5.708,7.357,8.116,8.116,0,0,1-8.942-3.183A7.456,7.456,0,0,1,4.911,5.68a8.171,8.171,0,0,1,9.3-2.024\" transform=\"translate(-3 -2.991)\"/>\r\n <path class=\"b-v-sign\" d=\"M23.856,6,15.89,13.974l-2.39-2.39\"\r\n transform=\"translate(-7.923 -4.402)\"/></g></g></svg>`"
             },
             {
-                "name": "Wizard",
+                "name": "WithMenu",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Cards.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "CardWizardTemplate.bind({})"
+                "defaultValue": "Template.bind({})"
             },
             {
-                "name": "Wizard",
+                "name": "WithStatus",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "WithWizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17423,12 +17854,12 @@
                     "type": "literal type"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts": [
                 {
                     "name": "Dashboard",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -17438,7 +17869,7 @@
                     "name": "Foresrty",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -17448,7 +17879,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<DashboardExComponent>",
@@ -17800,6 +18231,58 @@
                     "deprecationMessage": "",
                     "type": "Story<literal type>",
                     "defaultValue": "(args: () => {}) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts": [
+                {
+                    "name": "Defualt",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<LayoutExComponent>",
+                    "defaultValue": "(args: LayoutExComponent) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "WithMenu",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "WithStatus",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "WithWizard",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/environments/environment.prod.ts": [
@@ -19221,7 +19704,7 @@
                 "linktype": "component",
                 "name": "NavbarComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/13",
                 "status": "low"
             },
             {
@@ -19441,6 +19924,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/examples/layout-ex/layout-ex.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "LayoutExComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/20",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/app/examples/stepper-ex/stepper-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -19612,7 +20104,7 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/lib-kakal-ui/src/lib/app/utilities/services/route.rservice.ts",
+                "filePath": "projects/lib-kakal-ui/src/lib/app/utilities/services/route.service.ts",
                 "type": "injectable",
                 "linktype": "injectable",
                 "name": "RouterService",
@@ -19796,36 +20288,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Wizard",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Dashboard",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Foresrty",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Dashboard.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -20215,6 +20677,86 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Title",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Dashboard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Foresrty",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Defualt",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithMenu",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithStatus",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithWizard",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
