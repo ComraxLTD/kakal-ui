@@ -22,6 +22,7 @@ export class StepperComponent {
 
   @Output() changStep = new EventEmitter<CardStepModel>();
 
+
   public onStepChange(step: CardStepModel) {
     this.changStep.emit(step);
   }

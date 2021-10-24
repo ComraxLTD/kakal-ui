@@ -23,7 +23,7 @@
   </mat-accordion>
   <mat-list>
     <mat-list-item appButton>
-      <mat-icon color="primary" mat-list-icon>{{ logoutItem.svgUrl }}</mat-icon>
+      <kkl-icon color="primary" mat-list-icon [key]="logoutItem.svgUrl"></kkl-icon>
       <div class="logout" mat-line>
         <kkl-typography variant="button" color="primary" [bold]="600">
           {{ logoutItem.label }}

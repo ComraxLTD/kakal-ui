@@ -27,14 +27,14 @@ export class VariantDirective {
 
           case 'step':
             this.boxShadow =
-              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';
+              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec';
             this.background = `linear-gradient(
           0deg, #eeeeee 0%, #fefefe 100%`;
 
             break;
 
           case 'status':
-            this.boxShadow = '0px 0px 0px 6px #ffffff !important';
+            this.boxShadow = '0px 0px 0px 6px #ffffff';
             this.backgroundColor = '#ffffff !important';
             this.border = `1px solid #00000029`;
             break;

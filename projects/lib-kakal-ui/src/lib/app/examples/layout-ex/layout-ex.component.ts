@@ -1,80 +1,151 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { CardStepModel, StepperDirection } from '../../components/cards/card-step/card-step.model';
+import { Component, Inject, Input, OnInit } from '@angular/core';
+import { Subscription, Observable } from 'rxjs';
+import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import {
+  CardStepModel,
+  StepperDirection,
+} from '../../components/cards/card-step/card-step.model';
 import { IconModel } from '../../components/icon/icon.model';
 import { MenuModel } from '../../components/menu/menu.model';
 import { MenuService } from '../../components/menu/menu.service';
-import { NavbarService } from '../../components/navigation/navbar/navbar.service';
-import { StepperService } from '../../components/stepper/stepper.service';
+import { NavbarService } from '../../components/navbar/navbar.service';
+import { LayoutService } from '../../screens/layout/layout.service';
+import { RouterService } from '../../utilities/services/route.service';
 
 @Component({
-  selector: 'kkl-layout-ex',
+  selector: 'app-layout-ex',
   templateUrl: './layout-ex.component.html',
-  styleUrls: ['./layout-ex.component.scss']
+  styleUrls: ['./layout-ex.component.scss'],
 })
 export class LayoutExComponent implements OnInit {
-
-  // NAVBAR DATA SECTION
-
-  // uniqu gradient icon per project
-  @Input() public openIcon: string;
-
+  @Input() public projectPrefix: string = '';
   @Input() public logos: IconModel[];
-  @Input() public showStatusPath: string[] = [];
-  @Input() public prefix: string;
   @Input() public status: CardStepModel[];
-
-  // WIZARD SECTION
   @Input() public steps: CardStepModel[];
-  @Input() public direction: StepperDirection = 'column';
-  @Input() public hideWizardPath: string[] = [];
-
-  // MENU SECTION
   @Input() public menu: MenuModel[];
 
+  private pathSubscription: Subscription;
+
+  // NAVBAR SECTION
+  private headers = { lands: 'מקרקעין', neches: 'מנהלת ספר נכסים' };
+  public openIcon: string = 'treegradientlands';
+  public showStatusPath: string[] = [this.projectPrefix, 'neches'];
+
+  // WIZARD SECTION
+  public steps$: Observable<CardStepModel[]>;
+  public direction: StepperDirection = 'column';
+  public hideWizardPath: string[] = ['results', this.projectPrefix];
+
+  // MENU SECTION
+  public menu$: Observable<MenuModel[]>;
+
   constructor(
-    private stepperService: StepperService,
     private menuService: MenuService,
     private navbarService: NavbarService,
-  ) { }
+    private layoutService: LayoutService,
+    private routerService: RouterService
+  ) {}
+
+  // ROUTE METHODS SECTION
+  private setCurrentPath() {
+    const path = this.routerService.getCurrentPath();
+    this.layoutService.emitCurrentPath(path);
+  }
 
   ngOnInit(): void {
-    this.subscribeToModulePrefix();
+    this.setCurrentPath();
+    this.setNavbar();
+    this.steps$ = this.setWizard();
+    this.menu$ = this.setMenu();
     this.subscribeToRouter();
-    this.setProps();
-
   }
 
   ngOnDestroy(): void {
-    if (this.status) {
-      this.navbarService.emitStatus(this.status);
+    if (this.pathSubscription) {
+      this.pathSubscription.unsubscribe();
     }
   }
 
-  // SET PROPS METHOD
-  private setProps() {
-
+  private setNavbar() {
+    this.navbarService.setHeaders(this.headers);
+    this.navbarService.emitStatus(this.status);
+    this.navbarService.setHeadersObs(this.setHeaders());
+    this.logos = this.logos;
   }
 
-  private subscribeToRouter() {
-  }
-
-  private subscribeToModulePrefix() {
-  }
-
-  private setSteps(modulePrefix: string) {
-    this.steps = this.stepperService.setSteps(
-      this.steps,
-      'path',
-      modulePrefix
+  private setHeaders() {
+    return this.routerService.getModulePrefixObs().pipe(
+      distinctUntilChanged(),
+      map((path: string) => this.headers[path])
     );
   }
 
-  private setMenu(path: string) {
+  private subscribeToRouter() {
+    this.pathSubscription = this.routerService
+      .getLastPathObs()
+      .subscribe((path: string) => {
+        path === this.projectPrefix && this.navbarService.emitTitle(path);
+        this.layoutService.emitCurrentPath(path);
+        this.routerService.currentPath$.next(path);
+      });
   }
 
-  public onChangeStep(step: CardStepModel) {
+  private setWizard() {
+    return this.routerService.getModulePrefixObs().pipe(
+      map((path: string) => {
+        const steps = this.steps;
+
+        steps.map((step) => {
+          if (step.isActive) {
+            step.unactive();
+          }
+          if (step.path === path) {
+            step.active();
+          }
+        });
+
+        return steps;
+      })
+    );
   }
 
-  public onChangePath(data: { link: string, path: string }) {
+  private setMenu() {
+    const modulePath$ = this.routerService.getModulePrefixObs();
+    const lastPath$ = this.layoutService.getCurrentPathObs();
+
+    return modulePath$.pipe(
+      switchMap((modulePath: string) => {
+        return lastPath$.pipe(
+          map((path: string) => {
+            const menu = this.menuService.setMenu(
+              this.menu,
+              modulePath,
+              'path',
+              path
+            );
+            return menu;
+          })
+        );
+      })
+    );
+
+    // return path$.pipe(
+    //   // distinctUntilChanged(),
+    //   map((path: string) => {
+    //     console.log(path)
+    //     return this.menuService.setList(this.menuService.getMenu(), 'path', path);
+
+    //   })
+    // )
+  }
+
+  public onChangeModule(step: CardStepModel) {
+    const path: string = `${this.projectPrefix}/${step.path}`;
+    this.routerService.navigate(path);
+  }
+
+  public onChangeMenu(path: string) {
+    path = `${this.projectPrefix}/${path}`;
+    this.routerService.navigate(path);
   }
 }

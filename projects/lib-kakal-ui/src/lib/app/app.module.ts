@@ -13,7 +13,6 @@ import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { IconComponent } from './components/icon/icon.component';
 import { TypographyComponent } from './components/typography/typography.component';
 
-import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { MenuComponent } from './components/menu/menu.component';
 
 import { PaginationComponent } from './components/pagination/pagination.component';
@@ -42,7 +41,6 @@ import { FormAutocompleteComponent } from './components/form/form-autocomplete/f
 import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
-import { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';
 
 import { FormExComponent } from './examples/form-ex/form-ex.component';
 import { InputExComponent } from './examples/input-ex/input-ex.component';
@@ -61,6 +59,8 @@ import { LayoutComponent } from './screens/layout/layout.component';
 import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
 import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
+import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [

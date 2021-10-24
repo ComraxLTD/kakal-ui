@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MenuItemModel } from '../menu-item/menu-item.model';
 import { MenuModel } from './menu.model';
 
@@ -21,6 +21,10 @@ export class MenuComponent {
     svgUrl: 'logout',
   });
   @Output() changePath: EventEmitter<string> = new EventEmitter();
+
+  ngOnInit() {
+    this.menu$ = of(this.menu);
+  }
 
 
   // UPDATE METHOD WHEN CLICK ON STEP

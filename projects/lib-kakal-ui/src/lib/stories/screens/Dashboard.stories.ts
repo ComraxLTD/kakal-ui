@@ -68,7 +68,6 @@ Dashboard.args = {
       path: 'subdivision',
     }),
   ],
-  width: 50
 };
 
 export const Foresrty = Template.bind({});
@@ -86,5 +85,4 @@ Foresrty.args = {
       path: 'movements',
     }),
   ],
-  width: 50
 };

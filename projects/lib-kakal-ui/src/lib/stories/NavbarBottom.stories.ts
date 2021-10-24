@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { IconComponent } from '../app/components/icon/icon.component';
 import { TypographyComponent } from '../app/components/typography/typography.component';
-import { NavbarBottomComponent } from '../app/components/navigation/navbar-bottom/navbar-bottom.component';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
+import { NavbarBottomComponent } from '../app/components/navbar-bottom/navbar-bottom.component';
 
 export default {
   title: 'NavbarBottom',
