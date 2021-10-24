@@ -1,5 +1,5 @@
 import { Directive, Input, HostBinding } from '@angular/core';
-import { StepVariant, StepType } from '../../components/step/step.model';
+import { StepVariant, StepType } from '../../components/cards/card-step/card-step.model';
 
 @Directive({
   selector: '[appVariant]',
@@ -26,8 +26,10 @@ export class VariantDirective {
         switch (this.type) {
 
           case 'step':
-            this.boxShadow ='0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec';
-            this.background = `linear-gradient(0deg, #eeeeee 0%, #fefefe 100%)`;
+            this.boxShadow =
+              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';
+            this.background = `linear-gradient(
+          0deg, #eeeeee 0%, #fefefe 100%`;
 
             break;
 
@@ -45,9 +47,11 @@ export class VariantDirective {
         switch (this.type) {
 
           case 'step':
-                      this.background = `linear-gradient(0deg, #eeeeee 0%, #fefefe 100%)`;
-
-            break;
+            this.boxShadow =
+              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';
+            this.background = `linear-gradient(
+          0deg, #eeeeee 0%, #fefefe 100%`;
+            break
         }
 
     }

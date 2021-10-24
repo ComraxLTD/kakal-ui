@@ -6,7 +6,7 @@ import {
   ElementRef,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CardStepModel } from '../cards/card-step/card-step.model';
+import { CardStepModel, StepperDirection } from '../cards/card-step/card-step.model';
 
 @Component({
   selector: 'kkl-stepper',
@@ -15,16 +15,12 @@ import { CardStepModel } from '../cards/card-step/card-step.model';
 })
 export class StepperComponent {
 
-  @Input() steps: CardStepModel[];
-
   @Input() steps$: Observable<CardStepModel[]>;
-
-  @Input() direction: string;
+  @Input() direction: StepperDirection;
+  @Input() stepWidth: number;
   @Input() stepRef: ElementRef;
 
   @Output() changStep = new EventEmitter<CardStepModel>();
-
-  constructor() { }
 
   public onStepChange(step: CardStepModel) {
     this.changStep.emit(step);

@@ -13,7 +13,6 @@ import { CardStepComponent } from '../app/components/cards/card-step/card-step.c
 import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
 
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { VariantDirective } from '../app/utilities/directives/variant.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
@@ -36,7 +35,6 @@ export default {
 
         SizeDirective,
         VariantDirective,
-        ClassesDirective,
         ButtonDirective,
         ColorDirective,
       ],

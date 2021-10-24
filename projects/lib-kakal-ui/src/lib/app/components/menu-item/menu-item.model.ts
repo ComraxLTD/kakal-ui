@@ -1,7 +1,9 @@
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ListItem } from '../list-item/list-item.model';
 
+
 export class MenuItemModel implements ListItem {
+
   public key?: string;
   public label?: string;
   public path?: string;
@@ -10,7 +12,7 @@ export class MenuItemModel implements ListItem {
   public size?: number;
   public isActive?: boolean;
 
-  protected $active: BehaviorSubject<boolean>;
+  private active$: BehaviorSubject<boolean>;
 
   constructor(options: {
     label?: string;
@@ -22,15 +24,15 @@ export class MenuItemModel implements ListItem {
     this.path = options?.path;
     this.isActive = options?.isActive || false;
     this.svgUrl = options?.svgUrl || 'arrow_right_alt';
-    this.$active = new BehaviorSubject(this.isActive || false);
+    this.active$ = new BehaviorSubject(this.isActive || false);
   }
 
   public getActiveObs(): Observable<boolean> {
-    return this.$active.asObservable();
+    return this.active$.asObservable();
   }
 
-  private emitActive(state: boolean) {
-    this.$active.next(state);
+  public emitActive(state: boolean) {
+    this.active$.next(state);
   }
 
   public active(): void {

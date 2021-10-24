@@ -5,14 +5,13 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ExpandPanelComponent} from '../app/components/expand-panel/expand-panel.component';
 import { IconComponent } from '../app/components/icon/icon.component';
 import { TypographyComponent } from '../app/components/typography/typography.component';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 
 export default {
   title: 'Expanding Panel',
   component: ExpandPanelComponent,
   decorators: [
     moduleMetadata({
-      declarations: [IconComponent,TypographyComponent,ClassesDirective],
+      declarations: [IconComponent,TypographyComponent],
       imports: [CommonModule, MaterialModule, BrowserAnimationsModule],
     }),
   ],

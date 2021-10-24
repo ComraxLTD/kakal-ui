@@ -1,9 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { CardStepModel } from '../../components/cards/card-step/card-step.model';
-import {
-  StepModel,
-  StepperDirection,
-} from '../../components/step/step.model';
+import { CardStepModel, StepperDirection } from '../../components/cards/card-step/card-step.model';
+
 import { StepperService } from '../../components/stepper/stepper.service';
 
 @Component({
@@ -17,7 +14,7 @@ export class StepperExComponent {
   @Input() public steps: CardStepModel[];
   @Input() public direction: StepperDirection;
 
-  public onStepChange(step: StepModel) {
+  public onStepChange(step: CardStepModel) {
     this.steps = this.stepperService.setSteps(this.steps, 'path', step.path);
   }
 }

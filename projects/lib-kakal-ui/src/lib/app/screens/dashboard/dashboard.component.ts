@@ -11,12 +11,12 @@ import { BreakpointService } from '../../utilities/services/breakpoint.service';
 export class DashboardComponent {
 
   @Input() public prefix: string;
-  @Input() public width: number;
+  @Input() public cols: number;
+  @Input() public rows: number;
   @Input() public moduleTitle: string;
   @Input() public cards: CardDashboardModel[];
-  
+
   public md$: Observable<boolean>;
-  public cols: number;
 
   @Output() cardClick: EventEmitter<string> = new EventEmitter<string>();
 
@@ -26,17 +26,11 @@ export class DashboardComponent {
 
   ngOnInit(): void {
     this.md$ = this.breakpointService.isTablet();
-    this.setCols()
-  }
-
-  private setCols() {
-    this.cols =  (this.cards.length)  <= 3 ? this.cards.length : (this.cards.length / 2)
+    this.cols = this.cols ||  this.cards.length /2
+    this.rows = this.rows || 2
   }
 
   public onCardClick(card) {
-    if (this.prefix) {
-      const path: string = `${this.prefix}/${card.path}`;
-      this.cardClick.emit(path)
-    }
+    this.cardClick.emit(card.path)
   }
 }

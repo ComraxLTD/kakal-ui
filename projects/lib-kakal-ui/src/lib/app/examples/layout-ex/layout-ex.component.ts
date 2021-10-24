@@ -1,11 +1,9 @@
-import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { CardStepModel } from '../../components/cards/card-step/card-step.model';
+import { Component, Input, OnInit } from '@angular/core';
+import { CardStepModel, StepperDirection } from '../../components/cards/card-step/card-step.model';
 import { IconModel } from '../../components/icon/icon.model';
 import { MenuModel } from '../../components/menu/menu.model';
 import { MenuService } from '../../components/menu/menu.service';
 import { NavbarService } from '../../components/navigation/navbar/navbar.service';
-import { StepperDirection } from '../../components/step/step.model';
 import { StepperService } from '../../components/stepper/stepper.service';
 
 @Component({
@@ -48,7 +46,6 @@ export class LayoutExComponent implements OnInit {
 
   ngOnDestroy(): void {
     if (this.status) {
-      console.log(1)
       this.navbarService.emitStatus(this.status);
     }
   }

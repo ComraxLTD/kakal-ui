@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Observable } from 'rxjs';
 import { MenuItemModel } from '../menu-item/menu-item.model';
 import { MenuModel } from './menu.model';
 
@@ -9,8 +10,8 @@ import { MenuModel } from './menu.model';
 })
 export class MenuComponent {
 
-  @Input() public masterPrefix: string
   @Input() public menu: MenuModel[];
+  @Input() public menu$: Observable<MenuModel[]>;
   @Input() public hasLogin: boolean = true
 
   public logoutItem: MenuItemModel = new MenuItemModel({
@@ -19,17 +20,14 @@ export class MenuComponent {
     path: '',
     svgUrl: 'logout',
   });
-
-  @Output() changePath: EventEmitter<{ path: string, link: string }> = new EventEmitter();
+  @Output() changePath: EventEmitter<string> = new EventEmitter();
 
 
   // UPDATE METHOD WHEN CLICK ON STEP
   public onLinkClick(item: MenuItemModel, modulePrefix: string) {
-
     if (!item.isActive) {
-      const url = `${this.masterPrefix}/${modulePrefix}`;
-      const link = item.path !== modulePrefix ? `${url}/${item.path}` : url;
-      this.changePath.emit({ link, path: item.path })
+      const path = item.path === modulePrefix ? item.path : `${modulePrefix}/${item.path}`;
+      this.changePath.emit(path)
     }
   }
 }

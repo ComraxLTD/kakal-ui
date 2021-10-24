@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class NavbarBottomComponent implements OnInit {
 
-  @Input() buttonText: string = '';
+  @Input() text: string = '';
   @Input() hasNext: boolean;
   @Input() hasSave: boolean;
 
@@ -17,8 +17,7 @@ export class NavbarBottomComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public onPrevious(): void {
     this.previous.emit();

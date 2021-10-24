@@ -20,7 +20,6 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { TableComponent } from './components/table/table.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { ClassesDirective } from './utilities/directives/classes.directive';
 import { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';
 import { CardStatusComponent } from './components/cards/card-status/card-status.component';
 import { CardStepComponent } from './components/cards/card-step/card-step.component';
@@ -33,13 +32,11 @@ import { SizeDirective } from './utilities/directives/size.directive';
 import { ButtonDirective } from './utilities/directives/button.directive';
 import { VariantDirective } from './utilities/directives/variant.directive';
 
-import { StepComponent } from './components/step/step.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 
 import { FormComponent } from './components/form/form/form.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { FormGroupComponent } from './components/form/form-group/form-group.component';
-import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
 import { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';
 
 import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
@@ -62,6 +59,8 @@ import { ColumnFormComponent } from './components/columns/column-form/column-for
 import { StatusComponent } from './components/status/status.component';
 import { LayoutComponent } from './screens/layout/layout.component';
 import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
+import { UnderlineDirective } from './utilities/directives/underline.directive';
+import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
 
 @NgModule({
   declarations: [
@@ -92,11 +91,9 @@ import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
     CardUserComponent,
     CardFilterComponent,
 
-    ClassesDirective,
     VariantDirective,
     SizeDirective,
 
-    StepComponent,
     StepperComponent,
 
     MenuComponent,
@@ -108,11 +105,12 @@ import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
 
     ExpandPanelComponent,
 
-    ClassesDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
     VariantDirective,
+    UnderlineDirective,
+
     StatusComponent,
 
     StepperExComponent,

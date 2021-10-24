@@ -2,7 +2,6 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
 import { TypographyComponent } from "../app/components/typography/typography.component";
 import { MaterialModule } from "../material/material.module";
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 
 export default {
   title: 'Typography',
@@ -10,7 +9,7 @@ export default {
 
   decorators: [
     moduleMetadata({
-      declarations: [TypographyComponent, ClassesDirective],
+      declarations: [TypographyComponent],
       imports: [CommonModule, MaterialModule],
     }),
   ],
@@ -27,11 +26,6 @@ Default.args = {
 
 export const Title = Template.bind({});
 Title.args = {
-  size: 16,
+  size: 1.6,
   bold: 600,
-  classes: {
-    fontSize: 16,
-    fontWeight: 600,
-    color: 'primary',
-  }
-};
+  };

@@ -8,12 +8,9 @@ import { CardStatusComponent } from '../app/components/cards/card-status/card-st
 import { IconComponent } from '../app/components/icon/icon.component';
 import { TypographyComponent } from '../app/components/typography/typography.component';
 
-import { StepModel } from '../app/components/step/step.model';
-
 import { SizeDirective } from './../app/utilities/directives/size.directive';
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { NavbarService } from '../app/components/navigation/navbar/navbar.service';
 import { IconModel } from '../app/components/icon/icon.model';
 
@@ -30,7 +27,6 @@ export default {
 
         SizeDirective,
         ColorDirective,
-        ClassesDirective,
         ButtonDirective,
       ],
       providers: [NavbarService],

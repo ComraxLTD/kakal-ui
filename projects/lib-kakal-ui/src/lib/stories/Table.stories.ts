@@ -14,7 +14,6 @@ import { TableComponent } from '../app/components/table/table.component';
 import { TableService } from '../app/components/table/table.service';
 import { TypographyComponent } from '../app/components/typography/typography.component';
 import { TableExComponent } from '../app/examples/table-ex/table-ex.component';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { AssetsModel } from '../app/utilities/models/assets.model';
 import { AreaPipe } from '../app/utilities/pipes/area.pipe';
 import { FormatPipe } from '../app/utilities/pipes/format.pipe';
@@ -33,7 +32,6 @@ export default {
         ColumnFormComponent,
         PaginationComponent,
         TypographyComponent,
-        ClassesDirective,
         FormatPipe,
         AreaPipe,
       ],

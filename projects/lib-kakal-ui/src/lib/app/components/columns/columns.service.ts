@@ -12,6 +12,7 @@ export interface ColumnsData<T> {
 export class ColumnsService<T> {
   constructor() {}
 
+
   private setColumnDefsFromType(model: T): string[] {
     return Object.keys(model);
   }
@@ -65,3 +66,4 @@ export class ColumnsService<T> {
     return { columns, columnsDefs: this.getColumnsDefs(columns, columnsDefs) };
   }
 }
+
