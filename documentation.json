@@ -2511,8 +2511,8 @@
         },
         {
             "name": "NavbarService",
-            "id": "injectable-NavbarService-82c1621cf89487e558f93c19433b1517",
-            "file": "projects/lib-kakal-ui/src/lib/app/components/navbar/navbar.service.ts",
+            "id": "injectable-NavbarService-d5a2a28927c818858027a31d42bbecc2",
+            "file": "projects/lib-kakal-ui/src/lib/app/components/navigation/navbar/navbar.service.ts",
             "properties": [
                 {
                     "name": "headers",
@@ -2601,7 +2601,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2700,7 +2700,7 @@
                     "optional": false,
                     "returnType": "Observable<boolean>",
                     "typeParameters": [],
-                    "line": 56,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2814,7 +2814,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 64,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -2846,7 +2846,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\nimport { mergeAll } from 'rxjs/operators';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class NavbarService {\r\n\r\n\r\n  private headers: { [key: string]: string }\r\n\r\n  private title$: BehaviorSubject<string>;\r\n  private headers$: BehaviorSubject<Observable<string>>;\r\n  private openIcon$: BehaviorSubject<string>;\r\n  private status$: BehaviorSubject<CardStepModel[]>;\r\n  private showStatus$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.title$ = new BehaviorSubject<string>('');\r\n\r\n    this.status$ = new BehaviorSubject<CardStepModel[]>([]);\r\n    this.showStatus$ = new BehaviorSubject<boolean>(false)\r\n  }\r\n\r\n\r\n  public setHeaders(headers: { [key: string]: string }): void {\r\n    this.headers = headers;\r\n  }\r\n\r\n  public setHeadersObs(headers:Observable<string>): void {\r\n    this.headers$ = new BehaviorSubject<Observable<string>>(headers);\r\n  }\r\n\r\n  public getHeadersObs(): Observable<string> {\r\n    return this.headers$.asObservable().pipe(mergeAll())\r\n  }\r\n\r\n  public getTitleObs(): Observable<string> {\r\n    return this.title$.asObservable();\r\n  }\r\n\r\n  public emitTitle(key: string): void {\r\n    this.title$.next(this.headers[key])\r\n  }\r\n\r\n  public getStatusObs(): Observable<CardStepModel[]> {\r\n    return this.status$.asObservable();\r\n  }\r\n\r\n  public emitStatus(value: CardStepModel[]): void {\r\n    this.status$.next(value);\r\n  }\r\n\r\n  public getShowStatusObs(): Observable<boolean> {\r\n    return this.showStatus$.asObservable();\r\n  }\r\n\r\n  public emitShowStatus(value: boolean): void {\r\n    this.showStatus$.next(value);\r\n  }\r\n\r\n  public toggleStatus(show: boolean, status: CardStepModel[]): void {\r\n    show ? this.emitStatus(status) : this.emitStatus([]);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\nimport { CardStepModel } from '../../cards/card-step/card-step.model';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class NavbarService {\r\n  private title$: BehaviorSubject<string>;\r\n  private status$: BehaviorSubject<CardStepModel[]>;\r\n  private showStatus$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.title$ = new BehaviorSubject<string>('');\r\n    this.status$ = new BehaviorSubject<CardStepModel[]>([]);\r\n    this.showStatus$  = new BehaviorSubject<boolean>(true)\r\n  }\r\n\r\n  public getTitleObs(): Observable<string> {\r\n    return this.title$.asObservable();\r\n  }\r\n\r\n  public emitTitle(value: string) {\r\n    return this.title$.next(value);\r\n  }\r\n\r\n  public getStatusObs(): Observable<CardStepModel[]> {\r\n    return this.status$.asObservable();\r\n  }\r\n\r\n  public emitStatus(value: CardStepModel[]): void {\r\n    this.status$.next(value);\r\n  }\r\n\r\n  public getShowStatusObs(): Observable<boolean> {\r\n    return this.showStatus$.asObservable();\r\n  }\r\n\r\n  public emitShowStatus(value: boolean): void {\r\n    this.showStatus$.next(value);\r\n  }\r\n\r\n  public toggleStatus(show: boolean, status: CardStepModel[]): void {\r\n    show ? this.emitStatus(status) : this.emitStatus([]);\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -2859,268 +2859,15 @@
         },
         {
             "name": "RouterService",
-            "id": "injectable-RouterService-8f791ccc36f0c658f7fb851c939b1821",
+            "id": "injectable-RouterService-f3b0b5d47daf78b366c415d4c8c4bc9d",
             "file": "projects/lib-kakal-ui/src/lib/app/utilities/services/route.service.ts",
-            "properties": [
-                {
-                    "name": "currentPath$",
-                    "defaultValue": "new BehaviorSubject('')",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "BehaviorSubject<string>",
-                    "optional": false,
-                    "description": "",
-                    "line": 13,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "currentRoute",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 15,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "history",
-                    "defaultValue": "[]",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string[]",
-                    "optional": false,
-                    "description": "",
-                    "line": 16,
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "modulePrefix$",
-                    "defaultValue": "new BehaviorSubject('')",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "BehaviorSubject<string>",
-                    "optional": false,
-                    "description": "",
-                    "line": 12,
-                    "modifierKind": [
-                        120
-                    ]
-                }
-            ],
-            "methods": [
-                {
-                    "name": "emitModulePrefix",
-                    "args": [
-                        {
-                            "name": "path",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 69,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "path",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "getCurrentPath",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "string",
-                    "typeParameters": [],
-                    "line": 31,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "getLastPathObs",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "Observable<string>",
-                    "typeParameters": [],
-                    "line": 46,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "getModulePrefixObs",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "Observable<string>",
-                    "typeParameters": [],
-                    "line": 65,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "goBack",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 22,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "ListenToRoute",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "Observable<string>",
-                    "typeParameters": [],
-                    "line": 35,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "navigate",
-                    "args": [
-                        {
-                            "name": "path",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "any",
-                    "typeParameters": [],
-                    "line": 52,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122,
-                        129
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "path",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                },
-                {
-                    "name": "setLastPath",
-                    "args": [
-                        {
-                            "name": "url",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": ""
-                        }
-                    ],
-                    "optional": false,
-                    "returnType": "any",
-                    "typeParameters": [],
-                    "line": 60,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ],
-                    "jsdoctags": [
-                        {
-                            "name": "url",
-                            "type": "string",
-                            "deprecated": false,
-                            "deprecationMessage": "",
-                            "tagName": {
-                                "text": "param"
-                            }
-                        }
-                    ]
-                }
-            ],
+            "properties": [],
+            "methods": [],
             "deprecated": false,
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Location } from '@angular/common';\r\nimport { Injectable } from '@angular/core';\r\nimport { NavigationEnd, Router } from '@angular/router';\r\nimport { BehaviorSubject, Observable, Subject } from 'rxjs';\r\nimport { filter, map } from 'rxjs/operators';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class RouterService {\r\n\r\n  private modulePrefix$: BehaviorSubject<string> = new BehaviorSubject('');\r\n  public currentPath$: BehaviorSubject<string> = new BehaviorSubject('');\r\n\r\n  public currentRoute: string;\r\n  public history: string[] = [];\r\n\r\n  constructor(private router: Router, private location: Location) {\r\n    this.ListenToRoute()\r\n  }\r\n\r\n  public goBack() {\r\n    this.history.pop();\r\n    if (this.history.length > 0) {\r\n      this.location.back();\r\n    } else {\r\n      this.router.navigateByUrl('/');\r\n    }\r\n  }\r\n\r\n  public getCurrentPath(): string {\r\n    return this.setLastPath(this.router.url);\r\n  }\r\n\r\n  public ListenToRoute(): Observable<string> {\r\n    return this.router.events.pipe(\r\n      filter((event) => event instanceof NavigationEnd),\r\n      map((event: any) => {\r\n        this.history.push(event.urlAfterRedirects);\r\n        this.currentRoute = event.utl;\r\n        return event.url;\r\n      })\r\n    );\r\n  }\r\n\r\n  public getLastPathObs(): Observable<string> {\r\n    return this.ListenToRoute().pipe(\r\n      map((path: string) => this.setLastPath(path))\r\n    );\r\n  }\r\n\r\n  public async navigate(path: string) {\r\n    try {\r\n      await this.router.navigateByUrl(path);\r\n    } catch (err) {\r\n      console.log(err);\r\n    }\r\n  }\r\n\r\n  public setLastPath(url: string) {\r\n    const path = url.split('/');\r\n    return path[path.length - 1];\r\n  }\r\n\r\n  public getModulePrefixObs(): Observable<string> {\r\n    return this.modulePrefix$.asObservable();\r\n  }\r\n\r\n  public emitModulePrefix(path: string): void {\r\n    this.modulePrefix$.next(path);\r\n  }\r\n}\r\n",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    },
-                    {
-                        "name": "location",
-                        "type": "Location",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 16,
-                "jsdoctags": [
-                    {
-                        "name": "router",
-                        "type": "Router",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    },
-                    {
-                        "name": "location",
-                        "type": "Location",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
-            },
+            "sourceCode": "import { Location } from '@angular/common';\r\nimport { Injectable } from '@angular/core';\r\nimport { NavigationEnd, Router } from '@angular/router';\r\nimport { Observable, Subject } from 'rxjs';\r\nimport { filter, map } from 'rxjs/operators';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class RouterService {\r\n\r\n  // private $modulePrefix: Subject<string> = new Subject();\r\n\r\n  // public currentRoute: string;\r\n  // public history: string[] = [];\r\n\r\n  // constructor(private router: Router, private location: Location) {\r\n  //   this.subscribeToRoute()\r\n  // }\r\n\r\n  // public goBack() {\r\n  //   this.history.pop();\r\n  //   if (this.history.length > 0) {\r\n  //     this.location.back();\r\n  //   } else {\r\n  //     this.router.navigateByUrl('/');\r\n  //   }\r\n  // }\r\n\r\n  // public getCurrentPath(): string {\r\n  //   return this.setLastPath(this.router.url);\r\n  // }\r\n\r\n  // public subscribeToRoute(): Observable<string> {\r\n  //   return this.router.events.pipe(\r\n  //     filter((event) => event instanceof NavigationEnd),\r\n  //     map((event: any) => {\r\n  //       this.history.push(event.urlAfterRedirects);\r\n  //       this.currentRoute = event.utl;\r\n  //       return event.url;\r\n  //     })\r\n  //   );\r\n  // }\r\n\r\n  // public getLastPathObs(): Observable<string> {\r\n  //   return this.subscribeToRoute().pipe(\r\n  //     map((path: string) => this.setLastPath(path))\r\n  //   );\r\n  // }\r\n\r\n  // public async navigate(path: string) {\r\n  //   try {\r\n  //     await this.router.navigateByUrl(path);\r\n  //   } catch (err) {\r\n  //     console.log(err);\r\n  //   }\r\n  // }\r\n\r\n  // public setLastPath(url: string) {\r\n  //   const path = url.split('/');\r\n  //   return path[path.length - 1];\r\n  // }\r\n\r\n  // public getModulePrefixObs(): Observable<string> {\r\n  //   return this.$modulePrefix.asObservable();\r\n  // }\r\n\r\n  // public emitModulePrefix(path: string): void {\r\n  //   this.$modulePrefix.next(path);\r\n  // }\r\n}\r\n",
             "type": "injectable"
         },
         {
@@ -12533,7 +12280,7 @@
         },
         {
             "name": "LayoutExComponent",
-            "id": "component-LayoutExComponent-677f758e0c21bc471105c22b98f9b747",
+            "id": "component-LayoutExComponent-a89ecb2a9bbd9cd3a37d29b750d3f141",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/layout-ex/layout-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12725,7 +12472,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 147,
+                    "line": 80,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12756,7 +12503,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 142,
+                    "line": 77,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12780,7 +12527,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 50,
+                    "line": 74,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12793,7 +12540,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 76,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12806,7 +12553,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 112,
+                    "line": 66,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12819,20 +12566,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 69,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        120
-                    ]
-                },
-                {
-                    "name": "setWizard",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "any",
-                    "typeParameters": [],
-                    "line": 93,
+                    "line": 63,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12845,7 +12579,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 83,
+                    "line": 60,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12860,7 +12594,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Inject, Input, OnInit } from '@angular/core';\r\nimport { Subscription, Observable } from 'rxjs';\r\nimport { distinctUntilChanged, map, switchMap } from 'rxjs/operators';\r\nimport {\r\n  CardStepModel,\r\n  StepperDirection,\r\n} from '../../components/cards/card-step/card-step.model';\r\nimport { IconModel } from '../../components/icon/icon.model';\r\nimport { MenuModel } from '../../components/menu/menu.model';\r\nimport { MenuService } from '../../components/menu/menu.service';\r\nimport { NavbarService } from '../../components/navbar/navbar.service';\r\nimport { LayoutService } from '../../screens/layout/layout.service';\r\nimport { RouterService } from '../../utilities/services/route.service';\r\n\r\n@Component({\r\n  selector: 'app-layout-ex',\r\n  templateUrl: './layout-ex.component.html',\r\n  styleUrls: ['./layout-ex.component.scss'],\r\n})\r\nexport class LayoutExComponent implements OnInit {\r\n  @Input() public projectPrefix: string = '';\r\n  @Input() public logos: IconModel[];\r\n  @Input() public status: CardStepModel[];\r\n  @Input() public steps: CardStepModel[];\r\n  @Input() public menu: MenuModel[];\r\n\r\n  private pathSubscription: Subscription;\r\n\r\n  // NAVBAR SECTION\r\n  private headers = { lands: 'מקרקעין', neches: 'מנהלת ספר נכסים' };\r\n  public openIcon: string = 'treegradientlands';\r\n  public showStatusPath: string[] = [this.projectPrefix, 'neches'];\r\n\r\n  // WIZARD SECTION\r\n  public steps$: Observable<CardStepModel[]>;\r\n  public direction: StepperDirection = 'column';\r\n  public hideWizardPath: string[] = ['results', this.projectPrefix];\r\n\r\n  // MENU SECTION\r\n  public menu$: Observable<MenuModel[]>;\r\n\r\n  constructor(\r\n    private menuService: MenuService,\r\n    private navbarService: NavbarService,\r\n    private layoutService: LayoutService,\r\n    private routerService: RouterService\r\n  ) {}\r\n\r\n  // ROUTE METHODS SECTION\r\n  private setCurrentPath() {\r\n    const path = this.routerService.getCurrentPath();\r\n    this.layoutService.emitCurrentPath(path);\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.setCurrentPath();\r\n    this.setNavbar();\r\n    this.steps$ = this.setWizard();\r\n    this.menu$ = this.setMenu();\r\n    this.subscribeToRouter();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    if (this.pathSubscription) {\r\n      this.pathSubscription.unsubscribe();\r\n    }\r\n  }\r\n\r\n  private setNavbar() {\r\n    this.navbarService.setHeaders(this.headers);\r\n    this.navbarService.emitStatus(this.status);\r\n    this.navbarService.setHeadersObs(this.setHeaders());\r\n    this.logos = this.logos;\r\n  }\r\n\r\n  private setHeaders() {\r\n    return this.routerService.getModulePrefixObs().pipe(\r\n      distinctUntilChanged(),\r\n      map((path: string) => this.headers[path])\r\n    );\r\n  }\r\n\r\n  private subscribeToRouter() {\r\n    this.pathSubscription = this.routerService\r\n      .getLastPathObs()\r\n      .subscribe((path: string) => {\r\n        path === this.projectPrefix && this.navbarService.emitTitle(path);\r\n        this.layoutService.emitCurrentPath(path);\r\n        this.routerService.currentPath$.next(path);\r\n      });\r\n  }\r\n\r\n  private setWizard() {\r\n    return this.routerService.getModulePrefixObs().pipe(\r\n      map((path: string) => {\r\n        const steps = this.steps;\r\n\r\n        steps.map((step) => {\r\n          if (step.isActive) {\r\n            step.unactive();\r\n          }\r\n          if (step.path === path) {\r\n            step.active();\r\n          }\r\n        });\r\n\r\n        return steps;\r\n      })\r\n    );\r\n  }\r\n\r\n  private setMenu() {\r\n    const modulePath$ = this.routerService.getModulePrefixObs();\r\n    const lastPath$ = this.layoutService.getCurrentPathObs();\r\n\r\n    return modulePath$.pipe(\r\n      switchMap((modulePath: string) => {\r\n        return lastPath$.pipe(\r\n          map((path: string) => {\r\n            const menu = this.menuService.setMenu(\r\n              this.menu,\r\n              modulePath,\r\n              'path',\r\n              path\r\n            );\r\n            return menu;\r\n          })\r\n        );\r\n      })\r\n    );\r\n\r\n    // return path$.pipe(\r\n    //   // distinctUntilChanged(),\r\n    //   map((path: string) => {\r\n    //     console.log(path)\r\n    //     return this.menuService.setList(this.menuService.getMenu(), 'path', path);\r\n\r\n    //   })\r\n    // )\r\n  }\r\n\r\n  public onChangeModule(step: CardStepModel) {\r\n    const path: string = `${this.projectPrefix}/${step.path}`;\r\n    this.routerService.navigate(path);\r\n  }\r\n\r\n  public onChangeMenu(path: string) {\r\n    path = `${this.projectPrefix}/${path}`;\r\n    this.routerService.navigate(path);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Inject, Input, OnInit } from '@angular/core';\r\nimport { Subscription } from 'rxjs';\r\nimport { CardStepModel } from '../../components/cards/card-step/card-step.model';\r\nimport { IconModel } from '../../components/icon/icon.model';\r\nimport { MenuModel } from '../../components/menu/menu.model';\r\nimport { MenuService } from '../../components/menu/menu.service';\r\nimport { NavbarService } from '../../components/navigation/navbar/navbar.service';\r\nimport { StepperDirection } from '../../components/step/step.model';\r\nimport { StepperService } from '../../components/stepper/stepper.service';\r\n\r\n@Component({\r\n  selector: 'kkl-layout-ex',\r\n  templateUrl: './layout-ex.component.html',\r\n  styleUrls: ['./layout-ex.component.scss']\r\n})\r\nexport class LayoutExComponent implements OnInit {\r\n\r\n  // NAVBAR DATA SECTION\r\n\r\n  // uniqu gradient icon per project\r\n  @Input() public openIcon: string;\r\n\r\n  @Input() public logos: IconModel[];\r\n  @Input() public showStatusPath: string[] = [];\r\n  @Input() public prefix: string;\r\n  @Input() public status: CardStepModel[];\r\n\r\n  // WIZARD SECTION\r\n  @Input() public steps: CardStepModel[];\r\n  @Input() public direction: StepperDirection = 'column';\r\n  @Input() public hideWizardPath: string[] = [];\r\n\r\n  // MENU SECTION\r\n  @Input() public menu: MenuModel[];\r\n\r\n  constructor(\r\n    private stepperService: StepperService,\r\n    private menuService: MenuService,\r\n    private navbarService: NavbarService,\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.subscribeToModulePrefix();\r\n    this.subscribeToRouter();\r\n    this.setProps();\r\n\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    if (this.status) {\r\n      this.navbarService.emitStatus(this.status);\r\n    }\r\n  }\r\n\r\n  // SET PROPS METHOD\r\n  private setProps() {\r\n\r\n  }\r\n\r\n  private subscribeToRouter() {\r\n  }\r\n\r\n  private subscribeToModulePrefix() {\r\n  }\r\n\r\n  private setSteps(modulePrefix: string) {\r\n    this.steps = this.stepperService.setSteps(\r\n      this.steps,\r\n      'path',\r\n      modulePrefix\r\n    );\r\n  }\r\n\r\n  private setMenu(path: string) {\r\n  }\r\n\r\n  public onChangeStep(step: CardStepModel) {\r\n  }\r\n\r\n  public onChangePath(data: { link: string, path: string }) {\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -14858,13 +14592,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-9cd7affe3220b45d491dba8c9813ec21",
+            "id": "module-AppModule-3a192c3722189a3dc9fcc1dfb42cc566",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent,\r\n    LayoutExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { NavbarComponent } from './components/navigation/navbar/navbar.component';\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { ClassesDirective } from './utilities/directives/classes.directive';\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepComponent } from './components/step/step.component';\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\nimport { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    ClassesDirective,\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepComponent,\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ClassesDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent,\r\n    LayoutExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -15020,42 +14754,6 @@
                             "name": "AppComponent"
                         }
                     ]
-                },
-                {
-                    "type": "classes",
-                    "elements": []
-                }
-            ]
-        },
-        {
-            "name": "AppRoutingModule",
-            "id": "module-AppRoutingModule-8166d7aeda5fb8390bdd708443a771a8",
-            "description": "",
-            "deprecationMessage": "",
-            "deprecated": false,
-            "file": "projects/lib-kakal-ui/src/lib/app/app-routing.module.ts",
-            "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { RouterModule } from '@angular/router';\r\n\r\n\r\n@NgModule({\r\n  exports: [RouterModule],\r\n})\r\nexport class AppRoutingModule {}\r\n",
-            "children": [
-                {
-                    "type": "providers",
-                    "elements": []
-                },
-                {
-                    "type": "declarations",
-                    "elements": []
-                },
-                {
-                    "type": "imports",
-                    "elements": []
-                },
-                {
-                    "type": "exports",
-                    "elements": []
-                },
-                {
-                    "type": "bootstrap",
-                    "elements": []
                 },
                 {
                     "type": "classes",
@@ -15376,7 +15074,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15406,27 +15104,27 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15506,21 +15204,21 @@
                 "name": "environment",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/environments/environment.prod.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  production: true\r\n}"
-            },
-            {
-                "name": "environment",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/environments/environment.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
                 "defaultValue": "{\r\n  production: false\r\n}"
+            },
+            {
+                "name": "environment",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/environments/environment.prod.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  production: true\r\n}"
             },
             {
                 "name": "EVALUATION_ICON",
@@ -15954,6 +15652,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -15977,18 +15685,8 @@
                 "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ExpandPanelComponent>",
-                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FiltersExComponent>",
-                "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
+                "type": "Story<FormExComponent>",
+                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16004,21 +15702,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<InputExComponent>",
-                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<FiltersExComponent>",
+                "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                "type": "Story<InputExComponent>",
+                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16034,16 +15732,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16054,11 +15742,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<NavbarComponent>",
-                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16079,6 +15767,26 @@
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<StepperExComponent>",
+                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarComponent>",
+                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17297,51 +17005,7 @@
                     "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts": [
+                    "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
@@ -17361,60 +17025,6 @@
                     "deprecationMessage": "",
                     "type": "Story<MenuComponent>",
                     "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<NavbarComponent>",
-                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Save",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<NavbarBottomComponent>",
-                    "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
@@ -17437,6 +17047,50 @@
                     "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/step.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<StepComponent>",
+                    "defaultValue": "(args: StepComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavbarComponent>",
+                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts": [
@@ -17586,18 +17240,6 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/environments/environment.prod.ts": [
-                {
-                    "name": "environment",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/environments/environment.prod.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  production: true\r\n}"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/environments/environment.ts": [
                 {
                     "name": "environment",
@@ -17608,6 +17250,18 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  production: false\r\n}"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/environments/environment.prod.ts": [
+                {
+                    "name": "environment",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/environments/environment.prod.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  production: true\r\n}"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts": [
@@ -19366,7 +19020,7 @@
                 "linktype": "injectable",
                 "name": "RouterService",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {
