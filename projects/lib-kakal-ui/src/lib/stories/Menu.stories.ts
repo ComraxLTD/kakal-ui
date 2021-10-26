@@ -9,7 +9,6 @@ import { CardUserComponent } from '../app/components/cards/card-user/card-user.c
 import { MenuItemComponent } from '../app/components/menu-item/menu-item.component';
 import { IconComponent } from '../app/components/icon/icon.component';
 
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
@@ -25,7 +24,7 @@ export default {
         TypographyComponent,
         IconComponent,
 
-        SizeDirective, ColorDirective, ClassesDirective, ButtonDirective],
+        SizeDirective, ColorDirective, ButtonDirective],
       providers: [],
       imports: [
         CommonModule,

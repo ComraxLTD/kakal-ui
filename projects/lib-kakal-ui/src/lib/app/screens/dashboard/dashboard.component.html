@@ -1,30 +1,16 @@
-<div fxLayout="column" fxLayoutAlign="center center">
-  <div
-    class="container"
-    fxLayout="column"
-    fxLayoutAlign="center center"
-    [ngStyle]="{ 'width.rem': width || 80 }"
-  >
-    <div fxFlex="8" *ngIf="moduleTitle">
-      <kkl-typography [bold]="600" [size]="3">{{ moduleTitle }}</kkl-typography>
+<div fxLayout="column" fxLayoutAlign="center center" dir="rtl">
+  <div fxLayout="row">
+    <div class="container" fxLayout="column" fxLayoutAlign="center center"
+      [fxFlex]="(((md$ | async) ? 16 : 24) * cols) + 'rem'">
+      <div [fxFlex]="'8rem'">
+        <kkl-typography [bold]="600" [size]="3">{{ moduleTitle }}</kkl-typography>
+      </div>
+      <div fxLayout="row wrap" [fxFlex]="(((md$ | async) ? 16 : 24) * rows) + 'rem'">
+        <div class="card" *ngFor="let card of cards; let i = index" appSize [size]="((md$ | async) ? 16 : 24)"
+          (click)="onCardClick(card)">
+          <kkl-card-dashboard [card]="card"> </kkl-card-dashboard>
+        </div>
+      </div>
     </div>
-    <mat-grid-list
-      [cols]="cols"
-      [rowHeight]="((md$ | async) ? 16 : 24) + 'rem'"
-      gutterSize="4rem"
-      [dir]="'rtl'"
-    >
-      <ng-container *ngFor="let card of cards; let i = index">
-        <mat-grid-tile>
-          <div
-            appSize
-            [size]="(md$ | async) ? 16 : 24"
-            (click)="onCardClick(card)"
-          >
-            <kkl-card-dashboard [card]="card"> </kkl-card-dashboard>
-          </div>
-        </mat-grid-tile>
-      </ng-container>
-    </mat-grid-list>
   </div>
 </div>

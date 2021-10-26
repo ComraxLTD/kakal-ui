@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'kkl-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })

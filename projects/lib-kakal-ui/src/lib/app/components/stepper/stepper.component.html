@@ -1,6 +1,6 @@
 <div [fxLayout]="direction" class="steps-container" fxLayoutAlign="center center">
-  <ng-container *ngFor="let step of steps; let i = index" dir="rtl">
-    <div appButton appSize [divider]="3" [type]="step.type">
+  <ng-container *ngFor="let step of (steps$  |async); let i = index">
+    <div appSize [space]="stepWidth" [type]="step.type">
       <ng-container *ngIf="!stepRef">
         <ng-container [ngSwitch]="step.type">
           <ng-container *ngSwitchCase="'step'">
@@ -13,6 +13,7 @@
             <kkl-card-status [status]="step"></kkl-card-status>
           </ng-container>
         </ng-container>
+        <ng-content></ng-content>
       </ng-container>
 
       <ng-container *ngTemplateOutlet="stepRef; context: { step: this.step }">

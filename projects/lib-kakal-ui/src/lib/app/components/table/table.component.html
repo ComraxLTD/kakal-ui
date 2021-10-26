@@ -35,10 +35,10 @@
           </ng-container>
 
           <!-- FILTER HEADER -->
-          <app-column-filter
+          <kkl-column-filter
             *ngIf="column.filterable"
             [column]="column"
-          ></app-column-filter>
+          ></kkl-column-filter>
         </mat-header-cell>
       </ng-container>
 
@@ -99,11 +99,11 @@
           <ng-container [ngSwitch]="column.type">
             <ng-container *ngSwitchDefault>
               <div class="cell-input">
-                <app-column-form
+                <kkl-column-form
                   *ngIf="column?.question"
                   [control]="cell.formGroup.controls[column.columnDef]"
                   [question]="column?.question"
-                ></app-column-form>
+                ></kkl-column-form>
               </div>
             </ng-container>
             <ng-container *ngSwitchCase="'actions'">
@@ -131,5 +131,5 @@
     ></mat-row>
   </mat-table>
 
-  <app-pagination [pagination]="pagination"></app-pagination>
+  <kkl-pagination [pagination]="pagination"></kkl-pagination>
 </div>

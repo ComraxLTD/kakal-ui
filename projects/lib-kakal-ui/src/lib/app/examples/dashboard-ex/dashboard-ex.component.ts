@@ -9,7 +9,6 @@ import { CardDashboardModel } from '../../components/cards/card-dashboard/card-d
 export class DashboardExComponent implements OnInit {
 
   @Input() public cards: CardDashboardModel[];
-  @Input() public width: number;
   @Input() public moduleTitle: string;
 
   constructor() { }

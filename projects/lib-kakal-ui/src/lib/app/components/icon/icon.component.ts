@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable, BehaviorSubject, Subscription } from 'rxjs';
-import { Palette } from '../../../styles/theme';
+import { Color, palette, Palette } from '../../../styles/theme';
 import { IconType } from './icon.model';
 import { IconsService } from './icons.service';
 
@@ -10,34 +10,34 @@ import { IconsService } from './icons.service';
   styleUrls: ['./icon.component.scss'],
 })
 export class IconComponent implements OnInit {
+
+
+  public palette: Color = palette;
+
   @Input() public key: string;
-  @Input() public type: IconType;
+  @Input() public type: IconType
   @Input() public size: number;
 
   @Input() public color: Palette;
   @Input() public activeColor: Palette;
 
-  @Input() public active$: Observable<boolean>;
-
   @Input() public backgroundColor: Palette;
 
   public scale: string;
-  public color$: BehaviorSubject<Palette>;
 
-  private subscription: Subscription;
+  private subscription: Subscription
 
-  constructor(private iconsService: IconsService) {}
+  constructor(private iconsService: IconsService) { }
 
   ngOnInit(): void {
     this.setIcon();
-    this.setColor();
     this.setSize();
-    this.subscribeToActive();
+    this.color = this.color || 'default'
   }
 
   ngOnDestroy(): void {
     if (this.subscription) {
-      this.subscription.unsubscribe();
+      this.subscription.unsubscribe()
     }
   }
 
@@ -50,21 +50,12 @@ export class IconComponent implements OnInit {
     }
   }
 
-  private setColor() {
-    this.color$ = new BehaviorSubject<Palette>(this.color || 'default');
-  }
+
 
   private setSize() {
+    this.size = this.size;
     this.scale = `scale(${this.size || 1})`;
   }
 
-  private subscribeToActive() {
-    if (this.active$) {
-      this.subscription = this.active$.subscribe((active: boolean) => {
-        active
-          ? this.color$.next(this.activeColor || 'paper')
-          : this.color$.next(this.color);
-      });
-    }
-  }
+
 }

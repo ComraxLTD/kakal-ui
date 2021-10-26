@@ -8,14 +8,9 @@ import { ListItemKeys } from '../list-item/list-item.model';
 })
 export class MenuService {
 
-  private menu: MenuModel[]
   private modulePrefix: string;
 
-  constructor() {}
-
-  public getMenu() {
-    return [...this.menu];
-  }
+  constructor() { }
 
   public getPrefix(): string {
     return this.modulePrefix;
@@ -58,18 +53,30 @@ export class MenuService {
     value: string
   ): MenuModel[] {
     const updateMenu = [...menu];
-
     updateMenu.find((list) => {
+      console.log(this.modulePrefix)
       if (list.prefix === this.modulePrefix) {
         list.links = this.setSteps(list.links, key, value);
       }
     });
     return updateMenu;
   }
+  public setMenu(
+    menu: MenuModel[],
+    modulePrefix: string,
+    key: ListItemKeys,
+    value: string,
+  ): MenuModel[] {
+    const updateMenu = [...menu];
+    updateMenu.find((list) => {
+      if (list.prefix === modulePrefix) {
+        list.links = this.setSteps(list.links, key, value);
+      }
+    });
+    return updateMenu;
+  }
 
-  public findList(key: string, value: string): MenuModel {
-    return {
-      ...this.getMenu().find((list: MenuModel) => list[key] === value),
-    };
+  public findList(menu : MenuModel[], key: string, value: string): MenuModel {
+    return menu.find((list: MenuModel) => list[key] === value);
   }
 }
