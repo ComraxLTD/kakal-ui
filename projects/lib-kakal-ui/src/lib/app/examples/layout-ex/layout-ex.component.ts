@@ -48,7 +48,6 @@ export class LayoutExComponent implements OnInit {
 
   ngOnDestroy(): void {
     if (this.status) {
-      console.log(1)
       this.navbarService.emitStatus(this.status);
     }
   }
