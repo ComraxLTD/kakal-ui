@@ -29,7 +29,6 @@ export class NavbarService {
   }
 
   public emitStatus(value: CardStepModel[]): void {
-    console.log(value)
     this.status$.next(value);
   }
 
