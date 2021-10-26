@@ -1,6 +1,5 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { APP_BASE_HREF, CommonModule } from '@angular/common';
-import { AppRoutingModule } from '../app/app-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 

@@ -3,7 +3,6 @@ import { APP_BASE_HREF, CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { TypographyComponent } from '../app/components/typography/typography.component';
 import { IconComponent } from '../app/components/icon/icon.component';
-import { AppRoutingModule } from '../app/app-routing.module';
 import { CardDashboardComponent } from '../app/components/cards/card-dashboard/card-dashboard.component';
 
 export default {
@@ -13,7 +12,7 @@ export default {
     moduleMetadata({
       declarations: [TypographyComponent, IconComponent],
       providers: [{ provide: APP_BASE_HREF, useValue: '/' }],
-      imports: [CommonModule, MaterialModule, AppRoutingModule],
+      imports: [CommonModule, MaterialModule],
     }),
   ],
 } as Meta;
