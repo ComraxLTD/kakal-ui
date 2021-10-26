@@ -5,8 +5,8 @@
     "types": []
   },
   "files": [
-    "src/main.ts",
-    "src/polyfills.ts"
+    "projects/lib-kakal-ui/src/lib/main.ts",
+    "projects/lib-kakal-ui/src/lib/polyfills.ts"
   ],
   "include": [
     "src/**/*.d.ts"

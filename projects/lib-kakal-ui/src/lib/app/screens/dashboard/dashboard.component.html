@@ -1,0 +1,30 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div
+    class="container"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    [ngStyle]="{ 'width.rem': width || 80 }"
+  >
+    <div fxFlex="8" *ngIf="moduleTitle">
+      <kkl-typography [bold]="600" [size]="3">{{ moduleTitle }}</kkl-typography>
+    </div>
+    <mat-grid-list
+      [cols]="cols"
+      [rowHeight]="((md$ | async) ? 16 : 24) + 'rem'"
+      gutterSize="4rem"
+      [dir]="'rtl'"
+    >
+      <ng-container *ngFor="let card of cards; let i = index">
+        <mat-grid-tile>
+          <div
+            appSize
+            [size]="(md$ | async) ? 16 : 24"
+            (click)="onCardClick(card)"
+          >
+            <kkl-card-dashboard [card]="card"> </kkl-card-dashboard>
+          </div>
+        </mat-grid-tile>
+      </ng-container>
+    </mat-grid-list>
+  </div>
+</div>

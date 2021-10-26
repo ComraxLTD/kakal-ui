@@ -1,0 +1,19 @@
+<mat-form-field  [appearance]="disabled ? 'fill' : 'outline'">
+  <mat-label>{{ label }}</mat-label>
+
+  <input
+    type="text"
+    matInput
+    [formControl]="control"
+    [matAutocomplete]="auto"
+  />
+  <mat-autocomplete
+    autoActiveFirstOption
+    #auto="matAutocomplete"
+    (optionSelected)="onOptionSelected($event)"
+  >
+    <mat-option *ngFor="let option of options" [value]="option.value">
+      {{ option.key }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>
