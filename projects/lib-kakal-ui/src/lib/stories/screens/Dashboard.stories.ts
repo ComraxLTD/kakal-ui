@@ -5,7 +5,6 @@ import { MaterialModule } from '../../material/material.module';
 
 import { SizeDirective } from '../../app/utilities/directives/size.directive';
 import { IconComponent } from '../../app/components/icon/icon.component';
-import { ClassesDirective } from '../../app/utilities/directives/classes.directive';
 import { VariantDirective } from '../../app/utilities/directives/variant.directive';
 import { TypographyComponent } from '../../app/components/typography/typography.component';
 import { ButtonDirective } from '../../app/utilities/directives/button.directive';
@@ -30,7 +29,6 @@ export default {
 
         SizeDirective,
         VariantDirective,
-        ClassesDirective,
         ButtonDirective,
         ColorDirective,
       ],
@@ -70,7 +68,6 @@ Dashboard.args = {
       path: 'subdivision',
     }),
   ],
-  width: 50
 };
 
 export const Foresrty = Template.bind({});
@@ -88,5 +85,4 @@ Foresrty.args = {
       path: 'movements',
     }),
   ],
-  width: 50
 };

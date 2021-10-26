@@ -1,28 +1,32 @@
 @import "../../../styles/styles";
 
-.pagination {
 
-  height: 5vh;
+.pagination {
+  font-size: 1.4rem !important;
+  height: 4rem;
 
   ::ng-deep .ngx-pagination .current,
   .btn-info {
     background-color: transparent !important;
     border: 2px solid color(primary) !important;
     font-weight: 550;
+    font-size: 1.4rem !important;
     color: color(primary) !important;
     border-radius: 5px !important;
   }
 
   ::ng-deep li.pagination-next>a,
   ::ng-deep li.pagination-previous>a {
+    font-size: 1.4rem !important;
     color: color(primary) !important;
   }
 
-  ::ng-deep .pagination-next  {
+  ::ng-deep .pagination-next {
+    font-size: 1.4rem !important;
     padding-left: spacing(5) !important;
   }
 
-  ::ng-deep .pagination-previous  {
+  ::ng-deep .pagination-previous {
     padding-right: spacing(5) !important;
   }
 

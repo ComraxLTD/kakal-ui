@@ -1,7 +1,7 @@
-import { ElementRef } from '@angular/core';
 import { SelectOption } from '../form/models/question-select.model';
-import { ControlType } from '../form/models/question.model';
+import { ElementRef } from '@angular/core';
 import { Question } from '../form/services/form.service';
+import { ControlType } from '../form/models/question.model';
 
 export declare type SortDir = 'desc' | 'asc';
 
@@ -16,7 +16,6 @@ export declare type ColumnType =
 export class ColumnModel {
   public columnDef?: any;
   public label?: string;
-  public cell?: (element) => string;
   public type?: ColumnType;
   public control?: ControlType;
   public question?: Question;
@@ -28,11 +27,9 @@ export class ColumnModel {
   public filterable?: boolean;
   public filterOptions?: SelectOption[];
 
-
   constructor(options?: {
     columnDef?: string;
     label?: string;
-    cell?: (element) => string;
     type?: ColumnType;
     control?: ControlType;
     question?: Question;
@@ -47,7 +44,6 @@ export class ColumnModel {
     this.columnDef = options?.columnDef || '';
     this.label = options?.label || '';
     this.type = options?.type || 'text';
-    this.cell = (element) => `${element[this.columnDef]}`;
     this.control = options?.control;
     this.question = options?.question;
     this.slotRef = options?.slotRef || null;

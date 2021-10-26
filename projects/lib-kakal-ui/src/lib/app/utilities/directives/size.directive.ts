@@ -1,15 +1,18 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding, Input, OnDestroy, OnInit } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { StepType } from '../../components/step/step.model';
+import { StepType } from '../../components/cards/card-step/card-step.model';
 import { BreakpointService } from '../services/breakpoint.service';
 
 @Directive({
   selector: '[appSize]',
 })
-export class SizeDirective {
+export class SizeDirective implements OnInit, OnDestroy {
+
   @Input() size: number;
   @Input() type: StepType;
   @Input() divider: number;
+  @Input() space: number;
+
   private tablet$: Observable<boolean>;
 
   private subscription: Subscription;
@@ -18,7 +21,6 @@ export class SizeDirective {
   @HostBinding('style.width') public width: string;
 
   constructor(private breakpointService: BreakpointService) {}
-
 
   ngOnInit(): void {
     this.setSize();
@@ -31,13 +33,14 @@ export class SizeDirective {
   }
 
   private setSize() {
+
     switch (this.type) {
       case 'wizard':
         this.width = '6rem';
         this.height = '7.5rem';
         break;
       case 'status':
-        this.width = `${6 * (this.divider || 1)}rem`;
+        this.width = `${6 * (this.space || 1)}rem`;;
         this.height = `6rem`;
         break;
       case 'step':

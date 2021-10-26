@@ -5,7 +5,7 @@ import { QuestionBase } from '../../form/services/form.service';
 import { MessageService } from '../../form/services/message.service';
 
 @Component({
-  selector: 'app-column-form',
+  selector: 'kkl-column-form',
   templateUrl: './column-form.component.html',
   styleUrls: ['./column-form.component.scss']
 })

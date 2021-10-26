@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { StepModel } from '../../step/step.model';
+import { CardStepModel } from '../card-step/card-step.model';
 
 @Component({
   selector: 'kkl-card-status',
@@ -8,7 +8,7 @@ import { StepModel } from '../../step/step.model';
 })
 export class CardStatusComponent  {
 
-  @Input() public status: StepModel;
+  @Input() public status: CardStepModel;
 
   constructor() {}
 }
