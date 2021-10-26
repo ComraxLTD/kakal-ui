@@ -16060,16 +16060,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16080,7 +16070,17 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16190,7 +16190,7 @@
                 "name": "Filters",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16588,21 +16588,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Card.Dashboardstories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CardDashboardComponent>",
                 "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16638,7 +16638,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FiltersExComponent>",
@@ -16708,16 +16708,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16728,7 +16718,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<StepComponent>",
@@ -16768,21 +16768,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<DashboardExComponent>",
-                "defaultValue": "(args: DashboardExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<LayoutExComponent>",
                 "defaultValue": "(args: LayoutExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<DashboardExComponent>",
+                "defaultValue": "(args: DashboardExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18082,28 +18082,6 @@
                     "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
                 {
                     "name": "Default",
@@ -18136,12 +18114,12 @@
                     "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -18151,7 +18129,29 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/step.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<StepComponent>",
@@ -18329,12 +18329,12 @@
                     "defaultValue": "{\r\n  production: false\r\n}"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts": [
                 {
                     "name": "Filters",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -18344,7 +18344,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FiltersExComponent>",
@@ -20373,26 +20373,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Filters",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -20603,26 +20583,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Default",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/lib-kakal-ui/src/lib/stories/Step.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -20742,6 +20702,26 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Filters",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -20833,6 +20813,26 @@
             },
             {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/step.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
