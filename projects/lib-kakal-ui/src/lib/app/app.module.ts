@@ -124,7 +124,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
