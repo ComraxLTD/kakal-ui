@@ -70,7 +70,6 @@ export default {
       imports: [
         CommonModule,
         MaterialModule,
-        AppRoutingModule,
         BrowserAnimationsModule,
         CoreModule
       ],
