@@ -15436,7 +15436,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15446,7 +15446,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16094,21 +16094,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<TableExComponent<any>>",
-                "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
                 "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<kkl-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </kkl-typography>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TableExComponent<any>>",
+                "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17439,6 +17439,38 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TypographyComponent>",
+                    "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<kkl-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </kkl-typography>`\r\n})"
+                },
+                {
+                    "name": "Title",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts": [
                 {
                     "name": "Default",
@@ -17478,38 +17510,6 @@
                     "deprecationMessage": "",
                     "type": "object",
                     "defaultValue": "{\r\n  data: [\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 10,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'שוריין ע\"י פיננסים',\r\n        value: 5,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 24,\r\n      block: 24,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לרו\"ח',\r\n        value: 3,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 54,\r\n      subdivision: 0,\r\n      area: 1037,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'התקבלה עסקה חדשה',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 680,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לפיננסים',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: 'number' }),\r\n    new ColumnModel({ label: 'חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'תת חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),\r\n    new ColumnModel({ label: 'זכות במס', type: 'text' }),\r\n    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: 'text' }),\r\n    new ColumnModel({ label: 'יישוב', type: 'text' }),\r\n  ],\r\n  options: {\r\n    pagination: pagination,\r\n    filters: ['id', '_constructor-name_'],\r\n  },\r\n}"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<TypographyComponent>",
-                    "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<kkl-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </kkl-typography>`\r\n})"
-                },
-                {
-                    "name": "Title",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts": [
