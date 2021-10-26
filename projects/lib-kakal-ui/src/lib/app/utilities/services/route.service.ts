@@ -8,63 +8,64 @@ import { filter, map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class RouterService {
-  private $modulePrefix: Subject<string> = new Subject();
 
-  public currentRoute: string;
-  public history: string[] = [];
+  // private $modulePrefix: Subject<string> = new Subject();
 
-  constructor(private router: Router, private location: Location) {
-    this.subscribeToRoute()
-  }
+  // public currentRoute: string;
+  // public history: string[] = [];
 
-  public goBack() {
-    this.history.pop();
-    if (this.history.length > 0) {
-      this.location.back();
-    } else {
-      this.router.navigateByUrl('/');
-    }
-  }
+  // constructor(private router: Router, private location: Location) {
+  //   this.subscribeToRoute()
+  // }
 
-  public getCurrentPath(): string {
-    return this.setLastPath(this.router.url);
-  }
+  // public goBack() {
+  //   this.history.pop();
+  //   if (this.history.length > 0) {
+  //     this.location.back();
+  //   } else {
+  //     this.router.navigateByUrl('/');
+  //   }
+  // }
 
-  public subscribeToRoute(): Observable<string> {
-    return this.router.events.pipe(
-      filter((event) => event instanceof NavigationEnd),
-      map((event: any) => {
-        this.history.push(event.urlAfterRedirects);
-        this.currentRoute = event.utl;
-        return event.url;
-      })
-    );
-  }
+  // public getCurrentPath(): string {
+  //   return this.setLastPath(this.router.url);
+  // }
 
-  public getLastPathObs(): Observable<string> {
-    return this.subscribeToRoute().pipe(
-      map((path: string) => this.setLastPath(path))
-    );
-  }
+  // public subscribeToRoute(): Observable<string> {
+  //   return this.router.events.pipe(
+  //     filter((event) => event instanceof NavigationEnd),
+  //     map((event: any) => {
+  //       this.history.push(event.urlAfterRedirects);
+  //       this.currentRoute = event.utl;
+  //       return event.url;
+  //     })
+  //   );
+  // }
 
-  public async navigate(path: string) {
-    try {
-      await this.router.navigateByUrl(path);
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  // public getLastPathObs(): Observable<string> {
+  //   return this.subscribeToRoute().pipe(
+  //     map((path: string) => this.setLastPath(path))
+  //   );
+  // }
 
-  public setLastPath(url: string) {
-    const path = url.split('/');
-    return path[path.length - 1];
-  }
+  // public async navigate(path: string) {
+  //   try {
+  //     await this.router.navigateByUrl(path);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // }
 
-  public getModulePrefixObs(): Observable<string> {
-    return this.$modulePrefix.asObservable();
-  }
+  // public setLastPath(url: string) {
+  //   const path = url.split('/');
+  //   return path[path.length - 1];
+  // }
 
-  public emitModulePrefix(path: string): void {
-    this.$modulePrefix.next(path);
-  }
+  // public getModulePrefixObs(): Observable<string> {
+  //   return this.$modulePrefix.asObservable();
+  // }
+
+  // public emitModulePrefix(path: string): void {
+  //   this.$modulePrefix.next(path);
+  // }
 }
