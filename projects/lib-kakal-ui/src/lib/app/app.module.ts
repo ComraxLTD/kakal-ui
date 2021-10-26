@@ -126,7 +126,6 @@ import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
