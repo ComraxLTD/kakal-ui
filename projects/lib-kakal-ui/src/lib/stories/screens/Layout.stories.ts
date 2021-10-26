@@ -28,7 +28,6 @@ import { NavbarComponent } from '../../app/components/navbar/navbar.component';
 import { NavbarService } from '../../app/components/navbar/navbar.service';
 import { RouterService } from '../../app/utilities/services/route.service';
 import { CoreModule } from '@angular/flex-layout';
-import { AppRoutingModule } from '../../app/app-routing.module';
 
 export default {
   title: 'Screen - Layout',
