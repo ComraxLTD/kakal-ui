@@ -12,7 +12,6 @@ export class MenuItemComponent implements OnInit {
   @Input() public link: MenuItemModel;
 
   public active$: Observable<boolean>;
-  private isActive: boolean;
 
   @Output() click: EventEmitter<void> = new EventEmitter();
 
@@ -24,11 +23,5 @@ export class MenuItemComponent implements OnInit {
 
   public onLinkClick() {
     this.click.emit();
-  }
-
-  private subscribeToActive() {
-    this.active$.subscribe((active: boolean) => {
-      this.isActive = active;
-    });
   }
 }

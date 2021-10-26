@@ -1,20 +1,22 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RouterService {
-  private $modulePrefix: Subject<string> = new Subject();
+
+  private modulePrefix$: BehaviorSubject<string> = new BehaviorSubject('');
+  public currentPath$: BehaviorSubject<string> = new BehaviorSubject('');
 
   public currentRoute: string;
   public history: string[] = [];
 
   constructor(private router: Router, private location: Location) {
-    this.subscribeToRoute()
+    this.ListenToRoute()
   }
 
   public goBack() {
@@ -30,7 +32,7 @@ export class RouterService {
     return this.setLastPath(this.router.url);
   }
 
-  public subscribeToRoute(): Observable<string> {
+  public ListenToRoute(): Observable<string> {
     return this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map((event: any) => {
@@ -42,7 +44,7 @@ export class RouterService {
   }
 
   public getLastPathObs(): Observable<string> {
-    return this.subscribeToRoute().pipe(
+    return this.ListenToRoute().pipe(
       map((path: string) => this.setLastPath(path))
     );
   }
@@ -61,10 +63,10 @@ export class RouterService {
   }
 
   public getModulePrefixObs(): Observable<string> {
-    return this.$modulePrefix.asObservable();
+    return this.modulePrefix$.asObservable();
   }
 
   public emitModulePrefix(path: string): void {
-    this.$modulePrefix.next(path);
+    this.modulePrefix$.next(path);
   }
 }

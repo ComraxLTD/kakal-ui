@@ -3,7 +3,7 @@ import { SelectOption } from '../../form/models/question-select.model';
 import { ColumnModel } from '../column.model';
 
 @Component({
-  selector: 'app-column-filter',
+  selector: 'kkl-column-filter',
   templateUrl: './column-filter.component.html',
 })
 export class ColumnFilterComponent implements OnInit {

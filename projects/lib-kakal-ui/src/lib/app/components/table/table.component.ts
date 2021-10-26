@@ -33,7 +33,7 @@ export interface Table<T> {
 }
 
 @Component({
-  selector: 'app-table',
+  selector: 'kkl-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
   providers: [TableService, TableService],

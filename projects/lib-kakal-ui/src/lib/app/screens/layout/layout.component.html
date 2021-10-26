@@ -1,11 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav-content>
-    <app-navbar
+    <kkl-navbar
       [logos]="logos"
       [openIcon]="openIcon"
+      [statusStepWidth]="statusStepWidth"
       (menuToggle)="menuDrawer.toggle()"
-    ></app-navbar>
-
+      [show$]="show$"
+    ></kkl-navbar>
     <mat-sidenav
       class="wizard"
       opened="true"

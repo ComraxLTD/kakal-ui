@@ -5,9 +5,7 @@ import { FilterModel } from '../app/components/cards/card-filter/card-filter.mod
 import { CardFilterComponent } from '../app/components/cards/card-filter/card-filter.component';
 
 import { SizeDirective } from '../app/utilities/directives/size.directive';
-import { StepComponent } from '../app/components/step/step.component';
 import { IconComponent } from '../app/components/icon/icon.component';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { VariantDirective } from '../app/utilities/directives/variant.directive';
 import { TypographyComponent } from '../app/components/typography/typography.component';
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
@@ -24,10 +22,8 @@ export default {
         FiltersExComponent,
         ColorDirective,
         SizeDirective,
-        StepComponent,
         IconComponent,
         VariantDirective,
-        ClassesDirective,
         ButtonDirective,
         TypographyComponent,
         CardFilterComponent,

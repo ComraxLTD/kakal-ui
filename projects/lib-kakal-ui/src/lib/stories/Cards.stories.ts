@@ -11,12 +11,10 @@ import { CardStepComponent } from '../app/components/cards/card-step/card-step.c
 import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
 import { CardUserComponent } from '../app/components/cards/card-user/card-user.component';
 
-import { StepModel } from '../app/components/step/step.model';
-
 import { VariantDirective } from '../app/utilities/directives/variant.directive';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
+import { CardStepModel } from '../app/components/cards/card-step/card-step.model';
 
 export default {
   title: 'Cards',
@@ -30,7 +28,6 @@ export default {
         CardStepComponent,
         CardUserComponent,
         CardWizardComponent,
-        ClassesDirective,
         VariantDirective,
         ColorDirective,
         SizeDirective,
@@ -93,7 +90,7 @@ const CardStatusTemplate: Story<CardStatusComponent> = (
 
 export const Status = CardStatusTemplate.bind({});
 Status.args = {
-  status: new StepModel({
+  status: new CardStepModel({
     variant: 'circle',
     type: 'status',
     size: 8,

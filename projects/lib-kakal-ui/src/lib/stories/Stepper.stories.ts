@@ -13,7 +13,6 @@ import { CardStepComponent } from '../app/components/cards/card-step/card-step.c
 import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
 
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
-import { ClassesDirective } from '../app/utilities/directives/classes.directive';
 import { VariantDirective } from '../app/utilities/directives/variant.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
@@ -36,7 +35,6 @@ export default {
 
         SizeDirective,
         VariantDirective,
-        ClassesDirective,
         ButtonDirective,
         ColorDirective,
       ],
@@ -106,9 +104,7 @@ Navigation.args = {
       size: 3,
       value: 4,
       variant: 'square',
-      type: 'step'
-
-
+      type: 'step',
     }),
     new CardStepModel({
       label: 'תנועות',
@@ -117,9 +113,7 @@ Navigation.args = {
       size: 3,
       value: 4,
       variant: 'square',
-      type: 'step'
-
-
+      type: 'step',
     }),
     new CardStepModel({
       label: 'עסקאות',
@@ -128,9 +122,7 @@ Navigation.args = {
       size: 3,
       value: 4,
       variant: 'square',
-      type: 'step'
-
-
+      type: 'step',
     }),
     new CardStepModel({
       label: 'תתי חלקה',
@@ -139,9 +131,7 @@ Navigation.args = {
       size: 3,
       value: 4,
       variant: 'square',
-      type: 'step'
-
-
+      type: 'step',
     }),
     new CardStepModel({
       label: 'פרצליציה',
@@ -150,9 +140,7 @@ Navigation.args = {
       size: 3,
       value: 4,
       variant: 'square',
-      type: 'step'
-
-
+      type: 'step',
     }),
   ],
 
@@ -206,6 +194,7 @@ Status.args = {
     }),
   ],
   direction: 'row',
+  stepWidth: 3,
 };
 
 export const Wizard = Template.bind({});
@@ -218,7 +207,7 @@ Wizard.args = {
       path: 'details',
       size: 3,
       variant: 'square',
-      type: 'wizard'
+      type: 'wizard',
     }),
     new CardStepModel({
       label: 'תנועות',
@@ -227,7 +216,7 @@ Wizard.args = {
       size: 3,
       isActive: true,
       variant: 'square',
-      type: 'wizard'
+      type: 'wizard',
     }),
     new CardStepModel({
       label: 'עסקאות',
@@ -235,7 +224,7 @@ Wizard.args = {
       path: 'transactions',
       size: 3,
       variant: 'square',
-      type: 'wizard'
+      type: 'wizard',
     }),
     new CardStepModel({
       label: 'תתי חלקה',
@@ -243,7 +232,7 @@ Wizard.args = {
       path: 'subdivision',
       size: 3,
       variant: 'square',
-      type: 'wizard'
+      type: 'wizard',
     }),
     new CardStepModel({
       label: 'פרצליציה',
@@ -251,7 +240,7 @@ Wizard.args = {
       path: 'parcellation',
       size: 3,
       variant: 'square',
-      type: 'wizard'
+      type: 'wizard',
     }),
   ],
 

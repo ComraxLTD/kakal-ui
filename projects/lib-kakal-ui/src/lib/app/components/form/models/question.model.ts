@@ -1,4 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
 
 export interface GridProps {
   cols?: number;
@@ -24,9 +25,10 @@ export type ControlType =
 export type QuestionType = 'default' | 'group' | 'custom';
 
 export abstract class QuestionBaseModel<T> {
-  public value?: T | undefined;
   public key: string;
   public label: string;
+  public value?: T | undefined;
+  public appearance?: MatFormFieldAppearance
   public type?: QuestionType;
   public controlType?: ControlType;
   public gridProps?: GridProps;
@@ -38,6 +40,7 @@ export abstract class QuestionBaseModel<T> {
     value?: T;
     key?: string;
     label?: string;
+    appearance?: MatFormFieldAppearance;
     type?: QuestionType;
     controlType?: ControlType;
     disabled?: boolean;
@@ -49,6 +52,7 @@ export abstract class QuestionBaseModel<T> {
     this.key = options.key || '';
     this.value = options.value;
     this.label = options.label || '';
+    this.appearance = options.appearance || 'outline';
     this.type = options.type || 'default';
     this.controlType = options.controlType || 'text';
     this.disabled = this.disabled || false;

@@ -3,7 +3,7 @@
   <mat-accordion class="menu">
     <mat-expansion-panel
       class="mat-elevation-z0"
-      *ngFor="let list of menu; let i = index"
+      *ngFor="let list of (menu$ | async); let i = index"
     >
       <mat-expansion-panel-header *ngIf="list.label">
         <div mat-subheader>
@@ -23,7 +23,7 @@
   </mat-accordion>
   <mat-list>
     <mat-list-item appButton>
-      <kkl-icon color="primary" [key]="logoutItem.svgUrl" mat-list-icon></kkl-icon>
+      <kkl-icon color="primary" mat-list-icon [key]="logoutItem.svgUrl"></kkl-icon>
       <div class="logout" mat-line>
         <kkl-typography variant="button" color="primary" [bold]="600">
           {{ logoutItem.label }}

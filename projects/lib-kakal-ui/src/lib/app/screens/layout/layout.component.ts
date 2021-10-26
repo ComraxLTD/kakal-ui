@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { IconModel } from '../../components/icon/icon.model';
-import { NavbarService } from '../../components/navigation/navbar/navbar.service';
 import { LayoutService } from './layout.service';
 
 @Component({
@@ -11,61 +11,33 @@ import { LayoutService } from './layout.service';
 })
 export class LayoutComponent implements OnInit {
 
-  private statusSubscription: Subscription;
-
   @Input() public openIcon: string;
+  @Input() public statusStepWidth: number;
   @Input() public logos: IconModel[];
-
   @Input() public hideWizardPath: string[];
   @Input() public showStatusPath: string[];
 
+  public currentPath$: Observable<string>;
   public wizard$: Observable<boolean>;
+  public show$: Observable<boolean>;
 
-  constructor(
-    private layoutService: LayoutService,
-    private navbarService: NavbarService
-  ) { }
+  constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {
-    this.getCurrentPath();
-    this.subscribeToLastPath();
-    this.wizard$ = this.layoutService.getWizardObs();
+    this.currentPath$ = this.layoutService.getCurrentPathObs();
+    this.show$ = this.handleState(this.showStatusPath);
+    this.wizard$ = this.handleState(this.hideWizardPath);
   }
 
-  ngOnDestroy(): void {
-    if (this.statusSubscription) {
-      this.statusSubscription.unsubscribe();
-    }
+  private handleState(list: string[]) {
+    return this.currentPath$.pipe(
+      map((path: string) => {
+        return this.findPath(list, path);
+      })
+    );
   }
-
-
-  // VIEW METHODS SECTION
 
   private findPath(list: any[], value: string): boolean {
     return !!list.find((path: string) => path == value);
-  }
-
-  private handleStatusState(path: string) {
-    this.navbarService.emitShowStatus(this.findPath(this.showStatusPath, path));
-  }
-
-  private handleShowState(path: string) {
-    this.layoutService.toggleWizard(this.findPath(this.hideWizardPath, path));
-    this.handleStatusState(path);
-  }
-
-  // ROUTE METHODS SECTION
-  private getCurrentPath() {
-    // const path = this.routerService.getCurrentPath();
-    // this.handleShowState(path);
-  }
-
-  private subscribeToLastPath() {
-    //   this.routerSubscription = this.routerService
-    //     .getLastPathObs()
-    //     .subscribe((path) => {
-    //       this.handleShowState(path);
-    //     });
-    // }
   }
 }
