@@ -15,7 +15,7 @@ import { QuestionGroupModel } from '../models/question-group.model';
 import { QuestionBaseModel, ControlType } from '../models/question.model';
 import { QuestionNumberModel } from '../models/question-number.model';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
-import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
+import { QuestionSelectModel } from '../models/question-select.model';
 
 export type ControlTemplate = [
   state: any,
@@ -38,7 +38,7 @@ export type Question =
   providedIn: 'root',
 })
 export class FormService {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   private setFieldControl(question: QuestionBase): ControlTemplate {
     const { value, validations } = question;
@@ -55,7 +55,7 @@ export class FormService {
     return this.fb.group(this.setGroup(questions));
   }
 
-  private setGroup(questions: Question[]): { [x: string]: any } {
+  private setGroup(questions: Question[]): { [x: string]: ControlTemplate } {
     return questions
       .map((question: Question) => question)
       .reduce((acc, control: Question) => {
@@ -99,31 +99,41 @@ export class FormService {
 
   public setQuestionList(questions: Question[]): Question[] {
     return questions.map((question: Question) => {
-      return this.setQuestion(question.controlType, { ...question });
+      return this.setQuestion(question);
     });
   }
 
-  public setQuestion(
-    controlType: ControlType,
-    options: { key: string; label: string; options?: SelectOption[] }
-  ) {
-    switch (controlType) {
-        case 'number':
-        return new QuestionNumberModel(options);
+  public setQuestion(question: Question) {
+    switch (question.controlType) {
+      case 'number':
+        return new QuestionNumberModel(question);
 
       case 'select':
-        return new QuestionSelectModel(options);
+        return new QuestionSelectModel(question);
 
       case 'textarea':
-        return new QuestionTextareaModel(options);
+        return new QuestionTextareaModel(question);
 
-      case 'calender':
-        return new QuestionCalendar(options);
+      case 'calendar':
+        return new QuestionCalendar(question);
 
       case 'autocomplete':
-        return new QuestionAutocompleteModel(options);
+        return new QuestionAutocompleteModel(question);
       default:
-        return new QuestionTextModel(options);
+        return new QuestionTextModel(question);
     }
   }
+
+  public setQuestionGroup(questions: Question[]): { [x: string]: Question } {
+    return questions
+      .map((question: Question) => question)
+      .reduce((acc, control: Question) => {
+        const { key } = control;
+        return {
+          ...acc,
+          [key]: this.setQuestion(control),
+        };
+      }, {});
+  }
+
 }
