@@ -10,6 +10,9 @@
 # dependencies
 /node_modules
 
+*.cache
+.cache/storybook
+
 # profiling files
 chrome-profiler-events*.json
 
@@ -46,3 +49,5 @@ Thumbs.db
 
 #auto generate files
 documentation.json
+
+storybook-static
