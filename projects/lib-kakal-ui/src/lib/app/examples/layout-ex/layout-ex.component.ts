@@ -24,6 +24,7 @@ export class LayoutExComponent implements OnInit {
   @Input() public steps: CardStepModel[];
   @Input() public menu: MenuModel[];
 
+  // path subscription
   private pathSubscription: Subscription;
 
   // NAVBAR SECTION
