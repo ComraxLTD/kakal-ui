@@ -13,6 +13,7 @@ import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { MessageService } from '../app/components/form/services/message.service';
 import { InputExComponent } from '../app/examples/input-ex/input-ex.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormAutocompleteComponent } from '../app/components/form/form-autocomplete/form-autocomplete.component';
 
 export default {
   title: 'FormInput',
@@ -24,7 +25,7 @@ export default {
         FormInputComponent,
         FormGroupComponent,
         FormRadioComponent,
-        FormRadioComponent,
+        FormAutocompleteComponent,
         IconComponent,
         SizeDirective,
         ColorDirective,
