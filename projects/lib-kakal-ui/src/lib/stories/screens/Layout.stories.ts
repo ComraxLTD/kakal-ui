@@ -81,11 +81,6 @@ const Template: Story<LayoutExComponent> = (args: LayoutExComponent) => ({
   props: args,
 });
 
-//  titles: Map<string, string> = new Map([
-//   ['lands', 'מקרקעין'],
-//   ['neches', 'מנהלת ספר הכסים'],
-// ]);
-
 export const Defualt = Template.bind({});
 
 Defualt.args = {
