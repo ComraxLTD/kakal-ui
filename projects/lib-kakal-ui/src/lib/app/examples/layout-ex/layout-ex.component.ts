@@ -1,5 +1,5 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, of } from 'rxjs';
 import { distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import {
   CardStepModel,
@@ -29,7 +29,7 @@ export class LayoutExComponent implements OnInit {
   // NAVBAR SECTION
   private headers = { lands: 'מקרקעין', neches: 'מנהלת ספר נכסים' };
   public openIcon: string = 'treegradientlands';
-  public showStatusPath: string[] = [this.projectPrefix, 'neches'];
+  public showStatusPath: string[] = [this.projectPrefix, 'screen-layout--with-wizard'];
 
   // WIZARD SECTION
   public steps$: Observable<CardStepModel[]>;
@@ -48,15 +48,22 @@ export class LayoutExComponent implements OnInit {
 
   // ROUTE METHODS SECTION
   private setCurrentPath() {
-    const path = this.routerService.getCurrentPath();
-    this.layoutService.emitCurrentPath(path);
+    // const path = this.routerService.getCurrentPath();
+    // this.layoutService.emitCurrentPath(path);
   }
 
   ngOnInit(): void {
     this.setCurrentPath();
     this.setNavbar();
-    this.steps$ = this.setWizard();
-    this.menu$ = this.setMenu();
+    // this.steps$ = this.setWizard();
+    // this.menu$ = this.setMenu();
+
+    if (this.steps) {
+      this.steps$ = of(this.steps);
+    }
+    if (this.menu) {
+      this.menu$ = of(this.menu);
+    }
     this.subscribeToRouter();
   }
 
@@ -68,84 +75,83 @@ export class LayoutExComponent implements OnInit {
 
   private setNavbar() {
     this.navbarService.setHeaders(this.headers);
-    this.navbarService.emitStatus(this.status);
-    this.navbarService.setHeadersObs(this.setHeaders());
+
+    if (this.status) {
+      this.navbarService.emitStatus(this.status);
+    }
+
+    this.navbarService.setHeadersObs(of('lands'));
     this.logos = this.logos;
   }
 
   private setHeaders() {
-    return this.routerService.getModulePrefixObs().pipe(
-      distinctUntilChanged(),
-      map((path: string) => this.headers[path])
-    );
+    // return this.routerService.getModulePrefixObs().pipe(
+    //   distinctUntilChanged(),
+    //   map((path: string) => this.headers[path])
+    // );
   }
 
   private subscribeToRouter() {
-    this.pathSubscription = this.routerService
-      .getLastPathObs()
-      .subscribe((path: string) => {
-        path === this.projectPrefix && this.navbarService.emitTitle(path);
-        this.layoutService.emitCurrentPath(path);
-        this.routerService.currentPath$.next(path);
-      });
+    // this.pathSubscription = this.routerService
+    //   .getLastPathObs()
+    //   .subscribe((path: string) => {
+    //     path === this.projectPrefix && this.navbarService.emitTitle(path);
+    //     this.layoutService.emitCurrentPath(path);
+    //     this.routerService.currentPath$.next(path);
+    //   });
   }
 
   private setWizard() {
-    return this.routerService.getModulePrefixObs().pipe(
-      map((path: string) => {
-        const steps = this.steps;
-
-        steps.map((step) => {
-          if (step.isActive) {
-            step.unactive();
-          }
-          if (step.path === path) {
-            step.active();
-          }
-        });
-
-        return steps;
-      })
-    );
+    // return this.routerService.getModulePrefixObs().pipe(
+    //   map((path: string) => {
+    //     const steps = this.steps;
+    //     steps.map((step) => {
+    //       if (step.isActive) {
+    //         step.unactive();
+    //       }
+    //       if (step.path === path) {
+    //         step.active();
+    //       }
+    //     });
+    //     return steps;
+    //   })
+    // );
   }
 
   private setMenu() {
-    const modulePath$ = this.routerService.getModulePrefixObs();
-    const lastPath$ = this.layoutService.getCurrentPathObs();
-
-    return modulePath$.pipe(
-      switchMap((modulePath: string) => {
-        return lastPath$.pipe(
-          map((path: string) => {
-            const menu = this.menuService.setMenu(
-              this.menu,
-              modulePath,
-              'path',
-              path
-            );
-            return menu;
-          })
-        );
-      })
-    );
-
+    // const modulePath$ = this.routerService.getModulePrefixObs();
+    // const lastPath$ = this.layoutService.getCurrentPathObs();
+    // return modulePath$.pipe(
+    //   switchMap((modulePath: string) => {
+    //     return lastPath$.pipe(
+    //       map((path: string) => {
+    //         const menu = this.menuService.setMenu(
+    //           this.menu,
+    //           modulePath,
+    //           'path',
+    //           path
+    //         );
+    //         return menu;
+    //       })
+    //     );
+    //   })
+    // );
     // return path$.pipe(
     //   // distinctUntilChanged(),
     //   map((path: string) => {
     //     console.log(path)
     //     return this.menuService.setList(this.menuService.getMenu(), 'path', path);
-
     //   })
     // )
   }
 
   public onChangeModule(step: CardStepModel) {
-    const path: string = `${this.projectPrefix}/${step.path}`;
-    this.routerService.navigate(path);
+    // const path: string = `${this.projectPrefix}/${step.path}`;
+    // this.routerService.navigate(path);
   }
 
   public onChangeMenu(path: string) {
-    path = `${this.projectPrefix}/${path}`;
-    this.routerService.navigate(path);
+    // path = `${this.projectPrefix}/${path}`;
+    // this.routerService.navigate(path);
   }
 }
