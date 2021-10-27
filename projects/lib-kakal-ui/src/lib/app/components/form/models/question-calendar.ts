@@ -14,7 +14,7 @@ export class QuestionCalendar extends QuestionBaseModel<Date> {
     super(options);
     this.key = options.key;
     this.label = options.label;
-    this.controlType = 'calender';
+    this.controlType = 'calendar';
     this.gridProps = options.gridProps;
     this.icon = 'calendar';
     this.validations = options.validations;

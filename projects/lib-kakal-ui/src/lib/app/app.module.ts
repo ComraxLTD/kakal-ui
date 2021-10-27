@@ -51,7 +51,6 @@ import { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.compo
 import { AreaPipe } from './utilities/pipes/area.pipe';
 import { FormatPipe } from './utilities/pipes/format.pipe';
 
-import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from './components/columns/column-form/column-form.component';
 import { StatusComponent } from './components/status/status.component';
 import { LayoutComponent } from './screens/layout/layout.component';
@@ -60,6 +59,8 @@ import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
+import { BorderDirective } from './utilities/directives/border.directive';
 
 @NgModule({
   declarations: [
@@ -109,6 +110,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     ButtonDirective,
     VariantDirective,
     UnderlineDirective,
+    BorderDirective,
 
     StatusComponent,
 
