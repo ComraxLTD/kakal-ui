@@ -1,3 +1,4 @@
+
 <div>
   <mat-form-field [appearance]="control.disabled ? 'fill' : 'outline'">
     <mat-label>{{ label }}</mat-label>
@@ -19,7 +20,7 @@
 
       <ng-container *ngSwitchCase="'autocomplete'">
         <input type="text" matInput [formControl]="control" [matAutocomplete]="auto" />
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)">
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)" [displayWith]="displayFn">
           <mat-option *ngFor="let option of options" [value]="option.value">
             {{ option.label }}
           </mat-option>
@@ -32,7 +33,7 @@
       </ng-container>
     </ng-container>
 
-    <kkl-icon *ngIf="icon" matSuffix [color]="color || 'primary'" [key]="icon"></kkl-icon>
+    <kkl-icon variant="form" *ngIf="icon" matSuffix [color]="color || 'primary'" [key]="icon"></kkl-icon>
 
     <mat-error>{{ error }}</mat-error>
   </mat-form-field>

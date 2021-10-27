@@ -3,32 +3,34 @@
     (matSortChange)="onSort($event)"
     mat-table
     matSort
-    [dataSource]="$data | async | paginate: pagination"
+    [dataSource]="rows$ | async | paginate: pagination"
     [dir]="'rtl'"
+    multiTemplateDataRows
   >
     <ng-container
-      *ngFor="let column of tableColumns"
+      *ngFor="let column of columns$ | async"
       [matColumnDef]="column.columnDef"
     >
       <!-- COLUMN HEADER SECTION-->
 
-      <ng-container *ngIf="!column.sortable">
+      <ng-container *ngIf="!column.sortable && !column.selectable">
         <mat-header-cell
           *matHeaderCellDef
-          [ngClass]="{ center: column.center }"
+          [ngClass]="{
+            center: column.center,
+            selected: column.columnDef === 'select'
+          }"
         >
           <!-- DEFAULT HEADER -->
           <kkl-typography [bold]="600" *ngIf="!column.filterable">
             {{ column.label }}
           </kkl-typography>
 
-          <ng-container
-            *ngIf="column.columnDef === 'actions' && column.slotRef"
-          >
+          <ng-container *ngIf="hasActions">
             <ng-container
               *ngTemplateOutlet="
-                headerSlots[column.columnDef];
-                context: { $implicit: column }
+                headerSlots['actions'];
+                context: { cell: this.cell, column: this.column }
               "
             >
             </ng-container>
@@ -38,7 +40,10 @@
           <kkl-column-filter
             *ngIf="column.filterable"
             [column]="column"
-          ></kkl-column-filter>
+            [filterSlots]="filterSlots"
+            (optionSelect)="onFilter($event)"
+          >
+          </kkl-column-filter>
         </mat-header-cell>
       </ng-container>
 
@@ -56,11 +61,42 @@
         </mat-header-cell>
       </ng-container>
 
+      <ng-container *ngIf="column.selectable">
+        <mat-header-cell *matHeaderCellDef class="selected">
+          <mat-checkbox
+            *ngIf="!headerSlots['select']"
+            color="primary"
+            (click)="onSelect()"
+            (change)="$event ? masterToggle() : null"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()"
+          >
+          </mat-checkbox>
+          <ng-container *ngIf="headerSlots['select']">
+            <ng-container *ngTemplateOutlet="headerSlots['select']">
+            </ng-container>
+          </ng-container>
+        </mat-header-cell>
+
+        <mat-cell *matCellDef="let cell" class="selected">
+          <mat-checkbox
+            color="primary"
+            (click)="onSelect()"
+            (change)="$event ? selection.toggle(cell) : null"
+            [checked]="selection.isSelected(cell)"
+          >
+          </mat-checkbox>
+        </mat-cell>
+      </ng-container>
+
       <!-- COLUMN CELL SECTION-->
 
       <mat-cell
         *matCellDef="let cell; let i = index"
-        [ngClass]="{ center: column.center }"
+        [ngClass]="{
+          center: column.center,
+          selected: column.columnDef === 'select'
+        }"
         [attr.colspan]="i"
       >
         <!-- DEFAULT SECTION-->
@@ -97,14 +133,31 @@
         <!-- FORM SECTION-->
         <ng-container *ngIf="cell.editable">
           <ng-container [ngSwitch]="column.type">
-            <ng-container *ngSwitchDefault>
+            <ng-container *ngIf="column.control">
               <div class="cell-input">
-                <kkl-column-form
-                  *ngIf="column?.question"
+                <kkl-form-input
                   [control]="cell.formGroup.controls[column.columnDef]"
-                  [question]="column?.question"
-                ></kkl-column-form>
+                  [question]="cell.questionsGroup[column.columnDef]"
+                ></kkl-form-input>
               </div>
+            </ng-container>
+
+            <ng-container *ngIf="!column.control">
+              <ng-container *ngSwitchCase="'custom'">
+                <ng-container
+                  *ngTemplateOutlet="
+                    rowSlots[column.columnDef];
+                    context: { cell: this.cell, column: this.column }
+                  "
+                >
+                </ng-container>
+              </ng-container>
+
+              <ng-container *ngSwitchDefault>
+                <kkl-typography>
+                  {{ cell.item[column.columnDef] | format: type }}
+                </kkl-typography>
+              </ng-container>
             </ng-container>
             <ng-container *ngSwitchCase="'actions'">
               <ng-container
@@ -118,6 +171,50 @@
           </ng-container>
         </ng-container>
       </mat-cell>
+
+      <ng-container>
+        <mat-footer-cell
+          *matFooterCellDef
+          [ngClass]="{ selected: column.columnDef === 'select' }"
+        >
+          <ng-container *ngIf="column.footer">
+            <ng-container
+              *ngTemplateOutlet="
+                footerSlots[column.columnDef];
+                context: { cell: this.cell }
+              "
+            >
+            </ng-container>
+          </ng-container>
+        </mat-footer-cell>
+      </ng-container>
+    </ng-container>
+
+    <!-- EXPEND COLUMN -->
+    <ng-container matColumnDef="expandRow" *ngIf="expendable">
+      <mat-cell *matCellDef="let cell" [attr.colspan]="columnDefs.length">
+        <div
+          fxFill
+          *ngIf="cell.expanded && expandKey$ | async"
+          [@detailExpand]="cell.expanded ? 'expanded' : 'collapsed'"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              expandSlots[expandKey$ | async];
+              context: { cell: this.cell }
+            "
+          >
+          </ng-container>
+        </div>
+      </mat-cell>
+    </ng-container>
+
+    <!-- NEW FORM COLUMN -->
+    <ng-container matColumnDef="formRow" *ngIf="false">
+      <ng-container> </ng-container>
+      <mat-cell *matCellDef="let cell">
+        <div></div>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row
@@ -125,11 +222,46 @@
       *matHeaderRowDef="columnDefs"
     ></mat-header-row>
 
+
+
+    <ng-container *ngIf="false">
+      <mat-row *matRowDef="let formRow; columns: ['formRow']"></mat-row>
+    </ng-container>
+
     <mat-row
       *matRowDef="let row; columns: columnDefs"
+      (click)="onExpandRow(row, column)"
+      [ngClass]="{
+        default: true,
+        form: row.editable,
+        hideBorder: expendable,
+        expand: expendable,
+        accordion: accordion
+      }"
       (click)="onRowClicked(row)"
-    ></mat-row>
+    >
+    </mat-row>
+
+    <ng-container *ngIf="hasFooter">
+      <mat-row
+        class="default"
+        mat-footer-row
+        *matFooterRowDef="columnDefs"
+      ></mat-row>
+    </ng-container>
+
+    <ng-container *ngIf="expendable">
+      <mat-row
+        *matRowDef="let expendRow; columns: ['expandRow']"
+        [ngClass]="{
+          hide: !expendRow.expanded,
+          show: expendRow.expanded,
+          hideBorder: expendable
+        }"
+      ></mat-row>
+    </ng-container>
   </mat-table>
 
-  <kkl-pagination [pagination]="pagination"></kkl-pagination>
+  <kkl-pagination (newPage)="onPageChange($event)" [pagination]="pagination">
+  </kkl-pagination>
 </div>

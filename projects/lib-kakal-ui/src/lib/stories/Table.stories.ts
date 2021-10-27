@@ -4,7 +4,6 @@ import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule, PaginationInstance } from 'ngx-pagination';
-import { ColumnFilterComponent } from '../app/components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from '../app/components/columns/column-form/column-form.component';
 import { ColumnsService } from '../app/components/columns/columns.service';
 import { FormService } from '../app/components/form/services/form.service';
@@ -12,13 +11,19 @@ import { PaginationComponent } from '../app/components/pagination/pagination.com
 import { StatusComponent } from '../app/components/status/status.component';
 import { TableComponent } from '../app/components/table/table.component';
 import { TableService } from '../app/components/table/table.service';
-import { TypographyComponent } from '../app/components/typography/typography.component';
+import { TypographyComponent, TypographyComponent } from '../app/components/typography/typography.component';
 import { TableExComponent } from '../app/examples/table-ex/table-ex.component';
 import { AssetsModel } from '../app/utilities/models/assets.model';
 import { AreaPipe } from '../app/utilities/pipes/area.pipe';
 import { FormatPipe } from '../app/utilities/pipes/format.pipe';
 import { MaterialModule } from '../material/material.module';
 import { ColumnModel } from '../app/components/columns/column.model';
+import { ColumnFilterComponent } from '../app/components/columns/column-filter/column-filter.component';
+import { FormInputComponent } from '../app/components/form/form-input/form-input.component';
+import { IconComponent } from '../app/components/icon/icon.component';
+import { SizeDirective } from '../app/utilities/directives/size.directive';
+import { UnderlineDirective } from '../app/utilities/directives/underline.directive';
+import { ButtonDirective } from '../app/utilities/directives/button.directive';
 
 export default {
   title: 'Table',
@@ -26,14 +31,20 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [
+        IconComponent,
+        TypographyComponent,
         TableComponent,
         StatusComponent,
         ColumnFilterComponent,
         ColumnFormComponent,
         PaginationComponent,
+        FormInputComponent,
         TypographyComponent,
         FormatPipe,
         AreaPipe,
+        SizeDirective,
+        UnderlineDirective,
+        ButtonDirective,
       ],
       providers: [
         FormService,
