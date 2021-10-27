@@ -10,7 +10,6 @@
     "test": "ng test",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && cd projects/lib-kakal-ui && start-storybook -p 6006 && cd ../../",
-    "build-storybook": "npm run docs:json && cd projects/lib-kakal-ui && build-storybook && cd ../../",
     "heroku-postbuild": "npm run build-storybook",
     "start": "node server.js"
   },
