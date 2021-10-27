@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 @Injectable({
@@ -11,9 +11,7 @@ import { filter, map } from 'rxjs/operators';
 export class RouterService {
 
   private modulePrefix$: BehaviorSubject<string> = new BehaviorSubject('lands');
-  public currentPath$: BehaviorSubject<string> = new BehaviorSubject('');
 
-  public currentRoute: string;
   public history: string[] = [];
 
   constructor(private router: Router, private location: Location) {
@@ -38,7 +36,6 @@ export class RouterService {
       filter((event) => event instanceof NavigationEnd),
       map((event: any) => {
         this.history.push(event.urlAfterRedirects);
-        this.currentRoute = event.utl;
         return event.url;
       })
     );

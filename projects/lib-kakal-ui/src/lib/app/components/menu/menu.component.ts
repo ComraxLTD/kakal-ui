@@ -23,7 +23,7 @@ export class MenuComponent {
   @Output() changePath: EventEmitter<string> = new EventEmitter();
 
   ngOnInit() {
-    this.menu$ = of(this.menu);
+    this.menu$ = this.menu$ || of(this.menu);
   }
 
 
