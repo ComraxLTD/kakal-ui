@@ -36,7 +36,7 @@ export class FormInputComponent implements OnInit {
 
   @Output() public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();
   @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter()
-  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter()
+  @Output() public autocomplete: EventEmitter<FormControl> = new EventEmitter()
 
   constructor(
     private messageService: MessageService,
