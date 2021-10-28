@@ -11235,7 +11235,7 @@
         },
         {
             "name": "FormAutocompleteComponent",
-            "id": "component-FormAutocompleteComponent-bb6c5ee26d95c941b1ea4dc5e986b1b3",
+            "id": "component-FormAutocompleteComponent-cd05d33aa1573695331f0e25856ffecf",
             "file": "projects/lib-kakal-ui/src/lib/app/components/form/form-autocomplete/form-autocomplete.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -11424,7 +11424,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { FormControl, FormGroup } from '@angular/forms';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { Observable } from 'rxjs';\r\nimport { QuestionAutocompleteModel } from '../models/question-autocomplete';\r\nimport { SelectOption } from '../models/question-select.model';\r\n\r\n\r\n\r\n@Component({\r\n  selector: 'kkl-form-autocomplete',\r\n  templateUrl: './form-autocomplete.component.html',\r\n  styleUrls: ['./form-autocomplete.component.scss']\r\n})\r\n\r\nexport class FormAutocompleteComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionAutocompleteModel;\r\n  @Input() public control: FormControl;\r\n  @Input() public options$: Observable<SelectOption[]>;\r\n  @Input() public optionsSlot: {};\r\n\r\n  public type: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n  public disabled: boolean;\r\n\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n  @Output() optionSelected: EventEmitter<MatAutocompleteSelectedEvent> =\r\n    new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n    this.options = this.question.options;\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { FormControl, FormGroup } from '@angular/forms';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { Observable } from 'rxjs';\r\nimport { QuestionAutocompleteModel } from '../models/question-autocomplete';\r\nimport { SelectOption } from '../models/question-select.model';\r\n\r\n\r\n\r\n@Component({\r\n  selector: 'kkl-form-autocomplete',\r\n  templateUrl: './form-autocomplete.component.html',\r\n  styleUrls: ['./form-autocomplete.component.scss']\r\n})\r\n\r\nexport class FormAutocompleteComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionAutocompleteModel;\r\n  @Input() public control: FormControl;\r\n  @Input() public options$: Observable<SelectOption[]>;\r\n  @Input() public optionsSlot: {};\r\n\r\n  public type: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n  public disabled: boolean;\r\n\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n  @Output() optionSelected: EventEmitter<MatAutocompleteSelectedEvent> =\r\n    new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n    this.options = this.question.options;\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n\r\n\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -11444,11 +11444,11 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-form-field [appearance]=\"disabled ? 'fill' : 'outline'\">\r\n  <mat-label>{{ label }}</mat-label>\r\n\r\n  <input\r\n    type=\"text\"\r\n    matInput\r\n    [formControl]=\"control\"\r\n    [matAutocomplete]=\"auto\"\r\n  />\r\n  <mat-autocomplete\r\n    autoActiveFirstOption\r\n    #auto=\"matAutocomplete\"\r\n    (optionSelected)=\"onOptionSelected($event)\"\r\n  >\r\n    <mat-option [disabled]=\"option.disabled\" *ngFor=\"let option of (options$  |async)\" [value]=\"option.value\">\r\n      <ng-container *ngIf=\"!optionsSlot\">\r\n        {{ option.label }}\r\n      </ng-container>\r\n      <ng-container *ngIf=\"optionsSlot\">\r\n        <ng-container\r\n          *ngTemplateOutlet=\"\r\n            optionsSlot[question.key];\r\n            context: { option }\r\n          \"\r\n        ></ng-container>\r\n      </ng-container>\r\n    </mat-option>\r\n  </mat-autocomplete>\r\n\r\n  <kkl-icon\r\n    *ngIf=\"icon\"\r\n    matSuffix\r\n    [color]=\"color || 'primary'\"\r\n    [key]=\"icon\"\r\n    [size]=\"1.8\"\r\n  ></kkl-icon>\r\n</mat-form-field>\r\n"
+            "templateData": "<mat-form-field [appearance]=\"disabled ? 'fill' : 'outline'\">\r\n  <mat-label>{{ label }}</mat-label>\r\n\r\n  <input\r\n    color=\"primary\"\r\n    type=\"text\"\r\n    matInput\r\n    [formControl]=\"control\"\r\n    [matAutocomplete]=\"auto\"\r\n  />\r\n  <mat-autocomplete\r\n    autoActiveFirstOption\r\n    #auto=\"matAutocomplete\"\r\n    (optionSelected)=\"onOptionSelected($event)\"\r\n  >\r\n    <mat-option\r\n      [disabled]=\"option.disabled\"\r\n      *ngFor=\"let option of options$ | async\"\r\n      [value]=\"option.value\"\r\n    >\r\n      <ng-container *ngIf=\"!optionsSlot\">\r\n        {{ option.label }}\r\n      </ng-container>\r\n      <ng-container *ngIf=\"optionsSlot\">\r\n        <ng-container\r\n          *ngTemplateOutlet=\"\r\n            optionsSlot[question.key];\r\n            context: { option }\r\n          \"\r\n        ></ng-container>\r\n      </ng-container>\r\n    </mat-option>\r\n  </mat-autocomplete>\r\n\r\n  <kkl-icon\r\n    *ngIf=\"icon\"\r\n    matSuffix\r\n    [color]=\"color || 'primary'\"\r\n    [key]=\"icon\"\r\n    [size]=\"1.8\"\r\n  ></kkl-icon>\r\n</mat-form-field>\r\n"
         },
         {
             "name": "FormautocompleteExComponent",
-            "id": "component-FormautocompleteExComponent-5a112e79dab3c41bb776859d8ac2bab3",
+            "id": "component-FormautocompleteExComponent-3c850d025fb84223b03c182b5a4e1573",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/formautocomplete-ex/formautocomplete-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -11538,7 +11538,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { Observable, of } from 'rxjs';\r\nimport { SelectOption } from '../../components/form/models/question-select.model';\r\nimport {\r\n  FormService,\r\n  Question,\r\n} from '../../components/form/services/form.service';\r\n\r\n@Component({\r\n  selector: 'kkl-formautocomplete-ex',\r\n  templateUrl: './formautocomplete-ex.component.html',\r\n  styleUrls: ['./formautocomplete-ex.component.scss'],\r\n})\r\nexport class FormautocompleteExComponent implements OnInit {\r\n\r\n  @Input() public question: any;\r\n  @Input() public options: SelectOption[];\r\n\r\n  public control: FormControl;\r\n  public questionControl: Question;\r\n  public options$: Observable<SelectOption[]>;\r\n\r\n\r\n  constructor(private formService: FormService) {}\r\n\r\n  ngOnInit(): void {\r\n    console.log(this.question);\r\n    console.log(this.options);\r\n    this.questionControl = this.formService.setQuestion(this.question);\r\n    this.control = this.formService.getFieldControl(this.questionControl);\r\n    this.options$ = of(this.options)\r\n\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { Observable, of } from 'rxjs';\r\nimport { SelectOption } from '../../components/form/models/question-select.model';\r\nimport {\r\n  FormService,\r\n  Question,\r\n} from '../../components/form/services/form.service';\r\n\r\n@Component({\r\n  selector: 'kkl-formautocomplete-ex',\r\n  templateUrl: './formautocomplete-ex.component.html',\r\n  styleUrls: ['./formautocomplete-ex.component.scss'],\r\n})\r\nexport class FormautocompleteExComponent implements OnInit {\r\n\r\n  @Input() public question: any;\r\n  @Input() public options: SelectOption[];\r\n\r\n  public control: FormControl;\r\n  public questionControl: Question;\r\n  public options$: Observable<SelectOption[]>;\r\n\r\n\r\n  constructor(private formService: FormService) {}\r\n\r\n  ngOnInit(): void {\r\n    console.log(this.options);\r\n    this.questionControl = this.formService.setQuestion(this.question);\r\n    this.control = this.formService.getFieldControl(this.questionControl);\r\n    this.options$ = of(this.options)\r\n\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -11999,7 +11999,7 @@
         },
         {
             "name": "FormInputComponent",
-            "id": "component-FormInputComponent-8feecf4c9365cade2e94e02699134624",
+            "id": "component-FormInputComponent-e3e4e08002c3fda52ab135e52acc10a0",
             "file": "projects/lib-kakal-ui/src/lib/app/components/form/form-input/form-input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -12020,21 +12020,21 @@
                     "name": "apprence",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 21,
+                    "line": 23,
                     "type": "MatFormFieldAppearance"
                 },
                 {
                     "name": "control",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 20,
+                    "line": 22,
                     "type": "FormControl"
                 },
                 {
                     "name": "question",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 19,
+                    "line": 21,
                     "type": "QuestionBase"
                 }
             ],
@@ -12044,7 +12044,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 39,
+                    "line": 42,
                     "type": "EventEmitter<FormControl>"
                 },
                 {
@@ -12052,7 +12052,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 41,
                     "type": "EventEmitter<MatAutocompleteSelectedEvent>"
                 },
                 {
@@ -12060,8 +12060,8 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
-                    "type": "EventEmitter<QuestionSelectModel>"
+                    "line": 39,
+                    "type": "EventEmitter<FormControl>"
                 }
             ],
             "propertiesClass": [
@@ -12072,7 +12072,7 @@
                     "type": "Palette",
                     "optional": false,
                     "description": "",
-                    "line": 33,
+                    "line": 35,
                     "modifierKind": [
                         122
                     ]
@@ -12084,7 +12084,7 @@
                     "type": "BehaviorSubject<Palette>",
                     "optional": false,
                     "description": "",
-                    "line": 30,
+                    "line": 32,
                     "modifierKind": [
                         122
                     ]
@@ -12096,7 +12096,7 @@
                     "type": "ControlType",
                     "optional": false,
                     "description": "",
-                    "line": 23,
+                    "line": 25,
                     "modifierKind": [
                         122
                     ]
@@ -12109,7 +12109,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 27,
+                    "line": 29,
                     "modifierKind": [
                         122
                     ]
@@ -12121,7 +12121,7 @@
                     "type": "BehaviorSubject<string>",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 31,
                     "modifierKind": [
                         122
                     ]
@@ -12133,7 +12133,7 @@
                     "type": "GridProps",
                     "optional": false,
                     "description": "",
-                    "line": 32,
+                    "line": 34,
                     "modifierKind": [
                         122
                     ]
@@ -12145,7 +12145,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 25,
+                    "line": 27,
                     "modifierKind": [
                         122
                     ]
@@ -12158,7 +12158,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 35,
+                    "line": 37,
                     "modifierKind": [
                         122
                     ]
@@ -12171,7 +12171,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 34,
+                    "line": 36,
                     "modifierKind": [
                         122
                     ]
@@ -12183,7 +12183,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 24,
+                    "line": 26,
                     "modifierKind": [
                         122
                     ]
@@ -12195,7 +12195,7 @@
                     "type": "SelectOption[]",
                     "optional": false,
                     "description": "",
-                    "line": 26,
+                    "line": 28,
                     "modifierKind": [
                         122
                     ]
@@ -12208,7 +12208,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -12225,7 +12225,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 100,
+                    "line": 94,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12256,7 +12256,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 104,
+                    "line": 98,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12280,7 +12280,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 92,
+                    "line": 87,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12293,7 +12293,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 75,
+                    "line": 71,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12306,7 +12306,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 61,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12319,7 +12319,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 87,
+                    "line": 82,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12334,7 +12334,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { MessageService } from './../services/message.service';\r\nimport { FormControl } from '@angular/forms';\r\nimport { QuestionBase } from '../services/form.service';\r\nimport { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { QuestionSelectModel, SelectOption } from './../models/question-select.model';\r\nimport { ControlType, GridProps } from '../models/question.model';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { Palette } from 'projects/lib-kakal-ui/src/lib/styles/theme';\r\n\r\n@Component({\r\n  selector: 'kkl-form-input',\r\n  templateUrl: './form-input.component.html',\r\n  styleUrls: ['./form-input.component.scss']\r\n})\r\nexport class FormInputComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n  @Input() public apprence: MatFormFieldAppearance;\r\n\r\n  public controlType: ControlType;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[]\r\n  public error: string = ''\r\n\r\n  public error$: BehaviorSubject<string>;\r\n  public color$: BehaviorSubject<Palette>;\r\n\r\n  public gridProps: GridProps\r\n  public color: Palette;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output() public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();\r\n  @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter()\r\n  @Output() public autocomplete: EventEmitter<FormControl> = new EventEmitter()\r\n\r\n  constructor(\r\n    private messageService: MessageService,\r\n\r\n  ) {\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    const color: Palette = this.control.disabled ? 'disable' : 'primary';\r\n    this.color$ = new BehaviorSubject<Palette>(color);\r\n    this.error$ = new BehaviorSubject<string>('');\r\n    this.controlType = this.question?.controlType\r\n    this.gridProps = this.question?.gridProps\r\n    this.label = this.question?.label || ''\r\n    this.icon = this.question?.icon || ''\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n    this.control.valueChanges.subscribe((value) => {\r\n\r\n    });\r\n  }\r\n\r\n  // private subscribeToControl() {\r\n  private setIconColor() {\r\n    if (this.control.disabled) {\r\n      this.color = 'disable';\r\n    } else if (this.control.errors) {\r\n      this.color = 'warn';\r\n    } else {\r\n      this.color = 'primary';\r\n    }\r\n  }\r\n\r\n  private setErrorMessage() {\r\n    this.error = this.messageService.getErrorMessage(this.control, this.label);\r\n    this.error$.next(this.error)\r\n\r\n    if (this.error) {\r\n      this.color$.next('warn')\r\n    } else {\r\n      this.color$.next('primary')\r\n    }\r\n\r\n  }\r\n\r\n  public validate() {\r\n    this.setErrorMessage()\r\n    this.setIconColor()\r\n  }\r\n\r\n  public onSelectChange() {\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      var label = this.control.parent.controls[\"record\"].value;\r\n      this.selected.emit(label)\r\n      this.question.onSelectChange()\r\n    }\r\n  }\r\n\r\n  public onAutocomplete(control: FormControl) {\r\n    this.autocomplete.emit(this.control)\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event)\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { MessageService } from './../services/message.service';\r\nimport { FormControl } from '@angular/forms';\r\nimport { QuestionBase } from '../services/form.service';\r\nimport { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport {\r\n  QuestionSelectModel,\r\n  SelectOption,\r\n} from './../models/question-select.model';\r\nimport { ControlType, GridProps } from '../models/question.model';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { Palette } from 'projects/lib-kakal-ui/src/lib/styles/theme';\r\n\r\n@Component({\r\n  selector: 'kkl-form-input',\r\n  templateUrl: './form-input.component.html',\r\n  styleUrls: ['./form-input.component.scss'],\r\n})\r\nexport class FormInputComponent implements OnInit {\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n  @Input() public apprence: MatFormFieldAppearance;\r\n\r\n  public controlType: ControlType;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n\r\n  public error$: BehaviorSubject<string>;\r\n  public color$: BehaviorSubject<Palette>;\r\n\r\n  public gridProps: GridProps;\r\n  public color: Palette;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output() public selected: EventEmitter<FormControl> = new EventEmitter();\r\n  @Output()\r\n  public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter();\r\n  @Output() public autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n\r\n  constructor(private messageService: MessageService) {}\r\n\r\n  ngOnInit(): void {\r\n    const color: Palette = this.control.disabled ? 'disable' : 'primary';\r\n    this.color$ = new BehaviorSubject<Palette>(color);\r\n    this.error$ = new BehaviorSubject<string>('');\r\n    this.controlType = this.question?.controlType;\r\n    this.gridProps = this.question?.gridProps;\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n  }\r\n\r\n  // private subscribeToControl() {\r\n  private setIconColor() {\r\n    if (this.control.disabled) {\r\n      this.color = 'disable';\r\n    } else if (this.control.errors) {\r\n      this.color = 'warn';\r\n    } else {\r\n      this.color = 'primary';\r\n    }\r\n  }\r\n\r\n  private setErrorMessage() {\r\n    this.error = this.messageService.getErrorMessage(this.control, this.label);\r\n    this.error$.next(this.error);\r\n\r\n    if (this.error) {\r\n      this.color$.next('warn');\r\n    } else {\r\n      this.color$.next('primary');\r\n    }\r\n  }\r\n\r\n  public validate() {\r\n    this.setErrorMessage();\r\n    this.setIconColor();\r\n  }\r\n\r\n  public onSelectChange() {\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.question.onSelectChange();\r\n    }\r\n    this.selected.emit(this.control);\r\n  }\r\n\r\n  public onAutocomplete(control: FormControl) {\r\n    this.autocomplete.emit(this.control);\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12356,7 +12356,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 39,
+                "line": 42,
                 "jsdoctags": [
                     {
                         "name": "messageService",
@@ -16522,6 +16522,16 @@
                 "defaultValue": "`\r\n<svg xmlns=\"http://www.w3.org/2000/svg\"\r\nwidth=\"76.154\" height=\"55\" viewBox=\"0 0 76.154 55\"><defs>\r\n<style>.a-assets{fill:\"none\";}.b-assets{fill:none;stroke:\"none\";stroke-width:2px;}</style>\r\n</defs><g transform=\"translate(-112 -88)\">\r\n<path class=\"a-assets\" d=\"M188.154,138.769h-6.346V109.154H164.885V88H135.269v21.154H118.346v29.615H112V143h76.154Zm-10.577-25.385v25.385H164.885V113.385ZM160.654,92.231v46.538h-4.231V121.846H143.731v16.923H139.5V92.231Zm-8.462,46.538h-4.231V126.077h4.231Zm-29.615-25.385h12.692v25.385H122.577Z\" transform=\"translate(0 0)\"/>\r\n<path class=\"b-assets\" d=\"M232,120h4.278v4.278H232Z\" transform=\"translate(-88.29 -23.546)\"/>\r\n<path class=\"b-assets\" d=\"M264,120h4.278v4.278H264Z\" transform=\"translate(-111.834 -23.546)\"/>\r\n<path class=\"b-assets\" d=\"M232,152h4.278v4.278H232Z\" transform=\"translate(-88.29 -47.093)\"/>\r\n<path class=\"b-assets\" d=\"M264,152h4.278v4.278H264Z\" transform=\"translate(-111.834 -47.093)\"/>\r\n<path class=\"b-assets\" d=\"M232,184h4.278v4.278H232Z\" transform=\"translate(-88.29 -70.639)\"/>\r\n<path class=\"b-assets\" d=\"M264,184h4.278v4.278H264Z\" transform=\"translate(-111.834 -70.639)\"/></g></svg>\r\n`"
             },
             {
+                "name": "Autocomplete",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "BED_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -16775,6 +16785,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16816,16 +16836,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17413,21 +17423,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormExComponent>",
-                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FiltersExComponent>",
                 "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormExComponent>",
+                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17453,6 +17463,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormuploadExComponent>",
+                "defaultValue": "(args: FormuploadExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17463,11 +17483,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormuploadExComponent>",
-                "defaultValue": "(args: FormuploadExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17528,16 +17548,6 @@
                 "deprecationMessage": "",
                 "type": "Story<TableExComponent<any>>",
                 "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18526,6 +18536,68 @@
                     "defaultValue": "`<svg xmlns=\"http://www.w3.org/2000/svg\"\r\n width=\"17.956\" height=\"17.331\" viewBox=\"0 0 17.956 17.331\">\r\n <defs>\r\n <style>.v-sign{fill:\"none\";opacity:0;}\r\n .b-v-sign{fill:none;stroke:#6dc066;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.5px;}\r\n .c,.d{stroke:none;}.d{fill:#dfdfdf;}</style></defs><g transform=\"translate(0.332 0.331)\">\r\n <g class=\"v-sign\">\r\n\r\n\r\n <path class=\"c\" d=\"M 8.5 16.25 C 4.226640224456787 16.25 0.75 12.77336025238037 0.75 8.5 C 0.75 6.115330219268799 1.804280042648315 3.984380006790161 3.798870086669922 2.337510108947754 C 4.990379810333252 1.342460036277771 6.746600151062012 0.75 8.5 0.75 C 12.77336025238037 0.75 16.25 4.226640224456787 16.25 8.5 C 16.25 12.77336025238037 12.77336025238037 16.25 8.5 16.25 Z\"/>\r\n\r\n <path class=\"d\" d=\"M 8.5 1.5 C 6.916910171508789 1.5 5.340410232543945 2.027279853820801 4.28285026550293 2.910479545593262 L 4.276379585266113 2.915849685668945 C 2.460060119628906 4.415530204772949 1.5 6.346500396728516 1.5 8.5 C 1.5 12.35980987548828 4.640190124511719 15.5 8.5 15.5 C 12.35980987548828 15.5 15.5 12.35980987548828 15.5 8.5 C 15.5 4.640190124511719 12.35980987548828 1.5 8.5 1.5 M 8.5 0 C 13.19441986083984 0 17 3.805580139160156 17 8.5 C 17 13.19441986083984 13.19441986083984 17 8.5 17 C 3.805580139160156 17 0 13.19441986083984 0 8.5 C 0 5.866430282592773 1.197699546813965 3.512599945068359 3.32135009765625 1.759169578552246 C 4.549599647521973 0.7334194183349609 6.439149856567383 0 8.5 0 Z\"/></g><g transform=\"translate(0.631 0.581)\">\r\n\r\n <path class=\"b-v-sign\" d=\"M18.933,9.965v.706a7.72,7.72,0,0,1-5.708,7.357,8.116,8.116,0,0,1-8.942-3.183A7.456,7.456,0,0,1,4.911,5.68a8.171,8.171,0,0,1,9.3-2.024\" transform=\"translate(-3 -2.991)\"/>\r\n <path class=\"b-v-sign\" d=\"M23.856,6,15.89,13.974l-2.39-2.39\"\r\n transform=\"translate(-7.923 -4.402)\"/></g></g></svg>`"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts": [
+                {
+                    "name": "Autocomplete",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Select",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "SelectMulti",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<InputExComponent>",
+                    "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "Text",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Textarea",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/Cards.stories.ts": [
                 {
                     "name": "CardDashboardTemplate",
@@ -18898,6 +18970,28 @@
                     "defaultValue": "(args: FormuploadExComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
                 {
                     "name": "Default",
@@ -18962,28 +19056,6 @@
                     "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts": [
@@ -19254,58 +19326,6 @@
                     "deprecationMessage": "",
                     "type": "Story<CardDashboardComponent>",
                     "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts": [
-                {
-                    "name": "Select",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "SelectMulti",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<InputExComponent>",
-                    "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
-                },
-                {
-                    "name": "Text",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Textarea",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
                 }
             ]
         },
@@ -21182,6 +21202,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Autocomplete",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

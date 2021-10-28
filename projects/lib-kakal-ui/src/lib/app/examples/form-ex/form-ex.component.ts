@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { QuestionGroupModel } from '../../components/form/models/question-group.model';
+import { GroupOptions, QuestionGroupModel } from '../../components/form/models/question-group.model';
 import {
   FormService,
   Question,
@@ -12,17 +12,21 @@ import {
 })
 export class FormExComponent implements OnInit {
   @Input() questions: Question[];
+  @Input() options: GroupOptions;
 
   public group: QuestionGroupModel;
 
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-    this.group = {
-      key: 'example',
-      label: '',
-      questions: this.formService.setQuestionList(this.questions),
-      formGroup: this.formService.setFormGroup(this.questions),
-    };
+    this.group = this.formService.createQuestionGroup({
+      key: '',
+      questions: this.questions,
+      options: {
+        gridProps: {
+          cols: 2,
+        },
+      },
+    });
   }
 }
