@@ -744,12 +744,12 @@
         },
         {
             "name": "SelectOption",
-            "id": "interface-SelectOption-8e150a45a19ef42eb6e02ab58a320de9",
+            "id": "interface-SelectOption-f8a1d5c51f5b691c6694b95a717cde0e",
             "file": "projects/lib-kakal-ui/src/lib/app/components/form/models/question-select.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  toLoweCrase();\r\n  label: string;\r\n  value: any;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: GridProps\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  label: string;\r\n  value: any;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: GridProps\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "label",
@@ -758,7 +758,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 6
+                    "line": 5
                 },
                 {
                     "name": "value",
@@ -767,23 +767,12 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 7
+                    "line": 6
                 }
             ],
             "indexSignatures": [],
             "kind": 163,
-            "methods": [
-                {
-                    "name": "toLoweCrase",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "any",
-                    "typeParameters": [],
-                    "line": 5,
-                    "deprecated": false,
-                    "deprecationMessage": ""
-                }
-            ]
+            "methods": []
         },
         {
             "name": "Status",
@@ -6670,7 +6659,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 14,
+                    "line": 13,
                     "modifierKind": [
                         122
                     ],
@@ -6685,7 +6674,7 @@
                     "type": "Function",
                     "optional": true,
                     "description": "",
-                    "line": 13,
+                    "line": 12,
                     "modifierKind": [
                         122
                     ],
@@ -6700,7 +6689,7 @@
                     "type": "SelectOption[]",
                     "optional": true,
                     "description": "",
-                    "line": 12,
+                    "line": 11,
                     "modifierKind": [
                         122
                     ],
@@ -8064,12 +8053,12 @@
         },
         {
             "name": "QuestionSelectModel",
-            "id": "class-QuestionSelectModel-8e150a45a19ef42eb6e02ab58a320de9",
+            "id": "class-QuestionSelectModel-f8a1d5c51f5b691c6694b95a717cde0e",
             "file": "projects/lib-kakal-ui/src/lib/app/components/form/models/question-select.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  toLoweCrase();\r\n  label: string;\r\n  value: any;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: GridProps\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  label: string;\r\n  value: any;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: GridProps\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -8084,7 +8073,7 @@
                         "optional": true
                     }
                 ],
-                "line": 14,
+                "line": 13,
                 "jsdoctags": [
                     {
                         "name": "options",
@@ -8106,7 +8095,7 @@
                     "type": "boolean",
                     "optional": true,
                     "description": "",
-                    "line": 14,
+                    "line": 13,
                     "modifierKind": [
                         122
                     ]
@@ -8118,7 +8107,7 @@
                     "type": "Function",
                     "optional": true,
                     "description": "",
-                    "line": 13,
+                    "line": 12,
                     "modifierKind": [
                         122
                     ]
@@ -8130,7 +8119,7 @@
                     "type": "SelectOption[]",
                     "optional": true,
                     "description": "",
-                    "line": 12,
+                    "line": 11,
                     "modifierKind": [
                         122
                     ]
@@ -16662,16 +16651,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16732,16 +16711,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16752,7 +16721,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16763,6 +16732,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16793,6 +16772,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17320,16 +17309,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Card.Dashboardstories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17390,21 +17369,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<InputExComponent>",
-                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormautocompleteExComponent>",
                 "defaultValue": "(args: FormautocompleteExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<InputExComponent>",
+                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17430,16 +17409,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17450,11 +17419,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<NavbarBottomComponent>",
-                "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17470,11 +17439,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<StepperExComponent>",
-                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<NavbarBottomComponent>",
+                "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17485,6 +17454,16 @@
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<StepperExComponent>",
+                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17505,6 +17484,16 @@
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
                 "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<kkl-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </kkl-typography>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18659,28 +18648,6 @@
                     "defaultValue": "(args: DashboardExComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts": [
                 {
                     "name": "Default",
@@ -18813,6 +18780,28 @@
                     "defaultValue": "(args: FormuploadExComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
                 {
                     "name": "Default",
@@ -18835,12 +18824,12 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -18850,11 +18839,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                    "type": "Story<NavbarComponent>",
+                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
@@ -18887,28 +18876,6 @@
                     "deprecationMessage": "",
                     "type": "Story<NavbarBottomComponent>",
                     "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<NavbarComponent>",
-                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
@@ -18963,6 +18930,28 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Calendar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts": [
@@ -19796,7 +19785,7 @@
                 "linktype": "interface",
                 "name": "SelectOption",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {

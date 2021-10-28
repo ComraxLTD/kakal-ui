@@ -1,11 +1,10 @@
 import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {  FormControl } from '@angular/forms';
 import { Question, QuestionBase } from '../services/form.service';
-import { FormService } from '../services/form.service';
 
 
 @Component({
-  selector: 'app-form-upload',
+  selector: 'kkl-form-upload',
   templateUrl: './form-upload.component.html',
   styleUrls: ['./form-upload.component.scss']
 })
@@ -31,7 +30,6 @@ export class FormUploadComponent implements OnInit {
   @HostListener('input', ['$event.target.files']) emitFiles(event: FileList) {
     this.file = event && event.item(0);
     this.fileChange.emit(this.file);
-    console.log(this.file);
   }
 
   constructor() { }
