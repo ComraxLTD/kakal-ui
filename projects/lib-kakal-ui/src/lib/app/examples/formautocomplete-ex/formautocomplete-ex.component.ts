@@ -4,7 +4,7 @@ import { SelectOption } from '../../components/form/models/question-select.model
 import { FormService, Question } from '../../components/form/services/form.service';
 
 @Component({
-  selector: 'app-formautocomplete-ex',
+  selector: 'kkl-formautocomplete-ex',
   templateUrl: './formautocomplete-ex.component.html',
   styleUrls: ['./formautocomplete-ex.component.scss']
 })
@@ -16,7 +16,7 @@ export class FormautocompleteExComponent implements OnInit {
   @Input()  questions : Question[];
   @Input()  options : SelectOption[];
 
-  
+
   constructor(private formService: FormService) { }
 
   ngOnInit(): void {
@@ -27,10 +27,10 @@ export class FormautocompleteExComponent implements OnInit {
     console.log(this.question);
     console.log("options");
     console.log(this.options);
-    
-    
-    
-    
+
+
+
+
   }
 
 }

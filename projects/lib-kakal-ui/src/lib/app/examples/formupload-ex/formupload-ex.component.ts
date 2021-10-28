@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { FormService, Question } from '../../components/form/services/form.service';
 
 @Component({
-  selector: 'app-formupload-ex',
+  selector: 'kkl-formupload-ex',
   templateUrl: './formupload-ex.component.html',
   styleUrls: ['./formupload-ex.component.scss']
 })

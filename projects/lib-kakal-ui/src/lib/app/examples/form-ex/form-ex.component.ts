@@ -6,7 +6,7 @@ import {
 } from '../../components/form/services/form.service';
 
 @Component({
-  selector: 'app-form-ex',
+  selector: 'kkl-form-ex',
   templateUrl: './form-ex.component.html',
   styleUrls: ['./form-ex.component.scss'],
 })
