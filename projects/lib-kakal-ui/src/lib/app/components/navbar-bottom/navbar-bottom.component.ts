@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -10,6 +10,7 @@ export class NavbarBottomComponent implements OnInit {
   @Input() text: string = '';
   @Input() hasNext: boolean;
   @Input() hasSave: boolean;
+  @Input() buttonSlots: ElementRef;
 
   @Output() previous = new EventEmitter();
   @Output() next = new EventEmitter();
@@ -17,7 +18,10 @@ export class NavbarBottomComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.hasSave)
+    console.log(this.hasNext)
+  }
 
   public onPrevious(): void {
     this.previous.emit();

@@ -121,15 +121,7 @@ import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.
 
     StatusComponent,
 
-    StepperExComponent,
-    InputExComponent,
-    FormExComponent,
-    FormautocompleteExComponent,
-    FormuploadExComponent,
-    TableExComponent,
-    FiltersExComponent,
-    DashboardExComponent,
-    LayoutExComponent,
+ 
   ],
   imports: [
     BrowserModule,
