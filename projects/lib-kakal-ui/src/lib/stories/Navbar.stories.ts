@@ -15,6 +15,9 @@ import { NavbarComponent } from '../app/components/navbar/navbar.component';
 import { NavbarService } from '../app/components/navbar/navbar.service';
 import { StepperComponent } from '../app/components/stepper/stepper.component';
 import { UnderlineDirective } from '../app/utilities/directives/underline.directive';
+import { CardStepComponent } from '../app/components/cards/card-step/card-step.component';
+import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
+import { VariantDirective } from '../app/utilities/directives/variant.directive';
 
 export default {
   title: 'Navbar',
@@ -26,10 +29,13 @@ export default {
         TypographyComponent,
         StepperComponent,
         CardStatusComponent,
+        CardStepComponent,
+        CardWizardComponent,
 
         SizeDirective,
         ColorDirective,
         ButtonDirective,
+        VariantDirective,
         UnderlineDirective
       ],
       providers: [NavbarService],
