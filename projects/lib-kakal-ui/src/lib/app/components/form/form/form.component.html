@@ -42,10 +42,10 @@
         </ng-container>
       </ng-container>
 
-      <mat-grid-tile *ngIf="hasButton">
+      <mat-grid-tile *ngIf="hasButton" [colspan]="buttonCols">
         <ng-container
           *ngTemplateOutlet="
-            slots?.button;
+            slots['button'];
             context: { question: this.question }
           "
         >

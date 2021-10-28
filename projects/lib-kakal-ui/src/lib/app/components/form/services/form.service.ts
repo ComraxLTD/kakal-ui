@@ -14,7 +14,7 @@ import {
   GroupOptions,
   QuestionGroupModel,
 } from '../models/question-group.model';
-import { QuestionBaseModel, ControlType } from '../models/question.model';
+import { QuestionBaseModel } from '../models/question.model';
 import { QuestionNumberModel } from '../models/question-number.model';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { QuestionSelectModel } from '../models/question-select.model';
@@ -34,7 +34,6 @@ export type Question =
   | QuestionTextareaModel
   | QuestionNumberModel
   | QuestionAutocompleteModel
-  | QuestionGroupModel;
 
 @Injectable({
   providedIn: 'root',
@@ -86,7 +85,6 @@ export class FormService {
     options?: GroupOptions;
   }): QuestionGroupModel {
     const { key, questions, options } = config;
-    console.log(this.setQuestionList(questions));
     return new QuestionGroupModel({
       ...options,
       key,

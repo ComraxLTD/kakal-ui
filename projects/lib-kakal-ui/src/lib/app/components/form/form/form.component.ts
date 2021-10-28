@@ -40,15 +40,14 @@ export class FormComponent implements OnInit {
   public questions$: BehaviorSubject<Question[]>;
   public formGroup: FormGroup;
   public grid: GridProps;
-  public hasButton: boolean = false;
+  public hasButton: boolean;
   public cols: string | number;
+  public buttonCols: string | number;
   public gutter: number;
 
   constructor() {}
 
   ngOnInit() {
-    console.log(this.group);
-
     this.formGroup = this.group.formGroup;
     this.setQuestions();
     this.setGrid();
@@ -71,6 +70,7 @@ export class FormComponent implements OnInit {
     this.grid = this.group.gridProps;
     this.cols = this.group.gridProps?.cols || 1;
     this.gutter = this.group.gridProps?.gutter || 1;
+    this.buttonCols = this.group.gridProps?.buttonCols || 1;
     this.hasButton = this.group.hasButton || false;
   }
 

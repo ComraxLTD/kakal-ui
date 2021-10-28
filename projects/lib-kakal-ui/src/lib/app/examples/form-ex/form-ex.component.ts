@@ -11,14 +11,17 @@ import {
   styleUrls: ['./form-ex.component.scss'],
 })
 export class FormExComponent implements OnInit {
-  @Input() questions: Question[];
-  @Input() options: GroupOptions;
+  @Input() public questions: Question[];
+  @Input() public options: GroupOptions;
+  @Input() public width: string;
+  @Input() public multi: boolean;
 
   public group: QuestionGroupModel;
 
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
+
     this.group = this.formService.createQuestionGroup({
       key: '',
       questions: this.questions,

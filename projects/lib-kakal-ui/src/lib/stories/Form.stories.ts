@@ -16,6 +16,8 @@ import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { MessageService } from '../app/components/form/services/message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormExComponent } from '../app/examples/form-ex/form-ex.component';
+import { TypographyComponent } from '../app/components/typography/typography.component';
+import { multiQuestions } from '../app/examples/form-ex/mock-qustions';
 
 export default {
   title: 'Form',
@@ -29,6 +31,7 @@ export default {
         FormRadioComponent,
         FormRadioComponent,
         IconComponent,
+        TypographyComponent,
         SizeDirective,
         ColorDirective,
       ],
@@ -64,12 +67,12 @@ const questions: Question[] = [
     },
   },
   {
-    controlType: 'text',
+    controlType: 'number',
     key: 'block',
     label: 'גוש',
   },
   {
-    controlType: 'text',
+    controlType: 'number',
     key: 'section',
     label: 'חלקה',
   },
@@ -77,9 +80,6 @@ const questions: Question[] = [
     controlType: 'text',
     key: 'subSection',
     label: 'תת חלקה',
-    gridProps: {
-      fullWidth: true,
-    },
   },
 ];
 
@@ -87,12 +87,35 @@ export const Default = Template.bind({});
 Default.args = {
   questions,
 };
+
 export const Grid = Template.bind({});
 Grid.args = {
   questions,
   options: {
     gridProps: {
       cols: 2,
+    },
+  },
+};
+
+export const Button = Template.bind({});
+Button.args = {
+  questions,
+  options: {
+    hasButton: true,
+  },
+};
+
+
+export const Advanced = Template.bind({});
+Advanced.args = {
+  multi: true,
+  questions: multiQuestions,
+  options: {
+    hasButton: true,
+    gridProps: {
+      cols: 24,
+      buttonCols : 2
     },
   },
 };

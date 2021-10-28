@@ -13,22 +13,21 @@ import {
   styleUrls: ['./formautocomplete-ex.component.scss'],
 })
 export class FormautocompleteExComponent implements OnInit {
-
-  @Input() public question: any;
+  @Input() public question: Question;
   @Input() public options: SelectOption[];
 
   public control: FormControl;
   public questionControl: Question;
   public options$: Observable<SelectOption[]>;
 
-
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-    console.log(this.options);
     this.questionControl = this.formService.setQuestion(this.question);
     this.control = this.formService.getFieldControl(this.questionControl);
-    this.options$ = of(this.options)
+    this.options$ = of(this.options);
+
+    
 
   }
 }
