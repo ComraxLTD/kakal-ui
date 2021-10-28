@@ -7,7 +7,7 @@ import { ControlType, GridProps } from '../models/question.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 import { BehaviorSubject } from 'rxjs';
-import { Palette } from 'src/styles/theme';
+import { Palette } from 'projects/lib-kakal-ui/src/lib/styles/theme';
 
 @Component({
   selector: 'kkl-form-input',

@@ -11,7 +11,7 @@ import { PaginationComponent } from '../app/components/pagination/pagination.com
 import { StatusComponent } from '../app/components/status/status.component';
 import { TableComponent } from '../app/components/table/table.component';
 import { TableService } from '../app/components/table/table.service';
-import { TypographyComponent, TypographyComponent } from '../app/components/typography/typography.component';
+import { TypographyComponent } from '../app/components/typography/typography.component';
 import { TableExComponent } from '../app/examples/table-ex/table-ex.component';
 import { AssetsModel } from '../app/utilities/models/assets.model';
 import { AreaPipe } from '../app/utilities/pipes/area.pipe';
@@ -32,7 +32,6 @@ export default {
     moduleMetadata({
       declarations: [
         IconComponent,
-        TypographyComponent,
         TableComponent,
         StatusComponent,
         ColumnFilterComponent,

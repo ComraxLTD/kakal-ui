@@ -121,6 +121,66 @@
             "sourceCode": "import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';\r\nimport { AreaPipe } from './area.pipe';\r\nimport { formatDate, formatNumber } from '@angular/common';\r\n\r\n@Pipe({\r\n  name: 'format',\r\n})\r\nexport class FormatPipe implements PipeTransform {\r\n  constructor(\r\n    private area: AreaPipe,\r\n    @Inject(LOCALE_ID) private locale: string\r\n  ) {}\r\n\r\n  transform(value: unknown, type?: string): unknown {\r\n    let result: unknown = value;\r\n\r\n    switch (typeof value) {\r\n      case 'number':\r\n        switch (type) {\r\n          case 'area':\r\n            result = this.area.transform(value);\r\n            break;\r\n          default:\r\n            result = formatNumber(value, this.locale);\r\n        }\r\n        break;\r\n      case 'object':\r\n        if (value instanceof Date) {\r\n          result = formatDate(value, 'M/d/yy', this.locale);\r\n        }\r\n    }\r\n\r\n    return result;\r\n  }\r\n}\r\n"
         },
         {
+            "name": "NisPipe",
+            "id": "pipe-NisPipe-0025e63daef88aefab975b31e443dcc2",
+            "file": "projects/lib-kakal-ui/src/lib/app/utilities/pipes/nis.ts",
+            "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "description": "",
+            "rawdescription": "\n",
+            "properties": [],
+            "methods": [
+                {
+                    "name": "transform",
+                    "args": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        },
+                        {
+                            "name": "tag",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "string",
+                    "typeParameters": [],
+                    "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "value",
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        },
+                        {
+                            "name": "tag",
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "optional": true,
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                }
+            ],
+            "ngname": "nis",
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'nis',\r\n})\r\nexport class NisPipe implements PipeTransform {\r\n  transform(value: number, tag?: string): string {\r\n\r\n    tag = tag || 'ש\"ח';\r\n\r\n    return `${value} ${tag}`;\r\n  }\r\n}\r\n"
+        },
+        {
             "name": "NumberToTimePipe",
             "id": "pipe-NumberToTimePipe-51cec8332b2343fa91147b61e56b51b5",
             "file": "projects/lib-kakal-ui/src/lib/app/utilities/pipes/numberToTime.pipe.ts",
@@ -8945,6 +9005,99 @@
     ],
     "directives": [
         {
+            "name": "BorderDirective",
+            "id": "directive-BorderDirective-e3d4674126633274fc48e4acad410664",
+            "file": "projects/lib-kakal-ui/src/lib/app/utilities/directives/border.directive.ts",
+            "type": "directive",
+            "description": "",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { palette, Palette } from '../../../styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appBorder]'\r\n})\r\nexport class BorderDirective {\r\n\r\n  private palette = palette;\r\n\r\n  @Input() color: Palette;\r\n  @Input() size: number;\r\n\r\n  @HostBinding('style.border') private border: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.border = `${this.size || 1}px solid ${this.palette[this.color || 'primary']}`;\r\n  }\r\n}\r\n",
+            "selector": "[appBorder]",
+            "providers": [],
+            "inputsClass": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "Palette"
+                },
+                {
+                    "name": "size",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "number"
+                }
+            ],
+            "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [
+                {
+                    "name": "style.border",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "string"
+                }
+            ],
+            "hostListeners": [],
+            "propertiesClass": [
+                {
+                    "name": "border",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.border'"
+                        }
+                    ],
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "palette",
+                    "defaultValue": "palette",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 14
+            }
+        },
+        {
             "name": "ButtonDirective",
             "id": "directive-ButtonDirective-2e2f0a52e1936ced4a972df4ed042736",
             "file": "projects/lib-kakal-ui/src/lib/app/utilities/directives/button.directive.ts",
@@ -11764,7 +11917,7 @@
         },
         {
             "name": "FormInputComponent",
-            "id": "component-FormInputComponent-7b2dc91f943e52ca5256efb9fcb00469",
+            "id": "component-FormInputComponent-8770d6c45e48742faf32a90618a189e7",
             "file": "projects/lib-kakal-ui/src/lib/app/components/form/form-input/form-input.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -11781,6 +11934,13 @@
             ],
             "viewProviders": [],
             "inputsClass": [
+                {
+                    "name": "apprence",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 21,
+                    "type": "MatFormFieldAppearance"
+                },
                 {
                     "name": "control",
                     "deprecated": false,
@@ -11802,7 +11962,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 38,
+                    "line": 39,
                     "type": "EventEmitter<FormControl>"
                 },
                 {
@@ -11810,7 +11970,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 37,
+                    "line": 38,
                     "type": "EventEmitter<MatAutocompleteSelectedEvent>"
                 },
                 {
@@ -11818,7 +11978,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 35,
+                    "line": 37,
                     "type": "EventEmitter<QuestionSelectModel>"
                 }
             ],
@@ -11827,7 +11987,19 @@
                     "name": "color",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string",
+                    "type": "Palette",
+                    "optional": false,
+                    "description": "",
+                    "line": 33,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "color$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "BehaviorSubject<Palette>",
                     "optional": false,
                     "description": "",
                     "line": 30,
@@ -11839,7 +12011,7 @@
                     "name": "controlType",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string",
+                    "type": "ControlType",
                     "optional": false,
                     "description": "",
                     "line": 23,
@@ -11861,13 +12033,25 @@
                     ]
                 },
                 {
+                    "name": "error$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "BehaviorSubject<string>",
+                    "optional": false,
+                    "description": "",
+                    "line": 29,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "GridProps",
                     "optional": false,
                     "description": "",
-                    "line": 29,
+                    "line": 32,
                     "modifierKind": [
                         122
                     ]
@@ -11892,7 +12076,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 32,
+                    "line": 35,
                     "modifierKind": [
                         122
                     ]
@@ -11905,7 +12089,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 34,
                     "modifierKind": [
                         122
                     ]
@@ -11933,18 +12117,6 @@
                     "modifierKind": [
                         122
                     ]
-                },
-                {
-                    "name": "type",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "string",
-                    "optional": false,
-                    "description": "",
-                    "line": 22,
-                    "modifierKind": [
-                        122
-                    ]
                 }
             ],
             "methodsClass": [
@@ -11954,21 +12126,39 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 42,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
                 {
                     "name": "onAutocomplete",
-                    "args": [],
+                    "args": [
+                        {
+                            "name": "control",
+                            "type": "FormControl",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 95,
+                    "line": 100,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
                         122
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "control",
+                            "type": "FormControl",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
                     ]
                 },
                 {
@@ -11984,7 +12174,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 99,
+                    "line": 104,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12008,7 +12198,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 89,
+                    "line": 92,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12016,12 +12206,25 @@
                     ]
                 },
                 {
-                    "name": "subscribeToControl",
+                    "name": "setErrorMessage",
                     "args": [],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 58,
+                    "line": 75,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ]
+                },
+                {
+                    "name": "setIconColor",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12034,7 +12237,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 74,
+                    "line": 87,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -12049,7 +12252,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { MessageService } from '../services/message.service';\r\nimport { FormControl } from '@angular/forms';\r\nimport { QuestionBase } from '../services/form.service';\r\nimport { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport {\r\n  QuestionSelectModel,\r\n  SelectOption,\r\n} from '../models/question-select.model';\r\nimport { GridProps } from '../models/question.model';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\n\r\n@Component({\r\n  selector: 'kkl-form-input',\r\n  templateUrl: './form-input.component.html',\r\n  styleUrls: ['./form-input.component.scss'],\r\n})\r\nexport class FormInputComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n\r\n  public type: string;\r\n  public controlType: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n\r\n  public gridProps: GridProps;\r\n  public color: string;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output()\r\n  public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();\r\n  @Output()\r\n  public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter();\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n\r\n  constructor(private messageService: MessageService) {}\r\n\r\n  ngOnInit(): void {\r\n    this.gridProps = this.question.gridProps;\r\n    console.log(this.gridProps);\r\n    this.type = this.question?.type;\r\n    this.controlType = this.question?.controlType;\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n\r\n    this.subscribeToControl();\r\n  }\r\n\r\n  // subscription section\r\n  private subscribeToControl() {\r\n    if (this.control.disabled) {\r\n      this.color = 'disable';\r\n    }\r\n\r\n    this.control.valueChanges.subscribe((value) => {\r\n      if (this.control.disabled) {\r\n        this.color = 'disable';\r\n      } else if (this.control.errors) {\r\n        this.color = 'warn';\r\n      } else {\r\n        this.color = '';\r\n      }\r\n    });\r\n  }\r\n\r\n  public validate() {\r\n    this.error = this.messageService.getErrorMessage(this.control, this.label);\r\n\r\n    if (this.error) {\r\n      this.color = 'warn';\r\n    }\r\n\r\n    this.control.valueChanges.subscribe(() => {\r\n      this.error = this.messageService.getErrorMessage(\r\n        this.control,\r\n        this.label\r\n      );\r\n    });\r\n  }\r\n\r\n  public onSelectChange() {\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.selected.emit(this.question);\r\n      this.question.onSelectChange();\r\n    }\r\n  }\r\n  public onAutocomplete() {\r\n    this.autocomplete.emit(this.control);\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { MessageService } from './../services/message.service';\r\nimport { FormControl } from '@angular/forms';\r\nimport { QuestionBase } from '../services/form.service';\r\nimport { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { QuestionSelectModel, SelectOption } from './../models/question-select.model';\r\nimport { ControlType, GridProps } from '../models/question.model';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { Palette } from 'projects/lib-kakal-ui/src/lib/styles/theme';\r\n\r\n@Component({\r\n  selector: 'kkl-form-input',\r\n  templateUrl: './form-input.component.html',\r\n  styleUrls: ['./form-input.component.scss']\r\n})\r\nexport class FormInputComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n  @Input() public apprence: MatFormFieldAppearance;\r\n\r\n  public controlType: ControlType;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[]\r\n  public error: string = ''\r\n\r\n  public error$: BehaviorSubject<string>;\r\n  public color$: BehaviorSubject<Palette>;\r\n\r\n  public gridProps: GridProps\r\n  public color: Palette;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output() public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();\r\n  @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter()\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter()\r\n\r\n  constructor(\r\n    private messageService: MessageService,\r\n\r\n  ) {\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    const color: Palette = this.control.disabled ? 'disable' : 'primary';\r\n    this.color$ = new BehaviorSubject<Palette>(color);\r\n    this.error$ = new BehaviorSubject<string>('');\r\n    this.controlType = this.question?.controlType\r\n    this.gridProps = this.question?.gridProps\r\n    this.label = this.question?.label || ''\r\n    this.icon = this.question?.icon || ''\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n    this.control.valueChanges.subscribe((value) => {\r\n\r\n    });\r\n  }\r\n\r\n  // private subscribeToControl() {\r\n  private setIconColor() {\r\n    if (this.control.disabled) {\r\n      this.color = 'disable';\r\n    } else if (this.control.errors) {\r\n      this.color = 'warn';\r\n    } else {\r\n      this.color = 'primary';\r\n    }\r\n  }\r\n\r\n  private setErrorMessage() {\r\n    this.error = this.messageService.getErrorMessage(this.control, this.label);\r\n    this.error$.next(this.error)\r\n\r\n    if (this.error) {\r\n      this.color$.next('warn')\r\n    } else {\r\n      this.color$.next('primary')\r\n    }\r\n\r\n  }\r\n\r\n  public validate() {\r\n    this.setErrorMessage()\r\n    this.setIconColor()\r\n  }\r\n\r\n  public onSelectChange() {\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      var label = this.control.parent.controls[\"record\"].value;\r\n      this.selected.emit(label)\r\n      this.question.onSelectChange()\r\n    }\r\n  }\r\n\r\n  public onAutocomplete(control: FormControl) {\r\n    this.autocomplete.emit(this.control)\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event)\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12071,7 +12274,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 38,
+                "line": 39,
                 "jsdoctags": [
                     {
                         "name": "messageService",
@@ -12087,7 +12290,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div>\r\n  <mat-form-field [appearance]=\"control.disabled ? 'fill' : 'outline'\">\r\n    <mat-label>{{ label }}</mat-label>\r\n\r\n    <ng-container [ngSwitch]=\"controlType\">\r\n      <ng-container *ngSwitchCase=\"'textarea'\">\r\n        <textarea matInput [rows]=\"gridProps.rows\" [formControl]=\"control\" [name]=\"question.key\" (focusout)=\"validate()\"\r\n          #textarea></textarea>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'select'\">\r\n        <mat-select [multiple]=\"question.multi\" (selectionChange)=\"onSelectChange()\" [formControl]=\"control\"\r\n          [attr.data-name]=\"question.key\" (focusout)=\"validate()\">\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-select>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'autocomplete'\">\r\n        <input type=\"text\" matInput [formControl]=\"control\" [matAutocomplete]=\"auto\" />\r\n        <mat-autocomplete autoActiveFirstOption #auto=\"matAutocomplete\" (optionSelected)=\"onOptionSelected($event)\">\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-autocomplete>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchDefault>\r\n        <input matInput autocomplete=\"off\" [formControl]=\"control\" [name]=\"question.key\" (focusout)=\"validate()\"\r\n          #input />\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <kkl-icon *ngIf=\"icon\" matSuffix [color]=\"color || 'primary'\" [key]=\"icon\"></kkl-icon>\r\n\r\n    <mat-error>{{ error }}</mat-error>\r\n  </mat-form-field>\r\n</div>\r\n"
+            "templateData": "\r\n<div>\r\n  <mat-form-field [appearance]=\"control.disabled ? 'fill' : 'outline'\">\r\n    <mat-label>{{ label }}</mat-label>\r\n\r\n    <ng-container [ngSwitch]=\"controlType\">\r\n      <ng-container *ngSwitchCase=\"'textarea'\">\r\n        <textarea matInput [rows]=\"gridProps.rows\" [formControl]=\"control\" [name]=\"question.key\" (focusout)=\"validate()\"\r\n          #textarea></textarea>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'select'\">\r\n        <mat-select [multiple]=\"question.multi\" (selectionChange)=\"onSelectChange()\" [formControl]=\"control\"\r\n          [attr.data-name]=\"question.key\" (focusout)=\"validate()\">\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-select>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchCase=\"'autocomplete'\">\r\n        <input type=\"text\" matInput [formControl]=\"control\" [matAutocomplete]=\"auto\" />\r\n        <mat-autocomplete autoActiveFirstOption #auto=\"matAutocomplete\" (optionSelected)=\"onOptionSelected($event)\" [displayWith]=\"displayFn\">\r\n          <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n            {{ option.label }}\r\n          </mat-option>\r\n        </mat-autocomplete>\r\n      </ng-container>\r\n\r\n      <ng-container *ngSwitchDefault>\r\n        <input matInput autocomplete=\"off\" [formControl]=\"control\" [name]=\"question.key\" (focusout)=\"validate()\"\r\n          #input />\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <kkl-icon variant=\"form\" *ngIf=\"icon\" matSuffix [color]=\"color || 'primary'\" [key]=\"icon\"></kkl-icon>\r\n\r\n    <mat-error>{{ error }}</mat-error>\r\n  </mat-form-field>\r\n</div>\r\n"
         },
         {
             "name": "FormRadioComponent",
@@ -15342,13 +15545,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-f09c879f5586d30d2619d79a5d05f7cc",
+            "id": "module-AppModule-fae87dbb00bb90607e79d2c557f4863c",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent,\r\n    LayoutExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { BorderDirective } from './utilities/directives/border.directive';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n    BorderDirective,\r\n\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent,\r\n    LayoutExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -15359,6 +15562,9 @@
                     "elements": [
                         {
                             "name": "AppComponent"
+                        },
+                        {
+                            "name": "BorderDirective"
                         },
                         {
                             "name": "ButtonDirective"
@@ -15794,16 +16000,6 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -15814,7 +16010,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15844,6 +16040,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -15854,7 +16060,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -15864,7 +16070,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16412,16 +16618,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16432,21 +16628,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ExpandPanelComponent>",
-                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormExComponent>",
-                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16462,21 +16648,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<InputExComponent>",
-                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<FormExComponent>",
+                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<InputExComponent>",
+                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16492,6 +16678,26 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ExpandPanelComponent>",
+                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16502,21 +16708,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarComponent>",
-                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<NavbarBottomComponent>",
                 "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarComponent>",
+                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17642,28 +17848,6 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts": [
                 {
                     "name": "Default",
@@ -17686,12 +17870,12 @@
                     "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts": [
+            "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts": [
                 {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -17701,11 +17885,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<ExpandPanelComponent>",
-                    "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts": [
@@ -17752,6 +17936,28 @@
                     "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ExpandPanelComponent>",
+                    "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
                 {
                     "name": "Default",
@@ -17772,28 +17978,6 @@
                     "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<NavbarComponent>",
-                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
@@ -17826,6 +18010,28 @@
                     "deprecationMessage": "",
                     "type": "Story<NavbarBottomComponent>",
                     "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavbarComponent>",
+                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
@@ -18628,7 +18834,7 @@
                 "linktype": "component",
                 "name": "FormInputComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/23",
+                "coverageCount": "0/26",
                 "status": "low"
             },
             {
@@ -19632,6 +19838,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/utilities/directives/border.directive.ts",
+                "type": "directive",
+                "linktype": "directive",
+                "name": "BorderDirective",
+                "coveragePercent": 0,
+                "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/app/utilities/directives/button.directive.ts",
                 "type": "directive",
                 "linktype": "directive",
@@ -19726,6 +19941,15 @@
                 "type": "pipe",
                 "linktype": "pipe",
                 "name": "FormatPipe",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/utilities/pipes/nis.ts",
+                "type": "pipe",
+                "linktype": "pipe",
+                "name": "NisPipe",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
