@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output ,OnChanges} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  OnChanges,
+} from '@angular/core';
 
 import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
@@ -54,6 +61,7 @@ type state =
 
 export interface TableState<T> {
   mode?: state;
+  ids?: id[];
   row?: RowModel<T>;
   column?: ColumnModel<T>;
   options?: any;
@@ -155,16 +163,18 @@ export class TableComponent<T> implements OnInit, Table<T> {
   @Output() sort: EventEmitter<Sort> = new EventEmitter();
 
   // emit pagination event : {next : number, prev : number}
-  @Output() pageChange: EventEmitter<{ next: number; prev: number }> =
-    new EventEmitter();
+  @Output() pageChange: EventEmitter<{
+    next: number;
+    prev: number;
+  }> = new EventEmitter();
 
   // emit filter event : ColumnModel<T>
   @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();
 
   // emit state instance event
-  @Output() register: EventEmitter<BehaviorSubject<TableState<T>>> =
-    new EventEmitter();
-  @Output() filterData: EventEmitter<{ params: string, tbl: Observable<T[]> }> = new EventEmitter();
+  @Output() register: EventEmitter<
+    BehaviorSubject<TableState<T>>
+  > = new EventEmitter();
 
   // emit select event : Observable<T[]>
   @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
@@ -173,7 +183,7 @@ export class TableComponent<T> implements OnInit, Table<T> {
 
   private setExpandState() {
     this.expendable = this.expendable || this.accordion;
-
+    console.log(this.expendable);
     if (this.expendable) {
       this.expandKey$ = this.setExpandKey$();
     }
@@ -184,24 +194,17 @@ export class TableComponent<T> implements OnInit, Table<T> {
     this.rows$ = this.setRowWithState$();
     this.columns$ = this.setColumns$(filters);
     this.pagination = { ...pagination, id: uuid4() };
-
-    console.log(this.columns)
-
   }
 
   ngOnInit() {
-    ;
     this.theme = this.theme || 'accent';
     this.tableState$ = new BehaviorSubject<TableState<T>>({
       mode: '',
     });
 
-    this.setTableProps()
-    this.setExpandState()
+    this.setTableProps();
+    this.setExpandState();
 
-    if (this.expendable) {
-      this.expandKey$ = this.setExpandKey$();
-    }
     this.register.emit(this.tableState$);
   }
 
@@ -209,22 +212,22 @@ export class TableComponent<T> implements OnInit, Table<T> {
     rows: RowModel<T>[],
     state: TableState<T>
   ): RowModel<T>[] {
-    const { mode, row, options } = state;
+    const { mode, ids, row, options } = state;
 
     switch (mode) {
       case 'expand':
         return rows.map((rowItem) => {
-          if (row.item['id'] === rowItem.item['id']) {
+          if (ids.indexOf(rowItem.item['id']) >= 0) {
             rowItem.expanded = !rowItem.expanded;
           }
           return rowItem;
         });
       case 'form':
-        const { columns } = this.tableService.setColumns(
-          this.columns,
-          this.model,
-          this.options.filters
-        );
+        const { columns } = this.tableService.setColumns({
+          tableColumns: this.columns,
+          model: this.model,
+          filters: this.options.filters,
+        });
 
         rows = this.tableService.onFormMode(rows, columns, options);
         return [...rows];
@@ -247,7 +250,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
   }
 
   private setRows$(): Observable<RowModel<T>[]> {
-    ;
     return this.data$.pipe(
       map((data) => {
         return this.tableService.setRows(data, this.options);
@@ -256,7 +258,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
   }
 
   private setRowWithState$() {
-    ;
     return combineLatest([
       this.setRows$(),
       this.tableState$.asObservable(),
@@ -266,13 +267,14 @@ export class TableComponent<T> implements OnInit, Table<T> {
   private setColumns$(filters: ColumnDef<T>[]) {
     return this.data$.pipe(
       map(() => {
-        const { columns, columnsDefs } = this.tableService.setColumns(
-          this.columns,
-          this.model,
-          [...filters],
-          this.selectable,
-          this.hasActions
-        );
+        const { columns, columnsDefs } = this.tableService.setColumns({
+          tableColumns: this.columns,
+          model: this.model,
+          filters: [...filters],
+          selectable: this.selectable,
+          accordion: this.accordion,
+          hasActions: this.hasActions,
+        });
 
         this.columnDefs = columnsDefs;
         this.columns = columns;
@@ -284,13 +286,12 @@ export class TableComponent<T> implements OnInit, Table<T> {
   // method to handle key of expand table template (expandSlots) - key need to be the same as the object field
   // ex { name : string } columnDef : name
   private setExpandKey$(): Observable<ColumnDef<T>> {
-    ;
     return this.tableState$.pipe(
       map((state) => {
         const { mode, column } = state;
 
         if (mode === 'expand') {
-          return column?.columnDef || 'expanded';
+          return column?.columnDef || 'accordion';
         }
 
         return '';
@@ -301,7 +302,7 @@ export class TableComponent<T> implements OnInit, Table<T> {
   // method which handle expand row state
   public onExpandRow(row: RowModel<T>) {
     if (this.accordion) {
-      this.tableState$.next({ mode: 'expand', row });
+      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });
     }
   }
 
@@ -344,10 +345,5 @@ export class TableComponent<T> implements OnInit, Table<T> {
     this.isAllSelected()
       ? this.selection.clear()
       : this.rows.map((row) => this.selection.select(row));
-  }
-  // filterParams = [];
-  private filterTable(params) {
-    ;
-    this.filterData.emit({ params: params, tbl: this.data$ });
   }
 }

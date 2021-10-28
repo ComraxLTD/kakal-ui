@@ -19,7 +19,6 @@ export class NavbarService {
 
   constructor() {
     this.title$ = new BehaviorSubject<string>('');
-
     this.status$ = new BehaviorSubject<CardStepModel[]>([]);
     this.showStatus$ = new BehaviorSubject<boolean>(false)
   }

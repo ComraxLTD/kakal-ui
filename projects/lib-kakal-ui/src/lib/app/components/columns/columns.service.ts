@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ColumnDef, ColumnModel } from './column.model';
+import { keys } from 'ts-transformer-keys';
 
 export interface ColumnsData<T> {
   columns: ColumnModel<T>[];
@@ -103,25 +104,41 @@ export class ColumnsService<T> {
     return columnsWithSelect;
   }
   private addActionsColumn(columns: ColumnModel<T>[]): ColumnModel<T>[] {
-    const columnsWitActions = [...columns];
+    const columnsWithActions = [...columns];
     const column = new ColumnModel<T>({
       columnDef: 'actions',
       type: 'actions',
     });
 
-    columnsWitActions.push(column);
-    return columnsWitActions;
+    columnsWithActions.push(column);
+    return columnsWithActions;
+  }
+
+  private addAccordionColumn(columns: ColumnModel<T>[]): ColumnModel<T>[] {
+    const columnsWithAccordion = [...columns];
+    const column = new ColumnModel<T>({
+      columnDef: 'accordion',
+      type: 'custom',
+    });
+
+    columnsWithAccordion.push(column);
+    return columnsWithAccordion;
   }
 
   private setColumnsWithState(
     selectable,
-    hasActions
+    hasActions,
+    accordion
   ): (columns: ColumnModel<T>[]) => ColumnModel<T>[] {
     return (columns: ColumnModel<T>[]) => {
       let newColumns = [...columns];
 
       if (selectable) {
         newColumns = this.addSelectColumn(newColumns);
+      }
+
+      if (accordion) {
+        newColumns = this.addAccordionColumn(newColumns);
       }
       if (hasActions) {
         newColumns = this.addActionsColumn(newColumns);
@@ -131,14 +148,28 @@ export class ColumnsService<T> {
     };
   }
 
-  public getColumns(
-    model: T,
-    tableColumns: ColumnModel<T>[],
-    filters: ColumnDef<T>[],
-    selectable?: boolean,
-    hasActions?: boolean
-  ): ColumnsData<T> {
-    const columnWithState = this.setColumnsWithState(selectable, hasActions)(tableColumns);
+  public getColumns(options: {
+    model: T;
+    tableColumns: ColumnModel<T>[];
+    filters: ColumnDef<T>[];
+    selectable?: boolean;
+    accordion?: boolean;
+    hasActions?: boolean;
+  }): ColumnsData<T> {
+    const {
+      model,
+      tableColumns,
+      selectable,
+      hasActions,
+      accordion,
+      filters,
+    } = options;
+
+    const columnWithState = this.setColumnsWithState(
+      selectable,
+      hasActions,
+      accordion
+    )(tableColumns);
     const columnsDefs = this.initColumnsDefs(model, filters);
     const columns = this.setColumnWithColumnDefs(columnWithState, columnsDefs);
     return { columns, columnsDefs: this.getColumnsDefs(columns, columnsDefs) };

@@ -57,33 +57,40 @@ import { LayoutComponent } from './screens/layout/layout.component';
 import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
 import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
-import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
 import { BorderDirective } from './utilities/directives/border.directive';
 
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
+
 @NgModule({
   declarations: [
-
     AppComponent,
+
+    // SCREEN COMPS
     DashboardComponent,
     LayoutComponent,
 
+    // SHARED COMPS
     IconComponent,
     TypographyComponent,
+    ListItemComponent,
+    ExpandPanelComponent,
 
+    // FORM COMPS
     FormComponent,
     FormInputComponent,
     FormGroupComponent,
     FormRadioComponent,
     FormAutocompleteComponent,
 
+    // TABLE COMPS
     PaginationComponent,
     TableComponent,
     ColumnFilterComponent,
     ColumnFormComponent,
 
-
+    // CARD COMPS
     CardDashboardComponent,
     CardStatusComponent,
     CardStepComponent,
@@ -91,20 +98,16 @@ import { BorderDirective } from './utilities/directives/border.directive';
     CardUserComponent,
     CardFilterComponent,
 
-    VariantDirective,
-    SizeDirective,
-
-    StepperComponent,
-
+    // NAVIGATION COMPS
     MenuComponent,
     MenuItemComponent,
     NavbarComponent,
     NavbarBottomComponent,
+    StepperComponent,
 
-    ListItemComponent,
-
-    ExpandPanelComponent,
-
+    // DIRECTIVES
+    VariantDirective,
+    SizeDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
@@ -120,7 +123,7 @@ import { BorderDirective } from './utilities/directives/border.directive';
     TableExComponent,
     FiltersExComponent,
     DashboardExComponent,
-    LayoutExComponent
+    LayoutExComponent,
   ],
   imports: [
     BrowserModule,

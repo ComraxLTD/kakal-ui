@@ -19,7 +19,7 @@ export class TableService<T> {
     return data
       .map((item: T) => new RowModel({ item }))
       .map((row: RowModel<T>) => {
-         if (options?.pending && options?.pending.indexOf(row.item['id']) > -1) {
+        if (options?.pending && options?.pending.indexOf(row.item['id']) > -1) {
           row.pending = true;
         }
 
@@ -27,14 +27,15 @@ export class TableService<T> {
       });
   }
 
-  public setColumns(
-    columns: ColumnModel<T>[],
-    model: T,
-    filters: ColumnDef<T>[],
-    selectable? : boolean,
-    hasActions? : boolean
-  ): ColumnsData<T> {
-    return this.columnsService.getColumns(model, columns, filters, selectable, hasActions);
+  public setColumns(options: {
+    tableColumns: ColumnModel<T>[];
+    model: T;
+    filters: ColumnDef<T>[];
+    selectable?: boolean;
+    accordion?: boolean;
+    hasActions?: boolean;
+  }): ColumnsData<T> {
+    return this.columnsService.getColumns({ ...options });
   }
 
   public findRowIndex(rows: RowModel<T>[], key: string, item?: T): number {
@@ -116,7 +117,6 @@ export class TableService<T> {
     columns: ColumnModel<T>[],
     options?: TableOptions<T>
   ): RowModel<T>[] {
-
     if (options?.editable) {
       const { editable } = options;
       return rows.map((row) => {
