@@ -184,9 +184,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
     this.rows$ = this.setRowWithState$();
     this.columns$ = this.setColumns$(filters);
     this.pagination = { ...pagination, id: uuid4() };
-
-    console.log(this.columns)
-
   }
 
   ngOnInit() {

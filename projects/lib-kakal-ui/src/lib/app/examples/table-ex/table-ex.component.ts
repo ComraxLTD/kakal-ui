@@ -17,11 +17,20 @@ export class TableExComponent<T> implements OnInit {
   @Input() public model: T;
   @Input() public options: TableOptions<T>;
 
-  @Input() public data$: Observable<T[]>;
+  @Input() public paginator: boolean;
+  @Input() public expendable: boolean;
+  @Input() public accordion: boolean;
+  @Input() public selectable: boolean;
+  @Input() public hasState: boolean;
+  @Input() public hasFooter: boolean;
+  @Input() public hasActions: boolean;
+  
+  public data$: Observable<T[]>;
 
   constructor() {}
 
   ngOnInit(): void {
     this.data$ = of(this.data);
+    console.log(this.options)
   }
 }

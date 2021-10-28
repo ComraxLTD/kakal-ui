@@ -6,13 +6,24 @@
       [model]="model"
       [options]="options"
       [rowSlots]="{status}"
+      [expendable]="expendable"
+      [accordion]="accordion"
+      [hasActions]="hasActions"
+      [selectable]="selectable"
+      [hasState]="hasState"
     ></kkl-table>
   </div>
 </div>
 
-<ng-template #status let-cell="cell">
+<ng-template #status let-row="row">
   <div class="status">
-    <app-status [status]="cell.item?.status"></app-status>
+    <app-status [status]="row.item?.status"></app-status>
+  </div>
+</ng-template>
+
+<ng-template #actions let-row="row">
+  <div class="status">
+    <app-status [status]="row.item?.status"></app-status>
   </div>
 </ng-template>
 `;
