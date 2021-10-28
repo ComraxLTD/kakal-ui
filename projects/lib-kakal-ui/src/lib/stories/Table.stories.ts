@@ -46,7 +46,7 @@ export default {
         SizeDirective,
         UnderlineDirective,
         ButtonDirective,
-        BorderDirective
+        BorderDirective,
       ],
       providers: [
         FormService,
@@ -78,7 +78,7 @@ const Template: Story<TableExComponent<any>> = (
 const pagination: PaginationInstance = {
   itemsPerPage: 6,
   currentPage: 1,
-  totalItems: 12,
+  totalItems: 6,
 };
 
 const { data, columns, options } = {
@@ -208,6 +208,15 @@ Actions.args = {
   hasActions: true,
 };
 
+export const Selectable = Template.bind({});
+Selectable.args = {
+  data: data,
+  columns: columns,
+  model: new AssetsModel(),
+  options: options,
+  selectable: true,
+};
+
 export const Accordion = Template.bind({});
 Accordion.args = {
   data: data,
@@ -226,4 +235,3 @@ ExpandByCell.args = {
   expendable: true,
   hasState: true,
 };
-

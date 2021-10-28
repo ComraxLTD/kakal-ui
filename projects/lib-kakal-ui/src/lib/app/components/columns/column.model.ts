@@ -11,7 +11,7 @@ export interface ColumnState {
   data : any
 }
 
-export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | '' | string;
+export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | 'accordion' | string;
 
 export declare type SortDir = 'desc' | 'asc';
 

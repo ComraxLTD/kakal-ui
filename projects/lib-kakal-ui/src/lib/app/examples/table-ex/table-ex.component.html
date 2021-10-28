@@ -6,7 +6,7 @@
       [model]="model"
       [options]="options"
       [rowSlots]="{status, area, actions}"
-      [expandSlots]="{area, expand}"
+      [expandSlots]="{area, accordion}"
       [expendable]="expendable"
       [accordion]="accordion"
       [hasActions]="hasActions"
@@ -35,7 +35,7 @@
   </button>
 </ng-template>
 `;
-<ng-template #expand let-row="row">
+<ng-template #accordion let-row="row">
   <kkl-typography>working !</kkl-typography>
 </ng-template>
 `;

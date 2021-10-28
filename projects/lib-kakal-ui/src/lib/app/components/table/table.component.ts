@@ -226,11 +226,11 @@ export class TableComponent<T> implements OnInit, Table<T> {
           return rowItem;
         });
       case 'form':
-        const { columns } = this.tableService.setColumns(
-          this.columns,
-          this.model,
-          this.options.filters
-        );
+        const { columns } = this.tableService.setColumns({
+          tableColumns: this.columns,
+          model: this.model,
+          filters: this.options.filters,
+        });
 
         rows = this.tableService.onFormMode(rows, columns, options);
         return [...rows];
@@ -270,13 +270,14 @@ export class TableComponent<T> implements OnInit, Table<T> {
   private setColumns$(filters: ColumnDef<T>[]) {
     return this.data$.pipe(
       map(() => {
-        const { columns, columnsDefs } = this.tableService.setColumns(
-          this.columns,
-          this.model,
-          [...filters],
-          this.selectable,
-          this.hasActions
-        );
+        const { columns, columnsDefs } = this.tableService.setColumns({
+          tableColumns: this.columns,
+          model: this.model,
+          filters: [...filters],
+          selectable: this.selectable,
+          accordion: this.accordion,
+          hasActions: this.hasActions,
+        });
 
         this.columnDefs = columnsDefs;
         this.columns = columns;
@@ -293,7 +294,7 @@ export class TableComponent<T> implements OnInit, Table<T> {
         const { mode, column } = state;
 
         if (mode === 'expand') {
-          return column?.columnDef || 'expand';
+          return column?.columnDef || 'accordion';
         }
 
         return '';
