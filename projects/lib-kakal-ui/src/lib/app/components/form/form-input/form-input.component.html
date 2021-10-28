@@ -1,27 +1,46 @@
-
 <div>
   <mat-form-field [appearance]="control.disabled ? 'fill' : 'outline'">
     <mat-label>{{ label }}</mat-label>
 
     <ng-container [ngSwitch]="controlType">
       <ng-container *ngSwitchCase="'textarea'">
-        <textarea matInput [rows]="gridProps.rows" [formControl]="control" [name]="question.key" (focusout)="validate()"
-          #textarea></textarea>
+        <textarea
+          matInput
+          [rows]="gridProps.rows"
+          [formControl]="control"
+          [name]="question.key"
+          (focusout)="validate()"
+          #textarea
+        ></textarea>
       </ng-container>
 
       <ng-container *ngSwitchCase="'select'">
-        <mat-select [multiple]="question.multi" (selectionChange)="onSelectChange()" [formControl]="control"
-          [attr.data-name]="question.key" (focusout)="validate()">
+        <mat-select
+          [multiple]="question.multi"
+          (selectionChange)="onSelectChange()"
+          [formControl]="control"
+          [attr.data-name]="question.key"
+          (focusout)="validate()"
+        >
           <mat-option *ngFor="let option of options" [value]="option.value">
             {{ option.label }}
           </mat-option>
         </mat-select>
       </ng-container>
-  
 
       <ng-container *ngSwitchCase="'autocomplete'">
-        <input type="text" matInput [formControl]="control" [matAutocomplete]="auto" />
-        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" (optionSelected)="onOptionSelected($event)" [displayWith]="displayFn">
+        <input
+          type="text"
+          matInput
+          [formControl]="control"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          autoActiveFirstOption
+          #auto="matAutocomplete"
+          (optionSelected)="onOptionSelected($event)"
+          [displayWith]="displayFn"
+        >
           <mat-option *ngFor="let option of options" [value]="option.value">
             {{ option.label }}
           </mat-option>
@@ -29,12 +48,25 @@
       </ng-container>
 
       <ng-container *ngSwitchDefault>
-        <input matInput autocomplete="off" [formControl]="control" [name]="question.key" (focusout)="validate()"
-          #input />
+        <input
+          matInput
+          autocomplete="off"
+          [formControl]="control"
+          [name]="question.key"
+          (focusout)="validate()"
+          [type]="controlType"
+          #input
+        />
       </ng-container>
     </ng-container>
 
-    <kkl-icon variant="form" *ngIf="icon" matSuffix [color]="color || 'primary'" [key]="icon"></kkl-icon>
+    <kkl-icon
+      variant="form"
+      *ngIf="icon"
+      matSuffix
+      [color]="color || 'primary'"
+      [key]="icon"
+    ></kkl-icon>
 
     <mat-error>{{ error }}</mat-error>
   </mat-form-field>

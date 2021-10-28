@@ -5,6 +5,7 @@ import { FormUploadComponent } from '../app/components/form/form-upload/form-upl
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconComponent } from '../app/components/icon/icon.component';
 import { FormuploadExComponent } from '../app/examples/formupload-ex/formupload-ex.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'FormUpLoad',
@@ -12,22 +13,30 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [FormUploadComponent],
-      imports: [CommonModule, MaterialModule, FormsModule, ReactiveFormsModule],
+      imports: [
+        CommonModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+      ],
     }),
   ],
 } as Meta;
 
-const Template: Story<FormuploadExComponent> = (args: FormuploadExComponent) => ({
+const Template: Story<FormuploadExComponent> = (
+  args: FormuploadExComponent
+) => ({
   props: args,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  questions:[
+  questions: [
     {
       key: 'file',
       label: ' לחץ להעלאת קובץ',
-      icon:'open_border'
-    }
-  ]
+      icon: 'home',
+    },
+  ],
 };

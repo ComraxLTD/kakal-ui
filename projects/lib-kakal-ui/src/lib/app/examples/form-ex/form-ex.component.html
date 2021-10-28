@@ -1,5 +1,19 @@
-<div class="container" fxLayout="column" fxLayoutAlign="center center">
-  <div class="form">
-    <kkl-form [group]="group"> </kkl-form>
+<div fxFill fxLayout="row" fxLayoutAlign="center center">
+  <div
+    [fxFlex]="multi ? '80' : '33'"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <div fxFill>
+      <kkl-form [group]="group" [slots]="{button}"> </kkl-form>
+    </div>
   </div>
 </div>
+
+<ng-template #button>
+  <div fxFlex="100">
+    <button fxFill mat-raised-button color="primary">
+      <kkl-typography>לחץ</kkl-typography>
+    </button>
+  </div>
+</ng-template>

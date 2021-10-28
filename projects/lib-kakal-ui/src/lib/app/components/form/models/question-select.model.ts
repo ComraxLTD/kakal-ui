@@ -4,6 +4,7 @@ import { GridProps, QuestionBaseModel } from "./question.model";
 export interface SelectOption {
   label: string;
   value: any;
+  disabled?: boolean;
 }
 
 export class QuestionSelectModel extends QuestionBaseModel<string>{

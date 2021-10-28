@@ -31,6 +31,6 @@ export const HOME_MAT = Template.bind({});
 HOME_MAT.args = {
   key: 'home',
   type: 'mat',
-  size : 2,
+  size : 1,
   color: 'warn',
 };
