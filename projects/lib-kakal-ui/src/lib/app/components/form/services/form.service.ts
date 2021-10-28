@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionCalendar } from '../models/question-calendar';
@@ -11,8 +10,11 @@ import {
   FormGroup,
   ValidatorFn,
 } from '@angular/forms';
-import { QuestionGroupModel } from '../models/question-group.model';
-import { QuestionBaseModel, ControlType } from '../models/question.model';
+import {
+  GroupOptions,
+  QuestionGroupModel,
+} from '../models/question-group.model';
+import { QuestionBaseModel } from '../models/question.model';
 import { QuestionNumberModel } from '../models/question-number.model';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { QuestionSelectModel } from '../models/question-select.model';
@@ -32,13 +34,12 @@ export type Question =
   | QuestionTextareaModel
   | QuestionNumberModel
   | QuestionAutocompleteModel
-  | QuestionGroupModel;
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormService {
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   private setFieldControl(question: QuestionBase): ControlTemplate {
     const { value, validations } = question;
@@ -77,12 +78,30 @@ export class FormService {
       }, {});
   }
 
+  // method which return QuestionGroupModel instance
+  public createQuestionGroup(config: {
+    key: string;
+    questions: Question[];
+    options?: GroupOptions;
+  }): QuestionGroupModel {
+    const { key, questions, options } = config;
+    return new QuestionGroupModel({
+      ...options,
+      key,
+      label: '' || options?.label,
+      questions: this.setQuestionList(questions),
+      formGroup: this.setFormGroup(questions),
+    });
+  }
+
+  // method which return FormGroup instance
   public setFormGroup(questions: Question[]): FormGroup {
     const template = this.setGroup(this.setQuestionList(questions));
     return this.fb.group(template);
   }
 
-  public setForm(form: QuestionGroupModel[]) {
+  // method which return FormGroup instance with multiple FormGroup
+  public setForm(form: QuestionGroupModel[]): FormGroup {
     const template = form
       .map((group: QuestionGroupModel) => group)
       .reduce((acc, group) => {
@@ -97,12 +116,14 @@ export class FormService {
     return this.fb.group(template);
   }
 
+  // method which return array of Question instance
   public setQuestionList(questions: Question[]): Question[] {
     return questions.map((question: Question) => {
       return this.setQuestion(question);
     });
   }
 
+  // method which return class Question instance
   public setQuestion(question: Question) {
     switch (question.controlType) {
       case 'number':
@@ -124,6 +145,7 @@ export class FormService {
     }
   }
 
+  // method which return object of key : question
   public setQuestionGroup(questions: Question[]): { [x: string]: Question } {
     return questions
       .map((question: Question) => question)
@@ -135,5 +157,4 @@ export class FormService {
         };
       }, {});
   }
-
 }

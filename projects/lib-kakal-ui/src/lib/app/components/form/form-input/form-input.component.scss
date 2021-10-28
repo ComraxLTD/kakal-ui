@@ -14,3 +14,10 @@ mat-form-field {
     font-size: 9px !important;
   }
 }
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: none !important;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: none !important;
+}

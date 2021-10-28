@@ -7,6 +7,7 @@ export interface GridProps {
   offset?: number;
   gutter?: number;
   fullWidth?: boolean;
+  buttonCols? : number
 }
 
 export type ControlType =
@@ -18,6 +19,7 @@ export type ControlType =
   | 'calendar'
   | 'radio'
   | 'date'
+  | 'time'
   | 'group'
   | 'custom'
   | 'autocomplete';

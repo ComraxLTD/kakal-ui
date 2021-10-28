@@ -1,5 +1,5 @@
-<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxFill>
-  <div fxFlex="10">
+<mat-toolbar fxLayout="row" fxLayoutAlign=" center" fxFill dir="rtl">
+  <div fxFlex="33" fxLayout="row" fxLayoutAlign="start center">
     <div fxLayout="column" fxLayoutAlign="center center">
       <button
         class="prev mat-elevation-z1"
@@ -10,17 +10,26 @@
       </button>
     </div>
   </div>
-  <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
+  <div fxFlex="33" fxLayout="column" fxLayoutAlign="center center">
     <kkl-icon type="svg" [size]="20" key="bottomTreeLands"></kkl-icon>
   </div>
   <div
-    fxFlex="10"
+    fxFlex="33"
+    fxLayoutGap="2rem"
     fxLayout="row"
-    [fxLayoutAlign]="hasSave ? 'space-between center' : 'end center'"
+    [fxLayoutAlign]="'end center'"
   >
-    <button *ngIf="hasSave" mat-raised-button color="primary" (click)="onSave()" >
+    <button
+      *ngIf="hasSave"
+      mat-raised-button
+      color="primary"
+      (click)="onSave()"
+    >
       <kkl-typography color="paper"> שמירה </kkl-typography>
     </button>
+    <ng-container>
+      <ng-template *ngTemplateOutlet="buttonSlots"></ng-template>
+    </ng-container>
     <button
       *ngIf="hasNext"
       mat-raised-button

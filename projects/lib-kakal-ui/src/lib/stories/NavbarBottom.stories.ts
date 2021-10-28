@@ -6,20 +6,27 @@ import { TypographyComponent } from '../app/components/typography/typography.com
 import { ColorDirective } from '../app/utilities/directives/color.directive';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
 import { NavbarBottomComponent } from '../app/components/navbar-bottom/navbar-bottom.component';
+import { NavbarBottomExComponent } from '../app/examples/navbar-bottom-ex/navbar-bottom-excomponent';
 
 export default {
   title: 'NavbarBottom',
-  component: NavbarBottomComponent,
+  component: NavbarBottomExComponent,
   decorators: [
     moduleMetadata({
-      declarations: [IconComponent, TypographyComponent, ColorDirective, SizeDirective],
+      declarations: [
+        NavbarBottomComponent,
+        IconComponent,
+        TypographyComponent,
+        ColorDirective,
+        SizeDirective,
+      ],
       imports: [CommonModule, MaterialModule],
     }),
   ],
 } as Meta;
 
-const Template: Story<NavbarBottomComponent> = (
-  args: NavbarBottomComponent
+const Template: Story<NavbarBottomExComponent> = (
+  args: NavbarBottomExComponent
 ) => ({
   props: args,
 });
@@ -32,5 +39,10 @@ Default.args = {
 export const Save = Template.bind({});
 Save.args = {
   hasNext: true,
-  hasSave : true
+  hasSave: true,
+};
+export const CustomButton = Template.bind({});
+CustomButton.args = {
+  custom: true,
+  hasNext : true
 };

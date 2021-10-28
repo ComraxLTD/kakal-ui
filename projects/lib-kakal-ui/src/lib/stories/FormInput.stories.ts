@@ -49,63 +49,71 @@ const Template: Story<InputExComponent> = (args: InputExComponent) => ({
 
 export const Select = Template.bind({});
 Select.args = {
-  questions: [
-    {
-      controlType: 'select',
-      key: 'record',
-      label: 'סוג רישום',
-      options: [
-        { label: 'גוש חלקה', value: 'שם נוסף' },
-        { label: 'דף ספר', value: 'עוד לקוח' },
-        { label: 'מגרש', value: 'לקוח מספר שלוש' },
-        { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
-      ],
-      onSelectChange: () => {},
-    },
-  ],
+  question: {
+    controlType: 'select',
+    key: 'record',
+    label: 'סוג רישום',
+    options: [
+      { label: 'גוש חלקה', value: 'שם נוסף' },
+      { label: 'דף ספר', value: 'עוד לקוח' },
+      { label: 'מגרש', value: 'לקוח מספר שלוש' },
+      { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
+    ],
+    onSelectChange: () => {},
+  },
+};
+
+export const Autocomplete = Template.bind({});
+Autocomplete.args = {
+  question: {
+    controlType: 'autocomplete',
+    key: 'record',
+    label: 'סוג רישום',
+    options: [
+      { label: 'גוש חלקה', value: 'שם נוסף' },
+      { label: 'דף ספר', value: 'עוד לקוח' },
+      { label: 'מגרש', value: 'לקוח מספר שלוש' },
+      { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
+    ],
+    icon : 'search',
+  },
 };
 
 export const SelectMulti = Template.bind({});
 SelectMulti.args = {
-  questions: [
-    {
-      controlType: 'select',
-      multi: true,
-      key: 'record',
-      label: 'סוג רישום',
-      options: [
-        { label: 'גוש חלקה', value: 'שם נוסף' },
-        { label: 'דף ספר', value: 'עוד לקוח' },
-        { label: 'מגרש', value: 'לקוח מספר שלוש' },
-        { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
-      ],
-      onSelectChange: () => {},
-    },
-  ],
+  question: {
+    controlType: 'select',
+    multi: true,
+    key: 'record',
+    label: 'סוג רישום',
+    options: [
+      { label: 'גוש חלקה', value: 'שם נוסף' },
+      { label: 'דף ספר', value: 'עוד לקוח' },
+      { label: 'מגרש', value: 'לקוח מספר שלוש' },
+      { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
+    ],
+    onSelectChange: () => {},
+  },
 };
 
 export const Text = Template.bind({});
 Text.args = {
-  questions: [
-    {
-      controlType: 'text',
-      key: 'value',
-      label: 'הכנס טקסט',
-      validations: [Validators.required],
-    },
-  ],
+  question: {
+    controlType: 'text',
+    key: 'value',
+    label: 'הכנס טקסט',
+    validations: [Validators.required],
+  },
 };
 export const Textarea = Template.bind({});
 Textarea.args = {
-  questions: [
-    {
-      controlType: 'textarea',
-      key: 'value',
-      label: 'הכנס טקסט',
-      validations: [Validators.required],
-      gridProps: {
-        rows: 5,
-      },
+  question: {
+    controlType: 'textarea',
+    key: 'value',
+    label: 'הכנס טקסט',
+    validations: [Validators.required],
+    gridProps: {
+      rows: 5,
     },
-  ],
+  },
 };
