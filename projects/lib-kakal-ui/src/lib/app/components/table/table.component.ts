@@ -183,7 +183,7 @@ export class TableComponent<T> implements OnInit, Table<T> {
 
   private setExpandState() {
     this.expendable = this.expendable || this.accordion;
-
+    console.log(this.expendable);
     if (this.expendable) {
       this.expandKey$ = this.setExpandKey$();
     }
@@ -205,9 +205,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
     this.setTableProps();
     this.setExpandState();
 
-    if (this.expendable) {
-      this.expandKey$ = this.setExpandKey$();
-    }
     this.register.emit(this.tableState$);
   }
 

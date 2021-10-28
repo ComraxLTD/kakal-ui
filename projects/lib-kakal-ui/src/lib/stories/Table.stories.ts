@@ -175,15 +175,24 @@ const { data, columns, options } = {
     },
   ],
   columns: [
-    new ColumnModel({ label: 'גוש', type: 'number' }),
-    new ColumnModel({ label: 'חלקה', type: 'number' }),
-    new ColumnModel({ label: 'תת חלקה', type: 'number' }),
-    new ColumnModel({ label: 'שטח מ"ר', type: 'number' }),
-    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),
-    new ColumnModel({ label: 'זכות במס', type: 'text' }),
-    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),
-    new ColumnModel({ label: 'תיאור', type: 'text' }),
-    new ColumnModel({ label: 'יישוב', type: 'text' }),
+    new ColumnModel({ label: 'גוש', type: 'number', control: 'text' }),
+    new ColumnModel({ label: 'חלקה', type: 'number', control: 'number' }),
+    new ColumnModel({ label: 'תת חלקה', type: 'number', control: 'number' }),
+    new ColumnModel({ label: 'שטח מ"ר', type: 'number', control: 'number' }),
+    new ColumnModel({
+      label: 'שטח בבעלות הימנותא',
+      type: 'number',
+      control: 'number',
+    }),
+    new ColumnModel({ label: 'זכות במס', type: 'text', control: 'text' }),
+    new ColumnModel({
+      label: 'סטטוס',
+      type: 'custom',
+      center: true,
+      control: 'text',
+    }),
+    new ColumnModel({ label: 'תיאור', type: 'text', control: 'text' }),
+    new ColumnModel({ label: 'יישוב', type: 'text', control: 'text', icon : 'location' }),
   ],
   options: {
     pagination: pagination,
@@ -233,5 +242,15 @@ ExpandByCell.args = {
   model: new AssetsModel(),
   options: options,
   expendable: true,
+  hasState: true,
+};
+
+export const Form = Template.bind({});
+Form.args = {
+  data: data,
+  columns: columns,
+  model: new AssetsModel(),
+  options: options,
+  hasForm: true, //only in storybook!
   hasState: true,
 };

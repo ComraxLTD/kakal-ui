@@ -28,6 +28,7 @@ export class TableExComponent<T> implements OnInit {
   @Input() public hasState: boolean;
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
+  @Input() public hasForm: boolean;
 
   public data$: Observable<T[]>;
 
@@ -38,17 +39,24 @@ export class TableExComponent<T> implements OnInit {
   ngOnInit(): void {
     this.data$ = of(this.data);
 
-    if(this.expendable) {
-      this.columns[3].type = 'custom'
+    console.log(this.accordion)
+    console.log(this.expendable)
+
+    if (this.expendable) {
+      this.columns[3].type = 'custom';
     }
 
   }
 
   public onRegister(event: BehaviorSubject<TableState<T>>): void {
     this.tableState$ = event;
+
+    if(this.hasForm) {
+      this.tableState$.next({ mode: 'form' });
+    }
   }
 
   public onExpand(row: RowModel<T>, column: ColumnModel<T>) {
-    this.tableState$.next({ mode: 'expand', ids : [row.item['id'], 3], column });
+    this.tableState$.next({ mode: 'expand', ids: [row.item['id'], 3], column });
   }
 }
