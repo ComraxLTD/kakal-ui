@@ -36,6 +36,7 @@ import { FormComponent } from './components/form/form/form.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { FormGroupComponent } from './components/form/form-group/form-group.component';
 import { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';
+import { FormUploadComponent } from './components/form/form-upload/form-upload.component';
 
 import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
@@ -60,6 +61,8 @@ import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormuploadExComponent } from './examples/formupload-ex/formupload-ex.component';
+import { FormautocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +79,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     FormGroupComponent,
     FormRadioComponent,
     FormAutocompleteComponent,
+    FormUploadComponent,
 
     PaginationComponent,
     TableComponent,
@@ -115,6 +119,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     StepperExComponent,
     InputExComponent,
     FormExComponent,
+    FormautocompleteExComponent,
+    FormuploadExComponent,
     TableExComponent,
     FiltersExComponent,
     DashboardExComponent,
