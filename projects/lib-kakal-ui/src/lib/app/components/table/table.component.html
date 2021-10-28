@@ -30,7 +30,7 @@
             <ng-container
               *ngTemplateOutlet="
                 headerSlots['actions'];
-                context: { cell: this.cell, column: this.column }
+                context: { row: this.row, column: this.column }
               "
             >
             </ng-container>
@@ -78,12 +78,12 @@
           </ng-container>
         </mat-header-cell>
 
-        <mat-cell *matCellDef="let cell" class="selected">
+        <mat-cell *matCellDef="let row" class="selected">
           <mat-checkbox
             color="primary"
             (click)="onSelect()"
-            (change)="$event ? selection.toggle(cell) : null"
-            [checked]="selection.isSelected(cell)"
+            (change)="$event ? selection.toggle(row) : null"
+            [checked]="selection.isSelected(row)"
           >
           </mat-checkbox>
         </mat-cell>
@@ -92,7 +92,7 @@
       <!-- COLUMN CELL SECTION-->
 
       <mat-cell
-        *matCellDef="let cell; let i = index"
+        *matCellDef="let row; let i = index"
         [ngClass]="{
           center: column.center,
           selected: column.columnDef === 'select'
@@ -100,13 +100,13 @@
         [attr.colspan]="i"
       >
         <!-- DEFAULT SECTION-->
-        <ng-container *ngIf="!cell.editable">
+        <ng-container *ngIf="!row.editable">
           <ng-container [ngSwitch]="column.type">
             <ng-container *ngSwitchCase="'custom'">
               <ng-container
                 *ngTemplateOutlet="
                   rowSlots[column.columnDef];
-                  context: { cell: this.cell, column: this.column }
+                  context: { row: this.row, column: this.column }
                 "
               >
               </ng-container>
@@ -116,7 +116,7 @@
               <ng-container
                 *ngTemplateOutlet="
                   rowSlots['actions'];
-                  context: { cell: this.cell, column: this.column }
+                  context: { row: this.row, column: this.column }
                 "
               >
               </ng-container>
@@ -124,20 +124,20 @@
 
             <ng-container *ngSwitchDefault>
               <kkl-typography>
-                {{ cell.item[column.columnDef] | format: type }}
+                {{ row.item[column.columnDef] | format: type }}
               </kkl-typography>
             </ng-container>
           </ng-container>
         </ng-container>
 
         <!-- FORM SECTION-->
-        <ng-container *ngIf="cell.editable">
+        <ng-container *ngIf="row.editable">
           <ng-container [ngSwitch]="column.type">
             <ng-container *ngIf="column.control">
               <div class="cell-input">
                 <kkl-form-input
-                  [control]="cell.formGroup.controls[column.columnDef]"
-                  [question]="cell.questionsGroup[column.columnDef]"
+                  [control]="row.formGroup.controls[column.columnDef]"
+                  [question]="row.questionsGroup[column.columnDef]"
                 ></kkl-form-input>
               </div>
             </ng-container>
@@ -147,7 +147,7 @@
                 <ng-container
                   *ngTemplateOutlet="
                     rowSlots[column.columnDef];
-                    context: { cell: this.cell, column: this.column }
+                    context: { row: this.row, column: this.column }
                   "
                 >
                 </ng-container>
@@ -155,15 +155,19 @@
 
               <ng-container *ngSwitchDefault>
                 <kkl-typography>
-                  {{ cell.item[column.columnDef] | format: type }}
+                  {{ row.item[column.columnDef] | format: type }}
                 </kkl-typography>
               </ng-container>
             </ng-container>
+
+
+
+            
             <ng-container *ngSwitchCase="'actions'">
               <ng-container
                 *ngTemplateOutlet="
                   rowSlots['actions'];
-                  context: { cell: this.cell, column: this.column }
+                  context: { row: this.row, column: this.column }
                 "
               >
               </ng-container>
@@ -181,7 +185,7 @@
             <ng-container
               *ngTemplateOutlet="
                 footerSlots[column.columnDef];
-                context: { cell: this.cell }
+                context: { row: this.row }
               "
             >
             </ng-container>
@@ -192,16 +196,16 @@
 
     <!-- EXPEND COLUMN -->
     <ng-container matColumnDef="expandRow" *ngIf="expendable">
-      <mat-cell *matCellDef="let cell" [attr.colspan]="columnDefs.length">
+      <mat-cell *matCellDef="let row" [attr.colspan]="columnDefs.length">
         <div
           fxFill
-          *ngIf="cell.expanded && expandKey$ | async"
-          [@detailExpand]="cell.expanded ? 'expanded' : 'collapsed'"
+          *ngIf="row.expanded && expandKey$ | async"
+          [@detailExpand]="row.expanded ? 'expanded' : 'collapsed'"
         >
           <ng-container
             *ngTemplateOutlet="
               expandSlots[expandKey$ | async];
-              context: { cell: this.cell }
+              context: { row: this.row }
             "
           >
           </ng-container>
@@ -212,7 +216,7 @@
     <!-- NEW FORM COLUMN -->
     <ng-container matColumnDef="formRow" *ngIf="false">
       <ng-container> </ng-container>
-      <mat-cell *matCellDef="let cell">
+      <mat-cell *matCellDef="let row">
         <div></div>
       </mat-cell>
     </ng-container>
@@ -238,7 +242,6 @@
         expand: expendable,
         accordion: accordion
       }"
-      (click)="onRowClicked(row)"
     >
     </mat-row>
 
