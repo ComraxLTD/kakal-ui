@@ -33,8 +33,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.title$ = this.navbarService.getHeadersObs()
     this.status$ = this.navbarService.getStatusObs();
-
-    console.log(this.status$)
   }
 
     public toggleMenu() {

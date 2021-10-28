@@ -196,3 +196,11 @@ Default.args = {
   options: options,
 };
 
+export const Accordion = Template.bind({});
+Default.args = {
+  data: data,
+  columns: columns,
+  model: new AssetsModel(),
+  options: options,
+};
+

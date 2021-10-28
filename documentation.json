@@ -2910,7 +2910,7 @@
         },
         {
             "name": "NavbarService",
-            "id": "injectable-NavbarService-76d66368ad020038a54eca14071b2a5f",
+            "id": "injectable-NavbarService-5e0b79874c942c723fddf9df86c8654e",
             "file": "projects/lib-kakal-ui/src/lib/app/components/navbar/navbar.service.ts",
             "properties": [
                 {
@@ -3000,7 +3000,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 61,
+                    "line": 60,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3031,7 +3031,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 52,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3062,7 +3062,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 43,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3086,7 +3086,7 @@
                     "optional": false,
                     "returnType": "Observable<string>",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 35,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3099,7 +3099,7 @@
                     "optional": false,
                     "returnType": "Observable<boolean>",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3112,7 +3112,7 @@
                     "optional": false,
                     "returnType": "Observable<CardStepModel[]>",
                     "typeParameters": [],
-                    "line": 48,
+                    "line": 47,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3125,7 +3125,7 @@
                     "optional": false,
                     "returnType": "Observable<string>",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 39,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3145,7 +3145,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 28,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3176,7 +3176,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 32,
+                    "line": 31,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3213,7 +3213,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 65,
+                    "line": 64,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3245,7 +3245,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\nimport { mergeAll } from 'rxjs/operators';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class NavbarService {\r\n\r\n\r\n  private headers: { [key: string]: string }\r\n\r\n  private title$: BehaviorSubject<string>;\r\n  private headers$: BehaviorSubject<Observable<string>>;\r\n  private openIcon$: BehaviorSubject<string>;\r\n  private status$: BehaviorSubject<CardStepModel[]>;\r\n  private showStatus$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.title$ = new BehaviorSubject<string>('');\r\n\r\n    this.status$ = new BehaviorSubject<CardStepModel[]>([]);\r\n    this.showStatus$ = new BehaviorSubject<boolean>(false)\r\n  }\r\n\r\n\r\n  public setHeaders(headers: { [key: string]: string }): void {\r\n    this.headers = headers;\r\n  }\r\n\r\n  public setHeadersObs(headers:Observable<string>): void {\r\n    this.headers$ = new BehaviorSubject<Observable<string>>(headers);\r\n  }\r\n\r\n  public getHeadersObs(): Observable<string> {\r\n    return this.headers$.asObservable().pipe(mergeAll())\r\n  }\r\n\r\n  public getTitleObs(): Observable<string> {\r\n    return this.title$.asObservable();\r\n  }\r\n\r\n  public emitTitle(key: string): void {\r\n    this.title$.next(this.headers[key])\r\n  }\r\n\r\n  public getStatusObs(): Observable<CardStepModel[]> {\r\n    return this.status$.asObservable();\r\n  }\r\n\r\n  public emitStatus(value: CardStepModel[]): void {\r\n    console.log(value)\r\n    this.status$.next(value);\r\n  }\r\n\r\n  public getShowStatusObs(): Observable<boolean> {\r\n    return this.showStatus$.asObservable();\r\n  }\r\n\r\n  public emitShowStatus(value: boolean): void {\r\n    this.showStatus$.next(value);\r\n  }\r\n\r\n  public toggleStatus(show: boolean, status: CardStepModel[]): void {\r\n    show ? this.emitStatus(status) : this.emitStatus([]);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\nimport { mergeAll } from 'rxjs/operators';\r\nimport { BehaviorSubject, Observable } from 'rxjs';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class NavbarService {\r\n\r\n\r\n  private headers: { [key: string]: string }\r\n\r\n  private title$: BehaviorSubject<string>;\r\n  private headers$: BehaviorSubject<Observable<string>>;\r\n  private openIcon$: BehaviorSubject<string>;\r\n  private status$: BehaviorSubject<CardStepModel[]>;\r\n  private showStatus$: BehaviorSubject<boolean>;\r\n\r\n  constructor() {\r\n    this.title$ = new BehaviorSubject<string>('');\r\n    this.status$ = new BehaviorSubject<CardStepModel[]>([]);\r\n    this.showStatus$ = new BehaviorSubject<boolean>(false)\r\n  }\r\n\r\n\r\n  public setHeaders(headers: { [key: string]: string }): void {\r\n    this.headers = headers;\r\n  }\r\n\r\n  public setHeadersObs(headers:Observable<string>): void {\r\n    this.headers$ = new BehaviorSubject<Observable<string>>(headers);\r\n  }\r\n\r\n  public getHeadersObs(): Observable<string> {\r\n    return this.headers$.asObservable().pipe(mergeAll())\r\n  }\r\n\r\n  public getTitleObs(): Observable<string> {\r\n    return this.title$.asObservable();\r\n  }\r\n\r\n  public emitTitle(key: string): void {\r\n    this.title$.next(this.headers[key])\r\n  }\r\n\r\n  public getStatusObs(): Observable<CardStepModel[]> {\r\n    return this.status$.asObservable();\r\n  }\r\n\r\n  public emitStatus(value: CardStepModel[]): void {\r\n    console.log(value)\r\n    this.status$.next(value);\r\n  }\r\n\r\n  public getShowStatusObs(): Observable<boolean> {\r\n    return this.showStatus$.asObservable();\r\n  }\r\n\r\n  public emitShowStatus(value: boolean): void {\r\n    this.showStatus$.next(value);\r\n  }\r\n\r\n  public toggleStatus(show: boolean, status: CardStepModel[]): void {\r\n    show ? this.emitStatus(status) : this.emitStatus([]);\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -13830,7 +13830,7 @@
         },
         {
             "name": "NavbarComponent",
-            "id": "component-NavbarComponent-cce7bd6b81efbc55473ba7c98d57237b",
+            "id": "component-NavbarComponent-d6599f4aeacbde8bbc01aa6614badf40",
             "file": "projects/lib-kakal-ui/src/lib/app/components/navbar/navbar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -13968,7 +13968,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 40,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -13983,7 +13983,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\nimport { IconModel } from '../icon/icon.model';\r\nimport { NavbarService } from './navbar.service';\r\n\r\n@Component({\r\n  selector: 'kkl-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n\r\n\r\n  @Input() public openIcon: string;\r\n  @Input() public statusStepWidth: number;\r\n  @Input() public logos: IconModel[];\r\n  @Input() public show$: Observable<boolean>;\r\n\r\n  public title$: Observable<string>;\r\n  public status$: Observable<CardStepModel[]>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor(private navbarService : NavbarService) {\r\n\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.title$ = this.navbarService.getHeadersObs()\r\n    this.status$ = this.navbarService.getStatusObs();\r\n\r\n    console.log(this.status$)\r\n  }\r\n\r\n    public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\nimport { IconModel } from '../icon/icon.model';\r\nimport { NavbarService } from './navbar.service';\r\n\r\n@Component({\r\n  selector: 'kkl-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n\r\n\r\n  @Input() public openIcon: string;\r\n  @Input() public statusStepWidth: number;\r\n  @Input() public logos: IconModel[];\r\n  @Input() public show$: Observable<boolean>;\r\n\r\n  public title$: Observable<string>;\r\n  public status$: Observable<CardStepModel[]>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor(private navbarService : NavbarService) {\r\n\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.title$ = this.navbarService.getHeadersObs()\r\n    this.status$ = this.navbarService.getStatusObs();\r\n  }\r\n\r\n    public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -14025,8 +14025,8 @@
         },
         {
             "name": "NavbarExComponent",
-            "id": "component-NavbarExComponent-15d0eff043eae61a21230a69962fc963",
-            "file": "projects/lib-kakal-ui/src/lib/app/examples/navbar-ex/mavbar-ex.component.ts",
+            "id": "component-NavbarExComponent-0a3a40a7c402ece3603044f73bdf84d8",
+            "file": "projects/lib-kakal-ui/src/lib/app/examples/navbar-ex/navbar-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
@@ -14046,26 +14046,39 @@
                     "name": "direction",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 21,
                     "type": "StepperDirection"
                 },
                 {
                     "name": "status",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 20,
                     "type": "CardStepModel[]"
                 },
                 {
                     "name": "stepWidth",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 22,
                     "type": "number"
                 }
             ],
             "outputsClass": [],
             "propertiesClass": [
+                {
+                    "name": "headers",
+                    "defaultValue": "{ lands: 'מקרקעין', neches: 'מנהלת ספר נכסים' }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "optional": false,
+                    "description": "",
+                    "line": 16,
+                    "modifierKind": [
+                        120
+                    ]
+                },
                 {
                     "name": "steps$",
                     "deprecated": false,
@@ -14073,7 +14086,7 @@
                     "type": "Observable<CardStepModel[]>",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 24,
                     "modifierKind": [
                         122
                     ]
@@ -14086,7 +14099,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18,
+                    "line": 25,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -14098,7 +14111,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { Observable, of } from 'rxjs';\r\nimport { CardStepModel, StepperDirection } from '../../components/cards/card-step/card-step.model';\r\n\r\n@Component({\r\n  selector: 'app-navbar-ex',\r\n  templateUrl: './navbar-ex.component.html',\r\n  styleUrls: ['./navbar-ex.component.scss'],\r\n})\r\nexport class NavbarExComponent {\r\n  constructor() {}\r\n\r\n  @Input() public status: CardStepModel[];\r\n  @Input() public direction: StepperDirection;\r\n  @Input() public stepWidth: number;\r\n\r\npublic steps$ : Observable<CardStepModel[]>\r\n  ngOnInit() {\r\n    this.steps$ = of(this.status)\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input } from '@angular/core';\r\nimport { Observable, of } from 'rxjs';\r\nimport {\r\n  CardStepModel,\r\n  StepperDirection,\r\n} from '../../components/cards/card-step/card-step.model';\r\nimport { NavbarService } from '../../components/navbar/navbar.service';\r\n\r\n@Component({\r\n  selector: 'app-navbar-ex',\r\n  templateUrl: './navbar-ex.component.html',\r\n  styleUrls: ['./navbar-ex.component.scss'],\r\n})\r\nexport class NavbarExComponent {\r\n\r\n  private headers = { lands: 'מקרקעין', neches: 'מנהלת ספר נכסים' };\r\n\r\n  constructor(private navbarService: NavbarService) {}\r\n\r\n  @Input() public status: CardStepModel[];\r\n  @Input() public direction: StepperDirection;\r\n  @Input() public stepWidth: number;\r\n\r\n  public steps$: Observable<CardStepModel[]>;\r\n  ngOnInit() {\r\n    this.steps$ = of(this.status);\r\n    this.navbarService.setHeaders(this.headers);\r\n    this.navbarService.setHeadersObs(of('lands'));\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -14112,10 +14125,28 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 10
+                "args": [
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 16,
+                "jsdoctags": [
+                    {
+                        "name": "navbarService",
+                        "type": "NavbarService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
-            "templateData": ""
+            "templateData": "<kkl-navbar></kkl-navbar>\r\n"
         },
         {
             "name": "PaginationComponent",
@@ -15545,13 +15576,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-fae87dbb00bb90607e79d2c557f4863c",
+            "id": "module-AppModule-758602576fbbb814014b5ae8f7914be5",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { BorderDirective } from './utilities/directives/border.directive';\r\n\r\n@NgModule({\r\n  declarations: [\r\n\r\n    AppComponent,\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    VariantDirective,\r\n    SizeDirective,\r\n\r\n    StepperComponent,\r\n\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n\r\n    ListItemComponent,\r\n\r\n    ExpandPanelComponent,\r\n\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n    BorderDirective,\r\n\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent,\r\n    LayoutExComponent\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { BorderDirective } from './utilities/directives/border.directive';\r\n\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n\r\n    // SCREEN COMPS\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    // SHARED COMPS\r\n    IconComponent,\r\n    TypographyComponent,\r\n    ListItemComponent,\r\n    ExpandPanelComponent,\r\n\r\n    // FORM COMPS\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n\r\n    // TABLE COMPS\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n    // CARD COMPS\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    // NAVIGATION COMPS\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n    StepperComponent,\r\n\r\n    // DIRECTIVES\r\n    VariantDirective,\r\n    SizeDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n    BorderDirective,\r\n\r\n    StatusComponent,\r\n\r\n    StepperExComponent,\r\n    InputExComponent,\r\n    FormExComponent,\r\n    TableExComponent,\r\n    FiltersExComponent,\r\n    DashboardExComponent,\r\n    LayoutExComponent,\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -15797,6 +15828,16 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "Accordion",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "ADD_ICON",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -16020,6 +16061,16 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16040,27 +16091,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Default",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16101,6 +16132,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16638,6 +16679,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ExpandPanelComponent>",
+                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16688,31 +16739,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ExpandPanelComponent>",
-                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarBottomComponent>",
-                "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16738,16 +16769,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<StepperExComponent>",
-                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16758,11 +16779,31 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<StepperExComponent>",
+                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
                 "defaultValue": "(args: TypographyComponent) => ({\r\n  props: args,\r\n  template: `<kkl-typography ${Object.keys(args).reduce((acc, key) => `${acc} [${key}]='${typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]}'`, '')} > Hello World </kkl-typography>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarBottomComponent>",
+                "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16905,35 +16946,6 @@
                 "defaultValue": "CardUserTemplate.bind({})"
             },
             {
-                "name": "Wizard",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Cards.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "CardWizardTemplate.bind({})"
-            },
-            {
-                "name": "Wizard",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "object",
-                "defaultValue": "{\r\n  data: [\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 10,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'שוריין ע\"י פיננסים',\r\n        value: 5,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 24,\r\n      block: 24,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לרו\"ח',\r\n        value: 3,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 54,\r\n      subdivision: 0,\r\n      area: 1037,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'התקבלה עסקה חדשה',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 680,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לפיננסים',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: 'number' }),\r\n    new ColumnModel({ label: 'חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'תת חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),\r\n    new ColumnModel({ label: 'זכות במס', type: 'text' }),\r\n    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: 'text' }),\r\n    new ColumnModel({ label: 'יישוב', type: 'text' }),\r\n  ],\r\n  options: {\r\n    pagination: pagination,\r\n    filters: ['id', '_constructor-name_'],\r\n  },\r\n}"
-            },
-            {
                 "name": "V_SIGN",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -16968,6 +16980,35 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Cards.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "CardWizardTemplate.bind({})"
+            },
+            {
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\r\n  data: [\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 10,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'שוריין ע\"י פיננסים',\r\n        value: 5,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 24,\r\n      block: 24,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לרו\"ח',\r\n        value: 3,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 54,\r\n      subdivision: 0,\r\n      area: 1037,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'התקבלה עסקה חדשה',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 680,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לפיננסים',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: 'number' }),\r\n    new ColumnModel({ label: 'חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'תת חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),\r\n    new ColumnModel({ label: 'זכות במס', type: 'text' }),\r\n    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: 'text' }),\r\n    new ColumnModel({ label: 'יישוב', type: 'text' }),\r\n  ],\r\n  options: {\r\n    pagination: pagination,\r\n    filters: ['id', '_constructor-name_'],\r\n  },\r\n}"
+            },
+            {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17188,6 +17229,57 @@
         ],
         "enumerations": [],
         "groupedVariables": {
+            "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts": [
+                {
+                    "name": "Accordion",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "pagination",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "PaginationInstance",
+                    "defaultValue": "{\r\n  itemsPerPage: 6,\r\n  currentPage: 1,\r\n  totalItems: 12,\r\n}"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TableExComponent<any>>",
+                    "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\r\n  data: [\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 10,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'שוריין ע\"י פיננסים',\r\n        value: 5,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 24,\r\n      block: 24,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לרו\"ח',\r\n        value: 3,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 54,\r\n      subdivision: 0,\r\n      area: 1037,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'התקבלה עסקה חדשה',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 680,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לפיננסים',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: 'number' }),\r\n    new ColumnModel({ label: 'חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'תת חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),\r\n    new ColumnModel({ label: 'זכות במס', type: 'text' }),\r\n    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: 'text' }),\r\n    new ColumnModel({ label: 'יישוב', type: 'text' }),\r\n  ],\r\n  options: {\r\n    pagination: pagination,\r\n    filters: ['id', '_constructor-name_'],\r\n  },\r\n}"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/app/components/icon/icons.list.ts": [
                 {
                     "name": "ADD_ICON",
@@ -17892,6 +17984,28 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
+            "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ExpandPanelComponent>",
+                    "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+                }
+            ],
             "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts": [
                 {
                     "name": "Default",
@@ -17936,28 +18050,6 @@
                     "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ExpandPanelComponent>",
-                    "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
                 {
                     "name": "Default",
@@ -17978,38 +18070,6 @@
                     "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Save",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<NavbarBottomComponent>",
-                    "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
@@ -18056,47 +18116,6 @@
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "pagination",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "PaginationInstance",
-                    "defaultValue": "{\r\n  itemsPerPage: 6,\r\n  currentPage: 1,\r\n  totalItems: 12,\r\n}"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<TableExComponent<any>>",
-                    "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
-                },
-                {
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "object",
-                    "defaultValue": "{\r\n  data: [\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 10,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'שוריין ע\"י פיננסים',\r\n        value: 5,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 24,\r\n      block: 24,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לרו\"ח',\r\n        value: 3,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 54,\r\n      subdivision: 0,\r\n      area: 1037,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'התקבלה עסקה חדשה',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 680,\r\n      areaOwn: null,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לפיננסים',\r\n        value: 1,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n    {\r\n      id: 20,\r\n      block: 20,\r\n      division: 20,\r\n      subdivision: 0,\r\n      area: 2692,\r\n      areaOwn: 748,\r\n      property: '',\r\n      status: {\r\n        label: 'ממתין לטיפול עורך דין',\r\n        value: 4,\r\n      },\r\n      description: '',\r\n      location: 'קריית שמונה',\r\n    },\r\n  ],\r\n  columns: [\r\n    new ColumnModel({ label: 'גוש', type: 'number' }),\r\n    new ColumnModel({ label: 'חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'תת חלקה', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח מ\"ר', type: 'number' }),\r\n    new ColumnModel({ label: 'שטח בבעלות הימנותא', type: 'number' }),\r\n    new ColumnModel({ label: 'זכות במס', type: 'text' }),\r\n    new ColumnModel({ label: 'סטטוס', type: 'custom', center: true }),\r\n    new ColumnModel({ label: 'תיאור', type: 'text' }),\r\n    new ColumnModel({ label: 'יישוב', type: 'text' }),\r\n  ],\r\n  options: {\r\n    pagination: pagination,\r\n    filters: ['id', '_constructor-name_'],\r\n  },\r\n}"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts": [
                 {
                     "name": "Default",
@@ -18127,6 +18146,38 @@
                     "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Save",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavbarBottomComponent>",
+                    "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts": [
@@ -19784,12 +19835,12 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/lib-kakal-ui/src/lib/app/examples/navbar-ex/mavbar-ex.component.ts",
+                "filePath": "projects/lib-kakal-ui/src/lib/app/examples/navbar-ex/navbar-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "NavbarExComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -20477,6 +20528,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Wizard",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Accordion",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
