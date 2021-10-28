@@ -219,12 +219,12 @@ export class TableComponent<T> implements OnInit, Table<T> {
 
     switch (mode) {
       case 'expand':
-      return rows.map((rowItem) => {
-        if (ids.indexOf(rowItem.item['id']) >= 0) {
-          rowItem.expanded = !rowItem.expanded;
-        }
-        return rowItem;
-      });
+        return rows.map((rowItem) => {
+          if (ids.indexOf(rowItem.item['id']) >= 0) {
+            rowItem.expanded = !rowItem.expanded;
+          }
+          return rowItem;
+        });
       case 'form':
         const { columns } = this.tableService.setColumns(
           this.columns,
@@ -304,7 +304,7 @@ export class TableComponent<T> implements OnInit, Table<T> {
   // method which handle expand row state
   public onExpandRow(row: RowModel<T>) {
     if (this.accordion) {
-      this.tableState$.next({ mode: 'expand', row });
+      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });
     }
   }
 
