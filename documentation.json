@@ -2991,7 +2991,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 60,
+                    "line": 61,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3090,7 +3090,7 @@
                     "optional": false,
                     "returnType": "Observable<boolean>",
                     "typeParameters": [],
-                    "line": 56,
+                    "line": 57,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -3204,7 +3204,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 64,
+                    "line": 65,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -11226,7 +11226,7 @@
         },
         {
             "name": "FormAutocompleteComponent",
-            "id": "component-FormAutocompleteComponent-f3f917641760771bce5d5e32a7e8f160",
+            "id": "component-FormAutocompleteComponent-54ce2e2549decb441f8efad3a2f825b8",
             "file": "projects/lib-kakal-ui/src/lib/app/components/form/form-autocomplete/form-autocomplete.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -11247,15 +11247,22 @@
                     "name": "control",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 26,
                     "type": "FormControl"
                 },
                 {
                     "name": "question",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 14,
+                    "line": 25,
                     "type": "QuestionBase"
+                },
+                {
+                    "name": "questions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 27,
+                    "type": "Question[]"
                 }
             ],
             "outputsClass": [
@@ -11264,7 +11271,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 24,
+                    "line": 39,
                     "type": "EventEmitter<FormControl>"
                 },
                 {
@@ -11272,11 +11279,23 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 25,
+                    "line": 40,
                     "type": "EventEmitter<MatAutocompleteSelectedEvent>"
                 }
             ],
             "propertiesClass": [
+                {
+                    "name": "controlType",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 34,
+                    "modifierKind": [
+                        122
+                    ]
+                },
                 {
                     "name": "disabled",
                     "deprecated": false,
@@ -11284,20 +11303,31 @@
                     "type": "boolean",
                     "optional": false,
                     "description": "",
-                    "line": 22,
+                    "line": 32,
                     "modifierKind": [
                         122
                     ]
                 },
                 {
-                    "name": "error",
-                    "defaultValue": "''",
+                    "name": "formGroup",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string",
+                    "type": "FormGroup",
                     "optional": false,
                     "description": "",
-                    "line": 21,
+                    "line": 37,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "gridProps",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "GridProps",
+                    "optional": false,
+                    "description": "",
+                    "line": 33,
                     "modifierKind": [
                         122
                     ]
@@ -11309,7 +11339,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 19,
+                    "line": 30,
                     "modifierKind": [
                         122
                     ]
@@ -11321,7 +11351,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 29,
                     "modifierKind": [
                         122
                     ]
@@ -11333,19 +11363,19 @@
                     "type": "SelectOption[]",
                     "optional": false,
                     "description": "",
-                    "line": 20,
+                    "line": 31,
                     "modifierKind": [
                         122
                     ]
                 },
                 {
-                    "name": "type",
+                    "name": "questions$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "string",
+                    "type": "BehaviorSubject<Question[]>",
                     "optional": false,
                     "description": "",
-                    "line": 17,
+                    "line": 36,
                     "modifierKind": [
                         122
                     ]
@@ -11358,7 +11388,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 30,
+                    "line": 45,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -11375,7 +11405,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 33,
+                    "line": 51,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -11401,7 +11431,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { SelectOption } from '../models/question-select.model';\r\nimport { QuestionBase } from '../services/form.service';\r\n\r\n@Component({\r\n  selector: 'kkl-form-autocomplete',\r\n  templateUrl: './form-autocomplete.component.html',\r\n  styleUrls: ['./form-autocomplete.component.scss']\r\n})\r\nexport class FormAutocompleteComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n\r\n  public type: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[]\r\n  public error: string = ''\r\n  public disabled: boolean\r\n\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter()\r\n  @Output() optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter()\r\n\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event)\r\n  }\r\n\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { FormControl, FormGroup } from '@angular/forms';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { QuestionGroupModel } from '../models/question-group.model';\r\nimport { SelectOption } from '../models/question-select.model';\r\nimport { GridProps } from '../models/question.model';\r\nimport { Question, QuestionBase } from '../services/form.service';\r\n\r\n\r\nexport interface Register {\r\n  form: FormGroup,\r\n  questions$?: BehaviorSubject<Question[]>\r\n}\r\n\r\n\r\n@Component({\r\n  selector: 'kkl-form-autocomplete',\r\n  templateUrl: './form-autocomplete.component.html',\r\n  styleUrls: ['./form-autocomplete.component.scss']\r\n})\r\n\r\nexport class FormAutocompleteComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n  @Input() public questions: Question[];\r\n\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[]\r\n  public disabled: boolean\r\n  public gridProps: GridProps;  \r\n  public controlType: string;\r\n  \r\n  public questions$: BehaviorSubject<Question[]>\r\n  public formGroup: FormGroup;\r\n\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter()\r\n  @Output() optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter()\r\n\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n   console.log(this.question);\r\n   this.label= this.question?.label || '';\r\n   this.icon = this.question?.icon || '';\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event)\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -11416,12 +11446,125 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 25
+                "line": 40
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-form-field  [appearance]=\"disabled ? 'fill' : 'outline'\">\r\n  <mat-label>{{ label }}</mat-label>\r\n\r\n  <input\r\n    type=\"text\"\r\n    matInput\r\n    [formControl]=\"control\"\r\n    [matAutocomplete]=\"auto\"\r\n  />\r\n  <mat-autocomplete\r\n    autoActiveFirstOption\r\n    #auto=\"matAutocomplete\"\r\n    (optionSelected)=\"onOptionSelected($event)\"\r\n  >\r\n    <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n      {{ option.key }}\r\n    </mat-option>\r\n  </mat-autocomplete>\r\n</mat-form-field>\r\n"
+            "templateData": "<mat-form-field [appearance]=\"disabled ? 'fill' : 'outline'\">\r\n  <mat-label>{{ label }}</mat-label>\r\n\r\n  <input type=\"text\" matInput [formControl]=\"control\" [matAutocomplete]=\"auto\" />\r\n  <mat-autocomplete autoActiveFirstOption #auto=\"matAutocomplete\" (optionSelected)=\"onOptionSelected($event)\">\r\n    <mat-option *ngFor=\"let option of options\" [value]=\"option.value\">\r\n      {{ option.key }}\r\n    </mat-option>\r\n  </mat-autocomplete>\r\n\r\n</mat-form-field>\r\n\r\n"
+        },
+        {
+            "name": "FormautocompleteExComponent",
+            "id": "component-FormautocompleteExComponent-c4a3ff56e93df682c185ab9ec15942b1",
+            "file": "projects/lib-kakal-ui/src/lib/app/examples/formautocomplete-ex/formautocomplete-ex.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-formautocomplete-ex",
+            "styleUrls": [
+                "./formautocomplete-ex.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./formautocomplete-ex.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "questions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "Question[]"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [
+                {
+                    "name": "control",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "question",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Question",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { FormService, Question } from '../../components/form/services/form.service';\n\n@Component({\n  selector: 'app-formautocomplete-ex',\n  templateUrl: './formautocomplete-ex.component.html',\n  styleUrls: ['./formautocomplete-ex.component.scss']\n})\nexport class FormautocompleteExComponent implements OnInit {\n\n  public question: Question;\n  public control: FormControl;\n\n  @Input()  questions : Question[]\n\n  \n  constructor(private formService: FormService) { }\n\n  ngOnInit(): void {\n    const questions = this.formService.setQuestionList(this.questions);\n    this.question = questions[0];\n    this.control = this.formService.getFieldControl(this.question);\n  }\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "div.container {\r\n    height: 100%;\r\n  }\r\n  .form {\r\n    width: 25%;\r\n  }\r\n  ",
+                    "styleUrl": "./formautocomplete-ex.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "formService",
+                        "type": "FormService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 15,
+                "jsdoctags": [
+                    {
+                        "name": "formService",
+                        "type": "FormService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n    <div class=\"form\">\n      <kkl-form-autocomplete [question]=\"question\" [control]=\"control\" dir=\"rtl\"></kkl-form-autocomplete>\n    </div>\n  </div>"
         },
         {
             "name": "FormComponent",
@@ -12341,6 +12484,470 @@
                 "OnInit"
             ],
             "templateData": "<div dir=\"rtl\">\r\n  <mat-radio-group [formControl]=\"control\" [name]=\"question.key\" (change)=\"handleChange($event)\">\r\n    <div fxLayout=\"column\" fxLayoutGap=\"10px\" fxLayoutAlign=\"start start\">\r\n      <div fxLayout=\"row\" fxFlex=\"20\" fxLayoutAlign=\"end center\">\r\n        <label>\r\n          {{ question.label }}\r\n        </label>\r\n      </div>\r\n      <div fxLayout=\"row\" fxFlex=\"20\" class=\"radio-button\" fxLayoutAlign=\"space-between center\">\r\n        <mat-radio-button color=\"primary\" *ngFor=\"let option of question.options\" [value]=\"option.value\">{{\r\n          option.key }}\r\n        </mat-radio-button>\r\n      </div>\r\n    </div>\r\n  </mat-radio-group>\r\n</div>\r\n"
+        },
+        {
+            "name": "FormUploadComponent",
+            "id": "component-FormUploadComponent-813ff4caab5f050036b4812a7970b8f0",
+            "file": "projects/lib-kakal-ui/src/lib/app/components/form/form-upload/form-upload.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-form-upload",
+            "styleUrls": [
+                "./form-upload.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./form-upload.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "control",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 15,
+                    "type": "FormControl"
+                },
+                {
+                    "name": "multi",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 32,
+                    "type": "boolean"
+                },
+                {
+                    "name": "question",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 14,
+                    "type": "QuestionBase"
+                },
+                {
+                    "name": "questions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "Question[]"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "fileChange",
+                    "defaultValue": "new EventEmitter<File | string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 34,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 21,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "boolean",
+                    "optional": false,
+                    "description": "",
+                    "line": 20,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "file",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "File | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 24,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "icon",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 18,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 19,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "preview",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 23,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "uploadQuestion",
+                    "defaultValue": "{\n    key: 'upload',\n    label: '',\n    icon:'search'\n  }",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Question",
+                    "optional": false,
+                    "description": "",
+                    "line": 26,
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "emitFiles",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "FileList",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'change', ['$event.target.files']"
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "FileList",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 43,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
+                {
+                    "name": "subscribeToControl",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 55,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "modifierKind": [
+                        120
+                    ]
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "change",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "FileList",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event.target.files"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 36
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';\nimport { FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';\nimport { Question, QuestionBase } from '../services/form.service';\nimport { FormService } from '../services/form.service';\n\n\n@Component({\n  selector: 'app-form-upload',\n  templateUrl: './form-upload.component.html',\n  styleUrls: ['./form-upload.component.scss']\n})\nexport class FormUploadComponent implements OnInit {\n\n  @Input() public question: QuestionBase;\n  @Input() public control: FormControl;\n  @Input() public questions: Question[];\n\n  public icon: string;\n  public label: string;\n  public disabled: boolean\n  public color: string;\n\n  public preview: string;\n  public file: File | null = null;\n\n  private uploadQuestion: Question = {\n    key: 'upload',\n    label: '',\n    icon:'search'\n  };\n\n  @Input() multi: boolean;\n\n  @Output() fileChange = new EventEmitter<File | string>();\n\n  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {\n    this.file = event && event.item(0);\n    this.fileChange.emit(this.file);\n  }\n\n  constructor(private formService: FormService) { }\n\n  ngOnInit(): void {\n    this.control = this.formService.getFieldControl(this.uploadQuestion);\n\n    this.label= this.question?.label || '';\n    this.icon = this.question?.icon || '';\n\n    console.log(this.question);\n\n    this.subscribeToControl();\n  }\n\n\n  private subscribeToControl() {\n    if (this.control.disabled) {\n      this.color = 'disable';\n    }\n\n    this.control.valueChanges.subscribe((value) => {\n      if (this.control.disabled) {\n        this.color = 'disable';\n      } else if (this.control.errors) {\n        this.color = 'warn';\n      } else {\n        this.color = '';\n      }\n    });\n  }\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../../styles/styles\";\r\n\r\n\r\nbutton{\r\n    border:1px solid black;\r\n    width: 100%;\r\n    height: 40px;\r\n}\r\n",
+                    "styleUrl": "./form-upload.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "formService",
+                        "type": "FormService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 39,
+                "jsdoctags": [
+                    {
+                        "name": "formService",
+                        "type": "FormService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<mat-form-field [appearance]=\"disabled ? 'fill' : 'outline'\">\n  <mat-label>{{ label }}</mat-label>\n  <button appBorder type=\"button\" mat-button (click)=\"fileUpload.click()\">\n    <ng-content></ng-content>\n  </button>\n  <input hidden type=\"file\" [formControl]=\"control\" #fileUpload [multiple]=\"multi\" class=\"file-upload\" />\n  <!-- <kkl-icon *ngIf=\"icon\" matSuffix [color]=\"color || 'primary'\" [key]=\"icon\"></kkl-icon> -->\n  <!-- <kkl-icon *ngIf=\"icon\" matSuffix  [key]=\"icon\"></kkl-icon> -->\n</mat-form-field>\n\n"
+        },
+        {
+            "name": "FormuploadExComponent",
+            "id": "component-FormuploadExComponent-e7e358e160876443a2ade82bc1b39afb",
+            "file": "projects/lib-kakal-ui/src/lib/app/examples/formupload-ex/formupload-ex.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "app-formupload-ex",
+            "styleUrls": [
+                "./formupload-ex.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./formupload-ex.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "multi",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 16,
+                    "type": "boolean"
+                },
+                {
+                    "name": "questions",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 17,
+                    "type": "Question[]"
+                }
+            ],
+            "outputsClass": [
+                {
+                    "name": "fileChange",
+                    "defaultValue": "new EventEmitter<File | string>()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 18,
+                    "type": "EventEmitter"
+                }
+            ],
+            "propertiesClass": [
+                {
+                    "name": "control",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "FormControl",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "file",
+                    "defaultValue": "null",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "File | null",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "question",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Question",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "modifierKind": [
+                        122
+                    ]
+                }
+            ],
+            "methodsClass": [
+                {
+                    "name": "emitFiles",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "FileList",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 20,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "decorators": [
+                        {
+                            "name": "HostListener",
+                            "stringifiedArguments": "'change', ['$event.target.files']"
+                        }
+                    ],
+                    "jsdoctags": [
+                        {
+                            "name": "event",
+                            "type": "FileList",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 28,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [
+                {
+                    "name": "change",
+                    "args": [
+                        {
+                            "name": "event",
+                            "type": "FileList",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "argsDecorator": [
+                        "$event.target.files"
+                    ],
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 20
+                }
+            ],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, EventEmitter, HostListener, Input, OnInit, Output } from '@angular/core';\nimport { FormControl } from '@angular/forms';\nimport { FormService, Question } from '../../components/form/services/form.service';\n\n@Component({\n  selector: 'app-formupload-ex',\n  templateUrl: './formupload-ex.component.html',\n  styleUrls: ['./formupload-ex.component.scss']\n})\nexport class FormuploadExComponent implements OnInit {\n\n  public file: File | null = null;\n  public question: Question;\n  public control: FormControl;\n\n  @Input() multi: boolean;\n  @Input() questions: Question[]\n  @Output() fileChange = new EventEmitter<File | string>();\n\n  @HostListener('change', ['$event.target.files']) emitFiles(event: FileList) {\n    this.file = event && event.item(0);\n    this.fileChange.emit(this.file);\n  }\n\n\n  constructor(private formService: FormService) { }\n\n  ngOnInit(): void {\n    const questions = this.formService.setQuestionList(this.questions);\n    this.question = questions[0];\n    this.control = this.formService.getFieldControl(this.question);\n  }\n\n\n}\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "div.container {\r\n    height: 100%;\r\n  }\r\n  .form {\r\n    width: 25%;\r\n  }\r\n  ",
+                    "styleUrl": "./formupload-ex.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "formService",
+                        "type": "FormService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 23,
+                "jsdoctags": [
+                    {
+                        "name": "formService",
+                        "type": "FormService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n  <div class=\"form\">\n    <app-form-upload [question]=\"question\" [control]=\"control\" dir=\"rtl\"> </app-form-upload>\n  </div>\n</div>"
         },
         {
             "name": "IconComponent",
@@ -13757,7 +14364,7 @@
         },
         {
             "name": "NavbarComponent",
-            "id": "component-NavbarComponent-d6599f4aeacbde8bbc01aa6614badf40",
+            "id": "component-NavbarComponent-cce7bd6b81efbc55473ba7c98d57237b",
             "file": "projects/lib-kakal-ui/src/lib/app/components/navbar/navbar.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -13895,7 +14502,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -13910,7 +14517,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\nimport { IconModel } from '../icon/icon.model';\r\nimport { NavbarService } from './navbar.service';\r\n\r\n@Component({\r\n  selector: 'kkl-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n\r\n\r\n  @Input() public openIcon: string;\r\n  @Input() public statusStepWidth: number;\r\n  @Input() public logos: IconModel[];\r\n  @Input() public show$: Observable<boolean>;\r\n\r\n  public title$: Observable<string>;\r\n  public status$: Observable<CardStepModel[]>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor(private navbarService : NavbarService) {\r\n\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.title$ = this.navbarService.getHeadersObs()\r\n    this.status$ = this.navbarService.getStatusObs();\r\n  }\r\n\r\n    public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardStepModel } from '../cards/card-step/card-step.model';\r\nimport { IconModel } from '../icon/icon.model';\r\nimport { NavbarService } from './navbar.service';\r\n\r\n@Component({\r\n  selector: 'kkl-navbar',\r\n  templateUrl: './navbar.component.html',\r\n  styleUrls: ['./navbar.component.scss'],\r\n})\r\nexport class NavbarComponent implements OnInit {\r\n\r\n\r\n  @Input() public openIcon: string;\r\n  @Input() public statusStepWidth: number;\r\n  @Input() public logos: IconModel[];\r\n  @Input() public show$: Observable<boolean>;\r\n\r\n  public title$: Observable<string>;\r\n  public status$: Observable<CardStepModel[]>;\r\n\r\n  public isOpen: boolean = false;\r\n  public openLabel: string = 'תפריט';\r\n  public closeLabel: string = 'סגור תפריט';\r\n\r\n  @Output() menuToggle = new EventEmitter();\r\n\r\n  constructor(private navbarService : NavbarService) {\r\n\r\n  }\r\n\r\n  ngOnInit(): void {\r\n    this.title$ = this.navbarService.getHeadersObs()\r\n    this.status$ = this.navbarService.getStatusObs();\r\n\r\n    console.log(this.status$)\r\n  }\r\n\r\n    public toggleMenu() {\r\n    this.isOpen = !this.isOpen;\r\n    this.menuToggle.emit();\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -14448,7 +15055,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div [fxLayout]=\"direction\" class=\"steps-container\" fxLayoutAlign=\"center center\">\r\n  <ng-container *ngFor=\"let step of (steps$  |async); let i = index\">\r\n    <div appSize [space]=\"stepWidth\" [type]=\"step.type\">\r\n      <ng-container *ngIf=\"!stepRef\">\r\n        <ng-container [ngSwitch]=\"step.type\">\r\n          <ng-container *ngSwitchCase=\"'step'\">\r\n            <kkl-card-step (onStepChange)=\"onStepChange(step)\" [step]=\"step\"></kkl-card-step>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'wizard'\">\r\n            <kkl-card-wizard (onStepChange)=\"onStepChange(step)\" [step]=\"step\"></kkl-card-wizard>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'status'\">\r\n            <kkl-card-status [status]=\"step\"></kkl-card-status>\r\n          </ng-container>\r\n        </ng-container>\r\n        <ng-content></ng-content>\r\n      </ng-container>\r\n\r\n      <ng-container *ngTemplateOutlet=\"stepRef; context: { step: this.step }\">\r\n      </ng-container>\r\n    </div>\r\n    <div *ngIf=\"step.divider\" appSize [size]=\"2\" [divider]=\"step.divider\" class=\"divider-container\" fxLayout=\"column\"\r\n      fxLayoutAlign=\"center center\">\r\n      <div *ngIf=\"step.divider\" class=\"divider\"></div>\r\n    </div>\r\n  </ng-container>\r\n</div>\r\n"
+            "templateData": "<div [fxLayout]=\"direction\" class=\"steps-container\" fxLayoutAlign=\"center center\">\r\n  <ng-container *ngFor=\"let step of (steps$  |async); let i = index\">\r\n    <div appSize [space]=\"stepWidth\" [type]=\"step.type\">\r\n      <ng-container *ngIf=\"!stepRef\">\r\n        <ng-container [ngSwitch]=\"step.type\">\r\n          <ng-container *ngSwitchCase=\"'step'\">\r\n            <kkl-card-step (onStepChange)=\"onStepChange(step)\" [step]=\"step\"></kkl-card-step>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'wizard'\">\r\n            <kkl-card-wizard (onStepChange)=\"onStepChange(step)\" [step]=\"step\"></kkl-card-wizard>\r\n          </ng-container>\r\n          <ng-container *ngSwitchCase=\"'status'\">\r\n            <kkl-card-status [status]=\"step\"></kkl-card-status>\r\n          </ng-container>\r\n        </ng-container>\r\n        <ng-content></ng-content>\r\n      </ng-container>\r\n\r\n      <ng-container *ngTemplateOutlet=\"stepRef; context: { step: this.step }\">\r\n      </ng-container>\r\n    </div>\r\n    <div *ngIf=\"step.divider\" appSize [size]=\"2\" [divider]=\"step.divider\" class=\"divider-container\" fxLayout=\"column\"\r\n      fxLayoutAlign=\"center center\">\r\n      <div *ngIf=\"step.divider\" class=\"divider\"></div>\r\n    </div>\r\n  </ng-container>\r\n</div>"
         },
         {
             "name": "StepperExComponent",
@@ -15690,6 +16297,15 @@
                             "name": "FormRadioComponent"
                         },
                         {
+                            "name": "FormUploadComponent"
+                        },
+                        {
+                            "name": "FormautocompleteExComponent"
+                        },
+                        {
+                            "name": "FormuploadExComponent"
+                        },
+                        {
                             "name": "IconComponent"
                         },
                         {
@@ -16093,7 +16709,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16103,7 +16719,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16123,7 +16739,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16133,7 +16749,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16164,6 +16780,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16731,6 +17357,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ExpandPanelComponent>",
+                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -16741,11 +17377,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<ExpandPanelComponent>",
-                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+                "type": "Story<FormExComponent>",
+                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16761,11 +17397,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormExComponent>",
-                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<FormautocompleteExComponent>",
+                "defaultValue": "(args: FormautocompleteExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16801,11 +17437,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -16836,6 +17472,16 @@
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarBottomComponent>",
+                "defaultValue": "(\r\n  args: NavbarBottomComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18054,28 +18700,6 @@
                     "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts": [
                 {
                     "name": "Default",
@@ -18096,6 +18720,28 @@
                     "deprecationMessage": "",
                     "type": "Story<ExpandPanelComponent>",
                     "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts": [
@@ -18959,7 +19605,16 @@
                 "linktype": "component",
                 "name": "FormAutocompleteComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/14",
+                "coverageCount": "0/17",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/components/form/form-autocomplete/form-autocomplete.component.ts",
+                "type": "interface",
+                "linktype": "interface",
+                "name": "Register",
+                "coveragePercent": 0,
+                "coverageCount": "0/3",
                 "status": "low"
             },
             {
@@ -18987,6 +19642,15 @@
                 "name": "FormRadioComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/8",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/components/form/form-upload/form-upload.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormUploadComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/18",
                 "status": "low"
             },
             {
@@ -19909,6 +20573,24 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/examples/formautocomplete-ex/formautocomplete-ex.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormautocompleteExComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/examples/formupload-ex/formupload-ex.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "FormuploadExComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/11",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/app/examples/input-ex/input-ex.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -20385,6 +21067,26 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -20430,6 +21132,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Textarea",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
