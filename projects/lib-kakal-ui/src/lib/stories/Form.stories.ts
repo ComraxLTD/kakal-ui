@@ -6,7 +6,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormInputComponent } from '../app/components/form/form-input/form-input.component';
 import { FormGroupComponent } from '../app/components/form/form-group/form-group.component';
 import { FormRadioComponent } from '../app/components/form/form-radio/form-radio.component';
-import { FormService } from '../app/components/form/services/form.service';
+import {
+  FormService,
+  Question,
+} from '../app/components/form/services/form.service';
 import { IconComponent } from '../app/components/icon/icon.component';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
 import { ColorDirective } from '../app/utilities/directives/color.directive';
@@ -45,35 +48,51 @@ const Template: Story<FormExComponent> = (args: FormExComponent) => ({
   props: args,
 });
 
+const questions: Question[] = [
+  {
+    controlType: 'select',
+    key: 'record',
+    label: 'סוג רישום',
+    options: [
+      { label: 'גוש חלקה', value: 'שם נוסף' },
+      { label: 'דף ספר', value: 'עוד לקוח' },
+      { label: 'מגרש', value: 'לקוח מספר שלוש' },
+      { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
+    ],
+    gridProps: {
+      cols: 1,
+    },
+  },
+  {
+    controlType: 'text',
+    key: 'block',
+    label: 'גוש',
+  },
+  {
+    controlType: 'text',
+    key: 'section',
+    label: 'חלקה',
+  },
+  {
+    controlType: 'text',
+    key: 'subSection',
+    label: 'תת חלקה',
+    gridProps: {
+      fullWidth: true,
+    },
+  },
+];
+
 export const Default = Template.bind({});
 Default.args = {
-  questions: [
-    {
-      controlType: 'select',
-      multi: true,
-      key: 'record',
-      label: 'סוג רישום',
-      options: [
-        { label: 'גוש חלקה', value: 'שם נוסף' },
-        { label: 'דף ספר', value: 'עוד לקוח' },
-        { label: 'מגרש', value: 'לקוח מספר שלוש' },
-        { label: 'גוש שומא', value: 'לקוח מספר ארבע' },
-      ],
+  questions,
+};
+export const Grid = Template.bind({});
+Grid.args = {
+  questions,
+  options: {
+    gridProps: {
+      cols: 2,
     },
-    {
-      controlType: 'text',
-      key: 'block',
-      label: 'גוש',
-    },
-    {
-      controlType: 'text',
-      key: 'section',
-      label: 'חלקה',
-    },
-    {
-      controlType: 'text',
-      key: 'subSection',
-      label: 'תת חלקה',
-    },
-  ],
+  },
 };

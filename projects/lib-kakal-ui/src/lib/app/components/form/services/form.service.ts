@@ -10,7 +10,10 @@ import {
   FormGroup,
   ValidatorFn,
 } from '@angular/forms';
-import { GroupOptions, QuestionGroupModel } from '../models/question-group.model';
+import {
+  GroupOptions,
+  QuestionGroupModel,
+} from '../models/question-group.model';
 import { QuestionBaseModel, ControlType } from '../models/question.model';
 import { QuestionNumberModel } from '../models/question-number.model';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
@@ -83,6 +86,7 @@ export class FormService {
     options?: GroupOptions;
   }): QuestionGroupModel {
     const { key, questions, options } = config;
+    console.log(this.setQuestionList(questions));
     return new QuestionGroupModel({
       ...options,
       key,

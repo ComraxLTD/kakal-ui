@@ -22,11 +22,7 @@ export class FormExComponent implements OnInit {
     this.group = this.formService.createQuestionGroup({
       key: '',
       questions: this.questions,
-      options: {
-        gridProps: {
-          cols: 2,
-        },
-      },
+      options : this.options
     });
   }
 }
