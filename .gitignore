@@ -52,3 +52,5 @@ Thumbs.db
 documentation.json
 
 storybook-static
+
+*.cache
