@@ -5,12 +5,14 @@
       [columns]="columns"
       [model]="model"
       [options]="options"
-      [rowSlots]="{status}"
+      [rowSlots]="{status, area, actions}"
+      [expandSlots]="{area, expand}"
       [expendable]="expendable"
       [accordion]="accordion"
       [hasActions]="hasActions"
       [selectable]="selectable"
       [hasState]="hasState"
+      (register)="onRegister($event)"
     ></kkl-table>
   </div>
 </div>
@@ -21,9 +23,19 @@
   </div>
 </ng-template>
 
+<ng-template #area let-row="row" let-column="column">
+  <button mat-button appBorder (click)="onExpand(row, column)">
+    <kkl-typography>expand row</kkl-typography>
+  </button>
+</ng-template>
+
 <ng-template #actions let-row="row">
-  <div class="status">
-    <app-status [status]="row.item?.status"></app-status>
-  </div>
+  <button color="accent" mat-raised-button type="button">
+    <kkl-typography>לחץ</kkl-typography>
+  </button>
+</ng-template>
+`;
+<ng-template #expand let-row="row">
+  <kkl-typography>working !</kkl-typography>
 </ng-template>
 `;

@@ -1,8 +1,12 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ColumnModel } from '../../components/columns/column.model';
-import { TableOptions } from '../../components/table/table.component';
+import { RowModel } from '../../components/table/models/row.model';
+import {
+  TableOptions,
+  TableState,
+} from '../../components/table/table.component';
 
 @Component({
   selector: 'kkl-table-ex',
@@ -24,13 +28,27 @@ export class TableExComponent<T> implements OnInit {
   @Input() public hasState: boolean;
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
-  
+
   public data$: Observable<T[]>;
+
+  private tableState$: BehaviorSubject<TableState<T>>;
 
   constructor() {}
 
   ngOnInit(): void {
     this.data$ = of(this.data);
-    console.log(this.options)
+
+    if(this.expendable) {
+      this.columns[3].type = 'custom'
+    }
+
+  }
+
+  public onRegister(event: BehaviorSubject<TableState<T>>): void {
+    this.tableState$ = event;
+  }
+
+  public onExpand(row: RowModel<T>, column: ColumnModel<T>) {
+    this.tableState$.next({ mode: 'expand', ids : [row.item['id'], 3], column });
   }
 }

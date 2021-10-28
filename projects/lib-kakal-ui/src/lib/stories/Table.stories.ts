@@ -24,6 +24,7 @@ import { IconComponent } from '../app/components/icon/icon.component';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
 import { UnderlineDirective } from '../app/utilities/directives/underline.directive';
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
+import { BorderDirective } from '../app/utilities/directives/border.directive';
 
 export default {
   title: 'Table',
@@ -40,10 +41,12 @@ export default {
         FormInputComponent,
         TypographyComponent,
         FormatPipe,
+
         AreaPipe,
         SizeDirective,
         UnderlineDirective,
         ButtonDirective,
+        BorderDirective
       ],
       providers: [
         FormService,
@@ -81,7 +84,7 @@ const pagination: PaginationInstance = {
 const { data, columns, options } = {
   data: [
     {
-      id: 20,
+      id: 1,
       block: 20,
       division: 10,
       subdivision: 0,
@@ -96,7 +99,7 @@ const { data, columns, options } = {
       location: 'קריית שמונה',
     },
     {
-      id: 20,
+      id: 2,
       block: 20,
       division: 20,
       subdivision: 0,
@@ -111,7 +114,7 @@ const { data, columns, options } = {
       location: 'קריית שמונה',
     },
     {
-      id: 24,
+      id: 3,
       block: 24,
       division: 20,
       subdivision: 0,
@@ -126,7 +129,7 @@ const { data, columns, options } = {
       location: 'קריית שמונה',
     },
     {
-      id: 20,
+      id: 4,
       block: 20,
       division: 54,
       subdivision: 0,
@@ -141,7 +144,7 @@ const { data, columns, options } = {
       location: 'קריית שמונה',
     },
     {
-      id: 20,
+      id: 5,
       block: 20,
       division: 20,
       subdivision: 0,
@@ -156,7 +159,7 @@ const { data, columns, options } = {
       location: 'קריית שמונה',
     },
     {
-      id: 20,
+      id: 6,
       block: 20,
       division: 20,
       subdivision: 0,
@@ -196,6 +199,15 @@ Default.args = {
   options: options,
 };
 
+export const Actions = Template.bind({});
+Actions.args = {
+  data: data,
+  columns: columns,
+  model: new AssetsModel(),
+  options: options,
+  hasActions: true,
+};
+
 export const Accordion = Template.bind({});
 Accordion.args = {
   data: data,
@@ -205,11 +217,13 @@ Accordion.args = {
   accordion: true,
 };
 
-export const Actions = Template.bind({});
-Actions.args = {
+export const ExpandByCell = Template.bind({});
+ExpandByCell.args = {
   data: data,
   columns: columns,
   model: new AssetsModel(),
   options: options,
-  hasActions: true,
+  expendable: true,
+  hasState: true,
 };
+
