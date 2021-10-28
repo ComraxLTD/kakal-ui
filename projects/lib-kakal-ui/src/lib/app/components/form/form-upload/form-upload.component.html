@@ -1,10 +1,11 @@
-<mat-form-field [appearance]="disabled ? 'fill' : 'outline'">
-  <mat-label>{{ label }}</mat-label>
-  <button appBorder type="button" mat-button (click)="fileUpload.click()">
-    <ng-content></ng-content>
-  </button>
-  <input hidden type="file" [formControl]="control" #fileUpload [multiple]="multi" class="file-upload" />
-  <!-- <kkl-icon *ngIf="icon" matSuffix [color]="color || 'primary'" [key]="icon"></kkl-icon> -->
-  <!-- <kkl-icon *ngIf="icon" matSuffix  [key]="icon"></kkl-icon> -->
-</mat-form-field>
 
+
+
+<mat-form-field [appearance]="disabled ? 'fill' : 'outline'">
+  <mat-label>{{label}}</mat-label>
+
+  <ngx-mat-file-input [formControl]="control" [multiple]="multi">
+    <mat-icon *ngIf="icon" ngxMatFileInputIcon>{{icon}}</mat-icon>
+  </ngx-mat-file-input>
+
+</mat-form-field>
