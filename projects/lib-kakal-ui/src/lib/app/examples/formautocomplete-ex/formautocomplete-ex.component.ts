@@ -23,14 +23,6 @@ export class FormautocompleteExComponent implements OnInit {
     const questions = this.formService.setQuestionList(this.questions);
     this.question = questions[0];
     this.control = this.formService.getFieldControl(this.question);
-    console.log("service qustioan");
-    console.log(this.question);
-    console.log("options");
-    console.log(this.options);
-    
-    
-    
-    
   }
 
 }

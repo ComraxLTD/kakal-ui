@@ -1,0 +1,36 @@
+@import "../../../../../styles/styles.scss";
+
+:host {
+  height: 100%;
+
+  kkl-form-radio {
+    width: 75%
+  }
+
+
+}
+
+::ng-deep .kkl-login-form {
+
+  kkl-form-input {
+
+    width: 100%;
+
+    mat-form-field {
+      font-size: 2rem !important;
+    }
+  }
+
+  kkl-form-radio {
+    kkl-typography > span {
+      font-size: 2rem !important;
+    }
+  }
+
+  button {
+    width: 20rem;
+    height: 100%;
+  }
+
+
+}

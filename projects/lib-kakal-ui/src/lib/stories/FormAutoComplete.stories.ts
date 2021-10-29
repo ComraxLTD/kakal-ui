@@ -31,31 +31,32 @@ Default.args = {
       icon:'search'
     }
   ],
-  options:[
-    {
-      value: 'michael',
-      label:''
-    },
-    {
-      value: 'yossi',
-      label:''
-    },
-    {
-      value: 'dan',
-      label:''
-    },
-    {
-      value: 'shir',
-      label:''
-    },
-    {
-      value: 'shon',
-      label:''
-    },
-    {
-      value: 'daniel',
-      label:''
-    },
-  ]
+
+  // options:[
+  //   {
+  //     value: 'michael',
+  //     label:'',
+  //   },
+  //   {
+  //     value: 'yossi',
+  //     label:''
+  //   },
+  //   {
+  //     value: 'dan',
+  //     label:''
+  //   },
+  //   {
+  //     value: 'shir',
+  //     label:''
+  //   },
+  //   {
+  //     value: 'shon',
+  //     label:''
+  //   },
+  //   {
+  //     value: 'daniel',
+  //     label:''
+  //   },
+  // ]
 };
 

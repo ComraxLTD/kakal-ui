@@ -64,12 +64,21 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormuploadExComponent } from './examples/formupload-ex/formupload-ex.component';
 import { FormautocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
 
+import { LoginDashboardComponent } from './screens/login/components/login-dashboard/login-dashboard.component';
+import { LoginFormComponent } from './screens/login/components/login-form/login-form.component';
+import { LoginExComponent } from './examples/login-ex/login-ex.component';
+import { IconModel } from './components/icon/icon.model';
+
 @NgModule({
   declarations: [
 
     AppComponent,
     DashboardComponent,
     LayoutComponent,
+
+    LoginFormComponent,
+    LoginDashboardComponent,
+    LoginExComponent,
 
     IconComponent,
     TypographyComponent,
@@ -124,7 +133,9 @@ import { FormautocompleteExComponent } from './examples/formautocomplete-ex/form
     TableExComponent,
     FiltersExComponent,
     DashboardExComponent,
-    LayoutExComponent
+    LayoutExComponent,
+    
+
   ],
   imports: [
     BrowserModule,
