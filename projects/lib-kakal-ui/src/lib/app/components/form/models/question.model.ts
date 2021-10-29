@@ -15,7 +15,7 @@ export type ControlType =
   | 'number'
   | 'textarea'
   | 'select'
-  | 'calender'
+  | 'calendar'
   | 'radio'
   | 'date'
   | 'group'
@@ -25,7 +25,7 @@ export type ControlType =
 export type QuestionType = 'default' | 'group' | 'custom';
 
 export abstract class QuestionBaseModel<T> {
-  public key: string;
+  public key: any;
   public label: string;
   public value?: T | undefined;
   public appearance?: MatFormFieldAppearance

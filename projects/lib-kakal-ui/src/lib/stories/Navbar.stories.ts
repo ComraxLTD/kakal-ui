@@ -15,21 +15,30 @@ import { NavbarComponent } from '../app/components/navbar/navbar.component';
 import { NavbarService } from '../app/components/navbar/navbar.service';
 import { StepperComponent } from '../app/components/stepper/stepper.component';
 import { UnderlineDirective } from '../app/utilities/directives/underline.directive';
+import { CardStepComponent } from '../app/components/cards/card-step/card-step.component';
+import { CardWizardComponent } from '../app/components/cards/card-wizard/card-wizard.component';
+import { VariantDirective } from '../app/utilities/directives/variant.directive';
+import { NavbarExComponent } from '../app/examples/navbar-ex/navbar-ex.component';
 
 export default {
   title: 'Navbar',
-  component: NavbarComponent,
+  component: NavbarExComponent,
   decorators: [
     moduleMetadata({
       declarations: [
+        NavbarExComponent,
+        NavbarComponent,
         IconComponent,
         TypographyComponent,
         StepperComponent,
         CardStatusComponent,
+        CardStepComponent,
+        CardWizardComponent,
 
         SizeDirective,
         ColorDirective,
         ButtonDirective,
+        VariantDirective,
         UnderlineDirective
       ],
       providers: [NavbarService],

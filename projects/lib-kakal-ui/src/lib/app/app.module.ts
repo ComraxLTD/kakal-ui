@@ -52,17 +52,19 @@ import { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.compo
 import { AreaPipe } from './utilities/pipes/area.pipe';
 import { FormatPipe } from './utilities/pipes/format.pipe';
 
-import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from './components/columns/column-form/column-form.component';
 import { StatusComponent } from './components/status/status.component';
 import { LayoutComponent } from './screens/layout/layout.component';
 import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
 import { UnderlineDirective } from './utilities/directives/underline.directive';
 import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
-import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
+import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
+import { BorderDirective } from './utilities/directives/border.directive';
+
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormuploadExComponent } from './examples/formupload-ex/formupload-ex.component';
 import { FormautocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
+import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 
 import { LoginDashboardComponent } from './screens/login/components/login-dashboard/login-dashboard.component';
 import { LoginFormComponent } from './screens/login/components/login-form/login-form.component';
@@ -71,18 +73,26 @@ import { IconModel } from './components/icon/icon.model';
 
 @NgModule({
   declarations: [
-
     AppComponent,
+
+    // SCREEN COMPS
     DashboardComponent,
     LayoutComponent,
+
 
     LoginFormComponent,
     LoginDashboardComponent,
     LoginExComponent,
 
+
+    // SHARED COMPS
+
     IconComponent,
     TypographyComponent,
+    ListItemComponent,
+    ExpandPanelComponent,
 
+    // FORM COMPS
     FormComponent,
     FormInputComponent,
     FormGroupComponent,
@@ -90,12 +100,13 @@ import { IconModel } from './components/icon/icon.model';
     FormAutocompleteComponent,
     FormUploadComponent,
 
+    // TABLE COMPS
     PaginationComponent,
     TableComponent,
     ColumnFilterComponent,
     ColumnFormComponent,
 
-
+    // CARD COMPS
     CardDashboardComponent,
     CardStatusComponent,
     CardStepComponent,
@@ -103,25 +114,22 @@ import { IconModel } from './components/icon/icon.model';
     CardUserComponent,
     CardFilterComponent,
 
-    VariantDirective,
-    SizeDirective,
-
-    StepperComponent,
-
+    // NAVIGATION COMPS
     MenuComponent,
     MenuItemComponent,
     NavbarComponent,
     NavbarBottomComponent,
+    StepperComponent,
 
-    ListItemComponent,
-
-    ExpandPanelComponent,
-
+    // DIRECTIVES
+    VariantDirective,
+    SizeDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
     VariantDirective,
     UnderlineDirective,
+    BorderDirective,
 
     StatusComponent,
 
@@ -134,7 +142,6 @@ import { IconModel } from './components/icon/icon.model';
     FiltersExComponent,
     DashboardExComponent,
     LayoutExComponent,
-    
 
   ],
   imports: [
