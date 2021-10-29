@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ColumnDef, ColumnModel } from './column.model';
-import { keys } from 'ts-transformer-keys';
 
 export interface ColumnsData<T> {
   columns: ColumnModel<T>[];
