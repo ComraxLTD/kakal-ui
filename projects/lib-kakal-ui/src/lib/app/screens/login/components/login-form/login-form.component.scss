@@ -1,20 +1,17 @@
-@import "../../../../../styles/styles.scss";
+@import "../../../../../styles/login-theme";
 
 :host {
   height: 100%;
 
   kkl-form-radio {
     width: 75%;
-    font-size: 2rem !important
+    font-size: 2rem !important;
   }
-
-
 }
 
 ::ng-deep .kkl-login-form {
-
+  @include login-theme();
   kkl-form-input {
-
     width: 100%;
 
     mat-form-field {
@@ -32,6 +29,4 @@
     width: 20rem;
     height: 100%;
   }
-
-
 }
