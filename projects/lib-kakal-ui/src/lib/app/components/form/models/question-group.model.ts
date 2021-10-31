@@ -4,21 +4,30 @@ import { ControlType, GridProps } from './question.model';
 
 export type GroupType = 'default' | 'group' | 'custom';
 
+export interface GroupOptions {
+  label?: string;
+  type?: GroupType;
+  controlType?: ControlType;
+  formGroup?: FormGroup;
+  gridProps?: GridProps;
+  hasButton?: boolean;
+}
+
 export class QuestionGroupModel {
   public key: string;
-  public label: string;
+  public questions: Question[];
+  public label?: string;
   public type?: GroupType;
   public controlType?: ControlType;
   public formGroup?: FormGroup;
-  public questions: Question[];
   public gridProps?: GridProps;
   public hasButton?: boolean;
 
   constructor(options?: {
     key: string;
+    questions: Question[];
     label?: string;
     type?: GroupType;
-    questions: Question[];
     formGroup?: FormGroup;
     gridProps?: GridProps;
     hasButton?: boolean;
@@ -29,7 +38,7 @@ export class QuestionGroupModel {
     this.controlType = 'group';
     this.questions = options.questions;
     this.formGroup = options.formGroup;
-    this.gridProps = options.gridProps;
-    this.hasButton = options.hasButton;
+    this.gridProps = options.gridProps || { cols: 1 };
+    this.hasButton = options.hasButton || false;
   }
 }

@@ -2,9 +2,9 @@ import { ValidatorFn } from '@angular/forms';
 import { GridProps, QuestionBaseModel } from "./question.model";
 
 export interface SelectOption {
-  toLoweCrase();
   label: string;
   value: any;
+  disabled?: boolean;
 }
 
 export class QuestionSelectModel extends QuestionBaseModel<string>{

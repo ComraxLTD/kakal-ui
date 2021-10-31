@@ -4,59 +4,60 @@ import { MaterialModule } from '../material/material.module';
 import { FormAutocompleteComponent } from '../app/components/form/form-autocomplete/form-autocomplete.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormautocompleteExComponent } from '../app/examples/formautocomplete-ex/formautocomplete-ex.component';
-
+import { IconComponent } from '../app/components/icon/icon.component';
+import { TypographyComponent } from '../app/components/typography/typography.component';
+import { SizeDirective } from '../app/utilities/directives/size.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'FormAutoComplete',
   component: FormautocompleteExComponent,
   decorators: [
     moduleMetadata({
-      declarations: [FormAutocompleteComponent],
-      imports: [CommonModule,MaterialModule, FormsModule, ReactiveFormsModule],
+      declarations: [
+        FormAutocompleteComponent,
+        IconComponent,
+        TypographyComponent,
+        SizeDirective,
+      ],
+      imports: [
+        CommonModule,
+        MaterialModule,
+        FormsModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+      ],
     }),
   ],
 } as Meta;
 
-const Template: Story<FormautocompleteExComponent> = (args: FormautocompleteExComponent) => ({
+const Template: Story<FormautocompleteExComponent> = (
+  args: FormautocompleteExComponent
+) => ({
   props: args,
 });
 
 export const Default = Template.bind({});
 Default.args = {
-  questions:[
+  question: {
+    controlType: 'autocomplete',
+    key: 'block',
+    label: 'חיפוש מהיר ',
+    icon: 'search',
+  },
+
+  options: [
     {
-      controlType: 'text',
-      key: 'block',
-      label: 'חיפוש מהיר ',
-      icon:'search'
-    }
+      value: 'michael',
+      label: 'michael',
+    },
+    {
+      value: 'yossi',
+      label: 'yossi',
+    },
+    {
+      value: 'dan',
+      label: 'dan',
+    },
   ],
-
-  // options:[
-  //   {
-  //     value: 'michael',
-  //     label:'',
-  //   },
-  //   {
-  //     value: 'yossi',
-  //     label:''
-  //   },
-  //   {
-  //     value: 'dan',
-  //     label:''
-  //   },
-  //   {
-  //     value: 'shir',
-  //     label:''
-  //   },
-  //   {
-  //     value: 'shon',
-  //     label:''
-  //   },
-  //   {
-  //     value: 'daniel',
-  //     label:''
-  //   },
-  // ]
 };
-

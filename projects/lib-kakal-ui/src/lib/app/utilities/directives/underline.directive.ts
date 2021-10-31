@@ -7,13 +7,16 @@ import { palette, Palette } from '../../../styles/theme';
 export class UnderlineDirective {
   private palette = palette;
 
-  @Input() color: Palette;
+  @Input() underLineColor: Palette;
+  @Input() thick: number;
 
   @HostBinding('style.border-bottom') private underline: string;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.underline = `3px solid ${this.palette[this.color || 'primary']}`;
+    this.underline = `${this.thick || 1}px solid ${
+      this.palette[this.underLineColor || 'primary']
+    }`;
   }
 }

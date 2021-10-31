@@ -62,9 +62,10 @@ import { ColumnFilterComponent } from './components/columns/column-filter/column
 import { BorderDirective } from './utilities/directives/border.directive';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormuploadExComponent } from './examples/formupload-ex/formupload-ex.component';
-import { FormautocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
+import { TitleComponent } from './components/title/title.component';
+import { ExpandPanelExComponent } from './examples/expand-panel-ex/expand-panel-ex.component';
+import { TitleExComponent } from './examples/title-ex/title-ex.component';
 
 import { LoginDashboardComponent } from './screens/login/components/login-dashboard/login-dashboard.component';
 import { LoginFormComponent } from './screens/login/components/login-form/login-form.component';
@@ -91,6 +92,7 @@ import { IconModel } from './components/icon/icon.model';
     TypographyComponent,
     ListItemComponent,
     ExpandPanelComponent,
+    TitleComponent,
 
     // FORM COMPS
     FormComponent,
@@ -133,15 +135,18 @@ import { IconModel } from './components/icon/icon.model';
 
     StatusComponent,
 
-    StepperExComponent,
-    InputExComponent,
-    FormExComponent,
-    FormautocompleteExComponent,
-    FormuploadExComponent,
-    TableExComponent,
-    FiltersExComponent,
+
     DashboardExComponent,
     LayoutExComponent,
+    FormExComponent,
+    InputExComponent,
+    TitleExComponent,
+    TableExComponent,
+
+
+    ExpandPanelExComponent,
+
+
 
   ],
   imports: [
