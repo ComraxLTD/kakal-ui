@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'kkl-title',
@@ -8,12 +8,10 @@ import { Component, Input, OnInit } from '@angular/core';
 export class TitleComponent implements OnInit {
 
   @Input() text: string;
-  @Input() title: boolean;
-  @Input() slots: {};
+  @Input() slot: ElementRef;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.title = this.title || false;
   }
 }

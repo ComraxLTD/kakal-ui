@@ -1,13 +1,22 @@
 <div
-  class="title"
+  appUnderline
   fxLayout="row"
   fxLayoutAlign="space-between end"
   fxFill
   [dir]="'rtl'"
 >
   <div fxFlex="100">
-    <kkl-typography [bold]="600" [size]="1.4">
+    <kkl-typography
+      appUnderline
+      [thick]="3"
+      underLineColor="accent"
+      [bold]="600"
+      [size]="1.4"
+    >
       {{ text }}
     </kkl-typography>
+  </div>
+  <div >
+    <ng-container *ngTemplateOutlet="slot"></ng-container>
   </div>
 </div>

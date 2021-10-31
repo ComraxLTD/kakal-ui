@@ -9541,17 +9541,24 @@
         },
         {
             "name": "UnderlineDirective",
-            "id": "directive-UnderlineDirective-cb4af1695983843ec497a3226e1260c3",
+            "id": "directive-UnderlineDirective-debdada0af2685c1b4b4e51eddbc0a67",
             "file": "projects/lib-kakal-ui/src/lib/app/utilities/directives/underline.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { palette, Palette } from '../../../styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appUnderline]',\r\n})\r\nexport class UnderlineDirective {\r\n  private palette = palette;\r\n\r\n  @Input() color: Palette;\r\n\r\n  @HostBinding('style.border-bottom') private underline: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.underline = `3px solid ${this.palette[this.color || 'primary']}`;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { palette, Palette } from '../../../styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appUnderline]',\r\n})\r\nexport class UnderlineDirective {\r\n  private palette = palette;\r\n\r\n  @Input() underLineColor: Palette;\r\n  @Input() thick: number;\r\n\r\n  @HostBinding('style.border-bottom') private underline: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.underline = `${this.thick || 1}px solid ${\r\n      this.palette[this.underLineColor || 'primary']\r\n    }`;\r\n  }\r\n}\r\n",
             "selector": "[appUnderline]",
             "providers": [],
             "inputsClass": [
                 {
-                    "name": "color",
+                    "name": "thick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "number"
+                },
+                {
+                    "name": "underLineColor",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 10,
@@ -9566,7 +9573,7 @@
                     "name": "style.border-bottom",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 13,
                     "type": "string"
                 }
             ],
@@ -9592,7 +9599,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 12,
+                    "line": 13,
                     "decorators": [
                         {
                             "name": "HostBinding",
@@ -9611,7 +9618,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 17,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -9622,7 +9629,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 12
+                "line": 13
             }
         },
         {
@@ -16259,6 +16266,177 @@
             "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n  <div class=\"table\">\r\n    <kkl-table\r\n      [data$]=\"data$\"\r\n      [columns]=\"columns\"\r\n      [model]=\"model\"\r\n      [options]=\"options\"\r\n      [rowSlots]=\"{status, area, actions}\"\r\n      [expandSlots]=\"{area, accordion : accordionSlot}\"\r\n      [expendable]=\"expendable\"\r\n      [accordion]=\"accordion\"\r\n      [hasActions]=\"hasActions\"\r\n      [selectable]=\"selectable\"\r\n      [hasState]=\"hasState\"\r\n      (register)=\"onRegister($event)\"\r\n    ></kkl-table>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #status let-row=\"row\">\r\n  <div class=\"status\">\r\n    <app-status [status]=\"row.item?.status\"></app-status>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #area let-row=\"row\" let-column=\"column\">\r\n  <button mat-button appBorder (click)=\"onExpand(row, column)\">\r\n    <kkl-typography>expand row</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n\r\n<ng-template #actions let-row=\"row\">\r\n  <button color=\"accent\" mat-raised-button type=\"button\">\r\n    <kkl-typography>לחץ</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n`;\r\n<ng-template #accordionSlot let-row=\"row\">\r\n  <kkl-typography>working !</kkl-typography>\r\n</ng-template>\r\n`;\r\n"
         },
         {
+            "name": "TitleComponent",
+            "id": "component-TitleComponent-c0ef37543ce8a3d0751a8a7cabe5bab3",
+            "file": "projects/lib-kakal-ui/src/lib/app/components/title/title.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-title",
+            "styleUrls": [
+                "./title.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./title.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "slots",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "ElementRef"
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string"
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "boolean"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ElementRef, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-title',\r\n  templateUrl: './title.component.html',\r\n  styleUrls: ['./title.component.scss']\r\n})\r\nexport class TitleComponent implements OnInit {\r\n\r\n  @Input() text: string;\r\n  @Input() title: boolean;\r\n  @Input() slots: ElementRef;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.title = this.title || false;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import \"../../../styles/styles.scss\";\r\n\r\n:host {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  padding-bottom: spacing(1);\r\n}\r\n\r\n\r\n",
+                    "styleUrl": "./title.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 12
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div\r\n  appUnderline\r\n  fxLayout=\"row\"\r\n  fxLayoutAlign=\"space-between end\"\r\n  fxFill\r\n  [dir]=\"'rtl'\"\r\n>\r\n  <div fxFlex=\"100\">\r\n    <kkl-typography\r\n      appUnderline\r\n      [thick]=\"3\"\r\n      underLineColor=\"accent\"\r\n      [bold]=\"600\"\r\n      [size]=\"1.4\"\r\n    >\r\n      {{ text }}\r\n    </kkl-typography>\r\n  </div>\r\n  <div >\r\n    <ng-container *ngTemplateOutlet=\"slots\"></ng-container>\r\n  </div>\r\n</div>\r\n"
+        },
+        {
+            "name": "TitleComponent",
+            "id": "component-TitleComponent-c0ef37543ce8a3d0751a8a7cabe5bab3-1",
+            "file": "projects/lib-kakal-ui/src/lib/app/examples/title-ex/title.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-title",
+            "styleUrls": [
+                "./title.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./title.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "slots",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 12,
+                    "type": "ElementRef"
+                },
+                {
+                    "name": "text",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 10,
+                    "type": "string"
+                },
+                {
+                    "name": "title",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 11,
+                    "type": "boolean"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 16,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                }
+            ],
+            "deprecated": false,
+            "deprecationMessage": "",
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "\n",
+            "type": "component",
+            "sourceCode": "import { Component, ElementRef, Input, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-title',\r\n  templateUrl: './title.component.html',\r\n  styleUrls: ['./title.component.scss']\r\n})\r\nexport class TitleComponent implements OnInit {\r\n\r\n  @Input() text: string;\r\n  @Input() title: boolean;\r\n  @Input() slots: ElementRef;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.title = this.title || false;\r\n  }\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "",
+                    "styleUrl": "./title.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [],
+                "line": 12
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "isDuplicate": true,
+            "duplicateId": 1,
+            "duplicateName": "TitleComponent-1",
+            "templateData": "<kkl-title></kkl-title>\r\n"
+        },
+        {
             "name": "TypographyComponent",
             "id": "component-TypographyComponent-5d8a4476f40bd87a595c7e9cd115ca20",
             "file": "projects/lib-kakal-ui/src/lib/app/components/typography/typography.component.ts",
@@ -16360,13 +16538,13 @@
     "modules": [
         {
             "name": "AppModule",
-            "id": "module-AppModule-c7e4cc31a73a8e5684aa0d61c3fcd8bf",
+            "id": "module-AppModule-78b9d2629adad56706cc04b18c161393",
             "description": "",
             "deprecationMessage": "",
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { FormUploadComponent } from './components/form/form-upload/form-upload.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { BorderDirective } from './utilities/directives/border.directive';\r\n\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { FormuploadExComponent } from './examples/formupload-ex/formupload-ex.component';\r\nimport { FormautocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n\r\n    // SCREEN COMPS\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    // SHARED COMPS\r\n    IconComponent,\r\n    TypographyComponent,\r\n    ListItemComponent,\r\n    ExpandPanelComponent,\r\n\r\n    // FORM COMPS\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n    FormUploadComponent,\r\n\r\n    // TABLE COMPS\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n    // CARD COMPS\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    // NAVIGATION COMPS\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n    StepperComponent,\r\n\r\n    // DIRECTIVES\r\n    VariantDirective,\r\n    SizeDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n    BorderDirective,\r\n\r\n    StatusComponent,\r\n\r\n \r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { FormUploadComponent } from './components/form/form-upload/form-upload.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { BorderDirective } from './utilities/directives/border.directive';\r\n\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\nimport { TitleComponent } from './components/title/title.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n\r\n    // SCREEN COMPS\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n    // SHARED COMPS\r\n    IconComponent,\r\n    TypographyComponent,\r\n    ListItemComponent,\r\n    ExpandPanelComponent,\r\n    TitleComponent,\r\n\r\n    // FORM COMPS\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n    FormUploadComponent,\r\n\r\n    // TABLE COMPS\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n    // CARD COMPS\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    // NAVIGATION COMPS\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n    StepperComponent,\r\n\r\n    // DIRECTIVES\r\n    VariantDirective,\r\n    SizeDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n    BorderDirective,\r\n\r\n    StatusComponent,\r\n\r\n\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -16473,6 +16651,9 @@
                         },
                         {
                             "name": "TableComponent"
+                        },
+                        {
+                            "name": "TitleComponent"
                         },
                         {
                             "name": "TypographyComponent"
@@ -16867,7 +17048,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16877,7 +17058,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16937,7 +17118,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16947,7 +17128,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -16968,6 +17149,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Default",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Title.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17575,16 +17766,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Card.Dashboardstories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<CardDashboardComponent>",
-                "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17595,11 +17776,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Card.Dashboardstories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                "type": "Story<CardDashboardComponent>",
+                "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17610,6 +17791,16 @@
                 "deprecationMessage": "",
                 "type": "Story<ExpandPanelComponent>",
                 "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17635,6 +17826,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<InputExComponent>",
+                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17650,16 +17851,6 @@
                 "deprecationMessage": "",
                 "type": "Story<FormuploadExComponent>",
                 "defaultValue": "(\r\n  args: FormuploadExComponent\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<InputExComponent>",
-                "defaultValue": "(args: InputExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17695,21 +17886,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarBottomExComponent>",
-                "defaultValue": "(\r\n  args: NavbarBottomExComponent\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<NavbarComponent>",
                 "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarBottomExComponent>",
+                "defaultValue": "(\r\n  args: NavbarBottomExComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17745,6 +17936,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Title.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TitleComponent>",
+                "defaultValue": "(args: TitleComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17765,21 +17966,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<LayoutExComponent>",
-                "defaultValue": "(args: LayoutExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/screens/Login.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<literal type>",
                 "defaultValue": "(args: () => {}) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<LayoutExComponent>",
+                "defaultValue": "(args: LayoutExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "TENT_ICON",
@@ -19124,28 +19325,6 @@
                     "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts": [
                 {
                     "name": "Default",
@@ -19166,6 +19345,28 @@
                     "deprecationMessage": "",
                     "type": "Story<ExpandPanelComponent>",
                     "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/DatePicker.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts": [
@@ -19298,6 +19499,28 @@
                     "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Title.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Title.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TitleComponent>",
+                    "defaultValue": "(args: TitleComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Typography.stories.ts": [
@@ -20951,6 +21174,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/components/title/title.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TitleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/app/components/typography/typography.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -21109,6 +21341,15 @@
                 "status": "low"
             },
             {
+                "filePath": "projects/lib-kakal-ui/src/lib/app/examples/title-ex/title.component.ts",
+                "type": "component",
+                "linktype": "component",
+                "name": "TitleComponent",
+                "coveragePercent": 0,
+                "coverageCount": "0/6",
+                "status": "low"
+            },
+            {
                 "filePath": "projects/lib-kakal-ui/src/lib/app/screens/dashboard/dashboard.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -21177,7 +21418,7 @@
                 "linktype": "directive",
                 "name": "UnderlineDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
@@ -21944,6 +22185,26 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Title.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Default",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Title.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

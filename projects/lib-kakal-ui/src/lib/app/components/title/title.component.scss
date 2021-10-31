@@ -1,4 +1,4 @@
-@import "../../../../styles/styles.scss";
+@import "../../../styles/styles.scss";
 
 :host {
   display: flex;
@@ -7,12 +7,4 @@
   padding-bottom: spacing(1);
 }
 
-div.title {
-  width: 100%;
-  border-bottom: 1px solid color(primary);
-}
 
-kkl-typography {
-  border-bottom: 3px solid color(accent);
-
-}
