@@ -46,7 +46,6 @@ import { FormExComponent } from './examples/form-ex/form-ex.component';
 import { InputExComponent } from './examples/input-ex/input-ex.component';
 import { TableExComponent } from './examples/table-ex/table-ex.component';
 import { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';
-import { FiltersExComponent } from './examples/filters-ex/filters-ex.component';
 import { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';
 
 import { AreaPipe } from './utilities/pipes/area.pipe';
@@ -74,6 +73,7 @@ import { IconModel } from './components/icon/icon.model';
 import { FormUploadExComponent } from './examples/formupload-ex/formupload-ex.component';
 import { FormAutocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
 import { NavbarExComponent } from './examples/navbar-ex/navbar-ex.component';
+import { FiltersExComponent } from './examples/filters-ex/filters-ex.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +149,7 @@ import { NavbarExComponent } from './examples/navbar-ex/navbar-ex.component';
     FormAutocompleteExComponent,
     StepperExComponent,
     NavbarExComponent,
+    FiltersExComponent,
 
     ExpandPanelExComponent,
 

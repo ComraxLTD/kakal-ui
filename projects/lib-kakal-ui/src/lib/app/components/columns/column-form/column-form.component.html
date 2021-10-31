@@ -1,12 +1,15 @@
-<div class="column-input">
-  <input
-    [ngClass]="{ error: error }"
-    matInput
-    autocomplete="off"
-    required
-    [formControl]="control"
-    [name]="question.key"
-    (focusout)="validate()"
-    #input
-  />
+<div class="cell-input">
+  <ng-container [ngSwitch]="question.controlType">
+    <ng-container *ngSwitchCase="'custom'">
+      <ng-container
+        *ngTemplateOutlet="slot; context :{row, control : row.formGroup.controls[column.columnDef], question}"
+      ></ng-container>
+    </ng-container>
+    <ng-container *ngSwitchDefault>
+      <kkl-form-input
+        [control]="row.formGroup.controls[column.columnDef]"
+        [question]="question"
+      ></kkl-form-input>
+    </ng-container>
+  </ng-container>
 </div>

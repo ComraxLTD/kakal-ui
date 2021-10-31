@@ -6,6 +6,7 @@
       [model]="model"
       [options]="options"
       [rowSlots]="{status, area, actions}"
+      [formSlots]="{block}"
       [expandSlots]="{area, accordion : accordionSlot}"
       [expendable]="expendable"
       [accordion]="accordion"
@@ -16,6 +17,19 @@
     ></kkl-table>
   </div>
 </div>
+
+<ng-template #block let-question="question" let-row="row" let-control="control">
+  <mat-slide-toggle
+    (change)="onSlideChange($event)"
+    (toggleChange)="onToggleChange(row)"
+    [formControl]="control"
+    [color]="color"
+    [checked]="checked"
+    [disabled]="disabled"
+  >
+    {{ question.key }}
+  </mat-slide-toggle></ng-template
+>
 
 <ng-template #status let-row="row">
   <div class="status">

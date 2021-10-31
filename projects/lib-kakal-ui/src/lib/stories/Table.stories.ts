@@ -175,7 +175,7 @@ const { data, columns, options } = {
     },
   ],
   columns: [
-    new ColumnModel({ label: 'גוש', type: 'number', control: 'text' }),
+    new ColumnModel({ label: 'גוש', type: 'number', control: 'custom' }),
     new ColumnModel({ label: 'חלקה', type: 'number', control: 'number' }),
     new ColumnModel({ label: 'תת חלקה', type: 'number', control: 'number' }),
     new ColumnModel({ label: 'שטח מ"ר', type: 'number', control: 'number' }),
