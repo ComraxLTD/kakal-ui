@@ -29,6 +29,10 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.setRadioButtons()
     this.loginForm = this.loginService.loginForm
     this.subscribeRadio()
+
+    console.log(this.user.options);
+    console.log(this.radioControl);
+    
   }
 
   ngOnDestroy(): void {

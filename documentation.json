@@ -14070,7 +14070,7 @@
         },
         {
             "name": "LoginDashboardComponent",
-            "id": "component-LoginDashboardComponent-1be6b5117cf77f4ffa5dccd97a7324b9",
+            "id": "component-LoginDashboardComponent-416246384d9e0845bcf00bb583960630",
             "file": "projects/lib-kakal-ui/src/lib/app/screens/login/components/login-dashboard/login-dashboard.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -14093,7 +14093,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 13,
                     "type": "EventEmitter<Login>"
                 }
             ],
@@ -14105,7 +14105,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 16,
+                    "line": 17,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -14122,7 +14122,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 19,
+                    "line": 20,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -14148,11 +14148,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, OnInit, Output } from '@angular/core';\r\nimport { Login } from '../../login.service';\r\n\r\n@Component({\r\n  selector: 'kkl-login-dashboard',\r\n  templateUrl: './login-dashboard.component.html',\r\n  styleUrls: ['./login-dashboard.component.scss']\r\n})\r\nexport class LoginDashboardComponent implements OnInit {\r\n\r\n\r\n  @Output() login : EventEmitter<Login> = new EventEmitter()\r\n\r\n  constructor( ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  public onSubmit(data : Login) {\r\n    this.login.emit(data)\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, OnInit, Output } from '@angular/core';\r\nimport { Login } from '../../login.service';\r\n\r\n\r\n@Component({\r\n  selector: 'kkl-login-dashboard',\r\n  templateUrl: './login-dashboard.component.html',\r\n  styleUrls: ['./login-dashboard.component.scss']\r\n})\r\nexport class LoginDashboardComponent implements OnInit {\r\n\r\n\r\n  @Output() login : EventEmitter<Login> = new EventEmitter()\r\n\r\n  constructor( ) {}\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  public onSubmit(data : Login) {\r\n    this.login.emit(data)\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import \"../../../../../styles/styles.scss\";\r\n\r\n:host {\r\n\r\n  .container {\r\n    background-image: url(\"../../../../../assets/images/login.jpg\");\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\r\n    \r\n  }\r\n\r\n  .login-container {\r\n    background-color: rgba($color: white, $alpha: .4) !important;\r\n    backdrop-filter: blur(10px) saturate(150%) contrast(30%) brightness(180%);\r\n  }\r\n\r\n  div {\r\n    height: 100%;\r\n  }\r\n\r\n\r\n}\r\n",
+                    "data": "@import \"../../../../../styles/styles.scss\";\r\n\r\n:host {\r\n\r\n  .container {\r\n    background-image: url('../../../../../assets/images/login.jpg');\r\n    background-size: cover;\r\n    background-repeat: no-repeat;\r\n    // background: lightblue;\r\n\r\n\r\n    \r\n  }\r\n\r\n  .login-container {\r\n    background-color: rgba($color: white, $alpha: .4) !important;\r\n    backdrop-filter: blur(10px) saturate(150%) contrast(30%) brightness(180%);\r\n  }\r\n\r\n  div {\r\n    height: 100%;\r\n  }\r\n\r\n\r\n}\r\n",
                     "styleUrl": "./login-dashboard.component.scss"
                 }
             ],
@@ -14163,7 +14163,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "args": [],
-                "line": 12
+                "line": 13
             },
             "implements": [
                 "OnInit"
@@ -14172,7 +14172,7 @@
         },
         {
             "name": "LoginExComponent",
-            "id": "component-LoginExComponent-2d9b07885814f6057bf26bbd70fde8a1",
+            "id": "component-LoginExComponent-db0872caa1345bc6cccbb578d1c52143",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/login-ex/login-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -14198,7 +14198,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 12,
+                    "line": 13,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -14210,11 +14210,11 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'app-login-ex',\r\n  templateUrl: './login-ex.component.html',\r\n  styleUrls: ['./login-ex.component.scss']\r\n})\r\nexport class LoginExComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n  \r\n\r\n}\r\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\nimport {LoginService} from '../../screens/login/login.service';\r\n\r\n@Component({\r\n  selector: 'app-login-ex',\r\n  templateUrl: './login-ex.component.html',\r\n  styleUrls: ['./login-ex.component.scss']\r\n})\r\nexport class LoginExComponent implements OnInit {\r\n\r\n  constructor(private loginService: LoginService) { }\r\n\r\n  ngOnInit(): void {\r\n    \r\n  }\r\n\r\n  \r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": ".container{\r\n    width: 100%;\r\n}",
+                    "data": ".container{\r\n    width: 100%;\r\n    height: 100%;\r\n\r\n}",
                     "styleUrl": "./login-ex.component.scss"
                 }
             ],
@@ -14224,17 +14224,35 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [],
-                "line": 8
+                "args": [
+                    {
+                        "name": "loginService",
+                        "type": "LoginService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 9,
+                "jsdoctags": [
+                    {
+                        "name": "loginService",
+                        "type": "LoginService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
             },
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"container\" fxLayoutAlign=\"center center\">\r\n\r\n    <kkl-login-dashboard></kkl-login-dashboard>\r\n\r\n</div>"
+            "templateData": "<div class=\"container\" >\r\n\r\n    <kkl-login-dashboard ></kkl-login-dashboard>\r\n\r\n</div>"
         },
         {
             "name": "LoginFormComponent",
-            "id": "component-LoginFormComponent-720e4a42e2442b09bbeb4a0dbe4d50fb",
+            "id": "component-LoginFormComponent-aad3225d9f5104eeb5c4515d896132c7",
             "file": "projects/lib-kakal-ui/src/lib/app/screens/login/components/login-form/login-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -14318,7 +14336,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 34,
+                    "line": 38,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -14338,7 +14356,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 56,
+                    "line": 60,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -14351,7 +14369,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 38,
+                    "line": 42,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -14364,7 +14382,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 44,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -14379,7 +14397,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { Subscription } from 'rxjs';\r\nimport { QuestionRadio } from '../../../../components/form/models/question-radio.model';\r\nimport { QuestionGroupModel } from '../../../../components/form/models/question-group.model';\r\nimport { Login, LoginService } from '../../login.service';\r\n\r\n@Component({\r\n  selector: 'kkl-login-form',\r\n  templateUrl: './login-form.component.html',\r\n  styleUrls: ['./login-form.component.scss']\r\n})\r\nexport class LoginFormComponent implements OnInit, OnDestroy {\r\n\r\n  public user: QuestionRadio\r\n  public radioControl: FormControl\r\n  public loginForm: QuestionGroupModel\r\n\r\n  private subscription: Subscription\r\n\r\n  @Output() submit: EventEmitter<Login> = new EventEmitter();\r\n\r\n  constructor(\r\n    private loginService: LoginService,\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n\r\n    this.setRadioButtons()\r\n    this.loginForm = this.loginService.loginForm\r\n    this.subscribeRadio()\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.subscription.unsubscribe()\r\n  }\r\n\r\n  private setRadioButtons() {\r\n    const { question, control } = this.loginService.getRdioForm()\r\n    this.radioControl = control\r\n    this.user = question\r\n  }\r\n\r\n  private subscribeRadio() {\r\n\r\n    this.subscription = this.radioControl.valueChanges.subscribe(\r\n      (value: string) => {\r\n        const questions = (value === 'external') ? [this.loginService.loginQuestions[0]] : this.loginService.loginQuestions\r\n        this.loginForm = this.loginService.reloadForm(questions)\r\n      }\r\n    )\r\n\r\n  }\r\n\r\n\r\n  public onSubmit() {\r\n    this.submit.emit(this.loginForm.formGroup.value)\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { Subscription } from 'rxjs';\r\nimport { QuestionRadio } from '../../../../components/form/models/question-radio.model';\r\nimport { QuestionGroupModel } from '../../../../components/form/models/question-group.model';\r\nimport { Login, LoginService } from '../../login.service';\r\n\r\n@Component({\r\n  selector: 'kkl-login-form',\r\n  templateUrl: './login-form.component.html',\r\n  styleUrls: ['./login-form.component.scss']\r\n})\r\nexport class LoginFormComponent implements OnInit, OnDestroy {\r\n\r\n  public user: QuestionRadio\r\n  public radioControl: FormControl\r\n  public loginForm: QuestionGroupModel\r\n\r\n  private subscription: Subscription\r\n\r\n  @Output() submit: EventEmitter<Login> = new EventEmitter();\r\n\r\n  constructor(\r\n    private loginService: LoginService,\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n\r\n    this.setRadioButtons()\r\n    this.loginForm = this.loginService.loginForm\r\n    this.subscribeRadio()\r\n\r\n    console.log(this.user.options);\r\n    console.log(this.radioControl);\r\n    \r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.subscription.unsubscribe()\r\n  }\r\n\r\n  private setRadioButtons() {\r\n    const { question, control } = this.loginService.getRdioForm()\r\n    this.radioControl = control\r\n    this.user = question\r\n  }\r\n\r\n  private subscribeRadio() {\r\n\r\n    this.subscription = this.radioControl.valueChanges.subscribe(\r\n      (value: string) => {\r\n        const questions = (value === 'external') ? [this.loginService.loginQuestions[0]] : this.loginService.loginQuestions\r\n        this.loginForm = this.loginService.reloadForm(questions)\r\n      }\r\n    )\r\n\r\n  }\r\n\r\n\r\n  public onSubmit() {\r\n    this.submit.emit(this.loginForm.formGroup.value)\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -17240,7 +17258,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17250,7 +17268,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17858,21 +17876,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ExpandPanelComponent>",
-                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FiltersExComponent>",
                 "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ExpandPanelComponent>",
+                "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
             },
             {
                 "name": "Template",
@@ -17898,6 +17916,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17918,16 +17946,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Icon.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<IconComponent>",
-                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17938,21 +17956,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<NavbarComponent>",
                 "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -19344,28 +19362,6 @@
                     "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
                 {
                     "name": "Default",
@@ -19386,6 +19382,28 @@
                     "deprecationMessage": "",
                     "type": "Story<NavbarComponent>",
                     "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
