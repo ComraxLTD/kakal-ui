@@ -6,7 +6,7 @@ import { FilterModel } from '../../components/cards/card-filter/card-filter.mode
   templateUrl: './filters-ex.component.html',
   styleUrls: ['./filters-ex.component.scss']
 })
-export class FiltersExComponent implements OnInit {
+export class  implements OnInit {
 
   @Input() filters: FilterModel[];
 

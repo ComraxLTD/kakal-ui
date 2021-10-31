@@ -7,7 +7,7 @@ import { FormService, Question } from '../../components/form/services/form.servi
   templateUrl: './formupload-ex.component.html',
   styleUrls: ['./formupload-ex.component.scss']
 })
-export class FormuploadExComponent implements OnInit {
+export class FormUploadExComponent implements OnInit {
 
   public file: File | null = null;
   public question: Question;

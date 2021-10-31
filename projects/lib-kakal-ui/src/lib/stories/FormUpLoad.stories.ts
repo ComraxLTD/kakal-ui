@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { FormUploadComponent } from '../app/components/form/form-upload/form-upload.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IconComponent } from '../app/components/icon/icon.component';
-import { FormuploadExComponent } from '../app/examples/formupload-ex/formupload-ex.component';
+import { FormUploadExComponent } from '../app/examples/formupload-ex/formupload-ex.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'FormUpLoad',
-  component: FormuploadExComponent,
+  component: FormUploadExComponent,
   decorators: [
     moduleMetadata({
       declarations: [FormUploadComponent],
@@ -24,8 +23,8 @@ export default {
   ],
 } as Meta;
 
-const Template: Story<FormuploadExComponent> = (
-  args: FormuploadExComponent
+const Template: Story<FormUploadExComponent> = (
+  args: FormUploadExComponent
 ) => ({
   props: args,
 });

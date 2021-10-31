@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../material/material.module';
 import { FormAutocompleteComponent } from '../app/components/form/form-autocomplete/form-autocomplete.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormautocompleteExComponent } from '../app/examples/formautocomplete-ex/formautocomplete-ex.component';
+import { FormAutocompleteExComponent } from '../app/examples/formautocomplete-ex/formautocomplete-ex.component';
 import { IconComponent } from '../app/components/icon/icon.component';
 import { TypographyComponent } from '../app/components/typography/typography.component';
 import { SizeDirective } from '../app/utilities/directives/size.directive';
@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 export default {
   title: 'FormAutoComplete',
-  component: FormautocompleteExComponent,
+  component: FormAutocompleteExComponent,
   decorators: [
     moduleMetadata({
       declarations: [
@@ -31,8 +31,8 @@ export default {
   ],
 } as Meta;
 
-const Template: Story<FormautocompleteExComponent> = (
-  args: FormautocompleteExComponent
+const Template: Story<FormAutocompleteExComponent> = (
+  args: FormAutocompleteExComponent
 ) => ({
   props: args,
 });

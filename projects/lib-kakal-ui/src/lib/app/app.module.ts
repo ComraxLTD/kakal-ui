@@ -71,6 +71,9 @@ import { LoginDashboardComponent } from './screens/login/components/login-dashbo
 import { LoginFormComponent } from './screens/login/components/login-form/login-form.component';
 import { LoginExComponent } from './examples/login-ex/login-ex.component';
 import { IconModel } from './components/icon/icon.model';
+import { FormUploadExComponent } from './examples/formupload-ex/formupload-ex.component';
+import { FormAutocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
+import { NavbarExComponent } from './examples/navbar-ex/navbar-ex.component';
 
 @NgModule({
   declarations: [
@@ -142,7 +145,10 @@ import { IconModel } from './components/icon/icon.model';
     InputExComponent,
     TitleExComponent,
     TableExComponent,
-
+    FormUploadExComponent,
+    FormAutocompleteExComponent,
+    StepperExComponent,
+    NavbarExComponent,
 
     ExpandPanelExComponent,
 

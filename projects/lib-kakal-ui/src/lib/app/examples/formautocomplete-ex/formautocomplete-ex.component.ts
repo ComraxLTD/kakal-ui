@@ -12,7 +12,7 @@ import {
   templateUrl: './formautocomplete-ex.component.html',
   styleUrls: ['./formautocomplete-ex.component.scss'],
 })
-export class FormautocompleteExComponent implements OnInit {
+export class FormAutocompleteExComponent implements OnInit {
   @Input() public question: Question;
   @Input() public options: SelectOption[];
 
