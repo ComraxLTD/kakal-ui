@@ -42,14 +42,11 @@ export class LoginService {
   ) { }
 
 
-  public getRdioForm(): { control: FormControl, question: QuestionRadio } {
+  public getRadioForm(): { control: FormControl, question: QuestionRadio } {
     const control = this.formService.getFieldControl(this.employeeQuestion)
     return { control, question: this.employeeQuestion }
   }
 
-  public getLgoinForn(): QuestionGroupModel {
-    return this.loginForm
-  }
 
   public reloadForm(questions: Question[]): QuestionGroupModel {
     return {
