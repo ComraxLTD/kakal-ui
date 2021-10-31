@@ -64,6 +64,8 @@ import { BorderDirective } from './utilities/directives/border.directive';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 import { TitleComponent } from './components/title/title.component';
+import { ExpandPanelExComponent } from './examples/expand-panel-ex/expand-panel-ex.component';
+import { TitleExComponent } from './examples/title-ex/title-ex.component';
 
 @NgModule({
   declarations: [
@@ -120,6 +122,18 @@ import { TitleComponent } from './components/title/title.component';
     BorderDirective,
 
     StatusComponent,
+
+
+    DashboardExComponent,
+    LayoutExComponent,
+    FormExComponent,
+    InputExComponent,
+    TitleExComponent,
+    TableExComponent,
+
+    
+    ExpandPanelExComponent,
+
 
 
   ],

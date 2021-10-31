@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="center center" class="container" dir="rtl">
+  <div fxFlex="33">
+    <mat-accordion>
+      <kkl-expand-panel
+        [hideToggle]="hideToggle"
+        [variant]="hideToggle && 'education'"
+        [expanded]="expanded"
+      >
+        <div title fxLayout="column" fxLayoutAlign="end center">
+          <kkl-typography
+            appUnderline
+            [thick]="3"
+            color="primary"
+            [bold]="600"
+            [size]="2"
+          >
+            לקוחות
+          </kkl-typography>
+        </div>
+        <div fxFill description fxLayout="row" fxLayoutAlign="end center">
+          <button mat-button>לחץ</button>
+        </div>
+        <div content>
+          <kkl-typography *ngIf="!hasForm"> משהו על משיהו </kkl-typography>
+          <kkl-form *ngIf="hasForm" [group]="group"></kkl-form>
+        </div>
+      </kkl-expand-panel>
+    </mat-accordion>
+  </div>
+</div>
