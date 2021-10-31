@@ -1,0 +1,10 @@
+@import "../../../styles/styles.scss";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-bottom: spacing(1);
+}
+
+

@@ -62,9 +62,8 @@ import { ColumnFilterComponent } from './components/columns/column-filter/column
 import { BorderDirective } from './utilities/directives/border.directive';
 
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { FormuploadExComponent } from './examples/formupload-ex/formupload-ex.component';
-import { FormautocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
 import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
+import { TitleComponent } from './components/title/title.component';
 
 @NgModule({
   declarations: [
@@ -79,6 +78,7 @@ import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.
     TypographyComponent,
     ListItemComponent,
     ExpandPanelComponent,
+    TitleComponent,
 
     // FORM COMPS
     FormComponent,
@@ -121,7 +121,7 @@ import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.
 
     StatusComponent,
 
- 
+
   ],
   imports: [
     BrowserModule,
