@@ -27,7 +27,7 @@ export class FormautocompleteExComponent implements OnInit {
     this.control = this.formService.getFieldControl(this.questionControl);
     this.options$ = of(this.options);
 
-    
+
 
   }
 }

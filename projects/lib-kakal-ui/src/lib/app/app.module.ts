@@ -67,6 +67,11 @@ import { TitleComponent } from './components/title/title.component';
 import { ExpandPanelExComponent } from './examples/expand-panel-ex/expand-panel-ex.component';
 import { TitleExComponent } from './examples/title-ex/title-ex.component';
 
+import { LoginDashboardComponent } from './screens/login/components/login-dashboard/login-dashboard.component';
+import { LoginFormComponent } from './screens/login/components/login-form/login-form.component';
+import { LoginExComponent } from './examples/login-ex/login-ex.component';
+import { IconModel } from './components/icon/icon.model';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -75,7 +80,14 @@ import { TitleExComponent } from './examples/title-ex/title-ex.component';
     DashboardComponent,
     LayoutComponent,
 
+
+    LoginFormComponent,
+    LoginDashboardComponent,
+    LoginExComponent,
+
+
     // SHARED COMPS
+
     IconComponent,
     TypographyComponent,
     ListItemComponent,
@@ -131,7 +143,7 @@ import { TitleExComponent } from './examples/title-ex/title-ex.component';
     TitleExComponent,
     TableExComponent,
 
-    
+
     ExpandPanelExComponent,
 
 
