@@ -10734,7 +10734,7 @@
         },
         {
             "name": "ColumnFormComponent",
-            "id": "component-ColumnFormComponent-fbcb99d7b39f0160805e372543731c00",
+            "id": "component-ColumnFormComponent-5b0d09de02210a1a33c9de2b4c9c9303",
             "file": "projects/lib-kakal-ui/src/lib/app/components/columns/column-form/column-form.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -10759,20 +10759,6 @@
                     "type": "ColumnModel<T>"
                 },
                 {
-                    "name": "control",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 28,
-                    "type": "FormControl"
-                },
-                {
-                    "name": "question",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "line": 27,
-                    "type": "QuestionBase"
-                },
-                {
                     "name": "row",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -10783,7 +10769,7 @@
                     "name": "slot",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 29,
+                    "line": 27,
                     "type": "ElementRef"
                 }
             ],
@@ -10793,7 +10779,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 43,
+                    "line": 42,
                     "type": "EventEmitter<any>"
                 },
                 {
@@ -10801,7 +10787,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 42,
+                    "line": 41,
                     "type": "EventEmitter<QuestionSelectModel>"
                 }
             ],
@@ -10813,7 +10799,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 37,
+                    "line": 36,
                     "modifierKind": [
                         122
                     ]
@@ -10826,7 +10812,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 35,
+                    "line": 34,
                     "modifierKind": [
                         122
                     ]
@@ -10838,7 +10824,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 33,
+                    "line": 32,
                     "modifierKind": [
                         122
                     ]
@@ -10851,7 +10837,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 39,
+                    "line": 38,
                     "modifierKind": [
                         122
                     ]
@@ -10864,7 +10850,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 38,
+                    "line": 37,
                     "modifierKind": [
                         122
                     ]
@@ -10876,7 +10862,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 32,
+                    "line": 31,
                     "modifierKind": [
                         122
                     ]
@@ -10888,7 +10874,19 @@
                     "type": "SelectOption[]",
                     "optional": false,
                     "description": "",
-                    "line": 34,
+                    "line": 33,
+                    "modifierKind": [
+                        122
+                    ]
+                },
+                {
+                    "name": "question",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "QuestionBase",
+                    "optional": false,
+                    "description": "",
+                    "line": 29,
                     "modifierKind": [
                         122
                     ]
@@ -10900,7 +10898,7 @@
                     "type": "string",
                     "optional": false,
                     "description": "",
-                    "line": 31,
+                    "line": 30,
                     "modifierKind": [
                         122
                     ]
@@ -10913,48 +10911,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 47,
+                    "line": 46,
                     "deprecated": false,
                     "deprecationMessage": ""
-                },
-                {
-                    "name": "onSelectChange",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 93,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
-                },
-                {
-                    "name": "subscribeToControl",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 62,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        120
-                    ]
-                },
-                {
-                    "name": "validate",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 78,
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "modifierKind": [
-                        122
-                    ]
                 }
             ],
             "deprecated": false,
@@ -10964,7 +10923,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  ElementRef,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport {\r\n  QuestionSelectModel,\r\n  SelectOption,\r\n} from '../../form/models/question-select.model';\r\nimport { QuestionBase } from '../../form/services/form.service';\r\nimport { MessageService } from '../../form/services/message.service';\r\nimport { RowModel } from '../../table/models/row.model';\r\nimport { ColumnModel } from '../column.model';\r\n\r\n@Component({\r\n  selector: 'kkl-column-form',\r\n  templateUrl: './column-form.component.html',\r\n  styleUrls: ['./column-form.component.scss'],\r\n})\r\nexport class ColumnFormComponent<T> implements OnInit {\r\n  @Input() public row: RowModel<T>;\r\n  @Input() public column: ColumnModel<T>;\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n  @Input() public slot: ElementRef;\r\n\r\n  public type: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n\r\n  public color: string;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output()\r\n  public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();\r\n  @Output() public register: EventEmitter<any> = new EventEmitter();\r\n\r\n  constructor(private messageService: MessageService) {}\r\n\r\n  ngOnInit(): void {\r\n    this.question = this.row.questionsGroup[this.column['columnDef']];\r\n\r\n    this.type = this.question?.type;\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n\r\n    this.subscribeToControl();\r\n  }\r\n\r\n  // subscription section\r\n  private subscribeToControl() {\r\n    if (this.control.disabled) {\r\n      this.color = 'disable';\r\n    }\r\n\r\n    this.control.valueChanges.subscribe((value) => {\r\n      if (this.control.disabled) {\r\n        this.color = 'disable';\r\n      } else if (this.control.errors) {\r\n        this.color = 'danger';\r\n      } else {\r\n        this.color = '';\r\n      }\r\n    });\r\n  }\r\n\r\n  public validate() {\r\n    this.error = this.messageService.getErrorMessage(this.control, this.label);\r\n\r\n    if (this.error) {\r\n      this.color = 'danger';\r\n    }\r\n\r\n    this.control.valueChanges.subscribe(() => {\r\n      this.error = this.messageService.getErrorMessage(\r\n        this.control,\r\n        this.label\r\n      );\r\n    });\r\n  }\r\n\r\n  public onSelectChange() {\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.selected.emit(this.question);\r\n      this.question.onSelectChange();\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  ElementRef,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport {\r\n  QuestionSelectModel,\r\n  SelectOption,\r\n} from '../../form/models/question-select.model';\r\nimport { QuestionBase } from '../../form/services/form.service';\r\nimport { MessageService } from '../../form/services/message.service';\r\nimport { RowModel } from '../../table/models/row.model';\r\nimport { ColumnModel } from '../column.model';\r\n\r\n@Component({\r\n  selector: 'kkl-column-form',\r\n  templateUrl: './column-form.component.html',\r\n  styleUrls: ['./column-form.component.scss'],\r\n})\r\nexport class ColumnFormComponent<T> implements OnInit {\r\n  @Input() public row: RowModel<T>;\r\n  @Input() public column: ColumnModel<T>;\r\n  @Input() public slot: ElementRef;\r\n  \r\n  public question: QuestionBase;\r\n  public type: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n\r\n  public color: string;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output()\r\n  public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();\r\n  @Output() public register: EventEmitter<any> = new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.question = this.row.questionsGroup[this.column['columnDef']];\r\n\r\n    this.type = this.question?.type;\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n\r\n  }\r\n\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -10978,26 +10937,8 @@
                 "description": "",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "args": [
-                    {
-                        "name": "messageService",
-                        "type": "MessageService",
-                        "deprecated": false,
-                        "deprecationMessage": ""
-                    }
-                ],
-                "line": 43,
-                "jsdoctags": [
-                    {
-                        "name": "messageService",
-                        "type": "MessageService",
-                        "deprecated": false,
-                        "deprecationMessage": "",
-                        "tagName": {
-                            "text": "param"
-                        }
-                    }
-                ]
+                "args": [],
+                "line": 42
             },
             "implements": [
                 "OnInit"
@@ -12224,7 +12165,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <form (ngSubmit)=\"onSubmit()\" [formGroup]=\"formGroup\">\r\n    <mat-grid-list\r\n      [cols]=\"cols\"\r\n      [rowHeight]=\"(rowHeight || 9) + 'rem'\"\r\n      [gutterSize]=\"gutter + 'rem'\"\r\n      [dir]=\"'rtl'\"\r\n    >\r\n      <ng-container *ngFor=\"let question of questions$ | async\">\r\n        <ng-container [ngSwitch]=\"question.type\">\r\n          <!-- GROUP INPUT SECTION -->\r\n          <ng-container *ngSwitchCase=\"'group'\">\r\n            <kkl-form [group]=\"question.group\"></kkl-form>\r\n          </ng-container>\r\n\r\n          <!-- GROUP INPUT SECTION -->\r\n          <ng-container *ngSwitchCase=\"'custom'\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                slots[question.key];\r\n                context: { question: this.question }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <!-- DEFAULT INPUT -->\r\n          <ng-container *ngSwitchDefault>\r\n            <mat-grid-tile [colspan]=\"question?.gridProps?.fullWidth ? cols : question?.gridProps?.cols || 1\">\r\n              <kkl-form-input\r\n                [control]=\"formGroup.controls[question.key]\"\r\n                [question]=\"question\"\r\n              ></kkl-form-input>\r\n            </mat-grid-tile>\r\n\r\n            <mat-grid-tile\r\n              *ngIf=\"question?.gridProps?.offset\"\r\n              [colspan]=\"question?.gridProps?.offset\"\r\n            >\r\n            </mat-grid-tile>\r\n          </ng-container>\r\n        </ng-container>\r\n      </ng-container>\r\n\r\n      <mat-grid-tile *ngIf=\"hasButton\" [colspan]=\"buttonCols\">\r\n        <ng-container\r\n          *ngTemplateOutlet=\"\r\n            slots['button'];\r\n            context: { question: this.question }\r\n          \"\r\n        >\r\n        </ng-container>\r\n      </mat-grid-tile>\r\n    </mat-grid-list>\r\n  </form>\r\n</div>\r\n"
+            "templateData": "<div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <form (ngSubmit)=\"onSubmit()\" [formGroup]=\"formGroup\">\r\n    <mat-grid-list\r\n      [cols]=\"cols\"\r\n      [rowHeight]=\"(rowHeight || 9) + 'rem'\"\r\n      [gutterSize]=\"gutter + 'rem'\"\r\n      [dir]=\"'rtl'\"\r\n    >\r\n      <ng-container *ngFor=\"let question of questions$ | async\">\r\n        <ng-container [ngSwitch]=\"question.type\">\r\n          <!-- GROUP INPUT SECTION -->\r\n          <ng-container *ngSwitchCase=\"'group'\">\r\n            <kkl-form [group]=\"question.group\"></kkl-form>\r\n          </ng-container>\r\n\r\n          <!-- GROUP INPUT SECTION -->\r\n          <ng-container *ngSwitchCase=\"'custom'\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                slots[question.key];\r\n                context: {\r\n                  question: this.question,\r\n                  control: formGroup.controls[question.key]\r\n                }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <!-- DEFAULT INPUT -->\r\n          <ng-container *ngSwitchDefault>\r\n            <mat-grid-tile\r\n              [colspan]=\"\r\n                question?.gridProps?.fullWidth\r\n                  ? cols\r\n                  : question?.gridProps?.cols || 1\r\n              \"\r\n            >\r\n              <kkl-form-input\r\n                [control]=\"formGroup.controls[question.key]\"\r\n                [question]=\"question\"\r\n              ></kkl-form-input>\r\n            </mat-grid-tile>\r\n\r\n            <mat-grid-tile\r\n              *ngIf=\"question?.gridProps?.offset\"\r\n              [colspan]=\"question?.gridProps?.offset\"\r\n            >\r\n            </mat-grid-tile>\r\n          </ng-container>\r\n        </ng-container>\r\n      </ng-container>\r\n\r\n      <mat-grid-tile *ngIf=\"hasButton\" [colspan]=\"buttonCols\">\r\n        <ng-container\r\n          *ngTemplateOutlet=\"\r\n            slots['button'];\r\n            context: { question: this.question }\r\n          \"\r\n        >\r\n        </ng-container>\r\n      </mat-grid-tile>\r\n    </mat-grid-list>\r\n  </form>\r\n</div>\r\n"
         },
         {
             "name": "FormExComponent",
@@ -16678,11 +16619,11 @@
                 "OnInit",
                 "Table"
             ],
-            "templateData": "<div>\r\n  <mat-table\r\n    (matSortChange)=\"onSort($event)\"\r\n    mat-table\r\n    matSort\r\n    [dataSource]=\"rows$ | async | paginate: pagination\"\r\n    [dir]=\"'rtl'\"\r\n    multiTemplateDataRows\r\n  >\r\n    <ng-container\r\n      *ngFor=\"let column of columns$ | async\"\r\n      [matColumnDef]=\"column.columnDef\"\r\n    >\r\n      <!-- COLUMN HEADER SECTION-->\r\n\r\n      <ng-container *ngIf=\"!column.sortable && !column.selectable\">\r\n        <mat-header-cell\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{\r\n            center: column.center,\r\n            selected: column.columnDef === 'select'\r\n          }\"\r\n        >\r\n          <!-- DEFAULT HEADER -->\r\n          <kkl-typography [bold]=\"600\" *ngIf=\"!column.filterable\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n\r\n          <ng-container *ngIf=\"hasActions\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                headerSlots['actions'];\r\n                context: { row: this.row, column: this.column }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <!-- FILTER HEADER -->\r\n          <kkl-column-filter\r\n            *ngIf=\"column.filterable\"\r\n            [column]=\"column\"\r\n            [filterSlots]=\"filterSlots\"\r\n            (optionSelect)=\"onFilter($event)\"\r\n          >\r\n          </kkl-column-filter>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <!-- SORT HEADER -->\r\n      <ng-container *ngIf=\"column.sortable\">\r\n        <mat-header-cell\r\n          mat-sort-header\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{ center: column.center }\"\r\n          [start]=\"column.sortDir\"\r\n        >\r\n          <kkl-typography [bold]=\"600\" [size]=\"1.2\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <ng-container *ngIf=\"column.selectable\">\r\n        <mat-header-cell *matHeaderCellDef class=\"selected\">\r\n          <mat-checkbox\r\n            *ngIf=\"!headerSlots['select']\"\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? masterToggle() : null\"\r\n            [checked]=\"selection.hasValue() && isAllSelected()\"\r\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\r\n          >\r\n          </mat-checkbox>\r\n          <ng-container *ngIf=\"headerSlots['select']\">\r\n            <ng-container *ngTemplateOutlet=\"headerSlots['select']\">\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-header-cell>\r\n\r\n        <mat-cell *matCellDef=\"let row\" class=\"selected\">\r\n          <mat-checkbox\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? selection.toggle(row) : null\"\r\n            [checked]=\"selection.isSelected(row)\"\r\n          >\r\n          </mat-checkbox>\r\n        </mat-cell>\r\n      </ng-container>\r\n\r\n      <!-- COLUMN CELL SECTION-->\r\n\r\n      <mat-cell\r\n        *matCellDef=\"let row; let i = index\"\r\n        [ngClass]=\"{\r\n          center: column.center,\r\n          selected: column.columnDef === 'select'\r\n        }\"\r\n        [attr.colspan]=\"i\"\r\n      >\r\n        <!-- DEFAULT SECTION-->\r\n        <ng-container *ngIf=\"!row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngSwitchCase=\"'custom'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots[column.columnDef];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchDefault>\r\n              <kkl-typography>\r\n                {{ row.item[column.columnDef] | format: type }}\r\n              </kkl-typography>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n\r\n        <!-- FORM SECTION-->\r\n        <ng-container *ngIf=\"row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngIf=\"column.control\">\r\n              <div class=\"cell-input\">\r\n                <kkl-column-form\r\n                  [row]=\"row\"\r\n                  [column]=\"column\"\r\n                  [control]=\"row.formGroup.controls[column.columnDef]\"\r\n                  [question]=\"row.questionsGroup[column.columnDef]\"\r\n                  [slot]=\"formSlots[column.columnDef]\"\r\n                ></kkl-column-form>\r\n              </div>\r\n            </ng-container>\r\n\r\n            <ng-container *ngIf=\"!column.control\">\r\n              <ng-container *ngSwitchCase=\"'custom'\">\r\n                <ng-container\r\n                  *ngTemplateOutlet=\"\r\n                    rowSlots[column.columnDef];\r\n                    context: { row: this.row, column: this.column }\r\n                  \"\r\n                >\r\n                </ng-container>\r\n              </ng-container>\r\n\r\n              <ng-container *ngSwitchDefault>\r\n                <kkl-typography>\r\n                  {{ row.item[column.columnDef] | format: type }}\r\n                </kkl-typography>\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n      </mat-cell>\r\n\r\n      <ng-container>\r\n        <mat-footer-cell\r\n          *matFooterCellDef\r\n          [ngClass]=\"{ selected: column.columnDef === 'select' }\"\r\n        >\r\n          <ng-container *ngIf=\"column.footer\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                footerSlots[column.columnDef];\r\n                context: { row: this.row }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-footer-cell>\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <!-- EXPEND COLUMN -->\r\n    <ng-container matColumnDef=\"expandRow\" *ngIf=\"expendable\">\r\n      <mat-cell *matCellDef=\"let row\" [attr.colspan]=\"columnDefs.length\">\r\n        <div\r\n          fxFill\r\n          *ngIf=\"row.expanded && expandKey$ | async\"\r\n          [@detailExpand]=\"row.expanded ? 'expanded' : 'collapsed'\"\r\n        >\r\n          <ng-container\r\n            *ngTemplateOutlet=\"\r\n              expandSlots[expandKey$ | async];\r\n              context: { row: this.row }\r\n            \"\r\n          >\r\n          </ng-container>\r\n        </div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- NEW FORM COLUMN -->\r\n    <ng-container matColumnDef=\"formRow\" *ngIf=\"false\">\r\n      <ng-container> </ng-container>\r\n      <mat-cell *matCellDef=\"let row\">\r\n        <div></div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row\r\n      [ngClass]=\"[theme]\"\r\n      *matHeaderRowDef=\"columnDefs\"\r\n    ></mat-header-row>\r\n\r\n    <ng-container *ngIf=\"false\">\r\n      <mat-row *matRowDef=\"let formRow; columns: ['formRow']\"></mat-row>\r\n    </ng-container>\r\n\r\n    <mat-row\r\n      *matRowDef=\"let row; columns: columnDefs\"\r\n      (click)=\"onExpandRow(row, column)\"\r\n      [ngClass]=\"{\r\n        default: true,\r\n        form: row.editable,\r\n        hideBorder: expendable,\r\n        expand: expendable,\r\n        accordion: accordion\r\n      }\"\r\n    >\r\n    </mat-row>\r\n\r\n    <ng-container *ngIf=\"hasFooter\">\r\n      <mat-row\r\n        class=\"default\"\r\n        mat-footer-row\r\n        *matFooterRowDef=\"columnDefs\"\r\n      ></mat-row>\r\n    </ng-container>\r\n\r\n    <ng-container *ngIf=\"expendable\">\r\n      <mat-row\r\n        *matRowDef=\"let expendRow; columns: ['expandRow']\"\r\n        [ngClass]=\"{\r\n          hide: !expendRow.expanded,\r\n          show: expendRow.expanded,\r\n          hideBorder: expendable\r\n        }\"\r\n      ></mat-row>\r\n    </ng-container>\r\n  </mat-table>\r\n\r\n  <kkl-pagination (newPage)=\"onPageChange($event)\" [pagination]=\"pagination\">\r\n  </kkl-pagination>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <mat-table\r\n    (matSortChange)=\"onSort($event)\"\r\n    mat-table\r\n    matSort\r\n    [dataSource]=\"rows$ | async | paginate: pagination\"\r\n    [dir]=\"'rtl'\"\r\n    multiTemplateDataRows\r\n  >\r\n    <ng-container\r\n      *ngFor=\"let column of columns$ | async\"\r\n      [matColumnDef]=\"column.columnDef\"\r\n    >\r\n      <!-- COLUMN HEADER SECTION-->\r\n\r\n      <ng-container *ngIf=\"!column.sortable && !column.selectable\">\r\n        <mat-header-cell\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{\r\n            center: column.center,\r\n            selected: column.columnDef === 'select'\r\n          }\"\r\n        >\r\n          <!-- DEFAULT HEADER -->\r\n          <kkl-typography [bold]=\"600\" *ngIf=\"!column.filterable\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n\r\n          <ng-container *ngIf=\"hasActions\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                headerSlots['actions'];\r\n                context: { row: this.row, column: this.column }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <!-- FILTER HEADER -->\r\n          <kkl-column-filter\r\n            *ngIf=\"column.filterable\"\r\n            [column]=\"column\"\r\n            [filterSlots]=\"filterSlots\"\r\n            (optionSelect)=\"onFilter($event)\"\r\n          >\r\n          </kkl-column-filter>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <!-- SORT HEADER -->\r\n      <ng-container *ngIf=\"column.sortable\">\r\n        <mat-header-cell\r\n          mat-sort-header\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{ center: column.center }\"\r\n          [start]=\"column.sortDir\"\r\n        >\r\n          <kkl-typography [bold]=\"600\" [size]=\"1.2\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <ng-container *ngIf=\"column.selectable\">\r\n        <mat-header-cell *matHeaderCellDef class=\"selected\">\r\n          <mat-checkbox\r\n            *ngIf=\"!headerSlots['select']\"\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? masterToggle() : null\"\r\n            [checked]=\"selection.hasValue() && isAllSelected()\"\r\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\r\n          >\r\n          </mat-checkbox>\r\n          <ng-container *ngIf=\"headerSlots['select']\">\r\n            <ng-container *ngTemplateOutlet=\"headerSlots['select']\">\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-header-cell>\r\n\r\n        <mat-cell *matCellDef=\"let row\" class=\"selected\">\r\n          <mat-checkbox\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? selection.toggle(row) : null\"\r\n            [checked]=\"selection.isSelected(row)\"\r\n          >\r\n          </mat-checkbox>\r\n        </mat-cell>\r\n      </ng-container>\r\n\r\n      <!-- COLUMN CELL SECTION-->\r\n\r\n      <mat-cell\r\n        *matCellDef=\"let row; let i = index\"\r\n        [ngClass]=\"{\r\n          center: column.center,\r\n          selected: column.columnDef === 'select'\r\n        }\"\r\n        [attr.colspan]=\"i\"\r\n      >\r\n        <!-- DEFAULT SECTION-->\r\n        <ng-container *ngIf=\"!row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngSwitchCase=\"'custom'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots[column.columnDef];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchDefault>\r\n              <kkl-typography>\r\n                {{ row.item[column.columnDef] | format: type }}\r\n              </kkl-typography>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n\r\n        <!-- FORM SECTION-->\r\n        <ng-container *ngIf=\"row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngIf=\"column.control\">\r\n              <div class=\"cell-input\">\r\n                <kkl-column-form\r\n                  [row]=\"row\"\r\n                  [column]=\"column\"\r\n                  [slot]=\"formSlots[column.columnDef] || {}\"\r\n                ></kkl-column-form>\r\n              </div>\r\n            </ng-container>\r\n\r\n            <ng-container *ngIf=\"!column.control\">\r\n              <ng-container *ngSwitchCase=\"'custom'\">\r\n                <ng-container\r\n                  *ngTemplateOutlet=\"\r\n                    rowSlots[column.columnDef];\r\n                    context: { row: this.row, column: this.column }\r\n                  \"\r\n                >\r\n                </ng-container>\r\n              </ng-container>\r\n\r\n              <ng-container *ngSwitchDefault>\r\n                <kkl-typography>\r\n                  {{ row.item[column.columnDef] | format: type }}\r\n                </kkl-typography>\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n      </mat-cell>\r\n\r\n      <ng-container>\r\n        <mat-footer-cell\r\n          *matFooterCellDef\r\n          [ngClass]=\"{ selected: column.columnDef === 'select' }\"\r\n        >\r\n          <ng-container *ngIf=\"column.footer\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                footerSlots[column.columnDef];\r\n                context: { row: this.row }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-footer-cell>\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <!-- EXPEND COLUMN -->\r\n    <ng-container matColumnDef=\"expandRow\" *ngIf=\"expendable\">\r\n      <mat-cell *matCellDef=\"let row\" [attr.colspan]=\"columnDefs.length\">\r\n        <div\r\n          fxFill\r\n          *ngIf=\"row.expanded && expandKey$ | async\"\r\n          [@detailExpand]=\"row.expanded ? 'expanded' : 'collapsed'\"\r\n        >\r\n          <ng-container\r\n            *ngTemplateOutlet=\"\r\n              expandSlots[expandKey$ | async];\r\n              context: { row: this.row }\r\n            \"\r\n          >\r\n          </ng-container>\r\n        </div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- NEW FORM COLUMN -->\r\n    <ng-container matColumnDef=\"formRow\" *ngIf=\"false\">\r\n      <ng-container> </ng-container>\r\n      <mat-cell *matCellDef=\"let row\">\r\n        <div></div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row\r\n      [ngClass]=\"[theme]\"\r\n      *matHeaderRowDef=\"columnDefs\"\r\n    ></mat-header-row>\r\n\r\n    <ng-container *ngIf=\"false\">\r\n      <mat-row *matRowDef=\"let formRow; columns: ['formRow']\"></mat-row>\r\n    </ng-container>\r\n\r\n    <mat-row\r\n      *matRowDef=\"let row; columns: columnDefs\"\r\n      (click)=\"onExpandRow(row, column)\"\r\n      [ngClass]=\"{\r\n        default: true,\r\n        form: row.editable,\r\n        hideBorder: expendable,\r\n        expand: expendable,\r\n        accordion: accordion\r\n      }\"\r\n    >\r\n    </mat-row>\r\n\r\n    <ng-container *ngIf=\"hasFooter\">\r\n      <mat-row\r\n        class=\"default\"\r\n        mat-footer-row\r\n        *matFooterRowDef=\"columnDefs\"\r\n      ></mat-row>\r\n    </ng-container>\r\n\r\n    <ng-container *ngIf=\"expendable\">\r\n      <mat-row\r\n        *matRowDef=\"let expendRow; columns: ['expandRow']\"\r\n        [ngClass]=\"{\r\n          hide: !expendRow.expanded,\r\n          show: expendRow.expanded,\r\n          hideBorder: expendable\r\n        }\"\r\n      ></mat-row>\r\n    </ng-container>\r\n  </mat-table>\r\n\r\n  <kkl-pagination (newPage)=\"onPageChange($event)\" [pagination]=\"pagination\">\r\n  </kkl-pagination>\r\n</div>\r\n"
         },
         {
             "name": "TableExComponent",
-            "id": "component-TableExComponent-012e9382be03b7d3d73d0f326908bb7b",
+            "id": "component-TableExComponent-d49010a2bda12f835ad4ec6f2f8bf825",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/table-ex/table-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -16848,7 +16789,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 57,
+                    "line": 56,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16888,7 +16829,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 49,
+                    "line": 48,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16919,7 +16860,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 61,
+                    "line": 60,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16941,8 +16882,8 @@
                     "name": "onToggleChange",
                     "args": [
                         {
-                            "name": "control",
-                            "type": "FormControl",
+                            "name": "row",
+                            "type": "RowModel<T>",
                             "deprecated": false,
                             "deprecationMessage": ""
                         }
@@ -16950,7 +16891,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 66,
+                    "line": 64,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16958,8 +16899,8 @@
                     ],
                     "jsdoctags": [
                         {
-                            "name": "control",
-                            "type": "FormControl",
+                            "name": "row",
+                            "type": "RowModel<T>",
                             "deprecated": false,
                             "deprecationMessage": "",
                             "tagName": {
@@ -16976,7 +16917,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { MatSlideToggleChange } from '@angular/material/slide-toggle';\r\nimport { BehaviorSubject, Observable, of } from 'rxjs';\r\nimport { ColumnModel } from '../../components/columns/column.model';\r\nimport { RowModel } from '../../components/table/models/row.model';\r\nimport {\r\n  TableOptions,\r\n  TableState,\r\n} from '../../components/table/table.component';\r\n\r\n@Component({\r\n  selector: 'kkl-table-ex',\r\n  templateUrl: './table-ex.component.html',\r\n  styleUrls: ['./table-ex.component.scss'],\r\n})\r\nexport class TableExComponent<T> implements OnInit {\r\n  @Input() public theme: ThemePalette;\r\n\r\n  @Input() public data: T[];\r\n  @Input() public columns: ColumnModel<T>[];\r\n  @Input() public model: T;\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n  @Input() public hasForm: boolean;\r\n\r\n  public data$: Observable<T[]>;\r\n\r\n  private tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.data$ = of(this.data);\r\n    if (this.expendable) {\r\n      this.columns[3].type = 'custom';\r\n    }\r\n\r\n  }\r\n\r\n  public onRegister(event: BehaviorSubject<TableState<T>>): void {\r\n    this.tableState$ = event;\r\n\r\n    if(this.hasForm) {\r\n      this.tableState$.next({ mode: 'form' });\r\n    }\r\n  }\r\n\r\n  public onExpand(row: RowModel<T>, column: ColumnModel<T>) {\r\n    this.tableState$.next({ mode: 'expand', ids: [row.item['id'], 3], column });\r\n  }\r\n\r\n  public onSlideChange(event : MatSlideToggleChange) {\r\n    console.log(event)\r\n\r\n  }\r\n\r\n  public onToggleChange(control : FormControl) {\r\n    console.log(control)\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { MatSlideToggleChange } from '@angular/material/slide-toggle';\r\nimport { BehaviorSubject, Observable, of } from 'rxjs';\r\nimport { ColumnModel } from '../../components/columns/column.model';\r\nimport { RowModel } from '../../components/table/models/row.model';\r\nimport {\r\n  TableOptions,\r\n  TableState,\r\n} from '../../components/table/table.component';\r\n\r\n@Component({\r\n  selector: 'kkl-table-ex',\r\n  templateUrl: './table-ex.component.html',\r\n  styleUrls: ['./table-ex.component.scss'],\r\n})\r\nexport class TableExComponent<T> implements OnInit {\r\n  @Input() public theme: ThemePalette;\r\n\r\n  @Input() public data: T[];\r\n  @Input() public columns: ColumnModel<T>[];\r\n  @Input() public model: T;\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n  @Input() public hasForm: boolean;\r\n\r\n  public data$: Observable<T[]>;\r\n\r\n  private tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.data$ = of(this.data);\r\n    if (this.expendable) {\r\n      this.columns[3].type = 'custom';\r\n    }\r\n  }\r\n\r\n  public onRegister(event: BehaviorSubject<TableState<T>>): void {\r\n    this.tableState$ = event;\r\n\r\n    if (this.hasForm) {\r\n      this.tableState$.next({ mode: 'form' });\r\n    }\r\n  }\r\n\r\n  public onExpand(row: RowModel<T>, column: ColumnModel<T>) {\r\n    this.tableState$.next({ mode: 'expand', ids: [row.item['id'], 3], column });\r\n  }\r\n\r\n  public onSlideChange(event: MatSlideToggleChange) {\r\n    console.log(event);\r\n  }\r\n\r\n  public onToggleChange(row: RowModel<T>) {\r\n    const { formGroup } = row;\r\n    console.log(formGroup.value)\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -16996,7 +16937,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n  <div class=\"table\">\r\n    <kkl-table\r\n      [data$]=\"data$\"\r\n      [columns]=\"columns\"\r\n      [model]=\"model\"\r\n      [options]=\"options\"\r\n      [rowSlots]=\"{status, area, actions}\"\r\n      [formSlots]=\"{block}\"\r\n      [expandSlots]=\"{area, accordion : accordionSlot}\"\r\n      [expendable]=\"expendable\"\r\n      [accordion]=\"accordion\"\r\n      [hasActions]=\"hasActions\"\r\n      [selectable]=\"selectable\"\r\n      [hasState]=\"hasState\"\r\n      (register)=\"onRegister($event)\"\r\n    ></kkl-table>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #block let-question=\"question\" let-row=\"row\" let-control=\"control\">\r\n  <mat-slide-toggle\r\n    (change)=\"onSlideChange($event)\"\r\n    (toggleChange)=\"onToggleChange(control)\"\r\n    [formControl]=\"control\"\r\n    [color]=\"color\"\r\n    [checked]=\"checked\"\r\n    [disabled]=\"disabled\"\r\n  >\r\n    {{ question.key }}\r\n  </mat-slide-toggle></ng-template\r\n>\r\n\r\n<ng-template #status let-row=\"row\">\r\n  <div class=\"status\">\r\n    <app-status [status]=\"row.item?.status\"></app-status>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #area let-row=\"row\" let-column=\"column\">\r\n  <button mat-button appBorder (click)=\"onExpand(row, column)\">\r\n    <kkl-typography>expand row</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n\r\n<ng-template #actions let-row=\"row\">\r\n  <button color=\"accent\" mat-raised-button type=\"button\">\r\n    <kkl-typography>לחץ</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n`;\r\n<ng-template #accordionSlot let-row=\"row\">\r\n  <kkl-typography>working !</kkl-typography>\r\n</ng-template>\r\n`;\r\n"
+            "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n  <div class=\"table\">\r\n    <kkl-table\r\n      [data$]=\"data$\"\r\n      [columns]=\"columns\"\r\n      [model]=\"model\"\r\n      [options]=\"options\"\r\n      [rowSlots]=\"{status, area, actions}\"\r\n      [formSlots]=\"{block}\"\r\n      [expandSlots]=\"{area, accordion : accordionSlot}\"\r\n      [expendable]=\"expendable\"\r\n      [accordion]=\"accordion\"\r\n      [hasActions]=\"hasActions\"\r\n      [selectable]=\"selectable\"\r\n      [hasState]=\"hasState\"\r\n      (register)=\"onRegister($event)\"\r\n    ></kkl-table>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #block let-question=\"question\" let-row=\"row\" let-control=\"control\">\r\n  <mat-slide-toggle\r\n    (change)=\"onSlideChange($event)\"\r\n    (toggleChange)=\"onToggleChange(row)\"\r\n    [formControl]=\"control\"\r\n    [color]=\"color\"\r\n    [checked]=\"checked\"\r\n    [disabled]=\"disabled\"\r\n  >\r\n    {{ question.key }}\r\n  </mat-slide-toggle></ng-template\r\n>\r\n\r\n<ng-template #status let-row=\"row\">\r\n  <div class=\"status\">\r\n    <app-status [status]=\"row.item?.status\"></app-status>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #area let-row=\"row\" let-column=\"column\">\r\n  <button mat-button appBorder (click)=\"onExpand(row, column)\">\r\n    <kkl-typography>expand row</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n\r\n<ng-template #actions let-row=\"row\">\r\n  <button color=\"accent\" mat-raised-button type=\"button\">\r\n    <kkl-typography>לחץ</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n`;\r\n<ng-template #accordionSlot let-row=\"row\">\r\n  <kkl-typography>working !</kkl-typography>\r\n</ng-template>\r\n`;\r\n"
         },
         {
             "name": "TitleComponent",
@@ -17766,6 +17707,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "customQuestions",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "questions.map((question) => {\r\n  question[1].controlType = 'custom';\r\n  return question;\r\n})"
+            },
+            {
                 "name": "Dashboard",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -17869,7 +17820,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17879,7 +17830,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -18527,21 +18478,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<CardUserComponent>",
-                "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Card.Dashboardstories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CardDashboardComponent>",
                 "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CardUserComponent>",
+                "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18637,21 +18588,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<any>",
-                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<NavbarComponent>",
                 "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<any>",
+                "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18677,21 +18628,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<StepperExComponent>",
-                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TableExComponent<any>>",
                 "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<StepperExComponent>",
+                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18864,6 +18815,16 @@
                 "defaultValue": "CardUserTemplate.bind({})"
             },
             {
+                "name": "WithCustom",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "WithForm",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -18882,16 +18843,6 @@
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "CardWizardTemplate.bind({})"
-            },
-            {
-                "name": "Wizard",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
             },
             {
                 "ctype": "miscellaneous",
@@ -18947,6 +18898,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -19753,6 +19714,16 @@
                     "defaultValue": "Template.bind({})"
                 },
                 {
+                    "name": "customQuestions",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "questions.map((question) => {\r\n  question[1].controlType = 'custom';\r\n  return question;\r\n})"
+                },
+                {
                     "name": "Default",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -19791,6 +19762,16 @@
                     "deprecationMessage": "",
                     "type": "Story<FormExComponent>",
                     "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "WithCustom",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/FormInput.stories.ts": [
@@ -20237,28 +20218,6 @@
                     "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<any>",
-                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
                 {
                     "name": "Default",
@@ -20279,6 +20238,28 @@
                     "deprecationMessage": "",
                     "type": "Story<NavbarComponent>",
                     "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<any>",
+                    "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts": [
@@ -21013,7 +20994,7 @@
                 "linktype": "component",
                 "name": "ColumnFormComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/21",
+                "coverageCount": "0/17",
                 "status": "low"
             },
             {
@@ -22665,6 +22646,16 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
+                "name": "customQuestions",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
                 "name": "Default",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
@@ -22696,6 +22687,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "WithCustom",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

@@ -105,6 +105,11 @@ Button.args = {
   },
 };
 
+export const WithCustom = Template.bind({});
+WithCustom.args = {
+  questions,
+  custom : true
+};
 
 export const Advanced = Template.bind({});
 Advanced.args = {
@@ -114,7 +119,7 @@ Advanced.args = {
     hasButton: true,
     gridProps: {
       cols: 24,
-      buttonCols : 2
+      buttonCols: 2,
     },
   },
 };
