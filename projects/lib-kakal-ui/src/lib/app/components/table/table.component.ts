@@ -139,6 +139,9 @@ export class TableComponent<T> implements OnInit, Table<T> {
   // ng template for expand cell
   @Input() public expandSlots: {};
 
+  // ng template for for, cell
+  @Input() public formSlots: {};
+
   // -----------------------------------------------------------------------/
 
   public rows$: Observable<RowModel<T>[]>;

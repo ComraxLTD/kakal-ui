@@ -135,10 +135,11 @@
           <ng-container [ngSwitch]="column.type">
             <ng-container *ngIf="column.control">
               <div class="cell-input">
-                <kkl-form-input
-                  [control]="row.formGroup.controls[column.columnDef]"
-                  [question]="row.questionsGroup[column.columnDef]"
-                ></kkl-form-input>
+                <kkl-column-form
+                  [row]="row"
+                  [column]="column"
+                  [slot]="formSlots[column.columnDef] || {}"
+                ></kkl-column-form>
               </div>
             </ng-container>
 
@@ -160,9 +161,6 @@
               </ng-container>
             </ng-container>
 
-
-
-            
             <ng-container *ngSwitchCase="'actions'">
               <ng-container
                 *ngTemplateOutlet="
@@ -225,8 +223,6 @@
       [ngClass]="[theme]"
       *matHeaderRowDef="columnDefs"
     ></mat-header-row>
-
-
 
     <ng-container *ngIf="false">
       <mat-row *matRowDef="let formRow; columns: ['formRow']"></mat-row>

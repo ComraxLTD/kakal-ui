@@ -25,9 +25,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
-  imports: [],
+  imports: [MatSlideToggleModule],
   exports: [
     LayoutModule,
     MatGridListModule,
@@ -57,7 +58,8 @@ import { NgxMatFileInputModule } from '@angular-material-components/file-input';
     MatCheckboxModule,
     MatTooltipModule,
     FlexLayoutModule,
-    NgxMatFileInputModule
+    NgxMatFileInputModule,
+    MatSlideToggleModule
   ],
 })
 export class MaterialModule {}

@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ColumnModel } from '../../components/columns/column.model';
 import { RowModel } from '../../components/table/models/row.model';
@@ -38,25 +40,29 @@ export class TableExComponent<T> implements OnInit {
 
   ngOnInit(): void {
     this.data$ = of(this.data);
-
-    console.log(this.accordion)
-    console.log(this.expendable)
-
     if (this.expendable) {
       this.columns[3].type = 'custom';
     }
-
   }
 
   public onRegister(event: BehaviorSubject<TableState<T>>): void {
     this.tableState$ = event;
 
-    if(this.hasForm) {
+    if (this.hasForm) {
       this.tableState$.next({ mode: 'form' });
     }
   }
 
   public onExpand(row: RowModel<T>, column: ColumnModel<T>) {
     this.tableState$.next({ mode: 'expand', ids: [row.item['id'], 3], column });
+  }
+
+  public onSlideChange(event: MatSlideToggleChange) {
+    console.log(event);
+  }
+
+  public onToggleChange(row: RowModel<T>) {
+    const { formGroup } = row;
+    console.log(formGroup.value)
   }
 }
