@@ -12629,7 +12629,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div dir=\"rtl\">\r\n  <mat-radio-group [formControl]=\"control\" [name]=\"question.key\" (change)=\"handleChange($event)\">\r\n    <div fxLayout=\"column\" fxLayoutGap=\"10px\" fxLayoutAlign=\"start start\">\r\n      <div fxLayout=\"row\" fxFlex=\"20\" fxLayoutAlign=\"end center\">\r\n        <label>\r\n          {{ question.label }}\r\n        </label>\r\n      </div>\r\n      <div fxLayout=\"row\" fxFlex=\"20\" class=\"radio-button\" fxLayoutAlign=\"space-between center\">\r\n        <mat-radio-button color=\"primary\" *ngFor=\"let option of question.options\" [value]=\"option.value\">{{\r\n          option.key }}\r\n        </mat-radio-button>\r\n      </div>\r\n    </div>\r\n  </mat-radio-group>\r\n</div>\r\n"
+            "templateData": "<div dir=\"rtl\">\r\n  <mat-radio-group [formControl]=\"control\" [name]=\"question.key\" (change)=\"handleChange($event)\">\r\n    <div fxLayout=\"column\" fxLayoutGap=\"10px\" fxLayoutAlign=\"start start\">\r\n      <div fxLayout=\"row\" fxFlex=\"20\" fxLayoutAlign=\"end center\">\r\n        <label>\r\n          {{ question.label }}\r\n        </label>\r\n      </div>\r\n      <div fxLayout=\"row\" fxFlex=\"20\" class=\"radio-button\" fxLayoutAlign=\"space-between center\">\r\n        <mat-radio-button color=\"primary\" *ngFor=\"let option of question.options\" [value]=\"option.value\">{{\r\n          option.label }}\r\n        </mat-radio-button>\r\n      </div>\r\n    </div>\r\n  </mat-radio-group>\r\n</div>\r\n"
         },
         {
             "name": "FormUploadComponent",
@@ -17218,7 +17218,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17228,7 +17228,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17258,7 +17258,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17268,7 +17268,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17876,16 +17876,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FiltersExComponent>",
-                "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17896,11 +17886,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormExComponent>",
-                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<FiltersExComponent>",
+                "defaultValue": "(args: FiltersExComponent) => ({\r\n  props: args,\r\n  template: `<app-filters ${Object.keys(args).reduce(\r\n    (acc, key) =>\r\n      `${acc} [${key}]='${\r\n        typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n      }'`,\r\n    ''\r\n  )} ></app-filters>`,\r\n})"
             },
             {
                 "name": "Template",
@@ -17916,11 +17906,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Icon.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<IconComponent>",
-                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<FormExComponent>",
+                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -17946,6 +17936,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -17956,21 +17956,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarComponent>",
-                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<any>",
                 "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<NavbarComponent>",
+                "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -19274,28 +19274,6 @@
                     "defaultValue": "(args: ExpandPanelComponent) => ({\r\n  props: args,\r\n  template: `<kkl-expand-panel>\r\n  <kkl-typography bold=\"600\" title>example</kkl-typography>\r\n  <p content>example</p>\r\n  </kkl-expand-panel>`\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FormExComponent>",
-                    "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts": [
                 {
                     "name": "Default",
@@ -19316,6 +19294,28 @@
                     "deprecationMessage": "",
                     "type": "Story<FormautocompleteExComponent>",
                     "defaultValue": "(args: FormautocompleteExComponent) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormExComponent>",
+                    "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts": [
@@ -19362,28 +19362,6 @@
                     "defaultValue": "(args: MenuComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<NavbarComponent>",
-                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/Modal.stories.ts": [
                 {
                     "name": "Default",
@@ -19404,6 +19382,28 @@
                     "deprecationMessage": "",
                     "type": "Story<any>",
                     "defaultValue": "(args: any) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/Navbar.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<NavbarComponent>",
+                    "defaultValue": "(args: NavbarComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts": [
