@@ -30,9 +30,6 @@ export class LoginFormComponent implements OnInit, OnDestroy {
     this.loginForm = this.loginService.loginForm
     this.subscribeRadio()
 
-    console.log(this.user.options);
-    console.log(this.radioControl);
-    
   }
 
   ngOnDestroy(): void {
@@ -40,7 +37,7 @@ export class LoginFormComponent implements OnInit, OnDestroy {
   }
 
   private setRadioButtons() {
-    const { question, control } = this.loginService.getRdioForm()
+    const { question, control } = this.loginService.getRadioForm()
     this.radioControl = control
     this.user = question
   }
