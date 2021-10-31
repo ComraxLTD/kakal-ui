@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GroupOptions, QuestionGroupModel } from '../../components/form/models/question-group.model';
+import {
+  GroupOptions,
+  QuestionGroupModel,
+} from '../../components/form/models/question-group.model';
 import {
   FormService,
   Question,
@@ -15,17 +18,29 @@ export class FormExComponent implements OnInit {
   @Input() public options: GroupOptions;
   @Input() public width: string;
   @Input() public multi: boolean;
+  @Input() public custom: boolean;
 
   public group: QuestionGroupModel;
 
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
+    if (this.custom) {
+      this.questions = this.questions.map((question) => {
+        if (question.key === 'subSection') {
+          question.type = 'custom';
+        }
+        return question;
+      });
+    }
 
     this.group = this.formService.createQuestionGroup({
       key: '',
       questions: this.questions,
-      options : this.options
+      options: this.options,
     });
+  }
+  public onToggleChange() {
+    console.log(this.group.formGroup.value)
   }
 }

@@ -68,10 +68,12 @@ mat-row {
 .cell-input {
   width: 85%;
 
-  app-column-form {
+  kkl-column-form {
     width: inherit;
   }
 }
+
+
 
 ::ng-deep .mat-sort-header-arrow {
   color: color(primary) !important;
