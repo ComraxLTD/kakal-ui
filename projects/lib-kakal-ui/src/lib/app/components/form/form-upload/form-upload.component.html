@@ -1,5 +1,4 @@
-
-<mat-form-field [appearance]="'outline'">
+<mat-form-field [appearance]="disabled ? 'fill' : 'outline'">
   <mat-label>{{label}}</mat-label>
 
   <ngx-mat-file-input [formControl]="control" [multiple]="multi">

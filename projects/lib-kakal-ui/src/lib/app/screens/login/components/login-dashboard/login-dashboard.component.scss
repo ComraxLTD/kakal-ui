@@ -1,0 +1,25 @@
+@import "../../../../../styles/styles.scss";
+
+:host {
+
+  .container {
+    background-image: url('../../../../../assets/images/login.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    // background: lightblue;
+
+
+    
+  }
+
+  .login-container {
+    background-color: rgba($color: white, $alpha: .4) !important;
+    backdrop-filter: blur(10px) saturate(150%) contrast(30%) brightness(180%);
+  }
+
+  div {
+    height: 100%;
+  }
+
+
+}

@@ -29,7 +29,6 @@ export default {
         FormInputComponent,
         FormGroupComponent,
         FormRadioComponent,
-        FormRadioComponent,
         IconComponent,
         TypographyComponent,
         SizeDirective,
