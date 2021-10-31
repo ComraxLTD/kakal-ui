@@ -12,15 +12,13 @@ import {
 })
 export class InputExComponent implements OnInit {
 
-  @Input() public questions : Question[]
-  public question: Question;
+  @Input() public question : Question
   public control: FormControl;
 
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-    const questions = this.formService.setQuestionList(this.questions);
-    this.question = questions[0];
+    this.question = this.formService.setQuestion(this.question);
     this.control = this.formService.getFieldControl(this.question);
   }
 }

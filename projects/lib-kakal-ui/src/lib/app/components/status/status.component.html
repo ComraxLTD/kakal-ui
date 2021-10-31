@@ -1,20 +1,19 @@
-<div class="status-container" fxFill fxFlex="row">
+<div class="status-container" fxFill fxFlex="row" dir="rtl" (click)="onClick()">
   <mat-grid-list
     [cols]="cols || 8"
-    [rowHeight]="(height || 2) + 'vh'"
-    [gutterSize]="gutter || '2' + 'px'"
-    [dir]="'rtl'"
+    [rowHeight]="(height || 1) + 'rem'"
+    [gutterSize]="0.5 + 'rem'"
   >
-    <mat-grid-tile [colspan]="cols || 8">
+    <mat-grid-tile [colspan]="cols || 8" rowspan="2">
       <kkl-typography *ngIf="!slots">
         {{ status.label }}
       </kkl-typography>
 
       <ng-container
-        *ngTemplateOutlet="slots?.textRef; context :{status}"
+        *ngTemplateOutlet="slots?.textRef; context: { status: this.status }"
       ></ng-container>
     </mat-grid-tile>
-    <mat-grid-tile *ngFor="let step of steps; let i = index">
+    <mat-grid-tile *ngFor="let step of steps; let i = index" rowspan="2">
       <div fxLayout="column">
         <div [ngClass]="{ 'status-bar': true, active: !!step }"></div>
         <div
@@ -23,7 +22,7 @@
           fxLayout="column"
           fxLayoutAlign="end center"
         >
-          <kkl-typography [color]="step ? 'accent' : 'disable'" size="12">
+          <kkl-typography [color]="step ? 'accent' : 'disable'" [size]="1.2">
             0{{ i + 1 }}
           </kkl-typography>
         </div>

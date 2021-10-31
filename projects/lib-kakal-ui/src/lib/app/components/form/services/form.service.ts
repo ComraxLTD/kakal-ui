@@ -1,4 +1,3 @@
-
 import { Injectable } from '@angular/core';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionCalendar } from '../models/question-calendar';
@@ -11,11 +10,14 @@ import {
   FormGroup,
   ValidatorFn,
 } from '@angular/forms';
-import { QuestionGroupModel } from '../models/question-group.model';
-import { QuestionBaseModel, ControlType } from '../models/question.model';
+import {
+  GroupOptions,
+  QuestionGroupModel,
+} from '../models/question-group.model';
+import { QuestionBaseModel } from '../models/question.model';
 import { QuestionNumberModel } from '../models/question-number.model';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
-import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
+import { QuestionSelectModel } from '../models/question-select.model';
 
 export type ControlTemplate = [
   state: any,
@@ -32,7 +34,6 @@ export type Question =
   | QuestionTextareaModel
   | QuestionNumberModel
   | QuestionAutocompleteModel
-  | QuestionGroupModel;
 
 @Injectable({
   providedIn: 'root',
@@ -55,7 +56,7 @@ export class FormService {
     return this.fb.group(this.setGroup(questions));
   }
 
-  private setGroup(questions: Question[]): { [x: string]: any } {
+  private setGroup(questions: Question[]): { [x: string]: ControlTemplate } {
     return questions
       .map((question: Question) => question)
       .reduce((acc, control: Question) => {
@@ -77,12 +78,30 @@ export class FormService {
       }, {});
   }
 
+  // method which return QuestionGroupModel instance
+  public createQuestionGroup(config: {
+    key: string;
+    questions: Question[];
+    options?: GroupOptions;
+  }): QuestionGroupModel {
+    const { key, questions, options } = config;
+    return new QuestionGroupModel({
+      ...options,
+      key,
+      label: '' || options?.label,
+      questions: this.setQuestionList(questions),
+      formGroup: this.setFormGroup(questions),
+    });
+  }
+
+  // method which return FormGroup instance
   public setFormGroup(questions: Question[]): FormGroup {
     const template = this.setGroup(this.setQuestionList(questions));
     return this.fb.group(template);
   }
 
-  public setForm(form: QuestionGroupModel[]) {
+  // method which return FormGroup instance with multiple FormGroup
+  public setForm(form: QuestionGroupModel[]): FormGroup {
     const template = form
       .map((group: QuestionGroupModel) => group)
       .reduce((acc, group) => {
@@ -97,33 +116,45 @@ export class FormService {
     return this.fb.group(template);
   }
 
+  // method which return array of Question instance
   public setQuestionList(questions: Question[]): Question[] {
     return questions.map((question: Question) => {
-      return this.setQuestion(question.controlType, { ...question });
+      return this.setQuestion(question);
     });
   }
 
-  public setQuestion(
-    controlType: ControlType,
-    options: { key: string; label: string; options?: SelectOption[] }
-  ) {
-    switch (controlType) {
-        case 'number':
-        return new QuestionNumberModel(options);
+  // method which return class Question instance
+  public setQuestion(question: Question) {
+    switch (question.controlType) {
+      case 'number':
+        return new QuestionNumberModel(question);
 
       case 'select':
-        return new QuestionSelectModel(options);
+        return new QuestionSelectModel(question);
 
       case 'textarea':
-        return new QuestionTextareaModel(options);
+        return new QuestionTextareaModel(question);
 
-      case 'calender':
-        return new QuestionCalendar(options);
+      case 'calendar':
+        return new QuestionCalendar(question);
 
       case 'autocomplete':
-        return new QuestionAutocompleteModel(options);
+        return new QuestionAutocompleteModel(question);
       default:
-        return new QuestionTextModel(options);
+        return new QuestionTextModel(question);
     }
+  }
+
+  // method which return object of key : question
+  public setQuestionGroup(questions: Question[]): { [x: string]: Question } {
+    return questions
+      .map((question: Question) => question)
+      .reduce((acc, control: Question) => {
+        const { key } = control;
+        return {
+          ...acc,
+          [key]: this.setQuestion(control),
+        };
+      }, {});
   }
 }

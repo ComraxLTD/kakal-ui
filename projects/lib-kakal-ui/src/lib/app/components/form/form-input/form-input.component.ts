@@ -1,102 +1,101 @@
-import { MessageService } from '../services/message.service';
+import { MessageService } from './../services/message.service';
 import { FormControl } from '@angular/forms';
 import { QuestionBase } from '../services/form.service';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
-import { GridProps } from '../models/question.model';
+import {
+  QuestionSelectModel,
+  SelectOption,
+} from './../models/question-select.model';
+import { ControlType, GridProps } from '../models/question.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { MatFormFieldAppearance } from '@angular/material/form-field';
+import { BehaviorSubject } from 'rxjs';
+import { Palette } from 'projects/lib-kakal-ui/src/lib/styles/theme';
 
 @Component({
   selector: 'kkl-form-input',
   templateUrl: './form-input.component.html',
-  styleUrls: ['./form-input.component.scss']
+  styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
-
-    @Input() public question: QuestionBase;
+  @Input() public question: QuestionBase;
   @Input() public control: FormControl;
+  @Input() public apprence: MatFormFieldAppearance;
 
-  public type: string;
-  public controlType: string;
+  public controlType: ControlType;
   public label: string;
   public icon: string;
-  public options: SelectOption[]
-  public error: string = ''
+  public options: SelectOption[];
+  public error: string = '';
 
-  public gridProps: GridProps
-  public color: string;
+  public error$: BehaviorSubject<string>;
+  public color$: BehaviorSubject<Palette>;
+
+  public gridProps: GridProps;
+  public color: Palette;
   public iconType: string = 'svg';
   public iconRotate: number = 0;
 
-  @Output() public selected: EventEmitter<QuestionSelectModel> = new EventEmitter();
-  @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter()
-  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter()
+  @Output() public selected: EventEmitter<FormControl> = new EventEmitter();
+  @Output()
+  public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter();
+  @Output() public autocomplete: EventEmitter<FormControl> = new EventEmitter();
 
-  constructor(
-    private messageService: MessageService
-  ) {
-  }
+  constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
-
-    this.gridProps = this.question.gridProps
-    console.log(this.gridProps)
-    this.type = this.question?.type
-    this.controlType = this.question?.controlType
-    this.label = this.question?.label || ''
-    this.icon = this.question?.icon || ''
+    const color: Palette = this.control.disabled ? 'disable' : 'primary';
+    this.color$ = new BehaviorSubject<Palette>(color);
+    this.error$ = new BehaviorSubject<string>('');
+    this.controlType = this.question?.controlType;
+    this.gridProps = this.question?.gridProps;
+    this.label = this.question?.label || '';
+    this.icon = this.question?.icon || '';
 
     if (this.question instanceof QuestionSelectModel) {
       this.options = this.question.options;
     }
-
-    this.subscribeToControl()
   }
 
-  // subscription section
-  private subscribeToControl() {
-
+  // private subscribeToControl() {
+  private setIconColor() {
     if (this.control.disabled) {
       this.color = 'disable';
+    } else if (this.control.errors) {
+      this.color = 'warn';
+    } else {
+      this.color = 'primary';
     }
+  }
 
-    this.control.valueChanges.subscribe((value) => {
-      if (this.control.disabled) {
-        this.color = 'disable';
-      } else if (this.control.errors) {
-        this.color = 'warn';
-      } else {
-        this.color = '';
-      }
-    });
+  private setErrorMessage() {
+    this.error = this.messageService.getErrorMessage(this.control, this.label);
+    this.error$.next(this.error);
+
+    if (this.error) {
+      this.color$.next('warn');
+    } else {
+      this.color$.next('primary');
+    }
   }
 
   public validate() {
-    this.error = this.messageService.getErrorMessage(this.control, this.label);
-
-    if (this.error) {
-      this.color = 'warn';
-    }
-
-    this.control.valueChanges.subscribe(() => {
-      this.error = this.messageService.getErrorMessage(this.control, this.label);
-    });
+    this.setErrorMessage();
+    this.setIconColor();
   }
 
   public onSelectChange() {
-    if (this.question instanceof QuestionSelectModel) {
-      this.selected.emit(this.question)
-      this.question.onSelectChange()
+    if (this.question instanceof QuestionSelectModel && this.question.onSelectChange) {
+      this.question.onSelectChange();
     }
+    this.selected.emit(this.control);
   }
-  public onAutocomplete() {
-    this.autocomplete.emit(this.control)
+
+  public onAutocomplete(control: FormControl) {
+    this.autocomplete.emit(this.control);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    this.optionSelected.emit(event)
+    this.optionSelected.emit(event);
   }
-
-
-
 }

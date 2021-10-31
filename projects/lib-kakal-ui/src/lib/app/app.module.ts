@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DecimalPipe, DatePipe } from '@angular/common';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { AppComponent } from './components/root/app.component';
 
@@ -13,14 +12,12 @@ import { DashboardComponent } from './screens/dashboard/dashboard.component';
 import { IconComponent } from './components/icon/icon.component';
 import { TypographyComponent } from './components/typography/typography.component';
 
-import { NavbarComponent } from './components/navigation/navbar/navbar.component';
 import { MenuComponent } from './components/menu/menu.component';
 
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { TableComponent } from './components/table/table.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 
-import { ClassesDirective } from './utilities/directives/classes.directive';
 import { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';
 import { CardStatusComponent } from './components/cards/card-status/card-status.component';
 import { CardStepComponent } from './components/cards/card-step/card-step.component';
@@ -33,19 +30,17 @@ import { SizeDirective } from './utilities/directives/size.directive';
 import { ButtonDirective } from './utilities/directives/button.directive';
 import { VariantDirective } from './utilities/directives/variant.directive';
 
-import { StepComponent } from './components/step/step.component';
 import { StepperComponent } from './components/stepper/stepper.component';
 
 import { FormComponent } from './components/form/form/form.component';
 import { FormInputComponent } from './components/form/form-input/form-input.component';
 import { FormGroupComponent } from './components/form/form-group/form-group.component';
-import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
 import { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';
+import { FormUploadComponent } from './components/form/form-upload/form-upload.component';
 
 import { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';
 import { MenuItemComponent } from './components/menu-item/menu-item.component';
 import { ListItemComponent } from './components/list-item/list-item.component';
-import { NavbarBottomComponent } from './components/navigation/navbar-bottom/navbar-bottom.component';
 
 import { FormExComponent } from './examples/form-ex/form-ex.component';
 import { InputExComponent } from './examples/input-ex/input-ex.component';
@@ -57,34 +52,49 @@ import { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.compo
 import { AreaPipe } from './utilities/pipes/area.pipe';
 import { FormatPipe } from './utilities/pipes/format.pipe';
 
-import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
 import { ColumnFormComponent } from './components/columns/column-form/column-form.component';
 import { StatusComponent } from './components/status/status.component';
 import { LayoutComponent } from './screens/layout/layout.component';
 import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
+import { UnderlineDirective } from './utilities/directives/underline.directive';
+import { FormRadioComponent } from './components/form/form-radio/form-radio.component';
+import { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';
+import { BorderDirective } from './utilities/directives/border.directive';
+
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormuploadExComponent } from './examples/formupload-ex/formupload-ex.component';
+import { FormautocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';
+import { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';
 
 @NgModule({
   declarations: [
-
     AppComponent,
+
+    // SCREEN COMPS
     DashboardComponent,
     LayoutComponent,
 
+    // SHARED COMPS
     IconComponent,
     TypographyComponent,
+    ListItemComponent,
+    ExpandPanelComponent,
 
+    // FORM COMPS
     FormComponent,
     FormInputComponent,
     FormGroupComponent,
     FormRadioComponent,
     FormAutocompleteComponent,
+    FormUploadComponent,
 
+    // TABLE COMPS
     PaginationComponent,
     TableComponent,
     ColumnFilterComponent,
     ColumnFormComponent,
 
-
+    // CARD COMPS
     CardDashboardComponent,
     CardStatusComponent,
     CardStepComponent,
@@ -92,36 +102,26 @@ import { LayoutExComponent } from './examples/layout-ex/layout-ex.component';
     CardUserComponent,
     CardFilterComponent,
 
-    ClassesDirective,
-    VariantDirective,
-    SizeDirective,
-
-    StepComponent,
-    StepperComponent,
-
+    // NAVIGATION COMPS
     MenuComponent,
     MenuItemComponent,
     NavbarComponent,
     NavbarBottomComponent,
+    StepperComponent,
 
-    ListItemComponent,
-
-    ExpandPanelComponent,
-
-    ClassesDirective,
+    // DIRECTIVES
+    VariantDirective,
+    SizeDirective,
     ColorDirective,
     SizeDirective,
     ButtonDirective,
     VariantDirective,
+    UnderlineDirective,
+    BorderDirective,
+
     StatusComponent,
 
-    StepperExComponent,
-    InputExComponent,
-    FormExComponent,
-    TableExComponent,
-    FiltersExComponent,
-    DashboardExComponent,
-    LayoutExComponent
+ 
   ],
   imports: [
     BrowserModule,

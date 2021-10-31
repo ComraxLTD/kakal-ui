@@ -1,9 +1,13 @@
-@import "../../../styles/styles";
+@import "../../../styles/styles.scss";
+
+.selected {
+  flex: 0.5;
+}
 
 mat-table {
   width: 100%;
   height: 100%;
-  background-color: transparent !important;
+  background-color: inherit !important;
 }
 
 mat-cell {
@@ -15,6 +19,9 @@ mat-cell {
 }
 
 mat-header-cell {
+  align-items: flex-end;
+  padding-bottom: spacing(1);
+  box-sizing: border-box;
 
   &.center {
     justify-content: center;
@@ -29,8 +36,33 @@ mat-header-row.primary {
   border-bottom: color(primary) solid 3px;
 }
 
+// style for row
 mat-row {
-  height: 5rem;
+  &.hideBorder {
+    border-bottom: none;
+  }
+
+  &.default {
+    height: 5rem;
+  }
+
+  &.form {
+    height: 10rem;
+  }
+
+  &.hide {
+    height: 0rem;
+    min-height: 0rem;
+  }
+
+  &.expand {
+    background-color: color(table);
+    margin-top: spacing(1);
+    margin-bottom: spacing(1);
+  }
+  &.accordion {
+    cursor: pointer;
+  }
 }
 
 .cell-input {
@@ -42,6 +74,5 @@ mat-row {
 }
 
 ::ng-deep .mat-sort-header-arrow {
-  color : color(primary) !important
+  color: color(primary) !important;
 }
-

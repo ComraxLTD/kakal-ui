@@ -1,6 +1,9 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { StatusModel } from './status.model';
 
+export interface Status {
+  label: string;
+  value: number;
+}
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -13,11 +16,11 @@ export class StatusComponent implements OnInit {
   @Input() public gutter: number
   @Input() public color: string;
   @Input() public hasLabel: boolean
-  @Input() public status: StatusModel;
+  @Input() public status: Status;
 
   @Input() slots: {textRef: ElementRef }
 
-  @Output() click  = new EventEmitter()
+  @Output() click : EventEmitter<void>  = new EventEmitter()
 
   public steps: number[] = [];
 
@@ -34,5 +37,9 @@ export class StatusComponent implements OnInit {
     for (let i = [...this.steps].length; i < this.cols; i++) {
       this.steps.push(0);
     }
+  }
+
+  public onClick() {
+    this.click.emit()
   }
 }

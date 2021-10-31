@@ -1,6 +1,5 @@
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import {NavbarComponent} from "../../app/components/navigation/navbar/navbar.component";
 
 export default {
   title: 'Screen - Login',

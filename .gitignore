@@ -9,7 +9,10 @@
 
 # dependencies
 /node_modules
-./cache
+/node_modules/
+
+*.cache
+*.cache/
 
 # profiling files
 chrome-profiler-events*.json
@@ -44,3 +47,10 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+#auto generate files
+documentation.json
+
+storybook-static
+
+*.cache

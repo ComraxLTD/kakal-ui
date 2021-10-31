@@ -1,13 +1,13 @@
 <div *ngIf="direction === 'row'" class="container" fxLayout="column" fxLayoutAlign="center center" dir="rtl" fxFill>
     <div fxFlex="20">
-      <kkl-stepper (changStep)="onStepChange($event)" [steps]="steps" [direction]="direction"></kkl-stepper>
+      <kkl-stepper [stepWidth]="stepWidth" (changStep)="onStepChange($event)" [steps$]="steps$" [direction]="direction"></kkl-stepper>
     </div>
   </div>
 
   <div *ngIf="direction === 'column'" class="wizard">
     <kkl-stepper
       (changStep)="onStepChange($event)"
-      [steps]="steps"
+      [steps$]="steps$"
       [direction]="direction"
     ></kkl-stepper>
   </div>

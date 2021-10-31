@@ -1,8 +1,8 @@
 import { FormControl } from '@angular/forms';
-import { Component, OnInit, Input } from '@angular/core';
-import { QuestionRadio } from '../models/question-radio';
-import { SelectOption } from '../models/question-select.model';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
+import { Observable } from 'rxjs';
+import { QuestionRadio } from '../models/question-radio.model';
 
 @Component({
   selector: 'kkl-form-radio',
@@ -13,10 +13,15 @@ export class FormRadioComponent implements OnInit {
 
   @Input() public question: QuestionRadio
   @Input() public control: FormControl
+  @Input() public dark: boolean
+
+  @Output() value: Observable<any>
 
   constructor() { }
 
   ngOnInit(): void {
+
+    this.value = this.control.valueChanges
 
   }
 

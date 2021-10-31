@@ -1,32 +1,27 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
-  selector: 'app-pagination',
+  selector: 'kkl-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent {
 
-  @Input() public pagination: PaginationInstance ;
-
+  @Input() public pagination: PaginationInstance;
   @Input() paginationCount: number;
   @Input() maxSize: number;
 
-  @Output() newPage: EventEmitter<number> = new EventEmitter();
-
+  @Output() newPage: EventEmitter<{ next: number; prev: number }> =
+    new EventEmitter();
 
   public labels: any = {
     previousLabel: 'הקודם',
     nextLabel: 'הבא',
-};
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  };
 
   public onPageChange(number) {
+    this.newPage.emit({ next: number, prev: this.pagination.currentPage });
     this.pagination.currentPage = number;
   }
 }

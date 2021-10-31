@@ -1,26 +1,38 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { SelectOption } from '../../form/models/question-select.model';
 import { ColumnModel } from '../column.model';
 
-@Component({
-  selector: 'app-column-filter',
-  templateUrl: './column-filter.component.html',
-})
-export class ColumnFilterComponent implements OnInit {
-  @Input() column: ColumnModel;
-  public label: string;
-  public options: SelectOption[];
+export interface FilterOption<T> {
+  column: ColumnModel<T>;
+  option: SelectOption;
+}
 
-  @Output() optionSelect: EventEmitter<any> = new EventEmitter();
+@Component({
+  selector: 'kkl-column-filter',
+  templateUrl: './column-filter.component.html',
+  styleUrls: ['./column-filter.component.scss'],
+})
+export class ColumnFilterComponent<T> implements OnInit {
+  @Input() column: ColumnModel<T>;
+  @Input() label: string;
+  @Input() options: SelectOption[];
+  @Input() filterSlots: TemplateRef<any>;
+  @Output() optionSelect: EventEmitter<FilterOption<T>> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
     this.label = this.column.label;
-    this.options = this.column.filterOptions;
   }
 
-  public onOptionSelect(value) {
-    this.optionSelect.emit(value);
+  public onOptionSelect(option: SelectOption): void {
+    this.optionSelect.emit({ column: this.column, option });
   }
 }

@@ -6,13 +6,13 @@ import {
   OnInit,
 } from '@angular/core';
 import { Observable, Subscription } from 'rxjs';
-import { theme, Palette } from '../../../styles/theme';
+import { palette, Palette } from '../../../styles/theme';
 
 @Directive({
   selector: '[appColor]',
 })
 export class ColorDirective implements OnInit, OnDestroy {
-  private palette = theme.palette;
+  private palette = palette;
   private subscription: Subscription
 
   @Input() public color: Palette;
