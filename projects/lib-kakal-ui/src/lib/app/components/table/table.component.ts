@@ -146,6 +146,7 @@ export class TableComponent<T> implements OnInit, Table<T> {
 
   public rows$: Observable<RowModel<T>[]>;
   public columns$: Observable<ColumnModel<T>[]>;
+  public pagination$: Observable<PaginationInstance>;
   public expandKey$: Observable<ColumnDef<T>>;
   public columnDefs: ColumnDef<T>[];
   public pagination: PaginationInstance;
