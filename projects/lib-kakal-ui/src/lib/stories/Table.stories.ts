@@ -25,6 +25,8 @@ import { SizeDirective } from '../app/utilities/directives/size.directive';
 import { UnderlineDirective } from '../app/utilities/directives/underline.directive';
 import { ButtonDirective } from '../app/utilities/directives/button.directive';
 import { BorderDirective } from '../app/utilities/directives/border.directive';
+import { v4 as uuid4 } from 'uuid';
+
 
 export default {
   title: 'Table',
@@ -76,9 +78,9 @@ const Template: Story<TableExComponent<any>> = (
 });
 
 const pagination: PaginationInstance = {
-  itemsPerPage: 6,
+  id : uuid4(),
+  itemsPerPage: 4,
   currentPage: 1,
-  totalItems: 6,
 };
 
 const { data, columns, options } = {

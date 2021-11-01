@@ -63,6 +63,5 @@ export class TableExComponent<T> implements OnInit {
 
   public onToggleChange(row: RowModel<T>) {
     const { formGroup } = row;
-    console.log(formGroup.value)
   }
 }
