@@ -186,7 +186,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
 
   private setExpandState() {
     this.expendable = this.expendable || this.accordion;
-    console.log(this.expendable);
     if (this.expendable) {
       this.expandKey$ = this.setExpandKey$();
     }
