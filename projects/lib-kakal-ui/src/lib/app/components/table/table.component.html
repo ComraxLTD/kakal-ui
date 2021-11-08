@@ -3,7 +3,7 @@
     (matSortChange)="onSort($event)"
     mat-table
     matSort
-    [dataSource]="rows$ | async | paginate: pagination"
+    [dataSource]="rows$ | async | paginate: (pagination$ | async)"
     [dir]="'rtl'"
     multiTemplateDataRows
   >
@@ -261,6 +261,6 @@
     </ng-container>
   </mat-table>
 
-  <kkl-pagination (newPage)="onPageChange($event)" [pagination]="pagination">
+  <kkl-pagination (newPage)="onPageChange($event)" [pagination]="(pagination$ | async)">
   </kkl-pagination>
 </div>
