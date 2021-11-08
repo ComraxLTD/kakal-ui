@@ -859,12 +859,12 @@
         },
         {
             "name": "Table",
-            "id": "interface-Table-efc26c7fa37974fe1e33e9183233c13f",
+            "id": "interface-Table-caeaa9353b4742ed0a2fcedad2860e91",
             "file": "projects/lib-kakal-ui/src/lib/app/components/table/table.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n  OnChanges,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { v4 as uuid4 } from 'uuid';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n  public pagination: PaginationInstance;\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n    this.pagination = { ...pagination, id: uuid4() };\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public pagination$: Observable<PaginationInstance>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n\r\n    this.pagination$ = this.data$.pipe(\r\n      map((data: T[]) => {\r\n        return {\r\n          ...pagination,\r\n          totalItems : 19\r\n        };\r\n      })\r\n    );\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "columns",
@@ -873,7 +873,7 @@
                     "type": "ColumnModel<T>[]",
                     "optional": false,
                     "description": "",
-                    "line": 78
+                    "line": 76
                 },
                 {
                     "name": "data$",
@@ -882,7 +882,7 @@
                     "type": "Observable<T[]>",
                     "optional": false,
                     "description": "",
-                    "line": 77
+                    "line": 75
                 },
                 {
                     "name": "model",
@@ -891,7 +891,7 @@
                     "type": "T",
                     "optional": false,
                     "description": "",
-                    "line": 80
+                    "line": 78
                 },
                 {
                     "name": "options",
@@ -900,7 +900,7 @@
                     "type": "TableOptions<T>",
                     "optional": false,
                     "description": "",
-                    "line": 79
+                    "line": 77
                 }
             ],
             "indexSignatures": [],
@@ -909,12 +909,12 @@
         },
         {
             "name": "TableOptions",
-            "id": "interface-TableOptions-efc26c7fa37974fe1e33e9183233c13f",
+            "id": "interface-TableOptions-caeaa9353b4742ed0a2fcedad2860e91",
             "file": "projects/lib-kakal-ui/src/lib/app/components/table/table.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n  OnChanges,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { v4 as uuid4 } from 'uuid';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n  public pagination: PaginationInstance;\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n    this.pagination = { ...pagination, id: uuid4() };\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public pagination$: Observable<PaginationInstance>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n\r\n    this.pagination$ = this.data$.pipe(\r\n      map((data: T[]) => {\r\n        return {\r\n          ...pagination,\r\n          totalItems : 19\r\n        };\r\n      })\r\n    );\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "editable",
@@ -923,7 +923,7 @@
                     "type": "id[]",
                     "optional": true,
                     "description": "",
-                    "line": 44
+                    "line": 42
                 },
                 {
                     "name": "filters",
@@ -932,7 +932,7 @@
                     "type": "ColumnDef<T>[]",
                     "optional": true,
                     "description": "",
-                    "line": 42
+                    "line": 40
                 },
                 {
                     "name": "pagination",
@@ -941,7 +941,7 @@
                     "type": "PaginationInstance",
                     "optional": true,
                     "description": "",
-                    "line": 43
+                    "line": 41
                 },
                 {
                     "name": "pending",
@@ -950,7 +950,7 @@
                     "type": "id[]",
                     "optional": true,
                     "description": "",
-                    "line": 45
+                    "line": 43
                 }
             ],
             "indexSignatures": [],
@@ -959,12 +959,12 @@
         },
         {
             "name": "TableState",
-            "id": "interface-TableState-efc26c7fa37974fe1e33e9183233c13f",
+            "id": "interface-TableState-caeaa9353b4742ed0a2fcedad2860e91",
             "file": "projects/lib-kakal-ui/src/lib/app/components/table/table.component.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n  OnChanges,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { v4 as uuid4 } from 'uuid';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n  public pagination: PaginationInstance;\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n    this.pagination = { ...pagination, id: uuid4() };\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public pagination$: Observable<PaginationInstance>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n\r\n    this.pagination$ = this.data$.pipe(\r\n      map((data: T[]) => {\r\n        return {\r\n          ...pagination,\r\n          totalItems : 19\r\n        };\r\n      })\r\n    );\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "column",
@@ -973,7 +973,7 @@
                     "type": "ColumnModel<T>",
                     "optional": true,
                     "description": "",
-                    "line": 66
+                    "line": 64
                 },
                 {
                     "name": "ids",
@@ -982,7 +982,7 @@
                     "type": "id[]",
                     "optional": true,
                     "description": "",
-                    "line": 64
+                    "line": 62
                 },
                 {
                     "name": "mode",
@@ -991,7 +991,7 @@
                     "type": "state",
                     "optional": true,
                     "description": "",
-                    "line": 63
+                    "line": 61
                 },
                 {
                     "name": "options",
@@ -1000,7 +1000,7 @@
                     "type": "any",
                     "optional": true,
                     "description": "",
-                    "line": 67
+                    "line": 65
                 },
                 {
                     "name": "row",
@@ -1009,7 +1009,7 @@
                     "type": "RowModel<T>",
                     "optional": true,
                     "description": "",
-                    "line": 65
+                    "line": 63
                 }
             ],
             "indexSignatures": [],
@@ -15454,7 +15454,7 @@
         },
         {
             "name": "PaginationComponent",
-            "id": "component-PaginationComponent-79b84af7c725c744b37d4646bebde227",
+            "id": "component-PaginationComponent-56e8fb179f09b4afac32d68f5b9a055b",
             "file": "projects/lib-kakal-ui/src/lib/app/components/pagination/pagination.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -15475,21 +15475,21 @@
                     "name": "maxSize",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 13,
+                    "line": 12,
                     "type": "number"
                 },
                 {
                     "name": "pagination",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 11,
+                    "line": 10,
                     "type": "PaginationInstance"
                 },
                 {
                     "name": "paginationCount",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 12,
+                    "line": 11,
                     "type": "number"
                 }
             ],
@@ -15499,7 +15499,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 15,
+                    "line": 14,
                     "type": "EventEmitter<literal type>"
                 }
             ],
@@ -15512,13 +15512,23 @@
                     "type": "any",
                     "optional": false,
                     "description": "",
-                    "line": 18,
+                    "line": 19,
                     "modifierKind": [
                         122
                     ]
                 }
             ],
             "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": ""
+                },
                 {
                     "name": "onPageChange",
                     "args": [
@@ -15532,7 +15542,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 23,
+                    "line": 27,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -15558,7 +15568,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\n@Component({\r\n  selector: 'kkl-pagination',\r\n  templateUrl: './pagination.component.html',\r\n  styleUrls: ['./pagination.component.scss']\r\n})\r\nexport class PaginationComponent {\r\n\r\n  @Input() public pagination: PaginationInstance;\r\n  @Input() paginationCount: number;\r\n  @Input() maxSize: number;\r\n\r\n  @Output() newPage: EventEmitter<{ next: number; prev: number }> =\r\n    new EventEmitter();\r\n\r\n  public labels: any = {\r\n    previousLabel: 'הקודם',\r\n    nextLabel: 'הבא',\r\n  };\r\n\r\n  public onPageChange(number) {\r\n    this.newPage.emit({ next: number, prev: this.pagination.currentPage });\r\n    this.pagination.currentPage = number;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\n@Component({\r\n  selector: 'kkl-pagination',\r\n  templateUrl: './pagination.component.html',\r\n  styleUrls: ['./pagination.component.scss'],\r\n})\r\nexport class PaginationComponent implements OnInit {\r\n  @Input() public pagination:  PaginationInstance;\r\n  @Input() paginationCount: number;\r\n  @Input() maxSize: number;\r\n\r\n  @Output() newPage: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  public labels: any = {\r\n    previousLabel: 'הקודם',\r\n    nextLabel: 'הבא',\r\n  };\r\n\r\n  ngOnInit() {\r\n  }\r\n\r\n  public onPageChange(number) {\r\n    console.log(number)\r\n    this.newPage.emit({ next: number, prev: this.pagination.currentPage });\r\n    this.pagination.currentPage = number;\r\n    console.log(this.pagination.currentPage)\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -15567,6 +15577,9 @@
                 }
             ],
             "stylesData": "",
+            "implements": [
+                "OnInit"
+            ],
             "templateData": "<div class=\"pagination\" fxLayout=\"row\" fxLayoutAlign=\"center center\" dir=\"ltr\">\r\n  <pagination-controls\r\n    #paginator\r\n    *ngIf=\"pagination.totalItems > pagination.itemsPerPage\"\r\n    [id]=\"pagination.id\"\r\n    [previousLabel]=\"labels.previousLabel\"\r\n    [nextLabel]=\"labels.nextLabel\"\r\n    (pageChange)=\"onPageChange($event)\"\r\n    [maxSize]=\"maxSize || 5\"\r\n  ></pagination-controls>\r\n</div>\r\n"
         },
         {
@@ -15972,7 +15985,7 @@
         },
         {
             "name": "TableComponent",
-            "id": "component-TableComponent-efc26c7fa37974fe1e33e9183233c13f",
+            "id": "component-TableComponent-caeaa9353b4742ed0a2fcedad2860e91",
             "file": "projects/lib-kakal-ui/src/lib/app/components/table/table.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -16000,77 +16013,77 @@
                     "name": "accordion",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 118,
+                    "line": 116,
                     "type": "boolean"
                 },
                 {
                     "name": "columns",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 108,
+                    "line": 106,
                     "type": "ColumnModel<T>[]"
                 },
                 {
                     "name": "data$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 104,
+                    "line": 102,
                     "type": "Observable<T[]>"
                 },
                 {
                     "name": "expandSlots",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 140,
+                    "line": 138,
                     "type": "literal type"
                 },
                 {
                     "name": "expendable",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 117,
+                    "line": 115,
                     "type": "boolean"
                 },
                 {
                     "name": "filterSlots",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 131,
+                    "line": 129,
                     "type": "literal type"
                 },
                 {
                     "name": "footerSlots",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 134,
+                    "line": 132,
                     "type": "literal type"
                 },
                 {
                     "name": "formSlots",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 143,
+                    "line": 141,
                     "type": "literal type"
                 },
                 {
                     "name": "hasActions",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 122,
+                    "line": 120,
                     "type": "boolean"
                 },
                 {
                     "name": "hasFooter",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 121,
+                    "line": 119,
                     "type": "boolean"
                 },
                 {
                     "name": "hasState",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 120,
+                    "line": 118,
                     "type": "boolean"
                 },
                 {
@@ -16078,56 +16091,56 @@
                     "defaultValue": "{}",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 125,
+                    "line": 123,
                     "type": "literal type"
                 },
                 {
                     "name": "model",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 111,
+                    "line": 109,
                     "type": "T"
                 },
                 {
                     "name": "options",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 113,
+                    "line": 111,
                     "type": "TableOptions<T>"
                 },
                 {
                     "name": "paginator",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 116,
+                    "line": 114,
                     "type": "boolean"
                 },
                 {
                     "name": "rowSlots",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 128,
+                    "line": 126,
                     "type": "literal type"
                 },
                 {
                     "name": "selectable",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 119,
+                    "line": 117,
                     "type": "boolean"
                 },
                 {
                     "name": "selectSlot",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 137,
+                    "line": 135,
                     "type": "literal type"
                 },
                 {
                     "name": "theme",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 101,
+                    "line": 99,
                     "type": "ThemePalette"
                 }
             ],
@@ -16137,7 +16150,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 175,
+                    "line": 173,
                     "type": "EventEmitter<FilterOption<T>>"
                 },
                 {
@@ -16145,7 +16158,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 169,
+                    "line": 167,
                     "type": "EventEmitter<literal type>"
                 },
                 {
@@ -16153,7 +16166,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 178,
+                    "line": 176,
                     "type": "EventEmitter<BehaviorSubject<TableState<T>>>"
                 },
                 {
@@ -16161,7 +16174,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 183,
+                    "line": 181,
                     "type": "EventEmitter<Observable<T[]>>"
                 },
                 {
@@ -16169,7 +16182,7 @@
                     "defaultValue": "new EventEmitter()",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 166,
+                    "line": 164,
                     "type": "EventEmitter<Sort>"
                 }
             ],
@@ -16181,7 +16194,7 @@
                     "type": "ColumnDef<T>[]",
                     "optional": false,
                     "description": "",
-                    "line": 150,
+                    "line": 149,
                     "modifierKind": [
                         122
                     ]
@@ -16193,7 +16206,7 @@
                     "type": "Observable<ColumnModel[]>",
                     "optional": false,
                     "description": "",
-                    "line": 148,
+                    "line": 146,
                     "modifierKind": [
                         122
                     ]
@@ -16205,19 +16218,19 @@
                     "type": "Observable<ColumnDef<T>>",
                     "optional": false,
                     "description": "",
-                    "line": 149,
+                    "line": 148,
                     "modifierKind": [
                         122
                     ]
                 },
                 {
-                    "name": "pagination",
+                    "name": "pagination$",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "PaginationInstance",
+                    "type": "Observable<PaginationInstance>",
                     "optional": false,
                     "description": "",
-                    "line": 151,
+                    "line": 147,
                     "modifierKind": [
                         122
                     ]
@@ -16229,7 +16242,7 @@
                     "type": "RowModel<T>[]",
                     "optional": false,
                     "description": "",
-                    "line": 161,
+                    "line": 159,
                     "modifierKind": [
                         120
                     ]
@@ -16241,7 +16254,7 @@
                     "type": "Observable<RowModel[]>",
                     "optional": false,
                     "description": "",
-                    "line": 147,
+                    "line": 145,
                     "modifierKind": [
                         122
                     ]
@@ -16254,7 +16267,7 @@
                     "type": "SelectionModel<RowModel<T>>",
                     "optional": false,
                     "description": "",
-                    "line": 157,
+                    "line": 155,
                     "modifierKind": [
                         122
                     ]
@@ -16266,7 +16279,7 @@
                     "type": "BehaviorSubject<TableState<T>>",
                     "optional": false,
                     "description": "",
-                    "line": 154,
+                    "line": 152,
                     "modifierKind": [
                         122
                     ]
@@ -16279,7 +16292,7 @@
                     "optional": false,
                     "returnType": "boolean",
                     "typeParameters": [],
-                    "line": 339,
+                    "line": 345,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nWhether the number of selected elements matches the total number of rows.",
@@ -16294,7 +16307,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 346,
+                    "line": 352,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "rawdescription": "\nSelects all rows if they are not all selected; otherwise clear selection.",
@@ -16309,7 +16322,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 201,
+                    "line": 207,
                     "deprecated": false,
                     "deprecationMessage": ""
                 },
@@ -16326,7 +16339,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 305,
+                    "line": 311,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16357,7 +16370,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 320,
+                    "line": 326,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16388,7 +16401,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 313,
+                    "line": 319,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16412,7 +16425,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 325,
+                    "line": 331,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16432,7 +16445,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 317,
+                    "line": 323,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16463,7 +16476,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 269,
+                    "line": 275,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16487,7 +16500,7 @@
                     "optional": false,
                     "returnType": "Observable<ColumnDef<T>>",
                     "typeParameters": [],
-                    "line": 290,
+                    "line": 296,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16500,7 +16513,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 187,
+                    "line": 185,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16513,7 +16526,7 @@
                     "optional": false,
                     "returnType": "Observable<RowModel[]>",
                     "typeParameters": [],
-                    "line": 254,
+                    "line": 260,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16539,7 +16552,7 @@
                     "optional": false,
                     "returnType": "RowModel[]",
                     "typeParameters": [],
-                    "line": 213,
+                    "line": 219,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16572,7 +16585,7 @@
                     "optional": false,
                     "returnType": "any",
                     "typeParameters": [],
-                    "line": 262,
+                    "line": 268,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16585,7 +16598,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 194,
+                    "line": 192,
                     "deprecated": false,
                     "deprecationMessage": "",
                     "modifierKind": [
@@ -16600,7 +16613,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n  OnChanges,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { v4 as uuid4 } from 'uuid';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n  public pagination: PaginationInstance;\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n    this.pagination = { ...pagination, id: uuid4() };\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
+            "sourceCode": "import {\r\n  Component,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\n\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { PaginationInstance } from 'ngx-pagination';\r\n\r\nimport { TableService } from './table.service';\r\nimport { RowModel } from './models/row.model';\r\n\r\nimport { BehaviorSubject, combineLatest, Observable } from 'rxjs';\r\nimport { map } from 'rxjs/operators';\r\n\r\nimport { Sort } from '@angular/material/sort';\r\nimport {\r\n  trigger,\r\n  state,\r\n  style,\r\n  transition,\r\n  animate,\r\n} from '@angular/animations';\r\nimport { ColumnDef, ColumnModel } from '../columns/column.model';\r\n\r\nimport { SelectionChange, SelectionModel } from '@angular/cdk/collections';\r\nimport { FilterOption } from '../columns/column-filter/column-filter.component';\r\n\r\ndeclare type id = string | number;\r\n\r\n// interface for table options : {\r\n// filters - keys to remove unwanted fields form object (ex - id)\r\n// pagination - a PaginationInstance\r\n// editable - tag rows to start in edit mode\r\n// pending - tag rows for specific start style\r\n// }\r\nexport interface TableOptions<T> {\r\n  filters?: ColumnDef<T>[];\r\n  pagination?: PaginationInstance;\r\n  editable?: id[];\r\n  pending?: id[];\r\n}\r\n\r\n// interface for every comp which handle kkl-table states :\r\n// mode : edit/add/form/expand/close/remove/delete\r\n// options : additional data\r\n\r\ntype state =\r\n  | 'add'\r\n  | 'save'\r\n  | 'edit'\r\n  | 'expand'\r\n  | 'cancel'\r\n  | 'delete'\r\n  | 'form'\r\n  | '';\r\n\r\nexport interface TableState<T> {\r\n  mode?: state;\r\n  ids?: id[];\r\n  row?: RowModel<T>;\r\n  column?: ColumnModel<T>;\r\n  options?: any;\r\n}\r\n\r\n// interface for every comp which want to use kkl-table = {\r\n// data : array of objects to render in table\r\n//  columns : array of ColumnsModel\r\n// options : see TableOptions interface\r\n// model : new instance of the data object\r\n// }\r\nexport interface Table<T> {\r\n  data$: Observable<T[]>;\r\n  columns: ColumnModel<T>[];\r\n  options: TableOptions<T>;\r\n  model: T;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-table',\r\n  templateUrl: './table.component.html',\r\n  styleUrls: ['./table.component.scss'],\r\n  animations: [\r\n    trigger('detailExpand', [\r\n      state('collapsed', style({ height: '0rem', minHeight: '0' })),\r\n      state('expanded', style({ height: '*' })),\r\n      transition(\r\n        'expanded <=> collapsed',\r\n        animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')\r\n      ),\r\n    ]),\r\n  ],\r\n  providers: [TableService, TableService],\r\n})\r\nexport class TableComponent<T> implements OnInit, Table<T> {\r\n  // color for hedaer : primary or accent\r\n  @Input() public theme: ThemePalette;\r\n\r\n  // data[]\r\n  @Input() public data$: Observable<T[]>;\r\n\r\n  // array of columns model\r\n\r\n  @Input() public columns: ColumnModel<T>[];\r\n\r\n  // table data instance for column keys\r\n  @Input() public model: T;\r\n\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  // if table have state modes\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n\r\n  // ng template for column header\r\n  @Input() public headerSlots: {} = {};\r\n\r\n  // ng template for cell\r\n  @Input() public rowSlots: {};\r\n\r\n  // ng template for filter\r\n  @Input() public filterSlots: {};\r\n\r\n  // ng template for footer cell\r\n  @Input() public footerSlots: {};\r\n\r\n  // ng template for select cell\r\n  @Input() public selectSlot: {};\r\n\r\n  // ng template for expand cell\r\n  @Input() public expandSlots: {};\r\n\r\n  // ng template for for, cell\r\n  @Input() public formSlots: {};\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  public rows$: Observable<RowModel<T>[]>;\r\n  public columns$: Observable<ColumnModel<T>[]>;\r\n  public pagination$: Observable<PaginationInstance>;\r\n  public expandKey$: Observable<ColumnDef<T>>;\r\n  public columnDefs: ColumnDef<T>[];\r\n\r\n  // Subject which control table state mode : edit/expand/save\r\n  public tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  // cdk object that handle selection\r\n  public selection: SelectionModel<RowModel<T>> = new SelectionModel<\r\n    RowModel<T>\r\n  >(true, [], true);\r\n\r\n  private rows: RowModel<T>[];\r\n\r\n  // -----------------------------------------------------------------------/\r\n\r\n  // emit sort event : Sort\r\n  @Output() sort: EventEmitter<Sort> = new EventEmitter();\r\n\r\n  // emit pagination event : {next : number, prev : number}\r\n  @Output() pageChange: EventEmitter<{\r\n    next: number;\r\n    prev: number;\r\n  }> = new EventEmitter();\r\n\r\n  // emit filter event : ColumnModel<T>\r\n  @Output() filter: EventEmitter<FilterOption<T>> = new EventEmitter();\r\n\r\n  // emit state instance event\r\n  @Output() register: EventEmitter<\r\n    BehaviorSubject<TableState<T>>\r\n  > = new EventEmitter();\r\n\r\n  // emit select event : Observable<T[]>\r\n  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();\r\n\r\n  constructor(private tableService: TableService<T>) {}\r\n\r\n  private setExpandState() {\r\n    this.expendable = this.expendable || this.accordion;\r\n    if (this.expendable) {\r\n      this.expandKey$ = this.setExpandKey$();\r\n    }\r\n  }\r\n\r\n  private setTableProps() {\r\n    const { pagination, filters } = this.options;\r\n    this.rows$ = this.setRowWithState$();\r\n    this.columns$ = this.setColumns$(filters);\r\n\r\n    this.pagination$ = this.data$.pipe(\r\n      map((data: T[]) => {\r\n        return {\r\n          ...pagination,\r\n          totalItems : 19\r\n        };\r\n      })\r\n    );\r\n  }\r\n\r\n  ngOnInit() {\r\n    this.theme = this.theme || 'accent';\r\n    this.tableState$ = new BehaviorSubject<TableState<T>>({\r\n      mode: '',\r\n    });\r\n\r\n    this.setTableProps();\r\n    this.setExpandState();\r\n\r\n    this.register.emit(this.tableState$);\r\n  }\r\n\r\n  private setRowState(\r\n    rows: RowModel<T>[],\r\n    state: TableState<T>\r\n  ): RowModel<T>[] {\r\n    const { mode, ids, row, options } = state;\r\n\r\n    switch (mode) {\r\n      case 'expand':\r\n        return rows.map((rowItem) => {\r\n          if (ids.indexOf(rowItem.item['id']) >= 0) {\r\n            rowItem.expanded = !rowItem.expanded;\r\n          }\r\n          return rowItem;\r\n        });\r\n      case 'form':\r\n        const { columns } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: this.options.filters,\r\n        });\r\n\r\n        rows = this.tableService.onFormMode(rows, columns, options);\r\n        return [...rows];\r\n\r\n      case 'add':\r\n        rows = this.tableService.onAddFormRow(rows, this.columns);\r\n        return [...rows];\r\n\r\n      case 'edit':\r\n        rows = this.tableService.onEditMode(rows, row, this.columns, options);\r\n        return [...rows];\r\n      case 'save':\r\n        return this.tableService.onSaveMode(rows, 'id', row.item);\r\n      case 'cancel':\r\n        rows.shift();\r\n        return [...rows];\r\n      default:\r\n        return [...rows];\r\n    }\r\n  }\r\n\r\n  private setRows$(): Observable<RowModel<T>[]> {\r\n    return this.data$.pipe(\r\n      map((data) => {\r\n        return this.tableService.setRows(data, this.options);\r\n      })\r\n    );\r\n  }\r\n\r\n  private setRowWithState$() {\r\n    return combineLatest([\r\n      this.setRows$(),\r\n      this.tableState$.asObservable(),\r\n    ]).pipe(map((pair) => this.setRowState(pair[0], pair[1])));\r\n  }\r\n\r\n  private setColumns$(filters: ColumnDef<T>[]) {\r\n    return this.data$.pipe(\r\n      map(() => {\r\n        const { columns, columnsDefs } = this.tableService.setColumns({\r\n          tableColumns: this.columns,\r\n          model: this.model,\r\n          filters: [...filters],\r\n          selectable: this.selectable,\r\n          accordion: this.accordion,\r\n          hasActions: this.hasActions,\r\n        });\r\n\r\n        this.columnDefs = columnsDefs;\r\n        this.columns = columns;\r\n        return columns;\r\n      })\r\n    );\r\n  }\r\n\r\n  // method to handle key of expand table template (expandSlots) - key need to be the same as the object field\r\n  // ex { name : string } columnDef : name\r\n  private setExpandKey$(): Observable<ColumnDef<T>> {\r\n    return this.tableState$.pipe(\r\n      map((state) => {\r\n        const { mode, column } = state;\r\n\r\n        if (mode === 'expand') {\r\n          return column?.columnDef || 'accordion';\r\n        }\r\n\r\n        return '';\r\n      })\r\n    );\r\n  }\r\n\r\n  // method which handle expand row state\r\n  public onExpandRow(row: RowModel<T>) {\r\n    if (this.accordion) {\r\n      this.tableState$.next({ mode: 'expand', ids: [row.item['id']] });\r\n    }\r\n  }\r\n\r\n  // EMIT EVENTS\r\n\r\n  public onPageChange(event) {\r\n    this.pageChange.emit(event);\r\n  }\r\n\r\n  public onSort(sort: Sort): void {\r\n    this.sort.emit(sort);\r\n  }\r\n  public onFilter(filterOption: FilterOption<T>): void {\r\n    this.filter.emit(filterOption);\r\n  }\r\n\r\n  // method which emit  selection items : []T\r\n  public onSelect(): void {\r\n    const select$ = this.selection.changed.pipe(\r\n      map((selection: SelectionChange<RowModel<T>>) => {\r\n        const { source } = selection;\r\n        return source.selected.map((row) => row.item);\r\n      })\r\n    );\r\n\r\n    this.selected.emit(select$);\r\n  }\r\n\r\n  // SELECT LOGIC SECTION\r\n\r\n  /** Whether the number of selected elements matches the total number of rows. */\r\n  public isAllSelected(): boolean {\r\n    const numSelected = this.selection.selected?.length;\r\n    const numRows = this.rows.length;\r\n    return numSelected === numRows;\r\n  }\r\n\r\n  /** Selects all rows if they are not all selected; otherwise clear selection. */\r\n  public masterToggle(): void {\r\n    this.isAllSelected()\r\n      ? this.selection.clear()\r\n      : this.rows.map((row) => this.selection.select(row));\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -16622,7 +16635,7 @@
                         "deprecationMessage": ""
                     }
                 ],
-                "line": 183,
+                "line": 181,
                 "jsdoctags": [
                     {
                         "name": "tableService",
@@ -16639,11 +16652,11 @@
                 "OnInit",
                 "Table"
             ],
-            "templateData": "<div>\r\n  <mat-table\r\n    (matSortChange)=\"onSort($event)\"\r\n    mat-table\r\n    matSort\r\n    [dataSource]=\"rows$ | async | paginate: pagination\"\r\n    [dir]=\"'rtl'\"\r\n    multiTemplateDataRows\r\n  >\r\n    <ng-container\r\n      *ngFor=\"let column of columns$ | async\"\r\n      [matColumnDef]=\"column.columnDef\"\r\n    >\r\n      <!-- COLUMN HEADER SECTION-->\r\n\r\n      <ng-container *ngIf=\"!column.sortable && !column.selectable\">\r\n        <mat-header-cell\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{\r\n            center: column.center,\r\n            selected: column.columnDef === 'select'\r\n          }\"\r\n        >\r\n          <!-- DEFAULT HEADER -->\r\n          <kkl-typography [bold]=\"600\" *ngIf=\"!column.filterable\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n\r\n          <ng-container *ngIf=\"hasActions\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                headerSlots['actions'];\r\n                context: { row: this.row, column: this.column }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <!-- FILTER HEADER -->\r\n          <kkl-column-filter\r\n            *ngIf=\"column.filterable\"\r\n            [column]=\"column\"\r\n            [filterSlots]=\"filterSlots\"\r\n            (optionSelect)=\"onFilter($event)\"\r\n          >\r\n          </kkl-column-filter>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <!-- SORT HEADER -->\r\n      <ng-container *ngIf=\"column.sortable\">\r\n        <mat-header-cell\r\n          mat-sort-header\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{ center: column.center }\"\r\n          [start]=\"column.sortDir\"\r\n        >\r\n          <kkl-typography [bold]=\"600\" [size]=\"1.2\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <ng-container *ngIf=\"column.selectable\">\r\n        <mat-header-cell *matHeaderCellDef class=\"selected\">\r\n          <mat-checkbox\r\n            *ngIf=\"!headerSlots['select']\"\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? masterToggle() : null\"\r\n            [checked]=\"selection.hasValue() && isAllSelected()\"\r\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\r\n          >\r\n          </mat-checkbox>\r\n          <ng-container *ngIf=\"headerSlots['select']\">\r\n            <ng-container *ngTemplateOutlet=\"headerSlots['select']\">\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-header-cell>\r\n\r\n        <mat-cell *matCellDef=\"let row\" class=\"selected\">\r\n          <mat-checkbox\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? selection.toggle(row) : null\"\r\n            [checked]=\"selection.isSelected(row)\"\r\n          >\r\n          </mat-checkbox>\r\n        </mat-cell>\r\n      </ng-container>\r\n\r\n      <!-- COLUMN CELL SECTION-->\r\n\r\n      <mat-cell\r\n        *matCellDef=\"let row; let i = index\"\r\n        [ngClass]=\"{\r\n          center: column.center,\r\n          selected: column.columnDef === 'select'\r\n        }\"\r\n        [attr.colspan]=\"i\"\r\n      >\r\n        <!-- DEFAULT SECTION-->\r\n        <ng-container *ngIf=\"!row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngSwitchCase=\"'custom'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots[column.columnDef];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchDefault>\r\n              <kkl-typography>\r\n                {{ row.item[column.columnDef] | format: type }}\r\n              </kkl-typography>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n\r\n        <!-- FORM SECTION-->\r\n        <ng-container *ngIf=\"row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngIf=\"column.control\">\r\n              <div class=\"cell-input\">\r\n                <kkl-column-form\r\n                  [row]=\"row\"\r\n                  [column]=\"column\"\r\n                  [slot]=\"formSlots[column.columnDef] || {}\"\r\n                ></kkl-column-form>\r\n              </div>\r\n            </ng-container>\r\n\r\n            <ng-container *ngIf=\"!column.control\">\r\n              <ng-container *ngSwitchCase=\"'custom'\">\r\n                <ng-container\r\n                  *ngTemplateOutlet=\"\r\n                    rowSlots[column.columnDef];\r\n                    context: { row: this.row, column: this.column }\r\n                  \"\r\n                >\r\n                </ng-container>\r\n              </ng-container>\r\n\r\n              <ng-container *ngSwitchDefault>\r\n                <kkl-typography>\r\n                  {{ row.item[column.columnDef] | format: type }}\r\n                </kkl-typography>\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n      </mat-cell>\r\n\r\n      <ng-container>\r\n        <mat-footer-cell\r\n          *matFooterCellDef\r\n          [ngClass]=\"{ selected: column.columnDef === 'select' }\"\r\n        >\r\n          <ng-container *ngIf=\"column.footer\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                footerSlots[column.columnDef];\r\n                context: { row: this.row }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-footer-cell>\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <!-- EXPEND COLUMN -->\r\n    <ng-container matColumnDef=\"expandRow\" *ngIf=\"expendable\">\r\n      <mat-cell *matCellDef=\"let row\" [attr.colspan]=\"columnDefs.length\">\r\n        <div\r\n          fxFill\r\n          *ngIf=\"row.expanded && expandKey$ | async\"\r\n          [@detailExpand]=\"row.expanded ? 'expanded' : 'collapsed'\"\r\n        >\r\n          <ng-container\r\n            *ngTemplateOutlet=\"\r\n              expandSlots[expandKey$ | async];\r\n              context: { row: this.row }\r\n            \"\r\n          >\r\n          </ng-container>\r\n        </div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- NEW FORM COLUMN -->\r\n    <ng-container matColumnDef=\"formRow\" *ngIf=\"false\">\r\n      <ng-container> </ng-container>\r\n      <mat-cell *matCellDef=\"let row\">\r\n        <div></div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row\r\n      [ngClass]=\"[theme]\"\r\n      *matHeaderRowDef=\"columnDefs\"\r\n    ></mat-header-row>\r\n\r\n    <ng-container *ngIf=\"false\">\r\n      <mat-row *matRowDef=\"let formRow; columns: ['formRow']\"></mat-row>\r\n    </ng-container>\r\n\r\n    <mat-row\r\n      *matRowDef=\"let row; columns: columnDefs\"\r\n      (click)=\"onExpandRow(row, column)\"\r\n      [ngClass]=\"{\r\n        default: true,\r\n        form: row.editable,\r\n        hideBorder: expendable,\r\n        expand: expendable,\r\n        accordion: accordion\r\n      }\"\r\n    >\r\n    </mat-row>\r\n\r\n    <ng-container *ngIf=\"hasFooter\">\r\n      <mat-row\r\n        class=\"default\"\r\n        mat-footer-row\r\n        *matFooterRowDef=\"columnDefs\"\r\n      ></mat-row>\r\n    </ng-container>\r\n\r\n    <ng-container *ngIf=\"expendable\">\r\n      <mat-row\r\n        *matRowDef=\"let expendRow; columns: ['expandRow']\"\r\n        [ngClass]=\"{\r\n          hide: !expendRow.expanded,\r\n          show: expendRow.expanded,\r\n          hideBorder: expendable\r\n        }\"\r\n      ></mat-row>\r\n    </ng-container>\r\n  </mat-table>\r\n\r\n  <kkl-pagination (newPage)=\"onPageChange($event)\" [pagination]=\"pagination\">\r\n  </kkl-pagination>\r\n</div>\r\n"
+            "templateData": "<div>\r\n  <mat-table\r\n    (matSortChange)=\"onSort($event)\"\r\n    mat-table\r\n    matSort\r\n    [dataSource]=\"rows$ | async | paginate: (pagination$ | async)\"\r\n    [dir]=\"'rtl'\"\r\n    multiTemplateDataRows\r\n  >\r\n    <ng-container\r\n      *ngFor=\"let column of columns$ | async\"\r\n      [matColumnDef]=\"column.columnDef\"\r\n    >\r\n      <!-- COLUMN HEADER SECTION-->\r\n\r\n      <ng-container *ngIf=\"!column.sortable && !column.selectable\">\r\n        <mat-header-cell\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{\r\n            center: column.center,\r\n            selected: column.columnDef === 'select'\r\n          }\"\r\n        >\r\n          <!-- DEFAULT HEADER -->\r\n          <kkl-typography [bold]=\"600\" *ngIf=\"!column.filterable\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n\r\n          <ng-container *ngIf=\"hasActions\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                headerSlots['actions'];\r\n                context: { row: this.row, column: this.column }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n\r\n          <!-- FILTER HEADER -->\r\n          <kkl-column-filter\r\n            *ngIf=\"column.filterable\"\r\n            [column]=\"column\"\r\n            [filterSlots]=\"filterSlots\"\r\n            (optionSelect)=\"onFilter($event)\"\r\n          >\r\n          </kkl-column-filter>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <!-- SORT HEADER -->\r\n      <ng-container *ngIf=\"column.sortable\">\r\n        <mat-header-cell\r\n          mat-sort-header\r\n          *matHeaderCellDef\r\n          [ngClass]=\"{ center: column.center }\"\r\n          [start]=\"column.sortDir\"\r\n        >\r\n          <kkl-typography [bold]=\"600\" [size]=\"1.2\">\r\n            {{ column.label }}\r\n          </kkl-typography>\r\n        </mat-header-cell>\r\n      </ng-container>\r\n\r\n      <ng-container *ngIf=\"column.selectable\">\r\n        <mat-header-cell *matHeaderCellDef class=\"selected\">\r\n          <mat-checkbox\r\n            *ngIf=\"!headerSlots['select']\"\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? masterToggle() : null\"\r\n            [checked]=\"selection.hasValue() && isAllSelected()\"\r\n            [indeterminate]=\"selection.hasValue() && !isAllSelected()\"\r\n          >\r\n          </mat-checkbox>\r\n          <ng-container *ngIf=\"headerSlots['select']\">\r\n            <ng-container *ngTemplateOutlet=\"headerSlots['select']\">\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-header-cell>\r\n\r\n        <mat-cell *matCellDef=\"let row\" class=\"selected\">\r\n          <mat-checkbox\r\n            color=\"primary\"\r\n            (click)=\"onSelect()\"\r\n            (change)=\"$event ? selection.toggle(row) : null\"\r\n            [checked]=\"selection.isSelected(row)\"\r\n          >\r\n          </mat-checkbox>\r\n        </mat-cell>\r\n      </ng-container>\r\n\r\n      <!-- COLUMN CELL SECTION-->\r\n\r\n      <mat-cell\r\n        *matCellDef=\"let row; let i = index\"\r\n        [ngClass]=\"{\r\n          center: column.center,\r\n          selected: column.columnDef === 'select'\r\n        }\"\r\n        [attr.colspan]=\"i\"\r\n      >\r\n        <!-- DEFAULT SECTION-->\r\n        <ng-container *ngIf=\"!row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngSwitchCase=\"'custom'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots[column.columnDef];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchDefault>\r\n              <kkl-typography>\r\n                {{ row.item[column.columnDef] | format: type }}\r\n              </kkl-typography>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n\r\n        <!-- FORM SECTION-->\r\n        <ng-container *ngIf=\"row.editable\">\r\n          <ng-container [ngSwitch]=\"column.type\">\r\n            <ng-container *ngIf=\"column.control\">\r\n              <div class=\"cell-input\">\r\n                <kkl-column-form\r\n                  [row]=\"row\"\r\n                  [column]=\"column\"\r\n                  [slot]=\"formSlots[column.columnDef] || {}\"\r\n                ></kkl-column-form>\r\n              </div>\r\n            </ng-container>\r\n\r\n            <ng-container *ngIf=\"!column.control\">\r\n              <ng-container *ngSwitchCase=\"'custom'\">\r\n                <ng-container\r\n                  *ngTemplateOutlet=\"\r\n                    rowSlots[column.columnDef];\r\n                    context: { row: this.row, column: this.column }\r\n                  \"\r\n                >\r\n                </ng-container>\r\n              </ng-container>\r\n\r\n              <ng-container *ngSwitchDefault>\r\n                <kkl-typography>\r\n                  {{ row.item[column.columnDef] | format: type }}\r\n                </kkl-typography>\r\n              </ng-container>\r\n            </ng-container>\r\n\r\n            <ng-container *ngSwitchCase=\"'actions'\">\r\n              <ng-container\r\n                *ngTemplateOutlet=\"\r\n                  rowSlots['actions'];\r\n                  context: { row: this.row, column: this.column }\r\n                \"\r\n              >\r\n              </ng-container>\r\n            </ng-container>\r\n          </ng-container>\r\n        </ng-container>\r\n      </mat-cell>\r\n\r\n      <ng-container>\r\n        <mat-footer-cell\r\n          *matFooterCellDef\r\n          [ngClass]=\"{ selected: column.columnDef === 'select' }\"\r\n        >\r\n          <ng-container *ngIf=\"column.footer\">\r\n            <ng-container\r\n              *ngTemplateOutlet=\"\r\n                footerSlots[column.columnDef];\r\n                context: { row: this.row }\r\n              \"\r\n            >\r\n            </ng-container>\r\n          </ng-container>\r\n        </mat-footer-cell>\r\n      </ng-container>\r\n    </ng-container>\r\n\r\n    <!-- EXPEND COLUMN -->\r\n    <ng-container matColumnDef=\"expandRow\" *ngIf=\"expendable\">\r\n      <mat-cell *matCellDef=\"let row\" [attr.colspan]=\"columnDefs.length\">\r\n        <div\r\n          fxFill\r\n          *ngIf=\"row.expanded && expandKey$ | async\"\r\n          [@detailExpand]=\"row.expanded ? 'expanded' : 'collapsed'\"\r\n        >\r\n          <ng-container\r\n            *ngTemplateOutlet=\"\r\n              expandSlots[expandKey$ | async];\r\n              context: { row: this.row }\r\n            \"\r\n          >\r\n          </ng-container>\r\n        </div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <!-- NEW FORM COLUMN -->\r\n    <ng-container matColumnDef=\"formRow\" *ngIf=\"false\">\r\n      <ng-container> </ng-container>\r\n      <mat-cell *matCellDef=\"let row\">\r\n        <div></div>\r\n      </mat-cell>\r\n    </ng-container>\r\n\r\n    <mat-header-row\r\n      [ngClass]=\"[theme]\"\r\n      *matHeaderRowDef=\"columnDefs\"\r\n    ></mat-header-row>\r\n\r\n    <ng-container *ngIf=\"false\">\r\n      <mat-row *matRowDef=\"let formRow; columns: ['formRow']\"></mat-row>\r\n    </ng-container>\r\n\r\n    <mat-row\r\n      *matRowDef=\"let row; columns: columnDefs\"\r\n      (click)=\"onExpandRow(row, column)\"\r\n      [ngClass]=\"{\r\n        default: true,\r\n        form: row.editable,\r\n        hideBorder: expendable,\r\n        expand: expendable,\r\n        accordion: accordion\r\n      }\"\r\n    >\r\n    </mat-row>\r\n\r\n    <ng-container *ngIf=\"hasFooter\">\r\n      <mat-row\r\n        class=\"default\"\r\n        mat-footer-row\r\n        *matFooterRowDef=\"columnDefs\"\r\n      ></mat-row>\r\n    </ng-container>\r\n\r\n    <ng-container *ngIf=\"expendable\">\r\n      <mat-row\r\n        *matRowDef=\"let expendRow; columns: ['expandRow']\"\r\n        [ngClass]=\"{\r\n          hide: !expendRow.expanded,\r\n          show: expendRow.expanded,\r\n          hideBorder: expendable\r\n        }\"\r\n      ></mat-row>\r\n    </ng-container>\r\n  </mat-table>\r\n\r\n  <kkl-pagination (newPage)=\"onPageChange($event)\" [pagination]=\"(pagination$ | async)\">\r\n  </kkl-pagination>\r\n</div>\r\n"
         },
         {
             "name": "TableExComponent",
-            "id": "component-TableExComponent-d49010a2bda12f835ad4ec6f2f8bf825",
+            "id": "component-TableExComponent-1a5121052efa2bc0235f407705c113e4",
             "file": "projects/lib-kakal-ui/src/lib/app/examples/table-ex/table-ex.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -16937,7 +16950,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { MatSlideToggleChange } from '@angular/material/slide-toggle';\r\nimport { BehaviorSubject, Observable, of } from 'rxjs';\r\nimport { ColumnModel } from '../../components/columns/column.model';\r\nimport { RowModel } from '../../components/table/models/row.model';\r\nimport {\r\n  TableOptions,\r\n  TableState,\r\n} from '../../components/table/table.component';\r\n\r\n@Component({\r\n  selector: 'kkl-table-ex',\r\n  templateUrl: './table-ex.component.html',\r\n  styleUrls: ['./table-ex.component.scss'],\r\n})\r\nexport class TableExComponent<T> implements OnInit {\r\n  @Input() public theme: ThemePalette;\r\n\r\n  @Input() public data: T[];\r\n  @Input() public columns: ColumnModel<T>[];\r\n  @Input() public model: T;\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n  @Input() public hasForm: boolean;\r\n\r\n  public data$: Observable<T[]>;\r\n\r\n  private tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.data$ = of(this.data);\r\n    if (this.expendable) {\r\n      this.columns[3].type = 'custom';\r\n    }\r\n  }\r\n\r\n  public onRegister(event: BehaviorSubject<TableState<T>>): void {\r\n    this.tableState$ = event;\r\n\r\n    if (this.hasForm) {\r\n      this.tableState$.next({ mode: 'form' });\r\n    }\r\n  }\r\n\r\n  public onExpand(row: RowModel<T>, column: ColumnModel<T>) {\r\n    this.tableState$.next({ mode: 'expand', ids: [row.item['id'], 3], column });\r\n  }\r\n\r\n  public onSlideChange(event: MatSlideToggleChange) {\r\n    console.log(event);\r\n  }\r\n\r\n  public onToggleChange(row: RowModel<T>) {\r\n    const { formGroup } = row;\r\n    console.log(formGroup.value)\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { FormControl } from '@angular/forms';\r\nimport { ThemePalette } from '@angular/material/core';\r\nimport { MatSlideToggleChange } from '@angular/material/slide-toggle';\r\nimport { BehaviorSubject, Observable, of } from 'rxjs';\r\nimport { ColumnModel } from '../../components/columns/column.model';\r\nimport { RowModel } from '../../components/table/models/row.model';\r\nimport {\r\n  TableOptions,\r\n  TableState,\r\n} from '../../components/table/table.component';\r\n\r\n@Component({\r\n  selector: 'kkl-table-ex',\r\n  templateUrl: './table-ex.component.html',\r\n  styleUrls: ['./table-ex.component.scss'],\r\n})\r\nexport class TableExComponent<T> implements OnInit {\r\n  @Input() public theme: ThemePalette;\r\n\r\n  @Input() public data: T[];\r\n  @Input() public columns: ColumnModel<T>[];\r\n  @Input() public model: T;\r\n  @Input() public options: TableOptions<T>;\r\n\r\n  @Input() public paginator: boolean;\r\n  @Input() public expendable: boolean;\r\n  @Input() public accordion: boolean;\r\n  @Input() public selectable: boolean;\r\n  @Input() public hasState: boolean;\r\n  @Input() public hasFooter: boolean;\r\n  @Input() public hasActions: boolean;\r\n  @Input() public hasForm: boolean;\r\n\r\n  public data$: Observable<T[]>;\r\n\r\n  private tableState$: BehaviorSubject<TableState<T>>;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.data$ = of(this.data);\r\n    if (this.expendable) {\r\n      this.columns[3].type = 'custom';\r\n    }\r\n  }\r\n\r\n  public onRegister(event: BehaviorSubject<TableState<T>>): void {\r\n    this.tableState$ = event;\r\n\r\n    if (this.hasForm) {\r\n      this.tableState$.next({ mode: 'form' });\r\n    }\r\n  }\r\n\r\n  public onExpand(row: RowModel<T>, column: ColumnModel<T>) {\r\n    this.tableState$.next({ mode: 'expand', ids: [row.item['id'], 3], column });\r\n  }\r\n\r\n  public onSlideChange(event: MatSlideToggleChange) {\r\n    console.log(event);\r\n  }\r\n\r\n  public onToggleChange(row: RowModel<T>) {\r\n    const { formGroup } = row;\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -16957,7 +16970,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n  <div class=\"table\">\r\n    <kkl-table\r\n      [data$]=\"data$\"\r\n      [columns]=\"columns\"\r\n      [model]=\"model\"\r\n      [options]=\"options\"\r\n      [rowSlots]=\"{status, area, actions}\"\r\n      [formSlots]=\"{block}\"\r\n      [expandSlots]=\"{area, accordion : accordionSlot}\"\r\n      [expendable]=\"expendable\"\r\n      [accordion]=\"accordion\"\r\n      [hasActions]=\"hasActions\"\r\n      [selectable]=\"selectable\"\r\n      [hasState]=\"hasState\"\r\n      (register)=\"onRegister($event)\"\r\n    ></kkl-table>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #block let-question=\"question\" let-row=\"row\" let-control=\"control\">\r\n  <mat-slide-toggle\r\n    (change)=\"onSlideChange($event)\"\r\n    (toggleChange)=\"onToggleChange(row)\"\r\n    [formControl]=\"control\"\r\n    [color]=\"color\"\r\n    [checked]=\"checked\"\r\n    [disabled]=\"disabled\"\r\n  >\r\n    {{ question.key }}\r\n  </mat-slide-toggle></ng-template\r\n>\r\n\r\n<ng-template #status let-row=\"row\">\r\n  <div class=\"status\">\r\n    <app-status [status]=\"row.item?.status\"></app-status>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #area let-row=\"row\" let-column=\"column\">\r\n  <button mat-button appBorder (click)=\"onExpand(row, column)\">\r\n    <kkl-typography>expand row</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n\r\n<ng-template #actions let-row=\"row\">\r\n  <button color=\"accent\" mat-raised-button type=\"button\">\r\n    <kkl-typography>לחץ</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n`;\r\n<ng-template #accordionSlot let-row=\"row\">\r\n  <kkl-typography>working !</kkl-typography>\r\n</ng-template>\r\n`;\r\n"
+            "templateData": "<div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n  <div class=\"table\">\r\n    <kkl-table\r\n      [data$]=\"data$\"\r\n      [columns]=\"columns\"\r\n      [model]=\"model\"\r\n      [options]=\"options\"\r\n      [rowSlots]=\"{status, area, actions}\"\r\n      [formSlots]=\"{block}\"\r\n      [expandSlots]=\"{area, accordion : accordionSlot}\"\r\n      [expendable]=\"expendable\"\r\n      [accordion]=\"accordion\"\r\n      [hasActions]=\"hasActions\"\r\n      [selectable]=\"selectable\"\r\n      [hasState]=\"hasState\"\r\n      (register)=\"onRegister($event)\"\r\n    ></kkl-table>\r\n  </div>\r\n</div>\r\n\r\n<ng-template #block let-question=\"question\" let-row=\"row\" let-control=\"control\">\r\n  <mat-slide-toggle\r\n    (change)=\"onSlideChange($event)\"\r\n    (toggleChange)=\"onToggleChange(row)\"\r\n    [formControl]=\"control\"\r\n    [color]=\"color\"\r\n    [checked]=\"checked\"\r\n    [disabled]=\"disabled\"\r\n  >\r\n    {{ question.key }}\r\n  </mat-slide-toggle></ng-template\r\n>\r\n\r\n<ng-template #status let-row=\"row\">\r\n  <div class=\"status\">\r\n    <app-status [status]=\"row.item?.status\"></app-status>\r\n  </div>\r\n</ng-template>\r\n\r\n<ng-template #area let-row=\"row\" let-column=\"column\">\r\n  <button mat-button appBorder (click)=\"onExpand(row, column)\">\r\n    <kkl-typography>expand row</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n\r\n<ng-template #actions let-row=\"row\">\r\n  <button color=\"accent\" mat-raised-button type=\"button\">\r\n    <kkl-typography>לחץ</kkl-typography>\r\n  </button>\r\n</ng-template>\r\n\r\n<ng-template #accordionSlot let-row=\"row\">\r\n  <kkl-typography>working !</kkl-typography>\r\n</ng-template>\r\n\r\n"
         },
         {
             "name": "TitleComponent",
@@ -17800,7 +17813,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17810,7 +17823,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17850,7 +17863,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -17860,7 +17873,7 @@
                 "name": "Default",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -18234,7 +18247,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "PaginationInstance",
-                "defaultValue": "{\r\n  itemsPerPage: 6,\r\n  currentPage: 1,\r\n  totalItems: 6,\r\n}"
+                "defaultValue": "{\r\n  id : uuid4(),\r\n  itemsPerPage: 4,\r\n  currentPage: 1,\r\n}"
             },
             {
                 "name": "palette",
@@ -18488,21 +18501,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<CardUserComponent>",
-                "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Card.Dashboardstories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CardDashboardComponent>",
                 "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/CardUser.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<CardUserComponent>",
+                "defaultValue": "(args: CardUserComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18518,16 +18531,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ExpandPanelExComponent>",
-                "defaultValue": "(\r\n  args: ExpandPanelExComponent\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Filters.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -18538,21 +18541,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/ExpandPanel.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormExComponent>",
-                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<ExpandPanelExComponent>",
+                "defaultValue": "(\r\n  args: ExpandPanelExComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Form.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormAutocompleteExComponent>",
-                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  props: args,\r\n})"
+                "type": "Story<FormExComponent>",
+                "defaultValue": "(args: FormExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18573,6 +18576,16 @@
                 "deprecationMessage": "",
                 "type": "Story<FormUploadExComponent>",
                 "defaultValue": "(\r\n  args: FormUploadExComponent\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormAutocompleteExComponent>",
+                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18618,16 +18631,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<NavbarBottomExComponent>",
-                "defaultValue": "(\r\n  args: NavbarBottomExComponent\r\n) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Pagination.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -18638,11 +18641,11 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "file": "projects/lib-kakal-ui/src/lib/stories/NavbarBottom.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<StepperExComponent>",
-                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
+                "type": "Story<NavbarBottomExComponent>",
+                "defaultValue": "(\r\n  args: NavbarBottomExComponent\r\n) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18653,6 +18656,16 @@
                 "deprecationMessage": "",
                 "type": "Story<TableExComponent<any>>",
                 "defaultValue": "(\r\n  args: TableExComponent<any>\r\n) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<StepperExComponent>",
+                "defaultValue": "(args: StepperExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18678,21 +18691,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<DashboardExComponent>",
-                "defaultValue": "(args: DashboardExComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<LayoutExComponent>",
                 "defaultValue": "(args: LayoutExComponent) => ({\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/screens/Dashboard.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<DashboardExComponent>",
+                "defaultValue": "(args: DashboardExComponent) => ({\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -18855,16 +18868,6 @@
                 "defaultValue": "CardWizardTemplate.bind({})"
             },
             {
-                "name": "Wizard",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/Table.stories.ts",
@@ -18918,6 +18921,16 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/lib-kakal-ui/src/lib/stories/screens/Layout.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Wizard",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/lib-kakal-ui/src/lib/stories/Stepper.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -19208,7 +19221,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "PaginationInstance",
-                    "defaultValue": "{\r\n  itemsPerPage: 6,\r\n  currentPage: 1,\r\n  totalItems: 6,\r\n}"
+                    "defaultValue": "{\r\n  id : uuid4(),\r\n  itemsPerPage: 4,\r\n  currentPage: 1,\r\n}"
                 },
                 {
                     "name": "Selectable",
@@ -20152,28 +20165,6 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts": [
-                {
-                    "name": "Default",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FormAutocompleteExComponent>",
-                    "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  props: args,\r\n})"
-                }
-            ],
             "projects/lib-kakal-ui/src/lib/stories/FormUpLoad.stories.ts": [
                 {
                     "name": "Default",
@@ -20194,6 +20185,28 @@
                     "deprecationMessage": "",
                     "type": "Story<FormUploadExComponent>",
                     "defaultValue": "(\r\n  args: FormUploadExComponent\r\n) => ({\r\n  props: args,\r\n})"
+                }
+            ],
+            "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts": [
+                {
+                    "name": "Default",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/lib-kakal-ui/src/lib/stories/FormAutoComplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormAutocompleteExComponent>",
+                    "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  props: args,\r\n})"
                 }
             ],
             "projects/lib-kakal-ui/src/lib/stories/Menu.stories.ts": [
@@ -21850,7 +21863,7 @@
                 "linktype": "component",
                 "name": "PaginationComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/7",
+                "coverageCount": "0/8",
                 "status": "low"
             },
             {
