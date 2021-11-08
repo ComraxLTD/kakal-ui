@@ -4,7 +4,6 @@ import {
   Input,
   OnInit,
   Output,
-  OnChanges,
 } from '@angular/core';
 
 import { ThemePalette } from '@angular/material/core';
@@ -27,7 +26,6 @@ import {
 import { ColumnDef, ColumnModel } from '../columns/column.model';
 
 import { SelectionChange, SelectionModel } from '@angular/cdk/collections';
-import { v4 as uuid4 } from 'uuid';
 import { FilterOption } from '../columns/column-filter/column-filter.component';
 
 declare type id = string | number;
@@ -146,9 +144,9 @@ export class TableComponent<T> implements OnInit, Table<T> {
 
   public rows$: Observable<RowModel<T>[]>;
   public columns$: Observable<ColumnModel<T>[]>;
+  public pagination$: Observable<PaginationInstance>;
   public expandKey$: Observable<ColumnDef<T>>;
   public columnDefs: ColumnDef<T>[];
-  public pagination: PaginationInstance;
 
   // Subject which control table state mode : edit/expand/save
   public tableState$: BehaviorSubject<TableState<T>>;
@@ -186,7 +184,6 @@ export class TableComponent<T> implements OnInit, Table<T> {
 
   private setExpandState() {
     this.expendable = this.expendable || this.accordion;
-    console.log(this.expendable);
     if (this.expendable) {
       this.expandKey$ = this.setExpandKey$();
     }
@@ -196,7 +193,15 @@ export class TableComponent<T> implements OnInit, Table<T> {
     const { pagination, filters } = this.options;
     this.rows$ = this.setRowWithState$();
     this.columns$ = this.setColumns$(filters);
-    this.pagination = { ...pagination, id: uuid4() };
+
+    this.pagination$ = this.data$.pipe(
+      map((data: T[]) => {
+        return {
+          ...pagination,
+          totalItems : 19
+        };
+      })
+    );
   }
 
   ngOnInit() {
