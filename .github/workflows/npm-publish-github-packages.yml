@@ -25,7 +25,7 @@ jobs:
         working-directory: design-system
       - name: Configure npm
         run: |
-          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          echo '//npm.pkg.github.com/:_authToken=${NPM_TOKEN}' > .npmrc
           cat .npmrc
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
