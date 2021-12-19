@@ -1,6 +1,10 @@
 {
   "name": "@ComraxLTD/kakal-ui",
   "version": "0.0.1",
+  "repository": "git@github.com:ComraxLTD/kakal-ui.git",
+  "publishConfig": {
+    "registry":"https://npm.pkg.github.com"
+  },
   "peerDependencies": {
     "@angular/common": "^10.1.5",
     "@angular/core": "^10.1.5"
