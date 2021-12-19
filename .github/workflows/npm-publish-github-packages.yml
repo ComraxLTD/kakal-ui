@@ -29,7 +29,8 @@ jobs:
           cat .npmrc
         working-directory: design-system/dist/pattern-lib
 
-      - run: npm publish
-        working-directory: design-system/dist/pattern-lib
+      - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: npm publish
+        working-directory: design-system/dist/pattern-lib
