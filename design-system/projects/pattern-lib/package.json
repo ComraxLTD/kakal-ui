@@ -1,5 +1,5 @@
 {
-  "name": "@your-company/pattern-lib",
+  "name": "@ComraxLTD/kakal-ui",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^10.1.5",
