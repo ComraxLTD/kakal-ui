@@ -24,6 +24,6 @@ jobs:
       - run: npm run build
         working-directory: design-system
       - run: npm publish
-        working-directory: design-system/dist
+        working-directory: design-system/pattern-lib/dist
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
