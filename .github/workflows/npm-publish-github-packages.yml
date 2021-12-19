@@ -23,6 +23,14 @@ jobs:
         working-directory: design-system
       - run: npm run build:prod
         working-directory: design-system
+      - name: Configure npm
+        run: |
+          echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
+          cat .npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        working-directory: design-system/dist/pattern-lib
+
       - run: npm publish
         working-directory: design-system/dist/pattern-lib
         env:
