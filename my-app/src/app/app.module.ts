@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PatternLibModule } from '@ComraxLTD/kakal-ui';
+import { KakalUiModule } from '@ComraxLTD/kakal-ui';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { PatternLibModule } from '@ComraxLTD/kakal-ui';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    PatternLibModule
+    KakalUiModule
   ],
   providers: [],
   bootstrap: [AppComponent]
