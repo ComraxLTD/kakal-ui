@@ -23,12 +23,6 @@ jobs:
         working-directory: design-system
       - run: npm run build:prod
         working-directory: design-system
-      - name: Configure npm
-        run: |
-          echo '//npm.pkg.github.com/:_authToken=${{secrets.NODE_AUTH_TOKEN}}' > .npmrc
-          cat .npmrc
-        working-directory: design-system/dist/pattern-lib
-
       - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
