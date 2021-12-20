@@ -1,5 +1,5 @@
 {
-  "extends": "../projects/pattern-lib/tsconfig.lib.json",
+  "extends": "../projects/kakal-ui/tsconfig.lib.json",
   "compilerOptions": {
     "types": [
       "node"

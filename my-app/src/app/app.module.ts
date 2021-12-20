@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PatternLibModule } from '@your-company/pattern-lib';
+import { PatternLibModule } from '@ComraxLTD/kakal-ui';
 
 @NgModule({
   declarations: [

@@ -3,13 +3,13 @@
     "interfaces": [],
     "injectables": [
         {
-            "name": "PatternLibService",
-            "id": "injectable-PatternLibService-34e0db803a2f0a88394224d35c00c928",
-            "file": "projects/pattern-lib/src/lib/pattern-lib.service.ts",
+            "name": "KakalUiService",
+            "id": "injectable-KakalUiService-34e0db803a2f0a88394224d35c00c928",
+            "file": "projects/kakal-ui/src/lib/kakal-ui.service.ts",
             "properties": [],
             "methods": [],
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class PatternLibService {\n\n  constructor() { }\n}\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class KakalUiService {\n\n  constructor() { }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -25,7 +25,7 @@
         {
             "name": "ButtonComponent",
             "id": "component-ButtonComponent-f074ef0cf4d9b0a781ccfba88e6293a3",
-            "file": "projects/pattern-lib/src/lib/button/button.component.ts",
+            "file": "projects/kakal-ui/src/lib/button/button.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.Emulated"
             ],
@@ -111,7 +111,7 @@
         {
             "name": "ButtonsetComponent",
             "id": "component-ButtonsetComponent-828982bc8ad2494d4e8e5b00af64305d",
-            "file": "projects/pattern-lib/src/lib/buttonset/buttonset.component.ts",
+            "file": "projects/kakal-ui/src/lib/buttonset/buttonset.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.Emulated"
             ],
@@ -167,18 +167,18 @@
             "templateData": "<div class=\"buttonset\">\n    <pl-button label=\"Button 1\" [bordersRight]=\"false\" noShadow=true></pl-button>\n    <pl-button label=\"Button 2\" [bordersLeft]=\"false\" [bordersRight]=\"false\" [noShadow]=\"true\"></pl-button>\n    <pl-button label=\"Button 3\" [bordersLeft]=\"false\" [noShadow]=\"true\"></pl-button>\n</div>"
         },
         {
-            "name": "PatternLibComponent",
-            "id": "component-PatternLibComponent-de8134bbcc97996ac01e0b7e25b0a671",
-            "file": "projects/pattern-lib/src/lib/pattern-lib.component.ts",
+            "name": "KakalUiComponent",
+            "id": "component-KakalUiComponent-de8134bbcc97996ac01e0b7e25b0a671",
+            "file": "projects/kakal-ui/src/lib/kakal-ui.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "pl-pattern-lib",
+            "selector": "pl-kakal-ui",
             "styleUrls": [],
             "styles": [],
-            "template": "<p>\n  pattern-lib works!\n</p>\n",
+            "template": "<p>\n  kakal-ui works!\n</p>\n",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [],
@@ -199,7 +199,7 @@
             "description": "",
             "rawdescription": "",
             "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'pl-pattern-lib',\n  template: `\n    <p>\n      pattern-lib works!\n    </p>\n  `,\n  styles: [\n  ]\n})\nexport class PatternLibComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'pl-kakal-ui',\n  template: `\n    <p>\n      kakal-ui works!\n    </p>\n  `,\n  styles: [\n  ]\n})\nexport class KakalUiComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
             "stylesData": "",
@@ -216,7 +216,7 @@
     ],
     "modules": [
         {
-            "name": "PatternLibModule",
+            "name": "KakalUiModule",
             "children": [
                 {
                     "type": "providers",
@@ -232,7 +232,7 @@
                             "name": "ButtonsetComponent"
                         },
                         {
-                            "name": "PatternLibComponent"
+                            "name": "KakalUiComponent"
                         }
                     ]
                 },
@@ -250,7 +250,7 @@
                             "name": "ButtonsetComponent"
                         },
                         {
-                            "name": "PatternLibComponent"
+                            "name": "KakalUiComponent"
                         }
                     ]
                 },
@@ -279,7 +279,7 @@
                 "name": "context",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/pattern-lib/src/test.ts",
+                "file": "projects/kakal-ui/src/test.ts",
                 "type": "",
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
@@ -303,7 +303,7 @@
                 "name": "require",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "projects/pattern-lib/src/test.ts",
+                "file": "projects/kakal-ui/src/test.ts",
                 "type": "literal type"
             },
             {
@@ -345,12 +345,12 @@
                     "defaultValue": "(args: ButtonsetComponent) => ({\n  component: ButtonsetComponent,\n  props: args,\n})"
                 }
             ],
-            "projects/pattern-lib/src/test.ts": [
+            "projects/kakal-ui/src/test.ts": [
                 {
                     "name": "context",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/pattern-lib/src/test.ts",
+                    "file": "projects/kakal-ui/src/test.ts",
                     "type": "",
                     "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
                 },
@@ -358,7 +358,7 @@
                     "name": "require",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "projects/pattern-lib/src/test.ts",
+                    "file": "projects/kakal-ui/src/test.ts",
                     "type": "literal type"
                 }
             ],
@@ -399,7 +399,7 @@
         "status": "low",
         "files": [
             {
-                "filePath": "projects/pattern-lib/src/lib/button/button.component.ts",
+                "filePath": "projects/kakal-ui/src/lib/button/button.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonComponent",
@@ -408,7 +408,7 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/pattern-lib/src/lib/buttonset/buttonset.component.ts",
+                "filePath": "projects/kakal-ui/src/lib/buttonset/buttonset.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "ButtonsetComponent",
@@ -417,25 +417,25 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/pattern-lib/src/lib/pattern-lib.component.ts",
+                "filePath": "projects/kakal-ui/src/lib/kakal-ui.component.ts",
                 "type": "component",
                 "linktype": "component",
-                "name": "PatternLibComponent",
+                "name": "KakalUiComponent",
                 "coveragePercent": 0,
                 "coverageCount": "0/3",
                 "status": "low"
             },
             {
-                "filePath": "projects/pattern-lib/src/lib/pattern-lib.service.ts",
+                "filePath": "projects/kakal-ui/src/lib/kakal-ui.service.ts",
                 "type": "injectable",
                 "linktype": "injectable",
-                "name": "PatternLibService",
+                "name": "KakalUiService",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
                 "status": "low"
             },
             {
-                "filePath": "projects/pattern-lib/src/test.ts",
+                "filePath": "projects/kakal-ui/src/test.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -445,7 +445,7 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/pattern-lib/src/test.ts",
+                "filePath": "projects/kakal-ui/src/test.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

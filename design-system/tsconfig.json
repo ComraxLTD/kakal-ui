@@ -16,9 +16,9 @@
       "dom"
     ],
     "paths": {
-      "pattern-lib": [
-        "dist/pattern-lib/pattern-lib",
-        "dist/pattern-lib"
+      "kakal-ui": [
+        "dist/kakal-ui/kakal-ui",
+        "dist/kakal-ui"
       ]
     }
   }

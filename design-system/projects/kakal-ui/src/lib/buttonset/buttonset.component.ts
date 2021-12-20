@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'pl-buttonset',
+  selector: 'kkl-buttonset',
   templateUrl: './buttonset.component.html',
   styleUrls: ['./buttonset.component.scss'],
   encapsulation: ViewEncapsulation.Emulated

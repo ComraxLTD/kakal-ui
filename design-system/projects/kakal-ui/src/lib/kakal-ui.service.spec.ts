@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PatternLibService } from './pattern-lib.service';
+import { KakalUiService } from './kakal-ui.service';
 
-describe('PatternLibService', () => {
-  let service: PatternLibService;
+describe('KakalUiService', () => {
+  let service: KakalUiService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PatternLibService);
+    service = TestBed.inject(KakalUiService);
   });
 
   it('should be created', () => {

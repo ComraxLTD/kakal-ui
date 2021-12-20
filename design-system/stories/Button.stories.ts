@@ -1,6 +1,6 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { ButtonComponent } from '../projects/pattern-lib/src/lib/button/button.component';
+import { ButtonComponent } from '../projects/kakal-ui/src/lib/button/button.component';
 
 export default {
   title: 'Atomics/Buttons',

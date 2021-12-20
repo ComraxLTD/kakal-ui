@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'pl-pattern-lib',
+  selector: 'kkl-kakal-ui',
   template: `
     <p>
-      pattern-lib works!
+      kakal-ui works!
     </p>
   `,
   styles: [
   ]
 })
-export class PatternLibComponent implements OnInit {
+export class KakalUiComponent implements OnInit {
 
   constructor() { }
 

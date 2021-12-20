@@ -2,8 +2,8 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 import { CommonModule } from '@angular/common';
-import { ButtonComponent } from '../projects/pattern-lib/src/lib/button/button.component';
-import { ButtonsetComponent } from '../projects/pattern-lib/src/lib/buttonset/buttonset.component';
+import { ButtonComponent } from '../projects/kakal-ui/src/lib/button/button.component';
+import { ButtonsetComponent } from '../projects/kakal-ui/src/lib/buttonset/buttonset.component';
 
 export default {
   title: 'Molecules/Button Sets',
