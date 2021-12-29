@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'pl-dvir',
+  selector: 'kkl-dvir',
   templateUrl: './dvir.component.html',
   styleUrls: ['./dvir.component.scss']
 })

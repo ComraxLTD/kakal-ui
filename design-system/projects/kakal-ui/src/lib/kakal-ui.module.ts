@@ -11,6 +11,6 @@ import { DvirComponent } from './dvir/dvir.component';
   imports: [
     CommonModule
   ],
-  exports: [KakalUiComponent, ButtonComponent, ButtonsetComponent]
+  exports: [KakalUiComponent, ButtonComponent, ButtonsetComponent, DvirComponent]
 })
 export class KakalUiModule { }
