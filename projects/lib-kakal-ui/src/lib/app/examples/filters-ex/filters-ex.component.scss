@@ -1,0 +1,12 @@
+.container {
+    display: flex;
+    width: calc(100%);
+    flex-direction: row-reverse;
+    font-size: inherit;
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.kkl-filter-card{
+    flex: 1;
+}

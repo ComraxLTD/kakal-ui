@@ -1,0 +1,29 @@
+<div fxFill fxLayout="row" fxLayoutAlign="center center">
+  <div
+    [fxFlex]="multi ? '80' : '33'"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+  >
+    <div fxFill>
+      <kkl-form [slots]="{subSection}" [group]="group" [slots]="{button}">
+      </kkl-form>
+    </div>
+  </div>
+</div>
+
+<ng-template #subSection let-control="control">
+  <div fxFlex="100">
+    <mat-slide-toggle
+      (toggleChange)="onToggleChange()"
+      [formControl]="control"
+    ></mat-slide-toggle>
+  </div>
+</ng-template>
+
+<ng-template #button>
+  <div fxFlex="100">
+    <button fxFill mat-raised-button color="primary">
+      <kkl-typography>לחץ</kkl-typography>
+    </button>
+  </div>
+</ng-template>

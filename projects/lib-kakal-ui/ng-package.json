@@ -1,0 +1,15 @@
+{
+  "$schema": "../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../dist/lib-kakal-ui",
+  "lib": {
+    "entryFile": "src/public-api.ts"
+  },
+  "allowedNonPeerDependencies": [
+    "ngx-pagination",
+    "@angular/flex-layout",
+    "@angular/material",
+    "@angular/forms",
+    "@angular/router",
+    "@angular/cdk"
+  ]
+}
