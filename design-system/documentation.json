@@ -2,10 +2,13 @@
     "pipes": [
         {
             "name": "AreaPipe",
-            "id": "pipe-AreaPipe-ba09fc8cf66ce7b677bd39ead7115726",
+            "id": "pipe-AreaPipe-67f81ff7fb888974d1fd2f2dc7f984525ddbde34b977c458467803c489fd31539fa69e4df52e5268adbe73b4d7c052133dec83c876339f466ee5f3618fb9d33d",
             "file": "projects/kakal-ui/src/lib/pipes/area.pipe.ts",
             "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
             "description": "",
+            "rawdescription": "\n",
             "properties": [],
             "methods": [
                 {
@@ -13,11 +16,15 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "number"
+                            "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "tag",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
@@ -25,10 +32,14 @@
                     "returnType": "string",
                     "typeParameters": [],
                     "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "jsdoctags": [
                         {
                             "name": "value",
                             "type": "number",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -36,6 +47,8 @@
                         {
                             "name": "tag",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -45,14 +58,17 @@
                 }
             ],
             "ngname": "area",
-            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'area',\r\n})\r\nexport class AreaPipe implements PipeTransform {\r\n  transform(value: number, tag?: string): string {\r\n\r\n    tag = tag || 'מ\"ר';\r\n\r\n    return `${value} ${tag}`;\r\n  }\r\n}\r\n"
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'area',\n})\nexport class AreaPipe implements PipeTransform {\n  transform(value: number, tag?: string): string {\n\n    tag = tag || 'מ\"ר';\n\n    return `${value} ${tag}`;\n  }\n}\n"
         },
         {
             "name": "FormatPipe",
-            "id": "pipe-FormatPipe-66dcab3370d576abaec15a16c2b0f8f7",
+            "id": "pipe-FormatPipe-baf5d67350cf99cdc83f0bec971b9708c2bee20696b847beadb746805289d2e30c92d1a36d4dd0fa1b949e0c90df9cea43d58c435ec2e6ffe0f00a3ac40a575b",
             "file": "projects/kakal-ui/src/lib/pipes/format.pipe.ts",
             "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
             "description": "",
+            "rawdescription": "\n",
             "properties": [],
             "methods": [
                 {
@@ -60,15 +76,21 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "any"
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "format",
-                            "type": "string"
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "args",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
@@ -76,13 +98,17 @@
                     "returnType": "string",
                     "typeParameters": [],
                     "line": 29,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        112
+                        121
                     ],
                     "jsdoctags": [
                         {
                             "name": "value",
                             "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -90,6 +116,8 @@
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -97,6 +125,8 @@
                         {
                             "name": "args",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -109,15 +139,21 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "any"
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "format",
-                            "type": "string"
+                            "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "args",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
@@ -125,13 +161,17 @@
                     "returnType": "string",
                     "typeParameters": [],
                     "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        112
+                        121
                     ],
                     "jsdoctags": [
                         {
                             "name": "value",
                             "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -139,6 +179,8 @@
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -146,6 +188,8 @@
                         {
                             "name": "args",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -158,30 +202,40 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "unknown"
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         },
                         {
                             "name": "args",
                             "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
                     "optional": false,
-                    "returnType": "unknown",
+                    "returnType": "",
                     "typeParameters": [],
                     "line": 41,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        112
+                        121
                     ],
                     "jsdoctags": [
                         {
                             "name": "value",
-                            "type": "unknown",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -189,6 +243,8 @@
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -197,6 +253,8 @@
                         {
                             "name": "args",
                             "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -209,30 +267,40 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "unknown"
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         },
                         {
                             "name": "args",
                             "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
                     "optional": false,
-                    "returnType": "unknown",
+                    "returnType": "",
                     "typeParameters": [],
                     "line": 48,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        114
+                        123
                     ],
                     "jsdoctags": [
                         {
                             "name": "value",
-                            "type": "unknown",
+                            "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -240,6 +308,8 @@
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -248,6 +318,8 @@
                         {
                             "name": "args",
                             "type": "",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -257,14 +329,17 @@
                 }
             ],
             "ngname": "format",
-            "sourceCode": "import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';\r\nimport { AreaPipe } from './area.pipe';\r\nimport { formatDate, formatNumber, formatCurrency } from '@angular/common';\r\nimport { PrefixPipe } from './prefix.pipe';\r\nimport { LocationPipe } from './location.pipe';\r\n\r\n@Pipe({\r\n  name: 'format',\r\n})\r\nexport class FormatPipe implements PipeTransform {\r\n  constructor(\r\n    private area: AreaPipe,\r\n    private prefix: PrefixPipe,\r\n    private location: LocationPipe,\r\n    @Inject(LOCALE_ID) private locale: string\r\n  ) {}\r\n\r\n  private formatObj(value: any, format: string, args?: string): string {\r\n    const formats = {\r\n      location: this.location.transform(value),\r\n      area: this.area.transform(value),\r\n      prefix: this.prefix.transform(value, args),\r\n      currency: formatCurrency(value, this.locale, '₪', 'ILS', '1.0'),\r\n      number: formatNumber(value, this.locale),\r\n    };\r\n    return formats[format] !== undefined ? formats[format] : value;\r\n  }\r\n\r\n  private formatDate(value: any, format: string, args?: string): string {\r\n    const name = value.constructor.name.toLowerCase();\r\n    const formats = {\r\n      time: formatDate(value, 'HH:mm', this.locale),\r\n      date: formatDate(value, 'd/M/yy', this.locale),\r\n      fullDate: formatDate(value, 'HH:mm d/M/yy', this.locale),\r\n    };\r\n    return name === 'date' && value.toString() !== 'Invalid Date'\r\n      ? formats[format]\r\n      : value;\r\n  }\r\n\r\n  private formatValue(value: unknown, format?: string, args?): unknown {\r\n    const name = value?.constructor.name.toLowerCase();\r\n    return name === 'date'\r\n      ? this.formatDate(value, format, args)\r\n      : this.formatObj(value, format, args);\r\n  }\r\n\r\n  public transform(value: unknown, format?: string, args?): unknown {\r\n    return format && value ? this.formatValue(value, format, args) : value;\r\n  }\r\n}\r\n"
+            "sourceCode": "import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';\nimport { AreaPipe } from './area.pipe';\nimport { formatDate, formatNumber, formatCurrency } from '@angular/common';\nimport { PrefixPipe } from './prefix.pipe';\nimport { LocationPipe } from './location.pipe';\n\n@Pipe({\n  name: 'format',\n})\nexport class FormatPipe implements PipeTransform {\n  constructor(\n    private area: AreaPipe,\n    private prefix: PrefixPipe,\n    private location: LocationPipe,\n    @Inject(LOCALE_ID) private locale: string\n  ) {}\n\n  private formatObj(value: any, format: string, args?: string): string {\n    const formats = {\n      location: this.location.transform(value),\n      area: this.area.transform(value),\n      prefix: this.prefix.transform(value, args),\n      currency: formatCurrency(value, this.locale, '₪', 'ILS', '1.0'),\n      number: formatNumber(value, this.locale),\n    };\n    return formats[format] !== undefined ? formats[format] : value;\n  }\n\n  private formatDate(value: any, format: string, args?: string): string {\n    const name = value.constructor.name.toLowerCase();\n    const formats = {\n      time: formatDate(value, 'HH:mm', this.locale),\n      date: formatDate(value, 'd/M/yy', this.locale),\n      fullDate: formatDate(value, 'HH:mm d/M/yy', this.locale),\n    };\n    return name === 'date' && value.toString() !== 'Invalid Date'\n      ? formats[format]\n      : value;\n  }\n\n  private formatValue(value: unknown, format?: string, args?): unknown {\n    const name = value?.constructor.name.toLowerCase();\n    return name === 'date'\n      ? this.formatDate(value, format, args)\n      : this.formatObj(value, format, args);\n  }\n\n  public transform(value: unknown, format?: string, args?): unknown {\n    return format && value ? this.formatValue(value, format, args) : value;\n  }\n}\n"
         },
         {
             "name": "LocationPipe",
-            "id": "pipe-LocationPipe-d795b5ad322e139dd1d3a7c8f4930544",
+            "id": "pipe-LocationPipe-6bd2459eb4090546b2dd053584d9dd4c63c20995d0a29adb8a66838489bc48c5f3000e83cb0475e2df95de98e023565851d25c1504d52863a44c8a2573374d89",
             "file": "projects/kakal-ui/src/lib/pipes/location.pipe.ts",
             "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
             "description": "",
+            "rawdescription": "\n",
             "properties": [],
             "methods": [
                 {
@@ -272,11 +347,15 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "Location"
+                            "type": "Location",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
@@ -284,10 +363,14 @@
                     "returnType": "string",
                     "typeParameters": [],
                     "line": 11,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "jsdoctags": [
                         {
                             "name": "value",
                             "type": "Location",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -295,6 +378,8 @@
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -304,14 +389,17 @@
                 }
             ],
             "ngname": "location",
-            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\r\n\r\nexport declare type LocationFormats = 'c-d' | 'c-d-s';\r\n\r\n@Pipe({\r\n  name: 'location',\r\n})\r\nexport class LocationPipe implements PipeTransform {\r\n  constructor() {}\r\n\r\n  transform(value: Location, format?: string): string {\r\n    let location = '';\r\n\r\n    const entries = Object.entries(value);\r\n\r\n    const locationPrefixMap: { [x: string]: string } = {\r\n      district: 'מחוז',\r\n      street: 'רחוב',\r\n    };\r\n\r\n    location = entries\r\n      .map(([key, value]) => {\r\n        return value !== undefined\r\n          ? [locationPrefixMap[key], value].join(' ')\r\n          : null;\r\n      })\r\n      .filter((item) => item !== null)\r\n      .join(', ');\r\n\r\n    return location;\r\n  }\r\n}\r\n"
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\nexport declare type LocationFormats = 'c-d' | 'c-d-s';\n\n@Pipe({\n  name: 'location',\n})\nexport class LocationPipe implements PipeTransform {\n  constructor() {}\n\n  transform(value: Location, format?: string): string {\n    let location = '';\n\n    const entries = Object.entries(value);\n\n    const locationPrefixMap: { [x: string]: string } = {\n      district: 'מחוז',\n      street: 'רחוב',\n    };\n\n    location = entries\n      .map(([key, value]) => {\n        return value !== undefined\n          ? [locationPrefixMap[key], value].join(' ')\n          : null;\n      })\n      .filter((item) => item !== null)\n      .join(', ');\n\n    return location;\n  }\n}\n"
         },
         {
             "name": "PrefixPipe",
-            "id": "pipe-PrefixPipe-062f7cbc764f1293123a18cb469c9428",
+            "id": "pipe-PrefixPipe-b145e02b92a869d65494d98349dc3b49a25af7b99f7cbfeed597662b3439297836bbc6d4e3fe2950f2168ca9c3cae5a7e3221ddc70dab11945d9a4a9ba8040d5",
             "file": "projects/kakal-ui/src/lib/pipes/prefix.pipe.ts",
             "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
             "description": "",
+            "rawdescription": "\n",
             "properties": [],
             "methods": [
                 {
@@ -319,11 +407,15 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "any"
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "prefix",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
@@ -331,10 +423,14 @@
                     "returnType": "string",
                     "typeParameters": [],
                     "line": 7,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "jsdoctags": [
                         {
                             "name": "value",
                             "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -342,6 +438,8 @@
                         {
                             "name": "prefix",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -351,14 +449,17 @@
                 }
             ],
             "ngname": "prefix",
-            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\r\n\r\n@Pipe({\r\n  name: 'prefix',\r\n})\r\nexport class PrefixPipe implements PipeTransform {\r\n  transform(value: any, prefix?: string): string {\r\n    return `${prefix}${value}`;\r\n  }\r\n}\r\n"
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\n\n@Pipe({\n  name: 'prefix',\n})\nexport class PrefixPipe implements PipeTransform {\n  transform(value: any, prefix?: string): string {\n    return `${prefix}${value}`;\n  }\n}\n"
         },
         {
             "name": "RangePipe",
-            "id": "pipe-RangePipe-30070e5f5fc493b8b8522b3f64637397",
+            "id": "pipe-RangePipe-1e914d6cffcd4e9cf60624398ead4a6dc01e9434845da5ab2b5e07f06294c8f1a3c96f5350a5810c95f7e2be3a50f7c573275b8827bebfa5b0e5d6c47882124d",
             "file": "projects/kakal-ui/src/lib/pipes/range.pipe.ts",
             "type": "pipe",
+            "deprecated": false,
+            "deprecationMessage": "",
             "description": "",
+            "rawdescription": "\n",
             "properties": [],
             "methods": [
                 {
@@ -366,11 +467,15 @@
                     "args": [
                         {
                             "name": "value",
-                            "type": "Range"
+                            "type": "Range",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         },
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true
                         }
                     ],
@@ -378,10 +483,14 @@
                     "returnType": "string",
                     "typeParameters": [],
                     "line": 12,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "jsdoctags": [
                         {
                             "name": "value",
                             "type": "Range",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -389,6 +498,8 @@
                         {
                             "name": "format",
                             "type": "string",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "optional": true,
                             "tagName": {
                                 "text": "param"
@@ -398,75 +509,117 @@
                 }
             ],
             "ngname": "range",
-            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\r\nimport { Range } from '../components/columns/column-filter/column-filter.component';\r\n\r\nimport { FormatPipe } from './format.pipe';\r\n\r\n@Pipe({\r\n  name: 'range',\r\n})\r\nexport class RangePipe implements PipeTransform {\r\n  constructor(private format: FormatPipe) {}\r\n\r\n  transform(value: Range, format?: string): string {\r\n    let result = '';\r\n\r\n    const { to, from } = value;\r\n\r\n    if (to && from) {\r\n      result = `${this.format.transform(from, format)}-${this.format.transform(\r\n        to,\r\n        format\r\n      )}`;\r\n    } else if (to || from) {\r\n      result = `${this.format.transform(from, format)}`;\r\n    }\r\n\r\n    return result;\r\n  }\r\n}\r\n"
+            "sourceCode": "import { Pipe, PipeTransform } from '@angular/core';\nimport { Range } from '../components/columns/column-filter/column-filter.component';\n\nimport { FormatPipe } from './format.pipe';\n\n@Pipe({\n  name: 'range',\n})\nexport class RangePipe implements PipeTransform {\n  constructor(private format: FormatPipe) {}\n\n  transform(value: Range, format?: string): string {\n    let result = '';\n\n    const { to, from } = value;\n\n    if (to && from) {\n      result = `${this.format.transform(from, format)}-${this.format.transform(\n        to,\n        format\n      )}`;\n    } else if (to || from) {\n      result = `${this.format.transform(from, format)}`;\n    }\n\n    return result;\n  }\n}\n"
         }
     ],
     "interfaces": [],
     "injectables": [
         {
             "name": "KakalUiService",
-            "id": "injectable-KakalUiService-be3d2ceb6844fcc97f16093dd4110f25",
+            "id": "injectable-KakalUiService-b514bf5f8a376e27e58f979232f21b4de22c966f3ce7d1374876ddea5f411c3df78fc5ee1cb6fa400b5e5a85ddaa553109d04e8523149f70bccf186ce1a0a9ca",
             "file": "projects/kakal-ui/src/lib/kakal-ui.service.ts",
             "properties": [],
             "methods": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "description": "",
-            "sourceCode": "import { Injectable } from '@angular/core';\r\n\r\n@Injectable({\r\n  providedIn: 'root'\r\n})\r\nexport class KakalUiService {\r\n\r\n  constructor() { }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Injectable } from '@angular/core';\n\n@Injectable({\n  providedIn: 'root'\n})\nexport class KakalUiService {\n\n  constructor() { }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 6
             },
             "type": "injectable"
         }
     ],
+    "guards": [],
+    "interceptors": [],
     "classes": [],
     "directives": [
         {
             "name": "BorderDirective",
-            "id": "directive-BorderDirective-d7241a240fdb5c358bf8a5644c2a55ba",
+            "id": "directive-BorderDirective-549b6859fd1f6d08824f363086e27ee0f6441979a15ff1a741a4bbbad5f8b7430d6dd50b651978614a86ee191099bdda5505b7d5bfd91099a5986c2a852d060c",
             "file": "projects/kakal-ui/src/lib/directives/border.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { palette, Palette } from 'src/styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appBorder]',\r\n})\r\nexport class BorderDirective {\r\n  private palette = palette;\r\n\r\n  @Input() color: Palette;\r\n  @Input() thick: number;\r\n  @Input() disabled: boolean;\r\n\r\n  @HostBinding('style.border') private border: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.border = `${this.thick || 1}px solid ${\r\n      this.palette[this.color || 'primary']\r\n    }`;\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\nimport { palette, Palette } from 'src/styles/theme';\n\n@Directive({\n  selector: '[appBorder]',\n})\nexport class BorderDirective {\n  private palette = palette;\n\n  @Input() color: Palette;\n  @Input() thick: number;\n  @Input() disabled: boolean;\n\n  @HostBinding('style.border') private border: string;\n\n  constructor() {}\n\n  ngOnInit(): void {\n    this.border = `${this.thick || 1}px solid ${\n      this.palette[this.color || 'primary']\n    }`;\n  }\n}\n",
             "selector": "[appBorder]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 10,
-                    "type": "Palette"
+                    "type": "Palette",
+                    "decorators": []
                 },
                 {
                     "name": "disabled",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 12,
-                    "type": "boolean"
+                    "type": "boolean",
+                    "decorators": []
                 },
                 {
                     "name": "thick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 11,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.border",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 14,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
             "propertiesClass": [
                 {
+                    "name": "border",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.border'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
                     "name": "palette",
                     "defaultValue": "palette",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
                     "line": 8,
                     "modifierKind": [
-                        112
+                        121
                     ]
                 }
             ],
@@ -477,36 +630,65 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 14
             }
         },
         {
             "name": "ButtonDirective",
-            "id": "directive-ButtonDirective-2e2f0a52e1936ced4a972df4ed042736",
+            "id": "directive-ButtonDirective-d9ef7e8869b71f1e8d9c5be32fba3b4c605e2cbff7e45f548418e7d1112d46648967f0d2dccae552b9ca449553cc78878060017ebae500fdb0e1e2f12551d147",
             "file": "projects/kakal-ui/src/lib/directives/button.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[appButton]'\r\n})\r\nexport class ButtonDirective {\r\n\r\n\r\n  @HostBinding('style.cursor') private cursor: string;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n    this.cursor = 'pointer'\r\n  }\r\n\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\n@Directive({\n  selector: '[appButton]'\n})\nexport class ButtonDirective {\n\n\n  @HostBinding('style.cursor') private cursor: string;\n\n  constructor() { }\n\n  ngOnInit(): void {\n    this.cursor = 'pointer'\n  }\n\n}\n",
             "selector": "[appButton]",
             "providers": [],
             "inputsClass": [],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.cursor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 9,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "cursor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.cursor'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "ngOnInit",
@@ -514,42 +696,74 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 13
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 9
             }
         },
         {
             "name": "CellDirective",
-            "id": "directive-CellDirective-dd15b12406c79b307f385a0373360860",
+            "id": "directive-CellDirective-f492698d790d159ad52e9549202a380fba19200bdb73b127a92e6dce3f171c08b1396a26cfe07c69e6fc5b3c3f4022868cf4310c681a5820593067706ea782e7",
             "file": "projects/kakal-ui/src/lib/directives/cell.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[appCell]'\r\n})\r\nexport class CellDirective {\r\n\r\n  @Input() span: number;\r\n\r\n  @HostBinding('style.flex') private flex: number;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.flex = this.span || 0.1\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\n@Directive({\n  selector: '[appCell]'\n})\nexport class CellDirective {\n\n  @Input() span: number;\n\n  @HostBinding('style.flex') private flex: number;\n\n  constructor() {}\n\n  ngOnInit(): void {\n    this.flex = this.span || 0.1\n  }\n}\n",
             "selector": "[appCell]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "span",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 8,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.flex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 10,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "flex",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "number",
+                    "optional": false,
+                    "description": "",
+                    "line": 10,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.flex'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "ngOnInit",
@@ -557,41 +771,91 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 14
+                    "line": 14,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 10
             }
         },
         {
             "name": "FlexStartDirective",
-            "id": "directive-FlexStartDirective-2d88e72c88092753708cf40964a25a2c",
+            "id": "directive-FlexStartDirective-b9099fdb4e0140ed88a2cacaf85d116f93880be0900460a2d5288d5009c80ef76d4fad9e3b64891daf099a716b3f56be0b2f185900f468ead6ed4802f4c42340",
             "file": "projects/kakal-ui/src/lib/directives/flexStart.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[appFlexStart]'\r\n})\r\nexport class FlexStartDirective {\r\n\r\n  @HostBinding('style.display') private display: string;\r\n  @HostBinding('style.justify-content') private justify: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.display = 'flex'\r\n    this.justify = 'start'\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\n@Directive({\n  selector: '[appFlexStart]'\n})\nexport class FlexStartDirective {\n\n  @HostBinding('style.display') private display: string;\n  @HostBinding('style.justify-content') private justify: string;\n\n  constructor() {}\n\n  ngOnInit(): void {\n    this.display = 'flex'\n    this.justify = 'start'\n  }\n}\n",
             "selector": "[appFlexStart]",
             "providers": [],
             "inputsClass": [],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.display",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 8,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 },
                 {
                     "name": "style.justify-content",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 9,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "display",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 8,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.display'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "justify",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.justify-content'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "ngOnInit",
@@ -599,23 +863,28 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 13
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 9
             }
         },
         {
             "name": "OutsideDirective",
-            "id": "directive-OutsideDirective-2c7c5f3cf9899b801053e602a63ea66d",
+            "id": "directive-OutsideDirective-e49aea1be8b633cd52f322698f441d3ff9885f354e48a2745d89bce5e158907aa224a5d227e92bf9c896c242042ff442450ca62d35e0a42d6776d6d5eb715ac9",
             "file": "projects/kakal-ui/src/lib/directives/outside.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, ElementRef, EventEmitter, Output} from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[appOutside]',\r\n  host: {\r\n    '(document:click)': 'onClick($event)',\r\n  }\r\n})\r\nexport class OutsideDirective {\r\n  @Output() public clickOutside:EventEmitter<any> = new EventEmitter();\r\n\r\n  constructor(private elementRef: ElementRef) { }\r\n  public counter = 0;\r\n\r\n  public onClick(event: any) {\r\n    if (!this.elementRef.nativeElement.contains(event.target)) {\r\n      this.counter++;\r\n      if (this.counter > 1) {\r\n        this.clickOutside.emit();\r\n      }\r\n    }\r\n\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, ElementRef, EventEmitter, Output} from '@angular/core';\n\n@Directive({\n  selector: '[appOutside]',\n  host: {\n    '(document:click)': 'onClick($event)',\n  }\n})\nexport class OutsideDirective {\n  @Output() public clickOutside:EventEmitter<any> = new EventEmitter();\n\n  constructor(private elementRef: ElementRef) { }\n  public counter = 0;\n\n  public onClick(event: any) {\n    if (!this.elementRef.nativeElement.contains(event.target)) {\n      this.counter++;\n      if (this.counter > 1) {\n        this.clickOutside.emit();\n      }\n    }\n\n  }\n}\n",
             "selector": "[appOutside]",
             "providers": [],
             "inputsClass": [],
@@ -623,22 +892,28 @@
                 {
                     "name": "clickOutside",
                     "defaultValue": "new EventEmitter()",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 10,
                     "type": "EventEmitter<any>"
                 }
             ],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "propertiesClass": [
                 {
                     "name": "counter",
                     "defaultValue": "0",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "number",
                     "optional": false,
                     "description": "",
                     "line": 13,
                     "modifierKind": [
-                        114
+                        123
                     ]
                 }
             ],
@@ -648,20 +923,26 @@
                     "args": [
                         {
                             "name": "event",
-                            "type": "any"
+                            "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": ""
                         }
                     ],
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
                     "line": 15,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        114
+                        123
                     ],
                     "jsdoctags": [
                         {
                             "name": "event",
                             "type": "any",
+                            "deprecated": false,
+                            "deprecationMessage": "",
                             "tagName": {
                                 "text": "param"
                             }
@@ -672,10 +953,14 @@
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [
                     {
                         "name": "elementRef",
-                        "type": "ElementRef"
+                        "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
                 "line": 10,
@@ -683,6 +968,8 @@
                     {
                         "name": "elementRef",
                         "type": "ElementRef",
+                        "deprecated": false,
+                        "deprecationMessage": "",
                         "tagName": {
                             "text": "param"
                         }
@@ -692,83 +979,149 @@
         },
         {
             "name": "SizeDirective",
-            "id": "directive-SizeDirective-9668058a66171c3ff786ee8f2e7d7f55",
+            "id": "directive-SizeDirective-9b2a78c529ea0d831d48ea17772d99fa66114be439017f83431b20354b676f8f0abc42d3de5dec193eb45e5e3fa041e3e9bfecfa2f2c49cf9eeb175f4d8d92e2",
             "file": "projects/kakal-ui/src/lib/directives/size.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import {\r\n  Directive,\r\n  HostBinding,\r\n  Input,\r\n  OnDestroy,\r\n  OnInit,\r\n} from '@angular/core';\r\nimport {\r\n  CardStepModel,\r\n  StepType,\r\n} from '../components/cards/card-step/card-step.model';\r\nimport { BreakpointService } from '../services/breakpoint.service';\r\nimport { map, Observable, of, Subscription, switchMap } from 'rxjs';\r\n\r\n@Directive({\r\n  selector: '[appSize]',\r\n})\r\nexport class SizeDirective implements OnInit, OnDestroy {\r\n  @Input() step: CardStepModel;\r\n  @Input() size: number;\r\n  @Input() type: StepType;\r\n  @Input() divider: number;\r\n  @Input() space: number;\r\n\r\n  private mobile$: Observable<boolean>;\r\n\r\n  private subscription: Subscription;\r\n\r\n  @HostBinding('style.height') public height: string;\r\n  @HostBinding('style.width') public width: string;\r\n\r\n  private stepHeight: number;\r\n\r\n  constructor(private breakpointService: BreakpointService) {}\r\n\r\n  ngOnInit(): void {\r\n    this.setSize();\r\n    this.mobile$ = this.breakpointService.isMobile();\r\n    this.subscribeToBreakpoint();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.subscription.unsubscribe();\r\n  }\r\n\r\n  private setSize() {\r\n    switch (this.type) {\r\n      case 'wizard':\r\n        this.width = '6.8rem';\r\n        this.height = '9rem';\r\n        break;\r\n      case 'status':\r\n        break;\r\n      case 'step':\r\n        this.width = `${this.size}rem`;\r\n        this.height = `${this.stepHeight}rem`;\r\n        break;\r\n      default:\r\n        this.width = `${this.size * (this.divider || 1)}rem`;\r\n        this.height = `${this.size}rem`;\r\n    }\r\n  }\r\n\r\n  private subscribeToBreakpoint() {\r\n    this.subscription = this.mobile$\r\n      .pipe(\r\n        switchMap((mobile: boolean) => {\r\n          this.stepHeight = mobile ? 6 : 12;\r\n          if (this.step) {\r\n            return this.step.getActiveObs().pipe(\r\n              map((active: boolean) => {\r\n                if (mobile && this.type === 'step') {\r\n                  this.size = active ? 2.5 : 1.6;\r\n                }\r\n                this.setSize();\r\n              })\r\n            );\r\n          }\r\n\r\n          return of(true);\r\n        })\r\n      )\r\n      .subscribe();\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import {\n  Directive,\n  HostBinding,\n  Input,\n  OnDestroy,\n  OnInit,\n} from '@angular/core';\nimport {\n  CardStepModel,\n  StepType,\n} from '../components/cards/card-step/card-step.model';\nimport { BreakpointService } from '../services/breakpoint.service';\nimport { map, Observable, of, Subscription, switchMap } from 'rxjs';\n\n@Directive({\n  selector: '[appSize]',\n})\nexport class SizeDirective implements OnInit, OnDestroy {\n  @Input() step: CardStepModel;\n  @Input() size: number;\n  @Input() type: StepType;\n  @Input() divider: number;\n  @Input() space: number;\n\n  private mobile$: Observable<boolean>;\n\n  private subscription: Subscription;\n\n  @HostBinding('style.height') public height: string;\n  @HostBinding('style.width') public width: string;\n\n  private stepHeight: number;\n\n  constructor(private breakpointService: BreakpointService) {}\n\n  ngOnInit(): void {\n    this.setSize();\n    this.mobile$ = this.breakpointService.isMobile();\n    this.subscribeToBreakpoint();\n  }\n\n  ngOnDestroy(): void {\n    this.subscription.unsubscribe();\n  }\n\n  private setSize() {\n    switch (this.type) {\n      case 'wizard':\n        this.width = '6.8rem';\n        this.height = '9rem';\n        break;\n      case 'status':\n        break;\n      case 'step':\n        this.width = `${this.size}rem`;\n        this.height = `${this.stepHeight}rem`;\n        break;\n      default:\n        this.width = `${this.size * (this.divider || 1)}rem`;\n        this.height = `${this.size}rem`;\n    }\n  }\n\n  private subscribeToBreakpoint() {\n    this.subscription = this.mobile$\n      .pipe(\n        switchMap((mobile: boolean) => {\n          this.stepHeight = mobile ? 6 : 12;\n          if (this.step) {\n            return this.step.getActiveObs().pipe(\n              map((active: boolean) => {\n                if (mobile && this.type === 'step') {\n                  this.size = active ? 2.5 : 1.6;\n                }\n                this.setSize();\n              })\n            );\n          }\n\n          return of(true);\n        })\n      )\n      .subscribe();\n  }\n}\n",
             "selector": "[appSize]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "divider",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 22,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 },
                 {
                     "name": "size",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 20,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 },
                 {
                     "name": "space",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 23,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 },
                 {
                     "name": "step",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 19,
-                    "type": "CardStepModel"
+                    "type": "CardStepModel",
+                    "decorators": []
                 },
                 {
                     "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 21,
-                    "type": "StepType"
+                    "type": "StepType",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 29,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 },
                 {
                     "name": "style.width",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 30,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
             "propertiesClass": [
                 {
+                    "name": "height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 29,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.height'"
+                        }
+                    ],
+                    "modifierKind": [
+                        123
+                    ]
+                },
+                {
                     "name": "mobile$",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "Observable<boolean>",
                     "optional": false,
                     "description": "",
                     "line": 25,
                     "modifierKind": [
-                        112
+                        121
                     ]
                 },
                 {
                     "name": "stepHeight",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "number",
                     "optional": false,
                     "description": "",
                     "line": 32,
                     "modifierKind": [
-                        112
+                        121
                     ]
                 },
                 {
                     "name": "subscription",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "Subscription",
                     "optional": false,
                     "description": "",
                     "line": 27,
                     "modifierKind": [
-                        112
+                        121
+                    ]
+                },
+                {
+                    "name": "width",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 30,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.width'"
+                        }
+                    ],
+                    "modifierKind": [
+                        123
                     ]
                 }
             ],
@@ -779,7 +1132,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 42
+                    "line": 42,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "ngOnInit",
@@ -787,7 +1142,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36
+                    "line": 36,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "setSize",
@@ -796,8 +1153,10 @@
                     "returnType": "void",
                     "typeParameters": [],
                     "line": 46,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        112
+                        121
                     ]
                 },
                 {
@@ -807,8 +1166,10 @@
                     "returnType": "void",
                     "typeParameters": [],
                     "line": 64,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        112
+                        121
                     ]
                 }
             ],
@@ -819,10 +1180,14 @@
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [
                     {
                         "name": "breakpointService",
-                        "type": "BreakpointService"
+                        "type": "BreakpointService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
                     }
                 ],
                 "line": 32,
@@ -830,6 +1195,8 @@
                     {
                         "name": "breakpointService",
                         "type": "BreakpointService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
                         "tagName": {
                             "text": "param"
                         }
@@ -839,36 +1206,51 @@
         },
         {
             "name": "UnderlineDirective",
-            "id": "directive-UnderlineDirective-99a0d2ac8403d548c01b31f9f345665e",
+            "id": "directive-UnderlineDirective-f44deddb4e07b3b0c1fc9e08e72fec24ac0b880e8573b38317257b310fafe3233cf48f4be166278dc44fbcb8ded68778a14187b76fd081661a64fd03b530b3a8",
             "file": "projects/kakal-ui/src/lib/directives/underline.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { Palette, palette } from 'src/styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appUnderline]',\r\n})\r\nexport class UnderlineDirective {\r\n  private palette = palette;\r\n\r\n  @Input() color: Palette;\r\n  @Input() thick: number;\r\n  @Input() pattern: 'solid' | 'dotted';\r\n\r\n  @HostBinding('style.border-bottom') private underline: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.underline = `${this.thick || 1}px ${this.pattern || 'solid'} ${this.palette[this.color || 'primary']}`;\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\nimport { Palette, palette } from 'src/styles/theme';\n\n@Directive({\n  selector: '[appUnderline]',\n})\nexport class UnderlineDirective {\n  private palette = palette;\n\n  @Input() color: Palette;\n  @Input() thick: number;\n  @Input() pattern: 'solid' | 'dotted';\n\n  @HostBinding('style.border-bottom') private underline: string;\n\n  constructor() {}\n\n  ngOnInit(): void {\n    this.underline = `${this.thick || 1}px ${this.pattern || 'solid'} ${this.palette[this.color || 'primary']}`;\n  }\n}\n",
             "selector": "[appUnderline]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 10,
-                    "type": "Palette"
+                    "type": "Palette",
+                    "decorators": []
                 },
                 {
                     "name": "pattern",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 12,
-                    "type": "\"solid\" | \"dotted\""
+                    "type": "\"solid\" | \"dotted\"",
+                    "decorators": []
                 },
                 {
                     "name": "thick",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 11,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.border-bottom",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 14,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
@@ -876,12 +1258,32 @@
                 {
                     "name": "palette",
                     "defaultValue": "palette",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "",
                     "optional": false,
                     "description": "",
                     "line": 8,
                     "modifierKind": [
-                        112
+                        121
+                    ]
+                },
+                {
+                    "name": "underline",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.border-bottom'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
                     ]
                 }
             ],
@@ -892,68 +1294,187 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 14
             }
         },
         {
             "name": "VariantDirective",
-            "id": "directive-VariantDirective-22905ef5f152b6013929b39d9e4920c4",
+            "id": "directive-VariantDirective-68750ce02811032d4315a5b15b27ccd836436c6beeeb49a271b45e7ee4ac2353c7995a3dcb690fc1cd9fe40cb37f1003b51af234758e63bdd23a5c3e78d972ae",
             "file": "projects/kakal-ui/src/lib/directives/variant.directive.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, Input, HostBinding } from '@angular/core';\r\nimport { StepVariant, StepType } from '../components/cards/card-step/card-step.model';\r\n\r\n@Directive({\r\n  selector: '[appVariant]',\r\n})\r\nexport class VariantDirective {\r\n  @Input() variant: StepVariant = 'circle';\r\n  @Input() type: StepType;\r\n\r\n  @HostBinding('style.border') private border: string;\r\n  @HostBinding('style.border-radius') private radius: string;\r\n  @HostBinding('style.box-shadow') private boxShadow: string;\r\n  @HostBinding('style.background') private background: string;\r\n  @HostBinding('style.background-color') private backgroundColor: string;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit() {\r\n\r\n    switch (this.variant) {\r\n      case 'circle':\r\n\r\n        this.radius = `${5}rem`;\r\n\r\n        switch (this.type) {\r\n\r\n          case 'step':\r\n            this.boxShadow =\r\n              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';\r\n            this.background = `linear-gradient(\r\n          0deg, #eeeeee 0%, #fefefe 100%`;\r\n\r\n            break;\r\n\r\n          case 'status':\r\n            this.boxShadow = '0px 0px 0px 6px #ffffff !important';\r\n            this.backgroundColor = '#ffffff !important';\r\n            this.border = `1px solid #00000029`;\r\n            break;\r\n        }\r\n\r\n        break\r\n\r\n      case 'square':\r\n\r\n        switch (this.type) {\r\n\r\n          case 'step':\r\n            this.boxShadow =\r\n              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';\r\n            this.background = `linear-gradient(\r\n          0deg, #eeeeee 0%, #fefefe 100%`;\r\n            break\r\n        }\r\n\r\n    }\r\n\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, Input, HostBinding } from '@angular/core';\nimport { StepVariant, StepType } from '../components/cards/card-step/card-step.model';\n\n@Directive({\n  selector: '[appVariant]',\n})\nexport class VariantDirective {\n  @Input() variant: StepVariant = 'circle';\n  @Input() type: StepType;\n\n  @HostBinding('style.border') private border: string;\n  @HostBinding('style.border-radius') private radius: string;\n  @HostBinding('style.box-shadow') private boxShadow: string;\n  @HostBinding('style.background') private background: string;\n  @HostBinding('style.background-color') private backgroundColor: string;\n\n  constructor() { }\n\n  ngOnInit() {\n\n    switch (this.variant) {\n      case 'circle':\n\n        this.radius = `${5}rem`;\n\n        switch (this.type) {\n\n          case 'step':\n            this.boxShadow =\n              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';\n            this.background = `linear-gradient(\n          0deg, #eeeeee 0%, #fefefe 100%`;\n\n            break;\n\n          case 'status':\n            this.boxShadow = '0px 0px 0px 6px #ffffff !important';\n            this.backgroundColor = '#ffffff !important';\n            this.border = `1px solid #00000029`;\n            break;\n        }\n\n        break\n\n      case 'square':\n\n        switch (this.type) {\n\n          case 'step':\n            this.boxShadow =\n              '0px 3px 3px 1px #dadada, 0px 0px 0px 9px #ececec !important';\n            this.background = `linear-gradient(\n          0deg, #eeeeee 0%, #fefefe 100%`;\n            break\n        }\n\n    }\n\n  }\n}\n",
             "selector": "[appVariant]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "type",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 9,
-                    "type": "StepType"
+                    "type": "StepType",
+                    "decorators": []
                 },
                 {
                     "name": "variant",
                     "defaultValue": "'circle'",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 8,
-                    "type": "StepVariant"
+                    "type": "StepVariant",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.background",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 14,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 },
                 {
                     "name": "style.background-color",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 15,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 },
                 {
                     "name": "style.border",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 11,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 },
                 {
                     "name": "style.border-radius",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 12,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 },
                 {
                     "name": "style.box-shadow",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 13,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "background",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 14,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.background'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "backgroundColor",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 15,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.background-color'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "border",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 11,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.border'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "boxShadow",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 13,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.box-shadow'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                },
+                {
+                    "name": "radius",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 12,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.border-radius'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "ngOnInit",
@@ -961,43 +1482,75 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 19
+                    "line": 19,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 15
             }
         },
         {
             "name": "WizardDirective",
-            "id": "directive-WizardDirective-57518a5c7ee6ee2f1e1e116c4291e839",
+            "id": "directive-WizardDirective-ab1f5af7ee5260e0d331d33235adccdbcf691c047b2e8be3e7be439ff8cdfcec6743d8f964f03028061baa2b139fc4506b4e3eb772d359ab6290610a5cba7d19",
             "file": "projects/kakal-ui/src/lib/directives/wizard.ts",
             "type": "directive",
             "description": "",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\n\r\n@Directive({\r\n  selector: '[appWizard]',\r\n})\r\nexport class WizardDirective {\r\n  @Input() cards: number = 4;\r\n\r\n  @HostBinding('style.height') private height: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.height = this.setHeight() + 'rem';\r\n  }\r\n\r\n  private setHeight() {\r\n    return this.cards * 7 + 9;\r\n  }\r\n}\r\n",
+            "rawdescription": "\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\n\n@Directive({\n  selector: '[appWizard]',\n})\nexport class WizardDirective {\n  @Input() cards: number = 4;\n\n  @HostBinding('style.height') private height: string;\n\n  constructor() {}\n\n  ngOnInit(): void {\n    this.height = this.setHeight() + 'rem';\n  }\n\n  private setHeight() {\n    return this.cards * 7 + 9;\n  }\n}\n",
             "selector": "[appWizard]",
             "providers": [],
             "inputsClass": [
                 {
                     "name": "cards",
                     "defaultValue": "4",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 7,
-                    "type": "number"
+                    "type": "number",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [
                 {
                     "name": "style.height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 9,
-                    "type": "string"
+                    "type": "string",
+                    "decorators": []
                 }
             ],
             "hostListeners": [],
-            "propertiesClass": [],
+            "propertiesClass": [
+                {
+                    "name": "height",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "string",
+                    "optional": false,
+                    "description": "",
+                    "line": 9,
+                    "decorators": [
+                        {
+                            "name": "HostBinding",
+                            "stringifiedArguments": "'style.height'"
+                        }
+                    ],
+                    "modifierKind": [
+                        121
+                    ]
+                }
+            ],
             "methodsClass": [
                 {
                     "name": "ngOnInit",
@@ -1005,7 +1558,9 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 13
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 },
                 {
                     "name": "setHeight",
@@ -1014,14 +1569,18 @@
                     "returnType": "number",
                     "typeParameters": [],
                     "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "modifierKind": [
-                        112
+                        121
                     ]
                 }
             ],
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 9
             }
@@ -1030,7 +1589,7 @@
     "components": [
         {
             "name": "ButtonComponent",
-            "id": "component-ButtonComponent-4688b9be3f2cc4a94709b9bc394f7917",
+            "id": "component-ButtonComponent-36acb4787575fc1b0cf4ef355365a81aab4df5d82406529cee056c695df18a051d81f14d2d038e097ea1a8b124e73de22127039292ec2161054149eece30a79c",
             "file": "projects/kakal-ui/src/lib/button/button.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.Emulated"
@@ -1052,29 +1611,44 @@
                 {
                     "name": "bordersLeft",
                     "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 13,
-                    "type": "boolean"
+                    "type": "boolean",
+                    "decorators": []
                 },
                 {
                     "name": "bordersRight",
                     "defaultValue": "true",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 14,
-                    "type": "boolean"
+                    "type": "boolean",
+                    "decorators": []
                 },
                 {
                     "name": "label",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 10,
-                    "type": "string | null"
+                    "type": "string | null",
+                    "decorators": []
                 },
                 {
                     "name": "noShadow",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 12,
-                    "type": "boolean"
+                    "type": "boolean",
+                    "decorators": []
                 },
                 {
                     "name": "pink",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "line": 11,
-                    "type": "boolean"
+                    "type": "boolean",
+                    "decorators": []
                 }
             ],
             "outputsClass": [],
@@ -1086,13 +1660,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 18
+                    "line": 18,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "description": "",
-            "rawdescription": "",
+            "rawdescription": "\n",
             "type": "component",
             "sourceCode": "import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-button',\r\n  templateUrl: './button.component.html',\r\n  styleUrls: ['./button.component.scss'],\r\n  encapsulation: ViewEncapsulation.Emulated\r\n})\r\nexport class ButtonComponent implements OnInit {\r\n  @Input('label') label: string | null;\r\n  @Input('pink') pink: boolean;\r\n  @Input('noShadow') noShadow: boolean;\r\n  @Input('bordersLeft') bordersLeft: boolean = true;\r\n  @Input('bordersRight') bordersRight: boolean = true;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
@@ -1106,6 +1684,8 @@
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 14
             },
@@ -1116,7 +1696,7 @@
         },
         {
             "name": "ButtonsetComponent",
-            "id": "component-ButtonsetComponent-ae1214cdca9d2da47c646a167dd75f27",
+            "id": "component-ButtonsetComponent-7da2dc46ab3f819db315d383bd4d0b816f0aea2393b349aa36c7e47e90da240a1efab4b6a3b76c7e7f7c192519189efac3efe89b791bec30a5ff8fce5347b7b5",
             "file": "projects/kakal-ui/src/lib/buttonset/buttonset.component.ts",
             "encapsulation": [
                 "ViewEncapsulation.Emulated"
@@ -1144,13 +1724,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 13
+                    "line": 13,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "description": "",
-            "rawdescription": "",
+            "rawdescription": "\n",
             "type": "component",
             "sourceCode": "import { Component, OnInit, ViewEncapsulation } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-buttonset',\r\n  templateUrl: './buttonset.component.html',\r\n  styleUrls: ['./buttonset.component.scss'],\r\n  encapsulation: ViewEncapsulation.Emulated\r\n})\r\nexport class ButtonsetComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
@@ -1164,6 +1748,8 @@
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 9
             },
@@ -1174,7 +1760,7 @@
         },
         {
             "name": "KakalUiComponent",
-            "id": "component-KakalUiComponent-2a1999e016266653d0ad693021c7ef2d",
+            "id": "component-KakalUiComponent-e65fe1e56821b6c4139dae9148e96c647f3c1a1ab37dabe3045d06d3f5967bdca9fbd61e39b47c0b5251aea0f92990b87748a05a28eab6f31cb9997b90ea33ce",
             "file": "projects/kakal-ui/src/lib/kakal-ui.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -1197,13 +1783,17 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 17
+                    "line": 17,
+                    "deprecated": false,
+                    "deprecationMessage": ""
                 }
             ],
+            "deprecated": false,
+            "deprecationMessage": "",
             "hostBindings": [],
             "hostListeners": [],
             "description": "",
-            "rawdescription": "",
+            "rawdescription": "\n",
             "type": "component",
             "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-kakal-ui',\r\n  template: `\r\n    <p>\r\n      kakal-ui works!\r\n    </p>\r\n  `,\r\n  styles: [\r\n  ]\r\n})\r\nexport class KakalUiComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
@@ -1212,6 +1802,8 @@
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "args": [],
                 "line": 13
             },
@@ -1223,6 +1815,13 @@
     "modules": [
         {
             "name": "KakalUiModule",
+            "id": "module-KakalUiModule-861822d7e266fb5e5e2a32559f921e40b89bb9569db15968e6588525f297663446d7276e2c85872767b747652123904f0b946de5c4fbf930d8467042557cb65f",
+            "description": "",
+            "deprecationMessage": "",
+            "deprecated": false,
+            "file": "projects/kakal-ui/src/lib/kakal-ui.module.ts",
+            "methods": [],
+            "sourceCode": "import { NgModule } from '@angular/core';\nimport { CommonModule } from '@angular/common';\nimport { KakalUiComponent } from './kakal-ui.component';\nimport { ButtonComponent } from './button/button.component';\nimport { ButtonsetComponent } from './buttonset/buttonset.component';\nimport { AreaPipe } from './pipes/area.pipe';\nimport { FormatPipe } from './pipes/format.pipe';\nimport { LocationPipe } from './pipes/location.pipe';\nimport { PrefixPipe } from './pipes/prefix.pipe';\nimport { RangePipe } from './pipes/range.pipe';\nimport { BorderDirective } from './directives/border.directive';\nimport { ButtonDirective } from './directives/button.directive';\nimport { CellDirective } from './directives/cell.directive';\nimport { OutsideDirective } from './directives/outside.directive';\nimport { SizeDirective } from './directives/size.directive';\nimport { UnderlineDirective } from './directives/underline.directive';\nimport { VariantDirective } from './directives/variant.directive';\nimport { WizardDirective } from './directives/wizard';\n\nconst exportPipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];\nconst exportDirective = [\n  BorderDirective,\n  ButtonDirective,\n  CellDirective,\n  OutsideDirective,\n  SizeDirective,\n  UnderlineDirective,\n  VariantDirective,\n  WizardDirective,\n];\n\n@NgModule({\n  declarations: [\n    KakalUiComponent,\n    ButtonComponent,\n    ButtonsetComponent,\n    ...exportPipes,\n    ...exportDirective,\n  ],\n  imports: [CommonModule],\n  exports: [\n    KakalUiComponent,\n    ButtonComponent,\n    ButtonsetComponent,\n    ...exportPipes,\n    ...exportDirective,\n  ],\n})\nexport class KakalUiModule {}\n",
             "children": [
                 {
                     "type": "providers",
@@ -1356,6 +1955,8 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Buttonset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1364,6 +1965,8 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/kakal-ui/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
@@ -1372,14 +1975,18 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/kakal-ui/src/lib/kakal-ui.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "[]",
-                "defaultValue": "[\r\n  BorderDirective,\r\n  ButtonDirective,\r\n  CellDirective,\r\n  OutsideDirective,\r\n  SizeDirective,\r\n  UnderlineDirective,\r\n  VariantDirective,\r\n  WizardDirective,\r\n]"
+                "defaultValue": "[\n  BorderDirective,\n  ButtonDirective,\n  CellDirective,\n  OutsideDirective,\n  SizeDirective,\n  UnderlineDirective,\n  VariantDirective,\n  WizardDirective,\n]"
             },
             {
                 "name": "exportPipes",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/kakal-ui/src/lib/kakal-ui.module.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "[]",
                 "defaultValue": "[AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe]"
             },
@@ -1388,6 +1995,8 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1396,6 +2005,8 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "Template.bind({})"
             },
@@ -1404,6 +2015,8 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "projects/kakal-ui/src/test.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "literal type"
             },
             {
@@ -1411,6 +2024,8 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
                 "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
             },
@@ -1419,6 +2034,8 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Buttonset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "type": "Story<ButtonsetComponent>",
                 "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
             }
@@ -1431,8 +2048,10 @@
                 "subtype": "typealias",
                 "rawtype": "\"c-d\" | \"c-d-s\"",
                 "file": "projects/kakal-ui/src/lib/pipes/location.pipe.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
                 "description": "",
-                "kind": 168
+                "kind": 186
             }
         ],
         "enumerations": [],
@@ -1443,6 +2062,8 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/Buttonset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1451,6 +2072,8 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/Buttonset.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "Story<ButtonsetComponent>",
                     "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
                 }
@@ -1461,6 +2084,8 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/kakal-ui/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
                 },
@@ -1469,6 +2094,8 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/kakal-ui/src/test.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "literal type"
                 }
             ],
@@ -1478,14 +2105,18 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/kakal-ui/src/lib/kakal-ui.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "[]",
-                    "defaultValue": "[\r\n  BorderDirective,\r\n  ButtonDirective,\r\n  CellDirective,\r\n  OutsideDirective,\r\n  SizeDirective,\r\n  UnderlineDirective,\r\n  VariantDirective,\r\n  WizardDirective,\r\n]"
+                    "defaultValue": "[\n  BorderDirective,\n  ButtonDirective,\n  CellDirective,\n  OutsideDirective,\n  SizeDirective,\n  UnderlineDirective,\n  VariantDirective,\n  WizardDirective,\n]"
                 },
                 {
                     "name": "exportPipes",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "projects/kakal-ui/src/lib/kakal-ui.module.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "[]",
                     "defaultValue": "[AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe]"
                 }
@@ -1496,6 +2127,8 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1504,6 +2137,8 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "",
                     "defaultValue": "Template.bind({})"
                 },
@@ -1512,6 +2147,8 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
                     "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
                 }
@@ -1527,8 +2164,10 @@
                     "subtype": "typealias",
                     "rawtype": "\"c-d\" | \"c-d-s\"",
                     "file": "projects/kakal-ui/src/lib/pipes/location.pipe.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
                     "description": "",
-                    "kind": 168
+                    "kind": 186
                 }
             ]
         }
@@ -1562,7 +2201,7 @@
                 "linktype": "directive",
                 "name": "BorderDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -1571,7 +2210,7 @@
                 "linktype": "directive",
                 "name": "ButtonDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1580,7 +2219,7 @@
                 "linktype": "directive",
                 "name": "CellDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -1589,7 +2228,7 @@
                 "linktype": "directive",
                 "name": "FlexStartDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
@@ -1607,7 +2246,7 @@
                 "linktype": "directive",
                 "name": "SizeDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/16",
+                "coverageCount": "0/18",
                 "status": "low"
             },
             {
@@ -1616,7 +2255,7 @@
                 "linktype": "directive",
                 "name": "UnderlineDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/8",
+                "coverageCount": "0/9",
                 "status": "low"
             },
             {
@@ -1625,7 +2264,7 @@
                 "linktype": "directive",
                 "name": "VariantDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/10",
+                "coverageCount": "0/15",
                 "status": "low"
             },
             {
@@ -1634,7 +2273,7 @@
                 "linktype": "directive",
                 "name": "WizardDirective",
                 "coveragePercent": 0,
-                "coverageCount": "0/6",
+                "coverageCount": "0/7",
                 "status": "low"
             },
             {
