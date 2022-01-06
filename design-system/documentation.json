@@ -300,14 +300,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "palette",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                "type": "Color",
-                "defaultValue": "{\r\n  primary: '#01a7b4',\r\n  accent: '#37c56b',\r\n  warn: '#d83020',\r\n  paper: '#fff',\r\n  default: '#bababa',\r\n  disable: ' rgba(0, 0, 0, 0.26)',\r\n  disableButton: 'rgba(0, 0, 0, 0.12);',\r\n  disableText: ' rgba(0, 0, 0, 0.26)',  table: '#f9f9f9',\r\n  text: '#000000',\r\n  success: '#59a437',\r\n  graylight: '#e2e1e1',\r\n}"
-            },
-            {
                 "name": "require",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -332,35 +324,7 @@
             }
         ],
         "functions": [],
-        "typealiases": [
-            {
-                "name": "Color",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "",
-                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                "description": "",
-                "kind": 176
-            },
-            {
-                "name": "Palette",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "ThemePalette | \"paper\" | \"default\" | \"disable\" | \"disableButton\" | \"disableText\" | \"table\" | \"text\" | \"success\" | \"graylight\"",
-                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                "description": "",
-                "kind": 168
-            },
-            {
-                "name": "Theme",
-                "ctype": "miscellaneous",
-                "subtype": "typealias",
-                "rawtype": "",
-                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                "description": "",
-                "kind": 177
-            }
-        ],
+        "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
             "stories/Buttonset.stories.ts": [
@@ -423,51 +387,11 @@
                     "type": "Story<ButtonComponent>",
                     "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
                 }
-            ],
-            "projects/kakal-ui/src/lib/styles/theme.ts": [
-                {
-                    "name": "palette",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                    "type": "Color",
-                    "defaultValue": "{\r\n  primary: '#01a7b4',\r\n  accent: '#37c56b',\r\n  warn: '#d83020',\r\n  paper: '#fff',\r\n  default: '#bababa',\r\n  disable: ' rgba(0, 0, 0, 0.26)',\r\n  disableButton: 'rgba(0, 0, 0, 0.12);',\r\n  disableText: ' rgba(0, 0, 0, 0.26)',  table: '#f9f9f9',\r\n  text: '#000000',\r\n  success: '#59a437',\r\n  graylight: '#e2e1e1',\r\n}"
-                }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
-        "groupedTypeAliases": {
-            "projects/kakal-ui/src/lib/styles/theme.ts": [
-                {
-                    "name": "Color",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "",
-                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                    "description": "",
-                    "kind": 176
-                },
-                {
-                    "name": "Palette",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "ThemePalette | \"paper\" | \"default\" | \"disable\" | \"disableButton\" | \"disableText\" | \"table\" | \"text\" | \"success\" | \"graylight\"",
-                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                    "description": "",
-                    "kind": 168
-                },
-                {
-                    "name": "Theme",
-                    "ctype": "miscellaneous",
-                    "subtype": "typealias",
-                    "rawtype": "",
-                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
-                    "description": "",
-                    "kind": 177
-                }
-            ]
-        }
+        "groupedTypeAliases": {}
     },
     "routes": [],
     "coverage": {
@@ -508,16 +432,6 @@
                 "name": "KakalUiService",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
-                "status": "low"
-            },
-            {
-                "filePath": "projects/kakal-ui/src/lib/styles/theme.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "palette",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
                 "status": "low"
             },
             {
