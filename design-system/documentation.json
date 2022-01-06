@@ -92,7 +92,7 @@
             "assetsDirs": [],
             "styleUrlsData": [
                 {
-                    "data": "@import '../../styles/utils'; // TODO: create an alias to avoid '../' paths\r\n\r\n:host { \r\n  display: inline-block;\r\n}\r\n\r\nbutton {\r\n  background: $primary-col;\r\n  padding: 1rem 2rem;\r\n  border-radius: $button-radius;\r\n  appearance: none;\r\n  border: 0;\r\n  -webkit-appearance: none;\r\n  -moz-appearance: none;\r\n  font-size: 1.5rem;\r\n  letter-spacing: 1px;\r\n  color: $primary-col-text;\r\n  box-shadow: $pl-button-shadow;\r\n  cursor: pointer;\r\n\r\n  &.make-pink {\r\n    background: #ff00a2;\r\n    box-shadow: $pl-button-shadow-alt;\r\n  }\r\n\r\n  &.rm-right-borders {\r\n    border-top-right-radius: 0;\r\n    border-bottom-right-radius: 0;\r\n  }\r\n\r\n  &.rm-left-borders {\r\n    border-top-left-radius: 0;\r\n    border-bottom-left-radius: 0;\r\n  }\r\n\r\n  &.no-shadow {\r\n    box-shadow: none;\r\n  }\r\n}\r\n\r\n\r\n\r\n// .make-pink {\r\n//   background: #ff00a2;\r\n//   box-shadow: 0 4px 10px rgba(55, 55, 55, 0.3), 0 6px 35px rgb(200 55 150 / 70%);\r\n// }",
+                    "data": "@import '../../styles/utils'; // TODO: create an alias to avoid '../' paths\r\n\r\n:host {\r\n  display: inline-block;\r\n}\r\n\r\n\r\n",
                     "styleUrl": "./button.component.scss"
                 }
             ],
@@ -106,7 +106,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<button \r\n    [attr.is-pink]=\"pink\" \r\n    [ngClass]=\"{'make-pink': pink, 'rm-left-borders': !bordersLeft, 'rm-right-borders': !bordersRight, 'no-shadow': noShadow}\">\r\n    {{label ? label : \"No Label provided 🧐\"}}\r\n</button>"
+            "templateData": "<button\r\n  mat-button\r\n\r\n>\r\n  {{ label ? label : \"No Label provided 🧐\" }}\r\n</button>\r\n"
         },
         {
             "name": "ButtonsetComponent",
@@ -339,17 +339,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
+                "file": "stories/Buttonset.stories.ts",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
-                "type": "Story<ButtonsetComponent>",
-                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
+                "file": "stories/Button.stories.ts",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
             }
         ],
         "functions": [],
