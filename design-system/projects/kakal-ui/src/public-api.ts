@@ -8,4 +8,3 @@ export * from './lib/kakal-ui.module';
 
 export * from './lib/button/button.component';
 export * from './lib/buttonset/buttonset.component';
-export * from './lib/dvir/dvir.component';

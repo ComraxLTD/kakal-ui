@@ -113,7 +113,5 @@ $a-keys: (100: A100, 200: A200, 400: A400, 700: A700, 500 : 500);
     @each $key, $value in $plt-foreground {
       --f-#{$key}: #{$value};
     }
-
-
   }
 }

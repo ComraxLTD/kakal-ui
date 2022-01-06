@@ -167,62 +167,6 @@
             "templateData": "<div class=\"buttonset\">\r\n    <pl-button label=\"Button 1\" [bordersRight]=\"false\" noShadow=true></pl-button>\r\n    <pl-button label=\"Button 2\" [bordersLeft]=\"false\" [bordersRight]=\"false\" [noShadow]=\"true\"></pl-button>\r\n    <pl-button label=\"Button 3\" [bordersLeft]=\"false\" [noShadow]=\"true\"></pl-button>\r\n</div>"
         },
         {
-            "name": "DvirComponent",
-            "id": "component-DvirComponent-d4915c4dfae9256e0499733fbe9ded26",
-            "file": "projects/kakal-ui/src/lib/dvir/dvir.component.ts",
-            "encapsulation": [],
-            "entryComponents": [],
-            "inputs": [],
-            "outputs": [],
-            "providers": [],
-            "selector": "pl-dvir",
-            "styleUrls": [
-                "./dvir.component.scss"
-            ],
-            "styles": [],
-            "templateUrl": [
-                "./dvir.component.html"
-            ],
-            "viewProviders": [],
-            "inputsClass": [],
-            "outputsClass": [],
-            "propertiesClass": [],
-            "methodsClass": [
-                {
-                    "name": "ngOnInit",
-                    "args": [],
-                    "optional": false,
-                    "returnType": "void",
-                    "typeParameters": [],
-                    "line": 12
-                }
-            ],
-            "hostBindings": [],
-            "hostListeners": [],
-            "description": "",
-            "rawdescription": "",
-            "type": "component",
-            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'pl-dvir',\r\n  templateUrl: './dvir.component.html',\r\n  styleUrls: ['./dvir.component.scss']\r\n})\r\nexport class DvirComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
-            "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "",
-                    "styleUrl": "./dvir.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "constructorObj": {
-                "name": "constructor",
-                "description": "",
-                "args": [],
-                "line": 8
-            },
-            "implements": [
-                "OnInit"
-            ],
-            "templateData": "<p>dvir works!</p>\r\n"
-        },
-        {
             "name": "KakalUiComponent",
             "id": "component-KakalUiComponent-2a1999e016266653d0ad693021c7ef2d",
             "file": "projects/kakal-ui/src/lib/kakal-ui.component.ts",
@@ -286,9 +230,6 @@
                         },
                         {
                             "name": "ButtonsetComponent"
-                        },
-                        {
-                            "name": "DvirComponent"
                         },
                         {
                             "name": "KakalUiComponent"
@@ -359,6 +300,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "palette",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                "type": "Color",
+                "defaultValue": "{\r\n  primary: '#01a7b4',\r\n  accent: '#37c56b',\r\n  warn: '#d83020',\r\n  paper: '#fff',\r\n  default: '#bababa',\r\n  disable: ' rgba(0, 0, 0, 0.26)',\r\n  disableButton: 'rgba(0, 0, 0, 0.12);',\r\n  disableText: ' rgba(0, 0, 0, 0.26)',  table: '#f9f9f9',\r\n  text: '#000000',\r\n  success: '#59a437',\r\n  graylight: '#e2e1e1',\r\n}"
+            },
+            {
                 "name": "require",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -383,7 +332,35 @@
             }
         ],
         "functions": [],
-        "typealiases": [],
+        "typealiases": [
+            {
+                "name": "Color",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "",
+                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                "description": "",
+                "kind": 176
+            },
+            {
+                "name": "Palette",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "ThemePalette | \"paper\" | \"default\" | \"disable\" | \"disableButton\" | \"disableText\" | \"table\" | \"text\" | \"success\" | \"graylight\"",
+                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                "description": "",
+                "kind": 168
+            },
+            {
+                "name": "Theme",
+                "ctype": "miscellaneous",
+                "subtype": "typealias",
+                "rawtype": "",
+                "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                "description": "",
+                "kind": 177
+            }
+        ],
         "enumerations": [],
         "groupedVariables": {
             "stories/Buttonset.stories.ts": [
@@ -446,11 +423,51 @@
                     "type": "Story<ButtonComponent>",
                     "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
                 }
+            ],
+            "projects/kakal-ui/src/lib/styles/theme.ts": [
+                {
+                    "name": "palette",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                    "type": "Color",
+                    "defaultValue": "{\r\n  primary: '#01a7b4',\r\n  accent: '#37c56b',\r\n  warn: '#d83020',\r\n  paper: '#fff',\r\n  default: '#bababa',\r\n  disable: ' rgba(0, 0, 0, 0.26)',\r\n  disableButton: 'rgba(0, 0, 0, 0.12);',\r\n  disableText: ' rgba(0, 0, 0, 0.26)',  table: '#f9f9f9',\r\n  text: '#000000',\r\n  success: '#59a437',\r\n  graylight: '#e2e1e1',\r\n}"
+                }
             ]
         },
         "groupedFunctions": {},
         "groupedEnumerations": {},
-        "groupedTypeAliases": {}
+        "groupedTypeAliases": {
+            "projects/kakal-ui/src/lib/styles/theme.ts": [
+                {
+                    "name": "Color",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "",
+                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                    "description": "",
+                    "kind": 176
+                },
+                {
+                    "name": "Palette",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "ThemePalette | \"paper\" | \"default\" | \"disable\" | \"disableButton\" | \"disableText\" | \"table\" | \"text\" | \"success\" | \"graylight\"",
+                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                    "description": "",
+                    "kind": 168
+                },
+                {
+                    "name": "Theme",
+                    "ctype": "miscellaneous",
+                    "subtype": "typealias",
+                    "rawtype": "",
+                    "file": "projects/kakal-ui/src/lib/styles/theme.ts",
+                    "description": "",
+                    "kind": 177
+                }
+            ]
+        }
     },
     "routes": [],
     "coverage": {
@@ -476,15 +493,6 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/kakal-ui/src/lib/dvir/dvir.component.ts",
-                "type": "component",
-                "linktype": "component",
-                "name": "DvirComponent",
-                "coveragePercent": 0,
-                "coverageCount": "0/3",
-                "status": "low"
-            },
-            {
                 "filePath": "projects/kakal-ui/src/lib/kakal-ui.component.ts",
                 "type": "component",
                 "linktype": "component",
@@ -500,6 +508,16 @@
                 "name": "KakalUiService",
                 "coveragePercent": 0,
                 "coverageCount": "0/2",
+                "status": "low"
+            },
+            {
+                "filePath": "projects/kakal-ui/src/lib/styles/theme.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "palette",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
                 "status": "low"
             },
             {

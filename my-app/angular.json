@@ -17,6 +17,12 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src",
+                "src/styles"
+              ]
+            },
             "outputPath": "dist/my-app",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -28,7 +34,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
+
             ],
             "scripts": []
           },
@@ -92,7 +99,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles/styles.scss"
+
             ],
             "scripts": []
           }

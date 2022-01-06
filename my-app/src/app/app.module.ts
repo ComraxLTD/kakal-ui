@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { KakalUiModule } from '@ComraxLTD/kakal-ui';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { KakalUiModule } from '@ComraxLTD/kakal-ui';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    KakalUiModule
+    KakalUiModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
