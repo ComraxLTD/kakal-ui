@@ -1,0 +1,14 @@
+<div class="container" fxFill fxLayout="row" fxLayoutAlign=" none" dir="rtl">
+  <div class="login-container" fxFlex="80rem" fxLayout="column">
+    <div fxFlex="15rem" fxLayout="column" fxLayoutAlign="end center">
+      <kkl-icon key="logo" [size]="7"></kkl-icon>
+    </div>
+    <div fxFlex="10rem" fxLayout="column" fxLayoutAlign="end center">
+    </div>
+    <div class="login-form" fxFlex="30rem" fxLayout="row" fxLayoutAlign="center center">
+      <div fxLayout="row" fxFlex="50">
+        <kkl-login-form (submit)="onSubmit($event)" fxFill></kkl-login-form>
+      </div>
+    </div>
+  </div>
+</div>
