@@ -7,25 +7,16 @@ import { AreaPipe } from './pipes/area.pipe';
 import { FormatPipe } from './pipes/format.pipe';
 import { LocationPipe } from './pipes/location.pipe';
 import { PrefixPipe } from './pipes/prefix.pipe';
-import { RangePipe } from './pipes/range.pipe';
-import { BorderDirective } from './directives/border.directive';
 import { ButtonDirective } from './directives/button.directive';
 import { CellDirective } from './directives/cell.directive';
 import { OutsideDirective } from './directives/outside.directive';
-import { SizeDirective } from './directives/size.directive';
-import { UnderlineDirective } from './directives/underline.directive';
-import { VariantDirective } from './directives/variant.directive';
 import { WizardDirective } from './directives/wizard';
 
-const exportPipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
+const exportPipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe];
 const exportDirective = [
-  BorderDirective,
   ButtonDirective,
   CellDirective,
   OutsideDirective,
-  SizeDirective,
-  UnderlineDirective,
-  VariantDirective,
   WizardDirective,
 ];
 
