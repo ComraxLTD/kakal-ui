@@ -6,8 +6,279 @@
     "interceptors": [],
     "classes": [],
     "directives": [],
-    "components": [],
-    "modules": [],
+    "components": [
+        {
+            "name": "ButtonComponent",
+            "id": "component-ButtonComponent-4688b9be3f2cc4a94709b9bc394f7917",
+            "file": "projects/kakal-ui/src/lib/button/button.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.Emulated"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-button",
+            "styleUrls": [
+                "./button.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./button.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [
+                {
+                    "name": "bordersLeft",
+                    "defaultValue": "true",
+                    "line": 13,
+                    "type": "boolean"
+                },
+                {
+                    "name": "bordersRight",
+                    "defaultValue": "true",
+                    "line": 14,
+                    "type": "boolean"
+                },
+                {
+                    "name": "label",
+                    "line": 10,
+                    "type": "string | null"
+                },
+                {
+                    "name": "noShadow",
+                    "line": 12,
+                    "type": "boolean"
+                },
+                {
+                    "name": "pink",
+                    "line": 11,
+                    "type": "boolean"
+                }
+            ],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 18
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-button',\r\n  templateUrl: './button.component.html',\r\n  styleUrls: ['./button.component.scss'],\r\n  encapsulation: ViewEncapsulation.Emulated\r\n})\r\nexport class ButtonComponent implements OnInit {\r\n  @Input('label') label: string | null;\r\n  @Input('pink') pink: boolean;\r\n  @Input('noShadow') noShadow: boolean;\r\n  @Input('bordersLeft') bordersLeft: boolean = true;\r\n  @Input('bordersRight') bordersRight: boolean = true;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../styles/utils'; // TODO: create an alias to avoid '../' paths\r\n\r\n:host {\r\n  display: inline-block;\r\n}\r\n\r\n\r\n",
+                    "styleUrl": "./button.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 14
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<button\r\n  mat-button\r\n\r\n>\r\n  {{ label ? label : \"No Label provided 🧐\" }}\r\n</button>\r\n"
+        },
+        {
+            "name": "ButtonsetComponent",
+            "id": "component-ButtonsetComponent-ae1214cdca9d2da47c646a167dd75f27",
+            "file": "projects/kakal-ui/src/lib/buttonset/buttonset.component.ts",
+            "encapsulation": [
+                "ViewEncapsulation.Emulated"
+            ],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-buttonset",
+            "styleUrls": [
+                "./buttonset.component.scss"
+            ],
+            "styles": [],
+            "templateUrl": [
+                "./buttonset.component.html"
+            ],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 13
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit, ViewEncapsulation } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-buttonset',\r\n  templateUrl: './buttonset.component.html',\r\n  styleUrls: ['./buttonset.component.scss'],\r\n  encapsulation: ViewEncapsulation.Emulated\r\n})\r\nexport class ButtonsetComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": [
+                {
+                    "data": "@import '../../styles/utils'; // TODO: create alias to make this shorter\r\n\r\n:host {\r\n    display: inline-block;\r\n    padding: 1.5em;\r\n    border: 3px solid $primary-col;\r\n}\r\n\r\n.buttonset {\r\n    display: inline-block;\r\n    border-radius: $button-radius;\r\n    box-shadow: $pl-button-shadow;\r\n}",
+                    "styleUrl": "./buttonset.component.scss"
+                }
+            ],
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 9
+            },
+            "implements": [
+                "OnInit"
+            ],
+            "templateData": "<div class=\"buttonset\">\r\n    <pl-button label=\"Button 1\" [bordersRight]=\"false\" noShadow=true></pl-button>\r\n    <pl-button label=\"Button 2\" [bordersLeft]=\"false\" [bordersRight]=\"false\" [noShadow]=\"true\"></pl-button>\r\n    <pl-button label=\"Button 3\" [bordersLeft]=\"false\" [noShadow]=\"true\"></pl-button>\r\n</div>"
+        },
+        {
+            "name": "KakalUiComponent",
+            "id": "component-KakalUiComponent-2a1999e016266653d0ad693021c7ef2d",
+            "file": "projects/kakal-ui/src/lib/kakal-ui.component.ts",
+            "encapsulation": [],
+            "entryComponents": [],
+            "inputs": [],
+            "outputs": [],
+            "providers": [],
+            "selector": "kkl-kakal-ui",
+            "styleUrls": [],
+            "styles": [],
+            "template": "<p>\n  kakal-ui works!\n</p>\n",
+            "templateUrl": [],
+            "viewProviders": [],
+            "inputsClass": [],
+            "outputsClass": [],
+            "propertiesClass": [],
+            "methodsClass": [
+                {
+                    "name": "ngOnInit",
+                    "args": [],
+                    "optional": false,
+                    "returnType": "void",
+                    "typeParameters": [],
+                    "line": 17
+                }
+            ],
+            "hostBindings": [],
+            "hostListeners": [],
+            "description": "",
+            "rawdescription": "",
+            "type": "component",
+            "sourceCode": "import { Component, OnInit } from '@angular/core';\r\n\r\n@Component({\r\n  selector: 'kkl-kakal-ui',\r\n  template: `\r\n    <p>\r\n      kakal-ui works!\r\n    </p>\r\n  `,\r\n  styles: [\r\n  ]\r\n})\r\nexport class KakalUiComponent implements OnInit {\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "assetsDirs": [],
+            "styleUrlsData": "",
+            "stylesData": "",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "args": [],
+                "line": 13
+            },
+            "implements": [
+                "OnInit"
+            ]
+        }
+    ],
+    "modules": [
+        {
+            "name": "KakalUiModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "ButtonsetComponent"
+                        },
+                        {
+                            "name": "KakalUiComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": [
+                        {
+                            "name": "ButtonComponent"
+                        },
+                        {
+                            "name": "ButtonsetComponent"
+                        },
+                        {
+                            "name": "KakalUiComponent"
+                        }
+                    ]
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        },
+        {
+            "name": "MaterialModule",
+            "children": [
+                {
+                    "type": "providers",
+                    "elements": []
+                },
+                {
+                    "type": "declarations",
+                    "elements": []
+                },
+                {
+                    "type": "imports",
+                    "elements": []
+                },
+                {
+                    "type": "exports",
+                    "elements": []
+                },
+                {
+                    "type": "bootstrap",
+                    "elements": []
+                },
+                {
+                    "type": "classes",
+                    "elements": []
+                }
+            ]
+        }
+    ],
     "miscellaneous": {
         "variables": [
             {
@@ -54,11 +325,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/Buttonset.stories.ts",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n})"
+                "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
             }
         ],
         "functions": [],
