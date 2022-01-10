@@ -12,7 +12,7 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "ma",
+      "prefix": "kkl",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -23,7 +23,7 @@
                 "src/styles"
               ]
             },
-            "outputPath": "dist/my-app",
+            "outputPath": "dist/kkl-design",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,11 +31,11 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/assets/images"
             ],
             "styles": [
               "src/styles/styles.scss"
-
             ],
             "scripts": []
           },
@@ -100,7 +100,6 @@
             ],
             "styles": [
               "src/styles/styles.scss"
-
             ],
             "scripts": []
           }
@@ -131,6 +130,38 @@
           }
         }
       }
-    }},
-  "defaultProject": "my-app"
+    },
+    "lib-kakal-ui": {
+      "projectType": "library",
+      "root": "projects/lib-kakal-ui",
+      "sourceRoot": "projects/lib-kakal-ui/src/lib/app",
+      "prefix": "kkl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/lib-kakal-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/lib-kakal-ui/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/lib-kakal-ui/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/lib-kakal-ui/src/test.ts",
+            "tsConfig": "projects/lib-kakal-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/lib-kakal-ui/karma.conf.js"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "kkl-design"
 }

@@ -15,11 +15,15 @@
       "es2018",
       "dom"
     ],
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "kakal-ui": [
         "dist/kakal-ui/kakal-ui",
         "dist/kakal-ui"
       ]
     }
-  }
+  },
+  "include": [
+    "stories/*.stories.*"
+  ]
 }
