@@ -1,0 +1,29 @@
+<div dir="rtl" class="kkl-form-radio" fxFill>
+  <mat-radio-group
+    [formControl]="control"
+    [name]="question.key"
+    (change)="handleChange($event)"
+  >
+    <div fxLayout="column" fxLayoutGap="1rem" fxLayoutAlign="start start">
+      <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
+        <label>
+          {{ question.label }}
+        </label>
+      </div>
+      <div
+        fxLayout="row"
+        fxFlex="20"
+        fxLayoutGap="1.5rem"
+        fxLayoutAlign="space-between center"
+      >
+        <mat-radio-button
+          [checked]="option.checked"
+          color="primary"
+          *ngFor="let option of question.options"
+          [value]="option.value"
+          >{{ option.label }}
+        </mat-radio-button>
+      </div>
+    </div>
+  </mat-radio-group>
+</div>
