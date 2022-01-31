@@ -4,7 +4,7 @@ UI components for the kakal project
 1. `design-system` which is an angular project containing UI elements
 2. `my-app` which consumes those
 
-![Usage](https://github.com/winnie1312/grab/blob/master/grab-landingpage-winnie.gif)
+![Usage](https://github.com/ComraxLTD/kakal-ui/blob/feat/design-lib/KakalUI.gif)
 
 # Installation
 ```
