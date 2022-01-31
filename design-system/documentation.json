@@ -14,7 +14,7 @@
                 "name": "ButtonsetSample",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/ButtonSet.stories.ts",
+                "file": "stories/Buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -48,29 +48,29 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n})"
+                "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/ButtonSet.stories.ts",
+                "file": "stories/Buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonsetComponent>",
-                "defaultValue": "(args: ButtonsetComponent) => ({\n  component: ButtonsetComponent,\n  props: args,\n})"
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
             }
         ],
         "functions": [],
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
-            "stories/ButtonSet.stories.ts": [
+            "stories/Buttonset.stories.ts": [
                 {
                     "name": "ButtonsetSample",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/ButtonSet.stories.ts",
+                    "file": "stories/Buttonset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -80,11 +80,11 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/ButtonSet.stories.ts",
+                    "file": "stories/Buttonset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonsetComponent>",
-                    "defaultValue": "(args: ButtonsetComponent) => ({\n  component: ButtonsetComponent,\n  props: args,\n})"
+                    "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
                 }
             ],
             "stories/Button.stories.ts": [
@@ -116,7 +116,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\n  component: ButtonComponent,\n  props: args,\n})"
+                    "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
                 }
             ]
         },
@@ -160,7 +160,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/ButtonSet.stories.ts",
+                "filePath": "stories/Buttonset.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -170,7 +170,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/ButtonSet.stories.ts",
+                "filePath": "stories/Buttonset.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
