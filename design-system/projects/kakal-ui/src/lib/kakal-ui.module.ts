@@ -10,6 +10,10 @@ import { FormAutocompleteComponent } from './form/form-autocomplete/form-autocom
 import { FormUploadComponent } from './form/form-upload/form-upload.component';
 import { FormCurrencyComponent } from './form/form-currency/form-currency.component';
 import { ButtonsetComponent } from './buttonset/buttonset.component';
+import {MatRadioButton } from '@angular/material/radio';
+
+const angularMaterial=[MatRadioButton]
+
 
 const exportPipes = [];
 const exportDirective = [
@@ -34,7 +38,7 @@ const formComps = [
     ButtonsetComponent,
     ...exportPipes,
     ...exportDirective,
-    ...formComps
+    ...formComps,
   ],
   imports: [CommonModule],
   exports: [
@@ -43,7 +47,7 @@ const formComps = [
     ButtonsetComponent,
     ...exportPipes,
     ...exportDirective,
-    ...formComps
+    ...formComps,
   ],
 })
 export class KakalUiModule {}

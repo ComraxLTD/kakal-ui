@@ -3,9 +3,16 @@ import { FormControl } from '@angular/forms';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { QuestionRadioModel } from 'projects/kakal-ui/src/lib/form/form-radio/question-radio.model';
 import { FormRadioComponent } from '../projects/kakal-ui/src/lib/form/form-radio/form-radio.component';
+import {MatRadioModule } from '@angular/material/radio';
+import { moduleMetadata ,} from '@storybook/angular';
 
 export default {
     title: 'Form/Radio-Button',
+    decorators: [
+        moduleMetadata({
+            imports: [MatRadioModule]
+        })
+    ],
     component: FormRadioComponent,
     argTypes: {
         control:new FormControl(),
