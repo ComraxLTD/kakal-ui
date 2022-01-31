@@ -8,7 +8,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build && npm run copy-assets",
-    "build:prod": "ng build --prod && npm run copy-assets",
+    "build:prod": "ng build --configuration production && npm run copy-assets",
     "test": "ng test",
     "lint": "ng lint",
     "copy-assets": "cp -R ./projects/kakal-ui/src/styles dist/kakal-ui/ && cp ./projects/kakal-ui/.npmrc dist/kakal-ui/",
