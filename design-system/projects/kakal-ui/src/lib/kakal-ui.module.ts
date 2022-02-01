@@ -24,9 +24,9 @@ const formComps = [
   // FormComponent,
   // FormDateComponent,
   // FormInputComponent,
+  FormUploadComponent,
   FormRadioComponent,
   // FormAutocompleteComponent,
-  // FormUploadComponent,
   // FormCurrencyComponent,
 ];
 

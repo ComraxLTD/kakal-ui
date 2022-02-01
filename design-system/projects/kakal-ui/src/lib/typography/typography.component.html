@@ -1,0 +1,13 @@
+<span
+  (click)="onClick()"
+  [dir]="dir"
+  [ngClass]="['fontFamily', 'typography']"
+  [ngStyle]="{
+    color: palette[disabled ? 'disable' : color],
+    'font-size.rem': size,
+    'font-weight': bold,
+    'text-decoration': underline ? 'underline' : 'none'
+  }"
+>
+  <ng-content></ng-content>
+</span>
