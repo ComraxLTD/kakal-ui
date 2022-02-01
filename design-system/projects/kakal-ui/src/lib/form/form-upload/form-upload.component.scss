@@ -1,4 +1,4 @@
-@use "variables" as main;
+// @use "../../../styles/variables" as main;
 // .kkl-form-upload {
 //   // button {
 //   //   width: 100%;
@@ -16,7 +16,8 @@
 :host {
   .kkl-form-uplaod {
     * {
-      color: main.color(primary) !important;
+      color: blue;
+      // color: main.color(primary) !important;
     }
   }
 }

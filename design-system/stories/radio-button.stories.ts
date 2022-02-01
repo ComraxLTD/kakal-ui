@@ -10,12 +10,12 @@ export default {
     title: 'Form/Radio-Button',
     decorators: [
         moduleMetadata({
-            imports: [MatRadioModule]
+            imports: [MatRadioModule] 
         })
     ],
     component: FormRadioComponent,
     argTypes: {
-        control:new FormControl(),
+        control:new FormControl(), 
         question: {key:'gender', 
         options:[{ label: 'male', value: 'male', checked: true },
         { label: 'female', value: 'female', checked: false }]

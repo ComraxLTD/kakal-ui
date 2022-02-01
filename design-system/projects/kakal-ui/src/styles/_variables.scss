@@ -2,6 +2,11 @@
 
 $button-radius: 5px;
 
+$primary: blue;
+$accent: red;
+$default: black;
+
+
 $primary-col: blue; // how about violet?
 $primary-col-shadow: rgba(darken($primary-col, 10%), 0.7);
 $primary-col-shadowbase: rgba(darken($primary-col, 20%), 0.4);
@@ -9,3 +14,21 @@ $primary-col-shadowbase: rgba(darken($primary-col, 20%), 0.4);
 $primary-col-text: white;
 
 $alt-col: #ff00a2;
+
+$colors: (
+    primary: $primary,
+    accent: $accent,
+    default: $default,
+    // disable: $disable,
+    // disableButton: $disableButton,
+    // disableSelectedButton: $disableSelectedButton,
+    // disableText: $disableText,
+    // disableButtonText: $disableButtonText,
+    // paper: $paper,
+    // table: $table,
+    // text: $text,
+    // text-light: $text-light,
+    // warn: $warn,
+    // success: $success,
+    // success-light: $success-light,
+  );

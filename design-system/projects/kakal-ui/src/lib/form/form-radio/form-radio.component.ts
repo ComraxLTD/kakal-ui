@@ -21,7 +21,7 @@ export class FormRadioComponent implements OnInit {
 
   public handleChange(radio: MatRadioChange) {
     this.control.setValue(radio.value);
-    alert('asdasd')
+    alert(radio.value)
     this.change.emit({key:this.question.key,value:radio.value});
   }
 }
