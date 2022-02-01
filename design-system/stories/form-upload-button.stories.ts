@@ -11,6 +11,7 @@ import { QuestionFileModel } from '../projects/kakal-ui/src/lib/form/models/ques
 import { TypographyComponent } from '../projects/kakal-ui/src/lib/typography/typography.component';
 import { IconComponent } from '../projects/kakal-ui/src/lib/icon/icon.component';
 import { MatIconModule } from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Observable, of } from 'rxjs';
 
