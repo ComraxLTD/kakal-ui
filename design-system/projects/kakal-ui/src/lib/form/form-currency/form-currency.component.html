@@ -1,0 +1,18 @@
+<div class="kkl-form-currency" fxFill dir="rtl">
+  <ng-container *ngIf="currencyGroup$ | async as currencyGroup">
+    <kkl-form-input
+      class="number-input"
+      [question]="currencyGroup.questions[1]"
+      fxFlex="100"
+      [control]="currencyGroup.formGroup.controls['sum']"
+    >
+    </kkl-form-input>
+    <kkl-form-input
+      class="select-currency"
+      fxFlex="3.5rem"
+      [question]="currencyGroup.questions[0]"
+      [control]="currencyGroup.formGroup.controls['currency']"
+    >
+    </kkl-form-input>
+  </ng-container>
+</div>

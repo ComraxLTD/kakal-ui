@@ -1,0 +1,158 @@
+<div>
+  <mat-form-field
+    [color]="question.theme"
+    [ngClass]="{ 'input-slot': controlType === 'custom' }"
+    [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
+  >
+    <mat-label *ngIf="controlType !== 'custom'">{{ label }}</mat-label>
+
+    <ng-container [ngSwitch]="controlType">
+      <!-- TEXTAREA -->
+      <ng-container *ngSwitchCase="'textarea'">
+        <textarea
+          matInput
+          [rows]="gridProps?.rows * 2"
+          [formControl]="control"
+          [name]="question.key"
+          (focusout)="validate()"
+          (focus)="onFocus()"
+          #textarea
+        ></textarea>
+      </ng-container>
+
+      <!-- SELECT -->
+      <ng-container *ngSwitchCase="'select'">
+        <mat-select
+          panelClass="select-panel-form"
+          overlayPanelClass="overlay-panel"
+          [multiple]="question.multi"
+          [disableOptionCentering]="true"
+          (selectionChange)="onSelectChange()"
+          [formControl]="control"
+          [name]="question.key"
+          (focusout)="validate()"
+          (focus)="onFocus()"
+        >
+          <mat-option
+            *ngFor="let option of question.options"
+            [value]="option.value"
+          >
+            {{ option.label }}
+          </mat-option>
+        </mat-select>
+      </ng-container>
+
+      <!-- AUTOCOMPLETE -->
+      <ng-container *ngSwitchCase="'autocomplete'">
+        <input
+          type="text"
+          matInput
+          [formControl]="control"
+          [matAutocomplete]="auto"
+        />
+        <mat-autocomplete
+          autoActiveFirstOption
+          #auto="matAutocomplete"
+          [displayWith]="displayFn"
+          (optionSelected)="onOptionSelected($event)"
+        >
+          <!-- DEFAULT -->
+          <ng-container *ngIf="!question.multi">
+            <mat-option
+              [disabled]="option.disabled"
+              *ngFor="
+                let option of localFilter
+                  ? (filteredOptions | async)
+                  : question.options
+              "
+              [value]="option.value"
+            >
+              <ng-container *ngIf="!optionsSlot">
+                <kkl-typography>
+                  {{ option.label }}
+                </kkl-typography>
+              </ng-container>
+              <ng-container *ngIf="optionsSlot">
+                <ng-container
+                  *ngTemplateOutlet="
+                    optionsSlot[question.key];
+                    context: { $implicit: this.option }
+                  "
+                ></ng-container>
+              </ng-container>
+            </mat-option>
+          </ng-container>
+          <!-- MULTI -->
+          <ng-container *ngIf="question.multi">
+            <mat-selection-list
+              [multiple]="true"
+              #selectOptions
+              (selectionChange)="onMultiOptionSelected(selectOptions)"
+            >
+              <mat-list-option
+                class="autocomplete-option"
+                [disabled]="option.disabled"
+                *ngFor="let option of question.options"
+                [value]="option.value"
+              >
+                <ng-container *ngIf="!optionsSlot">
+                  {{ option.label }}
+                </ng-container>
+                <ng-container *ngIf="optionsSlot">
+                  <ng-container
+                    *ngTemplateOutlet="
+                      optionsSlot[question.key];
+                      context: { option: this.option }
+                    "
+                  ></ng-container>
+                </ng-container>
+              </mat-list-option>
+            </mat-selection-list>
+            <!-- empty mat-option for display mat-list -->
+            <mat-option [style.display]="'none'"></mat-option>
+          </ng-container>
+        </mat-autocomplete>
+      </ng-container>
+
+      <!-- CLEAVE FORMAT -->
+      <ng-container *ngSwitchCase="'cleave'">
+        <input
+          matInput
+          autocomplete="off"
+          [formControl]="control"
+          [cleave]="question.cleave"
+          [name]="question?.key"
+          [type]="'text'"
+          (focusout)="validate()"
+          (focus)="onFocus()"
+          #input
+        />
+      </ng-container>
+
+      <!-- TEXT/NUMBER -->
+      <ng-container *ngSwitchDefault>
+        <input
+          matInput
+          autocomplete="off"
+          [formControl]="control"
+          [name]="question?.key"
+          [type]="controlType"
+          (focusout)="validate()"
+          (focus)="onFocus()"
+          #input
+        />
+      </ng-container>
+    </ng-container>
+    <kkl-icon
+      *ngIf="icon"
+      matSuffix
+      [color]="color$ | async"
+      [size]="1.8"
+      [key]="icon"
+    ></kkl-icon>
+    <mat-error>{{ error$ | async }}</mat-error>
+  </mat-form-field>
+</div>
+
+<!-- subscribe to autocomplete -->
+<ng-container *ngIf="autocompleteValue$ | async"></ng-container>

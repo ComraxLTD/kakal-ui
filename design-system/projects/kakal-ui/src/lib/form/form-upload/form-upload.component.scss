@@ -1,0 +1,32 @@
+@use "variables" as main;
+// .kkl-form-upload {
+//   // button {
+//   //   width: 100%;
+//   //   height: 4rem;
+//   // }
+//   overflow: hidden;
+
+//   ::ng-deep mat-icon {
+//     height: auto !important;
+//   }
+//   ::ng-deep .mat-button-wrapper > div {
+//     align-items: stretch !important;
+//   }
+// }
+:host {
+  .kkl-form-uplaod {
+    * {
+      color: main.color(primary) !important;
+    }
+  }
+}
+
+::ng-deep mat-option.file {
+  display: none !important;
+}
+
+// @media screen and (max-width: 1024px) {
+//   mat-form-field {
+//     font-size: 9px !important;
+//   }
+// }
