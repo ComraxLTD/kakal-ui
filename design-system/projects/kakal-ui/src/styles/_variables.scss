@@ -32,3 +32,8 @@ $colors: (
     // success: $success,
     // success-light: $success-light,
   );
+  
+  @function spacing($spacing) {
+    @return $spacing * 8px;
+  }
+  

@@ -1,4 +1,4 @@
-// @use "variables" as main;
+@use ".././../../styles/variables" as main;
 
 .kkl-form-radio {
   ::ng-deep .mat-radio-outer-circle {
@@ -6,7 +6,6 @@
   }
 }
 ::ng-deep span.mat-radio-label-content {
-  // padding-right: main.spacing(2) spacing =*8px !important;
-  padding-right: calc(8px * 2) !important;
+  padding-right: main.spacing(2) spacing  !important;
 }
  
