@@ -37,3 +37,6 @@ $colors: (
     @return $spacing * 8px;
   }
   
+  @function color($color-name) {
+    @return map-get($colors, $color-name);
+  }
