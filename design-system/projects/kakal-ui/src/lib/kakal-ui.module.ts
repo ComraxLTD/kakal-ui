@@ -17,6 +17,8 @@ import { ButtonsetComponent } from './buttonset/buttonset.component';
 import { MatRadioButton } from '@angular/material/radio';
 import { MaterialModule } from './angular-material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UnderlineDirective } from '../assets/directives/underline.directive';
+import { CoreModule } from './core-module/core.module';
 
 const angularMaterial = [MatRadioButton];
 
@@ -38,8 +40,9 @@ const components = [
   IconComponent,
   ButtonComponent,
   ButtonsetComponent,
-  StepTitleComponent
-]
+  StepTitleComponent,
+];
+const directives = [UnderlineDirective];
 @NgModule({
   declarations: [
     KakalUiComponent,
@@ -47,8 +50,9 @@ const components = [
     ...exportPipes,
     ...exportDirective,
     ...formComps,
+    ...directives,
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [
     KakalUiComponent,
     ReactiveFormsModule,
@@ -56,6 +60,7 @@ const components = [
     ...exportPipes,
     ...exportDirective,
     ...formComps,
+    ...directives,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}
