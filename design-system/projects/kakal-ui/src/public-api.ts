@@ -24,3 +24,9 @@ export * from './lib/form/form-currency/form-currency.component';
 export * from './services/breakpoint.service';
 export * from './services/route.service';
 export * from './services/template.service';
+
+// constants
+
+export * from './constants/module-prefix';
+export * from './constants/project-prefix';
+export * from './constants/step-prefix';
