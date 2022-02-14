@@ -4,6 +4,8 @@ import { KakalUiComponent } from './kakal-ui.component';
 import { ButtonComponent } from './button/button.component';
 import { TypographyComponent } from './typography/typography.component';
 import { IconComponent } from './icon/icon.component';
+import { TitleComponent } from './title/title.component';
+import { StepTitleComponent } from './step-title/step-title.component';
 import { FormComponent } from './form/form/form.component';
 import { FormDateComponent } from './form/form-date/form-date.component';
 import { FormInputComponent } from './form/form-input/form-input.component';
@@ -31,15 +33,18 @@ const formComps = [
   FormAutocompleteComponent,
   FormCurrencyComponent,
 ];
-
+const components = [
+  TitleComponent,
+  TypographyComponent,
+  IconComponent,
+  ButtonComponent,
+  ButtonsetComponent,
+  StepTitleComponent
+]
 @NgModule({
   declarations: [
     KakalUiComponent,
-    ButtonComponent,
-    TypographyComponent,
-    IconComponent,
-
-    ButtonsetComponent,
+    ...components,
     ...exportPipes,
     ...exportDirective,
     ...formComps,
@@ -47,14 +52,11 @@ const formComps = [
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [
     KakalUiComponent,
-    ButtonComponent,
-    ButtonsetComponent,
-    TypographyComponent,
-    IconComponent,
     ReactiveFormsModule,
+    ...components,
     ...exportPipes,
     ...exportDirective,
     ...formComps,
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }
