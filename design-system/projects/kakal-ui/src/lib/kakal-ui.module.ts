@@ -19,6 +19,11 @@ import { MaterialModule } from './angular-material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UnderlineDirective } from '../assets/directives/underline.directive';
 import { CoreModule } from './core-module/core.module';
+import { AreaPipe } from '../pipes/area.pipe';
+import { FormatPipe } from '../pipes/format.pipe';
+import { LocationPipe } from '../pipes/location.pipe';
+import { PrefixPipe } from '../pipes/prefix.pipe';
+import { RangePipe } from '../pipes/range.pipe';
 
 const angularMaterial = [MatRadioButton];
 
@@ -43,6 +48,14 @@ const components = [
   StepTitleComponent,
 ];
 const directives = [UnderlineDirective];
+
+const pipes = [
+  AreaPipe,
+  FormatPipe,
+  LocationPipe,
+  PrefixPipe,
+  RangePipe
+]
 @NgModule({
   declarations: [
     KakalUiComponent,
@@ -51,6 +64,7 @@ const directives = [UnderlineDirective];
     ...exportDirective,
     ...formComps,
     ...directives,
+    ...pipes,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [
@@ -61,6 +75,7 @@ const directives = [UnderlineDirective];
     ...exportDirective,
     ...formComps,
     ...directives,
+    ...pipes,
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }
