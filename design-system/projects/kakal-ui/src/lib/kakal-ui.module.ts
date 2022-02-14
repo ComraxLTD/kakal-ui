@@ -15,6 +15,7 @@ import { ButtonsetComponent } from './buttonset/buttonset.component';
 import { MatRadioButton } from '@angular/material/radio';
 import { MaterialModule } from './angular-material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CoreModule } from '@angular/flex-layout';
 
 const angularMaterial = [MatRadioButton];
 
@@ -43,7 +44,7 @@ const formComps = [
     ...exportDirective,
     ...formComps,
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [
     KakalUiComponent,
     ButtonComponent,
