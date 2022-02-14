@@ -10,6 +10,8 @@ export * from './lib/button/button.component';
 export * from './lib/buttonset/buttonset.component';
 export * from './lib/typography/typography.component';
 export * from './lib/icon/icon.component';
+export * from './lib/title/title.component';
+export * from './lib/step-title/step-title.component';
 
 // form exports
 export * from './lib/form/form/form.component';
