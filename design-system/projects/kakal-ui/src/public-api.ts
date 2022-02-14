@@ -19,3 +19,8 @@ export * from './lib/form/form-upload/form-upload.component';
 export * from './lib/form/form-radio/form-radio.component';
 export * from './lib/form/form-autocomplete/form-autocomplete.component';
 export * from './lib/form/form-currency/form-currency.component';
+
+// services
+export * from './services/breakpoint.service';
+export * from './services/route.service';
+export * from './services/template.service';
