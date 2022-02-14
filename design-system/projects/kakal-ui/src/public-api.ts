@@ -32,3 +32,7 @@ export * from './services/template.service';
 export * from './constants/module-prefix';
 export * from './constants/project-prefix';
 export * from './constants/step-prefix';
+
+// directives 
+
+export * from './assets/directives/underline.directive';
