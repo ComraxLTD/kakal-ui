@@ -6,6 +6,8 @@
     "registry":"https://npm.pkg.github.com"
   },
   "peerDependencies": {
+    "@angular/material": "^13.2.0",
+    "@angular/material-moment-adapter": "^13.2.1",
     "@angular/common": "~13.1.1",
     "@angular/core": "~13.1.1"
   },

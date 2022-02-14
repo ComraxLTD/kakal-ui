@@ -18,7 +18,9 @@ export default {
     }),
   ],
   component: FormInputComponent,
-  argTypes: {},
+  argTypes: {
+    
+  },
 } as Meta;
 
 const Template: Story<FormInputComponent> = (args: FormInputComponent) => ({

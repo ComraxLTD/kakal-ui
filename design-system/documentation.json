@@ -51,6 +51,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "second",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-upload-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -201,6 +211,38 @@
                     "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
                 }
             ],
+            "stories/form-upload-button.stories.ts": [
+                {
+                    "name": "second",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-upload-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-upload-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormUploadComponent>",
+                    "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+                },
+                {
+                    "name": "upload",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-upload-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
             "stories/Form-input.stories.ts": [
                 {
                     "name": "Template",
@@ -217,28 +259,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/Form-input.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                }
-            ],
-            "stories/form-upload-button.stories.ts": [
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/form-upload-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FormUploadComponent>",
-                    "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
-                },
-                {
-                    "name": "upload",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/form-upload-button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -321,6 +341,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "TextInput",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form-upload-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "second",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

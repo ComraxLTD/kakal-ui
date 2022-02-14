@@ -16,7 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { Observable, of } from 'rxjs';
 
 export default {
-    title: 'Upload/upload',
+    title: 'upload/upload',
     decorators: [componentWrapperDecorator((story) => `<div class="mat-body">${story}</div>`),moduleMetadata({
         imports: [MatMenuModule, MatListModule, MatSelectModule, MatFormFieldModule, MatIconModule,BrowserAnimationsModule],
         declarations: [TypographyComponent, IconComponent]
@@ -24,6 +24,7 @@ export default {
     component: FormUploadComponent,
     argTypes: {
         question: QuestionFileModel,
+        index:Number
         // we need to override here since in Angular it could be null as well and therefore it would become an ambigious data type for storybook
     }
 } as Meta;
@@ -35,10 +36,19 @@ const Template: Story<FormUploadComponent> =
     });
 
 export const upload = Template.bind({});
-
 upload.args = {
     question: new QuestionFileModel({ key: 'upload-button' }),
     files$: of([]),
     index: 1,
+    multi: false
+} 
+
+
+
+export const second = Template.bind({});
+second.args = {
+    question: new QuestionFileModel({ key: 'upload-button' }),
+    files$: of([]),
+    index: 'asd',
     multi: false
 }
