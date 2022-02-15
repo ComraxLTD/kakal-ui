@@ -10,10 +10,6 @@ export default {
         declarations: [TypographyComponent]
     })],
     component: TypographyComponent,
-    argTypes: {
-        index: Number
-        // we need to override here since in Angular it could be null as well and therefore it would become an ambigious data type for storybook
-    }
 } as Meta;
 
 const Template: Story<TypographyComponent> =
