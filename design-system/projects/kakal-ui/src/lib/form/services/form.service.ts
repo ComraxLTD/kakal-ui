@@ -11,7 +11,7 @@ import {
 import { QuestionBaseModel } from '../models/question.model';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionTextModel } from '../models/question-text.model';
-import { QuestionSelectModel } from 'src/app/shared/components/form/models/question-select.model';
+import { QuestionSelectModel } from '../models/question-select.model';
 import {
   GroupOptions,
   QuestionGroupModel,

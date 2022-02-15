@@ -51,24 +51,14 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "Template",
+                "name": "second",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/form-upload-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormUploadComponent>",
-                "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonsetComponent>",
-                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Template",
@@ -84,11 +74,51 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/Form-input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormInputComponent>",
+                "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-upload-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormUploadComponent>",
+                "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/radio-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormRadioComponent>",
                 "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Buttonset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "TextInput",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Form-input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "upload",
@@ -183,6 +213,16 @@
             ],
             "stories/form-upload-button.stories.ts": [
                 {
+                    "name": "second",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-upload-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -197,6 +237,28 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/form-upload-button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
+            "stories/Form-input.stories.ts": [
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Form-input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormInputComponent>",
+                    "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "TextInput",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Form-input.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -259,6 +321,36 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Form-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Form-input.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "TextInput",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form-upload-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "second",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

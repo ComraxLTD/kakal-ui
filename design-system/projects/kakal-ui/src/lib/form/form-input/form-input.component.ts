@@ -15,7 +15,7 @@ import {
 } from './../models/question-select.model';
 import { Appearance, ControlType, GridProps } from '../models/question.model';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { Palette } from 'src/styles/theme';
+import { Palette } from '../../../styles/theme';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { FormOption } from '../models/form-data-source.model';
 import { MatSelectionList } from '@angular/material/list';

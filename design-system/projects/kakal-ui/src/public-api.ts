@@ -8,12 +8,37 @@ export * from './lib/kakal-ui.module';
 
 export * from './lib/button/button.component';
 export * from './lib/buttonset/buttonset.component';
+export * from './lib/typography/typography.component';
+export * from './lib/icon/icon.component';
+export * from './lib/title/title.component';
+export * from './lib/step-title/step-title.component';
 
 // form exports
-// export * from './lib/form/form/form.component';
-// export * from './lib/form/form-dat0e/form-date.component';
-// export * from './lib/form/form-input/form-input.component';
+export * from './lib/form/form/form.component';
+export * from './lib/form/form-date/form-date.component';
+export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-upload/form-upload.component';
 export * from './lib/form/form-radio/form-radio.component';
-// export * from './lib/form/form-autocomplete/form-autocomplete.component';
-// export * from './lib/form/form-currency/form-currency.component';
+export * from './lib/form/form-autocomplete/form-autocomplete.component';
+export * from './lib/form/form-currency/form-currency.component';
+
+// services
+export * from './services/breakpoint.service';
+export * from './services/route.service';
+export * from './services/template.service';
+
+// constants
+
+export * from './constants/module-prefix';
+export * from './constants/project-prefix';
+export * from './constants/step-prefix';
+
+// directives 
+export * from './assets/directives/underline.directive';
+
+// pipes 
+export * from './pipes/area.pipe';
+export * from './pipes/format.pipe';
+export * from './pipes/location.pipe';
+export * from './pipes/prefix.pipe';
+export * from './pipes/range.pipe';
