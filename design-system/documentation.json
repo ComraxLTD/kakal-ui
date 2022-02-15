@@ -14,7 +14,7 @@
                 "name": "ButtonsetSample",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
+                "file": "stories/buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -24,7 +24,7 @@
                 "name": "FancyBlueButton",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
+                "file": "stories/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -34,7 +34,7 @@
                 "name": "FancyPinkButton",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
+                "file": "stories/button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -64,17 +64,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
+                "file": "stories/buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonsetComponent>",
@@ -84,7 +74,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Form-input.stories.ts",
+                "file": "stories/button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonComponent>",
+                "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-input.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormInputComponent>",
@@ -114,7 +114,7 @@
                 "name": "TextInput",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Form-input.stories.ts",
+                "file": "stories/form-input.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -135,12 +135,12 @@
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
-            "stories/Buttonset.stories.ts": [
+            "stories/buttonset.stories.ts": [
                 {
                     "name": "ButtonsetSample",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Buttonset.stories.ts",
+                    "file": "stories/buttonset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -150,19 +150,19 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Buttonset.stories.ts",
+                    "file": "stories/buttonset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonsetComponent>",
                     "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
                 }
             ],
-            "stories/Button.stories.ts": [
+            "stories/button.stories.ts": [
                 {
                     "name": "FancyBlueButton",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
+                    "file": "stories/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -172,7 +172,7 @@
                     "name": "FancyPinkButton",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
+                    "file": "stories/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -182,7 +182,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
+                    "file": "stories/button.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
@@ -243,12 +243,12 @@
                     "defaultValue": "Template.bind({})"
                 }
             ],
-            "stories/Form-input.stories.ts": [
+            "stories/form-input.stories.ts": [
                 {
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Form-input.stories.ts",
+                    "file": "stories/form-input.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FormInputComponent>",
@@ -258,7 +258,7 @@
                     "name": "TextInput",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/Form-input.stories.ts",
+                    "file": "stories/form-input.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -276,7 +276,7 @@
         "status": "low",
         "files": [
             {
-                "filePath": "stories/Button.stories.ts",
+                "filePath": "stories/button.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -286,7 +286,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/Button.stories.ts",
+                "filePath": "stories/button.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -296,7 +296,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/Button.stories.ts",
+                "filePath": "stories/button.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -306,7 +306,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/Buttonset.stories.ts",
+                "filePath": "stories/buttonset.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -316,7 +316,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/Buttonset.stories.ts",
+                "filePath": "stories/buttonset.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -326,7 +326,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/Form-input.stories.ts",
+                "filePath": "stories/form-input.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
@@ -336,7 +336,7 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/Form-input.stories.ts",
+                "filePath": "stories/form-input.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
