@@ -65,6 +65,7 @@ const pipes = [
     ...formComps,
     ...directives,
     ...pipes,
+    FormAutocompleteComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [
