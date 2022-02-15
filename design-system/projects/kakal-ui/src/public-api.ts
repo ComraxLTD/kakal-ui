@@ -34,8 +34,8 @@ export * from './constants/project-prefix';
 export * from './constants/step-prefix';
 
 // directives 
-export * from './assets/directives/underline.directive';
-
+export * from './directives/underline.directive';
+export * from './directives/size.directive';
 // pipes 
 export * from './pipes/area.pipe';
 export * from './pipes/format.pipe';
