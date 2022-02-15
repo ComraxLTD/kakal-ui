@@ -17,13 +17,14 @@ import { ButtonsetComponent } from './buttonset/buttonset.component';
 import { MatRadioButton } from '@angular/material/radio';
 import { MaterialModule } from './angular-material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UnderlineDirective } from '../assets/directives/underline.directive';
+import { UnderlineDirective } from '../directives/underline.directive';
 import { CoreModule } from './core-module/core.module';
 import { AreaPipe } from '../pipes/area.pipe';
 import { FormatPipe } from '../pipes/format.pipe';
 import { LocationPipe } from '../pipes/location.pipe';
 import { PrefixPipe } from '../pipes/prefix.pipe';
 import { RangePipe } from '../pipes/range.pipe';
+import { SizeDirective } from '../directives/size.directive';
 
 const angularMaterial = [MatRadioButton];
 
@@ -47,7 +48,10 @@ const components = [
   ButtonsetComponent,
   StepTitleComponent,
 ];
-const directives = [UnderlineDirective];
+const directives = [
+  UnderlineDirective,
+  SizeDirective
+];
 
 const pipes = [
   AreaPipe,
