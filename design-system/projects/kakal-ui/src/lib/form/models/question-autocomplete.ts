@@ -4,6 +4,7 @@ import { QuestionSelectModel, SelectOption } from './question-select.model';
 
 export class QuestionAutocompleteModel extends QuestionSelectModel {
   public onOptionSelect?: Function;
+  public panelWidth: boolean;
 
   constructor(options?: {
     key?: string;
@@ -15,14 +16,15 @@ export class QuestionAutocompleteModel extends QuestionSelectModel {
     options?: SelectOption[];
     onOptionSelect?: Function;
     multi?: boolean;
-    format? : string
+    panelWidth?: boolean;
+    format?: string;
     cleave?: {};
   }) {
     super(options);
     this.controlType = options.controlType || 'autocomplete';
     this.options = options.options || [];
     this.multi = options.multi || false;
-    this.icon = options.icon || 'search';
+    this.panelWidth = options.panelWidth || false;
     this.onOptionSelect =
       options.onOptionSelect || (() => console.log('select'));
   }
