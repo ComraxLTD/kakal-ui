@@ -24,6 +24,7 @@ import { FormatPipe } from '../pipes/format.pipe';
 import { LocationPipe } from '../pipes/location.pipe';
 import { PrefixPipe } from '../pipes/prefix.pipe';
 import { RangePipe } from '../pipes/range.pipe';
+import { FormAutocompleteExComponent } from './examples/form-autocomplete-ex/form-autocomplete-ex.component';
 
 const angularMaterial = [MatRadioButton];
 
@@ -65,6 +66,7 @@ const pipes = [
     ...formComps,
     ...directives,
     ...pipes,
+    FormAutocompleteExComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [

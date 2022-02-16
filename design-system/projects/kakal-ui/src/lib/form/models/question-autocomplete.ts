@@ -22,6 +22,7 @@ export class QuestionAutocompleteModel extends QuestionSelectModel {
     this.controlType = options.controlType || 'autocomplete';
     this.options = options.options || [];
     this.multi = options.multi || false;
+    this.icon = options.icon || 'search';
     this.onOptionSelect =
       options.onOptionSelect || (() => console.log('select'));
   }
