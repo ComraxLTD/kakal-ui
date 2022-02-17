@@ -15,8 +15,13 @@ $ npm i
 # Development
 
 ```
+Locally:
 $ cd design-system
 $ npm run storybook
+
+
+Alternatively Docker: (please make sure you have docker installed locally)
+$ docker-compose up
 ```
 
 Note: Please consider https://angular.io/guide/creating-libraries#refactoring-parts-of-an-application-into-a-library when using services like router
