@@ -74,16 +74,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonsetComponent>",
-                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -104,6 +94,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/Buttonset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/Form-input.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -114,21 +114,21 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormRadioComponent>",
-                "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/form-upload-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormUploadComponent>",
                 "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormRadioComponent>",
+                "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
             },
             {
                 "name": "TextInput",
