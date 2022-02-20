@@ -2,8 +2,8 @@
 
     <mat-select panelClass="select-panel-form" overlayPanelClass="overlay-panel" [multiple]="question.multi"
         [disableOptionCentering]="true" (selectionChange)="onSelectChange()" [formControl]="control"
-        [name]="question.key" (focusout)="setErrorMessage()" (focus)="onFocus()">
-        <mat-option *ngFor="let option of question.options" [value]="option.value">
+        [attr.name]="question.key" (focusout)="setErrorMessage()" (focus)="onFocus()">
+        <mat-option *ngFor="let option of question.options" [value]="option">
             {{ option.label }}
         </mat-option>
     </mat-select>

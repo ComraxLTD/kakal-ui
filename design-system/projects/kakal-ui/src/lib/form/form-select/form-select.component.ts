@@ -28,7 +28,6 @@ export class FormSelectComponent implements OnInit {
 
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
-
   }
 
   public onSelectChange() {
