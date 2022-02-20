@@ -31,6 +31,9 @@ export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-radio/form-radio.component';
 export * from './lib/form/form-currency/form-currency.component';
 
+export * from './lib/form/models/form-data-source.model';
+
+
 // services
 export * from './services/breakpoint.service';
 export * from './services/route.service';

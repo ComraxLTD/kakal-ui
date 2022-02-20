@@ -346,7 +346,12 @@
     <span>{{ title }} app is running!</span>
 
     <kkl-button type="primary"></kkl-button>
-    <kkl-form-autocomplete></kkl-form-autocomplete>
+    <kkl-form-autocomplete
+        [question]="question"
+        [control]="control"
+        [formDataSource]="formDataSource"
+        (autocomplete)="onAutoComplete($event)"
+      ></kkl-form-autocomplete>
 
 </div>
 
