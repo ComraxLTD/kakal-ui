@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { IconComponent } from './icon.component';
+import { SizeDirective } from '../../directives/size.directive';
 
 @NgModule({
   imports: [
@@ -12,7 +13,7 @@ import { IconComponent } from './icon.component';
     MatIconModule,
     BrowserAnimationsModule
   ],
-  declarations: [IconComponent],
+  declarations: [IconComponent, SizeDirective],
   exports: [IconComponent]
 })
 export class KKLIconModule {

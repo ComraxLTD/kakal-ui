@@ -21,7 +21,7 @@ const Template: Story<IconComponent> =
 export const icon = Template.bind({});
 icon.args = {
     key: 'medal',
-    size: 10,
+    size: 7,
     color: 'success',
     stroke: 'text',
     backgroundColor: 'text',

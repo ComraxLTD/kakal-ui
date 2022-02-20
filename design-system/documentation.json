@@ -41,6 +41,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "icon",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "Primary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -74,7 +84,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
+                "file": "stories/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
@@ -84,7 +94,7 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Button.stories.ts",
+                "file": "stories/Buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonsetComponent>",
@@ -119,6 +129,16 @@
                 "deprecationMessage": "",
                 "type": "Story<FormUploadComponent>",
                 "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n        component: IconComponent,\r\n        props: args,\r\n    })"
             },
             {
                 "name": "Template",
@@ -239,6 +259,28 @@
                     "deprecationMessage": "",
                     "type": "Story<FormRadioComponent>",
                     "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
+                }
+            ],
+            "stories/Icon.stories.ts": [
+                {
+                    "name": "icon",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Icon.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<IconComponent>",
+                    "defaultValue": "(args: IconComponent) => ({\r\n        component: IconComponent,\r\n        props: args,\r\n    })"
                 }
             ],
             "stories/Button.stories.ts": [
@@ -425,6 +467,26 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "TextInput",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "icon",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Icon.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
