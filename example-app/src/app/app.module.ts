@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { KakalUiModule } from '@ComraxLTD/kakal-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AutocompleteExComponent } from './autocomplete-ex/autocomplete-ex.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AutocompleteExComponent
   ],
   imports: [
     HttpClientModule,
