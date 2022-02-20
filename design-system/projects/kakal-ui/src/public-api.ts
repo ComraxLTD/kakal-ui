@@ -2,7 +2,6 @@
  * Public API Surface of kakal-ui
  */
 
-
 export * from './lib/kakal-ui.service';
 export * from './lib/kakal-ui.component';
 export * from './lib/kakal-ui.module';
@@ -34,18 +33,20 @@ export * from './lib/form/form-currency/form-currency.component';
 export * from './lib/form/models/form-data-source.model';
 export * from './lib/form/models/question-autocomplete';
 
-
-//menu 
-export * from './lib/menu-item/menu-item.module'
-export * from './lib/menu-item/menu-item.component'
-export * from './lib/menu/menu.module'
-export * from './lib/menu/menu.component'
-
+//menu
+export * from './lib/menu-item/menu-item.module';
+export * from './lib/menu-item/menu-item.component';
+export * from './lib/menu/menu.module';
+export * from './lib/menu/menu.component';
 
 //title
 
-export * from './lib/kkl-title/kkl-title.module'
-export * from './lib/kkl-title/kkl-title.component'
+export * from './lib/kkl-title/kkl-title.module';
+export * from './lib/kkl-title/kkl-title.component';
+// step title
+
+export * from './lib/step-title/step-title.module';
+export * from './lib/step-title/step-title.component';
 
 // services
 export * from './services/breakpoint.service';
@@ -57,7 +58,7 @@ export * from './constants/module-prefix';
 export * from './constants/project-prefix';
 export * from './constants/step-prefix';
 
-// pipes 
+// pipes
 export * from './pipes/area.pipe';
 export * from './pipes/format.pipe';
 export * from './pipes/location.pipe';

@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TooltipPosition } from '@angular/material/tooltip';
 
 @Component({
-  selector: 'pl-step-title',
+  selector: 'kkl-step-title',
   templateUrl: './step-title.component.html',
-  styleUrls: ['./step-title.component.scss']
+  styleUrls: ['./step-title.component.scss'],
+
 })
 export class StepTitleComponent implements OnInit {
+  @Input() public tooltipLabel: string;
+  @Input() public position: TooltipPosition;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
+    this.position = this.position || "left"
   }
-
 }

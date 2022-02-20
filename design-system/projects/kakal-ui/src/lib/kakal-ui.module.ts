@@ -26,7 +26,7 @@ import { MenuItemModule } from './menu-item/menu-item.module';
 import { ListItemComponent } from './list-item/list-item.component';
 import { MenuModule } from './menu/menu.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
-import { StepTitleComponent } from './step-title/step-title.component';
+import { StepTitleModule } from './step-title/step-title.module';
 
 const exportPipes = [];
 const exportDirective = [];
@@ -50,7 +50,6 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     ...formComps,
     ...pipes,
     ListItemComponent,
-    StepTitleComponent,
   ],
   imports: [
     CommonModule,
@@ -59,7 +58,8 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     CoreModule,
     DirectivesModule,
     MenuModule,
-    KklTitleModule
+    KklTitleModule,
+    StepTitleModule
   ],
   exports: [
     KakalUiComponent,
