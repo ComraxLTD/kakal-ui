@@ -1,15 +1,15 @@
 // // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
-import { QuestionAutocompleteModel } from '../projects/kakal-ui/src/lib/form/models/question-autocomplete';
+import { QuestionAutocompleteModel } from '../../projects/kakal-ui/src/lib/form/models/question-autocomplete';
 
-import { FormDataSource } from 'projects/kakal-ui/src/lib/form/models/form-data-source.model';
-import { KKLFormAutoCompleteExModule } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.module';
-import { FormAutocompleteExComponent } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.component';
+import { FormDataSource } from '../../projects/kakal-ui/src/lib/form/models/form-data-source.model';
+import { KKLFormAutoCompleteExModule } from '../../projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.module';
+import { FormAutocompleteExComponent } from '../../projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.component';
 import { ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
 export default {
-  title: 'autocomplete/autocomplete',
+  title: 'form',
   decorators: [
     moduleMetadata({
       imports: [KKLFormAutoCompleteExModule]

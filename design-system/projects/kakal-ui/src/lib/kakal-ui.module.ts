@@ -22,6 +22,7 @@ import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module'; 
 import { KKLTypographyModule } from './typography/typography.module'; 
 import { DirectivesModule } from '../directives/directives.module';
+import { FormExComponent } from './examples/form-ex/form-ex.component';
 
 const exportPipes = [];
 const exportDirective = [];
@@ -53,6 +54,7 @@ const pipes = [
     ...exportDirective,
     ...formComps,
     ...pipes,
+    FormExComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule,DirectivesModule],
   exports: [

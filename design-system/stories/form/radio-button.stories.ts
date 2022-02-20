@@ -2,12 +2,12 @@
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { QuestionRadioModel } from 'projects/kakal-ui/src/lib/form/form-radio/question-radio.model';
-import { FormRadioComponent } from '../projects/kakal-ui/src/lib/form/form-radio/form-radio.component';
+import { QuestionRadioModel } from '../../projects/kakal-ui/src/lib/form/form-radio/question-radio.model';
+import { FormRadioComponent } from '../../projects/kakal-ui/src/lib/form/form-radio/form-radio.component';
 import {MatRadioModule } from '@angular/material/radio';
 import { moduleMetadata ,} from '@storybook/angular';
 export default {
-    title: 'Form/Radio-Button',
+    title: 'form/Radio-Button',
     decorators: [
         moduleMetadata({
             imports: [MatRadioModule, FormsModule, ReactiveFormsModule] 
