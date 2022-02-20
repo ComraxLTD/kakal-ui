@@ -3,8 +3,8 @@ import { Color } from '../../styles/theme';
 
 @Component({
   selector: 'kkl-title',
-  templateUrl: './title.component.html',
-  styleUrls: ['./title.component.scss'],
+  templateUrl: './kkl-title.component.html',
+  styleUrls: ['./kkl-title.component.scss'],
 })
 export class TitleComponent implements OnInit {
   @Input() text: string;
