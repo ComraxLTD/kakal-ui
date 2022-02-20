@@ -32,6 +32,7 @@ export * from './lib/form/form-radio/form-radio.component';
 export * from './lib/form/form-currency/form-currency.component';
 
 export * from './lib/form/models/form-data-source.model';
+export * from './lib/form/models/question-autocomplete';
 
 
 // services

@@ -11,7 +11,6 @@ import { KKLFormAutoCompleteExModule } from 'projects/kakal-ui/src/lib/examples/
 export default {
   title: 'autocomplete/autocomplete',
   decorators: [
-    
     moduleMetadata({
       imports: [KKLFormAutoCompleteExModule]
     }),
