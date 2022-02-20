@@ -23,6 +23,7 @@ import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module'; 
 import { DirectivesModule } from '../directives/directives.module';
 import { FormExComponent } from './examples/form-ex/form-ex.component';
+import { FormSelectComponent } from './form/form-select/form-select.component';
 
 const exportPipes = [];
 const exportDirective = [];
@@ -55,6 +56,7 @@ const pipes = [
     ...formComps,
     ...pipes,
     FormExComponent,
+    FormSelectComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule,DirectivesModule],
   exports: [

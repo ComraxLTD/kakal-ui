@@ -56,7 +56,6 @@ export class FormInputComponent implements OnInit {
   public localFilter: boolean;
   public filteredOptions: Observable<any[]>;
 
-  @Output() public selected: EventEmitter<FormOption> = new EventEmitter();
   @Output() public optionSelected: EventEmitter<FormOption> =
     new EventEmitter();
   @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
@@ -179,18 +178,6 @@ export class FormInputComponent implements OnInit {
   }
 
   // EVENTS SECTION
-
-  public onSelectChange() {
-    const formOption: FormOption = this.getFormOption(this.control.value);
-    if (
-      this.question instanceof QuestionSelectModel &&
-      this.question.onSelectChange
-    ) {
-      this.question.onSelectChange(formOption);
-    }
-
-    this.selected.emit(formOption);
-  }
 
   public onAutocomplete(): Observable<string> {
     return this.control.valueChanges.pipe(

@@ -6,6 +6,7 @@ import { MatInputModule } from "@angular/material/input";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormInputComponent } from './form-input.component';
 import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
     imports: [CommonModule, MatFormFieldModule, MatInputModule, BrowserAnimationsModule, ReactiveFormsModule, NgxCleaveDirectiveModule],

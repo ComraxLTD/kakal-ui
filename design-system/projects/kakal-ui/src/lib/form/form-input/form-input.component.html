@@ -20,28 +20,6 @@
         ></textarea>
       </ng-container>
 
-      <!-- SELECT -->
-      <ng-container *ngSwitchCase="'select'">
-        <mat-select
-          panelClass="select-panel-form"
-          overlayPanelClass="overlay-panel"
-          [multiple]="question.multi"
-          [disableOptionCentering]="true"
-          (selectionChange)="onSelectChange()"
-          [formControl]="control"
-          [name]="question.key"
-          (focusout)="validate()"
-          (focus)="onFocus()"
-        >
-          <mat-option
-            *ngFor="let option of question.options"
-            [value]="option.value"
-          >
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-      </ng-container>
-
       <!-- AUTOCOMPLETE -->
       <ng-container *ngSwitchCase="'autocomplete'">
         <input
