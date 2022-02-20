@@ -20,7 +20,8 @@ import { FormatPipe } from '../pipes/format.pipe';
 import { LocationPipe } from '../pipes/location.pipe';
 import { PrefixPipe } from '../pipes/prefix.pipe';
 import { RangePipe } from '../pipes/range.pipe';
-import { KKLButtonModule } from './button/button.module' 
+import { KKLButtonModule } from './button/button.module';
+import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module'; 
 
 const angularMaterial = [MatRadioButton];
 
@@ -67,6 +68,7 @@ const pipes = [
     KakalUiComponent,
     ReactiveFormsModule,
     KKLButtonModule,
+    KKLFormAutoCompleteModule,
     ...components,
     ...exportPipes,
     ...exportDirective,
