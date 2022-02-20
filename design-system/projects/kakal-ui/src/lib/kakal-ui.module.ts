@@ -23,6 +23,7 @@ import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module'; 
 import { DirectivesModule } from '../directives/directives.module';
 import { MenuItemModule } from './menu-item/menu-item.module';
+import { MenuComponent } from './menu/menu.component';
 
 const exportPipes = [];
 const exportDirective = [];
@@ -55,6 +56,7 @@ const pipes = [
     ...exportDirective,
     ...formComps,
     ...pipes,
+    MenuComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule,DirectivesModule],
   exports: [
