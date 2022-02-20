@@ -25,6 +25,7 @@ import { DirectivesModule } from '../directives/directives.module';
 import { MenuItemModule } from './menu-item/menu-item.module';
 import { ListItemComponent } from './list-item/list-item.component';
 import { MenuModule } from './menu/menu.module';
+import { KklTitleComponent } from './kkl-title/kkl-title.component';
 
 const exportPipes = [];
 const exportDirective = [];
@@ -48,6 +49,7 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     ...formComps,
     ...pipes,
     ListItemComponent,
+    KklTitleComponent,
   ],
   imports: [
     CommonModule,
