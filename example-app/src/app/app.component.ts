@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { QuestionAutocompleteModel } from '@ComraxLTD/kakal-ui/lib/form/models/question-autocomplete';
+import { QuestionAutocompleteModel } from '@ComraxLTD/kakal-ui';
 import { FormControl } from '@angular/forms';
 import { FormDataSource } from '@ComraxLTD/kakal-ui';
 

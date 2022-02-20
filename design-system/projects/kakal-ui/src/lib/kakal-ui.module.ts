@@ -22,9 +22,6 @@ import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module'; 
 import { KKLTypographyModule } from './typography/typography.module'; 
 
-
-const angularMaterial = [MatRadioButton];
-
 const exportPipes = [];
 const exportDirective = [];
 
