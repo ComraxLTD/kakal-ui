@@ -7,7 +7,6 @@ import { FormComponent } from './form/form/form.component';
 import { FormDateComponent } from './form/form-date/form-date.component';
 import { FormInputComponent } from './form/form-input/form-input.component';
 import { FormRadioComponent } from './form/form-radio/form-radio.component';
-import { FormAutocompleteComponent } from './form/form-autocomplete/form-autocomplete.component';
 import { FormUploadComponent } from './form/form-upload/form-upload.component';
 import { FormCurrencyComponent } from './form/form-currency/form-currency.component';
 import { ButtonsetComponent } from './buttonset/buttonset.component';
@@ -34,7 +33,6 @@ const formComps = [
   FormInputComponent,
   FormUploadComponent,
   FormRadioComponent,
-  FormAutocompleteComponent,
   FormCurrencyComponent,
 ];
 const components = [
@@ -61,7 +59,6 @@ const pipes = [
     ...formComps,
     ...directives,
     ...pipes,
-    FormAutocompleteComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [
