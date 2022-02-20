@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
-import { QuestionAutocompleteModel } from '@ComraxLTD/kakal-ui';
-import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { FormDataSource } from '@ComraxLTD/kakal-ui';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { QuestionAutocompleteModel, FormDataSource } from '@ComraxLTD/kakal-ui';
 import { FormService } from '@ComraxLTD/kakal-ui/lib/form/services/form.service';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'app-autocomplete-ex',
+  templateUrl: './autocomplete-ex.component.html',
+  styleUrls: ['./autocomplete-ex.component.scss'],
 })
-export class AppComponent {
-  title = 'example-app';
-
+export class AutocompleteExComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   public question = new QuestionAutocompleteModel({
@@ -27,7 +24,8 @@ export class AppComponent {
 
   public formDataSource = new FormDataSource();
   public control = new FormControl();
-  
+
+  ngOnInit(): void {}
 
   onAutocomplete(query: any) {
     console.log(query.value);
