@@ -11,30 +11,20 @@
     "miscellaneous": {
         "variables": [
             {
+                "name": "autoComplete",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "ButtonsetSample",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Buttonset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "FancyBlueButton",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "FancyPinkButton",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -51,10 +41,30 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "Primary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "second",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/form-upload-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "Secondary",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -68,7 +78,17 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Buttonset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\n  component: ButtonsetComponent,\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -88,7 +108,27 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormInputComponent>",
-                "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
+                "defaultValue": "(args: FormInputComponent) => ({\n  component: FormInputComponent,\n  props: args,\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Typography.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<TypographyComponent>",
+                "defaultValue": "(args: TypographyComponent) => ({\n        component: TypographyComponent,\n        props: args,\n        template: `\n        <kkl-typography size='3'>Size : 3</kkl-typography>\n        <br/>\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\n        <br/>\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\n        <br/>\n        <kkl-typography color='success'>Color : success</kkl-typography>\n        <br/>\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\n        <br/>\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\n        `\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormAutocompleteExComponent>",
+                "defaultValue": "(\n  args: FormAutocompleteExComponent\n) => ({\n  component: FormAutocompleteExComponent,\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -98,7 +138,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormUploadComponent>",
-                "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+                "defaultValue": "(args: FormUploadComponent) => ({\n        component: FormUploadComponent,\n        props: args,\n    })"
             },
             {
                 "name": "Template",
@@ -108,13 +148,23 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormRadioComponent>",
-                "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
+                "defaultValue": "(args: FormRadioComponent) => ({\n    component: FormRadioComponent,\n    props: args,\n})"
             },
             {
                 "name": "TextInput",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Form-input.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "typography",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Typography.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -135,6 +185,28 @@
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
+            "stories/form-autocomplete.stories.ts": [
+                {
+                    "name": "autoComplete",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FormAutocompleteExComponent>",
+                    "defaultValue": "(\n  args: FormAutocompleteExComponent\n) => ({\n  component: FormAutocompleteExComponent,\n  props: args,\n})"
+                }
+            ],
             "stories/Buttonset.stories.ts": [
                 {
                     "name": "ButtonsetSample",
@@ -154,39 +226,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonsetComponent>",
-                    "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
-                }
-            ],
-            "stories/Button.stories.ts": [
-                {
-                    "name": "FancyBlueButton",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "FancyPinkButton",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\r\n  component: ButtonComponent,\r\n  props: args,\r\n})"
+                    "defaultValue": "(args: ButtonsetComponent) => ({\n  component: ButtonsetComponent,\n  props: args,\n})"
                 }
             ],
             "stories/radio-button.stories.ts": [
@@ -208,7 +248,39 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FormRadioComponent>",
-                    "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
+                    "defaultValue": "(args: FormRadioComponent) => ({\n    component: FormRadioComponent,\n    props: args,\n})"
+                }
+            ],
+            "stories/Button.stories.ts": [
+                {
+                    "name": "Primary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Secondary",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Button.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<ButtonComponent>",
+                    "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
                 }
             ],
             "stories/form-upload-button.stories.ts": [
@@ -230,7 +302,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FormUploadComponent>",
-                    "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+                    "defaultValue": "(args: FormUploadComponent) => ({\n        component: FormUploadComponent,\n        props: args,\n    })"
                 },
                 {
                     "name": "upload",
@@ -252,13 +324,35 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FormInputComponent>",
-                    "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
+                    "defaultValue": "(args: FormInputComponent) => ({\n  component: FormInputComponent,\n  props: args,\n})"
                 },
                 {
                     "name": "TextInput",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/Form-input.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                }
+            ],
+            "stories/Typography.stories.ts": [
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Typography.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<TypographyComponent>",
+                    "defaultValue": "(args: TypographyComponent) => ({\n        component: TypographyComponent,\n        props: args,\n        template: `\n        <kkl-typography size='3'>Size : 3</kkl-typography>\n        <br/>\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\n        <br/>\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\n        <br/>\n        <kkl-typography color='success'>Color : success</kkl-typography>\n        <br/>\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\n        <br/>\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\n        `\n    })"
+                },
+                {
+                    "name": "typography",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/Typography.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -280,7 +374,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "FancyBlueButton",
+                "name": "Primary",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -290,7 +384,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "FancyPinkButton",
+                "name": "Secondary",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -341,6 +435,46 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "TextInput",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Typography.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Typography.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "typography",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form-autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "autoComplete",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form-autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

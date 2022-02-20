@@ -10,7 +10,7 @@ export class TypographyComponent implements OnInit {
 
   public palette: Color = palette;
   @Input() public size: number;
-  @Input() public bold: number;
+  @Input() public weight: number;
   @Input() public underline:boolean;
   @Input() public color: Palette;
   @Input() public disabled: boolean
@@ -23,7 +23,7 @@ export class TypographyComponent implements OnInit {
 
   ngOnInit(): void {
     this.size = this.size || 1.4;
-    this.bold = this.bold || 500;
+    this.weight = this.weight || 500;
     this.color = this.color || 'text';
     this.dir = this.dir || 'rtl'
   }

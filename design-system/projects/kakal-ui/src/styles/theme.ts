@@ -3,7 +3,7 @@ import { ThemePalette } from '@angular/material/core';
 export declare type Theme = 'dark'
 
 export declare type Palette =
-  | ThemePalette
+  | Exclude<ThemePalette, undefined>
   | 'paper'
   | 'default'
   | 'disable'
