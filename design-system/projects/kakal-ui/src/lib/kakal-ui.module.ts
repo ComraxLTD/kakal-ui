@@ -22,6 +22,8 @@ import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module'; 
 import { KKLTypographyModule } from './typography/typography.module'; 
 import { DirectivesModule } from '../directives/directives.module';
+import { MenuItemComponent } from './menu-item/menu-item.component';
+import { MenuItemModule } from './menu-item/menu-item.module';
 
 const exportPipes = [];
 const exportDirective = [];
@@ -35,6 +37,7 @@ const formComps = [
 ];
 const components = [
   ButtonsetComponent,
+  MenuItemComponent
 ];
 
 
@@ -53,12 +56,15 @@ const pipes = [
     ...exportDirective,
     ...formComps,
     ...pipes,
+    MenuItemComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule,DirectivesModule],
   exports: [
     KakalUiComponent,
+    MenuItemModule,
     ReactiveFormsModule,
     KKLButtonModule,
+    MenuItemModule,
     KKLFormAutoCompleteModule,
     KKLIconModule,
     KKLFormUploadModule,

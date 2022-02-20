@@ -35,13 +35,17 @@ export * from './lib/form/models/form-data-source.model';
 export * from './lib/form/models/question-autocomplete';
 
 
+//menu 
+export * from './lib/menu-item/menu-item.module'
+export * from './lib/menu-item/menu-item.component'
+
+
 // services
 export * from './services/breakpoint.service';
 export * from './services/route.service';
 export * from './services/template.service';
 
 // constants
-
 export * from './constants/module-prefix';
 export * from './constants/project-prefix';
 export * from './constants/step-prefix';
@@ -54,8 +58,6 @@ export * from './pipes/prefix.pipe';
 export * from './pipes/range.pipe';
 
 //directives
-
-
 export * from './directives/variant.directive';
 export * from './directives/size.directive';
 export * from './directives/button.directive';
