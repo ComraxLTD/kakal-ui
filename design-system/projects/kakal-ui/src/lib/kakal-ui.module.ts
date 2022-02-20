@@ -17,13 +17,14 @@ import { LocationPipe } from '../pipes/location.pipe';
 import { PrefixPipe } from '../pipes/prefix.pipe';
 import { RangePipe } from '../pipes/range.pipe';
 import { KKLButtonModule } from './button/button.module';
-import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module'; 
-import { KKLFormUploadModule } from './form/form-upload/form-upload.module'; 
-import { KKLIconModule } from './icon/icon.module'; 
-import { KKLTypographyModule } from './typography/typography.module'; 
+import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
+import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
+import { KKLIconModule } from './icon/icon.module';
+import { KKLTypographyModule } from './typography/typography.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { MenuItemModule } from './menu-item/menu-item.module';
-import { MenuComponent } from './menu/menu.component';
+import { ListItemComponent } from './list-item/list-item.component';
+import { MenuModule } from './menu/menu.module';
 
 const exportPipes = [];
 const exportDirective = [];
@@ -35,19 +36,9 @@ const formComps = [
   FormRadioComponent,
   FormCurrencyComponent,
 ];
-const components = [
-  ButtonsetComponent,
-  
-];
+const components = [ButtonsetComponent];
 
-
-const pipes = [
-  AreaPipe,
-  FormatPipe,
-  LocationPipe,
-  PrefixPipe,
-  RangePipe
-]
+const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
 @NgModule({
   declarations: [
     KakalUiComponent,
@@ -56,9 +47,16 @@ const pipes = [
     ...exportDirective,
     ...formComps,
     ...pipes,
-    MenuComponent,
+    ListItemComponent,
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule,DirectivesModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    CoreModule,
+    DirectivesModule,
+    MenuModule
+  ],
   exports: [
     KakalUiComponent,
     MenuItemModule,
@@ -77,4 +75,4 @@ const pipes = [
     ...pipes,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}

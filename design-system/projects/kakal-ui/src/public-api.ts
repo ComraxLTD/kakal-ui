@@ -38,6 +38,8 @@ export * from './lib/form/models/question-autocomplete';
 //menu 
 export * from './lib/menu-item/menu-item.module'
 export * from './lib/menu-item/menu-item.component'
+export * from './lib/menu/menu.module'
+export * from './lib/menu/menu.component'
 
 
 // services

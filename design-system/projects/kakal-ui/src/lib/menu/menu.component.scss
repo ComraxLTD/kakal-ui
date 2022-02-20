@@ -1,0 +1,33 @@
+@use "../../styles//variables" as main;
+
+::ng-deep .kkl-menu {
+  mat-accordion {
+    width: inherit;
+
+    mat-expansion-panel-header {
+      padding-right: 0px;
+      width: inherit;
+      height: 3rem !important;
+      margin-bottom: 1rem;
+
+      &:hover.active {
+        background-color: main.color(primary) !important;
+      }
+
+      &.active {
+        background-color: main.color(primary) !important;
+        width: 20rem;
+        border-top-left-radius: 50px;
+        border-bottom-left-radius: 50px;
+      }
+    }
+
+    div.mat-expansion-panel-body {
+      padding: 0px !important;
+    }
+
+    ::ng-deep span.mat-expansion-indicator {
+      display: none;
+    }
+  }
+}
