@@ -7,12 +7,8 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class ButtonComponent implements OnInit {
-  @Input('label') label: string | null;
-  @Input('pink') pink: boolean;
-  @Input('noShadow') noShadow: boolean;
-  @Input('bordersLeft') bordersLeft: boolean = true;
-  @Input('bordersRight') bordersRight: boolean = true;
-
+  @Input() label = 'Button';
+  @Input() type: 'primary' | 'secondary' = 'primary';
   constructor() { }
 
   ngOnInit(): void {

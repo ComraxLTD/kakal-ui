@@ -2,16 +2,17 @@
  * Public API Surface of kakal-ui
  */
 
+
 export * from './lib/kakal-ui.service';
 export * from './lib/kakal-ui.component';
 export * from './lib/kakal-ui.module';
 
 export * from './lib/button/button.component';
+export * from './lib/button/button.module';
+
 export * from './lib/buttonset/buttonset.component';
 export * from './lib/typography/typography.component';
 export * from './lib/icon/icon.component';
-export * from './lib/title/title.component';
-export * from './lib/step-title/step-title.component';
 
 // form exports
 export * from './lib/form/form/form.component';
@@ -33,9 +34,6 @@ export * from './constants/module-prefix';
 export * from './constants/project-prefix';
 export * from './constants/step-prefix';
 
-// directives 
-export * from './directives/underline.directive';
-export * from './directives/size.directive';
 // pipes 
 export * from './pipes/area.pipe';
 export * from './pipes/format.pipe';

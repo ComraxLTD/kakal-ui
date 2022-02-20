@@ -24,6 +24,6 @@
     "**/*.stories.*"
   ],
   "include": [
-    "../../stories/button.stories.ts"
-  ]
+    "./src/"
+  ],
 }
