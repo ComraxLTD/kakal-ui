@@ -52,3 +52,19 @@ export * from './pipes/format.pipe';
 export * from './pipes/location.pipe';
 export * from './pipes/prefix.pipe';
 export * from './pipes/range.pipe';
+
+//directives
+
+
+export * from './directives/variant.directive';
+export * from './directives/size.directive';
+export * from './directives/button.directive';
+export * from './directives/underline.directive';
+export * from './directives/border.directive';
+export * from './directives/outside.directive';
+export * from './directives/cell.directive';
+export * from './directives/wizard.directive';
+export * from './directives/action-button.directive';
+export * from './directives/form-button.directive';
+export * from './directives/outside-button.directive';
+export * from './directives/directives.module';
