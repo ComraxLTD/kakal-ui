@@ -12,6 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { KKLIconModule } from '../../icon/icon.module';
 import { FormService } from '../services/form.service';
+import { MessageService } from '../services/message.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ import { FormService } from '../services/form.service';
     MatAutocompleteModule,
     KKLIconModule,
   ],
-  providers: [FormService],
+  providers: [FormService, MessageService],
   declarations: [FormAutocompleteComponent],
   exports: [FormAutocompleteComponent],
 })
