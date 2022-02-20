@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { QuestionAutocompleteModel, FormDataSource } from '@ComraxLTD/kakal-ui';
+import { QuestionAutocompleteModel, FormDataSource, BreakpointService } from '@ComraxLTD/kakal-ui';
 import { FormService } from '@ComraxLTD/kakal-ui/lib/form/services/form.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { FormService } from '@ComraxLTD/kakal-ui/lib/form/services/form.service'
   styleUrls: ['./autocomplete-ex.component.scss'],
 })
 export class AutocompleteExComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private brea : BreakpointService) {}
 
   public question = new QuestionAutocompleteModel({
     key: 'autocomplete',
