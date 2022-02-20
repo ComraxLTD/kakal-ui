@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { KakalUiComponent } from './kakal-ui.component';
-import { TypographyComponent } from './typography/typography.component';
-import { IconComponent } from './icon/icon.component';
 import { FormComponent } from './form/form/form.component';
 import { FormDateComponent } from './form/form-date/form-date.component';
 import { FormInputComponent } from './form/form-input/form-input.component';
 import { FormRadioComponent } from './form/form-radio/form-radio.component';
-import { FormUploadComponent } from './form/form-upload/form-upload.component';
 import { FormCurrencyComponent } from './form/form-currency/form-currency.component';
 import { ButtonsetComponent } from './buttonset/buttonset.component';
 import { MatRadioButton } from '@angular/material/radio';
@@ -21,6 +18,10 @@ import { PrefixPipe } from '../pipes/prefix.pipe';
 import { RangePipe } from '../pipes/range.pipe';
 import { KKLButtonModule } from './button/button.module';
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module'; 
+import { KKLFormUploadModule } from './form/form-upload/form-upload.module'; 
+import { KKLIconModule } from './icon/icon.module'; 
+import { KKLTypographyModule } from './typography/typography.module'; 
+
 
 const angularMaterial = [MatRadioButton];
 
@@ -31,13 +32,10 @@ const formComps = [
   FormComponent,
   FormDateComponent,
   FormInputComponent,
-  FormUploadComponent,
   FormRadioComponent,
   FormCurrencyComponent,
 ];
 const components = [
-  TypographyComponent,
-  IconComponent,
   ButtonsetComponent,
 ];
 const directives = [
@@ -66,6 +64,9 @@ const pipes = [
     ReactiveFormsModule,
     KKLButtonModule,
     KKLFormAutoCompleteModule,
+    KKLIconModule,
+    KKLFormUploadModule,
+    KKLTypographyModule,
     ...components,
     ...exportPipes,
     ...exportDirective,

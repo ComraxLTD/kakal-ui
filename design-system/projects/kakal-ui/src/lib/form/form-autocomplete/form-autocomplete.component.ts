@@ -13,7 +13,7 @@ import {
   startWith,
   tap,
 } from 'rxjs/operators';
-import { combineLatest, merge, Observable, of } from 'rxjs';
+import { merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-form-autocomplete',

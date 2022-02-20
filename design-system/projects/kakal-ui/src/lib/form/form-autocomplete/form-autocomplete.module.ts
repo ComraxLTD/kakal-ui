@@ -10,7 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
-
+import { KKLIconModule } from '../../icon/icon.module'
 
 @NgModule({
   imports: [
@@ -23,7 +23,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatIconModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    KKLIconModule,
   ],
   declarations: [FormAutocompleteComponent],
   exports: [FormAutocompleteComponent]
