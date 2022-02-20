@@ -42,6 +42,11 @@ export * from './lib/menu/menu.module'
 export * from './lib/menu/menu.component'
 
 
+//title
+
+export * from './lib/kkl-title/kkl-title.module'
+export * from './lib/kkl-title/kkl-title.component'
+
 // services
 export * from './services/breakpoint.service';
 export * from './services/route.service';
