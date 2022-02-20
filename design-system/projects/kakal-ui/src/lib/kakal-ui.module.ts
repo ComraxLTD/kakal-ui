@@ -62,7 +62,7 @@ const pipes = [
     ...pipes,
     FormAutocompleteComponent,
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule, KKLButtonModule],
+  imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule],
   exports: [
     KakalUiComponent,
     ReactiveFormsModule,
