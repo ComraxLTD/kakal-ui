@@ -28,16 +28,19 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public icon: string;
   @Input() public label: string;
-  @Input() public options:SelectOption[]
+  @Input() public options: SelectOption[];
   @Input() public panelWidth: boolean;
   @Input() public multi: boolean;
 
   @Input() public optionsSlot: ElementRef;
+  @Input() public selector: (config: {
+    selector: string;
+    options: SelectOption[];
+  }) => SelectOption;
 
   @Input() public formDataSource: FormDataSource;
 
@@ -66,8 +69,13 @@ export class FormAutocompleteComponent implements OnInit {
       debounceTime(500),
       distinctUntilKeyChanged('value'),
       tap((formOption: FormOption) => {
+        const option: SelectOption = this.options.find((option) =>
+          option.label.indexOf(formOption.value)
+        );
+
         this.autocomplete.emit({
           key: this.key,
+          option,
           value: formOption.value,
           value$: of(formOption.value),
         });
@@ -77,14 +85,11 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public search(value: string): void {
-    this.formDataSource
-      .getActions()
-      .autocomplete({ key: this.key, value });
+    this.formDataSource.getActions().autocomplete({ key: this.key, value });
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
     const option: SelectOption = event.option.value;
-
     this.optionSelected.emit({
       key: this.key,
       value: option.value,
