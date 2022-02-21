@@ -28,10 +28,17 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-  @Input() public question: QuestionAutocompleteModel;
+  @Input() public options:SelectOption[]
+  @Input() public key: string;
+  @Input() public icon: string;
+  @Input() public label: string;
+  @Input() public panelWidth: boolean;
+  @Input() public multi: boolean;
   @Input() public control: FormControl;
-  @Input() public formDataSource: FormDataSource;
   @Input() public optionsSlot: ElementRef;
+
+  // @Input() public question: QuestionAutocompleteModel;
+  @Input() public formDataSource: FormDataSource;
 
   @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
@@ -59,7 +66,7 @@ export class FormAutocompleteComponent implements OnInit {
       distinctUntilKeyChanged('value'),
       tap((formOption: FormOption) => {
         this.autocomplete.emit({
-          key: this.question.key,
+          key: this.key,
           value: formOption.value,
           value$: of(formOption.value),
         });
@@ -71,14 +78,14 @@ export class FormAutocompleteComponent implements OnInit {
   public search(value: string): void {
     this.formDataSource
       .getActions()
-      .autocomplete({ key: this.question.key, value });
+      .autocomplete({ key: this.key, value });
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
     const option: SelectOption = event.option.value;
 
     this.optionSelected.emit({
-      key: this.question.key,
+      key: this.key,
       value: option.value,
       option,
     });
@@ -91,36 +98,34 @@ export class FormAutocompleteComponent implements OnInit {
       return option.value;
     });
 
-    let selectedLabel: any = this.question.options.filter((option) =>
+    let selectedLabel: any = this.options.filter((option) =>
       selected.includes(option.value)
     );
 
     selectedLabel = selectedLabel.map((option) => option.label);
 
     if (options.length === 0) {
-      this.multiOptionsSelected.emit({ key: this.question.key, value: [] });
+      this.multiOptionsSelected.emit({ key: this.key, value: [] });
       if (this.control) {
         if (options.length == 0) this.control.setValue([]);
       }
       return;
     }
 
-    const arr = this.question.options.filter(
+    const arr = this.options.filter(
       (option: SelectOption) => selected.indexOf(option.value) >= 0
     );
 
     this.multiOptionsSelected.emit({
-      key: this.question.key,
+      key: this.key,
       value: selected,
-      options: this.question.options.filter(
+      options: this.options.filter(
         (option: SelectOption) => selected.indexOf(option.value) >= 0
       ),
     });
   }
 
   public displayFn(option: any): string {
-    console.log(option);
     return option?.label || '';
   }
-
 }
