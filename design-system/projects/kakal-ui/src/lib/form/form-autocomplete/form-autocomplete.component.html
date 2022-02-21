@@ -44,6 +44,12 @@
         #selectOptions
         (selectionChange)="onSelectionChange(selectOptions)"
       >
+        <mat-select-trigger>
+          <span>
+            (+{{ question.options.length - 1 }}
+            {{ question.options[0].label }})
+          </span>
+        </mat-select-trigger>
         <mat-list-option
           class="autocomplete-option"
           [disabled]="option.disabled"

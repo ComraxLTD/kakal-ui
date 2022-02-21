@@ -46,8 +46,9 @@ autoComplete.args = {
   formDataSource:new FormDataSource(),
   control: new FormControl(),
 };
+
 export const autocompleteMulti = Template.bind({});
-autoComplete.args = {
+autocompleteMulti.args = {
   question: new QuestionAutocompleteModel({
     key: 'autocomplete',
     multi : true,

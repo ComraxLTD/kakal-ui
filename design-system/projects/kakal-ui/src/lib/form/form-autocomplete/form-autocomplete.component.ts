@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatSelectionList } from '@angular/material/list';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource, FormOption } from '../models/form-data-source.model';
@@ -87,7 +87,7 @@ export class FormAutocompleteComponent implements OnInit {
   public onSelectionChange(option: MatSelectionList): void {
     const options = option.selectedOptions.selected;
 
-    const selected: string[] = options.map((option) => {
+    const selected: string[] = options.map((option: MatListOption) => {
       return option.value;
     });
 
@@ -118,7 +118,9 @@ export class FormAutocompleteComponent implements OnInit {
     });
   }
 
-  public displayFn(option: SelectOption): string {
-    return option?.label || ''
+  public displayFn(option: any): string {
+    console.log(option);
+    return option?.label || '';
   }
+
 }
