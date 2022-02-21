@@ -82,7 +82,7 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public search(value: string): void {
-    this.formDataSource.getActions().autocomplete({ key: this.key, value });
+    this.formDataSource.actions.autocomplete({ key: this.key, value });
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
