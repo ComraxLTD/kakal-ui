@@ -75,16 +75,12 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    const value = event.option.value;
-
-    const [filter] = this.question.options.filter(
-      (option) => option.value === value
-    );
+    const option: SelectOption = event.option.value;
 
     this.optionSelected.emit({
       key: this.question.key,
-      value: filter.value,
-      option: filter,
+      value: option.value,
+      option,
     });
   }
 
@@ -123,6 +119,6 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public displayFn(option: SelectOption): string {
-    return option.label;
+    return option?.label || ''
   }
 }

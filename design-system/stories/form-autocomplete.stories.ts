@@ -37,10 +37,10 @@ autoComplete.args = {
   question: new QuestionAutocompleteModel({
     key: 'autocomplete',
     options: [
-      { value: 'first', label: 'first' },
-      { value: 'second', label: 'second' },
-      { value: 'thierd', label: 'thierd' },
-      { value: 'foruth', label: 'foruth' },
+      { value: '1', label: 'first' },
+      { value: '2', label: 'second' },
+      { value: '3', label: 'thierd' },
+      { value: '4', label: 'foruth' },
     ],
   }),
   formDataSource:new FormDataSource(),
