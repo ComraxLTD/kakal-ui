@@ -22,13 +22,13 @@ export class AutocompleteExComponent implements OnInit {
     ],
   });
 
+
   public formDataSource = new FormDataSource();
   public control = new FormControl();
 
   ngOnInit(): void {}
 
   onAutocomplete(query: any) {
-    console.log(query.value);
     this.http
       .get<any>(
         `https://virtserver.swaggerhub.com/Comrax/KKL-demo/1.0.0/autocomplete`

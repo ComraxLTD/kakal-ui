@@ -7,6 +7,7 @@ import { KakalUiModule } from '@ComraxLTD/kakal-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AutocompleteExComponent } from './autocomplete-ex/autocomplete-ex.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AutocompleteExComponent } from './autocomplete-ex/autocomplete-ex.compo
     BrowserModule,
     AppRoutingModule,
     KakalUiModule,
+    FlexLayoutModule,
     BrowserAnimationsModule
   ],
   providers: [],
