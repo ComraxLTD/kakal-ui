@@ -23,15 +23,6 @@ import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { MenuItemModule } from './menu-item/menu-item.module';
-import { FormService, MessageService, ValidationService } from '../public-api';
-
-
-
-const services = [
-  FormService,
-  ValidationService,
-  MessageService
-]
 
 const exportPipes = [];
 const exportDirective = [];
@@ -82,7 +73,6 @@ const pipes = [
     ...exportDirective,
     ...formComps,
     ...pipes,
-    ...services
   ],
 })
 export class KakalUiModule { }
