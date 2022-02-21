@@ -17,12 +17,21 @@ import { LocationPipe } from '../pipes/location.pipe';
 import { PrefixPipe } from '../pipes/prefix.pipe';
 import { RangePipe } from '../pipes/range.pipe';
 import { KKLButtonModule } from './button/button.module';
-import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module'; 
-import { KKLFormUploadModule } from './form/form-upload/form-upload.module'; 
-import { KKLIconModule } from './icon/icon.module'; 
-import { KKLTypographyModule } from './typography/typography.module'; 
+import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
+import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
+import { KKLIconModule } from './icon/icon.module';
+import { KKLTypographyModule } from './typography/typography.module';
 import { DirectivesModule } from '../directives/directives.module';
 import { MenuItemModule } from './menu-item/menu-item.module';
+import { FormService, MessageService, ValidationService } from '../public-api';
+
+
+
+const services = [
+  FormService,
+  ValidationService,
+  MessageService
+]
 
 const exportPipes = [];
 const exportDirective = [];
@@ -36,7 +45,7 @@ const formComps = [
 ];
 const components = [
   ButtonsetComponent,
-  
+
 ];
 
 
@@ -73,6 +82,7 @@ const pipes = [
     ...exportDirective,
     ...formComps,
     ...pipes,
+    ...services
   ],
 })
 export class KakalUiModule { }
