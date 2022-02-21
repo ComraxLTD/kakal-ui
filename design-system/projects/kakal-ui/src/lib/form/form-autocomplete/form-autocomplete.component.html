@@ -13,6 +13,7 @@
   <mat-autocomplete
     autoActiveFirstOption
     #auto="matAutocomplete"
+    [displayWith]="displayFn"
     (optionSelected)="onOptionSelected($event)"
     [panelWidth]="question.panelWidth ? 'auto' : null"
   >
@@ -21,7 +22,7 @@
         class="autocomplete-option"
         [disabled]="option.disabled"
         *ngFor="let option of question.options"
-        [value]="option.value"
+        [value]="option"
       >
         <ng-container *ngIf="!optionsSlot; else slotBlock">
           {{ option.label }}
@@ -43,11 +44,17 @@
         #selectOptions
         (selectionChange)="onSelectionChange(selectOptions)"
       >
+        <mat-select-trigger>
+          <span>
+            (+{{ question.options.length - 1 }}
+            {{ question.options[0].label }})
+          </span>
+        </mat-select-trigger>
         <mat-list-option
           class="autocomplete-option"
           [disabled]="option.disabled"
           *ngFor="let option of question.options"
-          [value]="option.value"
+          [value]="option"
         >
           <ng-container *ngIf="!optionsSlot">
             {{ option.label }}

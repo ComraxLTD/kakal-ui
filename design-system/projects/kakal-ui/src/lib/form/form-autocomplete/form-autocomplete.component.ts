@@ -1,7 +1,14 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatSelectionList } from '@angular/material/list';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource, FormOption } from '../models/form-data-source.model';
@@ -21,7 +28,6 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-
   @Input() public question: QuestionAutocompleteModel;
   @Input() public control: FormControl;
   @Input() public formDataSource: FormDataSource;
@@ -69,31 +75,26 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    const value = event.option.value;
-
-    const [filter] = this.question.options.filter(
-      (option) => option.value === value
-    );
+    const option: SelectOption = event.option.value;
 
     this.optionSelected.emit({
       key: this.question.key,
-      value: filter.value,
-      option: filter,
+      value: option.value,
+      option,
     });
   }
 
   public onSelectionChange(option: MatSelectionList): void {
-
     const options = option.selectedOptions.selected;
 
-    const selected: string[] = options.map((option) => {
+    const selected: string[] = options.map((option: MatListOption) => {
       return option.value;
     });
 
     let selectedLabel: any = this.question.options.filter((option) =>
       selected.includes(option.value)
     );
-    
+
     selectedLabel = selectedLabel.map((option) => option.label);
 
     if (options.length === 0) {
@@ -116,4 +117,10 @@ export class FormAutocompleteComponent implements OnInit {
       ),
     });
   }
+
+  public displayFn(option: any): string {
+    console.log(option);
+    return option?.label || '';
+  }
+
 }
