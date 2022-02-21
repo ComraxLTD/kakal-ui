@@ -1,11 +1,15 @@
 <div class="container">
   <div class="form">
     <kkl-form-autocomplete
-    [question]="question"
-    [control]="control"
-    [formDataSource]="formDataSource"
-    (autocomplete)="onAutoComplete($event)"
+      [control]="control"
+      [key]="key"
+      [icon]="icon"
+      [label]="label"
+      [options]="options"
+      [panelWidth]="panelWidth"
+      [multi]="multi"
+      [formDataSource]="formDataSource"
+      (autocomplete)="onAutoComplete($event)"
     ></kkl-form-autocomplete>
   </div>
 </div>
-

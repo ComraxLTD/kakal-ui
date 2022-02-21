@@ -28,16 +28,17 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-  @Input() public options:SelectOption[]
+
+  @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public icon: string;
   @Input() public label: string;
+  @Input() public options:SelectOption[]
   @Input() public panelWidth: boolean;
   @Input() public multi: boolean;
-  @Input() public control: FormControl;
+
   @Input() public optionsSlot: ElementRef;
 
-  // @Input() public question: QuestionAutocompleteModel;
   @Input() public formDataSource: FormDataSource;
 
   @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
