@@ -9,15 +9,12 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
-import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource, FormOption } from '../models/form-data-source.model';
 import {
   debounceTime,
   distinctUntilKeyChanged,
-  map,
   mapTo,
-  startWith,
   tap,
 } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
