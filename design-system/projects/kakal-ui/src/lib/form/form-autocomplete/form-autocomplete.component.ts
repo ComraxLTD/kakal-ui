@@ -1,4 +1,11 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatSelectionList } from '@angular/material/list';
@@ -21,7 +28,6 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-
   @Input() public question: QuestionAutocompleteModel;
   @Input() public control: FormControl;
   @Input() public formDataSource: FormDataSource;
@@ -83,7 +89,6 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public onSelectionChange(option: MatSelectionList): void {
-
     const options = option.selectedOptions.selected;
 
     const selected: string[] = options.map((option) => {
@@ -93,7 +98,7 @@ export class FormAutocompleteComponent implements OnInit {
     let selectedLabel: any = this.question.options.filter((option) =>
       selected.includes(option.value)
     );
-    
+
     selectedLabel = selectedLabel.map((option) => option.label);
 
     if (options.length === 0) {
@@ -115,5 +120,9 @@ export class FormAutocompleteComponent implements OnInit {
         (option: SelectOption) => selected.indexOf(option.value) >= 0
       ),
     });
+  }
+
+  public displayFn(option: SelectOption): string {
+    return option.label;
   }
 }

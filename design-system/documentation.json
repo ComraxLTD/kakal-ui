@@ -24,7 +24,7 @@
                 "name": "ButtonsetSample",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/buttonset.stories.ts",
+                "file": "stories/Buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -84,7 +84,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/buttonset.stories.ts",
+                "file": "stories/form-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormAutocompleteExComponent>",
+                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonsetComponent>",
@@ -99,16 +109,6 @@
                 "deprecationMessage": "",
                 "type": "Story<FormInputComponent>",
                 "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/form-autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormAutocompleteExComponent>",
-                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -197,12 +197,12 @@
                     "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
                 }
             ],
-            "stories/buttonset.stories.ts": [
+            "stories/Buttonset.stories.ts": [
                 {
                     "name": "ButtonsetSample",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/buttonset.stories.ts",
+                    "file": "stories/Buttonset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -212,7 +212,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/buttonset.stories.ts",
+                    "file": "stories/Buttonset.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonsetComponent>",
@@ -390,6 +390,26 @@
                 "status": "low"
             },
             {
+                "filePath": "stories/Buttonset.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "ButtonsetSample",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/Buttonset.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "stories/Form-input.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -425,26 +445,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "typography",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/buttonset.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "ButtonsetSample",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/buttonset.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
