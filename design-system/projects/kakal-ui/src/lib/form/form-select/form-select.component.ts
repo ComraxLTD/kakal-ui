@@ -7,12 +7,11 @@ import { QuestionBase } from '../services/form.service';
 import { MessageService } from '../services/message.service';
 
 @Component({
-  selector: 'pl-form-select',
+  selector: 'kkl-form-select',
   templateUrl: './form-select.component.html',
   styleUrls: ['./form-select.component.scss']
 })
 export class FormSelectComponent implements OnInit {
-
   @Input() public question: QuestionBase;
   @Input() public control: FormControl;
   @Input() public index:number;

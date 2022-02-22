@@ -24,8 +24,6 @@ import { FormComponent } from './form.component';
         MatInputModule,
         KKLIconModule,
 
-        // form modules
-        MatAutocompleteModule
     ],
     exports: [FormComponent]
 })
