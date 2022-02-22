@@ -178,62 +178,6 @@ export class FormInputComponent implements OnInit {
   }
 
   // EVENTS SECTION
-
-  public onAutocomplete(): Observable<string> {
-    return this.control.valueChanges.pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      map((value: string) => {
-        const formOption: FormOption = this.getFormOption(value);
-        this.autocomplete.emit(formOption);
-        return value;
-      })
-    );
-  }
-
-  public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    const value = event.option.value;
-    const formOption: FormOption = this.getFormOption(value);
-
-    this.optionSelected.emit(formOption);
-
-    if (
-      this.question instanceof QuestionAutocompleteModel &&
-      this.question.onOptionSelect
-    ) {
-      this.question.onOptionSelect(formOption);
-    }
-  }
-
-  public onMultiOptionSelected(event: MatSelectionList) {
-    const options = event.selectedOptions.selected;
-    const list = options.map((option) => option.value);
-    const filteredList = this.question['options'].filter(
-      (option) => list.indexOf(option.value) >= 0
-    );
-
-    const formOption: FormOption = {
-      key: this.question.key,
-      control: this.control,
-      multi: this.question['multi'],
-      options: filteredList,
-      value$: of(filteredList),
-    };
-
-    this.optionSelected.emit(formOption);
-
-    if (
-      this.question instanceof QuestionAutocompleteModel &&
-      this.question.onOptionSelect
-    ) {
-      this.question.onOptionSelect(formOption);
-    }
-  }
-
-  public onAutocompleteFocusout() {
-    this.focusoutEvent.emit(this.getFormOption());
-  }
-
   public onFocus() {
     this.focus.emit(this.getFormOption());
   }
