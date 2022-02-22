@@ -50,48 +50,66 @@ export class FormAutocompleteComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.formDataSource = new FormDataSource();
-    this.autocomplete$ = this.mergeFormEvents().pipe(mapTo(''));
+    // this.autocomplete$ = this.mergeFormEvents().pipe(mapTo(''));
   }
 
-  private mergeFormEvents() {
-    return merge(
-      this.onAutocompleteEvent(),
-      this.formDataSource.listen.optionSelected()
+  // private mergeFormEvents() {
+  //   return merge(
+  //     this.onAutocompleteEvent(),
+  //     this.formDataSource.listen.optionSelected()
+  //   );
+  // }
+
+  // private onAutocompleteEvent(): Observable<FormOption> {
+  //   return this.formDataSource.listen.autocomplete().pipe(
+  //     debounceTime(500),
+  //     distinctUntilKeyChanged('value'),
+  //     tap((formOption: FormOption) => {
+  //       const option: SelectOption = this.options.find((option) =>
+  //         option.label.indexOf(formOption.value)
+  //       );
+
+  //       this.autocomplete.emit({
+  //         key: this.key,
+  //         option,
+  //         value: formOption.value,
+  //         value$: of(formOption.value),
+  //       });
+  //       return formOption;
+  //     })
+  //   );
+  // }
+
+  public search(query: string): void {
+    const option: SelectOption = this.options.find((option) =>
+      option.label.indexOf(query)
     );
-  }
 
-  private onAutocompleteEvent(): Observable<FormOption> {
-    return this.formDataSource.listen.autocomplete().pipe(
-      debounceTime(500),
-      distinctUntilKeyChanged('value'),
-      tap((formOption: FormOption) => {
-        const option: SelectOption = this.options.find((option) =>
-          option.label.indexOf(formOption.value)
-        );
+    const formOption = {
+      key: this.key,
+      option,
+      query,
+      query$: of(query),
+    };
 
-        this.autocomplete.emit({
-          key: this.key,
-          option,
-          value: formOption.value,
-          value$: of(formOption.value),
-        });
-        return formOption;
-      })
-    );
-  }
-
-  public search(value: string): void {
-    this.formDataSource.actions.autocomplete({ value });
+    this.formDataSource.actions.autocomplete(formOption);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
     const option: SelectOption = event.option.value;
-    this.optionSelected.emit({
+    // this.optionSelected.emit({
+    //   key: this.key,
+    //   value: option.value,
+    //   option,
+    // });
+
+    const formOption: FormOption = {
       key: this.key,
       value: option.value,
       option,
-    });
+    };
+
+    this.formDataSource.actions.optionSelected(formOption);
   }
 
   public onSelectionChange(option: MatSelectionList): void {

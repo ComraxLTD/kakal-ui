@@ -35,7 +35,9 @@ export interface FormOption {
   multi?: boolean;
   options?: SelectOption[] | MatListOption[];
   value?: any;
+  query?: any;
   value$?: Observable<any>;
+  query$?: Observable<any>;
 }
 2;
 export class FormDataSource {
