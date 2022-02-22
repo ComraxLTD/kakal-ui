@@ -9,15 +9,12 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
-import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource, FormOption } from '../models/form-data-source.model';
 import {
   debounceTime,
   distinctUntilKeyChanged,
-  map,
   mapTo,
-  startWith,
   tap,
 } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
@@ -28,10 +25,21 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-  @Input() public question: QuestionAutocompleteModel;
   @Input() public control: FormControl;
-  @Input() public formDataSource: FormDataSource;
+  @Input() public key: string;
+  @Input() public icon: string;
+  @Input() public label: string;
+  @Input() public options: SelectOption[];
+  @Input() public panelWidth: boolean;
+  @Input() public multi: boolean;
+
   @Input() public optionsSlot: ElementRef;
+  @Input() public selector: (config: {
+    selector: string;
+    options: SelectOption[];
+  }) => SelectOption;
+
+  @Input() public formDataSource: FormDataSource;
 
   @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
@@ -58,8 +66,13 @@ export class FormAutocompleteComponent implements OnInit {
       debounceTime(500),
       distinctUntilKeyChanged('value'),
       tap((formOption: FormOption) => {
+        const option: SelectOption = this.options.find((option) =>
+          option.label.indexOf(formOption.value)
+        );
+
         this.autocomplete.emit({
-          key: this.question.key,
+          key: this.key,
+          option,
           value: formOption.value,
           value$: of(formOption.value),
         });
@@ -69,16 +82,13 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public search(value: string): void {
-    this.formDataSource
-      .getActions()
-      .autocomplete({ key: this.question.key, value });
+    this.formDataSource.actions.autocomplete({ value });
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
     const option: SelectOption = event.option.value;
-
     this.optionSelected.emit({
-      key: this.question.key,
+      key: this.key,
       value: option.value,
       option,
     });
@@ -91,36 +101,34 @@ export class FormAutocompleteComponent implements OnInit {
       return option.value;
     });
 
-    let selectedLabel: any = this.question.options.filter((option) =>
+    let selectedLabel: any = this.options.filter((option) =>
       selected.includes(option.value)
     );
 
     selectedLabel = selectedLabel.map((option) => option.label);
 
     if (options.length === 0) {
-      this.multiOptionsSelected.emit({ key: this.question.key, value: [] });
+      this.multiOptionsSelected.emit({ key: this.key, value: [] });
       if (this.control) {
         if (options.length == 0) this.control.setValue([]);
       }
       return;
     }
 
-    const arr = this.question.options.filter(
+    const arr = this.options.filter(
       (option: SelectOption) => selected.indexOf(option.value) >= 0
     );
 
     this.multiOptionsSelected.emit({
-      key: this.question.key,
+      key: this.key,
       value: selected,
-      options: this.question.options.filter(
+      options: this.options.filter(
         (option: SelectOption) => selected.indexOf(option.value) >= 0
       ),
     });
   }
 
   public displayFn(option: any): string {
-    console.log(option);
     return option?.label || '';
   }
-
 }

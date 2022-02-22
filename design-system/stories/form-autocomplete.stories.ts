@@ -12,7 +12,7 @@ export default {
   title: 'autocomplete/autocomplete',
   decorators: [
     moduleMetadata({
-      imports: [KKLFormAutoCompleteExModule]
+      imports: [KKLFormAutoCompleteExModule],
     }),
   ],
   component: FormAutocompleteExComponent,
@@ -34,31 +34,29 @@ const Template: Story<FormAutocompleteExComponent> = (
 
 export const autoComplete = Template.bind({});
 autoComplete.args = {
-  question: new QuestionAutocompleteModel({
-    key: 'autocomplete',
-    options: [
-      { value: '1', label: 'first' },
-      { value: '2', label: 'second' },
-      { value: '3', label: 'thierd' },
-      { value: '4', label: 'foruth' },
-    ],
-  }),
-  formDataSource:new FormDataSource(),
+  key: 'autocomplete',
+  options: [
+    { value: '1', label: 'first' },
+    { value: '2', label: 'second' },
+    { value: '3', label: 'thierd' },
+    { value: '4', label: 'foruth' },
+  ],
+  icon : 'search',
+  formDataSource: new FormDataSource(),
   control: new FormControl(),
 };
 
 export const autocompleteMulti = Template.bind({});
 autocompleteMulti.args = {
-  question: new QuestionAutocompleteModel({
-    key: 'autocomplete',
-    multi : true,
-    options: [
-      { value: '1', label: 'first' },
-      { value: '2', label: 'second' },
-      { value: '3', label: 'thierd' },
-      { value: '4', label: 'foruth' },
-    ],
-  }),
-  formDataSource:new FormDataSource(),
+  icon : 'search',
+  key: 'autocomplete',
+  multi: true,
+  options: [
+    { value: '1', label: 'first' },
+    { value: '2', label: 'second' },
+    { value: '3', label: 'thierd' },
+    { value: '4', label: 'foruth' },
+  ],
+  formDataSource: new FormDataSource(),
   control: new FormControl(),
 };

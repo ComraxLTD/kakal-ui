@@ -21,6 +21,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "autocompleteMulti",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "ButtonsetSample",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -84,16 +94,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/form-autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormAutocompleteExComponent>",
-                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/Buttonset.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -109,6 +109,16 @@
                 "deprecationMessage": "",
                 "type": "Story<FormInputComponent>",
                 "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormAutocompleteExComponent>",
+                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -178,6 +188,16 @@
             "stories/form-autocomplete.stories.ts": [
                 {
                     "name": "autoComplete",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "autocompleteMulti",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/form-autocomplete.stories.ts",
@@ -455,6 +475,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "autoComplete",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form-autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "autocompleteMulti",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
