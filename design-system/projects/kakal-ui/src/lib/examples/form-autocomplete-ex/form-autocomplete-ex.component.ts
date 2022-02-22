@@ -14,7 +14,7 @@ import {
   FormOption,
 } from '../../form/models/form-data-source.model';
 import { FormService } from '../../form/services/form.service';
-import { map, Observable, of } from 'rxjs';
+import { map, merge, Observable, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'pl-form-autocomplete-ex',
@@ -37,21 +37,22 @@ export class FormAutocompleteExComponent implements OnInit {
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
+    console.log(this.formDataSource)
     this.control = this.formService.getFieldControl({ key: this.key });
-    this.options$ = of(this.options);
+    this.options$ = merge(of(this.options), this.onAutoComplete());
   }
 
-  onAutoComplete(formOption: FormOption): void {
+  private onAutoComplete(): Observable<SelectOption[]> {
+    return this.formDataSource.listen.autocomplete().pipe(
+      switchMap((formOption: FormOption) => {
+        return of(this.options).pipe(
+          map((options: SelectOption[]) => {
+            console.log(formOption);
 
-    console.log(formOption)
-
-    this.options$ = of(this.options).pipe(
-      map((options: SelectOption[]) => {
-
-        console.log(options)
-
-        return options.filter((option: SelectOption) =>
-          option.label.includes(formOption.value)
+            return options.filter((option: SelectOption) =>
+              option.label.includes(formOption.query)
+            );
+          })
         );
       })
     );
