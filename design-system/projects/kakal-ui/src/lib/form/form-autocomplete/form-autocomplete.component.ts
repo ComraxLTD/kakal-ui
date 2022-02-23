@@ -1,16 +1,20 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatSelectionList } from '@angular/material/list';
-import { QuestionAutocompleteModel } from '../models/question-autocomplete';
+import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource, FormOption } from '../models/form-data-source.model';
 import {
   debounceTime,
   distinctUntilKeyChanged,
-  map,
   mapTo,
-  startWith,
   tap,
 } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
@@ -21,11 +25,21 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-
-  @Input() public question: QuestionAutocompleteModel;
   @Input() public control: FormControl;
-  @Input() public formDataSource: FormDataSource;
+  @Input() public key: string;
+  @Input() public icon: string;
+  @Input() public label: string;
+  @Input() public options: SelectOption[];
+  @Input() public panelWidth: boolean;
+  @Input() public multi: boolean;
+
   @Input() public optionsSlot: ElementRef;
+  @Input() public selector: (config: {
+    selector: string;
+    options: SelectOption[];
+  }) => SelectOption;
+
+  @Input() public formDataSource: FormDataSource;
 
   @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
@@ -36,84 +50,103 @@ export class FormAutocompleteComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.formDataSource = new FormDataSource();
-    this.autocomplete$ = this.mergeFormEvents().pipe(mapTo(''));
+    // this.autocomplete$ = this.mergeFormEvents().pipe(mapTo(''));
   }
 
-  private mergeFormEvents() {
-    return merge(
-      this.onAutocompleteEvent(),
-      this.formDataSource.listen.optionSelected()
+  // private mergeFormEvents() {
+  //   return merge(
+  //     this.onAutocompleteEvent(),
+  //     this.formDataSource.listen.optionSelected()
+  //   );
+  // }
+
+  // private onAutocompleteEvent(): Observable<FormOption> {
+  //   return this.formDataSource.listen.autocomplete().pipe(
+  //     debounceTime(500),
+  //     distinctUntilKeyChanged('value'),
+  //     tap((formOption: FormOption) => {
+  //       const option: SelectOption = this.options.find((option) =>
+  //         option.label.indexOf(formOption.value)
+  //       );
+
+  //       this.autocomplete.emit({
+  //         key: this.key,
+  //         option,
+  //         value: formOption.value,
+  //         value$: of(formOption.value),
+  //       });
+  //       return formOption;
+  //     })
+  //   );
+  // }
+
+  public search(query: string): void {
+    const option: SelectOption = this.options.find((option) =>
+      option.label.indexOf(query)
     );
-  }
 
-  private onAutocompleteEvent(): Observable<FormOption> {
-    return this.formDataSource.listen.autocomplete().pipe(
-      debounceTime(500),
-      distinctUntilKeyChanged('value'),
-      tap((formOption: FormOption) => {
-        this.autocomplete.emit({
-          key: this.question.key,
-          value: formOption.value,
-          value$: of(formOption.value),
-        });
-        return formOption;
-      })
-    );
-  }
+    const formOption = {
+      key: this.key,
+      option,
+      query,
+      query$: of(query),
+    };
 
-  public search(value: string): void {
-    this.formDataSource
-      .getActions()
-      .autocomplete({ key: this.question.key, value });
+    this.formDataSource.actions.autocomplete(formOption);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    const value = event.option.value;
+    const option: SelectOption = event.option.value;
+    // this.optionSelected.emit({
+    //   key: this.key,
+    //   value: option.value,
+    //   option,
+    // });
 
-    const [filter] = this.question.options.filter(
-      (option) => option.value === value
-    );
+    const formOption: FormOption = {
+      key: this.key,
+      value: option.value,
+      option,
+    };
 
-    this.optionSelected.emit({
-      key: this.question.key,
-      value: filter.value,
-      option: filter,
-    });
+    this.formDataSource.actions.optionSelected(formOption);
   }
 
   public onSelectionChange(option: MatSelectionList): void {
-
     const options = option.selectedOptions.selected;
 
-    const selected: string[] = options.map((option) => {
+    const selected: string[] = options.map((option: MatListOption) => {
       return option.value;
     });
 
-    let selectedLabel: any = this.question.options.filter((option) =>
+    let selectedLabel: any = this.options.filter((option) =>
       selected.includes(option.value)
     );
-    
+
     selectedLabel = selectedLabel.map((option) => option.label);
 
     if (options.length === 0) {
-      this.multiOptionsSelected.emit({ key: this.question.key, value: [] });
+      this.multiOptionsSelected.emit({ key: this.key, value: [] });
       if (this.control) {
         if (options.length == 0) this.control.setValue([]);
       }
       return;
     }
 
-    const arr = this.question.options.filter(
+    const arr = this.options.filter(
       (option: SelectOption) => selected.indexOf(option.value) >= 0
     );
 
     this.multiOptionsSelected.emit({
-      key: this.question.key,
+      key: this.key,
       value: selected,
-      options: this.question.options.filter(
+      options: this.options.filter(
         (option: SelectOption) => selected.indexOf(option.value) >= 0
       ),
     });
+  }
+
+  public displayFn(option: any): string {
+    return option?.label || '';
   }
 }

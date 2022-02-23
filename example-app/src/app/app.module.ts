@@ -5,18 +5,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { KakalUiModule } from '@ComraxLTD/kakal-ui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AutocompleteExComponent } from './autocomplete-ex/autocomplete-ex.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormService } from '@ComraxLTD/kakal-ui/lib/form/services/form.service';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, AutocompleteExComponent],
+
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     KakalUiModule,
-    BrowserAnimationsModule
+    FlexLayoutModule,
+    BrowserAnimationsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [FormService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

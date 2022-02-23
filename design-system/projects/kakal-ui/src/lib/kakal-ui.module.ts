@@ -17,12 +17,12 @@ import { LocationPipe } from '../pipes/location.pipe';
 import { PrefixPipe } from '../pipes/prefix.pipe';
 import { RangePipe } from '../pipes/range.pipe';
 import { KKLButtonModule } from './button/button.module';
-import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module'; 
-import { KKLFormUploadModule } from './form/form-upload/form-upload.module'; 
-import { KKLIconModule } from './icon/icon.module'; 
-import { KKLTypographyModule } from './typography/typography.module'; 
+import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
+import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
+import { KKLIconModule } from './icon/icon.module';
+import { KKLTypographyModule } from './typography/typography.module';
 import { DirectivesModule } from '../directives/directives.module';
-import { FormExComponent } from './examples/form-ex/form-ex.component';
+import { MenuItemModule } from './menu-item/menu-item.module';
 import { FormSelectComponent } from './form/form-select/form-select.component';
 
 const exportPipes = [];
@@ -37,6 +37,7 @@ const formComps = [
 ];
 const components = [
   ButtonsetComponent,
+
 ];
 
 
@@ -55,14 +56,15 @@ const pipes = [
     ...exportDirective,
     ...formComps,
     ...pipes,
-    FormExComponent,
     FormSelectComponent,
   ],
   imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule,DirectivesModule],
   exports: [
     KakalUiComponent,
+    MenuItemModule,
     ReactiveFormsModule,
     KKLButtonModule,
+    MenuItemModule,
     KKLFormAutoCompleteModule,
     KKLIconModule,
     KKLFormUploadModule,

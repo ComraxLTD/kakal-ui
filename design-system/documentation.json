@@ -21,6 +21,16 @@
                 "defaultValue": "Template.bind({})"
             },
             {
+                "name": "autocompleteMulti",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
                 "name": "ButtonsetSample",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -124,6 +134,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormRadioComponent>",
+                "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/form/form-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -161,6 +181,16 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/form/form-autocomplete.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "autocompleteMulti",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/form-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -408,6 +438,39 @@
                 "status": "low"
             },
             {
+<<<<<<< HEAD
+=======
+                "filePath": "stories/form-autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "autoComplete",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form-autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "autocompleteMulti",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form-autocomplete.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+>>>>>>> b05b7306ba6d4c7e8de88f2bd2afafe7565b9fd7
                 "filePath": "stories/form-upload-button.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",

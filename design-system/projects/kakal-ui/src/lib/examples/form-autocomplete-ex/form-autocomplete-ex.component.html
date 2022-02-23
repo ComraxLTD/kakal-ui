@@ -1,11 +1,17 @@
 <div class="container">
   <div class="form">
-    <kkl-form-autocomplete
-    [question]="question"
-    [control]="control"
-    [formDataSource]="formDataSource"
-    (autocomplete)="onAutoComplete($event)"
-    ></kkl-form-autocomplete>
+    <ng-container *ngIf="options$ | async as items">
+      <kkl-form-autocomplete
+        [control]="control"
+        [key]="key"
+        [icon]="icon"
+        [label]="label"
+        [options]="items"
+        [panelWidth]="panelWidth"
+        [multi]="multi"
+        [formDataSource]="formDataSource"
+        (autocomplete)="onAutoComplete($event)"
+      ></kkl-form-autocomplete>
+    </ng-container>
   </div>
 </div>
-

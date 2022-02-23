@@ -30,9 +30,17 @@ export * from './lib/form/form-date/form-date.component';
 export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-radio/form-radio.component';
 export * from './lib/form/form-currency/form-currency.component';
+export * from './lib/form/services/form.service'
+export * from './lib/form/services/message.service'
+export * from './lib/form/services/validations.service'
 
 export * from './lib/form/models/form-data-source.model';
 export * from './lib/form/models/question-autocomplete';
+
+
+//menu
+export * from './lib/menu-item/menu-item.module'
+export * from './lib/menu-item/menu-item.component'
 
 
 // services
@@ -41,12 +49,11 @@ export * from './services/route.service';
 export * from './services/template.service';
 
 // constants
-
 export * from './constants/module-prefix';
 export * from './constants/project-prefix';
 export * from './constants/step-prefix';
 
-// pipes 
+// pipes
 export * from './pipes/area.pipe';
 export * from './pipes/format.pipe';
 export * from './pipes/location.pipe';
@@ -54,8 +61,6 @@ export * from './pipes/prefix.pipe';
 export * from './pipes/range.pipe';
 
 //directives
-
-
 export * from './directives/variant.directive';
 export * from './directives/size.directive';
 export * from './directives/button.directive';

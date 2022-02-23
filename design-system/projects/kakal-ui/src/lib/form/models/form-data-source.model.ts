@@ -35,7 +35,9 @@ export interface FormOption {
   multi?: boolean;
   options?: SelectOption[] | MatListOption[];
   value?: any;
+  query?: any;
   value$?: Observable<any>;
+  query$?: Observable<any>;
 }
 2;
 export class FormDataSource {
@@ -134,21 +136,6 @@ export class FormDataSource {
 
   }
 
-  public getActions() {
-    return {
-      edit: (formOption?) => this.edit(formOption),
-      add: (formOption?) => this.add(formOption),
-      create: (formOption?) => this.create(formOption),
-      clear: (formOption?) => this.clear(formOption),
-      disable: () => this.disable(),
-      updateOptions: (formOption?) => this.updateOptions(formOption),
-      delete: (formOption?) => this.delete(formOption),
-      save: (formOption?) => this.save(formOption),
-      update: (formOption?) => this.update(formOption),
-      autocomplete: (formOption?) => this.autocomplete(formOption),
-      optionSelected: (formOption?) => this.optionSelected(formOption),
-    };
-  }
   public actions = {
     edit: (formOption?) => this.edit(formOption),
     add: (formOption?) => this.add(formOption),
