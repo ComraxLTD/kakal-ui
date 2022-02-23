@@ -21,12 +21,15 @@ import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocom
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module';
-import { DirectivesModule } from '../directives/directives.module';
-import { MenuItemModule } from './menu-item/menu-item.module';
 import { FormSelectComponent } from './form/form-select/form-select.component';
+import { MenuItemModule } from './menu-item/menu-item.module';
+import { ListItemComponent } from './list-item/list-item.component';
+import { MenuModule } from './menu/menu.module';
+import { KklTitleModule } from './kkl-title/kkl-title.module';
+import { StepTitleModule } from './step-title/step-title.module';
+import { DirectivesModule } from './directives/directives.module';
 
 const exportPipes = [];
-const exportDirective = [];
 
 const formComps = [
   FormComponent,
@@ -35,30 +38,29 @@ const formComps = [
   FormRadioComponent,
   FormCurrencyComponent,
 ];
-const components = [
-  ButtonsetComponent,
+const components = [ButtonsetComponent];
 
-];
-
-
-const pipes = [
-  AreaPipe,
-  FormatPipe,
-  LocationPipe,
-  PrefixPipe,
-  RangePipe
-]
+const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
 @NgModule({
   declarations: [
     KakalUiComponent,
     ...components,
     ...exportPipes,
-    ...exportDirective,
     ...formComps,
     ...pipes,
     FormSelectComponent,
+    ListItemComponent,
   ],
-  imports: [CommonModule, MaterialModule, ReactiveFormsModule, CoreModule,DirectivesModule],
+  imports: [
+    CommonModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    CoreModule,
+    DirectivesModule,
+    MenuModule,
+    KklTitleModule,
+    StepTitleModule
+  ],
   exports: [
     KakalUiComponent,
     MenuItemModule,
@@ -72,9 +74,8 @@ const pipes = [
     DirectivesModule,
     ...components,
     ...exportPipes,
-    ...exportDirective,
     ...formComps,
     ...pipes,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}
