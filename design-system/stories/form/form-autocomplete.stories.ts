@@ -8,7 +8,7 @@ import { FormAutocompleteExComponent } from 'projects/kakal-ui/src/lib/examples/
 import { FormControl } from '@angular/forms';
 
 export default {
-  title: 'autocomplete/autocomplete',
+  title: 'form',
   decorators: [
     moduleMetadata({
       imports: [KKLFormAutoCompleteExModule],

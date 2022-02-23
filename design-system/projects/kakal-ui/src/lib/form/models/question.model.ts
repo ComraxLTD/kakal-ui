@@ -41,12 +41,15 @@ export type ControlType =
   | 'currency'
   | 'autocomplete'
   | 'toggle'
+  | 'email'
+  | 'phone'
   | 'cleave';
 
 export type QuestionType =
   | 'default'
   | 'group'
   | 'file'
+  | 'select'
   | 'custom'
   | 'date'
   | 'currency';

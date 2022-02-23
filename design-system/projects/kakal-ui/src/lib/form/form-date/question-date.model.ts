@@ -4,7 +4,7 @@ import { QuestionBaseModel, GridProps } from '../models/question.model';
 export class QuestionDateModel extends QuestionBaseModel<Date> {
   public maxDate?: Date;
   public minDate?: Date;
-
+  public range?:boolean;
   constructor(options: {
     key?: string;
     label?: string;
@@ -15,6 +15,7 @@ export class QuestionDateModel extends QuestionBaseModel<Date> {
     minDate?: Date;
     maxDate?: Date;
     validations?: ValidatorFn[];
+    range?:boolean;
   }) {
     super(options);
     this.key = options.key;
@@ -28,5 +29,6 @@ export class QuestionDateModel extends QuestionBaseModel<Date> {
     this.minDate = options.minDate;
     this.maxDate = options.maxDate;
     this.validations = options.validations || [];
+    this.range = options.range || false;
   }
 }
