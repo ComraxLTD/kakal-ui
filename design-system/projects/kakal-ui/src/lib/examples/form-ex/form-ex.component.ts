@@ -10,34 +10,34 @@ import { FormService, Question } from '../../form/services/form.service';
 })
 export class FormExComponent implements OnInit {
 
-  @Input() public group: QuestionGroupModel;
-  @Input() public formDataSource: FormDataSource;
+  // @Input() public group: QuestionGroupModel;
+  // @Input() public formDataSource: FormDataSource;
 
-  @Input() public rowHeight: number;
-  @Input() public gutter: number;
+  // @Input() public rowHeight: number;
+  // @Input() public gutter: number;
 
-  @Input() public slots: {
-    button?: ElementRef;
-    group?: ElementRef;
-  };
+  // @Input() public slots: {
+  //   button?: ElementRef;
+  //   group?: ElementRef;
+  // };
 
-  @Input() optionsSlot: { [key: string]: ElementRef };
+  // @Input() optionsSlot: { [key: string]: ElementRef };
 
   constructor(private formService: FormService) { }
 
-  // questions:Question[] = [
-  //   {
-  //     key:'text-input',
-  //     controlType:'text',
-  //     label:'Enter text'
-  //   }
-  // ];
+  questions:Question[] = [
+    {
+      key:'text-input',
+      controlType:'email',
+      label:'Enter text'
+    }
+  ];
 
   public formGroup:QuestionGroupModel ;
   ngOnInit(): void {
     this.formGroup = this.formService.createQuestionGroup({
-      questions: this.group.questions,
-      key: this.group.key,
+      questions: this.questions,
+      key: 'test',
       // options: this.group.
   });
 

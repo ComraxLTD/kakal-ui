@@ -111,10 +111,9 @@
                 question?.gridProps?.flex?.align || 'center' + ' center'
               ">
               <div [fxFlex]="question?.gridProps?.flex?.width || 100">
-                <kkl-form-input [control]="group.formGroup.controls[question.key]" [question]="question" [index]="index"
-                  [optionsSlot]="optionsSlot" (selected)="onSelect($event)" (autocomplete)="onAutocomplete($event)"
-                  (optionSelected)="onOptionSelected($event)" (focus)="onFocus($event)"
-                  (focusoutEvent)="onFocusOut($event)">
+                <kkl-form-input [control]="group.formGroup.controls[question.key]" [question]="question"
+                 [index]="index"
+                  (focus)="onFocus($event)">
                 </kkl-form-input>
               </div>
             </div>

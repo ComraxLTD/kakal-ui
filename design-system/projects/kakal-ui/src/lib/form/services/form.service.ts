@@ -12,6 +12,7 @@ import { QuestionBaseModel } from '../models/question.model';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionTextModel } from '../models/question-text.model';
 import { QuestionSelectModel } from '../models/question-select.model';
+import {QuestionEmailModel} from '../models/question-email.model';
 import {
   GroupOptions,
   QuestionGroupModel,
@@ -46,7 +47,9 @@ export type Question =
   | QuestionTextareaModel
   | QuestionNumberModel
   | QuestionAutocompleteModel
-  | QuestionGroupModel;
+  | QuestionGroupModel
+  | QuestionEmailModel
+  ;
 
 export interface QuestionGroup {
   key?: string;
@@ -194,7 +197,6 @@ export class FormService {
 
       case 'number':
         return new QuestionNumberModel(question);
-
       case 'sum':
         return new QuestionSumModel(question);
       case 'currency':
@@ -207,7 +209,8 @@ export class FormService {
         return new QuestionFileModel(fq);
       case 'radio':
         return new QuestionRadioModel(question);
-
+        case 'email' :
+          return new QuestionEmailModel(question);
       case 'textarea':
         return new QuestionTextareaModel(question);
 

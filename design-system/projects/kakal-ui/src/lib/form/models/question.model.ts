@@ -41,6 +41,7 @@ export type ControlType =
   | 'currency'
   | 'autocomplete'
   | 'toggle'
+  | 'email'
   | 'cleave';
 
 export type QuestionType =
