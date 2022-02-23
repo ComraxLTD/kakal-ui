@@ -49,6 +49,7 @@ export type QuestionType =
   | 'default'
   | 'group'
   | 'file'
+  | 'select'
   | 'custom'
   | 'date'
   | 'currency';
