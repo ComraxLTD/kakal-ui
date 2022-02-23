@@ -49,7 +49,7 @@ export class FormCurrencyComponent implements OnInit {
     },
   ];
 
-  constructor(private currencyService: CurrencyService) {}
+  constructor(private currencyService: CurrencyService) { }
 
   ngOnInit(): void {
     if (!this.control) {
@@ -73,8 +73,11 @@ export class FormCurrencyComponent implements OnInit {
 
   private setCurrencyQuestion(questions: Question[], control: FormControl) {
     return questions.map((question: Question) => {
+      console.log(question);
+      console.log(question.key);
+
       const value =
-        question.key === 'sum'
+        question?.key === ''
           ? this.control.value[question.key] || 0
           : 13000001;
 

@@ -1,0 +1,23 @@
+<div
+  fxLayout="row"
+  fxFill
+  appUnderline
+  dir="rtl"
+  [fxLayoutAlign]="alignment || 'space-between'"
+  [fxLayoutGap]="gap + 'rem'"
+>
+  <div
+    appUnderline
+    [color]="color || 'accent'"
+    [thick]="3"
+    fxLayoutAlign="end end"
+  >
+    <kkl-typography [weight]="600" [size]="size" [color]="color">
+      {{ text }}
+    </kkl-typography>
+  </div>
+
+  <div fxLayout="column" class="outlet">
+    <ng-template *ngTemplateOutlet="outlet"></ng-template>
+  </div>
+</div>

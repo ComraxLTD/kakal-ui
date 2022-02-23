@@ -8,6 +8,7 @@
 
     <ng-container [ngSwitch]="controlType">
       <!-- TEXTAREA -->
+      {{controlType}}
       <ng-container *ngSwitchCase="'textarea'">
         <textarea
           matInput
@@ -18,100 +19,6 @@
           (focus)="onFocus()"
           #textarea
         ></textarea>
-      </ng-container>
-
-      <!-- SELECT -->
-      <ng-container *ngSwitchCase="'select'">
-        <mat-select
-          panelClass="select-panel-form"
-          overlayPanelClass="overlay-panel"
-          [multiple]="question.multi"
-          [disableOptionCentering]="true"
-          (selectionChange)="onSelectChange()"
-          [formControl]="control"
-          [name]="question.key"
-          (focusout)="validate()"
-          (focus)="onFocus()"
-        >
-          <mat-option
-            *ngFor="let option of question.options"
-            [value]="option.value"
-          >
-            {{ option.label }}
-          </mat-option>
-        </mat-select>
-      </ng-container>
-
-      <!-- AUTOCOMPLETE -->
-      <ng-container *ngSwitchCase="'autocomplete'">
-        <input
-          type="text"
-          matInput
-          [formControl]="control"
-          [matAutocomplete]="auto"
-        />
-        <mat-autocomplete
-          autoActiveFirstOption
-          #auto="matAutocomplete"
-          [displayWith]="displayFn"
-          (optionSelected)="onOptionSelected($event)"
-        >
-          <!-- DEFAULT -->
-          <ng-container *ngIf="!question.multi">
-            <mat-option
-              [disabled]="option.disabled"
-              *ngFor="
-                let option of localFilter
-                  ? (filteredOptions | async)
-                  : question.options
-              "
-              [value]="option.value"
-            >
-              <ng-container *ngIf="!optionsSlot">
-                <kkl-typography>
-                  {{ option.label }}
-                </kkl-typography>
-              </ng-container>
-              <ng-container *ngIf="optionsSlot">
-                <ng-container
-                  *ngTemplateOutlet="
-                    optionsSlot[question.key];
-                    context: { $implicit: this.option }
-                  "
-                ></ng-container>
-              </ng-container>
-            </mat-option>
-          </ng-container>
-          <!-- MULTI -->
-          <ng-container *ngIf="question.multi">
-            <mat-selection-list
-              [multiple]="true"
-              #selectOptions
-              (selectionChange)="onMultiOptionSelected(selectOptions)"
-            >
-              <mat-list-option
-                class="autocomplete-option"
-                [disabled]="option.disabled"
-                *ngFor="let option of question.options"
-                [value]="option.value"
-              >
-                <ng-container *ngIf="!optionsSlot">
-                  {{ option.label }}
-                </ng-container>
-                <ng-container *ngIf="optionsSlot">
-                  <ng-container
-                    *ngTemplateOutlet="
-                      optionsSlot[question.key];
-                      context: { option: this.option }
-                    "
-                  ></ng-container>
-                </ng-container>
-              </mat-list-option>
-            </mat-selection-list>
-            <!-- empty mat-option for display mat-list -->
-            <mat-option [style.display]="'none'"></mat-option>
-          </ng-container>
-        </mat-autocomplete>
       </ng-container>
 
       <!-- CLEAVE FORMAT -->
@@ -153,6 +60,3 @@
     <mat-error>{{ error$ | async }}</mat-error>
   </mat-form-field>
 </div>
-
-<!-- subscribe to autocomplete -->
-<ng-container *ngIf="autocompleteValue$ | async"></ng-container>

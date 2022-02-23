@@ -1,58 +1,20 @@
-<mat-form-field
-  [appearance]="control.disabled ? 'fill' : question?.appearance || 'outline'"
-  class="kkl-datepicker"
->
+<mat-form-field [appearance]="control.disabled ? 'fill' : question?.appearance || 'outline'" class="kkl-datepicker">
   <mat-label>{{ placeHolder }}</mat-label>
 
-  <input
-    *ngIf="!range"
-    matInput
-    [matDatepicker]="dp"
-    [formControl]="control"
-    autocomplete="off"
-    [cleave]="cleave"
-    [placeholder]="placeHolder"
-    [max]="question?.maxDate || maxDate"
-    [min]="question?.minDate || minDate"
-    (click)="dp.open()"
-    (dateChange)="onDateChange($event)"
-    (dateInput)="onDateInputChange($event)"
-    (focus)="onFocus()"
-  />
-  <mat-datepicker-toggle
-    matSuffix
-    [for]="dp"
-    *ngIf="!range"
-  ></mat-datepicker-toggle>
+  <input *ngIf="!range" matInput [matDatepicker]="dp" [formControl]="control" autocomplete="off" [cleave]="cleave"
+    [placeholder]="placeHolder" [max]="question?.maxDate || maxDate" [min]="question?.minDate || minDate"
+    (click)="dp.open()" (dateChange)="onDateChange($event)" (focus)="onFocus()" />
+  <mat-datepicker-toggle matSuffix [for]="dp" *ngIf="!range"></mat-datepicker-toggle>
   <mat-datepicker #dp></mat-datepicker>
 
-  <mat-date-range-input
-    *ngIf="range"
-    [formGroup]="rangeForm"
-    [rangePicker]="picker"
-    (click)="picker.open()"
-  >
-    <input
-      matStartDate
-      formControlName="start"
-      placeholder="מתאריך"
-      (dateChange)="rangeDateChange($event, 'start')"
-      [cleave]="cleave"
-    />
-    <input
-      matEndDate
-      formControlName="end"
-      placeholder="עד תאריך"
-      (dateChange)="rangeDateChange($event, 'end')"
-      [cleave]="cleave"
-    />
+  <mat-date-range-input *ngIf="range" [formGroup]="rangeForm" [rangePicker]="picker" (click)="picker.open()">
+    <input matStartDate formControlName="start" placeholder="מתאריך" (dateChange)="rangeDateChange($event, 'start')"
+      [cleave]="cleave" />
+    <input matEndDate formControlName="end" placeholder="עד תאריך" (dateChange)="rangeDateChange($event, 'end')"
+      [cleave]="cleave" />
   </mat-date-range-input>
 
-  <mat-datepicker-toggle
-    matSuffix
-    [for]="picker"
-    *ngIf="range"
-  ></mat-datepicker-toggle>
+  <mat-datepicker-toggle matSuffix [for]="picker" *ngIf="range"></mat-datepicker-toggle>
   <mat-date-range-picker #picker></mat-date-range-picker>
 
   <mat-error>{{ message$ | async }}</mat-error>

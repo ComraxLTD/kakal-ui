@@ -14,7 +14,7 @@
                 "name": "autoComplete",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/form-autocomplete.stories.ts",
+                "file": "stories/form/form-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -24,7 +24,7 @@
                 "name": "autocompleteMulti",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/form-autocomplete.stories.ts",
+                "file": "stories/form/form-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -41,10 +41,20 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "GenderRadio",
+                "name": "icon",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-button.stories.ts",
+                "file": "stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
+            },
+            {
+                "name": "list",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -94,41 +104,41 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonsetComponent>",
-                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/form-autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormAutocompleteExComponent>",
-                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Form-input.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormInputComponent>",
-                "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/form-upload-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormUploadComponent>",
                 "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Icon.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n        component: IconComponent,\r\n        props: args,\r\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\r\n  component: MenuComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/radio-button.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -144,21 +154,20 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/radio-button.stories.ts",
+                "file": "stories/form/form-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormRadioComponent>",
-                "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
+                "type": "Story<FormAutocompleteExComponent>",
+                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
             },
             {
-                "name": "TextInput",
+                "name": "type",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Form-input.stories.ts",
+                "file": "stories/menu.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
+                "type": "\"list\" | \"accordion\""
             },
             {
                 "name": "typography",
@@ -185,12 +194,12 @@
         "typealiases": [],
         "enumerations": [],
         "groupedVariables": {
-            "stories/form-autocomplete.stories.ts": [
+            "stories/form/form-autocomplete.stories.ts": [
                 {
                     "name": "autoComplete",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/form-autocomplete.stories.ts",
+                    "file": "stories/form/form-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -200,7 +209,7 @@
                     "name": "autocompleteMulti",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/form-autocomplete.stories.ts",
+                    "file": "stories/form/form-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -210,7 +219,7 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/form-autocomplete.stories.ts",
+                    "file": "stories/form/form-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FormAutocompleteExComponent>",
@@ -239,12 +248,12 @@
                     "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
                 }
             ],
-            "stories/radio-button.stories.ts": [
+            "stories/Icon.stories.ts": [
                 {
-                    "name": "GenderRadio",
+                    "name": "icon",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/radio-button.stories.ts",
+                    "file": "stories/Icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -254,11 +263,42 @@
                     "name": "Template",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
-                    "file": "stories/radio-button.stories.ts",
+                    "file": "stories/Icon.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<FormRadioComponent>",
-                    "defaultValue": "(args: FormRadioComponent) => ({\r\n    component: FormRadioComponent,\r\n    props: args,\r\n})"
+                    "type": "Story<IconComponent>",
+                    "defaultValue": "(args: IconComponent) => ({\r\n        component: IconComponent,\r\n        props: args,\r\n    })"
+                }
+            ],
+            "stories/menu.stories.ts": [
+                {
+                    "name": "list",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<MenuComponent>",
+                    "defaultValue": "(args: MenuComponent) => ({\r\n  component: MenuComponent,\r\n  props: args,\r\n})"
+                },
+                {
+                    "name": "type",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "stories/menu.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "\"list\" | \"accordion\""
                 }
             ],
             "stories/Button.stories.ts": [
@@ -319,28 +359,6 @@
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/form-upload-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                }
-            ],
-            "stories/Form-input.stories.ts": [
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Form-input.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FormInputComponent>",
-                    "defaultValue": "(args: FormInputComponent) => ({\r\n  component: FormInputComponent,\r\n  props: args,\r\n})"
-                },
-                {
-                    "name": "TextInput",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/Form-input.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
@@ -430,21 +448,21 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/Form-input.stories.ts",
+                "filePath": "stories/Icon.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Template",
+                "name": "icon",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
-                "filePath": "stories/Form-input.stories.ts",
+                "filePath": "stories/Icon.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "TextInput",
+                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -465,36 +483,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "typography",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/form-autocomplete.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "autoComplete",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/form-autocomplete.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "autocompleteMulti",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/form-autocomplete.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -530,17 +518,57 @@
                 "status": "low"
             },
             {
-                "filePath": "stories/radio-button.stories.ts",
+                "filePath": "stories/form/form-autocomplete.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "GenderRadio",
+                "name": "autoComplete",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "list",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/menu.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "type",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
             },
             {
                 "filePath": "stories/radio-button.stories.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "autocompleteMulti",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "stories/form/form-autocomplete.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",

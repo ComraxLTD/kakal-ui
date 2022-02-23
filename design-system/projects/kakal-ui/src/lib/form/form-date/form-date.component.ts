@@ -74,27 +74,21 @@ export class FormDateComponent implements OnInit {
   constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
-    // if (!this.control) {
-    //   throw new Error('form-date must get control as input');
-    // }
-    // if (!this.question) {
-    //   throw new Error('form-date must get question as input');
-    // }
-
     if (this.question) {
       this.placeHolder = this.question.label || this.question.placeHolder;
+      this.range = this.question.range;
     }
     this.control = this.control || new FormControl();
-    this.rangeFormEmit.emit(this.rangeForm);
-
+    
     this.message$ = this.setErrorMessage$();
+    this.rangeFormEmit.emit(this.rangeForm);
   }
 
   private getFormOption(): FormOption {
     const formOption: FormOption = {
-      key: this.question.key,
-      control: this.control,
-      index: this.index,
+      key: this.question?.key,
+      control: this?.control,
+      index: this?.index,
     };
 
     return formOption;
@@ -114,8 +108,6 @@ export class FormDateComponent implements OnInit {
     );
   }
 
-  public onDateInputChange(event: MatDatepickerInputEvent<Date, Date>) {}
-
   public onDateChange(event: MatDatepickerInputEvent<Date>): void {
     this.control.setValue(event.value['_d']);
     this.dateEvent.emit(event.value['_d']);
@@ -124,10 +116,13 @@ export class FormDateComponent implements OnInit {
   public rangeDateChange(event: MatDatepickerInputEvent<Date>, type: string) {
     if (event.value) {
       if (type === 'start') {
+        this.rangeForm.controls['start'].setValue(event.value['_d']);
         this.start.emit(event.value['_d']);
       } else {
+        this.rangeForm.controls['end'].setValue(event.value['_d']);
         this.end.emit(event.value['_d']);
       }
+      if(this.control)this.control.setValue(this.rangeForm.value);
     }
   }
 
