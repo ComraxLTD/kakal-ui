@@ -19,6 +19,7 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
+  
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public icon: string;
