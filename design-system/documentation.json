@@ -94,16 +94,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonsetComponent>",
-                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/form-upload-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -119,6 +109,16 @@
                 "deprecationMessage": "",
                 "type": "Story<IconComponent>",
                 "defaultValue": "(args: IconComponent) => ({\r\n        component: IconComponent,\r\n        props: args,\r\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/Buttonset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",

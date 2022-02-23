@@ -6,9 +6,10 @@ import { MatInputModule } from "@angular/material/input";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { FormInputComponent } from './form-input.component';
 import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
+import { KKLIconModule} from '../../icon/icon.module';
 
 @NgModule({
-    imports: [CommonModule, MatFormFieldModule, MatInputModule, BrowserAnimationsModule, ReactiveFormsModule, NgxCleaveDirectiveModule],
+    imports: [CommonModule, MatFormFieldModule, MatInputModule, BrowserAnimationsModule, ReactiveFormsModule, NgxCleaveDirectiveModule,KKLIconModule],
     declarations: [FormInputComponent],
     exports: [FormInputComponent]
 })
