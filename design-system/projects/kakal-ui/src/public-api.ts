@@ -33,6 +33,7 @@ export * from './lib/form/form-autocomplete/form-autocomplete.module';
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
+export * from './lib/form/form-currency/form-currency.service';
 
 export * from './lib/form/models/form-data-source.model';
 export * from './lib/form/models/question-autocomplete';
