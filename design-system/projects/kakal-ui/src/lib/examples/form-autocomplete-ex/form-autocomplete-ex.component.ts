@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectOption } from '../../form/models/question-select.model';
-import { QuestionAutocompleteModel } from '../../form/models/question-autocomplete';
 import {
   FormDataSource,
   FormOption,
@@ -34,6 +33,11 @@ export class FormAutocompleteExComponent implements OnInit {
 
   public options$: Observable<SelectOption[]>;
 
+
+  @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
+  @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
+  @Output() multiOptionsSelected: EventEmitter<FormOption> = new EventEmitter();
+
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
@@ -43,12 +47,8 @@ export class FormAutocompleteExComponent implements OnInit {
 
   onAutoComplete(formOption: FormOption): void {
 
-    console.log(formOption)
-
     this.options$ = of(this.options).pipe(
       map((options: SelectOption[]) => {
-
-        console.log(options)
 
         return options.filter((option: SelectOption) =>
           option.label.includes(formOption.value)
