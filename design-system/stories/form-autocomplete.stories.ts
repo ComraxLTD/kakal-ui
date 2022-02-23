@@ -5,10 +5,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { FormDataSource } from 'projects/kakal-ui/src/lib/form/models/form-data-source.model';
 import { KKLFormAutoCompleteExModule } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.module';
 import { FormAutocompleteExComponent } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.component';
-import { ElementRef } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SelectOption } from 'projects/kakal-ui/src/lib/form/models/question-select.model';
-// import { SelectOption } from 'projects/kakal-ui/src/lib/form/models/question-select.model';
 
 export default {
   title: 'autocomplete/autocomplete',
@@ -65,7 +62,6 @@ export default {
         type: {
           summary: '@Input() options : SelectOption[]',
           name: 'array',
-          value: [],
           required: true,
         },
       },
@@ -112,7 +108,7 @@ export default {
     },
     autocomplete: {
       name: 'autocomplete',
-
+      description: 'Event that is emitted whenever the user is typing. ',
       table: {
         type: {
           summary: 'autocomplete: EventEmitter<FormOption>',
@@ -121,6 +117,16 @@ export default {
     },
     optionsSelected: {
       name: 'optionsSelected',
+      description:
+      'Event that is emitted whenever an option from the list is selected. ',
+      table: {
+        type: {
+          summery: 'optionSelected: EventEmitter<FormOption>',
+        },
+      },
+    },
+    multiOptionsSelected: {
+      name: 'multiOptionsSelected',
       description:
         'Event that is emitted whenever an option from the list is selected. ',
       table: {
