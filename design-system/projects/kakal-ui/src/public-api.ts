@@ -66,15 +66,15 @@ export * from './pipes/prefix.pipe';
 export * from './pipes/range.pipe';
 
 //directives
-export * from './directives/variant.directive';
-export * from './directives/size.directive';
-export * from './directives/button.directive';
-export * from './directives/underline.directive';
-export * from './directives/border.directive';
-export * from './directives/outside.directive';
-export * from './directives/cell.directive';
-export * from './directives/wizard.directive';
-export * from './directives/action-button.directive';
-export * from './directives/form-button.directive';
-export * from './directives/outside-button.directive';
-export * from './directives/directives.module';
+export * from './lib/directives/variant.directive';
+export * from './lib/directives/size.directive';
+export * from './lib/directives/button.directive';
+export * from './lib/directives/underline.directive';
+export * from './lib/directives/border.directive';
+export * from './lib/directives/outside.directive';
+export * from './lib/directives/cell.directive';
+export * from './lib/directives/wizard.directive';
+export * from './lib/directives/action-button.directive';
+export * from './lib/directives/form-button.directive';
+export * from './lib/directives/outside-button.directive';
+export * from './lib/directives/directives.module';

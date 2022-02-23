@@ -21,15 +21,14 @@ import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocom
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module';
-import { DirectivesModule } from '../directives/directives.module';
 import { MenuItemModule } from './menu-item/menu-item.module';
 import { ListItemComponent } from './list-item/list-item.component';
 import { MenuModule } from './menu/menu.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { StepTitleModule } from './step-title/step-title.module';
+import { DirectivesModule } from './directives/directives.module';
 
 const exportPipes = [];
-const exportDirective = [];
 
 const formComps = [
   FormComponent,
@@ -46,7 +45,6 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     KakalUiComponent,
     ...components,
     ...exportPipes,
-    ...exportDirective,
     ...formComps,
     ...pipes,
     ListItemComponent,
@@ -74,7 +72,6 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     DirectivesModule,
     ...components,
     ...exportPipes,
-    ...exportDirective,
     ...formComps,
     ...pipes,
   ],

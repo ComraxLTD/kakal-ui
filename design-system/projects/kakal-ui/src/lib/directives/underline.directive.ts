@@ -1,5 +1,6 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { palette, Palette } from '../styles/theme';
+import { palette, Palette } from '../../styles/theme';
+
 
 @Directive({
   selector: '[appUnderline]',

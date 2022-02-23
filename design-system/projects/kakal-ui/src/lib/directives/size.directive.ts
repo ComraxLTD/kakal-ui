@@ -6,7 +6,7 @@ import {
   OnInit,
 } from '@angular/core';
 // import { CardStepModel } from '../components/cards/card-step/card-step.model';
-import { BreakpointService } from '../services/breakpoint.service';
+import { BreakpointService } from '../../services/breakpoint.service';
 import { map, Observable, of, Subscription, switchMap } from 'rxjs';
 // import { CardType } from '../components/cards/card.model';
 
