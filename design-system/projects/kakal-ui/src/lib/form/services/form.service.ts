@@ -12,7 +12,7 @@ import { QuestionBaseModel } from '../models/question.model';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionTextModel } from '../models/question-text.model';
 import { QuestionSelectModel } from '../models/question-select.model';
-import {QuestionEmailModel} from '../models/question-email.model';
+import { QuestionEmailModel } from '../models/question-email.model';
 import {
   GroupOptions,
   QuestionGroupModel,
@@ -24,6 +24,7 @@ import { QuestionSumModel } from '../models/question-sum.model';
 import { QuestionCurrencyModel } from '../form-currency/question-currency.model';
 import { QuestionDateModel } from '../form-date/question-date.model';
 import { QuestionFileModel } from '../models/question-file.model';
+import { QuestionPhoneModel } from '../models/question-phone.model';
 
 export type ControlTemplate = [
   state: any,
@@ -49,6 +50,7 @@ export type Question =
   | QuestionAutocompleteModel
   | QuestionGroupModel
   | QuestionEmailModel
+  | QuestionPhoneModel
   ;
 
 export interface QuestionGroup {
@@ -62,7 +64,7 @@ export interface QuestionGroup {
   providedIn: 'root',
 })
 export class FormService {
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   // method which create a control template for FormBuilder
   private setFieldControl(question: Question): ControlTemplate {
@@ -125,7 +127,7 @@ export class FormService {
     });
   }
 
-  private activator<T extends any>(type: { new (): T }): T {
+  private activator<T extends any>(type: { new(): T }): T {
     return new type();
   }
 
@@ -209,8 +211,10 @@ export class FormService {
         return new QuestionFileModel(fq);
       case 'radio':
         return new QuestionRadioModel(question);
-        case 'email' :
-          return new QuestionEmailModel(question);
+      case 'email':
+        return new QuestionEmailModel(question);
+      case 'phone':
+        return new QuestionPhoneModel(question);
       case 'textarea':
         return new QuestionTextareaModel(question);
 

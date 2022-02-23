@@ -7,7 +7,6 @@ import { FormInputComponent } from './form/form-input/form-input.component';
 import { FormRadioComponent } from './form/form-radio/form-radio.component';
 import { FormCurrencyComponent } from './form/form-currency/form-currency.component';
 import { ButtonsetComponent } from './buttonset/buttonset.component';
-import { MatRadioButton } from '@angular/material/radio';
 import { MaterialModule } from './angular-material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core-module/core.module';
@@ -59,7 +58,8 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     DirectivesModule,
     MenuModule,
     KklTitleModule,
-    StepTitleModule
+    StepTitleModule,
+    KKLIconModule
   ],
   exports: [
     KakalUiComponent,

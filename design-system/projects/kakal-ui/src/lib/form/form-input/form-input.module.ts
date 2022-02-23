@@ -9,7 +9,8 @@ import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
 import { KKLIconModule} from '../../icon/icon.module';
 
 @NgModule({
-    imports: [CommonModule, MatFormFieldModule, MatInputModule, BrowserAnimationsModule, ReactiveFormsModule, NgxCleaveDirectiveModule,KKLIconModule],
+    imports: [CommonModule, MatFormFieldModule, MatInputModule,
+         BrowserAnimationsModule, ReactiveFormsModule, NgxCleaveDirectiveModule,KKLIconModule],
     declarations: [FormInputComponent],
     exports: [FormInputComponent]
 })

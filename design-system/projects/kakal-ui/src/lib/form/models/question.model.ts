@@ -42,6 +42,7 @@ export type ControlType =
   | 'autocomplete'
   | 'toggle'
   | 'email'
+  | 'phone'
   | 'cleave';
 
 export type QuestionType =

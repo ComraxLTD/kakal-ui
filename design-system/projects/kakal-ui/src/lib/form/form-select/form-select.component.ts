@@ -3,7 +3,6 @@ import { FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
 import { FormOption } from '../models/form-data-source.model';
 import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
-import { QuestionBase } from '../services/form.service';
 import { MessageService } from '../services/message.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./form-select.component.scss']
 })
 export class FormSelectComponent implements OnInit {
-  @Input() public question: QuestionBase;
+  @Input() public question: QuestionSelectModel;
   @Input() public control: FormControl;
   @Input() public index:number;
 
