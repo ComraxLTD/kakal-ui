@@ -27,6 +27,7 @@ import { MenuModule } from './menu/menu.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { StepTitleModule } from './step-title/step-title.module';
 import { DirectivesModule } from './directives/directives.module';
+import { FormExampleComponent } from './examples/form-example/form-example.component';
 
 const exportPipes = [];
 
@@ -49,6 +50,7 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     ...pipes,
     FormSelectComponent,
     ListItemComponent,
+    FormExampleComponent,
   ],
   imports: [
     CommonModule,

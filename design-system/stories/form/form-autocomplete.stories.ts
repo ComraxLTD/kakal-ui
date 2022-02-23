@@ -159,7 +159,7 @@ autoComplete.args = {
 };
 
 export const autocompleteMulti = Template.bind({});
-autocompleteMulti.rgs = {
+autocompleteMulti.args = {
   icon: 'search',
   key: 'autocomplete',
   multi: true,
