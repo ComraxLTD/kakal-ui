@@ -41,8 +41,8 @@
     <ng-container *ngIf="multi">
       <mat-selection-list
         [multiple]="true"
-        #selectOptions
-        (selectionChange)="onSelectionChange(selectOptions)"
+        #selectionList
+        (selectionChange)="onSelectionChange(selectionList)"
       >
         <mat-list-option
           class="kkl-autocomplete-option"

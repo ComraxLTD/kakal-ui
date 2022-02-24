@@ -10,9 +10,11 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { KKLIconModule } from '../../icon/icon.module';
 import { FormService } from '../services/form.service';
 import { MessageService } from '../services/message.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
@@ -23,10 +25,12 @@ import { MessageService } from '../services/message.service';
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
+    MatCheckboxModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatAutocompleteModule,
     KKLIconModule,
+    FlexLayoutModule
   ],
   providers: [FormService, MessageService],
   declarations: [FormAutocompleteComponent],
