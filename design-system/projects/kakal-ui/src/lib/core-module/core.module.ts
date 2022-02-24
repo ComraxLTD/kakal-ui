@@ -8,8 +8,6 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { RouterModule } from '@angular/router';
 import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
 
-// import { FormatPipe } from '../shared/pipes/format.pipe';
-// import { RangePipe } from '../shared/pipes/range.pipe';
 
 @NgModule({
   declarations: [],
@@ -24,9 +22,6 @@ import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
     FormsModule,
   ],
   providers: [
-    // FormatPipe,
-    // RangePipe,
-
   ],
   exports: [
     CommonModule,

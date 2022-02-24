@@ -1,5 +1,7 @@
-@use "variables" as main;
-@use "theme" as lands-theme;
+@use ".././../../styles/variables" as main;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
 
 mat-selection-list {
   max-height: 22rem !important;

@@ -3,7 +3,7 @@ import { Directive, HostBinding } from '@angular/core';
 @Directive({
   selector: '[kkl-outside-button]',
 })
-export class OutsideButtonDirective {
+export class OutsideKKLButtonDirective {
   @HostBinding('class') private _class;
   @HostBinding('style.position') private position: string;
   @HostBinding('style.right') private right: string;
