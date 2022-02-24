@@ -35,44 +35,13 @@ export class FormAutocompleteComponent implements OnInit {
 
   @Input() public formDataSource: FormDataSource;
 
-  @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
+  // @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
   @Output() multiOptionsSelected: EventEmitter<FormOption> = new EventEmitter();
 
-  public autocomplete$: Observable<string>;
-
   constructor() {}
 
-  ngOnInit(): void {
-    // this.autocomplete$ = this.mergeFormEvents().pipe(mapTo(''));
-  }
-
-  // private mergeFormEvents() {
-  //   return merge(
-  //     this.onAutocompleteEvent(),
-  //     this.formDataSource.listen.optionSelected()
-  //   );
-  // }
-
-  // private onAutocompleteEvent(): Observable<FormOption> {
-  //   return this.formDataSource.listen.autocomplete().pipe(
-  //     debounceTime(500),
-  //     distinctUntilKeyChanged('value'),
-  //     tap((formOption: FormOption) => {
-  //       const option: SelectOption = this.options.find((option) =>
-  //         option.label.indexOf(formOption.value)
-  //       );
-
-  //       this.autocomplete.emit({
-  //         key: this.key,
-  //         option,
-  //         value: formOption.value,
-  //         value$: of(formOption.value),
-  //       });
-  //       return formOption;
-  //     })
-  //   );
-  // }
+  ngOnInit(): void {}
 
   public search(query: string): void {
     const option: SelectOption = this.options.find((option) =>
@@ -85,18 +54,12 @@ export class FormAutocompleteComponent implements OnInit {
       query,
       query$: of(query),
     };
-
     this.formDataSource.actions.autocomplete(formOption);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    console.log(event);
+    // console.log(event);
     const option: SelectOption = event.option.value;
-    // this.optionSelected.emit({
-    //   key: this.key,
-    //   value: option.value,
-    //   option,
-    // });
 
     const formOption: FormOption = {
       key: this.key,
