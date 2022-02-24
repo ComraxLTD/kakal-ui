@@ -3,6 +3,7 @@ import { Story, Meta } from '@storybook/angular/types-6-0';
 import { componentWrapperDecorator, moduleMetadata, } from '@storybook/angular';
 import { IconComponent } from 'projects/kakal-ui/src/lib/icon/icon.component';
 import { KKLIconModule } from 'projects/kakal-ui/src/lib/icon/icon.module';
+
 export default {
     title: 'Icon/icon',
     decorators: [componentWrapperDecorator((story) => `<div class="mat-body">${story}</div>`), moduleMetadata({
@@ -28,4 +29,4 @@ icon.args = {
     disabled: false,
     type:'svg',
     formType:'form'
-} 
+}

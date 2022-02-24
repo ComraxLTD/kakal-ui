@@ -71,16 +71,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "second",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/form-upload-button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "Secondary",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -109,16 +99,6 @@
                 "deprecationMessage": "",
                 "type": "Story<ButtonsetComponent>",
                 "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/form-upload-button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormUploadComponent>",
-                "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
             },
             {
                 "name": "Template",
@@ -174,16 +154,6 @@
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/Typography.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "upload",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/form-upload-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
@@ -333,38 +303,6 @@
                     "defaultValue": "(args: ButtonComponent) => ({\r\n  props: args,\r\n})"
                 }
             ],
-            "stories/form-upload-button.stories.ts": [
-                {
-                    "name": "second",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/form-upload-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/form-upload-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FormUploadComponent>",
-                    "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
-                },
-                {
-                    "name": "upload",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/form-upload-button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                }
-            ],
             "stories/Typography.stories.ts": [
                 {
                     "name": "Template",
@@ -483,36 +421,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "typography",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/form-upload-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "second",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/form-upload-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/form-upload-button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "upload",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
