@@ -108,43 +108,24 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public onSelectionChange(selectionList: MatSelectionList): void {
-    const options: MatListOption[] = selectionList.selectedOptions.selected;
+    const optionsList: MatListOption[] = selectionList.selectedOptions.selected;
 
-    const selected: string[] = options.map((option: MatListOption) => {
+    const options: SelectOption[] = optionsList.map((option: MatListOption) => {
       return option.value;
     });
 
-    // let selectedLabel: any = this.options.filter((option) =>
-    //   selected.includes(option.value)
-    // );
-
-    // selectedLabel = selectedLabel.map((option) => option.label);
-
-    if (options.length === 0) {
-      this.multiOptionsSelected.emit({ key: this.key, value: [] });
-      return;
-    }
-
-    // const arr = this.options.filter(
-    //   (option: SelectOption) => selected.indexOf(option.value) >= 0
-    // );
-
-    // console.log('multi options', options[0]);
     this.control.setValue(options);
+
     this.multiOptionsSelected.emit({
       key: this.key,
-      value: selected,
-      // options: this.options.filter(
-      //   (option: SelectOption) => selected.indexOf(option.value) >= 0
-      // ),
-      options,
+      value: options,
     });
   }
 
   public displayFn(option: any): string {
     if (option?.length) {
-      const options = option as MatListOption[];
-      const label = options[0].value.label;
+      const options = option as SelectOption[];
+      const label = options[0].label;
       return options.length > 1 ? `${label} +${options.length - 1}` : label;
     }
 

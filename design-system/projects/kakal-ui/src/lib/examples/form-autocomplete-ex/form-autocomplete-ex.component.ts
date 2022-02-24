@@ -21,7 +21,6 @@ import { map, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete-ex.component.scss'],
 })
 export class FormAutocompleteExComponent implements OnInit {
-  
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public icon: string;
@@ -34,7 +33,6 @@ export class FormAutocompleteExComponent implements OnInit {
 
   public options$: Observable<SelectOption[]>;
 
-
   @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
   @Output() multiOptionsSelected: EventEmitter<FormOption> = new EventEmitter();
@@ -46,15 +44,17 @@ export class FormAutocompleteExComponent implements OnInit {
     this.options$ = of(this.options);
   }
 
-  onAutoComplete(formOption: FormOption): void {
-
+  public onAutoComplete(formOption: FormOption): void {
     this.options$ = of(this.options).pipe(
       map((options: SelectOption[]) => {
-
         return options.filter((option: SelectOption) =>
           option.label.includes(formOption.value)
         );
       })
     );
+  }
+
+  public onMultiOptionsSelected(formOption: FormOption) {
+    console.log(formOption);
   }
 }
