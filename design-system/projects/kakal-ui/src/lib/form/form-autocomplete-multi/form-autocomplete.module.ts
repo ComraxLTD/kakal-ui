@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { FormAutocompleteComponent } from './form-autocomplete.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -13,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { KKLIconModule } from '../../icon/icon.module';
 import { FormService } from '../services/form.service';
 import { MessageService } from '../services/message.service';
+import { FormAutocompleteComponentMulti } from './form-autocomplete-multi.component';
 
 @NgModule({
   imports: [
@@ -29,7 +29,7 @@ import { MessageService } from '../services/message.service';
     KKLIconModule,
   ],
   providers: [FormService, MessageService],
-  declarations: [FormAutocompleteComponent],
-  exports: [FormAutocompleteComponent],
+  declarations: [FormAutocompleteComponentMulti],
+  exports: [FormAutocompleteComponentMulti],
 })
-export class KKLFormAutoCompleteModule {}
+export class KKLFormAutoCompleteModuleMulti {}
