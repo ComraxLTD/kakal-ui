@@ -13,7 +13,7 @@ import {
   FormOption,
 } from '../../form/models/form-data-source.model';
 import { FormService } from '../../form/services/form.service';
-import { map, Observable, of } from 'rxjs';
+import { map, merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'pl-form-autocomplete-ex',
@@ -33,28 +33,31 @@ export class FormAutocompleteExComponent implements OnInit {
 
   public options$: Observable<SelectOption[]>;
 
-  @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
-  @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
-  @Output() multiOptionsSelected: EventEmitter<FormOption> = new EventEmitter();
-
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
     this.control = this.formService.getFieldControl({ key: this.key });
-    this.options$ = of(this.options);
+    this.options$ = merge(of(this.options), this.onAutocompleteEvent());
+    this.formDataSource.listen.optionSelected().subscribe((opt) => console.log(opt));
+
   }
 
-  public onAutoComplete(formOption: FormOption): void {
-    this.options$ = of(this.options).pipe(
-      map((options: SelectOption[]) => {
-        return options.filter((option: SelectOption) =>
-          option.label.includes(formOption.value)
+  private onAutocompleteEvent() {
+    return this.formDataSource.listen.autocomplete().pipe(
+      map((formOption: FormOption) => formOption.query),
+      map((query: string) => {
+        return this.options.filter((option: SelectOption) =>
+          option.label.includes(query)
         );
       })
     );
   }
 
-  public onMultiOptionsSelected(formOption: FormOption) {
+  public onOptionSelected(formOption: FormOption) {
     console.log(formOption);
+  }
+
+  public onMultiOptionsSelected(formOption: FormOption) {
+
   }
 }
