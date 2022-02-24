@@ -64,15 +64,14 @@ const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
     KKLIconModule
   ],
   exports: [
-    KakalUiComponent,
-    MenuItemModule,
     ReactiveFormsModule,
+    MenuItemModule,
     KKLButtonModule,
     MenuItemModule,
-    KKLFormAutoCompleteModule,
     KKLIconModule,
-    KKLFormUploadModule,
     KKLTypographyModule,
+    KKLFormAutoCompleteModule,
+    KKLFormUploadModule,
     DirectivesModule,
     ...components,
     ...exportPipes,
