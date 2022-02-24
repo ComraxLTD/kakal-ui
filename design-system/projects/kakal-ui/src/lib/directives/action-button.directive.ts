@@ -3,7 +3,7 @@ import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
 @Directive({
   selector: '[kkl-action-button]',
 })
-export class ActionKKLButtonDirective {
+export class KKLActionButtonDirective {
   @HostBinding('class') private _class;
   @HostBinding('style.border-radius') private radius: string;
 
