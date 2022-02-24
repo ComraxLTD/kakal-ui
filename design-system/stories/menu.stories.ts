@@ -1,15 +1,14 @@
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { MenuComponent } from 'projects/kakal-ui/src/lib/menu/menu.component';
-import { MenuModel } from 'projects/kakal-ui/src/lib/menu/menu.model';
-import {  observable, Observable, of } from 'rxjs';
-import { MenuModule } from '../projects/kakal-ui/src/lib/menu/menu.module';
+import { KKLMenuModule } from '../projects/kakal-ui/src/lib/menu/menu.module';
+import {   Observable, of } from 'rxjs';
 let type: 'list' | 'accordion';
 
 export default {
   title: 'menu/menu',
   decorators: [
     moduleMetadata({
-      imports: [MenuModule],
+      imports: [KKLMenuModule],
     }),
   ],
   component: MenuComponent,

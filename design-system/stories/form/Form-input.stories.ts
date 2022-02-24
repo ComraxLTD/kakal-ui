@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { FormControl } from '@angular/forms';
 
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { FormInputModule } from '../../projects/kakal-ui/src/lib/form/form-input/form-input.module';
+import { KKLFormInputModule } from '../../projects/kakal-ui/src/lib/form/form-input/form-input.module';
 import { FormInputComponent } from '../../projects/kakal-ui/src/lib/form/form-input/form-input.component';
 import { QuestionTextModel } from '../../projects/kakal-ui/src/lib/form/models/question-text.model';
 import { QuestionNumberModel } from '../../projects/kakal-ui/src/lib/form/models/question-number.model';
@@ -13,7 +13,7 @@ export default {
   title: 'form/Input',
   decorators: [
     moduleMetadata({
-      imports: [FormInputModule],
+      imports: [KKLFormInputModule],
     }),
   ],
   component: FormInputComponent,

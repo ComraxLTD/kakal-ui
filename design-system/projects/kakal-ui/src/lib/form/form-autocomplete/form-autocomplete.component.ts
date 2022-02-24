@@ -11,7 +11,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource, FormOption } from '../models/form-data-source.model';
-import { merge, Observable, of } from 'rxjs';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'kkl-form-autocomplete',

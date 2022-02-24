@@ -8,7 +8,7 @@ import { MatMenuModule } from "@angular/material/menu";
 import { MatSelectModule } from "@angular/material/select";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { KKLIconModule } from "../../icon/icon.module";
-import { FormInputModule } from "../form-input/form-input.module";
+import { KKLFormInputModule } from "../form-input/form-input.module";
 import { FormComponent } from './form.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -27,7 +27,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         KKLIconModule,
         MatGridListModule,
         FlexLayoutModule,
-        FormInputModule,
+        KKLFormInputModule,
     ],
     exports: [FormComponent]
 })

@@ -24,4 +24,4 @@ import { FormDateComponent } from "./form-date.component";
     exports:[FormDateComponent]
 })
 
-export class FormDateModule {}
+export class KKLFormDateModule {}

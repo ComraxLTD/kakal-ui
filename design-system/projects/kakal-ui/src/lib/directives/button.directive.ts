@@ -1,9 +1,9 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[appButton]'
+  selector: '[kkl-button]'
 })
-export class ButtonDirective {
+export class KKLButtonDirective {
 
 
   @HostBinding('style.cursor') private cursor: string;

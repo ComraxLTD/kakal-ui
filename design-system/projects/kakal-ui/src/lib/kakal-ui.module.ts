@@ -1,35 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { KakalUiComponent } from './kakal-ui.component';
 import { FormComponent } from './form/form/form.component';
 import { FormDateComponent } from './form/form-date/form-date.component';
 import { FormInputComponent } from './form/form-input/form-input.component';
 import { FormRadioComponent } from './form/form-radio/form-radio.component';
 import { FormCurrencyComponent } from './form/form-currency/form-currency.component';
-import { ButtonsetComponent } from './buttonset/buttonset.component';
 import { MaterialModule } from './angular-material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core-module/core.module';
-import { AreaPipe } from '../pipes/area.pipe';
-import { FormatPipe } from '../pipes/format.pipe';
-import { LocationPipe } from '../pipes/location.pipe';
-import { PrefixPipe } from '../pipes/prefix.pipe';
-import { RangePipe } from '../pipes/range.pipe';
+
 import { KKLButtonModule } from './button/button.module';
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { FormSelectComponent } from './form/form-select/form-select.component';
-import { MenuItemModule } from './menu-item/menu-item.module';
+import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { ListItemComponent } from './list-item/list-item.component';
-import { MenuModule } from './menu/menu.module';
+import { KKLMenuModule } from './menu/menu.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
-import { StepTitleModule } from './step-title/step-title.module';
-import { DirectivesModule } from './directives/directives.module';
+import { KKLStepTitleModule } from './step-title/step-title.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
-
-const exportPipes = [];
+import { KKLDirectivesModule } from './directives/directives.module';
+import { KKLPipesModule } from '../pipes/pipes.module';
 
 const formComps = [
   FormComponent,
@@ -37,47 +30,36 @@ const formComps = [
   FormInputComponent,
   FormRadioComponent,
   FormCurrencyComponent,
+  FormSelectComponent,
+  ListItemComponent,
 ];
-const components = [ButtonsetComponent];
-
-const pipes = [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe];
 @NgModule({
   declarations: [
-    KakalUiComponent,
-    ...components,
-    ...exportPipes,
     ...formComps,
-    ...pipes,
-    FormSelectComponent,
-    ListItemComponent,
     FormExampleComponent,
   ],
   imports: [
+    CoreModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    CoreModule,
-    DirectivesModule,
-    MenuModule,
+
+    KKLDirectivesModule,
+    KKLPipesModule,
+    KKLMenuModule,
     KklTitleModule,
-    StepTitleModule,
-    KKLIconModule
+    KKLIconModule,
+    KKLStepTitleModule,
   ],
   exports: [
-    KakalUiComponent,
-    MenuItemModule,
-    ReactiveFormsModule,
+    KKLMenuItemModule,
     KKLButtonModule,
-    MenuItemModule,
-    KKLFormAutoCompleteModule,
     KKLIconModule,
-    KKLFormUploadModule,
     KKLTypographyModule,
-    DirectivesModule,
-    ...components,
-    ...exportPipes,
-    ...formComps,
-    ...pipes,
+    KKLFormAutoCompleteModule,
+    KKLFormUploadModule,
+    KKLPipesModule,
+    KKLDirectivesModule,
   ],
 })
 export class KakalUiModule {}

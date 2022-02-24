@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { IconComponent } from './icon.component';
-import { DirectivesModule} from '../directives/directives.module';
+import { KKLDirectivesModule} from '../directives/directives.module';
 
 @NgModule({
   imports: [
@@ -12,7 +12,7 @@ import { DirectivesModule} from '../directives/directives.module';
     ReactiveFormsModule,
     MatIconModule,
     BrowserAnimationsModule,
-    DirectivesModule
+    KKLDirectivesModule
   ],
   declarations: [IconComponent],
   exports: [IconComponent]

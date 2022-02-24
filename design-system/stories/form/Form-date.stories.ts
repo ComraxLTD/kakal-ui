@@ -3,14 +3,14 @@ import { FormControl } from '@angular/forms';
 
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { FormDateComponent} from '../../projects/kakal-ui/src/lib/form/form-date/form-date.component';
-import { FormDateModule } from '../../projects/kakal-ui/src/lib/form/form-date/form-date.module';
+import { KKLFormDateModule } from '../../projects/kakal-ui/src/lib/form/form-date/form-date.module';
 import { QuestionDateModel } from '../../projects/kakal-ui/src/lib/form/form-date/question-date.model';
 
 export default {
   title: 'form/Date',
   decorators: [
     moduleMetadata({
-      imports: [FormDateModule],
+      imports: [KKLFormDateModule],
     }),
   ],
   component: FormDateComponent,
