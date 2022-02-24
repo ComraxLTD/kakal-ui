@@ -12,23 +12,34 @@ import { ActionButtonDirective } from './action-button.directive';
 import { FormButtonDirective } from './form-button.directive';
 import { OutsideButtonDirective } from './outside-button.directive';
 
-const directives = [
-  BorderDirective,
-  ButtonDirective,
-  CellDirective,
-  OutsideDirective,
-  SizeDirective,
-  UnderlineDirective,
-  VariantDirective,
-  WizardDirective,
-  ActionButtonDirective,
-  FormButtonDirective,
-  OutsideButtonDirective,
-];
 
 @NgModule({
-  declarations: [...directives],
+  declarations: [
+    BorderDirective,
+    ButtonDirective,
+    CellDirective,
+    OutsideDirective,
+    SizeDirective,
+    UnderlineDirective,
+    VariantDirective,
+    WizardDirective,
+    ActionButtonDirective,
+    FormButtonDirective,
+    OutsideButtonDirective,
+  ],
   imports: [],
-  exports: [...directives],
+  exports: [
+    BorderDirective,
+    ButtonDirective,
+    CellDirective,
+    OutsideDirective,
+    SizeDirective,
+    UnderlineDirective,
+    VariantDirective,
+    WizardDirective,
+    ActionButtonDirective,
+    FormButtonDirective,
+    OutsideButtonDirective,
+  ],
 })
 export class DirectivesModule {}
