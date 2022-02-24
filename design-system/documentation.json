@@ -104,7 +104,17 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/Icon.stories.ts",
+                "file": "stories/Buttonset.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<ButtonsetComponent>",
+                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form-upload-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<IconComponent>",
@@ -139,16 +149,6 @@
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
                 "defaultValue": "(args: TypographyComponent) => ({\r\n        component: TypographyComponent,\r\n        props: args,\r\n        template: `\r\n        <kkl-typography size='3'>Size : 3</kkl-typography>\r\n        <br/>\r\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\r\n        <br/>\r\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography color='success'>Color : success</kkl-typography>\r\n        <br/>\r\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\r\n        `\r\n    })"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/Buttonset.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonsetComponent>",
-                "defaultValue": "(args: ButtonsetComponent) => ({\r\n  component: ButtonsetComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
