@@ -49,7 +49,7 @@ import {
     KKLFormCurrencyModule,
     KKLFormUploadModule,
 
-    KKLColumnsModule,
+    // KKLColumnsModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
@@ -68,7 +68,7 @@ import {
     KKLFormCurrencyModule,
     KKLFormUploadModule,
 
-    KKLColumnsModule,
+    // KKLColumnsModule,
 
     KKLPipesModule,
     KKLDirectivesModule,

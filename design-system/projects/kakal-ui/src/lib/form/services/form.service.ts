@@ -25,6 +25,7 @@ import { QuestionCurrencyModel } from '../form-currency/question-currency.model'
 import { QuestionDateModel } from '../form-date/question-date.model';
 import { QuestionFileModel } from '../models/question-file.model';
 import { QuestionPhoneModel } from '../models/question-phone.model';
+import { QuestionTimeModel } from '../models/question-time.model';
 
 export type ControlTemplate = [
   state: any,
@@ -51,6 +52,7 @@ export type Question =
   | QuestionGroupModel
   | QuestionEmailModel
   | QuestionPhoneModel
+  | QuestionTimeModel
   ;
 
 export interface QuestionGroup {
@@ -224,6 +226,8 @@ export class FormService {
 
       case 'autocomplete':
         return new QuestionAutocompleteModel(question);
+        case 'time':
+          return new QuestionTimeModel(question);
       default:
         return new QuestionTextModel(question);
     }

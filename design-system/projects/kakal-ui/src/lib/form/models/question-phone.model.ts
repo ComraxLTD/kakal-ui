@@ -9,6 +9,6 @@ export class QuestionPhoneModel extends QuestionNumberModel {
         this.validations = options.validations ? [...options?.validations, ValidationService.regex('phone')] : 
         [ValidationService.regex('phone')];
         this.controlType = 'cleave';
-        this.cleave = { blocks: [3, 3, 4], delimiter: '-' };
+        this.cleave = { blocks: [3, 3, 4], delimiter: '-',numericOnly:true };
     }
 }
