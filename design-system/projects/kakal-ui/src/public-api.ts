@@ -34,7 +34,7 @@ export * from './lib/form/form-currency/form-currency.component';
 export * from './lib/form/form-currency/form-currency.service';
 
 // autocomplete
-// export * from './lib/form/form-autocomplete/form-autocomplete.component';
+export * from './lib/form/form-autocomplete/form-autocomplete.component';
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
 export * from './lib/form/models/question-autocomplete';
 
@@ -53,9 +53,9 @@ export * from './lib/form/services/validations.service';
 // ------------------------------------------------------------------------------------------------------------------------
 
 // columns
-export * from './lib/columns/column.module'
-export * from './lib/columns/column.model'
-export * from './lib/columns/columns.service'
+// export * from './lib/columns/column.module'
+// export * from './lib/columns/column.model'
+// export * from './lib/columns/columns.service'
 
 
 // ------------------------------------------------------------------------------------------------------------------------

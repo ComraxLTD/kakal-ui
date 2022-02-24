@@ -23,6 +23,7 @@ import { KKLStepTitleModule } from './step-title/step-title.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPipesModule } from '../pipes/pipes.module';
+import { KKLFormModule } from './form/form/form.module';
 
 const formComps = [
   FormComponent,
@@ -43,7 +44,7 @@ const formComps = [
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-
+    KKLFormModule,
     KKLDirectivesModule,
     KKLPipesModule,
     KKLMenuModule,
