@@ -1,11 +1,21 @@
-<mat-form-field [color]="question.theme" [appearance]="control.disabled ? 'fill' : question.appearance || 'outline'">
-
-    <mat-select panelClass="select-panel-form" overlayPanelClass="overlay-panel" [multiple]="question.multi"
-        [disableOptionCentering]="true" (selectionChange)="onSelectChange()" [formControl]="control"
-        [attr.name]="question.key" (focusout)="setErrorMessage()" (focus)="onFocus()">
-        <mat-option *ngFor="let option of question.options" [value]="option">
-            {{ option.label }}
-        </mat-option>
-    </mat-select>
-    <mat-error>{{ error$ | async }}</mat-error>
+<mat-form-field
+  [color]="question.theme"
+  [appearance]="control.disabled ? 'fill' : question.appearance || 'outline'"
+>
+  <mat-select
+    panelClass="select-panel-form"
+    overlayPanelClass="overlay-panel"
+    [multiple]="question.multi"
+    [disableOptionCentering]="true"
+    (selectionChange)="onSelectChange()"
+    [formControl]="control"
+    [attr.name]="question.key"
+    (focusout)="setErrorMessage()"
+    (focus)="onFocus()"
+  >
+    <mat-option *ngFor="let option of question.options" [value]="option">
+      {{ option.label }}
+    </mat-option>
+  </mat-select>
+  <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>

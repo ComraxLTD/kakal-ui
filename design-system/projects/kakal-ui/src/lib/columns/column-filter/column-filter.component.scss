@@ -14,7 +14,7 @@ mat-selection-list {
 }
 
 .active {
-  background-color: map-get($map: lands-theme.$plt-primary, $key: 50);
+  // background-color: map-get($map: lands-theme.$plt-primary, $key: 50);
   border-radius: 1rem;
 }
 div.date {

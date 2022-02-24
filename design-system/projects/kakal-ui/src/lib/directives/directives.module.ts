@@ -8,9 +8,9 @@ import { BorderDirective } from './border.directive';
 import { OutsideDirective } from './outside.directive';
 import { CellDirective } from './cell.directive';
 import { WizardDirective } from './wizard.directive';
-import { ActionKKLButtonDirective } from './action-button.directive';
-import { FormKKLButtonDirective } from './form-button.directive';
-import { OutsideKKLButtonDirective } from './outside-button.directive';
+import { KKLActionButtonDirective } from './action-button.directive';
+import { KKLFormButtonDirective } from './form-button.directive';
+import { KKLOutsideButtonDirective } from './outside-button.directive';
 
 
 @NgModule({
@@ -23,9 +23,9 @@ import { OutsideKKLButtonDirective } from './outside-button.directive';
     UnderlineDirective,
     VariantDirective,
     WizardDirective,
-    ActionKKLButtonDirective,
-    FormKKLButtonDirective,
-    OutsideKKLButtonDirective,
+    KKLActionButtonDirective,
+    KKLFormButtonDirective,
+    KKLOutsideButtonDirective,
   ],
   imports: [],
   exports: [
@@ -37,9 +37,9 @@ import { OutsideKKLButtonDirective } from './outside-button.directive';
     UnderlineDirective,
     VariantDirective,
     WizardDirective,
-    ActionKKLButtonDirective,
-    FormKKLButtonDirective,
-    OutsideKKLButtonDirective,
+    KKLActionButtonDirective,
+    KKLFormButtonDirective,
+    KKLOutsideButtonDirective,
   ],
 })
 export class KKLDirectivesModule {}

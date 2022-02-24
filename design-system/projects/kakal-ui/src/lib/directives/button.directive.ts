@@ -1,7 +1,7 @@
 import { Directive, HostBinding } from '@angular/core';
 
 @Directive({
-  selector: '[kkl-button]'
+  selector: '[appButton]'
 })
 export class KKLButtonDirective {
 

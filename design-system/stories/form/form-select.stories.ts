@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { FormControl } from '@angular/forms';
 
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { FormSelectModule } from '../../projects/kakal-ui/src/lib/form/form-select/form-select.module';
+import { KKLFormSelectModule } from '../../projects/kakal-ui/src/lib/form/form-select/form-select.module';
 import { FormSelectComponent } from '../../projects/kakal-ui/src/lib/form/form-select/form-select.component';
 import { QuestionSelectModel } from '../../projects/kakal-ui/src/lib/form/models/question-select.model';
 
@@ -10,7 +10,7 @@ export default {
     title: 'form',
     decorators: [
         moduleMetadata({
-            imports: [FormSelectModule],
+            imports: [KKLFormSelectModule],
         }),
     ],
     component: FormSelectComponent,

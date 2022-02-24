@@ -3,7 +3,7 @@ import { Directive, HostBinding } from '@angular/core';
 @Directive({
   selector: '[kkl-form-button]',
 })
-export class FormKKLButtonDirective {
+export class KKLFormButtonDirective {
   @HostBinding('class') private _class;
   @HostBinding('style.margin') private margin: string;
   @HostBinding('style.padding-bottom') private paddingBottom: string;
