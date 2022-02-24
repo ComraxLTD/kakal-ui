@@ -4,7 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { FormCurrencyComponent } from './form-currency.component';
 import { CurrencyService } from './form-currency.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { FormInputModule } from '../form-input/form-input.module';
+import { KKLFormInputModule } from '../form-input/form-input.module';
 import { KKLIconModule } from '../../icon/icon.module';
 import { MatSelectModule } from '@angular/material/select';
 
@@ -12,7 +12,7 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    FormInputModule,
+    KKLFormInputModule,
     KKLIconModule,
     MatSelectModule,
   ],
@@ -20,4 +20,4 @@ import { MatSelectModule } from '@angular/material/select';
   declarations: [FormCurrencyComponent],
   exports: [FormCurrencyComponent],
 })
-export class CurrencyModule {}
+export class KKLFormCurrencyModule {}

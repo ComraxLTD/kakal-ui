@@ -15,4 +15,4 @@ import { KKLIconModule} from '../../icon/icon.module';
     exports: [FormInputComponent]
 })
 
-export class FormInputModule { }
+export class KKLFormInputModule { }
