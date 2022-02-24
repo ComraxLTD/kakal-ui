@@ -21,6 +21,7 @@ import { map, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete-ex.component.scss'],
 })
 export class FormAutocompleteExComponent implements OnInit {
+  
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public icon: string;

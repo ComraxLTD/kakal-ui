@@ -117,18 +117,18 @@
                 "file": "stories/form-upload-button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<IconComponent>",
-                "defaultValue": "(args: IconComponent) => ({\r\n        component: IconComponent,\r\n        props: args,\r\n    })"
+                "type": "Story<FormUploadComponent>",
+                "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
             },
             {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/form-upload-button.stories.ts",
+                "file": "stories/Icon.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormUploadComponent>",
-                "defaultValue": "(args: FormUploadComponent) => ({\r\n        component: FormUploadComponent,\r\n        props: args,\r\n    })"
+                "type": "Story<IconComponent>",
+                "defaultValue": "(args: IconComponent) => ({\r\n        component: IconComponent,\r\n        props: args,\r\n    })"
             },
             {
                 "name": "Template",
