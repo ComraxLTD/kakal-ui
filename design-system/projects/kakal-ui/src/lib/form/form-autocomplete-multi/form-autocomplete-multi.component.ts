@@ -14,11 +14,11 @@ import { FormDataSource, FormOption } from '../models/form-data-source.model';
 import { merge, Observable, of } from 'rxjs';
 
 @Component({
-  selector: 'kkl-form-autocomplete',
-  templateUrl: './form-autocomplete.component.html',
-  styleUrls: ['./form-autocomplete.component.scss'],
+  selector: 'kkl-form-autocomplete-multi',
+  templateUrl: './form-autocomplete-multi.component.html',
+  styleUrls: ['./form-autocomplete-multi.component.scss'],
 })
-export class FormAutocompleteComponent implements OnInit {
+export class FormAutocompleteComponentMulti implements OnInit {
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public icon: string;
