@@ -16,4 +16,4 @@ import {MatListModule} from '@angular/material/list';
     MatListModule
   ]
 })
-export class MenuModule { }
+export class KKLMenuModule { }

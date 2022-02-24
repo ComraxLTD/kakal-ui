@@ -17,13 +17,13 @@ import { MessageService } from '../services/message.service';
 @NgModule({
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     ReactiveFormsModule,
     MatMenuModule,
     MatListModule,
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
-    BrowserAnimationsModule,
     MatInputModule,
     MatAutocompleteModule,
     KKLIconModule,

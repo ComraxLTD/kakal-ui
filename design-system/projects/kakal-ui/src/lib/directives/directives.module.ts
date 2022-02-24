@@ -42,4 +42,4 @@ import { OutsideButtonDirective } from './outside-button.directive';
     OutsideButtonDirective,
   ],
 })
-export class DirectivesModule {}
+export class KKLDirectivesModule {}

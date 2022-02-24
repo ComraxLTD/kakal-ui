@@ -1,11 +1,11 @@
 <button *ngIf="type === 'primary'" mat-raised-button color="primary">
-    {{label}}
-  </button>
-  <button *ngIf="type === 'secondary'" mat-stroked-button color="primary">
-    {{label}}
-  </button>
+  {{ label }}
+</button>
+<button *ngIf="type === 'secondary'" mat-stroked-button color="primary">
+  {{ label }}
+</button>
 
-  <mat-form-field class="example-full-width" appearance="fill">
-    <mat-label>Favorite food</mat-label>
-    <input matInput placeholder="Ex. Pizza" value="Sushi">
-  </mat-form-field>
+<mat-form-field class="example-full-width" appearance="fill">
+  <mat-label>Favorite food</mat-label>
+  <input matInput placeholder="Ex. Pizza" value="Sushi" />
+</mat-form-field>

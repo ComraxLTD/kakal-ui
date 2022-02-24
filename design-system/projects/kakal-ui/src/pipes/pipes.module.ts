@@ -10,4 +10,4 @@ import { RangePipe } from './range.pipe';
   imports: [],
   exports: [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe],
 })
-export class PipesModule {}
+export class KKLPipesModule {}
