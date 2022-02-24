@@ -7,19 +7,19 @@ import { FormRadioComponent } from '../../projects/kakal-ui/src/lib/form/form-ra
 import {MatRadioModule } from '@angular/material/radio';
 import { moduleMetadata ,} from '@storybook/angular';
 export default {
-    title: 'form/Radio-Button',
+    title: 'Form/Radio-Button',
     decorators: [
         moduleMetadata({
-            imports: [MatRadioModule, FormsModule, ReactiveFormsModule] 
+            imports: [MatRadioModule, FormsModule, ReactiveFormsModule]
         })
     ],
     component: FormRadioComponent,
     argTypes: {
-        control:new FormControl(), 
-        question: {key:'gender', 
+        control:new FormControl(),
+        question: {key:'gender',
         options:[{ label: 'male', value: 'male', checked: true },
         { label: 'female', value: 'female', checked: false }]
-    } 
+    }
         // we need to override here since in Angular it could be null as well and therefore it would become an ambigious data type for storybook
     }
 } as Meta;
@@ -37,4 +37,3 @@ GenderRadio.args = {
         { label: 'male', value: 'male', checked: true }]} )
 }
 
- 
