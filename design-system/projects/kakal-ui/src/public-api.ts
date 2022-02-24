@@ -67,6 +67,7 @@ export * from './pipes/format.pipe';
 export * from './pipes/location.pipe';
 export * from './pipes/prefix.pipe';
 export * from './pipes/range.pipe';
+export * from './pipes/pipes.module';
 
 //directives
 export * from './lib/directives/variant.directive';

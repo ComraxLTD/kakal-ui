@@ -16,4 +16,4 @@ import { KKLTypographyModule } from '../typography/typography.module';
   ],
   exports: [MenuItemComponent]
 })
-export class MenuItemModule { }
+export class KKLMenuItemModule { }

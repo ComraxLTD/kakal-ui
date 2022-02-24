@@ -16,7 +16,7 @@ import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { FormSelectComponent } from './form/form-select/form-select.component';
-import { MenuItemModule } from './menu-item/menu-item.module';
+import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { ListItemComponent } from './list-item/list-item.component';
 import { KKLMenuModule } from './menu/menu.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
@@ -34,17 +34,16 @@ const formComps = [
 ];
 @NgModule({
   declarations: [
-    KakalUiComponent,
     ...formComps,
     FormSelectComponent,
     ListItemComponent,
     FormExampleComponent,
   ],
   imports: [
+    CoreModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    CoreModule,
     KKLDirectivesModule,
     KKLPipesModule,
     KKLMenuModule,
@@ -53,17 +52,15 @@ const formComps = [
     KKLStepTitleModule,
   ],
   exports: [
-    ReactiveFormsModule,
-    MenuItemModule,
+    ...formComps,
+    KKLMenuItemModule,
     KKLButtonModule,
-    MenuItemModule,
     KKLIconModule,
     KKLTypographyModule,
     KKLFormAutoCompleteModule,
     KKLFormUploadModule,
     KKLPipesModule,
     KKLDirectivesModule,
-    ...formComps,
   ],
 })
 export class KakalUiModule {}
