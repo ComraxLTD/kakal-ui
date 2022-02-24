@@ -4,36 +4,61 @@
 
 export * from './lib/kakal-ui.module';
 
+// buttons
 export * from './lib/button/button.component';
 export * from './lib/button/button.module';
 
+// typography
 export * from './lib/typography/typography.component';
 export * from './lib/typography/typography.module';
 
+// icon
 export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.module';
 
+// ------------------------------------------------------------------------------------------------------------------------
+
+// FORM EXPORTS
+
+export * from './lib/form/form/form.component';
+
+// date
+export * from './lib/form/form-date/form-date.component';
+export * from './lib/form/models/form-data-source.model';
+
+export * from './lib/form/form-input/form-input.component';
+
+export * from './lib/form/form-radio/form-radio.component';
+
+export * from './lib/form/form-currency/form-currency.component';
+export * from './lib/form/form-currency/form-currency.service';
+
+// autocomplete
 export * from './lib/form/form-autocomplete/form-autocomplete.component';
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
+export * from './lib/form/models/question-autocomplete';
 
+// upload
 export * from './lib/form/form-upload/form-upload.component';
 export * from './lib/form/form-upload/form-upload.module';
 
-// form exports
-export * from './lib/form/form/form.component';
-export * from './lib/form/form-date/form-date.component';
-export * from './lib/form/form-input/form-input.component';
-export * from './lib/form/form-radio/form-radio.component';
-export * from './lib/form/form-currency/form-currency.component';
-export * from './lib/form/form-autocomplete/form-autocomplete.module';
-export * from './lib/form/form-currency/form-currency.service';
-
+// form services
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
 
-export * from './lib/form/models/form-data-source.model';
-export * from './lib/form/models/question-autocomplete';
+
+// ------------------------------------------------------------------------------------------------------------------------
+// TABLE EXPORTS
+// ------------------------------------------------------------------------------------------------------------------------
+
+// columns
+export * from './lib/columns/column.module'
+export * from './lib/columns/column.model'
+export * from './lib/columns/columns.service'
+
+
+// ------------------------------------------------------------------------------------------------------------------------
 
 //menu
 export * from './lib/menu-item/menu-item.module';
