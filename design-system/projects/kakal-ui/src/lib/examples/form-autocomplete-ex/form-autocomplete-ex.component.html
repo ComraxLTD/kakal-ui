@@ -9,7 +9,8 @@
         [options]="items"
         [panelWidth]="panelWidth"
         [multi]="multi"
-        [formDataSource]="formDataSource"
+        (autocomplete)="onAutocomplete($event)"
+        (optionSelected)="onOptionSelected($event)"
         (multiOptionsSelected)="onMultiOptionsSelected($event)"
       ></kkl-form-autocomplete>
     </ng-container>
