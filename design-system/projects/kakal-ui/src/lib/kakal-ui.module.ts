@@ -44,7 +44,7 @@ import { KKLColumnsModule} from './columns/column.module'
     KKLFormCurrencyModule,
     KKLFormUploadModule,
 
-    KKLColumnsModule,
+    // KKLColumnsModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
@@ -63,7 +63,7 @@ import { KKLColumnsModule} from './columns/column.module'
     KKLFormCurrencyModule,
     KKLFormUploadModule,
 
-    KKLColumnsModule,
+    // KKLColumnsModule,
 
     KKLPipesModule,
     KKLDirectivesModule,

@@ -13,6 +13,10 @@ export class FormExampleComponent implements OnInit {
 
   questions: Question[] = [
     {
+      key: 'timeInput',
+      controlType:'time'
+    },
+    {
       key: 'name'
     },
     {

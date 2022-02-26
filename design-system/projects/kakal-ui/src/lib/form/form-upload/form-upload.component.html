@@ -5,7 +5,7 @@
     </kkl-typography>
   </mat-label>
   <mat-select [disabled]="disabled" (click)="onClick(fileUpload, menuTrigger)">
-    <input #input hidden type="file" #fileUpload [multiple]="question?.multi" [disabled]="disabled"
+    <input #input hidden type="file" #fileUpload [multiple]="multi" [disabled]="disabled"
       (change)="_onChangeEvent($event)" />
   </mat-select>
 

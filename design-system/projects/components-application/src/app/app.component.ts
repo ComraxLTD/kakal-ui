@@ -14,15 +14,41 @@ export class AppComponent implements OnInit {
 
   questions:Question[] = [
     {
-      key:'text-input',
-      controlType:'email',
-      label:'Enter email',
-      icon:'email'
+      key: 'timeInput',
+      label:'time',
+      controlType:'time'
     },
     {
-      key:'test',
-      controlType:'phone'
+      key: 'name'
+    },
+    {
+      key: 'email',
+      controlType: 'email',
+    },
+    {
+      key: 'phone',
+      controlType: 'phone'
+    },
+    {
+      key: 'date',
+      type: 'date',
+    },
+    {
+      key: 'text',
+      controlType: 'textarea'
+    },
+    {
+      key:'file',
+      type:'file',
+      controlType:'file'
+    },
+    {
+      key:'cities',
+      type:'select',
+      controlType:'select',
+      options:[{label:'test',value:0}]
     }
+
   ];
   public formGroup:QuestionGroupModel ;
 

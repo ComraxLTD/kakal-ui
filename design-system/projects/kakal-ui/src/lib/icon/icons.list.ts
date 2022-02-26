@@ -1,5 +1,11 @@
 // SHARED ICONS
-
+export const TIME_ICON = `
+<svg xmlns="http://www.w3.org/2000/svg" width="19.098" height="19.262" viewBox="0 0 19.098 19.262">
+  <g id="Group_3910" data-name="Group 3910" transform="translate(-55.247 -53.25)">
+    <path id="Path_1020" data-name="Path 1020" d="M240.2,125.464,237.61,123.5v-4a.72.72,0,1,0-1.441,0v4.36a.727.727,0,0,0,.288.581l2.881,2.18a.715.715,0,0,0,1.008-.146A.729.729,0,0,0,240.2,125.464Z" transform="translate(-172.093 -59.279)" fill="#4faecf" stroke="#4faecf" stroke-width="0.5"/>
+    <path id="Path_1021" data-name="Path 1021" d="M9.3,0a9.381,9.381,0,0,0,0,18.762A9.381,9.381,0,0,0,9.3,0Zm0,17.309a7.928,7.928,0,1,1,7.859-7.928A7.9,7.9,0,0,1,9.3,17.309Z" transform="translate(55.497 53.5)" fill="#4faecf" stroke="#4faecf" stroke-width="0.5"/>
+  </g>
+</svg>`
 export const THUMBUP_ICON =
   `
 <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px">

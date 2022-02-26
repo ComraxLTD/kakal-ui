@@ -33,9 +33,14 @@ import { KKLFormRadioModule } from '../form-radio/form-radio.module';
     KKLIconModule,
     MatGridListModule,
     FlexLayoutModule,
-
+    // form components
+    KKLFormDateModule,
     KKLFormInputModule,
-
+    KKLFormRadioModule,
+    KKLFormSelectModule,
+    KKLFormAutoCompleteModule,
+    KKLFormCurrencyModule,
+    KKLFormUploadModule
   ],
   exports: [FormComponent, KKLFormInputModule],
 })

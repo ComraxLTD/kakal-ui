@@ -1,19 +1,19 @@
 <mat-form-field
-  [color]="question.theme"
-  [appearance]="control.disabled ? 'fill' : question.appearance || 'outline'"
+  [color]="theme"
+  [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
 >
   <mat-select
     panelClass="select-panel-form"
     overlayPanelClass="overlay-panel"
-    [multiple]="question.multi"
+    [multiple]="multi"
     [disableOptionCentering]="true"
     (selectionChange)="onSelectChange()"
     [formControl]="control"
-    [attr.name]="question.key"
+    [attr.name]="key"
     (focusout)="setErrorMessage()"
     (focus)="onFocus()"
   >
-    <mat-option *ngFor="let option of question.options" [value]="option">
+    <mat-option *ngFor="let option of options" [value]="option">
       {{ option.label }}
     </mat-option>
   </mat-select>

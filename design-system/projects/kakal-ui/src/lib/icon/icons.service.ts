@@ -41,6 +41,7 @@ export class IconsService {
     nike: AppIcons.NIKE_ICON,
     helper: AppIcons.HELPER_ICON,
     phone: AppIcons.PHONE_ICON,
+    time: AppIcons.TIME_ICON,
     closepopup: AppIcons.CLOSE_POPUP_ICON,
     send: AppIcons.SEND_ICON,
     clear_with_background: AppIcons.CLEAR_WITH_BACKGROUND_ICON,

@@ -30,19 +30,18 @@ import { map, merge, Observable, of, Subscription } from 'rxjs';
   },
   inputs: ['disabled', 'disableRipple', 'color'],
 })
-export class FormUploadComponent implements OnInit, ControlValueAccessor ,OnDestroy{
+export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDestroy {
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
 
-  @Input() public question: QuestionFileModel;
-  @Input() public files$: Observable<File[]>;
+  @Input() public label: string = 'העלה מסמך';
   @Input() public index: number;
-  @Input() public multi: boolean;
+  @Input() public multi: boolean = true;
 
   public disabled: boolean;
   // public placeholder$: Observable<string>;
   public label$: Observable<string>;
   public files: File[] = [];
-  private labelSub:Subscription;
+  private labelSub: Subscription;
   // emit the file
   @Output() public onDeleteFile: EventEmitter<any> = new EventEmitter();
   @Output() fileChange = new EventEmitter<File[]>();
@@ -53,15 +52,12 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor ,OnDest
   private _onChange: (v: File[]) => void = (value: File[]) => { };
 
   ngOnInit(): void {
-    if (!this.question) {
-      throw new Error('form-upload must get question as input');
-    }
     // this.label$ = this.setLabelFormFileLength$();
     this.labelSub = this.setLabelFormFileLength$().subscribe(res => this.label$ = of(res))
   }
 
   ngOnDestroy(): void {
-      this.labelSub.unsubscribe();
+    this.labelSub.unsubscribe();
   }
 
   // ControlValueAccessor interface methods
@@ -86,7 +82,7 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor ,OnDest
       }),
       map((files: File[]) =>
         files.length === 0
-          ? this.question.label
+          ? this.label
           : files.length === 1
             ? '1 קובץ מצורף'
             : `${files.length} קבצים מצורפים`
@@ -123,10 +119,6 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor ,OnDest
     const chosenFile = this.files.findIndex(
       (filter) => filter.name === file.name
     );
-    if(this.question.onDeleteFile){
-      this.question?.onDeleteFile(file);
-      return;
-    }    
     this.files.splice(chosenFile, 1);
     this.fileChange.emit(this.files);
   }
