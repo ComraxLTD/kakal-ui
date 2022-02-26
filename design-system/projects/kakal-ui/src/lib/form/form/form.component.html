@@ -40,7 +40,10 @@
                 ? cols
                 : question?.gridProps?.cols || 1
             " [rowspan]="question?.gridProps?.rows || 1">
-            <kkl-form-select [control]="group.formGroup.controls[question.key]" [question]="question" [index]="index"
+            <kkl-form-select [control]="group.formGroup.controls[question.key]" 
+            [key]="question.key" [multi]="question.multi" [options]="question.options" 
+             [index]="index" [placeHolder]="question.placeHolder" [theme]="question.theme"
+             [appearance]="question.appearance"
               (focus)="onFocus($event)" [optionsSlot]="optionsSlot" (selected)="onSelect($event)"></kkl-form-select>
           </mat-grid-tile>
         </ng-container>

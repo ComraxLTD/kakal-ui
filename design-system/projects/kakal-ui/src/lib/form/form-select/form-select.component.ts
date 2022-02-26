@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
+import { Palette } from '../../../styles/theme';
 import { FormOption } from '../models/form-data-source.model';
-import { QuestionSelectModel, SelectOption } from '../models/question-select.model';
+import {  SelectOption } from '../models/question-select.model';
+import { Appearance } from '../models/question.model';
 import { MessageService } from '../services/message.service';
 
 @Component({
@@ -11,10 +13,14 @@ import { MessageService } from '../services/message.service';
   styleUrls: ['./form-select.component.scss']
 })
 export class FormSelectComponent implements OnInit {
-  @Input() public question: QuestionSelectModel;
   @Input() public control: FormControl;
   @Input() public index:number;
-
+  @Input() public multi:boolean;
+  @Input() public key:string;
+  @Input() public options:SelectOption[];
+  @Input() public placeHolder:string;
+  @Input() public theme:Palette;
+  @Input() public appearance:Appearance;
   @Output() public selected: EventEmitter<FormOption> = new EventEmitter();
   @Output() public focus: EventEmitter<FormOption> = new EventEmitter();
 
@@ -30,19 +36,19 @@ export class FormSelectComponent implements OnInit {
 
   public onSelectChange() {
     const formOption: FormOption = this.getFormOption(this.control.value);
-    if (
-      this.question instanceof QuestionSelectModel &&
-      this.question.onSelectChange
-    ) {
-      this.question.onSelectChange(formOption);
-    }
+    // if (
+    //   this.question instanceof QuestionSelectModel &&
+    //   this.question.onSelectChange
+    // ) {
+    //   this.question.onSelectChange(formOption);
+    // }
 
     this.selected.emit(formOption);
   }
 
   private getFormOption(value?: string): FormOption {
     const formOption: FormOption = {
-      key: this.question.key,
+      key: this.key,
       control: this.control,
       index: this.index,
       value$: of(value),
@@ -53,10 +59,8 @@ export class FormSelectComponent implements OnInit {
   }
 
   private getOption(value: any): SelectOption | null {
-    const question = this.question as QuestionSelectModel
-
-    if (question?.options) {
-      return question.options.find(
+    if (this.options) {
+      return this.options.find(
         (option: SelectOption) => option.value === value
       );
     } else {
@@ -67,7 +71,7 @@ export class FormSelectComponent implements OnInit {
   public setErrorMessage() {
     const error = this.messageService.getErrorMessage(
       this.control,
-      this.question.placeHolder
+      this.placeHolder
     );
 
     this.error$.next(error);

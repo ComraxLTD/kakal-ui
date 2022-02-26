@@ -74,6 +74,7 @@ export class FormDateComponent implements OnInit {
   constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
+    
     if (this.question) {
       this.placeHolder = this.question.label || this.question.placeHolder;
       this.range = this.question.range;

@@ -31,12 +31,23 @@ export class AppComponent implements OnInit {
     },
     {
       key: 'date',
-      type: 'date'
+      type: 'date',
     },
     {
       key: 'text',
       controlType: 'textarea'
     },
+    {
+      key:'file',
+      type:'file',
+      controlType:'file'
+    },
+    {
+      key:'cities',
+      type:'select',
+      controlType:'select',
+      options:[{label:'test',value:0}]
+    }
 
   ];
   public formGroup:QuestionGroupModel ;
