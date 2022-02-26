@@ -11,7 +11,6 @@ import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KKLMenuItemModule } from './menu-item/menu-item.module';
-import { ListItemComponent } from './list-item/list-item.component';
 import { KKLMenuModule } from './menu/menu.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLStepTitleModule } from './step-title/step-title.module';
@@ -23,11 +22,7 @@ import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
-import {
-  KKLColumnFilterModule,
-  KKLColumnFormModule,
-  KKLColumnsModule,
-} from '../public-api';
+import { KKLColumnsModule} from './columns/column.module'
 
 @NgModule({
   declarations: [FormExampleComponent],

@@ -38,8 +38,9 @@ export class FormAutocompleteExComponent implements OnInit {
   ngOnInit(): void {
     this.control = this.formService.getFieldControl({ key: this.key });
     this.options$ = merge(of(this.options), this.onAutocompleteEvent());
-    this.formDataSource.listen.optionSelected().subscribe((opt) => console.log(opt));
-
+    this.formDataSource.listen
+      .optionSelected()
+      .subscribe((opt) => console.log(opt));
   }
 
   private onAutocompleteEvent() {
@@ -53,11 +54,13 @@ export class FormAutocompleteExComponent implements OnInit {
     );
   }
 
+  public onAutocomplete(formOption: FormOption) {
+    this.formDataSource.actions.autocomplete(formOption);
+  }
+
   public onOptionSelected(formOption: FormOption) {
-    console.log(formOption);
+    this.formDataSource.actions.optionSelected(formOption);
   }
 
-  public onMultiOptionsSelected(formOption: FormOption) {
-
-  }
+  public onMultiOptionsSelected(formOption: FormOption) {}
 }
