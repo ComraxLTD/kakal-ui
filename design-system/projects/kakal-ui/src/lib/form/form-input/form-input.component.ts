@@ -28,21 +28,21 @@ import {
   styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
-  @Input() public question: QuestionBase;
+  @Input() public theme:Palette;
+  @Input() public placeHolder:string;
   @Input() public control: FormControl;
+  @Input() public key:string;
   @Input() public appearance: Appearance;
+  @Input() public cleave:{};
   @Input() public index: number;
+  @Input() public gridProps: GridProps;
+  @Input() public icon: string;
+  @Input() public controlType: ControlType;
+  @Input() public label: string;
 
-  public controlType: ControlType;
-  public label: string;
-  public icon: string;
 
   public error$: BehaviorSubject<string>;
   public color$: Observable<Palette>;
-
-  public gridProps: GridProps;
-  public iconType: string = 'svg';
-  public iconRotate: number = 0;
 
   @Output() focus: EventEmitter<FormOption> = new EventEmitter();
 
@@ -52,13 +52,6 @@ export class FormInputComponent implements OnInit {
     this.error$ = new BehaviorSubject<string>('');
     this.color$ = this.setColor$();
 
-    if (this.question) {
-      this.appearance = this.question?.appearance;
-      this.controlType = this.question?.controlType;
-      this.gridProps = this.question?.gridProps;
-      this.label = this.question?.label || '';
-      this.icon = this.question?.icon || '';
-    }
   }
 
   private setColor$() {
@@ -93,7 +86,7 @@ export class FormInputComponent implements OnInit {
   private setErrorMessage() {
     const error = this.messageService.getErrorMessage(
       this.control,
-      this.question.placeHolder
+      this.placeHolder
     );
 
     this.error$.next(error);
@@ -105,27 +98,13 @@ export class FormInputComponent implements OnInit {
   public validate() {
     this.setErrorMessage();
   }
-  private getOption(value: any): SelectOption | null {
-    const question = this.question as
-      | QuestionSelectModel
-      | QuestionAutocompleteModel;
-
-    if (question?.options) {
-      return question.options.find(
-        (option: SelectOption) => option.value === value
-      );
-    } else {
-      return null;
-    }
-  }
 
   private getFormOption(value?: string): FormOption {
     const formOption: FormOption = {
-      key: this.question.key,
+      key: this.key,
       control: this.control,
       index: this.index,
       value$: of(value),
-      option: this.getOption(value),
     };
 
     return formOption;

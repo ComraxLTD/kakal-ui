@@ -22,8 +22,8 @@
                         q?.gridProps?.flex?.align || 'center' + ' center'
                       ">
                       <div [fxFlex]="q?.gridProps?.flex?.width || 100">
-                        <kkl-form-input [question]="q" [control]="
-                            group.formGroup.controls[question.key].controls[q.key]" [index]="index"
+                        <kkl-form-input [question]="q"
+                          [control]="group.formGroup.controls[question.key].controls[q.key]" [index]="index"
                           (focus)="onFocus($event)"></kkl-form-input>
                       </div>
                     </div>
@@ -40,11 +40,10 @@
                 ? cols
                 : question?.gridProps?.cols || 1
             " [rowspan]="question?.gridProps?.rows || 1">
-            <kkl-form-select [control]="group.formGroup.controls[question.key]" 
-            [key]="question.key" [multi]="question.multi" [options]="question.options" 
-             [index]="index" [placeHolder]="question.placeHolder" [theme]="question.theme"
-             [appearance]="question.appearance"
-              (focus)="onFocus($event)" [optionsSlot]="optionsSlot" (selected)="onSelect($event)"></kkl-form-select>
+            <kkl-form-select [control]="group.formGroup.controls[question.key]" [key]="question.key"
+              [multi]="question.multi" [options]="question.options" [index]="index" [placeHolder]="question.placeHolder"
+              [theme]="question.theme" [appearance]="question.appearance" (focus)="onFocus($event)"
+              [optionsSlot]="optionsSlot" (selected)="onSelect($event)"></kkl-form-select>
           </mat-grid-tile>
         </ng-container>
         <!-- DATE INPUT SECTION -->
@@ -114,9 +113,11 @@
                 question?.gridProps?.flex?.align || 'center' + ' center'
               ">
               <div [fxFlex]="question?.gridProps?.flex?.width || 100">
-                <kkl-form-input [control]="group.formGroup.controls[question.key]" [question]="question"
-                 [index]="index"
-                  (focus)="onFocus($event)">
+                <kkl-form-input [control]="group.formGroup.controls[question.key]" [key]="question.key"
+                  [placeHolder]="question?.placeHolder" [theme]="question?.theme" [appearance]="question?.appearance"
+                  [cleave]="question?.cleave" [gridProps]="question?.gridProps" [icon]="question?.icon"
+                  [label]="question?.label"
+                  [index]="index" (focus)="onFocus($event)" [controlType]="question?.controlType">
                 </kkl-form-input>
               </div>
             </div>
