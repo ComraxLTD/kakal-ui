@@ -16,6 +16,7 @@ import { QuestionDateModel } from './question-date.model';
 import { FormOption } from '../models/form-data-source.model';
 
 import { map, Observable, startWith } from 'rxjs';
+import { Appearance } from '../models/question.model';
 
 export const MY_FORMATS = {
   parse: {
@@ -45,13 +46,13 @@ export const MY_FORMATS = {
 })
 export class FormDateComponent implements OnInit {
   @Input() public control: FormControl;
-  @Input() public question: QuestionDateModel;
-
+  @Input() public key:string;
   @Input() public range: boolean;
   @Input() public placeHolder: string;
   @Input() public maxDate: Date;
   @Input() public minDate: Date;
   @Input() public index: number;
+  @Input() public appearance:Appearance;
 
   public message$: Observable<string>;
   public cleave = { date: true, datePattern: ['d', 'm', 'Y'] };
@@ -74,11 +75,6 @@ export class FormDateComponent implements OnInit {
   constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
-    
-    if (this.question) {
-      this.placeHolder = this.question.label || this.question.placeHolder;
-      this.range = this.question.range;
-    }
     this.control = this.control || new FormControl();
     
     this.message$ = this.setErrorMessage$();
@@ -87,7 +83,7 @@ export class FormDateComponent implements OnInit {
 
   private getFormOption(): FormOption {
     const formOption: FormOption = {
-      key: this.question?.key,
+      key: this?.key,
       control: this?.control,
       index: this?.index,
     };

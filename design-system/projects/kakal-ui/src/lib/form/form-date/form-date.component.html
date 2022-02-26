@@ -1,8 +1,8 @@
-<mat-form-field [appearance]="control.disabled ? 'fill' : question?.appearance || 'outline'" class="kkl-datepicker">
+<mat-form-field [appearance]="control.disabled ? 'fill' : appearance || 'outline'" class="kkl-datepicker">
   <mat-label>{{ placeHolder }}</mat-label>
 
   <input *ngIf="!range" matInput [matDatepicker]="dp" [formControl]="control" autocomplete="off" [cleave]="cleave"
-    [placeholder]="placeHolder" [max]="question?.maxDate || maxDate" [min]="question?.minDate || minDate"
+    [placeholder]="placeHolder" [max]="maxDate" [min]="minDate"
     (click)="dp.open()" (dateChange)="onDateChange($event)" (focus)="onFocus()" />
   <mat-datepicker-toggle matSuffix [for]="dp" *ngIf="!range"></mat-datepicker-toggle>
   <mat-datepicker #dp></mat-datepicker>

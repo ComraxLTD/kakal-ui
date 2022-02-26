@@ -22,9 +22,11 @@
                         q?.gridProps?.flex?.align || 'center' + ' center'
                       ">
                       <div [fxFlex]="q?.gridProps?.flex?.width || 100">
-                        <kkl-form-input [question]="q"
-                          [control]="group.formGroup.controls[question.key].controls[q.key]" [index]="index"
-                          (focus)="onFocus($event)"></kkl-form-input>
+                        <kkl-form-input [control]="group.formGroup.controls[question.key].controls[q.key]"
+                          [key]="q?.key" [placeHolder]="q?.placeHolder" [theme]="q?.theme" [appearance]="q?.appearance"
+                          [cleave]="q?.cleave" [gridProps]="q?.gridProps" [icon]="q?.icon" [label]="q?.label"
+                          [index]="index" (focus)="onFocus($event)" [controlType]="q?.controlType">
+                        </kkl-form-input>
                       </div>
                     </div>
                   </div>
@@ -40,10 +42,10 @@
                 ? cols
                 : question?.gridProps?.cols || 1
             " [rowspan]="question?.gridProps?.rows || 1">
-            <kkl-form-select [control]="group.formGroup.controls[question.key]" [key]="question.key"
-              [multi]="question.multi" [options]="question.options" [index]="index" [placeHolder]="question.placeHolder"
-              [theme]="question.theme" [appearance]="question.appearance" (focus)="onFocus($event)"
-              [optionsSlot]="optionsSlot" (selected)="onSelect($event)"></kkl-form-select>
+            <kkl-form-select [control]="group.formGroup.controls[question.key]" [key]="question?.key"
+              [multi]="question?.multi" [options]="question?.options" [index]="index"
+              [placeHolder]="question?.placeHolder" [theme]="question?.theme" [appearance]="question?.appearance"
+              (focus)="onFocus($event)" [optionsSlot]="optionsSlot" (selected)="onSelect($event)"></kkl-form-select>
           </mat-grid-tile>
         </ng-container>
         <!-- DATE INPUT SECTION -->
@@ -53,8 +55,10 @@
                 ? cols
                 : question?.gridProps?.cols || 1
             " [rowspan]="question?.gridProps?.rows || 1">
-            <kkl-form-date fxFlex="100" [control]="group.formGroup.controls[question.key]" [question]="question"
-              [index]="index" (focus)="onFocus($event)">
+            <kkl-form-date fxFlex="100" [control]="group.formGroup.controls[question.key]" [key]="question?.key"
+              [range]="question?.range" [placeHolder]="question?.placeHolder" [maxDate]="question?.maxDate"
+              [minDate]="question?.minDate" [appearance]="question?.appearance" [index]="index"
+              (focus)="onFocus($event)">
             </kkl-form-date>
           </mat-grid-tile>
         </ng-container>
@@ -66,8 +70,9 @@
                 ? cols
                 : question?.gridProps?.cols || 1
             " [rowspan]="question?.gridProps?.rows || 1">
-            <kkl-form-upload [question]="question" [formControl]="group.formGroup.controls[question.key]"
-              [index]="index" (fileChange)="onFileChange($event)"></kkl-form-upload>
+            <kkl-form-upload [label]="question?.label" [multi]="question?.multi"
+              [formControl]="group.formGroup.controls[question.key]" [index]="index"
+              (fileChange)="onFileChange($event)"></kkl-form-upload>
           </mat-grid-tile>
         </ng-container>
 
@@ -78,8 +83,8 @@
                 ? cols
                 : question?.gridProps?.cols || 1
             " [rowspan]="question?.gridProps?.rows || 1">
-            <kkl-form-currency fxFlex="100" [control]="group.formGroup.controls[question.key]" [question]="question"
-              [index]="index">
+            <kkl-form-currency fxFlex="100" [control]="group.formGroup.controls[question.key]"
+              [validations]="question?.validations" [index]="index">
             </kkl-form-currency>
           </mat-grid-tile>
         </ng-container>
@@ -113,11 +118,11 @@
                 question?.gridProps?.flex?.align || 'center' + ' center'
               ">
               <div [fxFlex]="question?.gridProps?.flex?.width || 100">
-                <kkl-form-input [control]="group.formGroup.controls[question.key]" [key]="question.key"
+                <kkl-form-input [control]="group.formGroup.controls[question.key]" [key]="question?.key"
                   [placeHolder]="question?.placeHolder" [theme]="question?.theme" [appearance]="question?.appearance"
                   [cleave]="question?.cleave" [gridProps]="question?.gridProps" [icon]="question?.icon"
-                  [label]="question?.label"
-                  [index]="index" (focus)="onFocus($event)" [controlType]="question?.controlType">
+                  [label]="question?.label" [index]="index" (focus)="onFocus($event)"
+                  [controlType]="question?.controlType">
                 </kkl-form-input>
               </div>
             </div>
