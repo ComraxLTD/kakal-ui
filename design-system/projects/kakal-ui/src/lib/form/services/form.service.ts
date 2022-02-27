@@ -26,6 +26,7 @@ import { QuestionDateModel } from '../form-date/question-date.model';
 import { QuestionFileModel } from '../models/question-file.model';
 import { QuestionPhoneModel } from '../models/question-phone.model';
 import { QuestionTimeModel } from '../models/question-time.model';
+import { QuestionTextEditorModel} from '../models/question-texteditor.model'
 
 export type ControlTemplate = [
   state: any,
@@ -53,6 +54,7 @@ export type Question =
   | QuestionEmailModel
   | QuestionPhoneModel
   | QuestionTimeModel
+  | QuestionTextEditorModel
   ;
 
 export interface QuestionGroup {
@@ -223,11 +225,12 @@ export class FormService {
       case 'date':
         const dq = question as QuestionDateModel;
         return new QuestionDateModel(dq);
-
+      case 'textEditor':
+        return new QuestionTextEditorModel(question);
       case 'autocomplete':
         return new QuestionAutocompleteModel(question);
-        case 'time':
-          return new QuestionTimeModel(question);
+      case 'time':
+        return new QuestionTimeModel(question);
       default:
         return new QuestionTextModel(question);
     }

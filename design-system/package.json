@@ -33,6 +33,7 @@
     "cleave.js": "^1.6.0",
     "moment": "^2.29.1",
     "ngx-cleave-directive": "^1.1.3",
+    "ngx-editor": "^12.2.1",
     "ngx-pagination": "^5.1.1",
     "rxjs": "7.5",
     "static-extend": "^0.1.2",

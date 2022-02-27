@@ -18,6 +18,7 @@ import { KKLFormDateModule } from '../form-date/form-date.module';
 import { KKLFormSelectModule } from '../form-select/form-select.module';
 import { KKLFormAutoCompleteModule } from '../form-autocomplete/form-autocomplete.module';
 import { KKLFormRadioModule } from '../form-radio/form-radio.module';
+import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.module';
 
 @NgModule({
   declarations: [FormComponent],
@@ -33,6 +34,7 @@ import { KKLFormRadioModule } from '../form-radio/form-radio.module';
     KKLIconModule,
     MatGridListModule,
     FlexLayoutModule,
+    
     // form components
     KKLFormDateModule,
     KKLFormInputModule,
@@ -40,7 +42,8 @@ import { KKLFormRadioModule } from '../form-radio/form-radio.module';
     KKLFormSelectModule,
     KKLFormAutoCompleteModule,
     KKLFormCurrencyModule,
-    KKLFormUploadModule
+    KKLFormUploadModule,
+    KKLFormTextEditorModule
   ],
   exports: [FormComponent, KKLFormInputModule],
 })

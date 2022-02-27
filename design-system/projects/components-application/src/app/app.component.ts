@@ -14,6 +14,11 @@ export class AppComponent implements OnInit {
 
   questions:Question[] = [
     {
+      key:'textEditor',
+      controlType:'textEditor',
+      type:'textEditor'
+    },
+    {
       key: 'timeInput',
       label:'time',
       controlType:'time'
