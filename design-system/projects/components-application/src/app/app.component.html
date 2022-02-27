@@ -1,35 +1,3 @@
 <div class="container" fxLayout="column" fxLayoutGap="2rem">
-  <div fxLayout="column" fxLayoutGap="2rem">
-    <ng-container *ngFor="let item of rows$ | async as rows">
-      <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
-        <div fxLayout="column">
-          <div fxLayout="row" fxLayoutAlign="space-between center">
-            <div>
-              <span>row : {{ item }}</span>
-            </div>
-            <kkl-table-actions
-              [row]="row"
-              [tableActionState]="tableActionMap[item]"
-            ></kkl-table-actions>
-          </div>
-          <div>
-            {{tableActionMap[item] | json
-
-
-
-            }}
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-
-    <div fxLayout="column" fxLayoutGap="2rem">
-      <mat-checkbox (change)="onToggleDeleteDisable($event)"
-        >disable if row is not even
-      </mat-checkbox>
-      <mat-checkbox (change)="onToggleDeleteShow($event)"
-        >toggle show</mat-checkbox
-      >
-    </div>
-  </div>
+  <app-action-table></app-action-table>
 </div>
