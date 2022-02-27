@@ -4,6 +4,7 @@ import { ColumnModel} from '../../columns/column.model'
 import { TableEvent } from "./table-events";
 import { SortDirection } from "@angular/material/sort";
 import { TableRowModel } from "./table-row.model";
+import { ButtonActionState } from "../table-actions/table-actions.component";
 
 export interface RowsState<T> {
   event?: TableEvent;
@@ -24,3 +25,8 @@ export type ColumnState<T> = {
   type?: 'filter' | 'select';
   dir?: SortDirection;
 };
+
+export declare type TableActionStatenMap = {
+  [key: number]: Observable<ButtonActionState>;
+};
+

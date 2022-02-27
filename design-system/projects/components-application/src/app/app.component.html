@@ -1,3 +1,14 @@
 <div class="container">
-    <kkl-form [group]="formGroup"></kkl-form>
+  <ng-container *ngFor="let item of rows$ | async as rows">
+    <div>
+      <kkl-table-actions [row]="row" [hasDelete]="true"></kkl-table-actions>
+
+      <mat-slide-toggle (change)="onToggleDeleteDisable($event)"
+        >toggle delete disable</mat-slide-toggle
+      >
+      <mat-slide-toggle (change)="onToggleDeleteShow($event)"
+        >toggle delete show</mat-slide-toggle
+      >
+    </div>
+  </ng-container>
 </div>

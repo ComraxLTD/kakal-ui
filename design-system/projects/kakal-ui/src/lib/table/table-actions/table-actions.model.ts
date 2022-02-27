@@ -1,6 +1,12 @@
 import { TableEvent } from '../models/table-events';
-import { ActionState } from './table-actions.component';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
+
+export interface ActionState {
+  show: boolean;
+  disabled: boolean;
+  event?: TableEvent;
+  event$?: Observable<TableEvent>;
+}
 
 export class ActionStateModel {
   private show$: BehaviorSubject<boolean>;
@@ -11,13 +17,13 @@ export class ActionStateModel {
   private _disabled: boolean;
 
   constructor(options: {
-    _show: boolean;
-    _disabled: boolean;
-    event?: TableEvent;
+    _show?: boolean;
+    _disabled?: boolean;
+    event: TableEvent;
   }) {
-    this.show$ = new BehaviorSubject<boolean>(options._show);
-    this.disabled$ = new BehaviorSubject<boolean>(options._disabled);
-    this.event = options.event || 'default';
+    this.show$ = new BehaviorSubject<boolean>(options._show || true);
+    this.disabled$ = new BehaviorSubject<boolean>(options._disabled || false);
+    this.event = options.event;
   }
 
   public getState$(): Observable<ActionState> {
