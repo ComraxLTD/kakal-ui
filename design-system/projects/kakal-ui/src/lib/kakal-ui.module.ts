@@ -54,7 +54,8 @@ import { KKLColumnsModule} from './columns/column.module'
     KKLButtonModule,
     KKLIconModule,
     KKLTypographyModule,
-
+    KklTitleModule,
+    KKLStepTitleModule,
     KKLFormModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
