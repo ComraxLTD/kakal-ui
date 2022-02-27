@@ -25,5 +25,5 @@
   },
   "include": [
     "stories/*.stories.*"
-, "stories/form/form-autocomplete.stories.ts"  ]
+, "stories/form/form-autocomplete.stories.ts", "stories/assets/Typography.stories.ts", "stories/layout/menu.stories.ts", "stories/assets/Button.stories.ts"  ]
 }
