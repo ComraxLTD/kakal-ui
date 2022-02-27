@@ -78,6 +78,12 @@ export * from './lib/menu/menu.component';
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
+
+// sidenav
+export * from './lib/sidenav/sidenav.module';
+export * from './lib/sidenav/sidenav.component';
+
+
 // step title
 export * from './lib/step-title/step-title.module';
 export * from './lib/step-title/step-title.component';
