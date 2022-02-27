@@ -10,7 +10,7 @@ import { QuestionSumModel } from '../../projects/kakal-ui/src/lib/form/models/qu
 import { QuestionTextareaModel } from '../../projects/kakal-ui/src/lib/form/models/question-textarea.model';
 
 export default {
-  title: 'form/Input',
+  title: 'Form/Input',
   decorators: [
     moduleMetadata({
       imports: [KKLFormInputModule],

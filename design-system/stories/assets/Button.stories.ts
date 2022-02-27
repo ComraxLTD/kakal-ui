@@ -5,7 +5,7 @@ import { ButtonComponent } from '../../projects/kakal-ui/src/lib/button/button.c
 import { KKLButtonModule } from '../../projects/kakal-ui/src/lib/button/button.module';
 
 export default {
-  title: 'Atomics/Buttons',
+  title: 'Assets/Buttons',
   component: ButtonComponent,
   argTypes: {
     label: { control: 'text' },

@@ -7,7 +7,7 @@ import { FormSelectComponent } from '../../projects/kakal-ui/src/lib/form/form-s
 import { QuestionSelectModel } from '../../projects/kakal-ui/src/lib/form/models/question-select.model';
 
 export default {
-    title: 'form',
+    title: 'Form',
     decorators: [
         moduleMetadata({
             imports: [KKLFormSelectModule],
