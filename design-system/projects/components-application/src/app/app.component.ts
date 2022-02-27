@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
-import { map, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { QuestionGroupModel } from '../../../kakal-ui/src/lib/form/models/question-group.model';
 import {
   FormService,
@@ -9,6 +9,7 @@ import {
 import { TableDataSource } from '../../../kakal-ui/src/lib/table/models/table-datasource';
 import { TableRowModel } from '../../../kakal-ui/src/lib/table/models/table-row.model';
 import { TableActionStatenMap } from '../../../kakal-ui/src/lib/table/models/table.state';
+import { ButtonActionState } from '../../../kakal-ui/src/lib/table/table-actions/table-actions.component';
 import { ActionStateModel } from '../../../kakal-ui/src/lib/table/table-actions/table-actions.model';
 
 @Component({
@@ -61,24 +62,29 @@ export class AppComponent implements OnInit {
   ];
   public formGroup: QuestionGroupModel;
 
-  public tableActionState$: Observable<TableActionStatenMap>;
+  public tableActionMap$: Observable<TableActionStatenMap>;
 
   public dataSource = new TableDataSource();
 
-  public rows$ = of([1, 2, 3]);
+  public rows$ = new BehaviorSubject<number[]>([1, 2, 3]);
 
   private deleteButtonState = new ActionStateModel({
     event: 'delete',
   });
 
   ngOnInit(): void {
-    this.tableActionState$ = this.setRowsButtonActionsState();
+    this.tableActionMap$ = this.setRowsButtonActionsState();
   }
 
   private setRowsButtonActionsState(): Observable<TableActionStatenMap> {
-    return this.rows$.pipe(
+    return this.rows$.asObservable().pipe(
       map((rows: number[]) => {
         return rows.reduce((acc, key) => {
+          const deleteButtonState = new ActionStateModel({
+            _disabled: key % 2 !== 0,
+            event: 'delete',
+          });
+
           const editButtonState = new ActionStateModel({
             _show: true,
             _disabled: false,
@@ -87,9 +93,9 @@ export class AppComponent implements OnInit {
 
           return {
             [key]: {
-              delete: this.deleteButtonState.getState$(),
-              edit: editButtonState.getState$(),
-            },
+              delete$: deleteButtonState.getState$(),
+              edit$: editButtonState.getState$(),
+            } as ButtonActionState,
             ...acc,
           } as TableActionStatenMap;
         }, {} as TableActionStatenMap);
@@ -99,8 +105,7 @@ export class AppComponent implements OnInit {
 
   public onToggleDeleteDisable(event: MatSlideToggleChange) {
     const checked = event.checked;
-    console.log(checked);
-    this.deleteButtonState.disable(checked);
+    checked ? this.rows$.next([2, 4, 6]) : this.rows$.next([1, 2, 3]);
   }
   public onToggleDeleteShow(event: MatSlideToggleChange) {}
 }

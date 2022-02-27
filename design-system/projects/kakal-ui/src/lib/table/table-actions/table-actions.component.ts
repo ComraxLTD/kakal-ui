@@ -16,12 +16,10 @@ import { Observable, of } from 'rxjs';
 import { ActionState } from './table-actions.model';
 
 export interface ButtonActionState {
-  add?: ActionState;
-  edit?: ActionState;
-  delete?: ActionState;
+  edit$?: Observable<ActionState>;
+  delete$?: Observable<ActionState>;
   events: TableEvent;
 }
-
 
 @Component({
   selector: 'kkl-table-actions',
@@ -32,9 +30,8 @@ export class TableActionsComponent implements OnInit {
   @Input() row: TableRowModel<Object>;
   @Input() column: ColumnModel<Object>;
   @Input() panel: MatExpansionPanel;
-  @Input() tableActionState$: Observable<ButtonActionState>;
+  @Input() tableActionState: ButtonActionState;
 
-  // boolean for render default actions
   @Input() public hasDelete: boolean;
 
   // handle table events
@@ -58,13 +55,24 @@ export class TableActionsComponent implements OnInit {
     this.validInputs();
 
     if (this.events$) {
-      this.editButton$ = this.setEditButton$();
+      this.editButton$ = this.setEditStateByEvent$();
     }
 
     this.deleteState$ = this.setDeleteState();
   }
 
-  private setEditButton$() {
+  private setEditStateByEvent$() {
+    return this.events$.pipe(
+      map((event: TableEvent) => {
+        const disabled =
+          (event === 'edit' || event === 'create') && !this.row.editable;
+        const show =
+          (event === 'edit' || event === 'create') && this.row.editable;
+        return { show, event, disabled };
+      })
+    );
+  }
+  private setDeleteStateByEvent$() {
     return this.events$.pipe(
       map((event: TableEvent) => {
         const disabled =
@@ -77,27 +85,24 @@ export class TableActionsComponent implements OnInit {
   }
 
   private setDeleteState(): Observable<ActionState> {
-    if (this.tableActionState$) {
-      const stateDelete$ = this.tableActionState$.pipe(
-        map((actionState: ButtonActionState) => actionState.delete)
-      );
-      return stateDelete$;
-    } else {
-      return this.handleShowDelete();
-    }
-  }
-
-  private handleShowDelete(): Observable<ActionState> {
-    if (this.events$ && this.hasDelete) {
-      return this.setEditButton$().pipe(
-        map(({ show, event }) => {
-          return { show: !show, disabled: show, event };
-        })
-      );
+    if (this.tableActionState) {
+      return this.tableActionState.delete$;
     } else {
       return of({ show: this.hasDelete, disabled: !this.hasDelete });
     }
   }
+
+  // private handleShowDelete(): Observable<ActionState> {
+  //   if (this.events$ && this.hasDelete) {
+  //     return this.setEditButton$().pipe(
+  //       map(({ show, event }) => {
+  //         return { show: !show, disabled: show, event };
+  //       })
+  //     );
+  //   } else {
+  //     return of({ show: this.hasDelete, disabled: !this.hasDelete });
+  //   }
+  // }
 
   public onDelete() {
     this.delete.emit();
@@ -118,7 +123,7 @@ export class TableActionsComponent implements OnInit {
   private validInputs() {
     // add validation
     if (!this.row) {
-      throw new Error('kkl-table-actions must get row input');
+      throw new Error('kkl-table-actions must get row model as Input');
     }
   }
 }
