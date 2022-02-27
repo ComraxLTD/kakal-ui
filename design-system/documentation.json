@@ -64,6 +64,16 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
+                "file": "stories/layout/menu.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<MenuComponent>",
+                "defaultValue": "(args: MenuComponent) => ({\r\n  component: MenuComponent,\r\n  props: args,\r\n})"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
                 "file": "stories/assets/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -89,16 +99,6 @@
                 "deprecationMessage": "",
                 "type": "Story<FormAutocompleteExComponent>",
                 "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/layout/menu.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\r\n  component: MenuComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "type",
