@@ -58,7 +58,7 @@ import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-exam
     KKLTypographyModule,
     KklTitleModule,
     KKLStepTitleModule,
-    
+    SidenavModule,
     KKLFormModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
