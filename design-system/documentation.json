@@ -68,7 +68,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\r\n  props: args,\r\n})"
+                "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -78,7 +78,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
-                "defaultValue": "(args: TypographyComponent) => ({\r\n        component: TypographyComponent,\r\n        props: args,\r\n        template: `\r\n        <kkl-typography size='3'>Size : 3</kkl-typography>\r\n        <br/>\r\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\r\n        <br/>\r\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography color='success'>Color : success</kkl-typography>\r\n        <br/>\r\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\r\n        `\r\n    })"
+                "defaultValue": "(args: TypographyComponent) => ({\n        component: TypographyComponent,\n        props: args,\n        template: `\n        <kkl-typography size='3'>Size : 3</kkl-typography>\n        <br/>\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\n        <br/>\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\n        <br/>\n        <kkl-typography color='success'>Color : success</kkl-typography>\n        <br/>\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\n        <br/>\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\n        `\n    })"
             },
             {
                 "name": "Template",
@@ -88,7 +88,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<FormAutocompleteExComponent>",
-                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
+                "defaultValue": "(\n  args: FormAutocompleteExComponent\n) => ({\n  component: FormAutocompleteExComponent,\n  props: args,\n})"
             },
             {
                 "name": "Template",
@@ -98,7 +98,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<MenuComponent>",
-                "defaultValue": "(args: MenuComponent) => ({\r\n  component: MenuComponent,\r\n  props: args,\r\n})"
+                "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
             },
             {
                 "name": "type",
@@ -153,7 +153,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<FormAutocompleteExComponent>",
-                    "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
+                    "defaultValue": "(\n  args: FormAutocompleteExComponent\n) => ({\n  component: FormAutocompleteExComponent,\n  props: args,\n})"
                 }
             ],
             "stories/layout/menu.stories.ts": [
@@ -175,7 +175,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<MenuComponent>",
-                    "defaultValue": "(args: MenuComponent) => ({\r\n  component: MenuComponent,\r\n  props: args,\r\n})"
+                    "defaultValue": "(args: MenuComponent) => ({\n  component: MenuComponent,\n  props: args,\n})"
                 },
                 {
                     "name": "type",
@@ -216,7 +216,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\r\n  props: args,\r\n})"
+                    "defaultValue": "(args: ButtonComponent) => ({\n  props: args,\n})"
                 }
             ],
             "stories/assets/Typography.stories.ts": [
@@ -228,7 +228,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<TypographyComponent>",
-                    "defaultValue": "(args: TypographyComponent) => ({\r\n        component: TypographyComponent,\r\n        props: args,\r\n        template: `\r\n        <kkl-typography size='3'>Size : 3</kkl-typography>\r\n        <br/>\r\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\r\n        <br/>\r\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography color='success'>Color : success</kkl-typography>\r\n        <br/>\r\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\r\n        `\r\n    })"
+                    "defaultValue": "(args: TypographyComponent) => ({\n        component: TypographyComponent,\n        props: args,\n        template: `\n        <kkl-typography size='3'>Size : 3</kkl-typography>\n        <br/>\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\n        <br/>\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\n        <br/>\n        <kkl-typography color='success'>Color : success</kkl-typography>\n        <br/>\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\n        <br/>\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\n        `\n    })"
                 },
                 {
                     "name": "typography",
