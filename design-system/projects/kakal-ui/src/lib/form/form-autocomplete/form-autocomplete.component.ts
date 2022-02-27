@@ -41,7 +41,9 @@ export class FormAutocompleteComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.optionSlot)
+  }
 
 
   public search(query: string): void {
