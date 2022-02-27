@@ -51,7 +51,11 @@ export * from './lib/form/services/validations.service';
 
 
 // ------------------------------------------------------------------------------------------
+// TABLE EXPORTS
+// ------------------------------------------------------------------------------------------
 
+
+// COLUMNS
 
 export * from './lib/columns/column.module'
 export * from './lib/columns/columns.service'
@@ -65,7 +69,10 @@ export * from './lib/columns/column-form/column-form.component'
 export * from './lib/columns/column-form/column-form.module'
 
 
+// TABLE-ACTIONS
 
+export * from './lib/table/table-actions/table-actions.component'
+export * from './lib/table/table-actions/table-actions.module'
 
 
 //menu

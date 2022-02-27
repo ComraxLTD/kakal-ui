@@ -23,6 +23,7 @@ import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLColumnsModule} from './columns/column.module'
+import { KKLTableActionsModule } from './table/table-actions/table-actions.module';
 
 @NgModule({
   declarations: [FormExampleComponent],
@@ -63,7 +64,8 @@ import { KKLColumnsModule} from './columns/column.module'
     KKLFormCurrencyModule,
     KKLFormUploadModule,
 
-    // KKLColumnsModule,
+    KKLTableActionsModule,
+    KKLColumnsModule,
 
     KKLPipesModule,
     KKLDirectivesModule,
