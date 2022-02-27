@@ -1,7 +1,7 @@
 // // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { componentWrapperDecorator, moduleMetadata, } from '@storybook/angular';
-import { TypographyComponent } from '../projects/kakal-ui/src/lib/typography/typography.component';
+import { TypographyComponent } from '../../projects/kakal-ui/src/lib/typography/typography.component';
 
 export default {
     title: 'Typography/typography',
@@ -39,4 +39,4 @@ typography.args = {
     color:'success',
     disabled:true,
     dir:'rtl'
-} 
+}

@@ -1,8 +1,7 @@
 // // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { componentWrapperDecorator, moduleMetadata, } from '@storybook/angular';
-import { IconComponent } from 'projects/kakal-ui/src/lib/icon/icon.component';
-import { KKLIconModule } from 'projects/kakal-ui/src/lib/icon/icon.module';
+import { KKLIconModule, IconComponent } from '../../projects/kakal-ui/src/public-api';
 
 export default {
     title: 'Icon/icon',

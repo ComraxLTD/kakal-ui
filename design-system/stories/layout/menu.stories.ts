@@ -1,7 +1,7 @@
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { MenuComponent } from 'projects/kakal-ui/src/lib/menu/menu.component';
-import { KKLMenuModule } from '../projects/kakal-ui/src/lib/menu/menu.module';
+import { KKLMenuModule } from '../../projects/kakal-ui/src/lib/menu/menu.module';
 import {   Observable, of } from 'rxjs';
+import { MenuComponent } from '../../projects/kakal-ui/src/public-api';
 let type: 'list' | 'accordion';
 
 export default {
