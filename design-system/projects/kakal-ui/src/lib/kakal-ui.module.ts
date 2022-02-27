@@ -22,21 +22,23 @@ import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
-import { KKLColumnsModule} from './columns/column.module'
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
+import { KKLColumnsModule} from './columns/column.module';
+import { SidenavModule } from './sidenav/sidenav.module';
+import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 
 @NgModule({
-  declarations: [FormExampleComponent],
+  declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
     CoreModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     KKLMenuModule,
-    KklTitleModule,
     KKLIconModule,
+    KklTitleModule,
     KKLStepTitleModule,
-
+    SidenavModule,
     KKLFormModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
@@ -55,7 +57,9 @@ import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.
     KKLButtonModule,
     KKLIconModule,
     KKLTypographyModule,
-
+    KklTitleModule,
+    KKLStepTitleModule,
+    SidenavModule,
     KKLFormModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
