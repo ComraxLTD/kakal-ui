@@ -1,9 +1,16 @@
+import { ValidatorFn } from "@angular/forms";
 import { ValidationService } from "../services/validations.service";
 import { QuestionNumberModel } from "./question-number.model";
 
 
 export class QuestionPhoneModel extends QuestionNumberModel {
-    constructor(options) {
+    constructor(options:{
+        icon?:string;
+        placeHolder?:string;
+        validations?:ValidatorFn[];
+        controlType?:string;
+        cleave?:{}
+    }) {
         super(options);
         this.icon = 'phone';
         this.placeHolder = options.placeHolder || 'טלפון'
