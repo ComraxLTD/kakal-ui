@@ -29,7 +29,7 @@ export declare type TableActions =
 // export interface Table<T> {
 //   dataSource: TableDataSource<T>;
 //   data$: Observable<T[]>;
-//   columns: ColumnModel<T>[];
+//   columns: TableColumnModel<T>[];
 //   options: TableOptions<T>;
 //   model: T;
 // }

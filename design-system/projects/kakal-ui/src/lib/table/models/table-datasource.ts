@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { ColumnModel } from '../../columns/column.model';
+import { TableColumnModel } from '../../columns/column.model';
 import { FormDataSource } from '../../form/models/form-data-source.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
@@ -9,7 +9,7 @@ import { ColumnState, RowsState } from './table.state';
 export class TableDataSource<T> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
   private formDataSource: FormDataSource;
-  private columnSubject: BehaviorSubject<ColumnModel<T>[]>;
+  private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
 
   private columnsStateSubject: BehaviorSubject<ColumnState<T>>;
   private rowsStateSubject: BehaviorSubject<RowsState<T>>;
@@ -17,7 +17,7 @@ export class TableDataSource<T> implements DataSource<T> {
 
   constructor() {
     this.dataSubject = new BehaviorSubject<T[]>([]);
-    this.columnSubject = new BehaviorSubject<ColumnModel<T>[]>([]);
+    this.columnSubject = new BehaviorSubject<TableColumnModel<T>[]>([]);
 
     this.columnsStateSubject = new BehaviorSubject<ColumnState<T>>(null);
     this.rowsStateSubject = new BehaviorSubject<RowsState<T>>({
@@ -37,13 +37,13 @@ export class TableDataSource<T> implements DataSource<T> {
     return this.dataSubject.asObservable();
   }
 
-  private loadColumns(columns: ColumnModel<T>[]): void {
+  private loadColumns(columns: TableColumnModel<T>[]): void {
     this.columnSubject.next([...columns]);
   }
 
   public connectColumns(
-    columns: ColumnModel<T>[]
-  ): Observable<ColumnModel<T>[]> {
+    columns: TableColumnModel<T>[]
+  ): Observable<TableColumnModel<T>[]> {
     this.loadColumns(columns);
     return this.columnSubject.asObservable();
   }

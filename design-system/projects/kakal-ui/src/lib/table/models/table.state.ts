@@ -1,6 +1,6 @@
 import { Observable } from "rxjs";
 import { SelectOption } from "../../form/models/question-select.model";
-import { ColumnModel} from '../../columns/column.model'
+import { TableColumnModel} from '../../columns/column.model'
 import { TableEvent } from "./table-events";
 import { SortDirection } from "@angular/material/sort";
 import { TableRowModel } from "./table-row.model";
@@ -9,7 +9,7 @@ import { ButtonActionState } from "../table-actions/table-actions.component";
 export interface RowsState<T> {
   event?: TableEvent;
   row?: TableRowModel<T>;
-  column?: ColumnModel<T>;
+  column?: TableColumnModel<T>;
   options?: any;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };
 }
