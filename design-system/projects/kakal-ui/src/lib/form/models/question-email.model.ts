@@ -4,9 +4,11 @@ import { ValidatorFn } from "@angular/forms";
 
 export class QuestionEmailModel extends QuestionTextModel {
     constructor(options:{
-        icon?:string;
+        icon:string;
+        key?:string;
+        label?:string;
         placeHolder?:string;
-        validations?:ValidatorFn[];
+        validations:ValidatorFn[];
     }) {
         super(options);
         this.icon = 'email';

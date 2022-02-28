@@ -5,11 +5,13 @@ import { QuestionNumberModel } from "./question-number.model";
 
 export class QuestionPhoneModel extends QuestionNumberModel {
     constructor(options:{
-        icon?:string;
+        icon:string;
+        key?:string;
+        label?:string;
         placeHolder?:string;
-        validations?:ValidatorFn[];
-        controlType?:string;
-        cleave?:{}
+        validations:ValidatorFn[];
+        controlType:string;
+        cleave:{}
     }) {
         super(options);
         this.icon = 'phone';

@@ -2,8 +2,11 @@ import { QuestionTextModel } from "./question-text.model";
 
 export class QuestionTimeModel extends QuestionTextModel {
     constructor(options:{
-        icon?:string;
-        cleave?:{};
+        key?:string;
+        label?:string;
+        placeHolder?:string;
+        icon:string;
+        cleave:{};
     }) {
         super(options);
         this.icon = 'time';
