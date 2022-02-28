@@ -61,12 +61,12 @@ export class TableActionsComponent implements OnInit {
   private setEditStateByEvent$() {
     return this.event$.pipe(
       map((event: TableEvent) => {
+
         const disabled =
           (event === 'edit' || event === 'create') && !this.row.editable;
         const show =
           (event === 'edit' || event === 'create') && this.row.editable;
 
-        console.log(disabled);
         return { show, event, disabled };
       })
     );

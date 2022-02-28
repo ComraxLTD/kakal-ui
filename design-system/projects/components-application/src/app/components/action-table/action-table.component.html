@@ -1,27 +1,24 @@
-<div fxLayout="column" fxLayoutGap="2rem">
-  <ng-container *ngFor="let item of rows$ | async as rows">
-    <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
-      <div fxLayout="column">
-        <div fxLayout="row" fxLayoutAlign="space-between center">
-          <div>
-            <span>row : {{ item }}</span>
-          </div>
+<div fxLayout="column" fxLayoutGap="5rem" class="block">
+  <ng-container *ngFor="let row of rows$ | async">
+    <div fxLayout="column" >
+      <div fxLayout="column" fxLayoutGap="2rem">
+        <div>
+          <span>row : {{ row.item | json }}</span>
+        </div>
+        <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
           <kkl-table-actions
             [row]="row"
             [hasDelete]="true"
             [hasEdit]="true"
-            [tableActionState]="tableActionMap[item]"
+            [event$]="event$"
+            [buttonsActionState]="tableActionMap[row.item.id]"
           ></kkl-table-actions>
-        </div>
-        <div>
-          {{tableActionMap[item] | json
-
-
-
-          }}
-        </div>
+          <div>
+            {{ tableActionMap[row.item.id] | json }}
+          </div>
+        </ng-container>
       </div>
-    </ng-container>
+    </div>
   </ng-container>
 
   <div fxLayout="column" fxLayoutGap="2rem">
