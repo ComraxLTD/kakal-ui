@@ -11,7 +11,7 @@ export default {
       imports: [KKLTableActionsModule],
     }),
   ],
-  component: KKLTableActionsModule,
+  component: TableActionsComponent,
   argTyps: {},
 } as Meta;
 
@@ -21,3 +21,5 @@ const Template: Story<TableActionsComponent> = (
   component: TableActionsComponent,
   props: args,
 });
+
+export  const tableActions = Template.bind({});

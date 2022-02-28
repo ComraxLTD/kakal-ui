@@ -4,7 +4,7 @@ import { componentWrapperDecorator, moduleMetadata, } from '@storybook/angular';
 import { KKLIconModule, IconComponent } from '../../projects/kakal-ui/src/public-api';
 
 export default {
-    title: 'Assets',
+    title: 'Assets/Icon',
     decorators: [componentWrapperDecorator((story) => `<div class="mat-body">${story}</div>`), moduleMetadata({
         imports: [KKLIconModule],
         declarations: []
