@@ -48,98 +48,9 @@ export class ActionTableComponent implements OnInit {
   public rows$ = new BehaviorSubject<TableRowModel<any>[]>(this.rows);
   public event$: Observable<TableEvent>;
 
-  public tableActionMap$: Observable<TableActionStatenMap>;
-
   constructor(private formService: FormService) {}
 
-  ngOnInit(): void {
-    this.tableActionMap$ = this.getTableButtonActionsState();
-  }
-
-  private setDeleteButtonStateByEvent(row: TableRowModel, event: TableEvent) {
-    switch (event) {
-      case 'edit':
-        return new ActionStateModel({
-          _show: !row.editable,
-          _disabled: !row.editable,
-          event: 'edit',
-        });
-      default:
-        return new ActionStateModel({
-          _show: true,
-          _disabled: false,
-          event: 'edit',
-        });
-    }
-  }
-  private setEditButtonStateByEvent(row: TableRowModel, event: TableEvent) {
-    switch (event) {
-      case 'edit':
-        return new ActionStateModel({
-          _show: !row.editable,
-          _disabled: true,
-          event: 'edit',
-        });
-      default:
-        return new ActionStateModel({
-          _show: true,
-          _disabled: false,
-          event: 'edit',
-        });
-    }
-  }
-
-  private setTableButtonActionsState(
-    rows,
-    event: TableEvent
-  ): TableActionStatenMap {
-    return rows.reduce((acc, row) => {
-      const key = row.item.id;
-
-      const deleteButtonState = this.setDeleteButtonStateByEvent(row, event);
-      const editButtonState = this.setEditButtonStateByEvent(row, event);
-
-      return {
-        [key]: {
-          delete: deleteButtonState.getState(),
-          edit: editButtonState.getState(),
-        } as ButtonActionState,
-        ...acc,
-      } as TableActionStatenMap;
-    }, {} as TableActionStatenMap);
-  }
-
-  private getTableButtonActionsState(): Observable<TableActionStatenMap> {
-    const rows$ = this.rows$.asObservable().pipe(take(1));
-
-    const onEdit$ = this.dataSource.listen$.edit();
-    const onDefault$ = this.dataSource.listen$.default();
-
-    const buttonDefaultState$ = rows$.pipe(
-      switchMap((rows) => {
-        return onDefault$.pipe(
-          filter((state) => state.event === 'default'),
-          map((state) => {
-            console.log('default');
-            return this.setTableButtonActionsState(rows, state.event);
-          })
-        );
-      })
-    );
-
-    const buttonEditState$ = rows$.pipe(
-      switchMap((rows) => {
-        return onEdit$.pipe(
-          filter((state) => state.event === 'edit'),
-          map((state) => {
-            return this.setTableButtonActionsState(rows, state.event);
-          })
-        );
-      })
-    );
-
-    return merge(buttonDefaultState$, buttonEditState$);
-  }
+  ngOnInit(): void {}
 
   public onToggleDeleteDisable(event: MatSlideToggleChange) {
     const checked = event.checked;
@@ -238,7 +149,6 @@ export class ActionTableComponent implements OnInit {
                 });
               });
 
-        
               return { rows: updateRows, updateRow: updateRows[itemIndex] };
             })
           )
