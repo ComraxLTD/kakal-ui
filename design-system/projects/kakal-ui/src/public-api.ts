@@ -31,6 +31,7 @@ export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.module';
 
 export * from './lib/form/form-texteditor/form-texteditor.module';
+export * from './lib/form/form-texteditor/form-texteditor.component';
 
 export * from './lib/form/form-select/form-select.component';
 export * from './lib/form/form-select/form-select.module';
