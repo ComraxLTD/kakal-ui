@@ -1,14 +1,21 @@
 import { QuestionTextModel } from "./question-text.model";
 import { ValidationService } from '../services/validations.service';
 import { ValidatorFn } from "@angular/forms";
+import { ControlType, GridProps, QuestionType } from "./question.model";
 
 export class QuestionEmailModel extends QuestionTextModel {
-    constructor(options:{
-        icon:string;
-        key?:string;
-        label?:string;
+    constructor(options: {
+        key?: string;
+        label?: string;
+        value?: any;
+        type?: QuestionType;
+        controlType?: ControlType;
+        gridProps?: GridProps;
+        icon?: string;
+        validations?: ValidatorFn[];
+        disabled?: boolean;
+        cleave?: {};
         placeHolder?:string;
-        validations:ValidatorFn[];
     }) {
         super(options);
         this.icon = 'email';
