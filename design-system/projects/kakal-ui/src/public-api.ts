@@ -30,6 +30,9 @@ export * from './lib/form/form-date/form-date.module';
 export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.module';
 
+export * from './lib/form/form-texteditor/form-texteditor.module';
+export * from './lib/form/form-texteditor/form-texteditor.component';
+
 export * from './lib/form/form-select/form-select.component';
 export * from './lib/form/form-select/form-select.module';
 
@@ -42,13 +45,28 @@ export * from './lib/form/form-currency/form-currency.service';
 
 export * from './lib/form/form-autocomplete/form-autocomplete.component';
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
-export * from './lib/form/models/question-autocomplete';
 
 
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
 
+// FORM QUESTIONS //
+
+export * from './lib/form/models/question-autocomplete';
+export * from './lib/form/models/question-email.model';
+export * from './lib/form/models/question-file.model';
+export * from './lib/form/models/question-group.model';
+export * from './lib/form/models/question-phone.model';
+export * from './lib/form/models/question-number.model';
+export * from './lib/form/models/question-select.model';
+export * from './lib/form/models/question-sum.model';
+export * from './lib/form/models/question-text.model';
+export * from './lib/form/models/question-textarea.model';
+export * from './lib/form/models/question-texteditor.model';
+export * from './lib/form/models/question-time.model';
+export * from './lib/form/models/question-toggle.model';
+export * from './lib/form/models/question.model';
 
 // ------------------------------------------------------------------------------------------
 // TABLE EXPORTS
@@ -84,6 +102,14 @@ export * from './lib/menu/menu.component';
 // title
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
+
+
+// dialog
+export * from './lib/dialog/dialog.module';
+export * from './lib/dialog/dialog.component';
+export * from './lib/dialog-alert/dialog-alert.component';
+export * from './lib/dialog/dialog.service'
+
 
 
 // sidenav

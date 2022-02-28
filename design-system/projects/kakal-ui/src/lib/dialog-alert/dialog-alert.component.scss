@@ -1,0 +1,11 @@
+@use "../../styles/variables" as main;
+
+::ng-deep mat-dialog-container {
+  min-height: 12rem !important;
+  min-width: 30rem;
+}
+
+::ng-deep .kkl-alert-dialog > mat-dialog-container {
+  min-height: 19rem !important;
+  min-width: 30rem;
+}

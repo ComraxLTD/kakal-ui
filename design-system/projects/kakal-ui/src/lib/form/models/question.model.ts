@@ -43,6 +43,7 @@ export type ControlType =
   | 'toggle'
   | 'email'
   | 'phone'
+  | 'textEditor'
   | 'cleave';
 
 export type QuestionType =
@@ -52,6 +53,7 @@ export type QuestionType =
   | 'select'
   | 'custom'
   | 'date'
+  | 'textEditor'
   | 'currency';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
