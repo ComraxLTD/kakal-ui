@@ -15,7 +15,6 @@ import {
   mapTo,
   tap,
 } from 'rxjs';
-import { QuestionGroupModel } from '../../../../../kakal-ui/src/lib/form/models/question-group.model';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
 import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../../../../kakal-ui/src/lib/table/models/table-row.model';
@@ -51,30 +50,58 @@ export class ActionTableComponent implements OnInit {
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-    this.tableActionMap$ = this.getTableButtonActionsState().pipe(
-      tap((c) => console.log('state', c))
-    );
+    this.tableActionMap$ = this.getTableButtonActionsState();
   }
 
-  private setTableButtonActionsState(rows): TableActionStatenMap {
+  private setDeleteButtonStateByEvent(row: TableRowModel, event: TableEvent) {
+    console.log(event);
+    switch (event) {
+      case 'edit':
+        return new ActionStateModel({
+          _show: !row.editable,
+          _disabled: !row.editable,
+          event: 'edit',
+        });
+      default:
+        return new ActionStateModel({
+          _show: true,
+          _disabled: false,
+          event: 'edit',
+        });
+    }
+  }
+  private setEditButtonStateByEvent(row: TableRowModel, event: TableEvent) {
+    console.log(event);
+    switch (event) {
+      case 'edit':
+        return new ActionStateModel({
+          _show: !row.editable,
+          _disabled: true,
+          event: 'edit',
+        });
+      default:
+        return new ActionStateModel({
+          _show: true,
+          _disabled: false,
+          event: 'edit',
+        });
+    }
+  }
+
+  private setTableButtonActionsState(
+    rows,
+    event: TableEvent
+  ): TableActionStatenMap {
     return rows.reduce((acc, row) => {
       const key = row.item.id;
 
-      const deleteButtonState = new ActionStateModel({
-        _disabled: row.item.id % 2 !== 0,
-        event: 'delete',
-      });
-
-      const editButtonState = new ActionStateModel({
-        _show: true,
-        _disabled: false,
-        event: 'edit',
-      });
+      const deleteButtonState = this.setDeleteButtonStateByEvent(row, event);
+      const editButtonState = this.setEditButtonStateByEvent(row, event);
 
       return {
         [key]: {
-          delete$: deleteButtonState.getState$(),
-          edit$: editButtonState.getState$(),
+          delete: deleteButtonState.getState(),
+          edit: editButtonState.getState(),
         } as ButtonActionState,
         ...acc,
       } as TableActionStatenMap;
@@ -87,52 +114,30 @@ export class ActionTableComponent implements OnInit {
     const onEdit$ = this.dataSource.listen$.edit();
     const onDefault$ = this.dataSource.listen$.default();
 
-    return rows$.pipe(
+    const buttonDefaultState$ = rows$.pipe(
       switchMap((rows) => {
-
-
-        const buttonDefaultState$ = onDefault$.pipe(
+        return onDefault$.pipe(
           filter((state) => state.event === 'default'),
           map((state) => {
-            console.log('default')
-            return this.setTableButtonActionsState(rows);
-          })
-          );
-
-          const buttonEditState$ = onEdit$.pipe(
-            filter((state) => state.event === 'edit'),
-            map((state) => {
-            console.log('edit')
-            const { row } = state;
-
-            const tableButtonState = this.setTableButtonActionsState(rows);
-            
-            const editButtonState = new ActionStateModel({
-              _show: false,
-              _disabled: false,
-              event: 'edit',
-            });
-
-            const key : number = row.item.id;
-            console.log('key', key)
-
-            console.log(tableButtonState)
-
-            return {
-              ...tableButtonState,
-              [key]: {
-                ...tableButtonState[key],
-                edit$: editButtonState.getState$(),
-              } as ButtonActionState,
-            } as TableActionStatenMap;
+            console.log('default');
+            return this.setTableButtonActionsState(rows, state.event);
           })
         );
-
-        return merge(buttonDefaultState$, buttonEditState$);
       })
     );
 
+    const buttonEditState$ = rows$.pipe(
+      switchMap((rows) => {
+        return onEdit$.pipe(
+          filter((state) => state.event === 'edit'),
+          map((state) => {
+            return this.setTableButtonActionsState(rows, state.event);
+          })
+        );
+      })
+    );
 
+    return merge(buttonDefaultState$, buttonEditState$);
   }
 
   public onToggleDeleteDisable(event: MatSlideToggleChange) {

@@ -17,18 +17,16 @@
     ></ng-template>
   </ng-container>
 
-  <ng-container *ngIf="editState$ | async as editState">
+  <ng-container *ngIf="buttonsActionState.edit as editState">
     {{ editState | json }}
     <!-- edit button -->
     <ng-container *ngIf="editState.show; else saveBlock">
       <button
         mat-icon-button
-        [class.mat-raised-button]="
-          editState.disabled || row.item?.disabledActions?.edit
-        "
+        [class.mat-raised-button]="editState.disabled"
         (click)="onEdit()"
         matTooltip="ערוך"
-        [disabled]="editState.disabled || row.item?.disabledActions?.edit"
+        [disabled]="editState.disabled"
       >
         <kkl-icon key="edit"></kkl-icon>
       </button>

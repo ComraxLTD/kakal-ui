@@ -21,7 +21,7 @@ export class ActionStateModel {
     _disabled?: boolean;
     event: TableEvent;
   }) {
-    this.show$ = new BehaviorSubject<boolean>(options._show || true);
+    this.show$ = new BehaviorSubject<boolean>(options._show);
     this.disabled$ = new BehaviorSubject<boolean>(options._disabled || false);
     this.event = options.event;
   }
@@ -32,9 +32,6 @@ export class ActionStateModel {
       this.show$.asObservable(),
     ]).pipe(
       map(([disabled, show]) => {
-
-        console.log(show)
-
         return {
           show,
           disabled,
@@ -42,6 +39,14 @@ export class ActionStateModel {
         };
       })
     );
+  }
+
+  public getState(): ActionState {
+    return {
+      show: this.show$.getValue(),
+      disabled: this.disabled$.getValue(),
+      event: this.event,
+    };
   }
 
   public getEvent(): Observable<TableEvent> {

@@ -52,6 +52,8 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.columnsStateSubject.asObservable();
   }
 
+
+
   public getRowsState(): Observable<RowsState<T>> {
     return this.rowsStateSubject.asObservable();
   }
@@ -62,6 +64,10 @@ export class TableDataSource<T = any> implements DataSource<T> {
         return filters ? filters.indexOf(event) !== -1 : true;
       })
     );
+  }
+
+  public getActionState() {
+
   }
 
   private getStateByEvent(event: TableEvent): Observable<RowsState<T>> {

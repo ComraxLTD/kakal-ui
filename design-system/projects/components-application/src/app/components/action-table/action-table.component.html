@@ -23,8 +23,8 @@
             (edit)="onEditEvent($event)"
             [buttonsActionState]="tableActionMap[row.item.id]"
           ></kkl-table-actions>
-          <pre>delete : {{ tableActionMap[row.item.id].delete$ | async | json }}</pre>
-          <pre>edit : {{ tableActionMap[row.item.id].edit$ | async | json }}</pre>
+          <pre>delete : {{ tableActionMap[row.item.id].delete | json }}</pre>
+          <pre>edit : {{ tableActionMap[row.item.id].edit | json }}</pre>
         </ng-container>
       </div>
       <mat-divider></mat-divider>

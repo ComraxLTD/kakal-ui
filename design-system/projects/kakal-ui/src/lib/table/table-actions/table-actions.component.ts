@@ -17,8 +17,8 @@ import { RowsState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
 
 export interface ButtonActionState {
-  edit$?: Observable<ActionState>;
-  delete$?: Observable<ActionState>;
+  edit?: ActionState;
+  delete?: ActionState;
 }
 
 @Component({
@@ -46,7 +46,7 @@ export class TableActionsComponent implements OnInit {
   @Output() cancel: EventEmitter<RowsState> = new EventEmitter<RowsState>();
   @Output() save: EventEmitter<RowsState> = new EventEmitter<RowsState>();
 
-  public editState$: Observable<ActionState>;
+  public editState: ActionState;
   public deleteState$: Observable<ActionState>;
 
   constructor() {}
@@ -54,19 +54,18 @@ export class TableActionsComponent implements OnInit {
   ngOnInit(): void {
     this.validInputs();
 
-
-    this.editState$ = this.setEditState$();
+    this.editState = this.buttonsActionState.edit;
 
     this.deleteState$ = this.setDeleteState();
   }
 
-  private setEditState$(): Observable<ActionState> {
-    if (this.buttonsActionState) {
-      return this.buttonsActionState.edit$;
-    } else {
-      return of({ show: this.hasEdit, disabled: !this.hasEdit });
-    }
-  }
+  // private setEditState$(): Observable<ActionState> {
+  //   if (this.buttonsActionState) {
+  //     return this.buttonsActionState.edit;
+  //   } else {
+  //     return of({ show: this.hasEdit, disabled: !this.hasEdit });
+  //   }
+  // }
 
   private setEditStateByEvent$() {
     const onEdit$ = this.dataSource.listen$.edit().pipe(
@@ -105,23 +104,11 @@ export class TableActionsComponent implements OnInit {
 
   private setDeleteState(): Observable<ActionState> {
     if (this.buttonsActionState) {
-      return this.buttonsActionState.delete$;
+      return of(this.buttonsActionState.delete);
     } else {
       return of({ show: this.hasDelete, disabled: !this.hasDelete });
     }
   }
-
-  // private handleShowDelete(): Observable<ActionState> {
-  //   if (this.event$ && this.hasDelete) {
-  //     return this.setEditState$().pipe(
-  //       map(({ show, event }) => {
-  //         return { show: !show, disabled: show, event };
-  //       })
-  //     );
-  //   } else {
-  //     return of({ show: this.hasDelete, disabled: !this.hasDelete });
-  //   }
-  // }
 
   public onDelete() {
     this.delete.emit({ row: this.row });
