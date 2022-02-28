@@ -46,27 +46,27 @@ export class FormSelectComponent implements OnInit {
     this.selected.emit(formOption);
   }
 
-  private getFormOption(value?: string): FormOption {
+  private getFormOption(value?: SelectOption): FormOption {
     const formOption: FormOption = {
       key: this.key,
       control: this.control,
       index: this.index,
       value$: of(value),
-      option: this.getOption(value),
+      option: value,
     };
 
     return formOption;
   }
 
-  private getOption(value: any): SelectOption | null {
-    if (this.options) {
-      return this.options.find(
-        (option: SelectOption) => option.value === value
-      );
-    } else {
-      return null;
-    }
-  }
+  // private getOption(value: any): SelectOption | null {
+  //   if (this.options) {
+  //     return this.options.find(
+  //       (option: SelectOption) => option.value === value
+  //     );
+  //   } else {
+  //     return null;
+  //   }
+  // }
 
   public setErrorMessage() {
     const error = this.messageService.getErrorMessage(
