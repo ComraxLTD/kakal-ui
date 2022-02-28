@@ -32,6 +32,9 @@ export class ActionStateModel {
       this.show$.asObservable(),
     ]).pipe(
       map(([disabled, show]) => {
+
+        console.log(show)
+
         return {
           show,
           disabled,

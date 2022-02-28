@@ -12,7 +12,7 @@
     <ng-container *ngFor="let row of rows$ | async">
       <div fxLayout="column" fxLayoutAlign="center start">
         <div>
-          <pre>row : {{ row.item | json }}</pre>
+          <pre>row : {{ row | json }}</pre>
         </div>
         <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
           <kkl-table-actions
@@ -20,7 +20,6 @@
             [dataSource]="dataSource"
             [hasDelete]="true"
             [hasEdit]="true"
-            [event$]="event$"
             (edit)="onEditEvent($event)"
             [buttonsActionState]="tableActionMap[row.item.id]"
           ></kkl-table-actions>

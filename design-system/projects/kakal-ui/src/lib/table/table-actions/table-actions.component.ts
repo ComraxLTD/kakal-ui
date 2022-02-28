@@ -54,11 +54,18 @@ export class TableActionsComponent implements OnInit {
   ngOnInit(): void {
     this.validInputs();
 
-    if (this.event$ && this.hasEdit) {
-      this.editState$ = this.setEditStateByEvent$();
-    }
+
+    this.editState$ = this.setEditState$();
 
     this.deleteState$ = this.setDeleteState();
+  }
+
+  private setEditState$(): Observable<ActionState> {
+    if (this.buttonsActionState) {
+      return this.buttonsActionState.edit$;
+    } else {
+      return of({ show: this.hasEdit, disabled: !this.hasEdit });
+    }
   }
 
   private setEditStateByEvent$() {

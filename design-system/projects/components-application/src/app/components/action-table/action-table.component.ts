@@ -9,6 +9,11 @@ import {
   switchMapTo,
   merge,
   take,
+  combineLatest,
+  switchMap,
+  share,
+  mapTo,
+  tap,
 } from 'rxjs';
 import { QuestionGroupModel } from '../../../../../kakal-ui/src/lib/form/models/question-group.model';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
@@ -46,37 +51,88 @@ export class ActionTableComponent implements OnInit {
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-    this.tableActionMap$ = this.setRowsButtonActionsState();
-    this.event$ = this.dataSource.getEvents$();
+    this.tableActionMap$ = this.getTableButtonActionsState().pipe(
+      tap((c) => console.log('state', c))
+    );
   }
 
-  private setRowsButtonActionsState(): Observable<TableActionStatenMap> {
-    return this.rows$.asObservable().pipe(
-      map((rows: TableRowModel<any>[]) => {
-        return rows.reduce((acc, row) => {
-          const key = row.item.id;
+  private setTableButtonActionsState(rows): TableActionStatenMap {
+    return rows.reduce((acc, row) => {
+      const key = row.item.id;
 
-          const deleteButtonState = new ActionStateModel({
-            _disabled: row.item.id % 2 !== 0,
-            event: 'delete',
-          });
+      const deleteButtonState = new ActionStateModel({
+        _disabled: row.item.id % 2 !== 0,
+        event: 'delete',
+      });
 
-          const editButtonState = new ActionStateModel({
-            _show: true,
-            _disabled: false,
-            event: 'edit',
-          });
+      const editButtonState = new ActionStateModel({
+        _show: true,
+        _disabled: false,
+        event: 'edit',
+      });
 
-          return {
-            [key]: {
-              delete$: deleteButtonState.getState$(),
-              edit$: editButtonState.getState$(),
-            } as ButtonActionState,
-            ...acc,
-          } as TableActionStatenMap;
-        }, {} as TableActionStatenMap);
+      return {
+        [key]: {
+          delete$: deleteButtonState.getState$(),
+          edit$: editButtonState.getState$(),
+        } as ButtonActionState,
+        ...acc,
+      } as TableActionStatenMap;
+    }, {} as TableActionStatenMap);
+  }
+
+  private getTableButtonActionsState(): Observable<TableActionStatenMap> {
+    const rows$ = this.rows$.asObservable().pipe(take(1));
+
+    const onEdit$ = this.dataSource.listen$.edit();
+    const onDefault$ = this.dataSource.listen$.default();
+
+    return rows$.pipe(
+      switchMap((rows) => {
+
+
+        const buttonDefaultState$ = onDefault$.pipe(
+          filter((state) => state.event === 'default'),
+          map((state) => {
+            console.log('default')
+            return this.setTableButtonActionsState(rows);
+          })
+          );
+
+          const buttonEditState$ = onEdit$.pipe(
+            filter((state) => state.event === 'edit'),
+            map((state) => {
+            console.log('edit')
+            const { row } = state;
+
+            const tableButtonState = this.setTableButtonActionsState(rows);
+            
+            const editButtonState = new ActionStateModel({
+              _show: false,
+              _disabled: false,
+              event: 'edit',
+            });
+
+            const key : number = row.item.id;
+            console.log('key', key)
+
+            console.log(tableButtonState)
+
+            return {
+              ...tableButtonState,
+              [key]: {
+                ...tableButtonState[key],
+                edit$: editButtonState.getState$(),
+              } as ButtonActionState,
+            } as TableActionStatenMap;
+          })
+        );
+
+        return merge(buttonDefaultState$, buttonEditState$);
       })
     );
+
+
   }
 
   public onToggleDeleteDisable(event: MatSlideToggleChange) {
@@ -144,7 +200,7 @@ export class ActionTableComponent implements OnInit {
               updateRows[itemIndex] = new TableRowModel({
                 ...updateRows[itemIndex],
                 editable: !row.editable,
-                form,
+                // form,
               });
               return { rows: updateRows, updateRow: updateRows[itemIndex] };
             })
@@ -152,7 +208,7 @@ export class ActionTableComponent implements OnInit {
         )
       )
       .subscribe(({ rows, updateRow }) => {
-        // this.rows$.next(rows);
+        this.rows$.next(rows);
         this.dataSource.actions.edit({ row: updateRow });
       });
   }
