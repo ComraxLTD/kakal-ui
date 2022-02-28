@@ -29,10 +29,7 @@
         </ng-container>
         <ng-template #slotBlock>
           <ng-container
-            *ngTemplateOutlet="
-              optionSlot[key];
-              context: { $implicit: this.option }
-            "
+            *ngTemplateOutlet="optionSlot; context: { $implicit: this.option }"
           ></ng-container>
         </ng-template>
       </mat-option>
@@ -54,9 +51,11 @@
             {{ option.label }}
           </ng-container>
           <ng-container *ngIf="optionSlot">
-            skdjskdjsk
             <ng-container
-              *ngTemplateOutlet="optionSlot; context: { $implicit: this.option }"
+              *ngTemplateOutlet="
+                optionSlot;
+                context: { $implicit: this.option }
+              "
             ></ng-container>
           </ng-container>
         </mat-list-option>

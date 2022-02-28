@@ -88,7 +88,19 @@
             </kkl-form-currency>
           </mat-grid-tile>
         </ng-container>
-
+        <!-- CURRENCY INPUT SECTION -->
+        <ng-container *ngSwitchCase="'textEditor'">
+          <mat-grid-tile [colspan]="
+      question?.gridProps?.fullWidth
+        ? cols
+        : question?.gridProps?.cols || 1
+    " [rowspan]="question?.gridProps?.rows || 1">
+            <kkl-form-texteditor  [control]="group.formGroup.controls[question.key]" 
+            [placeHolder]="question?.placeHolder"
+              [validations]="question?.validations" [index]="index">
+            </kkl-form-texteditor>
+          </mat-grid-tile>
+        </ng-container>
         <!-- CUSTOM INPUT SECTION -->
         <ng-container *ngSwitchCase="'custom'">
           <mat-grid-tile [colspan]="
