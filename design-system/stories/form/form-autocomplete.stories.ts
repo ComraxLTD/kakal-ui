@@ -2,10 +2,8 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { FormDataSource } from 'projects/kakal-ui/src/lib/form/models/form-data-source.model';
 import { KKLFormAutoCompleteExModule } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.module';
 import { FormAutocompleteExComponent } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.component';
-import { FormControl } from '@angular/forms';
 
 export default {
   title: 'Form',
@@ -128,8 +126,8 @@ const Template: Story<FormAutocompleteExComponent> = (
   props: args,
 });
 
-export const autoComplete = Template.bind({});
-autoComplete.args = {
+export const Autocomplete = Template.bind({});
+Autocomplete.args = {
   key: 'autocomplete',
   options: [
     { value: '1', label: 'first' },
