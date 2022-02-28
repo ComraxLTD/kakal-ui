@@ -18,11 +18,9 @@
   </ng-container>
 
   <ng-container *ngIf="editButton$ | async as editButton">
-
-
+    {{ editButton | json }}
     <!-- edit button -->
     <ng-container *ngIf="!editButton.show; else saveBlock">
-
       <button
         mat-icon-button
         [class.mat-raised-button]="

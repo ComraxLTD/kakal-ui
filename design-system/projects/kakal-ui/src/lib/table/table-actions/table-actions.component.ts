@@ -13,6 +13,7 @@ import { TableEvent } from '../models/table-event';
 import { TableRowModel } from '../models/table-row.model';
 import { Observable, of } from 'rxjs';
 import { ActionState } from './table-actions.model';
+import { RowsState } from '../models/table.state';
 
 export interface ButtonActionState {
   edit$?: Observable<ActionState>;
@@ -25,8 +26,8 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
-  @Input() row: TableRowModel<Object>;
-  @Input() column: TableColumnModel<Object>;
+  @Input() row: TableRowModel;
+  @Input() column: TableColumnModel;
 
   @Input() hasEdit: boolean;
   @Input() hasDelete: boolean;
@@ -38,10 +39,10 @@ export class TableActionsComponent implements OnInit {
   @Input() public startSlot: TemplateRef<any>;
   @Input() public endSlot: TemplateRef<any>;
 
-  @Output() edit: EventEmitter<void> = new EventEmitter<void>();
-  @Output() delete: EventEmitter<void> = new EventEmitter<void>();
-  @Output() cancel: EventEmitter<TableEvent> = new EventEmitter<TableEvent>();
-  @Output() save: EventEmitter<TableEvent> = new EventEmitter<TableEvent>();
+  @Output() edit: EventEmitter<RowsState> = new EventEmitter<RowsState>();
+  @Output() delete: EventEmitter<RowsState> = new EventEmitter<RowsState>();
+  @Output() cancel: EventEmitter<RowsState> = new EventEmitter<RowsState>();
+  @Output() save: EventEmitter<RowsState> = new EventEmitter<RowsState>();
 
   public editButton$: Observable<ActionState>;
   public deleteState$: Observable<ActionState>;
@@ -61,6 +62,7 @@ export class TableActionsComponent implements OnInit {
   private setEditStateByEvent$() {
     return this.event$.pipe(
       map((event: TableEvent) => {
+        console.log(event);
 
         const disabled =
           (event === 'edit' || event === 'create') && !this.row.editable;
@@ -104,19 +106,19 @@ export class TableActionsComponent implements OnInit {
   // }
 
   public onDelete() {
-    this.delete.emit();
+    this.delete.emit({ row: this.row });
   }
 
   public onEdit() {
-    this.edit.emit();
+    this.edit.emit({ row: this.row });
   }
 
   public onCancel(event: TableEvent) {
-    this.cancel.emit(event);
+    this.cancel.emit({ row: this.row, column: this.column, event });
   }
 
   public onSave(event: TableEvent) {
-    this.save.emit(event);
+    this.save.emit({ row: this.row, column: this.column, event });
   }
 
   private validInputs() {

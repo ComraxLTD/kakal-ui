@@ -1,7 +1,7 @@
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 
-export class TableRowModel<T> {
+export class TableRowModel<T = any> {
   public item: T;
   public form: QuestionGroupModel<T>;
   public disabled: boolean;

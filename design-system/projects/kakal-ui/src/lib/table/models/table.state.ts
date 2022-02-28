@@ -6,7 +6,7 @@ import { SortDirection } from "@angular/material/sort";
 import { TableRowModel } from "./table-row.model";
 import { ButtonActionState } from "../table-actions/table-actions.component";
 
-export interface RowsState<T> {
+export interface RowsState<T = any> {
   event?: TableEvent;
   row?: TableRowModel<T>;
   column?: TableColumnModel<T>;

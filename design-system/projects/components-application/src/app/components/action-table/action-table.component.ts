@@ -73,7 +73,6 @@ export class ActionTableComponent implements OnInit {
   public onToggleDeleteDisable(event: MatSlideToggleChange) {
     const checked = event.checked;
 
-    console.log(checked);
     const even$ = of(checked).pipe(
       filter((isCheck) => isCheck),
       switchMapTo(
@@ -84,10 +83,6 @@ export class ActionTableComponent implements OnInit {
             evenRows[0] = new TableRowModel({
               ...evenRows[0],
               item: { ...evenRows[0].item, id: 2 },
-            });
-            evenRows[2] = new TableRowModel({
-              ...evenRows[0],
-              item: { ...evenRows[2].item, id: 6 },
             });
             return evenRows;
           })
@@ -105,10 +100,7 @@ export class ActionTableComponent implements OnInit {
               ...notEvenRows[0],
               item: { ...notEvenRows[0].item, id: 1 },
             });
-            notEvenRows[2] = new TableRowModel({
-              ...notEvenRows[0],
-              item: { ...notEvenRows[2].item, id: 3 },
-            });
+
             return notEvenRows;
           })
         )
@@ -120,4 +112,11 @@ export class ActionTableComponent implements OnInit {
     });
   }
   public onToggleDeleteShow(event: MatSlideToggleChange) {}
+
+  public onEditEvent(row : TableRowModel<any>) {
+
+    console.log(row)
+
+    // this.dataSource.actions.edit({})
+  }
 }

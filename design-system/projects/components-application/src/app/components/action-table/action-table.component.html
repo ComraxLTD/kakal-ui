@@ -1,26 +1,4 @@
-<div fxLayout="column" fxLayoutGap="5rem" class="block">
-  <ng-container *ngFor="let row of rows$ | async">
-    <div fxLayout="column" >
-      <div fxLayout="column" fxLayoutGap="2rem">
-        <div>
-          <span>row : {{ row.item | json }}</span>
-        </div>
-        <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
-          <kkl-table-actions
-            [row]="row"
-            [hasDelete]="true"
-            [hasEdit]="true"
-            [event$]="event$"
-            [buttonsActionState]="tableActionMap[row.item.id]"
-          ></kkl-table-actions>
-          <div>
-            {{ tableActionMap[row.item.id] | json }}
-          </div>
-        </ng-container>
-      </div>
-    </div>
-  </ng-container>
-
+<div fxLayout="row" fxLayoutGap="5rem" class="block">
   <div fxLayout="column" fxLayoutGap="2rem">
     <mat-checkbox (change)="onToggleDeleteDisable($event)"
       >disable if row is not even
@@ -28,5 +6,31 @@
     <mat-checkbox (change)="onToggleDeleteShow($event)"
       >toggle show</mat-checkbox
     >
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div fxLayout="column" fxLayoutGap="5rem" fxFlex="80">
+    <ng-container *ngFor="let row of rows$ | async">
+      <div fxLayout="column">
+        <div fxLayout="column" fxLayoutGap="2rem">
+          <div>
+            <span>row : {{ row.item | json }}</span>
+          </div>
+          <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
+            <kkl-table-actions
+              [row]="row"
+              [hasDelete]="true"
+              [hasEdit]="true"
+              [event$]="event$"
+              (edit)="onEditEvent($event)"
+              [buttonsActionState]="tableActionMap[row.item.id]"
+            ></kkl-table-actions>
+            <div>
+              {{ tableActionMap[row.item.id] | json }}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+    </ng-container>
   </div>
 </div>
