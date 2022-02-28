@@ -12,7 +12,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "copy-assets": "cp -R ./projects/kakal-ui/src/styles dist/kakal-ui/ && cp ./projects/kakal-ui/.npmrc dist/kakal-ui/",
-    "docs:json": "./node_modules/.bin/compodoc -p ./tsconfig.json -e json -d .",
+    "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook"
   },
