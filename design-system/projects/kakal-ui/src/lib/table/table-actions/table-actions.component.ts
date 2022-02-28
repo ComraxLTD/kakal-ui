@@ -1,13 +1,11 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
   TemplateRef,
 } from '@angular/core';
-import { MatExpansionPanel } from '@angular/material/expansion';
 
 import { map } from 'rxjs/operators';
 import { TableColumnModel } from '../../columns/column.model';
@@ -27,10 +25,8 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
-
   @Input() row: TableRowModel<Object>;
   @Input() column: TableColumnModel<Object>;
-
 
   @Input() hasEdit: boolean;
   @Input() hasDelete: boolean;
@@ -70,7 +66,7 @@ export class TableActionsComponent implements OnInit {
         const show =
           (event === 'edit' || event === 'create') && this.row.editable;
 
-          console.log(disabled)
+        console.log(disabled);
         return { show, event, disabled };
       })
     );

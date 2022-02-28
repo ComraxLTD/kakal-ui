@@ -11,7 +11,7 @@
       *ngTemplateOutlet="
         startSlot;
         context: {
-          $implicit: { row: this.row, panel: this.row.panel, column: this.column }
+          $implicit: { row: this.row, column: this.column }
         }
       "
     ></ng-template>
@@ -82,7 +82,7 @@
       *ngTemplateOutlet="
         endSlot;
         context: {
-          $implicit: { row: this.row, panel: this.row.panel, column: this.column }
+          $implicit: { row: this.row, column: this.column }
         }
       "
     ></ng-template>
