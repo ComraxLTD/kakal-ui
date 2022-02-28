@@ -17,6 +17,6 @@ import { KKLDirectivesModule } from '../directives/directives.module';
     KKLIconModule,
     KKLDirectivesModule,
   ],
-  exports: [DialogAlertComponent, KKLDialogModule, DialogComponent],
+  exports: [DialogAlertComponent, DialogComponent],
 })
 export class KKLDialogModule {}
