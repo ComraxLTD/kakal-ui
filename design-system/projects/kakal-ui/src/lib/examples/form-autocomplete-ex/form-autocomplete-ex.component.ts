@@ -21,17 +21,16 @@ import { map, merge, Observable, of } from 'rxjs';
   styleUrls: ['./form-autocomplete-ex.component.scss'],
 })
 export class FormAutocompleteExComponent implements OnInit {
-  @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public icon: string;
   @Input() public label: string;
   @Input() public options: SelectOption[];
   @Input() public panelWidth: boolean;
   @Input() public multi: boolean;
-  @Input() public formDataSource: FormDataSource;
-  @Input() public optionsSlot: ElementRef;
 
+  public formDataSource: FormDataSource;
   public options$: Observable<SelectOption[]>;
+  public control: FormControl = new FormControl();
 
   constructor(private formService: FormService) {}
 
