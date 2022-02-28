@@ -1,15 +1,22 @@
 import { ValidatorFn } from "@angular/forms";
 import { ValidationService } from "../services/validations.service";
 import { QuestionNumberModel } from "./question-number.model";
+import { ControlType, GridProps, QuestionType } from "./question.model";
 
 
 export class QuestionPhoneModel extends QuestionNumberModel {
     constructor(options:{
-        icon?:string;
+        key?: string;
+        label?: string;
+        value?: any;
+        type?: QuestionType;
+        controlType?: ControlType;
+        gridProps?: GridProps;
+        icon?: string;
+        validations?: ValidatorFn[];
+        disabled?: boolean;
+        cleave?: {};
         placeHolder?:string;
-        validations?:ValidatorFn[];
-        controlType?:string;
-        cleave?:{}
     }) {
         super(options);
         this.icon = 'phone';
