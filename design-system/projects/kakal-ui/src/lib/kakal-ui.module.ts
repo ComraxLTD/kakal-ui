@@ -22,6 +22,7 @@ import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
+import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLTableActionsModule } from './table/table-actions/table-actions.module';
 import { KKLColumnsModule} from './columns/column.module';
 import { SidenavModule } from './sidenav/sidenav.module';
@@ -46,7 +47,7 @@ import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-exam
     KKLFormSelectModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
-
+    KKLFormTextEditorModule,
     // KKLColumnsModule,
 
     KKLDirectivesModule,
@@ -61,6 +62,7 @@ import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-exam
     KKLStepTitleModule,
     SidenavModule,
     KKLFormModule,
+    KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
     KKLFormDateModule,
