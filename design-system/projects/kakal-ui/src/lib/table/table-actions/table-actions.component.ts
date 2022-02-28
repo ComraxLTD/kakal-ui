@@ -9,7 +9,7 @@ import {
 import { MatExpansionPanel } from '@angular/material/expansion';
 
 import { map } from 'rxjs/operators';
-import { ColumnModel } from '../../columns/column.model';
+import { TableColumnModel } from '../../columns/column.model';
 import { TableEvent } from '../models/table-events';
 import { TableRowModel } from '../models/table-row.model';
 import { Observable, of } from 'rxjs';
@@ -28,7 +28,7 @@ export interface ButtonActionState {
 })
 export class TableActionsComponent implements OnInit {
   @Input() row: TableRowModel<Object>;
-  @Input() column: ColumnModel<Object>;
+  @Input() column: TableColumnModel<Object>;
   @Input() panel: MatExpansionPanel;
   @Input() tableActionState: ButtonActionState;
 
