@@ -11,6 +11,11 @@ import {
   take,
   switchMap,
   Subject,
+  mapTo,
+  tap,
+  combineLatestAll,
+  combineLatest,
+  startWith,
 } from 'rxjs';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
 import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
@@ -26,6 +31,13 @@ import { FormService } from '../../../../../kakal-ui/src/public-api';
 })
 export class ActionTableComponent implements OnInit {
   public dataSource = new TableDataSource();
+
+  // demo data from server
+  private demoStore$: Observable<any[]> = of([
+    { id: 1, status: 'active' },
+    { id: 2, status: 'disable' },
+    { id: 3, status: 'active' },
+  ]);
 
   private rows: TableRowModel<any>[] = [
     new TableRowModel({ item: { id: 1, status: 'active' } }),
@@ -48,19 +60,46 @@ export class ActionTableComponent implements OnInit {
   ngOnInit(): void {
     this.checkedSubject = new Subject<boolean>();
 
-    this.rows$ = merge(
-      this.setRows(this.actionStateCallback),
-      this.setRowsOnEdit()
-    );
-
-    this.setRowsOnToggleDelete()
+    this.rows$ = this.onRowsChange();
   }
 
-  private setRows(callback?) {
-    return this.rowsSubject$.asObservable().pipe(
+  private setData() {
+    const storeData$ = this.demoStore$;
+    const changedData$ = this.setRowsOnToggleDelete();
 
+    return merge(storeData$, changedData$).pipe(
+      switchMap((data) => {
+        console.log(data);
+        this.dataSource.load(data);
+        return this.dataSource.connect();
+      })
+    );
+  }
+
+  private setRowsFromData() {
+    return this.setData().pipe(
+      map((data) => {
+        return data.map((item) => new TableRowModel({ item }));
+      })
+    );
+  }
+
+  private onRowsChange() {
+    const rows$ = this.setRowsFromData();
+    const rowWithAction$ = this.setRowsWithAction(
+      rows$,
+      this.actionStateCallback
+    );
+    const rowsWithEvent$ = this.setRowsOnEdit(rowWithAction$).pipe(startWith(null));
+
+    return rowWithAction$
+  }
+
+  private setRowsWithAction(rows$, callback?): Observable<TableRowModel[]> {
+    return rows$.pipe(
       map((rows: TableRowModel[]) => {
         return rows.map((row: TableRowModel) => {
+          console.log('action');
           return {
             ...row,
             actionState: {
@@ -76,106 +115,63 @@ export class ActionTableComponent implements OnInit {
     );
   }
 
-  private onCheckedTrue() {
-    return this.rowsSubject$.asObservable().pipe(
-      take(1),
-      map((rows) => {
-        const evenRows = [...rows];
-        evenRows[0] = new TableRowModel({
-          ...evenRows[0],
-          item: { ...evenRows[0].item, id: 2 },
-        });
-        return evenRows;
-      })
-    );
+  private onCheckedTrue(data) {
+    const updateData = [...data];
+    updateData[0] = { ...updateData[0], id: 2 };
+    return updateData;
   }
 
-  private onCheckedFalse() {
-    return this.rowsSubject$.asObservable().pipe(
-      take(1),
-      map((rows) => {
-        const notEvenRows = [...rows];
-        notEvenRows[0] = new TableRowModel({
-          ...notEvenRows[0],
-          item: { ...notEvenRows[0].item, id: 1 },
-        });
-
-        return notEvenRows;
-      })
-    );
+  private onCheckedFalse(data: any[]) {
+    const updateData = [...data];
+    updateData[0] = { ...updateData[0], id: 1 };
+    return updateData;
   }
 
-  private setRowsOnToggleDelete() {
+  private setRowsOnToggleDelete(): Observable<any[]> {
+    const storeData$ = this.demoStore$;
+
     const checked$ = this.checkedSubject.asObservable();
     const true$ = checked$.pipe(
       filter((checked) => checked),
-      switchMapTo(this.onCheckedTrue())
-    );
-    const false$ = checked$.pipe(
-      filter((checked) => !checked),
-      switchMapTo(this.onCheckedFalse())
+      switchMapTo(storeData$.pipe(map((data) => this.onCheckedTrue(data))))
     );
 
-    merge(true$, false$).subscribe((rows) => this.rowsSubject$.next(rows));
+    const false$ = checked$.pipe(
+      filter((checked) => !checked),
+      switchMapTo(storeData$.pipe(map((data) => this.onCheckedFalse(data))))
+    );
+
+    return merge(true$, false$);
   }
 
   public onToggleDeleteDisable(event: MatSlideToggleChange) {
     const checked = event.checked;
     this.checkedSubject.next(checked);
-
-    // const even$ = of(checked).pipe(
-    //   filter((isCheck) => isCheck),
-    //   switchMapTo(
-    //     this.rowsSubject$.asObservable().pipe(
-    //       take(1),
-    //       map((rows) => {
-    //         const evenRows = [...rows];
-    //         evenRows[0] = new TableRowModel({
-    //           ...evenRows[0],
-    //           item: { ...evenRows[0].item, id: 2 },
-    //         });
-    //         return evenRows;
-    //       })
-    //     )
-    //   )
-    // );
-    // const notEven$ = of(checked).pipe(
-    //   filter((isCheck) => !isCheck),
-    //   switchMapTo(
-    //     this.rowsSubject$.asObservable().pipe(
-    //       take(1),
-    //       map((rows) => {
-    //         const notEvenRows = [...rows];
-    //         notEvenRows[0] = new TableRowModel({
-    //           ...notEvenRows[0],
-    //           item: { ...notEvenRows[0].item, id: 1 },
-    //         });
-
-    //         return notEvenRows;
-    //       })
-    //     )
-    //   )
-    // );
-
-    // merge(even$, notEven$).subscribe((rows) => {
-    //   this.rowsSubject$.next(rows);
-    // });
   }
   public onToggleDeleteShow(event: MatSlideToggleChange) {}
 
-  private setRowsOnEdit() {
+  private setRowsOnEdit(rows$: Observable<TableRowModel[]>) {
     return this.dataSource.listen$.edit().pipe(
       switchMap((state: RowsState) => {
+        console.log('edit');
+
+
         const { row } = state;
-        return this.handleEditEvent(row, 'id');
+        return this.handleEditEvent(rows$, row, 'id');
       })
     );
   }
 
-  private handleEditEvent(row: TableRowModel, key: string) {
-    return this.rowsSubject$.asObservable().pipe(
+  private handleEditEvent(
+    rows$: Observable<TableRowModel[]>,
+    row: TableRowModel,
+    key: string
+  ) {
+    return rows$.pipe(
       take(1),
       map((rows) => {
+        console.log(rows)
+
         const updateRows = [...rows].map((tableRow) => {
           if (tableRow.item[key] === row.item[key]) {
             const form = this.formService.createQuestionGroup({
