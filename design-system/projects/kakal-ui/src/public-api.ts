@@ -86,6 +86,14 @@ export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
 
+// dialog
+export * from './lib/dialog/dialog.module';
+export * from './lib/dialog/dialog.component';
+export * from './lib/dialog-alert/dialog-alert.component';
+export * from './lib/dialog/dialog.service'
+
+
+
 // sidenav
 export * from './lib/sidenav/sidenav.module';
 export * from './lib/sidenav/sidenav.component';
