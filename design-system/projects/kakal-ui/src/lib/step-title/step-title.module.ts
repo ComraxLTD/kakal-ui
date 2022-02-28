@@ -8,6 +8,7 @@ import { StepTitleComponent } from './step-title.component';
 
 @NgModule({
   declarations: [StepTitleComponent],
+  exports: [StepTitleComponent],
   imports: [KKLDirectivesModule, KKLTypographyModule,CommonModule,CoreModule],
 })
 export class KKLStepTitleModule {}
