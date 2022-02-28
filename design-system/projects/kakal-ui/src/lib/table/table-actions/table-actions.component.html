@@ -11,15 +11,18 @@
       *ngTemplateOutlet="
         startSlot;
         context: {
-          $implicit: { row: this.row, panel: this.panel, column: this.column }
+          $implicit: { row: this.row, panel: this.row.panel, column: this.column }
         }
       "
     ></ng-template>
   </ng-container>
 
   <ng-container *ngIf="editButton$ | async as editButton">
+
+
     <!-- edit button -->
     <ng-container *ngIf="!editButton.show; else saveBlock">
+
       <button
         mat-icon-button
         [class.mat-raised-button]="
@@ -79,7 +82,7 @@
       *ngTemplateOutlet="
         endSlot;
         context: {
-          $implicit: { row: this.row, panel: this.panel, column: this.column }
+          $implicit: { row: this.row, panel: this.row.panel, column: this.column }
         }
       "
     ></ng-template>

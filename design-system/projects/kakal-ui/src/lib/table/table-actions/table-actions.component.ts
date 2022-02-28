@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
 } from '@angular/core';
 import { MatExpansionPanel } from '@angular/material/expansion';
 
@@ -18,7 +19,6 @@ import { ActionState } from './table-actions.model';
 export interface ButtonActionState {
   edit$?: Observable<ActionState>;
   delete$?: Observable<ActionState>;
-  events: TableEvent;
 }
 
 @Component({
@@ -27,19 +27,20 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
+
   @Input() row: TableRowModel<Object>;
   @Input() column: TableColumnModel<Object>;
-  @Input() panel: MatExpansionPanel;
-  @Input() tableActionState: ButtonActionState;
 
-  @Input() public hasDelete: boolean;
 
-  // handle table events
-  @Input() public events$: Observable<TableEvent>;
+  @Input() hasEdit: boolean;
+  @Input() hasDelete: boolean;
+
+  @Input() events$: Observable<TableEvent>;
+  @Input() buttonsActionState: ButtonActionState;
 
   // custom button slot
-  @Input() public startSlot: ElementRef;
-  @Input() public endSlot: ElementRef;
+  @Input() public startSlot: TemplateRef<any>;
+  @Input() public endSlot: TemplateRef<any>;
 
   @Output() edit: EventEmitter<void> = new EventEmitter<void>();
   @Output() delete: EventEmitter<void> = new EventEmitter<void>();
@@ -54,7 +55,7 @@ export class TableActionsComponent implements OnInit {
   ngOnInit(): void {
     this.validInputs();
 
-    if (this.events$) {
+    if (this.events$ && this.hasEdit) {
       this.editButton$ = this.setEditStateByEvent$();
     }
 
@@ -68,6 +69,8 @@ export class TableActionsComponent implements OnInit {
           (event === 'edit' || event === 'create') && !this.row.editable;
         const show =
           (event === 'edit' || event === 'create') && this.row.editable;
+
+          console.log(disabled)
         return { show, event, disabled };
       })
     );
@@ -85,8 +88,8 @@ export class TableActionsComponent implements OnInit {
   }
 
   private setDeleteState(): Observable<ActionState> {
-    if (this.tableActionState) {
-      return this.tableActionState.delete$;
+    if (this.buttonsActionState) {
+      return this.buttonsActionState.delete$;
     } else {
       return of({ show: this.hasDelete, disabled: !this.hasDelete });
     }

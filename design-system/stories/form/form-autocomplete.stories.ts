@@ -96,6 +96,16 @@ export default {
         },
       },
     },
+    autocomplete: {
+      name: 'autocomplete',
+      description:
+      'Event that is emitted whenever the user is typing. ',
+      table: {
+        type: {
+          summery: 'autocomplete: EventEmitter<FormOption>',
+        },
+      },
+    },
     optionsSelected: {
       name: 'optionsSelected',
       description:
