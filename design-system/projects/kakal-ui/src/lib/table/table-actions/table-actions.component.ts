@@ -7,13 +7,14 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { TableColumnModel } from '../../columns/column.model';
 import { TableEvent } from '../models/table-event';
 import { TableRowModel } from '../models/table-row.model';
-import { Observable, of } from 'rxjs';
+import { merge, Observable, of } from 'rxjs';
 import { ActionState } from './table-actions.model';
 import { RowsState } from '../models/table.state';
+import { TableDataSource } from '../models/table-datasource';
 
 export interface ButtonActionState {
   edit$?: Observable<ActionState>;
@@ -28,6 +29,7 @@ export interface ButtonActionState {
 export class TableActionsComponent implements OnInit {
   @Input() row: TableRowModel;
   @Input() column: TableColumnModel;
+  @Input() dataSource: TableDataSource;
 
   @Input() hasEdit: boolean;
   @Input() hasDelete: boolean;
@@ -44,7 +46,7 @@ export class TableActionsComponent implements OnInit {
   @Output() cancel: EventEmitter<RowsState> = new EventEmitter<RowsState>();
   @Output() save: EventEmitter<RowsState> = new EventEmitter<RowsState>();
 
-  public editButton$: Observable<ActionState>;
+  public editState$: Observable<ActionState>;
   public deleteState$: Observable<ActionState>;
 
   constructor() {}
@@ -53,31 +55,40 @@ export class TableActionsComponent implements OnInit {
     this.validInputs();
 
     if (this.event$ && this.hasEdit) {
-      this.editButton$ = this.setEditStateByEvent$();
+      this.editState$ = this.setEditStateByEvent$();
     }
 
     this.deleteState$ = this.setDeleteState();
   }
 
   private setEditStateByEvent$() {
-    return this.event$.pipe(
-      map((event: TableEvent) => {
-        console.log(event);
+    const onEdit$ = this.dataSource.listen$.edit().pipe(
+      filter((state) => state.row.item.id === this.row.item.id),
+      map((state: RowsState) => {
+        const { row, event } = state;
+        const disabled = !row.editable;
+        const show = !row.editable;
 
-        const disabled =
-          (event === 'edit' || event === 'create') && !this.row.editable;
-        const show =
-          (event === 'edit' || event === 'create') && this.row.editable;
-
-        return { show, event, disabled };
+        return { show, event, disabled, valid: row.form.formGroup.valid };
       })
     );
+
+    const onDefault$ = this.dataSource.listen$.default().pipe(
+      map((state: RowsState) => {
+        const { event } = state;
+        const disabled = false;
+        const show = true;
+
+        return { show, event, disabled, valid: false };
+      })
+    );
+
+    return merge(onDefault$, onEdit$);
   }
   private setDeleteStateByEvent$() {
     return this.event$.pipe(
       map((event: TableEvent) => {
-        const disabled =
-          (event === 'edit' || event === 'create') && !this.row.editable;
+        const disabled = this.row.editable;
         const show =
           (event === 'edit' || event === 'create') && this.row.editable;
         return { show, event, disabled };
@@ -95,7 +106,7 @@ export class TableActionsComponent implements OnInit {
 
   // private handleShowDelete(): Observable<ActionState> {
   //   if (this.event$ && this.hasDelete) {
-  //     return this.setEditButton$().pipe(
+  //     return this.setEditState$().pipe(
   //       map(({ show, event }) => {
   //         return { show: !show, disabled: show, event };
   //       })

@@ -17,6 +17,7 @@ export class TableRowModel<T = any> {
     editable?: boolean;
     expanded?: boolean;
     selectable?: boolean;
+    form?: QuestionGroupModel<T>;
     panel?: MatExpansionPanel;
     questionsGroup?: {};
   }) {
@@ -26,5 +27,6 @@ export class TableRowModel<T = any> {
     this.selectable = options?.selectable || false;
     this.expanded = options?.expanded || false;
     this.panel = options?.panel || null;
+    this.form = options?.form || null;
   }
 }

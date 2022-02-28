@@ -17,18 +17,18 @@
     ></ng-template>
   </ng-container>
 
-  <ng-container *ngIf="editButton$ | async as editButton">
-    {{ editButton | json }}
+  <ng-container *ngIf="editState$ | async as editState">
+    {{ editState | json }}
     <!-- edit button -->
-    <ng-container *ngIf="!editButton.show; else saveBlock">
+    <ng-container *ngIf="editState.show; else saveBlock">
       <button
         mat-icon-button
         [class.mat-raised-button]="
-          editButton.disabled || row.item?.disabledActions?.edit
+          editState.disabled || row.item?.disabledActions?.edit
         "
         (click)="onEdit()"
         matTooltip="ערוך"
-        [disabled]="editButton.disabled || row.item?.disabledActions?.edit"
+        [disabled]="editState.disabled || row.item?.disabledActions?.edit"
       >
         <kkl-icon key="edit"></kkl-icon>
       </button>
@@ -39,19 +39,19 @@
       <button
         mat-raised-button
         class="kkl-save-button"
-        (click)="onSave(editButton.event)"
+        (click)="onSave(editState.event)"
         appBorder
-        [disabled]="!row.form.formGroup.valid"
+        [disabled]="!editState.valid"
         matTooltip="שמור"
       >
-        <kkl-typography color="text" [disabled]="!row.form.formGroup.valid">
+        <kkl-typography color="text" [disabled]="!editState.valid">
           שמור
         </kkl-typography>
       </button>
       <button
         matTooltip="בטל"
         mat-icon-button
-        (click)="onCancel(editButton.event)"
+        (click)="onCancel(editState.event)"
         matTooltip="בטל"
       >
         <kkl-icon key="cancel"></kkl-icon>

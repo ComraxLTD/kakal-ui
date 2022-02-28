@@ -12,6 +12,10 @@ export declare type TableEvent =
   | 'form'
   | 'selected'
   | 'reset'
+  | 'selectRows'
+  | 'addOptions'
+  | 'updateOptions'
+  | 'updateSortDir'
   | 'updateOptionsSelected'
   | 'updateMulti';
 

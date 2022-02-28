@@ -10,12 +10,19 @@ import {
   merge,
   take,
 } from 'rxjs';
+import { QuestionGroupModel } from '../../../../../kakal-ui/src/lib/form/models/question-group.model';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
 import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../../../../kakal-ui/src/lib/table/models/table-row.model';
-import { TableActionStatenMap } from '../../../../../kakal-ui/src/lib/table/models/table.state';
+import {
+  RowsState,
+  TableActionStatenMap,
+} from '../../../../../kakal-ui/src/lib/table/models/table.state';
 import { ActionStateModel } from '../../../../../kakal-ui/src/lib/table/table-actions/table-actions.model';
-import { ButtonActionState } from '../../../../../kakal-ui/src/public-api';
+import {
+  ButtonActionState,
+  FormService,
+} from '../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-action-table',
@@ -35,6 +42,8 @@ export class ActionTableComponent implements OnInit {
   public event$: Observable<TableEvent>;
 
   public tableActionMap$: Observable<TableActionStatenMap>;
+
+  constructor(private formService: FormService) {}
 
   ngOnInit(): void {
     this.tableActionMap$ = this.setRowsButtonActionsState();
@@ -113,10 +122,38 @@ export class ActionTableComponent implements OnInit {
   }
   public onToggleDeleteShow(event: MatSlideToggleChange) {}
 
-  public onEditEvent(row : TableRowModel<any>) {
+  public onEditEvent(state: RowsState) {
+    const { row } = state;
+    const editable = row.editable;
 
-    console.log(row)
+    of(editable)
+      .pipe(
+        switchMapTo(
+          this.rows$.asObservable().pipe(
+            take(1),
+            map((rows) => {
+              const updateRows = [...rows];
+              const itemIndex: number = updateRows.findIndex(
+                (tableRow: TableRowModel) => tableRow.item.id === row.item.id
+              );
 
-    // this.dataSource.actions.edit({})
+              const form = this.formService.createQuestionGroup({
+                questions: [],
+              });
+
+              updateRows[itemIndex] = new TableRowModel({
+                ...updateRows[itemIndex],
+                editable: !row.editable,
+                form,
+              });
+              return { rows: updateRows, updateRow: updateRows[itemIndex] };
+            })
+          )
+        )
+      )
+      .subscribe(({ rows, updateRow }) => {
+        // this.rows$.next(rows);
+        this.dataSource.actions.edit({ row: updateRow });
+      });
   }
 }

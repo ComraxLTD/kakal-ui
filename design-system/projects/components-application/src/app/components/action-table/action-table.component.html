@@ -8,27 +8,25 @@
     >
   </div>
   <mat-divider [vertical]="true"></mat-divider>
-  <div fxLayout="column" fxLayoutGap="5rem" fxFlex="80">
+  <div fxLayout="column" fxLayoutGap="5rem">
     <ng-container *ngFor="let row of rows$ | async">
-      <div fxLayout="column">
-        <div fxLayout="column" fxLayoutGap="2rem">
-          <div>
-            <span>row : {{ row.item | json }}</span>
-          </div>
-          <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
-            <kkl-table-actions
-              [row]="row"
-              [hasDelete]="true"
-              [hasEdit]="true"
-              [event$]="event$"
-              (edit)="onEditEvent($event)"
-              [buttonsActionState]="tableActionMap[row.item.id]"
-            ></kkl-table-actions>
-            <div>
-              {{ tableActionMap[row.item.id] | json }}
-            </div>
-          </ng-container>
+      <div fxLayout="column" fxLayoutAlign="center start">
+        <div>
+          <pre>row : {{ row.item | json }}</pre>
         </div>
+        <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
+          <kkl-table-actions
+            [row]="row"
+            [dataSource]="dataSource"
+            [hasDelete]="true"
+            [hasEdit]="true"
+            [event$]="event$"
+            (edit)="onEditEvent($event)"
+            [buttonsActionState]="tableActionMap[row.item.id]"
+          ></kkl-table-actions>
+          <pre>delete : {{ tableActionMap[row.item.id].delete$ | async | json }}</pre>
+          <pre>edit : {{ tableActionMap[row.item.id].edit$ | async | json }}</pre>
+        </ng-container>
       </div>
       <mat-divider></mat-divider>
     </ng-container>
