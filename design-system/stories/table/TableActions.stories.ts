@@ -1,3 +1,4 @@
+import { EventEmitter } from '@angular/core';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { Observable, of } from 'rxjs';
 import { TableDataSource } from '../../projects/kakal-ui/src/lib/table/models/table-datasource';
