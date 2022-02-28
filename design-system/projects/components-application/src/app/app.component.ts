@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { BehaviorSubject, map, Observable, of } from 'rxjs';
 import { QuestionGroupModel } from '../../../kakal-ui/src/lib/form/models/question-group.model';
@@ -66,7 +67,7 @@ export class AppComponent implements OnInit {
     },
   ];
   public formGroup: QuestionGroupModel;
-
+  public control:FormControl = new FormControl();
   public tableActionMap$: Observable<TableActionStatenMap>;
 
   public dataSource = new TableDataSource();
