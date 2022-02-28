@@ -96,7 +96,7 @@ export default {
       'Event that is emitted whenever an edit action clicked. ',
       table: {
         type: {
-          summery: 'edit: EventEmitter<void>',
+          summery: 'edit: EventEmitter<RowsState>',
         },
       },
     },
@@ -106,7 +106,7 @@ export default {
       'Event that is emitted whenever a delete action clicked. ',
       table: {
         type: {
-          summery: 'delete: EventEmitter<void>',
+          summery: 'delete: EventEmitter<RowsState>',
         },
       },
       control : EventEmitter
@@ -117,7 +117,7 @@ export default {
       'Event that is emitted whenever a cancel action clicked. ',
       table: {
         type: {
-          summery: 'cancel: EventEmitter<TableEvent>',
+          summery: 'cancel: EventEmitter<RowsState>',
         },
       },
     },
@@ -127,7 +127,7 @@ export default {
       'Event that is emitted whenever a save action clicked. ',
       table: {
         type: {
-          summery: 'save: EventEmitter<TableEvent>',
+          summery: 'save: EventEmitter<RowsState>',
         },
       },
     },
