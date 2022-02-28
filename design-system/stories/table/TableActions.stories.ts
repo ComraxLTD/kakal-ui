@@ -148,7 +148,6 @@ const tableDataSource: TableDataSource<Object> = new TableDataSource();
 const events$: Observable<TableEvent> = tableDataSource.getEvents$();
 
 const delete$ = new ActionStateModel({ event: 'delete' });
-const buttonsActionState: ButtonActionState = { delete$: delete$.getState$() };
 
 tableActions.args = {
   row: new TableRowModel({}),
@@ -156,5 +155,4 @@ tableActions.args = {
   hasDelete: true,
   hasEdit: true,
   events$: events$,
-  buttonsActionState: buttonsActionState,
 };

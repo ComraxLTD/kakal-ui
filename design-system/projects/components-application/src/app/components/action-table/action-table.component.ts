@@ -22,7 +22,10 @@ import {
   RowsState,
   TableActionStatenMap,
 } from '../../../../../kakal-ui/src/lib/table/models/table.state';
-import { ActionStateModel } from '../../../../../kakal-ui/src/lib/table/table-actions/table-actions.model';
+import {
+  ActionState,
+  ActionStateModel,
+} from '../../../../../kakal-ui/src/lib/table/table-actions/table-actions.model';
 import {
   ButtonActionState,
   FormService,
@@ -54,7 +57,6 @@ export class ActionTableComponent implements OnInit {
   }
 
   private setDeleteButtonStateByEvent(row: TableRowModel, event: TableEvent) {
-    console.log(event);
     switch (event) {
       case 'edit':
         return new ActionStateModel({
@@ -71,7 +73,6 @@ export class ActionTableComponent implements OnInit {
     }
   }
   private setEditButtonStateByEvent(row: TableRowModel, event: TableEvent) {
-    console.log(event);
     switch (event) {
       case 'edit':
         return new ActionStateModel({
@@ -193,20 +194,51 @@ export class ActionTableComponent implements OnInit {
           this.rows$.asObservable().pipe(
             take(1),
             map((rows) => {
-              const updateRows = [...rows];
-              const itemIndex: number = updateRows.findIndex(
+              const itemIndex: number = rows.findIndex(
                 (tableRow: TableRowModel) => tableRow.item.id === row.item.id
               );
 
-              const form = this.formService.createQuestionGroup({
-                questions: [],
+              const updateRows = [...rows].map((tableRow) => {
+                if (tableRow.item.id === row.item.id) {
+                  const form = this.formService.createQuestionGroup({
+                    questions: [],
+                  });
+                  tableRow = {
+                    ...tableRow,
+                    editable: true,
+                    form,
+                    actionState: {
+                      ...tableRow.actionState,
+                      edit: {
+                        ...tableRow.actionState.edit,
+                        show: false,
+                      } as ActionState,
+                      delete: {
+                        ...tableRow.actionState.delete,
+                        show: false,
+                      } as ActionState,
+                    },
+                  };
+                } else {
+                  tableRow = {
+                    ...tableRow,
+                    editable: false,
+                    actionState: {
+                      ...tableRow.actionState,
+                      edit: {
+                        ...tableRow.actionState.edit,
+                        disabled: true,
+                      } as ActionState,
+                    },
+                  };
+                }
+
+                return new TableRowModel({
+                  ...tableRow,
+                });
               });
 
-              updateRows[itemIndex] = new TableRowModel({
-                ...updateRows[itemIndex],
-                editable: !row.editable,
-                // form,
-              });
+        
               return { rows: updateRows, updateRow: updateRows[itemIndex] };
             })
           )
@@ -214,7 +246,6 @@ export class ActionTableComponent implements OnInit {
       )
       .subscribe(({ rows, updateRow }) => {
         this.rows$.next(rows);
-        this.dataSource.actions.edit({ row: updateRow });
       });
   }
 }

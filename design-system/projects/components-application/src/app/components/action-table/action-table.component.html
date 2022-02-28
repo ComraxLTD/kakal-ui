@@ -12,20 +12,18 @@
     <ng-container *ngFor="let row of rows$ | async">
       <div fxLayout="column" fxLayoutAlign="center start">
         <div>
-          <pre>row : {{ row | json }}</pre>
+          <pre>row.item : {{ row.item | json }}</pre>
+          <pre>row.editable : {{ row.editable | json }}</pre>
         </div>
-        <ng-container *ngIf="tableActionMap$ | async as tableActionMap">
-          <kkl-table-actions
-            [row]="row"
-            [dataSource]="dataSource"
-            [hasDelete]="true"
-            [hasEdit]="true"
-            (edit)="onEditEvent($event)"
-            [buttonsActionState]="tableActionMap[row.item.id]"
-          ></kkl-table-actions>
-          <pre>delete : {{ tableActionMap[row.item.id].delete | json }}</pre>
-          <pre>edit : {{ tableActionMap[row.item.id].edit | json }}</pre>
-        </ng-container>
+        <kkl-table-actions
+          [row]="row"
+          [dataSource]="dataSource"
+          [hasDelete]="true"
+          [hasEdit]="true"
+          (edit)="onEditEvent($event)"
+          [buttonsActionState]="row.actionState"
+        ></kkl-table-actions>
+        <pre>row.actionState : {{ row.actionState | json }}</pre>
       </div>
       <mat-divider></mat-divider>
     </ng-container>
