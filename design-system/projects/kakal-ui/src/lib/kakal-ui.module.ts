@@ -22,6 +22,7 @@ import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
+import { KKLTableActionsModule } from './table/table-actions/table-actions.module';
 import { KKLColumnsModule} from './columns/column.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
@@ -67,7 +68,8 @@ import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-exam
     KKLFormCurrencyModule,
     KKLFormUploadModule,
 
-    // KKLColumnsModule,
+    KKLTableActionsModule,
+    KKLColumnsModule,
 
     KKLPipesModule,
     KKLDirectivesModule,

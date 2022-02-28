@@ -7,7 +7,7 @@ import { KKLFormDateModule } from '../../projects/kakal-ui/src/lib/form/form-dat
 import { QuestionDateModel } from '../../projects/kakal-ui/src/lib/form/form-date/question-date.model';
 
 export default {
-  title: 'form/Date',
+  title: 'Form/Date',
   decorators: [
     moduleMetadata({
       imports: [KKLFormDateModule],
