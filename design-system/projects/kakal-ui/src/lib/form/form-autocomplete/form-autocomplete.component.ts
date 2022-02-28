@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
@@ -27,8 +28,8 @@ export class FormAutocompleteComponent implements OnInit {
   @Input() public panelWidth: boolean;
   @Input() public multi: boolean;
 
-  @Input() public optionsSlot: ElementRef;
-  
+  @Input() public optionSlot: TemplateRef<any>;
+
   @Input() public selector: (config: {
     selector: string;
     options: SelectOption[];
@@ -40,7 +41,9 @@ export class FormAutocompleteComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.optionSlot)
+  }
 
 
   public search(query: string): void {

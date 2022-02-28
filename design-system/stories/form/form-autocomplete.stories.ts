@@ -8,7 +8,7 @@ import { FormAutocompleteExComponent } from 'projects/kakal-ui/src/lib/examples/
 import { FormControl } from '@angular/forms';
 
 export default {
-  title: 'form',
+  title: 'Form',
   decorators: [
     moduleMetadata({
       imports: [KKLFormAutoCompleteExModule],
@@ -78,14 +78,6 @@ export default {
       defaultValue: false,
       description: 'Specify if the autocomplete is a multi choice.',
     },
-    formDataSource: {
-      description: 'An Object which handle all form events',
-      table: {
-        type: {
-          summary: 'FormDataSource',
-        },
-      },
-    },
     control: {
       name: 'control',
       description: 'An Angular FormControl instance ',
@@ -145,8 +137,6 @@ autoComplete.args = {
     { value: '3', label: 'thierd' },
     { value: '4', label: 'foruth' },
   ],
-  control: new FormControl(),
-  formDataSource: new FormDataSource(),
 };
 
 export const autocompleteMulti = Template.bind({});
@@ -160,6 +150,4 @@ autocompleteMulti.args = {
     { value: '3', label: 'thierd' },
     { value: '4', label: 'foruth' },
   ],
-  formDataSource: new FormDataSource(),
-  control: new FormControl(),
 };

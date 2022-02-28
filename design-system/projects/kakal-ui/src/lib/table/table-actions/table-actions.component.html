@@ -1,0 +1,87 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  dir="rtl"
+  fxLayoutGap="1rem"
+  fxFill
+>
+  <!-- slots buttons -->
+  <ng-container>
+    <ng-template
+      *ngTemplateOutlet="
+        startSlot;
+        context: {
+          $implicit: { row: this.row, panel: this.panel, column: this.column }
+        }
+      "
+    ></ng-template>
+  </ng-container>
+
+  <ng-container *ngIf="editButton$ | async as editButton">
+    <!-- edit button -->
+    <ng-container *ngIf="!editButton.show; else saveBlock">
+      <button
+        mat-icon-button
+        [class.mat-raised-button]="
+          editButton.disabled || row.item?.disabledActions?.edit
+        "
+        (click)="onEdit()"
+        matTooltip="ערוך"
+        [disabled]="editButton.disabled || row.item?.disabledActions?.edit"
+      >
+        <kkl-icon key="edit"></kkl-icon>
+      </button>
+    </ng-container>
+
+    <!-- save button -->
+    <ng-template #saveBlock>
+      <button
+        mat-raised-button
+        class="kkl-save-button"
+        (click)="onSave(editButton.event)"
+        appBorder
+        [disabled]="!row.form.formGroup.valid"
+        matTooltip="שמור"
+      >
+        <kkl-typography color="text" [disabled]="!row.form.formGroup.valid">
+          שמור
+        </kkl-typography>
+      </button>
+      <button
+        matTooltip="בטל"
+        mat-icon-button
+        (click)="onCancel(editButton.event)"
+        matTooltip="בטל"
+      >
+        <kkl-icon key="cancel"></kkl-icon>
+      </button>
+    </ng-template>
+  </ng-container>
+
+  <!-- delete button -->
+  <ng-container *ngIf="deleteState$ | async as deleteState">
+    <ng-container *ngIf="deleteState.show">
+      <button
+        mat-icon-button
+        (click)="onDelete()"
+        [class.mat-raised-button]="deleteState.disabled"
+        [disabled]="deleteState.disabled"
+        matTooltip="מחק"
+      >
+        <kkl-icon key="delete"></kkl-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <!-- slots buttons -->
+  <ng-container>
+    <ng-template
+      *ngTemplateOutlet="
+        endSlot;
+        context: {
+          $implicit: { row: this.row, panel: this.panel, column: this.column }
+        }
+      "
+    ></ng-template>
+  </ng-container>
+</div>

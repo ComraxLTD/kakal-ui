@@ -7,7 +7,7 @@ import { FormCurrencyComponent } from '../../projects/kakal-ui/src/lib/form/form
 import { QuestionCurrencyModel } from '../../projects/kakal-ui/src/lib/form/form-currency/question-currency.model';
 
 export default {
-  title: 'form',
+  title: 'Form',
   decorators: [
     moduleMetadata({
       imports: [KKLFormCurrencyModule],
