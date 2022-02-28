@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { Observable, of } from 'rxjs';
 import { TableDataSource } from '../../projects/kakal-ui/src/lib/table/models/table-datasource';
-import { TableEvent } from '../../projects/kakal-ui/src/lib/table/models/table-events';
+import { TableEvent } from '../../projects/kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../projects/kakal-ui/src/lib/table/models/table-row.model';
 import { ActionStateModel } from '../../projects/kakal-ui/src/lib/table/table-actions/table-actions.model';
 import {
@@ -109,6 +109,7 @@ export default {
           summery: 'delete: EventEmitter<void>',
         },
       },
+      control : EventEmitter
     },
     cancel: {
       name: 'cancel',

@@ -3,7 +3,7 @@ import { TableColumnModel } from '../../columns/column.model';
 import { FormDataSource } from '../../form/models/form-data-source.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
-import { TableEvent } from './table-events';
+import { TableEvent } from './table-event';
 import { ColumnState, RowsState } from './table.state';
 
 export class TableDataSource<T> implements DataSource<T> {

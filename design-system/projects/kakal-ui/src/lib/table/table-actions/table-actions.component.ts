@@ -9,7 +9,7 @@ import {
 
 import { map } from 'rxjs/operators';
 import { TableColumnModel } from '../../columns/column.model';
-import { TableEvent } from '../models/table-events';
+import { TableEvent } from '../models/table-event';
 import { TableRowModel } from '../models/table-row.model';
 import { Observable, of } from 'rxjs';
 import { ActionState } from './table-actions.model';
@@ -31,7 +31,7 @@ export class TableActionsComponent implements OnInit {
   @Input() hasEdit: boolean;
   @Input() hasDelete: boolean;
 
-  @Input() events$: Observable<TableEvent>;
+  @Input() event$: Observable<TableEvent>;
   @Input() buttonsActionState: ButtonActionState;
 
   // custom button slot
@@ -51,7 +51,7 @@ export class TableActionsComponent implements OnInit {
   ngOnInit(): void {
     this.validInputs();
 
-    if (this.events$ && this.hasEdit) {
+    if (this.event$ && this.hasEdit) {
       this.editButton$ = this.setEditStateByEvent$();
     }
 
@@ -59,7 +59,7 @@ export class TableActionsComponent implements OnInit {
   }
 
   private setEditStateByEvent$() {
-    return this.events$.pipe(
+    return this.event$.pipe(
       map((event: TableEvent) => {
         const disabled =
           (event === 'edit' || event === 'create') && !this.row.editable;
@@ -72,7 +72,7 @@ export class TableActionsComponent implements OnInit {
     );
   }
   private setDeleteStateByEvent$() {
-    return this.events$.pipe(
+    return this.event$.pipe(
       map((event: TableEvent) => {
         const disabled =
           (event === 'edit' || event === 'create') && !this.row.editable;
@@ -92,7 +92,7 @@ export class TableActionsComponent implements OnInit {
   }
 
   // private handleShowDelete(): Observable<ActionState> {
-  //   if (this.events$ && this.hasDelete) {
+  //   if (this.event$ && this.hasDelete) {
   //     return this.setEditButton$().pipe(
   //       map(({ show, event }) => {
   //         return { show: !show, disabled: show, event };

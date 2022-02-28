@@ -18,11 +18,14 @@ export class ActionTableComponent implements OnInit {
   public dataSource = new TableDataSource();
 
   public rows$ = new BehaviorSubject<number[]>([1, 2, 3]);
+  // public event$ : Observable<TableEvent>;
+
 
   public tableActionMap$: Observable<TableActionStatenMap>;
 
   ngOnInit(): void {
     this.tableActionMap$ = this.setRowsButtonActionsState();
+    // this.event$ = this.dataSource.getEvents$()
   }
 
   private setRowsButtonActionsState(): Observable<TableActionStatenMap> {

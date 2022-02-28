@@ -1,4 +1,4 @@
-import { TableEvent } from '../models/table-events';
+import { TableEvent } from '../models/table-event';
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 
 export interface ActionState {
