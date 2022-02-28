@@ -6,6 +6,7 @@ export class QuestionPhoneModel extends QuestionNumberModel {
     constructor(options) {
         super(options);
         this.icon = 'phone';
+        this.placeHolder = options.placeHolder || 'טלפון'
         this.validations = options.validations ? [...options?.validations, ValidationService.regex('phone')] : 
         [ValidationService.regex('phone')];
         this.controlType = 'cleave';
