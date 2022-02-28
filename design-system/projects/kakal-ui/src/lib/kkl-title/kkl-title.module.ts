@@ -9,5 +9,6 @@ import { TitleComponent } from './kkl-title.component';
 @NgModule({
   declarations: [TitleComponent],
   imports: [KKLDirectivesModule, KKLTypographyModule,CommonModule,CoreModule],
+  exports: [TitleComponent],
 })
 export class KklTitleModule {}
