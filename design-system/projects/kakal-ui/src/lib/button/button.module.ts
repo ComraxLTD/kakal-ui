@@ -13,7 +13,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { KKLIconModule } from '../icon/icon.module';
 import { KKLTypographyModule } from '../typography/typography.module';
-import { MatTooltip } from '@angular/material/tooltip';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { MatTooltip } from '@angular/material/tooltip';
     MatListModule,
     MatSelectModule,
     MatIconModule,
-    MatTooltip,
+    MatTooltipModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatAutocompleteModule,
