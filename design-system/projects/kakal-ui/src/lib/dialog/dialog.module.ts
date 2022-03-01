@@ -7,6 +7,7 @@ import { KKLTypographyModule } from '../typography/typography.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { CommonModule } from '@angular/common';
 import { KKLDirectivesModule } from '../directives/directives.module';
+import { DialogService } from '../../public-api';
 
 @NgModule({
   declarations: [DialogAlertComponent, DialogComponent],
@@ -17,6 +18,7 @@ import { KKLDirectivesModule } from '../directives/directives.module';
     KKLIconModule,
     KKLDirectivesModule,
   ],
+  // providers:[DialogService,MatDialog,DialogData],
   exports: [DialogAlertComponent, DialogComponent],
 })
 export class KKLDialogModule {}

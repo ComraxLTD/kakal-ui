@@ -1,15 +1,28 @@
-import { Observable } from "rxjs";
-import { SelectOption } from "../../form/models/question-select.model";
-import { ColumnModel} from '../../columns/column.model'
-import { TableEvent } from "./table-events";
-import { SortDirection } from "@angular/material/sort";
-import { TableRowModel } from "./table-row.model";
-import { ButtonActionState } from "../table-actions/table-actions.component";
+import { Observable } from 'rxjs';
+import { SelectOption } from '../../form/models/question-select.model';
+import { TableColumnModel } from '../../columns/column.model';
+import { TableEvent } from './table-event';
+import { SortDirection } from '@angular/material/sort';
+import { TableRowModel } from './table-row.model';
+import { ButtonActionState } from '../table-actions/table-actions.component';
+import { QuestionGroupModel } from '../../form/models/question-group.model';
 
-export interface RowsState<T> {
+export interface TableState {
+  selected: { [key: number]: boolean };
+  editing: number[];
+  extended: number[];
+  disabled: number[];
+  activeColumns: string[];
+  form: QuestionGroupModel;
+  event: TableEvent;
+}
+
+export interface RowsState<T = any> {
   event?: TableEvent;
+  item?: T;
+  itemIndex?: number;
   row?: TableRowModel<T>;
-  column?: ColumnModel<T>;
+  column?: TableColumnModel<T>;
   options?: any;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };
 }
@@ -20,8 +33,6 @@ export type ColumnState<T> = {
   event?: TableEvent;
   key?: keyof T;
   options$?: Observable<SelectOption[]>;
-  // multiOptions$?: Observable<FilterMap>;
-  // valueMap$?: Observable<{ [key: string]: ListItem<T> }>;
   type?: 'filter' | 'select';
   dir?: SortDirection;
 };
@@ -29,4 +40,3 @@ export type ColumnState<T> = {
 export declare type TableActionStatenMap = {
   [key: number]: Observable<ButtonActionState>;
 };
-

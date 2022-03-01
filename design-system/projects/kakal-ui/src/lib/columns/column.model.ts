@@ -11,7 +11,7 @@ export declare type ColumnType =
   | 'expend'
   | 'currency';
 
-export class ColumnModel<T> {
+export class TableColumnModel<T = any> {
   public columnDef?: ColumnDef<T>;
   public label?: string;
   public format?: string;

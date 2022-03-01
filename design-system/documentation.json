@@ -11,7 +11,7 @@
     "miscellaneous": {
         "variables": [
             {
-                "name": "autoComplete",
+                "name": "Autocomplete",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/form/form-autocomplete.stories.ts",
@@ -126,7 +126,7 @@
         "groupedVariables": {
             "stories/form/form-autocomplete.stories.ts": [
                 {
-                    "name": "autoComplete",
+                    "name": "Autocomplete",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/form/form-autocomplete.stories.ts",
@@ -306,7 +306,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "autoComplete",
+                "name": "Autocomplete",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

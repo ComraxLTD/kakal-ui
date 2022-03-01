@@ -11,9 +11,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { MaterialModule } from '../../../kakal-ui/src/lib/angular-material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ActionTableComponent } from './components/action-table/action-table.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ActionTableComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

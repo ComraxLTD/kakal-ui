@@ -11,6 +11,10 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
+import { KKLIconModule } from '../icon/icon.module';
+import { KKLTypographyModule } from '../typography/typography.module';
+import {MatTooltipModule} from '@angular/material/tooltip';
+
 
 @NgModule({
   imports: [
@@ -22,9 +26,12 @@ import { MatIconModule } from '@angular/material/icon';
     MatListModule,
     MatSelectModule,
     MatIconModule,
+    MatTooltipModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    KKLIconModule,
+    KKLTypographyModule
   ],
   declarations: [ButtonComponent],
   exports: [ButtonComponent]
