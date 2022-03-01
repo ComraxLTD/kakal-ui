@@ -103,7 +103,12 @@ export * from './lib/kkl-title/kkl-title.component';
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
-export * from './lib/dialog/dialog.service';
+export * from './lib/dialog/dialog.service'
+
+// spinner
+export * from './lib/spinner/spinner.component';
+export * from './lib/spinner/spinner.module';
+export * from './lib/spinner/spinner.service';
 
 // sidenav
 export * from './lib/sidenav/sidenav.module';
