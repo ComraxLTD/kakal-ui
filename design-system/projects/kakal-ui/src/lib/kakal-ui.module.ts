@@ -29,9 +29,10 @@ import { SidenavModule } from './sidenav/sidenav.module';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { KKLDialogModule } from './dialog/dialog.module';
 import { DialogExampleComponent } from './examples/dialog-example/dialog-example.component';
+import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent, DialogExampleComponent],
+  declarations: [FormExampleComponent, SidenavExampleComponent, FormPhoneComponent],
   imports: [
     CoreModule,
     CommonModule,
