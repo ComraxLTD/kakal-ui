@@ -12,7 +12,6 @@ import {
 } from '@angular/material/core';
 
 import { MessageService } from '../services/message.service';
-import { QuestionDateModel } from './question-date.model';
 import { FormOption } from '../models/form-data-source.model';
 
 import { map, Observable, startWith } from 'rxjs';
@@ -53,18 +52,13 @@ export class FormDateComponent implements OnInit {
   @Input() public minDate: Date;
   @Input() public index: number;
   @Input() public appearance: Appearance;
-
+  // MatFormFieldAppearance
   public message$: Observable<string>;
   public cleave = { date: true, datePattern: ['d', 'm', 'Y'] };
-
+  
   @Output() public dateEvent: EventEmitter<MatDatepickerInputEvent<Date>> =
     new EventEmitter();
-  @Output() start: EventEmitter<MatDatepickerInputEvent<Date>> =
-    new EventEmitter();
-  @Output() end: EventEmitter<MatDatepickerInputEvent<Date>> =
-    new EventEmitter();
 
-  @Output() rangeFormEmit: EventEmitter<any> = new EventEmitter();
   rangeForm = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
@@ -76,12 +70,10 @@ export class FormDateComponent implements OnInit {
 
   ngOnInit(): void {
     this.control = this.control || new FormControl();
-    console.log(this.control.value)
     if (this.control.value) {
       if (this.control.value.start || this.control.value.end) this.rangeForm.setValue(this.control.value)
     }
     this.message$ = this.setErrorMessage$();
-    this.rangeFormEmit.emit(this.rangeForm);
   }
 
   private getFormOption(): FormOption {
@@ -117,12 +109,11 @@ export class FormDateComponent implements OnInit {
     if (event.value) {
       if (type === 'start') {
         this.rangeForm.controls['start'].setValue(event.value['_d']);
-        this.start.emit(event.value['_d']);
       } else {
         this.rangeForm.controls['end'].setValue(event.value['_d']);
-        this.end.emit(event.value['_d']);
       }
       if (this.control) this.control.setValue(this.rangeForm.value);
+      this.dateEvent.emit(this.rangeForm.value);
     }
   }
 
