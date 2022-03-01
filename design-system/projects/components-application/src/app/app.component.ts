@@ -76,5 +76,5 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-  }
+    this.control.setValue({start:new Date(),end:new Date()})
 }

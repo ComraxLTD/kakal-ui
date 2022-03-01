@@ -29,6 +29,7 @@ export * from './lib/form/form-date/form-date.module';
 
 export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.module';
+export * from './lib/form/form-input/form-input.service';
 
 export * from './lib/form/form-texteditor/form-texteditor.module';
 export * from './lib/form/form-texteditor/form-texteditor.component';
@@ -54,17 +55,13 @@ export * from './lib/form/services/validations.service';
 // FORM QUESTIONS //
 
 export * from './lib/form/models/question-autocomplete';
-export * from './lib/form/models/question-email.model';
 export * from './lib/form/models/question-file.model';
 export * from './lib/form/models/question-group.model';
-export * from './lib/form/models/question-phone.model';
 export * from './lib/form/models/question-number.model';
 export * from './lib/form/models/question-select.model';
 export * from './lib/form/models/question-sum.model';
 export * from './lib/form/models/question-text.model';
 export * from './lib/form/models/question-textarea.model';
-export * from './lib/form/models/question-texteditor.model';
-export * from './lib/form/models/question-time.model';
 export * from './lib/form/models/question-toggle.model';
 export * from './lib/form/models/question.model';
 
