@@ -1,6 +1,6 @@
 import { moduleMetadata } from '@storybook/angular';
-import {KklTitleModule} from '../../projects/kakal-ui/src/lib/kkl-title/kkl-title.module'
 import { Story, Meta } from '@storybook/angular/types-6-0';
+import {KklTitleModule} from '../../projects/kakal-ui/src/lib/kkl-title/kkl-title.module'
 import { TitleComponent } from '../../projects/kakal-ui/src/lib/kkl-title/kkl-title.component';
 
 export default {
