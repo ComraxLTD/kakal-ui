@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { TableDataSource } from '../../projects/kakal-ui/src/lib/table/models/table-datasource';
 import { TableEvent } from '../../projects/kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../projects/kakal-ui/src/lib/table/models/table-row.model';
-import { ActionStateModel } from '../../projects/kakal-ui/src/lib/table/table-actions/table-actions.model';
 import {
   ButtonActionState,
   KKLTableActionsModule,
@@ -37,43 +36,6 @@ export default {
       },
     },
 
-    hasDelete: {
-      name: 'hasDelete',
-      type: { name: 'boolean', required: false },
-      defaultValue: false,
-      description: 'Whether the action-table has a delete action.',
-      table: {
-        type: { summary: 'boolean' },
-      },
-    },
-    hasEdit: {
-      name: 'hasEdit',
-      type: { name: 'boolean', required: false },
-      defaultValue: false,
-      description:
-        'Whether the action-table has an edit action. Automatically get save and cancel action.',
-      table: {
-        type: { summary: 'boolean' },
-      },
-    },
-    events$: {
-      name: 'events$',
-      defaultValue: '',
-      description:
-        'An Observable of TableEvents array. follow the current TableEvent. Get from TableDataSource instance from getEvents$() method',
-      table: {
-        type: { summary: 'Observable<TableEvents>' },
-      },
-    },
-    buttonsActionState: {
-      name: 'buttonsActionState',
-      defaultValue: '',
-      description:
-        'An Object to handle complicated button logic of disable and show state',
-      table: {
-        type: { summary: 'ButtonActionState' },
-      },
-    },
     startSlot: {
       name: 'startSlot',
       defaultValue: '',
@@ -147,12 +109,8 @@ const tableDataSource: TableDataSource<Object> = new TableDataSource();
 
 const events$: Observable<TableEvent> = tableDataSource.getEvents$();
 
-const delete$ = new ActionStateModel({ event: 'delete' });
 
 tableActions.args = {
   row: new TableRowModel({}),
   column: new TableColumnModel({}),
-  hasDelete: true,
-  hasEdit: true,
-  events$: events$,
 };
