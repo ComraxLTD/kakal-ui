@@ -28,9 +28,10 @@ import { KKLColumnsModule } from './columns/column.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { KKLDialogModule } from './dialog/dialog.module';
+import { DialogExampleComponent } from './examples/dialog-example/dialog-example.component';
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent],
+  declarations: [FormExampleComponent, SidenavExampleComponent, DialogExampleComponent],
   imports: [
     CoreModule,
     CommonModule,
