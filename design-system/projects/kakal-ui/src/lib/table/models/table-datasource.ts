@@ -5,9 +5,11 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { filter, map, switchMapTo } from 'rxjs/operators';
 import { TableEvent } from './table-event';
 import { ColumnState, RowsState } from './table.state';
+import { TableRowModel } from './table-row.model';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
+  private rowSubject: BehaviorSubject<TableRowModel<T>[]>;
   private formDataSource: FormDataSource;
   private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
 
@@ -17,6 +19,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   constructor() {
     this.dataSubject = new BehaviorSubject<T[]>([]);
+    this.rowSubject = new BehaviorSubject<TableRowModel<T>[]>([]);
     this.columnSubject = new BehaviorSubject<TableColumnModel<T>[]>([]);
 
     this.columnsStateSubject = new BehaviorSubject<ColumnState<T>>(null);
@@ -35,6 +38,13 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   public connect(): Observable<T[]> {
     return this.dataSubject.asObservable();
+  }
+  public loadRows(rows: TableRowModel<T>[]): void {
+    this.rowSubject.next([...rows]);
+  }
+
+  public connectRows(): Observable<TableRowModel<T>[]> {
+    return this.rowSubject.asObservable();
   }
 
   private loadColumns(columns: TableColumnModel<T>[]): void {
