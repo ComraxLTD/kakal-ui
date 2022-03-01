@@ -7,7 +7,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { filter, map } from 'rxjs/operators';
+import { filter, map, mapTo } from 'rxjs/operators';
 import { TableColumnModel } from '../../columns/column.model';
 import { TableEvent } from '../models/table-event';
 import { TableRowModel } from '../models/table-row.model';
@@ -27,7 +27,8 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
-  @Input() row: TableRowModel;
+  @Input() index: number;
+  @Input() item: any;
   @Input() column: TableColumnModel;
   @Input() dataSource: TableDataSource;
 
@@ -46,61 +47,104 @@ export class TableActionsComponent implements OnInit {
   @Output() cancel: EventEmitter<RowsState> = new EventEmitter<RowsState>();
   @Output() save: EventEmitter<RowsState> = new EventEmitter<RowsState>();
 
-  public editState: ActionState;
+  public editState$: Observable<ActionState>;
   public deleteState$: Observable<ActionState>;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.validInputs();
-
-    this.editState = this.buttonsActionState.edit;
+    this.editState$ = this.setEditState();
 
     this.deleteState$ = this.setDeleteState();
   }
 
-  // private setEditState$(): Observable<ActionState> {
-  //   if (this.buttonsActionState) {
-  //     return this.buttonsActionState.edit;
-  //   } else {
-  //     return of({ show: this.hasEdit, disabled: !this.hasEdit });
-  //   }
+  private setEditStateOnDefault() {
+    return this.dataSource.connectTableState().pipe(
+      filter((tableState) => tableState.event === 'default'),
+      map((tableState) => {
+        return tableState.editing;
+      }),
+      mapTo({
+        show: true,
+        disabled: false,
+      } as ActionState)
+    );
+  }
+
+  private setEditStateOnEdit() {
+    return this.dataSource.connectTableState().pipe(
+      filter((tableState) => tableState.event === 'edit'),
+      map((tableState) => {
+        return tableState.editing;
+      }),
+      // filter((editing) => editing.indexOf(this.item.id) !== -1),
+      map((editing) => {
+
+        console.log(editing)
+
+        return {
+          show: editing.indexOf(this.item.id) === -1,
+          disabled: editing.indexOf(this.item.id) !== -1,
+        } as ActionState;
+      })
+    );
+  }
+
+  private setEditState() {
+    const default$ = this.setEditStateOnDefault();
+    const edit$ = this.setEditStateOnEdit();
+
+    return merge(default$, edit$);
+
+    // return this.dataSource.connectTableState().pipe(
+    //   map((tableState) => {
+    //     console.log(tableState);
+    //     return tableState.editing;
+    //   }),
+    //   // filter((editing) => !!editing[this.index]),
+    //   map((editing: number[]) => {
+    //     return {
+    //       show: true,
+    //       disabled: editing.indexOf(this.item.id) === -1,
+    //     } as ActionState;
+    //   })
+    // );
+  }
+
+  // private setEditStateByEvent$() {
+  //   const onEdit$ = this.dataSource.listen$.edit().pipe(
+  //     filter((state) => state.row.item.id === this.row.item.id),
+  //     map((state: RowsState) => {
+  //       const { row, event } = state;
+  //       const disabled = !row.editable;
+  //       const show = !row.editable;
+
+  //       return { show, event, disabled, valid: row.form.formGroup.valid };
+  //     })
+  //   );
+
+  //   const onDefault$ = this.dataSource.listen$.default().pipe(
+  //     map((state: RowsState) => {
+  //       const { event } = state;
+  //       const disabled = false;
+  //       const show = true;
+
+  //       return { show, event, disabled, valid: false };
+  //     })
+  //   );
+
+  //   return merge(onDefault$, onEdit$);
   // }
-
-  private setEditStateByEvent$() {
-    const onEdit$ = this.dataSource.listen$.edit().pipe(
-      filter((state) => state.row.item.id === this.row.item.id),
-      map((state: RowsState) => {
-        const { row, event } = state;
-        const disabled = !row.editable;
-        const show = !row.editable;
-
-        return { show, event, disabled, valid: row.form.formGroup.valid };
-      })
-    );
-
-    const onDefault$ = this.dataSource.listen$.default().pipe(
-      map((state: RowsState) => {
-        const { event } = state;
-        const disabled = false;
-        const show = true;
-
-        return { show, event, disabled, valid: false };
-      })
-    );
-
-    return merge(onDefault$, onEdit$);
-  }
-  private setDeleteStateByEvent$() {
-    return this.event$.pipe(
-      map((event: TableEvent) => {
-        const disabled = this.row.editable;
-        const show =
-          (event === 'edit' || event === 'create') && this.row.editable;
-        return { show, event, disabled };
-      })
-    );
-  }
+  // private setDeleteStateByEvent$() {
+  //   return this.event$.pipe(
+  //     map((event: TableEvent) => {
+  //       const disabled = this.row.editable;
+  //       const show =
+  //         (event === 'edit' || event === 'create') && this.row.editable;
+  //       return { show, event, disabled };
+  //     })
+  //   );
+  // }
 
   private setDeleteState(): Observable<ActionState> {
     if (this.buttonsActionState) {
@@ -111,25 +155,28 @@ export class TableActionsComponent implements OnInit {
   }
 
   public onDelete() {
-    this.delete.emit({ row: this.row });
+    this.delete.emit({ item: this.item, itemIndex: this.index });
   }
 
   public onEdit() {
-    this.edit.emit({ row: this.row });
+    this.edit.emit({ item: this.item, itemIndex: this.index });
   }
 
   public onCancel(event: TableEvent) {
-    this.cancel.emit({ row: this.row, column: this.column, event });
+    this.cancel.emit({
+      item: this.item,
+      column: this.column,
+      event,
+      itemIndex: this.index,
+    });
   }
 
   public onSave(event: TableEvent) {
-    this.save.emit({ row: this.row, column: this.column, event });
-  }
-
-  private validInputs() {
-    // add validation
-    if (!this.row) {
-      throw new Error('kkl-table-actions must get row model as Input');
-    }
+    this.save.emit({
+      item: this.item,
+      column: this.column,
+      event,
+      itemIndex: this.index,
+    });
   }
 }

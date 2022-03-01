@@ -1,13 +1,24 @@
-import { Observable } from "rxjs";
-import { SelectOption } from "../../form/models/question-select.model";
-import { TableColumnModel} from '../../columns/column.model'
-import { TableEvent } from "./table-event";
-import { SortDirection } from "@angular/material/sort";
-import { TableRowModel } from "./table-row.model";
-import { ButtonActionState } from "../table-actions/table-actions.component";
+import { Observable } from 'rxjs';
+import { SelectOption } from '../../form/models/question-select.model';
+import { TableColumnModel } from '../../columns/column.model';
+import { TableEvent } from './table-event';
+import { SortDirection } from '@angular/material/sort';
+import { TableRowModel } from './table-row.model';
+import { ButtonActionState } from '../table-actions/table-actions.component';
+
+export interface TableState {
+  selected: string[];
+  editing: number[];
+  extended: number[];
+  disabled: number[];
+  activeColumns: string[];
+  event: TableEvent;
+}
 
 export interface RowsState<T = any> {
   event?: TableEvent;
+  item?: T;
+  itemIndex?: number;
   row?: TableRowModel<T>;
   column?: TableColumnModel<T>;
   options?: any;
@@ -29,4 +40,3 @@ export type ColumnState<T> = {
 export declare type TableActionStatenMap = {
   [key: number]: Observable<ButtonActionState>;
 };
-

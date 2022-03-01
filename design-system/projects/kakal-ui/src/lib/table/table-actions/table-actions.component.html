@@ -11,13 +11,13 @@
       *ngTemplateOutlet="
         startSlot;
         context: {
-          $implicit: { row: this.row, column: this.column }
+          $implicit: { item: this.item, column: this.column }
         }
       "
     ></ng-template>
   </ng-container>
 
-  <ng-container *ngIf="buttonsActionState.edit as editState">
+  <ng-container *ngIf="editState$ | async as editState">
     {{ editState | json }}
     <!-- edit button -->
     <ng-container *ngIf="editState.show; else saveBlock">
@@ -78,7 +78,7 @@
       *ngTemplateOutlet="
         endSlot;
         context: {
-          $implicit: { row: this.row, column: this.column }
+          $implicit: { item: this.item, column: this.column }
         }
       "
     ></ng-template>

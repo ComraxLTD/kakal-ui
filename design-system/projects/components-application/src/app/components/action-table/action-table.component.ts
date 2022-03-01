@@ -16,11 +16,15 @@ import {
   combineLatestAll,
   combineLatest,
   startWith,
+  iif,
 } from 'rxjs';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
 import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../../../../kakal-ui/src/lib/table/models/table-row.model';
-import { RowsState } from '../../../../../kakal-ui/src/lib/table/models/table.state';
+import {
+  RowsState,
+  TableState,
+} from '../../../../../kakal-ui/src/lib/table/models/table.state';
 import { ActionState } from '../../../../../kakal-ui/src/lib/table/table-actions/table-actions.model';
 import { FormService } from '../../../../../kakal-ui/src/public-api';
 
@@ -39,28 +43,37 @@ export class ActionTableComponent implements OnInit {
     { id: 3, status: 'active' },
   ]);
 
-  private rows: TableRowModel<any>[] = [
-    new TableRowModel({ item: { id: 1, status: 'active' } }),
-    new TableRowModel({ item: { id: 2, status: 'disable' } }),
-    new TableRowModel({ item: { id: 3, status: 'active' } }),
-  ];
-
-  public rowsSubject$ = new BehaviorSubject<TableRowModel<any>[]>(this.rows);
   public event$: Observable<TableEvent>;
   public rows$: Observable<TableRowModel<any>[]>;
+  public data$: Observable<any[]>;
 
   private checkedSubject: Subject<boolean>;
 
   constructor(private formService: FormService) {}
 
-  public actionStateCallback = {
-    disabled: (item) => item.id % 2 != 0,
-  };
+  // public actionStateCallback = {
+  //   return (row: TableRowModel)    delete:  => {
+  //     return {
+  //       ...row.actionState.delete,
+  //       disabled: row.item % 2 !== 0,
+  //     } as ActionState;
+  //   },
+  // };
+
+  public actionStateCallback(row: TableRowModel) {
+    return {
+      delete: {
+        ...row.actionState.delete,
+        disabled: row.item.id % 2 !== 0,
+      } as ActionState,
+    };
+  }
 
   ngOnInit(): void {
     this.checkedSubject = new Subject<boolean>();
 
-    this.rows$ = this.onRowsChange();
+    // this.rows$ = this.setRowsState();
+    this.data$ = this.setData();
   }
 
   private setData() {
@@ -69,50 +82,73 @@ export class ActionTableComponent implements OnInit {
 
     return merge(storeData$, changedData$).pipe(
       switchMap((data) => {
-        console.log(data);
         this.dataSource.load(data);
         return this.dataSource.connect();
       })
     );
   }
 
-  private setRowsFromData() {
-    return this.setData().pipe(
-      map((data) => {
-        return data.map((item) => new TableRowModel({ item }));
-      })
-    );
+  private initRows(data) {
+    const rows = data.map((item) => new TableRowModel({ item }));
+    this.dataSource.loadRows(rows);
+    return this.dataSource.connectRows();
   }
 
-  private onRowsChange() {
-    const rows$ = this.setRowsFromData();
-    const rowWithAction$ = this.setRowsWithAction(
-      rows$,
-      this.actionStateCallback
-    );
-    const rowsWithEvent$ = this.setRowsOnEdit(rowWithAction$).pipe(startWith(null));
-
-    return rowWithAction$
-  }
-
-  private setRowsWithAction(rows$, callback?): Observable<TableRowModel[]> {
-    return rows$.pipe(
-      map((rows: TableRowModel[]) => {
-        return rows.map((row: TableRowModel) => {
-          console.log('action');
+  private setRowState(data) {
+    return this.dataSource.connectRows().pipe(
+      map((rows) => {
+        return rows.map((row: TableRowModel, index: number) => {
           return {
             ...row,
-            actionState: {
-              ...row.actionState,
-              delete: {
-                ...row.actionState.delete,
-                disabled: callback?.disabled(row.item),
-              } as ActionState,
-            },
-          } as TableRowModel;
+            item: { ...data[index] },
+          };
         });
       })
     );
+  }
+
+  private setRowsFromData() {
+    return this.setData().pipe(
+      switchMap((data) => {
+        return this.dataSource.initRows().pipe(
+          take(1),
+          switchMap((init) =>
+            iif(() => init, this.initRows(data), this.setRowState(data))
+          )
+        );
+      })
+    );
+  }
+
+  private setRowsState() {
+    return combineLatest([
+      this.setData(),
+      this.dataSource.connectTableState(),
+    ]).pipe(
+      map(([data, tableState]) => {
+        const { editing } = tableState;
+
+        // rows = this.setRowsWithAction(rows, this.actionStateCallback);
+
+        if (editing.length) {
+          console.log(editing);
+        }
+
+        return data;
+      })
+    );
+  }
+
+  private setRowsWithAction(rows, callback?): TableRowModel[] {
+    return rows.map((row: TableRowModel) => {
+      return {
+        ...row,
+        actionState: {
+          ...row.actionState,
+          ...callback(row),
+        },
+      } as TableRowModel;
+    });
   }
 
   private onCheckedTrue(data) {
@@ -150,74 +186,87 @@ export class ActionTableComponent implements OnInit {
   }
   public onToggleDeleteShow(event: MatSlideToggleChange) {}
 
-  private setRowsOnEdit(rows$: Observable<TableRowModel[]>) {
-    return this.dataSource.listen$.edit().pipe(
-      switchMap((state: RowsState) => {
-        console.log('edit');
-
-
-        const { row } = state;
-        return this.handleEditEvent(rows$, row, 'id');
-      })
-    );
-  }
-
   private handleEditEvent(
-    rows$: Observable<TableRowModel[]>,
+    rows: TableRowModel[],
     row: TableRowModel,
     key: string
-  ) {
-    return rows$.pipe(
-      take(1),
-      map((rows) => {
-        console.log(rows)
-
-        const updateRows = [...rows].map((tableRow) => {
-          if (tableRow.item[key] === row.item[key]) {
-            const form = this.formService.createQuestionGroup({
-              questions: [],
-            });
-            tableRow = {
-              ...tableRow,
-              editable: true,
-              form,
-              actionState: {
-                ...tableRow.actionState,
-                edit: {
-                  ...tableRow.actionState.edit,
-                  show: false,
-                } as ActionState,
-                delete: {
-                  ...tableRow.actionState.delete,
-                  show: false,
-                } as ActionState,
-              },
-            };
-          } else {
-            tableRow = {
-              ...tableRow,
-              editable: false,
-              actionState: {
-                ...tableRow.actionState,
-                edit: {
-                  ...tableRow.actionState.edit,
-                  disabled: true,
-                } as ActionState,
-              },
-            };
-          }
-
-          return new TableRowModel({
-            ...tableRow,
-          });
+  ): TableRowModel<any>[] {
+    const updateRows = [...rows].map((tableRow) => {
+      if (tableRow.item[key] === row.item[key]) {
+        const form = this.formService.createQuestionGroup({
+          questions: [],
         });
+        tableRow = {
+          ...tableRow,
+          editable: true,
+          form,
+          actionState: {
+            ...tableRow.actionState,
+            edit: {
+              ...tableRow.actionState.edit,
+              show: false,
+            } as ActionState,
+            delete: {
+              ...tableRow.actionState.delete,
+              show: false,
+            } as ActionState,
+          },
+        };
+      } else {
+        tableRow = {
+          ...tableRow,
+          editable: false,
+          actionState: {
+            ...tableRow.actionState,
+            edit: {
+              ...tableRow.actionState.edit,
+              disabled: true,
+            } as ActionState,
+          },
+        };
+      }
 
-        return updateRows;
-      })
-    );
+      return new TableRowModel({
+        ...tableRow,
+      });
+    });
+
+    return updateRows;
+  }
+
+  private updateArray(options: {
+    array: any[];
+    value: any;
+    itemIndex: number;
+    key?;
+  }) {
+    const { array, value, itemIndex, key } = options;
+    const index = array.indexOf(value);
+    if (index !== -1) {
+      array.splice(index, 1);
+    } else {
+      console.log('work');
+      array.push(value);
+    }
+
+    return array;
   }
 
   public onEditEvent(state: RowsState) {
-    this.dataSource.actions.edit(state);
+    const { item, itemIndex } = state;
+    const { editing } = this.dataSource.getTableState();
+    const tableState = {
+      ...this.dataSource.getTableState(),
+      editing: this.updateArray({
+        array: [...editing],
+        value: item.id,
+        itemIndex,
+        key: 'id',
+      }),
+
+      event: 'edit',
+    } as TableState;
+
+    this.dataSource.loadTableState(tableState);
   }
 }

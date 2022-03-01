@@ -4,12 +4,13 @@ import { FormDataSource } from '../../form/models/form-data-source.model';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter, map, switchMapTo } from 'rxjs/operators';
 import { TableEvent } from './table-event';
-import { ColumnState, RowsState } from './table.state';
+import { ColumnState, RowsState, TableState } from './table.state';
 import { TableRowModel } from './table-row.model';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
   private rowSubject: BehaviorSubject<TableRowModel<T>[]>;
+  private tableSubject: BehaviorSubject<TableState>;
   private formDataSource: FormDataSource;
   private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
 
@@ -21,6 +22,14 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.dataSubject = new BehaviorSubject<T[]>([]);
     this.rowSubject = new BehaviorSubject<TableRowModel<T>[]>([]);
     this.columnSubject = new BehaviorSubject<TableColumnModel<T>[]>([]);
+    this.tableSubject = new BehaviorSubject<TableState>({
+      selected: [],
+      editing: [],
+      extended: [],
+      disabled: [],
+      activeColumns: [],
+      event: 'default',
+    });
 
     this.columnsStateSubject = new BehaviorSubject<ColumnState<T>>(null);
     this.rowsStateSubject = new BehaviorSubject<RowsState<T>>({
@@ -47,6 +56,12 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.rowSubject.asObservable();
   }
 
+  public initRows(): Observable<boolean> {
+    return this.rowSubject
+      .asObservable()
+      .pipe(map((rows) => rows.length === 0));
+  }
+
   private loadColumns(columns: TableColumnModel<T>[]): void {
     this.columnSubject.next([...columns]);
   }
@@ -62,8 +77,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.columnsStateSubject.asObservable();
   }
 
-
-
   public getRowsState(): Observable<RowsState<T>> {
     return this.rowsStateSubject.asObservable();
   }
@@ -76,9 +89,18 @@ export class TableDataSource<T = any> implements DataSource<T> {
     );
   }
 
-  public getActionState() {
-
+  public getTableState(): TableState {
+    return this.tableSubject.value;
   }
+  public loadTableState(tableState: TableState): void {
+    this.tableSubject.next(tableState);
+  }
+
+  public connectTableState(): Observable<TableState> {
+    return this.tableSubject.asObservable();
+  }
+
+  public getActionState() {}
 
   private getStateByEvent(event: TableEvent): Observable<RowsState<T>> {
     return this.getEvents$([event]).pipe(switchMapTo(this.getRowsState()));

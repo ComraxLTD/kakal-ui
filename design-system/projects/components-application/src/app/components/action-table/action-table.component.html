@@ -9,21 +9,19 @@
   </div>
   <mat-divider [vertical]="true"></mat-divider>
   <div fxLayout="column" fxLayoutGap="5rem">
-    <ng-container *ngFor="let row of rows$ | async">
+    <ng-container *ngFor="let item of data$ | async; let i = index">
       <div fxLayout="column" fxLayoutAlign="center start">
         <div>
-          <pre>row.item : {{ row.item | json }}</pre>
-          <pre>row.editable : {{ row.editable | json }}</pre>
+          <pre>tem : {{ item | json }}</pre>
         </div>
         <kkl-table-actions
-          [row]="row"
+          [index]="i"
+          [item]="item"
           [dataSource]="dataSource"
           [hasDelete]="true"
           [hasEdit]="true"
           (edit)="onEditEvent($event)"
-          [buttonsActionState]="row.actionState"
         ></kkl-table-actions>
-        <pre>row.actionState : {{ row.actionState | json }}</pre>
       </div>
       <mat-divider></mat-divider>
     </ng-container>
