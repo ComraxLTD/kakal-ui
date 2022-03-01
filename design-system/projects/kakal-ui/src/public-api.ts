@@ -13,7 +13,6 @@ export * from './lib/typography/typography.module';
 export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.module';
 
-
 // form exports
 
 export * from './lib/form/models/form-data-source.model';
@@ -47,7 +46,6 @@ export * from './lib/form/form-currency/form-currency.service';
 export * from './lib/form/form-autocomplete/form-autocomplete.component';
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
 
-
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
@@ -69,26 +67,27 @@ export * from './lib/form/models/question.model';
 // TABLE EXPORTS
 // ------------------------------------------------------------------------------------------
 
-
 // COLUMNS
 
-export * from './lib/columns/column.module'
-export * from './lib/columns/columns.service'
-export * from './lib/columns/column.model'
+export * from './lib/columns/column.module';
+export * from './lib/columns/columns.service';
+export * from './lib/columns/column.model';
 
-export * from './lib/columns/column-filter/column-filter.component'
-export * from './lib/columns/column-filter/column-filter.module'
-export * from './lib/columns/column-filter/column-filter.service'
+export * from './lib/columns/column-filter/column-filter.component';
+export * from './lib/columns/column-filter/column-filter.module';
+export * from './lib/columns/column-filter/column-filter.service';
 
-export * from './lib/columns/column-form/column-form.component'
-export * from './lib/columns/column-form/column-form.module'
-
+export * from './lib/columns/column-form/column-form.component';
+export * from './lib/columns/column-form/column-form.module';
 
 // TABLE-ACTIONS
 
-export * from './lib/table/table-actions/table-actions.component'
-export * from './lib/table/table-actions/table-actions.module'
+export * from './lib/table/table-actions/table-actions.component';
+export * from './lib/table/table-actions/table-actions.module';
 
+
+
+// -------------------------------------------------------------------------------------------------------
 
 //menu
 export * from './lib/menu-item/menu-item.module';
@@ -100,19 +99,15 @@ export * from './lib/menu/menu.component';
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
-
 // dialog
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
-export * from './lib/dialog/dialog.service'
-
-
+export * from './lib/dialog/dialog.service';
 
 // sidenav
 export * from './lib/sidenav/sidenav.module';
 export * from './lib/sidenav/sidenav.component';
-
 
 // step title
 export * from './lib/step-title/step-title.module';
