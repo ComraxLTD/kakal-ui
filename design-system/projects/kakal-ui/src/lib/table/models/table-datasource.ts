@@ -23,11 +23,12 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.rowSubject = new BehaviorSubject<TableRowModel<T>[]>([]);
     this.columnSubject = new BehaviorSubject<TableColumnModel<T>[]>([]);
     this.tableSubject = new BehaviorSubject<TableState>({
-      selected: [],
+      selected: {},
       editing: [],
       extended: [],
       disabled: [],
       activeColumns: [],
+      form : null,
       event: 'default',
     });
 
@@ -100,7 +101,15 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.tableSubject.asObservable();
   }
 
-  public getActionState() {}
+  public getTableStateByEvent(eventFilters: TableEvent[]) {
+    return this.tableSubject.asObservable().pipe(
+      filter((tableState) => {
+        return eventFilters
+          ? eventFilters.indexOf(tableState.event) !== -1
+          : true;
+      })
+    );
+  }
 
   private getStateByEvent(event: TableEvent): Observable<RowsState<T>> {
     return this.getEvents$([event]).pipe(switchMapTo(this.getRowsState()));

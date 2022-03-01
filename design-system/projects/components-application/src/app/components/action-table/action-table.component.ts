@@ -25,7 +25,10 @@ import {
   RowsState,
   TableState,
 } from '../../../../../kakal-ui/src/lib/table/models/table.state';
-import { ActionState } from '../../../../../kakal-ui/src/lib/table/table-actions/table-actions.model';
+import {
+  ActionState,
+  ActionStateRules,
+} from '../../../../../kakal-ui/src/lib/table/table-actions/table-actions.model';
 import { FormService } from '../../../../../kakal-ui/src/public-api';
 
 @Component({
@@ -51,15 +54,6 @@ export class ActionTableComponent implements OnInit {
 
   constructor(private formService: FormService) {}
 
-  // public actionStateCallback = {
-  //   return (row: TableRowModel)    delete:  => {
-  //     return {
-  //       ...row.actionState.delete,
-  //       disabled: row.item % 2 !== 0,
-  //     } as ActionState;
-  //   },
-  // };
-
   public actionStateCallback(row: TableRowModel) {
     return {
       delete: {
@@ -69,10 +63,22 @@ export class ActionTableComponent implements OnInit {
     };
   }
 
+  public editDisableLogic(item, editing?: number[]) {
+    return item.id % 2 !== 0;
+  }
+  public deleteDisableLogic(item, editing?: number[]) {
+    return item.status % 2 !== 0;
+  }
+
+  public actionStateRules: ActionStateRules = {
+    disableDelete: (item) => item.status === 'disable',
+    showDelete: () => true,
+    disableEdit: (item) => item.id % 2 !== 0,
+    showEdit: () => true,
+  };
+
   ngOnInit(): void {
     this.checkedSubject = new Subject<boolean>();
-
-    // this.rows$ = this.setRowsState();
     this.data$ = this.setData();
   }
 
@@ -88,77 +94,16 @@ export class ActionTableComponent implements OnInit {
     );
   }
 
-  private initRows(data) {
-    const rows = data.map((item) => new TableRowModel({ item }));
-    this.dataSource.loadRows(rows);
-    return this.dataSource.connectRows();
-  }
-
-  private setRowState(data) {
-    return this.dataSource.connectRows().pipe(
-      map((rows) => {
-        return rows.map((row: TableRowModel, index: number) => {
-          return {
-            ...row,
-            item: { ...data[index] },
-          };
-        });
-      })
-    );
-  }
-
-  private setRowsFromData() {
-    return this.setData().pipe(
-      switchMap((data) => {
-        return this.dataSource.initRows().pipe(
-          take(1),
-          switchMap((init) =>
-            iif(() => init, this.initRows(data), this.setRowState(data))
-          )
-        );
-      })
-    );
-  }
-
-  private setRowsState() {
-    return combineLatest([
-      this.setData(),
-      this.dataSource.connectTableState(),
-    ]).pipe(
-      map(([data, tableState]) => {
-        const { editing } = tableState;
-
-        // rows = this.setRowsWithAction(rows, this.actionStateCallback);
-
-        if (editing.length) {
-          console.log(editing);
-        }
-
-        return data;
-      })
-    );
-  }
-
-  private setRowsWithAction(rows, callback?): TableRowModel[] {
-    return rows.map((row: TableRowModel) => {
-      return {
-        ...row,
-        actionState: {
-          ...row.actionState,
-          ...callback(row),
-        },
-      } as TableRowModel;
-    });
-  }
-
   private onCheckedTrue(data) {
     const updateData = [...data];
-    updateData[0] = { ...updateData[0], id: 2 };
+    // updateData[0] = { ...updateData[0], status: 'disable' };
+    updateData[0] = { ...updateData[0], id: 4 };
     return updateData;
   }
 
   private onCheckedFalse(data: any[]) {
     const updateData = [...data];
+    // updateData[0] = { ...updateData[0], status: 'active' };
     updateData[0] = { ...updateData[0], id: 1 };
     return updateData;
   }
@@ -186,54 +131,6 @@ export class ActionTableComponent implements OnInit {
   }
   public onToggleDeleteShow(event: MatSlideToggleChange) {}
 
-  private handleEditEvent(
-    rows: TableRowModel[],
-    row: TableRowModel,
-    key: string
-  ): TableRowModel<any>[] {
-    const updateRows = [...rows].map((tableRow) => {
-      if (tableRow.item[key] === row.item[key]) {
-        const form = this.formService.createQuestionGroup({
-          questions: [],
-        });
-        tableRow = {
-          ...tableRow,
-          editable: true,
-          form,
-          actionState: {
-            ...tableRow.actionState,
-            edit: {
-              ...tableRow.actionState.edit,
-              show: false,
-            } as ActionState,
-            delete: {
-              ...tableRow.actionState.delete,
-              show: false,
-            } as ActionState,
-          },
-        };
-      } else {
-        tableRow = {
-          ...tableRow,
-          editable: false,
-          actionState: {
-            ...tableRow.actionState,
-            edit: {
-              ...tableRow.actionState.edit,
-              disabled: true,
-            } as ActionState,
-          },
-        };
-      }
-
-      return new TableRowModel({
-        ...tableRow,
-      });
-    });
-
-    return updateRows;
-  }
-
   private updateArray(options: {
     array: any[];
     value: any;
@@ -245,7 +142,6 @@ export class ActionTableComponent implements OnInit {
     if (index !== -1) {
       array.splice(index, 1);
     } else {
-      console.log('work');
       array.push(value);
     }
 
@@ -268,5 +164,35 @@ export class ActionTableComponent implements OnInit {
     } as TableState;
 
     this.dataSource.loadTableState(tableState);
+  }
+  private onEditCloseEvent(state: RowsState) {
+    const { item, itemIndex } = state;
+    const { editing } = this.dataSource.getTableState();
+    const tableState = {
+      ...this.dataSource.getTableState(),
+      editing: this.updateArray({
+        array: [...editing],
+        value: item.id,
+        itemIndex,
+        key: 'id',
+      }),
+
+      event: 'close',
+    } as TableState;
+    this.dataSource.loadTableState(tableState);
+  }
+
+  public onCloseEvent(state: RowsState) {
+    const { event } = state;
+
+    if (event === 'edit') {
+      this.onEditCloseEvent(state);
+    }
+  }
+  public onSaveEvent(state: RowsState) {
+    const { event } = state;
+    if (event === 'edit') {
+      this.onEditCloseEvent(state);
+    }
   }
 }

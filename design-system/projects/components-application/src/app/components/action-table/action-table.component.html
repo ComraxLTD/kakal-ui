@@ -12,15 +12,16 @@
     <ng-container *ngFor="let item of data$ | async; let i = index">
       <div fxLayout="column" fxLayoutAlign="center start">
         <div>
-          <pre>tem : {{ item | json }}</pre>
+          <pre>item : {{ item | json }}</pre>
         </div>
         <kkl-table-actions
           [index]="i"
           [item]="item"
           [dataSource]="dataSource"
-          [hasDelete]="true"
-          [hasEdit]="true"
+          [actionStateRules]="actionStateRules"
           (edit)="onEditEvent($event)"
+          (close)="onCloseEvent($event)"
+          (save)="onSaveEvent($event)"
         ></kkl-table-actions>
       </div>
       <mat-divider></mat-divider>

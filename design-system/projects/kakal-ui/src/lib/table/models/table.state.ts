@@ -5,13 +5,15 @@ import { TableEvent } from './table-event';
 import { SortDirection } from '@angular/material/sort';
 import { TableRowModel } from './table-row.model';
 import { ButtonActionState } from '../table-actions/table-actions.component';
+import { QuestionGroupModel } from '../../form/models/question-group.model';
 
 export interface TableState {
-  selected: string[];
+  selected: { [key: number]: boolean };
   editing: number[];
   extended: number[];
   disabled: number[];
   activeColumns: string[];
+  form: QuestionGroupModel;
   event: TableEvent;
 }
 
@@ -31,8 +33,6 @@ export type ColumnState<T> = {
   event?: TableEvent;
   key?: keyof T;
   options$?: Observable<SelectOption[]>;
-  // multiOptions$?: Observable<FilterMap>;
-  // valueMap$?: Observable<{ [key: string]: ListItem<T> }>;
   type?: 'filter' | 'select';
   dir?: SortDirection;
 };

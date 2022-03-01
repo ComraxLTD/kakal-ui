@@ -18,7 +18,6 @@
   </ng-container>
 
   <ng-container *ngIf="editState$ | async as editState">
-    {{ editState | json }}
     <!-- edit button -->
     <ng-container *ngIf="editState.show; else saveBlock">
       <button
@@ -49,7 +48,7 @@
       <button
         matTooltip="בטל"
         mat-icon-button
-        (click)="onCancel(editState.event)"
+        (click)="onClose(editState.event)"
         matTooltip="בטל"
       >
         <kkl-icon key="cancel"></kkl-icon>
