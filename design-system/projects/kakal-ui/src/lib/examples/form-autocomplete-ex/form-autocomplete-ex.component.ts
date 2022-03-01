@@ -28,7 +28,7 @@ export class FormAutocompleteExComponent implements OnInit {
   @Input() public panelWidth: boolean;
   @Input() public multi: boolean;
 
-  public formDataSource: FormDataSource;
+  public formDataSource: FormDataSource = new FormDataSource();
   public options$: Observable<SelectOption[]>;
   public control: FormControl = new FormControl();
 

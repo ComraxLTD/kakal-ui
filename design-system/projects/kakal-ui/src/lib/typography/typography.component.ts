@@ -14,7 +14,7 @@ export class TypographyComponent implements OnInit {
   @Input() public underline:boolean;
   @Input() public color: Palette;
   @Input() public disabled: boolean
-  @Input() public dir:string;
+  @Input() public dir: 'rtl' | 'ltr';
 
   @Output() click: EventEmitter<void> = new EventEmitter()
 

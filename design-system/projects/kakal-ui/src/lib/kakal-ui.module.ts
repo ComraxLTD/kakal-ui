@@ -38,11 +38,15 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+
     KKLMenuModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
+
     SidenavModule,
+
+    // FORMS MODULES
     KKLFormModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
@@ -52,7 +56,10 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLFormUploadModule,
     KKLDialogModule,
     KKLFormTextEditorModule,
-    // KKLColumnsModule,
+
+    // TABLE MODULES
+    KKLTableActionsModule,
+    KKLColumnsModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
@@ -65,6 +72,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KklTitleModule,
     KKLStepTitleModule,
     SidenavModule,
+
     KKLFormModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
@@ -73,9 +81,11 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLFormSelectModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
-    KKLDialogModule,
+
     KKLTableActionsModule,
     KKLColumnsModule,
+
+    KKLDialogModule,
 
     KKLPipesModule,
     KKLDirectivesModule,

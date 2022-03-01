@@ -7,10 +7,10 @@ import {
 import { Question } from '../form/services/form.service';
 import { ListItem } from '../list-item/list-item.model';
 // import { FilterMap } from '../table-filters/table-filter.service';
-import { ColumnDef, ColumnModel } from './column.model';
+import { ColumnDef, TableColumnModel } from './column.model';
 
 export interface ColumnsData<T> {
-  columns: ColumnModel<T>[];
+  columns: TableColumnModel<T>[];
   columnsDefs: ColumnDef<T>[];
 }
 
@@ -21,14 +21,14 @@ export class ColumnsService<T> {
   constructor() {}
 
   public updateColumnsOptions(
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     key: ColumnDef<T>,
     type: 'select' | 'filter',
     options?: SelectOption[],
     selector?: string
-  ): ColumnModel<T>[] {
+  ): TableColumnModel<T>[] {
     const index = columns.findIndex(
-      (column: ColumnModel<T>) => column.columnDef === key
+      (column: TableColumnModel<T>) => column.columnDef === key
     );
 
     switch (type) {
@@ -54,12 +54,12 @@ export class ColumnsService<T> {
     return columns;
   }
   public updateColumnsOptionsSelect(
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     key: ColumnDef<T>,
     selected: string[]
-  ): ColumnModel<T>[] {
+  ): TableColumnModel<T>[] {
     const index = columns.findIndex(
-      (column: ColumnModel<T>) => column.columnDef === key
+      (column: TableColumnModel<T>) => column.columnDef === key
     );
 
     if (index === 1) {
@@ -84,7 +84,7 @@ export class ColumnsService<T> {
           ...columns[index].filterQuestion,
           options: [...selectedOptions],
         } as QuestionSelectModel,
-      } as ColumnModel<T>;
+      } as TableColumnModel<T>;
     }
 
     if (index === 1) {
@@ -95,10 +95,10 @@ export class ColumnsService<T> {
 
   public recursiveColumnsOptionsUpdate(
     multiOptions: any,
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     type: 'select' | 'filter',
     columnKey?: string
-  ): ColumnModel<T>[] {
+  ): TableColumnModel<T>[] {
     Object.entries(multiOptions).map(([key, options]) => {
       if (Array.isArray(options) && !columnKey) {
         columns = this.updateColumnsOptions(columns, key, type, options);
@@ -125,13 +125,13 @@ export class ColumnsService<T> {
 
   public updateOptionsValue(
     valueMap: { [key: string]: ListItem<T> },
-    columns: ColumnModel<T>[]
-  ): ColumnModel<T>[] {
+    columns: TableColumnModel<T>[]
+  ): TableColumnModel<T>[] {
     Object.entries(valueMap).map(([columnDef, item]) => {
       const { value, key } = item;
 
       const index = columns.findIndex(
-        (column: ColumnModel<T>) => column.columnDef === columnDef
+        (column: TableColumnModel<T>) => column.columnDef === columnDef
       );
 
       if (key) {
@@ -173,15 +173,15 @@ export class ColumnsService<T> {
   }
 
   private setColumnWithColumnDefs(
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     columnDefs: ColumnDef<T>[]
-  ): ColumnModel<T>[] {
+  ): TableColumnModel<T>[] {
     return columns.map((column, i) => {
       if (column.columnDef === 'select') {
         i++;
       }
 
-      return new ColumnModel<T>({
+      return new TableColumnModel<T>({
         ...column,
         columnDef: column.columnDef || columnDefs[i],
       });
@@ -189,7 +189,7 @@ export class ColumnsService<T> {
   }
 
   private setColumnDefsFromColumns(
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     columnDefs: ColumnDef<T>[]
   ): ColumnDef<T>[] {
     if (columns.length > columnDefs.length) {
@@ -203,7 +203,7 @@ export class ColumnsService<T> {
   }
 
   private getColumnsDefs(
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     columnDefs: ColumnDef<T>[]
   ) {
     return this.setSelect(this.setColumnDefsFromColumns(columns, columnDefs));
@@ -228,12 +228,12 @@ export class ColumnsService<T> {
   }
 
   private addSelectColumn(
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     disableSelect: boolean
-  ): ColumnModel<T>[] {
+  ): TableColumnModel<T>[] {
     const columnsWithSelect = [...columns];
 
-    const column = new ColumnModel<T>({
+    const column = new TableColumnModel<T>({
       columnDef: 'select',
       type: 'select',
       selectable: true,
@@ -244,9 +244,9 @@ export class ColumnsService<T> {
 
     return columnsWithSelect;
   }
-  private addActionsColumn(columns: ColumnModel<T>[]): ColumnModel<T>[] {
+  private addActionsColumn(columns: TableColumnModel<T>[]): TableColumnModel<T>[] {
     const columnsWithActions = [...columns];
-    const column = new ColumnModel<T>({
+    const column = new TableColumnModel<T>({
       columnDef: 'actions',
       type: 'actions',
     });
@@ -257,8 +257,8 @@ export class ColumnsService<T> {
   private setColumnsWithState(
     hasActions,
     filterable
-  ): (columns: ColumnModel<T>[]) => ColumnModel<T>[] {
-    return (columns: ColumnModel<T>[]) => {
+  ): (columns: TableColumnModel<T>[]) => TableColumnModel<T>[] {
+    return (columns: TableColumnModel<T>[]) => {
       let newColumns = [...columns];
 
       if (filterable) {
@@ -275,7 +275,7 @@ export class ColumnsService<T> {
 
   public getColumns(options: {
     model: T;
-    tableColumns: ColumnModel<T>[];
+    tableColumns: TableColumnModel<T>[];
     filters: ColumnDef<T>[];
     filterable?: boolean;
     selectable?: boolean;
@@ -310,7 +310,7 @@ export class ColumnsService<T> {
   }
 
   private unShiftSelect(
-    columns: ColumnModel<T>[],
+    columns: TableColumnModel<T>[],
     selectable: boolean,
     disableSelect: boolean
   ) {
@@ -320,9 +320,9 @@ export class ColumnsService<T> {
     return columns;
   }
 
-  private setSelectAndFilter(columns: ColumnModel<T>[]) {
-    return columns.map((column: ColumnModel<T>) => {
-      return new ColumnModel({
+  private setSelectAndFilter(columns: TableColumnModel<T>[]) {
+    return columns.map((column: TableColumnModel<T>) => {
+      return new TableColumnModel({
         ...column,
         filterable: true,
         sortable: true,

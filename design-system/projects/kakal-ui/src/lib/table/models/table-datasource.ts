@@ -1,15 +1,18 @@
 import { DataSource } from '@angular/cdk/collections';
-import { ColumnModel } from '../../columns/column.model';
+import { TableColumnModel } from '../../columns/column.model';
 import { FormDataSource } from '../../form/models/form-data-source.model';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
-import { TableEvent } from './table-events';
-import { ColumnState, RowsState } from './table.state';
+import { filter, map, switchMapTo } from 'rxjs/operators';
+import { TableEvent } from './table-event';
+import { ColumnState, RowsState, TableState } from './table.state';
+import { TableRowModel } from './table-row.model';
 
-export class TableDataSource<T> implements DataSource<T> {
+export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
+  private rowSubject: BehaviorSubject<TableRowModel<T>[]>;
+  private tableSubject: BehaviorSubject<TableState>;
   private formDataSource: FormDataSource;
-  private columnSubject: BehaviorSubject<ColumnModel<T>[]>;
+  private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
 
   private columnsStateSubject: BehaviorSubject<ColumnState<T>>;
   private rowsStateSubject: BehaviorSubject<RowsState<T>>;
@@ -17,7 +20,17 @@ export class TableDataSource<T> implements DataSource<T> {
 
   constructor() {
     this.dataSubject = new BehaviorSubject<T[]>([]);
-    this.columnSubject = new BehaviorSubject<ColumnModel<T>[]>([]);
+    this.rowSubject = new BehaviorSubject<TableRowModel<T>[]>([]);
+    this.columnSubject = new BehaviorSubject<TableColumnModel<T>[]>([]);
+    this.tableSubject = new BehaviorSubject<TableState>({
+      selected: {},
+      editing: [],
+      extended: [],
+      disabled: [],
+      activeColumns: [],
+      form : null,
+      event: 'default',
+    });
 
     this.columnsStateSubject = new BehaviorSubject<ColumnState<T>>(null);
     this.rowsStateSubject = new BehaviorSubject<RowsState<T>>({
@@ -36,14 +49,27 @@ export class TableDataSource<T> implements DataSource<T> {
   public connect(): Observable<T[]> {
     return this.dataSubject.asObservable();
   }
+  public loadRows(rows: TableRowModel<T>[]): void {
+    this.rowSubject.next([...rows]);
+  }
 
-  private loadColumns(columns: ColumnModel<T>[]): void {
+  public connectRows(): Observable<TableRowModel<T>[]> {
+    return this.rowSubject.asObservable();
+  }
+
+  public initRows(): Observable<boolean> {
+    return this.rowSubject
+      .asObservable()
+      .pipe(map((rows) => rows.length === 0));
+  }
+
+  private loadColumns(columns: TableColumnModel<T>[]): void {
     this.columnSubject.next([...columns]);
   }
 
   public connectColumns(
-    columns: ColumnModel<T>[]
-  ): Observable<ColumnModel<T>[]> {
+    columns: TableColumnModel<T>[]
+  ): Observable<TableColumnModel<T>[]> {
     this.loadColumns(columns);
     return this.columnSubject.asObservable();
   }
@@ -64,6 +90,31 @@ export class TableDataSource<T> implements DataSource<T> {
     );
   }
 
+  public getTableState(): TableState {
+    return this.tableSubject.value;
+  }
+  public loadTableState(tableState: TableState): void {
+    this.tableSubject.next(tableState);
+  }
+
+  public connectTableState(): Observable<TableState> {
+    return this.tableSubject.asObservable();
+  }
+
+  public getTableStateByEvent(eventFilters: TableEvent[]) {
+    return this.tableSubject.asObservable().pipe(
+      filter((tableState) => {
+        return eventFilters
+          ? eventFilters.indexOf(tableState.event) !== -1
+          : true;
+      })
+    );
+  }
+
+  private getStateByEvent(event: TableEvent): Observable<RowsState<T>> {
+    return this.getEvents$([event]).pipe(switchMapTo(this.getRowsState()));
+  }
+
   private setEvents(): Observable<TableEvent> {
     return this.rowsStateSubject.pipe(
       map((state) => {
@@ -73,54 +124,54 @@ export class TableDataSource<T> implements DataSource<T> {
   }
 
   // method to change row state to add - add form row in start of table
-  public add(data?: RowsState<T>) {
+  private add(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'add' });
   }
 
-  public create(data?: RowsState<T>) {
+  private create(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'create' });
   }
   // method to change row state to save - update new item from database
-  public save(data?: RowsState<T>) {
+  private save(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'save' });
   }
   // method to change row state to form - change all selected rows to form state
-  public form(data?: RowsState<T>) {
+  private form(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'form' });
   }
   // method to change row state to edit - change all selected rows to edit state
-  public edit(data: RowsState<T>) {
+  private edit(data: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'edit' });
   }
   // method to change row state to cancel - remove first row (use with add state)
-  public cancel(data?: RowsState<T>) {
+  private cancel(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'cancel' });
   }
 
   // method to change row state to default - remove changes from edit mode (use with add state)
-  public close(data?: RowsState<T>) {
+  private close(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'close' });
   }
   // method to change row state to expand - expand row
-  public expand(data?: RowsState<T>) {
+  private expand(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'expand' });
   }
   // method to change row state to delete - load new content from server
-  public delete(data?: RowsState<T>) {
+  private delete(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'delete' });
   }
 
   // method to mark rows as selected
-  public selectRows(data?: RowsState<T>) {
+  private selectRows(data?: RowsState<T>) {
     this.rowsStateSubject.next({ ...data, event: 'selected' });
   }
 
   // method to update columns options = selectOptions or filterOptions
-  public updateOptions(state: ColumnState<T>) {
+  private updateOptions(state: ColumnState<T>) {
     this.columnsStateSubject.next({ ...state });
   }
 
-  public updateSortDir(state: ColumnState<T>) {
+  private updateSortDir(state: ColumnState<T>) {
     this.columnsStateSubject.next({ ...state });
   }
 
@@ -151,5 +202,21 @@ export class TableDataSource<T> implements DataSource<T> {
     updateOptions: (state: ColumnState<T>) => this.updateOptions(state),
     updateSortDir: (state: ColumnState<T>) => this.updateSortDir(state),
     reset: (data?) => this.reset(data),
+  };
+
+  public listen$ = {
+    default: () => this.getStateByEvent('default'),
+    add: () => this.getStateByEvent('add'),
+    create: () => this.getStateByEvent('create'),
+    save: () => this.getStateByEvent('save'),
+    form: () => this.getStateByEvent('form'),
+    edit: () => this.getStateByEvent('edit'),
+    cancel: () => this.getStateByEvent('cancel'),
+    close: () => this.getStateByEvent('close'),
+    expand: () => this.getStateByEvent('expand'),
+    delete: () => this.getStateByEvent('delete'),
+    selectRows: () => this.getStateByEvent('selectRows'),
+    addOptions: () => this.getStateByEvent('addOptions'),
+    reset: () => this.getStateByEvent('reset'),
   };
 }
