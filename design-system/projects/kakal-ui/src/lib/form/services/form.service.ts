@@ -12,7 +12,6 @@ import { QuestionBaseModel } from '../models/question.model';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionTextModel } from '../models/question-text.model';
 import { QuestionSelectModel } from '../models/question-select.model';
-import { QuestionEmailModel } from '../models/question-email.model';
 import {
   GroupOptions,
   QuestionGroupModel,
@@ -24,9 +23,6 @@ import { QuestionSumModel } from '../models/question-sum.model';
 import { QuestionCurrencyModel } from '../form-currency/question-currency.model';
 import { QuestionDateModel } from '../form-date/question-date.model';
 import { QuestionFileModel } from '../models/question-file.model';
-import { QuestionPhoneModel } from '../models/question-phone.model';
-import { QuestionTimeModel } from '../models/question-time.model';
-import { QuestionTextEditorModel} from '../models/question-texteditor.model'
 
 export type ControlTemplate = [
   state: any,
@@ -51,10 +47,6 @@ export type Question =
   | QuestionNumberModel
   | QuestionAutocompleteModel
   | QuestionGroupModel
-  | QuestionEmailModel
-  | QuestionPhoneModel
-  | QuestionTimeModel
-  | QuestionTextEditorModel
   ;
 
 export interface QuestionGroup {
@@ -215,22 +207,14 @@ export class FormService {
         return new QuestionFileModel(fq);
       case 'radio':
         return new QuestionRadioModel(question);
-      case 'email':
-        return new QuestionEmailModel(question);
-      case 'phone':
-        return new QuestionPhoneModel(question);
       case 'textarea':
         return new QuestionTextareaModel(question);
 
       case 'date':
         const dq = question as QuestionDateModel;
-        return new QuestionDateModel(dq);
-      case 'textEditor':
-        return new QuestionTextEditorModel(question);
+        return new QuestionDateModel(dq);      
       case 'autocomplete':
         return new QuestionAutocompleteModel(question);
-      case 'time':
-        return new QuestionTimeModel(question);
       default:
         return new QuestionTextModel(question);
     }
