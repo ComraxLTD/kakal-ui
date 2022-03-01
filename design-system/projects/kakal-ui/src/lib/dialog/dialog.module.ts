@@ -18,7 +18,7 @@ import { DialogService } from '../../public-api';
     KKLIconModule,
     KKLDirectivesModule,
   ],
-  providers:[DialogService],
+  // providers:[DialogService,MatDialog,DialogData],
   exports: [DialogAlertComponent, DialogComponent],
 })
 export class KKLDialogModule {}
