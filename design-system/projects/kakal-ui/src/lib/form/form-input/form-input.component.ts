@@ -1,6 +1,5 @@
 import { MessageService } from './../services/message.service';
 import { FormControl, FormControlStatus } from '@angular/forms';
-import { QuestionBase } from '../services/form.service';
 import {
   Component,
   EventEmitter,
@@ -8,19 +7,15 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import {
-  QuestionSelectModel,
-  SelectOption,
-} from './../models/question-select.model';
 import { Appearance, ControlType, GridProps } from '../models/question.model';
 import { Palette } from '../../../styles/theme';
-import { QuestionAutocompleteModel } from '../models/question-autocomplete';
 import { FormOption } from '../models/form-data-source.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import {
   map,
   startWith,
 } from 'rxjs/operators';
+import { FormInputService } from './form-input.service';
 
 @Component({
   selector: 'kkl-form-input',
@@ -46,12 +41,19 @@ export class FormInputComponent implements OnInit {
 
   @Output() focus: EventEmitter<FormOption> = new EventEmitter();
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService,private FormInputService:FormInputService) { }
 
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
     this.color$ = this.setColor$();
-
+    const controlCheck = this.FormInputService.getInputProps(this.controlType);
+    for (const property in controlCheck) {
+      if(property === 'validation')this.control.setValidators(controlCheck[property]);
+      if(property === 'icon')this.icon = controlCheck[property];
+      if(property === 'cleave')this.cleave = controlCheck[property];
+      if(property === 'placeHolder')this.placeHolder = controlCheck[property];
+      if(property === 'controlType')this.controlType = controlCheck[property];
+    }
   }
 
   private setColor$() {
