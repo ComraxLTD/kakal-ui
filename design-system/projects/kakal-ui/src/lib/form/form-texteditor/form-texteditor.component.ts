@@ -11,6 +11,7 @@ import { Editor, Toolbar } from 'ngx-editor';
 export class FormTexteditorComponent implements OnInit , OnDestroy{
   @Input() public control: FormControl;
   @Input() public placeHolder:string = '';
+  
   constructor() { }
   editor: Editor;
 

@@ -64,7 +64,6 @@ export default {
       description: 'set minimum date to chose .',
       table: {
         type: { summary: 'date' },
-        defaultValue: { summary: '' },
       },
       control: {
         type: 'date'
@@ -74,8 +73,7 @@ export default {
       name: 'maxDate',
       description: 'set maximum date to chose .',
       table: {
-        type: { summary: 'date'},
-        defaultValue: { summary: '' },
+        type: { summary: 'date'},        
       },
       control: {
         type: 'date'
@@ -97,7 +95,6 @@ export default {
       description: 'emit value of date .',
       table: {
         type: { summary: 'EventEmitter' },
-        defaultValue: { summary: 'none' },
       },
       control: {
         type: 'object'
