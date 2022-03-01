@@ -64,16 +64,6 @@
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "stories/form/form-autocomplete.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<FormAutocompleteExComponent>",
-                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
                 "file": "stories/assets/Button.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -89,6 +79,16 @@
                 "deprecationMessage": "",
                 "type": "Story<TypographyComponent>",
                 "defaultValue": "(args: TypographyComponent) => ({\r\n        component: TypographyComponent,\r\n        props: args,\r\n        template: `\r\n        <kkl-typography size='3'>Size : 3</kkl-typography>\r\n        <br/>\r\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\r\n        <br/>\r\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography color='success'>Color : success</kkl-typography>\r\n        <br/>\r\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\r\n        `\r\n    })"
+            },
+            {
+                "name": "Template",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "stories/form/form-autocomplete.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Story<FormAutocompleteExComponent>",
+                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
