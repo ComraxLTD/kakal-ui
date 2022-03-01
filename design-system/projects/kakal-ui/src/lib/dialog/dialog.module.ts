@@ -8,7 +8,6 @@ import { KKLIconModule } from '../icon/icon.module';
 import { CommonModule } from '@angular/common';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { DialogService } from '../../public-api';
-import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [DialogAlertComponent, DialogComponent],
@@ -19,7 +18,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
     KKLIconModule,
     KKLDirectivesModule,
   ],
-  providers:[DialogService,MatDialog ],
+  providers:[DialogService],
   exports: [DialogAlertComponent, DialogComponent],
 })
 export class KKLDialogModule {}
