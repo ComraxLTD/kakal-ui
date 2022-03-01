@@ -29,6 +29,7 @@ import { SidenavModule } from './sidenav/sidenav.module';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { KKLDialogModule } from './dialog/dialog.module';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
+import { SpinnerModule } from './spinner/spinner.module'
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent, FormPhoneComponent],
@@ -55,6 +56,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 
     KKLDirectivesModule,
     KKLPipesModule,
+    SpinnerModule
   ],
   exports: [
     KKLMenuItemModule,
@@ -78,6 +80,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 
     KKLPipesModule,
     KKLDirectivesModule,
+    SpinnerModule
   ],
 })
 export class KakalUiModule {}

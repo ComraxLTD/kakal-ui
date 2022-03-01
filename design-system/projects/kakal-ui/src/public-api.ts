@@ -110,7 +110,9 @@ export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
 export * from './lib/dialog/dialog.service'
 
-
+// spinner
+export * from './lib/spinner/spinner.component';
+export * from './lib/spinner/spinner.module';
 
 // sidenav
 export * from './lib/sidenav/sidenav.module';
