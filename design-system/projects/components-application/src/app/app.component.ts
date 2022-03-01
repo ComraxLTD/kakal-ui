@@ -25,9 +25,9 @@ export class AppComponent implements OnInit {
 
   questions: Question[] = [
     {
-      key:'textEditor',
-      controlType:'textEditor',
-      type:'textEditor'
+      key: 'textEditor',
+      controlType: 'textEditor',
+      type: 'textEditor',
     },
     {
       key: 'timeInput',
@@ -66,15 +66,14 @@ export class AppComponent implements OnInit {
     },
   ];
   public formGroup: QuestionGroupModel;
-  public control:FormControl = new FormControl();
+  public control: FormControl = new FormControl();
   public tableActionMap$: Observable<TableActionStatenMap>;
 
   public dataSource = new TableDataSource();
 
   public rows$ = new BehaviorSubject<number[]>([1, 2, 3]);
 
-
-
   ngOnInit(): void {
-    this.control.setValue({start:new Date(),end:new Date()})
+    this.control.setValue({ start: new Date(), end: new Date() });
+  }
 }
