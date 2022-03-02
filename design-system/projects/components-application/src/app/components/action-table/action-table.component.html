@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutGap="5rem" class="block">
+  <div fxLayout="column" fxLayoutGap="2rem">
+    <mat-checkbox (change)="onToggleDeleteDisable($event)"
+      >disable if row is not even
+    </mat-checkbox>
+    <mat-checkbox (change)="onToggleDeleteShow($event)"
+      >toggle show</mat-checkbox
+    >
+  </div>
+  <mat-divider [vertical]="true"></mat-divider>
+  <div fxLayout="column" fxLayoutGap="5rem">
+    <ng-container *ngFor="let item of data$ | async; let i = index">
+      <div fxLayout="column" fxLayoutAlign="center start">
+        <div>
+          <pre>item : {{ item | json }}</pre>
+        </div>
+        <kkl-table-actions
+          [index]="i"
+          [item]="item"
+          [dataSource]="dataSource"
+          [actionStateRules]="actionStateRules"
+          (edit)="onEditEvent($event)"
+          (close)="onCloseEvent($event)"
+          (save)="onSaveEvent($event)"
+        ></kkl-table-actions>
+      </div>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </div>
+</div>

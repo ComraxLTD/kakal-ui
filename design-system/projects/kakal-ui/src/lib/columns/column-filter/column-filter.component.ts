@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
-import { ColumnModel } from '../column.model';
+import { TableColumnModel } from '../column.model';
 import { SelectOption } from '../../form/models/question-select.model';
 import { QuestionTextModel } from '../../form/models/question-text.model';
 
@@ -27,7 +27,7 @@ export interface Range {
 }
 
 export interface FilterOption<T> {
-  column?: ColumnModel<T>;
+  column?: TableColumnModel<T>;
   option?: SelectOption;
   label?: string;
   value$?: Observable<string>;
@@ -37,7 +37,7 @@ export interface FilterOption<T> {
 }
 
 export interface SortOption<T> {
-  column?: ColumnModel<T>;
+  column?: TableColumnModel<T>;
   dir: string;
 }
 
@@ -48,7 +48,7 @@ export interface SortOption<T> {
   providers: [{ provide: ColumnFilterService, useClass: ColumnFilterService }],
 })
 export class ColumnFilterComponent<T> implements OnInit {
-  @Input() public column: ColumnModel<T>;
+  @Input() public column: TableColumnModel<T>;
   @Input() public filters$: Observable<ListItem<T>[]>;
   @Input() public filterSlots: {};
 

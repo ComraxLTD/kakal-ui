@@ -30,6 +30,7 @@ import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-exam
 import { KKLDialogModule } from './dialog/dialog.module';
 import { DialogExampleComponent } from './examples/dialog-example/dialog-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
+import { SpinnerModule } from './spinner/spinner.module'
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent, FormPhoneComponent],
@@ -38,11 +39,15 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+
     KKLMenuModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
+
     SidenavModule,
+
+    // FORMS MODULES
     KKLFormModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
@@ -52,10 +57,14 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLFormUploadModule,
     KKLDialogModule,
     KKLFormTextEditorModule,
-    // KKLColumnsModule,
+
+    // TABLE MODULES
+    KKLTableActionsModule,
+    KKLColumnsModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
+    SpinnerModule
   ],
   exports: [
     KKLMenuItemModule,
@@ -65,6 +74,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KklTitleModule,
     KKLStepTitleModule,
     SidenavModule,
+
     KKLFormModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
@@ -73,12 +83,15 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLFormSelectModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
-    KKLDialogModule,
+
     KKLTableActionsModule,
     KKLColumnsModule,
 
+    KKLDialogModule,
+
     KKLPipesModule,
     KKLDirectivesModule,
+    SpinnerModule
   ],
 })
 export class KakalUiModule {}

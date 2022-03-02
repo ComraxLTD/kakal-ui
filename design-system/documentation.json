@@ -11,7 +11,7 @@
     "miscellaneous": {
         "variables": [
             {
-                "name": "autoComplete",
+                "name": "Autocomplete",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "stories/form/form-autocomplete.stories.ts",
@@ -41,46 +41,6 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "Primary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/assets/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Secondary",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/assets/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/assets/Button.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<ButtonComponent>",
-                "defaultValue": "(args: ButtonComponent) => ({\r\n  props: args,\r\n})"
-            },
-            {
-                "name": "Template",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/assets/Typography.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "Story<TypographyComponent>",
-                "defaultValue": "(args: TypographyComponent) => ({\r\n        component: TypographyComponent,\r\n        props: args,\r\n        template: `\r\n        <kkl-typography size='3'>Size : 3</kkl-typography>\r\n        <br/>\r\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\r\n        <br/>\r\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography color='success'>Color : success</kkl-typography>\r\n        <br/>\r\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\r\n        `\r\n    })"
-            },
-            {
                 "name": "Template",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -108,16 +68,6 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "\"list\" | \"accordion\""
-            },
-            {
-                "name": "typography",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "stories/assets/Typography.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
             }
         ],
         "functions": [],
@@ -126,7 +76,7 @@
         "groupedVariables": {
             "stories/form/form-autocomplete.stories.ts": [
                 {
-                    "name": "autoComplete",
+                    "name": "Autocomplete",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "stories/form/form-autocomplete.stories.ts",
@@ -186,60 +136,6 @@
                     "deprecationMessage": "",
                     "type": "\"list\" | \"accordion\""
                 }
-            ],
-            "stories/assets/Button.stories.ts": [
-                {
-                    "name": "Primary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/assets/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Secondary",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/assets/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/assets/Button.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<ButtonComponent>",
-                    "defaultValue": "(args: ButtonComponent) => ({\r\n  props: args,\r\n})"
-                }
-            ],
-            "stories/assets/Typography.stories.ts": [
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/assets/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<TypographyComponent>",
-                    "defaultValue": "(args: TypographyComponent) => ({\r\n        component: TypographyComponent,\r\n        props: args,\r\n        template: `\r\n        <kkl-typography size='3'>Size : 3</kkl-typography>\r\n        <br/>\r\n        <kkl-typography weight='700'>Weight : 700</kkl-typography>\r\n        <br/>\r\n        <kkl-typography underline='true'>Underline : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography color='success'>Color : success</kkl-typography>\r\n        <br/>\r\n        <kkl-typography disabled='true'>Disabled : true</kkl-typography>\r\n        <br/>\r\n        <kkl-typography style=\"display:flex\" dir='rtl'>Dir : rtl</kkl-typography>\r\n        `\r\n    })"
-                },
-                {
-                    "name": "typography",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "stories/assets/Typography.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                }
             ]
         },
         "groupedFunctions": {},
@@ -252,61 +148,11 @@
         "status": "low",
         "files": [
             {
-                "filePath": "stories/assets/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Primary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/assets/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Secondary",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/assets/Button.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/assets/Typography.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "Template",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "stories/assets/Typography.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "typography",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
                 "filePath": "stories/form/form-autocomplete.stories.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "autoComplete",
+                "name": "Autocomplete",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
