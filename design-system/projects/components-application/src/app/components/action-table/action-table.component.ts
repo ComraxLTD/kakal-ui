@@ -9,7 +9,6 @@ import {
   merge,
   switchMap,
   Subject,
-
 } from 'rxjs';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
 import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
@@ -30,7 +29,6 @@ import { FormService } from '../../../../../kakal-ui/src/public-api';
   styleUrls: ['./action-table.component.scss'],
 })
 export class ActionTableComponent implements OnInit {
-
   public dataSource = new TableDataSource();
 
   // demo data from server
@@ -144,6 +142,9 @@ export class ActionTableComponent implements OnInit {
 
   public onEditEvent(state: RowsState) {
     const { item, itemIndex } = state;
+
+    this.dataSource.actions.edit({ state });
+
     const { editing } = this.dataSource.getTableState();
     const tableState = {
       ...this.dataSource.getTableState(),
@@ -159,6 +160,7 @@ export class ActionTableComponent implements OnInit {
 
     this.dataSource.loadTableState(tableState);
   }
+
   private onEditCloseEvent(state: RowsState) {
     const { item, itemIndex } = state;
     const { editing } = this.dataSource.getTableState();

@@ -11,7 +11,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { filter, map, switchMapTo } from 'rxjs/operators';
 
 export class TableDataSource<T = any> implements DataSource<T> {
-
   private dataSubject: BehaviorSubject<T[]>;
   private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
   private rowSubject: BehaviorSubject<TableRowModel<T>[]>;
@@ -34,7 +33,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      form : null,
+      form: null,
       event: 'default',
     });
 
@@ -129,49 +128,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
     );
   }
 
-  // method to change row state to add - add form row in start of table
-  private add(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'add' });
-  }
-
-  private create(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'create' });
-  }
-  // method to change row state to save - update new item from database
-  private save(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'save' });
-  }
-  // method to change row state to form - change all selected rows to form state
-  private form(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'form' });
-  }
-  // method to change row state to edit - change all selected rows to edit state
-  private edit(data: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'edit' });
-  }
-  // method to change row state to cancel - remove first row (use with add state)
-  private cancel(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'cancel' });
-  }
-
-  // method to change row state to default - remove changes from edit mode (use with add state)
-  private close(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'close' });
-  }
-  // method to change row state to expand - expand row
-  private expand(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'expand' });
-  }
-  // method to change row state to delete - load new content from server
-  private delete(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'delete' });
-  }
-
-  // method to mark rows as selected
-  private selectRows(data?: RowsState<T>) {
-    this.rowsStateSubject.next({ ...data, event: 'selected' });
-  }
-
   // method to update columns options = selectOptions or ColumnFilterOptions
   private updateOptions(state: ColumnState<T>) {
     this.columnsStateSubject.next({ ...state });
@@ -192,22 +148,36 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
   }
 
+  private createAction(prop: { state }, event?: TableEvent) {
+    const { state } = prop;
+    this.rowsStateSubject.next({ ...state, event });
+  }
+
   // main actions object
   public actions = {
-    add: (data?: RowsState<T>) => this.add(data),
-    create: (data?: RowsState<T>) => this.create(data),
-    save: (data?: RowsState<T>) => this.save(data),
-    form: (data?: RowsState<T>) => this.form(data),
-    edit: (data: RowsState<T>) => this.edit(data),
-    cancel: (data?: RowsState<T>) => this.cancel(data),
-    close: (data?: RowsState<T>) => this.close(data),
-    expand: (data?: RowsState<T>) => this.expand(data),
-    delete: (data?: RowsState<T>) => this.delete(data),
-    selectRows: (data?: RowsState<T>) => this.selectRows(data),
-    addOptions: (data?: RowsState<T>) => this.addOptions(data),
+    add: (prop: { state }) => this.createAction(prop, 'add'),
+
+    create: (prop: { state }) => this.createAction(prop, 'create'),
+
+    save: (prop: { state }) => this.createAction(prop, 'save'),
+
+    form: (prop: { state }) => this.createAction(prop, 'form'),
+
+    edit: (prop: { state }) => this.createAction(prop, 'edit'),
+    cancel: (prop: { state }) => this.createAction(prop, 'cancel'),
+
+    close: (prop: { state }) => this.createAction(prop, 'close'),
+
+    expand: (prop: { state }) => this.createAction(prop, 'expand'),
+
+    delete: (prop: { state }) => this.createAction(prop, 'delete'),
+
+    selectRows: (prop: { state }) => this.createAction(prop, 'selectRows'),
+
+    addOptions: (state?: RowsState<T>) => this.addOptions(state),
     updateOptions: (state: ColumnState<T>) => this.updateOptions(state),
     updateSortDir: (state: ColumnState<T>) => this.updateSortDir(state),
-    reset: (data?) => this.reset(data),
+    reset: (state?) => this.reset(state),
   };
 
   public listen$ = {
