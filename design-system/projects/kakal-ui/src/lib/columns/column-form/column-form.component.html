@@ -5,9 +5,8 @@
         *ngTemplateOutlet="
           slot;
           context: {
-            row: this.row,
-            control: row.form.formGroup.controls[column.columnDef],
-            question: row.form.group[column.columnDef],
+            control: form.formGroup.controls[column.columnDef],
+            question: form.group[column.columnDef],
             column: this.column
           }
         "
@@ -19,9 +18,8 @@
         *ngTemplateOutlet="
           slot;
           context: {
-            row: this.row,
-            control: row.form.formGroup.controls[column.columnDef],
-            question: row.form.group[column.columnDef],
+            control: form.formGroup.controls[column.columnDef],
+            question: form.group[column.columnDef],
             column: this.column
           }
         "
@@ -30,31 +28,31 @@
 
     <ng-container *ngSwitchCase="'currency'">
       <kkl-form-currency
-        [control]="row.form.formGroup.controls[column.columnDef]"
-        [question]="row.form.group[column.columnDef]"
+        [control]="form.formGroup.controls[column.columnDef]"
+        [question]="form.group[column.columnDef]"
       >
       </kkl-form-currency>
     </ng-container>
 
     <ng-container *ngSwitchCase="'file'">
       <kkl-form-upload
-        [formControl]="row.form.formGroup.controls[column.columnDef]"
-        [question]="row.form.group[column.columnDef]"
+        [formControl]="form.formGroup.controls[column.columnDef]"
+        [question]="form.group[column.columnDef]"
       ></kkl-form-upload>
     </ng-container>
 
     <ng-container *ngSwitchCase="'date'">
       <kkl-form-date
-        [control]="row.form.formGroup.controls[column.columnDef]"
-        [question]="row.form.group[column.columnDef]"
+        [control]="form.formGroup.controls[column.columnDef]"
+        [question]="form.group[column.columnDef]"
       >
       </kkl-form-date>
     </ng-container>
 
     <ng-container *ngSwitchDefault>
       <kkl-form-input
-        [control]="row.form.formGroup.controls[column.columnDef]"
-        [question]="row.form.group[column.columnDef]"
+        [control]="form.formGroup.controls[column.columnDef]"
+        [question]="form.group[column.columnDef]"
       ></kkl-form-input>
     </ng-container>
   </ng-container>
