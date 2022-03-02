@@ -14,7 +14,7 @@ export default {
   argTypes: {
     text: {
         name: 'text',
-        type: { name: 'string', required: false },//without it the headline will be only underline
+        type: { name: 'string', required: false },
         defaultValue: '',
         description: 'the text that the title component will show',
         table: {
@@ -26,7 +26,7 @@ export default {
       },
       alignment: {
         name: 'alignment',
-        type: { name: 'string', required: false },//without it the headline will be only underline
+        type: { name: 'string', required: false },
         defaultValue: 'space-between',
         description: 'one of the  flex(css) justify-content options',
         table: {
