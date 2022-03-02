@@ -5,7 +5,7 @@ import { MenuComponent } from '../../projects/kakal-ui/src/public-api';
 let type: 'list' | 'accordion';
 
 export default {
-  title: 'Layout/menu',
+  title: 'Layout/Menu',
   decorators: [
     moduleMetadata({
       imports: [KKLMenuModule],
