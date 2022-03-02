@@ -1,22 +1,28 @@
 import { DataSource } from '@angular/cdk/collections';
-import { TableColumnModel } from '../../columns/column.model';
 import { FormDataSource } from '../../form/models/form-data-source.model';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { filter, map, switchMapTo } from 'rxjs/operators';
 import { TableEvent } from './table-event';
+
+import { TableColumnModel } from '../../columns/models/column.model';
+
 import { ColumnState, RowsState, TableState } from './table.state';
 import { TableRowModel } from './table-row.model';
 
-export class TableDataSource<T = any> implements DataSource<T> {
-  private dataSubject: BehaviorSubject<T[]>;
-  private rowSubject: BehaviorSubject<TableRowModel<T>[]>;
-  private tableSubject: BehaviorSubject<TableState>;
-  private formDataSource: FormDataSource;
-  private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
+import { Observable, BehaviorSubject } from 'rxjs';
+import { filter, map, switchMapTo } from 'rxjs/operators';
 
+export class TableDataSource<T = any> implements DataSource<T> {
+
+  private dataSubject: BehaviorSubject<T[]>;
+  private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
+  private rowSubject: BehaviorSubject<TableRowModel<T>[]>;
+
+  private tableSubject: BehaviorSubject<TableState>;
   private columnsStateSubject: BehaviorSubject<ColumnState<T>>;
+  
   private rowsStateSubject: BehaviorSubject<RowsState<T>>;
   private events$: Observable<TableEvent>;
+
+  private formDataSource: FormDataSource;
 
   constructor() {
     this.dataSubject = new BehaviorSubject<T[]>([]);
