@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
-import { KKLPipesModule } from '../../pipes/pipes.module';
+import { KKLPipesModule } from '../pipes/pipes.module';
 import { KKLDirectivesModule } from '../directives/directives.module';
 
 import { KKLIconModule } from '../icon/icon.module';

@@ -138,12 +138,12 @@ export * from './constants/project-prefix';
 export * from './constants/step-prefix';
 
 // pipes
-export * from './pipes/area.pipe';
-export * from './pipes/format.pipe';
-export * from './pipes/location.pipe';
-export * from './pipes/prefix.pipe';
-export * from './pipes/range.pipe';
-export * from './pipes/pipes.module';
+export * from './lib/pipes/area.pipe';
+export * from './lib/pipes/format.pipe';
+export * from './lib/pipes/location.pipe';
+export * from './lib/pipes/prefix.pipe';
+export * from './lib/pipes/range.pipe';
+export * from './lib/pipes/pipes.module';
 
 //directives
 export * from './lib/directives/variant.directive';

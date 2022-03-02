@@ -113,9 +113,6 @@ export class TableComponent<T> implements OnInit {
     this.table$ = combineLatest([this.data$, this.columns$]).pipe(
       map(([data, columns]) => {
         const columnDefs = columns.map((column) => column.columnDef);
-        console.log(data)
-        console.log(columns)
-        console.log(columnDefs)
         return { data, columns, columnDefs };
       })
     );
