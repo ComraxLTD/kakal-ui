@@ -24,9 +24,13 @@ import { updateArray } from './table.helpers';
 
 import {
   combineLatest,
+  concat,
+  filter,
   map,
   merge,
   Observable,
+  of,
+  race,
   switchMap,
   switchMapTo,
   take,
@@ -167,22 +171,24 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTableState$() {
-    return merge(
-      this.tableDataSource.listenTableState(),
-      this.onEditEvent(),
-      this.onEditCloseEvent()
-    ).pipe(tap((c) => console.log(c)));
+    return merge(of(null), this.onEditEvent(), this.onEditCloseEvent()).pipe(
+      switchMap((tableState) => {
+        if (tableState) {
+          this.tableDataSource.loadTableState(tableState);
+        }
+        return this.tableDataSource.listenTableState();
+      })
+    );
   }
 
   private onEditEvent() {
     return this.tableDataSource.listen$.edit().pipe(
       switchMap((state) => {
-        console.log('edit');
         const { item, key } = state;
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState) => {
-            console.log('state');
+            console.log('edit', tableState.editing, tableState.event);
             const { editing } = tableState;
             editing.push(item[key]);
 
@@ -200,13 +206,12 @@ export class TableComponent<T = any> implements OnInit {
   }
   private onEditCloseEvent() {
     return this.tableDataSource.listen$.close().pipe(
-      take(1),
       switchMap((state) => {
-        const { item, rowIndex, key } = state;
+        const { rowIndex } = state;
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState) => {
-            console.log('close');
+            console.log('close', tableState.editing, tableState.event);
             const { editing } = tableState;
 
             editing.splice(rowIndex, 1);

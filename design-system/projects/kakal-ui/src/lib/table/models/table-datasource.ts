@@ -8,7 +8,7 @@ import { ColumnState, RowsState, TableState } from './table.state';
 import { TableRowModel } from './table-row.model';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { filter, map, switchMapTo } from 'rxjs/operators';
+import { filter, map, switchMapTo, take } from 'rxjs/operators';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
@@ -164,6 +164,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     form: (prop: { state: RowsState }) => this.createAction(prop, 'form'),
 
     edit: (prop: { state: RowsState }) => this.createAction(prop, 'edit'),
+
     cancel: (prop: { state: RowsState }) => this.createAction(prop, 'cancel'),
 
     close: (prop: { state: RowsState }) => this.createAction(prop, 'close'),

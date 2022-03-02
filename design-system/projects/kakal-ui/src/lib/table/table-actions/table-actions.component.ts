@@ -13,7 +13,7 @@ import { ActionState, ActionStateRules } from './table-actions.model';
 import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
 
-import { filter, map, mapTo, switchMapTo } from 'rxjs/operators';
+import { filter, map, mapTo } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
 
 export interface ButtonActionState {
@@ -73,14 +73,10 @@ export class TableActionsComponent implements OnInit {
   }
 
   private getEditTableStateByEvent(events: TableEvent[]) {
-    return this.dataSource.getEvents$(events).pipe(
-      switchMapTo(
-        this.dataSource.listenTableState().pipe(
-          map((tableState) => {
-            return tableState.editing;
-          })
-        )
-      )
+    return this.dataSource.getTableStateByEvent(events).pipe(
+      map((tableState) => {
+        return tableState.editing;
+      })
     );
   }
 
@@ -91,6 +87,7 @@ export class TableActionsComponent implements OnInit {
       filter((editing) => editing.indexOf(prop) !== -1),
       map((editing) => editing.indexOf(prop) !== -1),
       map((editing: boolean) => {
+        console.log('action', Math.random());
         return {
           show: !editing,
           disabled: editing,

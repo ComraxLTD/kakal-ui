@@ -143,7 +143,7 @@ export class ActionTableComponent implements OnInit {
   public onEditEvent(state: RowsState) {
     const { item, rowIndex } = state;
 
-    this.dataSource.actions.edit({ state });
+    // this.dataSource.actions.edit({ state });
 
     const { editing } = this.dataSource.getTableState();
     const tableState = {
