@@ -2,10 +2,15 @@
 
 :host {
   mat-expansion-panel {
-    margin-top: main.spacing(2) !important;
+    // margin-top: main.spacing(2) !important;
+
+    border-radius: 0px;
+    .expand {
+      border-radius: initial;
+    }
 
     mat-expansion-panel-header {
-      height: 7rem;
+      height: 5rem;
       padding: 0px;
       width: 100% !important;
       color: main.color(text) !important;
@@ -49,7 +54,7 @@ div.row {
   padding-left: main.spacing(2);
 }
 
-div.kkl-cell {
+div.kkl-table-cell {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -75,6 +80,18 @@ div.kkl-cell {
 }
 
 mat-cell {
+  padding: 0px !important;
+  &.expand {
+    padding: 1px;
+  }
+  padding: 0px;
+}
+
+.disabled {
+  opacity: 30%;
+}
+mat-header-cell {
+  padding: 0px !important;
   &.expand {
     padding: 1px;
   }
@@ -111,7 +128,9 @@ mat-header-row.primary {
 }
 
 mat-row {
-  border-bottom: none;
+  .expand {
+    border-bottom: none;
+  }
 }
 
 ::ng-deep .cell-input {

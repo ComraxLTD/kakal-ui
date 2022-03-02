@@ -85,10 +85,13 @@ export * from './lib/columns/column-form/column-form.module';
 // TABLE
 export * from './lib/table/table/table.component'
 export * from './lib/table/table/table.module'
+
 export * from './lib/table/models/table-datasource'
 export * from './lib/table/models/table-event'
 export * from './lib/table/models/table.state'
 export * from './lib/table/models/table-row.model'
+
+export * from './lib/table/directives/table-cell.directive';
 
 // TABLE-ACTIONS
 export * from './lib/table/table-actions/table-actions.component';
@@ -152,7 +155,6 @@ export * from './lib/directives/button.directive';
 export * from './lib/directives/underline.directive';
 export * from './lib/directives/border.directive';
 export * from './lib/directives/outside.directive';
-export * from './lib/directives/cell.directive';
 export * from './lib/directives/wizard.directive';
 export * from './lib/directives/action-button.directive';
 export * from './lib/directives/form-button.directive';
