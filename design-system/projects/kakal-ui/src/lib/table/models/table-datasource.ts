@@ -166,7 +166,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.rowsStateSubject.next({ ...data, event: 'selected' });
   }
 
-  // method to update columns options = selectOptions or filterOptions
+  // method to update columns options = selectOptions or ColumnFilterOptions
   private updateOptions(state: ColumnState<T>) {
     this.columnsStateSubject.next({ ...state });
   }

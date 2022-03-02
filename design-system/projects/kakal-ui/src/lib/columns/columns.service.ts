@@ -7,7 +7,7 @@ import {
 import { Question } from '../form/services/form.service';
 import { ListItem } from '../list-item/list-item.model';
 // import { FilterMap } from '../table-filters/table-filter.service';
-import { ColumnDef, TableColumnModel } from './column.model';
+import { ColumnDef, TableColumnModel } from './models/column.model';
 
 export interface ColumnsData<T> {
   columns: TableColumnModel<T>[];

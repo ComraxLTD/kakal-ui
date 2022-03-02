@@ -7,7 +7,6 @@ import { QuestionTextModel } from '../../form/models/question-text.model';
 import { ColumnFilterService } from './column-filter.service';
 // import { TableFilterService } from '../../table-filters/table-filter.service';
 
-
 import { MatListOption } from '@angular/material/list';
 import { ListItem } from '../../list-item/list-item.model';
 import { merge, Observable, of, Subject } from 'rxjs';
@@ -21,24 +20,12 @@ import {
 import { FormOption } from '../../form/models/form-data-source.model';
 import { RangePipe } from '../../../pipes/range.pipe';
 
+import { ColumnFilterOption } from '../models/column-filter-options';
+import { ColumnSortOption } from '../models/column-sort-option';
+
 export interface Range {
   from: any;
   to: any;
-}
-
-export interface FilterOption<T> {
-  column?: TableColumnModel<T>;
-  option?: SelectOption;
-  label?: string;
-  value$?: Observable<string>;
-  value?: any;
-  type?: 'amount' | 'date' | 'text';
-  multi?: boolean;
-}
-
-export interface SortOption<T> {
-  column?: TableColumnModel<T>;
-  dir: string;
 }
 
 @Component({
@@ -60,18 +47,19 @@ export class ColumnFilterComponent<T> implements OnInit {
 
   private range: Range;
 
-  public filterSubject: Subject<FilterOption<T>>;
-  public filter$: Observable<FilterOption<T>>;
+  public filterSubject: Subject<ColumnFilterOption<T>>;
+  public filter$: Observable<ColumnFilterOption<T>>;
 
   public active$: Observable<boolean>;
 
-  @Output() optionSelect: EventEmitter<Observable<FilterOption<T>>> =
+  @Output() optionSelect: EventEmitter<Observable<ColumnFilterOption<T>>> =
     new EventEmitter();
 
-  @Output() sortChange: EventEmitter<SortOption<T>> = new EventEmitter();
+  @Output() sortChange: EventEmitter<ColumnSortOption<T>> = new EventEmitter();
 
-  @Output() dateSelect: EventEmitter<FilterOption<T>> = new EventEmitter();
-  @Output() filterAutocomplete: EventEmitter<FilterOption<T>> =
+  @Output() dateSelect: EventEmitter<ColumnFilterOption<T>> =
+    new EventEmitter();
+  @Output() filterAutocomplete: EventEmitter<ColumnFilterOption<T>> =
     new EventEmitter();
 
   constructor(
@@ -112,25 +100,30 @@ export class ColumnFilterComponent<T> implements OnInit {
     //   ])
     //   .pipe(map((filters) => filters.length > 0));
 
-    return of(false)
+    return of(false);
   }
 
   // main method to emit filter option
-  private filterEvent(option: FilterOption<T>) {
-    const filterOption: FilterOption<T> = { ...option, column: this.column };
+  private filterEvent(option: ColumnFilterOption<T>) {
+    const ColumnFilterOption: ColumnFilterOption<T> = {
+      ...option,
+      column: this.column,
+    };
 
     // push to table-filter array
 
-    // this.tableFilterService.push(filterOption);
+    // this.tableFilterService.push(ColumnFilterOption);
 
     // emit data outside
-    this.optionSelect.emit(of(filterOption));
+    this.optionSelect.emit(of(ColumnFilterOption));
   }
 
-  private emitFilter(filterOption: FilterOption<T>): FilterOption<T> {
-    const { value, label } = filterOption;
+  private emitFilter(
+    ColumnFilterOption: ColumnFilterOption<T>
+  ): ColumnFilterOption<T> {
+    const { value, label } = ColumnFilterOption;
 
-    const filter: FilterOption<T> = {
+    const filter: ColumnFilterOption<T> = {
       column: this.column,
       label,
       value$: of(value),
@@ -150,8 +143,8 @@ export class ColumnFilterComponent<T> implements OnInit {
   private onCurrencyFilter() {
     return this.filterSubject.asObservable().pipe(
       skip(2),
-      filter((filter: FilterOption<T>) => filter.type === 'amount'),
-      map((filterOption) => filterOption.value),
+      filter((filter: ColumnFilterOption<T>) => filter.type === 'amount'),
+      map((ColumnFilterOption) => ColumnFilterOption.value),
       map((value: Range) => {
         const range: Range = Object.entries(value).reduce(
           (acc, [key, value]) => {
@@ -179,7 +172,7 @@ export class ColumnFilterComponent<T> implements OnInit {
   }
 
   // method which fire filterAutocomplete  search value
-  public onAutocomplete(): Observable<FilterOption<T>> {
+  public onAutocomplete(): Observable<ColumnFilterOption<T>> {
     return this.searchQuestion.control.valueChanges.pipe(
       skip(1),
       debounceTime(400),
@@ -190,7 +183,7 @@ export class ColumnFilterComponent<T> implements OnInit {
     );
   }
   // method which combine the stream of autocomplete and currency
-  private setFilter$(): Observable<FilterOption<T>> {
+  private setFilter$(): Observable<ColumnFilterOption<T>> {
     const currencyFilter$ = this.onCurrencyFilter();
     const autocompleteFilter$ = this.onAutocomplete();
     return merge(autocompleteFilter$, currencyFilter$);
@@ -207,7 +200,8 @@ export class ColumnFilterComponent<T> implements OnInit {
   }
 
   public onSelectionChange(list: MatListOption[]): void {
-    const filterOptions: SelectOption[] = this.column.filterQuestion['options'];
+    const ColumnFilterOptions: SelectOption[] =
+      this.column.filterQuestion['options'];
 
     // get selected options from mat-list
     const selected: number[] = list.map(
@@ -215,13 +209,13 @@ export class ColumnFilterComponent<T> implements OnInit {
     );
 
     // get selected options label
-    const labels: string[] = filterOptions
-      .filter((option: SelectOption) => selected.indexOf(option.value) !== -1)
-      .map((option) => option.label);
+    const labels: string[] = ColumnFilterOptions.filter(
+      (option: SelectOption) => selected.indexOf(option.value) !== -1
+    ).map((option) => option.label);
 
-    const selectedOptions: SelectOption[] = filterOptions
-      .filter((option: SelectOption) => selected.indexOf(option.value) !== -1)
-      .map((option) => option);
+    const selectedOptions: SelectOption[] = ColumnFilterOptions.filter(
+      (option: SelectOption) => selected.indexOf(option.value) !== -1
+    ).map((option) => option);
 
     if (this.column?.filterQuestion['multi']) {
       this.onMultiSelectChange(selectedOptions, selected);
@@ -246,7 +240,7 @@ export class ColumnFilterComponent<T> implements OnInit {
   }
 
   public onSortClick() {
-    const sortOption: SortOption<T> = {
+    const sortOption: ColumnSortOption<T> = {
       column: this.column,
       dir: this.column.sortDir,
     };
