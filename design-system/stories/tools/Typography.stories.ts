@@ -4,7 +4,7 @@ import { componentWrapperDecorator, moduleMetadata, } from '@storybook/angular';
 import { TypographyComponent } from '../../projects/kakal-ui/src/lib/typography/typography.component';
 
 export default {
-    title: 'Assets/Typography',
+    title: 'Tools/Typography',
     decorators: [componentWrapperDecorator((story) => `<div class="mat-body">${story}</div>`), moduleMetadata({
         imports: [],
         declarations: [TypographyComponent]
@@ -38,5 +38,4 @@ typography.args = {
     underline:true,
     color:'success',
     disabled:true,
-    dir:'rtl'
 }
