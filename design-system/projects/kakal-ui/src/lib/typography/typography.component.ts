@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Color, palette, Palette } from '../../styles/theme';
 
 @Component({
@@ -10,7 +10,7 @@ export class TypographyComponent implements OnInit {
   @Input() public size: number;
   @Input() public weight: number;
   @Input() public color: Palette;
-  
+
   @Input() public underline: boolean;
   @Input() public disabled: boolean;
 
