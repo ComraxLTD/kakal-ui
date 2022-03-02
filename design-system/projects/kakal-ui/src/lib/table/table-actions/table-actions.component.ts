@@ -27,9 +27,8 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
-  @Input() index: number;
-  @Input() item: any;
-  @Input() column: TableColumnModel;
+  
+  @Input() rowState: RowsState;
   @Input() dataSource: TableDataSource;
   @Input() actionStateRules: ActionStateRules;
 
@@ -66,8 +65,9 @@ export class TableActionsComponent implements OnInit {
   private setEditStateOnDefault() {
     return this.dataSource.getTableStateByEvent(['default']).pipe(
       mapTo({
-        show: this.actionStateRules?.showEdit(this.item) || this.hasEdit,
-        disabled: this.actionStateRules?.disableEdit(this.item),
+        show:
+          this.actionStateRules?.showEdit(this.rowState.item) || this.hasEdit,
+        disabled: this.actionStateRules?.disableEdit(this.rowState.item),
       } as ActionState)
     );
   }
@@ -82,8 +82,8 @@ export class TableActionsComponent implements OnInit {
 
   private setEditStateOnEdit() {
     return this.getEditTableStateByEvent(['edit']).pipe(
-      filter((editing) => editing.indexOf(this.item.id) !== -1),
-      map((editing) => editing.indexOf(this.item.id) !== -1),
+      filter((editing) => editing.indexOf(this.rowState.item.id) !== -1),
+      map((editing) => editing.indexOf(this.rowState.item.id) !== -1),
       map((editing: boolean) => {
         return {
           show: !editing,
@@ -95,11 +95,11 @@ export class TableActionsComponent implements OnInit {
   }
   private setEditStateOnClose() {
     return this.getEditTableStateByEvent(['close']).pipe(
-      map((editing) => editing.indexOf(this.item.id) !== -1),
+      map((editing) => editing.indexOf(this.rowState.item.id) !== -1),
       map((close: boolean) => {
         return {
           show: !close,
-          disabled: this.actionStateRules?.disableEdit(this.item),
+          disabled: this.actionStateRules?.disableEdit(this.rowState.item),
           event: 'edit',
         } as ActionState;
       })
@@ -109,8 +109,10 @@ export class TableActionsComponent implements OnInit {
   private setDeleteStateOnDefault() {
     return this.dataSource.getTableStateByEvent(['default', 'close']).pipe(
       mapTo({
-        show: this.actionStateRules?.showDelete(this.item) || this.hasDelete,
-        disabled: this.actionStateRules?.disableDelete(this.item),
+        show:
+          this.actionStateRules?.showDelete(this.rowState.item) ||
+          this.hasDelete,
+        disabled: this.actionStateRules?.disableDelete(this.rowState.item),
       } as ActionState)
     );
   }
@@ -129,28 +131,24 @@ export class TableActionsComponent implements OnInit {
   }
 
   public onDelete() {
-    this.delete.emit({ item: this.item, itemIndex: this.index });
+    this.delete.emit({ ...this.rowState });
   }
 
   public onEdit() {
-    this.edit.emit({ item: this.item, itemIndex: this.index });
+    this.edit.emit({ ...this.rowState });
   }
 
   public onClose(event: TableEvent) {
     this.close.emit({
-      item: this.item,
-      column: this.column,
+      ...this.rowState,
       event,
-      itemIndex: this.index,
     });
   }
 
   public onSave(event: TableEvent) {
     this.save.emit({
-      item: this.item,
-      column: this.column,
+      ...this.rowState,
       event,
-      itemIndex: this.index,
     });
   }
 }
