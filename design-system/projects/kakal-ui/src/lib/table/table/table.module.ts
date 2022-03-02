@@ -25,6 +25,7 @@ import { KKLPipesModule } from '../../../pipes/pipes.module';
     KKLPipesModule
   ],
   declarations: [TableComponent],
+  providers: [],
   exports: [TableComponent],
 })
 export class KKLTableModule {}

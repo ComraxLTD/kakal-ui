@@ -1,7 +1,6 @@
 @use "../../../styles/variables" as main;
 
 :host {
-
   mat-expansion-panel {
     margin-top: main.spacing(2) !important;
 
@@ -27,8 +26,6 @@
 }
 
 ::ng-deep mat-table.kkl-table {
-
-
   .mat-checkbox .mat-checkbox-frame {
     border: 0.5px solid main.color(disable);
   }
@@ -57,7 +54,6 @@ div.kkl-cell {
   align-items: center;
   overflow: hidden;
   word-wrap: break-word;
-
 
   mat-checkbox {
     padding-right: main.spacing(2);
@@ -93,7 +89,6 @@ mat-header-row.accent {
 
   mat-header-cell {
     align-items: flex-end;
-    padding-bottom: main.spacing(1);
     box-sizing: border-box;
 
     &.expand {

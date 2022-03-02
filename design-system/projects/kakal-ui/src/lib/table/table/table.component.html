@@ -12,19 +12,13 @@
         <ng-container [matColumnDef]="'headerRow'">
           <mat-header-cell
             *matHeaderCellDef
-            [ngClass]="{ expand: expendable || accordion }"
+            [class.expand]="expendable || accordion"
           >
-            <div
-              [ngClass]="{
-                'row-header': true
-              }"
-              fxFill
-              fxLayout="row"
-            >
+            <div [class.row-header]="true" fxFill fxLayout="row">
               <!-- COLUMN HEADER SECTION-->
 
               <div
-                appCell
+                kkl-cell
                 [span]="column.flex"
                 fxLayout="row"
                 fxFlexAlign="center center"
@@ -36,7 +30,7 @@
               >
                 <!-- DEFAULT HEADER -->
                 <ng-container>
-                  <kkl-typography>
+                  <kkl-typography [weight]="600">
                     {{ column.label }}
                   </kkl-typography>
                 </ng-container>
@@ -52,8 +46,8 @@
           <ng-container matColumnDef="row">
             <mat-cell
               *matCellDef="let row"
-              [ngClass]="{ expand: expendable || accordion }"
-              [attr.colspan]="columnDefs.length"
+              [class.expand]="expendable || accordion"
+              [attr.colspan]="table.columnDefs.length"
             >
               <mat-expansion-panel
                 #panel
@@ -62,15 +56,13 @@
                 fxFill
               >
                 <mat-expansion-panel-header
-                  [ngClass]="{
-                    accordion: (accordion || clickable) && !row.editable,
-                    form: row.editable
-                  }"
+                  [class.expand]="accordion || clickable"
+                  [class.form]="accordion || clickable"
                 >
                   <div class="row" fxFill fxLayout="row">
                     <ng-container *ngFor="let column of table.columns; let i">
                       <div
-                        appCell
+                        kkl-cell
                         [span]="column.flex"
                         fxLayout="row"
                         fxFlexAlign="center center"
@@ -97,10 +89,7 @@
 
                         <ng-template #cellBlock>
                           <kkl-typography>
-                            {{
-                              row.item[column.columnDef]
-                                | format: column?.format
-                            }}
+                            {{ row[column.columnDef] | format: column?.format }}
                           </kkl-typography>
                         </ng-template>
                       </div>

@@ -39,7 +39,7 @@ export class TableComponent<T> implements OnInit {
 
   @Input() public options: TableOptions<T>;
 
-  @Input() public theme: ThemePalette;
+  @Input() public theme: ThemePalette = 'accent';
 
   // if table have state modes
   @Input() public paginator: boolean;
@@ -101,8 +101,6 @@ export class TableComponent<T> implements OnInit {
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
 
-  public columnDefs: ColumnDef<T>[];
-
   // public filters$: Observable<ListItem<T>[]>;
   public pagination: PaginationInstance;
 
@@ -114,7 +112,11 @@ export class TableComponent<T> implements OnInit {
   ngOnInit() {
     this.table$ = combineLatest([this.data$, this.columns$]).pipe(
       map(([data, columns]) => {
-        return { data, columns };
+        const columnDefs = columns.map((column) => column.columnDef);
+        console.log(data)
+        console.log(columns)
+        console.log(columnDefs)
+        return { data, columns, columnDefs };
       })
     );
   }

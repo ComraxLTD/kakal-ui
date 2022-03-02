@@ -12,7 +12,6 @@ export declare type Palette =
   | 'table'
   | 'text'
   | 'success'
-  | 'graylight';
 
 export type Color = { [key in Palette]: string };
 
@@ -27,6 +26,5 @@ export const palette: Color = {
   disableText: ' rgba(0, 0, 0, 0.26)',  table: '#f9f9f9',
   text: '#000000',
   success: '#59a437',
-  graylight: '#e2e1e1',
 };
 

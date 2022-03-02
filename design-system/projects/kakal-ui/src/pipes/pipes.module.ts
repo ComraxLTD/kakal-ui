@@ -8,6 +8,7 @@ import { RangePipe } from './range.pipe';
 @NgModule({
   declarations: [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe],
   imports: [],
+  providers : [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe],
   exports: [AreaPipe, FormatPipe, LocationPipe, PrefixPipe, RangePipe],
 })
 export class KKLPipesModule {}

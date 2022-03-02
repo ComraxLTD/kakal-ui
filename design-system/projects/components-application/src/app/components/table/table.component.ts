@@ -27,8 +27,8 @@ export class TableComponent implements OnInit {
   ]);
 
   private columns: TableColumnModel<Item>[] = [
-    { columnDef: 'id' },
-    { columnDef: 'status' },
+    { columnDef: 'id', label: 'id' },
+    { columnDef: 'status', label: 'status' },
   ];
 
   public data$: Observable<any[]>;

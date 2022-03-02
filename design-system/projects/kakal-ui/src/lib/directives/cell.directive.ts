@@ -1,10 +1,9 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
 @Directive({
-  selector: '[appCell]'
+  selector: '[kkl-cell]',
 })
 export class CellDirective {
-
   @Input() span: number;
 
   @HostBinding('style.flex') private flex: number;
@@ -12,6 +11,6 @@ export class CellDirective {
   constructor() {}
 
   ngOnInit(): void {
-    this.flex = this.span || 0.1
+    this.flex = this.span || 1;
   }
 }
