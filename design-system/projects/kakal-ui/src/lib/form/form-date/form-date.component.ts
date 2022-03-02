@@ -54,7 +54,6 @@ export class FormDateComponent implements OnInit {
   @Input() public appearance: Appearance;
   // MatFormFieldAppearance
   public message$: Observable<string>;
-  public cleave = { date: true, datePattern: ['d', 'm', 'Y'] };
   
   @Output() public dateEvent: EventEmitter<MatDatepickerInputEvent<Date>> =
     new EventEmitter();
