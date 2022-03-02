@@ -17,5 +17,11 @@
       {{ option.label }}
     </mat-option>
   </mat-select>
+  <kkl-icon
+      matSuffix
+      [size]="1.8"
+      color="primary"
+      key="keyboard_arrow_down"
+    ></kkl-icon>
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>
