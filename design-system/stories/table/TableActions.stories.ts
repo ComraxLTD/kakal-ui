@@ -5,7 +5,6 @@ import { TableDataSource } from '../../projects/kakal-ui/src/lib/table/models/ta
 import { TableEvent } from '../../projects/kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../projects/kakal-ui/src/lib/table/models/table-row.model';
 import {
-  ButtonActionState,
   KKLTableActionsModule,
   TableActionsComponent,
   TableColumnModel,

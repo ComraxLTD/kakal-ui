@@ -71,7 +71,9 @@ export * from './lib/form/models/question.model';
 
 export * from './lib/columns/column.module';
 export * from './lib/columns/columns.service';
-export * from './lib/columns/column.model';
+export * from './lib/columns/models/column.model';
+export * from './lib/columns/models/column-filter-options';
+export * from './lib/columns/models/column-sort-option';
 
 export * from './lib/columns/column-filter/column-filter.component';
 export * from './lib/columns/column-filter/column-filter.module';
@@ -79,6 +81,9 @@ export * from './lib/columns/column-filter/column-filter.service';
 
 export * from './lib/columns/column-form/column-form.component';
 export * from './lib/columns/column-form/column-form.module';
+
+// TABLE
+
 
 // TABLE-ACTIONS
 

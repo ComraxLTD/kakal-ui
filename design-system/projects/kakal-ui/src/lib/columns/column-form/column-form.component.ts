@@ -2,7 +2,7 @@ import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { QuestionBase } from '../../form/services/form.service';
 // import { RowModel } from '../../table/models/row.model';
-import { TableColumnModel } from '../column.model';
+import { TableColumnModel } from '../models/column.model';
 
 @Component({
   selector: 'kkl-column-form',
