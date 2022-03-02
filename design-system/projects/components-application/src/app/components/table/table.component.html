@@ -1,3 +1,27 @@
-<div fxFill>
-  <kkl-table [data$]="data$" [columns$]="columns$"></kkl-table>
+<div fxFill dir="rtl">
+  <kkl-table
+    [data$]="data$"
+    [itemKey]="'_id'"
+    [columns$]="columns$"
+    [tableDataSource]="tableDataSource"
+    [cellTemplate]="{isActive, actions}"
+    [hasActions]="true"
+  ></kkl-table>
 </div>
+
+<ng-template #isActive let-item>
+  <kkl-typography>
+    {{ item.isActive ? "pass" : "failed" }}
+  </kkl-typography>
+</ng-template>
+
+<ng-template #actions let-rowState let-tableState="tableState">
+  <kkl-table-actions
+    [hasEdit]="true"
+    [hasDelete]="true"
+    [rowState]="rowState"
+    [dataSource]="tableDataSource"
+    (edit)="onEditEvent($event)"
+    (close)="onCloseEvent($event)"
+  ></kkl-table-actions>
+</ng-template>
