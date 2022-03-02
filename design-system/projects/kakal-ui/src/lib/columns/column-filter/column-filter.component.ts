@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
-import { TableColumnModel } from '../column.model';
+import { TableColumnModel } from '../models/column.model';
 import { SelectOption } from '../../form/models/question-select.model';
 import { QuestionTextModel } from '../../form/models/question-text.model';
 
