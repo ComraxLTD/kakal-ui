@@ -48,13 +48,20 @@ export default {
       },
     },
 
+    //  @Output() pageChange: EventEmitter<{
+    //  @Output() filter: EventEmitter<ColumnFilterOption<
+    //  @Output() filterAutocomplete: EventEmitter<ColumnFilterOption<
+    //  @Output() selected: EventEmitter<Observable<
+    //  @Output() expand: EventEmitter<any>
+    //  @Output() rowClicked: EventEmitter<T>
+
     // @Output
-    edit: {
-      name: 'edit',
-      description: 'Event that is emitted whenever an edit action clicked. ',
+    sortChange: {
+      name: 'sortChange',
+      description: 'Event that is emitted whenever an sort button is clicked. ',
       table: {
         type: {
-          summery: 'edit: EventEmitter<RowsState>',
+          summery: 'sortChange: EventEmitter<ColumnSortOption<T>',
         },
       },
     },
