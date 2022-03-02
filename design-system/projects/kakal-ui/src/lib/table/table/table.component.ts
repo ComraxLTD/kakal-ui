@@ -11,16 +11,16 @@ import {
 
 import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { combineLatest, map, Observable } from 'rxjs';
 
 import { TableOptions } from '../models/table-options';
-import { RowsState, TableState } from '../models/table.state';
-import { ColumnState } from '../models/table.state';
+import { TableState } from '../models/table.state';
 
 import { ColumnDef, TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
+
+import { combineLatest, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-table',
