@@ -1,7 +1,7 @@
 import { SortDirection } from '@angular/material/sort';
 import { Question } from '../../form/services/form.service';
 
-export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | '' | string;
+export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | string;
 
 export declare type ColumnType =
   | 'default'
@@ -12,7 +12,7 @@ export declare type ColumnType =
   | 'currency';
 
 export class TableColumnModel<T = any> {
-  public columnDef?: ColumnDef<T>;
+  public columnDef: ColumnDef<T>;
   public label?: string;
   public format?: string;
   public type?: ColumnType;
@@ -36,7 +36,7 @@ export class TableColumnModel<T = any> {
   public filterQuestion?: Question;
 
   constructor(options?: {
-    columnDef?: ColumnDef<T>;
+    columnDef: ColumnDef<T>;
     label?: string;
     type?: ColumnType;
     format?: string;
@@ -58,7 +58,7 @@ export class TableColumnModel<T = any> {
 
     question?: Question;
   }) {
-    this.columnDef = options?.columnDef || '';
+    this.columnDef = options.columnDef;
     this.label = options?.label || '';
     this.type = options?.type || 'default';
     this.format = options?.format;
@@ -85,9 +85,5 @@ export class TableColumnModel<T = any> {
     this.filterQuestion = options?.filterQuestion || null;
 
     this.question = options?.question || null;
-  }
-
-  public getKey(): string {
-    return this.columnDef.toString();
   }
 }
