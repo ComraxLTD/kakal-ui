@@ -48,10 +48,10 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public accordion: boolean;
   @Input() public selectable: boolean;
   @Input() public filterable: boolean;
-  @Input() public hasState: boolean;
+  // if table have additional features
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
-  @Input() public hasStatus: boolean;
+  @Input() public hasState: boolean;
 
   // ng template for cell
   @Input() public cellTemplate: { [key: string]: TemplateRef<any> } = {};
@@ -109,15 +109,44 @@ export class TableComponent<T = any> implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    this.table$ = combineLatest([this.data$, this.columns$]).pipe(
+  private setColumns$() {
+    return this.columns$.pipe(
+      map((columns: TableColumnModel<T>[]) => {
+        if (this.hasActions) {
+          columns.push(new TableColumnModel({ columnDef: 'actions' }));
+        }
+
+        if (this.selectable) {
+          columns.unshift(new TableColumnModel({ columnDef: 'select' }));
+        }
+
+        return columns;
+      })
+    );
+  }
+
+  private setTable$() {
+    return combineLatest([this.data$, this.setColumns$()]).pipe(
       map(([data, columns]) => {
         const columnDefs = columns.map((column) => column.columnDef);
         return { data, columns, columnDefs };
       })
     );
+  }
 
-    console.log(this.cellTemplate)
+  ngOnInit() {
+    this.validateInputs();
 
+    this.table$ = this.setTable$();
+  }
+
+  private validateInputs() {
+    if (this.hasActions) {
+      if (!this.tableDataSource) {
+        throw new Error(
+          'Table with actions has to get TableDataSource instance'
+        );
+      }
+    }
   }
 }

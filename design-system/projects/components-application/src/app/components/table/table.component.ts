@@ -22,7 +22,7 @@ export interface RootObject {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  public dataSource = new TableDataSource<RootObject>();
+  public tableDataSource = new TableDataSource<RootObject>();
 
   // demo data from server
   private demoStore$: Observable<RootObject[]> = of(DEMO_DATA);
@@ -49,13 +49,13 @@ export class TableComponent implements OnInit {
 
     return storeData$.pipe(
       switchMap((data) => {
-        this.dataSource.load(data);
-        return this.dataSource.connect();
+        this.tableDataSource.load(data);
+        return this.tableDataSource.connect();
       })
     );
   }
 
   private setColumns$() {
-    return this.dataSource.connectColumns(this.columns);
+    return this.tableDataSource.connectColumns(this.columns);
   }
 }
