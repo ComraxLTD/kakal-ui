@@ -7,14 +7,14 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { filter, map, mapTo, tap } from 'rxjs/operators';
-import { TableColumnModel } from '../../columns/column.model';
+import { TableColumnModel } from '../../columns/models/column.model';
 import { TableEvent } from '../models/table-event';
-import { TableRowModel } from '../models/table-row.model';
-import { merge, Observable, of } from 'rxjs';
 import { ActionState, ActionStateRules } from './table-actions.model';
 import { RowsState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
+
+import { filter, map, mapTo } from 'rxjs/operators';
+import { merge, Observable } from 'rxjs';
 
 export interface ButtonActionState {
   edit?: ActionState;

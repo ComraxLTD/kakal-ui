@@ -3,7 +3,7 @@ import { palette, Palette } from '../../styles/theme';
 
 
 @Directive({
-  selector: '[appUnderline]',
+  selector: '[kkl-underline]',
 })
 export class UnderlineDirective {
   private palette = palette;

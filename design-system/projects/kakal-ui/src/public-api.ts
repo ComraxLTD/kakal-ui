@@ -71,7 +71,9 @@ export * from './lib/form/models/question.model';
 
 export * from './lib/columns/column.module';
 export * from './lib/columns/columns.service';
-export * from './lib/columns/column.model';
+export * from './lib/columns/models/column.model';
+export * from './lib/columns/models/column-filter-options';
+export * from './lib/columns/models/column-sort-option';
 
 export * from './lib/columns/column-filter/column-filter.component';
 export * from './lib/columns/column-filter/column-filter.module';
@@ -80,8 +82,15 @@ export * from './lib/columns/column-filter/column-filter.service';
 export * from './lib/columns/column-form/column-form.component';
 export * from './lib/columns/column-form/column-form.module';
 
-// TABLE-ACTIONS
+// TABLE
+export * from './lib/table/table/table.component'
+export * from './lib/table/table/table.module'
+export * from './lib/table/models/table-datasource'
+export * from './lib/table/models/table-event'
+export * from './lib/table/models/table.state'
+export * from './lib/table/models/table-row.model'
 
+// TABLE-ACTIONS
 export * from './lib/table/table-actions/table-actions.component';
 export * from './lib/table/table-actions/table-actions.module';
 
@@ -129,12 +138,12 @@ export * from './constants/project-prefix';
 export * from './constants/step-prefix';
 
 // pipes
-export * from './pipes/area.pipe';
-export * from './pipes/format.pipe';
-export * from './pipes/location.pipe';
-export * from './pipes/prefix.pipe';
-export * from './pipes/range.pipe';
-export * from './pipes/pipes.module';
+export * from './lib/pipes/area.pipe';
+export * from './lib/pipes/format.pipe';
+export * from './lib/pipes/location.pipe';
+export * from './lib/pipes/prefix.pipe';
+export * from './lib/pipes/range.pipe';
+export * from './lib/pipes/pipes.module';
 
 //directives
 export * from './lib/directives/variant.directive';

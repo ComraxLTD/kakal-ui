@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { TableColumnModel } from '../../columns/column.model';
+import { TableColumnModel } from '../../columns/models/column.model';
 import { FormEvent } from '../../form/models/form-data-source.model';
 import { TableDataSource } from './table-datasource';
 import { TableOptions } from './table-options';

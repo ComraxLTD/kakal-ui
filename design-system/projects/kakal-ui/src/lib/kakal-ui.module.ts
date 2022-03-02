@@ -15,8 +15,6 @@ import { KKLMenuModule } from './menu/menu.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLStepTitleModule } from './step-title/step-title.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
-import { KKLDirectivesModule } from './directives/directives.module';
-import { KKLPipesModule } from '../pipes/pipes.module';
 import { KKLFormModule } from './form/form/form.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
@@ -28,9 +26,13 @@ import { KKLColumnsModule } from './columns/column.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { KKLDialogModule } from './dialog/dialog.module';
-import { DialogExampleComponent } from './examples/dialog-example/dialog-example.component';
+import { KKLTableModule } from './table/table/table.module';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 import { SpinnerModule } from './spinner/spinner.module'
+
+import { KKLDirectivesModule } from './directives/directives.module';
+import { KKLPipesModule } from './pipes/pipes.module';
+
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent, FormPhoneComponent],
@@ -59,6 +61,7 @@ import { SpinnerModule } from './spinner/spinner.module'
     KKLFormTextEditorModule,
 
     // TABLE MODULES
+    KKLTableModule,
     KKLTableActionsModule,
     KKLColumnsModule,
 
@@ -84,6 +87,7 @@ import { SpinnerModule } from './spinner/spinner.module'
     KKLFormCurrencyModule,
     KKLFormUploadModule,
 
+    KKLTableModule,
     KKLTableActionsModule,
     KKLColumnsModule,
 

@@ -1,22 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import {
-  BehaviorSubject,
   Observable,
   map,
   of,
   filter,
   switchMapTo,
   merge,
-  take,
   switchMap,
   Subject,
-  mapTo,
-  tap,
-  combineLatestAll,
-  combineLatest,
-  startWith,
-  iif,
+
 } from 'rxjs';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
 import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
@@ -37,6 +30,7 @@ import { FormService } from '../../../../../kakal-ui/src/public-api';
   styleUrls: ['./action-table.component.scss'],
 })
 export class ActionTableComponent implements OnInit {
+
   public dataSource = new TableDataSource();
 
   // demo data from server

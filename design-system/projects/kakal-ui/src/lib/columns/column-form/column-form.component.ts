@@ -1,8 +1,7 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { QuestionBase } from '../../form/services/form.service';
-// import { RowModel } from '../../table/models/row.model';
-import { TableColumnModel } from '../column.model';
+import { TableColumnModel } from '../models/column.model';
 
 @Component({
   selector: 'kkl-column-form',
@@ -10,8 +9,6 @@ import { TableColumnModel } from '../column.model';
   styleUrls: ['./column-form.component.scss'],
 })
 export class ColumnFormComponent<T> implements OnInit {
-  // @Input() public row: RowModel<T>;
-  @Input() public row: any;
   @Input() public form: QuestionGroupModel;
   @Input() public column: TableColumnModel<T>;
   @Input() public slot: ElementRef;
@@ -21,6 +18,6 @@ export class ColumnFormComponent<T> implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.question = this.row.form.group[this.column.getKey()];
+    this.question = this.form.group[this.column.columnDef.toString()];
   }
 }
