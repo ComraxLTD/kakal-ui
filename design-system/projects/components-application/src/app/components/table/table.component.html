@@ -1,3 +1,13 @@
 <div fxFill>
-  <kkl-table [data$]="data$" [columns$]="columns$"></kkl-table>
+  <kkl-table
+    [data$]="data$"
+    [columns$]="columns$"
+    [cellTemplate]="{isActive}"
+  ></kkl-table>
 </div>
+
+<ng-template #isActive let-item>
+  <kkl-typography>
+    {{ item.isActive ? "pass" : "failed" }}
+  </kkl-typography>
+</ng-template>

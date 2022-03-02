@@ -19,11 +19,9 @@
 
               <ng-container *ngFor="let column of table.columns">
                 <div
-                  kkl-table-cell
+                  [kklTableCell]="column.columnDef"
                   [span]="column.flex"
-                  [class.center]="column.center"
-                  [class.select]="column.columnDef === 'select'"
-                  [class.actions]="column.columnDef === 'actions'"
+                  [center]="column.center"
                 >
                   <!-- DEFAULT HEADER -->
                   <ng-container>
@@ -59,17 +57,9 @@
                 >
                   <div class="row" fxFill fxLayout="row">
                     <ng-container *ngFor="let column of table.columns; let i">
-                      <div
-                        kkl-table-cell
-                        [span]="column.flex"
-                        [class.center]="column.center"
-                        [class.select]="column.columnDef === 'select'"
-                        [class.actions]="column.columnDef === 'actions'"
-                      >
-                        <ng-container
-                          *ngIf="column.columnDef === 'select'; else cellBlock"
-                        >
-                          <div>
+                      <ng-container [ngSwitch]="column.columnDef">
+                        <ng-container *ngSwitchCase="'select'">
+                          <div kklTableCell>
                             <mat-checkbox
                               color="primary"
                               (click)="onSelect()"
@@ -80,13 +70,40 @@
                             </mat-checkbox>
                           </div>
                         </ng-container>
+                        <ng-container *ngSwitchCase="'actions'">
+                          <div kklTableCell>
+                            <ng-container
+                              *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit : row, column, i}"
+                            ></ng-container>
+                          </div>
+                        </ng-container>
+                        <ng-container *ngSwitchDefault>
+                          <div
+                            kklTableCell
+                            [span]="column.flex"
+                            [class.center]="column.center"
+                          >
+                            <ng-container
+                              *ngIf="
+                                !cellTemplate[column.columnDef];
+                                else cellBlock
+                              "
+                            >
+                              <kkl-typography>
+                                {{
+                                  row[column.columnDef] | format: column?.format
+                                }}
+                              </kkl-typography>
+                            </ng-container>
 
-                        <ng-template #cellBlock>
-                          <kkl-typography>
-                            {{ row[column.columnDef] | format: column?.format }}
-                          </kkl-typography>
-                        </ng-template>
-                      </div>
+                            <ng-template #cellBlock>
+                              <ng-container
+                                *ngTemplateOutlet="cellTemplate[column.columnDef]; context : {$implicit : row, column, i}"
+                              ></ng-container>
+                            </ng-template>
+                          </div>
+                        </ng-container>
+                      </ng-container>
                     </ng-container>
                   </div>
                 </mat-expansion-panel-header>

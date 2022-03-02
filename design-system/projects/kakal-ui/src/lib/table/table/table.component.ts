@@ -53,14 +53,14 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public hasActions: boolean;
   @Input() public hasStatus: boolean;
 
+  // ng template for cell
+  @Input() public cellTemplate: { [key: string]: TemplateRef<any> } = {};
+
   //ng template for cell inputs
   @Input() public formTemplate: { [key: string]: TemplateRef<any> };
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
-
-  // ng template for cell
-  @Input() public cellTemplates: { [key: string]: TemplateRef<any> };
 
   // ng template for column filter options
   @Input() public filterTemplate: { [key: string]: TemplateRef<any> };
@@ -116,5 +116,8 @@ export class TableComponent<T = any> implements OnInit {
         return { data, columns, columnDefs };
       })
     );
+
+    console.log(this.cellTemplate)
+
   }
 }
