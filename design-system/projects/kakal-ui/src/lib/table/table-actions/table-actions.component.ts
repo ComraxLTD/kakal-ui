@@ -10,10 +10,10 @@ import {
 import { TableColumnModel } from '../../columns/models/column.model';
 import { TableEvent } from '../models/table-event';
 import { ActionState, ActionStateRules } from './table-actions.model';
-import { RowsState } from '../models/table.state';
+import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
 
-import { filter, map, mapTo } from 'rxjs/operators';
+import { filter, map, mapTo, switchMapTo } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
 
 export interface ButtonActionState {
@@ -29,6 +29,7 @@ export interface ButtonActionState {
 export class TableActionsComponent implements OnInit {
   @Input() rowState: RowsState;
   @Input() dataSource: TableDataSource;
+  @Input() tableState: TableState;
   @Input() actionStateRules: ActionStateRules;
 
   @Input() hasEdit: boolean;
@@ -45,7 +46,6 @@ export class TableActionsComponent implements OnInit {
 
   public editState$: Observable<ActionState>;
   public deleteState$: Observable<ActionState>;
-
 
   constructor() {}
 
@@ -73,10 +73,14 @@ export class TableActionsComponent implements OnInit {
   }
 
   private getEditTableStateByEvent(events: TableEvent[]) {
-    return this.dataSource.getTableStateByEvent(events).pipe(
-      map((tableState) => {
-        return tableState.editing;
-      })
+    return this.dataSource.getEvents$(events).pipe(
+      switchMapTo(
+        this.dataSource.listenTableState().pipe(
+          map((tableState) => {
+            return tableState.editing;
+          })
+        )
+      )
     );
   }
 

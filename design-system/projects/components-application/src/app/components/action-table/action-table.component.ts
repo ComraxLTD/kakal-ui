@@ -141,7 +141,7 @@ export class ActionTableComponent implements OnInit {
   }
 
   public onEditEvent(state: RowsState) {
-    const { item, itemIndex } = state;
+    const { item, rowIndex } = state;
 
     this.dataSource.actions.edit({ state });
 
@@ -151,7 +151,7 @@ export class ActionTableComponent implements OnInit {
       editing: this.updateArray({
         array: [...editing],
         value: item.id,
-        itemIndex,
+        itemIndex : rowIndex,
         key: 'id',
       }),
 
@@ -162,14 +162,14 @@ export class ActionTableComponent implements OnInit {
   }
 
   private onEditCloseEvent(state: RowsState) {
-    const { item, itemIndex } = state;
+    const { item, rowIndex } = state;
     const { editing } = this.dataSource.getTableState();
     const tableState = {
       ...this.dataSource.getTableState(),
       editing: this.updateArray({
         array: [...editing],
         value: item.id,
-        itemIndex,
+        itemIndex : rowIndex,
         key: 'id',
       }),
 

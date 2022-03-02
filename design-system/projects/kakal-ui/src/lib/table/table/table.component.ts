@@ -13,7 +13,7 @@ import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
 
 import { TableOptions } from '../models/table-options';
-import { TableState } from '../models/table.state';
+import { RowsState, TableState } from '../models/table.state';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
@@ -30,6 +30,7 @@ import {
   switchMap,
   switchMapTo,
   take,
+  tap,
 } from 'rxjs';
 
 @Component({
@@ -166,31 +167,55 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTableState$() {
-    return merge(this.tableDataSource.listenTableState(), this.onEditEvent());
+    return merge(
+      this.tableDataSource.listenTableState(),
+      this.onEditEvent(),
+      this.onEditCloseEvent()
+    ).pipe(tap((c) => console.log(c)));
   }
 
   private onEditEvent() {
     return this.tableDataSource.listen$.edit().pipe(
       switchMap((state) => {
-        const { item, itemIndex, key } = state;
-
+        console.log('edit');
+        const { item, key } = state;
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState) => {
+            console.log('state');
             const { editing } = tableState;
+            editing.push(item[key]);
 
             tableState = {
               ...tableState,
-              editing: updateArray({
-                array: [...editing],
-                value: item[key],
-                itemIndex,
-                key,
-              }),
-
+              editing,
               event: 'edit',
             } as TableState;
-            this.tableDataSource.loadTableState(tableState);
+
+            return tableState;
+          })
+        );
+      })
+    );
+  }
+  private onEditCloseEvent() {
+    return this.tableDataSource.listen$.close().pipe(
+      take(1),
+      switchMap((state) => {
+        const { item, rowIndex, key } = state;
+        return this.tableDataSource.listenTableState().pipe(
+          take(1),
+          map((tableState) => {
+            console.log('close');
+            const { editing } = tableState;
+
+            editing.splice(rowIndex, 1);
+
+            tableState = {
+              ...tableState,
+              editing: [],
+              event: 'close',
+            } as TableState;
 
             return tableState;
           })

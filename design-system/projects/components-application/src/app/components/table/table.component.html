@@ -15,12 +15,13 @@
   </kkl-typography>
 </ng-template>
 
-<ng-template #actions let-rowState>
+<ng-template #actions let-rowState let-tableState="tableState">
   <kkl-table-actions
     [hasEdit]="true"
     [hasDelete]="true"
     [rowState]="rowState"
     [dataSource]="tableDataSource"
     (edit)="onEditEvent($event)"
+    (close)="onCloseEvent($event)"
   ></kkl-table-actions>
 </ng-template>

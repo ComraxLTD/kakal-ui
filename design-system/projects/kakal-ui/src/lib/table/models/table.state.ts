@@ -20,7 +20,7 @@ export interface RowsState<T = any> {
   item?: T;
   key?: string;
   event?: TableEvent;
-  itemIndex?: number;
+  rowIndex?: number;
   column?: TableColumnModel<T>;
   options?: any;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };

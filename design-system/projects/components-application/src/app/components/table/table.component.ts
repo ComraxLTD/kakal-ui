@@ -63,4 +63,12 @@ export class TableComponent implements OnInit {
   public onEditEvent(state: RowsState) {
     this.tableDataSource.actions.edit({ state });
   }
+
+  public onCloseEvent(state: RowsState) {
+    const { event } = state;
+
+    if (event === 'edit') {
+      this.tableDataSource.actions.close({ state });
+    }
+  }
 }
