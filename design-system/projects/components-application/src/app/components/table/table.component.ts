@@ -4,6 +4,7 @@ import {
   TableDataSource,
   FormService,
   TableColumnModel,
+  RowsState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA } from './mock_data';
 
@@ -57,5 +58,9 @@ export class TableComponent implements OnInit {
 
   private setColumns$() {
     return this.tableDataSource.connectColumns(this.columns);
+  }
+
+  public onEditEvent(state: RowsState) {
+    this.tableDataSource.actions.edit({ state });
   }
 }

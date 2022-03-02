@@ -1,6 +1,7 @@
 <div fxFill dir="rtl">
   <kkl-table
     [data$]="data$"
+    [itemKey]="'_id'"
     [columns$]="columns$"
     [tableDataSource]="tableDataSource"
     [cellTemplate]="{isActive, actions}"
@@ -18,8 +19,7 @@
   <kkl-table-actions
     [hasEdit]="true"
     [hasDelete]="true"
-    [rowState]=""
-    rowState
+    [rowState]="rowState"
     [dataSource]="tableDataSource"
     (edit)="onEditEvent($event)"
   ></kkl-table-actions>

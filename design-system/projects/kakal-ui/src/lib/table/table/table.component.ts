@@ -15,12 +15,22 @@ import { PaginationInstance } from 'ngx-pagination';
 import { TableOptions } from '../models/table-options';
 import { TableState } from '../models/table.state';
 
-import { ColumnDef, TableColumnModel } from '../../columns/models/column.model';
+import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
 
-import { combineLatest, map, Observable } from 'rxjs';
+import { updateArray } from './table.helpers';
+
+import {
+  combineLatest,
+  map,
+  merge,
+  Observable,
+  switchMap,
+  switchMapTo,
+  take,
+} from 'rxjs';
 
 @Component({
   selector: 'kkl-table',
@@ -29,12 +39,11 @@ import { combineLatest, map, Observable } from 'rxjs';
 })
 export class TableComponent<T = any> implements OnInit {
   @Input() public tableDataSource: TableDataSource<T>;
-
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<TableColumnModel<T>[]>;
-  @Input() public tableState$: Observable<TableState>;
 
   // table data instance for column keys
+  @Input('itemKey') public key: keyof T;
   @Input() public model: T;
 
   @Input() public options: TableOptions<T>;
@@ -100,6 +109,7 @@ export class TableComponent<T = any> implements OnInit {
 
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
+  public tableState$: Observable<TableState>;
 
   // public filters$: Observable<ListItem<T>[]>;
   public pagination: PaginationInstance;
@@ -126,14 +136,10 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTable$() {
-    return combineLatest([
-      this.data$,
-      this.setColumns$(),
-      this.tableDataSource.listenTableState(),
-    ]).pipe(
-      map(([data, columns, tableState]) => {
+    return combineLatest([this.data$, this.setColumns$()]).pipe(
+      map(([data, columns]) => {
         const columnDefs = columns.map((column) => column.columnDef);
-        return { data, columns, columnDefs, tableState };
+        return { data, columns, columnDefs };
       })
     );
   }
@@ -142,9 +148,14 @@ export class TableComponent<T = any> implements OnInit {
     this.validateInputs();
 
     this.table$ = this.setTable$();
+    this.tableState$ = this.setTableState$();
   }
 
   private validateInputs() {
+    if (!this.key) {
+      throw new Error('Table must get unique key of the item');
+    }
+
     if (this.hasActions) {
       if (!this.tableDataSource) {
         throw new Error(
@@ -152,5 +163,39 @@ export class TableComponent<T = any> implements OnInit {
         );
       }
     }
+  }
+
+  private setTableState$() {
+    return merge(this.tableDataSource.listenTableState(), this.onEditEvent());
+  }
+
+  private onEditEvent() {
+    return this.tableDataSource.listen$.edit().pipe(
+      switchMap((state) => {
+        const { item, itemIndex, key } = state;
+
+        return this.tableDataSource.listenTableState().pipe(
+          take(1),
+          map((tableState) => {
+            const { editing } = tableState;
+
+            tableState = {
+              ...tableState,
+              editing: updateArray({
+                array: [...editing],
+                value: item[key],
+                itemIndex,
+                key,
+              }),
+
+              event: 'edit',
+            } as TableState;
+            this.tableDataSource.loadTableState(tableState);
+
+            return tableState;
+          })
+        );
+      })
+    );
   }
 }

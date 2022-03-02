@@ -3,12 +3,11 @@ import { SelectOption } from '../../form/models/question-select.model';
 import { TableColumnModel } from '../../columns/models/column.model';
 import { TableEvent } from './table-event';
 import { SortDirection } from '@angular/material/sort';
-import { TableRowModel } from './table-row.model';
 import { ButtonActionState } from '../table-actions/table-actions.component';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 
 export interface TableState {
-  selected: { [key: number]: boolean };
+  selected: { [key: string]: boolean };
   editing: number[];
   extended: number[];
   disabled: number[];
@@ -18,10 +17,10 @@ export interface TableState {
 }
 
 export interface RowsState<T = any> {
-  event?: TableEvent;
   item?: T;
+  key?: string;
+  event?: TableEvent;
   itemIndex?: number;
-  row?: TableRowModel<T>;
   column?: TableColumnModel<T>;
   options?: any;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };

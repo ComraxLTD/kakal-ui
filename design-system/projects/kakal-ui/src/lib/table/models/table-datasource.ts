@@ -148,31 +148,32 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
   }
 
-  private createAction(prop: { state }, event?: TableEvent) {
+  private createAction(prop: { state: RowsState }, event?: TableEvent) {
     const { state } = prop;
     this.rowsStateSubject.next({ ...state, event });
   }
 
   // main actions object
   public actions = {
-    add: (prop: { state }) => this.createAction(prop, 'add'),
+    add: (prop: { state: RowsState }) => this.createAction(prop, 'add'),
 
-    create: (prop: { state }) => this.createAction(prop, 'create'),
+    create: (prop: { state: RowsState }) => this.createAction(prop, 'create'),
 
-    save: (prop: { state }) => this.createAction(prop, 'save'),
+    save: (prop: { state: RowsState }) => this.createAction(prop, 'save'),
 
-    form: (prop: { state }) => this.createAction(prop, 'form'),
+    form: (prop: { state: RowsState }) => this.createAction(prop, 'form'),
 
-    edit: (prop: { state }) => this.createAction(prop, 'edit'),
-    cancel: (prop: { state }) => this.createAction(prop, 'cancel'),
+    edit: (prop: { state: RowsState }) => this.createAction(prop, 'edit'),
+    cancel: (prop: { state: RowsState }) => this.createAction(prop, 'cancel'),
 
-    close: (prop: { state }) => this.createAction(prop, 'close'),
+    close: (prop: { state: RowsState }) => this.createAction(prop, 'close'),
 
-    expand: (prop: { state }) => this.createAction(prop, 'expand'),
+    expand: (prop: { state: RowsState }) => this.createAction(prop, 'expand'),
 
-    delete: (prop: { state }) => this.createAction(prop, 'delete'),
+    delete: (prop: { state: RowsState }) => this.createAction(prop, 'delete'),
 
-    selectRows: (prop: { state }) => this.createAction(prop, 'selectRows'),
+    selectRows: (prop: { state: RowsState }) =>
+      this.createAction(prop, 'selectRows'),
 
     addOptions: (state?: RowsState<T>) => this.addOptions(state),
     updateOptions: (state: ColumnState<T>) => this.updateOptions(state),

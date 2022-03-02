@@ -27,7 +27,6 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
-  
   @Input() rowState: RowsState;
   @Input() dataSource: TableDataSource;
   @Input() actionStateRules: ActionStateRules;
@@ -46,6 +45,7 @@ export class TableActionsComponent implements OnInit {
 
   public editState$: Observable<ActionState>;
   public deleteState$: Observable<ActionState>;
+
 
   constructor() {}
 
@@ -81,9 +81,11 @@ export class TableActionsComponent implements OnInit {
   }
 
   private setEditStateOnEdit() {
+    const prop = this.rowState.item[this.rowState.key];
+
     return this.getEditTableStateByEvent(['edit']).pipe(
-      filter((editing) => editing.indexOf(this.rowState.item.id) !== -1),
-      map((editing) => editing.indexOf(this.rowState.item.id) !== -1),
+      filter((editing) => editing.indexOf(prop) !== -1),
+      map((editing) => editing.indexOf(prop) !== -1),
       map((editing: boolean) => {
         return {
           show: !editing,
@@ -94,8 +96,9 @@ export class TableActionsComponent implements OnInit {
     );
   }
   private setEditStateOnClose() {
+    const id = this.rowState.item[this.rowState.key];
     return this.getEditTableStateByEvent(['close']).pipe(
-      map((editing) => editing.indexOf(this.rowState.item.id) !== -1),
+      map((editing) => editing.indexOf(id) !== -1),
       map((close: boolean) => {
         return {
           show: !close,
