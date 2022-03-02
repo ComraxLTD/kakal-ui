@@ -1,6 +1,6 @@
 import { ThemePalette } from '@angular/material/core';
 
-export declare type Theme = 'dark'
+export declare type Theme = 'dark';
 
 export declare type Palette =
   | Exclude<ThemePalette, undefined>
@@ -12,6 +12,10 @@ export declare type Palette =
   | 'table'
   | 'text'
   | 'success'
+  | 'graylight'
+  | 'tableActionsGray'
+  | 'darkGray'
+  ;
 
 export type Color = { [key in Palette]: string };
 
@@ -23,8 +27,11 @@ export const palette: Color = {
   default: '#bababa',
   disable: ' rgba(0, 0, 0, 0.26)',
   disableButton: 'rgba(0, 0, 0, 0.12);',
-  disableText: ' rgba(0, 0, 0, 0.26)',  table: '#f9f9f9',
+  disableText: ' rgba(0, 0, 0, 0.26)',
+  table: '#f9f9f9',
   text: '#000000',
   success: '#59a437',
+  graylight: '#e2e1e1',
+  tableActionsGray: '#a0a0a0',
+  darkGray:'#747474'
 };
-
