@@ -33,6 +33,9 @@ export class TableActionsComponent implements OnInit {
   @Input() dataSource: TableDataSource;
   @Input() actionStateRules: ActionStateRules;
 
+  @Input() hasEdit: boolean;
+  @Input() hasDelete: boolean;
+
   // custom button slot
   @Input() public startSlot: TemplateRef<any>;
   @Input() public endSlot: TemplateRef<any>;
@@ -47,7 +50,15 @@ export class TableActionsComponent implements OnInit {
 
   constructor() {}
 
+  private validate() {
+    if (!this.dataSource) {
+      throw new Error('TableDataSource instance is required');
+    }
+  }
+
   ngOnInit(): void {
+    this.validate();
+
     this.editState$ = this.setEditState();
     this.deleteState$ = this.setDeleteState();
   }
@@ -55,7 +66,7 @@ export class TableActionsComponent implements OnInit {
   private setEditStateOnDefault() {
     return this.dataSource.getTableStateByEvent(['default']).pipe(
       mapTo({
-        show: this.actionStateRules?.showEdit(this.item),
+        show: this.actionStateRules?.showEdit(this.item) || this.hasEdit,
         disabled: this.actionStateRules?.disableEdit(this.item),
       } as ActionState)
     );
@@ -98,18 +109,17 @@ export class TableActionsComponent implements OnInit {
   private setDeleteStateOnDefault() {
     return this.dataSource.getTableStateByEvent(['default', 'close']).pipe(
       mapTo({
-        show: this.actionStateRules?.showDelete(this.item),
+        show: this.actionStateRules?.showDelete(this.item) || this.hasDelete,
         disabled: this.actionStateRules?.disableDelete(this.item),
       } as ActionState)
     );
   }
 
-
   private setEditState() {
     const default$ = this.setEditStateOnDefault();
     const edit$ = this.setEditStateOnEdit();
     const close$ = this.setEditStateOnClose();
-    return merge(default$, edit$, close$);
+    return this.hasEdit ? merge(default$, edit$, close$) : null;
   }
 
   private setDeleteState(): Observable<ActionState> {

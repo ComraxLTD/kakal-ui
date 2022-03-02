@@ -10,7 +10,7 @@
     }
 
     mat-expansion-panel-header {
-      height: 5rem;
+      height: 6rem;
       padding: 0px;
       width: 100% !important;
       color: main.color(text) !important;
@@ -39,6 +39,7 @@
     line-height: 3rem !important;
   }
 }
+
 div.row-header {
   height: 4rem !important;
   padding-right: main.spacing(2);
@@ -71,11 +72,11 @@ div.kkl-table-cell {
   }
 
   &.select {
-    flex: 0.5;
+    flex: 0.5 !important;
   }
 
   &.actions {
-    justify-content: flex-start;
+    justify-content: flex-end;
   }
 }
 
@@ -90,6 +91,7 @@ mat-cell {
 .disabled {
   opacity: 30%;
 }
+
 mat-header-cell {
   padding: 0px !important;
   &.expand {

@@ -1,9 +1,9 @@
-<div fxFill>
+<div fxFill dir="rtl">
   <kkl-table
     [data$]="data$"
     [columns$]="columns$"
     [tableDataSource]="tableDataSource"
-    [cellTemplate]="{isActive}"
+    [cellTemplate]="{isActive, actions}"
     [hasActions]="true"
   ></kkl-table>
 </div>
@@ -12,4 +12,12 @@
   <kkl-typography>
     {{ item.isActive ? "pass" : "failed" }}
   </kkl-typography>
+</ng-template>
+
+<ng-template #actions>
+  <kkl-table-actions
+    [hasEdit]="true"
+    [hasDelete]="true"
+    [dataSource]="tableDataSource"
+  ></kkl-table-actions>
 </ng-template>

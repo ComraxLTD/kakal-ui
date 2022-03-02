@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { KKLTypographyModule } from '../../typography/typography.module';
@@ -20,6 +21,7 @@ import { KKLTableCellDirective } from '../directives/table-cell.directive';
     FlexLayoutModule,
     MatTableModule,
     MatExpansionModule,
+    MatCheckboxModule,
     KKLColumnsModule,
     KKLIconModule,
     KKLTypographyModule,

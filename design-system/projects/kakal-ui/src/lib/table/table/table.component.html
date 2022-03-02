@@ -18,11 +18,7 @@
               <!-- COLUMN HEADER SECTION-->
 
               <ng-container *ngFor="let column of table.columns">
-                <div
-                  [kklTableCell]="column.columnDef"
-                  [span]="column.flex"
-                  [center]="column.center"
-                >
+                <div [kklTableCell]="column.columnDef" [center]="column.center">
                   <!-- DEFAULT HEADER -->
                   <ng-container>
                     <kkl-typography [weight]="600">
@@ -59,7 +55,7 @@
                     <ng-container *ngFor="let column of table.columns; let i">
                       <ng-container [ngSwitch]="column.columnDef">
                         <ng-container *ngSwitchCase="'select'">
-                          <div kklTableCell>
+                          <div [kklTableCell]="column.columnDef">
                             <mat-checkbox
                               color="primary"
                               (click)="onSelect()"
@@ -71,7 +67,7 @@
                           </div>
                         </ng-container>
                         <ng-container *ngSwitchCase="'actions'">
-                          <div kklTableCell>
+                          <div [kklTableCell]="column.columnDef" fxFlex>
                             <ng-container
                               *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit : row, column, i}"
                             ></ng-container>
@@ -79,8 +75,8 @@
                         </ng-container>
                         <ng-container *ngSwitchDefault>
                           <div
-                            kklTableCell
-                            [span]="column.flex"
+                            fxFlex
+                            [kklTableCell]="column.columnDef"
                             [class.center]="column.center"
                           >
                             <ng-container
