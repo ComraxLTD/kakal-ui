@@ -1,7 +1,12 @@
+<div class="container" fxLayout="column" fxLayoutGap="2rem">
+  <app-action-table></app-action-table>
+</div>
 <!-- <kkl-form-texteditor></kkl-form-texteditor> -->
 <div class="container">
-<kkl-form-currency [control]="control"></kkl-form-currency>    
-</div>
+<!-- <kkl-form-input [control]="control" controlType="time"></kkl-form-input> -->
+<!-- <kkl-form-date [control]='control' [range]="true"></kkl-form-date> -->
+<kkl-form-select [control]='control'></kkl-form-select>
+</div>  
 <!-- <div class="container" fxLayout="column" fxLayoutGap="2rem">
   <div fxLayout="column" fxLayoutGap="2rem">
     <ng-container *ngFor="let item of rows$ | async as rows">

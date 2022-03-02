@@ -28,6 +28,7 @@ import { KKLColumnsModule } from './columns/column.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { KKLDialogModule } from './dialog/dialog.module';
+import { DialogExampleComponent } from './examples/dialog-example/dialog-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 import { SpinnerModule } from './spinner/spinner.module'
 
@@ -38,11 +39,15 @@ import { SpinnerModule } from './spinner/spinner.module'
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+
     KKLMenuModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
+
     SidenavModule,
+
+    // FORMS MODULES
     KKLFormModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
@@ -52,7 +57,10 @@ import { SpinnerModule } from './spinner/spinner.module'
     KKLFormUploadModule,
     KKLDialogModule,
     KKLFormTextEditorModule,
-    // KKLColumnsModule,
+
+    // TABLE MODULES
+    KKLTableActionsModule,
+    KKLColumnsModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
@@ -66,6 +74,7 @@ import { SpinnerModule } from './spinner/spinner.module'
     KklTitleModule,
     KKLStepTitleModule,
     SidenavModule,
+
     KKLFormModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
@@ -74,9 +83,11 @@ import { SpinnerModule } from './spinner/spinner.module'
     KKLFormSelectModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
-    KKLDialogModule,
+
     KKLTableActionsModule,
     KKLColumnsModule,
+
+    KKLDialogModule,
 
     KKLPipesModule,
     KKLDirectivesModule,

@@ -13,7 +13,6 @@ export * from './lib/typography/typography.module';
 export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.module';
 
-
 // form exports
 
 export * from './lib/form/models/form-data-source.model';
@@ -29,6 +28,7 @@ export * from './lib/form/form-date/form-date.module';
 
 export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.module';
+export * from './lib/form/form-input/form-input.service';
 
 export * from './lib/form/form-texteditor/form-texteditor.module';
 export * from './lib/form/form-texteditor/form-texteditor.component';
@@ -46,7 +46,6 @@ export * from './lib/form/form-currency/form-currency.service';
 export * from './lib/form/form-autocomplete/form-autocomplete.component';
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
 
-
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
@@ -54,17 +53,13 @@ export * from './lib/form/services/validations.service';
 // FORM QUESTIONS //
 
 export * from './lib/form/models/question-autocomplete';
-export * from './lib/form/models/question-email.model';
 export * from './lib/form/models/question-file.model';
 export * from './lib/form/models/question-group.model';
-export * from './lib/form/models/question-phone.model';
 export * from './lib/form/models/question-number.model';
 export * from './lib/form/models/question-select.model';
 export * from './lib/form/models/question-sum.model';
 export * from './lib/form/models/question-text.model';
 export * from './lib/form/models/question-textarea.model';
-export * from './lib/form/models/question-texteditor.model';
-export * from './lib/form/models/question-time.model';
 export * from './lib/form/models/question-toggle.model';
 export * from './lib/form/models/question.model';
 
@@ -72,26 +67,27 @@ export * from './lib/form/models/question.model';
 // TABLE EXPORTS
 // ------------------------------------------------------------------------------------------
 
-
 // COLUMNS
 
-export * from './lib/columns/column.module'
-export * from './lib/columns/columns.service'
-export * from './lib/columns/column.model'
+export * from './lib/columns/column.module';
+export * from './lib/columns/columns.service';
+export * from './lib/columns/column.model';
 
-export * from './lib/columns/column-filter/column-filter.component'
-export * from './lib/columns/column-filter/column-filter.module'
-export * from './lib/columns/column-filter/column-filter.service'
+export * from './lib/columns/column-filter/column-filter.component';
+export * from './lib/columns/column-filter/column-filter.module';
+export * from './lib/columns/column-filter/column-filter.service';
 
-export * from './lib/columns/column-form/column-form.component'
-export * from './lib/columns/column-form/column-form.module'
-
+export * from './lib/columns/column-form/column-form.component';
+export * from './lib/columns/column-form/column-form.module';
 
 // TABLE-ACTIONS
 
-export * from './lib/table/table-actions/table-actions.component'
-export * from './lib/table/table-actions/table-actions.module'
+export * from './lib/table/table-actions/table-actions.component';
+export * from './lib/table/table-actions/table-actions.module';
 
+
+
+// -------------------------------------------------------------------------------------------------------
 
 //menu
 export * from './lib/menu-item/menu-item.module';
@@ -102,7 +98,6 @@ export * from './lib/menu/menu.component';
 // title
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
-
 
 // dialog
 export * from './lib/dialog/dialog.module';
@@ -118,7 +113,6 @@ export * from './lib/spinner/spinner.service';
 // sidenav
 export * from './lib/sidenav/sidenav.module';
 export * from './lib/sidenav/sidenav.component';
-
 
 // step title
 export * from './lib/step-title/step-title.module';

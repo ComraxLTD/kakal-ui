@@ -11,23 +11,21 @@
       *ngTemplateOutlet="
         startSlot;
         context: {
-          $implicit: { row: this.row, panel: this.panel, column: this.column }
+          $implicit: { item: this.item, column: this.column }
         }
       "
     ></ng-template>
   </ng-container>
 
-  <ng-container *ngIf="editButton$ | async as editButton">
+  <ng-container *ngIf="editState$ | async as editState">
     <!-- edit button -->
-    <ng-container *ngIf="!editButton.show; else saveBlock">
+    <ng-container *ngIf="editState.show; else saveBlock">
       <button
         mat-icon-button
-        [class.mat-raised-button]="
-          editButton.disabled || row.item?.disabledActions?.edit
-        "
+        [class.mat-raised-button]="editState.disabled"
         (click)="onEdit()"
         matTooltip="ערוך"
-        [disabled]="editButton.disabled || row.item?.disabledActions?.edit"
+        [disabled]="editState.disabled"
       >
         <kkl-icon key="edit"></kkl-icon>
       </button>
@@ -38,19 +36,19 @@
       <button
         mat-raised-button
         class="kkl-save-button"
-        (click)="onSave(editButton.event)"
+        (click)="onSave(editState.event)"
         appBorder
-        [disabled]="!row.form.formGroup.valid"
+        [disabled]="!editState.valid"
         matTooltip="שמור"
       >
-        <kkl-typography color="text" [disabled]="!row.form.formGroup.valid">
+        <kkl-typography color="text" [disabled]="!editState.valid">
           שמור
         </kkl-typography>
       </button>
       <button
         matTooltip="בטל"
         mat-icon-button
-        (click)="onCancel(editButton.event)"
+        (click)="onClose(editState.event)"
         matTooltip="בטל"
       >
         <kkl-icon key="cancel"></kkl-icon>
@@ -79,7 +77,7 @@
       *ngTemplateOutlet="
         endSlot;
         context: {
-          $implicit: { row: this.row, panel: this.panel, column: this.column }
+          $implicit: { item: this.item, column: this.column }
         }
       "
     ></ng-template>
