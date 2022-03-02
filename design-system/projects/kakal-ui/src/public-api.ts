@@ -83,10 +83,14 @@ export * from './lib/columns/column-form/column-form.component';
 export * from './lib/columns/column-form/column-form.module';
 
 // TABLE
-
+export * from './lib/table/table/table.component'
+export * from './lib/table/table/table.module'
+export * from './lib/table/models/table-datasource'
+export * from './lib/table/models/table-event'
+export * from './lib/table/models/table.state'
+export * from './lib/table/models/table-row.model'
 
 // TABLE-ACTIONS
-
 export * from './lib/table/table-actions/table-actions.component';
 export * from './lib/table/table-actions/table-actions.module';
 
