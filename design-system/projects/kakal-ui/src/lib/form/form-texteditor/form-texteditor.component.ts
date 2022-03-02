@@ -25,9 +25,15 @@ export class FormTexteditorComponent implements OnInit , OnDestroy{
   ];
 
   ngOnInit(): void {
-    this.editor = new Editor();
+    this.editor = new Editor();    
+    if(this.control.value){
+      this.editor.setContent(this.control.value) 
+    }
     this.editor.valueChanges.subscribe(res => this.control?.setValue(res));
+    this.editor.valueChanges.subscribe(res => console.log(res));
+
   }
+
   ngOnDestroy(): void {
       this.editor.destroy();
   }

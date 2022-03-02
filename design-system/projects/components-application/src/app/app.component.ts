@@ -74,6 +74,24 @@ export class AppComponent implements OnInit {
   public rows$ = new BehaviorSubject<number[]>([1, 2, 3]);
 
   ngOnInit(): void {
-    this.control.setValue({ start: new Date(), end: new Date() });
+    this.control.setValue(
+      {
+        type: "doc",
+        content: [
+            {
+                type: "paragraph",
+                attrs: {
+                    align: null
+                },
+                content: [
+                    {
+                        type: "text",
+                        text: "dsfsdf"
+                    }
+                ]
+            }
+        ]
+    }
+    );
   }
 }
