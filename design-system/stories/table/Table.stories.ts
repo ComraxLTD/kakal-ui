@@ -1,56 +1,54 @@
 import { EventEmitter } from '@angular/core';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { Observable, of } from 'rxjs';
-import { TableDataSource } from '../../projects/kakal-ui/src/lib/table/models/table-datasource';
-import { TableEvent } from '../../projects/kakal-ui/src/lib/table/models/table-event';
-import { TableRowModel } from '../../projects/kakal-ui/src/lib/table/models/table-row.model';
+import { of } from 'rxjs';
 import {
-  KKLTableActionsModule,
-  TableActionsComponent,
-  TableColumnModel,
+  KKLTableModule,
+  TableComponent,
 } from '../../projects/kakal-ui/src/public-api';
 
 export default {
-  title: 'Table/Table-Actions',
+  title: 'Table/Table',
   decorators: [
     moduleMetadata({
-      imports: [KKLTableActionsModule],
+      imports: [KKLTableModule],
     }),
   ],
-  component: TableActionsComponent,
+  component: TableComponent,
   argTypes: {
-    row: {
-      name: 'row',
+    data$: {
+      name: 'data$',
       defaultValue: '',
-      description: 'A TableRowModel instance',
+      description: 'A Data array',
       table: {
-        type: { summary: 'TableRowModel<T>' },
+        type: { summary: '[]T' },
       },
     },
-    column: {
-      name: 'column',
-      description: 'A TableColumnModel instance',
+    columns$: {
+      name: 'columns$',
+      description: 'Handle the layout of the table',
       table: {
-        type: { summary: 'TableColumnModel<T>' },
+        type: { summary: 'Observable< TableColumnModel<T>[]>' },
       },
     },
 
-    startSlot: {
-      name: 'startSlot',
+    formTemplate: {
+      name: 'formTemplate',
       defaultValue: '',
       description: 'An ng-template. render custom action at the start',
       table: {
         type: { summary: 'TemplateRef<any>' },
       },
     },
-    endSlot: {
-      name: 'endSlot',
+    cellTemplate: {
+      name: 'cellTemplate',
       defaultValue: '',
       description: 'An ng-template. render custom action at the end',
       table: {
         type: { summary: 'TemplateRef<any>' },
       },
     },
+
+    // @Output
     edit: {
       name: 'edit',
       description: 'Event that is emitted whenever an edit action clicked. ',
@@ -91,19 +89,14 @@ export default {
   },
 } as Meta;
 
-const Template: Story<TableActionsComponent> = (
-  args: TableActionsComponent
-) => ({
-  component: TableActionsComponent,
+const Template: Story<TableComponent> = (args: TableComponent) => ({
+  component: TableComponent,
   props: args,
 });
 
-export const tableActions = Template.bind({});
+export const table = Template.bind({});
 
-const tableDataSource: TableDataSource<Object> = new TableDataSource();
-
-const events$: Observable<TableEvent> = tableDataSource.getEvents$();
-
-tableActions.args = {
-  column: new TableColumnModel({ columnDef: 'actions' }),
+table.args = {
+  data$: of([]),
+  columns$: of([]),
 };

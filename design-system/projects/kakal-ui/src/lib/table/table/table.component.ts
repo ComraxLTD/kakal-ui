@@ -27,7 +27,7 @@ import { combineLatest, map, Observable } from 'rxjs';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent<T> implements OnInit {
+export class TableComponent<T = any> implements OnInit {
   @Input() public tableDataSource: TableDataSource<T>;
 
   @Input() public data$: Observable<T[]>;
