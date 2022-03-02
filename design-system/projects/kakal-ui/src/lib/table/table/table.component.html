@@ -17,24 +17,22 @@
             <div [class.row-header]="true" fxFill fxLayout="row">
               <!-- COLUMN HEADER SECTION-->
 
-              <div
-                kkl-cell
-                [span]="column.flex"
-                fxLayout="row"
-                fxFlexAlign="center center"
-                *ngFor="let column of table.columns"
-                [class.kkl-cell]="true"
-                [class.center]="column.center"
-                [class.select]="column.columnDef === 'select'"
-                [class.actions]="column.columnDef === 'actions'"
-              >
-                <!-- DEFAULT HEADER -->
-                <ng-container>
-                  <kkl-typography [weight]="600">
-                    {{ column.label }}
-                  </kkl-typography>
-                </ng-container>
-              </div>
+              <ng-container *ngFor="let column of table.columns">
+                <div
+                  kkl-table-cell
+                  [span]="column.flex"
+                  [class.center]="column.center"
+                  [class.select]="column.columnDef === 'select'"
+                  [class.actions]="column.columnDef === 'actions'"
+                >
+                  <!-- DEFAULT HEADER -->
+                  <ng-container>
+                    <kkl-typography [weight]="600">
+                      {{ column.label }}
+                    </kkl-typography>
+                  </ng-container>
+                </div>
+              </ng-container>
             </div>
           </mat-header-cell>
         </ng-container>
@@ -62,12 +60,8 @@
                   <div class="row" fxFill fxLayout="row">
                     <ng-container *ngFor="let column of table.columns; let i">
                       <div
-                        kkl-cell
+                        kkl-table-cell
                         [span]="column.flex"
-                        fxLayout="row"
-                        fxFlexAlign="center center"
-                        [class.kkl-cell]="true"
-                        [class.kkl-item]="true"
                         [class.center]="column.center"
                         [class.select]="column.columnDef === 'select'"
                         [class.actions]="column.columnDef === 'actions'"

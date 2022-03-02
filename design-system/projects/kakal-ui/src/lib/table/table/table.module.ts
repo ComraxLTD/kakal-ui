@@ -12,6 +12,7 @@ import { TableComponent } from './table.component';
 import { KKLColumnsModule } from '../../columns/column.module';
 import { KKLDirectivesModule } from '../../directives/directives.module';
 import { KKLPipesModule } from '../../pipes/pipes.module';
+import { KKLTableCellDirective } from '../directives/table-cell.directive';
 
 @NgModule({
   imports: [
@@ -26,8 +27,8 @@ import { KKLPipesModule } from '../../pipes/pipes.module';
     KKLDirectivesModule,
     KKLPipesModule,
   ],
-  declarations: [TableComponent],
+  declarations: [TableComponent, KKLTableCellDirective],
   providers: [],
-  exports: [TableComponent],
+  exports: [TableComponent, KKLTableCellDirective],
 })
 export class KKLTableModule {}

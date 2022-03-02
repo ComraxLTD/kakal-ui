@@ -6,7 +6,6 @@ import { KKLButtonDirective } from './button.directive';
 import { UnderlineDirective } from './underline.directive';
 import { BorderDirective } from './border.directive';
 import { OutsideDirective } from './outside.directive';
-import { CellDirective } from './cell.directive';
 import { WizardDirective } from './wizard.directive';
 import { KKLActionButtonDirective } from './action-button.directive';
 import { KKLFormButtonDirective } from './form-button.directive';
@@ -17,7 +16,6 @@ import { KKLOutsideButtonDirective } from './outside-button.directive';
   declarations: [
     BorderDirective,
     KKLButtonDirective,
-    CellDirective,
     OutsideDirective,
     SizeDirective,
     UnderlineDirective,
@@ -31,7 +29,6 @@ import { KKLOutsideButtonDirective } from './outside-button.directive';
   exports: [
     BorderDirective,
     KKLButtonDirective,
-    CellDirective,
     OutsideDirective,
     SizeDirective,
     UnderlineDirective,
