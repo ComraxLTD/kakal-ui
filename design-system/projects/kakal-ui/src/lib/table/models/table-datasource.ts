@@ -18,7 +18,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   private tableSubject: BehaviorSubject<TableState>;
   private columnsStateSubject: BehaviorSubject<ColumnState<T>>;
-  
+
   private rowsStateSubject: BehaviorSubject<RowsState<T>>;
   private events$: Observable<TableEvent>;
 
@@ -103,7 +103,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.tableSubject.next(tableState);
   }
 
-  public connectTableState(): Observable<TableState> {
+  public listenTableState(): Observable<TableState> {
     return this.tableSubject.asObservable();
   }
 

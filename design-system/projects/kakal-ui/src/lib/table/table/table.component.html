@@ -54,6 +54,7 @@
                   <div class="row" fxFill fxLayout="row">
                     <ng-container *ngFor="let column of table.columns; let i">
                       <ng-container [ngSwitch]="column.columnDef">
+                        <!-- Select cell -->
                         <ng-container *ngSwitchCase="'select'">
                           <div [kklTableCell]="column.columnDef">
                             <mat-checkbox
@@ -66,19 +67,24 @@
                             </mat-checkbox>
                           </div>
                         </ng-container>
+
+                        <!-- Actions cell -->
                         <ng-container *ngSwitchCase="'actions'">
                           <div [kklTableCell]="column.columnDef" fxFlex>
                             <ng-container
-                              *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit : row, column, i}"
+                              *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ row, column, i}, tableState :table.tableState}"
                             ></ng-container>
                           </div>
                         </ng-container>
+
+                        <!-- Data cell -->
                         <ng-container *ngSwitchDefault>
                           <div
                             fxFlex
                             [kklTableCell]="column.columnDef"
                             [class.center]="column.center"
                           >
+                            <!-- Default cell -->
                             <ng-container
                               *ngIf="
                                 !cellTemplate[column.columnDef];
@@ -92,6 +98,7 @@
                               </kkl-typography>
                             </ng-container>
 
+                            <!-- Custom cell -->
                             <ng-template #cellBlock>
                               <ng-container
                                 *ngTemplateOutlet="cellTemplate[column.columnDef]; context : {$implicit : row, column, i}"

@@ -126,10 +126,14 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTable$() {
-    return combineLatest([this.data$, this.setColumns$()]).pipe(
-      map(([data, columns]) => {
+    return combineLatest([
+      this.data$,
+      this.setColumns$(),
+      this.tableDataSource.listenTableState(),
+    ]).pipe(
+      map(([data, columns, tableState]) => {
         const columnDefs = columns.map((column) => column.columnDef);
-        return { data, columns, columnDefs };
+        return { data, columns, columnDefs, tableState };
       })
     );
   }

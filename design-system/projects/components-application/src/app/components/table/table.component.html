@@ -14,10 +14,12 @@
   </kkl-typography>
 </ng-template>
 
-<ng-template #actions>
+<ng-template #actions let-rowState>
   <kkl-table-actions
     [hasEdit]="true"
     [hasDelete]="true"
+    [rowState]=""
+    rowState
     [dataSource]="tableDataSource"
   ></kkl-table-actions>
 </ng-template>
