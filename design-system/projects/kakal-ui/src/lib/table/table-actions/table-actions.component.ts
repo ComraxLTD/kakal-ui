@@ -72,9 +72,10 @@ export class TableActionsComponent implements OnInit {
     );
   }
 
-  private getEditTableStateByEvent(events: TableEvent[]) {
+  private getEditingTableStateByEvent(events: TableEvent[]) {
     return this.dataSource.getTableStateByEvent(events).pipe(
       map((tableState) => {
+        // console.log(tableState.editing)
         return tableState.editing;
       })
     );
@@ -83,11 +84,10 @@ export class TableActionsComponent implements OnInit {
   private setEditStateOnEdit() {
     const prop = this.rowState.item[this.rowState.key];
 
-    return this.getEditTableStateByEvent(['edit']).pipe(
+    return this.getEditingTableStateByEvent(['edit']).pipe(
       filter((editing) => editing.indexOf(prop) !== -1),
       map((editing) => editing.indexOf(prop) !== -1),
       map((editing: boolean) => {
-        console.log('action', Math.random());
         return {
           show: !editing,
           disabled: editing,
@@ -98,9 +98,12 @@ export class TableActionsComponent implements OnInit {
   }
   private setEditStateOnClose() {
     const id = this.rowState.item[this.rowState.key];
-    return this.getEditTableStateByEvent(['close']).pipe(
+    return this.getEditingTableStateByEvent(['close']).pipe(
       map((editing) => editing.indexOf(id) !== -1),
+
       map((close: boolean) => {
+
+        // console.log('close edit')
         return {
           show: !close,
           disabled: this.actionStateRules?.disableEdit(this.rowState.item),
@@ -109,9 +112,23 @@ export class TableActionsComponent implements OnInit {
       })
     );
   }
+  private setDeleteSateOnClose() {
+    const id = this.rowState.item[this.rowState.key];
+    return this.getEditingTableStateByEvent(['close']).pipe(
+      map((editing) => editing.indexOf(id) !== -1),
+      map((close: boolean) => {
+        // console.log('delete close')
+        return {
+          show: !close,
+          disabled: this.actionStateRules?.disableEdit(this.rowState.item),
+          event: 'delete',
+        } as ActionState;
+      })
+    );
+  }
 
   private setDeleteStateOnDefault() {
-    return this.dataSource.getTableStateByEvent(['default', 'close']).pipe(
+    return this.dataSource.getTableStateByEvent(['default']).pipe(
       mapTo({
         show:
           this.actionStateRules?.showDelete(this.rowState.item) ||
@@ -131,7 +148,8 @@ export class TableActionsComponent implements OnInit {
   private setDeleteState(): Observable<ActionState> {
     const default$ = this.setDeleteStateOnDefault();
     const edit$ = this.setEditStateOnEdit();
-    return merge(default$, edit$);
+    const close$ = this.setDeleteSateOnClose();
+    return merge(default$, edit$, close$);
   }
 
   public onDelete() {

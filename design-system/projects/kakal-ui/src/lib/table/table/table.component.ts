@@ -36,6 +36,7 @@ import {
   take,
   tap,
 } from 'rxjs';
+import { TableEvent } from '../models/table-event';
 
 @Component({
   selector: 'kkl-table',
@@ -149,11 +150,14 @@ export class TableComponent<T = any> implements OnInit {
     );
   }
 
+  public tableEvent$: Observable<TableEvent>;
+
   ngOnInit() {
     this.validateInputs();
 
     this.table$ = this.setTable$();
     this.tableState$ = this.setTableState$();
+    // this.tableState$ = this.setTableState$();
   }
 
   private validateInputs() {
@@ -188,7 +192,6 @@ export class TableComponent<T = any> implements OnInit {
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState) => {
-            console.log('edit', tableState.editing, tableState.event);
             const { editing } = tableState;
             editing.push(item[key]);
 
@@ -211,14 +214,13 @@ export class TableComponent<T = any> implements OnInit {
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState) => {
-            console.log('close', tableState.editing, tableState.event);
             const { editing } = tableState;
 
             editing.splice(rowIndex, 1);
 
             tableState = {
               ...tableState,
-              editing: [],
+              editing,
               event: 'close',
             } as TableState;
 

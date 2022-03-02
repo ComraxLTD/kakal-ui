@@ -120,6 +120,12 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.getEvents$([event]).pipe(switchMapTo(this.getRowsState()));
   }
 
+  private getRowStateByEvent(event) {
+    return this.rowsStateSubject
+      .asObservable()
+      .pipe(filter((rowState: RowsState) => rowState.event === event));
+  }
+
   private setEvents(): Observable<TableEvent> {
     return this.rowsStateSubject.pipe(
       map((state) => {
@@ -183,18 +189,18 @@ export class TableDataSource<T = any> implements DataSource<T> {
   };
 
   public listen$ = {
-    default: () => this.getStateByEvent('default'),
-    add: () => this.getStateByEvent('add'),
-    create: () => this.getStateByEvent('create'),
-    save: () => this.getStateByEvent('save'),
-    form: () => this.getStateByEvent('form'),
-    edit: () => this.getStateByEvent('edit'),
-    cancel: () => this.getStateByEvent('cancel'),
-    close: () => this.getStateByEvent('close'),
-    expand: () => this.getStateByEvent('expand'),
-    delete: () => this.getStateByEvent('delete'),
-    selectRows: () => this.getStateByEvent('selectRows'),
-    addOptions: () => this.getStateByEvent('addOptions'),
-    reset: () => this.getStateByEvent('reset'),
+    // default: () => this.getStateByEvent('default'),
+    // add: () => this.getStateByEvent('add'),
+    // create: () => this.getStateByEvent('create'),
+    // save: () => this.getStateByEvent('save'),
+    // form: () => this.getStateByEvent('form'),
+    edit: () => this.getRowStateByEvent('edit'),
+    cancel: () => this.getRowStateByEvent('cancel'),
+    close: () => this.getRowStateByEvent('close'),
+    // expand: () => this.getStateByEvent('expand'),
+    // delete: () => this.getStateByEvent('delete'),
+    // selectRows: () => this.getStateByEvent('selectRows'),
+    // addOptions: () => this.getStateByEvent('addOptions'),
+    // reset: () => this.getStateByEvent('reset'),
   };
 }
