@@ -39,7 +39,7 @@ Note: Putting the token here is insecure to a certain extent, but we have to mak
 ```
 $ ng new <MY_PROJECT>
 $ cd <MY_PROJECT>
-$ npm install --save --legacy-peer-deps @angular/material-moment-adapter @angular/cdk cleave.js ngx-cleave-directive ngx-editor ngx-pagination @angular/material @angular/flex-layout @ComraxLTD/kakal-ui
+$ npm install --save --legacy-peer-deps moment @angular/material-moment-adapter @angular/cdk cleave.js ngx-cleave-directive ngx-editor ngx-pagination @angular/material @angular/flex-layout @ComraxLTD/kakal-ui
 ```
 
 In app.module:
