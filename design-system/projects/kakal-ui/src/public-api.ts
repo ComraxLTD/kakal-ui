@@ -15,7 +15,8 @@ export * from './lib/icon/icon.module';
 
 // form exports
 
-export * from './lib/form/models/form-data-source.model';
+export * from './lib/form/models/form-datasource';
+export * from './lib/form/models/form-types';
 
 export * from './lib/form/form/form.component';
 export * from './lib/form/form/form.module';
@@ -87,7 +88,8 @@ export * from './lib/table/table/table.component'
 export * from './lib/table/table/table.module'
 
 export * from './lib/table/models/table-datasource'
-export * from './lib/table/models/table-event'
+export * from './lib/table/models/table'
+export * from './lib/table/table.events'
 export * from './lib/table/models/table.state'
 export * from './lib/table/models/table-row.model'
 

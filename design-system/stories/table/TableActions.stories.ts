@@ -1,9 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { Observable, of } from 'rxjs';
 import { TableDataSource } from '../../projects/kakal-ui/src/lib/table/models/table-datasource';
-import { TableEvent } from '../../projects/kakal-ui/src/lib/table/models/table-event';
-import { TableRowModel } from '../../projects/kakal-ui/src/lib/table/models/table-row.model';
 import {
   KKLTableActionsModule,
   TableActionsComponent,
@@ -101,8 +98,6 @@ const Template: Story<TableActionsComponent> = (
 export const tableActions = Template.bind({});
 
 const tableDataSource: TableDataSource<Object> = new TableDataSource();
-
-const events$: Observable<TableEvent> = tableDataSource.getEvents$();
 
 tableActions.args = {
   column: new TableColumnModel({ columnDef: 'actions' }),

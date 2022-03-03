@@ -11,7 +11,6 @@ import {
   Subject,
 } from 'rxjs';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
-import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../../../../kakal-ui/src/lib/table/models/table-row.model';
 import {
   RowsState,
@@ -38,7 +37,6 @@ export class ActionTableComponent implements OnInit {
     { id: 3, status: 'active' },
   ]);
 
-  public event$: Observable<TableEvent>;
   public rows$: Observable<TableRowModel<any>[]>;
   public data$: Observable<any[]>;
 
