@@ -67,9 +67,16 @@ export class TableComponent implements OnInit {
     return this.tableDataSource.connectColumns(this.columns);
   }
 
-  private setQuestions(
-    questions: Question[]
-  ): Observable<QuestionGroupModel<RootObject>> {
+  private setQuestions(questions: Question[], item: RootObject): Question[] {
+    return questions.map((question) => {
+      return {
+        ...question,
+        value: item[question.key],
+      };
+    });
+  }
+
+  private setGroup(questions: Question[]) {
     return of(
       this.formService.createQuestionGroup({
         questions,
@@ -78,7 +85,8 @@ export class TableComponent implements OnInit {
   }
 
   public onEditEvent(state: RowsState) {
-    const group$ = this.setQuestions(this.questions);
+    const { item } = state;
+    const group$ = this.setGroup(this.setQuestions(this.questions, item));
 
     this.tableDataSource.actions.edit({ state: { ...state, group$ } });
   }
