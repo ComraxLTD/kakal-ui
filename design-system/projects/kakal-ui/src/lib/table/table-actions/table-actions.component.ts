@@ -7,18 +7,17 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { TableColumnModel } from '../../columns/models/column.model';
-import { TableEvent } from '../models/table-event';
+import { TableEvent } from '../table.events';
 import { ActionState, ActionStateRules } from './table-actions.model';
-import { RowsState } from '../models/table.state';
+import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
 
 import { filter, map, mapTo } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
 
 export interface ButtonActionState {
-  edit?: ActionState;
-  delete?: ActionState;
+  editState?: ActionState;
+  deleteState?: ActionState;
 }
 
 @Component({
@@ -27,11 +26,13 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
-  @Input() index: number;
-  @Input() item: any;
-  @Input() column: TableColumnModel;
+  @Input() rowState: RowsState;
   @Input() dataSource: TableDataSource;
+  @Input() tableState: TableState;
   @Input() actionStateRules: ActionStateRules;
+
+  @Input() hasEdit: boolean;
+  @Input() hasDelete: boolean;
 
   // custom button slot
   @Input() public startSlot: TemplateRef<any>;
@@ -42,105 +43,95 @@ export class TableActionsComponent implements OnInit {
   @Output() close: EventEmitter<RowsState> = new EventEmitter<RowsState>();
   @Output() save: EventEmitter<RowsState> = new EventEmitter<RowsState>();
 
-  public editState$: Observable<ActionState>;
-  public deleteState$: Observable<ActionState>;
+  public buttonActionState$: Observable<ButtonActionState>;
 
   constructor() {}
 
+  private validate() {
+    if (!this.dataSource) {
+      throw new Error('TableDataSource instance is required');
+    }
+  }
+
   ngOnInit(): void {
-    this.editState$ = this.setEditState();
-    this.deleteState$ = this.setDeleteState();
+    this.validate();
+    this.buttonActionState$ = this.setButtonActionState();
   }
 
-  private setEditStateOnDefault() {
-    return this.dataSource.getTableStateByEvent(['default']).pipe(
-      mapTo({
-        show: this.actionStateRules?.showEdit(this.item),
-        disabled: this.actionStateRules?.disableEdit(this.item),
-      } as ActionState)
-    );
+  private setButtonActionState() {
+    const defaultState$ = this.onButtonsStateDefault();
+    const editState$ = this.onButtonsStateOnEdit();
+    const closeState$ = this.onButtonStateOnClose();
+
+    return merge(defaultState$, editState$, closeState$);
   }
 
-  private getEditTableStateByEvent(events: TableEvent[]) {
-    return this.dataSource.getTableStateByEvent(events).pipe(
-      map((tableState) => {
-        return tableState.editing;
-      })
-    );
+  private setButtonsStateOnDefault() {
+    const editState = {
+      show: this.actionStateRules?.showEdit(this.rowState.item) || this.hasEdit,
+      disabled: this.actionStateRules?.disableEdit(this.rowState.item),
+    } as ActionState;
+
+    const deleteState = {
+      show:
+        this.actionStateRules?.showDelete(this.rowState.item) || this.hasDelete,
+      disabled: this.actionStateRules?.disableDelete(this.rowState.item),
+    } as ActionState;
+    return { editState, deleteState };
   }
 
-  private setEditStateOnEdit() {
-    return this.getEditTableStateByEvent(['edit']).pipe(
-      filter((editing) => editing.indexOf(this.item.id) !== -1),
-      map((editing) => editing.indexOf(this.item.id) !== -1),
-      map((editing: boolean) => {
-        return {
-          show: !editing,
-          disabled: editing,
+  private onButtonsStateDefault(): Observable<ButtonActionState> {
+    return this.dataSource
+      .getTableStateByEvent([TableEvent.DEFAULT])
+      .pipe(mapTo(this.setButtonsStateOnDefault()));
+  }
+
+  private onButtonsStateOnEdit(): Observable<ButtonActionState> {
+    const id = this.rowState.item[this.rowState.key];
+    return this.dataSource.listen$.edit().pipe(
+      filter((rowState: RowsState) => rowState.item[rowState.key] === id),
+      map((_) => {
+        const editState = {
+          show: false,
           event: 'edit',
         } as ActionState;
-      })
-    );
-  }
-  private setEditStateOnClose() {
-    return this.getEditTableStateByEvent(['close']).pipe(
-      map((editing) => editing.indexOf(this.item.id) !== -1),
-      map((close: boolean) => {
-        return {
-          show: !close,
-          disabled: this.actionStateRules?.disableEdit(this.item),
+
+        const deleteState = {
+          show: false,
           event: 'edit',
         } as ActionState;
+        return { editState, deleteState };
       })
     );
   }
 
-  private setDeleteStateOnDefault() {
-    return this.dataSource.getTableStateByEvent(['default', 'close']).pipe(
-      mapTo({
-        show: this.actionStateRules?.showDelete(this.item),
-        disabled: this.actionStateRules?.disableDelete(this.item),
-      } as ActionState)
+  private onButtonStateOnClose() {
+    const id = this.rowState.item[this.rowState.key];
+    return this.dataSource.listen$.close().pipe(
+      filter((rowState: RowsState) => rowState.item[rowState.key] === id),
+      mapTo(this.setButtonsStateOnDefault())
     );
-  }
-
-
-  private setEditState() {
-    const default$ = this.setEditStateOnDefault();
-    const edit$ = this.setEditStateOnEdit();
-    const close$ = this.setEditStateOnClose();
-    return merge(default$, edit$, close$);
-  }
-
-  private setDeleteState(): Observable<ActionState> {
-    const default$ = this.setDeleteStateOnDefault();
-    const edit$ = this.setEditStateOnEdit();
-    return merge(default$, edit$);
   }
 
   public onDelete() {
-    this.delete.emit({ item: this.item, itemIndex: this.index });
+    this.delete.emit({ ...this.rowState });
   }
 
   public onEdit() {
-    this.edit.emit({ item: this.item, itemIndex: this.index });
+    this.edit.emit({ ...this.rowState });
   }
 
   public onClose(event: TableEvent) {
     this.close.emit({
-      item: this.item,
-      column: this.column,
+      ...this.rowState,
       event,
-      itemIndex: this.index,
     });
   }
 
   public onSave(event: TableEvent) {
     this.save.emit({
-      item: this.item,
-      column: this.column,
+      ...this.rowState,
       event,
-      itemIndex: this.index,
     });
   }
 }

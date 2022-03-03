@@ -2,31 +2,29 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
 import { Palette } from '../../../styles/theme';
-import { FormOption } from '../models/form-data-source.model';
-import {  SelectOption } from '../models/question-select.model';
+import { FormOption } from '../models/form-options';
+import { SelectOption } from '../models/question-select.model';
 import { Appearance } from '../models/question.model';
 import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'kkl-form-select',
   templateUrl: './form-select.component.html',
-  styleUrls: ['./form-select.component.scss']
+  styleUrls: ['./form-select.component.scss'],
 })
 export class FormSelectComponent implements OnInit {
   @Input() public control: FormControl;
-  @Input() public index:number;
-  @Input() public multi:boolean;
-  @Input() public key:string;
-  @Input() public options:SelectOption[];
-  @Input() public placeHolder:string;
-  @Input() public theme:Palette;
-  @Input() public appearance:Appearance;
+  @Input() public index: number;
+  @Input() public multi: boolean;
+  @Input() public key: string;
+  @Input() public options: SelectOption[];
+  @Input() public placeHolder: string;
+  @Input() public theme: Palette;
+  @Input() public appearance: Appearance;
   @Output() public selected: EventEmitter<FormOption> = new EventEmitter();
   @Output() public focus: EventEmitter<FormOption> = new EventEmitter();
 
-
   public error$: BehaviorSubject<string>;
-
 
   constructor(private messageService: MessageService) {}
 

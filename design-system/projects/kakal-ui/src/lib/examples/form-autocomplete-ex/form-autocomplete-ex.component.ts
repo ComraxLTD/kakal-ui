@@ -1,19 +1,10 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectOption } from '../../form/models/question-select.model';
-import {
-  FormDataSource,
-  FormOption,
-} from '../../form/models/form-data-source.model';
 import { FormService } from '../../form/services/form.service';
 import { map, merge, Observable, of } from 'rxjs';
+import { FormDataSource } from '../../form/models/form-datasource';
+import { FormOption } from '../../form/models/form-options';
 
 @Component({
   selector: 'pl-form-autocomplete-ex',

@@ -11,21 +11,21 @@
       *ngTemplateOutlet="
         startSlot;
         context: {
-          $implicit: { item: this.item, column: this.column }
+          $implicit: rowState
         }
       "
     ></ng-template>
   </ng-container>
 
-  <ng-container *ngIf="editState$ | async as editState">
+  <ng-container *ngIf="buttonActionState$ | async as buttonState">
     <!-- edit button -->
-    <ng-container *ngIf="editState.show; else saveBlock">
+    <ng-container *ngIf="buttonState.editState.show; else saveBlock">
       <button
         mat-icon-button
-        [class.mat-raised-button]="editState.disabled"
+        [class.mat-raised-button]="buttonState.editState.disabled"
         (click)="onEdit()"
         matTooltip="ערוך"
-        [disabled]="editState.disabled"
+        [disabled]="buttonState.editState.disabled"
       >
         <kkl-icon key="edit"></kkl-icon>
       </button>
@@ -36,34 +36,32 @@
       <button
         mat-raised-button
         class="kkl-save-button"
-        (click)="onSave(editState.event)"
+        (click)="onSave(buttonState.editState.event)"
         kkl-border
-        [disabled]="!editState.valid"
+        [disabled]="!buttonState.editState.valid"
         matTooltip="שמור"
       >
-        <kkl-typography color="text" [disabled]="!editState.valid">
+        <kkl-typography color="text" [disabled]="!buttonState.editState.valid">
           שמור
         </kkl-typography>
       </button>
       <button
         matTooltip="בטל"
         mat-icon-button
-        (click)="onClose(editState.event)"
+        (click)="onClose(buttonState.editState.event)"
         matTooltip="בטל"
       >
         <kkl-icon key="cancel"></kkl-icon>
       </button>
     </ng-template>
-  </ng-container>
 
-  <!-- delete button -->
-  <ng-container *ngIf="deleteState$ | async as deleteState">
-    <ng-container *ngIf="deleteState.show">
+    <!-- delete button -->
+    <ng-container *ngIf="buttonState.deleteState.show">
       <button
         mat-icon-button
         (click)="onDelete()"
-        [class.mat-raised-button]="deleteState.disabled"
-        [disabled]="deleteState.disabled"
+        [class.mat-raised-button]="buttonState.deleteState.disabled"
+        [disabled]="buttonState.deleteState.disabled"
         matTooltip="מחק"
       >
         <kkl-icon key="delete"></kkl-icon>
@@ -77,7 +75,7 @@
       *ngTemplateOutlet="
         endSlot;
         context: {
-          $implicit: { item: this.item, column: this.column }
+          $implicit: rowState
         }
       "
     ></ng-template>

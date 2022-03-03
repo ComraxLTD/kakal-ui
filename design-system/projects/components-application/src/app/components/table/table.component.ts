@@ -4,11 +4,17 @@ import {
   TableDataSource,
   FormService,
   TableColumnModel,
+  RowsState,
 } from '../../../../../kakal-ui/src/public-api';
+import { DEMO_DATA } from './mock_data';
 
-export interface Item {
-  id: number;
-  status: string;
+export interface RootObject {
+  _id: string;
+  isActive: boolean;
+  balance: string;
+  picture: string;
+  age: number;
+  email: string;
 }
 
 @Component({
@@ -17,18 +23,16 @@ export interface Item {
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements OnInit {
-  public dataSource = new TableDataSource<Item>();
+  public tableDataSource = new TableDataSource<RootObject>();
 
   // demo data from server
-  private demoStore$: Observable<Item[]> = of([
-    { id: 1, status: 'active' },
-    { id: 2, status: 'disable' },
-    { id: 3, status: 'active' },
-  ]);
+  private demoStore$: Observable<RootObject[]> = of(DEMO_DATA);
 
-  private columns: TableColumnModel<Item>[] = [
-    { columnDef: 'id', label: 'id' },
-    { columnDef: 'status', label: 'status' },
+  private columns: TableColumnModel<RootObject>[] = [
+    { columnDef: 'isActive', label: 'status' },
+    { columnDef: 'balance', label: 'balance' },
+    { columnDef: 'age', label: 'age' },
+    { columnDef: 'email', label: 'email' },
   ];
 
   public data$: Observable<any[]>;
@@ -46,13 +50,24 @@ export class TableComponent implements OnInit {
 
     return storeData$.pipe(
       switchMap((data) => {
-        this.dataSource.load(data);
-        return this.dataSource.connect();
+        this.tableDataSource.load(data);
+        return this.tableDataSource.connect();
       })
     );
   }
 
   private setColumns$() {
-    return this.dataSource.connectColumns(this.columns);
+    return this.tableDataSource.connectColumns(this.columns);
+  }
+
+  public onEditEvent(state: RowsState) {
+    this.tableDataSource.actions.edit({ state });
+  }
+
+  public onCloseEvent(state: RowsState) {
+    const { event } = state;
+    this.tableDataSource.actions.close({ state });
+    if (event === 'edit') {
+    }
   }
 }

@@ -11,8 +11,8 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
-import { FormDataSource, FormOption } from '../models/form-data-source.model';
 import { of } from 'rxjs';
+import { FormOption } from '../models/form-options';
 
 @Component({
   selector: 'kkl-form-autocomplete',
@@ -42,9 +42,8 @@ export class FormAutocompleteComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.optionSlot)
+    console.log(this.optionSlot);
   }
-
 
   public search(query: string): void {
     const option: SelectOption = this.options.find((option) =>

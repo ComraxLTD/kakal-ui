@@ -64,12 +64,7 @@ export class TableColumnModel<T = any> {
     this.format = options?.format;
     this.selector = options?.selector || null;
 
-    this.flex =
-      this.columnDef === 'actions'
-        ? 1
-        : this.columnDef === 'select'
-        ? 0.5
-        : options.flex || 1;
+    this.flex = this.columnDef === 'select' ? 0.5 : options.flex || 1;
     this.footer = options?.footer || false;
     this.center = options?.center || false;
 

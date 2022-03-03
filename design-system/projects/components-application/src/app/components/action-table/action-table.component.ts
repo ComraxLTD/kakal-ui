@@ -9,10 +9,8 @@ import {
   merge,
   switchMap,
   Subject,
-
 } from 'rxjs';
 import { TableDataSource } from '../../../../../kakal-ui/src/lib/table/models/table-datasource';
-import { TableEvent } from '../../../../../kakal-ui/src/lib/table/models/table-event';
 import { TableRowModel } from '../../../../../kakal-ui/src/lib/table/models/table-row.model';
 import {
   RowsState,
@@ -30,7 +28,6 @@ import { FormService } from '../../../../../kakal-ui/src/public-api';
   styleUrls: ['./action-table.component.scss'],
 })
 export class ActionTableComponent implements OnInit {
-
   public dataSource = new TableDataSource();
 
   // demo data from server
@@ -40,7 +37,6 @@ export class ActionTableComponent implements OnInit {
     { id: 3, status: 'active' },
   ]);
 
-  public event$: Observable<TableEvent>;
   public rows$: Observable<TableRowModel<any>[]>;
   public data$: Observable<any[]>;
 
@@ -143,14 +139,17 @@ export class ActionTableComponent implements OnInit {
   }
 
   public onEditEvent(state: RowsState) {
-    const { item, itemIndex } = state;
+    const { item, rowIndex } = state;
+
+    // this.dataSource.actions.edit({ state });
+
     const { editing } = this.dataSource.getTableState();
     const tableState = {
       ...this.dataSource.getTableState(),
       editing: this.updateArray({
         array: [...editing],
         value: item.id,
-        itemIndex,
+        itemIndex : rowIndex,
         key: 'id',
       }),
 
@@ -159,15 +158,16 @@ export class ActionTableComponent implements OnInit {
 
     this.dataSource.loadTableState(tableState);
   }
+
   private onEditCloseEvent(state: RowsState) {
-    const { item, itemIndex } = state;
+    const { item, rowIndex } = state;
     const { editing } = this.dataSource.getTableState();
     const tableState = {
       ...this.dataSource.getTableState(),
       editing: this.updateArray({
         array: [...editing],
         value: item.id,
-        itemIndex,
+        itemIndex : rowIndex,
         key: 'id',
       }),
 

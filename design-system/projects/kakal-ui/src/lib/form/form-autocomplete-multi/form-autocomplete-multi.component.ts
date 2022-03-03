@@ -10,8 +10,9 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
-import { FormDataSource, FormOption } from '../models/form-data-source.model';
-import { merge, Observable, of } from 'rxjs';
+import { FormDataSource } from '../models/form-datasource';
+import { Observable, of } from 'rxjs';
+import { FormOption } from '../models/form-options';
 
 @Component({
   selector: 'kkl-form-autocomplete-multi',
