@@ -1,7 +1,6 @@
-import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { QuestionGroupModel } from '../../../form/models/question-group.model';
 import { QuestionBase } from '../../../form/services/form.service';
-
 
 @Component({
   selector: 'kkl-table-cell-form',
@@ -11,7 +10,7 @@ import { QuestionBase } from '../../../form/services/form.service';
 export class TableCellFormComponent implements OnInit {
   @Input() public form: QuestionGroupModel;
   @Input() public columnDef: string;
-  @Input() public slot: ElementRef;
+  @Input() public template: TemplateRef<any>;
 
   public question: QuestionBase;
 

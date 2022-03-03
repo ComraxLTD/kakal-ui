@@ -3,19 +3,7 @@
     <ng-container *ngSwitchCase="'custom'">
       <ng-container
         *ngTemplateOutlet="
-          slot;
-          context: {
-            control: form.formGroup.controls[columnDef],
-            question: form.group[columnDef]
-          }
-        "
-      ></ng-container>
-    </ng-container>
-
-    <ng-container *ngSwitchCase="'group'">
-      <ng-container
-        *ngTemplateOutlet="
-          slot;
+          template;
           context: {
             control: form.formGroup.controls[columnDef],
             question: form.group[columnDef]

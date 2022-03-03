@@ -193,10 +193,6 @@ export class TableComponent<T = any> implements OnInit {
             editing.push(item[key]);
 
             this.inputTemplate = this.setFormTemplate(item, this.formTemplate);
-
-            console.log(this.inputTemplate);
-            console.log(this.formTemplate);
-
             tableState = {
               ...tableState,
               editing,
