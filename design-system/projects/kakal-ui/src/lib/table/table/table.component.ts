@@ -185,12 +185,13 @@ export class TableComponent<T = any> implements OnInit {
   private onEditEvent() {
     return this.tableDataSource.listen$.edit().pipe(
       switchMap((state) => {
-        const { item, key, group$ } = state;
+        const { item, key, group } = state;
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState) => {
             const { editing } = tableState;
             editing.push(item[key]);
+
 
             this.inputTemplate = this.setFormTemplate(item, this.formTemplate);
 
@@ -200,7 +201,7 @@ export class TableComponent<T = any> implements OnInit {
               event: 'edit',
               forms: {
                 ...tableState.forms,
-                [item[key]]: group$,
+                [item[key]]: group,
               },
             } as TableState;
 

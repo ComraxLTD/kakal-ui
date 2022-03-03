@@ -12,7 +12,7 @@ export interface TableState {
   extended: number[];
   disabled: number[];
   activeColumns: string[];
-  forms: { [key: string]: Observable<QuestionGroupModel> };
+  forms: { [key: string]: QuestionGroupModel };
   event: TableEvent;
 }
 
@@ -22,8 +22,7 @@ export interface RowsState<T = any> {
   event?: TableEvent;
   rowIndex?: number;
   column?: TableColumnModel<T>;
-  options?: any;
-  group$?: Observable<QuestionGroupModel<T>>;
+  group?: QuestionGroupModel<T>;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };
 }
 

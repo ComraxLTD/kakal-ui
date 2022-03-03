@@ -77,18 +77,15 @@ export class TableComponent implements OnInit {
   }
 
   private setGroup(questions: Question[]) {
-    return of(
-      this.formService.createQuestionGroup({
-        questions,
-      })
-    );
+    return this.formService.createQuestionGroup({
+      questions,
+    });
   }
 
   public onEditEvent(state: RowsState) {
     const { item } = state;
-    const group$ = this.setGroup(this.setQuestions(this.questions, item));
-
-    this.tableDataSource.actions.edit({ state: { ...state, group$ } });
+    const group = this.setGroup(this.setQuestions(this.questions, item));
+    this.tableDataSource.actions.edit({ state: { ...state, group } });
   }
 
   public onCloseEvent(state: RowsState) {
@@ -96,5 +93,9 @@ export class TableComponent implements OnInit {
     this.tableDataSource.actions.close({ state });
     if (event === 'edit') {
     }
+  }
+
+  public onSaveEvent(state: RowsState) {
+    console.log(state.item);
   }
 }

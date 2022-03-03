@@ -16,13 +16,11 @@
 </ng-template>
 
 <ng-template #input let-rowState let-tableState="tableState">
-  <ng-container *ngIf="rowState.group$ | async as group">
-    <kkl-table-cell-form
-      fxFlex="90"
-      [group]="group"
-      [columnDef]="rowState.column.columnDef"
-    ></kkl-table-cell-form>
-  </ng-container>
+  <kkl-table-cell-form
+    fxFlex="90"
+    [group]="rowState.group"
+    [columnDef]="rowState.column.columnDef"
+  ></kkl-table-cell-form>
 </ng-template>
 
 >
@@ -35,5 +33,6 @@
     [dataSource]="tableDataSource"
     (edit)="onEditEvent($event)"
     (close)="onCloseEvent($event)"
+    (save)="onSaveEvent($event)"
   ></kkl-table-actions>
 </ng-template>
