@@ -12,10 +12,10 @@ import {
 } from '@angular/material/core';
 
 import { MessageService } from '../services/message.service';
-import { FormOption } from '../models/form-data-source';
 
 import { map, Observable, startWith } from 'rxjs';
 import { Appearance } from '../models/question.model';
+import { FormOption } from '../models/form-options';
 
 export const MY_FORMATS = {
   parse: {

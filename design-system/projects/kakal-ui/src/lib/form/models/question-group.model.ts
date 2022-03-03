@@ -1,6 +1,5 @@
 import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { Question } from '../services/form.service';
-import { FormOption } from './form-data-source';
 import {
   ControlType,
   GridProps,
@@ -8,6 +7,7 @@ import {
   QuestionType,
 } from './question.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { FormOption } from './form-options';
 
 export interface GroupOptions {
   label?: string;

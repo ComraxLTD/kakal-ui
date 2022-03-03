@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { FormDataSource } from '../../form/models/form-data-source';
+import { FormDataSource } from '../../form/models/form-datasource';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 
@@ -41,7 +41,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.rowsStateSubject = new BehaviorSubject<RowsState<T>>({
       event: TableEvent.DEFAULT,
     });
-    // this.events$ = this.setEvents();
     this.formDataSource = new FormDataSource();
   }
 
@@ -87,14 +86,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.rowsStateSubject.asObservable();
   }
 
-  // public getEvents$(filters?: TableEvent[]): Observable<TableEvent> {
-  //   return this.events$.pipe(
-  //     filter((event) => {
-  //       return filters ? filters.indexOf(event) !== -1 : true;
-  //     })
-  //   );
-  // }
-
   public getTableState(): TableState {
     return this.tableSubject.value;
   }
@@ -116,42 +107,14 @@ export class TableDataSource<T = any> implements DataSource<T> {
     );
   }
 
-  // private getStateByEvent(event: TableEvent): Observable<RowsState<T>> {
-  //   return this.getEvents$([event]).pipe(switchMapTo(this.getRowsState()));
-  // }
-
   private getRowStateByEvent(event) {
     return this.rowsStateSubject
       .asObservable()
       .pipe(filter((rowState: RowsState) => rowState.event === event));
   }
 
-  private setEvents(): Observable<TableEvent> {
-    return this.rowsStateSubject.pipe(
-      map((state) => {
-        return state.event;
-      })
-    );
-  }
-
-  // method to update columns options = selectOptions or ColumnFilterOptions
-  private updateOptions(state: ColumnState<T>) {
-    this.columnsStateSubject.next({ ...state });
-  }
-
   private updateSortDir(state: ColumnState<T>) {
     this.columnsStateSubject.next({ ...state });
-  }
-
-  // private addOptions(data?: RowsState<T>) {
-  //   this.rowsStateSubject.next({ ...data, event: TableEvent. });
-  // }
-
-  private reset(data) {
-    this.rowsStateSubject.next({
-      event: 'default',
-      ...data,
-    });
   }
 
   private createAction(prop: { state: RowsState }, event?: TableEvent) {
@@ -186,8 +149,8 @@ export class TableDataSource<T = any> implements DataSource<T> {
     //   this.createAction(prop, 'selectRows'),
 
     // addOptions: (state?: RowsState<T>) => this.addOptions(state),
-    updateOptions: (state: ColumnState<T>) => this.updateOptions(state),
-    updateSortDir: (state: ColumnState<T>) => this.updateSortDir(state),
+    // updateOptions: (state: ColumnState<T>) => this.updateOptions(state),
+    // updateSortDir: (state: ColumnState<T>) => this.updateSortDir(state),
     reset: (prop: { state: RowsState }) =>
       this.createAction(prop, TableEvent.DEFAULT),
   };

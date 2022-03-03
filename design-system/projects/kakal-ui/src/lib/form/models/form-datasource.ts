@@ -9,39 +9,10 @@ import {
   startWith,
   Subject,
 } from 'rxjs';
-import { SelectOption } from './question-select.model';
-
 import { FormEvents } from './form-types';
+import { FormOption } from './form-options';
 
-// export declare type FormEvent =
-//   | 'default'
-//   | 'disable'
-//   | 'clear'
-//   | 'delete'
-//   | 'save'
-//   | 'edit'
-//   | 'add'
-//   | 'submit'
-//   | 'create'
-//   | 'update'
-//   | 'autocomplete'
-//   | 'updateOptions'
-//   | 'optionSelected';
 
-export interface FormOption {
-  key?: string;
-  index?: number;
-  event?: FormEvents;
-  control?: FormControl;
-  option?: SelectOption;
-  multi?: boolean;
-  options?: SelectOption[] | MatListOption[];
-  value?: any;
-  query?: any;
-  value$?: Observable<any>;
-  query$?: Observable<any>;
-}
-2;
 export class FormDataSource {
   // subject which handle form logic
   private formStateSubject: Subject<FormOption>;
@@ -135,6 +106,11 @@ export class FormDataSource {
 
   private submit(formOption: FormOption) {
     this.formStateSubject.next({ ...formOption, event: FormEvents.SUBMIT });
+  }
+
+  private createAction<T>(prop: { state: T }, event?: FormEvents) {
+    const { state } = prop;
+    this.formStateSubject.next({ ...state, event });
   }
 
   public actions = {

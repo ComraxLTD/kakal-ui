@@ -8,12 +8,9 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectOption } from '../../form/models/question-select.model';
-import {
-  FormDataSource,
-  FormOption,
-} from '../../form/models/form-data-source.model';
 import { FormService } from '../../form/services/form.service';
 import { map, merge, Observable, of } from 'rxjs';
+import { FormDataSource } from '../../form/models/form-datasource';
 
 @Component({
   selector: 'pl-form-autocomplete-ex',
