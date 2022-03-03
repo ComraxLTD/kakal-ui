@@ -3,6 +3,7 @@
  */
 
 export * from './lib/kakal-ui.module';
+export * from './lib/angular-material/material.module';
 
 export * from './lib/button/button.component';
 export * from './lib/button/button.module';

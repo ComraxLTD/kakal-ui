@@ -75,6 +75,8 @@ import { KKLPipesModule } from './pipes/pipes.module';
     SpinnerModule
   ],
   exports: [
+    MaterialModule,
+
     KKLMenuItemModule,
     KKLButtonModule,
     KKLIconModule,
