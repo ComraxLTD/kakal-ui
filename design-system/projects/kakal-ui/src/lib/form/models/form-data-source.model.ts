@@ -11,25 +11,27 @@ import {
 } from 'rxjs';
 import { SelectOption } from './question-select.model';
 
-export declare type FormEvent =
-  | 'default'
-  | 'disable'
-  | 'clear'
-  | 'delete'
-  | 'save'
-  | 'edit'
-  | 'add'
-  | 'submit'
-  | 'create'
-  | 'update'
-  | 'autocomplete'
-  | 'updateOptions'
-  | 'optionSelected';
+import { FormEvents } from './form-types';
+
+// export declare type FormEvent =
+//   | 'default'
+//   | 'disable'
+//   | 'clear'
+//   | 'delete'
+//   | 'save'
+//   | 'edit'
+//   | 'add'
+//   | 'submit'
+//   | 'create'
+//   | 'update'
+//   | 'autocomplete'
+//   | 'updateOptions'
+//   | 'optionSelected';
 
 export interface FormOption {
   key?: string;
   index?: number;
-  event?: FormEvent;
+  event?: FormEvents;
   control?: FormControl;
   option?: SelectOption;
   multi?: boolean;
@@ -51,14 +53,14 @@ export class FormDataSource {
   }
 
   public getFormState$(
-    formOption: FormOption = { event: 'default' }
+    formOption: FormOption = { event: FormEvents.DEFAULT }
   ): Observable<FormOption> {
     return this.formState$.pipe(startWith(formOption));
   }
 
   // method  which return form state filtered by events[]
   public getFormStateWithFilterEvents(
-    events?: FormEvent[]
+    events?: FormEvents[]
   ): Observable<FormOption> {
     return this.getFormState$().pipe(
       filter((formOption) => {
@@ -67,7 +69,7 @@ export class FormDataSource {
     );
   }
   // method  which return only form events
-  public getEvents(events?: FormEvent[]): Observable<FormEvent> {
+  public getEvents(events?: FormEvents[]): Observable<FormEvents> {
     return this.getFormState$().pipe(
       map((formOption: FormOption) => formOption.event),
       filter((event) => (events ? events.indexOf(event) !== -1 : true))
@@ -78,62 +80,61 @@ export class FormDataSource {
 
   // use when delete item form array
   private autocomplete(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'autocomplete' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.CHANGE });
   }
 
   //  use when update form - formGroup.pathValue/setValue
   private edit(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'edit' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.EDIT });
   }
 
   //  use when reset form - formGroup.reset()
   private clear(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'clear' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.CLEAR });
   }
   //  use when reset form disable - formGroup.disabled()
   private disable() {
-    this.formStateSubject.next({ event: 'disable' });
+    this.formStateSubject.next({ event: FormEvents.DISABLED });
   }
 
   //  use when update form options
   private updateOptions(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'updateOptions' });
+    // this.formStateSubject.next({ ...formOption, event: 'updateOptions' });
   }
 
   // DATA EVENTS SECTION
 
   // use when delete item form array
   private delete(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'clear' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.DELETE });
   }
 
   // use to create new item
   private create(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'create' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.CREATE });
   }
 
   // use when to add created item
   private add(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'add' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.ADD });
   }
 
   // use when save item form array
   private save(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'save' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.SAVE });
   }
 
   // use when save item form array
   private update(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'update' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.UPDATE });
   }
 
   private optionSelected(formOption: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'optionSelected' });
+    this.formStateSubject.next({ ...formOption, event: FormEvents.SELECTED });
   }
 
-  private submit(formOption : FormOption) {
-    this.formStateSubject.next({ ...formOption, event: 'submit' });
-
+  private submit(formOption: FormOption) {
+    this.formStateSubject.next({ ...formOption, event: FormEvents.SUBMIT });
   }
 
   public actions = {
@@ -152,23 +153,24 @@ export class FormDataSource {
   };
 
   public listen = {
-    edit: () => this.getFormStateWithFilterEvents(['edit']),
-    add: () => this.getFormStateWithFilterEvents(['add']),
-    create: () => this.getFormStateWithFilterEvents(['create']),
-    clear: () => this.getFormStateWithFilterEvents(['clear']),
-    disable: () => this.getFormStateWithFilterEvents(['disable']),
-    updateOptions: () => this.getFormStateWithFilterEvents(['updateOptions']),
-    delete: () => this.getFormStateWithFilterEvents(['delete']),
-    save: () => this.getFormStateWithFilterEvents(['save']),
-    submit: () => this.getFormStateWithFilterEvents(['submit']),
-    update: () => this.getFormStateWithFilterEvents(['update']),
-    autocomplete: () => this.getFormStateWithFilterEvents(['autocomplete']),
-    optionSelected: () => this.getFormStateWithFilterEvents(['optionSelected']),
+    edit: () => this.getFormStateWithFilterEvents([FormEvents.EDIT]),
+    add: () => this.getFormStateWithFilterEvents([FormEvents.ADD]),
+    create: () => this.getFormStateWithFilterEvents([FormEvents.CREATE]),
+    clear: () => this.getFormStateWithFilterEvents([FormEvents.CLEAR]),
+    disable: () => this.getFormStateWithFilterEvents([FormEvents.DELETE]),
+    updateOptions: () => this.getFormStateWithFilterEvents([FormEvents.EDIT]),
+    delete: () => this.getFormStateWithFilterEvents([FormEvents.DELETE]),
+    save: () => this.getFormStateWithFilterEvents([FormEvents.SAVE]),
+    submit: () => this.getFormStateWithFilterEvents([FormEvents.SUBMIT]),
+    update: () => this.getFormStateWithFilterEvents([FormEvents.UPDATE]),
+    autocomplete: () => this.getFormStateWithFilterEvents([FormEvents.CHANGE]),
+    optionSelected: () =>
+      this.getFormStateWithFilterEvents([FormEvents.SELECTED]),
   };
 
   public toggleEvent(
-    trueEvents: FormEvent[],
-    falseEvents: FormEvent[]
+    trueEvents: FormEvents[],
+    falseEvents: FormEvents[]
   ): Observable<boolean> {
     const true$ = this.getEvents(trueEvents).pipe(mapTo(true));
     const false$ = this.getEvents(falseEvents).pipe(mapTo(false));
