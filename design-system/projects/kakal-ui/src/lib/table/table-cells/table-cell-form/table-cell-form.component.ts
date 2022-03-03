@@ -17,10 +17,6 @@ export class TableCellFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-
-    console.log(this.columnDef)
-
     this.question = this.group.controls[this.columnDef];
-    console.log(this.question)
   }
 }

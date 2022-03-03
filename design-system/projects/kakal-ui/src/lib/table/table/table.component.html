@@ -125,7 +125,9 @@ tableState :
                               <!-- Edit block -->
                               <ng-template #editBlock>
                                 <ng-container
-                                  *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit : {row, column, rowIndex, key}} "
+                                  *ngTemplateOutlet="inputTemplate[column.columnDef];
+                                  context : {$implicit :
+                                    {row, column, rowIndex, key, group$ : tableState.forms[row[key]]}} "
                                 ></ng-container>
                               </ng-template>
 
