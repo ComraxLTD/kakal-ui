@@ -31,7 +31,7 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { TableEvent } from '../table.events';
+import { TableEvent } from '../models/table.events';
 
 @Component({
   selector: 'kkl-table',

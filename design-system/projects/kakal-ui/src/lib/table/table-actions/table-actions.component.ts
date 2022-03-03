@@ -7,7 +7,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { TableEvent } from '../table.events';
+import { TableEvent } from '../models/table.events';
 import { ActionState, ActionStateRules } from './table-actions.model';
 import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';

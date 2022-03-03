@@ -4,16 +4,14 @@ import { FormDataSource } from '../../form/models/form-datasource';
 import { TableColumnModel } from '../../columns/models/column.model';
 
 import { ColumnState, RowsState, TableState } from './table.state';
-import { TableRowModel } from './table-row.model';
+import { TableEvent } from '../models/table.events';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { filter, map, switchMapTo, take } from 'rxjs/operators';
-import { TableEvent } from '../table.events';
+import { filter } from 'rxjs/operators';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
   private columnSubject: BehaviorSubject<TableColumnModel<T>[]>;
-  private rowSubject: BehaviorSubject<TableRowModel<T>[]>;
 
   private tableSubject: BehaviorSubject<TableState>;
   private columnsStateSubject: BehaviorSubject<ColumnState<T>>;
@@ -25,7 +23,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   constructor() {
     this.dataSubject = new BehaviorSubject<T[]>([]);
-    this.rowSubject = new BehaviorSubject<TableRowModel<T>[]>([]);
     this.columnSubject = new BehaviorSubject<TableColumnModel<T>[]>([]);
     this.tableSubject = new BehaviorSubject<TableState>({
       selected: {},
