@@ -39,7 +39,7 @@ Note: Putting the token here is insecure to a certain extent, but we have to mak
 ```
 $ ng new <MY_PROJECT>
 $ cd <MY_PROJECT>
-$ npm install @comraxltd/kakal-ui@0.0.2 
+$ npm install @ComraxLTD/kakal-ui@0.0.2 
 ```
 
 In app.module:
