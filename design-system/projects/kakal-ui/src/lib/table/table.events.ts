@@ -1,19 +1,5 @@
-import { FormEvent } from '../form/models/form-data-source.model';
+import { FormEvents } from '../form/models/form-types';
 
-// export declare type TableEvent =
-//   | FormEvent
-//   | 'expand'
-//   | 'close'
-//   | 'cancel'
-//   | 'form'
-//   | 'selected'
-//   | 'reset'
-//   | 'selectRows'
-//   | 'addOptions'
-//   | 'updateOptions'
-//   | 'updateSortDir'
-//   | 'updateOptionsSelected'
-//   | 'updateMulti';
 
 export declare type TableActions =
   | 'expand'
