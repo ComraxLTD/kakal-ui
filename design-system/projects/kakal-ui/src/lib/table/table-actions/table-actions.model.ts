@@ -3,6 +3,7 @@ import { TableEvent } from "../table.events";
 export interface ActionState {
   show: boolean;
   disabled: boolean;
+  valid?: boolean;
   event?: TableEvent;
 }
 

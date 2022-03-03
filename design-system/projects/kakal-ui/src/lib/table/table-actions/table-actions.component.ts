@@ -12,8 +12,10 @@ import { ActionState, ActionStateRules } from './table-actions.model';
 import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
 
-import { filter, map, mapTo } from 'rxjs/operators';
+import { filter, map, mapTo, switchMap } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
+import { QuestionGroupModel } from '../../form/models/question-group.model';
+import { FormGroup } from '@angular/forms';
 
 export interface ButtonActionState {
   editState?: ActionState;
@@ -90,17 +92,23 @@ export class TableActionsComponent implements OnInit {
     const id = this.rowState.item[this.rowState.key];
     return this.dataSource.listen$.edit().pipe(
       filter((rowState: RowsState) => rowState.item[rowState.key] === id),
-      map((_) => {
-        const editState = {
-          show: false,
-          event: 'edit',
-        } as ActionState;
+      switchMap((rowState: RowsState) => {
+        return rowState.group$.pipe(
+          map((group : QuestionGroupModel) => group.formGroup),
+          map((formGroup : FormGroup) => {
+            const editState = {
+              show: false,
+              valid : formGroup.valid,
+              event: 'edit',
+            } as ActionState;
 
-        const deleteState = {
-          show: false,
-          event: 'edit',
-        } as ActionState;
-        return { editState, deleteState };
+            const deleteState = {
+              show: false,
+              event: 'edit',
+            } as ActionState;
+            return { editState, deleteState };
+          })
+        );
       })
     );
   }
