@@ -1,0 +1,27 @@
+@use "../../../../styles/variables" as main;
+
+.kkl-data-cell {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  word-wrap: break-word;
+  height: 100%;
+
+  mat-checkbox {
+    padding-right: main.spacing(2);
+  }
+
+  // min-height: inherit;
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.select {
+    flex: 0.5 !important;
+  }
+
+  &.actions {
+    justify-content: flex-end;
+  }
+}
