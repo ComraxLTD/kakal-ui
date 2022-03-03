@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { SelectOption } from '../../form/models/question-select.model';
 import { TableColumnModel } from '../../columns/models/column.model';
-import { TableEvent } from './table-event';
+import { TableEvent } from '../table.events';
 import { SortDirection } from '@angular/material/sort';
 import { ButtonActionState } from '../table-actions/table-actions.component';
 import { QuestionGroupModel } from '../../form/models/question-group.model';

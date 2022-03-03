@@ -1,7 +1,6 @@
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { ActionState } from '../table-actions/table-actions.model';
-import { TableEvent } from './table-event';
 
 export class TableRowModel<T = any> {
   public item: T;

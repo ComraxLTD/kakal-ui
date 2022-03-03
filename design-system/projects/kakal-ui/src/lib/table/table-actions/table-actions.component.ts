@@ -7,8 +7,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 
-import { TableColumnModel } from '../../columns/models/column.model';
-import { TableEvent } from '../models/table-event';
+import { TableEvent } from '../table.events';
 import { ActionState, ActionStateRules } from './table-actions.model';
 import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
@@ -17,8 +16,8 @@ import { filter, map, mapTo } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
 
 export interface ButtonActionState {
-  edit?: ActionState;
-  delete?: ActionState;
+  editState?: ActionState;
+  deleteState?: ActionState;
 }
 
 @Component({
@@ -44,8 +43,7 @@ export class TableActionsComponent implements OnInit {
   @Output() close: EventEmitter<RowsState> = new EventEmitter<RowsState>();
   @Output() save: EventEmitter<RowsState> = new EventEmitter<RowsState>();
 
-  public editState$: Observable<ActionState>;
-  public deleteState$: Observable<ActionState>;
+  public buttonActionState$: Observable<ButtonActionState>;
 
   constructor() {}
 
@@ -57,99 +55,62 @@ export class TableActionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.validate();
-
-    this.editState$ = this.setEditState();
-    this.deleteState$ = this.setDeleteState();
+    this.buttonActionState$ = this.setButtonActionState();
   }
 
-  private setEditStateOnDefault() {
-    return this.dataSource.getTableStateByEvent(['default']).pipe(
-      mapTo({
-        show:
-          this.actionStateRules?.showEdit(this.rowState.item) || this.hasEdit,
-        disabled: this.actionStateRules?.disableEdit(this.rowState.item),
-      } as ActionState)
-    );
+  private setButtonActionState() {
+    const defaultState$ = this.onButtonsStateDefault();
+    const editState$ = this.onButtonsStateOnEdit();
+    const closeState$ = this.onButtonStateOnClose();
+
+    return merge(defaultState$, editState$, closeState$);
   }
 
-  private getEditingTableStateByEvent(events: TableEvent[]) {
-    return this.dataSource.getTableStateByEvent(events).pipe(
-      map((tableState) => {
-        // console.log(tableState.editing)
-        return tableState.editing;
-      })
-    );
+  private setButtonsStateOnDefault() {
+    const editState = {
+      show: this.actionStateRules?.showEdit(this.rowState.item) || this.hasEdit,
+      disabled: this.actionStateRules?.disableEdit(this.rowState.item),
+    } as ActionState;
+
+    const deleteState = {
+      show:
+        this.actionStateRules?.showDelete(this.rowState.item) || this.hasDelete,
+      disabled: this.actionStateRules?.disableDelete(this.rowState.item),
+    } as ActionState;
+    return { editState, deleteState };
   }
 
-  private setEditStateOnEdit() {
-    const prop = this.rowState.item[this.rowState.key];
+  private onButtonsStateDefault(): Observable<ButtonActionState> {
+    return this.dataSource
+      .getTableStateByEvent([TableEvent.DEFAULT])
+      .pipe(mapTo(this.setButtonsStateOnDefault()));
+  }
 
-    return this.getEditingTableStateByEvent(['edit']).pipe(
-      filter((editing) => editing.indexOf(prop) !== -1),
-      map((editing) => editing.indexOf(prop) !== -1),
-      map((editing: boolean) => {
-        return {
-          show: !editing,
-          disabled: editing,
+  private onButtonsStateOnEdit(): Observable<ButtonActionState> {
+    const id = this.rowState.item[this.rowState.key];
+    return this.dataSource.listen$.edit().pipe(
+      filter((rowState: RowsState) => rowState.item[rowState.key] === id),
+      map((_) => {
+        const editState = {
+          show: false,
           event: 'edit',
         } as ActionState;
-      })
-    );
-  }
-  private setEditStateOnClose() {
-    const id = this.rowState.item[this.rowState.key];
-    return this.getEditingTableStateByEvent(['close']).pipe(
-      map((editing) => editing.indexOf(id) !== -1),
 
-      map((close: boolean) => {
-
-        // console.log('close edit')
-        return {
-          show: !close,
-          disabled: this.actionStateRules?.disableEdit(this.rowState.item),
+        const deleteState = {
+          show: false,
           event: 'edit',
         } as ActionState;
+        return { editState, deleteState };
       })
     );
   }
-  private setDeleteSateOnClose() {
+
+  private onButtonStateOnClose() {
     const id = this.rowState.item[this.rowState.key];
-    return this.getEditingTableStateByEvent(['close']).pipe(
-      map((editing) => editing.indexOf(id) !== -1),
-      map((close: boolean) => {
-        // console.log('delete close')
-        return {
-          show: !close,
-          disabled: this.actionStateRules?.disableEdit(this.rowState.item),
-          event: 'delete',
-        } as ActionState;
-      })
+    return this.dataSource.listen$.close().pipe(
+      filter((rowState: RowsState) => rowState.item[rowState.key] === id),
+      mapTo(this.setButtonsStateOnDefault())
     );
-  }
-
-  private setDeleteStateOnDefault() {
-    return this.dataSource.getTableStateByEvent(['default']).pipe(
-      mapTo({
-        show:
-          this.actionStateRules?.showDelete(this.rowState.item) ||
-          this.hasDelete,
-        disabled: this.actionStateRules?.disableDelete(this.rowState.item),
-      } as ActionState)
-    );
-  }
-
-  private setEditState() {
-    const default$ = this.setEditStateOnDefault();
-    const edit$ = this.setEditStateOnEdit();
-    const close$ = this.setEditStateOnClose();
-    return this.hasEdit ? merge(default$, edit$, close$) : null;
-  }
-
-  private setDeleteState(): Observable<ActionState> {
-    const default$ = this.setDeleteStateOnDefault();
-    const edit$ = this.setEditStateOnEdit();
-    const close$ = this.setDeleteSateOnClose();
-    return merge(default$, edit$, close$);
   }
 
   public onDelete() {

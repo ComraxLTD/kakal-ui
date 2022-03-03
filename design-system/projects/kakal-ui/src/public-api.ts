@@ -87,7 +87,8 @@ export * from './lib/table/table/table.component'
 export * from './lib/table/table/table.module'
 
 export * from './lib/table/models/table-datasource'
-export * from './lib/table/models/table-event'
+export * from './lib/table/models/table'
+export * from './lib/table/table.events'
 export * from './lib/table/models/table.state'
 export * from './lib/table/models/table-row.model'
 

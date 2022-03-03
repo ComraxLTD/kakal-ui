@@ -20,23 +20,18 @@ import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
 
-import { updateArray } from './table.helpers';
+import { deleteItem } from './table.helpers';
 
 import {
   combineLatest,
-  concat,
-  filter,
   map,
   merge,
   Observable,
   of,
-  race,
   switchMap,
-  switchMapTo,
   take,
-  tap,
 } from 'rxjs';
-import { TableEvent } from '../models/table-event';
+import { TableEvent } from '../table.events';
 
 @Component({
   selector: 'kkl-table',
@@ -210,17 +205,15 @@ export class TableComponent<T = any> implements OnInit {
   private onEditCloseEvent() {
     return this.tableDataSource.listen$.close().pipe(
       switchMap((state) => {
-        const { rowIndex } = state;
+        const { rowIndex, item, key } = state;
         return this.tableDataSource.listenTableState().pipe(
           take(1),
-          map((tableState) => {
+          map((tableState: TableState) => {
             const { editing } = tableState;
-
-            editing.splice(rowIndex, 1);
 
             tableState = {
               ...tableState,
-              editing,
+              editing: deleteItem({ array: editing, value: item[key] }),
               event: 'close',
             } as TableState;
 
