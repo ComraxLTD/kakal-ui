@@ -20,10 +20,14 @@ import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
+
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLTableActionsModule } from './table/table-actions/table-actions.module';
+import { KKLTableCellModule } from './table/table-cells/table-cell.module';
+
 import { KKLColumnsModule } from './columns/column.module';
 import { SidenavModule } from './sidenav/sidenav.module';
+
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { KKLDialogModule } from './dialog/dialog.module';
 import { KKLTableModule } from './table/table/table.module';
@@ -62,6 +66,7 @@ import { KKLPipesModule } from './pipes/pipes.module';
 
     // TABLE MODULES
     KKLTableModule,
+    KKLTableCellModule,
     KKLTableActionsModule,
     KKLColumnsModule,
 
@@ -88,6 +93,7 @@ import { KKLPipesModule } from './pipes/pipes.module';
     KKLFormUploadModule,
 
     KKLTableModule,
+    KKLTableCellModule,
     KKLTableActionsModule,
     KKLColumnsModule,
 

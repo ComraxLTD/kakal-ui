@@ -14,6 +14,7 @@ import { KKLColumnsModule } from '../../columns/column.module';
 import { KKLDirectivesModule } from '../../directives/directives.module';
 import { KKLPipesModule } from '../../pipes/pipes.module';
 import { KKLTableCellDirective } from '../directives/table-cell.directive';
+import { KKLTableCellModule } from '../table-cells/table-cell.module';
 
 @NgModule({
   imports: [
@@ -23,9 +24,11 @@ import { KKLTableCellDirective } from '../directives/table-cell.directive';
     MatExpansionModule,
     MatCheckboxModule,
     KKLColumnsModule,
+
+    KKLTableCellModule,
+
     KKLIconModule,
     KKLTypographyModule,
-
     KKLDirectivesModule,
     KKLPipesModule,
   ],

@@ -84,22 +84,24 @@ export * from './lib/columns/column-form/column-form.component';
 export * from './lib/columns/column-form/column-form.module';
 
 // TABLE
-export * from './lib/table/table/table.component'
-export * from './lib/table/table/table.module'
+export * from './lib/table/table/table.component';
+export * from './lib/table/table/table.module';
 
-export * from './lib/table/models/table-datasource'
-export * from './lib/table/models/table'
-export * from './lib/table/table.events'
-export * from './lib/table/models/table.state'
-export * from './lib/table/models/table-row.model'
+export * from './lib/table/table-cells/table-cell.module';
+export * from './lib/table/table-cells/table-cell-form/table-cell-form.component';
+export * from './lib/table/table-cells/table-cell-form/table-cell-form.module';
+
+export * from './lib/table/models/table-datasource';
+export * from './lib/table/models/table';
+export * from './lib/table/table.events';
+export * from './lib/table/models/table.state';
+export * from './lib/table/models/table-row.model';
 
 export * from './lib/table/directives/table-cell.directive';
 
 // TABLE-ACTIONS
 export * from './lib/table/table-actions/table-actions.component';
 export * from './lib/table/table-actions/table-actions.module';
-
-
 
 // -------------------------------------------------------------------------------------------------------
 
@@ -117,7 +119,7 @@ export * from './lib/kkl-title/kkl-title.component';
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
-export * from './lib/dialog/dialog.service'
+export * from './lib/dialog/dialog.service';
 
 // spinner
 export * from './lib/spinner/spinner.component';

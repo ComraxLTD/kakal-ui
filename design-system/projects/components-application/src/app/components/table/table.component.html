@@ -5,6 +5,7 @@
     [columns$]="columns$"
     [tableDataSource]="tableDataSource"
     [cellTemplate]="{isActive, actions}"
+    [formTemplate]="{input}"
     [hasActions]="true"
   ></kkl-table>
 </div>
@@ -24,4 +25,8 @@
     (edit)="onEditEvent($event)"
     (close)="onCloseEvent($event)"
   ></kkl-table-actions>
+</ng-template>
+
+<ng-template #input let-rowState let-tableState="tableState">
+  <kkl-table-cell-form></kkl-table-cell-form>
 </ng-template>
