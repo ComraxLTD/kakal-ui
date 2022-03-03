@@ -14,7 +14,7 @@
       <mat-table
         mat-table
         [ngClass]="[theme, 'kkl-table']"
-        [dataSource]="table.data"
+        [dataSource]="data$ | async"
         multiTemplateDataRows
       >
         <!-- HEADER COLUMN -->

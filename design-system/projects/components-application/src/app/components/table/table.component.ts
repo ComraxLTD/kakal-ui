@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of, switchMap } from 'rxjs';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
 import {
   TableDataSource,
   FormService,
   TableColumnModel,
   RowsState,
   Question,
-  QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, RootObject } from './mock_data';
 
@@ -19,6 +18,8 @@ import { DEMO_DATA, RootObject } from './mock_data';
 export class TableComponent implements OnInit {
   // demo data from server
   private demoStore$: Observable<RootObject[]> = of(DEMO_DATA);
+
+  public itemKey: string = 'id';
 
   private columns: TableColumnModel<RootObject>[] = [
     { columnDef: 'first_name', label: 'first_name', editable: true },
@@ -57,14 +58,14 @@ export class TableComponent implements OnInit {
 
     return storeData$.pipe(
       switchMap((data) => {
-        this.tableDataSource.load(data);
+        this.tableDataSource.load(data, this.columns);
         return this.tableDataSource.connect();
       })
     );
   }
 
   private setColumns$() {
-    return this.tableDataSource.connectColumns(this.columns);
+    return this.tableDataSource.connectColumns();
   }
 
   private setQuestions(questions: Question[], item: RootObject): Question[] {
@@ -96,6 +97,29 @@ export class TableComponent implements OnInit {
   }
 
   public onSaveEvent(state: RowsState) {
-    console.log(state.item);
+    const { item } = state;
+
+    // imitate http response
+    of(item)
+      .pipe(
+        switchMap((item) => {
+          return this.demoStore$.pipe(
+            map((data) => {
+              const indexToUpdate = data.findIndex(
+                (cell: RootObject) =>
+                  cell[this.itemKey].toString() ===
+                  item[this.itemKey].toString()
+              );
+              const updateData = [...data];
+              updateData[indexToUpdate] = { ...data[indexToUpdate], ...item };
+              this.tableDataSource.load(updateData);
+              return state;
+            })
+          );
+        })
+      )
+      .subscribe((state) => {
+        this.tableDataSource.actions.close({ state });
+      });
   }
 }

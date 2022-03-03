@@ -46,35 +46,18 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   disconnect(): void {}
 
-  public load(data: T[]): void {
+  public load(data: T[], columns?: TableColumnModel<T>[]): void {
     this.dataSubject.next([...data]);
+    if (columns) {
+      this.columnSubject.next([...columns]);
+    }
   }
 
   public connect(): Observable<T[]> {
     return this.dataSubject.asObservable();
   }
-  public loadRows(rows: TableRowModel<T>[]): void {
-    this.rowSubject.next([...rows]);
-  }
 
-  public connectRows(): Observable<TableRowModel<T>[]> {
-    return this.rowSubject.asObservable();
-  }
-
-  public initRows(): Observable<boolean> {
-    return this.rowSubject
-      .asObservable()
-      .pipe(map((rows) => rows.length === 0));
-  }
-
-  private loadColumns(columns: TableColumnModel<T>[]): void {
-    this.columnSubject.next([...columns]);
-  }
-
-  public connectColumns(
-    columns: TableColumnModel<T>[]
-  ): Observable<TableColumnModel<T>[]> {
-    this.loadColumns(columns);
+  public connectColumns(): Observable<TableColumnModel<T>[]> {
     return this.columnSubject.asObservable();
   }
 

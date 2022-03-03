@@ -13,7 +13,7 @@ import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
 
 import { merge, Observable } from 'rxjs';
-import { filter, map, mapTo } from 'rxjs/operators';
+import { filter, map, mapTo, take, tap } from 'rxjs/operators';
 import { FormGroup } from '@angular/forms';
 
 export interface ButtonActionState {
@@ -135,7 +135,7 @@ export class TableActionsComponent implements OnInit {
     this.save.emit({
       ...this.rowState,
       event,
-      item: { ...this.rowState.group.getValue() },
+      item: { ...this.rowState.item, ...this.rowState.group.getValue() },
     });
   }
 }

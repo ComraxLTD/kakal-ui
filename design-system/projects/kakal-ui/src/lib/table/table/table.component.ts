@@ -139,10 +139,10 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTable$() {
-    return combineLatest([this.data$, this.setColumns$()]).pipe(
-      map(([data, columns]) => {
+    return combineLatest([this.setColumns$()]).pipe(
+      map(([columns]) => {
         const columnDefs = columns.map((column) => column.columnDef);
-        return { data, columns, columnDefs };
+        return { columns, columnDefs };
       })
     );
   }
@@ -153,6 +153,7 @@ export class TableComponent<T = any> implements OnInit {
     this.validateInputs();
 
     this.table$ = this.setTable$();
+
     this.tableState$ = this.setTableState$();
     // this.tableState$ = this.setTableState$();
   }
@@ -191,7 +192,6 @@ export class TableComponent<T = any> implements OnInit {
           map((tableState) => {
             const { editing } = tableState;
             editing.push(item[key]);
-
 
             this.inputTemplate = this.setFormTemplate(item, this.formTemplate);
 
