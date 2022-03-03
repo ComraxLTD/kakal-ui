@@ -12,6 +12,7 @@ export class KKLTableCellDirective {
   @Input() center: boolean;
   @Input() columnsDef: string;
 
+
   constructor() {}
 
   ngOnInit(): void {
@@ -20,6 +21,8 @@ export class KKLTableCellDirective {
   }
 
   private setClasses() {
+
+
     let classes: string = `kkl-table-cell ${this.kklTableCell}`;
 
     if (this.center) {

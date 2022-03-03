@@ -1,8 +1,11 @@
 <ng-container *ngIf="tableState$ | async as tableState">
   <code>
+    <pre dir="ltr" [style.fontSize]="'16px'"></pre>
     <pre dir="ltr" [style.fontSize]="'16px'">
-tableState :
-      {{ tableState | json }}
+      editing : {{ tableState.editing | json }}
+    </pre>
+    <pre dir="ltr" [style.fontSize]="'16px'">
+      event : {{ tableState.event }}
     </pre>
   </code>
 
@@ -11,7 +14,7 @@ tableState :
       <mat-table
         mat-table
         [ngClass]="[theme, 'kkl-table']"
-        [dataSource]="table.data"
+        [dataSource]="data$ | async"
         multiTemplateDataRows
       >
         <!-- HEADER COLUMN -->
@@ -59,8 +62,8 @@ tableState :
                   fxFill
                 >
                   <mat-expansion-panel-header
-                    [class.expand]="accordion || clickable"
-                    [class.form]="accordion || clickable"
+                    [class.expand]="accordion"
+                    [class.form]="tableState.editing.indexOf(row[key]) !== -1"
                   >
                     <div class="row" fxFill fxLayout="row">
                       <ng-container
@@ -88,7 +91,7 @@ tableState :
                           <ng-container *ngSwitchCase="'actions'">
                             <div [kklTableCell]="column.columnDef" fxFlex>
                               <ng-container
-                                *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key}}"
+                                *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key, group: tableState.forms[row[key]]}}"
                               ></ng-container>
                             </div>
                           </ng-container>
@@ -125,7 +128,9 @@ tableState :
                               <!-- Edit block -->
                               <ng-template #editBlock>
                                 <ng-container
-                                  *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit : {row, column, rowIndex, key}} "
+                                  *ngTemplateOutlet="inputTemplate[column.columnDef];
+                                  context : {$implicit :
+                                    {row, column, rowIndex, key, group : tableState.forms[row[key]]}} "
                                 ></ng-container>
                               </ng-template>
 

@@ -12,8 +12,9 @@ import { ActionState, ActionStateRules } from './table-actions.model';
 import { RowsState, TableState } from '../models/table.state';
 import { TableDataSource } from '../models/table-datasource';
 
-import { filter, map, mapTo } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
+import { filter, map, mapTo, take, tap } from 'rxjs/operators';
+import { FormGroup } from '@angular/forms';
 
 export interface ButtonActionState {
   editState?: ActionState;
@@ -27,7 +28,7 @@ export interface ButtonActionState {
 })
 export class TableActionsComponent implements OnInit {
   @Input() rowState: RowsState;
-  @Input() dataSource: TableDataSource;
+  // @Input() dataSource: TableDataSource;
   @Input() tableState: TableState;
   @Input() actionStateRules: ActionStateRules;
 
@@ -45,7 +46,7 @@ export class TableActionsComponent implements OnInit {
 
   public buttonActionState$: Observable<ButtonActionState>;
 
-  constructor() {}
+  constructor(private dataSource: TableDataSource<any>) {}
 
   private validate() {
     if (!this.dataSource) {
@@ -90,9 +91,11 @@ export class TableActionsComponent implements OnInit {
     const id = this.rowState.item[this.rowState.key];
     return this.dataSource.listen$.edit().pipe(
       filter((rowState: RowsState) => rowState.item[rowState.key] === id),
-      map((_) => {
+      map((rowState: RowsState) => rowState.group.formGroup),
+      map((formGroup: FormGroup) => {
         const editState = {
           show: false,
+          valid: formGroup.valid,
           event: 'edit',
         } as ActionState;
 
@@ -132,6 +135,7 @@ export class TableActionsComponent implements OnInit {
     this.save.emit({
       ...this.rowState,
       event,
+      item: { ...this.rowState.item, ...this.rowState.group.getValue() },
     });
   }
 }

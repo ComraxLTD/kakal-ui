@@ -39,7 +39,7 @@ import { TableEvent } from '../table.events';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent<T = any> implements OnInit {
-  @Input() public tableDataSource: TableDataSource<T>;
+  // @Input() public tableDataSource: TableDataSource<T>;
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<TableColumnModel<T>[]>;
 
@@ -120,7 +120,7 @@ export class TableComponent<T = any> implements OnInit {
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
 
-  constructor() {}
+  constructor(private tableDataSource: TableDataSource<T>) {}
 
   private setColumns$() {
     return this.columns$.pipe(
@@ -139,10 +139,10 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTable$() {
-    return combineLatest([this.data$, this.setColumns$()]).pipe(
-      map(([data, columns]) => {
+    return combineLatest([this.setColumns$()]).pipe(
+      map(([columns]) => {
         const columnDefs = columns.map((column) => column.columnDef);
-        return { data, columns, columnDefs };
+        return { columns, columnDefs };
       })
     );
   }
@@ -153,6 +153,7 @@ export class TableComponent<T = any> implements OnInit {
     this.validateInputs();
 
     this.table$ = this.setTable$();
+
     this.tableState$ = this.setTableState$();
     // this.tableState$ = this.setTableState$();
   }
@@ -185,7 +186,7 @@ export class TableComponent<T = any> implements OnInit {
   private onEditEvent() {
     return this.tableDataSource.listen$.edit().pipe(
       switchMap((state) => {
-        const { item, key } = state;
+        const { item, key, group } = state;
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState) => {
@@ -193,10 +194,15 @@ export class TableComponent<T = any> implements OnInit {
             editing.push(item[key]);
 
             this.inputTemplate = this.setFormTemplate(item, this.formTemplate);
+
             tableState = {
               ...tableState,
               editing,
               event: 'edit',
+              forms: {
+                ...tableState.forms,
+                [item[key]]: group,
+              },
             } as TableState;
 
             return tableState;

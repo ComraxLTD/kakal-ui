@@ -144,7 +144,7 @@ export class FormService {
       label: '' || options?.label,
       questions,
       formGroup: this.setFormGroup(questions, options?.validations),
-      group: this.setQuestionsAsGroup(questions),
+      controls: this.setQuestionsAsGroup(questions),
     });
   }
 
@@ -212,7 +212,7 @@ export class FormService {
 
       case 'date':
         const dq = question as QuestionDateModel;
-        return new QuestionDateModel(dq);      
+        return new QuestionDateModel(dq);
       case 'autocomplete':
         return new QuestionAutocompleteModel(question);
       default:

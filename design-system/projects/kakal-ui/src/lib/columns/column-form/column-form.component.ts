@@ -18,6 +18,6 @@ export class ColumnFormComponent<T> implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.question = this.form.group[this.column.columnDef.toString()];
+    this.question = this.form.controls[this.column.columnDef.toString()];
   }
 }

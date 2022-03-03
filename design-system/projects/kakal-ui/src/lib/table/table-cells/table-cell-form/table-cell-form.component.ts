@@ -8,15 +8,26 @@ import { QuestionBase } from '../../../form/services/form.service';
   styleUrls: ['./table-cell-form.component.scss'],
 })
 export class TableCellFormComponent implements OnInit {
-  @Input() public form: QuestionGroupModel;
+  @Input() public group: QuestionGroupModel;
   @Input() public columnDef: string;
   @Input() public template: TemplateRef<any>;
 
   public question: QuestionBase;
 
+  public questionTemplate: { [key: string]: TemplateRef<any> };
+
   constructor() {}
 
   ngOnInit(): void {
-    this.question = this.form.group[this.columnDef.toString()];
+    this.question = this.group.controls[this.columnDef];
+  }
+
+  private setQuestionTemplate(template: TemplateRef<any>) {
+    return this.group.questions.reduce((acc, question) => {
+      return {
+        ...acc,
+        [question.key]: question.controlType,
+      };
+    }, {});
   }
 }
