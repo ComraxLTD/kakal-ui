@@ -92,9 +92,9 @@ export * from './lib/table/table-cells/table-cell.module';
 export * from './lib/table/table-cells/table-cell-form/table-cell-form.component';
 export * from './lib/table/table-cells/table-cell-form/table-cell-form.module';
 
-export * from './lib/table/models/table-datasource';
 export * from './lib/table/models/table';
-export * from './lib/table/table.events';
+export * from './lib/table/models/table-datasource';
+export * from './lib/table/models/table.events';
 export * from './lib/table/models/table.state';
 export * from './lib/table/models/table-row.model';
 

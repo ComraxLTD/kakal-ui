@@ -1,4 +1,4 @@
-import { TableEvent } from "../table.events";
+import { TableEvent } from "../models/table.events";
 
 export interface ActionState {
   show: boolean;
