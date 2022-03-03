@@ -25,7 +25,7 @@ export class QuestionGroupModel<T = any> extends QuestionBaseModel<T> {
   public type?: QuestionType;
   public formGroup?: FormGroup;
   public hasButton?: boolean;
-  public group?: Object;
+  public controls?: Object;
 
   private questionState: BehaviorSubject<Question[]>;
   public questions$?: Observable<Question[]>;
@@ -39,7 +39,7 @@ export class QuestionGroupModel<T = any> extends QuestionBaseModel<T> {
     formGroup?: FormGroup;
     gridProps?: GridProps;
     hasButton?: boolean;
-    group?: Object;
+    controls?: Object;
     validations?: ValidatorFn[];
   }) {
     super(options);
@@ -52,7 +52,7 @@ export class QuestionGroupModel<T = any> extends QuestionBaseModel<T> {
     this.formGroup = options.formGroup;
     this.gridProps = options.gridProps || { cols: 1 };
     this.hasButton = options.hasButton || false;
-    this.group = options.group || null;
+    this.controls = options.controls || null;
     this.questionState = new BehaviorSubject<Question[]>(options.questions);
     this.validations = options.validations || [];
     this.questions$ = this.questionState.asObservable();

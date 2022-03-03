@@ -16,6 +16,17 @@
   </kkl-typography>
 </ng-template>
 
+<ng-template #input let-rowState let-tableState="tableState">
+  <ng-container *ngIf="group$ | async as group">
+    <kkl-table-cell-form
+      [group]="group"
+      [columnDef]="rowState.column.columnDef"
+    ></kkl-table-cell-form>
+  </ng-container>
+</ng-template>
+
+>
+<!-- use kkl-table-action for default actions -edit, delete and save -->
 <ng-template #actions let-rowState let-tableState="tableState">
   <kkl-table-actions
     [hasEdit]="true"
@@ -25,8 +36,4 @@
     (edit)="onEditEvent($event)"
     (close)="onCloseEvent($event)"
   ></kkl-table-actions>
-</ng-template>
-
-<ng-template #input let-rowState let-tableState="tableState">
-  <kkl-table-cell-form></kkl-table-cell-form>
 </ng-template>

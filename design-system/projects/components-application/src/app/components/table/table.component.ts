@@ -5,6 +5,8 @@ import {
   FormService,
   TableColumnModel,
   RowsState,
+  Question,
+  QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA } from './mock_data';
 
@@ -35,8 +37,16 @@ export class TableComponent implements OnInit {
     { columnDef: 'email', label: 'email' },
   ];
 
-  public data$: Observable<any[]>;
-  public columns$: Observable<TableColumnModel[]>;
+  private questions: Question[] = [
+    { key: 'isActive' },
+    { key: 'balance', controlType: 'select' },
+    { key: 'age', controlType: 'number' },
+    { key: 'email' },
+  ];
+
+  public data$: Observable<RootObject[]>;
+  public columns$: Observable<TableColumnModel<RootObject>[]>;
+  public group$: Observable<QuestionGroupModel>;
 
   constructor(private formService: FormService) {}
 
@@ -60,7 +70,20 @@ export class TableComponent implements OnInit {
     return this.tableDataSource.connectColumns(this.columns);
   }
 
+  private setQuestions(
+    questions: Question[]
+  ): Observable<QuestionGroupModel<RootObject>> {
+    return of(
+      this.formService.createQuestionGroup({
+        questions,
+      })
+    );
+  }
+
   public onEditEvent(state: RowsState) {
+    this.group$ = this.setQuestions(this.questions);
+
+
     this.tableDataSource.actions.edit({ state });
   }
 

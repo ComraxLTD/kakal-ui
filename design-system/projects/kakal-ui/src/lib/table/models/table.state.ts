@@ -23,6 +23,7 @@ export interface RowsState<T = any> {
   rowIndex?: number;
   column?: TableColumnModel<T>;
   options?: any;
+  group$?: Observable<QuestionGroupModel<T>>;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };
 }
 

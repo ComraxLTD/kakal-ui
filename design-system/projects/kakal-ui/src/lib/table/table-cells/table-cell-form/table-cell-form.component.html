@@ -1,12 +1,12 @@
 <div class="kkl-table-cell-form" (click)="$event.stopPropagation()">
-  <ng-container [ngSwitch]="question.type">
+  <ng-container [ngSwitch]="question.controlType">
     <ng-container *ngSwitchCase="'custom'">
       <ng-container
         *ngTemplateOutlet="
           template;
           context: {
-            control: form.formGroup.controls[columnDef],
-            question: form.group[columnDef]
+            control: group.formGroup.controls[columnDef],
+            question: group.controls[columnDef]
           }
         "
       ></ng-container>
@@ -14,31 +14,31 @@
 
     <ng-container *ngSwitchCase="'currency'">
       <kkl-form-currency
-        [control]="form.formGroup.controls[columnDef]"
-        [question]="form.group[columnDef]"
+        [control]="group.formGroup.controls[columnDef]"
+        [question]="group.controls[columnDef]"
       >
       </kkl-form-currency>
     </ng-container>
 
     <ng-container *ngSwitchCase="'file'">
       <kkl-form-upload
-        [formControl]="form.formGroup.controls[columnDef]"
-        [question]="form.group[columnDef]"
+        [formControl]="group.formGroup.controls[columnDef]"
+        [question]="group.controls[columnDef]"
       ></kkl-form-upload>
     </ng-container>
 
     <ng-container *ngSwitchCase="'date'">
       <kkl-form-date
-        [control]="form.formGroup.controls[columnDef]"
-        [question]="form.group[columnDef]"
+        [control]="group.formGroup.controls[columnDef]"
+        [question]="group.controls[columnDef]"
       >
       </kkl-form-date>
     </ng-container>
 
     <ng-container *ngSwitchDefault>
       <kkl-form-input
-        [control]="form.formGroup.controls[columnDef]"
-        [question]="form.group[columnDef]"
+        [control]="group.formGroup.controls[columnDef]"
+        [question]="group.controls[columnDef]"
       ></kkl-form-input>
     </ng-container>
   </ng-container>
