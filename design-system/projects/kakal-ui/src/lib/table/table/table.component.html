@@ -62,8 +62,8 @@
                   fxFill
                 >
                   <mat-expansion-panel-header
-                    [class.expand]="accordion || clickable"
-                    [class.form]="accordion || clickable"
+                    [class.expand]="accordion"
+                    [class.form]="tableState.editing.indexOf(row[key]) !== -1"
                   >
                     <div class="row" fxFill fxLayout="row">
                       <ng-container
