@@ -14,9 +14,20 @@ export class TableCellFormComponent implements OnInit {
 
   public question: QuestionBase;
 
+  public questionTemplate: { [key: string]: TemplateRef<any> };
+
   constructor() {}
 
   ngOnInit(): void {
     this.question = this.group.controls[this.columnDef];
+  }
+
+  private setQuestionTemplate(template: TemplateRef<any>) {
+    return this.group.questions.reduce((acc, question) => {
+      return {
+        ...acc,
+        [question.key]: question.controlType,
+      };
+    }, {});
   }
 }
