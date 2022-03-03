@@ -23,10 +23,9 @@ export interface RootObject {
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  providers: [TableDataSource],
 })
 export class TableComponent implements OnInit {
-  public tableDataSource = new TableDataSource<RootObject>();
-
   // demo data from server
   private demoStore$: Observable<RootObject[]> = of(DEMO_DATA);
 
@@ -47,7 +46,10 @@ export class TableComponent implements OnInit {
   public data$: Observable<RootObject[]>;
   public columns$: Observable<TableColumnModel<RootObject>[]>;
 
-  constructor(private formService: FormService) {}
+  constructor(
+    private formService: FormService,
+    private tableDataSource: TableDataSource<RootObject>
+  ) {}
 
   ngOnInit(): void {
     this.data$ = this.setData();

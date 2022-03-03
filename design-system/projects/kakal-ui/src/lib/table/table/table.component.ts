@@ -39,7 +39,7 @@ import { TableEvent } from '../table.events';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent<T = any> implements OnInit {
-  @Input() public tableDataSource: TableDataSource<T>;
+  // @Input() public tableDataSource: TableDataSource<T>;
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<TableColumnModel<T>[]>;
 
@@ -120,7 +120,7 @@ export class TableComponent<T = any> implements OnInit {
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
 
-  constructor() {}
+  constructor(private tableDataSource: TableDataSource<T>) {}
 
   private setColumns$() {
     return this.columns$.pipe(

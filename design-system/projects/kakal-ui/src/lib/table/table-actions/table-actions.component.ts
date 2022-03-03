@@ -27,7 +27,7 @@ export interface ButtonActionState {
 })
 export class TableActionsComponent implements OnInit {
   @Input() rowState: RowsState;
-  @Input() dataSource: TableDataSource;
+  // @Input() dataSource: TableDataSource;
   @Input() tableState: TableState;
   @Input() actionStateRules: ActionStateRules;
 
@@ -45,7 +45,7 @@ export class TableActionsComponent implements OnInit {
 
   public buttonActionState$: Observable<ButtonActionState>;
 
-  constructor() {}
+  constructor(private dataSource: TableDataSource<any>) {}
 
   private validate() {
     if (!this.dataSource) {
