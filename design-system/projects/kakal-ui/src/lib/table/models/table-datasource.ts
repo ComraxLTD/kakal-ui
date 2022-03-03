@@ -1,5 +1,5 @@
 import { DataSource } from '@angular/cdk/collections';
-import { FormDataSource } from '../../form/models/form-data-source.model';
+import { FormDataSource } from '../../form/models/form-data-source';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 

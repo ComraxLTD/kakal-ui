@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { Appearance, ControlType, GridProps } from '../models/question.model';
 import { Palette } from '../../../styles/theme';
-import { FormOption } from '../models/form-data-source.model';
+import { FormOption } from '../models/form-data-source';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import {
   map,

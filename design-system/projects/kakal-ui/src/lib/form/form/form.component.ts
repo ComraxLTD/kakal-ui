@@ -10,7 +10,7 @@ import {
   Output,
 } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { FormDataSource, FormOption } from '../models/form-data-source.model';
+import { FormDataSource, FormOption } from '../models/form-data-source';
 
 @Component({
   selector: 'kkl-form',

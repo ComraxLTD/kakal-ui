@@ -12,7 +12,7 @@ import {
 } from '@angular/material/core';
 
 import { MessageService } from '../services/message.service';
-import { FormOption } from '../models/form-data-source.model';
+import { FormOption } from '../models/form-data-source';
 
 import { map, Observable, startWith } from 'rxjs';
 import { Appearance } from '../models/question.model';
@@ -54,7 +54,7 @@ export class FormDateComponent implements OnInit {
   @Input() public appearance: Appearance;
   // MatFormFieldAppearance
   public message$: Observable<string>;
-  
+
   @Output() public dateEvent: EventEmitter<MatDatepickerInputEvent<Date>> =
     new EventEmitter();
 

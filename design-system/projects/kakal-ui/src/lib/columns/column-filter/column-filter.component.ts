@@ -17,7 +17,7 @@ import {
   map,
   skip,
 } from 'rxjs/operators';
-import { FormOption } from '../../form/models/form-data-source.model';
+import { FormOption } from '../../form/models/form-data-source';
 import { RangePipe } from '../../pipes/range.pipe';
 
 import { ColumnFilterOption } from '../models/column-filter-options';
