@@ -67,7 +67,7 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public cellTemplate: { [key: string]: TemplateRef<any> } = {};
 
   //ng template for cell inputs
-  @Input() public formTemplate: { [key: string]: TemplateRef<any> };
+  @Input() public formTemplate: { [key: string]: TemplateRef<any> } = {};
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
@@ -111,6 +111,8 @@ export class TableComponent<T = any> implements OnInit {
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
   public tableState$: Observable<TableState>;
+
+  public inputTemplate: { [key: string]: TemplateRef<any> };
 
   // public filters$: Observable<ListItem<T>[]>;
   public pagination: PaginationInstance;
@@ -190,6 +192,11 @@ export class TableComponent<T = any> implements OnInit {
             const { editing } = tableState;
             editing.push(item[key]);
 
+            this.inputTemplate = this.setFormTemplate(item, this.formTemplate);
+
+            console.log(this.inputTemplate);
+            console.log(this.formTemplate);
+
             tableState = {
               ...tableState,
               editing,
@@ -205,7 +212,7 @@ export class TableComponent<T = any> implements OnInit {
   private onEditCloseEvent() {
     return this.tableDataSource.listen$.close().pipe(
       switchMap((state) => {
-        const { rowIndex, item, key } = state;
+        const { item, key } = state;
         return this.tableDataSource.listenTableState().pipe(
           take(1),
           map((tableState: TableState) => {
@@ -222,5 +229,21 @@ export class TableComponent<T = any> implements OnInit {
         );
       })
     );
+  }
+
+  private setFormTemplate(item: T, formTemplate) {
+    const keys = Object.keys(item).filter((key) => key !== 'input');
+    const inputTemplate = keys.reduce((acc, key) => {
+      const template = acc[key] || acc['input'];
+
+      return {
+        ...acc,
+        [key]: template,
+      } as { [key: string]: TemplateRef<any> };
+    }, formTemplate);
+
+    delete inputTemplate.input;
+
+    return inputTemplate as { [key: string]: TemplateRef<any> };
   }
 }

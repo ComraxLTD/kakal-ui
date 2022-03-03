@@ -5,146 +5,166 @@ tableState :
       {{ tableState | json }}
     </pre>
   </code>
-</ng-container>
 
-<ng-container *ngIf="table$ | async as table">
-  <div dir="rtl" fxLayout="column" fxLayoutGap="1rem">
-    <mat-table
-      mat-table
-      [ngClass]="[theme, 'kkl-table']"
-      [dataSource]="table.data"
-      multiTemplateDataRows
-    >
-      <!-- HEADER COLUMN -->
+  <ng-container *ngIf="table$ | async as table">
+    <div dir="rtl" fxLayout="column" fxLayoutGap="1rem">
+      <mat-table
+        mat-table
+        [ngClass]="[theme, 'kkl-table']"
+        [dataSource]="table.data"
+        multiTemplateDataRows
+      >
+        <!-- HEADER COLUMN -->
 
-      <ng-container>
-        <ng-container [matColumnDef]="'headerRow'">
-          <mat-header-cell
-            *matHeaderCellDef
-            [class.expand]="expendable || accordion"
-          >
-            <div [class.row-header]="true" fxFill fxLayout="row">
-              <!-- COLUMN HEADER SECTION-->
-
-              <ng-container *ngFor="let column of table.columns">
-                <div [kklTableCell]="column.columnDef" [center]="column.center">
-                  <!-- DEFAULT HEADER -->
-                  <ng-container>
-                    <kkl-typography [weight]="600">
-                      {{ column.label }}
-                    </kkl-typography>
-                  </ng-container>
-                </div>
-              </ng-container>
-            </div>
-          </mat-header-cell>
-        </ng-container>
-      </ng-container>
-
-      <!-- EXPEND ROW -->
-      <ng-container>
-        <mat-accordion displayMode="flat">
-          <ng-container matColumnDef="row">
-            <mat-cell
-              *matCellDef="let row; let rowIndex = dataIndex"
+        <ng-container>
+          <ng-container [matColumnDef]="'headerRow'">
+            <mat-header-cell
+              *matHeaderCellDef
               [class.expand]="expendable || accordion"
-              [attr.colspan]="table.columnDefs.length"
             >
-              <mat-expansion-panel
-                #panel
-                [hideToggle]="true"
-                [disabled]="true"
-                fxFill
-              >
-                <mat-expansion-panel-header
-                  [class.expand]="accordion || clickable"
-                  [class.form]="accordion || clickable"
-                >
-                  <div class="row" fxFill fxLayout="row">
-                    <ng-container
-                      *ngFor="
-                        let column of table.columns;
-                        let columnIndex = index
-                      "
-                    >
-                      <ng-container [ngSwitch]="column.columnDef">
-                        <!-- Select cell -->
-                        <ng-container *ngSwitchCase="'select'">
-                          <div [kklTableCell]="column.columnDef">
-                            <mat-checkbox
-                              color="primary"
-                              (click)="onSelect()"
-                              [disabled]="column.disableSelect"
-                              (change)="$event ? selection.toggle(row) : null"
-                              [checked]="selection.isSelected(row)"
-                            >
-                            </mat-checkbox>
-                          </div>
-                        </ng-container>
+              <div [class.row-header]="true" fxFill fxLayout="row">
+                <!-- COLUMN HEADER SECTION-->
 
-                        <!-- Actions cell -->
-                        <ng-container *ngSwitchCase="'actions'">
-                          <div [kklTableCell]="column.columnDef" fxFlex>
-                            <ng-container
-                              *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key}}"
-                            ></ng-container>
-                          </div>
-                        </ng-container>
-
-                        <!-- Data cell -->
-                        <ng-container *ngSwitchDefault>
-                          <div
-                            fxFlex
-                            [kklTableCell]="column.columnDef"
-                            [class.center]="column.center"
-                          >
-                            <!-- Default cell -->
-                            <ng-container
-                              *ngIf="
-                                !cellTemplate[column.columnDef];
-                                else cellBlock
-                              "
-                            >
-                              <kkl-typography>
-                                {{
-                                  row[column.columnDef] | format: column?.format
-                                }}
-                              </kkl-typography>
-                            </ng-container>
-
-                            <!-- Custom cell -->
-                            <ng-template #cellBlock>
-                              <ng-container
-                                *ngTemplateOutlet="cellTemplate[column.columnDef]; context : {$implicit : {row, column, rowIndex, key}} "
-                              ></ng-container>
-                            </ng-template>
-                          </div>
-                        </ng-container>
-                      </ng-container>
+                <ng-container *ngFor="let column of table.columns">
+                  <div
+                    [kklTableCell]="column.columnDef"
+                    [center]="column.center"
+                  >
+                    <!-- DEFAULT HEADER -->
+                    <ng-container>
+                      <kkl-typography [weight]="600">
+                        {{ column.label }}
+                      </kkl-typography>
                     </ng-container>
                   </div>
-                </mat-expansion-panel-header>
-              </mat-expansion-panel>
-            </mat-cell>
+                </ng-container>
+              </div>
+            </mat-header-cell>
           </ng-container>
-        </mat-accordion>
-      </ng-container>
+        </ng-container>
 
-      <!-- HEADER ROW -->
-      <mat-header-row [ngClass]="[theme]" *matHeaderRowDef="['headerRow']">
-      </mat-header-row>
+        <!-- EXPEND ROW -->
+        <ng-container>
+          <mat-accordion displayMode="flat">
+            <ng-container matColumnDef="row">
+              <mat-cell
+                *matCellDef="let row; let rowIndex = dataIndex"
+                [class.expand]="expendable || accordion"
+                [attr.colspan]="table.columnDefs.length"
+              >
+                <mat-expansion-panel
+                  #panel
+                  [hideToggle]="true"
+                  [disabled]="true"
+                  fxFill
+                >
+                  <mat-expansion-panel-header
+                    [class.expand]="accordion || clickable"
+                    [class.form]="accordion || clickable"
+                  >
+                    <div class="row" fxFill fxLayout="row">
+                      <ng-container
+                        *ngFor="
+                          let column of table.columns;
+                          let columnIndex = index
+                        "
+                      >
+                        <ng-container [ngSwitch]="column.columnDef">
+                          <!-- Select cell -->
+                          <ng-container *ngSwitchCase="'select'">
+                            <div [kklTableCell]="column.columnDef">
+                              <mat-checkbox
+                                color="primary"
+                                (click)="onSelect()"
+                                [disabled]="column.disableSelect"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                              >
+                              </mat-checkbox>
+                            </div>
+                          </ng-container>
 
-      <mat-row
-        *matRowDef="let row; let rowIndex = index; columns: ['row']"
-      ></mat-row>
+                          <!-- Actions cell -->
+                          <ng-container *ngSwitchCase="'actions'">
+                            <div [kklTableCell]="column.columnDef" fxFlex>
+                              <ng-container
+                                *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key}}"
+                              ></ng-container>
+                            </div>
+                          </ng-container>
 
-      <ng-container *ngIf="hasFooter">
+                          <!-- Data cell -->
+                          <ng-container *ngSwitchDefault>
+                            <div
+                              fxFlex
+                              [kklTableCell]="column.columnDef"
+                              [class.center]="column.center"
+                            >
+                              <!-- Default cell -->
+                              <ng-container
+                                *ngIf="
+                                  tableState.editing.indexOf(row[key]) === -1;
+                                  else editBlock
+                                "
+                              >
+                                <ng-container
+                                  *ngIf="
+                                    !cellTemplate[column.columnDef];
+                                    else customBlock
+                                  "
+                                >
+                                  <kkl-typography>
+                                    {{
+                                      row[column.columnDef]
+                                        | format: column?.format
+                                    }}
+                                  </kkl-typography>
+                                </ng-container>
+                              </ng-container>
+
+                              <!-- Edit block -->
+                              <ng-template #editBlock>
+                                <ng-container
+                                  *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit : {row, column, rowIndex, key}} "
+                                ></ng-container>
+                              </ng-template>
+
+                              <!-- Custom cell -->
+                              <ng-template #customBlock>
+                                <ng-container
+                                  *ngTemplateOutlet="cellTemplate[column.columnDef]; context : {$implicit : {row, column, rowIndex, key}} "
+                                ></ng-container>
+                              </ng-template>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                  </mat-expansion-panel-header>
+                </mat-expansion-panel>
+              </mat-cell>
+            </ng-container>
+          </mat-accordion>
+        </ng-container>
+
+        <!-- HEADER ROW -->
+        <mat-header-row [ngClass]="[theme]" *matHeaderRowDef="['headerRow']">
+        </mat-header-row>
+
+        <!-- TABLE ROW -->
         <mat-row
-          class="default"
-          mat-footer-row
-          *matFooterRowDef="columnDefs"
+          *matRowDef="let row; let rowIndex = index; columns: ['row']"
         ></mat-row>
-      </ng-container>
-    </mat-table>
-  </div>
+
+        <!-- FOOTER ROW -->
+        <ng-container *ngIf="hasFooter">
+          <mat-row
+            class="default"
+            mat-footer-row
+            *matFooterRowDef="columnDefs"
+          ></mat-row>
+        </ng-container>
+      </mat-table>
+    </div>
+  </ng-container>
 </ng-container>
