@@ -15,16 +15,15 @@ import { TableCellFormComponent } from './table-cell-form.component';
   declarations: [TableCellFormComponent],
   imports: [
     CommonModule,
+    BrowserAnimationsModule,
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
-    BrowserAnimationsModule,
     MatInputModule,
-    MatIconModule,
     KKLFormInputModule,
+    KKLFormCurrencyModule,
     KKLFormDateModule,
     KKLFormUploadModule,
-    KKLFormCurrencyModule,
   ],
   exports: [TableCellFormComponent],
 })
