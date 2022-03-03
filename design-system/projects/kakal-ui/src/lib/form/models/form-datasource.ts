@@ -1,5 +1,3 @@
-import { FormControl } from '@angular/forms';
-import { MatListOption } from '@angular/material/list';
 import {
   filter,
   map,
@@ -9,9 +7,8 @@ import {
   startWith,
   Subject,
 } from 'rxjs';
-import { FormEvents } from './form-types';
+import { FormEvents } from './form-events';
 import { FormOption } from './form-options';
-
 
 export class FormDataSource {
   // subject which handle form logic
