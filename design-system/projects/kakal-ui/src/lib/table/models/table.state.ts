@@ -12,7 +12,7 @@ export interface TableState {
   extended: number[];
   disabled: number[];
   activeColumns: string[];
-  form: QuestionGroupModel;
+  forms: { [key: string]: Observable<QuestionGroupModel> };
   event: TableEvent;
 }
 

@@ -17,7 +17,7 @@
 </ng-template>
 
 <ng-template #input let-rowState let-tableState="tableState">
-  <ng-container *ngIf="group$ | async as group">
+  <ng-container *ngIf="rowState.group$ | async as group">
     <kkl-table-cell-form
       [group]="group"
       [columnDef]="rowState.column.columnDef"

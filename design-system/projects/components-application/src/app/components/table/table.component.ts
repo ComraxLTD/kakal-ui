@@ -46,7 +46,6 @@ export class TableComponent implements OnInit {
 
   public data$: Observable<RootObject[]>;
   public columns$: Observable<TableColumnModel<RootObject>[]>;
-  public group$: Observable<QuestionGroupModel>;
 
   constructor(private formService: FormService) {}
 
@@ -81,10 +80,9 @@ export class TableComponent implements OnInit {
   }
 
   public onEditEvent(state: RowsState) {
-    this.group$ = this.setQuestions(this.questions);
+    const group$ = this.setQuestions(this.questions);
 
-
-    this.tableDataSource.actions.edit({ state });
+    this.tableDataSource.actions.edit({ state: { ...state, group$ } });
   }
 
   public onCloseEvent(state: RowsState) {
