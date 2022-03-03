@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KKLFormCurrencyModule } from '../../../form/form-currency/form-currency.module';
 import { KKLFormDateModule } from '../../../form/form-date/form-date.module';
 import { KKLFormInputModule } from '../../../form/form-input/form-input.module';
+import { KKLFormSelectModule } from '../../../form/form-select/form-select.module';
 import { KKLFormUploadModule } from '../../../form/form-upload/form-upload.module';
 import { TableCellFormComponent } from './table-cell-form.component';
 
@@ -22,6 +23,7 @@ import { TableCellFormComponent } from './table-cell-form.component';
     MatInputModule,
     KKLFormInputModule,
     KKLFormCurrencyModule,
+    KKLFormSelectModule,
     KKLFormDateModule,
     KKLFormUploadModule,
   ],

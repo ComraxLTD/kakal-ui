@@ -19,7 +19,16 @@ export class TableCellFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+
+    console.log(this.group.controls)
+    console.log(this.columnDef)
+
     this.question = this.group.controls[this.columnDef];
+
+    // if(!this.question) {
+    //   throw new Error(`Error : Object question of ${this.columnDef} columns in undefined. Please add a question or tag the column editable as false`)
+    // }
+
   }
 
   private setQuestionTemplate(template: TemplateRef<any>) {

@@ -204,8 +204,6 @@ export class TableComponent<T = any> implements OnInit {
               },
             } as TableState;
 
-            console.log(tableState);
-
             return tableState;
           })
         );

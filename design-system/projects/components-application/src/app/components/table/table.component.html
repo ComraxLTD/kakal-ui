@@ -1,7 +1,7 @@
 <div fxFill dir="rtl">
   <kkl-table
     [data$]="data$"
-    [itemKey]="'_id'"
+    [itemKey]="'id'"
     [columns$]="columns$"
     [cellTemplate]="{isActive, actions}"
     [formTemplate]="{input}"
@@ -18,6 +18,7 @@
 <ng-template #input let-rowState let-tableState="tableState">
   <ng-container *ngIf="rowState.group$ | async as group">
     <kkl-table-cell-form
+      fxFlex="90"
       [group]="group"
       [columnDef]="rowState.column.columnDef"
     ></kkl-table-cell-form>

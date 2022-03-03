@@ -8,16 +8,7 @@ import {
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
-import { DEMO_DATA } from './mock_data';
-
-export interface RootObject {
-  _id: string;
-  isActive: boolean;
-  balance: string;
-  picture: string;
-  age: number;
-  email: string;
-}
+import { DEMO_DATA, RootObject } from './mock_data';
 
 @Component({
   selector: 'app-table',
@@ -30,17 +21,22 @@ export class TableComponent implements OnInit {
   private demoStore$: Observable<RootObject[]> = of(DEMO_DATA);
 
   private columns: TableColumnModel<RootObject>[] = [
-    { columnDef: 'isActive', label: 'status' },
-    { columnDef: 'balance', label: 'balance' },
-    { columnDef: 'age', label: 'age' },
-    { columnDef: 'email', label: 'email' },
+    { columnDef: 'first_name', label: 'first_name', editable: true },
+    { columnDef: 'last_name', label: 'last_name', editable: true },
+    { columnDef: 'email', label: 'email', editable: true },
+    { columnDef: 'gender', label: 'gender', editable: true },
+    { columnDef: 'city', label: 'city', editable: true },
+    { columnDef: 'date', label: 'date', editable: true },
+    { columnDef: 'currency', label: 'currency' },
   ];
 
   private questions: Question[] = [
-    { key: 'isActive' },
-    { key: 'balance', controlType: 'select' },
-    { key: 'age', controlType: 'number' },
-    { key: 'email' },
+    { key: 'first_name' },
+    { key: 'last_name' },
+    { key: 'email', controlType: 'email' },
+    { key: 'gender', controlType: 'checkbox' },
+    { key: 'city', controlType: 'select' },
+    { key: 'date', controlType: 'date' },
   ];
 
   public data$: Observable<RootObject[]>;
