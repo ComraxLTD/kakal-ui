@@ -81,8 +81,6 @@ export * from './lib/columns/column-filter/column-filter.component';
 export * from './lib/columns/column-filter/column-filter.module';
 export * from './lib/columns/column-filter/column-filter.service';
 
-export * from './lib/columns/column-form/column-form.component';
-export * from './lib/columns/column-form/column-form.module';
 
 // TABLE
 export * from './lib/table/table/table.component';
