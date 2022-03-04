@@ -6,6 +6,7 @@ import {
   TableColumnModel,
   RowsState,
   Question,
+  QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, RootObject } from './mock_data';
 
@@ -24,7 +25,7 @@ export class TableComponent implements OnInit {
   private columns: TableColumnModel<RootObject>[] = [
     { columnDef: 'first_name', label: 'first_name', editable: true },
     { columnDef: 'last_name', label: 'last_name', editable: true },
-    { columnDef: 'email', label: 'email', editable: true },
+    { columnDef: 'email', label: 'email', editable: true, flex: 1.5 },
     { columnDef: 'gender', label: 'gender', editable: true },
     { columnDef: 'city', label: 'city', editable: true },
     { columnDef: 'date', label: 'date', editable: true },
@@ -42,6 +43,8 @@ export class TableComponent implements OnInit {
 
   public data$: Observable<RootObject[]>;
   public columns$: Observable<TableColumnModel<RootObject>[]>;
+
+  public group: QuestionGroupModel;
 
   constructor(
     private formService: FormService,
@@ -85,8 +88,10 @@ export class TableComponent implements OnInit {
 
   public onEditEvent(state: RowsState) {
     const { item } = state;
-    const group = this.setGroup(this.setQuestions(this.questions, item));
-    this.tableDataSource.actions.edit({ state: { ...state, group } });
+    this.group = this.setGroup(this.setQuestions(this.questions, item));
+    this.tableDataSource.actions.edit({
+      state: { ...state, group: this.group },
+    });
   }
 
   public onCloseEvent(state: RowsState) {

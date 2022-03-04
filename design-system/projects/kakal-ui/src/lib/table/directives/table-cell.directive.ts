@@ -5,17 +5,22 @@ import { Directive, HostBinding, Input, TemplateRef } from '@angular/core';
 })
 export class KKLTableCellDirective {
   @HostBinding('class') private _class;
-  @HostBinding('style.flex') private flex: number;
+
+  @HostBinding('style.flex')
+  @Input()
+  private flex: number;
+
+  @HostBinding('style.display') private display: string;
 
   @Input() kklTableCell: string;
-  @Input() span: number;
   @Input() center: boolean;
   @Input() columnsDef: string;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.flex = this.span || 1;
+    this.flex = this.flex || 1;
+    this.display = 'flex';
     this._class = this.setClasses();
   }
 

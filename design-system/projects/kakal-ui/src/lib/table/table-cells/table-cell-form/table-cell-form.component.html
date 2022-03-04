@@ -1,4 +1,4 @@
-<div class="kkl-table-cell-form" (click)="$event.stopPropagation()">
+<div class="kkl-form-cell" (click)="$event.stopPropagation()">
   <ng-container *ngIf="question">
     <ng-container [ngSwitch]="question.controlType">
       <ng-container *ngSwitchCase="'custom'">

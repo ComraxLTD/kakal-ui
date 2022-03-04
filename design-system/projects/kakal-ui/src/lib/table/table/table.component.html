@@ -31,6 +31,7 @@
                 <ng-container *ngFor="let column of table.columns">
                   <div
                     [kklTableCell]="column.columnDef"
+                    [flex]="column.flex"
                     [center]="column.center"
                   >
                     <!-- DEFAULT HEADER -->
@@ -78,31 +79,32 @@
                           let columnIndex = index
                         "
                       >
-                        <div [kklTableCell]="column.columnDef">
+                        <div
+                          [kklTableCell]="column.columnDef"
+                          [flex]="column.flex"
+                        >
                           <ng-container [ngSwitch]="column.columnDef">
                             <!-- Select cell -->
                             <ng-container *ngSwitchCase="'select'">
-                              <div [kklTableCell]="column.columnDef">
-                                <mat-checkbox
-                                  color="primary"
-                                  (click)="onSelect()"
-                                  [disabled]="column.disableSelect"
-                                  (change)="
-                                    $event ? selection.toggle(row) : null
-                                  "
-                                  [checked]="selection.isSelected(row)"
-                                >
-                                </mat-checkbox>
-                              </div>
+                              <mat-checkbox
+                                color="primary"
+                                (click)="onSelect()"
+                                [disabled]="column.disableSelect"
+                                (change)="$event ? selection.toggle(row) : null"
+                                [checked]="selection.isSelected(row)"
+                              >
+                              </mat-checkbox>
+                              <!-- <div [kklTableCell]="column.columnDef">
+                              </div> -->
                             </ng-container>
 
                             <!-- Actions cell -->
                             <ng-container *ngSwitchCase="'actions'">
-                              <div [kklTableCell]="column.columnDef" fxFlex>
-                                <ng-container
-                                  *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key, group: tableState.forms[row[key]]}}"
-                                ></ng-container>
-                              </div>
+                              <ng-container
+                                *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key, group: tableState.forms[row[key]]}}"
+                              ></ng-container>
+                              <!-- <div [kklTableCell]="column.columnDef" fxFlex>
+                              </div> -->
                             </ng-container>
 
                             <!-- Data cell -->

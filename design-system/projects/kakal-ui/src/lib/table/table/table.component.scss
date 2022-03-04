@@ -54,7 +54,66 @@ div.row {
   padding-left: main.spacing(2);
 }
 
-.kkl-table-cell {
+.disabled {
+  opacity: 30%;
+}
+
+mat-header-cell {
+  padding: 0px !important;
+  &.expand {
+    padding: 1px;
+  }
+}
+
+.disabled {
+  opacity: 30%;
+}
+
+// style for outer header row
+mat-header-row.accent {
+  border-bottom: main.color(accent) solid 3px;
+
+  mat-header-cell {
+    align-items: flex-end;
+    box-sizing: border-box;
+
+    &.expand {
+      padding-left: 0px;
+      padding-bottom: 0px;
+      padding-right: 0px;
+    }
+  }
+}
+
+// style for inner header row
+mat-header-row.primary {
+  background-color: #f5f5f5;
+  background-clip: content-box;
+  min-height: 3rem;
+  border-radius: 4px;
+
+  button {
+    line-height: 2rem !important;
+  }
+}
+
+mat-row {
+  .expand {
+    border-bottom: none;
+  }
+
+  mat-cell {
+    padding: 0px !important;
+    &.expand {
+      padding: 1px;
+    }
+    padding: 0px;
+  }
+}
+
+
+// style for kkl-table-cell
+div.kkl-table-cell {
   overflow: hidden;
   word-break: break-word;
   box-sizing: border-box;
@@ -76,73 +135,7 @@ div.row {
   }
 }
 
-mat-cell {
-  padding: 0px !important;
-  &.expand {
-    padding: 1px;
-  }
-  padding: 0px;
-}
-
-.disabled {
-  opacity: 30%;
-}
-
-mat-header-cell {
-  padding: 0px !important;
-  &.expand {
-    padding: 1px;
-  }
-}
-
-.disabled {
-  opacity: 30%;
-}
-
-mat-header-row.accent {
-  border-bottom: main.color(accent) solid 3px;
-
-  mat-header-cell {
-    align-items: flex-end;
-    box-sizing: border-box;
-
-    &.expand {
-      padding-left: 0px;
-      padding-bottom: 0px;
-      padding-right: 0px;
-    }
-  }
-}
-
-mat-header-row.primary {
-  background-color: #f5f5f5;
-  background-clip: content-box;
-  min-height: 3rem;
-  border-radius: 4px;
-
-  button {
-    line-height: 2rem !important;
-  }
-}
-
-mat-row {
-  .expand {
-    border-bottom: none;
-  }
-}
-
-::ng-deep .cell-input {
-  width: 85%;
-
-  mat-form-field {
-    font-size: 12px;
-  }
-
-  app-column-form {
-    width: inherit;
-  }
-}
-
+// hide matSort default sort arrow
 ::ng-deep div.mat-sort-header-arrow {
   opacity: 0;
   display: none;

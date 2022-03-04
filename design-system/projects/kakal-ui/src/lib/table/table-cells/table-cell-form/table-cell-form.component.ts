@@ -3,7 +3,7 @@ import { QuestionGroupModel } from '../../../form/models/question-group.model';
 import { QuestionBase } from '../../../form/services/form.service';
 
 @Component({
-  selector: 'kkl-table-cell-form',
+  selector: 'kkl-form-cell',
   templateUrl: './table-cell-form.component.html',
   styleUrls: ['./table-cell-form.component.scss'],
 })
@@ -19,6 +19,7 @@ export class TableCellFormComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log('input work')
     this.question = this.group.controls[this.columnDef];
   }
 

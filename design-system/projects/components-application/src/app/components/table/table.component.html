@@ -8,7 +8,7 @@
     [hasActions]="true"
   >
     <ng-container *kklCell="let context">
-      <kkl-table-data-cell
+      <kkl-table-cell
         fxLayout="row"
         fxLayoutAlign="start center"
         [row]="context.row"
@@ -17,8 +17,8 @@
         [column]="context.column"
         [tableState]="context.tableState"
         [cellTemplate]="{email}"
-        [inputTemplate]="inputTemplate"
-      ></kkl-table-data-cell>
+        [inputTemplate]="{input}"
+      ></kkl-table-cell>
     </ng-container>
   </kkl-table>
 </div>
@@ -29,12 +29,14 @@
   </kkl-typography>
 </ng-template>
 
-<ng-template #input let-rowState let-tableState="tableState">
-  <kkl-table-cell-form
-    fxFlex="90"
-    [group]="rowState.group"
-    [columnDef]="rowState.column.columnDef"
-  ></kkl-table-cell-form>
+<ng-template #input let-rowState>
+  <div fxFill fxLayout="row">
+    <kkl-form-cell
+      fxFlex="65"
+      [group]="rowState.group"
+      [columnDef]="rowState.column.columnDef"
+    ></kkl-form-cell>
+  </div>
 </ng-template>
 
 <!-- use kkl-table-action for default actions -edit, delete and save -->
