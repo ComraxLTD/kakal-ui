@@ -6,10 +6,13 @@ import {
   RowState,
   Question,
   QuestionGroupModel,
+  OptionMap,
+  TableService,
 } from '../../../../../kakal-ui/src/public-api';
-import { DEMO_DATA, RootObject } from './mock_data';
+import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
   BehaviorSubject,
+  firstValueFrom,
   map,
   Observable,
   of,
@@ -22,7 +25,7 @@ import {
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource],
+  providers: [TableDataSource, TableService],
 })
 export class TableComponent implements OnInit {
   // demo data from server
@@ -53,16 +56,18 @@ export class TableComponent implements OnInit {
   public columns$: Observable<TableColumnModel<RootObject>[]>;
 
   public group: QuestionGroupModel;
+  public optionsMap: OptionMap;
 
   constructor(
     private formService: FormService,
     private tableDataSource: TableDataSource<RootObject>
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
+    this.optionsMap = await firstValueFrom(this.demoServerOptions());
   }
 
   private demoServerData(): Observable<RootObject[]> {
@@ -70,6 +75,21 @@ export class TableComponent implements OnInit {
       switchMap((data: RootObject[]) => {
         this.demoStore$.next(data);
         return this.demoStore$.asObservable();
+      })
+    );
+  }
+  private demoServerOptions(): Observable<OptionMap> {
+    return of(DEMO_OPTIONS).pipe(
+      map((options: OptionObject[]) => {
+        return options.map((option: OptionObject) => {
+          return {
+            value: option.id,
+            label: option.city,
+          };
+        });
+      }),
+      map((options) => {
+        return { city: options };
       })
     );
   }
@@ -90,12 +110,25 @@ export class TableComponent implements OnInit {
     return this.tableDataSource.connectColumns();
   }
 
-  private setQuestions(questions: Question[], item: RootObject): Question[] {
+  private setQuestions(
+    questions: Question[],
+    item: RootObject,
+    optionsMap?: OptionMap
+  ): Question[] {
     return questions.map((question) => {
-      return {
+      question = {
         ...question,
         value: item[question.key],
       };
+
+      if (question.controlType === 'select') {
+        question = {
+          ...question,
+          options: [...optionsMap[question.key]],
+        };
+      }
+
+      return question;
     });
   }
 
@@ -107,7 +140,9 @@ export class TableComponent implements OnInit {
 
   public onEditEvent(state: RowState) {
     const { item } = state;
-    this.group = this.setGroup(this.setQuestions(this.questions, item));
+    this.group = this.setGroup(
+      this.setQuestions(this.questions, item, this.optionsMap)
+    );
     this.tableDataSource.actions.edit({
       state: { ...state, group: this.group },
     });

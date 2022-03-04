@@ -8,6 +8,10 @@ export interface RootObject {
   date: string;
   currency: string;
 }
+export interface OptionObject {
+  id: number;
+  city: string;
+}
 
 export const DEMO_DATA: RootObject[] = [
   {
@@ -210,4 +214,47 @@ export const DEMO_DATA: RootObject[] = [
   //   date: '10/4/2021',
   //   currency: 'CZK',
   // },
+];
+
+export const DEMO_OPTIONS: OptionObject[] = [
+  {
+    id: 1,
+    city: 'Argentina',
+  },
+  {
+    id: 2,
+    city: 'Afghanistan',
+  },
+  {
+    id: 3,
+    city: 'Russia',
+  },
+  {
+    id: 4,
+    city: 'Indonesia',
+  },
+  {
+    id: 5,
+    city: 'Indonesia',
+  },
+  {
+    id: 6,
+    city: 'Nigeria',
+  },
+  {
+    id: 7,
+    city: 'United States',
+  },
+  {
+    id: 8,
+    city: 'Poland',
+  },
+  {
+    id: 9,
+    city: 'Indonesia',
+  },
+  {
+    id: 10,
+    city: 'China',
+  },
 ];

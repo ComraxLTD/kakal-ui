@@ -86,6 +86,8 @@ export * from './lib/columns/column-form/column-form.module';
 
 // TABLE
 export * from './lib/table/table/table.component';
+export * from './lib/table/table/table.service';
+export * from './lib/table/table/table.directive';
 export * from './lib/table/table/table.module';
 
 export * from './lib/table/table-cells/table-cell.module';

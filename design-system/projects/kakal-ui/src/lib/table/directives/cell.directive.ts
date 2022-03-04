@@ -8,15 +8,27 @@ export class KKLCellDirective {
 
   @HostBinding('style.flex')
   @Input()
-  private flex: number;
+  private flex: number | string;
 
   @HostBinding('style.display') private display: string;
 
   @Input() columnDef: string;
   @Input() center: boolean;
-  @Input() columnsDef: string;
+
+  private _editable: boolean = false;
+
+  @Input()
+  get editable(): boolean {
+    return this._editable;
+  }
+  set editable(value: boolean) {
+    this._editable = value;
+    this.invalidate();
+  }
 
   constructor() {}
+
+  private invalidate() {}
 
   ngOnInit(): void {
     this.flex = this.flex || 1;
