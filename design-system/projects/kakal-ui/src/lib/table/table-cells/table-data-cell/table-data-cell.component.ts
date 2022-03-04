@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { TableColumnModel } from '../../../columns/models/column.model';
 import { QuestionGroupModel } from '../../../form/models/question-group.model';
-import { TableState } from '../../models/table.state';
+import { RowState, TableState } from '../../models/table.state';
 
 @Component({
   selector: 'kkl-table-cell',
@@ -9,6 +9,7 @@ import { TableState } from '../../models/table.state';
   styleUrls: ['./table-data-cell.component.scss'],
 })
 export class TableDataCellComponent implements OnInit {
+  @Input() rowState: RowState;
   @Input() tableState: TableState;
   @Input() column: TableColumnModel;
   @Input() columnDef: string;

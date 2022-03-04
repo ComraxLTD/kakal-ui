@@ -3,12 +3,7 @@ import { Directive, HostBinding, Input, TemplateRef } from '@angular/core';
 @Directive({
   selector: '[kklTableCell]',
 })
-export class KKLCellDirective {
-
+export class KKLTableCellDirective {
   constructor(public template: TemplateRef<any>) {}
-
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

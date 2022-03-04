@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { Observable, merge, mapTo, filter, map } from 'rxjs';
 import { TableDataSource } from '../../models/table-datasource';
 import { TableEvent } from '../../models/table.events';
-import { RowsState, TableState, ActionState } from '../../models/table.state';
+import { RowState, TableState, ActionState } from '../../models/table.state';
 import { ActionStateRules } from '../../models/table-actions';
 
 export interface ButtonActionState {
@@ -24,7 +24,7 @@ export interface ButtonActionState {
   styleUrls: ['./table-action-cell.component.scss'],
 })
 export class TableActionCellComponent implements OnInit {
-  @Input() rowState: RowsState;
+  @Input() rowState: RowState;
   // @Input() dataSource: TableDataSource;
   @Input() tableState: TableState;
   @Input() actionStateRules: ActionStateRules;
@@ -36,16 +36,19 @@ export class TableActionCellComponent implements OnInit {
   @Input() public startSlot: TemplateRef<any>;
   @Input() public endSlot: TemplateRef<any>;
 
-  @Output() edit: EventEmitter<RowsState> = new EventEmitter<RowsState>();
-  @Output() delete: EventEmitter<RowsState> = new EventEmitter<RowsState>();
-  @Output() close: EventEmitter<RowsState> = new EventEmitter<RowsState>();
-  @Output() save: EventEmitter<RowsState> = new EventEmitter<RowsState>();
+  @Output() edit: EventEmitter<RowState> = new EventEmitter<RowState>();
+  @Output() delete: EventEmitter<RowState> = new EventEmitter<RowState>();
+  @Output() close: EventEmitter<RowState> = new EventEmitter<RowState>();
+  @Output() save: EventEmitter<RowState> = new EventEmitter<RowState>();
 
   public buttonActionState$: Observable<ButtonActionState>;
 
   constructor(private dataSource: TableDataSource<any>) {}
 
   private validate() {
+
+    console.log(this.rowState)
+
     if (!this.dataSource) {
       throw new Error('TableDataSource instance is required');
     }
@@ -87,8 +90,8 @@ export class TableActionCellComponent implements OnInit {
   private onButtonsStateOnEdit(): Observable<ButtonActionState> {
     const id = this.rowState.item[this.rowState.key];
     return this.dataSource.listen$.edit().pipe(
-      filter((rowState: RowsState) => rowState.item[rowState.key] === id),
-      map((rowState: RowsState) => rowState.group.formGroup),
+      filter((rowState: RowState) => rowState.item[rowState.key] === id),
+      map((rowState: RowState) => rowState.group.formGroup),
       map((formGroup: FormGroup) => {
         const editState = {
           show: false,
@@ -108,7 +111,7 @@ export class TableActionCellComponent implements OnInit {
   private onButtonStateOnClose() {
     const id = this.rowState.item[this.rowState.key];
     return this.dataSource.listen$.close().pipe(
-      filter((rowState: RowsState) => rowState.item[rowState.key] === id),
+      filter((rowState: RowState) => rowState.item[rowState.key] === id),
       mapTo(this.setButtonsStateOnDefault())
     );
   }

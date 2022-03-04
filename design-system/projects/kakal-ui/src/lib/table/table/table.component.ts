@@ -14,7 +14,7 @@ import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
 
 import { TableOptions } from '../models/table-options';
-import { RowsState, TableState } from '../models/table.state';
+import { RowState, TableState } from '../models/table.state';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
@@ -33,7 +33,8 @@ import {
   take,
 } from 'rxjs';
 import { TableEvent } from '../models/table.events';
-import { KKLCellDirective } from '../directives/cell.directive';
+import { KKLActionCellDirective } from '../directives/cell-action.directive';
+import { KKLTableCellDirective } from '../directives/cell.directive';
 
 @Component({
   selector: 'kkl-table',
@@ -42,8 +43,11 @@ import { KKLCellDirective } from '../directives/cell.directive';
 })
 export class TableComponent<T = any> implements OnInit {
 
-  @ContentChild(KKLCellDirective)
-  cellDirective: KKLCellDirective | undefined;
+  @ContentChild(KKLTableCellDirective)
+  cellDirective: KKLTableCellDirective | undefined;
+
+  @ContentChild(KKLActionCellDirective)
+  cellActionDirective: KKLActionCellDirective | undefined;
 
   // @Input() public tableDataSource: TableDataSource<T>;
   @Input() public data$: Observable<T[]>;

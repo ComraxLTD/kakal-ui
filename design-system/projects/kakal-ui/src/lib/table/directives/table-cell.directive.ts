@@ -3,7 +3,7 @@ import { Directive, HostBinding, Input, TemplateRef } from '@angular/core';
 @Directive({
   selector: '[kkl-table-cell]',
 })
-export class KKLTableCellDirective {
+export class KKLCellDirective {
   @HostBinding('class') private _class;
 
   @HostBinding('style.flex')

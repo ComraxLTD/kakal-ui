@@ -3,7 +3,7 @@ import { FormDataSource } from '../../form/models/form-datasource';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 
-import { ColumnState, RowsState, TableState } from './table.state';
+import { ColumnState, RowState, TableState } from './table.state';
 import { TableEvent } from '../models/table.events';
 
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -16,7 +16,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
   private tableSubject: BehaviorSubject<TableState>;
   private columnsStateSubject: BehaviorSubject<ColumnState<T>>;
 
-  private rowsStateSubject: BehaviorSubject<RowsState<T>>;
+  private RowStateSubject: BehaviorSubject<RowState<T>>;
   // private events$: Observable<TableEvent>;
 
   private formDataSource: FormDataSource;
@@ -35,7 +35,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
 
     this.columnsStateSubject = new BehaviorSubject<ColumnState<T>>(null);
-    this.rowsStateSubject = new BehaviorSubject<RowsState<T>>({
+    this.RowStateSubject = new BehaviorSubject<RowState<T>>({
       event: TableEvent.DEFAULT,
     });
     this.formDataSource = new FormDataSource();
@@ -62,8 +62,8 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.columnsStateSubject.asObservable();
   }
 
-  public getRowsState(): Observable<RowsState<T>> {
-    return this.rowsStateSubject.asObservable();
+  public getRowState(): Observable<RowState<T>> {
+    return this.RowStateSubject.asObservable();
   }
 
   public getTableState(): TableState {
@@ -88,50 +88,50 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   private getRowStateByEvent(event) {
-    return this.rowsStateSubject
+    return this.RowStateSubject
       .asObservable()
-      .pipe(filter((rowState: RowsState) => rowState.event === event));
+      .pipe(filter((rowState: RowState) => rowState.event === event));
   }
 
   private updateSortDir(state: ColumnState<T>) {
     this.columnsStateSubject.next({ ...state });
   }
 
-  private createAction(prop: { state: RowsState }, event?: TableEvent) {
+  private createAction(prop: { state: RowState }, event?: TableEvent) {
     const { state } = prop;
-    this.rowsStateSubject.next({ ...state, event });
+    this.RowStateSubject.next({ ...state, event });
   }
 
   // main actions object
   public actions = {
-    // add: (prop: { state: RowsState }) => this.createAction(prop, 'add'),
+    // add: (prop: { state: RowState }) => this.createAction(prop, 'add'),
 
-    // create: (prop: { state: RowsState }) => this.createAction(prop, 'create'),
+    // create: (prop: { state: RowState }) => this.createAction(prop, 'create'),
 
-    // save: (prop: { state: RowsState }) => this.createAction(prop, 'save'),
+    // save: (prop: { state: RowState }) => this.createAction(prop, 'save'),
 
-    // form: (prop: { state: RowsState }) => this.createAction(prop, 'form'),
+    // form: (prop: { state: RowState }) => this.createAction(prop, 'form'),
 
-    edit: (prop: { state: RowsState }) =>
+    edit: (prop: { state: RowState }) =>
       this.createAction(prop, TableEvent.EDIT),
 
-    // cancel: (prop: { state: RowsState }) => this.createAction(prop, 'cancel'),
+    // cancel: (prop: { state: RowState }) => this.createAction(prop, 'cancel'),
 
-    close: (prop: { state: RowsState }) =>
+    close: (prop: { state: RowState }) =>
       this.createAction(prop, TableEvent.CLOSE),
 
-    // expand: (prop: { state: RowsState }) => this.createAction(prop, 'expand'),
+    // expand: (prop: { state: RowState }) => this.createAction(prop, 'expand'),
 
-    delete: (prop: { state: RowsState }) =>
+    delete: (prop: { state: RowState }) =>
       this.createAction(prop, TableEvent.DELETE),
 
-    // selectRows: (prop: { state: RowsState }) =>
+    // selectRows: (prop: { state: RowState }) =>
     //   this.createAction(prop, 'selectRows'),
 
-    // addOptions: (state?: RowsState<T>) => this.addOptions(state),
+    // addOptions: (state?: RowState<T>) => this.addOptions(state),
     // updateOptions: (state: ColumnState<T>) => this.updateOptions(state),
     // updateSortDir: (state: ColumnState<T>) => this.updateSortDir(state),
-    reset: (prop: { state: RowsState }) =>
+    reset: (prop: { state: RowState }) =>
       this.createAction(prop, TableEvent.DEFAULT),
   };
 

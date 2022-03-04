@@ -15,8 +15,9 @@ import { KKLPipesModule } from '../../pipes/pipes.module';
 import { KKLTableCellModule } from '../table-cells/table-cell.module';
 
 import { KKLDirectivesModule } from '../../directives/directives.module';
-import { KKLCellDirective } from '../directives/cell.directive';
-import { KKLTableCellDirective } from '../directives/table-cell.directive';
+import { KKLTableCellDirective } from '../directives/cell.directive';
+import { KKLCellDirective } from '../directives/table-cell.directive';
+import { KKLActionCellDirective} from '../directives/cell-action.directive';
 
 @NgModule({
   imports: [
@@ -34,8 +35,8 @@ import { KKLTableCellDirective } from '../directives/table-cell.directive';
     KKLDirectivesModule,
     KKLPipesModule,
   ],
-  declarations: [TableComponent, KKLTableCellDirective, KKLCellDirective],
+  declarations: [TableComponent, KKLTableCellDirective, KKLCellDirective, KKLActionCellDirective ],
   providers: [],
-  exports: [TableComponent, KKLTableCellDirective, KKLCellDirective],
+  exports: [TableComponent, KKLTableCellDirective, KKLCellDirective, KKLActionCellDirective],
 })
 export class KKLTableModule {}

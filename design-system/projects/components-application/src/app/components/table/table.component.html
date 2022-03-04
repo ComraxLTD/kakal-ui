@@ -3,8 +3,6 @@
     [data$]="data$"
     [itemKey]="itemKey"
     [columns$]="columns$"
-    [cellTemplate]="{actions}"
-    [formTemplate]="{input}"
     [hasActions]="true"
   >
     <ng-container *kklTableCell="let context">
@@ -19,6 +17,20 @@
         [inputTemplate]="{input}"
       ></kkl-table-cell>
     </ng-container>
+
+    <!-- use kkl-table-action for default actions -edit, delete and save -->
+    <ng-container *kklActionCell="let rowState">
+      <kkl-actions-cell
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [rowState]="rowState"
+        [dataSource]="tableDataSource"
+        (edit)="onEditEvent($event)"
+        (close)="onCloseEvent($event)"
+        (save)="onSaveEvent($event)"
+      ></kkl-actions-cell>
+    </ng-container>
+
   </kkl-table>
 </div>
 
@@ -36,17 +48,4 @@
       [columnDef]="rowState.column.columnDef"
     ></kkl-form-cell>
   </div>
-</ng-template>
-
-<!-- use kkl-table-action for default actions -edit, delete and save -->
-<ng-template #actions let-rowState let-tableState="tableState">
-  <kkl-actions-cell
-    [hasEdit]="true"
-    [hasDelete]="true"
-    [rowState]="rowState"
-    [dataSource]="tableDataSource"
-    (edit)="onEditEvent($event)"
-    (close)="onCloseEvent($event)"
-    (save)="onSaveEvent($event)"
-  ></kkl-actions-cell>
 </ng-template>

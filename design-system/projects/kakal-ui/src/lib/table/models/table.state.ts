@@ -16,7 +16,7 @@ export interface TableState {
   event: TableEvent;
 }
 
-export interface RowsState<T = any> {
+export interface RowState<T = any> {
   item?: T;
   key?: string;
   event?: TableEvent;

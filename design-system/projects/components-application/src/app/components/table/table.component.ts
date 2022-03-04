@@ -3,7 +3,7 @@ import {
   TableDataSource,
   FormService,
   TableColumnModel,
-  RowsState,
+  RowState,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
@@ -86,7 +86,7 @@ export class TableComponent implements OnInit {
     });
   }
 
-  public onEditEvent(state: RowsState) {
+  public onEditEvent(state: RowState) {
     const { item } = state;
     this.group = this.setGroup(this.setQuestions(this.questions, item));
     this.tableDataSource.actions.edit({
@@ -94,14 +94,14 @@ export class TableComponent implements OnInit {
     });
   }
 
-  public onCloseEvent(state: RowsState) {
+  public onCloseEvent(state: RowState) {
     const { event } = state;
     this.tableDataSource.actions.close({ state });
     if (event === 'edit') {
     }
   }
 
-  public onSaveEvent(state: RowsState) {
+  public onSaveEvent(state: RowState) {
     const { item } = state;
 
     // imitate http response
