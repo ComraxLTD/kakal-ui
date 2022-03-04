@@ -54,6 +54,9 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.dataSubject.asObservable();
   }
 
+  public loadColumns(columns: TableColumnModel<T>[]): void {
+    return this.columnSubject.next(columns);
+  }
   public connectColumns(): Observable<TableColumnModel<T>[]> {
     return this.columnSubject.asObservable();
   }
@@ -88,9 +91,9 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   private getRowStateByEvent(event) {
-    return this.RowStateSubject
-      .asObservable()
-      .pipe(filter((rowState: RowState) => rowState.event === event));
+    return this.RowStateSubject.asObservable().pipe(
+      filter((rowState: RowState) => rowState.event === event)
+    );
   }
 
   private updateSortDir(state: ColumnState<T>) {

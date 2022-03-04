@@ -1,9 +1,35 @@
 import { Directive, HostBinding, Input, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[kklTableCell]',
+  selector: '[kkl-cell]',
 })
-export class KKLTableCellDirective {
-  constructor(public template: TemplateRef<any>) {}
-  ngOnInit(): void {}
+export class KKLCellDirective {
+  @HostBinding('class') private _class;
+
+  @HostBinding('style.flex')
+  @Input()
+  private flex: number;
+
+  @HostBinding('style.display') private display: string;
+
+  @Input() columnDef: string;
+  @Input() center: boolean;
+  @Input() columnsDef: string;
+
+  constructor() {}
+
+  ngOnInit(): void {
+    this.flex = this.flex || 1;
+    this.display = 'flex';
+    this._class = this.setClasses();
+  }
+
+  private setClasses() {
+    let classes: string = `kkl-cell ${this.columnDef}`;
+
+    if (this.center) {
+      classes += `center`;
+    }
+    return classes;
+  }
 }

@@ -15,13 +15,12 @@ import { PaginationInstance } from 'ngx-pagination';
 
 import { TableOptions } from '../models/table-options';
 import { TableState } from '../models/table.state';
+import { deleteItem } from './table.helpers';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
-
-import { deleteItem } from './table.helpers';
 
 import {
   combineLatest,
@@ -32,18 +31,20 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { TableEvent } from '../models/table.events';
-import { KKLActionCellDirective } from '../directives/cell-action.directive';
-import { KKLTableCellDirective } from '../directives/cell.directive';
+import { KKLActionCellDirective } from '../table-cells/table-cell-action/cell-action.directive';
+import { KKLDataCellDirective } from '../table-cells/table-data-cell/cell-data.directive';
+
+import { TableService } from './table.service';
 
 @Component({
   selector: 'kkl-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  providers: [TableService],
 })
 export class TableComponent<T = any> implements OnInit {
-  @ContentChild(KKLTableCellDirective)
-  cellDirective: KKLTableCellDirective | undefined;
+  @ContentChild(KKLDataCellDirective)
+  cellDirective: KKLDataCellDirective | undefined;
 
   @ContentChild(KKLActionCellDirective)
   cellActionDirective: KKLActionCellDirective | undefined;
@@ -122,7 +123,10 @@ export class TableComponent<T = any> implements OnInit {
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
 
-  constructor(private tableDataSource: TableDataSource<T>) {}
+  constructor(
+    private tableService: TableService,
+    private tableDataSource: TableDataSource<T>
+  ) {}
 
   private setColumns$() {
     return this.columns$.pipe(
@@ -155,60 +159,16 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTableState$() {
-    return merge(of(null), this.onEditEvent(), this.onEditCloseEvent()).pipe(
-      switchMap((tableState) => {
+    return merge(
+      of(null),
+      this.tableService.onEditCloseEvent(this.tableDataSource),
+      this.tableService.onEditEvent(this.tableDataSource)
+    ).pipe(
+      switchMap((tableState: TableState) => {
         if (tableState) {
           this.tableDataSource.loadTableState(tableState);
         }
         return this.tableDataSource.listenTableState();
-      })
-    );
-  }
-
-  private onEditEvent() {
-    return this.tableDataSource.listen$.edit().pipe(
-      switchMap((state) => {
-        const { item, key, group } = state;
-        return this.tableDataSource.listenTableState().pipe(
-          take(1),
-          map((tableState) => {
-            const { editing } = tableState;
-            editing.push(item[key]);
-
-            tableState = {
-              ...tableState,
-              editing,
-              event: 'edit',
-              forms: {
-                ...tableState.forms,
-                [item[key]]: group,
-              },
-            } as TableState;
-
-            return tableState;
-          })
-        );
-      })
-    );
-  }
-  private onEditCloseEvent() {
-    return this.tableDataSource.listen$.close().pipe(
-      switchMap((state) => {
-        const { item, key } = state;
-        return this.tableDataSource.listenTableState().pipe(
-          take(1),
-          map((tableState: TableState) => {
-            const { editing } = tableState;
-
-            tableState = {
-              ...tableState,
-              editing: deleteItem({ array: editing, value: item[key] }),
-              event: 'close',
-            } as TableState;
-
-            return tableState;
-          })
-        );
       })
     );
   }

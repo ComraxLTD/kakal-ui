@@ -103,7 +103,7 @@ export * from './lib/table/models/table-datasource';
 export * from './lib/table/models/table.events';
 export * from './lib/table/models/table.state';
 
-export * from './lib/table/directives/table-cell.directive';
+export * from './lib/table/directives/cell.directive';
 
 // -------------------------------------------------------------------------------------------------------
 

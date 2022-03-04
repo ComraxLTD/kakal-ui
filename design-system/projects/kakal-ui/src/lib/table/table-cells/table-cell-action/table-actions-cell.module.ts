@@ -7,7 +7,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { KKLIconModule } from '../../../icon/icon.module';
 import { KKLTypographyModule } from '../../../typography/typography.module';
 import { TableActionCellComponent } from './table-action-cell.component';
-
+import {KKLActionCellDirective} from './cell-action.directive'
 
 @NgModule({
   imports: [
@@ -18,7 +18,7 @@ import { TableActionCellComponent } from './table-action-cell.component';
     MatButtonModule,
     MatTooltipModule,
   ],
-  declarations: [TableActionCellComponent],
-  exports: [TableActionCellComponent],
+  declarations: [TableActionCellComponent, KKLActionCellDirective],
+  exports: [TableActionCellComponent, KKLActionCellDirective],
 })
 export class KKLTableActionsCellModule {}

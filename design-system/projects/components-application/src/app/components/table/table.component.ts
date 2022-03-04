@@ -8,7 +8,15 @@ import {
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, RootObject } from './mock_data';
-import { map, Observable, of, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  map,
+  Observable,
+  of,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +26,7 @@ import { map, Observable, of, switchMap } from 'rxjs';
 })
 export class TableComponent implements OnInit {
   // demo data from server
-  private demoStore$: Observable<RootObject[]> = of(DEMO_DATA);
+  private demoStore$: BehaviorSubject<RootObject[]>;
 
   public itemKey: string = 'id';
 
@@ -52,22 +60,33 @@ export class TableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
   }
 
+  private demoServerData(): Observable<RootObject[]> {
+    return of(DEMO_DATA).pipe(
+      switchMap((data: RootObject[]) => {
+        this.demoStore$.next(data);
+        return this.demoStore$.asObservable();
+      })
+    );
+  }
+
   private setData() {
-    const storeData$ = this.demoStore$;
+    const storeData$ = this.demoServerData();
 
     return storeData$.pipe(
       switchMap((data) => {
-        this.tableDataSource.load(data, this.columns);
+        this.tableDataSource.load(data);
         return this.tableDataSource.connect();
       })
     );
   }
 
   private setColumns$() {
+    this.tableDataSource.loadColumns(this.columns);
     return this.tableDataSource.connectColumns();
   }
 
@@ -109,6 +128,8 @@ export class TableComponent implements OnInit {
       .pipe(
         switchMap((item) => {
           return this.demoStore$.pipe(
+            take(1),
+
             map((data) => {
               const indexToUpdate = data.findIndex(
                 (cell: RootObject) =>
@@ -117,13 +138,13 @@ export class TableComponent implements OnInit {
               );
               const updateData = [...data];
               updateData[indexToUpdate] = { ...data[indexToUpdate], ...item };
-              this.tableDataSource.load(updateData);
-              return state;
+              return updateData;
             })
           );
         })
       )
-      .subscribe((state) => {
+      .subscribe((updateData) => {
+        this.demoStore$.next(updateData);
         this.tableDataSource.actions.close({ state });
       });
   }
