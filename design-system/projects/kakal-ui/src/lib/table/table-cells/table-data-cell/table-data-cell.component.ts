@@ -10,6 +10,7 @@ import { TableState } from '../../models/table.state';
 export class TableDataCellComponent implements OnInit {
   @Input() tableState: TableState;
   @Input() column: TableColumnModel;
+  @Input() columnDef: string;
   @Input() row: any;
   @Input() key: string;
 
@@ -18,9 +19,5 @@ export class TableDataCellComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.column);
-    console.log(this.row);
-    console.log(this.key);
-  }
+  ngOnInit(): void {}
 }

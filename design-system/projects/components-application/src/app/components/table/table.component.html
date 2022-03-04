@@ -3,15 +3,15 @@
     [data$]="data$"
     [itemKey]="itemKey"
     [columns$]="columns$"
-    [cellTemplate]="{isActive, actions}"
+    [cellTemplate]="{email, actions}"
     [formTemplate]="{input}"
     [hasActions]="true"
   ></kkl-table>
 </div>
 
-<ng-template #isActive let-item>
-  <kkl-typography>
-    {{ item.isActive ? "pass" : "failed" }}
+<ng-template #email let-rowState>
+  <kkl-typography color="primary" underline="true">
+    {{ rowState.row.email }}
   </kkl-typography>
 </ng-template>
 
@@ -22,7 +22,6 @@
     [columnDef]="rowState.column.columnDef"
   ></kkl-table-cell-form>
 </ng-template>
-
 
 <!-- use kkl-table-action for default actions -edit, delete and save -->
 <ng-template #actions let-rowState let-tableState="tableState">
