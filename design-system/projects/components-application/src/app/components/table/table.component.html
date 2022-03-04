@@ -7,12 +7,11 @@
     [formTemplate]="{input}"
     [hasActions]="true"
   >
-    <ng-container *kklCell="let context">
+    <ng-container *kklTableCell="let context">
       <kkl-table-cell
         fxLayout="row"
         fxLayoutAlign="start center"
         [row]="context.row"
-        [kklTableCell]="context.column.columnDef"
         [key]="context.key"
         [column]="context.column"
         [tableState]="context.tableState"

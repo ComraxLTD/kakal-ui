@@ -1,7 +1,7 @@
 import { Directive, HostBinding, Input, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[kklCell]',
+  selector: '[kklTableCell]',
 })
 export class KKLCellDirective {
 
