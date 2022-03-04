@@ -41,7 +41,7 @@
 
 <!-- use kkl-table-action for default actions -edit, delete and save -->
 <ng-template #actions let-rowState let-tableState="tableState">
-  <kkl-table-actions
+  <kkl-actions-cell
     [hasEdit]="true"
     [hasDelete]="true"
     [rowState]="rowState"
@@ -49,5 +49,5 @@
     (edit)="onEditEvent($event)"
     (close)="onCloseEvent($event)"
     (save)="onSaveEvent($event)"
-  ></kkl-table-actions>
+  ></kkl-actions-cell>
 </ng-template>

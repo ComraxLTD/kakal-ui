@@ -92,8 +92,8 @@ export * from './lib/table/table-cells/table-cell.module';
 export * from './lib/table/table-cells/table-cell-form/table-cell-form.component';
 export * from './lib/table/table-cells/table-cell-form/table-cell-form.module';
 
-export * from './lib/table/table-cells/table-action-cell/table-action-cell.component';
-export * from './lib/table/table-cells/table-action-cell/table-actions-cell.module';
+export * from './lib/table/table-cells/table-cell-action/table-action-cell.component';
+export * from './lib/table/table-cells/table-cell-action/table-actions-cell.module';
 
 export * from './lib/table/table-cells/table-data-cell/table-data-cell.component';
 export * from './lib/table/table-cells/table-data-cell/table-data-cell.module';

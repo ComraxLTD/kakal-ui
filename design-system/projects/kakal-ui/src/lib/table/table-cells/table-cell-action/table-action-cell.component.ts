@@ -8,7 +8,7 @@ import { ButtonActionState } from '../../table-actions/table-actions.component';
 import { ActionStateRules, ActionState } from '../../table-actions/table-actions.model';
 
 @Component({
-  selector: 'kkl-action-cell',
+  selector: 'kkl-actions-cell',
   templateUrl: './table-action-cell.component.html',
   styleUrls: ['./table-action-cell.component.scss']
 })
