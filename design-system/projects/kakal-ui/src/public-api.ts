@@ -102,13 +102,8 @@ export * from './lib/table/models/table';
 export * from './lib/table/models/table-datasource';
 export * from './lib/table/models/table.events';
 export * from './lib/table/models/table.state';
-export * from './lib/table/models/table-row.model';
 
 export * from './lib/table/directives/table-cell.directive';
-
-// TABLE-ACTIONS
-export * from './lib/table/table-actions/table-actions.component';
-export * from './lib/table/table-actions/table-actions.module';
 
 // -------------------------------------------------------------------------------------------------------
 

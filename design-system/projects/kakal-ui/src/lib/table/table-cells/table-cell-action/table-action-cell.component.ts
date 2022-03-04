@@ -1,19 +1,29 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Observable, merge, mapTo, filter, map } from 'rxjs';
 import { TableDataSource } from '../../models/table-datasource';
 import { TableEvent } from '../../models/table.events';
-import { RowsState, TableState } from '../../models/table.state';
-import { ButtonActionState } from '../../table-actions/table-actions.component';
-import { ActionStateRules, ActionState } from '../../table-actions/table-actions.model';
+import { RowsState, TableState, ActionState } from '../../models/table.state';
+import { ActionStateRules } from '../../models/table-actions';
+
+export interface ButtonActionState {
+  editState?: ActionState;
+  deleteState?: ActionState;
+}
 
 @Component({
   selector: 'kkl-actions-cell',
   templateUrl: './table-action-cell.component.html',
-  styleUrls: ['./table-action-cell.component.scss']
+  styleUrls: ['./table-action-cell.component.scss'],
 })
 export class TableActionCellComponent implements OnInit {
-
   @Input() rowState: RowsState;
   // @Input() dataSource: TableDataSource;
   @Input() tableState: TableState;

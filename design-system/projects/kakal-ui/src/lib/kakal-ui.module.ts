@@ -22,7 +22,6 @@ import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
 
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
-import { KKLTableActionsModule } from './table/table-actions/table-actions.module';
 import { KKLTableCellModule } from './table/table-cells/table-cell.module';
 
 import { KKLColumnsModule } from './columns/column.module';
@@ -67,7 +66,6 @@ import { KKLPipesModule } from './pipes/pipes.module';
     // TABLE MODULES
     KKLTableModule,
     KKLTableCellModule,
-    KKLTableActionsModule,
     KKLColumnsModule,
 
     KKLDirectivesModule,
@@ -96,7 +94,6 @@ import { KKLPipesModule } from './pipes/pipes.module';
 
     KKLTableModule,
     KKLTableCellModule,
-    KKLTableActionsModule,
     KKLColumnsModule,
 
     KKLDialogModule,

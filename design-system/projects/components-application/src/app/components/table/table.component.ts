@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
 import {
   TableDataSource,
   FormService,
@@ -9,6 +8,7 @@ import {
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, RootObject } from './mock_data';
+import { map, Observable, of, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-table',
