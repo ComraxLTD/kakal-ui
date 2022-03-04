@@ -3,10 +3,24 @@
     [data$]="data$"
     [itemKey]="itemKey"
     [columns$]="columns$"
-    [cellTemplate]="{email, actions}"
+    [cellTemplate]="{actions}"
     [formTemplate]="{input}"
     [hasActions]="true"
-  ></kkl-table>
+  >
+    <ng-container *kklCell="let context">
+      <kkl-table-data-cell
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        [row]="context.row"
+        [kklTableCell]="context.column.columnDef"
+        [key]="context.key"
+        [column]="context.column"
+        [tableState]="context.tableState"
+        [cellTemplate]="{email}"
+        [inputTemplate]="inputTemplate"
+      ></kkl-table-data-cell>
+    </ng-container>
+  </kkl-table>
 </div>
 
 <ng-template #email let-rowState>

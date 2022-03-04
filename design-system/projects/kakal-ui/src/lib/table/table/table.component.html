@@ -78,45 +78,45 @@
                           let columnIndex = index
                         "
                       >
-                        <ng-container [ngSwitch]="column.columnDef">
-                          <!-- Select cell -->
-                          <ng-container *ngSwitchCase="'select'">
-                            <div [kklTableCell]="column.columnDef">
-                              <mat-checkbox
-                                color="primary"
-                                (click)="onSelect()"
-                                [disabled]="column.disableSelect"
-                                (change)="$event ? selection.toggle(row) : null"
-                                [checked]="selection.isSelected(row)"
-                              >
-                              </mat-checkbox>
-                            </div>
-                          </ng-container>
+                        <div [kklTableCell]="column.columnDef">
+                          <ng-container [ngSwitch]="column.columnDef">
+                            <!-- Select cell -->
+                            <ng-container *ngSwitchCase="'select'">
+                              <div [kklTableCell]="column.columnDef">
+                                <mat-checkbox
+                                  color="primary"
+                                  (click)="onSelect()"
+                                  [disabled]="column.disableSelect"
+                                  (change)="
+                                    $event ? selection.toggle(row) : null
+                                  "
+                                  [checked]="selection.isSelected(row)"
+                                >
+                                </mat-checkbox>
+                              </div>
+                            </ng-container>
 
-                          <!-- Actions cell -->
-                          <ng-container *ngSwitchCase="'actions'">
-                            <div [kklTableCell]="column.columnDef" fxFlex>
+                            <!-- Actions cell -->
+                            <ng-container *ngSwitchCase="'actions'">
+                              <div [kklTableCell]="column.columnDef" fxFlex>
+                                <ng-container
+                                  *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key, group: tableState.forms[row[key]]}}"
+                                ></ng-container>
+                              </div>
+                            </ng-container>
+
+                            <!-- Data cell -->
+                            <ng-container *ngSwitchDefault>
                               <ng-container
-                                *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key, group: tableState.forms[row[key]]}}"
-                              ></ng-container>
-                            </div>
+                                *ngTemplateOutlet="
+                              cellDirective.template;
+                              context: { $implicit: {row, column, rowIndex, key, group: tableState.forms[row[key]], tableState}}
+                              "
+                              >
+                              </ng-container>
+                            </ng-container>
                           </ng-container>
-
-                          <!-- Data cell -->
-                          <ng-container *ngSwitchDefault>
-                            <kkl-table-data-cell
-                              fxLayout="row"
-                              fxLayoutAlign="start center"
-                              [kklTableCell]="column.columnDef"
-                              [key]="key"
-                              [column]="column"
-                              [tableState]="tableState"
-                              [row]="row"
-                              [cellTemplate]="cellTemplate"
-                              [inputTemplate]="inputTemplate"
-                            ></kkl-table-data-cell>
-                          </ng-container>
-                        </ng-container>
+                        </div>
                       </ng-container>
                     </div>
                   </mat-expansion-panel-header>

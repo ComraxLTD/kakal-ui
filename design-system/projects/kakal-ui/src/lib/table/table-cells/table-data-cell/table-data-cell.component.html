@@ -1,14 +1,7 @@
 <div fxFill>
-  <!-- Default cell -->
   <ng-container
     *ngIf="tableState.editing.indexOf(row[key]) === -1; else editBlock"
   >
-    <!-- <ng-container *ngIf="!cellTemplate[column.columnDef]; else customBlock">
-      <kkl-typography>
-        {{ row[column.columnDef] | format: column?.format }}
-      </kkl-typography>
-    </ng-container> -->
-
     <ng-container
       *ngTemplateOutlet="cellTemplate[column.columnDef] || defaultBlock; context : {$implicit : {row, column, rowIndex, key}} "
     ></ng-container>

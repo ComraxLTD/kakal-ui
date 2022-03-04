@@ -54,10 +54,10 @@ div.row {
   padding-left: main.spacing(2);
 }
 
-kkl-table-data-cell.kkl-table-cell {
+.kkl-table-cell {
   overflow: hidden;
-  box-sizing: border-box;
   word-break: break-word;
+  box-sizing: border-box;
 
   // mat-checkbox {
   //   padding-right: main.spacing(2);
