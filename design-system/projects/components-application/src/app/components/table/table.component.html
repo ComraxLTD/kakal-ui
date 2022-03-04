@@ -1,10 +1,12 @@
 <div fxFill dir="rtl">
   <kkl-table
+    kkl-table
     [data$]="data$"
-    [itemKey]="itemKey"
     [columns$]="columns$"
+    [itemKey]="itemKey"
     [hasActions]="true"
   >
+    <!-- use kkl-table-cell for render table cell -->
     <ng-container *kklTableCell="let context">
       <kkl-table-cell
         fxLayout="row"
@@ -18,7 +20,7 @@
       ></kkl-table-cell>
     </ng-container>
 
-    <!-- use kkl-table-action for default actions -edit, delete and save -->
+    <!-- use kkl-actions-cell for default actions -edit, delete and save -->
     <ng-container *kklActionCell="let rowState">
       <kkl-actions-cell
         [hasEdit]="true"
@@ -30,7 +32,6 @@
         (save)="onSaveEvent($event)"
       ></kkl-actions-cell>
     </ng-container>
-
   </kkl-table>
 </div>
 

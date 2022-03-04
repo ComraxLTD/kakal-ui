@@ -45,17 +45,7 @@ export class TableActionCellComponent implements OnInit {
 
   constructor(private dataSource: TableDataSource<any>) {}
 
-  private validate() {
-
-    console.log(this.rowState)
-
-    if (!this.dataSource) {
-      throw new Error('TableDataSource instance is required');
-    }
-  }
-
   ngOnInit(): void {
-    this.validate();
     this.buttonActionState$ = this.setButtonActionState();
   }
 

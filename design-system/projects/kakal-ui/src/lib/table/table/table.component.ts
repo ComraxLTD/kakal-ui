@@ -14,7 +14,7 @@ import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
 
 import { TableOptions } from '../models/table-options';
-import { RowState, TableState } from '../models/table.state';
+import { TableState } from '../models/table.state';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
@@ -42,14 +42,12 @@ import { KKLTableCellDirective } from '../directives/cell.directive';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent<T = any> implements OnInit {
-
   @ContentChild(KKLTableCellDirective)
   cellDirective: KKLTableCellDirective | undefined;
 
   @ContentChild(KKLActionCellDirective)
   cellActionDirective: KKLActionCellDirective | undefined;
 
-  // @Input() public tableDataSource: TableDataSource<T>;
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<TableColumnModel<T>[]>;
 
@@ -72,12 +70,6 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
   @Input() public hasState: boolean;
-
-  // ng template for cell
-  @Input() public cellTemplate: { [key: string]: TemplateRef<any> } = {};
-
-  //ng template for cell inputs
-  @Input() public formTemplate: { [key: string]: TemplateRef<any> } = {};
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
@@ -157,30 +149,9 @@ export class TableComponent<T = any> implements OnInit {
     );
   }
 
-  public tableEvent$: Observable<TableEvent>;
-
   ngOnInit() {
-
-    this.validateInputs();
-
     this.table$ = this.setTable$();
-
     this.tableState$ = this.setTableState$();
-    // this.tableState$ = this.setTableState$();
-  }
-
-  private validateInputs() {
-    if (!this.key) {
-      throw new Error('Table must get unique key of the item');
-    }
-
-    if (this.hasActions) {
-      if (!this.tableDataSource) {
-        throw new Error(
-          'Table with actions has to get TableDataSource instance'
-        );
-      }
-    }
   }
 
   private setTableState$() {
@@ -203,8 +174,6 @@ export class TableComponent<T = any> implements OnInit {
           map((tableState) => {
             const { editing } = tableState;
             editing.push(item[key]);
-
-            this.inputTemplate = this.setFormTemplate(item, this.formTemplate);
 
             tableState = {
               ...tableState,
@@ -242,21 +211,5 @@ export class TableComponent<T = any> implements OnInit {
         );
       })
     );
-  }
-
-  private setFormTemplate(item: T, formTemplate) {
-    const keys = Object.keys(item).filter((key) => key !== 'input');
-    const inputTemplate = keys.reduce((acc, key) => {
-      const template = acc[key] || acc['input'];
-
-      return {
-        ...acc,
-        [key]: template,
-      } as { [key: string]: TemplateRef<any> };
-    }, formTemplate);
-
-    delete inputTemplate.input;
-
-    return inputTemplate as { [key: string]: TemplateRef<any> };
   }
 }
