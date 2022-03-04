@@ -54,17 +54,14 @@ div.row {
   padding-left: main.spacing(2);
 }
 
-div.kkl-table-cell {
-  display: flex;
-  align-items: center;
+kkl-table-data-cell.kkl-table-cell {
   overflow: hidden;
-  word-wrap: break-word;
+  box-sizing: border-box;
+  word-break: break-word;
 
-  mat-checkbox {
-    padding-right: main.spacing(2);
-  }
-
-  // min-height: inherit;
+  // mat-checkbox {
+  //   padding-right: main.spacing(2);
+  // }
 
   &.center {
     justify-content: center;

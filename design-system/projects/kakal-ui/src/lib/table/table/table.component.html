@@ -65,7 +65,13 @@
                     [class.expand]="accordion"
                     [class.form]="tableState.editing.indexOf(row[key]) !== -1"
                   >
-                    <div class="row" fxFill fxLayout="row">
+                    <div
+                      class="row"
+                      fxFill
+                      fxLayout="row"
+                      fxLayoutAlign="start center"
+                      fxLayoutGap="1rem"
+                    >
                       <ng-container
                         *ngFor="
                           let column of table.columns;
@@ -99,6 +105,8 @@
                           <!-- Data cell -->
                           <ng-container *ngSwitchDefault>
                             <kkl-table-data-cell
+                              fxLayout="row"
+                              fxLayoutAlign="start center"
                               [kklTableCell]="column.columnDef"
                               [key]="key"
                               [column]="column"
