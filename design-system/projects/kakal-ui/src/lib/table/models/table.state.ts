@@ -13,6 +13,7 @@ export interface TableState {
   disabled: number[];
   activeColumns: string[];
   forms: { [key: string]: QuestionGroupModel };
+  formsA: any[];
   event: TableEvent;
 }
 
@@ -35,7 +36,6 @@ export type ColumnState<T> = {
   type?: 'filter' | 'select';
   dir?: SortDirection;
 };
-
 
 // interface for custom button action state
 export interface TableActionState {

@@ -85,7 +85,6 @@
                           kkl-cell
                           [columnDef]="column.columnDef"
                           [flex]="column.flex"
-                          [editable]="tableState.editing.indexOf(row[key]) !== -1"
                         >
                           <ng-container [ngSwitch]="column.columnDef">
                             <!-- Select cell -->

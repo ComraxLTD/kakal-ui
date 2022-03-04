@@ -105,19 +105,17 @@ export class TableComponent<T = any> implements OnInit {
   // emit select event : Observable<T[]>
   @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
 
-  // emit row event expand : Observable<RowModel<T>
+  // emit row event expand : Observable<T>
   @Output() expand: EventEmitter<any> = new EventEmitter();
 
-  // emit row : Observable<RowModel<T>
+  // emit row : Observable<T>
   @Output() rowClicked: EventEmitter<T> = new EventEmitter();
 
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
   public tableState$: Observable<TableState>;
 
-  public inputTemplate: { [key: string]: TemplateRef<any> };
 
-  // public filters$: Observable<ListItem<T>[]>;
   public pagination: PaginationInstance;
 
   // cdk object that handle selection
@@ -160,15 +158,12 @@ export class TableComponent<T = any> implements OnInit {
 
   private setTableState$() {
     return merge(
-      of(null),
+      this.tableDataSource.listenTableState(),
       this.tableStateService.onEditCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource)
     ).pipe(
-      switchMap((tableState: TableState) => {
-        if (tableState) {
-          this.tableDataSource.loadTableState(tableState);
-        }
-        return this.tableDataSource.listenTableState();
+      map((tableState: TableState) => {
+        return tableState;
       })
     );
   }
