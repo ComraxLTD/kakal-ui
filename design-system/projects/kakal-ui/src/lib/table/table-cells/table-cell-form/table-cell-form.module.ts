@@ -10,10 +10,10 @@ import { KKLFormDateModule } from '../../../form/form-date/form-date.module';
 import { KKLFormInputModule } from '../../../form/form-input/form-input.module';
 import { KKLFormSelectModule } from '../../../form/form-select/form-select.module';
 import { KKLFormUploadModule } from '../../../form/form-upload/form-upload.module';
-import { TableCellFormComponent } from './table-cell-form.component';
+import { TableFormCellComponent } from './table-cell-form.component';
 
 @NgModule({
-  declarations: [TableCellFormComponent],
+  declarations: [TableFormCellComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -27,6 +27,6 @@ import { TableCellFormComponent } from './table-cell-form.component';
     KKLFormDateModule,
     KKLFormUploadModule,
   ],
-  exports: [TableCellFormComponent],
+  exports: [TableFormCellComponent],
 })
-export class KKLTableCellFormComponentModule {}
+export class KKLTableFormCellComponentModule {}

@@ -1,7 +1,7 @@
 import { Directive, HostBinding, Input, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[kklTableCell]',
+  selector: '[kkl-table-cell]',
 })
 export class KKLTableCellDirective {
   @HostBinding('class') private _class;
@@ -12,7 +12,7 @@ export class KKLTableCellDirective {
 
   @HostBinding('style.display') private display: string;
 
-  @Input() kklTableCell: string;
+  @Input() columnDef: string;
   @Input() center: boolean;
   @Input() columnsDef: string;
 
@@ -25,7 +25,7 @@ export class KKLTableCellDirective {
   }
 
   private setClasses() {
-    let classes: string = `kkl-table-cell ${this.kklTableCell}`;
+    let classes: string = `kkl-table-cell ${this.columnDef}`;
 
     if (this.center) {
       classes += `center`;

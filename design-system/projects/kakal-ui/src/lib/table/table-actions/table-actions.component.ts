@@ -27,6 +27,7 @@ export interface ButtonActionState {
   styleUrls: ['./table-actions.component.scss'],
 })
 export class TableActionsComponent implements OnInit {
+
   @Input() rowState: RowsState;
   // @Input() dataSource: TableDataSource;
   @Input() tableState: TableState;

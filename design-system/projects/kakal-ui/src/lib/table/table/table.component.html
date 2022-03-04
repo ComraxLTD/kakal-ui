@@ -30,7 +30,8 @@
 
                 <ng-container *ngFor="let column of table.columns">
                   <div
-                    [kklTableCell]="column.columnDef"
+                    kkl-table-cell
+                    [columnDef]="column.columnDef"
                     [flex]="column.flex"
                     [center]="column.center"
                   >
@@ -80,7 +81,8 @@
                         "
                       >
                         <div
-                          [kklTableCell]="column.columnDef"
+                          kkl-table-cell
+                          [columnDef]="column.columnDef"
                           [flex]="column.flex"
                         >
                           <ng-container [ngSwitch]="column.columnDef">
@@ -94,8 +96,6 @@
                                 [checked]="selection.isSelected(row)"
                               >
                               </mat-checkbox>
-                              <!-- <div [kklTableCell]="column.columnDef">
-                              </div> -->
                             </ng-container>
 
                             <!-- Actions cell -->
@@ -103,8 +103,6 @@
                               <ng-container
                                 *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key, group: tableState.forms[row[key]]}}"
                               ></ng-container>
-                              <!-- <div [kklTableCell]="column.columnDef" fxFlex>
-                              </div> -->
                             </ng-container>
 
                             <!-- Data cell -->

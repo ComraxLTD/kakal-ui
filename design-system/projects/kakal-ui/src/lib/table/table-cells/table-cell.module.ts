@@ -1,13 +1,10 @@
 import { NgModule } from '@angular/core';
-import { KKLTableCellFormComponentModule } from './table-cell-form/table-cell-form.module';
+import { KKLTableFormCellComponentModule } from './table-cell-form/table-cell-form.module';
 import { KKLTableDataCellModule } from './table-data-cell/table-data-cell.module';
-import { TableActionCellComponent } from './table-action-cell/table-action-cell.component';
+import {KKLTableActionsCellModule} from './table-action-cell/table-actions-cell.module';
 
 @NgModule({
-  imports: [KKLTableCellFormComponentModule, KKLTableDataCellModule],
-  exports: [KKLTableCellFormComponentModule, KKLTableDataCellModule],
-  declarations: [
-    TableActionCellComponent
-  ],
+  imports: [KKLTableFormCellComponentModule, KKLTableDataCellModule, KKLTableActionsCellModule],
+  exports: [KKLTableFormCellComponentModule, KKLTableDataCellModule, KKLTableActionsCellModule],
 })
 export class KKLTableCellModule {}

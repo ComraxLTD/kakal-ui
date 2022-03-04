@@ -7,7 +7,7 @@ import { QuestionBase } from '../../../form/services/form.service';
   templateUrl: './table-cell-form.component.html',
   styleUrls: ['./table-cell-form.component.scss'],
 })
-export class TableCellFormComponent implements OnInit {
+export class TableFormCellComponent implements OnInit {
   @Input() public group: QuestionGroupModel;
   @Input() public columnDef: string;
   @Input() public template: TemplateRef<any>;
