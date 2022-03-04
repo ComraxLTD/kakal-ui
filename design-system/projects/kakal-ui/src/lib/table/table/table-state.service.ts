@@ -10,7 +10,7 @@ import { TableDataSource } from '../models/table-datasource';
 import { switchMap, take, map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
-export class TableService {
+export class TableStateService {
   constructor() {}
 
   public onEditEvent(tableDataSource: TableDataSource) : Observable<TableState> {

@@ -34,13 +34,13 @@ import {
 import { KKLActionCellDirective } from '../table-cells/table-cell-action/cell-action.directive';
 import { KKLDataCellDirective } from '../table-cells/table-data-cell/cell-data.directive';
 
-import { TableService } from './table.service';
+import { TableStateService } from './table-state.service';
 
 @Component({
   selector: 'kkl-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableService],
+  providers: [TableStateService],
 })
 export class TableComponent<T = any> implements OnInit {
   @ContentChild(KKLDataCellDirective)
@@ -124,7 +124,7 @@ export class TableComponent<T = any> implements OnInit {
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
 
   constructor(
-    private tableService: TableService,
+    private tableStateService: TableStateService,
     private tableDataSource: TableDataSource<T>
   ) {}
 
@@ -161,8 +161,8 @@ export class TableComponent<T = any> implements OnInit {
   private setTableState$() {
     return merge(
       of(null),
-      this.tableService.onEditCloseEvent(this.tableDataSource),
-      this.tableService.onEditEvent(this.tableDataSource)
+      this.tableStateService.onEditCloseEvent(this.tableDataSource),
+      this.tableStateService.onEditEvent(this.tableDataSource)
     ).pipe(
       switchMap((tableState: TableState) => {
         if (tableState) {

@@ -7,7 +7,6 @@ import {
   Question,
   QuestionGroupModel,
   OptionMap,
-  TableService,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -25,7 +24,6 @@ import {
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource, TableService],
 })
 export class TableComponent implements OnInit {
   // demo data from server
