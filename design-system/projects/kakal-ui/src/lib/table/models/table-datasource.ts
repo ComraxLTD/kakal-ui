@@ -4,10 +4,12 @@ import { FormDataSource } from '../../form/models/form-datasource';
 import { TableColumnModel } from '../../columns/models/column.model';
 
 import { ColumnState, RowState, TableState } from './table.state';
-import { TableEvent } from '../models/table.events';
 
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
+
+import { FormActions } from '../../form/models/form-events';
+import { TableActions } from '../models/table.events';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
@@ -17,7 +19,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
   private columnsStateSubject: BehaviorSubject<ColumnState<T>>;
 
   private RowStateSubject: BehaviorSubject<RowState<T>>;
-  // private events$: Observable<TableEvent>;
 
   private formDataSource: FormDataSource;
 
@@ -32,12 +33,12 @@ export class TableDataSource<T = any> implements DataSource<T> {
       activeColumns: [],
       forms: {},
       formsA: [],
-      event: TableEvent.DEFAULT,
+      event: FormActions.DEFAULT,
     });
 
     this.columnsStateSubject = new BehaviorSubject<ColumnState<T>>(null);
     this.RowStateSubject = new BehaviorSubject<RowState<T>>({
-      event: TableEvent.DEFAULT,
+      event: FormActions.DEFAULT,
     });
     this.formDataSource = new FormDataSource();
   }
@@ -81,7 +82,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.tableSubject.asObservable();
   }
 
-  public getTableStateByEvent(eventFilters: TableEvent[]) {
+  public getTableStateByEvent(eventFilters: (FormActions | TableActions)[]) {
     return this.tableSubject.asObservable().pipe(
       filter((tableState) => {
         return eventFilters
@@ -101,57 +102,43 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.columnsStateSubject.next({ ...state });
   }
 
-  private createAction(prop: { state: RowState }, event?: TableEvent) {
+  private createAction(prop: { state: RowState }, event?: FormActions) {
     const { state } = prop;
     this.RowStateSubject.next({ ...state, event });
+  }
+
+  public on(event: FormActions | TableActions): Observable<RowState<T>> {
+    return this.getRowStateByEvent(event);
   }
 
   // main actions object
   public actions = {
     // add: (prop: { state: RowState }) => this.createAction(prop, 'add'),
 
-    // create: (prop: { state: RowState }) => this.createAction(prop, 'create'),
+    create: (prop: { state: RowState }) =>
+      this.createAction(prop, FormActions.CREATE),
 
-    // save: (prop: { state: RowState }) => this.createAction(prop, 'save'),
+    save: (prop: { state: RowState }) =>
+      this.createAction(prop, FormActions.SUBMIT),
 
     // form: (prop: { state: RowState }) => this.createAction(prop, 'form'),
 
     edit: (prop: { state: RowState }) =>
-      this.createAction(prop, TableEvent.EDIT),
+      this.createAction(prop, FormActions.EDIT),
 
     // cancel: (prop: { state: RowState }) => this.createAction(prop, 'cancel'),
 
     close: (prop: { state: RowState }) =>
-      this.createAction(prop, TableEvent.CLOSE),
+      this.createAction(prop, FormActions.CLOSE),
 
     // expand: (prop: { state: RowState }) => this.createAction(prop, 'expand'),
 
     delete: (prop: { state: RowState }) =>
-      this.createAction(prop, TableEvent.DELETE),
+      this.createAction(prop, FormActions.DELETE),
 
-    // selectRows: (prop: { state: RowState }) =>
-    //   this.createAction(prop, 'selectRows'),
-
-    // addOptions: (state?: RowState<T>) => this.addOptions(state),
-    // updateOptions: (state: ColumnState<T>) => this.updateOptions(state),
-    // updateSortDir: (state: ColumnState<T>) => this.updateSortDir(state),
     reset: (prop: { state: RowState }) =>
-      this.createAction(prop, TableEvent.DEFAULT),
+      this.createAction(prop, FormActions.DEFAULT),
   };
 
-  public listen$ = {
-    default: () => this.getRowStateByEvent(TableEvent.DEFAULT),
-    // add: () => this.getStateByEvent('add'),
-    // create: () => this.getStateByEvent('create'),
-    // save: () => this.getStateByEvent('save'),
-    // form: () => this.getStateByEvent('form'),
-    edit: () => this.getRowStateByEvent(TableEvent.EDIT),
-    // cancel: () => this.getRowStateByEvent(TableEvent.C),
-    close: () => this.getRowStateByEvent(TableEvent.CLOSE),
-    // expand: () => this.getStateByEvent('expand'),
-    // delete: () => this.getStateByEvent('delete'),
-    // selectRows: () => this.getStateByEvent('selectRows'),
-    // addOptions: () => this.getStateByEvent('addOptions'),
-    // reset: () => this.getStateByEvent('reset'),
-  };
+
 }

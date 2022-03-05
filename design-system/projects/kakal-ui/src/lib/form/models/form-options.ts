@@ -1,13 +1,13 @@
 import { FormControl } from "@angular/forms";
 import { MatListOption } from "@angular/material/list";
 import { Observable } from "rxjs";
-import { FormEvents } from "./form-events";
+import { FormActions } from "./form-events";
 import { SelectOption } from "./question-select.model";
 
 export interface FormOption {
   key?: string;
   index?: number;
-  event?: FormEvents;
+  event?: FormActions;
   control?: FormControl;
   option?: SelectOption;
   multi?: boolean;

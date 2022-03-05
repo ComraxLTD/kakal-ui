@@ -3,13 +3,14 @@ import { TableState } from '../models/table.state';
 import { deleteItem } from './table.helpers';
 import { TableDataSource } from '../models/table-datasource';
 import { switchMap, take, map, Observable } from 'rxjs';
+import { FormActions } from '../../form/models/form-events';
 
 @Injectable({ providedIn: 'root' })
 export class TableStateService {
   constructor() {}
 
   public onEditEvent(tableDataSource: TableDataSource): Observable<TableState> {
-    return tableDataSource.listen$.edit().pipe(
+    return tableDataSource.on(FormActions.EDIT).pipe(
       switchMap((state) => {
         const { item, key, group } = state;
         return tableDataSource.listenTableState().pipe(
@@ -39,7 +40,7 @@ export class TableStateService {
   public onEditCloseEvent(
     tableDataSource: TableDataSource
   ): Observable<TableState> {
-    return tableDataSource.listen$.close().pipe(
+    return tableDataSource.on(FormActions.CLOSE).pipe(
       switchMap((state) => {
         const { item, key } = state;
         return tableDataSource.listenTableState().pipe(

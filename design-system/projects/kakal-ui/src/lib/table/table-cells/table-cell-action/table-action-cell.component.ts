@@ -9,9 +9,10 @@ import {
 import { FormGroup } from '@angular/forms';
 import { Observable, merge, mapTo, filter, map } from 'rxjs';
 import { TableDataSource } from '../../models/table-datasource';
-import { TableEvent } from '../../models/table.events';
 import { RowState, TableState, ActionState } from '../../models/table.state';
 import { ActionStateRules } from '../../models/table-actions';
+import { TableActions } from '../../models/table.events';
+import { FormActions } from '../../../form/models/form-events';
 
 export interface ButtonActionState {
   editState?: ActionState;
@@ -73,13 +74,13 @@ export class TableActionCellComponent implements OnInit {
 
   private onButtonsStateDefault(): Observable<ButtonActionState> {
     return this.dataSource
-      .getTableStateByEvent([TableEvent.DEFAULT])
+      .getTableStateByEvent([FormActions.DEFAULT])
       .pipe(mapTo(this.setButtonsStateOnDefault()));
   }
 
   private onButtonsStateOnEdit(): Observable<ButtonActionState> {
     const id = this.rowState.item[this.rowState.key];
-    return this.dataSource.listen$.edit().pipe(
+    return this.dataSource.on(FormActions.EDIT).pipe(
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
       map((rowState: RowState) => rowState.group.formGroup),
       map((formGroup: FormGroup) => {
@@ -100,7 +101,7 @@ export class TableActionCellComponent implements OnInit {
 
   private onButtonStateOnClose() {
     const id = this.rowState.item[this.rowState.key];
-    return this.dataSource.listen$.close().pipe(
+    return this.dataSource.on(FormActions.CLOSE).pipe(
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
       mapTo(this.setButtonsStateOnDefault())
     );
@@ -114,14 +115,14 @@ export class TableActionCellComponent implements OnInit {
     this.edit.emit({ ...this.rowState });
   }
 
-  public onClose(event: TableEvent) {
+  public onClose(event: FormActions) {
     this.close.emit({
       ...this.rowState,
       event,
     });
   }
 
-  public onSave(event: TableEvent) {
+  public onSave(event: FormActions) {
     this.save.emit({
       ...this.rowState,
       event,
