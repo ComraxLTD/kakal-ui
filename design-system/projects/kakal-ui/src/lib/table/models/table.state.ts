@@ -37,13 +37,6 @@ export type ColumnState<T> = {
   dir?: SortDirection;
 };
 
-// interface for custom button action state
-export interface TableActionState {
-  showDelete?: number[];
-  disableDelete?: number[];
-  showEdit?: number[];
-  disableEdit?: number[];
-}
 
 export interface ActionState {
   show: boolean;

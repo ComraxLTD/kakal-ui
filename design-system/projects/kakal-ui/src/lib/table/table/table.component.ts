@@ -152,8 +152,18 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   ngOnInit() {
+
+
     this.table$ = this.setTable$();
     this.tableState$ = this.setTableState$();
+  }
+
+  ngAfterViewInit() {
+
+    if(this.hasActions && !this.cellActionDirective) {
+      throw new Error('kkl-table missing *kklActionCell')
+    }
+
   }
 
   private setTableState$() {

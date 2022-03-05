@@ -5,6 +5,7 @@
     [columns$]="columns$"
     [itemKey]="itemKey"
     [hasActions]="true"
+    [headerTemplate]="{actions}"
   >
     <!-- use kkl-table-cell for render table cell -->
     <ng-container *kklTableCell="let context">
@@ -40,6 +41,10 @@
   <kkl-typography color="primary" underline="true">
     {{ rowState.row.email }}
   </kkl-typography>
+</ng-template>
+
+<ng-template #actions>
+  <kkl-create-button> הוסף מכונית </kkl-create-button>
 </ng-template>
 
 <ng-template #input let-rowState>
