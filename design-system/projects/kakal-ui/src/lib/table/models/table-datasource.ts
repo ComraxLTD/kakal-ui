@@ -32,7 +32,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
       disabled: [],
       activeColumns: [],
       forms: {},
-      formsA: [],
       event: FormActions.DEFAULT,
     });
 

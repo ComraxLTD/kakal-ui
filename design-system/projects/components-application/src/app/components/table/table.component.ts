@@ -19,6 +19,7 @@ import {
   take,
   tap,
 } from 'rxjs';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-table',
@@ -35,20 +36,20 @@ export class TableComponent implements OnInit {
   private columns: TableColumnModel<RootObject>[] = [
     { columnDef: 'first_name', label: 'first_name', editable: true },
     { columnDef: 'last_name', label: 'last_name', editable: true },
-    { columnDef: 'email', label: 'email', editable: true,  },
+    { columnDef: 'email', label: 'email', editable: true },
     { columnDef: 'gender', label: 'gender', editable: true },
     { columnDef: 'city', label: 'city', editable: true },
     { columnDef: 'date', label: 'date', editable: true },
-    { columnDef: 'currency', label: 'currency', flex : 0.5 },
+    { columnDef: 'currency', label: 'currency', flex: 0.5 },
   ];
 
   private questions: Question[] = [
-    { key: 'first_name' },
+    { key: 'first_name', validations: [Validators.required] },
     { key: 'last_name' },
     { key: 'email', controlType: 'email' },
     { key: 'gender', controlType: 'checkbox' },
     { key: 'city', controlType: 'select' },
-    { key: 'date', controlType: 'date' },
+    { key: 'date', controlType: 'date', validations: [Validators.required] },
   ];
 
   public data$: Observable<RootObject[]>;
@@ -124,7 +125,7 @@ export class TableComponent implements OnInit {
         question = {
           ...question,
           options: [...optionsMap[question.key]],
-          multi : true
+          multi: true,
         };
       }
 
@@ -140,11 +141,13 @@ export class TableComponent implements OnInit {
 
   public onEditEvent(state: RowState) {
     const { item } = state;
-    this.group = this.setGroup(
+    const group = this.setGroup(
       this.setQuestions(this.questions, item, this.optionsMap)
     );
+
+
     this.tableDataSource.actions.edit({
-      state: { ...state, group: this.group },
+      state: { ...state, group },
     });
   }
 
@@ -181,6 +184,44 @@ export class TableComponent implements OnInit {
       .subscribe((updateData) => {
         this.demoStore$.next(updateData);
         this.tableDataSource.actions.close({ state });
+      });
+  }
+
+  public onCreateEvent(state: RowState) {
+    const item: RootObject = {
+      id: 0,
+      first_name: '',
+      last_name: '',
+      email: '',
+      gender: '',
+      city: '',
+      date: '',
+      currency: '',
+    };
+
+    of(item)
+      .pipe(
+        switchMap((item) => {
+          return this.demoStore$.pipe(
+            take(1),
+            map((data) => {
+              const updateData = [...data];
+              updateData.unshift(item);
+              return updateData;
+            })
+          );
+        })
+      )
+      .subscribe((updateData) => {
+        this.demoStore$.next(updateData);
+        const group = this.setGroup(
+          this.setQuestions(this.questions, item, this.optionsMap)
+        );
+        console.log(group.formGroup.valid);
+
+        this.tableDataSource.actions.edit({
+          state: { ...state, item, group },
+        });
       });
   }
 }

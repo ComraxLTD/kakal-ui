@@ -18,6 +18,7 @@
   </ng-container>
 
   <ng-container *ngIf="buttonActionState$ | async as buttonState">
+    {{ buttonState.editState?.valid | json }}
     <!-- edit button -->
     <ng-container *ngIf="buttonState.editState.show; else saveBlock">
       <button

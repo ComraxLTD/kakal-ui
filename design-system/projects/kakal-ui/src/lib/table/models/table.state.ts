@@ -13,7 +13,6 @@ export interface TableState {
   disabled: number[];
   activeColumns: string[];
   forms: { [key: string]: QuestionGroupModel };
-  formsA: any[];
   event: FormActions| TableActions;
 }
 

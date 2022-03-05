@@ -1,7 +1,7 @@
 <ng-container
   *ngTemplateOutlet="
     headerTemplate[column.columnDef.toString()] || defaultHeader;
-    context: { $implicit: column }
+    context: { $implicit: {column, key} }
   "
 >
 </ng-container>
