@@ -19,6 +19,7 @@ import {
   take,
   tap,
 } from 'rxjs';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-table',
@@ -48,7 +49,7 @@ export class TableComponent implements OnInit {
     { key: 'email', controlType: 'email' },
     { key: 'gender', controlType: 'checkbox' },
     { key: 'city', controlType: 'select' },
-    { key: 'date', controlType: 'date' },
+    { key: 'date', controlType: 'date', validations : [Validators.required] },
   ];
 
   public data$: Observable<RootObject[]>;
@@ -184,7 +185,9 @@ export class TableComponent implements OnInit {
       });
   }
 
-  public onCreateEvent() {
+  public onCreateEvent(state : RowState) {
+
+
     const item: RootObject = {
       id: 0,
       first_name: '',
@@ -210,9 +213,15 @@ export class TableComponent implements OnInit {
         })
       )
       .subscribe((updateData) => {
-        const state: RowState = { item };
         this.demoStore$.next(updateData);
-        this.tableDataSource.actions.create({ state });
+        const group = this.setGroup(
+          this.setQuestions(this.questions, item, this.optionsMap)
+        );
+
+
+        this.tableDataSource.actions.edit({
+          state: { ...state, item, group },
+        });
       });
   }
 }

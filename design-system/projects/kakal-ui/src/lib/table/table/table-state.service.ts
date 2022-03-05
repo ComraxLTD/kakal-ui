@@ -16,10 +16,9 @@ export class TableStateService {
         return tableDataSource.listenTableState().pipe(
           map((tableState) => {
             const { editing } = tableState;
-            const { formsA } = tableState;
-            editing.push(item[key]);
 
-            formsA.push({[item[key]] : group});
+            console.log(item)
+            editing.push(item[key]);
 
             tableState = {
               ...tableState,
@@ -28,7 +27,6 @@ export class TableStateService {
               forms: {
                 [item[key]]: group,
               },
-              formsA
             } as TableState;
 
             return tableState;

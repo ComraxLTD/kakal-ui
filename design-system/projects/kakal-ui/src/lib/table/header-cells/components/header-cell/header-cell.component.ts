@@ -9,10 +9,12 @@ import { HeaderCellModel } from '../../models/header-cell.model';
 export class HeaderCellComponent implements OnInit {
   @Input() column: HeaderCellModel;
   @Input() label: string;
+  @Input() key: string;
   @Input() columnDef: string;
   @Input() headerTemplate: { [key: string]: TemplateRef<any> } = {};
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 }

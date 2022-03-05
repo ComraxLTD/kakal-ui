@@ -10,6 +10,7 @@
     <ng-container *kklHeaderCell="let context">
       <kkl-header-cell
         [column]="context.column"
+        [key]="context.key"
         [columnDef]="context.column.columnDef"
         [headerTemplate]="{actions}"
       ></kkl-header-cell>
@@ -52,8 +53,10 @@
   </kkl-typography>
 </ng-template>
 
-<ng-template #actions>
-  <kkl-create-button (clickEvent)="onCreateEvent()"> הוסף מכונית </kkl-create-button>
+<ng-template #actions let-rowState>
+  <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
+    הוסף מכונית
+  </kkl-create-button>
 </ng-template>
 
 <ng-template #input let-rowState>
