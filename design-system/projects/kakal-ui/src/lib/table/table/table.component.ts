@@ -27,6 +27,7 @@ import { KKLHeaderCellDirective } from '../header-cells/cell-header.directive';
 
 import { TableStateService } from './table-state.service';
 import { combineLatest, map, merge, Observable } from 'rxjs';
+import { HeaderCellModel } from '../header-cells/models/header-cell.model';
 
 @Component({
   selector: 'kkl-table',
@@ -45,7 +46,7 @@ export class TableComponent<T = any> implements OnInit {
   cellActionDirective: KKLActionCellDirective | undefined;
 
   @Input() public data$: Observable<T[]>;
-  @Input() public columns$: Observable<TableColumnModel<T>[]>;
+  @Input() public columns$: Observable<HeaderCellModel<T>[]>;
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
@@ -122,13 +123,13 @@ export class TableComponent<T = any> implements OnInit {
 
   private setColumns$() {
     return this.columns$.pipe(
-      map((columns: TableColumnModel<T>[]) => {
+      map((columns: HeaderCellModel<T>[]) => {
         if (this.hasActions) {
-          columns.push(new TableColumnModel({ columnDef: 'actions' }));
+          columns.push(new HeaderCellModel({ columnDef: 'actions' }));
         }
 
         if (this.selectable) {
-          columns.unshift(new TableColumnModel({ columnDef: 'select' }));
+          columns.unshift(new HeaderCellModel({ columnDef: 'select' }));
         }
 
         return columns;

@@ -11,7 +11,6 @@ import { Observable, merge, mapTo, filter, map } from 'rxjs';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../models/table.state';
 import { ActionStateRules } from '../../models/table-actions';
-import { TableActions } from '../../models/table.events';
 import { FormActions } from '../../../form/models/form-events';
 
 export interface ButtonActionState {
