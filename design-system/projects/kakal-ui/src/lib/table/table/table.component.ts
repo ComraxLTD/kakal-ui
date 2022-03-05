@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   Component,
+  ContentChild,
   EventEmitter,
   Input,
   OnInit,
@@ -13,61 +14,55 @@ import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
 
 import { TableOptions } from '../models/table-options';
-import { RowsState, TableState } from '../models/table.state';
+import { TableState } from '../models/table.state';
 
-import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
 
-import { deleteItem } from './table.helpers';
+import { KKLActionCellDirective } from '../cells/table-cell-action/cell-action.directive';
+import { KKLDataCellDirective } from '../cells/table-data-cell/cell-data.directive';
+import { KKLHeaderCellDirective } from '../header-cells/cell-header.directive';
 
-import {
-  combineLatest,
-  map,
-  merge,
-  Observable,
-  of,
-  switchMap,
-  take,
-} from 'rxjs';
-import { TableEvent } from '../models/table.events';
+import { TableStateService } from './table-state.service';
+import { combineLatest, map, merge, Observable } from 'rxjs';
+import { HeaderCellModel } from '../header-cells/models/header-cell.model';
 
 @Component({
   selector: 'kkl-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  providers: [TableStateService],
 })
 export class TableComponent<T = any> implements OnInit {
-  // @Input() public tableDataSource: TableDataSource<T>;
+  @ContentChild(KKLHeaderCellDirective)
+  cellHeaderDirective: KKLHeaderCellDirective | undefined;
+
+  @ContentChild(KKLDataCellDirective)
+  cellDirective: KKLDataCellDirective | undefined;
+
+  @ContentChild(KKLActionCellDirective)
+  cellActionDirective: KKLActionCellDirective | undefined;
+
   @Input() public data$: Observable<T[]>;
-  @Input() public columns$: Observable<TableColumnModel<T>[]>;
+  @Input() public columns$: Observable<HeaderCellModel<T>[]>;
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
-  @Input() public model: T;
-
-  @Input() public options: TableOptions<T>;
 
   @Input() public theme: ThemePalette = 'accent';
 
   // if table have state modes
   @Input() public paginator: boolean;
+
   @Input() public expendable: boolean;
   @Input() public clickable: boolean;
   @Input() public accordion: boolean;
   @Input() public selectable: boolean;
-  @Input() public filterable: boolean;
+  
   // if table have additional features
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
-  @Input() public hasState: boolean;
-
-  // ng template for cell
-  @Input() public cellTemplate: { [key: string]: TemplateRef<any> } = {};
-
-  //ng template for cell inputs
-  @Input() public formTemplate: { [key: string]: TemplateRef<any> } = {};
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
@@ -102,35 +97,35 @@ export class TableComponent<T = any> implements OnInit {
   // emit select event : Observable<T[]>
   @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
 
-  // emit row event expand : Observable<RowModel<T>
+  // emit row event expand : Observable<T>
   @Output() expand: EventEmitter<any> = new EventEmitter();
 
-  // emit row : Observable<RowModel<T>
+  // emit row : Observable<T>
   @Output() rowClicked: EventEmitter<T> = new EventEmitter();
 
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
   public tableState$: Observable<TableState>;
 
-  public inputTemplate: { [key: string]: TemplateRef<any> };
-
-  // public filters$: Observable<ListItem<T>[]>;
   public pagination: PaginationInstance;
 
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
 
-  constructor(private tableDataSource: TableDataSource<T>) {}
+  constructor(
+    private tableStateService: TableStateService,
+    private tableDataSource: TableDataSource<T>
+  ) {}
 
   private setColumns$() {
     return this.columns$.pipe(
-      map((columns: TableColumnModel<T>[]) => {
+      map((columns: HeaderCellModel<T>[]) => {
         if (this.hasActions) {
-          columns.push(new TableColumnModel({ columnDef: 'actions' }));
+          columns.push(new HeaderCellModel({ columnDef: 'actions' }));
         }
 
         if (this.selectable) {
-          columns.unshift(new TableColumnModel({ columnDef: 'select' }));
+          columns.unshift(new HeaderCellModel({ columnDef: 'select' }));
         }
 
         return columns;
@@ -147,105 +142,26 @@ export class TableComponent<T = any> implements OnInit {
     );
   }
 
-  public tableEvent$: Observable<TableEvent>;
-
   ngOnInit() {
-    this.validateInputs();
-
     this.table$ = this.setTable$();
-
     this.tableState$ = this.setTableState$();
-    // this.tableState$ = this.setTableState$();
   }
 
-  private validateInputs() {
-    if (!this.key) {
-      throw new Error('Table must get unique key of the item');
-    }
-
-    if (this.hasActions) {
-      if (!this.tableDataSource) {
-        throw new Error(
-          'Table with actions has to get TableDataSource instance'
-        );
-      }
+  ngAfterViewInit() {
+    if (this.hasActions && !this.cellActionDirective) {
+      throw new Error('kkl-table missing *kklActionCell');
     }
   }
 
   private setTableState$() {
-    return merge(of(null), this.onEditEvent(), this.onEditCloseEvent()).pipe(
-      switchMap((tableState) => {
-        if (tableState) {
-          this.tableDataSource.loadTableState(tableState);
-        }
-        return this.tableDataSource.listenTableState();
+    return merge(
+      this.tableDataSource.listenTableState(),
+      this.tableStateService.onEditCloseEvent(this.tableDataSource),
+      this.tableStateService.onEditEvent(this.tableDataSource)
+    ).pipe(
+      map((tableState: TableState) => {
+        return tableState;
       })
     );
-  }
-
-  private onEditEvent() {
-    return this.tableDataSource.listen$.edit().pipe(
-      switchMap((state) => {
-        const { item, key, group } = state;
-        return this.tableDataSource.listenTableState().pipe(
-          take(1),
-          map((tableState) => {
-            const { editing } = tableState;
-            editing.push(item[key]);
-
-            this.inputTemplate = this.setFormTemplate(item, this.formTemplate);
-
-            tableState = {
-              ...tableState,
-              editing,
-              event: 'edit',
-              forms: {
-                ...tableState.forms,
-                [item[key]]: group,
-              },
-            } as TableState;
-
-            return tableState;
-          })
-        );
-      })
-    );
-  }
-  private onEditCloseEvent() {
-    return this.tableDataSource.listen$.close().pipe(
-      switchMap((state) => {
-        const { item, key } = state;
-        return this.tableDataSource.listenTableState().pipe(
-          take(1),
-          map((tableState: TableState) => {
-            const { editing } = tableState;
-
-            tableState = {
-              ...tableState,
-              editing: deleteItem({ array: editing, value: item[key] }),
-              event: 'close',
-            } as TableState;
-
-            return tableState;
-          })
-        );
-      })
-    );
-  }
-
-  private setFormTemplate(item: T, formTemplate) {
-    const keys = Object.keys(item).filter((key) => key !== 'input');
-    const inputTemplate = keys.reduce((acc, key) => {
-      const template = acc[key] || acc['input'];
-
-      return {
-        ...acc,
-        [key]: template,
-      } as { [key: string]: TemplateRef<any> };
-    }, formTemplate);
-
-    delete inputTemplate.input;
-
-    return inputTemplate as { [key: string]: TemplateRef<any> };
   }
 }

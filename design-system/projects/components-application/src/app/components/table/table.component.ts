@@ -1,13 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-import { map, Observable, of, switchMap, tap } from 'rxjs';
 import {
   TableDataSource,
   FormService,
   TableColumnModel,
-  RowsState,
+  RowState,
   Question,
+  QuestionGroupModel,
+  OptionMap,
 } from '../../../../../kakal-ui/src/public-api';
-import { DEMO_DATA, RootObject } from './mock_data';
+import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
+import {
+  BehaviorSubject,
+  firstValueFrom,
+  map,
+  Observable,
+  of,
+  switchMap,
+  take,
+  tap,
+} from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -17,18 +28,18 @@ import { DEMO_DATA, RootObject } from './mock_data';
 })
 export class TableComponent implements OnInit {
   // demo data from server
-  private demoStore$: Observable<RootObject[]> = of(DEMO_DATA);
+  private demoStore$: BehaviorSubject<RootObject[]>;
 
   public itemKey: string = 'id';
 
   private columns: TableColumnModel<RootObject>[] = [
     { columnDef: 'first_name', label: 'first_name', editable: true },
     { columnDef: 'last_name', label: 'last_name', editable: true },
-    { columnDef: 'email', label: 'email', editable: true },
+    { columnDef: 'email', label: 'email', editable: true,  },
     { columnDef: 'gender', label: 'gender', editable: true },
     { columnDef: 'city', label: 'city', editable: true },
     { columnDef: 'date', label: 'date', editable: true },
-    { columnDef: 'currency', label: 'currency' },
+    { columnDef: 'currency', label: 'currency', flex : 0.5 },
   ];
 
   private questions: Question[] = [
@@ -43,37 +54,81 @@ export class TableComponent implements OnInit {
   public data$: Observable<RootObject[]>;
   public columns$: Observable<TableColumnModel<RootObject>[]>;
 
+  public group: QuestionGroupModel;
+  public optionsMap: OptionMap;
+
   constructor(
     private formService: FormService,
     private tableDataSource: TableDataSource<RootObject>
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
+    this.optionsMap = await firstValueFrom(this.demoServerOptions());
+  }
+
+  private demoServerData(): Observable<RootObject[]> {
+    return of(DEMO_DATA).pipe(
+      switchMap((data: RootObject[]) => {
+        this.demoStore$.next(data);
+        return this.demoStore$.asObservable();
+      })
+    );
+  }
+  private demoServerOptions(): Observable<OptionMap> {
+    return of(DEMO_OPTIONS).pipe(
+      map((options: OptionObject[]) => {
+        return options.map((option: OptionObject) => {
+          return {
+            value: option.id,
+            label: option.city,
+          };
+        });
+      }),
+      map((options) => {
+        return { city: options };
+      })
+    );
   }
 
   private setData() {
-    const storeData$ = this.demoStore$;
+    const storeData$ = this.demoServerData();
 
     return storeData$.pipe(
       switchMap((data) => {
-        this.tableDataSource.load(data, this.columns);
+        this.tableDataSource.load(data);
         return this.tableDataSource.connect();
       })
     );
   }
 
   private setColumns$() {
+    this.tableDataSource.loadColumns(this.columns);
     return this.tableDataSource.connectColumns();
   }
 
-  private setQuestions(questions: Question[], item: RootObject): Question[] {
+  private setQuestions(
+    questions: Question[],
+    item: RootObject,
+    optionsMap?: OptionMap
+  ): Question[] {
     return questions.map((question) => {
-      return {
+      question = {
         ...question,
         value: item[question.key],
       };
+
+      if (question.controlType === 'select') {
+        question = {
+          ...question,
+          options: [...optionsMap[question.key]],
+          multi : true
+        };
+      }
+
+      return question;
     });
   }
 
@@ -83,20 +138,24 @@ export class TableComponent implements OnInit {
     });
   }
 
-  public onEditEvent(state: RowsState) {
+  public onEditEvent(state: RowState) {
     const { item } = state;
-    const group = this.setGroup(this.setQuestions(this.questions, item));
-    this.tableDataSource.actions.edit({ state: { ...state, group } });
+    this.group = this.setGroup(
+      this.setQuestions(this.questions, item, this.optionsMap)
+    );
+    this.tableDataSource.actions.edit({
+      state: { ...state, group: this.group },
+    });
   }
 
-  public onCloseEvent(state: RowsState) {
+  public onCloseEvent(state: RowState) {
     const { event } = state;
     this.tableDataSource.actions.close({ state });
     if (event === 'edit') {
     }
   }
 
-  public onSaveEvent(state: RowsState) {
+  public onSaveEvent(state: RowState) {
     const { item } = state;
 
     // imitate http response
@@ -104,6 +163,8 @@ export class TableComponent implements OnInit {
       .pipe(
         switchMap((item) => {
           return this.demoStore$.pipe(
+            take(1),
+
             map((data) => {
               const indexToUpdate = data.findIndex(
                 (cell: RootObject) =>
@@ -112,13 +173,13 @@ export class TableComponent implements OnInit {
               );
               const updateData = [...data];
               updateData[indexToUpdate] = { ...data[indexToUpdate], ...item };
-              this.tableDataSource.load(updateData);
-              return state;
+              return updateData;
             })
           );
         })
       )
-      .subscribe((state) => {
+      .subscribe((updateData) => {
+        this.demoStore$.next(updateData);
         this.tableDataSource.actions.close({ state });
       });
   }

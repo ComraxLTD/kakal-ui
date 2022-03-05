@@ -4,6 +4,11 @@ import { formatDate, formatNumber, formatCurrency } from '@angular/common';
 import { PrefixPipe } from './prefix.pipe';
 import { LocationPipe } from './location.pipe';
 
+export interface FormatPipe {
+  type : string,
+  args : any
+}
+
 @Pipe({
   name: 'format',
 })

@@ -17,3 +17,4 @@ export interface Table<T> {
   options: TableOptions<T>;
   model: T;
 }
+

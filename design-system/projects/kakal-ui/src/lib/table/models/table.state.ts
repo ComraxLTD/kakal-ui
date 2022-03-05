@@ -1,10 +1,10 @@
 import { Observable } from 'rxjs';
 import { SelectOption } from '../../form/models/question-select.model';
 import { TableColumnModel } from '../../columns/models/column.model';
-import { TableEvent } from '../models/table.events';
+import { TableActions } from '../models/table.events';
 import { SortDirection } from '@angular/material/sort';
-import { ButtonActionState } from '../table-actions/table-actions.component';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
+import { FormActions } from '../../form/models/form-events';
 
 export interface TableState {
   selected: { [key: string]: boolean };
@@ -13,13 +13,14 @@ export interface TableState {
   disabled: number[];
   activeColumns: string[];
   forms: { [key: string]: QuestionGroupModel };
-  event: TableEvent;
+  formsA: any[];
+  event: FormActions| TableActions;
 }
 
-export interface RowsState<T = any> {
+export interface RowState<T = any> {
   item?: T;
   key?: string;
-  event?: TableEvent;
+  event?: FormActions| TableActions;
   rowIndex?: number;
   column?: TableColumnModel<T>;
   group?: QuestionGroupModel<T>;
@@ -29,13 +30,17 @@ export interface RowsState<T = any> {
 // interface for update select and filter options
 
 export type ColumnState<T> = {
-  event?: TableEvent;
+  event?: TableActions;
   key?: keyof T;
   options$?: Observable<SelectOption[]>;
   type?: 'filter' | 'select';
   dir?: SortDirection;
 };
 
-export declare type TableActionStatenMap = {
-  [key: number]: Observable<ButtonActionState>;
-};
+
+export interface ActionState {
+  show: boolean;
+  disabled: boolean;
+  valid?: boolean;
+  event?: FormActions;
+}

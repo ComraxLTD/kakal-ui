@@ -14,8 +14,7 @@ export declare type Palette =
   | 'success'
   | 'graylight'
   | 'tableActionsGray'
-  | 'darkGray'
-  ;
+  | 'darkGray';
 
 export type Color = { [key in Palette]: string };
 
@@ -33,5 +32,11 @@ export const palette: Color = {
   success: '#59a437',
   graylight: '#e2e1e1',
   tableActionsGray: '#a0a0a0',
-  darkGray:'#747474'
+  darkGray: '#747474',
+};
+
+export const palletteClassesMap = {
+  primary: 'mat-primary',
+  accent: 'mat-accent',
+  warn: 'mat-warn',
 };

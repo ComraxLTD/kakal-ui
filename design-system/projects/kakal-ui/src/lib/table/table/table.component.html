@@ -30,14 +30,25 @@
 
                 <ng-container *ngFor="let column of table.columns">
                   <div
-                    [kklTableCell]="column.columnDef"
+                    kkl-cell
+                    [columnDef]="column.columnDef"
+                    [flex]="column.flex"
                     [center]="column.center"
                   >
-                    <!-- DEFAULT HEADER -->
-                    <ng-container>
-                      <kkl-typography [weight]="600">
-                        {{ column.label }}
-                      </kkl-typography>
+                    <!-- <ng-container
+                      *ngTemplateOutlet="
+                        headerTemplate[column.columnDef] || defaultHeader;
+                        context: { $implicit: column }
+                      "
+                    >
+                    </ng-container> -->
+
+                    <ng-container
+                      *ngTemplateOutlet="
+                      cellHeaderDirective?.template;
+                context: { $implicit: {column, key,  tableState}}
+                "
+                    >
                     </ng-container>
                   </div>
                 </ng-container>
@@ -65,17 +76,27 @@
                     [class.expand]="accordion"
                     [class.form]="tableState.editing.indexOf(row[key]) !== -1"
                   >
-                    <div class="row" fxFill fxLayout="row">
+                    <div
+                      class="row"
+                      fxFill
+                      fxLayout="row"
+                      fxLayoutAlign="start center"
+                      fxLayoutGap="1rem"
+                    >
                       <ng-container
                         *ngFor="
                           let column of table.columns;
                           let columnIndex = index
                         "
                       >
-                        <ng-container [ngSwitch]="column.columnDef">
-                          <!-- Select cell -->
-                          <ng-container *ngSwitchCase="'select'">
-                            <div [kklTableCell]="column.columnDef">
+                        <div
+                          kkl-cell
+                          [columnDef]="column.columnDef"
+                          [flex]="column.flex"
+                        >
+                          <ng-container [ngSwitch]="column.columnDef">
+                            <!-- Select cell -->
+                            <ng-container *ngSwitchCase="'select'">
                               <mat-checkbox
                                 color="primary"
                                 (click)="onSelect()"
@@ -84,65 +105,31 @@
                                 [checked]="selection.isSelected(row)"
                               >
                               </mat-checkbox>
-                            </div>
-                          </ng-container>
+                            </ng-container>
 
-                          <!-- Actions cell -->
-                          <ng-container *ngSwitchCase="'actions'">
-                            <div [kklTableCell]="column.columnDef" fxFlex>
+                            <!-- Actions cell -->
+                            <ng-container *ngSwitchCase="'actions'">
                               <ng-container
-                                *ngTemplateOutlet="cellTemplate['actions']; context : {$implicit :{ item :row, column, rowIndex, key, group: tableState.forms[row[key]]}}"
-                              ></ng-container>
-                            </div>
-                          </ng-container>
-
-                          <!-- Data cell -->
-                          <ng-container *ngSwitchDefault>
-                            <div
-                              fxFlex
-                              [kklTableCell]="column.columnDef"
-                              [class.center]="column.center"
-                            >
-                              <!-- Default cell -->
-                              <ng-container
-                                *ngIf="
-                                  tableState.editing.indexOf(row[key]) === -1;
-                                  else editBlock
-                                "
+                                *ngTemplateOutlet="
+                                cellActionDirective?.template;
+                            context: { $implicit: {item :row, column, rowIndex, key, group: tableState.forms[row[key]], tableState}}
+                            "
                               >
-                                <ng-container
-                                  *ngIf="
-                                    !cellTemplate[column.columnDef];
-                                    else customBlock
-                                  "
-                                >
-                                  <kkl-typography>
-                                    {{
-                                      row[column.columnDef]
-                                        | format: column?.format
-                                    }}
-                                  </kkl-typography>
-                                </ng-container>
                               </ng-container>
+                            </ng-container>
 
-                              <!-- Edit block -->
-                              <ng-template #editBlock>
-                                <ng-container
-                                  *ngTemplateOutlet="inputTemplate[column.columnDef];
-                                  context : {$implicit :
-                                    {row, column, rowIndex, key, group : tableState.forms[row[key]]}} "
-                                ></ng-container>
-                              </ng-template>
-
-                              <!-- Custom cell -->
-                              <ng-template #customBlock>
-                                <ng-container
-                                  *ngTemplateOutlet="cellTemplate[column.columnDef]; context : {$implicit : {row, column, rowIndex, key}} "
-                                ></ng-container>
-                              </ng-template>
-                            </div>
+                            <!-- Data cell -->
+                            <ng-container *ngSwitchDefault>
+                              <ng-container
+                                *ngTemplateOutlet="
+                              cellDirective.template;
+                              context: { $implicit: {row, column, rowIndex, key, group: tableState.forms[row[key]], tableState}}
+                              "
+                              >
+                              </ng-container>
+                            </ng-container>
                           </ng-container>
-                        </ng-container>
+                        </div>
                       </ng-container>
                     </div>
                   </mat-expansion-panel-header>
@@ -173,3 +160,9 @@
     </div>
   </ng-container>
 </ng-container>
+
+<ng-template #defaultHeader let-column>
+  <kkl-typography [weight]="600">
+    {{ column.label }}
+  </kkl-typography>
+</ng-template>

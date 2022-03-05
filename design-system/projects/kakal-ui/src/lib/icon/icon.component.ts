@@ -11,13 +11,33 @@ import { IconsService } from './icons.service';
 export class IconComponent implements OnInit {
   public palette: Color = palette;
 
-  @Input() public key: string;
+  private _key: string;
+
+  @Input()
+  get key(): string {
+    return this._key;
+  }
+  set key(value: string) {
+    this._key = value;
+    this.iconsService.setIcon(this._key)
+  }
+
+  private _color: string = 'default';
+
+  @Input()
+  get color(): string {
+    return this._color;
+  }
+  set color(value: string) {
+    this._color = value;
+  }
+
+
   @Input() public type: IconType;
   @Input() public size: number;
 
   @Input() public formType: string = 'form';
 
-  @Input() public color: Palette;
   @Input() public stroke: Palette;
 
   @Input() public backgroundColor: Palette;

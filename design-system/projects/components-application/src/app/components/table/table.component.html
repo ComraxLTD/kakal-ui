@@ -1,38 +1,67 @@
 <div fxFill dir="rtl">
   <kkl-table
+    kkl-table
     [data$]="data$"
-    [itemKey]="itemKey"
     [columns$]="columns$"
-    [cellTemplate]="{isActive, actions}"
-    [formTemplate]="{input}"
+    [itemKey]="itemKey"
     [hasActions]="true"
-  ></kkl-table>
+  >
+    <!-- use kklHeaderCell for render header cell -->
+    <ng-container *kklHeaderCell="let context">
+      <kkl-header-cell
+        [column]="context.column"
+        [columnDef]="context.column.columnDef"
+        [headerTemplate]="{actions}"
+      ></kkl-header-cell>
+    </ng-container>
+
+    <!-- use kklTableCell for render table cell -->
+    <ng-container *kklTableCell="let context">
+      <!-- use kkl-data-cell for comrax table cell -->
+      <kkl-data-cell
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        [row]="context.row"
+        [key]="context.key"
+        [column]="context.column"
+        [group]="context.group"
+        [tableState]="context.tableState"
+        [cellTemplate]="{email}"
+        [inputTemplate]="{input}"
+      ></kkl-data-cell>
+    </ng-container>
+
+    <!-- use kkl-actions-cell for default actions -edit, delete and save -->
+    <ng-container *kklActionCell="let rowState">
+      <kkl-actions-cell
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [rowState]="rowState"
+        [dataSource]="tableDataSource"
+        (edit)="onEditEvent($event)"
+        (close)="onCloseEvent($event)"
+        (save)="onSaveEvent($event)"
+      ></kkl-actions-cell>
+    </ng-container>
+  </kkl-table>
 </div>
 
-<ng-template #isActive let-item>
-  <kkl-typography>
-    {{ item.isActive ? "pass" : "failed" }}
+<ng-template #email let-rowState>
+  <kkl-typography color="primary" underline="true">
+    {{ rowState.row.email }}
   </kkl-typography>
 </ng-template>
 
-<ng-template #input let-rowState let-tableState="tableState">
-  <kkl-table-cell-form
-    fxFlex="90"
-    [group]="rowState.group"
-    [columnDef]="rowState.column.columnDef"
-  ></kkl-table-cell-form>
+<ng-template #actions>
+  <kkl-create-button> הוסף מכונית </kkl-create-button>
 </ng-template>
 
-
-<!-- use kkl-table-action for default actions -edit, delete and save -->
-<ng-template #actions let-rowState let-tableState="tableState">
-  <kkl-table-actions
-    [hasEdit]="true"
-    [hasDelete]="true"
-    [rowState]="rowState"
-    [dataSource]="tableDataSource"
-    (edit)="onEditEvent($event)"
-    (close)="onCloseEvent($event)"
-    (save)="onSaveEvent($event)"
-  ></kkl-table-actions>
+<ng-template #input let-rowState>
+  <div fxFill fxLayout="row">
+    <kkl-form-cell
+      fxFlex="70"
+      [group]="rowState.group"
+      [columnDef]="rowState.column.columnDef"
+    ></kkl-form-cell>
+  </div>
 </ng-template>

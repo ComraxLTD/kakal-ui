@@ -21,6 +21,7 @@ export class FormSelectComponent implements OnInit {
   @Input() public placeHolder: string;
   @Input() public theme: Palette;
   @Input() public appearance: Appearance;
+  
   @Output() public selected: EventEmitter<FormOption> = new EventEmitter();
   @Output() public focus: EventEmitter<FormOption> = new EventEmitter();
 
@@ -34,13 +35,6 @@ export class FormSelectComponent implements OnInit {
 
   public onSelectChange() {
     const formOption: FormOption = this.getFormOption(this.control.value);
-    // if (
-    //   this.question instanceof QuestionSelectModel &&
-    //   this.question.onSelectChange
-    // ) {
-    //   this.question.onSelectChange(formOption);
-    // }
-
     this.selected.emit(formOption);
   }
 
@@ -55,16 +49,6 @@ export class FormSelectComponent implements OnInit {
 
     return formOption;
   }
-
-  // private getOption(value: any): SelectOption | null {
-  //   if (this.options) {
-  //     return this.options.find(
-  //       (option: SelectOption) => option.value === value
-  //     );
-  //   } else {
-  //     return null;
-  //   }
-  // }
 
   public setErrorMessage() {
     const error = this.messageService.getErrorMessage(

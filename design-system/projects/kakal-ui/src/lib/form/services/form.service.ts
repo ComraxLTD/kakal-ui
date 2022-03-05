@@ -30,7 +30,7 @@ export type ControlTemplate = [
   asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[]
 ];
 
-export type QuestionBase = QuestionBaseModel<
+export declare type QuestionBase = QuestionBaseModel<
   string | number | Date | boolean | File[] | undefined
 >;
 

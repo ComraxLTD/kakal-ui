@@ -1,7 +1,7 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { ButtonComponent } from '../../projects/kakal-ui/src/lib/button/button.component';
+import { ButtonComponent } from '../../projects/kakal-ui/src/lib/button/components/button/button.component';
 import { KKLButtonModule } from '../../projects/kakal-ui/src/lib/button/button.module';
 
 export default {
