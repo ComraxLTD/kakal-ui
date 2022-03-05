@@ -15,26 +15,18 @@ import { PaginationInstance } from 'ngx-pagination';
 
 import { TableOptions } from '../models/table-options';
 import { TableState } from '../models/table.state';
-import { deleteItem } from './table.helpers';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
 
-import {
-  combineLatest,
-  map,
-  merge,
-  Observable,
-  of,
-  switchMap,
-  take,
-} from 'rxjs';
 import { KKLActionCellDirective } from '../cells/table-cell-action/cell-action.directive';
 import { KKLDataCellDirective } from '../cells/table-data-cell/cell-data.directive';
+import { KKLHeaderCellDirective } from '../header-cells/cell-header.directive';
 
 import { TableStateService } from './table-state.service';
+import { combineLatest, map, merge, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-table',
@@ -43,6 +35,9 @@ import { TableStateService } from './table-state.service';
   providers: [TableStateService],
 })
 export class TableComponent<T = any> implements OnInit {
+  @ContentChild(KKLHeaderCellDirective)
+  cellHeaderDirective: KKLHeaderCellDirective | undefined;
+
   @ContentChild(KKLDataCellDirective)
   cellDirective: KKLDataCellDirective | undefined;
 
@@ -115,7 +110,6 @@ export class TableComponent<T = any> implements OnInit {
   public table$: any;
   public tableState$: Observable<TableState>;
 
-
   public pagination: PaginationInstance;
 
   // cdk object that handle selection
@@ -152,18 +146,15 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   ngOnInit() {
-
-
+    console.log(this.cellHeaderDirective);
     this.table$ = this.setTable$();
     this.tableState$ = this.setTableState$();
   }
 
   ngAfterViewInit() {
-
-    if(this.hasActions && !this.cellActionDirective) {
-      throw new Error('kkl-table missing *kklActionCell')
+    if (this.hasActions && !this.cellActionDirective) {
+      throw new Error('kkl-table missing *kklActionCell');
     }
-
   }
 
   private setTableState$() {

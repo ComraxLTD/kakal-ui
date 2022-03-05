@@ -25,6 +25,7 @@ import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 
 import { KKLTableModule } from './table/table/table.module';
 import { KKLTableCellModule } from './table/cells/table-cell.module';
+import { KKLHeaderCellModule } from './table/header-cells/header-cells.module';
 import { KKLColumnsModule } from './columns/column.module';
 
 import { SidenavModule } from './sidenav/sidenav.module';
@@ -67,6 +68,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 
     // TABLE MODULES
     KKLTableModule,
+    KKLHeaderCellModule,
     KKLTableCellModule,
     KKLColumnsModule,
 
@@ -95,6 +97,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLFormUploadModule,
 
     KKLTableModule,
+    KKLHeaderCellModule,
     KKLTableCellModule,
     KKLColumnsModule,
 

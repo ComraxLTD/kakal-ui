@@ -7,6 +7,11 @@
     [hasActions]="true"
     [headerTemplate]="{actions}"
   >
+  <!-- use kklHeaderCell for render header cell -->
+    <ng-container *kklHeaderCell>
+      <div>success</div>
+    </ng-container>
+
     <!-- use kkl-table-cell for render table cell -->
     <ng-container *kklTableCell="let context">
       <kkl-table-cell

@@ -12,6 +12,7 @@ import { KKLIconModule } from '../../icon/icon.module';
 import { TableComponent } from './table.component';
 import { KKLColumnsModule } from '../../columns/column.module';
 import { KKLTableCellModule } from '../cells/table-cell.module';
+import { KKLHeaderCellModule } from '../header-cells/header-cells.module';
 
 import { KKLTableDirective} from '../table/table.directive';
 import { KKLCellDirective } from '../directives/cell.directive';
@@ -26,8 +27,9 @@ import { KKLPipesModule } from '../../pipes/pipes.module';
     MatTableModule,
     MatExpansionModule,
     MatCheckboxModule,
-    KKLColumnsModule,
 
+    KKLColumnsModule,
+    KKLHeaderCellModule,
     KKLTableCellModule,
 
     KKLIconModule,
