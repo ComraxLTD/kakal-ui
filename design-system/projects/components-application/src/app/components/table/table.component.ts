@@ -186,7 +186,7 @@ export class TableComponent implements OnInit {
 
   public onCreateEvent() {
     const item: RootObject = {
-      id: null,
+      id: 0,
       first_name: '',
       last_name: '',
       email: '',
@@ -203,18 +203,16 @@ export class TableComponent implements OnInit {
             take(1),
             map((data) => {
               const updateData = [...data];
-              updateData.unshift(item)
+              updateData.unshift(item);
               return updateData;
             })
           );
         })
       )
       .subscribe((updateData) => {
+        const state: RowState = { item };
         this.demoStore$.next(updateData);
+        this.tableDataSource.actions.create({ state });
       });
   }
-
-
-
-
 }
