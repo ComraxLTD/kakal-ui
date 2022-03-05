@@ -49,23 +49,20 @@ export class TableComponent<T = any> implements OnInit {
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
-  @Input() public model: T;
-
-  @Input() public options: TableOptions<T>;
 
   @Input() public theme: ThemePalette = 'accent';
 
   // if table have state modes
   @Input() public paginator: boolean;
+
   @Input() public expendable: boolean;
   @Input() public clickable: boolean;
   @Input() public accordion: boolean;
   @Input() public selectable: boolean;
-  @Input() public filterable: boolean;
+  
   // if table have additional features
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
-  @Input() public hasState: boolean;
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
