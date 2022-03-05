@@ -16,7 +16,6 @@ import { PaginationInstance } from 'ngx-pagination';
 import { TableOptions } from '../models/table-options';
 import { TableState } from '../models/table.state';
 
-import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
