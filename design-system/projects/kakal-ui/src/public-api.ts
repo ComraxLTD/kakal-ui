@@ -91,15 +91,15 @@ export * from './lib/table/table/table-state.service';
 export * from './lib/table/table/table.directive';
 export * from './lib/table/table/table.module';
 
-export * from './lib/table/table-cells/table-cell.module';
-export * from './lib/table/table-cells/table-cell-form/table-cell-form.component';
-export * from './lib/table/table-cells/table-cell-form/table-cell-form.module';
+export * from './lib/table/cells/table-cell.module';
+export * from './lib/table/cells/table-cell-form/table-cell-form.component';
+export * from './lib/table/cells/table-cell-form/table-cell-form.module';
 
-export * from './lib/table/table-cells/table-cell-action/table-action-cell.component';
-export * from './lib/table/table-cells/table-cell-action/table-actions-cell.module';
+export * from './lib/table/cells/table-cell-action/table-action-cell.component';
+export * from './lib/table/cells/table-cell-action/table-actions-cell.module';
 
-export * from './lib/table/table-cells/table-data-cell/table-data-cell.component';
-export * from './lib/table/table-cells/table-data-cell/table-data-cell.module';
+export * from './lib/table/cells/table-data-cell/table-data-cell.component';
+export * from './lib/table/cells/table-data-cell/table-data-cell.module';
 
 export * from './lib/table/models/table';
 export * from './lib/table/models/table-datasource';

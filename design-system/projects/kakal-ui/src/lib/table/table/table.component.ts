@@ -31,8 +31,8 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { KKLActionCellDirective } from '../table-cells/table-cell-action/cell-action.directive';
-import { KKLDataCellDirective } from '../table-cells/table-data-cell/cell-data.directive';
+import { KKLActionCellDirective } from '../cells/table-cell-action/cell-action.directive';
+import { KKLDataCellDirective } from '../cells/table-data-cell/cell-data.directive';
 
 import { TableStateService } from './table-state.service';
 
