@@ -9,7 +9,16 @@ import { Color, palette, Palette } from '../../styles/theme';
 export class TypographyComponent implements OnInit {
   @Input() public size: number;
   @Input() public weight: number;
-  @Input() public color: Palette;
+
+  private _color: string = 'text';
+
+  @Input()
+  get color(): string {
+    return this._color;
+  }
+  set color(value: string) {
+    this._color = value;
+  }
 
   @Input() public underline: boolean;
   @Input() public disabled: boolean;

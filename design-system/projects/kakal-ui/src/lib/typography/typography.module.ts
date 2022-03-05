@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypographyComponent } from './typography.component';
+import { KKLTypographyDirective } from './typography.directive';
 
 
 @NgModule({
