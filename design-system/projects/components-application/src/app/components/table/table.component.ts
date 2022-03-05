@@ -35,11 +35,11 @@ export class TableComponent implements OnInit {
   private columns: TableColumnModel<RootObject>[] = [
     { columnDef: 'first_name', label: 'first_name', editable: true },
     { columnDef: 'last_name', label: 'last_name', editable: true },
-    { columnDef: 'email', label: 'email', editable: true,  },
+    { columnDef: 'email', label: 'email', editable: true },
     { columnDef: 'gender', label: 'gender', editable: true },
     { columnDef: 'city', label: 'city', editable: true },
     { columnDef: 'date', label: 'date', editable: true },
-    { columnDef: 'currency', label: 'currency', flex : 0.5 },
+    { columnDef: 'currency', label: 'currency', flex: 0.5 },
   ];
 
   private questions: Question[] = [
@@ -124,7 +124,7 @@ export class TableComponent implements OnInit {
         question = {
           ...question,
           options: [...optionsMap[question.key]],
-          multi : true
+          multi: true,
         };
       }
 
@@ -183,4 +183,38 @@ export class TableComponent implements OnInit {
         this.tableDataSource.actions.close({ state });
       });
   }
+
+  public onCreateEvent() {
+    const item: RootObject = {
+      id: null,
+      first_name: '',
+      last_name: '',
+      email: '',
+      gender: '',
+      city: '',
+      date: '',
+      currency: '',
+    };
+
+    of(item)
+      .pipe(
+        switchMap((item) => {
+          return this.demoStore$.pipe(
+            take(1),
+            map((data) => {
+              const updateData = [...data];
+              updateData.unshift(item)
+              return updateData;
+            })
+          );
+        })
+      )
+      .subscribe((updateData) => {
+        this.demoStore$.next(updateData);
+      });
+  }
+
+
+
+
 }

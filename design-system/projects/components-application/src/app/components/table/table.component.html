@@ -53,7 +53,7 @@
 </ng-template>
 
 <ng-template #actions>
-  <kkl-create-button> הוסף מכונית </kkl-create-button>
+  <kkl-create-button (clickEvent)="onCreateEvent()"> הוסף מכונית </kkl-create-button>
 </ng-template>
 
 <ng-template #input let-rowState>

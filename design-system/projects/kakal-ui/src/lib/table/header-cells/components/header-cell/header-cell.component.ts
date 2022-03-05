@@ -7,7 +7,6 @@ import { HeaderCellModel } from '../../models/header-cell.model';
   styleUrls: ['./header-cell.component.scss'],
 })
 export class HeaderCellComponent implements OnInit {
-
   @Input() column: HeaderCellModel;
   @Input() label: string;
   @Input() columnDef: string;
@@ -15,7 +14,5 @@ export class HeaderCellComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.column)
-  }
+  ngOnInit(): void {}
 }
