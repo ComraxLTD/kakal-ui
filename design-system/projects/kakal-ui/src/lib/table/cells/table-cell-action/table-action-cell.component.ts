@@ -6,8 +6,17 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { Observable, merge, mapTo, filter, map } from 'rxjs';
+import { FormControlStatus, FormGroup } from '@angular/forms';
+import {
+  Observable,
+  merge,
+  mapTo,
+  filter,
+  map,
+  switchMap,
+  startWith,
+  distinctUntilChanged,
+} from 'rxjs';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../models/table.state';
 import { ActionStateRules } from '../../models/table-actions';
@@ -82,18 +91,24 @@ export class TableActionCellComponent implements OnInit {
     return this.dataSource.on(FormActions.EDIT).pipe(
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
       map((rowState: RowState) => rowState.group.formGroup),
-      map((formGroup: FormGroup) => {
-        const editState = {
-          show: false,
-          valid: formGroup.valid,
-          event: 'edit',
-        } as ActionState;
+      switchMap((formGroup: FormGroup) => {
+        return formGroup.statusChanges.pipe(
+          startWith(formGroup.status),
+          distinctUntilChanged(),
+          map((status: FormControlStatus) => {
+            const editState = {
+              show: false,
+              valid: formGroup.valid,
+              event: 'edit',
+            } as ActionState;
 
-        const deleteState = {
-          show: false,
-          event: 'edit',
-        } as ActionState;
-        return { editState, deleteState };
+            const deleteState = {
+              show: false,
+              event: 'edit',
+            } as ActionState;
+            return { editState, deleteState };
+          })
+        );
       })
     );
   }

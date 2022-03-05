@@ -44,12 +44,12 @@ export class TableComponent implements OnInit {
   ];
 
   private questions: Question[] = [
-    { key: 'first_name' },
+    { key: 'first_name', validations: [Validators.required] },
     { key: 'last_name' },
     { key: 'email', controlType: 'email' },
     { key: 'gender', controlType: 'checkbox' },
     { key: 'city', controlType: 'select' },
-    { key: 'date', controlType: 'date', validations : [Validators.required] },
+    { key: 'date', controlType: 'date', validations: [Validators.required] },
   ];
 
   public data$: Observable<RootObject[]>;
@@ -141,11 +141,13 @@ export class TableComponent implements OnInit {
 
   public onEditEvent(state: RowState) {
     const { item } = state;
-    this.group = this.setGroup(
+    const group = this.setGroup(
       this.setQuestions(this.questions, item, this.optionsMap)
     );
+
+
     this.tableDataSource.actions.edit({
-      state: { ...state, group: this.group },
+      state: { ...state, group },
     });
   }
 
@@ -185,9 +187,7 @@ export class TableComponent implements OnInit {
       });
   }
 
-  public onCreateEvent(state : RowState) {
-
-
+  public onCreateEvent(state: RowState) {
     const item: RootObject = {
       id: 0,
       first_name: '',
@@ -217,7 +217,7 @@ export class TableComponent implements OnInit {
         const group = this.setGroup(
           this.setQuestions(this.questions, item, this.optionsMap)
         );
-
+        console.log(group.formGroup.valid);
 
         this.tableDataSource.actions.edit({
           state: { ...state, item, group },
