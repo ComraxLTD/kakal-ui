@@ -11,12 +11,14 @@ import { KKLIconModule } from '../../icon/icon.module';
 
 import { TableComponent } from './table.component';
 import { KKLColumnsModule } from '../../columns/column.module';
-import { KKLPipesModule } from '../../pipes/pipes.module';
-import { KKLTableCellModule } from '../table-cells/table-cell.module';
+import { KKLTableCellModule } from '../cells/table-cell.module';
+import { KKLHeaderCellModule } from '../header-cells/header-cells.module';
 
 import { KKLTableDirective} from '../table/table.directive';
 import { KKLCellDirective } from '../directives/cell.directive';
 import { KKLDirectivesModule } from '../../directives/directives.module';
+
+import { KKLPipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -25,8 +27,9 @@ import { KKLDirectivesModule } from '../../directives/directives.module';
     MatTableModule,
     MatExpansionModule,
     MatCheckboxModule,
-    KKLColumnsModule,
 
+    KKLColumnsModule,
+    KKLHeaderCellModule,
     KKLTableCellModule,
 
     KKLIconModule,

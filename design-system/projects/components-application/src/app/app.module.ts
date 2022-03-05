@@ -8,9 +8,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../../kakal-ui/src/lib/angular-material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableComponent } from './components/table/table.component';
+import { StrokedButtonDirective } from './stroked-button';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent],
+  declarations: [AppComponent, TableComponent ,StrokedButtonDirective],
   imports: [
     BrowserModule,
     AppRoutingModule,

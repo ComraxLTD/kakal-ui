@@ -15,34 +15,29 @@ import { PaginationInstance } from 'ngx-pagination';
 
 import { TableOptions } from '../models/table-options';
 import { TableState } from '../models/table.state';
-import { deleteItem } from './table.helpers';
 
-import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
 
-import {
-  combineLatest,
-  map,
-  merge,
-  Observable,
-  of,
-  switchMap,
-  take,
-} from 'rxjs';
-import { KKLActionCellDirective } from '../table-cells/table-cell-action/cell-action.directive';
-import { KKLDataCellDirective } from '../table-cells/table-data-cell/cell-data.directive';
+import { KKLActionCellDirective } from '../cells/table-cell-action/cell-action.directive';
+import { KKLDataCellDirective } from '../cells/table-data-cell/cell-data.directive';
+import { KKLHeaderCellDirective } from '../header-cells/cell-header.directive';
 
-import { TableService } from './table.service';
+import { TableStateService } from './table-state.service';
+import { combineLatest, map, merge, Observable } from 'rxjs';
+import { HeaderCellModel } from '../header-cells/models/header-cell.model';
 
 @Component({
   selector: 'kkl-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableService],
+  providers: [TableStateService],
 })
 export class TableComponent<T = any> implements OnInit {
+  @ContentChild(KKLHeaderCellDirective)
+  cellHeaderDirective: KKLHeaderCellDirective | undefined;
+
   @ContentChild(KKLDataCellDirective)
   cellDirective: KKLDataCellDirective | undefined;
 
@@ -50,7 +45,7 @@ export class TableComponent<T = any> implements OnInit {
   cellActionDirective: KKLActionCellDirective | undefined;
 
   @Input() public data$: Observable<T[]>;
-  @Input() public columns$: Observable<TableColumnModel<T>[]>;
+  @Input() public columns$: Observable<HeaderCellModel<T>[]>;
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
@@ -105,38 +100,35 @@ export class TableComponent<T = any> implements OnInit {
   // emit select event : Observable<T[]>
   @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
 
-  // emit row event expand : Observable<RowModel<T>
+  // emit row event expand : Observable<T>
   @Output() expand: EventEmitter<any> = new EventEmitter();
 
-  // emit row : Observable<RowModel<T>
+  // emit row : Observable<T>
   @Output() rowClicked: EventEmitter<T> = new EventEmitter();
 
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
   public tableState$: Observable<TableState>;
 
-  public inputTemplate: { [key: string]: TemplateRef<any> };
-
-  // public filters$: Observable<ListItem<T>[]>;
   public pagination: PaginationInstance;
 
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
 
   constructor(
-    private tableService: TableService,
+    private tableStateService: TableStateService,
     private tableDataSource: TableDataSource<T>
   ) {}
 
   private setColumns$() {
     return this.columns$.pipe(
-      map((columns: TableColumnModel<T>[]) => {
+      map((columns: HeaderCellModel<T>[]) => {
         if (this.hasActions) {
-          columns.push(new TableColumnModel({ columnDef: 'actions' }));
+          columns.push(new HeaderCellModel({ columnDef: 'actions' }));
         }
 
         if (this.selectable) {
-          columns.unshift(new TableColumnModel({ columnDef: 'select' }));
+          columns.unshift(new HeaderCellModel({ columnDef: 'select' }));
         }
 
         return columns;
@@ -158,17 +150,20 @@ export class TableComponent<T = any> implements OnInit {
     this.tableState$ = this.setTableState$();
   }
 
+  ngAfterViewInit() {
+    if (this.hasActions && !this.cellActionDirective) {
+      throw new Error('kkl-table missing *kklActionCell');
+    }
+  }
+
   private setTableState$() {
     return merge(
-      of(null),
-      this.tableService.onEditCloseEvent(this.tableDataSource),
-      this.tableService.onEditEvent(this.tableDataSource)
+      this.tableDataSource.listenTableState(),
+      this.tableStateService.onEditCloseEvent(this.tableDataSource),
+      this.tableStateService.onEditEvent(this.tableDataSource)
     ).pipe(
-      switchMap((tableState: TableState) => {
-        if (tableState) {
-          this.tableDataSource.loadTableState(tableState);
-        }
-        return this.tableDataSource.listenTableState();
+      map((tableState: TableState) => {
+        return tableState;
       })
     );
   }

@@ -2,9 +2,33 @@
   <!-- <app-action-table></app-action-table> -->
   <app-table></app-table>
 </div>
-<div class="container" dir="rtl">
-  <!-- <kkl-form-select [control]='control'></kkl-form-select>
- -->
-  <!-- <kkl-form-texteditor [control]="control"></kkl-form-texteditor> -->
-  <!-- <kkl-form-date [control]="control"></kkl-form-date> -->
+<div kkl-border fxLayout="row" fxLayoutGap="2rem" class="container" dir="rtl">
+  <div fxLayout="column" fxLayoutGap="2rem">
+    <mat-slide-toggle #toggle>toggle disable state</mat-slide-toggle>
+
+    <kkl-icon [key]="toggle.checked ? 'medal' : 'search'"></kkl-icon>
+    <mat-icon>{{toggle.checked ? 'medal' : 'search'}}</mat-icon>
+    <!-- <div fxLayout="row" fxLayoutGap="2rem" dir="rtl">
+      <button mat-stroked-button kkl-stroked-button color="accent" [disabled]="toggle.checked">
+        <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+          <span> הוסף </span>
+          <mat-icon>add</mat-icon>
+        </div>
+      </button>
+      <button mat-raised-button color="accent" [disabled]="toggle.checked">
+        <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+          <span> הוסף </span>
+          <mat-icon>add</mat-icon>
+        </div>
+      </button>
+      <button mat-stroked-button color="accent" [disabled]="toggle.checked">
+        <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+          <span> הוסף </span>
+          <mat-icon>add</mat-icon>
+        </div>
+      </button>
+
+
+    </div> -->
+  </div>
 </div>

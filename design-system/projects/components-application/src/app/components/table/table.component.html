@@ -6,18 +6,29 @@
     [itemKey]="itemKey"
     [hasActions]="true"
   >
-    <!-- use kkl-table-cell for render table cell -->
+    <!-- use kklHeaderCell for render header cell -->
+    <ng-container *kklHeaderCell="let context">
+      <kkl-header-cell
+        [column]="context.column"
+        [columnDef]="context.column.columnDef"
+        [headerTemplate]="{actions}"
+      ></kkl-header-cell>
+    </ng-container>
+
+    <!-- use kklTableCell for render table cell -->
     <ng-container *kklTableCell="let context">
-      <kkl-table-cell
+      <!-- use kkl-data-cell for comrax table cell -->
+      <kkl-data-cell
         fxLayout="row"
         fxLayoutAlign="start center"
         [row]="context.row"
         [key]="context.key"
         [column]="context.column"
+        [group]="context.group"
         [tableState]="context.tableState"
         [cellTemplate]="{email}"
         [inputTemplate]="{input}"
-      ></kkl-table-cell>
+      ></kkl-data-cell>
     </ng-container>
 
     <!-- use kkl-actions-cell for default actions -edit, delete and save -->
@@ -41,10 +52,14 @@
   </kkl-typography>
 </ng-template>
 
+<ng-template #actions>
+  <kkl-create-button> הוסף מכונית </kkl-create-button>
+</ng-template>
+
 <ng-template #input let-rowState>
   <div fxFill fxLayout="row">
     <kkl-form-cell
-      fxFlex="65"
+      fxFlex="70"
       [group]="rowState.group"
       [columnDef]="rowState.column.columnDef"
     ></kkl-form-cell>

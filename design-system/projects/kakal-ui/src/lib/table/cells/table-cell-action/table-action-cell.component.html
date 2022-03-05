@@ -37,7 +37,6 @@
         mat-raised-button
         class="kkl-save-button"
         (click)="onSave(buttonState.editState.event)"
-        kkl-border
         [disabled]="!buttonState.editState.valid"
         matTooltip="שמור"
       >
@@ -49,7 +48,6 @@
         matTooltip="בטל"
         mat-icon-button
         (click)="onClose(buttonState.editState.event)"
-        matTooltip="בטל"
       >
         <kkl-icon key="cancel"></kkl-icon>
       </button>

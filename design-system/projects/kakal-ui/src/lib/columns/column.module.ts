@@ -11,7 +11,6 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { KKLColumnFormModule } from './column-form/column-form.module';
 import { KKLColumnFilterModule } from './column-filter/column-filter.module';
 
 @NgModule({
@@ -27,9 +26,8 @@ import { KKLColumnFilterModule } from './column-filter/column-filter.module';
     KKLIconModule,
     KKLDirectivesModule,
     KKLPipesModule,
-    KKLColumnFormModule,
     KKLColumnFilterModule,
   ],
-  exports: [KKLColumnFormModule, KKLColumnFilterModule],
+  exports: [KKLColumnFilterModule],
 })
 export class KKLColumnsModule {}

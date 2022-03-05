@@ -21,6 +21,7 @@ export class FormSelectComponent implements OnInit {
   @Input() public placeHolder: string;
   @Input() public theme: Palette;
   @Input() public appearance: Appearance;
+  
   @Output() public selected: EventEmitter<FormOption> = new EventEmitter();
   @Output() public focus: EventEmitter<FormOption> = new EventEmitter();
 
@@ -33,7 +34,6 @@ export class FormSelectComponent implements OnInit {
   }
 
   public onSelectChange() {
-    console.log(this.control.value)
     const formOption: FormOption = this.getFormOption(this.control.value);
     this.selected.emit(formOption);
   }

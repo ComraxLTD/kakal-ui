@@ -1,0 +1,14 @@
+<ng-container
+  *ngTemplateOutlet="
+    headerTemplate[column.columnDef.toString()] || defaultHeader;
+    context: { $implicit: column }
+  "
+>
+</ng-container>
+
+<!-- DEFAULT HEADER -->
+<ng-template #defaultHeader let-column>
+  <kkl-typography [weight]="600">
+    {{ column.label }}
+  </kkl-typography>
+</ng-template>

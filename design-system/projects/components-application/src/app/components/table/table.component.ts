@@ -7,7 +7,6 @@ import {
   Question,
   QuestionGroupModel,
   OptionMap,
-  TableService,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -25,7 +24,7 @@ import {
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource, TableService],
+  providers: [TableDataSource],
 })
 export class TableComponent implements OnInit {
   // demo data from server
@@ -36,11 +35,11 @@ export class TableComponent implements OnInit {
   private columns: TableColumnModel<RootObject>[] = [
     { columnDef: 'first_name', label: 'first_name', editable: true },
     { columnDef: 'last_name', label: 'last_name', editable: true },
-    { columnDef: 'email', label: 'email', editable: true, flex: 1.5 },
+    { columnDef: 'email', label: 'email', editable: true,  },
     { columnDef: 'gender', label: 'gender', editable: true },
     { columnDef: 'city', label: 'city', editable: true },
     { columnDef: 'date', label: 'date', editable: true },
-    { columnDef: 'currency', label: 'currency' },
+    { columnDef: 'currency', label: 'currency', flex : 0.5 },
   ];
 
   private questions: Question[] = [
@@ -125,6 +124,7 @@ export class TableComponent implements OnInit {
         question = {
           ...question,
           options: [...optionsMap[question.key]],
+          multi : true
         };
       }
 

@@ -34,13 +34,21 @@
                     [columnDef]="column.columnDef"
                     [flex]="column.flex"
                     [center]="column.center"
-                    [editable]="false"
                   >
-                    <!-- DEFAULT HEADER -->
-                    <ng-container>
-                      <kkl-typography [weight]="600">
-                        {{ column.label }}
-                      </kkl-typography>
+                    <!-- <ng-container
+                      *ngTemplateOutlet="
+                        headerTemplate[column.columnDef] || defaultHeader;
+                        context: { $implicit: column }
+                      "
+                    >
+                    </ng-container> -->
+
+                    <ng-container
+                      *ngTemplateOutlet="
+                      cellHeaderDirective?.template;
+                context: { $implicit: {column, key,  tableState}}
+                "
+                    >
                     </ng-container>
                   </div>
                 </ng-container>
@@ -85,7 +93,6 @@
                           kkl-cell
                           [columnDef]="column.columnDef"
                           [flex]="column.flex"
-                          [editable]="tableState.editing.indexOf(row[key]) !== -1"
                         >
                           <ng-container [ngSwitch]="column.columnDef">
                             <!-- Select cell -->
@@ -153,3 +160,9 @@
     </div>
   </ng-container>
 </ng-container>
+
+<ng-template #defaultHeader let-column>
+  <kkl-typography [weight]="600">
+    {{ column.label }}
+  </kkl-typography>
+</ng-template>

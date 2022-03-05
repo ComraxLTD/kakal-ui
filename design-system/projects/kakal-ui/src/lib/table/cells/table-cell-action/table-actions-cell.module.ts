@@ -8,6 +8,7 @@ import { KKLIconModule } from '../../../icon/icon.module';
 import { KKLTypographyModule } from '../../../typography/typography.module';
 import { TableActionCellComponent } from './table-action-cell.component';
 import {KKLActionCellDirective} from './cell-action.directive'
+import { KKLDirectivesModule } from '../../../directives/directives.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import {KKLActionCellDirective} from './cell-action.directive'
     FlexLayoutModule,
     KKLIconModule,
     KKLTypographyModule,
+    KKLDirectivesModule,
     MatButtonModule,
     MatTooltipModule,
   ],
