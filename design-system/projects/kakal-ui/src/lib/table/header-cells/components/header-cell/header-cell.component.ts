@@ -11,9 +11,11 @@ export class HeaderCellComponent implements OnInit {
   @Input() column: HeaderCellModel;
   @Input() label: string;
   @Input() columnDef: string;
-  @Input() headerTemplate: { [key: string]: TemplateRef<any> };
+  @Input() headerTemplate: { [key: string]: TemplateRef<any> } = {};
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.column)
+  }
 }

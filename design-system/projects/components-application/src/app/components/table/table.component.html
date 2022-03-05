@@ -5,16 +5,20 @@
     [columns$]="columns$"
     [itemKey]="itemKey"
     [hasActions]="true"
-    [headerTemplate]="{actions}"
   >
-  <!-- use kklHeaderCell for render header cell -->
-    <ng-container *kklHeaderCell>
-      <div>success</div>
+    <!-- use kklHeaderCell for render header cell -->
+    <ng-container *kklHeaderCell="let context">
+      <kkl-header-cell
+        [column]="context.column"
+        [columnDef]="context.column.columnDef"
+        [headerTemplate]="{actions}"
+      ></kkl-header-cell>
     </ng-container>
 
-    <!-- use kkl-table-cell for render table cell -->
+    <!-- use kklTableCell for render table cell -->
     <ng-container *kklTableCell="let context">
-      <kkl-table-cell
+      <!-- use kkl-data-cell for comrax table cell -->
+      <kkl-data-cell
         fxLayout="row"
         fxLayoutAlign="start center"
         [row]="context.row"
@@ -24,7 +28,7 @@
         [tableState]="context.tableState"
         [cellTemplate]="{email}"
         [inputTemplate]="{input}"
-      ></kkl-table-cell>
+      ></kkl-data-cell>
     </ng-container>
 
     <!-- use kkl-actions-cell for default actions -edit, delete and save -->

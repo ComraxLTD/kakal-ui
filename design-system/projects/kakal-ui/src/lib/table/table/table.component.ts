@@ -146,7 +146,6 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.cellHeaderDirective);
     this.table$ = this.setTable$();
     this.tableState$ = this.setTableState$();
   }

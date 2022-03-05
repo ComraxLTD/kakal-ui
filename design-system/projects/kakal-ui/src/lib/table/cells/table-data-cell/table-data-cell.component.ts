@@ -4,7 +4,7 @@ import { QuestionGroupModel } from '../../../form/models/question-group.model';
 import { RowState, TableState } from '../../models/table.state';
 
 @Component({
-  selector: 'kkl-table-cell',
+  selector: 'kkl-data-cell',
   templateUrl: './table-data-cell.component.html',
   styleUrls: ['./table-data-cell.component.scss'],
 })
