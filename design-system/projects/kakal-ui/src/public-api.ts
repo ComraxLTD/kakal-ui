@@ -5,10 +5,13 @@
 export * from './lib/kakal-ui.module';
 export * from './lib/angular-material/material.module';
 
-export * from './lib/button/button.component';
+export * from './lib/button/components/button/button.component';
+export * from './lib/button/components/create-button/create-button.component';
+export * from './lib/button/directives/stroked-button';
 export * from './lib/button/button.module';
 
 export * from './lib/typography/typography.component';
+export * from './lib/typography/typography.directive';
 export * from './lib/typography/typography.module';
 
 export * from './lib/icon/icon.component';
