@@ -1,4 +1,6 @@
+import { SelectOption } from "../models/question-select.model";
+
 export interface CurrencyModel {
-  currency?: string | number;
+  currency?: SelectOption;
   sum?: string | number;
 }

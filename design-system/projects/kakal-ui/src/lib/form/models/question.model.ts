@@ -43,7 +43,7 @@ export type ControlType =
   | 'toggle'
   | 'email'
   | 'phone'
-  | 'textEditor'
+  | 'texteditor'
   | 'cleave';
 
 export type QuestionType =

@@ -70,8 +70,8 @@ export class FormCurrencyComponent implements OnInit {
   private setCurrencyQuestion(questions: Question[], control: FormControl) {
     return questions.map((question: Question) => {
       const value =
-        question?.key === '' ? this.control.value[question.key] || 0 : 13000001;
-
+        question?.key === '' ? this.control.value[question.key] : question.controlType === 'select' ? {label:'',value:0} : 0 ;
+      
       const validations =
         question.key === 'sum' ? this.validations : [];
 

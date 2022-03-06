@@ -1,13 +1,11 @@
 import { moduleMetadata } from '@storybook/angular';
-import { FormControl } from '@angular/forms';
-
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { KKLFormCurrencyModule } from '../../projects/kakal-ui/src/lib/form/form-currency/form-currency.module';
 import { FormCurrencyComponent } from '../../projects/kakal-ui/src/lib/form/form-currency/form-currency.component';
-import { QuestionCurrencyModel } from '../../projects/kakal-ui/src/lib/form/form-currency/question-currency.model';
+import { FormControl } from '@angular/forms';
 
 export default {
-  title: 'Form',
+  title: 'Form/Currency',
   decorators: [
     moduleMetadata({
       imports: [KKLFormCurrencyModule],
@@ -15,8 +13,27 @@ export default {
   ],
   component: FormCurrencyComponent,
   argTypes: {
-
-  },
+    control: {
+      name: 'control',
+      desmcription: 'Angular FormControl .',
+      table: {
+        type: { summary: 'object' },
+        defaultValue: { summary: 'new FormControl()' },
+      },
+      control: {
+        type: 'object'
+      }
+    },
+    validations: {
+      name: 'validations',
+      description: 'A validator is a function that processes a FormControl or collection of controls and returns an error map or null. A null map means that validation has passed.',
+      table: {
+        type: { summary: 'ValidatorFn[]' },
+      },
+      control: {
+        type: 'array'
+      }
+    }  },
 } as Meta;
 
 const Template: Story<FormCurrencyComponent> = (args: FormCurrencyComponent) => ({
@@ -26,9 +43,6 @@ const Template: Story<FormCurrencyComponent> = (args: FormCurrencyComponent) => 
 
 export const currency = Template.bind({});
 currency.args = {
-    question: new QuestionCurrencyModel({
-        key:'currency',
-    }),
-  control:new FormControl(),
+  control :new FormControl()
 }
 

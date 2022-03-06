@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { QuestionGroupModel } from '../../../kakal-ui/src/lib/form/models/question-group.model';
+import { CurrencyService} from '../../../kakal-ui/src/lib/form/form-currency/form-currency.service';
 import {
   FormService,
   Question,
@@ -13,13 +14,13 @@ import { FormControl } from '@angular/forms';
 })
 export class AppComponent implements OnInit {
   title = 'components-application';
-  constructor(private formService: FormService) {}
+  constructor(private formService: FormService,private currencyService:CurrencyService) {}
 
 
   questions: Question[] = [
     {
       key: 'textEditor',
-      controlType: 'textEditor',
+      controlType: 'texteditor',
       type: 'textEditor',
     },
     {
@@ -60,24 +61,9 @@ export class AppComponent implements OnInit {
   ];
   public formGroup: QuestionGroupModel;
   public control: FormControl = new FormControl();
+  public testControl: FormControl = new FormControl();
 
   ngOnInit(): void {
-    this.control.setValue({
-      type: 'doc',
-      content: [
-        {
-          type: 'paragraph',
-          attrs: {
-            align: null,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'dsfsdf',
-            },
-          ],
-        },
-      ],
-    });
+    this.currencyService.setCurrencies$([{label:'$',value:0}])
   }
 }

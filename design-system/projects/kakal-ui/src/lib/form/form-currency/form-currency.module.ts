@@ -7,14 +7,16 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLFormInputModule } from '../form-input/form-input.module';
 import { KKLIconModule } from '../../icon/icon.module';
 import { MatSelectModule } from '@angular/material/select';
+import { KKLFormSelectModule } from '../form-select/form-select.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FlexLayoutModule,
     KKLFormInputModule,
+    KKLFormSelectModule,
     KKLIconModule,
-    MatSelectModule,
+    // MatSelectModule,
   ],
   providers: [CurrencyService, FormBuilder],
   declarations: [FormCurrencyComponent],
