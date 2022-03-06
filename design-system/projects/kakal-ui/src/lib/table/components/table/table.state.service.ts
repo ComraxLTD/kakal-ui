@@ -20,12 +20,19 @@ export class TableStateService {
       distinctUntilChanged(),
       map((totalItems) => {
         const oldState = tableDataSource.getTableState();
-        const pageState = pagination ? pagination : oldState.pagination;
+
+        const paginationState = pagination
+          ? pagination
+          : ({
+              ...oldState.pagination,
+              itemsPerPage: totalItems,
+            } as PaginationInstance);
+
 
         return {
           ...oldState,
           pagination: {
-            ...pageState,
+            ...paginationState,
             totalItems,
           },
         } as TableState;

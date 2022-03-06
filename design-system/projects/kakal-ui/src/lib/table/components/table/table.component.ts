@@ -62,7 +62,6 @@ export class TableComponent<T = any> implements OnInit {
   // if table have additional features
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
-  public hasPagination: boolean;
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
