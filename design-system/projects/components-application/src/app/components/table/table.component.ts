@@ -76,18 +76,9 @@ export class TableComponent implements OnInit {
   }
 
 
-  private setPagination() {
-    
-  }
-
   private demoServerData(): Observable<RootObject[]> {
     return of(DEMO_DATA).pipe(
-      tap((data) => {
-        const tableState = this.tableDataSource.getTableState();
 
-
-        return data;
-      }),
       switchMap((data: RootObject[]) => {
         this.demoStore$.next(data);
 

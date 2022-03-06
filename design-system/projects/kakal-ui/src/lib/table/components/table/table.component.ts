@@ -153,7 +153,7 @@ export class TableComponent<T = any> implements OnInit {
 
   private setTableState$() {
     return merge(
-      this.tableDataSource.listenTableState(),
+      this.tableDataSource.connectTableState(),
       this.tableStateService.onEditCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource)
     ).pipe(

@@ -74,12 +74,13 @@ export class TableDataSource<T = any> implements DataSource<T> {
   public getTableState(): TableState {
     return this.tableSubject.value;
   }
+
   public loadTableState(state: { tableState: TableState }): void {
     const { tableState } = state;
     this.tableSubject.next(tableState);
   }
 
-  public listenTableState(): Observable<TableState> {
+  public connectTableState(): Observable<TableState> {
     return this.tableSubject.asObservable();
   }
 
