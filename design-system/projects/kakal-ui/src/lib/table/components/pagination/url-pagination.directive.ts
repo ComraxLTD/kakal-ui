@@ -2,6 +2,8 @@ import { Directive, Host, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import IPaginationChangeEvent from './pagination.types';
 import { TableComponent } from '../table/table.component';
+import { TableDataSource } from '../../models/table-datasource';
+import { TableState } from '../../models/table.state';
 /**
  * This directive listens to the pageChange event
  * and stores the current page in the url query params
@@ -28,7 +30,8 @@ export class UrlPaginationDirective implements OnInit {
   }
 
   constructor(
-    @Host() private hostTable: TableComponent,
+    // @Host() private hostTable: TableComponent,
+    private tableDataSource: TableDataSource,
     private route: ActivatedRoute,
     private router: Router
   ) {}
@@ -37,7 +40,17 @@ export class UrlPaginationDirective implements OnInit {
     const currentPage = this.route.snapshot.queryParamMap.get('page');
 
     if (currentPage) {
-      this.hostTable.pagination.currentPage = Number(currentPage);
+      const oldState = this.tableDataSource.getTableState();
+      const tableState = {
+        ...oldState,
+        pagination: {
+          ...oldState.pagination,
+          currentPage: Number(currentPage),
+        },
+      } as TableState;
+
+      this.tableDataSource.loadTableState({ tableState });
+      // this.hostTable.pagination.currentPage = Number(currentPage);
     }
   }
 }

@@ -65,7 +65,7 @@ export class TableComponent implements OnInit {
 
   constructor(
     private formService: FormService,
-    private tableDataSource: TableDataSource<RootObject>
+    public tableDataSource: TableDataSource<RootObject>
   ) {}
 
   async ngOnInit(): Promise<void> {

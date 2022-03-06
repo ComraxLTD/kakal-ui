@@ -51,7 +51,7 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public theme: ThemePalette = 'accent';
 
   // if table have state modes
-  @Input() public paginator: boolean;
+  // @Input() public paginator: boolean;
 
   @Input() public expendable: boolean;
   @Input() public clickable: boolean;
@@ -105,7 +105,7 @@ export class TableComponent<T = any> implements OnInit {
   public table$: any;
   public tableState$: Observable<TableState>;
 
-  public pagination: PaginationInstance;
+  public pagination: boolean;
 
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);

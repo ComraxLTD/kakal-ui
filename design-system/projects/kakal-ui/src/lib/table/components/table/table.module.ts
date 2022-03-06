@@ -12,9 +12,12 @@ import { KKLDirectivesModule } from '../../../directives/directives.module';
 import { KKLIconModule } from '../../../icon/icon.module';
 import { KKLPipesModule } from '../../../pipes/pipes.module';
 import { KKLTypographyModule } from '../../../typography/typography.module';
+
 import { KKLTableCellModule } from '../../components/cells/table-cell.module';
-import { KKLCellDirective } from '../../directives/cell.directive';
 import { KKLHeaderCellModule } from '../../components/header-cells/header-cells.module';
+import { KKLPaginationModule } from '../../components/pagination/pagination.module';
+import { KKLCellDirective } from '../../directives/cell.directive';
+
 import { TableComponent } from './table.component';
 import { KKLTableDirective } from './table.directive';
 
@@ -29,6 +32,7 @@ import { KKLTableDirective } from './table.directive';
     KKLColumnsModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
+    KKLPaginationModule,
 
     KKLIconModule,
     KKLTypographyModule,
