@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
   questions: Question[] = [
     {
       key: 'textEditor',
-      controlType: 'textEditor',
+      controlType: 'texteditor',
       type: 'textEditor',
     },
     {
