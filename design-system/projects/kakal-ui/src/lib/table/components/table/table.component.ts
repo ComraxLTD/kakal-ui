@@ -151,6 +151,7 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   ngAfterViewInit() {
+
     if (this.hasActions && !this.cellActionDirective) {
       throw new Error('kkl-table missing *kklActionCell');
     }
@@ -164,7 +165,8 @@ export class TableComponent<T = any> implements OnInit {
         this.pagination
       ),
       this.tableStateService.onEditCloseEvent(this.tableDataSource),
-      this.tableStateService.onEditEvent(this.tableDataSource)
+      this.tableStateService.onEditEvent(this.tableDataSource),
+      this.tableStateService.onCreateEvent(this.tableDataSource)
     );
   }
 
@@ -172,7 +174,7 @@ export class TableComponent<T = any> implements OnInit {
 
   // method which emit page data
   public onPageChange(event: { next: number; prev: number }) {
-    console.log(event)
+    console.log(event);
     this.pageChange.emit(event);
   }
 }

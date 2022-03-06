@@ -6,6 +6,7 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
