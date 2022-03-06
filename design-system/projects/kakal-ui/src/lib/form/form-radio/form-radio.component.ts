@@ -17,10 +17,7 @@ export class FormRadioComponent implements OnInit {
   @Output() public change = new EventEmitter<any>();
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.options);
-    
-  }
+  ngOnInit(): void {  }
 
   public handleChange(radio: MatRadioChange) {
     this.control.setValue(radio.value);
