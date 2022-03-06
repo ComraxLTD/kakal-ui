@@ -1,0 +1,18 @@
+@use "../../styles//variables" as main;
+
+.step-label {
+  padding-top: main.spacing(1);
+}
+
+div.status-bar {
+  height: main.spacing(0.15);
+  width: 100%;
+  background-color: main.color(disable);
+
+  &.active {
+    background-color: main.color(primary);
+  }
+  &.disable {
+    background-color: main.color(warn);
+  }
+}
