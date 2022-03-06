@@ -31,7 +31,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      pagination: { itemsPerPage: 6, currentPage: 1 },
+      pagination: { itemsPerPage: 6, currentPage: 1 } ,
       forms: {},
       event: FormActions.DEFAULT,
     });

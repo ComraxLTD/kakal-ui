@@ -22,7 +22,7 @@ import { ColumnSortOption } from '../../../columns/models/column-sort-option';
 import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
 import { TableDataSource } from '../../models/table-datasource';
 import { TableState } from '../../models/table.state';
-import { TableStateService } from './table-state.service';
+import { TableStateService } from './table.state.service';
 
 import { Observable, map, combineLatest, merge } from 'rxjs';
 

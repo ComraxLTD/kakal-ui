@@ -21,12 +21,14 @@ import {
   tap,
 } from 'rxjs';
 import { Validators } from '@angular/forms';
+import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource],
+  providers: [TableDataSource, TableService],
 })
 export class TableComponent implements OnInit {
   // demo data from server
@@ -59,6 +61,8 @@ export class TableComponent implements OnInit {
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
 
+  private pagination: PaginationInstance;
+
   constructor(
     private formService: FormService,
     private tableDataSource: TableDataSource<RootObject>
@@ -71,10 +75,22 @@ export class TableComponent implements OnInit {
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
   }
 
+
+  private setPagination() {
+    
+  }
+
   private demoServerData(): Observable<RootObject[]> {
     return of(DEMO_DATA).pipe(
+      tap((data) => {
+        const tableState = this.tableDataSource.getTableState();
+
+
+        return data;
+      }),
       switchMap((data: RootObject[]) => {
         this.demoStore$.next(data);
+
         return this.demoStore$.asObservable();
       })
     );
@@ -125,7 +141,7 @@ export class TableComponent implements OnInit {
       if (question.controlType === 'select') {
         question = {
           ...question,
-          label : '',
+          label: '',
           options: [...optionsMap[question.key.toString()]],
           value: { value: 1, label: '' },
         } as QuestionSelectModel;
