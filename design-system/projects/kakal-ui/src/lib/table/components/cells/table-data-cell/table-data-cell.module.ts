@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { TableDataCellComponent } from './table-data-cell.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KKLDataCellDirective } from './cell-data.directive';
-import { KKLPipesModule } from '../../../pipes/pipes.module';
+import { KKLPipesModule } from '../../../../pipes/pipes.module';
 
 @NgModule({
   declarations: [TableDataCellComponent, KKLDataCellDirective],

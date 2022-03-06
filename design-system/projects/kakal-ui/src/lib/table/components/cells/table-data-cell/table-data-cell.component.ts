@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { TableColumnModel } from '../../../columns/models/column.model';
-import { QuestionGroupModel } from '../../../form/models/question-group.model';
-import { RowState, TableState } from '../../models/table.state';
+import { TableColumnModel } from '../../../../columns/models/column.model';
+import { QuestionGroupModel } from '../../../../form/models/question-group.model';
+import { RowState, TableState } from '../../../models/table.state';
 
 @Component({
   selector: 'kkl-data-cell',

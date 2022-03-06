@@ -24,8 +24,8 @@ import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 
 import { KKLTableModule } from './table/components/table/table.module';
-import { KKLTableCellModule } from './table/cells/table-cell.module';
-import { KKLHeaderCellModule } from './table/header-cells/header-cells.module';
+import { KKLTableCellModule } from './table/components/cells/table-cell.module';
+import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 import { KKLColumnsModule } from './columns/column.module';
 
 import { SidenavModule } from './sidenav/sidenav.module';

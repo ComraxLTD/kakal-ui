@@ -12,17 +12,17 @@ import {
 
 import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { Observable, map, combineLatest, merge } from 'rxjs';
 import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../../columns/models/column-sort-option';
-import { KKLActionCellDirective } from '../../cells/table-cell-action/cell-action.directive';
-import { KKLDataCellDirective } from '../../cells/table-data-cell/cell-data.directive';
-import { KKLHeaderCellDirective } from '../../header-cells/cell-header.directive';
-import { HeaderCellModel } from '../../header-cells/models/header-cell.model';
+import { KKLActionCellDirective } from '../../components/cells/table-cell-action/cell-action.directive';
+import { KKLDataCellDirective } from '../../components/cells/table-data-cell/cell-data.directive';
+import { KKLHeaderCellDirective } from '../../components/header-cells/cell-header.directive';
+import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
 import { TableDataSource } from '../../models/table-datasource';
 import { TableState } from '../../models/table.state';
 import { TableStateService } from './table-state.service';
 
+import { Observable, map, combineLatest, merge } from 'rxjs';
 
 @Component({
   selector: 'kkl-table',

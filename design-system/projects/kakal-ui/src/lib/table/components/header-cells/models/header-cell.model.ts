@@ -1,5 +1,5 @@
 import { SortDirection } from '@angular/material/sort';
-import { Question } from '../../../form/services/form.service';
+import { Question } from '../../../../form/services/form.service';
 
 export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | string;
 

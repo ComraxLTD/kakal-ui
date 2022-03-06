@@ -91,22 +91,22 @@ export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table-state.service';
 
-export * from './lib/table/cells/table-cell.module';
+export * from './lib/table/components/cells/table-cell.module';
 
-export * from './lib/table/cells/table-cell-form/table-cell-form.module';
-export * from './lib/table/cells/table-cell-form/table-cell-form.component';
+export * from './lib/table/components/cells/table-cell-form/table-cell-form.module';
+export * from './lib/table/components/cells/table-cell-form/table-cell-form.component';
 
-export * from './lib/table/cells/table-cell-action/table-actions-cell.module';
-export * from './lib/table/cells/table-cell-action/table-action-cell.component';
-export * from './lib/table/cells/table-cell-action/cell-action.directive';
+export * from './lib/table/components/cells/table-cell-action/table-actions-cell.module';
+export * from './lib/table/components/cells/table-cell-action/table-action-cell.component';
+export * from './lib/table/components/cells/table-cell-action/cell-action.directive';
 
-export * from './lib/table/cells/table-data-cell/table-data-cell.module';
-export * from './lib/table/cells/table-data-cell/table-data-cell.component';
-export * from './lib/table/cells/table-data-cell/cell-data.directive';
+export * from './lib/table/components/cells/table-data-cell/table-data-cell.module';
+export * from './lib/table/components/cells/table-data-cell/table-data-cell.component';
+export * from './lib/table/components/cells/table-data-cell/cell-data.directive';
 
-export * from './lib/table/header-cells/header-cells.module'
-export * from './lib/table/header-cells/components/header-cell/header-cell.component'
-export * from './lib/table/header-cells/cell-header.directive'
+export * from './lib/table/components/header-cells/header-cells.module'
+export * from './lib/table/components/header-cells/components/header-cell/header-cell.component'
+export * from './lib/table/components/header-cells/cell-header.directive'
 
 export * from './lib/table/models/table';
 export * from './lib/table/models/table-datasource';
