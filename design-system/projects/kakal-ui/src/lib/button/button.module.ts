@@ -30,6 +30,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     KKLStrokedButtonDirective,
     CreateButtonComponent,
   ],
-  exports: [ButtonComponent, KKLStrokedButtonDirective, CreateButtonComponent],
+  exports: [ButtonComponent, KKLStrokedButtonDirective],
 })
 export class KKLButtonModule {}
