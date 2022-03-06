@@ -142,6 +142,10 @@ export * from './lib/spinner/spinner.service';
 export * from './lib/sidenav/sidenav.module';
 export * from './lib/sidenav/sidenav.component';
 
+// sidenav
+export * from './lib/status-bars/status-bars.module';
+export * from './lib/status-bars/status-bars.component';
+
 // step title
 export * from './lib/step-title/step-title.module';
 export * from './lib/step-title/step-title.component';

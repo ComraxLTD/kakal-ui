@@ -1,0 +1,42 @@
+<div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
+    <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5rem">
+      <div fxLayout="row" fxLayoutAlign="start center" fxFill>
+        <kkl-typography *ngIf="!labelRef">
+          {{ status.label }}
+        </kkl-typography>
+  
+        <ng-container
+          *ngTemplateOutlet="labelRef; context: { $implicit: status }"
+        ></ng-container>
+      </div>
+      <div fxFill fxLayout="column" fxLayoutAlign="center center">
+        <div fxLayout="row" fxLayoutGap="2px" dir="rtl">
+          <div
+            fxFlex="1.5rem"
+            fxLayout="column"
+            fxFlexAlign="center center"
+            *ngFor="let step of steps; let i = index"
+          >
+            <div
+              [ngClass]="{
+                'status-bar': true,
+                active: step === 'active',
+                disable: step === 'disable'
+              }"
+            ></div>
+            <div
+              class="step-label"
+              *ngIf="hasLabel"
+              fxLayout="column"
+              fxLayoutAlign="end center"
+            >
+              <kkl-typography [color]="step ? 'accent' : 'disable'" [size]="1.2">
+                0{{ i + 1 }}
+              </kkl-typography>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

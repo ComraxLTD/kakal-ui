@@ -35,24 +35,26 @@ import { SpinnerModule } from './spinner/spinner.module'
 
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPipesModule } from './pipes/pipes.module';
+import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent, FormPhoneComponent],
+  declarations: [FormExampleComponent, SidenavExampleComponent, FormPhoneComponent,
+    ],
   imports: [
     CoreModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-
-    KKLMenuModule,
+//TOOLS
+KKLStatusBarsModule,  
+KKLMenuModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
-
     SidenavModule,
 
     // FORMS MODULES
@@ -77,6 +79,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     SpinnerModule
   ],
   exports: [
+    //TOOLS
     MaterialModule,
 
     KKLMenuItemModule,
@@ -86,6 +89,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KklTitleModule,
     KKLStepTitleModule,
     SidenavModule,
+    KKLStatusBarsModule,  
 
     KKLFormModule,
     KKLFormTextEditorModule,
