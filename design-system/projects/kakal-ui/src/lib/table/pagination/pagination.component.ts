@@ -1,6 +1,6 @@
 import { PaginationInstance } from 'ngx-pagination';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import IPaginationChangeEvent from './page-change.model';
+import IPaginationChangeEvent from './pagination.types';
 
 @Component({
   selector: 'kkl-pagination',
