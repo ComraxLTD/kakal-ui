@@ -1,7 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBaseModel, QuestionType } from './question.model';
+import { GridProps, QuestionBase, QuestionType } from './question.model';
 
-export class QuestionFileModel extends QuestionBaseModel<File[]> {
+export class QuestionFileModel extends QuestionBase {
   public multi?: boolean;
   public onDeleteFile?: (value: any) => void;
 

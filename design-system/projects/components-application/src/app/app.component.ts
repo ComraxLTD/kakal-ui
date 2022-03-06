@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   title = 'components-application';
   constructor(private formService: FormService,private currencyService:CurrencyService) {}
 
-
   questions: Question[] = [
     {
       key: 'textEditor',
@@ -61,9 +60,8 @@ export class AppComponent implements OnInit {
   ];
   public formGroup: QuestionGroupModel;
   public control: FormControl = new FormControl();
+
+  ngOnInit(): void {}
   public testControl: FormControl = new FormControl();
   options: [{ label: 'test', value: 0 }]
-  ngOnInit(): void {
-    this.currencyService.setCurrencies$([{label:'$',value:0}])
-  }
 }

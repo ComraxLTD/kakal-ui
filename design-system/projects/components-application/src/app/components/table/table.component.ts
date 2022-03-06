@@ -7,6 +7,8 @@ import {
   Question,
   QuestionGroupModel,
   OptionMap,
+  QuestionSelectModel,
+  TableState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -20,12 +22,14 @@ import {
   tap,
 } from 'rxjs';
 import { Validators } from '@angular/forms';
+import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource],
+  providers: [TableDataSource, TableService],
 })
 export class TableComponent implements OnInit {
   // demo data from server
@@ -58,9 +62,11 @@ export class TableComponent implements OnInit {
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
 
+  public pagination: PaginationInstance = { itemsPerPage: 5, currentPage: 1 };
+
   constructor(
     private formService: FormService,
-    private tableDataSource: TableDataSource<RootObject>
+    public tableDataSource: TableDataSource<RootObject>
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -68,12 +74,15 @@ export class TableComponent implements OnInit {
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
+
   }
+
 
   private demoServerData(): Observable<RootObject[]> {
     return of(DEMO_DATA).pipe(
       switchMap((data: RootObject[]) => {
         this.demoStore$.next(data);
+
         return this.demoStore$.asObservable();
       })
     );
@@ -119,14 +128,15 @@ export class TableComponent implements OnInit {
       question = {
         ...question,
         value: item[question.key],
-      };
+      } as Question;
 
       if (question.controlType === 'select') {
         question = {
           ...question,
-          options: [...optionsMap[question.key]],
-          multi: true,
-        };
+          label: '',
+          options: [...optionsMap[question.key.toString()]],
+          value: { value: 1, label: '' },
+        } as QuestionSelectModel;
       }
 
       return question;
@@ -144,7 +154,6 @@ export class TableComponent implements OnInit {
     const group = this.setGroup(
       this.setQuestions(this.questions, item, this.optionsMap)
     );
-
 
     this.tableDataSource.actions.edit({
       state: { ...state, group },
@@ -217,8 +226,6 @@ export class TableComponent implements OnInit {
         const group = this.setGroup(
           this.setQuestions(this.questions, item, this.optionsMap)
         );
-        console.log(group.formGroup.valid);
-
         this.tableDataSource.actions.edit({
           state: { ...state, item, group },
         });

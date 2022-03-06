@@ -84,29 +84,34 @@ export * from './lib/columns/column-filter/column-filter.component';
 export * from './lib/columns/column-filter/column-filter.module';
 export * from './lib/columns/column-filter/column-filter.service';
 
-
 // TABLE
-export * from './lib/table/table/table.module';
-export * from './lib/table/table/table.component';
-export * from './lib/table/table/table.directive';
-export * from './lib/table/table/table-state.service';
+export * from './lib/table/components/table/table.module';
+export * from './lib/table/components/table/table.component';
+export * from './lib/table/components/table/table.directive';
+export * from './lib/table/components/table/table.state.service';
 
-export * from './lib/table/cells/table-cell.module';
+export * from './lib/table/components/cells/table-cell.module';
 
-export * from './lib/table/cells/table-cell-form/table-cell-form.module';
-export * from './lib/table/cells/table-cell-form/table-cell-form.component';
+export * from './lib/table/components/cells/table-cell-form/table-cell-form.module';
+export * from './lib/table/components/cells/table-cell-form/table-cell-form.component';
 
-export * from './lib/table/cells/table-cell-action/table-actions-cell.module';
-export * from './lib/table/cells/table-cell-action/table-action-cell.component';
-export * from './lib/table/cells/table-cell-action/cell-action.directive';
+export * from './lib/table/components/cells/table-cell-action/table-actions-cell.module';
+export * from './lib/table/components/cells/table-cell-action/table-action-cell.component';
+export * from './lib/table/components/cells/table-cell-action/cell-action.directive';
 
-export * from './lib/table/cells/table-data-cell/table-data-cell.module';
-export * from './lib/table/cells/table-data-cell/table-data-cell.component';
-export * from './lib/table/cells/table-data-cell/cell-data.directive';
+export * from './lib/table/components/cells/table-data-cell/table-data-cell.module';
+export * from './lib/table/components/cells/table-data-cell/table-data-cell.component';
+export * from './lib/table/components/cells/table-data-cell/cell-data.directive';
 
-export * from './lib/table/header-cells/header-cells.module'
-export * from './lib/table/header-cells/components/header-cell/header-cell.component'
-export * from './lib/table/header-cells/cell-header.directive'
+export * from './lib/table/components/header-cells/header-cells.module';
+export * from './lib/table/components/header-cells/components/header-cell/header-cell.component';
+export * from './lib/table/components/header-cells/cell-header.directive';
+
+export * from './lib/table/components/pagination/pagination.module';
+export * from './lib/table/components/pagination/pagination.component';
+export * from './lib/table/components/pagination/pagination.directive';
+export * from './lib/table/components/pagination/url-pagination.directive';
+export * from './lib/table/components/pagination/pagination.types';
 
 export * from './lib/table/models/table';
 export * from './lib/table/models/table-datasource';

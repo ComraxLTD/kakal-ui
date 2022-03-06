@@ -1,6 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Appearance, GridProps, QuestionBaseModel } from './question.model';
+import { Appearance, GridProps, QuestionBase } from './question.model';
 
 export interface SelectOption {
   label: string;
@@ -10,7 +10,7 @@ export interface SelectOption {
   checked?:boolean;
 }
 
-export class QuestionSelectModel extends QuestionBaseModel<string> {
+export class QuestionSelectModel extends QuestionBase {
   public options?: SelectOption[];
   public multi?: boolean;
   public onSelectChange?: (value: any) => void;

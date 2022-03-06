@@ -9,8 +9,8 @@
     <!-- use kklHeaderCell for render header cell -->
     <ng-container *kklHeaderCell="let context">
       <kkl-header-cell
-        [column]="context.column"
         [key]="context.key"
+        [column]="context.column"
         [columnDef]="context.column.columnDef"
         [headerTemplate]="{actions}"
       ></kkl-header-cell>

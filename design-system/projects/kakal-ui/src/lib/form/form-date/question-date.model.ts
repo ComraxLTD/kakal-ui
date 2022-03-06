@@ -1,7 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
-import { QuestionBaseModel, GridProps } from '../models/question.model';
+import { QuestionBase, GridProps } from '../models/question.model';
 
-export class QuestionDateModel extends QuestionBaseModel<Date> {
+export class QuestionDateModel extends QuestionBase {
   public maxDate?: Date;
   public minDate?: Date;
   public range?:boolean;
