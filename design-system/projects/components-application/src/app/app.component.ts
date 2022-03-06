@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
   public formGroup: QuestionGroupModel;
   public control: FormControl = new FormControl();
   public testControl: FormControl = new FormControl();
-
+  options: [{ label: 'test', value: 0 }]
   ngOnInit(): void {
     this.currencyService.setCurrencies$([{label:'$',value:0}])
   }

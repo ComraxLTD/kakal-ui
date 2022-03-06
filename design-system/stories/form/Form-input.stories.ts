@@ -4,16 +4,13 @@ import { FormControl } from '@angular/forms';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { KKLFormInputModule } from '../../projects/kakal-ui/src/lib/form/form-input/form-input.module';
 import { FormInputComponent } from '../../projects/kakal-ui/src/lib/form/form-input/form-input.component';
-import { QuestionTextModel } from '../../projects/kakal-ui/src/lib/form/models/question-text.model';
-import { QuestionNumberModel } from '../../projects/kakal-ui/src/lib/form/models/question-number.model';
-import { QuestionSumModel } from '../../projects/kakal-ui/src/lib/form/models/question-sum.model';
-import { QuestionTextareaModel } from '../../projects/kakal-ui/src/lib/form/models/question-textarea.model';
+import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
 
 export default {
   title: 'Form/Input',
   decorators: [
     moduleMetadata({
-      imports: [KKLFormInputModule],
+      imports: [KKLFormInputModule,NgxCleaveDirectiveModule],
     }),
   ],
   component: FormInputComponent,
@@ -187,3 +184,15 @@ Time.args = {
   controlType:'time',
   control: new FormControl()
 }
+
+export const Sum = Template.bind({});
+Sum.args = {
+  controlType:'sum',
+  control: new FormControl()
+}
+
+// export const Cleave = Template.bind({});
+// Cleave.args = {
+//   controlType:'cleave',
+//   control: new FormControl()
+// }
