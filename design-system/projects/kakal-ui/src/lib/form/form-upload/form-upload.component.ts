@@ -10,8 +10,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { QuestionFileModel } from '../models/question-file.model';
-import { map, merge, Observable, of, Subscription } from 'rxjs';
+import { map, Observable, of, Subscription } from 'rxjs';
 
 @Component({
   selector: 'kkl-form-upload',
@@ -36,7 +35,6 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
   @Input() public label: string = 'העלה מסמך';
   @Input() public index: number;
   @Input() public multi: boolean = true;
-
   public disabled: boolean;
   // public placeholder$: Observable<string>;
   public label$: Observable<string>;
@@ -52,6 +50,7 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
   private _onChange: (v: File[]) => void = (value: File[]) => { };
 
   ngOnInit(): void {
+    this.label$ = of(this.label);
     // this.label$ = this.setLabelFormFileLength$();
     this.labelSub = this.setLabelFormFileLength$().subscribe(res => this.label$ = of(res))
   }
