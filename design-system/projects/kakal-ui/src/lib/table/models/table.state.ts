@@ -1,10 +1,11 @@
-import { Observable } from 'rxjs';
 import { SelectOption } from '../../form/models/question-select.model';
 import { TableColumnModel } from '../../columns/models/column.model';
 import { TableActions } from '../models/table.events';
 import { SortDirection } from '@angular/material/sort';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form-events';
+import { PaginationInstance } from 'ngx-pagination';
+import { Observable } from 'rxjs';
 
 export interface TableState {
   selected: { [key: string]: boolean };
@@ -12,6 +13,7 @@ export interface TableState {
   extended: number[];
   disabled: number[];
   activeColumns: string[];
+  pagination: PaginationInstance;
   forms: { [key: string]: QuestionGroupModel };
   event: FormActions| TableActions;
 }

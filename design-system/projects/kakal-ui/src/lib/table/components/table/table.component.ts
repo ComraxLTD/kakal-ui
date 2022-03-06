@@ -12,12 +12,14 @@ import {
 
 import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
-import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
-import { ColumnSortOption } from '../../../columns/models/column-sort-option';
+
 import { KKLActionCellDirective } from '../../components/cells/table-cell-action/cell-action.directive';
 import { KKLDataCellDirective } from '../../components/cells/table-data-cell/cell-data.directive';
 import { KKLHeaderCellDirective } from '../../components/header-cells/cell-header.directive';
+
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
+import { ColumnSortOption } from '../../../columns/models/column-sort-option';
+import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
 import { TableDataSource } from '../../models/table-datasource';
 import { TableState } from '../../models/table.state';
 import { TableStateService } from './table-state.service';

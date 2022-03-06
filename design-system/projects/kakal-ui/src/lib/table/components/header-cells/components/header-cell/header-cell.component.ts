@@ -16,5 +16,7 @@ export class HeaderCellComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log(this.column)
+    console.log('header work')
   }
 }

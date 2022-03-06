@@ -35,14 +35,6 @@
                     [flex]="column.flex"
                     [center]="column.center"
                   >
-                    <!-- <ng-container
-                      *ngTemplateOutlet="
-                        headerTemplate[column.columnDef] || defaultHeader;
-                        context: { $implicit: column }
-                      "
-                    >
-                    </ng-container> -->
-
                     <ng-container
                       *ngTemplateOutlet="
                       cellHeaderDirective?.template;

@@ -31,6 +31,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
+      pagination: { itemsPerPage: 6, currentPage: 1 },
       forms: {},
       event: FormActions.DEFAULT,
     });
@@ -73,7 +74,8 @@ export class TableDataSource<T = any> implements DataSource<T> {
   public getTableState(): TableState {
     return this.tableSubject.value;
   }
-  public loadTableState(tableState: TableState): void {
+  public loadTableState(state: { tableState: TableState }): void {
+    const { tableState } = state;
     this.tableSubject.next(tableState);
   }
 
@@ -138,6 +140,4 @@ export class TableDataSource<T = any> implements DataSource<T> {
     reset: (prop: { state: RowState }) =>
       this.createAction(prop, FormActions.DEFAULT),
   };
-
-
 }

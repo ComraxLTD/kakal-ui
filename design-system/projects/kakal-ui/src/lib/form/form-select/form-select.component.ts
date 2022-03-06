@@ -31,7 +31,6 @@ export class FormSelectComponent implements OnInit {
   constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
-    console.log(this.control.value)
     this.error$ = new BehaviorSubject<string>('');
   }
 

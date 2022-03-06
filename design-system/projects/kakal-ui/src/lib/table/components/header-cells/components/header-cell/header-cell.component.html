@@ -7,8 +7,8 @@
 </ng-container>
 
 <!-- DEFAULT HEADER -->
-<ng-template #defaultHeader let-column>
+<ng-template #defaultHeader let-rowState>
   <kkl-typography [weight]="600">
-    {{ column.label }}
+    {{ rowState.column.label }}
   </kkl-typography>
 </ng-template>

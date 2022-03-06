@@ -125,6 +125,7 @@ export class TableComponent implements OnInit {
       if (question.controlType === 'select') {
         question = {
           ...question,
+          label : '',
           options: [...optionsMap[question.key.toString()]],
           value: { value: 1, label: '' },
         } as QuestionSelectModel;
