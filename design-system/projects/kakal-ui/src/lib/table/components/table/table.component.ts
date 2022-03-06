@@ -44,6 +44,7 @@ export class TableComponent<T = any> implements OnInit {
 
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<HeaderCellModel<T>[]>;
+  @Input() public pagination: PaginationInstance;
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
@@ -61,6 +62,7 @@ export class TableComponent<T = any> implements OnInit {
   // if table have additional features
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
+  public hasPagination: boolean;
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
@@ -105,7 +107,7 @@ export class TableComponent<T = any> implements OnInit {
   public table$: any;
   public tableState$: Observable<TableState>;
 
-  public pagination: boolean;
+  public pagination$: Observable<boolean>;
 
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
@@ -142,7 +144,11 @@ export class TableComponent<T = any> implements OnInit {
 
   ngOnInit() {
     this.table$ = this.setTable$();
-    this.tableState$ = this.setTableState$();
+    this.tableState$ = this.tableDataSource.connectTableState();
+
+    this.setTableState$().subscribe((tableState) => {
+      this.tableDataSource.loadTableState({ tableState });
+    });
   }
 
   ngAfterViewInit() {
@@ -153,13 +159,21 @@ export class TableComponent<T = any> implements OnInit {
 
   private setTableState$() {
     return merge(
-      this.tableDataSource.connectTableState(),
+      this.tableStateService.onDataChange(
+        this.tableDataSource,
+        this.data$,
+        this.pagination
+      ),
       this.tableStateService.onEditCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource)
-    ).pipe(
-      map((tableState: TableState) => {
-        return tableState;
-      })
     );
+  }
+
+  // EMIT EVENTS
+
+  // method which emit page data
+  public onPageChange(event: { next: number; prev: number }) {
+    console.log(event)
+    this.pageChange.emit(event);
   }
 }

@@ -31,7 +31,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      pagination: { itemsPerPage: 3, currentPage: 1 } ,
+      pagination: { itemsPerPage: 3, currentPage: 1 },
       forms: {},
       event: FormActions.DEFAULT,
     });
@@ -77,8 +77,10 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   public loadTableState(state: { tableState: TableState }): void {
     const { tableState } = state;
-    this.tableSubject.next(tableState);
+    const oldState = this.getTableState();
+    this.tableSubject.next({ ...oldState, ...tableState });
   }
+
 
   public connectTableState(): Observable<TableState> {
     return this.tableSubject.asObservable();

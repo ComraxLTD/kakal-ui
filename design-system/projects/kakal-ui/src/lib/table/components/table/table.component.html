@@ -1,8 +1,10 @@
 <ng-container *ngIf="tableState$ | async as tableState">
   <code>
-    <pre dir="ltr" [style.fontSize]="'16px'"></pre>
     <pre dir="ltr" [style.fontSize]="'16px'">
       editing : {{ tableState.editing | json }}
+    </pre>
+    <pre dir="ltr" [style.fontSize]="'16px'">
+      pagination : {{ tableState.pagination | json }}
     </pre>
     <pre dir="ltr" [style.fontSize]="'16px'">
       event : {{ tableState.event }}
@@ -152,9 +154,11 @@
     </div>
   </ng-container>
 
-  <kkl-pagination
-    (newPage)="onPageChange($event)"
-    [pagination]="tableState.pagination"
-  >
-  </kkl-pagination>
+  <ng-container *ngIf="pagination$ | async">
+    <kkl-pagination
+      (newPage)="onPageChange($event)"
+      [pagination]="tableState.pagination"
+    >
+    </kkl-pagination>
+  </ng-container>
 </ng-container>

@@ -8,14 +8,14 @@ import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
 
 export interface TableState {
-  selected: { [key: string]: boolean };
-  editing: number[];
-  extended: number[];
-  disabled: number[];
-  activeColumns: string[];
-  pagination: PaginationInstance;
-  forms: { [key: string]: QuestionGroupModel };
-  event: FormActions| TableActions;
+  selected?: { [key: string]: boolean };
+  editing?: number[];
+  extended?: number[];
+  disabled?: number[];
+  activeColumns?: string[];
+  pagination?: PaginationInstance;
+  forms?: { [key: string]: QuestionGroupModel };
+  event?: FormActions| TableActions;
 }
 
 export interface RowState<T = any> {

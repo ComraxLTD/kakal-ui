@@ -41,6 +41,6 @@ import { KKLTableDirective } from './table.directive';
   ],
   declarations: [TableComponent, KKLCellDirective, KKLTableDirective ],
   providers: [],
-  exports: [TableComponent, KKLCellDirective, KKLTableDirective],
+  exports: [TableComponent, KKLCellDirective, KKLTableDirective, KKLPaginationModule],
 })
 export class KKLTableModule {}

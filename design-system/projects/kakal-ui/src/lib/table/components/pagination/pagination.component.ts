@@ -5,31 +5,26 @@ import IPaginationChangeEvent from './pagination.types';
 @Component({
   selector: 'kkl-pagination',
   templateUrl: './pagination.component.html',
-  styleUrls: ['./pagination.component.scss']
+  styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-
-  @Input() public pagination: PaginationInstance ;
+  @Input() public pagination: PaginationInstance;
 
   @Input() paginationCount: number;
   @Input() maxSize: number;
 
   @Output() newPage: EventEmitter<IPaginationChangeEvent> = new EventEmitter();
 
-
   public labels: any = {
     previousLabel: 'הקודם',
     nextLabel: 'הבא',
-};
+  };
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-    console.log(this.pagination)
-  }
-
-  public onPageChange(number) {
+  public onPageChange(number: number) {
     this.newPage.emit({ next: number, prev: this.pagination.currentPage });
     this.pagination.currentPage = number;
   }

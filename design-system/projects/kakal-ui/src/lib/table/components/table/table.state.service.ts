@@ -1,68 +1,57 @@
 import { Injectable } from '@angular/core';
 import { deleteItem } from './table.helpers';
-import {
-  switchMap,
-  take,
-  map,
-  Observable,
-  distinctUntilChanged,
-  filter,
-} from 'rxjs';
+import { map, Observable, distinctUntilChanged } from 'rxjs';
 import { FormActions } from '../../../form/models/form-events';
 import { TableDataSource } from '../../models/table-datasource';
-import { TableState } from '../../models/table.state';
+import { RowState, TableState } from '../../models/table.state';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Injectable({ providedIn: 'root' })
 export class TableStateService {
   constructor() {}
 
-  private onDataChange(
-    pagination: boolean,
-    tableDataSource: TableDataSource
+  public onDataChange(
+    tableDataSource: TableDataSource,
+    data$: Observable<any[]>,
+    pagination: PaginationInstance
   ): Observable<TableState> {
-    return tableDataSource.connect().pipe(
-      filter(() => !pagination),
+    return data$.pipe(
       map((data) => data.length),
       distinctUntilChanged(),
-      switchMap((length) => {
-        return tableDataSource.connectTableState().pipe(
-          map((tableState: TableState) => {
-            return {
-              ...tableState,
-              pagination: {
-                ...tableState.pagination,
-                totalItems: length,
-              },
-            } as TableState;
-          })
-        );
+      map((totalItems) => {
+        const oldState = tableDataSource.getTableState();
+        const pageState = pagination ? pagination : oldState.pagination;
+
+        return {
+          ...oldState,
+          pagination: {
+            ...pageState,
+            totalItems,
+          },
+        } as TableState;
       })
     );
   }
 
   public onEditEvent(tableDataSource: TableDataSource): Observable<TableState> {
     return tableDataSource.on(FormActions.EDIT).pipe(
-      switchMap((state) => {
+      map((state: RowState) => {
+        const oldState = tableDataSource.getTableState();
         const { item, key, group } = state;
-        return tableDataSource.connectTableState().pipe(
-          map((tableState) => {
-            const { editing } = tableState;
+        const { editing } = oldState;
 
-            console.log(item);
-            editing.push(item[key]);
+        editing.push(item[key]);
 
-            tableState = {
-              ...tableState,
-              editing,
-              event: 'edit',
-              forms: {
-                [item[key]]: group,
-              },
-            } as TableState;
-
-            return tableState;
-          })
-        );
+        const tableState = {
+          ...oldState,
+          editing,
+          event: 'edit',
+          forms: {
+            [item[key]]: group,
+          },
+        } as TableState;
+        console.log('edit', tableState);
+        return tableState;
       })
     );
   }
@@ -70,21 +59,18 @@ export class TableStateService {
     tableDataSource: TableDataSource
   ): Observable<TableState> {
     return tableDataSource.on(FormActions.CLOSE).pipe(
-      switchMap((state) => {
+      map((state: RowState) => {
+        const oldState = tableDataSource.getTableState();
         const { item, key } = state;
-        return tableDataSource.connectTableState().pipe(
-          map((tableState: TableState) => {
-            const { editing } = tableState;
+        const { editing } = oldState;
 
-            tableState = {
-              ...tableState,
-              editing: deleteItem({ array: editing, value: item[key] }),
-              event: 'close',
-            } as TableState;
+        const tableState = {
+          ...oldState,
+          editing: deleteItem({ array: editing, value: item[key] }),
+          event: 'close',
+        } as TableState;
 
-            return tableState;
-          })
-        );
+        return tableState;
       })
     );
   }
