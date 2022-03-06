@@ -49,7 +49,7 @@ export class TableActionCellComponent implements OnInit {
   @Output() edit: EventEmitter<RowState> = new EventEmitter<RowState>();
   @Output() delete: EventEmitter<RowState> = new EventEmitter<RowState>();
   @Output() close: EventEmitter<RowState> = new EventEmitter<RowState>();
-  @Output() save: EventEmitter<RowState> = new EventEmitter<RowState>();
+  @Output() submit: EventEmitter<RowState> = new EventEmitter<RowState>();
 
   public buttonActionState$: Observable<ButtonActionState>;
 
@@ -168,7 +168,7 @@ export class TableActionCellComponent implements OnInit {
   }
 
   public onSave(event: FormActions) {
-    this.save.emit({
+    this.submit.emit({
       ...this.rowState,
       event,
       item: { ...this.rowState.item, ...this.rowState.group.getValue() },

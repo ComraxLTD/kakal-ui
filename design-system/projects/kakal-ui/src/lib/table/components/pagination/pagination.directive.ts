@@ -36,8 +36,16 @@ export class KKLPaginationDirective implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.invalidate();
+
     this.hostTable.pagination$ = this.setPagination$();
     this.setCurrentPageFromUrl();
+  }
+
+  private invalidate() {
+    if (!this.pagination) {
+      throw new Error('kklPagination must get a PaginationInstance as input');
+    }
   }
 
   private setPagination$() {
