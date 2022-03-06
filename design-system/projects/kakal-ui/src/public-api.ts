@@ -186,3 +186,7 @@ export * from './lib/directives/form-button.directive';
 export * from './lib/directives/outside-button.directive';
 
 export * from './lib/directives/directives.module';
+
+// styles 
+
+export * from './styles/theme';
