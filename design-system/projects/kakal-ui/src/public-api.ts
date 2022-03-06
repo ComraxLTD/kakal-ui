@@ -84,7 +84,6 @@ export * from './lib/columns/column-filter/column-filter.component';
 export * from './lib/columns/column-filter/column-filter.module';
 export * from './lib/columns/column-filter/column-filter.service';
 
-
 // TABLE
 export * from './lib/table/components/table/table.module';
 export * from './lib/table/components/table/table.component';
@@ -104,9 +103,15 @@ export * from './lib/table/components/cells/table-data-cell/table-data-cell.modu
 export * from './lib/table/components/cells/table-data-cell/table-data-cell.component';
 export * from './lib/table/components/cells/table-data-cell/cell-data.directive';
 
-export * from './lib/table/components/header-cells/header-cells.module'
-export * from './lib/table/components/header-cells/components/header-cell/header-cell.component'
-export * from './lib/table/components/header-cells/cell-header.directive'
+export * from './lib/table/components/header-cells/header-cells.module';
+export * from './lib/table/components/header-cells/components/header-cell/header-cell.component';
+export * from './lib/table/components/header-cells/cell-header.directive';
+
+export * from './lib/table/components/pagination/pagination.module';
+export * from './lib/table/components/pagination/pagination.component';
+export * from './lib/table/components/pagination/pagination.directive';
+export * from './lib/table/components/pagination/url-pagination.directive';
+export * from './lib/table/components/pagination/pagination.types';
 
 export * from './lib/table/models/table';
 export * from './lib/table/models/table-datasource';
