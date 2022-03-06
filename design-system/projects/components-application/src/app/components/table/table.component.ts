@@ -152,6 +152,7 @@ export class TableComponent implements OnInit {
       this.setQuestions(this.questions, item, this.optionsMap)
     );
 
+
     this.tableDataSource.actions.edit({
       state: { ...state, group },
     });
@@ -164,7 +165,7 @@ export class TableComponent implements OnInit {
     }
   }
 
-  public onSaveEvent(state: RowState) {
+  public onSubmitEvent(state: RowState) {
     const { item } = state;
 
     // imitate http response

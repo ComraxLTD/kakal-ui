@@ -54,10 +54,10 @@ export class TableStateService {
           editing,
           event: 'edit',
           forms: {
+            ...oldState.forms,
             [item[key]]: group,
           },
         } as TableState;
-        console.log('edit', tableState);
         return tableState;
       })
     );

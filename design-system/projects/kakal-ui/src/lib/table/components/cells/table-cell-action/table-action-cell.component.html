@@ -18,7 +18,6 @@
   </ng-container>
 
   <ng-container *ngIf="buttonActionState$ | async as buttonState">
-    {{ buttonState.editState?.valid | json }}
     <!-- edit button -->
     <ng-container *ngIf="buttonState.editState.show; else saveBlock">
       <button
@@ -34,24 +33,30 @@
 
     <!-- save button -->
     <ng-template #saveBlock>
-      <button
-        mat-raised-button
-        class="kkl-save-button"
-        (click)="onSave(buttonState.editState.event)"
-        [disabled]="!buttonState.editState.valid"
-        matTooltip="שמור"
-      >
-        <kkl-typography color="text" [disabled]="!buttonState.editState.valid">
-          שמור
-        </kkl-typography>
-      </button>
-      <button
-        matTooltip="בטל"
-        mat-icon-button
-        (click)="onClose(buttonState.editState.event)"
-      >
-        <kkl-icon key="cancel"></kkl-icon>
-      </button>
+      <div fxFill kkl-form-button fxLayout="row" fxLayoutGap="1rem">
+        <button
+          mat-raised-button
+          type="su"
+          class="kkl-save-button"
+          (click)="onSave(buttonState.editState.event)"
+          [disabled]="!buttonState.editState.valid"
+          matTooltip="שמור"
+        >
+          <kkl-typography
+            color="text"
+            [disabled]="!buttonState.editState.valid"
+          >
+            שמור
+          </kkl-typography>
+        </button>
+        <button
+          matTooltip="בטל"
+          mat-icon-button
+          (click)="onClose(buttonState.editState.event)"
+        >
+          <kkl-icon key="cancel"></kkl-icon>
+        </button>
+      </div>
     </ng-template>
 
     <!-- delete button -->
