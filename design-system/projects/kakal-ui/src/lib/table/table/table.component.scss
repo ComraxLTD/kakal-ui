@@ -10,7 +10,6 @@
     }
 
     mat-expansion-panel-header {
-      height: 5rem;
       padding: 0px;
       width: 100% !important;
       color: main.color(text) !important;
@@ -39,6 +38,7 @@
     line-height: 3rem !important;
   }
 }
+
 div.row-header {
   height: 4rem !important;
   padding-right: main.spacing(2);
@@ -54,42 +54,10 @@ div.row {
   padding-left: main.spacing(2);
 }
 
-div.kkl-table-cell {
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-  word-wrap: break-word;
-
-  mat-checkbox {
-    padding-right: main.spacing(2);
-  }
-
-  // min-height: inherit;
-
-  &.center {
-    justify-content: center;
-  }
-
-  &.select {
-    flex: 0.5;
-  }
-
-  &.actions {
-    justify-content: flex-start;
-  }
-}
-
-mat-cell {
-  padding: 0px !important;
-  &.expand {
-    padding: 1px;
-  }
-  padding: 0px;
-}
-
 .disabled {
   opacity: 30%;
 }
+
 mat-header-cell {
   padding: 0px !important;
   &.expand {
@@ -101,6 +69,7 @@ mat-header-cell {
   opacity: 30%;
 }
 
+// style for outer header row
 mat-header-row.accent {
   border-bottom: main.color(accent) solid 3px;
 
@@ -116,6 +85,7 @@ mat-header-row.accent {
   }
 }
 
+// style for inner header row
 mat-header-row.primary {
   background-color: #f5f5f5;
   background-clip: content-box;
@@ -131,20 +101,42 @@ mat-row {
   .expand {
     border-bottom: none;
   }
-}
 
-::ng-deep .cell-input {
-  width: 85%;
-
-  mat-form-field {
-    font-size: 12px;
-  }
-
-  app-column-form {
-    width: inherit;
+  mat-cell {
+    padding: 0px !important;
+    &.expand {
+      padding: 1px;
+    }
+    padding: 0px;
   }
 }
 
+
+// style for kkl-data-cell
+div.kkl-cell {
+  align-items: center;
+  overflow: hidden;
+  word-break: break-word;
+  box-sizing: border-box;
+
+  // mat-checkbox {
+  //   padding-right: main.spacing(2);
+  // }
+
+  &.center {
+    justify-content: center;
+  }
+
+  &.select {
+    flex: 0.5 !important;
+  }
+
+  &.actions {
+    justify-content: flex-end;
+  }
+}
+
+// hide matSort default sort arrow
 ::ng-deep div.mat-sort-header-arrow {
   opacity: 0;
   display: none;

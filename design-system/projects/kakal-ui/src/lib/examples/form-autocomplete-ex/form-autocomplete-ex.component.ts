@@ -1,20 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SelectOption } from '../../form/models/question-select.model';
-import {
-  FormDataSource,
-  FormOption,
-} from '../../form/models/form-data-source.model';
 import { FormService } from '../../form/services/form.service';
 import { map, merge, Observable, of } from 'rxjs';
-
+import { FormDataSource } from '../../form/models/form-datasource';
+import { FormOption } from '../../form/models/form-options';
+import { KKLFormActions } from '../../form/models/form-types';
 @Component({
   selector: 'pl-form-autocomplete-ex',
   templateUrl: './form-autocomplete-ex.component.html',
@@ -37,13 +28,11 @@ export class FormAutocompleteExComponent implements OnInit {
   ngOnInit(): void {
     this.control = this.formService.getFieldControl({ key: this.key });
     this.options$ = merge(of(this.options), this.onAutocompleteEvent());
-    this.formDataSource.listen
-      .optionSelected()
-      .subscribe((opt) => console.log(opt));
+    this.formDataSource.on(KKLFormActions.CHANGE).subscribe((opt) => console.log(opt));
   }
 
   private onAutocompleteEvent() {
-    return this.formDataSource.listen.autocomplete().pipe(
+    return this.formDataSource.on(KKLFormActions.CHANGE).pipe(
       map((formOption: FormOption) => formOption.query),
       map((query: string) => {
         return this.options.filter((option: SelectOption) =>

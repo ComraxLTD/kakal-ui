@@ -23,6 +23,7 @@ export class TableColumnModel<T = any> {
   public footer?: boolean;
 
   public expendable?: boolean;
+  public editable?: boolean;
 
   public selectable?: boolean;
   public disableSelect?: boolean;
@@ -47,6 +48,7 @@ export class TableColumnModel<T = any> {
     footer?: boolean;
 
     expendable?: boolean;
+    editable?: boolean;
     selectable?: boolean;
     disableSelect?: boolean;
 
@@ -64,15 +66,11 @@ export class TableColumnModel<T = any> {
     this.format = options?.format;
     this.selector = options?.selector || null;
 
-    this.flex =
-      this.columnDef === 'actions'
-        ? 1
-        : this.columnDef === 'select'
-        ? 0.5
-        : options.flex || 1;
+    this.flex = this.columnDef === 'select' ? 0.5 : options.flex || 1;
     this.footer = options?.footer || false;
     this.center = options?.center || false;
 
+    this.editable = options?.editable || false;
     this.selectable = options?.selectable || false;
     this.disableSelect = options?.disableSelect || false;
 

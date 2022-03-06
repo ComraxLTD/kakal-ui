@@ -4,7 +4,7 @@ import { palette, Palette } from '../../styles/theme';
 @Directive({
   selector: '[kkl-border]',
 })
-export class BorderDirective {
+export class KKLBorderDirective {
   private palette = palette;
 
   @Input() color: Palette;
@@ -28,6 +28,6 @@ export class BorderDirective {
   ngOnInit(): void {
     this.border = `${this.thick || 1}px solid ${
       this.palette[this._color || 'primary']
-    }`;
+    } !important`;
   }
 }

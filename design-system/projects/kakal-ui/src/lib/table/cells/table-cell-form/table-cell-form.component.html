@@ -1,0 +1,59 @@
+<div fxLayout="row" class="kkl-form-cell" (click)="$event.stopPropagation()">
+  <ng-container *ngIf="question">
+    <ng-container [ngSwitch]="question.controlType">
+      <ng-container *ngSwitchCase="'custom'">
+        <ng-container
+          *ngTemplateOutlet="
+            template;
+            context: {
+              control: group.formGroup.controls[columnDef],
+              question: group.controls[columnDef]
+            }
+          "
+        ></ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'currency'">
+        <kkl-form-currency
+          [control]="group.formGroup.controls[columnDef]"
+          [question]="group.controls[columnDef]"
+        >
+        </kkl-form-currency>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'file'">
+        <kkl-form-upload
+          [formControl]="group.formGroup.controls[columnDef]"
+          [question]="group.controls[columnDef]"
+        ></kkl-form-upload>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'date'">
+        <kkl-form-date
+          [control]="group.formGroup.controls[columnDef]"
+          [question]="group.controls[columnDef]"
+        >
+        </kkl-form-date>
+      </ng-container>
+
+      <!-- SELECT INPUT SECTION -->
+      <ng-container *ngSwitchCase="'select'">
+        <kkl-form-select
+          [control]="group.formGroup.controls[columnDef]"
+          [key]="question.key"
+          [multi]="question?.multi"
+          [options]="question?.options"
+          [placeHolder]="question?.placeHolder"
+          [appearance]="question?.appearance"
+        ></kkl-form-select>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <kkl-form-input
+          [control]="group.formGroup.controls[columnDef]"
+          [question]="group.controls[columnDef]"
+        ></kkl-form-input>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</div>

@@ -1,3 +1,70 @@
-<div fxFill>
-  <kkl-table [data$]="data$" [columns$]="columns$"></kkl-table>
+<div fxFill dir="rtl">
+  <kkl-table
+    kkl-table
+    [data$]="data$"
+    [columns$]="columns$"
+    [itemKey]="itemKey"
+    [hasActions]="true"
+  >
+    <!-- use kklHeaderCell for render header cell -->
+    <ng-container *kklHeaderCell="let context">
+      <kkl-header-cell
+        [column]="context.column"
+        [key]="context.key"
+        [columnDef]="context.column.columnDef"
+        [headerTemplate]="{actions}"
+      ></kkl-header-cell>
+    </ng-container>
+
+    <!-- use kklTableCell for render table cell -->
+    <ng-container *kklTableCell="let context">
+      <!-- use kkl-data-cell for comrax table cell -->
+      <kkl-data-cell
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        [row]="context.row"
+        [key]="context.key"
+        [column]="context.column"
+        [group]="context.group"
+        [tableState]="context.tableState"
+        [cellTemplate]="{email}"
+        [inputTemplate]="{input}"
+      ></kkl-data-cell>
+    </ng-container>
+
+    <!-- use kkl-actions-cell for default actions -edit, delete and save -->
+    <ng-container *kklActionCell="let rowState">
+      <kkl-actions-cell
+        [hasEdit]="true"
+        [hasDelete]="true"
+        [rowState]="rowState"
+        [dataSource]="tableDataSource"
+        (edit)="onEditEvent($event)"
+        (close)="onCloseEvent($event)"
+        (save)="onSaveEvent($event)"
+      ></kkl-actions-cell>
+    </ng-container>
+  </kkl-table>
 </div>
+
+<ng-template #email let-rowState>
+  <kkl-typography color="primary" underline="true">
+    {{ rowState.row.email }}
+  </kkl-typography>
+</ng-template>
+
+<ng-template #actions let-rowState>
+  <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
+    הוסף מכונית
+  </kkl-create-button>
+</ng-template>
+
+<ng-template #input let-rowState>
+  <div fxFill fxLayout="row">
+    <kkl-form-cell
+      fxFlex="70"
+      [group]="rowState.group"
+      [columnDef]="rowState.column.columnDef"
+    ></kkl-form-cell>
+  </div>
+</ng-template>

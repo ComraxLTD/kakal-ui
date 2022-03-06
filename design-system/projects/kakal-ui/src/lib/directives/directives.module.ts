@@ -4,7 +4,7 @@ import { VariantDirective } from './variant.directive';
 import { SizeDirective } from './size.directive';
 import { KKLButtonDirective } from './button.directive';
 import { UnderlineDirective } from './underline.directive';
-import { BorderDirective } from './border.directive';
+import { KKLBorderDirective } from './border.directive';
 import { OutsideDirective } from './outside.directive';
 import { WizardDirective } from './wizard.directive';
 import { KKLActionButtonDirective } from './action-button.directive';
@@ -14,7 +14,7 @@ import { KKLOutsideButtonDirective } from './outside-button.directive';
 
 @NgModule({
   declarations: [
-    BorderDirective,
+    KKLBorderDirective,
     KKLButtonDirective,
     OutsideDirective,
     SizeDirective,
@@ -27,7 +27,7 @@ import { KKLOutsideButtonDirective } from './outside-button.directive';
   ],
   imports: [],
   exports: [
-    BorderDirective,
+    KKLBorderDirective,
     KKLButtonDirective,
     OutsideDirective,
     SizeDirective,

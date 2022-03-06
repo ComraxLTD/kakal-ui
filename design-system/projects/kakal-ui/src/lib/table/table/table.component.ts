@@ -1,6 +1,7 @@
 import { SelectionModel } from '@angular/cdk/collections';
 import {
   Component,
+  ContentChild,
   EventEmitter,
   Input,
   OnInit,
@@ -15,52 +16,56 @@ import { PaginationInstance } from 'ngx-pagination';
 import { TableOptions } from '../models/table-options';
 import { TableState } from '../models/table.state';
 
-import { ColumnDef, TableColumnModel } from '../../columns/models/column.model';
 import { ColumnFilterOption } from '../../columns/models/column-filter-options';
 import { ColumnSortOption } from '../../columns/models/column-sort-option';
 import { TableDataSource } from '../models/table-datasource';
 
-import { combineLatest, map, Observable } from 'rxjs';
+import { KKLActionCellDirective } from '../cells/table-cell-action/cell-action.directive';
+import { KKLDataCellDirective } from '../cells/table-data-cell/cell-data.directive';
+import { KKLHeaderCellDirective } from '../header-cells/cell-header.directive';
+
+import { TableStateService } from './table-state.service';
+import { combineLatest, map, merge, Observable } from 'rxjs';
+import { HeaderCellModel } from '../header-cells/models/header-cell.model';
 
 @Component({
   selector: 'kkl-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
+  providers: [TableStateService],
 })
 export class TableComponent<T = any> implements OnInit {
-  @Input() public tableDataSource: TableDataSource<T>;
+  @ContentChild(KKLHeaderCellDirective)
+  cellHeaderDirective: KKLHeaderCellDirective | undefined;
+
+  @ContentChild(KKLDataCellDirective)
+  cellDirective: KKLDataCellDirective | undefined;
+
+  @ContentChild(KKLActionCellDirective)
+  cellActionDirective: KKLActionCellDirective | undefined;
 
   @Input() public data$: Observable<T[]>;
-  @Input() public columns$: Observable<TableColumnModel<T>[]>;
-  @Input() public tableState$: Observable<TableState>;
+  @Input() public columns$: Observable<HeaderCellModel<T>[]>;
 
   // table data instance for column keys
-  @Input() public model: T;
-
-  @Input() public options: TableOptions<T>;
+  @Input('itemKey') public key: keyof T;
 
   @Input() public theme: ThemePalette = 'accent';
 
   // if table have state modes
   @Input() public paginator: boolean;
+
   @Input() public expendable: boolean;
   @Input() public clickable: boolean;
   @Input() public accordion: boolean;
   @Input() public selectable: boolean;
-  @Input() public filterable: boolean;
-  @Input() public hasState: boolean;
+  
+  // if table have additional features
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
-  @Input() public hasStatus: boolean;
-
-  //ng template for cell inputs
-  @Input() public formTemplate: { [key: string]: TemplateRef<any> };
 
   // ng template for cell header
   @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
-
-  // ng template for cell
-  @Input() public cellTemplates: { [key: string]: TemplateRef<any> };
 
   // ng template for column filter options
   @Input() public filterTemplate: { [key: string]: TemplateRef<any> };
@@ -92,28 +97,70 @@ export class TableComponent<T = any> implements OnInit {
   // emit select event : Observable<T[]>
   @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
 
-  // emit row event expand : Observable<RowModel<T>
+  // emit row event expand : Observable<T>
   @Output() expand: EventEmitter<any> = new EventEmitter();
 
-  // emit row : Observable<RowModel<T>
+  // emit row : Observable<T>
   @Output() rowClicked: EventEmitter<T> = new EventEmitter();
 
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
+  public tableState$: Observable<TableState>;
 
-  // public filters$: Observable<ListItem<T>[]>;
   public pagination: PaginationInstance;
 
   // cdk object that handle selection
   public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
 
-  constructor() {}
+  constructor(
+    private tableStateService: TableStateService,
+    private tableDataSource: TableDataSource<T>
+  ) {}
+
+  private setColumns$() {
+    return this.columns$.pipe(
+      map((columns: HeaderCellModel<T>[]) => {
+        if (this.hasActions) {
+          columns.push(new HeaderCellModel({ columnDef: 'actions' }));
+        }
+
+        if (this.selectable) {
+          columns.unshift(new HeaderCellModel({ columnDef: 'select' }));
+        }
+
+        return columns;
+      })
+    );
+  }
+
+  private setTable$() {
+    return combineLatest([this.setColumns$()]).pipe(
+      map(([columns]) => {
+        const columnDefs = columns.map((column) => column.columnDef);
+        return { columns, columnDefs };
+      })
+    );
+  }
 
   ngOnInit() {
-    this.table$ = combineLatest([this.data$, this.columns$]).pipe(
-      map(([data, columns]) => {
-        const columnDefs = columns.map((column) => column.columnDef);
-        return { data, columns, columnDefs };
+    this.table$ = this.setTable$();
+    this.tableState$ = this.setTableState$();
+  }
+
+  ngAfterViewInit() {
+    if (this.hasActions && !this.cellActionDirective) {
+      throw new Error('kkl-table missing *kklActionCell');
+    }
+  }
+
+  private setTableState$() {
+    return merge(
+      this.tableDataSource.listenTableState(),
+      this.tableStateService.onEditCloseEvent(this.tableDataSource),
+      this.tableStateService.onEditEvent(this.tableDataSource)
+    ).pipe(
+      map((tableState: TableState) => {
+        return tableState;
       })
     );
   }

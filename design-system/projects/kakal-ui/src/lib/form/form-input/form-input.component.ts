@@ -9,13 +9,13 @@ import {
 } from '@angular/core';
 import { Appearance, ControlType, GridProps } from '../models/question.model';
 import { Palette } from '../../../styles/theme';
-import { FormOption } from '../models/form-data-source.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import {
   map,
   startWith,
 } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
+import { FormOption } from '../models/form-options';
 
 @Component({
   selector: 'kkl-form-input',

@@ -3,11 +3,15 @@
  */
 
 export * from './lib/kakal-ui.module';
+export * from './lib/angular-material/material.module';
 
-export * from './lib/button/button.component';
+export * from './lib/button/components/button/button.component';
+export * from './lib/button/components/create-button/create-button.component';
+export * from './lib/button/directives/stroked-button';
 export * from './lib/button/button.module';
 
 export * from './lib/typography/typography.component';
+export * from './lib/typography/typography.directive';
 export * from './lib/typography/typography.module';
 
 export * from './lib/icon/icon.component';
@@ -15,7 +19,8 @@ export * from './lib/icon/icon.module';
 
 // form exports
 
-export * from './lib/form/models/form-data-source.model';
+export * from './lib/form/models/form-datasource';
+export * from './lib/form/models/form-types';
 
 export * from './lib/form/form/form.component';
 export * from './lib/form/form/form.module';
@@ -79,25 +84,36 @@ export * from './lib/columns/column-filter/column-filter.component';
 export * from './lib/columns/column-filter/column-filter.module';
 export * from './lib/columns/column-filter/column-filter.service';
 
-export * from './lib/columns/column-form/column-form.component';
-export * from './lib/columns/column-form/column-form.module';
 
 // TABLE
-export * from './lib/table/table/table.component'
-export * from './lib/table/table/table.module'
+export * from './lib/table/table/table.module';
+export * from './lib/table/table/table.component';
+export * from './lib/table/table/table.directive';
+export * from './lib/table/table/table-state.service';
 
-export * from './lib/table/models/table-datasource'
-export * from './lib/table/models/table-event'
-export * from './lib/table/models/table.state'
-export * from './lib/table/models/table-row.model'
+export * from './lib/table/cells/table-cell.module';
 
-export * from './lib/table/directives/table-cell.directive';
+export * from './lib/table/cells/table-cell-form/table-cell-form.module';
+export * from './lib/table/cells/table-cell-form/table-cell-form.component';
 
-// TABLE-ACTIONS
-export * from './lib/table/table-actions/table-actions.component';
-export * from './lib/table/table-actions/table-actions.module';
+export * from './lib/table/cells/table-cell-action/table-actions-cell.module';
+export * from './lib/table/cells/table-cell-action/table-action-cell.component';
+export * from './lib/table/cells/table-cell-action/cell-action.directive';
 
+export * from './lib/table/cells/table-data-cell/table-data-cell.module';
+export * from './lib/table/cells/table-data-cell/table-data-cell.component';
+export * from './lib/table/cells/table-data-cell/cell-data.directive';
 
+export * from './lib/table/header-cells/header-cells.module'
+export * from './lib/table/header-cells/components/header-cell/header-cell.component'
+export * from './lib/table/header-cells/cell-header.directive'
+
+export * from './lib/table/models/table';
+export * from './lib/table/models/table-datasource';
+export * from './lib/table/models/table.events';
+export * from './lib/table/models/table.state';
+
+export * from './lib/table/directives/cell.directive';
 
 // -------------------------------------------------------------------------------------------------------
 
@@ -115,7 +131,7 @@ export * from './lib/kkl-title/kkl-title.component';
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
-export * from './lib/dialog/dialog.service'
+export * from './lib/dialog/dialog.service';
 
 // spinner
 export * from './lib/spinner/spinner.component';

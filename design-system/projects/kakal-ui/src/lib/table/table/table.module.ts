@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { KKLTypographyModule } from '../../typography/typography.module';
@@ -10,9 +11,14 @@ import { KKLIconModule } from '../../icon/icon.module';
 
 import { TableComponent } from './table.component';
 import { KKLColumnsModule } from '../../columns/column.module';
+import { KKLTableCellModule } from '../cells/table-cell.module';
+import { KKLHeaderCellModule } from '../header-cells/header-cells.module';
+
+import { KKLTableDirective} from '../table/table.directive';
+import { KKLCellDirective } from '../directives/cell.directive';
 import { KKLDirectivesModule } from '../../directives/directives.module';
+
 import { KKLPipesModule } from '../../pipes/pipes.module';
-import { KKLTableCellDirective } from '../directives/table-cell.directive';
 
 @NgModule({
   imports: [
@@ -20,15 +26,19 @@ import { KKLTableCellDirective } from '../directives/table-cell.directive';
     FlexLayoutModule,
     MatTableModule,
     MatExpansionModule,
+    MatCheckboxModule,
+
     KKLColumnsModule,
+    KKLHeaderCellModule,
+    KKLTableCellModule,
+
     KKLIconModule,
     KKLTypographyModule,
-
     KKLDirectivesModule,
     KKLPipesModule,
   ],
-  declarations: [TableComponent, KKLTableCellDirective],
+  declarations: [TableComponent, KKLCellDirective, KKLTableDirective ],
   providers: [],
-  exports: [TableComponent, KKLTableCellDirective],
+  exports: [TableComponent, KKLCellDirective, KKLTableDirective],
 })
 export class KKLTableModule {}
