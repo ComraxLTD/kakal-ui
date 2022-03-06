@@ -1,15 +1,16 @@
 import { ValidatorFn } from '@angular/forms';
+import { SelectOption } from '../models/question-select.model';
 import { GridProps, QuestionBase } from '../models/question.model';
 import { CurrencyModel } from './form-currency.model';
 
 export class QuestionCurrencyModel extends QuestionBase {
   // symbol of currency
-  public default: string;
+  public default: SelectOption;
 
   constructor(options: {
     key?: string;
     label?: string;
-    default?: string;
+    default?: SelectOption;
     gridProps?: GridProps;
     value?: CurrencyModel;
     disabled?: boolean;
@@ -18,7 +19,7 @@ export class QuestionCurrencyModel extends QuestionBase {
     super(options);
     this.key = options.key;
     this.label = options.label;
-    this.default = options.default || '₪';
+    this.default = options.default || {label:'',value:0};
     this.type = 'currency';
     this.controlType = 'currency';
     this.gridProps = options.gridProps;
