@@ -41,7 +41,6 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
   public files: File[] = [];
   private labelSub: Subscription;
   // emit the file
-  @Output() public onDeleteFile: EventEmitter<any> = new EventEmitter();
   @Output() fileChange = new EventEmitter<File[]>();
   // @Output() removeFile = new EventEmitter<File>();
 
