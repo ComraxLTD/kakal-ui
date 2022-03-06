@@ -224,7 +224,7 @@ export class TableComponent implements OnInit {
         const group = this.setGroup(
           this.setQuestions(this.questions, item, this.optionsMap)
         );
-        this.tableDataSource.actions.edit({
+        this.tableDataSource.actions.create({
           state: { ...state, item, group },
         });
       });

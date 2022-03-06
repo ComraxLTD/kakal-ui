@@ -16,6 +16,7 @@ import {
   switchMap,
   startWith,
   distinctUntilChanged,
+  switchMapTo,
 } from 'rxjs';
 import { TableDataSource } from '../../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../../models/table.state';
@@ -59,14 +60,15 @@ export class TableActionCellComponent implements OnInit {
   }
 
   private setButtonActionState() {
-    const defaultState$ = this.onButtonsStateDefault();
-    const editState$ = this.onButtonsStateOnEdit();
-    const closeState$ = this.onButtonStateOnClose();
+    const defaultState$ = this.onDefaultButtonsState();
+    const editState$ = this.onEditButtonsState();
+    const closeState$ = this.onCloseButtonState();
+    const createState$ = this.onCreateButtonState();
 
-    return merge(defaultState$, editState$, closeState$);
+    return merge(defaultState$, editState$, closeState$, createState$);
   }
 
-  private setButtonsStateOnDefault() {
+  private getButtonsStateOnDefault() {
     const editState = {
       show: this.actionStateRules?.showEdit(this.rowState.item) || this.hasEdit,
       disabled: this.actionStateRules?.disableEdit(this.rowState.item),
@@ -80,45 +82,74 @@ export class TableActionCellComponent implements OnInit {
     return { editState, deleteState };
   }
 
-  private onButtonsStateDefault(): Observable<ButtonActionState> {
+  private onDefaultButtonsState(): Observable<ButtonActionState> {
     return this.dataSource
       .getTableStateByEvent([FormActions.DEFAULT])
-      .pipe(mapTo(this.setButtonsStateOnDefault()));
+      .pipe(mapTo(this.getButtonsStateOnDefault()));
   }
 
-  private onButtonsStateOnEdit(): Observable<ButtonActionState> {
+  private setFormState(formGroup: FormGroup) {
+    return formGroup.statusChanges.pipe(
+      startWith(formGroup.status),
+      distinctUntilChanged(),
+      map((status: FormControlStatus) => {
+        const editState = {
+          show: false,
+          valid: formGroup.valid,
+          event: 'edit',
+        } as ActionState;
+
+        const deleteState = {
+          show: false,
+          event: 'edit',
+        } as ActionState;
+        return { editState, deleteState };
+      })
+    );
+  }
+
+  private onEditButtonsState(): Observable<ButtonActionState> {
     const id = this.rowState.item[this.rowState.key];
     return this.dataSource.on(FormActions.EDIT).pipe(
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
       map((rowState: RowState) => rowState.group.formGroup),
       switchMap((formGroup: FormGroup) => {
-        return formGroup.statusChanges.pipe(
-          startWith(formGroup.status),
-          distinctUntilChanged(),
-          map((status: FormControlStatus) => {
-            const editState = {
-              show: false,
-              valid: formGroup.valid,
-              event: 'edit',
-            } as ActionState;
-
-            const deleteState = {
-              show: false,
-              event: 'edit',
-            } as ActionState;
-            return { editState, deleteState };
-          })
-        );
+        return this.setFormState(formGroup);
       })
     );
   }
 
-  private onButtonStateOnClose() {
+  private onCloseButtonState() {
     const id = this.rowState.item[this.rowState.key];
     return this.dataSource.on(FormActions.CLOSE).pipe(
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
-      mapTo(this.setButtonsStateOnDefault())
+      mapTo(this.getButtonsStateOnDefault())
     );
+  }
+
+  private onCreateButtonState() {
+    const id = this.rowState.item[this.rowState.key];
+
+    const createTrue$ = this.dataSource.on(FormActions.CREATE).pipe(
+      filter((rowState: RowState) => rowState.item[rowState.key] === id),
+      map((rowState: RowState) => rowState.group.formGroup),
+      switchMap((formGroup: FormGroup) => {
+        return this.setFormState(formGroup);
+      })
+    );
+
+    const createFalse$ = this.dataSource.on(FormActions.CREATE).pipe(
+      filter((rowState: RowState) => rowState.item[rowState.key] !== id),
+      map((_) => {
+        const defaultState = this.getButtonsStateOnDefault();
+        return {
+          ...defaultState,
+          editState: { ...defaultState.editState, disabled: true },
+        };
+      })
+    );
+
+    return merge(createTrue$, createFalse$);
   }
 
   public onDelete() {
