@@ -8,7 +8,6 @@ import {
   QuestionGroupModel,
   OptionMap,
   QuestionSelectModel,
-  TableState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -74,9 +73,7 @@ export class TableComponent implements OnInit {
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
-
   }
-
 
   private demoServerData(): Observable<RootObject[]> {
     return of(DEMO_DATA).pipe(

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { deleteItem } from './table.helpers';
 import { map, Observable, distinctUntilChanged } from 'rxjs';
-import { FormActions } from '../../../form/models/form-events';
+import { FormActions } from '../../../form/models/form.actions';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState } from '../../models/table.state';
 import { PaginationInstance } from 'ngx-pagination';

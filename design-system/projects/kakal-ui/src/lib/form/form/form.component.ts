@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
-import { FormOption } from '../models/form-options';
+import { FormOption } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form',

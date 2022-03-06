@@ -15,7 +15,7 @@ import {
   startWith,
 } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
-import { FormOption } from '../models/form-options';
+import { FormOption } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-input',
@@ -46,9 +46,9 @@ export class FormInputComponent implements OnInit {
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
     this.color$ = this.setColor$();
-    
+
     const controlCheck = this.FormInputService.getInputProps(this.controlType);
-      
+
     for (const property in controlCheck) {
       if(property === 'validation')this.control.setValidators(controlCheck[property]);
       if(property === 'icon')this.icon = controlCheck[property];

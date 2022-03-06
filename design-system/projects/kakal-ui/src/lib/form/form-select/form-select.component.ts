@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
 import { Palette } from '../../../styles/theme';
-import { FormOption } from '../models/form-options';
+import { FormOption } from '../models/form.options';
 import { SelectOption } from '../models/question-select.model';
 import { Appearance } from '../models/question.model';
 import { MessageService } from '../services/message.service';

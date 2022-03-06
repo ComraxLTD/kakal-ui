@@ -8,7 +8,7 @@ import {
   QuestionType,
 } from './question.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { FormOption } from './form-options';
+import { FormOption } from './form.options';
 
 export interface GroupOptions {
   label?: string;
