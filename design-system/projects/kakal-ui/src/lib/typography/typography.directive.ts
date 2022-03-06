@@ -1,5 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { palletteClassesMap, palette } from '../../styles/theme';
+import { palette } from '../../styles/theme';
 
 @Directive({
   selector: '[kkl-typography]',
