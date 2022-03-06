@@ -14,7 +14,7 @@
       <mat-table
         mat-table
         [ngClass]="[theme, 'kkl-table']"
-        [dataSource]="data$ | async"
+        [dataSource]="data$ | async | paginate: tableState.pagination"
         multiTemplateDataRows
       >
         <!-- HEADER COLUMN -->
@@ -151,10 +151,10 @@
       </mat-table>
     </div>
   </ng-container>
-</ng-container>
 
-<ng-template #defaultHeader let-column>
-  <kkl-typography [weight]="600">
-    {{ column.label }}
-  </kkl-typography>
-</ng-template>
+  <kkl-pagination
+    (newPage)="onPageChange($event)"
+    [pagination]="tableState.pagination"
+  >
+  </kkl-pagination>
+</ng-container>

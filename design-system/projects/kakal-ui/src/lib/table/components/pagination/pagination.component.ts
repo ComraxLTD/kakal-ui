@@ -25,6 +25,8 @@ export class PaginationComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    console.log(this.pagination)
   }
 
   public onPageChange(number) {

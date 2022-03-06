@@ -15,6 +15,7 @@ import { KKLPaginationDirective } from './pagination.directive';
   imports: [CommonModule, FlexLayoutModule, NgxPaginationModule],
   exports: [
     PaginationComponent,
+    NgxPaginationModule,
     UrlPaginationDirective,
     KKLPaginationDirective,
   ],
