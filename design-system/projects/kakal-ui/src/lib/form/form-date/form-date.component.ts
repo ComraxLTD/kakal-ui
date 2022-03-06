@@ -15,7 +15,7 @@ import { MessageService } from '../services/message.service';
 
 import { map, Observable, startWith } from 'rxjs';
 import { Appearance } from '../models/question.model';
-import { FormOption } from '../models/form-options';
+import { FormOption } from '../models/form.options';
 
 export const MY_FORMATS = {
   parse: {

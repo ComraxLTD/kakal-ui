@@ -20,7 +20,7 @@ export * from './lib/icon/icon.module';
 // form exports
 
 export * from './lib/form/models/form-datasource';
-export * from './lib/form/models/form-types';
+export * from './lib/form/models/form.types';
 
 export * from './lib/form/form/form.component';
 export * from './lib/form/form/form.module';

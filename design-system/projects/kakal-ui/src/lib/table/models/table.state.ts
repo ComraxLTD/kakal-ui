@@ -3,7 +3,7 @@ import { TableColumnModel } from '../../columns/models/column.model';
 import { TableActions } from '../models/table.events';
 import { SortDirection } from '@angular/material/sort';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
-import { FormActions } from '../../form/models/form-events';
+import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
 

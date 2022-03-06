@@ -8,7 +8,7 @@ import { ColumnState, RowState, TableState } from './table.state';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { FormActions } from '../../form/models/form-events';
+import { FormActions } from '../../form/models/form.actions';
 import { TableActions } from '../models/table.events';
 
 export class TableDataSource<T = any> implements DataSource<T> {

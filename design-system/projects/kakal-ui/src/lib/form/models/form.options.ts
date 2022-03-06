@@ -1,7 +1,7 @@
 import { FormControl } from "@angular/forms";
 import { MatListOption } from "@angular/material/list";
 import { Observable } from "rxjs";
-import { FormActions } from "./form-events";
+import { FormActions } from "./form.actions";
 import { SelectOption } from "./question-select.model";
 
 export interface FormOption {
