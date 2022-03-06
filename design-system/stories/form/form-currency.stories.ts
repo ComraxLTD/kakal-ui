@@ -2,6 +2,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { KKLFormCurrencyModule } from '../../projects/kakal-ui/src/lib/form/form-currency/form-currency.module';
 import { FormCurrencyComponent } from '../../projects/kakal-ui/src/lib/form/form-currency/form-currency.component';
+import { FormControl } from '@angular/forms';
 
 export default {
   title: 'Form/Currency',
@@ -14,7 +15,7 @@ export default {
   argTypes: {
     control: {
       name: 'control',
-      description: 'Angular FormControl .',
+      desmcription: 'Angular FormControl .',
       table: {
         type: { summary: 'object' },
         defaultValue: { summary: 'new FormControl()' },
@@ -42,5 +43,6 @@ const Template: Story<FormCurrencyComponent> = (args: FormCurrencyComponent) => 
 
 export const currency = Template.bind({});
 currency.args = {
+  control :new FormControl()
 }
 

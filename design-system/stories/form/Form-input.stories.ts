@@ -187,9 +187,3 @@ Time.args = {
   controlType:'time',
   control: new FormControl()
 }
-
-export const Cleave = Template.bind({});
-Cleave.args = {
-  controlType:'cleave',
-  control: new FormControl()
-}
