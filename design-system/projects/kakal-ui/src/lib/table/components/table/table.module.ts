@@ -5,20 +5,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
-import { KKLTypographyModule } from '../../typography/typography.module';
-import { KKLIconModule } from '../../icon/icon.module';
-
+import { KKLColumnsModule } from '../../../columns/column.module';
+import { KKLDirectivesModule } from '../../../directives/directives.module';
+import { KKLIconModule } from '../../../icon/icon.module';
+import { KKLPipesModule } from '../../../pipes/pipes.module';
+import { KKLTypographyModule } from '../../../typography/typography.module';
+import { KKLTableCellModule } from '../../cells/table-cell.module';
+import { KKLCellDirective } from '../../directives/cell.directive';
+import { KKLHeaderCellModule } from '../../header-cells/header-cells.module';
 import { TableComponent } from './table.component';
-import { KKLColumnsModule } from '../../columns/column.module';
-import { KKLTableCellModule } from '../cells/table-cell.module';
-import { KKLHeaderCellModule } from '../header-cells/header-cells.module';
-
-import { KKLTableDirective} from '../table/table.directive';
-import { KKLCellDirective } from '../directives/cell.directive';
-import { KKLDirectivesModule } from '../../directives/directives.module';
-
-import { KKLPipesModule } from '../../pipes/pipes.module';
+import { KKLTableDirective } from './table.directive';
 
 @NgModule({
   imports: [

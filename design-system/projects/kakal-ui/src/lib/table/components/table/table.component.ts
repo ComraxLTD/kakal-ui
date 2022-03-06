@@ -12,21 +12,17 @@ import {
 
 import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
-
-import { TableOptions } from '../models/table-options';
-import { TableState } from '../models/table.state';
-
-import { ColumnFilterOption } from '../../columns/models/column-filter-options';
-import { ColumnSortOption } from '../../columns/models/column-sort-option';
-import { TableDataSource } from '../models/table-datasource';
-
-import { KKLActionCellDirective } from '../cells/table-cell-action/cell-action.directive';
-import { KKLDataCellDirective } from '../cells/table-data-cell/cell-data.directive';
-import { KKLHeaderCellDirective } from '../header-cells/cell-header.directive';
-
+import { Observable, map, combineLatest, merge } from 'rxjs';
+import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
+import { ColumnSortOption } from '../../../columns/models/column-sort-option';
+import { KKLActionCellDirective } from '../../cells/table-cell-action/cell-action.directive';
+import { KKLDataCellDirective } from '../../cells/table-data-cell/cell-data.directive';
+import { KKLHeaderCellDirective } from '../../header-cells/cell-header.directive';
+import { HeaderCellModel } from '../../header-cells/models/header-cell.model';
+import { TableDataSource } from '../../models/table-datasource';
+import { TableState } from '../../models/table.state';
 import { TableStateService } from './table-state.service';
-import { combineLatest, map, merge, Observable } from 'rxjs';
-import { HeaderCellModel } from '../header-cells/models/header-cell.model';
+
 
 @Component({
   selector: 'kkl-table',
@@ -59,7 +55,7 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public clickable: boolean;
   @Input() public accordion: boolean;
   @Input() public selectable: boolean;
-  
+
   // if table have additional features
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;

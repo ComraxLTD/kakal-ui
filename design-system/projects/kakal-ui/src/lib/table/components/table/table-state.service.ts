@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { TableState } from '../models/table.state';
 import { deleteItem } from './table.helpers';
-import { TableDataSource } from '../models/table-datasource';
 import { switchMap, take, map, Observable } from 'rxjs';
-import { FormActions } from '../../form/models/form-events';
+import { FormActions } from '../../../form/models/form-events';
+import { TableDataSource } from '../../models/table-datasource';
+import { TableState } from '../../models/table.state';
 
 @Injectable({ providedIn: 'root' })
 export class TableStateService {

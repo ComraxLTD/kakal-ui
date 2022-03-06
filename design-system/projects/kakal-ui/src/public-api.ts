@@ -86,10 +86,10 @@ export * from './lib/columns/column-filter/column-filter.service';
 
 
 // TABLE
-export * from './lib/table/table/table.module';
-export * from './lib/table/table/table.component';
-export * from './lib/table/table/table.directive';
-export * from './lib/table/table/table-state.service';
+export * from './lib/table/components/table/table.module';
+export * from './lib/table/components/table/table.component';
+export * from './lib/table/components/table/table.directive';
+export * from './lib/table/components/table/table-state.service';
 
 export * from './lib/table/cells/table-cell.module';
 
