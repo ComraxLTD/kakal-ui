@@ -2,11 +2,11 @@ import { ValidatorFn } from '@angular/forms';
 import {
   ControlType,
   GridProps,
-  QuestionBaseModel,
+  QuestionBase,
   QuestionType,
 } from './question.model';
 
-export class QuestionTextModel extends QuestionBaseModel<string> {
+export class QuestionTextModel extends QuestionBase {
 
   constructor(options?: {
     key?: string;

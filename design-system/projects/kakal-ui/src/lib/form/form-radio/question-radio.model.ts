@@ -1,5 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBaseModel } from '../models/question.model';
+import { GridProps, QuestionBase } from '../models/question.model';
 
 export interface RadioOption {
   label: string;
@@ -7,7 +7,7 @@ export interface RadioOption {
   checked?: boolean;
 }
 
-export class QuestionRadioModel extends QuestionBaseModel<string> {
+export class QuestionRadioModel extends QuestionBase {
   public options?: RadioOption[];
 
   constructor(options?: {

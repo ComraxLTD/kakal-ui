@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { QuestionGroupModel } from '../../../form/models/question-group.model';
-import { QuestionBase } from '../../../form/services/form.service';
+import { QuestionBase } from '../../../form/models/question.model';
 
 @Component({
   selector: 'kkl-form-cell',

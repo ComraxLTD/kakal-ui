@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   title = 'components-application';
   constructor(private formService: FormService) {}
 
-
   questions: Question[] = [
     {
       key: 'textEditor',
@@ -61,23 +60,5 @@ export class AppComponent implements OnInit {
   public formGroup: QuestionGroupModel;
   public control: FormControl = new FormControl();
 
-  ngOnInit(): void {
-    this.control.setValue({
-      type: 'doc',
-      content: [
-        {
-          type: 'paragraph',
-          attrs: {
-            align: null,
-          },
-          content: [
-            {
-              type: 'text',
-              text: 'dsfsdf',
-            },
-          ],
-        },
-      ],
-    });
-  }
+  ngOnInit(): void {}
 }

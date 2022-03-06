@@ -8,7 +8,7 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 
-import { QuestionBaseModel } from '../models/question.model';
+import { QuestionBase } from '../models/question.model';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionTextModel } from '../models/question-text.model';
 import { QuestionSelectModel } from '../models/question-select.model';
@@ -29,10 +29,6 @@ export type ControlTemplate = [
   validatorOrOpts?: ValidatorFn | AbstractControlOptions | ValidatorFn[],
   asyncValidator?: AsyncValidatorFn | AsyncValidatorFn[]
 ];
-
-export declare type QuestionBase = QuestionBaseModel<
-  string | number | Date | boolean | File[] | undefined
->;
 
 export type Question =
   | QuestionBase
@@ -84,7 +80,7 @@ export class FormService {
         let template;
         const { key } = control;
 
-        if (control instanceof QuestionBaseModel) {
+        if (control instanceof QuestionBase) {
           template = this.setFieldControl(control);
           if (control.controlType === 'currency') {
           }

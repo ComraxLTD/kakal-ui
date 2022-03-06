@@ -58,12 +58,12 @@ export type QuestionType =
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 
-export abstract class QuestionBaseModel<T> {
-  public key?: any;
+export abstract class QuestionBase {
+  public key?: string;
   public theme?: Palette;
   public label?: string;
   public placeHolder?: string;
-  public value?: T | undefined;
+  public value?: any | undefined;
   public appearance?: Appearance;
   public type?: QuestionType;
   public format?: string;
@@ -80,7 +80,7 @@ export abstract class QuestionBaseModel<T> {
 
   constructor(options: {
     key?: string;
-    value?: T;
+    value?: any;
     label?: string;
     placeHolder?: string;
     appearance?: Appearance;

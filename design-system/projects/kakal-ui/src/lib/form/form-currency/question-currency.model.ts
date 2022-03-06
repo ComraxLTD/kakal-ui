@@ -1,8 +1,8 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBaseModel } from '../models/question.model';
+import { GridProps, QuestionBase } from '../models/question.model';
 import { CurrencyModel } from './form-currency.model';
 
-export class QuestionCurrencyModel extends QuestionBaseModel<CurrencyModel> {
+export class QuestionCurrencyModel extends QuestionBase {
   // symbol of currency
   public default: string;
 

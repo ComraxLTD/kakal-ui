@@ -7,6 +7,7 @@ import {
   Question,
   QuestionGroupModel,
   OptionMap,
+  QuestionSelectModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -119,14 +120,14 @@ export class TableComponent implements OnInit {
       question = {
         ...question,
         value: item[question.key],
-      };
+      } as Question;
 
       if (question.controlType === 'select') {
         question = {
           ...question,
-          options: [...optionsMap[question.key]],
-          multi: true,
-        };
+          options: [...optionsMap[question.key.toString()]],
+          value: { value: 1, label: '' },
+        } as QuestionSelectModel;
       }
 
       return question;
@@ -144,7 +145,6 @@ export class TableComponent implements OnInit {
     const group = this.setGroup(
       this.setQuestions(this.questions, item, this.optionsMap)
     );
-
 
     this.tableDataSource.actions.edit({
       state: { ...state, group },

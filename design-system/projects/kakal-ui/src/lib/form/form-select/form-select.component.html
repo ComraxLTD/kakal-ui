@@ -2,6 +2,8 @@
   [color]="theme"
   [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
 >
+  <mat-label>{{ label }}</mat-label>
+
   <mat-select
     panelClass="select-panel-form"
     overlayPanelClass="overlay-panel"
@@ -15,9 +17,7 @@
   >
     <mat-select-trigger>
       {{ control.value ? control.value[0].label : "" }}
-      <span
-        *ngIf="control.value?.length > 1"
-      >
+      <span *ngIf="control.value?.length > 1">
         (+{{ control.value.length - 1 }})
       </span>
     </mat-select-trigger>
