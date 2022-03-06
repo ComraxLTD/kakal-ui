@@ -9,14 +9,12 @@ import { KKLPaginationDirective } from './pagination.directive';
 @NgModule({
   declarations: [
     PaginationComponent,
-    UrlPaginationDirective,
     KKLPaginationDirective,
   ],
   imports: [CommonModule, FlexLayoutModule, NgxPaginationModule],
   exports: [
     PaginationComponent,
     NgxPaginationModule,
-    UrlPaginationDirective,
     KKLPaginationDirective,
   ],
 })
