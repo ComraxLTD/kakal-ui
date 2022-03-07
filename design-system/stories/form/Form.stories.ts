@@ -5,7 +5,7 @@ import { componentWrapperDecorator, moduleMetadata, } from '@storybook/angular';
 import { FormExampleComponent } from '../../projects/kakal-ui/src/lib/examples/form-example/form-example.component';
 import { KKLFormModule } from '../../projects/kakal-ui/src/lib/form/form/form.module';
 export default {
-    title: 'form',
+    title: 'Form',
     decorators: [componentWrapperDecorator((story) => `<div class="mat-body">${story}</div>`), moduleMetadata({
         imports: [KKLFormModule],
         declarations: []

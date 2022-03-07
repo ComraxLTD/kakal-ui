@@ -1,7 +1,7 @@
-import { Directive, HostBinding, Input, TemplateRef } from '@angular/core';
+import { Directive, TemplateRef } from '@angular/core';
 
 @Directive({
-  selector: '[kklTableCell]',
+  selector: '[kklDataCell]',
 })
 export class KKLDataCellDirective {
   constructor(public template: TemplateRef<any>) {}
