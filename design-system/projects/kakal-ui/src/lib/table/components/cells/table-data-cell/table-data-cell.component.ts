@@ -17,8 +17,8 @@ export class TableDataCellComponent implements OnInit {
   @Input() key: string;
   @Input() group: QuestionGroupModel;
 
-  @Input() cellTemplate: { [key: string]: TemplateRef<any> };
-  @Input() inputTemplate: { [key: string]: TemplateRef<any> };
+  @Input() cellTemplate: { [key: string]: TemplateRef<any> } = {};
+  @Input() inputTemplate: { [key: string]: TemplateRef<any> } = {};
 
   constructor() {}
 
