@@ -116,6 +116,7 @@ import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module
     KKLPipesModule,
     KKLDirectivesModule,
     SpinnerModule,
+    KKLPageHeadlineModule
   ],
 })
 export class KakalUiModule {}
