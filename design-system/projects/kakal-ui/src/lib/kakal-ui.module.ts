@@ -41,12 +41,14 @@ import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
+import { PageHeadlineExampleComponent } from './examples/page-headline-example/page-headline-example.component';
 
 @NgModule({
   declarations: [
     FormExampleComponent,
     SidenavExampleComponent,
     FormPhoneComponent,
+    PageHeadlineExampleComponent,
   ],
   imports: [
     CoreModule,
