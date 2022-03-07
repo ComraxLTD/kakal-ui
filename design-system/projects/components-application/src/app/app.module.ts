@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { KakalUiModule } from '../../../kakal-ui/src/public-api';
+import { KakalUiModule, KKLPageHeadlineModule, KKLStatusBarsModule } from '../../../kakal-ui/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,9 +9,10 @@ import { MaterialModule } from '../../../kakal-ui/src/lib/angular-material/mater
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableComponent } from './components/table/table.component';
 import { StrokedButtonDirective } from './stroked-button';
+import { PageHeadlineExampleComponent } from '../../../kakal-ui/src/lib/examples/page-headline-example/page-headline-example.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent ,StrokedButtonDirective],
+  declarations: [AppComponent, TableComponent ,StrokedButtonDirective,PageHeadlineExampleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,6 +20,9 @@ import { StrokedButtonDirective } from './stroked-button';
     MaterialModule,
     KakalUiModule,
     BrowserAnimationsModule,
+    KKLPageHeadlineModule,
+    KKLStatusBarsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
