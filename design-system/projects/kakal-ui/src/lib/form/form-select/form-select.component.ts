@@ -14,7 +14,7 @@ import { MessageService } from '../services/message.service';
 })
 export class FormSelectComponent implements OnInit {
   @Input() public control: FormControl;
-  @Input() public label: string = "בחר מרשימה";
+  @Input() public label: string;
   @Input() public index: number;
   @Input() public multi: boolean;
   @Input() public key: string;
@@ -28,7 +28,7 @@ export class FormSelectComponent implements OnInit {
 
   public error$: BehaviorSubject<string>;
 
-  constructor(private messageService: MessageService) {}
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
@@ -37,6 +37,10 @@ export class FormSelectComponent implements OnInit {
   public onSelectChange() {
     const formOption: FormOption = this.getFormOption(this.control.value);
     this.selected.emit(formOption);
+  }
+
+  compareFunction(o1: SelectOption, o2: SelectOption) {
+    return (o1.label == o2.label && o1.value == o2.value);
   }
 
   private getFormOption(value?: SelectOption): FormOption {
