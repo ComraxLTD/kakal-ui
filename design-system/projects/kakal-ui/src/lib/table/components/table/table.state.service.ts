@@ -46,7 +46,11 @@ export class TableStateService {
   }) {
     const { oldState, rowState, event } = options;
     const { item, key, group } = rowState;
-    const { editing } = oldState;
+    let { editing } = oldState;
+
+    if(event === FormActions.CREATE) {
+      editing = []
+    }
 
     editing.push(item[key]);
 
