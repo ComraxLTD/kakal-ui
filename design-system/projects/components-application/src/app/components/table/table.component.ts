@@ -64,7 +64,7 @@ export class TableComponent implements OnInit {
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
 
-  public pagination: PaginationInstance = { itemsPerPage: 5, currentPage: 1 };
+  public pagination: PaginationInstance = { itemsPerPage: 3, currentPage: 1 };
 
   constructor(
     private formService: FormService,

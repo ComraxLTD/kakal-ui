@@ -97,22 +97,21 @@ export default {
       },
     },
     autocomplete: {
-      name: 'autocomplete',
-      description:
-      'Event that is emitted whenever the user is typing. ',
+      name: 'valueChanged',
+      description: 'Event that is emitted whenever the user is typing. ',
       table: {
         type: {
-          summery: 'autocomplete: EventEmitter<FormOption>',
+          summary: 'EventEmitter<FormOption>',
         },
       },
     },
     optionsSelected: {
       name: 'optionsSelected',
       description:
-      'Event that is emitted whenever an option from the list is selected. ',
+        'Event that is emitted whenever an option from the list is selected. ',
       table: {
         type: {
-          summery: 'optionSelected: EventEmitter<FormOption>',
+          summary: 'EventEmitter<FormOption>',
         },
       },
     },
@@ -122,7 +121,7 @@ export default {
         'Event that is emitted whenever an option from the list is selected. ',
       table: {
         type: {
-          summery: 'optionSelected: EventEmitter<FormOption>',
+          summary: 'EventEmitter<FormOption>',
         },
       },
     },

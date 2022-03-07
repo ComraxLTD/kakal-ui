@@ -1,7 +1,10 @@
 import { EventEmitter } from '@angular/core';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { HeaderCellModel } from '../../projects/kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
-import { KKLTableActionsCellModule, TableActionCellComponent } from '../../projects/kakal-ui/src/public-api';
+import {
+  KKLTableActionsCellModule,
+  TableActionCellComponent,
+} from '../../projects/kakal-ui/src/public-api';
 
 export default {
   title: 'Table/Table-Actions',
@@ -12,7 +15,10 @@ export default {
   ],
   component: TableActionCellComponent,
   argTypes: {
-
+    cell: {
+      name: 'kkl-action-cell',
+      description: 'name tag of the action-cell component',
+    },
     column: {
       name: 'column',
       description: 'A TableColumnModel instance',
@@ -42,7 +48,7 @@ export default {
       description: 'Event that is emitted whenever an edit action clicked. ',
       table: {
         type: {
-          summery: 'edit: EventEmitter<RowState>',
+          summary: 'edit: EventEmitter<RowState>',
         },
       },
     },
@@ -51,7 +57,7 @@ export default {
       description: 'Event that is emitted whenever a delete action clicked. ',
       table: {
         type: {
-          summery: 'delete: EventEmitter<RowState>',
+          summary: 'delete: EventEmitter<RowState>',
         },
       },
       control: EventEmitter,
@@ -61,17 +67,15 @@ export default {
       description: 'Event that is emitted whenever a cancel action clicked. ',
       table: {
         type: {
-          summery: 'cancel: EventEmitter<RowState>',
+          summary: 'cancel: EventEmitter<RowState>',
         },
       },
     },
     save: {
-      name: 'save',
+      name: 'submit',
       description: 'Event that is emitted whenever a save action clicked. ',
       table: {
-        type: {
-          summery: 'save: EventEmitter<RowState>',
-        },
+        type: { summary: 'submit: EventEmitter<RowState>' },
       },
     },
   },
@@ -85,7 +89,6 @@ const Template: Story<TableActionCellComponent> = (
 });
 
 export const tableActions = Template.bind({});
-
 
 tableActions.args = {
   column: new HeaderCellModel({ columnDef: 'actions' }),

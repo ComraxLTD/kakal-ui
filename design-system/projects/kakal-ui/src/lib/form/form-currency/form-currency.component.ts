@@ -68,7 +68,6 @@ export class FormCurrencyComponent implements OnInit {
 
   private setCurrencyQuestion(questions, control: FormControl) {
     return questions.map((question) => {
-      console.log(question);
       const { sum, currency } = control.value;
       let value:any;
 
