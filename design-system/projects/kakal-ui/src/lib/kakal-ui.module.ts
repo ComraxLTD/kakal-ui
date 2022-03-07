@@ -23,9 +23,9 @@ import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 
-import { KKLTableModule } from './table/table/table.module';
-import { KKLTableCellModule } from './table/cells/table-cell.module';
-import { KKLHeaderCellModule } from './table/header-cells/header-cells.module';
+import { KKLTableModule } from './table/components/table/table.module';
+import { KKLTableCellModule } from './table/components/cells/table-cell.module';
+import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 import { KKLColumnsModule } from './columns/column.module';
 
 import { SidenavModule } from './sidenav/sidenav.module';
@@ -41,6 +41,7 @@ import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
+import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLFormUploadModule,
     KKLDialogModule,
     KKLFormTextEditorModule,
-
+    KKLFormCheckBoxModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -86,7 +87,6 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
   exports: [
     //TOOLS
     MaterialModule,
-
     KKLMenuItemModule,
     KKLButtonModule,
     KKLIconModule,
@@ -97,6 +97,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLStatusBarsModule,
 
     KKLFormModule,
+    KKLFormCheckBoxModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,

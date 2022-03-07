@@ -7,8 +7,8 @@ import {
   startWith,
   Subject,
 } from 'rxjs';
-import { FormActions } from './form-events';
-import { FormOption } from './form-options';
+import { FormActions } from './form.actions';
+import { FormOption } from './form.options';
 
 export class FormDataSource {
   // subject which handle form logic
@@ -46,7 +46,7 @@ export class FormDataSource {
 
   // use when delete item form array
   private autocomplete(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: FormActions.CHANGE });
+    this.formStateSubject.next({ ...formOption, event: FormActions.VALUE_CHANGED });
   }
 
   //  use when update form - formGroup.pathValue/setValue
@@ -96,7 +96,7 @@ export class FormDataSource {
   }
 
   private optionSelected(formOption: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: FormActions.SELECTED });
+    this.formStateSubject.next({ ...formOption, event: FormActions.OPTION_SELECTED });
   }
 
   private createAction<T>(
@@ -109,7 +109,7 @@ export class FormDataSource {
 
   public actions = {
     autocomplete: (formOption?: FormOption) =>
-      this.createAction({ formOption }, FormActions.CHANGE),
+      this.createAction({ formOption }, FormActions.VALUE_CHANGED),
     optionSelected: (formOption?: FormOption) =>
       this.optionSelected(formOption),
   };
@@ -140,9 +140,9 @@ export class FormDataSource {
   //   delete: () => this.getStateByAction([FormActions.DELETE]),
   //   submit: () => this.getStateByAction([FormActions.SUBMIT]),
   //   update: () => this.getStateByAction([FormActions.UPDATE]),
-  //   autocomplete: () => this.getStateByAction([FormActions.CHANGE]),
+  //   autocomplete: () => this.getStateByAction([FormActions.VALUE_CHANGED]),
   //   optionSelected: () =>
-  //     this.getStateByAction([FormActions.SELECTED]),
+  //     this.getStateByAction([FormActions.OPTION_SELECTED]),
   // };
 
   public toggleEvent(

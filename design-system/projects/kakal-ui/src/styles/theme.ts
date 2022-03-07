@@ -40,3 +40,4 @@ export const palletteClassesMap = {
   accent: 'mat-accent',
   warn: 'mat-warn',
 };
+

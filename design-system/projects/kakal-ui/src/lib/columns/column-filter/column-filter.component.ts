@@ -21,7 +21,7 @@ import { RangePipe } from '../../pipes/range.pipe';
 
 import { ColumnFilterOption } from '../models/column-filter-options';
 import { ColumnSortOption } from '../models/column-sort-option';
-import { FormOption } from '../../form/models/form-options';
+import { FormOption } from '../../form/models/form.options';
 
 export interface Range {
   from: any;

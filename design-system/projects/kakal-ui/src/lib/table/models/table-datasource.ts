@@ -8,7 +8,7 @@ import { ColumnState, RowState, TableState } from './table.state';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
-import { FormActions } from '../../form/models/form-events';
+import { FormActions } from '../../form/models/form.actions';
 import { TableActions } from '../models/table.events';
 
 export class TableDataSource<T = any> implements DataSource<T> {
@@ -31,6 +31,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
+      pagination: { itemsPerPage: 3, currentPage: 1 },
       forms: {},
       event: FormActions.DEFAULT,
     });
@@ -73,11 +74,15 @@ export class TableDataSource<T = any> implements DataSource<T> {
   public getTableState(): TableState {
     return this.tableSubject.value;
   }
-  public loadTableState(tableState: TableState): void {
-    this.tableSubject.next(tableState);
+
+  public loadTableState(state: { tableState: TableState }): void {
+    const { tableState } = state;
+    const oldState = this.getTableState();
+    this.tableSubject.next({ ...oldState, ...tableState });
   }
 
-  public listenTableState(): Observable<TableState> {
+
+  public connectTableState(): Observable<TableState> {
     return this.tableSubject.asObservable();
   }
 
@@ -138,6 +143,4 @@ export class TableDataSource<T = any> implements DataSource<T> {
     reset: (prop: { state: RowState }) =>
       this.createAction(prop, FormActions.DEFAULT),
   };
-
-
 }

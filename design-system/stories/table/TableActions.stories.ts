@@ -1,7 +1,6 @@
 import { EventEmitter } from '@angular/core';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { HeaderCellModel } from '../../projects/kakal-ui/src/lib/table/header-cells/models/header-cell.model';
-import { TableDataSource } from '../../projects/kakal-ui/src/lib/table/models/table-datasource';
+import { HeaderCellModel } from '../../projects/kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
 import { KKLTableActionsCellModule, TableActionCellComponent } from '../../projects/kakal-ui/src/public-api';
 
 export default {
@@ -13,14 +12,7 @@ export default {
   ],
   component: TableActionCellComponent,
   argTypes: {
-    row: {
-      name: 'row',
-      defaultValue: '',
-      description: 'A TableRowModel instance',
-      table: {
-        type: { summary: 'TableRowModel<T>' },
-      },
-    },
+
     column: {
       name: 'column',
       description: 'A TableColumnModel instance',

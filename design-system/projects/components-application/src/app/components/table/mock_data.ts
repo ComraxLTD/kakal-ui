@@ -20,7 +20,7 @@ export const DEMO_DATA: RootObject[] = [
     last_name: 'Bouchier',
     email: 'hbouchier0@cbc.ca',
     gender: 'Male',
-    city: 'Kanturk',
+    city: 'Russia',
     date: '9/13/2021',
     currency: 'EUR',
   },

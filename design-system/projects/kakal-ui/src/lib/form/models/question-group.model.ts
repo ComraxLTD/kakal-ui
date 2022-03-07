@@ -1,13 +1,14 @@
+
 import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { Question } from '../services/form.service';
 import {
   ControlType,
   GridProps,
-  QuestionBaseModel,
+  QuestionBase,
   QuestionType,
 } from './question.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { FormOption } from './form-options';
+import { FormOption } from './form.options';
 
 export interface GroupOptions {
   label?: string;
@@ -19,7 +20,7 @@ export interface GroupOptions {
   validations?: any;
 }
 
-export class QuestionGroupModel<T = any> extends QuestionBaseModel<T> {
+export class QuestionGroupModel<T = any> extends QuestionBase {
   public model?: Object;
   public questions?: Question[];
   public type?: QuestionType;

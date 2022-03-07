@@ -12,7 +12,7 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource } from '../models/form-datasource';
 import { Observable, of } from 'rxjs';
-import { FormOption } from '../models/form-options';
+import { FormOption } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-autocomplete-multi',

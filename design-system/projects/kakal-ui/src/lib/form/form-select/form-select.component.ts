@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
 import { Palette } from '../../../styles/theme';
-import { FormOption } from '../models/form-options';
+import { FormOption } from '../models/form.options';
 import { SelectOption } from '../models/question-select.model';
 import { Appearance } from '../models/question.model';
 import { MessageService } from '../services/message.service';
@@ -14,6 +14,7 @@ import { MessageService } from '../services/message.service';
 })
 export class FormSelectComponent implements OnInit {
   @Input() public control: FormControl;
+  @Input() public label: string = "בחר מרשימה";
   @Input() public index: number;
   @Input() public multi: boolean;
   @Input() public key: string;
@@ -21,7 +22,7 @@ export class FormSelectComponent implements OnInit {
   @Input() public placeHolder: string;
   @Input() public theme: Palette;
   @Input() public appearance: Appearance;
-  
+
   @Output() public selected: EventEmitter<FormOption> = new EventEmitter();
   @Output() public focus: EventEmitter<FormOption> = new EventEmitter();
 
