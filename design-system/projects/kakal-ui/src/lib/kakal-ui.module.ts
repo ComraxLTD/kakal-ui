@@ -34,6 +34,7 @@ import { KKLDialogModule } from './dialog/dialog.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
+import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
@@ -60,6 +61,7 @@ import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module
     KklTitleModule,
     KKLStepTitleModule,
     SidenavModule,
+    KKLPageHeadlineModule,
 
     // FORMS MODULES
     KKLFormModule,
@@ -114,8 +116,6 @@ import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module
     KKLPipesModule,
     KKLDirectivesModule,
     SpinnerModule,
-
-
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}

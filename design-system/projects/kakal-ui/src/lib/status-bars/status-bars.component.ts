@@ -9,7 +9,7 @@ import {
 import { StatusBarsModel } from './status-bars.model';
 
 @Component({
-  selector: 'pl-status-bars',
+  selector: 'kkl-status-bars',
   templateUrl: './status-bars.component.html',
   styleUrls: ['./status-bars.component.scss'],
 })
@@ -30,6 +30,8 @@ export class StatusBarsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log(status);
+    
     this.cols = this.cols || 8;
     this.color = this.color || 'accent';
 

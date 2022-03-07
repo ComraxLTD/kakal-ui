@@ -149,7 +149,14 @@ export * from './lib/spinner/spinner.service';
 export * from './lib/sidenav/sidenav.module';
 export * from './lib/sidenav/sidenav.component';
 
-// sidenav
+// page-headline
+export * from './lib/page-headline/page-headline.component';
+export * from './lib/page-headline/page-headline.model';
+export * from './lib/page-headline/page-headline.module';
+export * from './lib/page-headline/page-headline.service';
+
+
+// stautts-bars 
 export * from './lib/status-bars/status-bars.module';
 export * from './lib/status-bars/status-bars.component';
 

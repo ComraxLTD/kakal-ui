@@ -25,7 +25,7 @@ import {
 export class FormCurrencyComponent implements OnInit {
   @Input() public control: FormControl;
   @Input() public index: number;
-  @Input() public validations:ValidatorFn[];
+  @Input() public validations: ValidatorFn[];
   public currencyGroupSubject: BehaviorSubject<
     QuestionGroupModel<CurrencyModel>
   >;
@@ -54,7 +54,6 @@ export class FormCurrencyComponent implements OnInit {
     if (!this.control) {
       throw new Error('form-currency must get control as input');
     }
-
     this.currencyGroupSubject = new BehaviorSubject<QuestionGroupModel>(
       this.currencyService.setCurrencyGroup({
         key: 'currency',
@@ -67,11 +66,15 @@ export class FormCurrencyComponent implements OnInit {
     this.currencyGroup$ = this.setCurrencyGroupWithQuestions();
   }
 
-  private setCurrencyQuestion(questions: Question[], control: FormControl) {
-    return questions.map((question: Question) => {
-      const value =
-        question?.key === '' ? this.control.value[question.key] : question.controlType === 'select' ? {label:'',value:0} : 0 ;
-      
+  private setCurrencyQuestion(questions, control: FormControl) {
+    return questions.map((question) => {
+      console.log(question);
+      const { sum, currency } = control.value;
+      let value:any;
+
+      if (question.key === 'sum') value = sum ? sum : 0
+      else value = currency ? currency : { label: '', value: 0 };
+
       const validations =
         question.key === 'sum' ? this.validations : [];
 
