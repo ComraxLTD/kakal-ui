@@ -4,7 +4,7 @@ import { GridProps } from './question.model';
 
 export class QuestionSumModel extends QuestionTextModel {
   constructor(options: {
-    key?: string;
+    key: string;
     label?: string;
     gridProps?: GridProps;
     icon?: string;

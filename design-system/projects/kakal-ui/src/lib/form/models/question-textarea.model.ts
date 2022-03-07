@@ -3,7 +3,7 @@ import { GridProps, QuestionBase } from './question.model';
 
 export class QuestionTextareaModel extends QuestionBase {
   constructor(options: {
-    key?: string;
+    key: string;
     label?: string;
     gridProps?: GridProps;
     icon?: string;

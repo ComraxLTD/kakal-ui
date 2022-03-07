@@ -6,7 +6,7 @@ export class QuestionDateModel extends QuestionBase {
   public minDate?: Date;
   public range?:boolean;
   constructor(options: {
-    key?: string;
+    key: string;
     label?: string;
     gridProps?: GridProps;
     icon?: string;

@@ -8,7 +8,7 @@ export class QuestionCurrencyModel extends QuestionBase {
   public default: SelectOption;
 
   constructor(options: {
-    key?: string;
+    key: string;
     label?: string;
     default?: SelectOption;
     gridProps?: GridProps;

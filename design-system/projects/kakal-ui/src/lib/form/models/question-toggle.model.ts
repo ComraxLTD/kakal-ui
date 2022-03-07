@@ -6,7 +6,7 @@ export class QuestionToggleModel extends QuestionBase {
 
 
   constructor(options?: {
-    key?: string;
+    key: string;
     label?: string;
     gridProps?: GridProps;
     icon?: string;

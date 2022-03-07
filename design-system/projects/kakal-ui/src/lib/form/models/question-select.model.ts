@@ -17,7 +17,7 @@ export class QuestionSelectModel extends QuestionBase {
   public getOptionsAsync?: () => Observable<SelectOption[]>;
 
   constructor(options?: {
-    key?: string;
+    key: string;
     label?: string;
     appearance?: Appearance;
     validations?: ValidatorFn[];
