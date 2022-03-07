@@ -16,7 +16,8 @@ import {
   switchMap,
   startWith,
   distinctUntilChanged,
-  switchMapTo,
+  tap,
+  pairwise,
 } from 'rxjs';
 import { TableDataSource } from '../../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../../models/table.state';
@@ -35,8 +36,6 @@ export interface ButtonActionState {
 })
 export class TableActionCellComponent implements OnInit {
   @Input() rowState: RowState;
-  // @Input() dataSource: TableDataSource;
-  @Input() tableState: TableState;
   @Input() actionStateRules: ActionStateRules;
 
   @Input() hasEdit: boolean;
@@ -48,7 +47,7 @@ export class TableActionCellComponent implements OnInit {
 
   @Output() edit: EventEmitter<RowState> = new EventEmitter<RowState>();
   @Output() delete: EventEmitter<RowState> = new EventEmitter<RowState>();
-  @Output() close: EventEmitter<RowState> = new EventEmitter<RowState>();
+  @Output() cancel: EventEmitter<RowState> = new EventEmitter<RowState>();
   @Output() submit: EventEmitter<RowState> = new EventEmitter<RowState>();
 
   public buttonActionState$: Observable<ButtonActionState>;
@@ -62,10 +61,10 @@ export class TableActionCellComponent implements OnInit {
   private setButtonActionState() {
     const defaultState$ = this.onDefaultButtonsState();
     const editState$ = this.onEditButtonsState();
-    const closeState$ = this.onCloseButtonState();
+    const cancelState$ = this.onCloseButtonState();
     const createState$ = this.onCreateButtonState();
 
-    return merge(defaultState$, editState$, closeState$, createState$);
+    return merge(defaultState$, editState$, cancelState$, createState$);
   }
 
   private getButtonsStateOnDefault() {
@@ -88,20 +87,20 @@ export class TableActionCellComponent implements OnInit {
       .pipe(mapTo(this.getButtonsStateOnDefault()));
   }
 
-  private setFormState(formGroup: FormGroup) {
+  private setFormState(formGroup: FormGroup, event: FormActions) {
     return formGroup.statusChanges.pipe(
       startWith(formGroup.status),
       distinctUntilChanged(),
       map((status: FormControlStatus) => {
         const editState = {
           show: false,
-          valid: formGroup.valid,
-          event: 'edit',
+          valid: status === 'VALID',
+          event,
         } as ActionState;
 
         const deleteState = {
           show: false,
-          event: 'edit',
+          event,
         } as ActionState;
         return { editState, deleteState };
       })
@@ -114,17 +113,32 @@ export class TableActionCellComponent implements OnInit {
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
       map((rowState: RowState) => rowState.group.formGroup),
       switchMap((formGroup: FormGroup) => {
-        return this.setFormState(formGroup);
+        return this.setFormState(formGroup, FormActions.EDIT);
       })
     );
   }
 
   private onCloseButtonState() {
     const id = this.rowState.item[this.rowState.key];
-    return this.dataSource.on(FormActions.CLOSE).pipe(
+
+    const editClose$ = this.dataSource.on(FormActions.CANCEL).pipe(
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
       mapTo(this.getButtonsStateOnDefault())
     );
+
+    const createClose$ = this.dataSource.getRowState().pipe(
+      pairwise(),
+      filter(
+        ([prev, current]) =>
+          prev.event === FormActions.CREATE &&
+          current.event === FormActions.CANCEL
+      ),
+      map(() => {
+        return this.getButtonsStateOnDefault();
+      })
+    );
+
+    return merge(createClose$, editClose$);
   }
 
   private onCreateButtonState() {
@@ -134,7 +148,7 @@ export class TableActionCellComponent implements OnInit {
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
       map((rowState: RowState) => rowState.group.formGroup),
       switchMap((formGroup: FormGroup) => {
-        return this.setFormState(formGroup);
+        return this.setFormState(formGroup, FormActions.CREATE);
       })
     );
 
@@ -160,8 +174,8 @@ export class TableActionCellComponent implements OnInit {
     this.edit.emit({ ...this.rowState });
   }
 
-  public onClose(event: FormActions) {
-    this.close.emit({
+  public onCancel(event: FormActions) {
+    this.cancel.emit({
       ...this.rowState,
       event,
     });

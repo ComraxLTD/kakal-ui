@@ -8,6 +8,7 @@ import {
   QuestionGroupModel,
   OptionMap,
   QuestionSelectModel,
+  TableState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -23,6 +24,7 @@ import {
 import { Validators } from '@angular/forms';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
 import { PaginationInstance } from 'ngx-pagination';
+import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
 
 @Component({
   selector: 'app-table',
@@ -57,6 +59,7 @@ export class TableComponent implements OnInit {
 
   public data$: Observable<RootObject[]>;
   public columns$: Observable<TableColumnModel<RootObject>[]>;
+  public tableState$: Observable<TableState>;
 
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
@@ -72,6 +75,7 @@ export class TableComponent implements OnInit {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
+    this.tableState$ = this.tableDataSource.connectTableState()
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
   }
 
@@ -152,16 +156,21 @@ export class TableComponent implements OnInit {
       this.setQuestions(this.questions, item, this.optionsMap)
     );
 
-
     this.tableDataSource.actions.edit({
       state: { ...state, group },
     });
   }
 
-  public onCloseEvent(state: RowState) {
+  public onCancelEvent(state: RowState) {
     const { event } = state;
-    this.tableDataSource.actions.close({ state });
-    if (event === 'edit') {
+    this.tableDataSource.actions.cancel({ state });
+
+    if (event == FormActions.CREATE) {
+      const data = this.demoStore$.getValue();
+      data.splice(0, 1)
+      this.demoStore$.next(data);
+
+
     }
   }
 
@@ -190,7 +199,7 @@ export class TableComponent implements OnInit {
       )
       .subscribe((updateData) => {
         this.demoStore$.next(updateData);
-        this.tableDataSource.actions.close({ state });
+        this.tableDataSource.actions.cancel({ state });
       });
   }
 
