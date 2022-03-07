@@ -11,7 +11,6 @@ export class FormCheckboxComponent implements OnInit {
   @Input() control: FormControl;
   @Input() label: string;
   @Input() options: SelectOption[];
-  @Input() key: string;
   @Input() labelPosition: 'after' | 'before' = 'after';
 
   interestFormGroup: FormGroup
@@ -21,15 +20,13 @@ export class FormCheckboxComponent implements OnInit {
 
   ngOnInit(): void {
     if (!this.control) this.control = new FormControl();
-    this.key = 'test';
     this.interestFormGroup = this.formBuilder.group({
       interests: this.formBuilder.array([])
     });
     this.updateFirstValue();
-    const interests = <FormArray>this.interestFormGroup.get('interests') as FormArray;
   }
 
-  updateFirstValue() {
+  updateFirstValue():void {
     if (this.control.value && this.control.value.length !== 0) {
       const interests = <FormArray>this.interestFormGroup.get('interests') as FormArray;
       this.control.value.map(item => {
@@ -39,7 +36,7 @@ export class FormCheckboxComponent implements OnInit {
     }
   }
 
-  onChange(event) {
+  onChange(event):void {
     const interests = <FormArray>this.interestFormGroup.get('interests') as FormArray;
     if (event.checked) {
       interests.push(new FormControl(event.source.value))
