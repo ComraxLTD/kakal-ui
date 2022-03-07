@@ -5,4 +5,4 @@ import { FormDataSource as KKLFormDataSource } from './form-datasource';
 
 declare type OptionMap = { [key: string]: KKLSelectOption[] };
 
-export { KKLFormActions, KKLFormDataSource, KKLFormOption, OptionMap };
+export { KKLFormActions, KKLFormDataSource, KKLFormOption, KKLSelectOption, OptionMap };

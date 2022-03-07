@@ -10,13 +10,13 @@ export class TypographyComponent implements OnInit {
   @Input() public size: number;
   @Input() public weight: number;
 
-  private _color: string = 'text';
+  private _color: Palette = 'text';
 
   @Input()
-  get color(): string {
+  get color(): Palette {
     return this._color;
   }
-  set color(value: string) {
+  set color(value: Palette) {
     this._color = value;
   }
 
