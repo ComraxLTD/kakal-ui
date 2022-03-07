@@ -1,4 +1,13 @@
 <div fxFill dir="rtl">
+  <code dir="ltr" *ngIf="tableState$ | async as tableState">
+tableState :
+    <pre>
+      event : {{ tableState.event | json }}
+      editing : {{ tableState.editing | json }}
+      </pre
+    >
+  </code>
+
   <kkl-table
     kkl-table
     [data$]="data$"
@@ -28,6 +37,7 @@
         [group]="context.group"
         [tableState]="context.tableState"
         [inputTemplate]="{input}"
+        [cellTemplate]="{email}"
       ></kkl-data-cell>
     </ng-container>
 

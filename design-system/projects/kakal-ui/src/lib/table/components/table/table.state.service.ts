@@ -48,8 +48,8 @@ export class TableStateService {
     const { item, key, group } = rowState;
     let { editing } = oldState;
 
-    if(event === FormActions.CREATE) {
-      editing = []
+    if (event === FormActions.CREATE) {
+      editing = [];
     }
 
     editing.push(item[key]);
@@ -105,7 +105,7 @@ export class TableStateService {
         const tableState = {
           ...oldState,
           editing: deleteItem({ array: editing, value: item[key] }),
-          event: 'close',
+          event: FormActions.CLOSE,
         } as TableState;
 
         return tableState;
