@@ -53,6 +53,8 @@ export type QuestionType =
   | 'select'
   | 'custom'
   | 'date'
+  | 'checkbox'
+  | 'radio'
   | 'textEditor'
   | 'currency';
 

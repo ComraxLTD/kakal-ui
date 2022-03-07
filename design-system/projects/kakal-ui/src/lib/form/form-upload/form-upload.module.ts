@@ -8,6 +8,7 @@ import { KKLTypographyModule } from '../../typography/typography.module';
 import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @NgModule({
@@ -18,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
     KKLIconModule,
     MatListModule,
     MatMenuModule,
+    MatIconModule,
     MatSelectModule,
     KKLTypographyModule
   ],
