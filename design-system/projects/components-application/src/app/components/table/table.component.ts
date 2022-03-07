@@ -161,9 +161,9 @@ export class TableComponent implements OnInit {
     });
   }
 
-  public onCloseEvent(state: RowState) {
+  public onCancelEvent(state: RowState) {
     const { event } = state;
-    this.tableDataSource.actions.close({ state });
+    this.tableDataSource.actions.cancel({ state });
 
     if (event == FormActions.CREATE) {
       const data = this.demoStore$.getValue();
@@ -199,7 +199,7 @@ export class TableComponent implements OnInit {
       )
       .subscribe((updateData) => {
         this.demoStore$.next(updateData);
-        this.tableDataSource.actions.close({ state });
+        this.tableDataSource.actions.cancel({ state });
       });
   }
 

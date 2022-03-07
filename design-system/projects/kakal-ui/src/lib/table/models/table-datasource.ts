@@ -130,10 +130,10 @@ export class TableDataSource<T = any> implements DataSource<T> {
     edit: (prop: { state: RowState }) =>
       this.createAction(prop, FormActions.EDIT),
 
-    // cancel: (prop: { state: RowState }) => this.createAction(prop, 'cancel'),
+    cancel: (prop: { state: RowState }) => this.createAction(prop, FormActions.CANCEL),
 
-    close: (prop: { state: RowState }) =>
-      this.createAction(prop, FormActions.CLOSE),
+    // close: (prop: { state: RowState }) =>
+    //   this.createAction(prop, FormActions.CLOSE),
 
     // expand: (prop: { state: RowState }) => this.createAction(prop, 'expand'),
 
