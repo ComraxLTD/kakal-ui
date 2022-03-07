@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { StepperComponent } from './stepper.component';
+import {KKLDirectivesModule} from '../directives/directives.module';
 
 @NgModule({
-    imports:[],
+    imports:[KKLDirectivesModule],
     declarations:[StepperComponent],
     exports:[StepperComponent]
 })

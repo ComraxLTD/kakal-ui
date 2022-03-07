@@ -197,5 +197,25 @@ export * from './lib/directives/outside-button.directive';
 export * from './lib/directives/directives.module';
 
 // styles
-
 export * from './styles/theme';
+
+// cards
+export * from './lib/cards/card-dashboard/card-dashboard.component';
+export * from './lib/cards/card-dashboard/card-dashboard.model';
+export * from './lib/cards/card-info/card-info.component';
+export * from './lib/cards/card-info/card-info.model';
+export * from './lib/cards/card-status/card-status.component';
+export * from './lib/cards/card-status/card-status.model';
+export * from './lib/cards/card-step/card-step.component';
+export * from './lib/cards/card-step/card-step.model';
+export * from './lib/cards/card-user/card-user.component';
+export * from './lib/cards/card-wizard/card-wizard.component';
+export * from './lib/cards/card.model';
+export * from './lib/cards/cards.module';
+
+
+
+
+
+
+
