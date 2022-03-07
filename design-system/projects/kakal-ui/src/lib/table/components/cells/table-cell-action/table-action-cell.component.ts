@@ -34,8 +34,8 @@ export interface ButtonActionState {
   styleUrls: ['./table-action-cell.component.scss'],
 })
 export class TableActionCellComponent implements OnInit {
+
   @Input() rowState: RowState;
-  // @Input() dataSource: TableDataSource;
   @Input() tableState: TableState;
   @Input() actionStateRules: ActionStateRules;
 
