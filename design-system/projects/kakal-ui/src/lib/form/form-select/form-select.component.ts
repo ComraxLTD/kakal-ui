@@ -40,7 +40,7 @@ export class FormSelectComponent implements OnInit {
   }
 
   compareFunction(o1: SelectOption, o2: SelectOption) {
-    return (o1.label == o2.label && o1.value == o2.value);
+    return (o1?.label == o2?.label && o1.value == o2.value);
   }
 
   private getFormOption(value?: SelectOption): FormOption {

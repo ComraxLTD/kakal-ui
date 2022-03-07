@@ -1,6 +1,7 @@
 @use ".././../../styles/variables" as main;
 
 .kkl-form-radio {
+  padding: 0 .75em 0 .75em;
   ::ng-deep .mat-radio-outer-circle {
     border-color: #CECECE!important;
   }

@@ -19,6 +19,7 @@ import { KKLFormSelectModule } from '../form-select/form-select.module';
 import { KKLFormAutoCompleteModule } from '../form-autocomplete/form-autocomplete.module';
 import { KKLFormRadioModule } from '../form-radio/form-radio.module';
 import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.module';
+import { KKLFormCheckBoxModule } from '../form-checkbox/form-checkbox.module';
 
 @NgModule({
   declarations: [FormComponent],
@@ -38,12 +39,13 @@ import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.modu
     // form components
     KKLFormDateModule,
     KKLFormInputModule,
-    KKLFormRadioModule,
     KKLFormSelectModule,
     KKLFormAutoCompleteModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
-    KKLFormTextEditorModule
+    KKLFormTextEditorModule,
+    KKLFormCheckBoxModule,
+    KKLFormRadioModule
   ],
   exports: [FormComponent, KKLFormInputModule],
 })
