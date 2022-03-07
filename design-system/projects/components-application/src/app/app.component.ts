@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void { 
     this.currencyService.setCurrencies$([{label:'$',value:0},{label:'*',value:1}])
-    this.testControl.setValue({sum:400,currency:{label:'*',value:1}})
+    this.testControl.patchValue([{ label: 'test2', value: 0}])
     
     // this.testControl.setValue(this.options);
   }

@@ -7,6 +7,7 @@
         </div>
         <section >
                 <div fxLayout="row" fxFlex="20" fxLayoutGap="1.5rem" fxLayoutAlign="space-between center">
+                    
                     <mat-checkbox *ngFor="let option of options" color="primary" [labelPosition]="labelPosition"
                         [disabled]="option.disabled" [checked]="option.checked" [value]="option" (change)="onChange($event)" >
                         {{option.label}}
