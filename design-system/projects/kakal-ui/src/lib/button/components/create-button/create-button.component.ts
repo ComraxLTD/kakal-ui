@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Palette } from 'projects/kakal-ui/src/styles/theme';
+import { Color } from '../../../../styles/theme';
 
 @Component({
   selector: 'kkl-create-button',
@@ -7,7 +7,7 @@ import { Palette } from 'projects/kakal-ui/src/styles/theme';
   styleUrls: ['./create-button.component.scss'],
 })
 export class CreateButtonComponent implements OnInit {
-  @Input() color: Palette = 'primary';
+  @Input() color: Color;
   @Input() disabled: boolean;
 
   @Output() clickEvent: EventEmitter<void> = new EventEmitter();

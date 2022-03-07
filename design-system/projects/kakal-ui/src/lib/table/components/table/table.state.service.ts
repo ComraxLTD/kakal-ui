@@ -28,7 +28,6 @@ export class TableStateService {
               itemsPerPage: totalItems,
             } as PaginationInstance);
 
-
         return {
           ...oldState,
           pagination: {
@@ -40,25 +39,57 @@ export class TableStateService {
     );
   }
 
+  private setRowWithForm(options: {
+    oldState: TableState;
+    rowState: RowState;
+    event: string;
+  }) {
+    const { oldState, rowState, event } = options;
+    const { item, key, group } = rowState;
+    let { editing } = oldState;
+
+    if(event === FormActions.CREATE) {
+      editing = []
+    }
+
+    editing.push(item[key]);
+
+    const tableState = {
+      ...oldState,
+      editing,
+      event,
+      forms: {
+        ...oldState.forms,
+        [item[key]]: group,
+      },
+    } as TableState;
+    return tableState;
+  }
+
   public onEditEvent(tableDataSource: TableDataSource): Observable<TableState> {
     return tableDataSource.on(FormActions.EDIT).pipe(
-      map((state: RowState) => {
+      map((rowState: RowState) => {
         const oldState = tableDataSource.getTableState();
-        const { item, key, group } = state;
-        const { editing } = oldState;
+        return this.setRowWithForm({
+          oldState,
+          rowState,
+          event: FormActions.EDIT,
+        });
+      })
+    );
+  }
 
-        editing.push(item[key]);
-
-        const tableState = {
-          ...oldState,
-          editing,
-          event: 'edit',
-          forms: {
-            [item[key]]: group,
-          },
-        } as TableState;
-        console.log('edit', tableState);
-        return tableState;
+  public onCreateEvent(
+    tableDataSource: TableDataSource
+  ): Observable<TableState> {
+    return tableDataSource.on(FormActions.CREATE).pipe(
+      map((rowState: RowState) => {
+        const oldState = tableDataSource.getTableState();
+        return this.setRowWithForm({
+          oldState,
+          rowState,
+          event: FormActions.CREATE,
+        });
       })
     );
   }

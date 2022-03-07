@@ -27,7 +27,6 @@
         [column]="context.column"
         [group]="context.group"
         [tableState]="context.tableState"
-        [cellTemplate]="{email}"
         [inputTemplate]="{input}"
       ></kkl-data-cell>
     </ng-container>
@@ -41,7 +40,7 @@
         [dataSource]="tableDataSource"
         (edit)="onEditEvent($event)"
         (close)="onCloseEvent($event)"
-        (save)="onSaveEvent($event)"
+        (submit)="onSubmitEvent($event)"
       ></kkl-actions-cell>
     </ng-container>
   </kkl-table>
