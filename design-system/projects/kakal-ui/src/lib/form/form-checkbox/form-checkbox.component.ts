@@ -24,13 +24,12 @@ export class FormCheckboxComponent implements OnInit {
       interests: this.formBuilder.array([])
     });
     this.updateFirstValue();
-
   }
 
   updateFirstValue(): void {
     if (this.control.value && this.control.value.length !== 0) {
       const interests = <FormArray>this.interestFormGroup.get('interests') as FormArray;
-      this.control.value?.map(item => {
+      this.control.value.map(item => {
         const index = this.options.findIndex(option => option.label === item.label && option.value === item.value);
         this.options[index].checked = true;
         interests.push(new FormControl(item));

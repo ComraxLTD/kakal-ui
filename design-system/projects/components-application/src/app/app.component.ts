@@ -63,13 +63,14 @@ export class AppComponent implements OnInit {
   public control: FormControl = new FormControl();
   options: SelectOption[] = [{ label: 'Tel-aviv', value: 0 }, { label: 'Haifa', value: 1 }, { label: 'Ramat-gan', value: 2 }, { label: 'Herzilya', value: 3 }];
   selectedOptions: SelectOption[] = [{ label: 'Haifa', value: 1 }, { label: 'Ramat-gan', value: 2 }, { label: 'Herzilya', value: 3 }];
+  radioControl = new FormControl();
 
   public testControl: FormControl = new FormControl();
 
   ngOnInit(): void { 
-    this.currencyService.setCurrencies$([{label:'$',value:0},{label:'*',value:1}])
-    this.testControl.patchValue([{ label: 'test2', value: 0}])
-    
-    this.testControl.setValue(this.selectedOptions);
+    // this.currencyService.setCurrencies$([{label:'$',value:0},{label:'*',value:1}])
+    // this.testControl.patchValue([{ label: 'test2', value: 0}])
+    this.radioControl.setValue({ label: 'Tel-aviv', value: 0 })
+    // this.testControl.setValue(this.selectedOptions);
   }
 }
