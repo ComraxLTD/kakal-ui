@@ -18,7 +18,7 @@
 
       <ng-container *ngSwitchCase="'custom'">
         <ng-container
-          *ngTemplateOutlet="slots[item.key]; context: { $implicit: this.item }"
+          *ngTemplateOutlet=" slots[item.key] ; context: { $implicit: this.item }"
         >
         </ng-container>
       </ng-container>

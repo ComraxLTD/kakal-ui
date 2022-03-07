@@ -22,6 +22,8 @@ export class PageHeadlineComponent implements OnInit {
 
   ngOnInit(): void {
     this.headlineItems$=this.getHeadlineItems()
+    console.log(this.slots);
+    
     // this.headlineItems = [
     //   { label: 'אקליפטוס יער', type: 'default', size: 1.5,key:'x'},
     //   { label: 'אקליפטוס יער', type: 'default', size: 1.5,key:'x'},

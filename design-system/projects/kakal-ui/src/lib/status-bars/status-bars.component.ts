@@ -30,6 +30,8 @@ export class StatusBarsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log(status);
+    
     this.cols = this.cols || 8;
     this.color = this.color || 'accent';
 
