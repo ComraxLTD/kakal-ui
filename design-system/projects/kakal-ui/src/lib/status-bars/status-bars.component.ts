@@ -9,7 +9,7 @@ import {
 import { StatusBarsModel } from './status-bars.model';
 
 @Component({
-  selector: 'pl-status-bars',
+  selector: 'kkl-status-bars',
   templateUrl: './status-bars.component.html',
   styleUrls: ['./status-bars.component.scss'],
 })

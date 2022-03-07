@@ -31,9 +31,10 @@ import { KKLColumnsModule } from './columns/column.module';
 import { SidenavModule } from './sidenav/sidenav.module';
 
 import { KKLDialogModule } from './dialog/dialog.module';
-import { SpinnerModule } from './spinner/spinner.module'
+import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
+import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
@@ -42,20 +43,24 @@ import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-exam
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent, FormPhoneComponent,
-    ],
+  declarations: [
+    FormExampleComponent,
+    SidenavExampleComponent,
+    FormPhoneComponent,
+  ],
   imports: [
     CoreModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-//TOOLS
-KKLStatusBarsModule,  
-KKLMenuModule,
+    //TOOLS
+    KKLStatusBarsModule,
+    KKLMenuModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
     SidenavModule,
+    KKLPageHeadlineModule,
 
     // FORMS MODULES
     KKLFormModule,
@@ -76,7 +81,7 @@ KKLMenuModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
-    SpinnerModule
+    SpinnerModule,
   ],
   exports: [
     //TOOLS
@@ -89,7 +94,7 @@ KKLMenuModule,
     KklTitleModule,
     KKLStepTitleModule,
     SidenavModule,
-    KKLStatusBarsModule,  
+    KKLStatusBarsModule,
 
     KKLFormModule,
     KKLFormTextEditorModule,
@@ -109,7 +114,7 @@ KKLMenuModule,
 
     KKLPipesModule,
     KKLDirectivesModule,
-    SpinnerModule
+    SpinnerModule,
   ],
 })
 export class KakalUiModule {}

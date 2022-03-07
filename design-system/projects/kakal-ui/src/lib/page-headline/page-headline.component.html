@@ -1,0 +1,30 @@
+<div fxLayout="row-reverse" fxLayoutAlign="start end" fxLayoutGap=".5rem">
+  <div
+    *ngFor="let item of headlineItems$ | async; let i = index"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+    fxLayoutGap=".5rem"
+  >
+    <ng-container [ngSwitch]="item.type">
+      <ng-container *ngSwitchCase="'default'">
+        <kkl-typography [size]="item.size"> {{ item.label }}</kkl-typography>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'date'">
+        <kkl-typography [size]="item.size-0.2">
+          {{ item.label | date: "dd/MM/yyyy" }}</kkl-typography
+        >
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'custom'">
+        <ng-container
+          *ngTemplateOutlet="slots[item.key]; context: { $implicit: this.item }"
+        >
+        </ng-container>
+      </ng-container>
+    </ng-container>
+    <kkl-typography *ngIf="i != 0" [size]="2" [color]="'primary'">
+      &#8226;</kkl-typography
+    >
+  </div>
+</div>
