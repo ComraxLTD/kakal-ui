@@ -32,7 +32,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
   public questions$?: Observable<Question[]>;
 
   constructor(options?: {
-    key?: string;
+    key: string;
     questions?: Question[];
     label?: string;
     icon?: string;

@@ -59,7 +59,7 @@ export type QuestionType =
 export type Appearance = 'none' | MatFormFieldAppearance;
 
 export abstract class QuestionBase {
-  public key?: string;
+  public key: string;
   public theme?: Palette;
   public label?: string;
   public placeHolder?: string;
@@ -79,7 +79,7 @@ export abstract class QuestionBase {
   public autocomplete?: boolean;
 
   constructor(options: {
-    key?: string;
+    key: string;
     value?: any;
     label?: string;
     placeHolder?: string;
