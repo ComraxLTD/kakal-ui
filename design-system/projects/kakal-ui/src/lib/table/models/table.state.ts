@@ -23,7 +23,7 @@ export interface RowState<T = any> {
   item?: T;
   key?: string;
   event?: FormActions| TableActions;
-  rowIndex?: number;
+  itemIndex?: number;
   column?: TableColumnModel<T>;
   group?: QuestionGroupModel<T>;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };

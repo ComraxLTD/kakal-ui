@@ -9,12 +9,11 @@ import { RowState, TableState } from '../../../models/table.state';
   styleUrls: ['./table-data-cell.component.scss'],
 })
 export class TableDataCellComponent implements OnInit {
-  @Input() rowState: RowState;
-  @Input() tableState: TableState;
+  @Input() item: any;
+  @Input() key: string;
   @Input() column: TableColumnModel;
   @Input() columnDef: string;
-  @Input() row: any;
-  @Input() key: string;
+  @Input() tableState: TableState;
   @Input() group: QuestionGroupModel;
 
   @Input() cellTemplate: { [key: string]: TemplateRef<any> } = {};
@@ -23,10 +22,13 @@ export class TableDataCellComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.inputTemplate = this.setFormTemplate(this.row, this.inputTemplate)
+    this.inputTemplate = this.setFormTemplate(this.item, this.inputTemplate);
   }
 
-  private setFormTemplate(item: any, formTemplate) {
+  private setFormTemplate(
+    item: any,
+    formTemplate: { [key: string]: TemplateRef<any> }
+  ) {
     const keys = Object.keys(item).filter((key) => key !== 'input');
     const inputTemplate = keys.reduce((acc, key) => {
       const template = acc[key] || acc['input'];
