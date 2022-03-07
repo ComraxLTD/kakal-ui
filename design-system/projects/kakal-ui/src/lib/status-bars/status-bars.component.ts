@@ -48,6 +48,7 @@ export class StatusBarsComponent implements OnInit {
     ).fill('');
 
     this.steps.push(...disapproveddBars);
+    this.steps=this.steps.reverse()
     console.log(this.steps);
   }
 }
