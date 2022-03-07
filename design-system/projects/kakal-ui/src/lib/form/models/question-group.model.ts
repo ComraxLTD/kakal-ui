@@ -1,4 +1,3 @@
-
 import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
 import { Question } from '../services/form.service';
 import {
@@ -28,9 +27,6 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
   public hasButton?: boolean;
   public controls?: Object;
 
-  private questionState: BehaviorSubject<Question[]>;
-  public questions$?: Observable<Question[]>;
-
   constructor(options?: {
     key: string;
     questions?: Question[];
@@ -56,7 +52,6 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     this.controls = options.controls || null;
     this.validations = options.validations || [];
   }
-
 
   // method to get question control
   public getControl(key: string): AbstractControl {
@@ -100,18 +95,6 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     return this.formGroup.controls;
   }
 
-  public updateQuestions(formOption: FormOption): Question[] {
-    const { key, options } = formOption;
-    const indexToUpdate = this.questions.findIndex(
-      (question) => question.key === key
-    );
-    if (indexToUpdate !== -1 && options.length > 0) {
-      this.questions[indexToUpdate]['options'] = options;
-    }
-    this.questionState.next(this.questions);
-    return this.questions;
-  }
-
   public patchValue(item): void {
     this.formGroup.patchValue(item);
   }
@@ -130,7 +113,5 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     }
   }
 
-  public emitQuestions$(questions: Question[]) {
-    this.questionState.next(questions);
-  }
+ 
 }
