@@ -63,5 +63,7 @@ export class AppComponent implements OnInit {
   options = [{ label: 'test', value: 0} ,{ label: 'test2', value: 0}];
   public testControl: FormControl = new FormControl();
 
-  ngOnInit(): void { }
+  ngOnInit(): void { 
+    // this.testControl.setValue(this.options);
+  }
 }
