@@ -7,7 +7,7 @@ export class QuestionAutocompleteModel extends QuestionSelectModel {
   public panelWidth: boolean;
 
   constructor(options?: {
-    key?: string;
+    key: string;
     label?: string;
     controlType?: ControlType;
     validations?: ValidatorFn[];

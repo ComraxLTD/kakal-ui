@@ -17,7 +17,7 @@
   <!-- Edit block -->
   <ng-template #editBlock>
     <ng-container
-      *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{item, column, itemIndex, key, group : tableState.forms[row[key]]}} "
+      *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{item, column, itemIndex, key, group : tableState.forms[item[key]]}} "
     ></ng-container>
   </ng-template>
 </div>
