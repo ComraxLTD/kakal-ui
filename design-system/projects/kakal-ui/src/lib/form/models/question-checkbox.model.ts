@@ -5,7 +5,7 @@ export class QuestionCheckBoxModel extends QuestionBase {
     public options?: SelectOption[];
     public labelPosition?:string;
     constructor(options?: {
-        key?: string;
+        key: string;
         label?: string;
         options?: SelectOption[];
         labelPosition?:string;
