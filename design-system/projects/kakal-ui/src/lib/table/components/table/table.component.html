@@ -1,15 +1,4 @@
 <ng-container *ngIf="tableState$ | async as tableState">
-  <code>
-    <pre dir="ltr" [style.fontSize]="'16px'">
-      editing : {{ tableState.editing | json }}
-    </pre>
-    <pre dir="ltr" [style.fontSize]="'16px'">
-      pagination : {{ tableState.pagination | json }}
-    </pre>
-    <pre dir="ltr" [style.fontSize]="'16px'">
-      event : {{ tableState.event }}
-    </pre>
-  </code>
 
   <ng-container *ngIf="table$ | async as table">
     <div dir="rtl" fxLayout="column" fxLayoutGap="1rem">
