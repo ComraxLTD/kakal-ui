@@ -40,6 +40,7 @@ import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
+import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLFormUploadModule,
     KKLDialogModule,
     KKLFormTextEditorModule,
-
+    KKLFormCheckBoxModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -84,7 +85,6 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
   exports: [
     //TOOLS
     MaterialModule,
-
     KKLMenuItemModule,
     KKLButtonModule,
     KKLIconModule,
@@ -95,6 +95,7 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
     KKLStatusBarsModule,
 
     KKLFormModule,
+    KKLFormCheckBoxModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
@@ -117,4 +118,4 @@ import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }
