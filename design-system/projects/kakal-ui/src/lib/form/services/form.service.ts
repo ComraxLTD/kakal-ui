@@ -23,6 +23,7 @@ import { QuestionSumModel } from '../models/question-sum.model';
 import { QuestionCurrencyModel } from '../form-currency/question-currency.model';
 import { QuestionDateModel } from '../form-date/question-date.model';
 import { QuestionFileModel } from '../models/question-file.model';
+import { QuestionCheckBoxModel } from '../models/question-checkbox.model';
 
 export type ControlTemplate = [
   state: any,
@@ -203,6 +204,8 @@ export class FormService {
         return new QuestionFileModel(fq);
       case 'radio':
         return new QuestionRadioModel(question);
+      case 'checkbox':
+        return new QuestionCheckBoxModel(question);
       case 'textarea':
         return new QuestionTextareaModel(question);
 
