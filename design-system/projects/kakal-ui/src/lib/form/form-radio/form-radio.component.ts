@@ -24,7 +24,7 @@ export class FormRadioComponent implements OnInit {
   onInitValue() {
     if (this.control.value) {
       const index = this.options.findIndex(option => option.label === this.control.value.label && option.value === this.control.value.value);
-      this.options[index].checked = true;
+      if(index)this.options[index].checked = true;
     }
   }
   public handleChange(radio: MatRadioChange) {
