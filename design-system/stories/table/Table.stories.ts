@@ -4,6 +4,8 @@ import { of } from 'rxjs';
 import {
   KKLTableModule,
   TableComponent,
+  TableDataSource,
+  TableStateService,
 } from '../../projects/kakal-ui/src/public-api';
 
 export default {
@@ -11,12 +13,15 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [KKLTableModule],
+      providers: [TableStateService, TableDataSource],
     }),
   ],
   component: TableComponent,
   argTypes: {
     data$: {
       name: 'data$',
+      type: { name: 'string', required: true },
+
       defaultValue: '',
       description: 'A Data array',
       table: {
@@ -25,35 +30,33 @@ export default {
     },
     columns$: {
       name: 'columns$',
+      type: { name: 'string', required: true },
+
       description: 'Handle the layout of the table',
       table: {
-        type: { summary: 'Observable< TableColumnModel<T>[]>' },
+        type: { summary: 'Observable< HeaderCellModel<T>[]>' },
       },
     },
 
-    formTemplate: {
-      name: 'formTemplate',
-      defaultValue: '',
-      description: 'An ng-template. render custom action at the start',
-      table: {
-        type: { summary: 'TemplateRef<any>' },
-      },
+    kklTable: {
+      name: 'kkl-table',
+      type: { name: 'string', required: true },
+      description:
+        'instance of the KKLTableDirective used by kkl-table to validate inputs',
     },
-    cellTemplate: {
-      name: 'cellTemplate',
-      defaultValue: '',
-      description: 'An ng-template. render custom action at the end',
-      table: {
-        type: { summary: 'TemplateRef<any>' },
-      },
+    kklPagination: {
+      name: 'kklPagination',
+      description:
+        'instance of the KKLPaginationDirective used by kkl-table to able pagination',
     },
 
-    //  @Output() pageChange: EventEmitter<{
-    //  @Output() filter: EventEmitter<ColumnFilterOption<
-    //  @Output() filterAutocomplete: EventEmitter<ColumnFilterOption<
-    //  @Output() selected: EventEmitter<Observable<
-    //  @Output() expand: EventEmitter<any>
-    //  @Output() rowClicked: EventEmitter<T>
+    hasActions: {
+      name: 'hasActions',
+      description: 'if the table has actions',
+      table: {
+        type: { summary: 'boolean' },
+      },
+    },
 
     // @Output
     sortChange: {
@@ -62,34 +65,6 @@ export default {
       table: {
         type: {
           summery: 'sortChange: EventEmitter<ColumnSortOption<T>',
-        },
-      },
-    },
-    delete: {
-      name: 'delete',
-      description: 'Event that is emitted whenever a delete action clicked. ',
-      table: {
-        type: {
-          summery: 'delete: EventEmitter<RowState>',
-        },
-      },
-      control: EventEmitter,
-    },
-    cancel: {
-      name: 'cancel',
-      description: 'Event that is emitted whenever a cancel action clicked. ',
-      table: {
-        type: {
-          summery: 'cancel: EventEmitter<RowState>',
-        },
-      },
-    },
-    save: {
-      name: 'save',
-      description: 'Event that is emitted whenever a save action clicked. ',
-      table: {
-        type: {
-          summery: 'save: EventEmitter<RowState>',
         },
       },
     },

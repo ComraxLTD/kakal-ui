@@ -6,6 +6,7 @@ import {
   Question,
 } from '../../../kakal-ui/src/lib/form/services/form.service';
 import { FormControl } from '@angular/forms';
+import { SelectOption } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,16 @@ export class AppComponent implements OnInit {
 
   questions: Question[] = [
     {
-      key: 'textEditor',
-      controlType: 'texteditor',
-      type: 'textEditor',
+      key:'checkbox',
+      type:'checkbox',
+      controlType:'checkbox',
+      options: [{ label: 'test', value: 0 },{ label: 'test', value: 0 },{ label: 'test', value: 0 }]
+    },
+    {
+      key:'radio',
+      type:'radio',
+      controlType:'radio',
+      options: [{ label: 'test', value: 0 },{ label: 'test', value: 0 },{ label: 'test', value: 0 }]
     },
     {
       key: 'timeInput',
@@ -36,7 +44,7 @@ export class AppComponent implements OnInit {
     },
     {
       key: 'phone',
-      controlType: 'phone',
+      controlType: 'phone', 
     },
     {
       key: 'date',
@@ -60,10 +68,22 @@ export class AppComponent implements OnInit {
   ];
   public formGroup: QuestionGroupModel;
   public control: FormControl = new FormControl();
-  options = [{ label: 'test', value: 0} ,{ label: 'test2', value: 0}];
+  options: SelectOption[] = [{ label: 'Tel-aviv', value: 0 }, { label: 'Haifa', value: 1 }, { label: 'Ramat-gan', value: 2 }, { label: 'Herzilya', value: 3 }];
+  selectedOptions: SelectOption[] = [{ label: 'Haifa', value: 1 }, { label: 'Ramat-gan', value: 2 }, { label: 'Herzilya', value: 3 }];
+  radioControl = new FormControl();
+
   public testControl: FormControl = new FormControl();
 
   ngOnInit(): void { 
-    // this.testControl.setValue(this.options);
+    this.formGroup = this.formService.createQuestionGroup({
+      key:'myform',
+      questions:this.questions
+    });
+    console.log(this.formGroup);
+    
+    // this.currencyService.setCurrencies$([{label:'$',value:0},{label:'*',value:1}])
+    // this.testControl.patchValue([{ label: 'test2', value: 0}])
+    this.radioControl.setValue({ label: 'Tel-aviv', value: 0 })
+    // this.testControl.setValue(this.selectedOptions);
   }
 }

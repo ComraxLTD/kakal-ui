@@ -1,9 +1,20 @@
 <div fxFill dir="rtl">
+  <code dir="ltr" *ngIf="tableState$ | async as tableState">
+tableState :
+    <pre>
+      event : {{ tableState.event | json }}
+      editing : {{ tableState.editing | json }}
+      </pre
+    >
+  </code>
+
   <kkl-table
     kkl-table
+    kklPagination
     [data$]="data$"
     [columns$]="columns$"
     [itemKey]="itemKey"
+    [pagination]="pagination"
     [hasActions]="true"
   >
     <!-- use kklHeaderCell for render header cell -->
@@ -16,18 +27,19 @@
       ></kkl-header-cell>
     </ng-container>
 
-    <!-- use kklTableCell for render table cell -->
-    <ng-container *kklTableCell="let context">
+    <!-- use kklDataCell for render table cell -->
+    <ng-container *kklDataCell="let context">
       <!-- use kkl-data-cell for comrax table cell -->
       <kkl-data-cell
         fxLayout="row"
         fxLayoutAlign="start center"
-        [row]="context.row"
+        [item]="context.item"
         [key]="context.key"
         [column]="context.column"
         [group]="context.group"
         [tableState]="context.tableState"
         [inputTemplate]="{input}"
+        [cellTemplate]="{email}"
       ></kkl-data-cell>
     </ng-container>
 
@@ -37,9 +49,8 @@
         [hasEdit]="true"
         [hasDelete]="true"
         [rowState]="rowState"
-        [dataSource]="tableDataSource"
         (edit)="onEditEvent($event)"
-        (close)="onCloseEvent($event)"
+        (cancel)="onCancelEvent($event)"
         (submit)="onSubmitEvent($event)"
       ></kkl-actions-cell>
     </ng-container>
@@ -48,7 +59,7 @@
 
 <ng-template #email let-rowState>
   <kkl-typography color="primary" underline="true">
-    {{ rowState.row.email }}
+    {{ rowState.item.email }}
   </kkl-typography>
 </ng-template>
 

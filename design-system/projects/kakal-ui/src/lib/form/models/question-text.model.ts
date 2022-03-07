@@ -9,7 +9,7 @@ import {
 export class QuestionTextModel extends QuestionBase {
 
   constructor(options?: {
-    key?: string;
+    key: string;
     label?: string;
     value?: any;
     type?: QuestionType;

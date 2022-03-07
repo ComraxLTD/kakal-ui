@@ -35,15 +35,13 @@ export class FormAutocompleteComponent implements OnInit {
     options: SelectOption[];
   }) => SelectOption;
 
-  @Output() autocomplete: EventEmitter<FormOption> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<FormOption> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
   @Output() multiOptionsSelected: EventEmitter<FormOption> = new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.optionSlot);
-  }
+  ngOnInit(): void {}
 
   public search(query: string): void {
     const option: SelectOption = this.options.find((option) =>
@@ -56,7 +54,7 @@ export class FormAutocompleteComponent implements OnInit {
       query,
       query$: of(query),
     };
-    this.autocomplete.emit(formOption);
+    this.valueChanged.emit(formOption);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent): void {

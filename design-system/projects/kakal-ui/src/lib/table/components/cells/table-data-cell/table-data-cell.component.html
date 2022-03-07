@@ -1,23 +1,23 @@
 <div fxFill>
   <ng-container
-    *ngIf="tableState.editing.indexOf(row[key]) === -1; else editBlock"
+    *ngIf="tableState.editing.indexOf(item[key]) === -1; else editBlock"
   >
     <ng-container
-      *ngTemplateOutlet="cellTemplate[column.columnDef] || defaultBlock; context : {$implicit : {row, column, rowIndex, key}} "
+      *ngTemplateOutlet="cellTemplate[column.columnDef] || defaultBlock; context : {$implicit : {item, column, itemIndex, key}} "
     ></ng-container>
   </ng-container>
 
   <!-- Default block -->
   <ng-template #defaultBlock>
     <kkl-typography>
-      {{ row[column.columnDef] | format: column?.format }}
+      {{ item[column.columnDef] | format: column?.format }}
     </kkl-typography>
   </ng-template>
 
   <!-- Edit block -->
   <ng-template #editBlock>
     <ng-container
-      *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{row, column, rowIndex, key, group : tableState.forms[row[key]]}} "
+      *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{item, column, itemIndex, key, group : tableState.forms[item[key]]}} "
     ></ng-container>
   </ng-template>
 </div>

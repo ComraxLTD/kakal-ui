@@ -45,7 +45,7 @@
           <mat-accordion displayMode="flat">
             <ng-container matColumnDef="row">
               <mat-cell
-                *matCellDef="let row; let rowIndex = dataIndex"
+                *matCellDef="let item; let itemIndex = dataIndex"
                 [class.expand]="expendable || accordion"
                 [attr.colspan]="table.columnDefs.length"
               >
@@ -57,7 +57,7 @@
                 >
                   <mat-expansion-panel-header
                     [class.expand]="accordion"
-                    [class.form]="tableState.editing.indexOf(row[key]) !== -1"
+                    [class.form]="tableState.editing.indexOf(item[key]) !== -1"
                   >
                     <div
                       class="row"
@@ -84,8 +84,8 @@
                                 color="primary"
                                 (click)="onSelect()"
                                 [disabled]="column.disableSelect"
-                                (change)="$event ? selection.toggle(row) : null"
-                                [checked]="selection.isSelected(row)"
+                                (change)="$event ? selection.toggle(item) : null"
+                                [checked]="selection.isSelected(item)"
                               >
                               </mat-checkbox>
                             </ng-container>
@@ -95,7 +95,7 @@
                               <ng-container
                                 *ngTemplateOutlet="
                                 cellActionDirective?.template;
-                            context: { $implicit: {item :row, column, rowIndex, key, group: tableState.forms[row[key]], tableState}}
+                            context: { $implicit: {item , column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
                             "
                               >
                               </ng-container>
@@ -106,7 +106,7 @@
                               <ng-container
                                 *ngTemplateOutlet="
                               cellDirective.template;
-                              context: { $implicit: {row, column, rowIndex, key, group: tableState.forms[row[key]], tableState}}
+                              context: { $implicit: {item, column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
                               "
                               >
                               </ng-container>
@@ -128,7 +128,7 @@
 
         <!-- TABLE ROW -->
         <mat-row
-          *matRowDef="let row; let rowIndex = index; columns: ['row']"
+          *matRowDef="let row; columns: ['row']"
         ></mat-row>
 
         <!-- FOOTER ROW -->

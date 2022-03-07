@@ -48,8 +48,8 @@ export class TableStateService {
     const { item, key, group } = rowState;
     let { editing } = oldState;
 
-    if(event === FormActions.CREATE) {
-      editing = []
+    if (event === FormActions.CREATE) {
+      editing = [];
     }
 
     editing.push(item[key]);
@@ -96,7 +96,7 @@ export class TableStateService {
   public onEditCloseEvent(
     tableDataSource: TableDataSource
   ): Observable<TableState> {
-    return tableDataSource.on(FormActions.CLOSE).pipe(
+    return tableDataSource.on(FormActions.CANCEL).pipe(
       map((state: RowState) => {
         const oldState = tableDataSource.getTableState();
         const { item, key } = state;
@@ -105,7 +105,7 @@ export class TableStateService {
         const tableState = {
           ...oldState,
           editing: deleteItem({ array: editing, value: item[key] }),
-          event: 'close',
+          event: FormActions.CANCEL,
         } as TableState;
 
         return tableState;

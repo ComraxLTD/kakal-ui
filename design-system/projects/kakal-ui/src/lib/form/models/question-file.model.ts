@@ -6,7 +6,7 @@ export class QuestionFileModel extends QuestionBase {
   public onDeleteFile?: (value: any) => void;
 
   constructor(options?: {
-    key?: string;
+    key: string;
     label?: string;
     value?: File[];
     type?: QuestionType;

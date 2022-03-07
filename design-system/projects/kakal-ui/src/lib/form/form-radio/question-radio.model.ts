@@ -11,7 +11,7 @@ export class QuestionRadioModel extends QuestionBase {
   public options?: RadioOption[];
 
   constructor(options?: {
-    key?: string;
+    key: string;
     label?: string;
     gridProps?: GridProps;
     icon?: string;
