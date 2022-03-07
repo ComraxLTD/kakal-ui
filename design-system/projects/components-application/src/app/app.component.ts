@@ -64,6 +64,9 @@ export class AppComponent implements OnInit {
   public testControl: FormControl = new FormControl();
 
   ngOnInit(): void { 
+    this.currencyService.setCurrencies$([{label:'$',value:0},{label:'*',value:1}])
+    this.testControl.setValue({sum:400,currency:{label:'*',value:1}})
+    
     // this.testControl.setValue(this.options);
   }
 }
