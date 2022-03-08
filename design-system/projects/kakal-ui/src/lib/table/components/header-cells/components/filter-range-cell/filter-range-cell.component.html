@@ -1,0 +1,34 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  class="currency"
+  (click)="$event.stopPropagation()"
+>
+  <div fxFlex="90">
+    <kkl-form
+      [group]="amountFilter"
+      (autocompleteEvent)="onCurrencyAutocomplete($event)"
+    ></kkl-form>
+  </div>
+  <div
+    *ngIf="column.sortable"
+    class="sort-button sort-currency"
+    fxLayout="column"
+    fxLayoutAlign="end center"
+  >
+    <div fxFlex="95">
+      <button mat-icon-button (click)="onSortClick()">
+        <mat-icon
+          [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
+          class="up"
+          >arrow_right_alt</mat-icon
+        >
+        <mat-icon
+          [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
+          class="down"
+          >arrow_right_alt</mat-icon
+        >
+      </button>
+    </div>
+  </div>
+</div>
