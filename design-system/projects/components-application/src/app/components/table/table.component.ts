@@ -10,6 +10,7 @@ import {
   QuestionSelectModel,
   TableState,
   KKLSelectOption,
+  FetchState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -86,6 +87,16 @@ export class TableComponent implements OnInit {
 
     // form demo only
     this.tableState$ = this.tableDataSource.connectTableState();
+  }
+
+  private connectToFetchState() {
+    return this.tableDataSource.connectFetchState().pipe(
+      switchMap((fetchState: FetchState) => {
+        console.log(fetchState);
+        // imitate server data
+        return of(DEMO_DATA);
+      })
+    );
   }
 
   private demoServerData(): Observable<RootObject[]> {
@@ -224,9 +235,7 @@ export class TableComponent implements OnInit {
       )
       .subscribe((updateData) => {
         this.demoStore$.next(updateData);
-        this.tableDataSource.loadPagination({
-          pagination: { totalItems: 100 },
-        });
+
         this.tableDataSource.actions.cancel({ state });
       });
   }

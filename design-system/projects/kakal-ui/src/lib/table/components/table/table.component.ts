@@ -21,7 +21,7 @@ import { HeaderCellModel } from '../../components/header-cells/models/header-cel
 import { ColumnSortOption } from '../../../columns/models/column-sort-option';
 import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
 import { TableDataSource } from '../../models/table-datasource';
-import { TableState } from '../../models/table.state';
+import { FetchState, TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
 import { Observable, map, combineLatest, merge } from 'rxjs';
@@ -83,8 +83,7 @@ export class TableComponent<T = any> implements OnInit {
 
   // emit pagination event : {next : number, prev : number}
   @Output() pageChange: EventEmitter<{
-    next: number;
-    prev: number;
+    fetchState: FetchState;
   }> = new EventEmitter();
 
   // emit filter event : ColumnModel<T>
@@ -169,6 +168,9 @@ export class TableComponent<T = any> implements OnInit {
 
   // method which emit page data
   public onPageChange(event: { next: number; prev: number }) {
-    this.pageChange.emit(event);
+    const { next } = event;
+    this.tableDataSource.loadPagination({
+      pagination: { currentPage: next } as PaginationInstance,
+    });
   }
 }
