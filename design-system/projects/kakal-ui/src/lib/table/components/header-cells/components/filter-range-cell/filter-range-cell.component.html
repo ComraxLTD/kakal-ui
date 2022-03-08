@@ -4,11 +4,15 @@
   class="currency"
   (click)="$event.stopPropagation()"
 >
-  <div fxFlex="90">
-    <kkl-form
-      [group]="amountFilter"
-      (autocompleteEvent)="onCurrencyAutocomplete($event)"
-    ></kkl-form>
+  <div fxFlex="90" fxLayout="row" fxLayoutGap="1rem">
+    <kkl-form-input
+      [cleave]="'{ numeral: true }'"
+      [controlType]="'cleave'"
+    ></kkl-form-input>
+    <kkl-form-input
+      [cleave]="'{ numeral: true }'"
+      [controlType]="'cleave'"
+    ></kkl-form-input>
   </div>
   <div
     *ngIf="column.sortable"
@@ -17,18 +21,10 @@
     fxLayoutAlign="end center"
   >
     <div fxFlex="95">
-      <button mat-icon-button (click)="onSortClick()">
-        <mat-icon
-          [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
-          class="up"
-          >arrow_right_alt</mat-icon
-        >
-        <mat-icon
-          [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
-          class="down"
-          >arrow_right_alt</mat-icon
-        >
-      </button>
+      <kkl-sort-button
+        (sortChange)="onSortChange($event)"
+        [sortDir]="column.sortDir"
+      ></kkl-sort-button>
     </div>
   </div>
 </div>
