@@ -15,6 +15,7 @@ export * from './lib/typography/typography.directive';
 export * from './lib/typography/typography.module';
 
 export * from './lib/icon/icon.component';
+export * from './lib/icon/icon.model';
 export * from './lib/icon/icon.module';
 
 // form exports
@@ -148,11 +149,6 @@ export * from './lib/bread-crumbes/bread-crumbes.model';
 export * from './lib/navigation/navigation.module';
 export * from './lib/navigation/navigation.component';
 
-// info-card
-export * from './lib/cards/info-card/info-card.module';
-export * from './lib/cards/info-card/info-card.model';
-export * from './lib/cards/info-card/info-card.component';
-
 // dialog
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';
@@ -219,6 +215,10 @@ export * from './lib/directives/directives.module';
 export * from './styles/theme';
 
 // cards
+export * from './lib/cards/info-card/info-card.module';
+export * from './lib/cards/info-card/info-card.model';
+export * from './lib/cards/info-card/info-card.component';
+
 export * from './lib/cards/card-dashboard/card-dashboard.component';
 export * from './lib/cards/card-dashboard/card-dashboard.model';
 export * from './lib/cards/card-dashboard/card-dashboard.module';
