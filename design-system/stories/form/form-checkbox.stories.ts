@@ -1,12 +1,12 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { FormCheckboxComponent, KKLFormCheckBoxModule } from '../../projects/kakal-ui/src/public-api';
+import { FormCheckboxComponent, KKLFormCheckboxModule } from '../../projects/kakal-ui/src/public-api';
 
 export default {
     title: 'Form/Checkbox',
     decorators: [
         moduleMetadata({
-            imports: [KKLFormCheckBoxModule],
+            imports: [KKLFormCheckboxModule],
         }),
     ],
     component: FormCheckboxComponent,

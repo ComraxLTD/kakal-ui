@@ -3,9 +3,10 @@ export interface RootObject {
   first_name: string;
   last_name: string;
   email: string;
+  phone: string;
   gender: string;
   city: string;
-  date: string;
+  date: Date | string;
   currency: string;
 }
 export interface OptionObject {
@@ -19,9 +20,10 @@ export const DEMO_DATA: RootObject[] = [
     first_name: 'Harold',
     last_name: 'Bouchier',
     email: 'hbouchier0@cbc.ca',
+    phone: '89384938493',
     gender: 'Male',
     city: 'Russia',
-    date: '9/13/2021',
+    date: new Date('9/13/2021').toISOString(),
     currency: 'EUR',
   },
   {
@@ -29,9 +31,10 @@ export const DEMO_DATA: RootObject[] = [
     first_name: 'Gustaf',
     last_name: 'Vanyukov',
     email: 'gvanyukov1@ning.com',
+    phone: '89384938493',
     gender: 'Male',
     city: 'Tupsan',
-    date: '10/28/2021',
+    date: new Date('10/28/2021'),
     currency: 'PHP',
   },
   {
@@ -39,9 +42,10 @@ export const DEMO_DATA: RootObject[] = [
     first_name: 'Zebadiah',
     last_name: 'Finlow',
     email: 'zfinlow2@ted.com',
+    phone: '89384938493',
     gender: 'Female',
     city: 'Nanqiao',
-    date: '1/7/2022',
+    date: new Date('1/7/2022'),
     currency: 'CNY',
   },
   {
@@ -49,9 +53,10 @@ export const DEMO_DATA: RootObject[] = [
     first_name: 'Olivier',
     last_name: 'Burhouse',
     email: 'oburh343434ouse3@mediafire.com',
+    phone: '89384938493',
     gender: 'Male',
     city: 'Novo',
-    date: '11/23/2021',
+    date: new Date('11/23/2021'),
     currency: 'EUR',
   },
   {
@@ -59,9 +64,10 @@ export const DEMO_DATA: RootObject[] = [
     first_name: 'Winifield',
     last_name: 'Van Dalen',
     email: 'wvandalen4@exblog.jp',
+    phone: '89384938493',
     gender: 'Female',
     city: 'Si Khoraphum',
-    date: '12/18/2021',
+    date: new Date('12/18/2021'),
     currency: 'THB',
   },
   // {
@@ -69,9 +75,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Tadd',
   //   last_name: 'Vowles',
   //   email: 'tvowles5@rakuten.co.jp',
+  //   phone: '89384938493.jp',
   //   gender: 'Female',
   //   city: 'Miaojie',
-  //   date: '1/11/2022',
+  //   date: new Date( '1/11/2022'),
   //   currency: 'CNY',
   // },
   // {
@@ -79,9 +86,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Massimo',
   //   last_name: 'Willoughley',
   //   email: 'mwilloughley6@theglobeandmail.com',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Qingyang',
-  //   date: '1/28/2022',
+  //   date: new Date( '1/28/2022'),
   //   currency: null,
   // },
   // {
@@ -89,9 +97,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Ring',
   //   last_name: 'Otteridge',
   //   email: 'rotteridge7@harvard.edu',
+  //   phone: '89384938493',
   //   gender: 'Female',
   //   city: 'Limoges',
-  //   date: '11/30/2021',
+  //   date: new Date( '11/30/2021'),
   //   currency: 'EUR',
   // },
   // {
@@ -99,9 +108,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Bartholomeus',
   //   last_name: 'Andreolli',
   //   email: 'bandreolli8@jimdo.com',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Foxrock',
-  //   date: '8/14/2021',
+  //   date: new Date( '8/14/2021'),
   //   currency: 'EUR',
   // },
   // {
@@ -109,9 +119,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Corby',
   //   last_name: 'Decayette',
   //   email: 'cdecayette9@microsoft.com',
+  //   phone: '89384938493',
   //   gender: 'Female',
   //   city: 'Naagas',
-  //   date: '3/31/2021',
+  //   date: new Date( '3/31/2021'),
   //   currency: null,
   // },
   // {
@@ -119,9 +130,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Madelon',
   //   last_name: 'Aughtie',
   //   email: 'maughtiea@europa.eu',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Williston',
-  //   date: '6/27/2021',
+  //   date: new Date( '6/27/2021'),
   //   currency: 'ZAR',
   // },
   // {
@@ -129,9 +141,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Abigael',
   //   last_name: 'Gillease',
   //   email: 'agilleaseb@pcworld.com',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Fruitvale',
-  //   date: '6/21/2021',
+  //   date: new Date '6/21/2021',
   //   currency: 'CAD',
   // },
   // {
@@ -139,9 +152,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Eva',
   //   last_name: 'Swynfen',
   //   email: 'eswynfenc@ask.com',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Bộc Bố',
-  //   date: '3/19/2021',
+  //   date: new Date '3/19/2021',
   //   currency: 'VND',
   // },
   // {
@@ -149,9 +163,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Walden',
   //   last_name: 'Ridwood',
   //   email: 'wridwoodd@ted.com',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Tabālah',
-  //   date: '10/4/2021',
+  //   date: new Date '10/4/2021',
   //   currency: null,
   // },
   // {
@@ -159,9 +174,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Kellyann',
   //   last_name: 'Swadden',
   //   email: 'kswaddene@latimes.com',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Bol’shoy Karay',
-  //   date: '2/2/2022',
+  //   date: new Date '2/2/2022',
   //   currency: 'RUB',
   // },
   // {
@@ -169,9 +185,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Allin',
   //   last_name: 'Lishman',
   //   email: 'alishmanf@thetimes.co.uk',
+  //   phone: '89384938493.uk',
   //   gender: 'Genderfluid',
   //   city: 'Jangkat',
-  //   date: '8/10/2021',
+  //   date: new Date '8/10/2021',
   //   currency: null,
   // },
   // {
@@ -179,9 +196,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Burnaby',
   //   last_name: 'Amber',
   //   email: 'bamberg@latimes.com',
+  //   phone: '89384938493',
   //   gender: 'Female',
   //   city: 'Roches Noire',
-  //   date: '9/9/2021',
+  //   date: new Date '9/9/2021',
   //   currency: 'MUR',
   // },
   // {
@@ -189,9 +207,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Liva',
   //   last_name: 'McNeigh',
   //   email: 'lmcneighh@arstechnica.com',
+  //   phone: '89384938493',
   //   gender: 'Bigender',
   //   city: 'Carmen',
-  //   date: '8/10/2021',
+  //   date: new Date '8/10/2021',
   //   currency: null,
   // },
   // {
@@ -199,9 +218,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Marlyn',
   //   last_name: 'Rosling',
   //   email: 'mroslingi@lycos.com',
+  //   phone: '89384938493',
   //   gender: 'Male',
   //   city: 'Staryy Togul',
-  //   date: '8/17/2021',
+  //   date: new Date '8/17/2021',
   //   currency: 'RUB',
   // },
   // {
@@ -209,9 +229,10 @@ export const DEMO_DATA: RootObject[] = [
   //   first_name: 'Janaye',
   //   last_name: 'Barcke',
   //   email: 'jbarckej@g.co',
+  //   phone: 'jbarckej@g.co',
   //   gender: 'Female',
   //   city: 'Bořitov',
-  //   date: '10/4/2021',
+  //   date: new Date '10/4/2021',
   //   currency: 'CZK',
   // },
 ];
@@ -235,7 +256,7 @@ export const DEMO_OPTIONS: OptionObject[] = [
   },
   {
     id: 5,
-    city: 'Indonesia',
+    city: 'Tupsan',
   },
   {
     id: 6,

@@ -48,6 +48,7 @@ import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
+import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,7 @@ import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
     KKLFormUploadModule,
     KKLDialogModule,
     KKLFormTextEditorModule,
-    KKLFormCheckBoxModule,
+    KKLFormCheckboxModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -111,7 +112,7 @@ import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
     KKLStatusBarsModule,
 
     KKLFormModule,
-    KKLFormCheckBoxModule,
+    KKLFormCheckboxModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,

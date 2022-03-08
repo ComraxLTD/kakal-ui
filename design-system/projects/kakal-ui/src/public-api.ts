@@ -95,12 +95,12 @@ export * from './lib/table/components/table/table.state.service';
 
 export * from './lib/table/components/cells/table-cell.module';
 
-export * from './lib/table/components/cells/table-cell-form/table-cell-form.module';
-export * from './lib/table/components/cells/table-cell-form/table-cell-form.component';
+export * from './lib/table/components/cells/table-form-cell/table-cell-form.module';
+export * from './lib/table/components/cells/table-form-cell/table-cell-form.component';
 
-export * from './lib/table/components/cells/table-cell-action/table-actions-cell.module';
-export * from './lib/table/components/cells/table-cell-action/table-action-cell.component';
-export * from './lib/table/components/cells/table-cell-action/cell-action.directive';
+export * from './lib/table/components/cells/table-action-cell/table-actions-cell.module';
+export * from './lib/table/components/cells/table-action-cell/table-action-cell.component';
+export * from './lib/table/components/cells/table-action-cell/cell-action.directive';
 
 export * from './lib/table/components/cells/table-data-cell/table-data-cell.module';
 export * from './lib/table/components/cells/table-data-cell/table-data-cell.component';
@@ -156,7 +156,7 @@ export * from './lib/page-headline/page-headline.module';
 export * from './lib/page-headline/page-headline.service';
 
 
-// stautts-bars 
+// stautts-bars
 export * from './lib/status-bars/status-bars.module';
 export * from './lib/status-bars/status-bars.component';
 

@@ -12,4 +12,4 @@ import { MatListModule } from "@angular/material/list";
     exports: [FormCheckboxComponent]
 })
 
-export class KKLFormCheckBoxModule { }
+export class KKLFormCheckboxModule { }
