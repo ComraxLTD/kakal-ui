@@ -1,6 +1,6 @@
 export declare type ListItemKeys = 'path' | 'label' | 'svgUrl';
 
-export interface ListItem<T> {
+export interface ListItem<T = any> {
   type?: string,
   key?: keyof T | string,
   selector? : string[],

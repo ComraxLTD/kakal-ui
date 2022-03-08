@@ -1,0 +1,24 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.sort-button {
+  height: 5rem;
+
+  &.sort-currency {
+    height: 7rem;
+  }
+}
+button {
+  width: 5rem;
+  height: 5rem;
+}
+
+mat-icon {
+  transform: rotate(90deg);
+  width: 1.2rem;
+  font-size: 1.8rem;
+
+  &.up {
+    transform: rotate(270deg);
+    width: 0.5rem;
+  }
+}
