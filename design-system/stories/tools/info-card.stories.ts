@@ -20,7 +20,7 @@ export default {
       description: 'An object containes all the card info',
       table: {
         type: {
-          summary: 'card : InfoCardModel',
+          summary: 'icon :string, headling:string, subHeadline:string',
         },
       },
     },
