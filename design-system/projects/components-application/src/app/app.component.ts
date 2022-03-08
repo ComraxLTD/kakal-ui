@@ -6,7 +6,8 @@ import {
   Question,
 } from '../../../kakal-ui/src/lib/form/services/form.service';
 import { FormControl } from '@angular/forms';
-import { SelectOption } from '../../../kakal-ui/src/public-api';
+import { CardStepModel, SelectOption } from '../../../kakal-ui/src/public-api';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -17,73 +18,50 @@ export class AppComponent implements OnInit {
   title = 'components-application';
   constructor(private formService: FormService, private currencyService: CurrencyService) { }
 
-  questions: Question[] = [
-    {
-      key:'checkbox',
-      type:'checkbox',
-      controlType:'checkbox',
-      options: [{ label: 'test', value: 0 },{ label: 'test', value: 0 },{ label: 'test', value: 0 }]
-    },
-    {
-      key:'radio',
-      type:'radio',
-      controlType:'radio',
-      options: [{ label: 'test', value: 0 },{ label: 'test', value: 0 },{ label: 'test', value: 0 }]
-    },
-    {
-      key: 'timeInput',
-      label: 'time',
-      controlType: 'time',
-    },
-    {
-      key: 'name',
-    },
-    {
-      key: 'email',
-      controlType: 'email',
-    },
-    {
-      key: 'phone',
-      controlType: 'phone', 
-    },
-    {
-      key: 'date',
-      type: 'date',
-    },
-    {
-      key: 'text',
-      controlType: 'textarea',
-    },
-    {
-      key: 'file',
-      type: 'file',
-      controlType: 'file',
-    },
-    {
-      key: 'cities',
-      type: 'select',
-      controlType: 'select',
-      options: [{ label: 'test', value: 0 }],
-    },
+  public steps$!: Observable<CardStepModel[]>;
+
+  private steps: CardStepModel[] = [
+    new CardStepModel({
+      label: 'פרטי ההתקשרות',
+      svgUrl: 'contact',
+      path: 'details',
+      size: 3,
+      variant: 'circle',
+      type: 'step',
+      spacer: true,
+      isActive:true
+    }),
+    new CardStepModel({
+      label: 'בניית הצעת מחיר',
+      svgUrl: 'offer',
+      path: 'bid',
+      size: 3,
+      variant: 'circle',
+      type: 'step',
+      spacer: true,
+      stroke: true,
+    }),
+    new CardStepModel({
+      label: 'בחירת ספקים',
+      svgUrl: 'send_mail',
+      path: 'supplier',
+      size: 3,
+      variant: 'circle',
+      type: 'step',
+      spacer: true,
+      disabled:true
+    }),
+    new CardStepModel({
+      label: 'ספק זוכה',
+      svgUrl: 'medal',
+      path: 'winning',
+      size: 3,
+      variant: 'circle',
+      type: 'step',
+      spacer: true,
+    }),
   ];
-  public formGroup: QuestionGroupModel;
-  public control: FormControl = new FormControl();
-  options: SelectOption[] = [{ label: 'Tel-aviv', value: 0 }, { label: 'Haifa', value: 1 }, { label: 'Ramat-gan', value: 2 }, { label: 'Herzilya', value: 3 }];
-  selectedOptions: SelectOption[] = [{ label: 'Haifa', value: 1 }, { label: 'Ramat-gan', value: 2 }, { label: 'Herzilya', value: 3 }];
-  radioControl = new FormControl();
-
-  public testControl: FormControl = new FormControl();
-
   ngOnInit(): void { 
-    this.formGroup = this.formService.createQuestionGroup({
-      key:'myform',
-      questions:this.questions
-    });
-    console.log(this.formGroup);
-    
-    // this.currencyService.setCurrencies$([{label:'$',value:0},{label:'*',value:1}])
-    // this.testControl.patchValue([{ label: 'test2', value: 0}])
-    this.radioControl.setValue({ label: 'Tel-aviv', value: 0 })
-    // this.testControl.setValue(this.selectedOptions);
+    this.steps$ = of(this.steps)
   }
 }
