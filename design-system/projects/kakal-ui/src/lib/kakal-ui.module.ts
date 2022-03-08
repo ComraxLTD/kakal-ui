@@ -7,6 +7,7 @@ import { CoreModule } from './core-module/core.module';
 
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
+import { KKLNavigationModule } from './navigation/navigation.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLInfoCardModule } from './cards/info-card/info-card.module';
@@ -62,6 +63,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    KKLNavigationModule,
     KKLStatusBarsModule,
     KKLMenuModule,
     KKLIconModule,
@@ -102,6 +104,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
   ],
   exports: [
     //TOOLS
+    KKLNavigationModule,
     MaterialModule,
     KKLMenuItemModule,
     KKLButtonModule,
