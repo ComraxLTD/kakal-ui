@@ -34,6 +34,9 @@ export * from './lib/form/form-date/form-date.module';
 export * from './lib/form/form-checkbox/form-checkbox.component';
 export * from './lib/form/form-checkbox/form-checkbox.module';
 
+export * from './lib/form/form-checkbox-group/form-checkbox-group.component';
+export * from './lib/form/form-checkbox-group/form-checkbox-group.module';
+
 export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.module';
 export * from './lib/form/form-input/form-input.service';
