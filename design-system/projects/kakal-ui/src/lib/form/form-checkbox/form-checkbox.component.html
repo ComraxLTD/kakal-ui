@@ -1,8 +1,11 @@
-<mat-checkbox
-  color="primary"
-  [labelPosition]="labelPosition"
-  [disabled]="control.disabled"
-  (change)="onChange($event)"
->
-  {{ label }}
-</mat-checkbox>
+<div fxLayout="column">
+  <mat-checkbox
+    fxFill
+    color="primary"
+    [labelPosition]="labelPosition"
+    [disabled]="control.disabled"
+    (change)="onChange($event)"
+  >
+    {{ label }}
+  </mat-checkbox>
+</div>

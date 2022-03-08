@@ -55,7 +55,7 @@ export class TableComponent implements OnInit {
     { key: 'last_name' },
     { key: 'email', controlType: 'email' },
     { key: 'phone', controlType: 'phone' },
-    { key: 'gender', controlType: 'checkbox',  },
+    { key: 'gender', controlType: 'checkbox' },
     { key: 'city', controlType: 'select' },
     { key: 'date', controlType: 'date', validations: [Validators.required] },
   ];
@@ -185,11 +185,11 @@ export class TableComponent implements OnInit {
   public onSubmitEvent(state: RowState) {
     const { item, group } = state;
 
-    const formItem = { ...group.getValue() };
+    const formItem: RootObject = { ...group.getValue() };
 
     const updateItem = {
       ...item,
-      city: formItem['city'].value,
+      city: formItem.city,
     } as RootObject;
     // imitate http response
     of(updateItem)
@@ -199,12 +199,18 @@ export class TableComponent implements OnInit {
             take(1),
 
             map((data) => {
+              const city = group.getControl('city').value as KKLSelectOption;
+
               const indexToUpdate = data.findIndex(
                 (cell: RootObject) =>
                   cell[this.itemKey].toString() === res[this.itemKey].toString()
               );
               const updateData = [...data];
-              updateData[indexToUpdate] = { ...data[indexToUpdate], ...res };
+              updateData[indexToUpdate] = {
+                ...data[indexToUpdate],
+                ...res,
+                city: city.label,
+              };
               return updateData;
             })
           );

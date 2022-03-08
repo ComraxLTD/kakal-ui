@@ -42,6 +42,7 @@
 
       <ng-container *ngSwitchCase="'date'">
         <kkl-form-date
+          fxFlex="100"
           [control]="group.formGroup.controls[question.key]"
           [key]="question?.key"
           [range]="question?.range"
