@@ -8,6 +8,7 @@ import { CoreModule } from './core-module/core.module';
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLNavigationModule } from './navigation/navigation.module';
+import { KKLBreadCrumbsModule } from './bread-crumbes/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLInfoCardModule } from './cards/info-card/info-card.module';
@@ -78,6 +79,8 @@ import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.mo
     SidenavModule,
     KKLPageHeadlineModule,
     KKLInfoCardModule,
+ KKLBreadCrumbsModule,
+
 
     // FORMS MODULES
     KKLFormModule,
@@ -120,6 +123,7 @@ import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.mo
   ],
   exports: [
     //TOOLS
+    KKLBreadCrumbsModule,
     KKLNavigationModule,
     MaterialModule,
     KKLMenuItemModule,
