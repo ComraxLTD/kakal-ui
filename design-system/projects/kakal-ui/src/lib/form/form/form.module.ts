@@ -19,7 +19,8 @@ import { KKLFormSelectModule } from '../form-select/form-select.module';
 import { KKLFormAutoCompleteModule } from '../form-autocomplete/form-autocomplete.module';
 import { KKLFormRadioModule } from '../form-radio/form-radio.module';
 import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.module';
-import { KKLFormCheckBoxModule } from '../form-checkbox/form-checkbox.module';
+import { KKLFormCheckboxModule } from '../form-checkbox/form-checkbox.module';
+import { KKLFormCheckboxGroupModule } from '../form-checkbox-group/form-checkbox-group.module';
 
 @NgModule({
   declarations: [FormComponent],
@@ -35,7 +36,7 @@ import { KKLFormCheckBoxModule } from '../form-checkbox/form-checkbox.module';
     KKLIconModule,
     MatGridListModule,
     FlexLayoutModule,
-    
+
     // form components
     KKLFormDateModule,
     KKLFormInputModule,
@@ -44,8 +45,9 @@ import { KKLFormCheckBoxModule } from '../form-checkbox/form-checkbox.module';
     KKLFormCurrencyModule,
     KKLFormUploadModule,
     KKLFormTextEditorModule,
-    KKLFormCheckBoxModule,
-    KKLFormRadioModule
+    KKLFormCheckboxModule,
+    KKLFormCheckboxGroupModule,
+    KKLFormRadioModule,
   ],
   exports: [FormComponent, KKLFormInputModule],
 })

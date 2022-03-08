@@ -185,7 +185,7 @@ export class TableActionCellComponent implements OnInit {
     this.submit.emit({
       ...this.rowState,
       event,
-      item: { ...this.rowState.item, ...this.rowState.group.getValue() },
+      item: { ...this.rowState.item },
     });
   }
 }

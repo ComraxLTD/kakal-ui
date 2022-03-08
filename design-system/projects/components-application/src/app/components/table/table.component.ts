@@ -9,6 +9,7 @@ import {
   OptionMap,
   QuestionSelectModel,
   TableState,
+  KKLSelectOption,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -39,12 +40,13 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: TableColumnModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', editable: true },
-    { columnDef: 'last_name', label: 'last_name', editable: true },
-    { columnDef: 'email', label: 'email', editable: true },
-    { columnDef: 'gender', label: 'gender', editable: true },
-    { columnDef: 'city', label: 'city', editable: true },
-    { columnDef: 'date', label: 'date', editable: true },
+    { columnDef: 'first_name', label: 'first_name' },
+    { columnDef: 'last_name', label: 'last_name' },
+    { columnDef: 'phone', label: 'phone' },
+    { columnDef: 'email', label: 'email' },
+    { columnDef: 'gender', label: 'gender' },
+    { columnDef: 'city', label: 'city' },
+    { columnDef: 'date', label: 'date', format: 'date' },
     { columnDef: 'currency', label: 'currency', flex: 0.5 },
   ];
 
@@ -52,6 +54,7 @@ export class TableComponent implements OnInit {
     { key: 'first_name', validations: [Validators.required] },
     { key: 'last_name' },
     { key: 'email', controlType: 'email' },
+    { key: 'phone', controlType: 'phone' },
     { key: 'gender', controlType: 'checkbox' },
     { key: 'city', controlType: 'select' },
     { key: 'date', controlType: 'date', validations: [Validators.required] },
@@ -75,7 +78,7 @@ export class TableComponent implements OnInit {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
-    this.tableState$ = this.tableDataSource.connectTableState()
+    this.tableState$ = this.tableDataSource.connectTableState();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
   }
 
@@ -132,11 +135,18 @@ export class TableComponent implements OnInit {
       } as Question;
 
       if (question.controlType === 'select') {
+        const options = [
+          ...optionsMap[question.key.toString()],
+        ] as KKLSelectOption[];
+        const value: KKLSelectOption = options.find(
+          (option) => option.label === item[question.key]
+        );
+
         question = {
           ...question,
-          label: '',
-          options: [...optionsMap[question.key.toString()]],
-          value: { value: 1, label: '' },
+          label: 'ערים',
+          options,
+          value,
         } as QuestionSelectModel;
       }
 
@@ -167,31 +177,40 @@ export class TableComponent implements OnInit {
 
     if (event == FormActions.CREATE) {
       const data = this.demoStore$.getValue();
-      data.splice(0, 1)
+      data.splice(0, 1);
       this.demoStore$.next(data);
-
-
     }
   }
 
   public onSubmitEvent(state: RowState) {
-    const { item } = state;
+    const { item, group } = state;
 
+    const formItem: RootObject = { ...group.getValue() };
+
+    const updateItem = {
+      ...item,
+      city: formItem.city,
+    } as RootObject;
     // imitate http response
-    of(item)
+    of(updateItem)
       .pipe(
-        switchMap((item) => {
+        switchMap((res: RootObject) => {
           return this.demoStore$.pipe(
             take(1),
 
             map((data) => {
+              const city = group.getControl('city').value as KKLSelectOption;
+
               const indexToUpdate = data.findIndex(
                 (cell: RootObject) =>
-                  cell[this.itemKey].toString() ===
-                  item[this.itemKey].toString()
+                  cell[this.itemKey].toString() === res[this.itemKey].toString()
               );
               const updateData = [...data];
-              updateData[indexToUpdate] = { ...data[indexToUpdate], ...item };
+              updateData[indexToUpdate] = {
+                ...data[indexToUpdate],
+                ...res,
+                city: city.label,
+              };
               return updateData;
             })
           );
@@ -208,10 +227,11 @@ export class TableComponent implements OnInit {
       id: 0,
       first_name: '',
       last_name: '',
+      phone: '',
       email: '',
       gender: '',
       city: '',
-      date: '',
+      date: null,
       currency: '',
     };
 
