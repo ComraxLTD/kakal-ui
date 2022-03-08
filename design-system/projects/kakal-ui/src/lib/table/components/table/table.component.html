@@ -1,5 +1,4 @@
 <ng-container *ngIf="tableState$ | async as tableState">
-
   <ng-container *ngIf="table$ | async as table">
     <div dir="rtl" fxLayout="column" fxLayoutGap="1rem">
       <mat-table
@@ -84,7 +83,9 @@
                                 color="primary"
                                 (click)="onSelect()"
                                 [disabled]="column.disableSelect"
-                                (change)="$event ? selection.toggle(item) : null"
+                                (change)="
+                                  $event ? selection.toggle(item) : null
+                                "
                                 [checked]="selection.isSelected(item)"
                               >
                               </mat-checkbox>
@@ -102,14 +103,17 @@
                             </ng-container>
 
                             <!-- Data cell -->
+
                             <ng-container *ngSwitchDefault>
-                              <ng-container
-                                *ngTemplateOutlet="
-                              cellDirective.template;
-                              context: { $implicit: {item, column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
-                              "
-                              >
-                              </ng-container>
+                              <div fxFill>
+                                <ng-container
+                                  *ngTemplateOutlet="
+                                cellDirective.template;
+                                context: { $implicit: {item, column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
+                                "
+                                >
+                                </ng-container>
+                              </div>
                             </ng-container>
                           </ng-container>
                         </div>
@@ -127,9 +131,7 @@
         </mat-header-row>
 
         <!-- TABLE ROW -->
-        <mat-row
-          *matRowDef="let row; columns: ['row']"
-        ></mat-row>
+        <mat-row *matRowDef="let row; columns: ['row']"></mat-row>
 
         <!-- FOOTER ROW -->
         <ng-container *ngIf="hasFooter">

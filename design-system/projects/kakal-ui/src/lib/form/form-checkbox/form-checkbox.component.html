@@ -1,19 +1,11 @@
-<div class="form-checkbox" dir="rtl"  >
-    <div fxLayout="column" fxLayoutGap="1rem" fxLayoutAlign="start start">
-        <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
-            <label>
-                {{ label }}
-            </label>
-        </div>
-        <section >
-                <div fxLayout="row" fxFlex="20" fxLayoutGap="1.5rem" fxLayoutAlign="space-between center">
-                    
-                    <mat-checkbox *ngFor="let option of options" color="primary" [labelPosition]="labelPosition"
-                        [disabled]="option.disabled" [checked]="option.checked" [value]="option" (change)="onChange($event)" >
-                        {{option.label}}
-                    </mat-checkbox>
-                </div>
-       
-        </section>
-    </div>
+<div fxLayout="column">
+  <mat-checkbox
+    fxFill
+    color="primary"
+    [labelPosition]="labelPosition"
+    [disabled]="control.disabled"
+    (change)="onChange($event)"
+  >
+    {{ label }}
+  </mat-checkbox>
 </div>

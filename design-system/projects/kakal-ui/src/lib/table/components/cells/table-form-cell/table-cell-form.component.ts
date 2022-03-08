@@ -11,6 +11,7 @@ export class TableFormCellComponent implements OnInit {
   @Input() public group: QuestionGroupModel;
   @Input() public columnDef: string;
   @Input() public template: TemplateRef<any>;
+  @Input() public index: number;
 
   public question: QuestionBase;
 

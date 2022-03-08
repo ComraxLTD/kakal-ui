@@ -32,20 +32,18 @@ export class FormatPipe implements PipeTransform {
   }
 
   private formatDate(value: any, format: string, args?: string): string {
-    const name = value.constructor.name.toLowerCase();
     const formats = {
-      time: formatDate(value, 'HH:mm', this.locale),
-      date: formatDate(value, 'd/M/yy', this.locale),
+      time: formatDate(new Date(value), 'HH:mm', this.locale),
+      date: formatDate(new Date(value), 'd/M/yy', this.locale),
       fullDate: formatDate(value, 'HH:mm d/M/yy', this.locale),
     };
-    return name === 'date' && value.toString() !== 'Invalid Date'
+    return format === 'date' && value.toString() !== 'Invalid Date'
       ? formats[format]
       : value;
   }
 
   private formatValue(value: unknown, format?: string, args?): unknown {
-    const name = value?.constructor.name.toLowerCase();
-    return name === 'date'
+    return format === 'date'
       ? this.formatDate(value, format, args)
       : this.formatObj(value, format, args);
   }
