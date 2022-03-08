@@ -13,8 +13,8 @@ import {
 import { ThemePalette } from '@angular/material/core';
 import { PaginationInstance } from 'ngx-pagination';
 
-import { KKLActionCellDirective } from '../../components/cells/table-cell-action/cell-action.directive';
 import { KKLDataCellDirective } from '../../components/cells/table-data-cell/cell-data.directive';
+import { KKLActionCellDirective } from '../cells/table-action-cell/cell-action.directive';
 import { KKLHeaderCellDirective } from '../../components/header-cells/cell-header.directive';
 
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';

@@ -39,12 +39,12 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: TableColumnModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', editable: true },
-    { columnDef: 'last_name', label: 'last_name', editable: true },
-    { columnDef: 'email', label: 'email', editable: true },
-    { columnDef: 'gender', label: 'gender', editable: true },
-    { columnDef: 'city', label: 'city', editable: true },
-    { columnDef: 'date', label: 'date', editable: true },
+    { columnDef: 'first_name', label: 'first_name' },
+    { columnDef: 'last_name', label: 'last_name' },
+    { columnDef: 'email', label: 'email' },
+    { columnDef: 'gender', label: 'gender' },
+    { columnDef: 'city', label: 'city' },
+    { columnDef: 'date', label: 'date', format: 'date' },
     { columnDef: 'currency', label: 'currency', flex: 0.5 },
   ];
 
@@ -75,7 +75,7 @@ export class TableComponent implements OnInit {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
-    this.tableState$ = this.tableDataSource.connectTableState()
+    this.tableState$ = this.tableDataSource.connectTableState();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
   }
 
@@ -167,10 +167,8 @@ export class TableComponent implements OnInit {
 
     if (event == FormActions.CREATE) {
       const data = this.demoStore$.getValue();
-      data.splice(0, 1)
+      data.splice(0, 1);
       this.demoStore$.next(data);
-
-
     }
   }
 
@@ -211,7 +209,7 @@ export class TableComponent implements OnInit {
       email: '',
       gender: '',
       city: '',
-      date: '',
+      date: null,
       currency: '',
     };
 

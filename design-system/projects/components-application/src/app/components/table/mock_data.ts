@@ -5,7 +5,7 @@ export interface RootObject {
   email: string;
   gender: string;
   city: string;
-  date: string;
+  date: Date | string;
   currency: string;
 }
 export interface OptionObject {
@@ -21,7 +21,7 @@ export const DEMO_DATA: RootObject[] = [
     email: 'hbouchier0@cbc.ca',
     gender: 'Male',
     city: 'Russia',
-    date: '9/13/2021',
+    date: new Date('9/13/2021').toISOString(),
     currency: 'EUR',
   },
   {
@@ -31,7 +31,7 @@ export const DEMO_DATA: RootObject[] = [
     email: 'gvanyukov1@ning.com',
     gender: 'Male',
     city: 'Tupsan',
-    date: '10/28/2021',
+    date: new Date('10/28/2021'),
     currency: 'PHP',
   },
   {
@@ -41,7 +41,7 @@ export const DEMO_DATA: RootObject[] = [
     email: 'zfinlow2@ted.com',
     gender: 'Female',
     city: 'Nanqiao',
-    date: '1/7/2022',
+    date: new Date('1/7/2022'),
     currency: 'CNY',
   },
   {
@@ -51,7 +51,7 @@ export const DEMO_DATA: RootObject[] = [
     email: 'oburh343434ouse3@mediafire.com',
     gender: 'Male',
     city: 'Novo',
-    date: '11/23/2021',
+    date: new Date('11/23/2021'),
     currency: 'EUR',
   },
   {
@@ -61,7 +61,7 @@ export const DEMO_DATA: RootObject[] = [
     email: 'wvandalen4@exblog.jp',
     gender: 'Female',
     city: 'Si Khoraphum',
-    date: '12/18/2021',
+    date: new Date('12/18/2021'),
     currency: 'THB',
   },
   // {
@@ -71,7 +71,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'tvowles5@rakuten.co.jp',
   //   gender: 'Female',
   //   city: 'Miaojie',
-  //   date: '1/11/2022',
+  //   date: new Date( '1/11/2022'),
   //   currency: 'CNY',
   // },
   // {
@@ -81,7 +81,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'mwilloughley6@theglobeandmail.com',
   //   gender: 'Male',
   //   city: 'Qingyang',
-  //   date: '1/28/2022',
+  //   date: new Date( '1/28/2022'),
   //   currency: null,
   // },
   // {
@@ -91,7 +91,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'rotteridge7@harvard.edu',
   //   gender: 'Female',
   //   city: 'Limoges',
-  //   date: '11/30/2021',
+  //   date: new Date( '11/30/2021'),
   //   currency: 'EUR',
   // },
   // {
@@ -101,7 +101,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'bandreolli8@jimdo.com',
   //   gender: 'Male',
   //   city: 'Foxrock',
-  //   date: '8/14/2021',
+  //   date: new Date( '8/14/2021'),
   //   currency: 'EUR',
   // },
   // {
@@ -111,7 +111,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'cdecayette9@microsoft.com',
   //   gender: 'Female',
   //   city: 'Naagas',
-  //   date: '3/31/2021',
+  //   date: new Date( '3/31/2021'),
   //   currency: null,
   // },
   // {
@@ -121,7 +121,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'maughtiea@europa.eu',
   //   gender: 'Male',
   //   city: 'Williston',
-  //   date: '6/27/2021',
+  //   date: new Date( '6/27/2021'),
   //   currency: 'ZAR',
   // },
   // {
@@ -131,7 +131,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'agilleaseb@pcworld.com',
   //   gender: 'Male',
   //   city: 'Fruitvale',
-  //   date: '6/21/2021',
+  //   date: new Date '6/21/2021',
   //   currency: 'CAD',
   // },
   // {
@@ -141,7 +141,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'eswynfenc@ask.com',
   //   gender: 'Male',
   //   city: 'Bộc Bố',
-  //   date: '3/19/2021',
+  //   date: new Date '3/19/2021',
   //   currency: 'VND',
   // },
   // {
@@ -151,7 +151,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'wridwoodd@ted.com',
   //   gender: 'Male',
   //   city: 'Tabālah',
-  //   date: '10/4/2021',
+  //   date: new Date '10/4/2021',
   //   currency: null,
   // },
   // {
@@ -161,7 +161,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'kswaddene@latimes.com',
   //   gender: 'Male',
   //   city: 'Bol’shoy Karay',
-  //   date: '2/2/2022',
+  //   date: new Date '2/2/2022',
   //   currency: 'RUB',
   // },
   // {
@@ -171,7 +171,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'alishmanf@thetimes.co.uk',
   //   gender: 'Genderfluid',
   //   city: 'Jangkat',
-  //   date: '8/10/2021',
+  //   date: new Date '8/10/2021',
   //   currency: null,
   // },
   // {
@@ -181,7 +181,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'bamberg@latimes.com',
   //   gender: 'Female',
   //   city: 'Roches Noire',
-  //   date: '9/9/2021',
+  //   date: new Date '9/9/2021',
   //   currency: 'MUR',
   // },
   // {
@@ -191,7 +191,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'lmcneighh@arstechnica.com',
   //   gender: 'Bigender',
   //   city: 'Carmen',
-  //   date: '8/10/2021',
+  //   date: new Date '8/10/2021',
   //   currency: null,
   // },
   // {
@@ -201,7 +201,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'mroslingi@lycos.com',
   //   gender: 'Male',
   //   city: 'Staryy Togul',
-  //   date: '8/17/2021',
+  //   date: new Date '8/17/2021',
   //   currency: 'RUB',
   // },
   // {
@@ -211,7 +211,7 @@ export const DEMO_DATA: RootObject[] = [
   //   email: 'jbarckej@g.co',
   //   gender: 'Female',
   //   city: 'Bořitov',
-  //   date: '10/4/2021',
+  //   date: new Date '10/4/2021',
   //   currency: 'CZK',
   // },
 ];
