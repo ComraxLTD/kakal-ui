@@ -137,6 +137,11 @@ export * from './lib/menu/menu.component';
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
+
+// title
+export * from './lib/navigation/navigation.module';
+export * from './lib/navigation/navigation.component';
+
 // info-card
 export * from './lib/cards/info-card/info-card.module';
 export * from './lib/cards/info-card/info-card.model';

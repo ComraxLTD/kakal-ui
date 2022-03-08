@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import { BreadCrumbsModel } from './bread-crumbes.model';
 
 @Component({
-  selector: 'app-bread-crumbes',
+  selector: 'kkl-bread-crumbes',
   templateUrl: './bread-crumbes.component.html',
   styleUrls: ['./bread-crumbes.component.scss'],
 })

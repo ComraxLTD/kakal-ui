@@ -35,7 +35,7 @@ const Template: Story<InfoCardComponent> = (args: InfoCardComponent) => ({
 export const infoCard = Template.bind({});
 
 infoCard.args = {
-  status: new InfoCardModel({
+  card: new InfoCardModel({
     icon: 'search',
     headline: 'כותרת ראשית',
     subHeadline: 'כותרת משנית שנחתכת לאחר 18 תווים',
