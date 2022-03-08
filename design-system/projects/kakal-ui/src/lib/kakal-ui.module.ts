@@ -50,6 +50,11 @@ import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module';
+import { KKLNavbarModule } from './navbar/navbar.module';
+import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
+import { StepperModule } from './stepper/stepper.module';
+import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
+import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
 
 @NgModule({
   declarations: [
@@ -101,6 +106,15 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+
+    // NAVBAR
+    KKLNavbarModule,
+    NavbarBottomModule,
+
+    // STEPPER
+    StepperModule,
+    StepperMobileModule,
+    StepperLayoutModule,
   ],
   exports: [
     //TOOLS
@@ -143,6 +157,14 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+    // NAVBAR
+    KKLNavbarModule,
+    NavbarBottomModule,
+
+    // STEPPER
+    StepperModule,
+    StepperMobileModule,
+    StepperLayoutModule,
   ],
 })
 export class KakalUiModule { }
