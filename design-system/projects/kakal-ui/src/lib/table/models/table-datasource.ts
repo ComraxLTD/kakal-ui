@@ -3,9 +3,16 @@ import { FormDataSource } from '../../form/models/form-datasource';
 
 import { TableColumnModel } from '../../columns/models/column.model';
 
-import { ColumnState, RowState, TableState } from './table.state';
+import {
+  ColumnState,
+  FetchState,
+  FilterState,
+  RowState,
+  SortState,
+  TableState,
+} from './table.state';
 
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { filter, map } from 'rxjs/operators';
 
 import { FormActions } from '../../form/models/form.actions';
@@ -109,6 +116,33 @@ export class TableDataSource<T = any> implements DataSource<T> {
         return eventFilters
           ? eventFilters.indexOf(tableState.event) !== -1
           : true;
+      })
+    );
+  }
+
+  public connectFetchState(): Observable<FetchState> {
+    const sortState$ = this.selectState('sort') as Observable<SortState>;
+    const filterState$ = this.selectState('filters') as Observable<FilterState>;
+    const pageState$ = this.selectState(
+      'pagination'
+    ) as Observable<PaginationInstance>;
+
+    return combineLatest([sortState$, filterState$, pageState$]).pipe(
+      map(([sortState, filterState, pageState]) => {
+        return {
+          itemsPerPage: pageState.itemsPerPage,
+          next: pageState.currentPage,
+          ...sortState,
+          ...filterState,
+        } as FetchState;
+      })
+    );
+  }
+
+  private selectState(selector: keyof TableState) {
+    return this.tableSubject.asObservable().pipe(
+      map((tableState) => {
+        return tableState[selector];
       })
     );
   }

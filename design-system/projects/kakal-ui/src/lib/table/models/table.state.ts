@@ -21,8 +21,8 @@ export interface TableState {
 }
 
 export interface FetchState {
-  perPage: number;
-  page: number;
+  itemsPerPage: number;
+  next: number;
   sorting: string;
   sortBy: SortDirection;
   filters: any;
