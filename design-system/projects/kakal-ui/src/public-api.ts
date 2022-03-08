@@ -197,5 +197,53 @@ export * from './lib/directives/outside-button.directive';
 export * from './lib/directives/directives.module';
 
 // styles
-
 export * from './styles/theme';
+
+// cards
+export * from './lib/cards/card-dashboard/card-dashboard.component';
+export * from './lib/cards/card-dashboard/card-dashboard.model';
+export * from './lib/cards/card-dashboard/card-dashboard.module';
+export * from './lib/cards/card-info/card-info.component';
+export * from './lib/cards/card-info/card-info.model';
+export * from './lib/cards/card-info/card-info.module';
+export * from './lib/cards/card-status/card-status.component';
+export * from './lib/cards/card-status/card-status.model';
+export * from './lib/cards/card-status/card-status.module';
+export * from './lib/cards/card-step/card-step.component';
+export * from './lib/cards/card-step/card-step.model';
+export * from './lib/cards/card-step/card-step.module';
+export * from './lib/cards/card-user/card-user.component';
+export * from './lib/cards/card-user/card-user.module';
+export * from './lib/cards/card-wizard/card-wizard.component';
+export * from './lib/cards/card-wizard/card-wizard.module';
+export * from './lib/cards/card.model';
+
+// navbar 
+export * from './lib/navbar/navbar.component';
+export * from './lib/navbar/navbar.module';
+export * from './lib/navbar/navbar.service';
+
+// navbar - bottom
+export * from './lib/navbar-bottom/navbar-bottom.component';
+export * from './lib/navbar-bottom/navbar-bottom.module';
+export * from './lib/navbar-bottom/navbar-bottom.service';
+
+// stepper 
+export * from './lib/stepper/stepper.component';
+export * from './lib/stepper/stepper.module';
+export * from './lib/stepper/stepper.service';
+
+// stepper mobile 
+export * from './lib/stepper-mobile/stepper-mobile.component';
+export * from './lib/stepper-mobile/stepper-mobile.module';
+
+// stepper layout
+export * from './screens/stepper-layout/stepper-layout.component';
+export * from './screens/stepper-layout/stepper-layout.module';
+export * from './screens/stepper-layout/stepper-layout.service';
+
+
+
+
+
+
