@@ -1,1 +1,143 @@
-<p>filter-header-cell works!</p>
+<div fxFill>
+  <!-- BUTTON SECTION -->
+  <div kkl-button color="primary" [matMenuTriggerFor]="menu">
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <kkl-typography>
+        {{ column.label }}
+      </kkl-typography>
+      <mat-icon color="primary"> arrow_drop_down </mat-icon>
+    </div>
+  </div>
+
+  <!-- MENU SECTION -->
+  <mat-menu #menu="matMenu" xPosition="after">
+    <ng-container [ngSwitch]="column.filterType">
+      <!-- DATES FILTER-->
+      <ng-container *ngSwitchCase="'dateRange'">
+        <div
+          class="date"
+          fxLayout="row"
+          fxLayoutGap="1rem"
+          fxFlexAlign="start center"
+          (click)="$event.stopPropagation()"
+        >
+          <kkl-form-date
+            fxFlex="18rem"
+            range="true"
+            [control]="control"
+            placeHolder="מתאריך - עד תאריך"
+            (start)="onRangeDateEvent('from', $event, 'firstDate')"
+            (end)="onRangeDateEvent('to', $event, 'firstDate')"
+          >
+          </kkl-form-date>
+          <div
+            *ngIf="column.sortable"
+            class="sort-button"
+            fxLayout="column"
+            fxLayoutAlign="end center"
+          >
+            <div fxFlex="95">
+              <button mat-icon-button (click)="onSortClick()" class="sort-date">
+                <mat-icon
+                  [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
+                  class="up"
+                  >arrow_right_alt</mat-icon
+                >
+                <mat-icon
+                  [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
+                  class="down"
+                  >arrow_right_alt</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- CURRENCY FILTER-->
+
+      <ng-container *ngSwitchCase="'numberRange'">
+        <div
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          class="currency"
+          (click)="$event.stopPropagation()"
+        >
+          <div fxFlex="90">
+            <kkl-form
+              [group]="amountFilter"
+              (autocompleteEvent)="onCurrencyAutocomplete($event)"
+            ></kkl-form>
+          </div>
+          <div
+            *ngIf="column.sortable"
+            class="sort-button sort-currency"
+            fxLayout="column"
+            fxLayoutAlign="end center"
+          >
+            <div fxFlex="95">
+              <button mat-icon-button (click)="onSortClick()">
+                <mat-icon
+                  [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
+                  class="up"
+                  >arrow_right_alt</mat-icon
+                >
+                <mat-icon
+                  [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
+                  class="down"
+                  >arrow_right_alt</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngSwitchCase="'search'">
+        <div
+          (click)="$event.stopPropagation()"
+          fxLayout="row"
+          fxLayoutAlign="space-evenly start"
+        >
+          <!-- <kkl-form-input
+            fxFlex="70"
+            dir="rtl"
+            [question]="searchQuestion"
+            [control]="searchQuestion.control"
+            (click)="$event.stopPropagation()"
+          >
+          </kkl-form-input> -->
+          <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
+            <div fxFlex="95">
+              <button mat-icon-button (click)="onSortClick()">
+                <mat-icon
+                  [color]="column.sortDir === 'asc' ? 'primary' : 'text'"
+                  class="up"
+                  >arrow_right_alt</mat-icon
+                >
+                <mat-icon
+                  [color]="column.sortDir === 'desc' ? 'primary' : 'text'"
+                  class="down"
+                  >arrow_right_alt</mat-icon
+                >
+              </button>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+
+    <!-- DEFAULT OPTIONS MENU -->
+    <ng-container>
+      <mat-selection-list #list>
+        <mat-list-option
+          *ngFor="let option of column.filterOptions"
+          [value]="option.value"
+          [selected]="option.selected"
+        >
+          <kkl-typography> {{ option.label }}</kkl-typography>
+        </mat-list-option>
+      </mat-selection-list>
+    </ng-container>
+  </mat-menu>
+</div>

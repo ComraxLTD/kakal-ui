@@ -1,6 +1,6 @@
 <ng-container
   *ngTemplateOutlet="
-    headerTemplate[column.columnDef.toString()] || defaultHeader;
+    filterTemplate[column.columnDef.toString()]  || headerTemplate[column.columnDef.toString()] || defaultHeader;
     context: { $implicit: {column, key} }
   "
 >
@@ -12,3 +12,9 @@
     {{ rowState.column.label }}
   </kkl-typography>
 </ng-template>
+
+<ng-template #search>
+  <kkl-filter-header-cell [column]="column"></kkl-filter-header-cell>
+</ng-template>
+
+<!-- <kkl-filter-header-cell></kkl-filter-header-cell> -->

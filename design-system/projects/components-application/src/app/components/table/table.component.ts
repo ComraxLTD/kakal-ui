@@ -27,6 +27,7 @@ import { Validators } from '@angular/forms';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
 import { PaginationInstance } from 'ngx-pagination';
 import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
+import { HeaderCellModel } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
 
 @Component({
   selector: 'app-table',
@@ -40,8 +41,8 @@ export class TableComponent implements OnInit {
 
   public itemKey: string = 'id';
 
-  private columns: TableColumnModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name' },
+  private columns: HeaderCellModel<RootObject>[] = [
+    { columnDef: 'first_name', label: 'first_name', filterType : 'search' },
     { columnDef: 'last_name', label: 'last_name' },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
