@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { KKLFormCheckboxModule } from '../../../../form/form-checkbox/form-checkbox.module';
 import { KKLFormCurrencyModule } from '../../../../form/form-currency/form-currency.module';
 import { KKLFormDateModule } from '../../../../form/form-date/form-date.module';
 import { KKLFormInputModule } from '../../../../form/form-input/form-input.module';
@@ -23,6 +24,7 @@ import { TableFormCellComponent } from './table-cell-form.component';
     MatInputModule,
     KKLFormInputModule,
     KKLFormCurrencyModule,
+    KKLFormCheckboxModule,
     KKLFormSelectModule,
     KKLFormDateModule,
     KKLFormUploadModule,

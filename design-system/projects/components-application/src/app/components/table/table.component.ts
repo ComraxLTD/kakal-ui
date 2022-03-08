@@ -55,7 +55,7 @@ export class TableComponent implements OnInit {
     { key: 'last_name' },
     { key: 'email', controlType: 'email' },
     { key: 'phone', controlType: 'phone' },
-    { key: 'gender', controlType: 'checkbox' },
+    { key: 'gender', controlType: 'checkbox',  },
     { key: 'city', controlType: 'select' },
     { key: 'date', controlType: 'date', validations: [Validators.required] },
   ];

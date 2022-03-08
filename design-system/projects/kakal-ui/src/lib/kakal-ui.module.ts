@@ -41,7 +41,7 @@ import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
-import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module';
+import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module';
 
 @NgModule({
   declarations: [
@@ -73,7 +73,7 @@ import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module
     KKLFormUploadModule,
     KKLDialogModule,
     KKLFormTextEditorModule,
-    KKLFormCheckBoxModule,
+    KKLFormCheckboxModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -97,7 +97,7 @@ import { KKLFormCheckBoxModule } from './form/form-checkbox/form-checkbox.module
     KKLStatusBarsModule,
 
     KKLFormModule,
-    KKLFormCheckBoxModule,
+    KKLFormCheckboxModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
