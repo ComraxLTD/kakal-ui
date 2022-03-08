@@ -52,7 +52,7 @@
           <ng-container *ngFor="let item of stepMap | keyvalue; let i = index">
             <div
               appBorder
-              appButton
+              kkl-button
               (click)="selectStepper(item)"
               [ngClass]="{ active: item.value.isActive, button: true }"
             ></div>

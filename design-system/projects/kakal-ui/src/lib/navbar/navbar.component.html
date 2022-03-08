@@ -13,7 +13,7 @@
       fxFlex="5rem"
       fxLayoutGap='0.5rem'
       appUnderline
-      appButton
+      kkl-button
       (click)="toggleMenu(toggle.value)"
     >
       <div >
@@ -61,7 +61,7 @@
 
   <!-- left side logo -->
   <div fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1rem">
-    <div *ngFor="let logo of logos" appButton>
+    <div *ngFor="let logo of logos" kkl-button>
       <kkl-icon
         [routerLink]="['/' + logo.path]"
         [key]="logo.key"

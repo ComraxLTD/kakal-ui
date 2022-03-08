@@ -1,47 +1,17 @@
-<div
-  dir="rtl"
-  [ngClass]="step.type"
-  fxLayout="column"
-  fxLayoutAlign="center center"
-  fxLayoutGap=".5rem"
-  fxFill
->
+<div dir="rtl" [ngClass]="step.type" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5rem" fxFill>
   <!-- icon section -->
-  <div
-    appSize
-    [size]="6"
-    (click)="onStepClick()"
-    [matBadge]="step.value"
-    matBadgeColor="accent"
-    matBadgeSize="medium"
-  >
-    <mat-card
-      fxFill
-      appButton
-      appVariant
-      [type]="step.type"
-      [variant]="step.variant"
-      [ngClass]="{
+  <div appSize [size]="6" (click)="onStepClick()" [matBadge]="step.value" matBadgeColor="accent" matBadgeSize="medium">
+    <mat-card fxFill kkl-button appVariant [type]="step.type" [variant]="step.variant" [ngClass]="{
         'mat-elevation-z0': true,
         active: step.isActive,
-        disabled: step.disabled
-      }"
-    >
+        disabled: step.disabled }">
       <mat-card-content fxFill>
         <div fxLayout="column" fxLayoutAlign="center center" fxFill>
-          <kkl-icon
-            *ngIf="!step.stroke"
-            [color]="step.isActive ? 'paper' : 'default'"
-            [key]="step.svgUrl"
-            [size]="step.size"
-          >
+          <kkl-icon *ngIf="!step.stroke" [color]="step.isActive ? 'paper' : 'default'" [key]="step.svgUrl"
+            [size]="step.size">
           </kkl-icon>
-          <kkl-icon
-            *ngIf="step.stroke"
-            [stroke]="step.isActive ? 'paper' : 'default'"
-            [key]="step.svgUrl"
-            [size]="step.size"
-          >
+          <kkl-icon *ngIf="step.stroke" [stroke]="step.isActive ? 'paper' : 'default'" [key]="step.svgUrl"
+            [size]="step.size">
           </kkl-icon>
         </div>
       </mat-card-content>
@@ -50,12 +20,8 @@
 
   <!-- label section -->
   <div fxLayout="row" fxFlex>
-    <div fxFill fxLayout="column" fxLayoutAlign="center center">
-      <kkl-typography
-        [ngClass]="{ active: step.isActive }"
-        [weight]="step.isActive ? 600 : 500"
-        [size]="1.2"
-      >
+    <div fxFill fxLayout="column" fxLayoutAlign="center center" class="no-warp">
+      <kkl-typography [ngClass]="{ active: step.isActive }" [weight]="step.isActive ? 600 : 500" [size]="1.2">
         {{ step.label }}
       </kkl-typography>
     </div>
