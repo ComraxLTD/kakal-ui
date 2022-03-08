@@ -213,6 +213,29 @@ export * from './lib/cards/card-wizard/card-wizard.component';
 export * from './lib/cards/card.model';
 export * from './lib/cards/cards.module';
 
+// navbar 
+export * from './lib/navbar/navbar.component';
+export * from './lib/navbar/navbar.module';
+export * from './lib/navbar/navbar.service';
+
+// navbar - bottom
+export * from './lib/navbar-bottom/navbar-bottom.component';
+export * from './lib/navbar-bottom/navbar-bottom.module';
+export * from './lib/navbar-bottom/navbar-bottom.service';
+
+// stepper 
+export * from './lib/stepper/stepper.component';
+export * from './lib/stepper/stepper.module';
+export * from './lib/stepper/stepper.service';
+
+// stepper mobile 
+export * from './lib/stepper-mobile/stepper-mobile.component';
+export * from './lib/stepper-mobile/stepper-mobile.module';
+
+// stepper layout
+export * from './screens/stepper-layout/stepper-layout.component';
+export * from './screens/stepper-layout/stepper-layout.module';
+export * from './screens/stepper-layout/stepper-layout.service';
 
 
 
