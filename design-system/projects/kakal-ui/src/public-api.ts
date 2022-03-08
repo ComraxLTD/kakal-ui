@@ -34,6 +34,9 @@ export * from './lib/form/form-date/form-date.module';
 export * from './lib/form/form-checkbox/form-checkbox.component';
 export * from './lib/form/form-checkbox/form-checkbox.module';
 
+export * from './lib/form/form-checkbox-group/form-checkbox-group.component';
+export * from './lib/form/form-checkbox-group/form-checkbox-group.module';
+
 export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.module';
 export * from './lib/form/form-input/form-input.service';
@@ -133,6 +136,11 @@ export * from './lib/menu/menu.component';
 // title
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
+
+
+// title
+export * from './lib/navigation/navigation.module';
+export * from './lib/navigation/navigation.component';
 
 // info-card
 export * from './lib/cards/info-card/info-card.module';

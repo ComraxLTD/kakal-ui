@@ -7,6 +7,7 @@ import { CoreModule } from './core-module/core.module';
 
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
+import { KKLNavigationModule } from './navigation/navigation.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLInfoCardModule } from './cards/info-card/info-card.module';
@@ -23,6 +24,7 @@ import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
+import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-checkbox-group.module'
 
 import { KKLTableModule } from './table/components/table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
@@ -49,6 +51,11 @@ import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module';
+import { KKLNavbarModule } from './navbar/navbar.module';
+import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
+import { StepperModule } from './stepper/stepper.module';
+import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
+import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
 
 @NgModule({
   declarations: [
@@ -62,6 +69,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    KKLNavigationModule,
     KKLStatusBarsModule,
     KKLMenuModule,
     KKLIconModule,
@@ -82,6 +90,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLDialogModule,
     KKLFormTextEditorModule,
     KKLFormCheckboxModule,
+    KKLFormCheckboxGroupModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -99,9 +108,19 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+
+    // NAVBAR
+    KKLNavbarModule,
+    NavbarBottomModule,
+
+    // STEPPER
+    StepperModule,
+    StepperMobileModule,
+    StepperLayoutModule,
   ],
   exports: [
     //TOOLS
+    KKLNavigationModule,
     MaterialModule,
     KKLMenuItemModule,
     KKLButtonModule,
@@ -121,7 +140,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLFormSelectModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
-
+    KKLFormCheckboxGroupModule,
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
@@ -141,6 +160,14 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+    // NAVBAR
+    KKLNavbarModule,
+    NavbarBottomModule,
+
+    // STEPPER
+    StepperModule,
+    StepperMobileModule,
+    StepperLayoutModule,
   ],
 })
 export class KakalUiModule { }
