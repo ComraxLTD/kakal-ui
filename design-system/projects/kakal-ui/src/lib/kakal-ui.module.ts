@@ -42,6 +42,12 @@ import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
+import { KKLCardDashboardModule } from './cards/card-dashboard/card-dashboard.module';
+import { KKLCardInfoModule } from './cards/card-info/card-info.module';
+import { KKLCardStatusModule } from './cards/card-status/card-status.module';
+import { KKLCardStepModule } from './cards/card-step/card-step.module';
+import { KKLCardUserModule } from './cards/card-user/card-user.module';
+import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module';
 
 @NgModule({
@@ -85,6 +91,14 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLDirectivesModule,
     KKLPipesModule,
     SpinnerModule,
+
+    // CARDS
+    KKLCardDashboardModule,
+    KKLCardInfoModule,
+    KKLCardStatusModule,
+    KKLCardStepModule,
+    KKLCardUserModule,
+    KKLCardWizardModule,
   ],
   exports: [
     //TOOLS
@@ -119,7 +133,14 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLPipesModule,
     KKLDirectivesModule,
     SpinnerModule,
-    KKLPageHeadlineModule
+    KKLPageHeadlineModule,
+    // CARDS
+    KKLCardDashboardModule,
+    KKLCardInfoModule,
+    KKLCardStatusModule,
+    KKLCardStepModule,
+    KKLCardUserModule,
+    KKLCardWizardModule,
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }

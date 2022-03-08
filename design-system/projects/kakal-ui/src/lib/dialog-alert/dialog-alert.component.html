@@ -1,55 +1,37 @@
 <div fxLayout="column" dir="rtl" fxFill [class.kkl-alert-dialog]>
-    <ng-container *ngIf="data?.title">
-      <div>
-        <kkl-typography
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          mat-dialog-title
-          [size]="2.4"
-          color="primary"
-        >
-          {{ data.title }}
-        </kkl-typography>
-      </div>
-    </ng-container>
-    <ng-container *ngIf="data?.message">
-      <mat-dialog-content fxLayout="column" fxLayoutAlign="center center">
-        <kkl-typography>
-          {{ data.message }}
-        </kkl-typography>
-      </mat-dialog-content>
-    </ng-container>
+  <ng-container *ngIf="data?.title">
+    <div>
+      <kkl-typography fxLayout="row" fxLayoutAlign="center center" mat-dialog-title [size]="2.4" color="primary">
+        {{ data.title }}
+      </kkl-typography>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="data?.message">
+    <mat-dialog-content fxLayout="column" fxLayoutAlign="center center">
+      <kkl-typography>
+        {{ data.message }}
+      </kkl-typography>
+    </mat-dialog-content>
+  </ng-container>
 
-    <ng-container *ngIf="data?.buttonText">
-      <mat-dialog-actions
-        fxFlexOffset="1rem"
-        fxLayout="row"
-        fxLayoutAlign="center center"
-        fxLayoutGap="2rem"
-        dir="ltr"
-      >
-        <button mat-raised-button (click)="onConfirmClick()" kkl-border>
-          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
-            <kkl-icon key="accept_circle"></kkl-icon>
-            <kkl-typography>
-              {{ data.buttonText.confirm }}
-            </kkl-typography>
-          </div>
-        </button>
-        <button
-          *ngIf="data.buttonText.cancel"
-          mat-raised-button
-          mat-dialog-close
-          kkl-border
-          color="default"
-        >
-          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
-            <kkl-icon key="cancel_circle"></kkl-icon>
-            <kkl-typography>
-              {{ data.buttonText.cancel }}
-            </kkl-typography>
-          </div>
-        </button>
-      </mat-dialog-actions>
-    </ng-container>
-  </div>
+  <ng-container *ngIf="data?.buttonText">
+    <mat-dialog-actions fxFlexOffset="1rem" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem" dir="ltr">
+      <button mat-raised-button (click)="onConfirmClick()" kkl-border>
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+          <kkl-icon key="accept_circle"></kkl-icon>
+          <kkl-typography>
+            {{ data.buttonText.confirm }}
+          </kkl-typography>
+        </div>
+      </button>
+      <button *ngIf="data.buttonText.cancel" mat-raised-button mat-dialog-close kkl-border color="default">
+        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+          <kkl-icon key="cancel_circle"></kkl-icon>
+          <kkl-typography>
+            {{ data.buttonText.cancel }}
+          </kkl-typography>
+        </div>
+      </button>
+    </mat-dialog-actions>
+  </ng-container>
+</div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NavbarService } from '../../navbar/navbar.service';
 import { CardStatusModel } from './card-status.model';
 
 @Component({

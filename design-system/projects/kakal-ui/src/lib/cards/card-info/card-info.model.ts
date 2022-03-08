@@ -1,4 +1,4 @@
-import { Palette } from '../../../styles/theme';
+import { Palette } from 'projects/kakal-ui/src/public-api';
 import { CardModel } from '../card.model';
 import { CardType, CardVariant } from '../card.model';
 
