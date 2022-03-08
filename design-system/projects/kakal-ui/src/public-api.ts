@@ -137,6 +137,12 @@ export * from './lib/menu/menu.component';
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
+// bread-crumbs
+export * from './lib/bread-crumbes/bread-crumbes.component';
+export * from './lib/bread-crumbes/bread-crumbs.module';
+export * from './lib/bread-crumbes/bread-crumbes.model';
+
+
 
 // title
 export * from './lib/navigation/navigation.module';
