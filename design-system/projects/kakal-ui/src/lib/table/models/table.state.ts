@@ -6,7 +6,6 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
-import { FormGroup } from '@angular/forms';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -16,13 +15,29 @@ export interface TableState {
   activeColumns?: string[];
   pagination?: PaginationInstance;
   forms?: { [key: string]: QuestionGroupModel };
-  event?: FormActions| TableActions;
+  event?: FormActions | TableActions;
+  filters?: FilterState;
+  sort?: SortState;
 }
+
+export interface FetchState {
+  perPage: number;
+  page: number;
+  sorting: string;
+  sortBy: SortDirection;
+  filters: any;
+}
+
+export interface SortState {
+  sorting: string;
+  sortBy: SortDirection;
+}
+export declare type FilterState = { [key: string]: any };
 
 export interface RowState<T = any> {
   item?: T;
   key?: string;
-  event?: FormActions| TableActions;
+  event?: FormActions | TableActions;
   itemIndex?: number;
   column?: TableColumnModel<T>;
   group?: QuestionGroupModel<T>;
@@ -38,7 +53,6 @@ export type ColumnState<T> = {
   type?: 'filter' | 'select';
   dir?: SortDirection;
 };
-
 
 export interface ActionState {
   show: boolean;

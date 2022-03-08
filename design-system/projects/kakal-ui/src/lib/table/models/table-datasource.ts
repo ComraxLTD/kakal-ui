@@ -6,10 +6,11 @@ import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnState, RowState, TableState } from './table.state';
 
 import { Observable, BehaviorSubject } from 'rxjs';
-import { filter } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 
 import { FormActions } from '../../form/models/form.actions';
 import { TableActions } from '../models/table.events';
+import { PaginationInstance } from 'ngx-pagination';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
@@ -81,9 +82,25 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.tableSubject.next({ ...oldState, ...tableState });
   }
 
-
   public connectTableState(): Observable<TableState> {
     return this.tableSubject.asObservable();
+  }
+
+  public loadPagination(state: { pagination: any }): void {
+    const { pagination } = state;
+    const oldState = this.getTableState();
+    this.tableSubject.next({
+      ...oldState,
+      pagination: { ...oldState.pagination, ...pagination },
+    });
+  }
+
+  public connectPagination() {
+    return this.tableSubject.asObservable().pipe(
+      map((tableState) => {
+        return tableState.pagination;
+      })
+    );
   }
 
   public getTableStateByEvent(eventFilters: (FormActions | TableActions)[]) {
@@ -130,7 +147,8 @@ export class TableDataSource<T = any> implements DataSource<T> {
     edit: (prop: { state: RowState }) =>
       this.createAction(prop, FormActions.EDIT),
 
-    cancel: (prop: { state: RowState }) => this.createAction(prop, FormActions.CANCEL),
+    cancel: (prop: { state: RowState }) =>
+      this.createAction(prop, FormActions.CANCEL),
 
     // close: (prop: { state: RowState }) =>
     //   this.createAction(prop, FormActions.CLOSE),

@@ -11,5 +11,5 @@ export class PaginationModel {
 
 export default interface IPaginationChangeEvent {
   next: number;
-  prev: number;
+  current: number;
 }

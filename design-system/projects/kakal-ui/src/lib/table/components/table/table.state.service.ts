@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { deleteItem } from './table.helpers';
-import { map, Observable, distinctUntilChanged } from 'rxjs';
+import {
+  map,
+  Observable,
+  distinctUntilChanged,
+  distinctUntilKeyChanged,
+} from 'rxjs';
 import { FormActions } from '../../../form/models/form.actions';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState } from '../../models/table.state';
@@ -11,32 +16,44 @@ export class TableStateService {
   constructor() {}
 
   public onDataChange(
-    tableDataSource: TableDataSource,
-    data$: Observable<any[]>,
-    pagination: PaginationInstance
+    tableDataSource: TableDataSource
   ): Observable<TableState> {
-    return data$.pipe(
-      map((data) => data.length),
-      distinctUntilChanged(),
-      map((totalItems) => {
+    return tableDataSource.connectPagination().pipe(
+      distinctUntilKeyChanged('totalItems'),
+      map((paginationState: PaginationInstance) => {
         const oldState = tableDataSource.getTableState();
-
-        const paginationState = pagination
-          ? pagination
-          : ({
-              ...oldState.pagination,
-              itemsPerPage: totalItems,
-            } as PaginationInstance);
 
         return {
           ...oldState,
           pagination: {
             ...paginationState,
-            totalItems,
           },
         } as TableState;
       })
     );
+
+    // return data$.pipe(
+    //   map((data) => data.length),
+    //   distinctUntilChanged(),
+    //   map((totalItems) => {
+    //     console.log(pagination);
+    //     const oldState = tableDataSource.getTableState();
+
+    //     const paginationState = pagination
+    //       ? pagination
+    //       : ({
+    //           ...oldState.pagination,
+    //           ...pagination
+    //         } as PaginationInstance);
+
+    //     return {
+    //       ...oldState,
+    //       pagination: {
+    //         ...paginationState,
+    //       },
+    //     } as TableState;
+    //   })
+    // );
   }
 
   private setRowWithForm(options: {
