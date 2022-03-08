@@ -220,7 +220,7 @@ export class FormService {
   }
 
   // create questions object for row instance to render to kkl-form {}
-  public setQuestionsAsGroup(questions: Question[]): Object {
+  public setQuestionsAsGroup(questions: Question[]): { [key: string]: Question } {
     return questions
       .map((question: Question) => question)
       .reduce((acc, control: Question) => {

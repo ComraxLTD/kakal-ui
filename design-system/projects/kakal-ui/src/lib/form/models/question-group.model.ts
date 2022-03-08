@@ -20,12 +20,11 @@ export interface GroupOptions {
 }
 
 export class QuestionGroupModel<T = any> extends QuestionBase {
-  public model?: Object;
   public questions?: Question[];
   public type?: QuestionType;
   public formGroup?: FormGroup;
   public hasButton?: boolean;
-  public controls?: Object;
+  public controls?: { [key: string]: Question };
 
   constructor(options?: {
     key: string;
@@ -36,7 +35,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     formGroup?: FormGroup;
     gridProps?: GridProps;
     hasButton?: boolean;
-    controls?: Object;
+    controls?: { [key: string]: Question };
     validations?: ValidatorFn[];
   }) {
     super(options);
@@ -62,17 +61,21 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     return undefined;
   }
 
-  public findQuestion(key: string): Question {
+  public getQuestion(key: keyof T): Question {
     return this.questions.find((question) => question.key === key);
   }
 
-  public findQuestions(key: keyof Question, value: any): Question[] {
+  public getQuestionsBy(options: {
+    key: keyof Question;
+    value: any;
+  }): Question[] {
+    const { key, value } = options;
     return this.questions.filter((question) => question[key] === value);
   }
 
   // return groupModel value
-  public getControlValueChange(key): Observable<any> {
-    const control: AbstractControl = this.formGroup.controls[key];
+  public getControlValueChange(key: keyof T): Observable<any> {
+    const control: AbstractControl = this.formGroup.controls[key.toString()];
     if (control) {
       return control.valueChanges;
     }
@@ -95,10 +98,6 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     return this.formGroup.controls;
   }
 
-  public patchValue(item): void {
-    this.formGroup.patchValue(item);
-  }
-
   public clear(
     options: { key?: string; emitEvent?: boolean } = {
       key: '',
@@ -112,6 +111,4 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
       this.formGroup.reset({ emitEvent });
     }
   }
-
- 
 }

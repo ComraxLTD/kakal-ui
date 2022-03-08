@@ -49,10 +49,22 @@
       </ng-container>
 
       <ng-container *ngSwitchDefault>
-        <kkl-form-input
+        <!-- <kkl-form-input
           [control]="group.formGroup.controls[columnDef]"
           [question]="group.controls[columnDef]"
-        ></kkl-form-input>
+        ></kkl-form-input> -->
+
+        <kkl-form-input
+          [control]="group.formGroup.controls[question.key]"
+          [label]="question?.label"
+          [key]="question?.key"
+          [placeHolder]="question?.placeHolder"
+          [appearance]="question?.appearance"
+          [gridProps]="question?.gridProps"
+          [icon]="question?.icon"
+          [controlType]="question?.controlType"
+        >
+        </kkl-form-input>
       </ng-container>
     </ng-container>
   </ng-container>
