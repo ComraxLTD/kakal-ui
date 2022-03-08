@@ -23,6 +23,7 @@ import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
+import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-checkbox-group.module'
 
 import { KKLTableModule } from './table/components/table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
@@ -82,6 +83,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLDialogModule,
     KKLFormTextEditorModule,
     KKLFormCheckboxModule,
+    KKLFormCheckboxGroupModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -121,7 +123,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
     KKLFormSelectModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
-
+    KKLFormCheckboxGroupModule,
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
