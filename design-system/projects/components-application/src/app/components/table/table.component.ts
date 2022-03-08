@@ -67,7 +67,11 @@ export class TableComponent implements OnInit {
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
 
-  public pagination: PaginationInstance = { itemsPerPage: 3, currentPage: 1 };
+  public pagination: PaginationInstance = {
+    itemsPerPage: 5,
+    currentPage: 1,
+    totalItems: 100,
+  };
 
   constructor(
     private formService: FormService,
@@ -78,8 +82,10 @@ export class TableComponent implements OnInit {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
-    this.tableState$ = this.tableDataSource.connectTableState();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
+
+    // form demo only
+    this.tableState$ = this.tableDataSource.connectTableState();
   }
 
   private demoServerData(): Observable<RootObject[]> {
@@ -218,6 +224,9 @@ export class TableComponent implements OnInit {
       )
       .subscribe((updateData) => {
         this.demoStore$.next(updateData);
+        this.tableDataSource.loadPagination({
+          pagination: { totalItems: 100 },
+        });
         this.tableDataSource.actions.cancel({ state });
       });
   }

@@ -26,7 +26,6 @@ export class PaginationComponent implements OnInit {
   }
 
   public onPageChange(number: number) {
-    this.newPage.emit({ next: number, prev: this.pagination.currentPage });
-    this.pagination.currentPage = number;
+    this.newPage.emit({ next: number, current: this.pagination.currentPage });
   }
 }

@@ -42,9 +42,15 @@ export class KKLPaginationDirective implements OnInit {
     this.setCurrentPageFromUrl();
   }
 
+  private loadPagination() {
+    this.tableDataSource.loadPagination({ pagination: this.pagination });
+  }
+
   private invalidate() {
     if (!this.pagination) {
       throw new Error('kklPagination must get a PaginationInstance as input');
+    } else {
+      this.loadPagination();
     }
   }
 
