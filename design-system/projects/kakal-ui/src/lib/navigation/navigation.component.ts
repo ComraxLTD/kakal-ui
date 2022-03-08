@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
 } from '@angular/core';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { CardStepModel } from '../cards/card-step/card-step.model';
@@ -19,7 +20,7 @@ export class NavigationComponent implements OnInit {
   @Input() public steps$: Observable<CardStatusModel[]>;
   @Input() public activeStepIndex: number;
 
-  @Input() slots: { content: ElementRef; step: ElementRef };
+  @Input() slots: { content:TemplateRef<any>; step: TemplateRef<any> };
 
   public currentIndexSubject: BehaviorSubject<number>;
   public stepMap$: Observable<{ [key: string]: CardStepModel }>;
