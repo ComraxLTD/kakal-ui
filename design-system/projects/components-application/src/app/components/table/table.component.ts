@@ -42,13 +42,18 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: HeaderCellModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', filterType : 'search' },
+    { columnDef: 'first_name', label: 'first_name', filterType: 'search' },
     { columnDef: 'last_name', label: 'last_name' },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
     { columnDef: 'city', label: 'city' },
-    { columnDef: 'date', label: 'date', format: 'date' },
+    {
+      columnDef: 'date',
+      label: 'date',
+      format: 'date',
+      filterType: 'dateRange',
+    },
     { columnDef: 'currency', label: 'currency', flex: 0.5 },
   ];
 

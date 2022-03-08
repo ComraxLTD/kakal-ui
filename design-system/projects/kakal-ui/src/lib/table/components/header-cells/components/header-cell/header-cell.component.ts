@@ -14,7 +14,7 @@ import { HeaderCellModel } from '../../models/header-cell.model';
   styleUrls: ['./header-cell.component.scss'],
 })
 export class HeaderCellComponent implements OnInit, AfterViewInit {
-  @ViewChild('search') searchTemplate: TemplateRef<any>;
+  @ViewChild('filterCell') filterCell: TemplateRef<any>;
 
   @Input() column: HeaderCellModel;
   @Input() label: string;
@@ -31,12 +31,12 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     const predefinedTemplates = {
-      search: this.searchTemplate,
+      filter: this.filterTemplate,
     };
 
     if (this.column.filterType) {
       this.filterTemplate = {
-        [this.column.columnDef]: predefinedTemplates[this.column.filterType],
+        [this.column.columnDef]: this.filterCell,
       };
     }
   }

@@ -13,8 +13,8 @@
   </kkl-typography>
 </ng-template>
 
-<ng-template #search>
-  <kkl-filter-header-cell [column]="column"></kkl-filter-header-cell>
+<ng-template #filterCell let-rowState>
+  <kkl-filter-header-cell [column]="rowState.column"></kkl-filter-header-cell>
 </ng-template>
 
 <!-- <kkl-filter-header-cell></kkl-filter-header-cell> -->

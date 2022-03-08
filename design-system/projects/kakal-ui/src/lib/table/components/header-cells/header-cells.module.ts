@@ -12,6 +12,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { KKLDirectivesModule } from '../../../directives/directives.module';
 import { MatButtonModule } from '@angular/material/button';
+import { KKLFormDateModule } from '../../../form/form-date/form-date.module';
+import { KKLFormAutoCompleteModule } from '../../../form/form-autocomplete/form-autocomplete.module';
+import { KKLSortButtonModule } from '../../../button/components/sort-button/sort-button.module';
 
 @NgModule({
   declarations: [
@@ -27,8 +30,11 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule,
     MatIconModule,
     FlexLayoutModule,
+    KKLSortButtonModule,
     KKLTypographyModule,
-    KKLDirectivesModule
+    KKLFormAutoCompleteModule,
+    KKLFormDateModule,
+    KKLDirectivesModule,
   ],
   exports: [KKLHeaderCellDirective, HeaderCellComponent],
 })
