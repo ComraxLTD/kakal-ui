@@ -224,9 +224,7 @@ export class TableComponent implements OnInit {
       )
       .subscribe((updateData) => {
         this.demoStore$.next(updateData);
-        this.tableDataSource.loadPagination({
-          pagination: { totalItems: 100 },
-        });
+   
         this.tableDataSource.actions.cancel({ state });
       });
   }

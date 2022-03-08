@@ -32,28 +32,6 @@ export class TableStateService {
       })
     );
 
-    // return data$.pipe(
-    //   map((data) => data.length),
-    //   distinctUntilChanged(),
-    //   map((totalItems) => {
-    //     console.log(pagination);
-    //     const oldState = tableDataSource.getTableState();
-
-    //     const paginationState = pagination
-    //       ? pagination
-    //       : ({
-    //           ...oldState.pagination,
-    //           ...pagination
-    //         } as PaginationInstance);
-
-    //     return {
-    //       ...oldState,
-    //       pagination: {
-    //         ...paginationState,
-    //       },
-    //     } as TableState;
-    //   })
-    // );
   }
 
   private setRowWithForm(options: {
