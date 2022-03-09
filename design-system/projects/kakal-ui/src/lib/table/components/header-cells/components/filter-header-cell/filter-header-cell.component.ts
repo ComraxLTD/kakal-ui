@@ -41,7 +41,6 @@ export class FilterHeaderCellComponent implements OnInit {
     return this.tableDataSource
       .connectColumnState(this.column.columnDef.toString())
       .pipe(
-        tap((columnState) => console.log(columnState)),
         filter(
           (columnState: ColumnState) =>
             columnState.event === ColumnActions.UPDATE_FILTERS
@@ -57,12 +56,12 @@ export class FilterHeaderCellComponent implements OnInit {
     const { value } = formOption;
   }
 
-  public onMenuOpen() {
+  public onMenuOpen(optionFlag : boolean) {
     const { filterType } = this.column;
 
     if (
       (filterType === 'select' || filterType === 'multiSelect') &&
-      this.optionFlag
+      optionFlag
     ) {
       this.optionFlag = false;
       this.menuOpened.emit();

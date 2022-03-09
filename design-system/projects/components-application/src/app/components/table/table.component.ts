@@ -292,12 +292,11 @@ export class TableComponent implements OnInit {
 
   public onFetchOptions(columnDef: string) {
     const columnState: ColumnState = {
-      key : columnDef,
+      key: columnDef,
       event: ColumnActions.UPDATE_FILTERS,
       options: this.optionsMap[columnDef],
     };
 
-    console.log(columnState);
     this.tableDataSource.loadColumnState({ columnState });
   }
 }
