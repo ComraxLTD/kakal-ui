@@ -19,6 +19,7 @@ import { FormActions } from '../../form/models/form.actions';
 import { TableActions } from '../models/table-actions';
 import { ColumnActions } from '../models/table-actions';
 import { PaginationInstance } from 'ngx-pagination';
+import { FilterOption } from '../components/header-cells/components/filter-header-cell/filter-header-cell.component';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
@@ -43,6 +44,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       activeColumns: [],
       pagination: { itemsPerPage: 3, currentPage: 1 },
       forms: {},
+      filters: {},
       event: FormActions.DEFAULT,
     });
 
@@ -143,6 +145,27 @@ export class TableDataSource<T = any> implements DataSource<T> {
           : true;
       })
     );
+  }
+
+  public dispatchSort(action: { sortState: SortState }): void {
+    const { sortState } = action;
+    const newState = {
+      ...this.tableState.getValue(),
+      sort: { ...sortState },
+    } as TableState;
+    this.loadTableState({ tableState: newState });
+  }
+
+  public dispatchFilter(action: { filterState: FilterState }): void {
+    const { filterState } = action;
+    const newState = {
+      ...this.tableState.getValue(),
+      filters: {
+        ...this.tableState.getValue().filters,
+        ...filterState,
+      },
+    } as TableState;
+    this.loadTableState({ tableState: newState });
   }
 
   public connectFetchState(): Observable<FetchState> {

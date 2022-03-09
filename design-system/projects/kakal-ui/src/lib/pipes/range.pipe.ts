@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { Range } from '../table/components/header-cells/components/filter-range-cell/filter-range-cell.component';
 // import { Range } from '../components/columns/column-filter/column-filter.component';
 
 import { FormatPipe } from './format.pipe';
@@ -9,18 +10,18 @@ import { FormatPipe } from './format.pipe';
 export class RangePipe implements PipeTransform {
   constructor(private format: FormatPipe) {}
 
-  transform(value: any, format?: string): string {
+  transform(value: Range, format?: string): string {
     let result = '';
 
-    const { to, from } = value;
+    const { start, end } = value;
 
-    if (to && from) {
-      result = `${this.format.transform(from, format)}-${this.format.transform(
-        to,
+    if (start && end) {
+      result = `${this.format.transform(end, format)}-${this.format.transform(
+        start,
         format
       )}`;
-    } else if (to || from) {
-      result = `${this.format.transform(from, format)}`;
+    } else if (start || end) {
+      result = `${this.format.transform(end, format)}`;
     }
 
     return result;
