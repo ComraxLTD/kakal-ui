@@ -1,5 +1,5 @@
 <div fxFill dir="rtl">
-  <code dir="ltr" *ngIf="tableState$ | async as tableState">
+  <!-- <code dir="ltr" *ngIf="tableState$ | async as tableState">
     tableState :
     <pre>
       event : {{ tableState.event | json }}
@@ -8,6 +8,12 @@
       sort : {{ tableState.sort | json }}
       </pre
     >
+  </code> -->
+  <code dir="ltr" *ngIf="fetchState$ | async as fetchState">
+    fetchState :
+    <pre>
+      {{ fetchState | json }}
+    </pre>
   </code>
 
   <kkl-table

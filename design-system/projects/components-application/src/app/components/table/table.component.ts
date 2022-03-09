@@ -19,8 +19,10 @@ import {
   BehaviorSubject,
   firstValueFrom,
   map,
+  merge,
   Observable,
   of,
+  skip,
   switchMap,
   take,
 } from 'rxjs';
@@ -76,6 +78,7 @@ export class TableComponent implements OnInit {
   public data$: Observable<RootObject[]>;
   public columns$: Observable<TableColumnModel<RootObject>[]>;
   public tableState$: Observable<TableState>;
+  public fetchState$: Observable<FetchState>;
 
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
@@ -100,20 +103,25 @@ export class TableComponent implements OnInit {
 
     // form demo only
     this.tableState$ = this.tableDataSource.connectTableState();
+    this.fetchState$ = this.tableDataSource.connectFetchState();
   }
 
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
+      skip(1),
       switchMap((fetchState: FetchState) => {
         console.log(fetchState);
         // imitate server data
-        return of(DEMO_DATA);
+        return of(DEMO_DATA.slice(0, 2));
       })
     );
   }
 
   private demoServerData(): Observable<RootObject[]> {
-    return of(DEMO_DATA).pipe(
+    const initData$ = of(DEMO_DATA);
+    const fetchData$ = this.connectToFetchState();
+
+    return merge(initData$, fetchData$).pipe(
       switchMap((data: RootObject[]) => {
         this.demoStore$.next(data);
 
