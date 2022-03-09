@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderCellComponent } from './components/header-cell/header-cell.component';
-import { FilterHeaderCellComponent } from './components/filter-header-cell/filter-header-cell.component';
+// import { FilterHeaderCellComponent } from './components/filter-header-cell/filter-header-cell.component';
 import { KKLHeaderCellDirective } from './cell-header.directive';
 import { KKLTypographyModule } from '../../../typography/typography.module';
 
@@ -20,7 +20,6 @@ import { KKLSortButtonModule } from '../../../button/components/sort-button/sort
   declarations: [
     KKLHeaderCellDirective,
     HeaderCellComponent,
-    FilterHeaderCellComponent,
   ],
   imports: [
     CommonModule,
