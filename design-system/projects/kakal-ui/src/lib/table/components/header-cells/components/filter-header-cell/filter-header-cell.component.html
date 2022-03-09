@@ -8,7 +8,7 @@
   >
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <kkl-typography>
-        {{ column.label }}
+        {{ label }}
       </kkl-typography>
       <mat-icon color="primary"> arrow_drop_down </mat-icon>
     </div>
@@ -18,12 +18,12 @@
   <mat-menu #menu="matMenu" xPosition="after">
     <div class="filter-menu" fxLayout="column">
       <div fxLayout="row" fxLayoutGap="1rem" (click)="$event.stopPropagation()">
-        <ng-container [ngSwitch]="column.filterType">
+        <ng-container [ngSwitch]="filterType">
           <!-- DATES FILTER-->
           <ng-container *ngSwitchCase="'dateRange'">
             <kkl-filter-range-cell
               fxFlex="75"
-              [filterType]="column.filterType"
+              [filterType]="filterType"
               (rangeChange)="onRangeChange($event)"
             ></kkl-filter-range-cell>
           </ng-container>
@@ -33,7 +33,7 @@
           <ng-container *ngSwitchCase="'numberRange'">
             <kkl-filter-range-cell
               fxFlex="75"
-              [filterType]="column.filterType"
+              [filterType]="filterType"
               (rangeChange)="onRangeChange($event)"
             ></kkl-filter-range-cell>
           </ng-container>
@@ -42,7 +42,7 @@
             <kkl-form-input
               fxFlex="75"
               [control]="control"
-              [key]="column.columnDef"
+              [key]="key"
               [icon]="'search'"
               (valueChanged)="onValueChanged($event)"
             >
@@ -55,20 +55,18 @@
           <div fxFlex="95">
             <kkl-sort-button
               (sortChange)="onSortChange($event)"
-              [sortBy]="column.sortDir"
+              [sortBy]="sortBy"
             ></kkl-sort-button>
           </div>
         </div>
       </div>
       <ng-controller
-        *ngIf="
-          column.filterType === 'select' || column.filterType === 'multiSelect'
-        "
+        *ngIf="filterType === 'select' || filterType === 'multiSelect'"
       >
         <mat-selection-list
           #list
           (selectionChange)="onSelectionChange(list.selectedOptions.selected)"
-          [multiple]="column.filterType === 'multiSelect'"
+          [multiple]="filterType === 'multiSelect'"
           dir="rtl"
         >
           <ng-container *ngFor="let option of options$ | async">
