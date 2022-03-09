@@ -1,6 +1,6 @@
 <div fxFill dir="rtl">
   <code dir="ltr" *ngIf="tableState$ | async as tableState">
-tableState :
+    tableState :
     <pre>
       event : {{ tableState.event | json }}
       editing : {{ tableState.editing | json }}
@@ -20,10 +20,11 @@ tableState :
     <!-- use kklHeaderCell for render header cell -->
     <ng-container *kklHeaderCell="let context">
       <kkl-header-cell
-        [key]="context.key"
+        [itemKey]="context.key"
         [column]="context.column"
         [columnDef]="context.column.columnDef"
         [headerTemplate]="{actions}"
+        (fetchOptions)="onFetchOptions($event)"
       ></kkl-header-cell>
     </ng-container>
 

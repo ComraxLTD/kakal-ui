@@ -20,12 +20,12 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
 
   @Input() column: HeaderCellModel;
   @Input() label: string;
-  @Input() key: string;
+  @Input('itemKey') key: string;
   @Input() columnDef: string;
   @Input() headerTemplate: { [key: string]: TemplateRef<any> } = {};
   @Input() filterTemplate: { [key: string]: TemplateRef<any> } = {};
 
-  @Output() fetchOptions: EventEmitter<void> = new EventEmitter();
+  @Output() fetchOptions: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
 
@@ -40,6 +40,6 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
   }
 
   public onMenuOpen() {
-    this.fetchOptions.emit();
+    this.fetchOptions.emit(this.columnDef);
   }
 }

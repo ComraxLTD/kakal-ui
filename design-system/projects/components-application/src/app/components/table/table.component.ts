@@ -287,4 +287,8 @@ export class TableComponent implements OnInit {
         });
       });
   }
+
+  public onFetchOptions(columnDef: string) {
+    console.log(columnDef);
+  }
 }
