@@ -47,7 +47,7 @@ export class TableComponent implements OnInit {
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
-    { columnDef: 'city', label: 'city' },
+    { columnDef: 'city', label: 'city', filterType: 'select' },
     {
       columnDef: 'date',
       label: 'date',
@@ -290,8 +290,17 @@ export class TableComponent implements OnInit {
   }
 
   public onFetchOptions(columnDef: string) {
-    console.log(columnDef);
+    const newState = this.tableDataSource.getColumns();
 
-    const columns = this.tableDataSource.getColumns();
+    const columnIndex = newState.findIndex(
+      (column) => column.columnDef === columnDef
+    );
+
+    newState[columnIndex] = {
+      ...newState[columnIndex],
+      filterOptions: [...this.optionsMap[columnDef]],
+    } as HeaderCellModel<RootObject>;
+
+    this.tableDataSource.loadColumns(newState);
   }
 }

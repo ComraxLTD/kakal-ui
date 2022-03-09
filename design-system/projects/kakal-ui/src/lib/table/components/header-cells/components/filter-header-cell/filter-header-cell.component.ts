@@ -16,7 +16,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public control: FormControl = new FormControl();
 
-  private openMenuFlag: boolean = false;
+  public openMenuFlag: boolean = false;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
 
@@ -33,8 +33,10 @@ export class FilterHeaderCellComponent implements OnInit {
   public onMenuOpen() {
     const { filterType } = this.column;
 
-    if (filterType === 'select' || filterType === 'multiSelect') {
-      this.openMenuFlag = true;
+    if (
+      (filterType === 'select' || filterType === 'multiSelect') &&
+      !this.column.filterOptions?.length
+    ) {
       this.menuOpened.emit();
     }
   }
