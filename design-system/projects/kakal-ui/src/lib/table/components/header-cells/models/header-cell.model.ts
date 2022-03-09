@@ -32,12 +32,9 @@ export class HeaderCellModel<T = any> {
   public selectable?: boolean;
   public disableSelect?: boolean;
 
-  public sortable?: boolean;
   public sortDir?: SortDirection;
 
-  public filterable?: boolean;
   public filterType?: FilterType;
-  public filterOptions?: KKLSelectOption[];
 
   constructor(options?: {
     columnDef: ColumnDef<T>;
@@ -54,12 +51,9 @@ export class HeaderCellModel<T = any> {
     selectable?: boolean;
     disableSelect?: boolean;
 
-    sortable?: boolean;
     sortDir?: SortDirection;
 
-    filterable?: boolean;
     filterType?: FilterType;
-    filterOptions?: KKLSelectOption[];
   }) {
     this.columnDef = options.columnDef;
     this.label = options?.label || '';
@@ -76,11 +70,8 @@ export class HeaderCellModel<T = any> {
 
     this.expendable = options?.expendable || false;
 
-    this.sortable = options?.sortable || false;
     this.sortDir = options?.sortDir || '';
 
-    this.filterable = options?.filterable || false;
     this.filterType = options?.filterType || null;
-    this.filterOptions = options?.filterOptions || [];
   }
 }

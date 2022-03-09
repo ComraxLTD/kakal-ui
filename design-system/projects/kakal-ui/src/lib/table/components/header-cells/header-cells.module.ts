@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 
 import { KKLDirectivesModule } from '../../../directives/directives.module';
 import { KKLFormDateModule } from '../../../form/form-date/form-date.module';
-import { KKLFormAutoCompleteModule } from '../../../form/form-autocomplete/form-autocomplete.module';
 import { KKLSortButtonModule } from '../../../button/components/sort-button/sort-button.module';
 import { KKLFormInputModule } from '../../../form/form-input/form-input.module';
 import { KKLTypographyModule } from '../../../typography/typography.module';
@@ -36,7 +35,6 @@ import { FilterHeaderCellComponent } from './components/filter-header-cell/filte
     FlexLayoutModule,
     KKLSortButtonModule,
     KKLTypographyModule,
-    KKLFormAutoCompleteModule,
     KKLFormInputModule,
     KKLFormDateModule,
     KKLDirectivesModule,

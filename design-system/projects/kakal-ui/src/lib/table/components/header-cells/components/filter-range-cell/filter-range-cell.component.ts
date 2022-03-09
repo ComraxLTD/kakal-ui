@@ -6,7 +6,6 @@ import {
 } from '../../../../../form/models/form.types';
 import { FormService } from '../../../../../form/services/form.service';
 import { TableDataSource } from '../../../../models/table-datasource';
-import { HeaderCellModel } from '../../models/header-cell.model';
 import { skip, Subject, take, takeUntil } from 'rxjs';
 
 export interface Range {
@@ -21,7 +20,8 @@ export interface Range {
   styleUrls: ['./filter-range-cell.component.scss'],
 })
 export class FilterRangeCellComponent implements OnInit {
-  @Input() public column: HeaderCellModel;
+
+  @Input() public filterType: 'numberRange' | 'dateRange';
   @Input() public value: Range = { start: 0, end: 0 };
 
   public amountGroup: QuestionGroupModel<Range>;
