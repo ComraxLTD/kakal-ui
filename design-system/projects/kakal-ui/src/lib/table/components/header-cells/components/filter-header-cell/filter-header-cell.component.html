@@ -41,14 +41,17 @@
         </ng-container>
 
         <ng-container *ngSwitchCase="'search'">
-          <div (click)="$event.stopPropagation()" fxFlex="75">
-            <kkl-form-input
-              [control]="control"
-              [key]="column.columnDef"
-              [icon]="'search'"
-            >
-            </kkl-form-input>
-          </div>
+          <kkl-form-input
+            fxFlex="75"
+            [control]="control"
+            [key]="column.columnDef"
+            [icon]="'search'"
+          >
+          </kkl-form-input>
+        </ng-container>
+
+        <ng-container *ngSwitchCase="'select'">
+          <kkl-filter-select-cell [column]="column"></kkl-filter-select-cell>
         </ng-container>
       </ng-container>
 

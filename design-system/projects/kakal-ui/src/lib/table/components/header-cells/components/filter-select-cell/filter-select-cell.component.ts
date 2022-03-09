@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { SortDirection } from '@angular/material/sort';
 import { HeaderCellModel } from '../../models/header-cell.model';
+import { KKLSelectOption } from '../../../../../form/models/form.types';
 
 @Component({
-  selector: 'pl-filter-select-cell',
+  selector: 'kkl-filter-select-cell',
   templateUrl: './filter-select-cell.component.html',
   styleUrls: ['./filter-select-cell.component.scss'],
 })
@@ -19,7 +19,22 @@ export class FilterSelectCellComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  public onSortChange(event: SortDirection) {
-    console.log(event);
+  public onMultiSelectChange(
+    selectedOptions: KKLSelectOption[],
+    selected: any[]
+  ) {
+    // this.tableFilterService.pushMany({
+    //   selectedOptions,
+    //   selected,
+    //   item: { key: this.column.columnDef },
+    // });
+  }
+
+  public onSelectionChange(event) {
+    // this.tableFilterService.pushMany({
+    //   selectedOptions,
+    //   selected,
+    //   item: { key: this.column.columnDef },
+    // });
   }
 }

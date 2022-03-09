@@ -1,21 +1,21 @@
-<div
-  (click)="$event.stopPropagation()"
-  fxLayout="row"
-  fxLayoutAlign="space-evenly start"
->
+<div fxLayout="column" fxFill>
   <kkl-form-input
-    fxFlex="70"
     [control]="control"
     [key]="column.columnDef"
     [icon]="'search'"
   >
   </kkl-form-input>
-  <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
-    <div fxFlex="95">
-      <kkl-sort-button
-        (sortChange)="onSortChange($event)"
-        [sortDir]="column.sortDir"
-      ></kkl-sort-button>
-    </div>
+  <div>
+    <mat-selection-list
+      #list
+      (selectionChange)="onSelectionChange(list.selectedOptions.selected)"
+      dir="rtl"
+    >
+      <ng-container *ngFor="let option of column.filterOptions">
+        <mat-list-option [value]="option" [selected]="option.selected">
+          <kkl-typography> {{ option.label }}</kkl-typography>
+        </mat-list-option>
+      </ng-container>
+    </mat-selection-list>
   </div>
 </div>
