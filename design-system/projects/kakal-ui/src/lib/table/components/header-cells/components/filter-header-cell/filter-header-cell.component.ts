@@ -36,7 +36,6 @@ export class FilterHeaderCellComponent implements OnInit {
   private filterType: FilterType;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
-  @Output() sortChanged: EventEmitter<SortState> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
@@ -87,10 +86,12 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onSortChange(event: SortDirection) {
-    this.sortChanged.emit({
+    const sortState = {
       sortBy: event,
       sorting: this.column.columnDef,
-    } as SortState);
+    } as SortState;
+
+    this.tableDataSource.dispatchSort({ sortState });
   }
 
   public onMenuOpen(optionFlag: boolean) {
@@ -106,7 +107,6 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onRangeChange(event: Range, type) {
-    console.log(event);
   }
 
   public onMultiSelectChange(
