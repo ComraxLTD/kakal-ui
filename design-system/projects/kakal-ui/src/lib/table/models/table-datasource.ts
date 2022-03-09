@@ -128,14 +128,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
   }
 
-  public connectPagination() {
-    return this.tableState.asObservable().pipe(
-      map((tableState) => {
-        return tableState.pagination;
-      })
-    );
-  }
-
   public getTableStateByEvent(eventFilters: (FormActions | TableActions)[]) {
     return this.tableState.asObservable().pipe(
       filter((tableState) => {
@@ -180,13 +172,63 @@ export class TableDataSource<T = any> implements DataSource<T> {
     );
   }
 
-  private createSelector(selector: TableSelector) {
+  public connectPagination() {
     return this.tableState.asObservable().pipe(
       map((tableState) => {
-        return tableState[selector];
+        return tableState.pagination;
       })
     );
   }
+
+  public select(selector: TableSelector) {
+    const state = {
+      pagination: this.tableState.asObservable().pipe(
+        map((tableState) => {
+          return tableState.pagination;
+        })
+      ),
+      sort: this.tableState.asObservable().pipe(
+        map((tableState) => {
+          return tableState.sort;
+        })
+      ),
+    };
+
+    return state[selector.toString()];
+
+    // switch (selector) {
+    //   case TableSelector.PAGINATION:
+    //     return this.tableState.asObservable().pipe(
+    //       map((tableState) => {
+    //         return tableState.pagination;
+    //       })
+    //     );
+    //   case TableSelector.SORT:
+    //     return this.tableState.asObservable().pipe(
+    //       map((tableState) => {
+    //         return tableState.sort;
+    //       })
+    //     );
+    //   case TableSelector.FILTERS:
+    //     return this.tableState.asObservable().pipe(
+    //       map((tableState) => {
+    //         return tableState.filters;
+    //       })
+    //     );
+    //   case TableSelector.EDITING:
+    //     return this.tableState.asObservable().pipe(
+    //       map((tableState) => {
+    //         return tableState.editing;
+    //       })
+    //     );
+    // }
+  }
+
+  // return this.tableState.asObservable().pipe(
+  //   map((tableState) => {
+  //     return tableState[selector];
+  //   })
+  // );
 
   private getRowStateByEvent(event) {
     return this.rowState

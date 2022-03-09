@@ -10,3 +10,4 @@ export enum TableSelector  {
   FILTERS = 'filters',
   SORT = 'sort',
 }
+
