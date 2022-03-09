@@ -1,6 +1,5 @@
-import { SelectOption } from '../../form/models/question-select.model';
 import { TableColumnModel } from '../../columns/models/column.model';
-import { TableActions } from '../models/table.events';
+import { ColumnActions, TableActions } from '../models/table-actions';
 import { SortDirection } from '@angular/material/sort';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
@@ -48,10 +47,9 @@ export interface RowState<T = any> {
 // interface for update select and filter options
 
 export type ColumnState<T = any> = {
+  event: ColumnActions;
   key?: keyof T;
-  options$: Observable<KKLSelectOption[]>;
-  type?: 'filter' | 'select';
-  event?: TableActions;
+  options?: KKLSelectOption;
   dir?: SortDirection;
 };
 

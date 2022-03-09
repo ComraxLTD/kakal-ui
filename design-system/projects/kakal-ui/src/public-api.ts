@@ -120,8 +120,8 @@ export * from './lib/table/components/pagination/pagination.directive';
 export * from './lib/table/components/pagination/pagination.types';
 
 export * from './lib/table/models/table';
+export * from './lib/table/models/table-actions';
 export * from './lib/table/models/table-datasource';
-export * from './lib/table/models/table.events';
 export * from './lib/table/models/table.state';
 
 export * from './lib/table/directives/cell.directive';
@@ -237,7 +237,7 @@ export * from './lib/cards/card-wizard/card-wizard.component';
 export * from './lib/cards/card-wizard/card-wizard.module';
 export * from './lib/cards/card.model';
 
-// navbar 
+// navbar
 export * from './lib/navbar/navbar.component';
 export * from './lib/navbar/navbar.module';
 export * from './lib/navbar/navbar.service';
@@ -247,12 +247,12 @@ export * from './lib/navbar-bottom/navbar-bottom.component';
 export * from './lib/navbar-bottom/navbar-bottom.module';
 export * from './lib/navbar-bottom/navbar-bottom.service';
 
-// stepper 
+// stepper
 export * from './lib/stepper/stepper.component';
 export * from './lib/stepper/stepper.module';
 export * from './lib/stepper/stepper.service';
 
-// stepper mobile 
+// stepper mobile
 export * from './lib/stepper-mobile/stepper-mobile.component';
 export * from './lib/stepper-mobile/stepper-mobile.module';
 
