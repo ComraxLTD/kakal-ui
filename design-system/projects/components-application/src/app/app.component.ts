@@ -8,6 +8,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { CardStepModel, SelectOption } from '../../../kakal-ui/src/public-api';
 import { Observable, of } from 'rxjs';
+import { FilterCardModel } from '../../../kakal-ui/src/lib/cards/filter-card/filter-card.model';
 
 @Component({
   selector: 'app-root',
@@ -61,8 +62,9 @@ export class AppComponent implements OnInit {
       spacer: true,
     }),
   ];
+
+  public card:FilterCardModel=new FilterCardModel({name:'ad',count:1,svg:'search'})
   ngOnInit(): void { 
-    this.steps$ = of(this.steps)
   }
 
   logOption(event):void{

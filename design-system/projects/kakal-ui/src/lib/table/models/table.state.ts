@@ -1,11 +1,11 @@
-import { SelectOption } from '../../form/models/question-select.model';
 import { TableColumnModel } from '../../columns/models/column.model';
-import { TableActions } from '../models/table.events';
+import { ColumnActions, TableActions } from '../models/table-actions';
 import { SortDirection } from '@angular/material/sort';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
-import { Observable } from 'rxjs';
+import { KKLSelectOption } from '../../form/models/form.types';
+import { FilterOption } from '../components/header-cells/components/filter-header-cell/filter-header-cell.component';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -23,16 +23,15 @@ export interface TableState {
 export interface FetchState {
   itemsPerPage: number;
   next: number;
-  sorting: string;
-  sortBy: SortDirection;
-  filters: any;
+  sort?: SortState;
+  filters?: FilterState;
 }
 
 export interface SortState {
   sorting: string;
   sortBy: SortDirection;
 }
-export declare type FilterState = { [key: string]: any };
+export declare type FilterState = { [key: string]: FilterOption };
 
 export interface RowState<T = any> {
   item?: T;
@@ -46,11 +45,10 @@ export interface RowState<T = any> {
 
 // interface for update select and filter options
 
-export type ColumnState<T> = {
-  event?: TableActions;
+export type ColumnState<T = any> = {
+  event: ColumnActions;
   key?: keyof T;
-  options$?: Observable<SelectOption[]>;
-  type?: 'filter' | 'select';
+  options?: KKLSelectOption[];
   dir?: SortDirection;
 };
 

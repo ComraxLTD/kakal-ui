@@ -163,7 +163,7 @@ export class ColumnFilterComponent<T> implements OnInit {
       }),
       debounceTime(400),
       map((range: Range) => {
-        const label = this.rangePipe.transform(range, 'currency');
+        const label ='';
         return { label, value: range };
       }),
       map((formOption: FormOption) => {
@@ -193,11 +193,11 @@ export class ColumnFilterComponent<T> implements OnInit {
   // EVENTS SECTION
 
   public onRangeDateEvent(name: string, date: string) {
-    const range = { ...this.range };
-    name === 'from' ? (range.from = date) : (range.to = date);
-    this.range = { ...range };
-    const label = this.rangePipe.transform(this.range, 'date');
-    this.filterEvent({ label, value: this.range });
+    // const range = { ...this.range };
+    // name === 'from' ? (range.from = date) : (range.to = date);
+    // this.range = { ...range };
+    // const label = this.rangePipe.transform(this.range, 'date');
+    // this.filterEvent({ label, value: this.range });
   }
 
   public onSelectionChange(list: MatListOption[]): void {

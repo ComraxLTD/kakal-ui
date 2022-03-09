@@ -11,23 +11,26 @@ import {
   TableState,
   KKLSelectOption,
   FetchState,
+  ColumnState,
+  ColumnActions,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
   BehaviorSubject,
   firstValueFrom,
   map,
+  merge,
   Observable,
   of,
+  skip,
   switchMap,
   take,
-  tap,
 } from 'rxjs';
 import { Validators } from '@angular/forms';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
-import { PaginationInstance } from 'ngx-pagination';
 import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
 import { HeaderCellModel } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table',
@@ -47,7 +50,7 @@ export class TableComponent implements OnInit {
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
-    { columnDef: 'city', label: 'city' },
+    { columnDef: 'city', label: 'city', filterType: 'select' },
     {
       columnDef: 'date',
       label: 'date',
@@ -75,6 +78,7 @@ export class TableComponent implements OnInit {
   public data$: Observable<RootObject[]>;
   public columns$: Observable<TableColumnModel<RootObject>[]>;
   public tableState$: Observable<TableState>;
+  public fetchState$: Observable<FetchState>;
 
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
@@ -86,8 +90,9 @@ export class TableComponent implements OnInit {
   };
 
   constructor(
-    private formService: FormService,
-    public tableDataSource: TableDataSource<RootObject>
+    public tableDataSource: TableDataSource<RootObject>,
+    private tableService: TableService,
+    private formService: FormService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -98,12 +103,14 @@ export class TableComponent implements OnInit {
 
     // form demo only
     this.tableState$ = this.tableDataSource.connectTableState();
+    this.fetchState$ = this.tableDataSource.connectFetchState();
   }
 
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
+      skip(1),
       switchMap((fetchState: FetchState) => {
-        console.log(fetchState);
+        // console.log(fetchState);
         // imitate server data
         return of(DEMO_DATA);
       })
@@ -111,7 +118,10 @@ export class TableComponent implements OnInit {
   }
 
   private demoServerData(): Observable<RootObject[]> {
-    return of(DEMO_DATA).pipe(
+    const initData$ = of(DEMO_DATA);
+    const fetchData$ = this.connectToFetchState();
+
+    return merge(initData$, fetchData$).pipe(
       switchMap((data: RootObject[]) => {
         this.demoStore$.next(data);
 
@@ -286,5 +296,15 @@ export class TableComponent implements OnInit {
           state: { ...state, item, group },
         });
       });
+  }
+
+  public onFetchOptions(columnDef: string) {
+    const columnState: ColumnState = {
+      key: columnDef,
+      event: ColumnActions.UPDATE_FILTERS,
+      options: this.optionsMap[columnDef],
+    };
+
+    this.tableDataSource.loadColumnState({ columnState });
   }
 }

@@ -4,7 +4,7 @@ import {
   OnInit,
   Output,
   EventEmitter,
-  ElementRef,
+  TemplateRef,
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
@@ -28,7 +28,7 @@ export class NavbarBottomComponent implements OnInit {
   @Input() hasSave: boolean;
   @Input() showSave$: Observable<boolean>;
 
-  @Input() buttonSlots: ElementRef;
+  @Input() buttonSlots: TemplateRef<any>;
 
   @Input() stepper: boolean;
 

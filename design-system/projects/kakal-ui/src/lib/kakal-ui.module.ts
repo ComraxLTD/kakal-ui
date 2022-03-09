@@ -12,6 +12,7 @@ import { KKLBreadCrumbsModule } from './bread-crumbes/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLInfoCardModule } from './cards/info-card/info-card.module';
+import { KKLFilterCardModule } from './cards/filter-card/filter-card.module';
 
 import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { KKLMenuModule } from './menu/menu.module';
@@ -59,6 +60,7 @@ import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
+import { FilterCardComponent } from './cards/filter-card/filter-card.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +73,7 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    KKLFilterCardModule,
     KKLNavigationModule,
     KKLStatusBarsModule,
     KKLMenuModule,
@@ -125,6 +128,8 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
   ],
   exports: [
     //TOOLS
+    KKLFilterCardModule,
+    KKLFilterCardModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
     MaterialModule,

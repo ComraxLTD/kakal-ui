@@ -116,19 +116,24 @@ export class TableComponent<T = any> implements OnInit {
   ) {}
 
   private setColumns$() {
-    return this.columns$.pipe(
+    const columns$ = this.columns$.pipe(
       map((columns: HeaderCellModel<T>[]) => {
+        const newState = [...columns];
+
+
         if (this.hasActions) {
-          columns.push(new HeaderCellModel({ columnDef: 'actions' }));
+          newState.push(new HeaderCellModel({ columnDef: 'actions' }));
         }
 
         if (this.selectable) {
-          columns.unshift(new HeaderCellModel({ columnDef: 'select' }));
+          newState.unshift(new HeaderCellModel({ columnDef: 'select' }));
         }
 
-        return columns;
+        return newState;
       })
     );
+
+    return columns$;
   }
 
   private setTable$() {

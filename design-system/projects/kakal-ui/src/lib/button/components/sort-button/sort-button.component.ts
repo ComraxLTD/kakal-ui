@@ -7,8 +7,7 @@ import { SortDirection } from '@angular/material/sort';
   styleUrls: ['./sort-button.component.scss'],
 })
 export class SortButtonComponent implements OnInit {
-
-  @Input() sortDir: SortDirection;
+  @Input() sortBy: SortDirection;
 
   @Output() sortChange: EventEmitter<SortDirection> = new EventEmitter();
   constructor() {}
@@ -16,7 +15,7 @@ export class SortButtonComponent implements OnInit {
   ngOnInit(): void {}
   public onSortChange() {
     // const newDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-    this.sortDir = this.sortDir === 'asc' ? 'desc' : 'asc';
-    this.sortChange.emit(this.sortDir);
+    this.sortBy = this.sortBy === 'asc' ? 'desc' : 'asc';
+    this.sortChange.emit(this.sortBy);
   }
 }
