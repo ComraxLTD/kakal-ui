@@ -1,5 +1,4 @@
 import { SortDirection } from '@angular/material/sort';
-import { KKLSelectOption } from '../../../../form/models/form.types';
 export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | string;
 
 export declare type ColumnType =

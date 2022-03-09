@@ -12,7 +12,7 @@ import { ColumnState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 import { FilterType } from '../../models/header-cell.model';
 
-import { map, Observable, filter } from 'rxjs';
+import { map, Observable, filter, tap } from 'rxjs';
 
 export interface FilterOption {
   key: string;
@@ -28,7 +28,6 @@ export interface FilterOption {
   styleUrls: ['./filter-header-cell.component.scss'],
 })
 export class FilterHeaderCellComponent implements OnInit {
-
   @Input() public filterType: FilterType;
   @Input() public key: string;
   @Input() public format: string;
@@ -76,7 +75,10 @@ export class FilterHeaderCellComponent implements OnInit {
         (columnState: ColumnState) =>
           columnState.event === ColumnActions.UPDATE_FILTERS
       ),
-      map((columnState: ColumnState) => columnState.options)
+      map((columnState: ColumnState) => columnState.options),
+
+      // TODO - optionFlag is true only og options is init
+      tap(() => (this.optionFlag = false))
     );
   }
 
@@ -107,7 +109,6 @@ export class FilterHeaderCellComponent implements OnInit {
       (this.filterType === 'select' || this.filterType === 'multiSelect') &&
       optionFlag
     ) {
-      this.optionFlag = false;
       this.menuOpened.emit();
     }
   }

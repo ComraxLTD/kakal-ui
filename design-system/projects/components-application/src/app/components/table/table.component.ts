@@ -108,10 +108,9 @@ export class TableComponent implements OnInit {
 
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
-      skip(1),
       switchMap((fetchState: FetchState) => {
-        // console.log(fetchState);
-        // imitate server data
+
+        console.log(fetchState)
         return of(DEMO_DATA);
       })
     );

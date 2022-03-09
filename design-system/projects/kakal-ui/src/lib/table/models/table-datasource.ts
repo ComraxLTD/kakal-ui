@@ -10,15 +10,15 @@ import {
   TableState,
 } from './table.state';
 
-
 import { FormDataSource } from '../../form/models/form-datasource';
 import { FormActions } from '../../form/models/form.actions';
 import { TableActions } from '../models/table-actions';
+import { TableSelector } from '../models/table.selctors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { filter, map } from 'rxjs/operators';
+import { filter, map, skip, take } from 'rxjs/operators';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
@@ -168,25 +168,19 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   public connectFetchState(): Observable<FetchState> {
-    const sortState$ = this.selectState('sort') as Observable<SortState>;
-    const filterState$ = this.selectState('filters') as Observable<FilterState>;
-    const pageState$ = this.selectState(
-      'pagination'
-    ) as Observable<PaginationInstance>;
-
-    return combineLatest([sortState$, filterState$, pageState$]).pipe(
-      map(([sortState, filterState, pageState]) => {
+    return this.tableState.asObservable().pipe(
+      map((tableState: TableState) => {
         return {
-          itemsPerPage: pageState.itemsPerPage,
-          next: pageState.currentPage,
-          ...sortState,
-          ...filterState,
+          itemsPerPage: tableState.pagination.itemsPerPage,
+          next: tableState.pagination.currentPage,
+          ...tableState.sort,
+          ...tableState.filters,
         } as FetchState;
       })
     );
   }
 
-  private selectState(selector: keyof TableState) {
+  private createSelector(selector: TableSelector) {
     return this.tableState.asObservable().pipe(
       map((tableState) => {
         return tableState[selector];
