@@ -6,3 +6,12 @@ export interface ActionStateRules {
   showEdit: (item: any) => boolean;
   disableEdit: (item: any) => boolean;
 }
+
+export enum TableActions {
+  EXPAND = 'expand',
+  FORM = 'form',
+}
+export enum ColumnActions {
+  DEFAULT = 'default',
+  UPDATE_FILTERS = 'updateOptions',
+}

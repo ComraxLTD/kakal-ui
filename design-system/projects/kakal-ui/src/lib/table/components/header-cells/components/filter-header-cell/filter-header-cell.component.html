@@ -1,6 +1,11 @@
 <div fxFill>
   <!-- BUTTON SECTION -->
-  <div kkl-button color="primary" [matMenuTriggerFor]="menu">
+  <div
+    kkl-button
+    color="primary"
+    [matMenuTriggerFor]="menu"
+    (menuOpened)="onMenuOpen(optionFlag)"
+  >
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <kkl-typography>
         {{ column.label }}
@@ -11,102 +16,70 @@
 
   <!-- MENU SECTION -->
   <mat-menu #menu="matMenu" xPosition="after">
-    <ng-container [ngSwitch]="column.filterType">
-      <!-- DATES FILTER-->
-      <ng-container *ngSwitchCase="'dateRange'">
-        <div
-          class="date"
-          fxLayout="row"
-          fxLayoutGap="1rem"
-          fxFlexAlign="start center"
-          (click)="$event.stopPropagation()"
-        >
-          <kkl-form-date
-            fxFlex="20rem"
-            [range]="true"
-            [control]="control"
-            [key]="column.columnDef"
-            (start)="onRangeDateEvent('from', $event, 'firstDate')"
-            (end)="onRangeDateEvent('to', $event, 'firstDate')"
-          >
-          </kkl-form-date>
-          <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
-            <div fxFlex="95">
-              <kkl-sort-button
-                (sortChange)="onSortChange($event)"
-                [sortDir]="column.sortDir"
-              ></kkl-sort-button>
-            </div>
+    <div class="filter-menu" fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="1rem" (click)="$event.stopPropagation()">
+        <ng-container [ngSwitch]="column.filterType">
+          <!-- DATES FILTER-->
+          <ng-container *ngSwitchCase="'dateRange'">
+            <kkl-form-date
+              fxFlex="75"
+              [range]="true"
+              [control]="control"
+              [key]="column.columnDef"
+              (start)="onRangeDateEvent('from', $event, 'firstDate')"
+              (end)="onRangeDateEvent('to', $event, 'firstDate')"
+            >
+            </kkl-form-date>
+          </ng-container>
+
+          <!-- CURRENCY FILTER-->
+
+          <ng-container *ngSwitchCase="'numberRange'">
+            <kkl-filter-range-cell
+              fxFlex="75"
+              [column]="column"
+            ></kkl-filter-range-cell>
+          </ng-container>
+
+          <ng-container *ngSwitchDefault>
+            <kkl-form-input
+              fxFlex="75"
+              [control]="control"
+              [key]="column.columnDef"
+              [icon]="'search'"
+            >
+            </kkl-form-input>
+          </ng-container>
+        </ng-container>
+
+        <!-- SORT BUTTON -->
+        <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
+          <div fxFlex="95">
+            <kkl-sort-button
+              (sortChange)="onSortChange($event)"
+              [sortDir]="column.sortDir"
+            ></kkl-sort-button>
           </div>
         </div>
-      </ng-container>
-
-      <!-- CURRENCY FILTER-->
-
-      <ng-container *ngSwitchCase="'numberRange'">
-        <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          class="currency"
-          (click)="$event.stopPropagation()"
+      </div>
+      <ng-controller
+        *ngIf="
+          column.filterType === 'select' || column.filterType === 'multiSelect'
+        "
+      >
+        <mat-selection-list
+          #list
+          (selectionChange)="onSelectionChange(list.selectedOptions.selected)"
+          [multiple]="column.filterType === 'multiSelect'"
+          dir="rtl"
         >
-          <div fxFlex="90">
-            <kkl-form
-              [group]="amountFilter"
-              (autocompleteEvent)="onCurrencyAutocomplete($event)"
-            ></kkl-form>
-          </div>
-          <div
-            *ngIf="column.sortable"
-            class="sort-button sort-currency"
-            fxLayout="column"
-            fxLayoutAlign="end center"
-          >
-            <div fxFlex="95">
-              <kkl-sort-button
-                (sortChange)="onSortChange($event)"
-                [sortDir]="column.sortDir"
-              ></kkl-sort-button>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="'search'">
-        <div
-          (click)="$event.stopPropagation()"
-          fxLayout="row"
-          fxLayoutAlign="space-evenly start"
-        >
-          <kkl-form-autocomplete
-            fxFlex="70"
-            [control]="control"
-            [key]="column.columnDef"
-          >
-          </kkl-form-autocomplete>
-          <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
-            <div fxFlex="95">
-              <kkl-sort-button
-                (sortChange)="onSortChange($event)"
-                [sortDir]="column.sortDir"
-              ></kkl-sort-button>
-            </div>
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-
-    <!-- DEFAULT OPTIONS MENU -->
-    <ng-container>
-      <mat-selection-list #list>
-        <mat-list-option
-          *ngFor="let option of column.filterOptions"
-          [value]="option.value"
-          [selected]="option.selected"
-        >
-          <kkl-typography> {{ option.label }}</kkl-typography>
-        </mat-list-option>
-      </mat-selection-list>
-    </ng-container>
+          <ng-container *ngFor="let option of options$ | async">
+            <mat-list-option [value]="option" [selected]="option.selected">
+              <kkl-typography> {{ option.label }}</kkl-typography>
+            </mat-list-option>
+          </ng-container>
+        </mat-selection-list>
+      </ng-controller>
+    </div>
   </mat-menu>
 </div>
