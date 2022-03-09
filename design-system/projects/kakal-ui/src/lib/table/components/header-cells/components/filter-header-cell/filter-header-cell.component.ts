@@ -18,15 +18,13 @@ export class FilterHeaderCellComponent implements OnInit {
 
   private openMenuFlag: boolean = false;
 
-  @Output() fetchOptions: EventEmitter<void> = new EventEmitter();
+  @Output() menuOpened: EventEmitter<void> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {}
 
-  public onSortChange(event: SortDirection) {
-    console.log(event);
-  }
+  public onSortChange(event: SortDirection) {}
 
   public onValueChanged(formOption: FormOption) {
     const { value } = formOption;
@@ -37,7 +35,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
     if (filterType === 'select' || filterType === 'multiSelect') {
       this.openMenuFlag = true;
-      this.fetchOptions.emit();
+      this.menuOpened.emit();
     }
   }
 }

@@ -1,8 +1,10 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -23,6 +25,8 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
   @Input() headerTemplate: { [key: string]: TemplateRef<any> } = {};
   @Input() filterTemplate: { [key: string]: TemplateRef<any> } = {};
 
+  @Output() fetchOptions: EventEmitter<void> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
@@ -33,5 +37,9 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
         [this.column.columnDef]: this.filterHeaderTemplate,
       };
     }
+  }
+
+  public onMenuOpen() {
+    this.fetchOptions.emit();
   }
 }
