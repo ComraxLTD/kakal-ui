@@ -10,6 +10,8 @@ import { ColumnState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
 import { map, Observable, filter } from 'rxjs';
+import { MatListOption } from '@angular/material/list';
+import { SelectOption } from 'projects/kakal-ui/src/public-api';
 
 export interface FilterOption {
   key: string;
@@ -114,10 +116,8 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onRangeChange(event: Range, type) {
-
     const filterState = this.setFilterState(event);
     this.tableDataSource.dispatchFilter({ filterState });
-
   }
 
   public onMultiSelectChange(
@@ -131,11 +131,12 @@ export class FilterHeaderCellComponent implements OnInit {
     // });
   }
 
-  public onSelectionChange(event) {
-    // this.tableFilterService.pushMany({
-    //   selectedOptions,
-    //   selected,
-    //   item: { key: this.column.columnDef },
-    // });
+  public onSelectionChange(optionsList: MatListOption[]) {
+    const options: SelectOption[] = optionsList.map((option: MatListOption) => {
+      return option.value;
+    });
+
+    const filterState = this.setFilterState(options);
+    this.tableDataSource.dispatchFilter({ filterState });
   }
 }

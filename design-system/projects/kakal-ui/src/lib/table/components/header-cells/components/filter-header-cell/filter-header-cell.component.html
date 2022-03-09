@@ -72,7 +72,11 @@
           dir="rtl"
         >
           <ng-container *ngFor="let option of options$ | async">
-            <mat-list-option [value]="option" [selected]="option.selected">
+            <mat-list-option
+              (click)="$event.stopPropagation()"
+              [value]="option"
+              [selected]="option.selected"
+            >
               <kkl-typography> {{ option.label }}</kkl-typography>
             </mat-list-option>
           </ng-container>
