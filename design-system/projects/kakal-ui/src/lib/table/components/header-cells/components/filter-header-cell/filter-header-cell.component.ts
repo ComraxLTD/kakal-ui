@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
+import { MatListOption } from '@angular/material/list';
 
 import { KKLSelectOption } from '../../../../../form/models/form.types';
 import { FormOption } from '../../../../../form/models/form.options';
@@ -10,8 +11,6 @@ import { ColumnState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
 import { map, Observable, filter } from 'rxjs';
-import { MatListOption } from '@angular/material/list';
-import { SelectOption } from 'projects/kakal-ui/src/public-api';
 
 export interface FilterOption {
   key: string;
@@ -132,7 +131,7 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onSelectionChange(optionsList: MatListOption[]) {
-    const options: SelectOption[] = optionsList.map((option: MatListOption) => {
+    const options: KKLSelectOption[] = optionsList.map((option: MatListOption) => {
       return option.value;
     });
 
