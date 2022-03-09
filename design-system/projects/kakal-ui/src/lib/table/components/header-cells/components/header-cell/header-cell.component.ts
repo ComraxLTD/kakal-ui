@@ -14,7 +14,7 @@ import { HeaderCellModel } from '../../models/header-cell.model';
   styleUrls: ['./header-cell.component.scss'],
 })
 export class HeaderCellComponent implements OnInit, AfterViewInit {
-  @ViewChild('filterCell') filterCell: TemplateRef<any>;
+  // @ViewChild('filterCell') filterCell: TemplateRef<any>;
 
   @Input() column: HeaderCellModel;
   @Input() label: string;
@@ -36,7 +36,7 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
 
     if (this.column.filterType) {
       this.filterTemplate = {
-        [this.column.columnDef]: this.filterCell,
+        // [this.column.columnDef]: this.filterCell,
       };
     }
   }

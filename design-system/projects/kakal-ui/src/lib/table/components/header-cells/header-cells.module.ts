@@ -14,10 +14,10 @@ import { KKLSortButtonModule } from '../../../button/components/sort-button/sort
 import { KKLFormInputModule } from '../../../form/form-input/form-input.module';
 import { KKLTypographyModule } from '../../../typography/typography.module';
 
+import { KKLHeaderCellDirective } from './cell-header.directive';
 import { HeaderCellComponent } from './components/header-cell/header-cell.component';
 import { FilterRangeCellComponent } from './components/filter-range-cell/filter-range-cell.component';
 import { FilterHeaderCellComponent } from './components/filter-header-cell/filter-header-cell.component';
-import { KKLHeaderCellDirective } from './cell-header.directive';
 
 @NgModule({
   declarations: [
