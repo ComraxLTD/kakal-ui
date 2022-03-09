@@ -18,6 +18,7 @@ import { KKLHeaderCellDirective } from './cell-header.directive';
 import { HeaderCellComponent } from './components/header-cell/header-cell.component';
 import { FilterRangeCellComponent } from './components/filter-range-cell/filter-range-cell.component';
 import { FilterHeaderCellComponent } from './components/filter-header-cell/filter-header-cell.component';
+import { FilterSelectCellComponent } from './components/filter-select-cell/filter-select-cell.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { FilterHeaderCellComponent } from './components/filter-header-cell/filte
     HeaderCellComponent,
     FilterHeaderCellComponent,
     FilterRangeCellComponent,
+    FilterSelectCellComponent,
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,21 @@
+<div
+  (click)="$event.stopPropagation()"
+  fxLayout="row"
+  fxLayoutAlign="space-evenly start"
+>
+  <kkl-form-input
+    fxFlex="70"
+    [control]="control"
+    [key]="column.columnDef"
+    [icon]="'search'"
+  >
+  </kkl-form-input>
+  <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
+    <div fxFlex="95">
+      <kkl-sort-button
+        (sortChange)="onSortChange($event)"
+        [sortDir]="column.sortDir"
+      ></kkl-sort-button>
+    </div>
+  </div>
+</div>

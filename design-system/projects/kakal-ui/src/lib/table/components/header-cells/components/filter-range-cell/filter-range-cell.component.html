@@ -1,12 +1,7 @@
-<div
-  fxLayout="row"
-  fxLayoutAlign="start center"
-  fxLayoutGap="1rem"
-  (click)="$event.stopPropagation()"
->
+<div fxLayout="row" fxLayoutGap="1rem">
   <ng-container *ngFor="let item of amountGroup.controls | keyvalue">
     <kkl-form-input
-      fxFlex="35"
+      fxFlex="50"
       [key]="item.key"
       [control]="amountGroup.formGroup.controls[item.key]"
       [cleave]="item.value.cleave"
@@ -14,9 +9,4 @@
       [label]="item.value.label"
     ></kkl-form-input>
   </ng-container>
-  <kkl-sort-button
-    kkl-form-button
-    (sortChange)="onSortChange($event)"
-    [sortDir]="column.sortDir"
-  ></kkl-sort-button>
 </div>
