@@ -4,10 +4,11 @@
 <mat-menu #menu="matMenu">
     <ng-container *ngFor="let option of options">
         <button *ngIf="optionTemplate" mat-menu-item>
-            <ng-container *ngTemplateOutlet="optionTemplate;context:{option}" ></ng-container>
+            <ng-container *ngTemplateOutlet="optionTemplate;context:{option}"></ng-container>
         </button>
         <button *ngIf="!optionTemplate" mat-menu-item (click)="emitClick(option)">
-            {{option}}</button>
+            <kkl-typography >{{option}}</kkl-typography>
+        </button>
     </ng-container>
 
 </mat-menu>

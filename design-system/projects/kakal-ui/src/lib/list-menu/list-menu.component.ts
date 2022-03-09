@@ -18,7 +18,7 @@ export class KKLListMenuComponent implements OnInit {
   }
 
   emitClick(event): void {    
-    this.emitClick(event);
+    this.emitOption.emit(event);
   }
 
 }

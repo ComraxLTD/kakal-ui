@@ -4,6 +4,9 @@
   <kkl-list-menu [options]="testArr" [optionTemplate]="test" (emitOption)="logOption($event)">
     test
   </kkl-list-menu>
+  <kkl-list-menu [options]="testArr" (emitOption)="logOption($event)">
+    test2
+  </kkl-list-menu>
   <div fxLayout="row">
   </div>
   <!-- <app-table></app-table> -->
