@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
-import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderCellModel } from '../../models/header-cell.model';
 
 @Component({
@@ -14,7 +13,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public control: FormControl = new FormControl();
 
-  constructor(private tableDataSource: TableDataSource) {}
+  constructor() {}
 
   ngOnInit(): void {}
 

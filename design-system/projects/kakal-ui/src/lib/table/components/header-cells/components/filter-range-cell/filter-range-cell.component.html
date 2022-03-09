@@ -1,0 +1,30 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="center center"
+  class="currency"
+  (click)="$event.stopPropagation()"
+>
+  <div fxFlex="90" fxLayout="row" fxLayoutGap="1rem">
+    <kkl-form-input
+      [cleave]="'{ numeral: true }'"
+      [controlType]="'cleave'"
+    ></kkl-form-input>
+    <kkl-form-input
+      [cleave]="'{ numeral: true }'"
+      [controlType]="'cleave'"
+    ></kkl-form-input>
+  </div>
+  <div
+    *ngIf="column.sortable"
+    class="sort-button sort-currency"
+    fxLayout="column"
+    fxLayoutAlign="end center"
+  >
+    <div fxFlex="95">
+      <kkl-sort-button
+        (sortChange)="onSortChange($event)"
+        [sortDir]="column.sortDir"
+      ></kkl-sort-button>
+    </div>
+  </div>
+</div>

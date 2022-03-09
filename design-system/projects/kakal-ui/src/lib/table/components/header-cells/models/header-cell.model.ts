@@ -1,4 +1,5 @@
 import { SortDirection } from '@angular/material/sort';
+import { SelectOption } from 'projects/kakal-ui/src/public-api';
 import { Question } from '../../../../form/services/form.service';
 
 export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | string;
@@ -8,8 +9,14 @@ export declare type ColumnType =
   | 'custom'
   | 'actions'
   | 'select'
-  | 'expend'
-  | 'currency';
+  | 'expend';
+
+export declare type FilterType =
+  | 'search'
+  | 'select'
+  | 'multiSelect'
+  | 'dateRange'
+  | 'numberRange';
 
 export class HeaderCellModel<T = any> {
   public columnDef: ColumnDef<T>;
@@ -23,7 +30,6 @@ export class HeaderCellModel<T = any> {
   public footer?: boolean;
 
   public expendable?: boolean;
-  public editable?: boolean;
 
   public selectable?: boolean;
   public disableSelect?: boolean;
@@ -31,10 +37,9 @@ export class HeaderCellModel<T = any> {
   public sortable?: boolean;
   public sortDir?: SortDirection;
 
-  public question?: Question;
-
   public filterable?: boolean;
-  public filterQuestion?: Question;
+  public filterType?: FilterType;
+  public filterOptions?: SelectOption[];
 
   constructor(options?: {
     columnDef: ColumnDef<T>;
@@ -48,7 +53,6 @@ export class HeaderCellModel<T = any> {
     footer?: boolean;
 
     expendable?: boolean;
-    editable?: boolean;
     selectable?: boolean;
     disableSelect?: boolean;
 
@@ -56,9 +60,8 @@ export class HeaderCellModel<T = any> {
     sortDir?: SortDirection;
 
     filterable?: boolean;
-    filterQuestion?: Question;
-
-    question?: Question;
+    filterType?: FilterType;
+    filterOptions?: SelectOption[];
   }) {
     this.columnDef = options.columnDef;
     this.label = options?.label || '';
@@ -70,7 +73,6 @@ export class HeaderCellModel<T = any> {
     this.footer = options?.footer || false;
     this.center = options?.center || false;
 
-    this.editable = options?.editable || false;
     this.selectable = options?.selectable || false;
     this.disableSelect = options?.disableSelect || false;
 
@@ -80,8 +82,7 @@ export class HeaderCellModel<T = any> {
     this.sortDir = options?.sortDir || '';
 
     this.filterable = options?.filterable || false;
-    this.filterQuestion = options?.filterQuestion || null;
-
-    this.question = options?.question || null;
+    this.filterType = options?.filterType || null;
+    this.filterOptions = options?.filterOptions || [];
   }
 }

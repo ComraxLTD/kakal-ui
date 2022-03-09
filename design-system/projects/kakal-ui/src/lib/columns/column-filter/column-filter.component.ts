@@ -35,6 +35,7 @@ export interface Range {
   providers: [{ provide: ColumnFilterService, useClass: ColumnFilterService }],
 })
 export class ColumnFilterComponent<T> implements OnInit {
+
   @Input() public column: TableColumnModel<T>;
   @Input() public filters$: Observable<ListItem<T>[]>;
   @Input() public filterSlots: {};
