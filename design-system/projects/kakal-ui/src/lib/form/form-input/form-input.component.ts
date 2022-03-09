@@ -1,19 +1,10 @@
 import { MessageService } from './../services/message.service';
 import { FormControl, FormControlStatus } from '@angular/forms';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Appearance, ControlType, GridProps } from '../models/question.model';
 import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import {
-  map,
-  startWith,
-} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
 import { FormOption } from '../models/form.options';
 
@@ -23,25 +14,28 @@ import { FormOption } from '../models/form.options';
   styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
-  @Input() public theme:Palette;
-  @Input() public placeHolder:string;
+  @Input() public theme: Palette;
+  @Input() public placeHolder: string;
   @Input() public control: FormControl;
-  @Input() public key:string;
+  @Input() public key: string;
   @Input() public appearance: Appearance;
-  @Input() public cleave:{};
+  @Input() public cleave: {};
   @Input() public index: number;
   @Input() public gridProps: GridProps;
   @Input() public icon: string;
   @Input() public controlType: ControlType;
   @Input() public label: string;
 
-
   public error$: BehaviorSubject<string>;
   public color$: Observable<Palette>;
 
   @Output() focus: EventEmitter<FormOption> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<FormOption> = new EventEmitter();
 
-  constructor(private messageService: MessageService,private FormInputService:FormInputService) { }
+  constructor(
+    private messageService: MessageService,
+    private FormInputService: FormInputService
+  ) {}
 
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
@@ -50,11 +44,12 @@ export class FormInputComponent implements OnInit {
     const controlCheck = this.FormInputService.getInputProps(this.controlType);
 
     for (const property in controlCheck) {
-      if(property === 'validation')this.control.setValidators(controlCheck[property]);
-      if(property === 'icon')this.icon = controlCheck[property];
-      if(property === 'cleave')this.cleave = controlCheck[property];
-      if(property === 'placeHolder')this.placeHolder = controlCheck[property];
-      if(property === 'controlType')this.controlType = controlCheck[property];
+      if (property === 'validation')
+        this.control.setValidators(controlCheck[property]);
+      if (property === 'icon') this.icon = controlCheck[property];
+      if (property === 'cleave') this.cleave = controlCheck[property];
+      if (property === 'placeHolder') this.placeHolder = controlCheck[property];
+      if (property === 'controlType') this.controlType = controlCheck[property];
     }
   }
 
@@ -117,5 +112,10 @@ export class FormInputComponent implements OnInit {
   // EVENTS SECTION
   public onFocus() {
     this.focus.emit(this.getFormOption());
+  }
+
+  public onValueChanged(value: string) {
+    const formOption: FormOption = this.getFormOption(value);
+    this.valueChanged.emit(formOption);
   }
 }
