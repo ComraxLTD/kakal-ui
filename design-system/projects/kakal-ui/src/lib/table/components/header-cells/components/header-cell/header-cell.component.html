@@ -16,7 +16,10 @@
 <ng-template #filterCell let-rowState>
   <kkl-filter-header-cell
     (menuOpened)="onMenuOpen()"
-    [column]="rowState.column"
+    [filterType]="rowState.column.filterType"
+    [key]="rowState.column.columnDef"
+    [format]="rowState.column.format"
+    [label]="rowState.column.label"
+    [sortBy]="rowState.column.sortBy"
   ></kkl-filter-header-cell>
 </ng-template>
-

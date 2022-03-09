@@ -3,11 +3,14 @@ import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
 import { MatListOption } from '@angular/material/list';
 
-import { KKLSelectOption, KKLFormOption } from '../../../../../form/models/form.types';
+import {
+  KKLSelectOption,
+  KKLFormOption,
+} from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
-import { FilterType, HeaderCellModel } from '../../models/header-cell.model';
 import { ColumnState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
+import { FilterType } from '../../models/header-cell.model';
 
 import { map, Observable, filter } from 'rxjs';
 
@@ -25,7 +28,12 @@ export interface FilterOption {
   styleUrls: ['./filter-header-cell.component.scss'],
 })
 export class FilterHeaderCellComponent implements OnInit {
-  @Input() public column: HeaderCellModel;
+
+  @Input() public filterType: FilterType;
+  @Input() public key: string;
+  @Input() public format: string;
+  @Input() public label: string;
+  @Input() public sortBy: SortDirection;
 
   public control: FormControl = new FormControl();
 
@@ -33,50 +41,43 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public options$: Observable<KKLSelectOption[]>;
 
-  private filterType: FilterType;
-
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {
-    this.filterType = this.column.filterType;
+    this.filterType = this.filterType;
 
-    if (
-      this.column.filterType === 'select' ||
-      this.column.filterType === 'multiSelect'
-    ) {
+    if (this.filterType === 'select' || this.filterType === 'multiSelect') {
       this.options$ = this.setOptions$();
     }
   }
 
   private setFilterOption(value: any, format?) {
     const filterOption: FilterOption = {
-      key: this.column.columnDef.toString(),
+      key: this.key.toString(),
       value,
       filterType: this.filterType,
-      format: this.column.format,
+      format: this.format,
     };
 
     return filterOption;
   }
 
-  private setFilterState(value) {
+  private setFilterState(value: any) {
     const filterOption = this.setFilterOption(value);
-    return { [this.column.columnDef]: filterOption };
+    return { [this.key]: filterOption };
   }
 
   private setOptions$() {
-    return this.tableDataSource
-      .connectColumnState(this.column.columnDef.toString())
-      .pipe(
-        filter(
-          (columnState: ColumnState) =>
-            columnState.event === ColumnActions.UPDATE_FILTERS
-        ),
-        map((columnState: ColumnState) => columnState.options)
-      );
+    return this.tableDataSource.connectColumnState(this.key).pipe(
+      filter(
+        (columnState: ColumnState) =>
+          columnState.event === ColumnActions.UPDATE_FILTERS
+      ),
+      map((columnState: ColumnState) => columnState.options)
+    );
   }
 
   // DOE EVENTS
@@ -95,17 +96,15 @@ export class FilterHeaderCellComponent implements OnInit {
   public onSortChange(event: SortDirection) {
     const sortState = {
       sortBy: event,
-      sorting: this.column.columnDef,
+      sorting: this.key,
     } as SortState;
 
     this.tableDataSource.dispatchSort({ sortState });
   }
 
   public onMenuOpen(optionFlag: boolean) {
-    const { filterType } = this.column;
-
     if (
-      (filterType === 'select' || filterType === 'multiSelect') &&
+      (this.filterType === 'select' || this.filterType === 'multiSelect') &&
       optionFlag
     ) {
       this.optionFlag = false;
@@ -130,9 +129,11 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onSelectionChange(optionsList: MatListOption[]) {
-    const options: KKLSelectOption[] = optionsList.map((option: MatListOption) => {
-      return option.value;
-    });
+    const options: KKLSelectOption[] = optionsList.map(
+      (option: MatListOption) => {
+        return option.value;
+      }
+    );
 
     const filterState = this.setFilterState(options);
     this.tableDataSource.dispatchFilter({ filterState });

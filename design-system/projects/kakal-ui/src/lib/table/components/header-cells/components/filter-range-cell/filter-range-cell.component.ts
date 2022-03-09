@@ -5,7 +5,6 @@ import {
   QuestionGroupModel,
 } from '../../../../../form/models/form.types';
 import { FormService } from '../../../../../form/services/form.service';
-import { TableDataSource } from '../../../../models/table-datasource';
 import { skip, Subject, take, takeUntil } from 'rxjs';
 
 export interface Range {
@@ -46,7 +45,6 @@ export class FilterRangeCellComponent implements OnInit {
 
   constructor(
     private formService: FormService,
-    private tableDataSource: TableDataSource
   ) {}
 
   ngOnInit(): void {
