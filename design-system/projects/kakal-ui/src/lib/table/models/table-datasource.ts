@@ -44,7 +44,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
       event: FormActions.DEFAULT,
     });
 
-    this.columnsStateSubject = new BehaviorSubject<ColumnState<T>>(null);
     this.RowStateSubject = new BehaviorSubject<RowState<T>>({
       event: FormActions.DEFAULT,
     });
@@ -67,18 +66,20 @@ export class TableDataSource<T = any> implements DataSource<T> {
   public loadColumns(columns: TableColumnModel<T>[]): void {
     return this.columnSubject.next(columns);
   }
+
   public connectColumns(): Observable<TableColumnModel<T>[]> {
     return this.columnSubject.asObservable();
   }
-
-  public getColumnsState(): Observable<ColumnState<T>> {
-    return this.columnsStateSubject.asObservable();
+  
+  public getColumns(): TableColumnModel<T>[] {
+    return this.columnSubject.value;
   }
 
   public getRowState(): Observable<RowState<T>> {
     return this.RowStateSubject.asObservable();
   }
 
+  // tableState
   public getTableState(): TableState {
     return this.tableSubject.value;
   }
@@ -93,6 +94,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.tableSubject.asObservable();
   }
 
+  // pagination
   public loadPagination(state: { pagination: any }): void {
     const { pagination } = state;
     const oldState = this.getTableState();

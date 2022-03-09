@@ -86,8 +86,9 @@ export class TableComponent implements OnInit {
   };
 
   constructor(
-    private formService: FormService,
-    public tableDataSource: TableDataSource<RootObject>
+    public tableDataSource: TableDataSource<RootObject>,
+    private tableService: TableService,
+    private formService: FormService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -290,5 +291,7 @@ export class TableComponent implements OnInit {
 
   public onFetchOptions(columnDef: string) {
     console.log(columnDef);
+
+    const columns = this.tableDataSource.getColumns();
   }
 }
