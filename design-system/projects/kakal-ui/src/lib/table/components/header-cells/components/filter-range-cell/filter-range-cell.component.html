@@ -4,10 +4,12 @@
   class="currency"
   (click)="$event.stopPropagation()"
 >
-  <div fxFlex="90" fxLayout="row" fxLayoutGap="1rem">
+  <div fxLayout="row" fxLayoutGap="1rem">
     <ng-container *ngFor="let item of amountGroup.controls | keyvalue">
       <kkl-form-input
+        [key]="item.key"
         [control]="amountGroup.formGroup.controls[item.key]"
+        [cleave]="item.value.cleave"
         [controlType]="item.value.controlType"
         [label]="item.value.label"
       ></kkl-form-input>

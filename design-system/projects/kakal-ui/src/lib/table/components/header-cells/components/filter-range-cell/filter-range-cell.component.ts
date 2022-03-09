@@ -21,7 +21,7 @@ export interface Range {
 })
 export class FilterRangeCellComponent implements OnInit {
   @Input() public column: HeaderCellModel;
-  @Input() public value: Range;
+  @Input() public value: Range = { from: 0, to: 0 };
 
   public amountGroup: QuestionGroupModel<Range>;
 
@@ -52,7 +52,7 @@ export class FilterRangeCellComponent implements OnInit {
       return {
         ...q,
         value: this.value[q.key],
-      };
+      } as Question;
     });
   }
 

@@ -14,11 +14,11 @@ import { FormOption } from '../models/form.options';
   styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
+  @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public controlType: ControlType;
   @Input() public label: string;
   @Input() public placeHolder: string;
-  @Input() public control: FormControl;
   @Input() public appearance: Appearance;
   @Input() public theme: Palette;
   @Input() public index: number;
@@ -34,14 +34,32 @@ export class FormInputComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private FormInputService: FormInputService
+    private formInputService: FormInputService
   ) {}
 
   ngOnInit(): void {
+    this.invalidate();
+
     this.error$ = new BehaviorSubject<string>('');
     this.color$ = this.setColor$();
 
-    const controlCheck = this.FormInputService.getInputProps(this.controlType);
+    this.setProps();
+  }
+
+  private invalidate() {
+    if (!this.control) {
+      throw new Error('kkl-form-input must get control');
+    }
+    if (
+      (this.controlType === 'sum' || this.controlType === 'cleave') &&
+      !this.cleave
+    ) {
+      throw new Error('kkl-form-input missing cleave object');
+    }
+  }
+
+  private setProps() {
+    const controlCheck = this.formInputService.getInputProps(this.controlType);
 
     for (const property in controlCheck) {
       if (property === 'validation')
