@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
 
@@ -16,6 +16,10 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public control: FormControl = new FormControl();
 
+  private openMenuFlag: boolean = false;
+
+  @Output() fetchOptions: EventEmitter<void> = new EventEmitter();
+
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {}
@@ -26,5 +30,14 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public onValueChanged(formOption: FormOption) {
     const { value } = formOption;
+  }
+
+  public onMenuOpen() {
+    const { filterType } = this.column;
+
+    if (filterType === 'select' || filterType === 'multiSelect') {
+      this.openMenuFlag = true;
+      this.fetchOptions.emit();
+    }
   }
 }

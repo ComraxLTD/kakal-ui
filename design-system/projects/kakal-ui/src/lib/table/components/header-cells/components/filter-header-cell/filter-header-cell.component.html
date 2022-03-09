@@ -1,6 +1,6 @@
 <div fxFill>
   <!-- BUTTON SECTION -->
-  <div kkl-button color="primary" [matMenuTriggerFor]="menu">
+  <div kkl-button color="primary" [matMenuTriggerFor]="menu" (menuOpened)="onMenuOpen()">
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <kkl-typography>
         {{ column.label }}
