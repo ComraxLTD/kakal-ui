@@ -1,12 +1,24 @@
-<div fxLayout="row" fxLayoutGap="1rem">
-  <ng-container *ngFor="let item of amountGroup.controls | keyvalue">
-    <kkl-form-input
-      fxFlex="50"
-      [key]="item.key"
-      [control]="amountGroup.formGroup.controls[item.key]"
-      [cleave]="item.value.cleave"
-      [controlType]="item.value.controlType"
-      [label]="item.value.label"
-    ></kkl-form-input>
-  </ng-container>
-</div>
+<ng-container *ngIf="column.filterType === 'numberRange'; else dateRange">
+  <div fxLayout="row" fxLayoutGap="1rem">
+    <ng-container *ngFor="let item of amountGroup.controls | keyvalue">
+      <kkl-form-input
+        fxFlex="50"
+        [key]="item.key"
+        [control]="amountGroup.formGroup.controls[item.key]"
+        [cleave]="item.value.cleave"
+        [controlType]="item.value.controlType"
+        [label]="item.value.label"
+      ></kkl-form-input>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #dateRange>
+  <kkl-form-date
+    [range]="true"
+    [control]="dateControl"
+    [key]="column.columnDef"
+    (dateEvent)="onRangeDateEvent($event)"
+  >
+  </kkl-form-date>
+</ng-template>

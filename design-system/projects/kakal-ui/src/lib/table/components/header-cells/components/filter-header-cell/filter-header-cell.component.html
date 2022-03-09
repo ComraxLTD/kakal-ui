@@ -21,15 +21,11 @@
         <ng-container [ngSwitch]="column.filterType">
           <!-- DATES FILTER-->
           <ng-container *ngSwitchCase="'dateRange'">
-            <kkl-form-date
+            <kkl-filter-range-cell
               fxFlex="75"
-              [range]="true"
-              [control]="control"
-              [key]="column.columnDef"
-              (start)="onRangeDateEvent('from', $event, 'firstDate')"
-              (end)="onRangeDateEvent('to', $event, 'firstDate')"
-            >
-            </kkl-form-date>
+              [column]="column"
+              (rangeChange)="onRangeChange($event)"
+            ></kkl-filter-range-cell>
           </ng-container>
 
           <!-- CURRENCY FILTER-->
@@ -47,6 +43,7 @@
               [control]="control"
               [key]="column.columnDef"
               [icon]="'search'"
+              (valueChanged)="onValueChanged($event)"
             >
             </kkl-form-input>
           </ng-container>

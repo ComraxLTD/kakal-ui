@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { SortDirection } from '@angular/material/sort';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { RangePipe } from 'projects/kakal-ui/src/public-api';
 import {
   Question,
   QuestionGroupModel,
@@ -9,8 +11,9 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderCellModel } from '../../models/header-cell.model';
 
 export interface Range {
-  from: any;
-  to: any;
+  start: any;
+  end: any;
+  type?: string;
 }
 
 @Component({
@@ -20,25 +23,30 @@ export interface Range {
 })
 export class FilterRangeCellComponent implements OnInit {
   @Input() public column: HeaderCellModel;
-  @Input() public value: Range = { from: 0, to: 0 };
+  @Input() public value: Range = { start: 0, end: 0 };
 
   public amountGroup: QuestionGroupModel<Range>;
+  public dateControl: FormControl = new FormControl();
 
   private amountQuestions: Question[] = [
     {
-      key: 'from',
+      key: 'start',
       label: 'מסכום',
       controlType: 'sum',
     },
     {
-      key: 'to',
+      key: 'end',
       label: 'עד סכום',
       controlType: 'sum',
     },
   ];
+
+  @Output() rangeChange: EventEmitter<Range> = new EventEmitter();
+
   constructor(
     private formService: FormService,
-    private tableDataSource: TableDataSource
+    private tableDataSource: TableDataSource,
+    private rangePipe: RangePipe
   ) {}
 
   ngOnInit(): void {
@@ -60,5 +68,10 @@ export class FilterRangeCellComponent implements OnInit {
       key: 'amount',
       questions,
     });
+  }
+
+  public onRangeDateEvent(event: Range) {
+    const range: Range = { start: event.start, end: event.end, type: 'date' };
+    this.rangeChange.emit(range);
   }
 }

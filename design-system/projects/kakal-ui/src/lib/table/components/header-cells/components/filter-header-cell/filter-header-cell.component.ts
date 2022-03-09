@@ -5,11 +5,12 @@ import { SortDirection } from '@angular/material/sort';
 import { KKLSelectOption } from '../../../../../form/models/form.types';
 import { FormOption } from '../../../../../form/models/form.options';
 import { TableDataSource } from '../../../../models/table-datasource';
-import { HeaderCellModel } from '../../models/header-cell.model';
+import { FilterType, HeaderCellModel } from '../../models/header-cell.model';
 import { ColumnState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import { map, Observable, filter, tap } from 'rxjs';
+import { map, Observable, filter } from 'rxjs';
+
 @Component({
   selector: 'kkl-filter-header-cell',
   templateUrl: './filter-header-cell.component.html',
@@ -24,11 +25,16 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public options$: Observable<KKLSelectOption[]>;
 
+  private filterType: FilterType;
+
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
+  @Output() filterChanged: EventEmitter<void> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {
+    this.filterType = this.column.filterType;
+
     if (
       this.column.filterType === 'select' ||
       this.column.filterType === 'multiSelect'
@@ -50,13 +56,19 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   // DOE EVENTS
-  public onSortChange(event: SortDirection) {}
 
   public onValueChanged(formOption: FormOption) {
     const { value } = formOption;
+
+    if (this.filterType === 'select' || this.filterType === 'multiSelect') {
+      // filter options
+    } else {
+    }
   }
 
-  public onMenuOpen(optionFlag : boolean) {
+  public onSortChange(event: SortDirection) {}
+
+  public onMenuOpen(optionFlag: boolean) {
     const { filterType } = this.column;
 
     if (
@@ -66,6 +78,10 @@ export class FilterHeaderCellComponent implements OnInit {
       this.optionFlag = false;
       this.menuOpened.emit();
     }
+  }
+
+  public onRangeChange(event: Range) {
+    console.log(event);
   }
 
   public onMultiSelectChange(
