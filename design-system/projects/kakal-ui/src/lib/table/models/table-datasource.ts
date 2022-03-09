@@ -74,6 +74,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.columnSubject.next(columns);
   }
 
+  // get columns
   public connectColumns(): Observable<TableColumnModel<T>[]> {
     return this.columnSubject.asObservable();
   }
@@ -82,8 +83,23 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.columnSubject.value;
   }
 
+  // get row State
   public getRowState(): Observable<RowState<T>> {
     return this.rowState.asObservable();
+  }
+
+  // get column statement
+
+  public connectColumnState(columnDef: string) {
+    return this.columnState
+      .asObservable()
+      .pipe(
+        filter((columnState: ColumnState) => columnState.key === columnDef)
+      );
+  }
+
+  public loadColumnState({ columnState }): void {
+    this.columnState.next(columnState);
   }
 
   // tableState

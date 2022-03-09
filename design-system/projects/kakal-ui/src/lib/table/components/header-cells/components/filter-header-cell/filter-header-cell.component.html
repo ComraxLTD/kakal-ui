@@ -70,9 +70,10 @@
         <mat-selection-list
           #list
           (selectionChange)="onSelectionChange(list.selectedOptions.selected)"
+          [multiple]="column.filterType === 'multiSelect'"
           dir="rtl"
         >
-          <ng-container *ngFor="let option of column.filterOptions">
+          <ng-container *ngFor="let option of options$ | async">
             <mat-list-option [value]="option" [selected]="option.selected">
               <kkl-typography> {{ option.label }}</kkl-typography>
             </mat-list-option>

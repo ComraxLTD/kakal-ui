@@ -49,7 +49,7 @@ export interface RowState<T = any> {
 export type ColumnState<T = any> = {
   event: ColumnActions;
   key?: keyof T;
-  options?: KKLSelectOption;
+  options?: KKLSelectOption[];
   dir?: SortDirection;
 };
 

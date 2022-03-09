@@ -11,6 +11,8 @@ import {
   TableState,
   KKLSelectOption,
   FetchState,
+  ColumnState,
+  ColumnActions,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -21,13 +23,12 @@ import {
   of,
   switchMap,
   take,
-  tap,
 } from 'rxjs';
 import { Validators } from '@angular/forms';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
-import { PaginationInstance } from 'ngx-pagination';
 import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
 import { HeaderCellModel } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table',
@@ -290,17 +291,13 @@ export class TableComponent implements OnInit {
   }
 
   public onFetchOptions(columnDef: string) {
-    const newState = this.tableDataSource.getColumns();
+    const columnState: ColumnState = {
+      key : columnDef,
+      event: ColumnActions.UPDATE_FILTERS,
+      options: this.optionsMap[columnDef],
+    };
 
-    const columnIndex = newState.findIndex(
-      (column) => column.columnDef === columnDef
-    );
-
-    newState[columnIndex] = {
-      ...newState[columnIndex],
-      filterOptions: [...this.optionsMap[columnDef]],
-    } as HeaderCellModel<RootObject>;
-
-    this.tableDataSource.loadColumns(newState);
+    console.log(columnState);
+    this.tableDataSource.loadColumnState({ columnState });
   }
 }
