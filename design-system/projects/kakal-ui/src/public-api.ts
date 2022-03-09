@@ -143,8 +143,6 @@ export * from './lib/bread-crumbes/bread-crumbes.component';
 export * from './lib/bread-crumbes/bread-crumbs.module';
 export * from './lib/bread-crumbes/bread-crumbes.model';
 
-
-
 // title
 export * from './lib/navigation/navigation.module';
 export * from './lib/navigation/navigation.component';
@@ -169,7 +167,10 @@ export * from './lib/page-headline/page-headline.component';
 export * from './lib/page-headline/page-headline.model';
 export * from './lib/page-headline/page-headline.module';
 export * from './lib/page-headline/page-headline.service';
-
+// card-filter
+export * from './lib/cards/filter-card/filter-card.component';
+export * from './lib/cards/filter-card/filter-card.model';
+export * from './lib/cards/filter-card/filter-card.module';
 
 // stautts-bars
 export * from './lib/status-bars/status-bars.module';
@@ -260,9 +261,3 @@ export * from './lib/stepper-mobile/stepper-mobile.module';
 export * from './screens/stepper-layout/stepper-layout.component';
 export * from './screens/stepper-layout/stepper-layout.module';
 export * from './screens/stepper-layout/stepper-layout.service';
-
-
-
-
-
-
