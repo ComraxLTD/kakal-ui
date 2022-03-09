@@ -1,30 +1,22 @@
 <div
   fxLayout="row"
-  fxLayoutAlign="center center"
-  class="currency"
+  fxLayoutAlign="start center"
+  fxLayoutGap="1rem"
   (click)="$event.stopPropagation()"
 >
-  <div fxFlex="90" fxLayout="row" fxLayoutGap="1rem">
+  <ng-container *ngFor="let item of amountGroup.controls | keyvalue">
     <kkl-form-input
-      [cleave]="'{ numeral: true }'"
-      [controlType]="'cleave'"
+      fxFlex="35"
+      [key]="item.key"
+      [control]="amountGroup.formGroup.controls[item.key]"
+      [cleave]="item.value.cleave"
+      [controlType]="item.value.controlType"
+      [label]="item.value.label"
     ></kkl-form-input>
-    <kkl-form-input
-      [cleave]="'{ numeral: true }'"
-      [controlType]="'cleave'"
-    ></kkl-form-input>
-  </div>
-  <div
-    *ngIf="column.sortable"
-    class="sort-button sort-currency"
-    fxLayout="column"
-    fxLayoutAlign="end center"
-  >
-    <div fxFlex="95">
-      <kkl-sort-button
-        (sortChange)="onSortChange($event)"
-        [sortDir]="column.sortDir"
-      ></kkl-sort-button>
-    </div>
-  </div>
+  </ng-container>
+  <kkl-sort-button
+    kkl-form-button
+    (sortChange)="onSortChange($event)"
+    [sortDir]="column.sortDir"
+  ></kkl-sort-button>
 </div>

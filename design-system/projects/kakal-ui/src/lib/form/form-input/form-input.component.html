@@ -15,7 +15,6 @@
         [name]="key"
         (focusout)="validate()"
         (focus)="onFocus()"
-        #textarea
       ></textarea>
     </ng-container>
 
@@ -23,6 +22,7 @@
     <ng-container *ngSwitchCase="'cleave'">
       <input
         matInput
+        #cleaveInput
         autocomplete="off"
         [formControl]="control"
         [cleave]="cleave"
@@ -30,7 +30,7 @@
         [type]="'text'"
         (focusout)="validate()"
         (focus)="onFocus()"
-        #input
+        (input)="onValueChanged(cleaveInput.value)"
       />
     </ng-container>
 
@@ -45,6 +45,7 @@
         (focusout)="validate()"
         (focus)="onFocus()"
         #input
+        (input)="onValueChanged(input.value)"
       />
     </ng-container>
   </ng-container>

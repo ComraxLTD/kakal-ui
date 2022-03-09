@@ -44,17 +44,14 @@
       <!-- CURRENCY FILTER-->
 
       <ng-container *ngSwitchCase="'numberRange'">
-        <div
+        <kkl-filter-range-cell [column]="column"></kkl-filter-range-cell>
+        <!-- <div
           fxLayout="row"
           fxLayoutAlign="center center"
           class="currency"
           (click)="$event.stopPropagation()"
         >
           <div fxFlex="90">
-            <kkl-form
-              [group]="amountFilter"
-              (autocompleteEvent)="onCurrencyAutocomplete($event)"
-            ></kkl-form>
           </div>
           <div
             *ngIf="column.sortable"
@@ -69,7 +66,7 @@
               ></kkl-sort-button>
             </div>
           </div>
-        </div>
+        </div> -->
       </ng-container>
 
       <ng-container *ngSwitchCase="'search'">
@@ -78,12 +75,13 @@
           fxLayout="row"
           fxLayoutAlign="space-evenly start"
         >
-          <kkl-form-autocomplete
+          <kkl-form-input
             fxFlex="70"
             [control]="control"
             [key]="column.columnDef"
+            [icon]="'search'"
           >
-          </kkl-form-autocomplete>
+          </kkl-form-input>
           <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
             <div fxFlex="95">
               <kkl-sort-button

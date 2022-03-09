@@ -54,7 +54,12 @@ export class TableComponent implements OnInit {
       format: 'date',
       filterType: 'dateRange',
     },
-    { columnDef: 'currency', label: 'currency', flex: 0.5 },
+    {
+      columnDef: 'currency',
+      label: 'currency',
+      flex: 0.5,
+      filterType: 'numberRange',
+    },
   ];
 
   private questions: Question[] = [
