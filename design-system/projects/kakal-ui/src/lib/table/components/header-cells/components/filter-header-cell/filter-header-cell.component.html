@@ -51,7 +51,10 @@
         </ng-container>
 
         <ng-container *ngSwitchCase="'select'">
-          <kkl-filter-select-cell [column]="column"></kkl-filter-select-cell>
+          <kkl-filter-select-cell
+            fxFlex="75"
+            [column]="column"
+          ></kkl-filter-select-cell>
         </ng-container>
       </ng-container>
 

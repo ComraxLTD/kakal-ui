@@ -42,7 +42,7 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: HeaderCellModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', filterType: 'search' },
+    { columnDef: 'first_name', label: 'first_name', filterType: 'select' },
     { columnDef: 'last_name', label: 'last_name' },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
