@@ -17,9 +17,9 @@ import { Observable, of } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'components-application';
   constructor(private formService: FormService, private currencyService: CurrencyService) { }
-
+  public control = new FormControl();
   public steps$!: Observable<CardStepModel[]>;
-
+  public testArr = ['test','new'];
   private steps: CardStepModel[] = [
     new CardStepModel({
       label: 'פרטי ההתקשרות',
@@ -63,5 +63,10 @@ export class AppComponent implements OnInit {
   ];
   ngOnInit(): void { 
     this.steps$ = of(this.steps)
+  }
+
+  logOption(event):void{
+    console.log(event);
+    
   }
 }

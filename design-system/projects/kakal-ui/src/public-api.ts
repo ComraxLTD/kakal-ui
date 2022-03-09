@@ -26,6 +26,9 @@ export * from './lib/form/models/form.types';
 export * from './lib/form/form/form.component';
 export * from './lib/form/form/form.module';
 
+export * from './lib/form/form-counter/form-counter.component';
+export * from './lib/form/form-counter/form-counter.module';
+
 export * from './lib/form/form-upload/form-upload.component';
 export * from './lib/form/form-upload/form-upload.module';
 
@@ -143,7 +146,8 @@ export * from './lib/bread-crumbes/bread-crumbes.component';
 export * from './lib/bread-crumbes/bread-crumbs.module';
 export * from './lib/bread-crumbes/bread-crumbes.model';
 
-
+export * from './lib/list-menu/list-menu.component';
+export * from './lib/list-menu/list-menu.module';
 
 // title
 export * from './lib/navigation/navigation.module';
