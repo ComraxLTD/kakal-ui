@@ -1,22 +1,39 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
+import { MatListOption } from '@angular/material/list';
 
-import { KKLSelectOption } from '../../../../../form/models/form.types';
-import { FormOption } from '../../../../../form/models/form.options';
+import {
+  KKLSelectOption,
+  KKLFormOption,
+} from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
-import { HeaderCellModel } from '../../models/header-cell.model';
-import { ColumnState } from '../../../../models/table.state';
+import { ColumnState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
+import { FilterType } from '../../models/header-cell.model';
 
-import { map, Observable, filter, tap } from 'rxjs';
+import { map, Observable, filter } from 'rxjs';
+
+export interface FilterOption {
+  key: string;
+  label?: string;
+  value?: any;
+  filterType?: FilterType;
+  format?: string;
+}
+
 @Component({
   selector: 'kkl-filter-header-cell',
   templateUrl: './filter-header-cell.component.html',
   styleUrls: ['./filter-header-cell.component.scss'],
 })
 export class FilterHeaderCellComponent implements OnInit {
-  @Input() public column: HeaderCellModel;
+
+  @Input() public filterType: FilterType;
+  @Input() public key: string;
+  @Input() public format: string;
+  @Input() public label: string;
+  @Input() public sortBy: SortDirection;
 
   public control: FormControl = new FormControl();
 
@@ -25,47 +42,79 @@ export class FilterHeaderCellComponent implements OnInit {
   public options$: Observable<KKLSelectOption[]>;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
+  @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {
-    if (
-      this.column.filterType === 'select' ||
-      this.column.filterType === 'multiSelect'
-    ) {
+    this.filterType = this.filterType;
+
+    if (this.filterType === 'select' || this.filterType === 'multiSelect') {
       this.options$ = this.setOptions$();
     }
   }
 
+  private setFilterOption(value: any, format?) {
+    const filterOption: FilterOption = {
+      key: this.key.toString(),
+      value,
+      filterType: this.filterType,
+      format: this.format,
+    };
+
+    return filterOption;
+  }
+
+  private setFilterState(value: any) {
+    const filterOption = this.setFilterOption(value);
+    return { [this.key]: filterOption };
+  }
+
   private setOptions$() {
-    return this.tableDataSource
-      .connectColumnState(this.column.columnDef.toString())
-      .pipe(
-        filter(
-          (columnState: ColumnState) =>
-            columnState.event === ColumnActions.UPDATE_FILTERS
-        ),
-        map((columnState: ColumnState) => columnState.options)
-      );
+    return this.tableDataSource.connectColumnState(this.key).pipe(
+      filter(
+        (columnState: ColumnState) =>
+          columnState.event === ColumnActions.UPDATE_FILTERS
+      ),
+      map((columnState: ColumnState) => columnState.options)
+    );
   }
 
   // DOE EVENTS
-  public onSortChange(event: SortDirection) {}
 
-  public onValueChanged(formOption: FormOption) {
+  public onValueChanged(formOption: KKLFormOption) {
     const { value } = formOption;
+
+    if (this.filterType === 'select' || this.filterType === 'multiSelect') {
+      // filter options
+    } else {
+      const filterState = this.setFilterState(value);
+      this.tableDataSource.dispatchFilter({ filterState });
+    }
   }
 
-  public onMenuOpen(optionFlag : boolean) {
-    const { filterType } = this.column;
+  public onSortChange(event: SortDirection) {
+    const sortState = {
+      sortBy: event,
+      sorting: this.key,
+    } as SortState;
 
+    this.tableDataSource.dispatchSort({ sortState });
+  }
+
+  public onMenuOpen(optionFlag: boolean) {
     if (
-      (filterType === 'select' || filterType === 'multiSelect') &&
+      (this.filterType === 'select' || this.filterType === 'multiSelect') &&
       optionFlag
     ) {
       this.optionFlag = false;
       this.menuOpened.emit();
     }
+  }
+
+  public onRangeChange(event: Range, type) {
+    const filterState = this.setFilterState(event);
+    this.tableDataSource.dispatchFilter({ filterState });
   }
 
   public onMultiSelectChange(
@@ -79,11 +128,14 @@ export class FilterHeaderCellComponent implements OnInit {
     // });
   }
 
-  public onSelectionChange(event) {
-    // this.tableFilterService.pushMany({
-    //   selectedOptions,
-    //   selected,
-    //   item: { key: this.column.columnDef },
-    // });
+  public onSelectionChange(optionsList: MatListOption[]) {
+    const options: KKLSelectOption[] = optionsList.map(
+      (option: MatListOption) => {
+        return option.value;
+      }
+    );
+
+    const filterState = this.setFilterState(options);
+    this.tableDataSource.dispatchFilter({ filterState });
   }
 }
