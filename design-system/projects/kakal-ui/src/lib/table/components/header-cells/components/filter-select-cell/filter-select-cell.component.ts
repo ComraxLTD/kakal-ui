@@ -2,6 +2,9 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { HeaderCellModel } from '../../models/header-cell.model';
 import { KKLSelectOption } from '../../../../../form/models/form.types';
+import { TableDataSource } from '../../../../models/table-datasource';
+import { ColumnState } from '../../../../models/table.state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-filter-select-cell',
@@ -13,12 +16,13 @@ export class FilterSelectCellComponent implements OnInit {
 
   public control: FormControl = new FormControl();
 
+  public columnState$: Observable<ColumnState>;
+
   @Output() selectChange: EventEmitter<any> = new EventEmitter();
 
-  constructor() {}
+  constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {
-    console.log(this.column);
   }
 
   public onMultiSelectChange(

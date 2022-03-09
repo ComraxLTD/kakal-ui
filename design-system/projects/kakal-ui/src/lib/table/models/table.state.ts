@@ -6,6 +6,7 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { Observable } from 'rxjs';
+import { KKLSelectOption } from '../../form/models/form.types';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -46,11 +47,11 @@ export interface RowState<T = any> {
 
 // interface for update select and filter options
 
-export type ColumnState<T> = {
-  event?: TableActions;
+export type ColumnState<T = any> = {
   key?: keyof T;
-  options$?: Observable<SelectOption[]>;
+  options$: Observable<KKLSelectOption[]>;
   type?: 'filter' | 'select';
+  event?: TableActions;
   dir?: SortDirection;
 };
 

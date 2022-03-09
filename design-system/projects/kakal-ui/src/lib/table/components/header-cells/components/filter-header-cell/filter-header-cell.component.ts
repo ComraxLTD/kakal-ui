@@ -37,7 +37,7 @@ export class FilterHeaderCellComponent implements OnInit {
       (filterType === 'select' || filterType === 'multiSelect') &&
       !this.column.filterOptions?.length
     ) {
-      this.menuOpened.emit();
+      // this.menuOpened.emit();
     }
   }
 }

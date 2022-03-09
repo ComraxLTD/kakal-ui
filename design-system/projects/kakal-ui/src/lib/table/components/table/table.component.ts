@@ -129,7 +129,6 @@ export class TableComponent<T = any> implements OnInit {
           newState.unshift(new HeaderCellModel({ columnDef: 'select' }));
         }
 
-        console.log(newState);
         return newState;
       })
     );

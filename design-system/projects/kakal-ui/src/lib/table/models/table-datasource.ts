@@ -70,7 +70,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
   public connectColumns(): Observable<TableColumnModel<T>[]> {
     return this.columnSubject.asObservable();
   }
-  
+
   public getColumns(): TableColumnModel<T>[] {
     return this.columnSubject.value;
   }
