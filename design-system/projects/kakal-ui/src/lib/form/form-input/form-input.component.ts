@@ -103,6 +103,7 @@ export class FormInputComponent implements OnInit {
       key: this.key,
       control: this.control,
       index: this.index,
+      value,
       value$: of(value),
     };
 

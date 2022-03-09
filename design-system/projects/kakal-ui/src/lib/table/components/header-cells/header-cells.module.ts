@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { KKLFormDateModule } from '../../../form/form-date/form-date.module';
 import { KKLFormAutoCompleteModule } from '../../../form/form-autocomplete/form-autocomplete.module';
 import { KKLSortButtonModule } from '../../../button/components/sort-button/sort-button.module';
+import { KKLFormInputModule } from '../../../form/form-input/form-input.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { KKLSortButtonModule } from '../../../button/components/sort-button/sort
     KKLSortButtonModule,
     KKLTypographyModule,
     KKLFormAutoCompleteModule,
+    KKLFormInputModule,
     KKLFormDateModule,
     KKLDirectivesModule,
   ],

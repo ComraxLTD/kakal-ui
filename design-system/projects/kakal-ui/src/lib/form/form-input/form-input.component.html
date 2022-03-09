@@ -44,7 +44,8 @@
         [type]="controlType"
         (focusout)="validate()"
         (focus)="onFocus()"
-        (input)="onValueChanged()"
+        #input
+        (input)="onValueChanged(input.value)"
       />
     </ng-container>
   </ng-container>
