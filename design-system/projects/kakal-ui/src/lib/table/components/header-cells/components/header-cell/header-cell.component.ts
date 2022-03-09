@@ -23,8 +23,6 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
   @Input() headerTemplate: { [key: string]: TemplateRef<any> } = {};
   @Input() filterTemplate: { [key: string]: TemplateRef<any> } = {};
 
-  private;
-
   constructor() {}
 
   ngOnInit(): void {}
