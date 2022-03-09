@@ -5,10 +5,13 @@
   (click)="$event.stopPropagation()"
 >
   <div fxFlex="90" fxLayout="row" fxLayoutGap="1rem">
-    <kkl-form-input
-      [cleave]="'{ numeral: true }'"
-      [controlType]="'cleave'"
-    ></kkl-form-input>
+    <ng-container *ngFor="let item of amountGroup.controls | keyvalue">
+      <kkl-form-input
+        [control]="amountGroup.formGroup.controls[item.key]"
+        [controlType]="item.value.controlType"
+        [label]="item.value.label"
+      ></kkl-form-input>
+    </ng-container>
     <div
       *ngIf="column.sortable"
       class="sort-button sort-currency"

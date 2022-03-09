@@ -14,17 +14,17 @@ import { FormOption } from '../models/form.options';
   styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
-  @Input() public theme: Palette;
-  @Input() public placeHolder: string;
-  @Input() public control: FormControl;
   @Input() public key: string;
-  @Input() public appearance: Appearance;
-  @Input() public cleave: {};
-  @Input() public index: number;
-  @Input() public gridProps: GridProps;
-  @Input() public icon: string;
   @Input() public controlType: ControlType;
   @Input() public label: string;
+  @Input() public placeHolder: string;
+  @Input() public control: FormControl;
+  @Input() public appearance: Appearance;
+  @Input() public theme: Palette;
+  @Input() public index: number;
+  @Input() public cleave: {};
+  @Input() public gridProps: GridProps;
+  @Input() public icon: string;
 
   public error$: BehaviorSubject<string>;
   public color$: Observable<Palette>;
