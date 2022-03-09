@@ -45,7 +45,7 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: HeaderCellModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', filterType: 'select' },
+    { columnDef: 'first_name', label: 'first_name', filterType: 'search' },
     { columnDef: 'last_name', label: 'last_name' },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
@@ -110,9 +110,9 @@ export class TableComponent implements OnInit {
     return this.tableDataSource.connectFetchState().pipe(
       skip(1),
       switchMap((fetchState: FetchState) => {
-        console.log(fetchState);
+        // console.log(fetchState);
         // imitate server data
-        return of(DEMO_DATA.slice(0, 2));
+        return of(DEMO_DATA);
       })
     );
   }

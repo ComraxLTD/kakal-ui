@@ -5,6 +5,7 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
+import { FilterOption } from '../components/header-cells/components/filter-header-cell/filter-header-cell.component';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -22,16 +23,15 @@ export interface TableState {
 export interface FetchState {
   itemsPerPage: number;
   next: number;
-  sorting: string;
-  sortBy: SortDirection;
-  filters: any;
+  sort?: SortState;
+  filters?: FilterState;
 }
 
 export interface SortState {
   sorting: string;
   sortBy: SortDirection;
 }
-export declare type FilterState = { [key: string]: any };
+export declare type FilterState = { [key: string]: FilterOption };
 
 export interface RowState<T = any> {
   item?: T;

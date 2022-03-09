@@ -51,7 +51,7 @@ export class FilterHeaderCellComponent implements OnInit {
     }
   }
 
-  private setFilterOption(value: any, format) {
+  private setFilterOption(value: any, format?) {
     const filterOption: FilterOption = {
       key: this.column.columnDef.toString(),
       value,
@@ -60,6 +60,11 @@ export class FilterHeaderCellComponent implements OnInit {
     };
 
     return filterOption;
+  }
+
+  private setFilterState(value) {
+    const filterOption = this.setFilterOption(value);
+    return { [this.column.columnDef]: filterOption };
   }
 
   private setOptions$() {
@@ -82,6 +87,8 @@ export class FilterHeaderCellComponent implements OnInit {
     if (this.filterType === 'select' || this.filterType === 'multiSelect') {
       // filter options
     } else {
+      const filterState = this.setFilterState(value);
+      this.tableDataSource.dispatchFilter({ filterState });
     }
   }
 
@@ -107,6 +114,10 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onRangeChange(event: Range, type) {
+
+    const filterState = this.setFilterState(event);
+    this.tableDataSource.dispatchFilter({ filterState });
+
   }
 
   public onMultiSelectChange(
