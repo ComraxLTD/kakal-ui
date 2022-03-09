@@ -145,6 +145,15 @@ export class TableDataSource<T = any> implements DataSource<T> {
     );
   }
 
+  public dispatchSort(action: { sortState: SortState }): void {
+    const { sortState } = action;
+    const newState = {
+      ...this.tableState.getValue(),
+      sort: { ...sortState },
+    } as TableState;
+    this.loadTableState({ tableState: newState });
+  }
+
   public connectFetchState(): Observable<FetchState> {
     const sortState$ = this.selectState('sort') as Observable<SortState>;
     const filterState$ = this.selectState('filters') as Observable<FilterState>;

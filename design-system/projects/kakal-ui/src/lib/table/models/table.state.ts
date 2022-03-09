@@ -4,7 +4,6 @@ import { SortDirection } from '@angular/material/sort';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
-import { Observable } from 'rxjs';
 import { KKLSelectOption } from '../../form/models/form.types';
 
 export interface TableState {
