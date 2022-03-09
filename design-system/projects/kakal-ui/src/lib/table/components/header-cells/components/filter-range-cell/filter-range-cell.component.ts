@@ -61,8 +61,4 @@ export class FilterRangeCellComponent implements OnInit {
       questions,
     });
   }
-
-  public onSortChange(event: SortDirection) {
-    console.log(event);
-  }
 }

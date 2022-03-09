@@ -1,8 +1,10 @@
 import {
   AfterViewInit,
   Component,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   TemplateRef,
   ViewChild,
 } from '@angular/core';
@@ -14,30 +16,30 @@ import { HeaderCellModel } from '../../models/header-cell.model';
   styleUrls: ['./header-cell.component.scss'],
 })
 export class HeaderCellComponent implements OnInit, AfterViewInit {
-  @ViewChild('filterCell') filterCell: TemplateRef<any>;
+  @ViewChild('filterCell') filterHeaderTemplate: TemplateRef<any>;
 
   @Input() column: HeaderCellModel;
   @Input() label: string;
-  @Input() key: string;
+  @Input('itemKey') key: string;
   @Input() columnDef: string;
   @Input() headerTemplate: { [key: string]: TemplateRef<any> } = {};
   @Input() filterTemplate: { [key: string]: TemplateRef<any> } = {};
 
-  private;
+  @Output() fetchOptions: EventEmitter<string> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    const predefinedTemplates = {
-      filter: this.filterTemplate,
-    };
-
     if (this.column.filterType) {
       this.filterTemplate = {
-        [this.column.columnDef]: predefinedTemplates[this.column.filterType],
+        [this.column.columnDef]: this.filterHeaderTemplate,
       };
     }
+  }
+
+  public onMenuOpen() {
+    this.fetchOptions.emit(this.columnDef);
   }
 }

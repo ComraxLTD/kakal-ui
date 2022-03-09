@@ -11,6 +11,8 @@ import {
   TableState,
   KKLSelectOption,
   FetchState,
+  ColumnState,
+  ColumnActions,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -21,13 +23,12 @@ import {
   of,
   switchMap,
   take,
-  tap,
 } from 'rxjs';
 import { Validators } from '@angular/forms';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
-import { PaginationInstance } from 'ngx-pagination';
 import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
 import { HeaderCellModel } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
+import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table',
@@ -42,12 +43,12 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: HeaderCellModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', filterType: 'search' },
+    { columnDef: 'first_name', label: 'first_name', filterType: 'select' },
     { columnDef: 'last_name', label: 'last_name' },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
-    { columnDef: 'city', label: 'city' },
+    { columnDef: 'city', label: 'city', filterType: 'select' },
     {
       columnDef: 'date',
       label: 'date',
@@ -86,8 +87,9 @@ export class TableComponent implements OnInit {
   };
 
   constructor(
-    private formService: FormService,
-    public tableDataSource: TableDataSource<RootObject>
+    public tableDataSource: TableDataSource<RootObject>,
+    private tableService: TableService,
+    private formService: FormService
   ) {}
 
   async ngOnInit(): Promise<void> {
@@ -286,5 +288,15 @@ export class TableComponent implements OnInit {
           state: { ...state, item, group },
         });
       });
+  }
+
+  public onFetchOptions(columnDef: string) {
+    const columnState: ColumnState = {
+      key: columnDef,
+      event: ColumnActions.UPDATE_FILTERS,
+      options: this.optionsMap[columnDef],
+    };
+
+    this.tableDataSource.loadColumnState({ columnState });
   }
 }
