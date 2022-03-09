@@ -17,6 +17,8 @@ import {
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
   BehaviorSubject,
+  distinctUntilChanged,
+  distinctUntilKeyChanged,
   firstValueFrom,
   map,
   merge,
@@ -109,8 +111,7 @@ export class TableComponent implements OnInit {
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
       switchMap((fetchState: FetchState) => {
-
-        console.log(fetchState)
+        console.log(fetchState);
         return of(DEMO_DATA);
       })
     );

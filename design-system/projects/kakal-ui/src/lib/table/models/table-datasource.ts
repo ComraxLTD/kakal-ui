@@ -1,5 +1,4 @@
 import { DataSource } from '@angular/cdk/collections';
-import { PaginationInstance } from 'ngx-pagination';
 
 import {
   ColumnState,
@@ -17,8 +16,8 @@ import { TableSelector } from '../models/table.selctors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
-import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { filter, map, skip, take } from 'rxjs/operators';
+import { Observable, BehaviorSubject, merge } from 'rxjs';
+import { filter, map, distinctUntilKeyChanged } from 'rxjs/operators';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
@@ -160,7 +159,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   public connectFetchState(): Observable<FetchState> {
-    return this.tableState.asObservable().pipe(
+    const fetchState$ = this.tableState.asObservable().pipe(
       map((tableState: TableState) => {
         return {
           itemsPerPage: tableState.pagination.itemsPerPage,
@@ -169,6 +168,13 @@ export class TableDataSource<T = any> implements DataSource<T> {
           ...tableState.filters,
         } as FetchState;
       })
+    );
+
+    return merge(
+      fetchState$.pipe(distinctUntilKeyChanged('itemsPerPage')),
+      fetchState$.pipe(distinctUntilKeyChanged('next')),
+      fetchState$.pipe(distinctUntilKeyChanged('sort')),
+      fetchState$.pipe(distinctUntilKeyChanged('filters'))
     );
   }
 
