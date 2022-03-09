@@ -27,7 +27,7 @@ export class NavigationComponent implements OnInit {
   public activeStep$: Observable<{ value: number }>;
   public end$: Observable<boolean>;
 
-  @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() changeStep: EventEmitter<{step:CardStepModel,index:number}> = new EventEmitter();
 
   constructor() {}
 
@@ -78,10 +78,10 @@ export class NavigationComponent implements OnInit {
 
   public onNext(index: number, step: CardStepModel) {
     this.currentIndexSubject.next(index + 1);
-    this.changeStep.emit(step);
+    this.changeStep.emit({step:step,index:(index+1)});
   }
   public onPrev(index: number, step: CardStepModel) {
     this.currentIndexSubject.next(index - 1);
-    this.changeStep.emit(step);
+    this.changeStep.emit({step:step,index:(index-1)});
   }
 }
