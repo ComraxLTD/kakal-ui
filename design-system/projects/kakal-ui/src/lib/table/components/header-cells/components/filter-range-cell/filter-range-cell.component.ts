@@ -3,6 +3,16 @@ import { FormControl } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { RangePipe } from 'projects/kakal-ui/src/public-api';
 import {
+  debounceTime,
+  map,
+  range,
+  skip,
+  Subject,
+  take,
+  takeLast,
+  takeUntil,
+} from 'rxjs';
+import {
   Question,
   QuestionGroupModel,
 } from '../../../../../form/models/form.types';
@@ -41,17 +51,23 @@ export class FilterRangeCellComponent implements OnInit {
     },
   ];
 
+  private destroy: Subject<void>;
+
   @Output() rangeChange: EventEmitter<Range> = new EventEmitter();
 
   constructor(
     private formService: FormService,
-    private tableDataSource: TableDataSource,
-    private rangePipe: RangePipe
+    private tableDataSource: TableDataSource
   ) {}
 
   ngOnInit(): void {
+    this.destroy = new Subject();
     this.amountQuestions = this.setQuestionWithValue(this.amountQuestions);
     this.amountGroup = this.setAmountGroup(this.amountQuestions);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next();
   }
 
   private setQuestionWithValue(questions: Question[]) {
@@ -70,8 +86,16 @@ export class FilterRangeCellComponent implements OnInit {
     });
   }
 
-  public onRangeDateEvent(event: Range) {
+  public onRangeDateChange(event: Range) {
     const range: Range = { start: event.start, end: event.end, type: 'date' };
     this.rangeChange.emit(range);
+  }
+
+  public onRangeNumberChange() {
+    // this.rangeChange.emit(this.amountGroup.getValue());
+    this.amountGroup.formGroup.valueChanges
+      .pipe(skip(1), take(1), takeUntil(this.destroy))
+      .subscribe((range) => this.rangeChange.emit(range));
+    // }}
   }
 }
