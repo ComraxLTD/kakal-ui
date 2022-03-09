@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
 import {
   Question,

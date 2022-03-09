@@ -36,7 +36,7 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
 
     if (this.column.filterType) {
       this.filterTemplate = {
-        [this.column.columnDef]: this.filterCell,
+        [this.column.columnDef]: predefinedTemplates[this.column.filterType],
       };
     }
   }

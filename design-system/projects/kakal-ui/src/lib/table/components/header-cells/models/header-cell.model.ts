@@ -1,7 +1,5 @@
 import { SortDirection } from '@angular/material/sort';
-import { SelectOption } from 'projects/kakal-ui/src/public-api';
-import { Question } from '../../../../form/services/form.service';
-
+import { KKLSelectOption } from '../../../../form/models/form.types';
 export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | string;
 
 export declare type ColumnType =
@@ -39,7 +37,7 @@ export class HeaderCellModel<T = any> {
 
   public filterable?: boolean;
   public filterType?: FilterType;
-  public filterOptions?: SelectOption[];
+  public filterOptions?: KKLSelectOption[];
 
   constructor(options?: {
     columnDef: ColumnDef<T>;
@@ -61,7 +59,7 @@ export class HeaderCellModel<T = any> {
 
     filterable?: boolean;
     filterType?: FilterType;
-    filterOptions?: SelectOption[];
+    filterOptions?: KKLSelectOption[];
   }) {
     this.columnDef = options.columnDef;
     this.label = options?.label || '';
