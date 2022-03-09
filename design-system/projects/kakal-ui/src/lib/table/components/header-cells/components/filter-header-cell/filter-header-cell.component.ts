@@ -6,10 +6,18 @@ import { KKLSelectOption } from '../../../../../form/models/form.types';
 import { FormOption } from '../../../../../form/models/form.options';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { FilterType, HeaderCellModel } from '../../models/header-cell.model';
-import { ColumnState } from '../../../../models/table.state';
+import { ColumnState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
 import { map, Observable, filter } from 'rxjs';
+
+export interface FilterOption {
+  key: string;
+  label?: string;
+  value?: any;
+  filterType?: FilterType;
+  format?: string;
+}
 
 @Component({
   selector: 'kkl-filter-header-cell',
@@ -28,7 +36,8 @@ export class FilterHeaderCellComponent implements OnInit {
   private filterType: FilterType;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
-  @Output() filterChanged: EventEmitter<void> = new EventEmitter();
+  @Output() sortChanged: EventEmitter<SortState> = new EventEmitter();
+  @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
@@ -41,6 +50,17 @@ export class FilterHeaderCellComponent implements OnInit {
     ) {
       this.options$ = this.setOptions$();
     }
+  }
+
+  private setFilterOption(value: any, format) {
+    const filterOption: FilterOption = {
+      key: this.column.columnDef.toString(),
+      value,
+      filterType: this.filterType,
+      format: this.column.format,
+    };
+
+    return filterOption;
   }
 
   private setOptions$() {
@@ -66,7 +86,12 @@ export class FilterHeaderCellComponent implements OnInit {
     }
   }
 
-  public onSortChange(event: SortDirection) {}
+  public onSortChange(event: SortDirection) {
+    this.sortChanged.emit({
+      sortBy: event,
+      sorting: this.column.columnDef,
+    } as SortState);
+  }
 
   public onMenuOpen(optionFlag: boolean) {
     const { filterType } = this.column;
@@ -80,7 +105,7 @@ export class FilterHeaderCellComponent implements OnInit {
     }
   }
 
-  public onRangeChange(event: Range) {
+  public onRangeChange(event: Range, type) {
     console.log(event);
   }
 
