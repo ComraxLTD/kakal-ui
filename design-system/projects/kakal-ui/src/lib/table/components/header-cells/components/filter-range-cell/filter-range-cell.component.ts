@@ -1,17 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
-import { RangePipe } from 'projects/kakal-ui/src/public-api';
-import {
-  debounceTime,
-  map,
-  range,
-  skip,
-  Subject,
-  take,
-  takeLast,
-  takeUntil,
-} from 'rxjs';
 import {
   Question,
   QuestionGroupModel,
@@ -19,6 +7,7 @@ import {
 import { FormService } from '../../../../../form/services/form.service';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderCellModel } from '../../models/header-cell.model';
+import { skip, Subject, take, takeUntil } from 'rxjs';
 
 export interface Range {
   start: any;
