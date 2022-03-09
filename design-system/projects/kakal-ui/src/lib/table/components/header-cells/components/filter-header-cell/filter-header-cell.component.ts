@@ -3,8 +3,7 @@ import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
 import { MatListOption } from '@angular/material/list';
 
-import { KKLSelectOption } from '../../../../../form/models/form.types';
-import { FormOption } from '../../../../../form/models/form.options';
+import { KKLSelectOption, KKLFormOption } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { FilterType, HeaderCellModel } from '../../models/header-cell.model';
 import { ColumnState, SortState } from '../../../../models/table.state';
@@ -82,7 +81,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
   // DOE EVENTS
 
-  public onValueChanged(formOption: FormOption) {
+  public onValueChanged(formOption: KKLFormOption) {
     const { value } = formOption;
 
     if (this.filterType === 'select' || this.filterType === 'multiSelect') {

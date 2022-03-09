@@ -23,7 +23,7 @@
           <ng-container *ngSwitchCase="'dateRange'">
             <kkl-filter-range-cell
               fxFlex="75"
-              [column]="column"
+              [filterType]="column.filterType"
               (rangeChange)="onRangeChange($event)"
             ></kkl-filter-range-cell>
           </ng-container>
@@ -33,7 +33,7 @@
           <ng-container *ngSwitchCase="'numberRange'">
             <kkl-filter-range-cell
               fxFlex="75"
-              [column]="column"
+              [filterType]="column.filterType"
               (rangeChange)="onRangeChange($event)"
             ></kkl-filter-range-cell>
           </ng-container>

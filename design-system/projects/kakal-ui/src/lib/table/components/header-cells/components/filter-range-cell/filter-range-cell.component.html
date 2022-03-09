@@ -1,4 +1,4 @@
-<ng-container *ngIf="column.filterType === 'numberRange'; else dateRange">
+<ng-container *ngIf="filterType === 'numberRange'; else dateRange">
   <div fxLayout="row" fxLayoutGap="1rem">
     <ng-container *ngFor="let q of amountGroup.questions">
       <kkl-form-input
@@ -18,7 +18,7 @@
   <kkl-form-date
     [range]="true"
     [control]="dateControl"
-    [key]="column.columnDef"
+    [key]="columnDef"
     (dateEvent)="onRangeDateChange($event)"
   >
   </kkl-form-date>
