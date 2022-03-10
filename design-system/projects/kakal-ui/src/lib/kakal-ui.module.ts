@@ -62,6 +62,7 @@ import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.modu
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { FilterCardComponent } from './cards/filter-card/filter-card.component';
 import {KKLHoverModule} from '../lib/kkl-hover/kkl-hover.module';
+import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import {KKLHoverModule} from '../lib/kkl-hover/kkl-hover.module';
     KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
+    KKLExpandPanelModule,
 
     // FORMS MODULES
     KKLFormModule,
@@ -144,6 +146,7 @@ import {KKLHoverModule} from '../lib/kkl-hover/kkl-hover.module';
     SidenavModule,
     KKLStatusBarsModule,
     KKLListMenuModule,
+    KKLExpandPanelModule,
 
     KKLFormModule,
     KKLFormCheckboxModule,
