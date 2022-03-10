@@ -1,14 +1,11 @@
-import { Observable, map, filter, merge } from 'rxjs';
-import {
-  FetchActions,
-  KKLSelectOption,
-  TableActions,
-} from '../../../../../../public-api';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { TableState } from '../../../../models/table.state';
 import { FilterOption } from '../../models/header.filter';
 import { FilterType } from '../../models/header.types';
 import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
+import { TableActions, FetchActions } from '../../../../models/table-actions';
+import { KKLSelectOption } from '../../../../../form/models/form.types';
+import { Observable, map, filter, merge } from 'rxjs';
 
 export function getHeaderFilterState(
   tableState$: Observable<TableState>,
