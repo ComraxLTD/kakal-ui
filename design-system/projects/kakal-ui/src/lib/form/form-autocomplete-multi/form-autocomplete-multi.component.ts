@@ -91,7 +91,6 @@ export class FormAutocompleteComponentMulti implements OnInit {
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    console.log(event);
     const option: SelectOption = event.option.value;
     // this.optionSelected.emit({
     //   key: this.key,
