@@ -96,7 +96,7 @@ export class TableComponent implements OnInit {
   public pagination: PaginationInstance = {
     itemsPerPage: 5,
     currentPage: 1,
-    totalItems: 100,
+    totalItems: 10,
   };
 
   constructor(
@@ -121,6 +121,7 @@ export class TableComponent implements OnInit {
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
       switchMap((fetchState: FetchState) => {
+        console.log(fetchState);
         return of(DEMO_DATA);
       })
     );
@@ -174,6 +175,7 @@ export class TableComponent implements OnInit {
     const oldState = this.tableDataSource.getTableState();
     const tableState: TableState = {
       ...oldState,
+      pagination: this.pagination,
       filters: {
         city: {
           key: 'city',
