@@ -11,11 +11,25 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import { map, Observable, filter, tap, take, switchMap } from 'rxjs';
+import {
+  map,
+  Observable,
+  filter,
+  tap,
+  take,
+  of,
+  merge,
+  startWith,
+  BehaviorSubject,
+} from 'rxjs';
 import { FilterType } from '../../models/header.types';
 import { FilterOption } from '../../models/header.filter';
 
-import { setRangeState, setSelectState } from './filter-header.helpers';
+import {
+  setFilterOptionState,
+  setRangeState,
+  setSelectState,
+} from './filter-header.helpers';
 import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
 
 @Component({
@@ -31,8 +45,6 @@ export class FilterHeaderCellComponent implements OnInit {
   @Input() public sortBy: SortDirection;
 
   public control: FormControl = new FormControl();
-
-  public optionFlag: boolean = true;
 
   public options$: Observable<KKLSelectOption[]>;
   public dateRange$: Observable<FilterRange<Date>>;
@@ -76,35 +88,31 @@ export class FilterHeaderCellComponent implements OnInit {
         (headerState: HeaderState) =>
           headerState.event === ColumnActions.UPDATE_FILTERS
       ),
-      take(1),
       map((headerState: HeaderState) => headerState.options),
-      // TODO - optionFlag is true only if options is init
-      tap(() => (this.optionFlag = false))
+      filter((options) => options !== undefined)
     );
   }
 
   private initOptionsWithState() {
-    const options$ = this.initOptions$();
-    const optionsFilterState$ = setSelectState(this.tableDataSource, this.key);
-    return options$.pipe(
-      switchMap((options: KKLSelectOption[]) => {
-        return optionsFilterState$.pipe(
-          map((options: KKLSelectOption[]) => options.map((option) => option.value)),
-          map((selectedOptions: string[]) => {
-            return options.map((option) => {
-              return {
-                ...option,
-                selected: selectedOptions.indexOf(option.value) !== -1,
-              } as KKLSelectOption;
-            });
-          })
-        );
-      })
+    const initOptions$ = this.initOptions$();
+    const selectedOptions$ = setSelectState(this.tableDataSource, this.key);
+    const tableStateOptions$ = setFilterOptionState(
+      initOptions$,
+      selectedOptions$
     );
+
+    return merge(initOptions$, tableStateOptions$);
   }
 
   private initRange$<T>(): Observable<FilterRange<T>> {
-    return setRangeState<T>(this.tableDataSource, this.key, this.filterType);
+    const initRange$: Observable<FilterRange> = of({ start: null, end: null });
+    const tableStateRange$ = setRangeState<T>(
+      this.tableDataSource,
+      this.key,
+      this.filterType
+    );
+
+    return merge(initRange$, tableStateRange$);
   }
 
   // DOE EVENTS
@@ -129,11 +137,8 @@ export class FilterHeaderCellComponent implements OnInit {
     this.tableDataSource.dispatchSort({ sortState });
   }
 
-  public onMenuOpen(optionFlag: boolean) {
-    if (
-      (this.filterType === 'select' || this.filterType === 'multiSelect') &&
-      optionFlag
-    ) {
+  public onMenuOpen() {
+    if (this.filterType === 'select' || this.filterType === 'multiSelect') {
       this.menuOpened.emit();
     }
   }
