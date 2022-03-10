@@ -1,0 +1,113 @@
+@use "../../styles/variables" as main;
+
+.main{
+  font-family: "open sans hebrew", "Helvetica Neue", sans-serif !important;
+  src: url("../../../assets/fonts/opanSansHebrew/OpenSansHebrew-Regular.ttf") format("opentype") !important;
+  color: rgba(0,0,0,.87);
+  padding: 4rem;
+  direction: rtl;
+
+  .containerClose{
+    display: none;
+  }
+
+  .containerOpen{
+      width: 100%;
+      display: grid;
+      padding-top: 4rem;
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 4rem;
+      grid-row-gap: 4rem;
+
+    .box{
+      .small-box{
+        padding-bottom: 4rem;
+
+        .subject-title{
+          background: #F3F3F3;
+          font-size: 1.2em;
+          padding: 0.5rem 0.6rem 0.5rem 0.6rem;
+          font-weight: bold;
+          color: black;
+          width: fit-content;
+        }
+
+        .data{
+          font-size: 1.2em;
+          padding-top: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .select-container{
+
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 0.5px solid  #EDFAF2;
+
+      .title{
+        padding: 1rem;
+        border-bottom: 2px solid #37c56b;
+        display: flex;
+
+        button{
+          padding: 1rem 1rem 2.5rem 1rem;
+        }
+
+        h4{
+          font-size: 2em;
+          color: #37c56b;
+          font-weight: bold;
+          margin-bottom: 0px;
+        }
+      }
+
+      .check-box{
+        display: flex;
+        font-size: large;
+
+        label{
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  .select-container-mobile{
+
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 0.5px solid  #EDFAF2;
+
+      .title{
+        padding: 1rem;
+        border-bottom: 2px solid #37c56b;
+        display: flex;
+
+        button{
+          padding: 1rem 1rem 2.5rem 1rem;
+        }
+
+        h4{
+          font-size: 2em;
+          color: #37c56b;
+          font-weight: bold;
+          margin-bottom: 0px;
+        }
+      }
+
+      .check-box{
+        display: flex;
+        font-size: large;
+
+        label{
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

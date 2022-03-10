@@ -1,0 +1,33 @@
+<div class="main">
+
+  <div *ngFor="let tab of tabs" [ngClass]="checkMobile ? 'select-container-mobile':'select-container'" >
+
+    <!-- the tab, controls the display of it's content-->
+    <div class="header">
+      <div class="title">
+        <h4>{{tab.label}}</h4>
+        <button mat-icon-button (click)="openContainer(tab.id)">
+          <!-- the icon is not working, needs fixing -->
+          <kkl-icon [size]="1.8" [key]="'dropdown'" [color]="'primary'"></kkl-icon>
+        </button>
+      </div>
+      <!-- the first tab has the "open all" checkbox with it -->
+      <div *ngIf="tab.id === 0" class="check-box">
+        <mat-checkbox [color]="'accent'" #tog [checked]="openAll" (change)="toggleOpenAll(tog.checked)"> </mat-checkbox>
+        <label>פתח הכל</label>
+      </div>
+    </div>
+
+    <!-- the content of the tab -->
+    <div [ngClass]="tab.isOpen ? 'containerOpen' :'containerClose'">
+      <!-- the content is now just a string, but it needs to be an entire element -->
+      <h1>{{tab.content}}</h1>
+      <!-- <ng-container *ngIf="isOpen">
+        <ng-template *ngTemplateOutlet="innerTable; context:{$implict:content}">
+        </ng-template>
+      </ng-container> -->
+    </div>
+
+  </div>
+
+  </div>
