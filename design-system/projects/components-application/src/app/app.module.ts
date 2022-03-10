@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { KakalUiModule, KKLFilterCardModule, KKLPageHeadlineModule, KKLStatusBarsModule } from '../../../kakal-ui/src/public-api';
+import { BreakpointService, KakalUiModule, KKLFilterCardModule, KKLPageHeadlineModule, KKLStatusBarsModule, RouterService, StepperLayoutModule, StepperLayoutService } from '../../../kakal-ui/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,9 +24,9 @@ import { FilterCardComponent } from '../../../kakal-ui/src/lib/cards/filter-card
     BrowserAnimationsModule,
     KKLPageHeadlineModule,
     KKLStatusBarsModule,
-    
+    StepperLayoutModule,
   ],
-  providers: [],
+  providers: [StepperLayoutService,BreakpointService,RouterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

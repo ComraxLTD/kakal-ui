@@ -126,7 +126,7 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     // STEPPER
     StepperModule,
     StepperMobileModule,
-    StepperLayoutModule,
+    // StepperLayoutModule,
   ],
   exports: [
     //TOOLS
@@ -183,7 +183,7 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     // STEPPER
     StepperModule,
     StepperMobileModule,
-    StepperLayoutModule,
+    // StepperLayoutModule,
   ],
 })
 export class KakalUiModule { }
