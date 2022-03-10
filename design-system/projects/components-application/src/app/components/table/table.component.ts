@@ -350,6 +350,6 @@ export class TableComponent implements OnInit {
       options: this.optionsMap[columnDef],
     };
 
-    this.tableDataSource.loadColumnState({ headerState });
+    this.tableDataSource.loadHeaderState({ headerState });
   }
 }
