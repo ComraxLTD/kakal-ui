@@ -1,0 +1,10 @@
+<ng-container>
+    <div @hover [ngClass]="hoverColor ? hoverColor : 'black'">
+        <ng-container *ngIf="text">
+            {{text}}
+        </ng-container>
+        <ng-container *ngIf="template">
+            <ng-container *ngTemplateOutlet="template"></ng-container>
+        </ng-container>
+    </div>
+</ng-container>

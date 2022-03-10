@@ -146,6 +146,11 @@ export * from './lib/bread-crumbes/bread-crumbes.component';
 export * from './lib/bread-crumbes/bread-crumbs.module';
 export * from './lib/bread-crumbes/bread-crumbes.model';
 
+// expand-panel
+export * from './lib/expand-panel/expand-panel.component';
+export * from './lib/expand-panel/expand-panel.module';
+export * from './lib/expand-panel/expand-panel.model';
+
 export * from './lib/list-menu/list-menu.component';
 export * from './lib/list-menu/list-menu.module';
 
@@ -205,6 +210,7 @@ export * from './lib/pipes/range.pipe';
 export * from './lib/pipes/pipes.module';
 
 //directives
+export * from './lib/directives/hover.directive';
 export * from './lib/directives/variant.directive';
 export * from './lib/directives/size.directive';
 export * from './lib/directives/button.directive';
@@ -220,6 +226,9 @@ export * from './lib/directives/directives.module';
 
 // styles
 export * from './styles/theme';
+// hover component
+export * from './lib/kkl-hover/kkl-hover.component';
+export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards
 export * from './lib/cards/info-card/info-card.module';

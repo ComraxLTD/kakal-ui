@@ -1,0 +1,22 @@
+<div class="main">
+  <div *ngFor="let tab of tabs; let i = index" [ngClass]="checkMobile ? 'select-container-mobile':'select-container'" >
+    <!-- the tab, controls the display of it's content-->
+    <div class="header">
+      <div class="title">
+        <h4>{{tab.label}}</h4>
+        <button mat-icon-button (click)="openContainer(tab.id)">
+          <kkl-icon [size]="3" [key]="tab.isOpen ? 'keyboard_arrow_up' : 'keyboard_arrow_down'" [color]="'accent'"></kkl-icon>
+        </button>
+      </div>
+      <!-- the first tab has the "open all" checkbox with it -->
+      <div *ngIf="i === 0" class="check-box">
+        <mat-checkbox [color]="'primary'" #tog [checked]="openAll" (change)="toggleOpenAll(tog.checked)"> </mat-checkbox>
+        <label>פתח הכל</label>
+      </div>
+    </div>
+    <!-- the content of the tab -->
+    <div *ngIf="tab.isOpen" class="content">
+      <ng-container *ngTemplateOutlet="tabContent; context: {content:tab.content}"></ng-container>
+    </div>
+  </div>
+</div>
