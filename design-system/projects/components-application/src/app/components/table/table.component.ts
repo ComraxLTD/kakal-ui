@@ -188,8 +188,16 @@ export class TableComponent implements OnInit {
           filterType: FilterType.NUMBER_RANGE,
           value: {
             start: 1,
+            end: 10,
+          } as FilterRange<number>,
+        } as FilterOption,
+        date: {
+          key: 'currency',
+          filterType: FilterType.DATE_RANGE,
+          value: {
+            start: new Date(),
             end: null,
-          } as FilterRange<FilterType.NUMBER_RANGE>,
+          } as FilterRange<Date>,
         } as FilterOption,
       },
       action: TableActions.INIT_STATE,

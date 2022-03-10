@@ -9,9 +9,9 @@ import { Observable, skip, Subject, take, takeUntil } from 'rxjs';
 import { FilterType } from '../../models/header.types';
 
 export interface FilterRange<T = any> {
-  start?: any;
-  end?: any;
-  type?: T;
+  start?: T;
+  end?: T;
+  type?: FilterType;
 }
 
 @Component({
@@ -20,12 +20,11 @@ export interface FilterRange<T = any> {
   styleUrls: ['./filter-range-cell.component.scss'],
 })
 export class FilterRangeCellComponent implements OnInit {
-
   @Input() public filterType: FilterType.NUMBER_RANGE | FilterType.DATE_RANGE;
-  @Input() public range$: Observable<FilterRange> ;
+  @Input() public range$: Observable<FilterRange>;
   @Input() public value: FilterRange;
 
-  public amountGroup: QuestionGroupModel<FilterType.NUMBER_RANGE>;
+  public amountGroup: QuestionGroupModel<FilterRange<number>>;
   public dateControl: FormControl = new FormControl();
 
   private amountQuestions: Question[] = [
@@ -68,7 +67,7 @@ export class FilterRangeCellComponent implements OnInit {
 
   public setAmountGroup(
     questions: Question[]
-  ): QuestionGroupModel<FilterType.NUMBER_RANGE> {
+  ): QuestionGroupModel<FilterRange<number>> {
     return this.formService.createQuestionGroup({
       key: 'amount',
       questions,
@@ -76,7 +75,7 @@ export class FilterRangeCellComponent implements OnInit {
   }
 
   public onRangeDateChange(event: FilterRange) {
-    const range: FilterRange<FilterType.DATE_RANGE> = {
+    const range: FilterRange<FilterRange<Date>> = {
       start: event.start,
       end: event.end,
     };
@@ -87,9 +86,7 @@ export class FilterRangeCellComponent implements OnInit {
     // this.rangeChange.emit(this.amountGroup.getValue());
     this.amountGroup.formGroup.valueChanges
       .pipe(skip(1), take(1), takeUntil(this.destroy))
-      .subscribe((range: FilterRange<FilterType.NUMBER_RANGE>) =>
-        this.rangeChange.emit(range)
-      );
+      .subscribe((range: FilterRange<number>) => this.rangeChange.emit(range));
     // }}
   }
 }

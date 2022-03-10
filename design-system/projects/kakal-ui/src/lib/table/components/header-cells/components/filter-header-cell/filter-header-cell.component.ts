@@ -15,7 +15,8 @@ import { map, Observable, filter, tap, take, switchMap } from 'rxjs';
 import { FilterType } from '../../models/header.types';
 import { FilterOption } from '../../models/header.filter';
 
-import { setSelectState } from './filter-header.helpers';
+import { setDateRangeState, setSelectState } from './filter-header.helpers';
+import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
 
 @Component({
   selector: 'kkl-filter-header-cell',
@@ -34,8 +35,8 @@ export class FilterHeaderCellComponent implements OnInit {
   public optionFlag: boolean = true;
 
   public options$: Observable<KKLSelectOption[]>;
-  public dateRange$: Observable<Range>;
-  public numberRange$: Observable<Range>;
+  public dateRange$:  Observable<FilterRange<Date>>;
+  public numberRange$:  Observable<FilterRange<number>>;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
@@ -46,7 +47,13 @@ export class FilterHeaderCellComponent implements OnInit {
     if (this.filterType === 'select' || this.filterType === 'multiSelect') {
       this.options$ = this.initOptionsWithState();
     }
+
+    if(this.filterType === FilterType.DATE_RANGE) {
+      this.dateRange$ = this.initRangeDate$()
+    }
   }
+
+
 
   private setFilterState(value: any) {
     const filterOption: FilterOption = {
@@ -91,7 +98,11 @@ export class FilterHeaderCellComponent implements OnInit {
     );
   }
 
-  private initRangeDate$() {}
+  private initRangeDate$()  : Observable<FilterRange<Date>> {
+    return setDateRangeState(this.tableDataSource, this.key).pipe(
+      tap((value) => console.log(value))
+    );
+  }
 
   // DOE EVENTS
 

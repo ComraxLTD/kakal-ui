@@ -8,6 +8,7 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { TableState } from '../../../../models/table.state';
 import { FilterOption } from '../../models/header.filter';
 import { FilterType } from '../../models/header.types';
+import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
 
 export function getHeaderFilterState(
   tableState$: Observable<TableState>,
@@ -71,7 +72,7 @@ export function getRangeDateState(
 export function setDateRangeState(
   tableDataSource: TableDataSource,
   key: string
-): Observable<Range> {
+): Observable<FilterRange<Date>> {
   const initState$ = tableDataSource.selectActions({
     action: TableActions.INIT_STATE,
   });
@@ -95,6 +96,6 @@ export function setDateRangeState(
 export function getRangeNumberState(
   tableState$: Observable<TableState>,
   key: string
-): Observable<Range> {
+): Observable<FilterRange<number>> {
   return getHeaderFilterState(tableState$, [FilterType.NUMBER_RANGE], key);
 }
