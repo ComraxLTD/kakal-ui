@@ -5,12 +5,13 @@ import {
   QuestionGroupModel,
 } from '../../../../../form/models/form.types';
 import { FormService } from '../../../../../form/services/form.service';
-import { skip, Subject, take, takeUntil } from 'rxjs';
+import { Observable, skip, Subject, take, takeUntil } from 'rxjs';
+import { FilterType } from '../../models/header.types';
 
-export interface Range {
-  start: any;
-  end: any;
-  type?: string;
+export interface FilterRange<T = any> {
+  start?: T;
+  end?: T;
+  type?: FilterType;
 }
 
 @Component({
@@ -19,12 +20,12 @@ export interface Range {
   styleUrls: ['./filter-range-cell.component.scss'],
 })
 export class FilterRangeCellComponent implements OnInit {
+  @Input() public filterType: FilterType.NUMBER_RANGE | FilterType.DATE_RANGE;
+  @Input() public range$: Observable<FilterRange>;
+  @Input() public value: FilterRange;
 
-  @Input() public filterType: 'numberRange' | 'dateRange';
-  @Input() public value: Range = { start: 0, end: 0 };
-
-  public amountGroup: QuestionGroupModel<Range>;
-  public dateControl: FormControl = new FormControl();
+  public amountGroup: QuestionGroupModel<FilterRange<number>>;
+  public dateControl: FormControl;
 
   private amountQuestions: Question[] = [
     {
@@ -41,16 +42,24 @@ export class FilterRangeCellComponent implements OnInit {
 
   private destroy: Subject<void>;
 
-  @Output() rangeChange: EventEmitter<Range> = new EventEmitter();
+  @Output() rangeChange: EventEmitter<FilterRange> = new EventEmitter();
 
-  constructor(
-    private formService: FormService,
-  ) {}
+  constructor(private formService: FormService) {}
 
   ngOnInit(): void {
     this.destroy = new Subject();
-    this.amountQuestions = this.setQuestionWithValue(this.amountQuestions);
-    this.amountGroup = this.setAmountGroup(this.amountQuestions);
+
+    if (this.filterType === FilterType.NUMBER_RANGE) {
+      this.amountQuestions = this.setQuestionWithValue(this.amountQuestions);
+      this.amountGroup = this.setAmountGroup(this.amountQuestions);
+    }
+
+    if (this.filterType === FilterType.DATE_RANGE) {
+      this.dateControl = new FormControl({
+        start: this.value.start,
+        end: this.value.end,
+      });
+    }
   }
 
   ngOnDestroy(): void {
@@ -66,23 +75,27 @@ export class FilterRangeCellComponent implements OnInit {
     });
   }
 
-  public setAmountGroup(questions: Question[]): QuestionGroupModel<Range> {
+  public setAmountGroup(
+    questions: Question[]
+  ): QuestionGroupModel<FilterRange<number>> {
     return this.formService.createQuestionGroup({
       key: 'amount',
       questions,
     });
   }
 
-  public onRangeDateChange(event: Range) {
-    const range: Range = { start: event.start, end: event.end, type: 'date' };
+  public onRangeDateChange(event: FilterRange) {
+    const range: FilterRange<FilterRange<Date>> = {
+      start: event.start,
+      end: event.end,
+    };
     this.rangeChange.emit(range);
   }
 
   public onRangeNumberChange() {
-    // this.rangeChange.emit(this.amountGroup.getValue());
     this.amountGroup.formGroup.valueChanges
       .pipe(skip(1), take(1), takeUntil(this.destroy))
-      .subscribe((range) => this.rangeChange.emit(range));
+      .subscribe((range: FilterRange<number>) => this.rangeChange.emit(range));
     // }}
   }
 }

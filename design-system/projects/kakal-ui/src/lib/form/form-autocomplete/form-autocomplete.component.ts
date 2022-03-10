@@ -35,7 +35,7 @@ export class FormAutocompleteComponent implements OnInit {
     options: SelectOption[];
   }) => SelectOption;
 
-  @Output() valueChanged: EventEmitter<FormOption> = new EventEmitter();
+  @Output() queryChange: EventEmitter<FormOption> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
   @Output() multiOptionsSelected: EventEmitter<FormOption> = new EventEmitter();
 
@@ -54,7 +54,7 @@ export class FormAutocompleteComponent implements OnInit {
       query,
       query$: of(query),
     };
-    this.valueChanged.emit(formOption);
+    this.queryChange.emit(formOption);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent): void {

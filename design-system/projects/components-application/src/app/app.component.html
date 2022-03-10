@@ -1,3 +1,9 @@
+<!-- <kkl-filter-card [card]="card"></kkl-filter-card> -->
+<div fxFill>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <app-table fxFlex="90"></app-table>
+  </div>
+</div>
 <div class="container" fxLayout="column" fxLayoutGap="2rem">
   
   <div fxLayout="row">
@@ -15,9 +21,14 @@
   </div>
 </ng-template>
 <ng-template #test let-option="option">
-  <div fxLayout="row" fxLayoutAlign="space-between" dir="rtl" (click)="logOption(option)">
+  <div
+    fxLayout="row"
+    fxLayoutAlign="space-between"
+    dir="rtl"
+    (click)="logOption(option)"
+  >
     <div>
-      {{option}}
+      {{ option }}
     </div>
     <div>
       <kkl-icon key="tree"></kkl-icon>

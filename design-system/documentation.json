@@ -47,8 +47,8 @@
                 "file": "stories/form/form-autocomplete.stories.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
-                "type": "Story<FormAutocompleteExComponent>",
-                "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
+                "type": "Story<FormAutocompleteComponent>",
+                "defaultValue": "(\r\n  args: FormAutocompleteComponent\r\n) => ({\r\n  component: FormAutocompleteComponent,\r\n  props: args,\r\n})"
             },
             {
                 "name": "Template",
@@ -102,8 +102,8 @@
                     "file": "stories/form/form-autocomplete.stories.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "Story<FormAutocompleteExComponent>",
-                    "defaultValue": "(\r\n  args: FormAutocompleteExComponent\r\n) => ({\r\n  component: FormAutocompleteExComponent,\r\n  props: args,\r\n})"
+                    "type": "Story<FormAutocompleteComponent>",
+                    "defaultValue": "(\r\n  args: FormAutocompleteComponent\r\n) => ({\r\n  component: FormAutocompleteComponent,\r\n  props: args,\r\n})"
                 }
             ],
             "stories/layout/menu.stories.ts": [

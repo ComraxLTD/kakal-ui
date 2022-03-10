@@ -10,7 +10,8 @@ export enum FormActions {
   CANCEL = 'cancel',
   // CLOSE = 'close',
   UPDATE = 'update',
-  VALUE_CHANGED = 'valueChange',
+  VALUE_CHANGED = 'valueChanged',
+  QUERY_CHANGED = 'queryChanged',
   OPTION_SELECTED = 'optionSelected',
   MULTI_SELECTED = 'multiOptionSelected',
 }

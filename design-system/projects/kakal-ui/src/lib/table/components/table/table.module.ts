@@ -6,8 +6,6 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
-
-import { KKLColumnsModule } from '../../../columns/column.module';
 import { KKLDirectivesModule } from '../../../directives/directives.module';
 import { KKLIconModule } from '../../../icon/icon.module';
 import { KKLPipesModule } from '../../../pipes/pipes.module';
@@ -29,7 +27,6 @@ import { KKLTableDirective } from './table.directive';
     MatExpansionModule,
     MatCheckboxModule,
 
-    KKLColumnsModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
     KKLPaginationModule,
@@ -39,8 +36,13 @@ import { KKLTableDirective } from './table.directive';
     KKLDirectivesModule,
     KKLPipesModule,
   ],
-  declarations: [TableComponent, KKLCellDirective, KKLTableDirective ],
+  declarations: [TableComponent, KKLCellDirective, KKLTableDirective],
   providers: [],
-  exports: [TableComponent, KKLCellDirective, KKLTableDirective, KKLPaginationModule],
+  exports: [
+    TableComponent,
+    KKLCellDirective,
+    KKLTableDirective,
+    KKLPaginationModule,
+  ],
 })
 export class KKLTableModule {}

@@ -87,11 +87,10 @@ export class FormAutocompleteComponentMulti implements OnInit {
       query$: of(query),
     };
 
-    this.formDataSource.actions.autocomplete(formOption);
+    this.formDataSource.dispatch.queryChanged(formOption);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    console.log(event);
     const option: SelectOption = event.option.value;
     // this.optionSelected.emit({
     //   key: this.key,
@@ -105,7 +104,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
       option,
     };
 
-    this.formDataSource.actions.optionSelected(formOption);
+    this.formDataSource.dispatch.optionSelected(formOption);
   }
 
   public onSelectionChange(selectionList: MatSelectionList): void {
