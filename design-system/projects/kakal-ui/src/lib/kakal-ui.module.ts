@@ -58,13 +58,14 @@ import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { StepperModule } from './stepper/stepper.module';
 import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
+import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
+import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { FilterCardComponent } from './cards/filter-card/filter-card.component';
 
 @NgModule({
   declarations: [
     FormExampleComponent,
     SidenavExampleComponent,
-    FormPhoneComponent,
   ],
   imports: [
     CoreModule,
@@ -82,8 +83,8 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     SidenavModule,
     KKLPageHeadlineModule,
     KKLInfoCardModule,
- KKLBreadCrumbsModule,
-
+    KKLBreadCrumbsModule,
+    KKLListMenuModule,
 
     // FORMS MODULES
     KKLFormModule,
@@ -97,6 +98,7 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     KKLFormTextEditorModule,
     KKLFormCheckboxModule,
     KKLFormCheckboxGroupModule,
+    KKLFormCounterModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -139,6 +141,7 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     KKLStepTitleModule,
     SidenavModule,
     KKLStatusBarsModule,
+    KKLListMenuModule,
 
     KKLFormModule,
     KKLFormCheckboxModule,
@@ -150,6 +153,8 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     KKLFormCurrencyModule,
     KKLFormUploadModule,
     KKLFormCheckboxGroupModule,
+    KKLFormCounterModule,
+
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
