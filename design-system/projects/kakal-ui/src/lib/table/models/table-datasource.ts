@@ -98,7 +98,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       );
   }
 
-  public loadColumnState({ headerState }): void {
+  public loadHeaderState({ headerState }): void {
     this.headerState.next(headerState);
   }
 

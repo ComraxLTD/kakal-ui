@@ -52,7 +52,11 @@ export class TableComponent implements OnInit {
       label: 'first_name',
       filterType: FilterType.SEARCH,
     },
-    { columnDef: 'last_name', label: 'last_name' },
+    {
+      columnDef: 'last_name',
+      label: 'last_name',
+      filterType: FilterType.MULTI_SELECTED,
+    },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
@@ -117,7 +121,6 @@ export class TableComponent implements OnInit {
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
       switchMap((fetchState: FetchState) => {
-        console.log(fetchState);
         return of(DEMO_DATA);
       })
     );
@@ -183,22 +186,22 @@ export class TableComponent implements OnInit {
             },
           ] as KKLSelectOption[],
         } as FilterOption,
-        currency: {
-          key: 'currency',
-          filterType: FilterType.NUMBER_RANGE,
-          value: {
-            start: 1,
-            end: 10,
-          } as FilterRange<number>,
-        } as FilterOption,
-        date: {
-          key: 'currency',
-          filterType: FilterType.DATE_RANGE,
-          value: {
-            start: new Date('2022-03-04T10:21:31.215Z'),
-            end: new Date('2022-03-15T10:21:31.215Z'),
-          } as FilterRange<Date>,
-        } as FilterOption,
+        // currency: {
+        //   key: 'currency',
+        //   filterType: FilterType.NUMBER_RANGE,
+        //   value: {
+        //     start: 1,
+        //     end: 10,
+        //   } as FilterRange<number>,
+        // } as FilterOption,
+        // date: {
+        //   key: 'currency',
+        //   filterType: FilterType.DATE_RANGE,
+        //   value: {
+        //     start: new Date('2022-03-04T10:21:31.215Z'),
+        //     end: new Date('2022-03-15T10:21:31.215Z'),
+        //   } as FilterRange<Date>,
+        // } as FilterOption,
       },
       action: TableActions.INIT_STATE,
     };
@@ -350,6 +353,8 @@ export class TableComponent implements OnInit {
       options: this.optionsMap[columnDef],
     };
 
-    this.tableDataSource.loadColumnState({ headerState });
+    console.log('work');
+
+    this.tableDataSource.loadHeaderState({ headerState });
   }
 }
