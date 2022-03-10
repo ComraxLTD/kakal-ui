@@ -17,7 +17,7 @@ import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
 import { Observable, BehaviorSubject, merge } from 'rxjs';
-import { filter, map, distinctUntilKeyChanged } from 'rxjs/operators';
+import { filter, map, distinctUntilKeyChanged, skip } from 'rxjs/operators';
 
 export class TableDataSource<T = any> implements DataSource<T> {
   private dataSubject: BehaviorSubject<T[]>;
@@ -117,6 +117,15 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.tableState.asObservable();
   }
 
+  public selectActions(options: {
+    action: TableActions | FetchActions | FormActions;
+  }): Observable<TableState> {
+    const { action } = options;
+    return this.tableState
+      .asObservable()
+      .pipe(filter((tableState) => tableState.action === action));
+  }
+
   public getTableStateByEvent(
     eventFilters: (FormActions | TableActions | FetchActions)[]
   ) {
@@ -173,6 +182,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   public connectFetchState(): Observable<FetchState> {
     return this.tableState.asObservable().pipe(
+      skip(1),
       filter(
         (tableState) =>
           tableState.action === FetchActions.FILTER ||

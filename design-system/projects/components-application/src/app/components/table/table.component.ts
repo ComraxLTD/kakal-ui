@@ -15,6 +15,7 @@ import {
   ColumnActions,
   FilterType,
   HeaderCellModel,
+  TableActions,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
@@ -31,6 +32,7 @@ import {
   take,
 } from 'rxjs';
 import { FilterOption } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header.filter';
+import { FilterRange } from '../../../../../kakal-ui/src/lib/table/components/header-cells/components/filter-range-cell/filter-range-cell.component';
 
 @Component({
   selector: 'app-table',
@@ -181,7 +183,16 @@ export class TableComponent implements OnInit {
             },
           ] as KKLSelectOption[],
         } as FilterOption,
+        currency: {
+          key: 'currency',
+          filterType: FilterType.NUMBER_RANGE,
+          value: {
+            start: 1,
+            end: null,
+          } as FilterRange<FilterType.NUMBER_RANGE>,
+        } as FilterOption,
       },
+      action: TableActions.INIT_STATE,
     };
 
     this.tableDataSource.loadTableState({ tableState });

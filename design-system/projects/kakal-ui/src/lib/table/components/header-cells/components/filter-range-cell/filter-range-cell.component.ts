@@ -5,12 +5,13 @@ import {
   QuestionGroupModel,
 } from '../../../../../form/models/form.types';
 import { FormService } from '../../../../../form/services/form.service';
-import { skip, Subject, take, takeUntil } from 'rxjs';
+import { Observable, skip, Subject, take, takeUntil } from 'rxjs';
+import { FilterType } from '../../models/header.types';
 
-export interface Range {
-  start: any;
-  end: any;
-  type?: string;
+export interface FilterRange<T = any> {
+  start?: any;
+  end?: any;
+  type?: T;
 }
 
 @Component({
@@ -20,10 +21,11 @@ export interface Range {
 })
 export class FilterRangeCellComponent implements OnInit {
 
-  @Input() public filterType: 'numberRange' | 'dateRange';
-  @Input() public value: Range = { start: 0, end: 0 };
+  @Input() public filterType: FilterType.NUMBER_RANGE | FilterType.DATE_RANGE;
+  @Input() public range$: Observable<FilterRange> ;
+  @Input() public value: FilterRange;
 
-  public amountGroup: QuestionGroupModel<Range>;
+  public amountGroup: QuestionGroupModel<FilterType.NUMBER_RANGE>;
   public dateControl: FormControl = new FormControl();
 
   private amountQuestions: Question[] = [
@@ -41,11 +43,9 @@ export class FilterRangeCellComponent implements OnInit {
 
   private destroy: Subject<void>;
 
-  @Output() rangeChange: EventEmitter<Range> = new EventEmitter();
+  @Output() rangeChange: EventEmitter<FilterRange> = new EventEmitter();
 
-  constructor(
-    private formService: FormService,
-  ) {}
+  constructor(private formService: FormService) {}
 
   ngOnInit(): void {
     this.destroy = new Subject();
@@ -66,15 +66,20 @@ export class FilterRangeCellComponent implements OnInit {
     });
   }
 
-  public setAmountGroup(questions: Question[]): QuestionGroupModel<Range> {
+  public setAmountGroup(
+    questions: Question[]
+  ): QuestionGroupModel<FilterType.NUMBER_RANGE> {
     return this.formService.createQuestionGroup({
       key: 'amount',
       questions,
     });
   }
 
-  public onRangeDateChange(event: Range) {
-    const range: Range = { start: event.start, end: event.end, type: 'date' };
+  public onRangeDateChange(event: FilterRange) {
+    const range: FilterRange<FilterType.DATE_RANGE> = {
+      start: event.start,
+      end: event.end,
+    };
     this.rangeChange.emit(range);
   }
 
@@ -82,7 +87,9 @@ export class FilterRangeCellComponent implements OnInit {
     // this.rangeChange.emit(this.amountGroup.getValue());
     this.amountGroup.formGroup.valueChanges
       .pipe(skip(1), take(1), takeUntil(this.destroy))
-      .subscribe((range) => this.rangeChange.emit(range));
+      .subscribe((range: FilterRange<FilterType.NUMBER_RANGE>) =>
+        this.rangeChange.emit(range)
+      );
     // }}
   }
 }

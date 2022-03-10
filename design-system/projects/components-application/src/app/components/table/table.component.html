@@ -1,11 +1,11 @@
 <div fxFill dir="rtl">
   <div dir="ltr" fxLayout="row" fxLayoutGap="3rem">
-    <!-- <code *ngIf="tableState$ | async as tableState">
+    <code *ngIf="tableState$ | async as tableState">
       <div>tableState :</div>
       <pre>
-       {{ tableState | json }}
+       {{ tableState.filters | json }}
       </pre>
-    </code> -->
+    </code>
     <mat-divider [vertical]="true"></mat-divider>
     <code *ngIf="fetchState$ | async as fetchState">
       <div>fetchState :</div>

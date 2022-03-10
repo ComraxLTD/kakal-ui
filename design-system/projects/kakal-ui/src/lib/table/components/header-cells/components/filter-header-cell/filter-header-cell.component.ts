@@ -8,25 +8,14 @@ import {
   KKLFormOption,
 } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
-import {
-  HeaderState,
-  SortState,
-  TableState,
-} from '../../../../models/table.state';
+import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import {
-  map,
-  Observable,
-  filter,
-  tap,
-  take,
-  switchMap,
-  pairwise,
-  merge,
-} from 'rxjs';
+import { map, Observable, filter, tap, take, switchMap } from 'rxjs';
 import { FilterType } from '../../models/header.types';
 import { FilterOption } from '../../models/header.filter';
+
+import { setSelectState } from './filter-header.helpers';
 
 @Component({
   selector: 'kkl-filter-header-cell',
@@ -44,7 +33,9 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public optionFlag: boolean = true;
 
-  public options$: Observable<{ [key: number]: KKLSelectOption }>;
+  public options$: Observable<KKLSelectOption[]>;
+  public dateRange$: Observable<Range>;
+  public numberRange$: Observable<Range>;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
@@ -52,14 +43,12 @@ export class FilterHeaderCellComponent implements OnInit {
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {
-    this.filterType = this.filterType;
-
     if (this.filterType === 'select' || this.filterType === 'multiSelect') {
       this.options$ = this.initOptionsWithState();
     }
   }
 
-  private setFilterOption(value: any, format?) {
+  private setFilterState(value: any) {
     const filterOption: FilterOption = {
       key: this.key.toString(),
       value,
@@ -67,11 +56,6 @@ export class FilterHeaderCellComponent implements OnInit {
       format: this.format,
     };
 
-    return filterOption;
-  }
-
-  private setFilterState(value: any) {
-    const filterOption = this.setFilterOption(value);
     return { [this.key]: filterOption };
   }
 
@@ -83,55 +67,17 @@ export class FilterHeaderCellComponent implements OnInit {
       ),
       take(1),
       map((headerState: HeaderState) => headerState.options),
-      // map((options) => {
-      //   return options.reduce((acc, option, i) => {
-      //     return {
-      //       ...acc,
-      //       [i]: option,
-      //     };
-      //   }, {});
-      // }),
-
       // TODO - optionFlag is true only if options is init
       tap(() => (this.optionFlag = false))
     );
   }
 
-  private getHeaderFilterState(selectors: FilterType[]) {
-    return this.tableDataSource.connectTableState().pipe(
-      map((tableState: TableState) => tableState.filters[this.key]),
-      filter(
-        (filterOption: FilterOption) =>
-          selectors.indexOf(filterOption.filterType) !== -1
-      )
-    );
-  }
-  private setSelectState() {
-    const filterSelectState$ = this.getHeaderFilterState([
-      FilterType.SELECTED,
-      FilterType.MULTI_SELECTED,
-    ]).pipe(
-      map((filterOption) => filterOption.value as KKLSelectOption[]),
-      map((options) => options.map((option) => option.value))
-    );
-
-    const initSelectState$ = filterSelectState$.pipe(take(1));
-
-    const updateSelectState$ = filterSelectState$.pipe(
-      pairwise(),
-      filter(([prev, current]) => prev.length > current.length),
-      map(([prev, current]) => current)
-    );
-
-    return merge(initSelectState$, updateSelectState$);
-  }
-
   private initOptionsWithState() {
     const options$ = this.initOptions$();
-    const headerFilterState$ = this.setSelectState();
+    const optionsFilterState$ = setSelectState(this.tableDataSource, this.key);
     return options$.pipe(
       switchMap((options: KKLSelectOption[]) => {
-        return headerFilterState$.pipe(
+        return optionsFilterState$.pipe(
           map((selectedOptions: string[]) => {
             return options.map((option) => {
               return {
@@ -144,6 +90,8 @@ export class FilterHeaderCellComponent implements OnInit {
       })
     );
   }
+
+  private initRangeDate$() {}
 
   // DOE EVENTS
 

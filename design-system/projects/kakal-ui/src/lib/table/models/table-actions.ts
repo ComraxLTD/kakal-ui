@@ -7,9 +7,9 @@ export interface ActionStateRules {
 }
 
 export enum TableActions {
+  INIT_STATE = 'initState',
   EXPAND = 'expand',
   FORM = 'form',
-
 }
 export enum ColumnActions {
   DEFAULT = 'default',
@@ -20,4 +20,5 @@ export enum FetchActions {
   SORT = 'sort',
   PAGING = 'paging',
   FILTER = 'filter',
+  TABLE_FILTER = 'tableFilters',
 }
