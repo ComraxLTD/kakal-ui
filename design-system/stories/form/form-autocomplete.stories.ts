@@ -1,18 +1,17 @@
 // // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
+import { FormAutocompleteComponent } from 'projects/kakal-ui/src/public-api';
 
-import { KKLFormAutoCompleteExModule } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.module';
-import { FormAutocompleteExComponent } from 'projects/kakal-ui/src/lib/examples/form-autocomplete-ex/form-autocomplete-ex.component';
 
 export default {
   title: 'Form',
   decorators: [
     moduleMetadata({
-      imports: [KKLFormAutoCompleteExModule],
+      imports: [FormAutocompleteComponent],
     }),
   ],
-  component: FormAutocompleteExComponent,
+  component: FormAutocompleteComponent,
   argTypes: {
     key: {
       name: 'key',
@@ -97,7 +96,7 @@ export default {
       },
     },
     autocomplete: {
-      name: 'valueChanged',
+      name: 'queryChange',
       description: 'Event that is emitted whenever the user is typing. ',
       table: {
         type: {
@@ -128,10 +127,10 @@ export default {
   },
 } as Meta;
 
-const Template: Story<FormAutocompleteExComponent> = (
-  args: FormAutocompleteExComponent
+const Template: Story<FormAutocompleteComponent> = (
+  args: FormAutocompleteComponent
 ) => ({
-  component: FormAutocompleteExComponent,
+  component: FormAutocompleteComponent,
   props: args,
 });
 

@@ -46,7 +46,10 @@ export class FormDataSource {
 
   // use when delete item form array
   private autocomplete(formOption?: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: FormActions.VALUE_CHANGED });
+    this.formStateSubject.next({
+      ...formOption,
+      event: FormActions.VALUE_CHANGED,
+    });
   }
 
   //  use when update form - formGroup.pathValue/setValue
@@ -95,10 +98,6 @@ export class FormDataSource {
     this.formStateSubject.next({ ...formOption, event: FormActions.UPDATE });
   }
 
-  private optionSelected(formOption: FormOption) {
-    this.formStateSubject.next({ ...formOption, event: FormActions.OPTION_SELECTED });
-  }
-
   private createAction<T>(
     prop: { formOption: FormOption },
     event?: FormActions
@@ -107,11 +106,13 @@ export class FormDataSource {
     this.formStateSubject.next({ ...formOption, event });
   }
 
-  public actions = {
-    autocomplete: (formOption?: FormOption) =>
+  public dispatch = {
+    queryChanged: (formOption?: FormOption) =>
+      this.createAction({ formOption }, FormActions.QUERY_CHANGED),
+    valueChanged: (formOption?: FormOption) =>
       this.createAction({ formOption }, FormActions.VALUE_CHANGED),
     optionSelected: (formOption?: FormOption) =>
-      this.optionSelected(formOption),
+      this.createAction({ formOption }, FormActions.OPTION_SELECTED),
   };
 
   public events = {
