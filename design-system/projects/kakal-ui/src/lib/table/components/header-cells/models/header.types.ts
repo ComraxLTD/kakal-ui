@@ -7,7 +7,7 @@ export declare type HeaderType =
   | 'select'
   | 'expend';
 
-export  enum FilterType {
+export enum FilterType {
   SEARCH = 'search',
   SELECTED = 'select',
   MULTI_SELECTED = 'multiSelect',
@@ -15,6 +15,11 @@ export  enum FilterType {
   NUMBER_RANGE = 'numberRange',
 }
 
+export interface FilterRange<T = any> {
+  start?: T;
+  end?: T;
+  type?: FilterType;
+}
 
 export interface FilterOption<T = any> {
   key: string;

@@ -17,6 +17,7 @@ import {
   HeaderCellModel,
   TableActions,
   FilterOption,
+  FilterRange,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
@@ -183,8 +184,8 @@ export class TableComponent implements OnInit {
               value: 3,
               selected: true,
             },
-          ] as KKLSelectOption[],
-        } as FilterOption,
+          ],
+        } as FilterOption<KKLSelectOption[]>,
         // currency: {
         //   key: 'currency',
         //   filterType: FilterType.NUMBER_RANGE,
@@ -193,14 +194,14 @@ export class TableComponent implements OnInit {
         //     end: 10,
         //   } as FilterRange<number>,
         // } as FilterOption,
-        // date: {
-        //   key: 'currency',
-        //   filterType: FilterType.DATE_RANGE,
-        //   value: {
-        //     start: new Date('2022-03-04T10:21:31.215Z'),
-        //     end: new Date('2022-03-15T10:21:31.215Z'),
-        //   } as FilterRange<Date>,
-        // } as FilterOption,
+        date: {
+          key: 'date',
+          filterType: FilterType.DATE_RANGE,
+          value: {
+            start: new Date('2022-03-04T10:21:31.215Z'),
+            end: new Date('2022-03-15T10:21:31.215Z'),
+          },
+        } as FilterOption<FilterRange<Date>>,
       },
       action: TableActions.INIT_STATE,
     };

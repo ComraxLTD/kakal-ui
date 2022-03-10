@@ -11,7 +11,7 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import { FilterType, FilterOption } from '../../models/header.types';
+import { FilterType, FilterOption, FilterRange } from '../../models/header.types';
 import { map, Observable, filter, of, merge } from 'rxjs';
 
 import {
@@ -19,7 +19,6 @@ import {
   setRangeState,
   setSelectState,
 } from './filter-header.helpers';
-import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
 
 @Component({
   selector: 'kkl-filter-header-cell',
