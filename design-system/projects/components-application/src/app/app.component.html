@@ -8,10 +8,20 @@
     test2
   </kkl-list-menu>
   <div fxLayout="row">
+    <p kkl-hover="TEST" [template]="hoverTemplate"  hoverColor="white">new test</p>
   </div>
   <!-- <app-table></app-table> -->
 </div>
-
+<ng-template #hoverTemplate>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <div>
+      <p>Custom Template</p>
+    </div>
+    <div>
+      <kkl-icon key="tree" color="primary"></kkl-icon>
+    </div>
+  </div>
+</ng-template>
 <ng-template #test let-option="option">
   <div fxLayout="row" fxLayoutAlign="space-between" dir="rtl" (click)="logOption(option)">
     <div>
