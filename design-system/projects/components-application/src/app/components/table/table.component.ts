@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 import {
   TableDataSource,
   FormService,
-  TableColumnModel,
   RowState,
   Question,
   QuestionGroupModel,
@@ -13,26 +13,23 @@ import {
   FetchState,
   ColumnState,
   ColumnActions,
+  FilterType,
+  HeaderCellModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
+import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
+import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
+import { PaginationInstance } from 'ngx-pagination';
 import {
   BehaviorSubject,
-  distinctUntilChanged,
-  distinctUntilKeyChanged,
   firstValueFrom,
   map,
   merge,
   Observable,
   of,
-  skip,
   switchMap,
   take,
 } from 'rxjs';
-import { Validators } from '@angular/forms';
-import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
-import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
-import { HeaderCellModel } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
-import { PaginationInstance } from 'ngx-pagination';
 
 @Component({
   selector: 'app-table',
@@ -47,23 +44,27 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: HeaderCellModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', filterType: 'search' },
+    {
+      columnDef: 'first_name',
+      label: 'first_name',
+      filterType: FilterType.SEARCH,
+    },
     { columnDef: 'last_name', label: 'last_name' },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
-    { columnDef: 'city', label: 'city', filterType: 'select' },
+    { columnDef: 'city', label: 'city', filterType: FilterType.MULTI_SELECTED },
     {
       columnDef: 'date',
       label: 'date',
       format: 'date',
-      filterType: 'dateRange',
+      filterType: FilterType.DATE_RANGE,
     },
     {
       columnDef: 'currency',
       label: 'currency',
       flex: 0.5,
-      filterType: 'numberRange',
+      filterType: FilterType.NUMBER_RANGE,
     },
   ];
 
@@ -78,7 +79,7 @@ export class TableComponent implements OnInit {
   ];
 
   public data$: Observable<RootObject[]>;
-  public columns$: Observable<TableColumnModel<RootObject>[]>;
+  public columns$: Observable<HeaderCellModel<RootObject>[]>;
   public tableState$: Observable<TableState>;
   public fetchState$: Observable<FetchState>;
 

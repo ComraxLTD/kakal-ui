@@ -31,7 +31,6 @@ import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-chec
 import { KKLTableModule } from './table/components/table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
-import { KKLColumnsModule } from './columns/column.module';
 
 import { SidenavModule } from './sidenav/sidenav.module';
 
@@ -60,7 +59,6 @@ import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
-import { FilterCardComponent } from './cards/filter-card/filter-card.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +101,6 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
-    KKLColumnsModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
@@ -158,7 +155,6 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
-    KKLColumnsModule,
 
     KKLDialogModule,
     KKLInfoCardModule,

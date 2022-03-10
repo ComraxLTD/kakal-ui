@@ -9,12 +9,13 @@ export interface ActionStateRules {
 export enum TableActions {
   EXPAND = 'expand',
   FORM = 'form',
-  
+
 }
 export enum ColumnActions {
   DEFAULT = 'default',
   UPDATE_FILTERS = 'updateOptions',
 }
+
 export enum FetchActions {
   SORT = 'sort',
   PAGING = 'paging',

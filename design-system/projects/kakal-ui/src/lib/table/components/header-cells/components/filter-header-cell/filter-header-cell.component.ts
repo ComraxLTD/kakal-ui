@@ -10,9 +10,9 @@ import {
 import { TableDataSource } from '../../../../models/table-datasource';
 import { ColumnState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
-import { FilterType } from '../../models/header-cell.model';
 
 import { map, Observable, filter, tap } from 'rxjs';
+import { FilterType } from '../../models/header.types';
 
 export interface FilterOption {
   key: string;
@@ -118,18 +118,8 @@ export class FilterHeaderCellComponent implements OnInit {
     this.tableDataSource.dispatchFilter({ filterState });
   }
 
-  public onMultiSelectChange(
-    selectedOptions: KKLSelectOption[],
-    selected: any[]
-  ) {
-    // this.tableFilterService.pushMany({
-    //   selectedOptions,
-    //   selected,
-    //   item: { key: this.column.columnDef },
-    // });
-  }
-
   public onSelectionChange(optionsList: MatListOption[]) {
+    console.log(optionsList);
     const options: KKLSelectOption[] = optionsList.map(
       (option: MatListOption) => {
         return option.value;
