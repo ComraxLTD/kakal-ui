@@ -4,3 +4,27 @@
     <app-table fxFlex="90"></app-table>
   </div>
 </div>
+<div class="container" fxLayout="column" fxLayoutGap="2rem">
+  <!-- <kkl-stepper [steps$]="steps$" direction="row"></kkl-stepper> -->
+  <kkl-form-counter [control]="control" icon="tree" title="כותרת"></kkl-form-counter>
+  <kkl-list-menu [options]="testArr" [optionTemplate]="test" (emitOption)="logOption($event)">
+    test
+  </kkl-list-menu>
+  <kkl-list-menu [options]="testArr" (emitOption)="logOption($event)">
+    test2
+  </kkl-list-menu>
+  <div fxLayout="row">
+  </div>
+  <!-- <app-table></app-table> -->
+</div>
+
+<ng-template #test let-option="option">
+  <div fxLayout="row" fxLayoutAlign="space-between" dir="rtl" (click)="logOption(option)">
+    <div>
+      {{option}}
+    </div>
+    <div>
+      <kkl-icon key="tree"></kkl-icon>
+    </div>
+  </div>
+</ng-template>
