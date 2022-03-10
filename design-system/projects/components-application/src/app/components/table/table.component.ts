@@ -195,8 +195,8 @@ export class TableComponent implements OnInit {
           key: 'currency',
           filterType: FilterType.DATE_RANGE,
           value: {
-            start: new Date(),
-            end: null,
+            start: new Date('2022-03-04T10:21:31.215Z'),
+            end: new Date('2022-03-15T10:21:31.215Z'),
           } as FilterRange<Date>,
         } as FilterOption,
       },

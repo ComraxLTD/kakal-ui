@@ -15,7 +15,11 @@ import { map, Observable, filter, tap, take, switchMap } from 'rxjs';
 import { FilterType } from '../../models/header.types';
 import { FilterOption } from '../../models/header.filter';
 
-import { setDateRangeState, setSelectState } from './filter-header.helpers';
+import {
+  setDateRangeState,
+  setNumberRangeState,
+  setSelectState,
+} from './filter-header.helpers';
 import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
 
 @Component({
@@ -35,8 +39,8 @@ export class FilterHeaderCellComponent implements OnInit {
   public optionFlag: boolean = true;
 
   public options$: Observable<KKLSelectOption[]>;
-  public dateRange$:  Observable<FilterRange<Date>>;
-  public numberRange$:  Observable<FilterRange<number>>;
+  public dateRange$: Observable<FilterRange<Date>>;
+  public numberRange$: Observable<FilterRange<number>>;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
@@ -44,16 +48,34 @@ export class FilterHeaderCellComponent implements OnInit {
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {
-    if (this.filterType === 'select' || this.filterType === 'multiSelect') {
+    if (
+      this.filterType === FilterType.SELECTED ||
+      this.filterType === FilterType.MULTI_SELECTED
+    ) {
       this.options$ = this.initOptionsWithState();
     }
 
-    if(this.filterType === FilterType.DATE_RANGE) {
-      this.dateRange$ = this.initRangeDate$()
+    if (this.filterType === FilterType.DATE_RANGE) {
+      this.dateRange$ = this.initRangeDate$().pipe(
+        map((range) => {
+          return {
+            ...range,
+            type: this.filterType,
+          };
+        })
+      );
+    }
+    if (this.filterType === FilterType.NUMBER_RANGE) {
+      this.numberRange$ = this.initNumberDate$().pipe(
+        map((range) => {
+          return {
+            ...range,
+            type: this.filterType,
+          };
+        })
+      );
     }
   }
-
-
 
   private setFilterState(value: any) {
     const filterOption: FilterOption = {
@@ -98,8 +120,13 @@ export class FilterHeaderCellComponent implements OnInit {
     );
   }
 
-  private initRangeDate$()  : Observable<FilterRange<Date>> {
+  private initRangeDate$(): Observable<FilterRange<Date>> {
     return setDateRangeState(this.tableDataSource, this.key).pipe(
+      tap((value) => console.log(value))
+    );
+  }
+  private initNumberDate$(): Observable<FilterRange<number>> {
+    return setNumberRangeState(this.tableDataSource, this.key).pipe(
       tap((value) => console.log(value))
     );
   }

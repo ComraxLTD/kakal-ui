@@ -25,7 +25,7 @@ export class FilterRangeCellComponent implements OnInit {
   @Input() public value: FilterRange;
 
   public amountGroup: QuestionGroupModel<FilterRange<number>>;
-  public dateControl: FormControl = new FormControl();
+  public dateControl: FormControl;
 
   private amountQuestions: Question[] = [
     {
@@ -48,8 +48,18 @@ export class FilterRangeCellComponent implements OnInit {
 
   ngOnInit(): void {
     this.destroy = new Subject();
-    this.amountQuestions = this.setQuestionWithValue(this.amountQuestions);
-    this.amountGroup = this.setAmountGroup(this.amountQuestions);
+
+    if (this.filterType === FilterType.NUMBER_RANGE) {
+      this.amountQuestions = this.setQuestionWithValue(this.amountQuestions);
+      this.amountGroup = this.setAmountGroup(this.amountQuestions);
+    }
+
+    if (this.filterType === FilterType.DATE_RANGE) {
+      this.dateControl = new FormControl({
+        start: this.value.start,
+        end: this.value.end,
+      });
+    }
   }
 
   ngOnDestroy(): void {
@@ -83,7 +93,6 @@ export class FilterRangeCellComponent implements OnInit {
   }
 
   public onRangeNumberChange() {
-    // this.rangeChange.emit(this.amountGroup.getValue());
     this.amountGroup.formGroup.valueChanges
       .pipe(skip(1), take(1), takeUntil(this.destroy))
       .subscribe((range: FilterRange<number>) => this.rangeChange.emit(range));

@@ -84,12 +84,6 @@ export function setDateRangeState(
   const initSelectState$ = getRangeDateState(initState$, key);
   const updateSelectState$ = getRangeDateState(updateState$, key);
 
-  // const updateSelectState$ = filterSelectState$.pipe(
-  //   pairwise(),
-  //   filter(([prev, current]) => prev.length > current.length),
-  //   map(([prev, current]) => current)
-  // );
-
   return merge(initSelectState$, updateSelectState$);
 }
 
@@ -98,4 +92,22 @@ export function getRangeNumberState(
   key: string
 ): Observable<FilterRange<number>> {
   return getHeaderFilterState(tableState$, [FilterType.NUMBER_RANGE], key);
+}
+
+export function setNumberRangeState(
+  tableDataSource: TableDataSource,
+  key: string
+): Observable<FilterRange<number>> {
+  const initState$ = tableDataSource.selectActions({
+    action: TableActions.INIT_STATE,
+  });
+
+  const updateState$ = tableDataSource.selectActions({
+    action: FetchActions.TABLE_FILTER,
+  });
+
+  const initSelectState$ = getRangeNumberState(initState$, key);
+  const updateSelectState$ = getRangeNumberState(updateState$, key);
+
+  return merge(initSelectState$, updateSelectState$);
 }
