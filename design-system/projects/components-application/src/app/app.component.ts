@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ExpandPanelModel } from '../../../kakal-ui/src/lib/expand-panel/expand-panel.model';
 
 @Component({
   selector: 'app-root',

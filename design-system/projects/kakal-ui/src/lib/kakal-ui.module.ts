@@ -61,6 +61,7 @@ import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.mo
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { FilterCardComponent } from './cards/filter-card/filter-card.component';
+import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 
 @NgModule({
   declarations: [
@@ -85,6 +86,7 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
+    KKLExpandPanelModule,
 
     // FORMS MODULES
     KKLFormModule,
@@ -142,6 +144,7 @@ import { FilterCardComponent } from './cards/filter-card/filter-card.component';
     SidenavModule,
     KKLStatusBarsModule,
     KKLListMenuModule,
+    KKLExpandPanelModule,
 
     KKLFormModule,
     KKLFormCheckboxModule,

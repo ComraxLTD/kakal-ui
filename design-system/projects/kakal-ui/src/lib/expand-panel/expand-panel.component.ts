@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { ExpandPanelModel } from "./expand-panel.model"
 
 @Component({
@@ -9,9 +9,10 @@ import { ExpandPanelModel } from "./expand-panel.model"
 export class ExpandPanelComponent implements OnInit {
 
   @Input() checkMobile: Boolean;
-  @Input() public tabs: ExpandPanelModel[];
+  @Input() tabContent: TemplateRef<any>;
+  @Input() tabs: ExpandPanelModel[];
 
-  public openAll: boolean = false;
+  openAll: boolean = false;
 
   constructor() { }
 
@@ -19,28 +20,19 @@ export class ExpandPanelComponent implements OnInit {
     this.tabs[0].isOpen = true
   }
 
-  openContainer(id: ExpandPanelModel["id"]) {
-    this.tabs.forEach(tab => {
-      if(tab.id === id) {
-        tab.isOpen = !tab.isOpen
-      }
-    })
+  openContainer(id: ExpandPanelModel["id"]): void {
+    this.tabs.forEach(tab => {if(tab.id === id) tab.isOpen = !tab.isOpen})
     this.checkAllOpen()
   }
 
-  toggleOpenAll(bol: boolean) {
-    this.tabs.forEach(tab => {
-      tab.isOpen = bol
-    })
+  toggleOpenAll(bol: boolean): void {
+    this.tabs.forEach(tab => tab.isOpen = bol)
     this.openAll = bol
   }
 
-  checkAllOpen() {
+  checkAllOpen(): void {
     let isAllOpen: boolean = true
-    this.tabs.forEach(tab => {
-      if (!tab.isOpen) isAllOpen = false
-    })
+    this.tabs.forEach(tab => {if (!tab.isOpen) isAllOpen = false})
     this.openAll = isAllOpen
   }
-
 }
