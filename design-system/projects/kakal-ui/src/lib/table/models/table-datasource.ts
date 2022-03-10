@@ -159,7 +159,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   public connectFetchState(): Observable<FetchState> {
-    const fetchState$ = this.tableState.asObservable().pipe(
+    return this.tableState.asObservable().pipe(
       map((tableState: TableState) => {
         return {
           itemsPerPage: tableState.pagination.itemsPerPage,
@@ -168,13 +168,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
           ...tableState.filters,
         } as FetchState;
       })
-    );
-
-    return merge(
-      fetchState$.pipe(distinctUntilKeyChanged('itemsPerPage')),
-      fetchState$.pipe(distinctUntilKeyChanged('next')),
-      fetchState$.pipe(distinctUntilKeyChanged('sort')),
-      fetchState$.pipe(distinctUntilKeyChanged('filters'))
     );
   }
 
