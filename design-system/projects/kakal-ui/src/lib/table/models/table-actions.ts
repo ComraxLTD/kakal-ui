@@ -9,6 +9,7 @@ export interface ActionStateRules {
 export enum TableActions {
   EXPAND = 'expand',
   FORM = 'form',
+  
 }
 export enum ColumnActions {
   DEFAULT = 'default',

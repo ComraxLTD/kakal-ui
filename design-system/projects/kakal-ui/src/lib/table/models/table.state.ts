@@ -1,5 +1,5 @@
 import { TableColumnModel } from '../../columns/models/column.model';
-import { ColumnActions, TableActions } from '../models/table-actions';
+import { ColumnActions, FetchActions, TableActions } from '../models/table-actions';
 import { SortDirection } from '@angular/material/sort';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
@@ -15,7 +15,7 @@ export interface TableState {
   activeColumns?: string[];
   pagination?: PaginationInstance;
   forms?: { [key: string]: QuestionGroupModel };
-  event?: FormActions | TableActions;
+  action?: FormActions | TableActions | FetchActions;
   filters?: FilterState;
   sort?: SortState;
 }

@@ -11,7 +11,7 @@ import {
 
 import { FormDataSource } from '../../form/models/form-datasource';
 import { FormActions } from '../../form/models/form.actions';
-import { TableActions } from '../models/table-actions';
+import { FetchActions, TableActions } from '../models/table-actions';
 import { TableSelector } from '../models/table.selctors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
@@ -43,7 +43,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       pagination: { itemsPerPage: 3, currentPage: 1 },
       forms: {},
       filters: {},
-      event: FormActions.DEFAULT,
+      action: FormActions.DEFAULT,
     });
 
     this.rowState = new BehaviorSubject<RowState<T>>({
@@ -127,11 +127,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
   }
 
-  public getTableStateByEvent(eventFilters: (FormActions | TableActions)[]) {
+  public getTableStateByEvent(eventFilters: (FormActions | TableActions | FetchActions)[]) {
     return this.tableState.asObservable().pipe(
       filter((tableState) => {
         return eventFilters
-          ? eventFilters.indexOf(tableState.event) !== -1
+          ? eventFilters.indexOf(tableState.action) !== -1
           : true;
       })
     );
