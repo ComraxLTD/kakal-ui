@@ -78,6 +78,16 @@
               <kkl-typography> {{ option.label }}</kkl-typography>
             </mat-list-option>
           </ng-container>
+
+          <!-- <ng-container *ngFor="let item of options$ | async | keyvalue">
+            <mat-list-option
+              (click)="$event.stopPropagation()"
+              [value]="item.value"
+              [selected]="item.value.selected"
+            >
+              <kkl-typography> {{ item.value.label }}</kkl-typography>
+            </mat-list-option>
+          </ng-container> -->
         </mat-selection-list>
       </ng-controller>
     </div>

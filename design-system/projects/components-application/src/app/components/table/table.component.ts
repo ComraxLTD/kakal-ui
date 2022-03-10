@@ -11,7 +11,7 @@ import {
   TableState,
   KKLSelectOption,
   FetchState,
-  ColumnState,
+  HeaderState,
   ColumnActions,
   FilterType,
   HeaderCellModel,
@@ -109,7 +109,7 @@ export class TableComponent implements OnInit {
     this.tableState$ = this.tableDataSource.connectTableState();
     this.fetchState$ = this.tableDataSource.connectFetchState();
 
-    this.initTableState()
+    this.initTableState();
   }
 
   private connectToFetchState() {
@@ -173,11 +173,13 @@ export class TableComponent implements OnInit {
         city: {
           key: 'city',
           filterType: FilterType.MULTI_SELECTED,
-          value: {
-            label: 'Russia',
-            value: 3,
-            selected: true,
-          } as KKLSelectOption,
+          value: [
+            {
+              label: 'Russia',
+              value: 3,
+              selected: true,
+            },
+          ] as KKLSelectOption[],
         } as FilterOption,
       },
     };
@@ -323,12 +325,12 @@ export class TableComponent implements OnInit {
   }
 
   public onFetchOptions(columnDef: string) {
-    const columnState: ColumnState = {
+    const headerState: HeaderState = {
       key: columnDef,
       event: ColumnActions.UPDATE_FILTERS,
       options: this.optionsMap[columnDef],
     };
 
-    this.tableDataSource.loadColumnState({ columnState });
+    this.tableDataSource.loadColumnState({ headerState });
   }
 }

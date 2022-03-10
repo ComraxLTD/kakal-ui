@@ -8,14 +8,25 @@ import {
   KKLFormOption,
 } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
-import { ColumnState, SortState } from '../../../../models/table.state';
+import {
+  HeaderState,
+  SortState,
+  TableState,
+} from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import { map, Observable, filter, tap } from 'rxjs';
+import {
+  map,
+  Observable,
+  filter,
+  tap,
+  take,
+  switchMap,
+  pairwise,
+  merge,
+} from 'rxjs';
 import { FilterType } from '../../models/header.types';
 import { FilterOption } from '../../models/header.filter';
-
-
 
 @Component({
   selector: 'kkl-filter-header-cell',
@@ -33,7 +44,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public optionFlag: boolean = true;
 
-  public options$: Observable<KKLSelectOption[]>;
+  public options$: Observable<{ [key: number]: KKLSelectOption }>;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
@@ -44,7 +55,7 @@ export class FilterHeaderCellComponent implements OnInit {
     this.filterType = this.filterType;
 
     if (this.filterType === 'select' || this.filterType === 'multiSelect') {
-      this.options$ = this.setOptions$();
+      this.options$ = this.initOptionsWithState();
     }
   }
 
@@ -64,16 +75,73 @@ export class FilterHeaderCellComponent implements OnInit {
     return { [this.key]: filterOption };
   }
 
-  private setOptions$() {
-    return this.tableDataSource.connectColumnState(this.key).pipe(
+  private initOptions$() {
+    return this.tableDataSource.connectHeaderState(this.key).pipe(
       filter(
-        (columnState: ColumnState) =>
-          columnState.event === ColumnActions.UPDATE_FILTERS
+        (headerState: HeaderState) =>
+          headerState.event === ColumnActions.UPDATE_FILTERS
       ),
-      map((columnState: ColumnState) => columnState.options),
+      take(1),
+      map((headerState: HeaderState) => headerState.options),
+      // map((options) => {
+      //   return options.reduce((acc, option, i) => {
+      //     return {
+      //       ...acc,
+      //       [i]: option,
+      //     };
+      //   }, {});
+      // }),
 
-      // TODO - optionFlag is true only og options is init
+      // TODO - optionFlag is true only if options is init
       tap(() => (this.optionFlag = false))
+    );
+  }
+
+  private getHeaderFilterState(selectors: FilterType[]) {
+    return this.tableDataSource.connectTableState().pipe(
+      map((tableState: TableState) => tableState.filters[this.key]),
+      filter(
+        (filterOption: FilterOption) =>
+          selectors.indexOf(filterOption.filterType) !== -1
+      )
+    );
+  }
+  private setSelectState() {
+    const filterSelectState$ = this.getHeaderFilterState([
+      FilterType.SELECTED,
+      FilterType.MULTI_SELECTED,
+    ]).pipe(
+      map((filterOption) => filterOption.value as KKLSelectOption[]),
+      map((options) => options.map((option) => option.value))
+    );
+
+    const initSelectState$ = filterSelectState$.pipe(take(1));
+
+    const updateSelectState$ = filterSelectState$.pipe(
+      pairwise(),
+      filter(([prev, current]) => prev.length > current.length),
+      map(([prev, current]) => current)
+    );
+
+    return merge(initSelectState$, updateSelectState$);
+  }
+
+  private initOptionsWithState() {
+    const options$ = this.initOptions$();
+    const headerFilterState$ = this.setSelectState();
+    return options$.pipe(
+      switchMap((options: KKLSelectOption[]) => {
+        return headerFilterState$.pipe(
+          map((selectedOptions: string[]) => {
+            return options.map((option) => {
+              return {
+                ...option,
+                selected: selectedOptions.indexOf(option.value) !== -1,
+              } as KKLSelectOption;
+            });
+          })
+        );
+      })
     );
   }
 
@@ -114,7 +182,6 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onSelectionChange(optionsList: MatListOption[]) {
-    console.log(optionsList);
     const options: KKLSelectOption[] = optionsList.map(
       (option: MatListOption) => {
         return option.value;

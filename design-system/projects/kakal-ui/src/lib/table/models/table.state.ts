@@ -45,7 +45,7 @@ export interface RowState<T = any> {
 
 // interface for update select and filter options
 
-export type ColumnState<T = any> = {
+export type HeaderState<T = any> = {
   event: ColumnActions;
   key?: keyof T;
   options?: KKLSelectOption[];

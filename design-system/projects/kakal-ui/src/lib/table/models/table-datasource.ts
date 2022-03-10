@@ -1,7 +1,7 @@
 import { DataSource } from '@angular/cdk/collections';
 
 import {
-  ColumnState,
+  HeaderState,
   FetchState,
   FilterState,
   RowState,
@@ -25,7 +25,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   private tableState: BehaviorSubject<TableState>;
 
-  private columnState: BehaviorSubject<ColumnState<T>>;
+  private headerState: BehaviorSubject<HeaderState<T>>;
 
   private rowState: BehaviorSubject<RowState<T>>;
 
@@ -50,7 +50,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       event: FormActions.DEFAULT,
     });
 
-    this.columnState = new BehaviorSubject<ColumnState<T>>({
+    this.headerState = new BehaviorSubject<HeaderState<T>>({
       event: ColumnActions.DEFAULT,
     });
 
@@ -90,16 +90,16 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   // get column statement
 
-  public connectColumnState(columnDef: string) {
-    return this.columnState
+  public connectHeaderState(columnDef: string) {
+    return this.headerState
       .asObservable()
       .pipe(
-        filter((columnState: ColumnState) => columnState.key === columnDef)
+        filter((headerState: HeaderState) => headerState.key === columnDef)
       );
   }
 
-  public loadColumnState({ columnState }): void {
-    this.columnState.next(columnState);
+  public loadColumnState({ headerState }): void {
+    this.headerState.next(headerState);
   }
 
   // tableState
