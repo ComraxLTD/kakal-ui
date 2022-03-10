@@ -210,6 +210,7 @@ export * from './lib/pipes/range.pipe';
 export * from './lib/pipes/pipes.module';
 
 //directives
+export * from './lib/directives/hover.directive';
 export * from './lib/directives/variant.directive';
 export * from './lib/directives/size.directive';
 export * from './lib/directives/button.directive';
@@ -225,6 +226,9 @@ export * from './lib/directives/directives.module';
 
 // styles
 export * from './styles/theme';
+// hover component
+export * from './lib/kkl-hover/kkl-hover.component';
+export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards
 export * from './lib/cards/info-card/info-card.module';

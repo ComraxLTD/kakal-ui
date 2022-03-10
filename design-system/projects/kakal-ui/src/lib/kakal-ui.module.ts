@@ -61,6 +61,7 @@ import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.mo
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { FilterCardComponent } from './cards/filter-card/filter-card.component';
+import {KKLHoverModule} from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 
 @NgModule({
@@ -74,6 +75,7 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    KKLHoverModule,
     KKLFilterCardModule,
     KKLNavigationModule,
     KKLStatusBarsModule,
@@ -130,7 +132,7 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
   ],
   exports: [
     //TOOLS
-    KKLFilterCardModule,
+    KKLHoverModule,
     KKLFilterCardModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
