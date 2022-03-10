@@ -1,0 +1,96 @@
+@use "../../styles/variables" as main;
+
+.main{
+  font-family: "open sans hebrew", "Helvetica Neue", sans-serif !important;
+  src: url("../../../assets/fonts/opanSansHebrew/OpenSansHebrew-Regular.ttf") format("opentype") !important;
+  color: rgba(0,0,0,.87);
+  padding: 4rem;
+  direction: rtl;
+
+  .select-container{
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 0.5px solid  #EDFAF2;
+
+      .title{
+        padding: 1rem;
+        border-bottom: 2px solid main.color(accent);
+        display: flex;
+        align-items: center;
+        height: 1rem;
+
+        h4{
+          font-size: 2em;
+          color: main.color(accent);
+          font-weight: bold;
+        }
+      }
+
+      .check-box{
+        display: flex;
+        font-size: large;
+
+        label{
+          margin-right: 1rem;
+        }
+      }
+    }
+
+    .content{
+      width: 100%;
+      display: grid;
+      margin: 1rem;
+    }
+  }
+
+  .select-container-mobile{
+    .header{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 0.5px solid  #EDFAF2;
+
+      .title{
+        padding: 1rem;
+        border-bottom: 2px solid main.color(accent);
+        display: flex;
+
+        button{
+          padding: 1rem 1rem 2.5rem 1rem;
+        }
+
+        h4{
+          font-size: 2em;
+          color: main.color(accent);
+          font-weight: bold;
+          margin-bottom: 0px;
+        }
+      }
+
+      .check-box{
+        display: flex;
+        font-size: large;
+
+        label{
+          margin-right: 1rem;
+        }
+        // might be needed for mobile
+        // mat-checkbox {
+        //   padding-top: 0.5rem;
+        //   ::ng-deep .mat-checkbox-inner-container {
+        //     width: 1.5rem;
+        //     height: 1.5rem;
+        //     }
+        // }
+      }
+    }
+
+    .content{
+      width: 100%;
+      display: grid;
+      margin: 1rem;
+    }
+  }
+}
