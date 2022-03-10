@@ -16,10 +16,10 @@ export  enum FilterType {
 }
 
 
-export interface FilterOption {
+export interface FilterOption<T = any> {
   key: string;
   label?: string;
-  value?: any;
+  value?: T;
   filterType?: FilterType;
   format?: string;
 }
