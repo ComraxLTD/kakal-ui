@@ -16,6 +16,7 @@ import {
   FilterType,
   HeaderCellModel,
   TableActions,
+  FilterOption,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
@@ -31,8 +32,6 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { FilterOption } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header.filter';
-import { FilterRange } from '../../../../../kakal-ui/src/lib/table/components/header-cells/components/filter-range-cell/filter-range-cell.component';
 
 @Component({
   selector: 'app-table',

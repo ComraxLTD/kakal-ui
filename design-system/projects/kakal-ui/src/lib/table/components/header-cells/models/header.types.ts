@@ -14,3 +14,12 @@ export  enum FilterType {
   DATE_RANGE = 'dateRange',
   NUMBER_RANGE = 'numberRange',
 }
+
+
+export interface FilterOption {
+  key: string;
+  label?: string;
+  value?: any;
+  filterType?: FilterType;
+  format?: string;
+}

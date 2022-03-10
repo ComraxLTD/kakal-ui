@@ -11,19 +11,8 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import {
-  map,
-  Observable,
-  filter,
-  tap,
-  take,
-  of,
-  merge,
-  startWith,
-  BehaviorSubject,
-} from 'rxjs';
-import { FilterType } from '../../models/header.types';
-import { FilterOption } from '../../models/header.filter';
+import { FilterType, FilterOption } from '../../models/header.types';
+import { map, Observable, filter, of, merge } from 'rxjs';
 
 import {
   setFilterOptionState,

@@ -5,7 +5,7 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
-import { FilterOption } from '../components/header-cells/models/header.filter';
+import { FilterOption } from '../components/header-cells/models/header.types';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
