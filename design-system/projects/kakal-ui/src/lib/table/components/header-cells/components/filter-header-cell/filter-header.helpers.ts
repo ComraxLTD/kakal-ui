@@ -25,23 +25,7 @@ export function getHeaderFilterState(
   );
 }
 
-export function getSelectFilterState(
-  tableState$: Observable<TableState>,
-  key: string
-) {
-  return getHeaderFilterState(
-    tableState$,
-    [FilterType.SELECTED, FilterType.MULTI_SELECTED],
-    key
-  ).pipe(
-    map((options: KKLSelectOption[]) => options.map((option) => option.value))
-  );
-}
-
-export function setSelectState(
-  tableDataSource: TableDataSource,
-  key: string
-): Observable<string[]> {
+function getState(tableDataSource: TableDataSource) {
   const initState$ = tableDataSource.selectActions({
     action: TableActions.INIT_STATE,
   });
@@ -50,8 +34,17 @@ export function setSelectState(
     action: FetchActions.TABLE_FILTER,
   });
 
-  const initSelectState$ = getSelectFilterState(initState$, key);
-  const updateSelectState$ = getSelectFilterState(updateState$, key);
+  return { initState$, updateState$ };
+}
+
+export function setSelectState(
+  tableDataSource: TableDataSource,
+  key: string
+): Observable<KKLSelectOption[]> {
+  const type = [FilterType.SELECTED, FilterType.MULTI_SELECTED];
+  const { initState$, updateState$ } = getState(tableDataSource);
+  const initSelectState$ = getHeaderFilterState(initState$, type, key);
+  const updateSelectState$ = getHeaderFilterState(updateState$, type, key);
 
   // const updateSelectState$ = filterSelectState$.pipe(
   //   pairwise(),
@@ -62,52 +55,18 @@ export function setSelectState(
   return merge(initSelectState$, updateSelectState$);
 }
 
-export function getRangeDateState(
-  tableState$: Observable<TableState>,
-  key: string
-) {
-  return getHeaderFilterState(tableState$, [FilterType.DATE_RANGE], key);
-}
-
-export function setDateRangeState(
+export function setRangeState<T = Date | number>(
   tableDataSource: TableDataSource,
-  key: string
-): Observable<FilterRange<Date>> {
-  const initState$ = tableDataSource.selectActions({
-    action: TableActions.INIT_STATE,
-  });
+  key: string,
+  type: FilterType
+): Observable<FilterRange<T>> {
+  const { initState$, updateState$ } = getState(tableDataSource);
+  const initSelectState$ = getHeaderFilterState(initState$, [type], key);
+  const updateSelectState$ = getHeaderFilterState(updateState$, [type], key);
 
-  const updateState$ = tableDataSource.selectActions({
-    action: FetchActions.TABLE_FILTER,
-  });
-
-  const initSelectState$ = getRangeDateState(initState$, key);
-  const updateSelectState$ = getRangeDateState(updateState$, key);
-
-  return merge(initSelectState$, updateSelectState$);
-}
-
-export function getRangeNumberState(
-  tableState$: Observable<TableState>,
-  key: string
-): Observable<FilterRange<number>> {
-  return getHeaderFilterState(tableState$, [FilterType.NUMBER_RANGE], key);
-}
-
-export function setNumberRangeState(
-  tableDataSource: TableDataSource,
-  key: string
-): Observable<FilterRange<number>> {
-  const initState$ = tableDataSource.selectActions({
-    action: TableActions.INIT_STATE,
-  });
-
-  const updateState$ = tableDataSource.selectActions({
-    action: FetchActions.TABLE_FILTER,
-  });
-
-  const initSelectState$ = getRangeNumberState(initState$, key);
-  const updateSelectState$ = getRangeNumberState(updateState$, key);
-
-  return merge(initSelectState$, updateSelectState$);
+  return merge(initSelectState$, updateSelectState$).pipe(
+    map((range) => {
+      return { ...range, type };
+    })
+  );
 }

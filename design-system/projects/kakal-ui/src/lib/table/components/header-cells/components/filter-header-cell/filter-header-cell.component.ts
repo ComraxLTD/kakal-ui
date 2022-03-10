@@ -15,11 +15,7 @@ import { map, Observable, filter, tap, take, switchMap } from 'rxjs';
 import { FilterType } from '../../models/header.types';
 import { FilterOption } from '../../models/header.filter';
 
-import {
-  setDateRangeState,
-  setNumberRangeState,
-  setSelectState,
-} from './filter-header.helpers';
+import { setRangeState, setSelectState } from './filter-header.helpers';
 import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
 
 @Component({
@@ -56,24 +52,10 @@ export class FilterHeaderCellComponent implements OnInit {
     }
 
     if (this.filterType === FilterType.DATE_RANGE) {
-      this.dateRange$ = this.initRangeDate$().pipe(
-        map((range) => {
-          return {
-            ...range,
-            type: this.filterType,
-          };
-        })
-      );
+      this.dateRange$ = this.initRange$<Date>();
     }
     if (this.filterType === FilterType.NUMBER_RANGE) {
-      this.numberRange$ = this.initNumberDate$().pipe(
-        map((range) => {
-          return {
-            ...range,
-            type: this.filterType,
-          };
-        })
-      );
+      this.numberRange$ = this.initRange$<number>();
     }
   }
 
@@ -107,6 +89,7 @@ export class FilterHeaderCellComponent implements OnInit {
     return options$.pipe(
       switchMap((options: KKLSelectOption[]) => {
         return optionsFilterState$.pipe(
+          map((options: KKLSelectOption[]) => options.map((option) => option.value)),
           map((selectedOptions: string[]) => {
             return options.map((option) => {
               return {
@@ -120,15 +103,8 @@ export class FilterHeaderCellComponent implements OnInit {
     );
   }
 
-  private initRangeDate$(): Observable<FilterRange<Date>> {
-    return setDateRangeState(this.tableDataSource, this.key).pipe(
-      tap((value) => console.log(value))
-    );
-  }
-  private initNumberDate$(): Observable<FilterRange<number>> {
-    return setNumberRangeState(this.tableDataSource, this.key).pipe(
-      tap((value) => console.log(value))
-    );
+  private initRange$<T>(): Observable<FilterRange<T>> {
+    return setRangeState<T>(this.tableDataSource, this.key, this.filterType);
   }
 
   // DOE EVENTS
