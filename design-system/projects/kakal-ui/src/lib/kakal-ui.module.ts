@@ -59,6 +59,9 @@ import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
+import { FilterCardComponent } from './cards/filter-card/filter-card.component';
+import {KKLHoverModule} from '../lib/kkl-hover/kkl-hover.module';
+import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 
 @NgModule({
   declarations: [
@@ -71,6 +74,7 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    KKLHoverModule,
     KKLFilterCardModule,
     KKLNavigationModule,
     KKLStatusBarsModule,
@@ -83,6 +87,7 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
     KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
+    KKLExpandPanelModule,
 
     // FORMS MODULES
     KKLFormModule,
@@ -125,7 +130,7 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
   ],
   exports: [
     //TOOLS
-    KKLFilterCardModule,
+    KKLHoverModule,
     KKLFilterCardModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
@@ -139,6 +144,7 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
     SidenavModule,
     KKLStatusBarsModule,
     KKLListMenuModule,
+    KKLExpandPanelModule,
 
     KKLFormModule,
     KKLFormCheckboxModule,
