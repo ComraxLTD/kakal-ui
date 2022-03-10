@@ -53,7 +53,7 @@ export class TableStateService {
     const tableState = {
       ...oldState,
       editing,
-      event,
+      action : event,
       forms: {
         ...oldState.forms,
         [item[key]]: group,
