@@ -30,6 +30,7 @@ import {
   switchMap,
   take,
 } from 'rxjs';
+import { FilterOption } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header.filter';
 
 @Component({
   selector: 'app-table',
@@ -107,6 +108,8 @@ export class TableComponent implements OnInit {
     // form demo only
     this.tableState$ = this.tableDataSource.connectTableState();
     this.fetchState$ = this.tableDataSource.connectFetchState();
+
+    this.initTableState()
   }
 
   private connectToFetchState() {
@@ -160,6 +163,26 @@ export class TableComponent implements OnInit {
   private setColumns$() {
     this.tableDataSource.loadColumns(this.columns);
     return this.tableDataSource.connectColumns();
+  }
+
+  private initTableState() {
+    const oldState = this.tableDataSource.getTableState();
+    const tableState: TableState = {
+      ...oldState,
+      filters: {
+        city: {
+          key: 'city',
+          filterType: FilterType.MULTI_SELECTED,
+          value: {
+            label: 'Russia',
+            value: 3,
+            selected: true,
+          } as KKLSelectOption,
+        } as FilterOption,
+      },
+    };
+
+    this.tableDataSource.loadTableState({ tableState });
   }
 
   private setQuestions(

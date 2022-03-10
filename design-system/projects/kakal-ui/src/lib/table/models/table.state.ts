@@ -1,11 +1,11 @@
+import { SortDirection } from '@angular/material/sort';
 import { TableColumnModel } from '../../columns/models/column.model';
 import { ColumnActions, FetchActions, TableActions } from '../models/table-actions';
-import { SortDirection } from '@angular/material/sort';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
-import { FilterOption } from '../components/header-cells/components/filter-header-cell/filter-header-cell.component';
+import { FilterOption } from '../components/header-cells/models/header.filter';
 
 export interface TableState {
   selected?: { [key: string]: boolean };

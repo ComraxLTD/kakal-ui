@@ -7,7 +7,7 @@ export declare type HeaderType =
   | 'select'
   | 'expend';
 
-export enum FilterType {
+export  enum FilterType {
   SEARCH = 'search',
   SELECTED = 'select',
   MULTI_SELECTED = 'multiSelect',

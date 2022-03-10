@@ -13,14 +13,9 @@ import { ColumnActions } from '../../../../models/table-actions';
 
 import { map, Observable, filter, tap } from 'rxjs';
 import { FilterType } from '../../models/header.types';
+import { FilterOption } from '../../models/header.filter';
 
-export interface FilterOption {
-  key: string;
-  label?: string;
-  value?: any;
-  filterType?: FilterType;
-  format?: string;
-}
+
 
 @Component({
   selector: 'kkl-filter-header-cell',
