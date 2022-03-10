@@ -3,16 +3,17 @@
     <code *ngIf="tableState$ | async as tableState">
       <div>tableState :</div>
       <pre>
-       {{ tableState.filters | json }}
+       {{ tableState.editing | json }}
+       {{ tableState.action | json }}
       </pre>
     </code>
-    <mat-divider [vertical]="true"></mat-divider>
+    <!-- <mat-divider [vertical]="true"></mat-divider>
     <code *ngIf="fetchState$ | async as fetchState">
       <div>fetchState :</div>
       <pre>
         {{ fetchState | json }}
       </pre>
-    </code>
+    </code> -->
   </div>
 
   <kkl-table
@@ -71,9 +72,11 @@
 </ng-template>
 
 <ng-template #actions let-rowState>
-  <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
-    הוסף מכונית
-  </kkl-create-button>
+  <div >
+    <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
+      הוסף מכונית
+    </kkl-create-button>
+  </div>
 </ng-template>
 
 <ng-template #input let-rowState>

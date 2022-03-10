@@ -44,7 +44,11 @@ export class TableStateService {
       editing = [];
     }
 
+    console.log('work')
+
     editing.push(item[key]);
+
+    console.log(event)
 
     const tableState = {
       ...oldState,

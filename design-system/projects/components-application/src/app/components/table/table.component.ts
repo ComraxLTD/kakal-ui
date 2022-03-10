@@ -355,8 +355,6 @@ export class TableComponent implements OnInit {
       options: this.optionsMap[columnDef],
     };
 
-    console.log('work');
-
     this.tableDataSource.loadHeaderState({ headerState });
   }
 }

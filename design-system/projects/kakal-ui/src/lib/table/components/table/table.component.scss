@@ -72,6 +72,7 @@ mat-header-cell {
 // style for outer header row
 mat-header-row.accent {
   border-bottom: main.color(accent) solid 3px;
+  height: 6rem;
 
   mat-header-cell {
     align-items: flex-end;
@@ -110,7 +111,6 @@ mat-row {
     padding: 0px;
   }
 }
-
 
 // style for kkl-data-cell
 div.kkl-cell {
