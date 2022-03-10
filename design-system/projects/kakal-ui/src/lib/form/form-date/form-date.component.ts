@@ -112,6 +112,8 @@ export class FormDateComponent implements OnInit {
         this.rangeForm.controls['end'].setValue(event.value['_d']);
       }
       if (this.control) this.control.setValue(this.rangeForm.value);
+
+
       this.dateEvent.emit(this.rangeForm.value);
     }
   }
