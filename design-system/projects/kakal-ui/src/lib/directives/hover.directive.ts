@@ -9,7 +9,7 @@ import { KKLHoverComponent } from '../kkl-hover/kkl-hover.component';
 export class KKLHoverDirective {
     private overlayRef: OverlayRef;
 
-    @Input('kkl-hover') text: string;
+    @Input() text: string;
     @Input() template: TemplateRef<any>;
     @Input() hoverColor: 'white' | 'black';
 
