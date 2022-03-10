@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Validators } from '@angular/forms';
 import {
   TableDataSource,
   FormService,
-  TableColumnModel,
   RowState,
   Question,
   QuestionGroupModel,
@@ -11,10 +11,16 @@ import {
   TableState,
   KKLSelectOption,
   FetchState,
-  ColumnState,
+  HeaderState,
   ColumnActions,
+  FilterType,
+  HeaderCellModel,
+  TableActions,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
+import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
+import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
+import { PaginationInstance } from 'ngx-pagination';
 import {
   BehaviorSubject,
   firstValueFrom,
@@ -22,15 +28,11 @@ import {
   merge,
   Observable,
   of,
-  skip,
   switchMap,
   take,
 } from 'rxjs';
-import { Validators } from '@angular/forms';
-import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
-import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
-import { HeaderCellModel } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
-import { PaginationInstance } from 'ngx-pagination';
+import { FilterOption } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header.filter';
+import { FilterRange } from '../../../../../kakal-ui/src/lib/table/components/header-cells/components/filter-range-cell/filter-range-cell.component';
 
 @Component({
   selector: 'app-table',
@@ -45,23 +47,27 @@ export class TableComponent implements OnInit {
   public itemKey: string = 'id';
 
   private columns: HeaderCellModel<RootObject>[] = [
-    { columnDef: 'first_name', label: 'first_name', filterType: 'search' },
+    {
+      columnDef: 'first_name',
+      label: 'first_name',
+      filterType: FilterType.SEARCH,
+    },
     { columnDef: 'last_name', label: 'last_name' },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
-    { columnDef: 'city', label: 'city', filterType: 'select' },
+    { columnDef: 'city', label: 'city', filterType: FilterType.MULTI_SELECTED },
     {
       columnDef: 'date',
       label: 'date',
       format: 'date',
-      filterType: 'dateRange',
+      filterType: FilterType.DATE_RANGE,
     },
     {
       columnDef: 'currency',
       label: 'currency',
       flex: 0.5,
-      filterType: 'numberRange',
+      filterType: FilterType.NUMBER_RANGE,
     },
   ];
 
@@ -76,7 +82,7 @@ export class TableComponent implements OnInit {
   ];
 
   public data$: Observable<RootObject[]>;
-  public columns$: Observable<TableColumnModel<RootObject>[]>;
+  public columns$: Observable<HeaderCellModel<RootObject>[]>;
   public tableState$: Observable<TableState>;
   public fetchState$: Observable<FetchState>;
 
@@ -104,14 +110,14 @@ export class TableComponent implements OnInit {
     // form demo only
     this.tableState$ = this.tableDataSource.connectTableState();
     this.fetchState$ = this.tableDataSource.connectFetchState();
+
+    this.initTableState();
   }
 
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
-      skip(1),
       switchMap((fetchState: FetchState) => {
-        // console.log(fetchState);
-        // imitate server data
+        console.log(fetchState);
         return of(DEMO_DATA);
       })
     );
@@ -159,6 +165,45 @@ export class TableComponent implements OnInit {
   private setColumns$() {
     this.tableDataSource.loadColumns(this.columns);
     return this.tableDataSource.connectColumns();
+  }
+
+  private initTableState() {
+    const oldState = this.tableDataSource.getTableState();
+    const tableState: TableState = {
+      ...oldState,
+      filters: {
+        city: {
+          key: 'city',
+          filterType: FilterType.MULTI_SELECTED,
+          value: [
+            {
+              label: 'Russia',
+              value: 3,
+              selected: true,
+            },
+          ] as KKLSelectOption[],
+        } as FilterOption,
+        currency: {
+          key: 'currency',
+          filterType: FilterType.NUMBER_RANGE,
+          value: {
+            start: 1,
+            end: 10,
+          } as FilterRange<number>,
+        } as FilterOption,
+        date: {
+          key: 'currency',
+          filterType: FilterType.DATE_RANGE,
+          value: {
+            start: new Date('2022-03-04T10:21:31.215Z'),
+            end: new Date('2022-03-15T10:21:31.215Z'),
+          } as FilterRange<Date>,
+        } as FilterOption,
+      },
+      action: TableActions.INIT_STATE,
+    };
+
+    this.tableDataSource.loadTableState({ tableState });
   }
 
   private setQuestions(
@@ -299,12 +344,12 @@ export class TableComponent implements OnInit {
   }
 
   public onFetchOptions(columnDef: string) {
-    const columnState: ColumnState = {
+    const headerState: HeaderState = {
       key: columnDef,
       event: ColumnActions.UPDATE_FILTERS,
       options: this.optionsMap[columnDef],
     };
 
-    this.tableDataSource.loadColumnState({ columnState });
+    this.tableDataSource.loadColumnState({ headerState });
   }
 }

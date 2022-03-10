@@ -174,7 +174,7 @@ export class TableComponent<T = any> implements OnInit {
   // method which emit page data
   public onPageChange(event: { next: number; prev: number }) {
     const { next } = event;
-    this.tableDataSource.loadPagination({
+    this.tableDataSource.dispatchPagination({
       pagination: { currentPage: next } as PaginationInstance,
     });
   }

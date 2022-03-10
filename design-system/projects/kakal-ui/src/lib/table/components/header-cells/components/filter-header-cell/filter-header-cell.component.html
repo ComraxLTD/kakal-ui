@@ -21,21 +21,27 @@
         <ng-container [ngSwitch]="filterType">
           <!-- DATES FILTER-->
           <ng-container *ngSwitchCase="'dateRange'">
-            <kkl-filter-range-cell
-              fxFlex="75"
-              [filterType]="filterType"
-              (rangeChange)="onRangeChange($event)"
-            ></kkl-filter-range-cell>
+            <ng-container *ngIf="dateRange$ | async as value">
+              <kkl-filter-range-cell
+                fxFlex="75"
+                [filterType]="filterType"
+                [value]="value"
+                (rangeChange)="onRangeChange($event)"
+              ></kkl-filter-range-cell>
+            </ng-container>
           </ng-container>
 
           <!-- CURRENCY FILTER-->
 
           <ng-container *ngSwitchCase="'numberRange'">
-            <kkl-filter-range-cell
-              fxFlex="75"
-              [filterType]="filterType"
-              (rangeChange)="onRangeChange($event)"
-            ></kkl-filter-range-cell>
+            <ng-container *ngIf="numberRange$ | async as value">
+              <kkl-filter-range-cell
+                fxFlex="75"
+                [filterType]="filterType"
+                [value]="value"
+                (rangeChange)="onRangeChange($event)"
+              ></kkl-filter-range-cell>
+            </ng-container>
           </ng-container>
 
           <ng-container *ngSwitchDefault>
@@ -78,6 +84,16 @@
               <kkl-typography> {{ option.label }}</kkl-typography>
             </mat-list-option>
           </ng-container>
+
+          <!-- <ng-container *ngFor="let item of options$ | async | keyvalue">
+            <mat-list-option
+              (click)="$event.stopPropagation()"
+              [value]="item.value"
+              [selected]="item.value.selected"
+            >
+              <kkl-typography> {{ item.value.label }}</kkl-typography>
+            </mat-list-option>
+          </ng-container> -->
         </mat-selection-list>
       </ng-controller>
     </div>

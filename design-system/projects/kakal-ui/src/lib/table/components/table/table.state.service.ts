@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
 import { deleteItem } from './table.helpers';
-import {
-  map,
-  Observable,
-  distinctUntilChanged,
-  distinctUntilKeyChanged,
-} from 'rxjs';
+import { map, Observable, distinctUntilKeyChanged } from 'rxjs';
 import { FormActions } from '../../../form/models/form.actions';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState } from '../../models/table.state';
 import { PaginationInstance } from 'ngx-pagination';
+import { TableSelector } from '../../models/table.selctors';
 
 @Injectable({ providedIn: 'root' })
 export class TableStateService {
@@ -18,7 +14,7 @@ export class TableStateService {
   public onDataChange(
     tableDataSource: TableDataSource
   ): Observable<TableState> {
-    return tableDataSource.connectPagination().pipe(
+    return tableDataSource.select(TableSelector.PAGINATION).pipe(
       distinctUntilKeyChanged('totalItems'),
       map((paginationState: PaginationInstance) => {
         const oldState = tableDataSource.getTableState();
@@ -31,7 +27,6 @@ export class TableStateService {
         } as TableState;
       })
     );
-
   }
 
   private setRowWithForm(options: {

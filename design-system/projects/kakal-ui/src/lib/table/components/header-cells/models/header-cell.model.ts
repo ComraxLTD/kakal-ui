@@ -1,26 +1,11 @@
 import { SortDirection } from '@angular/material/sort';
-import { KKLSelectOption } from '../../../../form/models/form.types';
-export declare type ColumnDef<T> = keyof T | 'select' | 'actions' | string;
-
-export declare type ColumnType =
-  | 'default'
-  | 'custom'
-  | 'actions'
-  | 'select'
-  | 'expend';
-
-export declare type FilterType =
-  | 'search'
-  | 'select'
-  | 'multiSelect'
-  | 'dateRange'
-  | 'numberRange';
+import { ColumnDef, FilterType, HeaderType } from './header.types';
 
 export class HeaderCellModel<T = any> {
   public columnDef: ColumnDef<T>;
   public label?: string;
   public format?: string;
-  public type?: ColumnType;
+  public type?: HeaderType;
   public selector?: string;
 
   public flex?: number;
@@ -39,7 +24,7 @@ export class HeaderCellModel<T = any> {
   constructor(options?: {
     columnDef: ColumnDef<T>;
     label?: string;
-    type?: ColumnType;
+    type?: HeaderType;
     format?: string;
     selector?: string;
 

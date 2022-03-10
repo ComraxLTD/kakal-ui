@@ -1,11 +1,11 @@
-import { TableColumnModel } from '../../columns/models/column.model';
-import { ColumnActions, TableActions } from '../models/table-actions';
 import { SortDirection } from '@angular/material/sort';
+import { TableColumnModel } from '../../columns/models/column.model';
+import { ColumnActions, FetchActions, TableActions } from '../models/table-actions';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
-import { FilterOption } from '../components/header-cells/components/filter-header-cell/filter-header-cell.component';
+import { FilterOption } from '../components/header-cells/models/header.filter';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -15,7 +15,7 @@ export interface TableState {
   activeColumns?: string[];
   pagination?: PaginationInstance;
   forms?: { [key: string]: QuestionGroupModel };
-  event?: FormActions | TableActions;
+  action?: FormActions | TableActions | FetchActions;
   filters?: FilterState;
   sort?: SortState;
 }
@@ -45,7 +45,7 @@ export interface RowState<T = any> {
 
 // interface for update select and filter options
 
-export type ColumnState<T = any> = {
+export type HeaderState<T = any> = {
   event: ColumnActions;
   key?: keyof T;
   options?: KKLSelectOption[];

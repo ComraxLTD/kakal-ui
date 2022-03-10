@@ -31,7 +31,6 @@ import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-chec
 import { KKLTableModule } from './table/components/table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
-import { KKLColumnsModule } from './columns/column.module';
 
 import { SidenavModule } from './sidenav/sidenav.module';
 
@@ -107,7 +106,6 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
-    KKLColumnsModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
@@ -163,7 +161,6 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
-    KKLColumnsModule,
 
     KKLDialogModule,
     KKLInfoCardModule,

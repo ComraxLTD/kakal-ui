@@ -82,17 +82,6 @@ export * from './lib/form/models/question.model';
 // TABLE EXPORTS
 // ------------------------------------------------------------------------------------------
 
-// COLUMNS
-
-export * from './lib/columns/column.module';
-export * from './lib/columns/columns.service';
-export * from './lib/columns/models/column.model';
-export * from './lib/columns/models/column-filter-options';
-export * from './lib/columns/models/column-sort-option';
-
-export * from './lib/columns/column-filter/column-filter.component';
-export * from './lib/columns/column-filter/column-filter.module';
-export * from './lib/columns/column-filter/column-filter.service';
 
 // TABLE
 export * from './lib/table/components/table/table.module';
@@ -116,6 +105,8 @@ export * from './lib/table/components/cells/table-data-cell/cell-data.directive'
 export * from './lib/table/components/header-cells/header-cells.module';
 export * from './lib/table/components/header-cells/components/header-cell/header-cell.component';
 export * from './lib/table/components/header-cells/cell-header.directive';
+export * from './lib/table/components/header-cells/models/header-cell.model';
+export * from './lib/table/components/header-cells/models/header.types';
 
 export * from './lib/table/components/pagination/pagination.module';
 export * from './lib/table/components/pagination/pagination.component';

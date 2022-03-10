@@ -1,4 +1,3 @@
-
 // interface for custom button action state
 export interface ActionStateRules {
   showDelete: (item: any) => boolean;
@@ -8,10 +7,18 @@ export interface ActionStateRules {
 }
 
 export enum TableActions {
+  INIT_STATE = 'initState',
   EXPAND = 'expand',
   FORM = 'form',
 }
 export enum ColumnActions {
   DEFAULT = 'default',
   UPDATE_FILTERS = 'updateOptions',
+}
+
+export enum FetchActions {
+  SORT = 'sort',
+  PAGING = 'paging',
+  FILTER = 'filter',
+  TABLE_FILTER = 'tableFilters',
 }
