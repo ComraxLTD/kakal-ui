@@ -2,7 +2,7 @@ import { EventEmitter } from '@angular/core';
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
 import { HeaderCellModel } from '../../projects/kakal-ui/src/lib/table/components/header-cells/models/header-cell.model';
 import {
-  KKLTableActionsCellModule,
+  KKLActionsCellModule,
   TableActionCellComponent,
 } from '../../projects/kakal-ui/src/public-api';
 
@@ -10,7 +10,7 @@ export default {
   title: 'Table/Table-Actions',
   decorators: [
     moduleMetadata({
-      imports: [KKLTableActionsCellModule],
+      imports: [KKLActionsCellModule],
     }),
   ],
   component: TableActionCellComponent,

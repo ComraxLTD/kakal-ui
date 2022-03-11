@@ -96,6 +96,7 @@ export * from './lib/table/components/rows/form-row/form-row.directive';
 
 // CELLS
 export * from './lib/table/components/cells/table-cell.module';
+export * from './lib/table/components/cells/cell.directive';
 
 export * from './lib/table/components/cells/table-form-cell/table-cell-form.module';
 export * from './lib/table/components/cells/table-form-cell/table-cell-form.component';
@@ -126,7 +127,6 @@ export * from './lib/table/models/table-actions';
 export * from './lib/table/models/table-datasource';
 export * from './lib/table/models/table.state';
 
-export * from './lib/table/directives/cell.directive';
 
 // -------------------------------------------------------------------------------------------------------
 

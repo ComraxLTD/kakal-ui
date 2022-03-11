@@ -15,7 +15,6 @@ import { KKLTableCellModule } from '../../components/cells/table-cell.module';
 import { KKLHeaderCellModule } from '../../components/header-cells/header-cells.module';
 import { KKLPaginationModule } from '../../components/pagination/pagination.module';
 import { KKLRowsModule } from '../../components/rows/rows.module';
-import { KKLCellDirective } from '../../directives/cell.directive';
 
 import { TableComponent } from './table.component';
 import { KKLTableDirective } from './table.directive';
@@ -38,12 +37,11 @@ import { KKLTableDirective } from './table.directive';
     KKLDirectivesModule,
     KKLPipesModule,
   ],
-  declarations: [TableComponent, KKLCellDirective, KKLTableDirective],
+  declarations: [TableComponent, KKLTableDirective],
   providers: [],
   exports: [
     TableComponent,
     KKLRowsModule,
-    KKLCellDirective,
     KKLTableDirective,
     KKLPaginationModule,
   ],

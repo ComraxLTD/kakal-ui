@@ -1,38 +1,53 @@
-<!-- <div
-  class="row"
-  fxFill
+<div
+  dir="rtl"
+  [class.row]="true"
   fxLayout="row"
   fxLayoutAlign="start center"
-  fxLayoutGap="1rem"
 >
   <ng-container *ngFor="let column of columns; let columnIndex = index">
-    <div kkl-cell [columnDef]="column.columnDef" [flex]="column.flex">
+    <div kkl-cell fxFlex>
       <ng-container [ngSwitch]="column.columnDef">
         <ng-container *ngSwitchCase="'actions'">
-          <button
-            mat-raised-button
-            type="su"
-            (click)="onSave()"
-            matTooltip="שמור"
+          <div
+            kkl-form-button
+            fxLayout="row"
+            fxLayoutGap="1rem"
+            fxLayoutAlign="end center"
           >
-            <kkl-typography color="text"> שמור </kkl-typography>
-          </button>
+            <button
+              mat-raised-button
+              class="kkl-save-button"
+              (click)="onSave()"
+              matTooltip="שמור"
+            >
+              <kkl-typography color="text"> שמור </kkl-typography>
+            </button>
+            <button matTooltip="בטל" mat-icon-button (click)="onCancel()">
+              <kkl-icon key="cancel"></kkl-icon>
+            </button>
+          </div>
         </ng-container>
 
         <ng-container *ngSwitchDefault>
-          <div fxFill>
-            <ng-container>
-              <kkl-form-cell
-                fxFlex="70"
-                [group]="tableState.forms['create']"
-                [columnDef]="column.columnDef"
-              ></kkl-form-cell>
-            </ng-container>
-          </div>
+          <ng-container
+            *ngIf="
+              tableState.forms['create'].controls[column.columnDef];
+              else dataBlock
+            "
+          >
+            <kkl-form-cell
+              fxFlex="65"
+              [group]="tableState.forms['create']"
+              [columnDef]="column.columnDef"
+            ></kkl-form-cell>
+          </ng-container>
         </ng-container>
       </ng-container>
     </div>
   </ng-container>
-</div> -->
+</div>
+<mat-divider></mat-divider>
 
-works
+<ng-template #dataBlock>
+  <div></div>
+</ng-template>

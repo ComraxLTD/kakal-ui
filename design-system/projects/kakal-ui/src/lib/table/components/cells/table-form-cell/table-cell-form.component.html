@@ -1,5 +1,5 @@
 <div fxLayout="row" class="kkl-form-cell" (click)="$event.stopPropagation()">
-  <ng-container *ngIf="question">
+  <ng-container *ngIf="question; else elseBlock">
     <ng-container [ngSwitch]="question.controlType">
       <ng-container *ngSwitchCase="'custom'">
         <ng-container
@@ -88,3 +88,8 @@
     </ng-container>
   </ng-container>
 </div>
+
+<ng-template #elseBlock>
+  <div fxFlex="100">
+  </div>
+</ng-template>

@@ -1,0 +1,22 @@
+@use "../../../../../styles/variables" as main;
+
+:host {
+  width: 100%;
+  mat-expansion-panel-header {
+    padding: 0px;
+    width: 100% !important;
+    color: main.color(text) !important;
+
+    &.form {
+      height: 10rem;
+    }
+  }
+
+  .kkl-cell {
+    width: 192.2px;
+  }
+
+  .row {
+    border-bottom: 1px solid main.color(default);
+  }
+}

@@ -61,6 +61,7 @@
                   fxFill
                 >
                   <mat-expansion-panel-header
+                    [class.form]="true"
                     *ngIf="
                       tableState.editing.indexOf('create') !== -1 &&
                       itemIndex === 0
@@ -69,7 +70,7 @@
                     <ng-container
                       *ngTemplateOutlet="
                   formRowDirective?.template;
-                  context: { $implicit: {item , column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
+                  context: { $implicit: {item , columns : table.columns, itemIndex, key, tableState}}
                   "
                     >
                     </ng-container>
@@ -126,15 +127,13 @@
                             <!-- Data cell -->
 
                             <ng-container *ngSwitchDefault>
-                              <div fxFill>
-                                <ng-container
-                                  *ngTemplateOutlet="
+                              <ng-container
+                                *ngTemplateOutlet="
                                 cellDirective.template;
                                 context: { $implicit: {item, column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
                                 "
-                                >
-                                </ng-container>
-                              </div>
+                              >
+                              </ng-container>
                             </ng-container>
                           </ng-container>
                         </div>

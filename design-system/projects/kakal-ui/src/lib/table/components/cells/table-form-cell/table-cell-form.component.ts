@@ -21,6 +21,7 @@ export class TableFormCellComponent implements OnInit {
 
   ngOnInit(): void {
     this.question = this.group.controls[this.columnDef];
+
   }
 
   private setQuestionTemplate(template: TemplateRef<any>) {

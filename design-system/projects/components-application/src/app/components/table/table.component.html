@@ -39,6 +39,7 @@
     <ng-container *kklDataCell="let context">
       <!-- use kkl-data-cell for comrax table cell -->
       <kkl-data-cell
+        #data
         fxLayout="row"
         fxLayoutAlign="start center"
         [item]="context.item"
@@ -64,8 +65,12 @@
     </ng-container>
 
     <!-- use kkl-form-row  -->
-    <ng-container *kklFormRow="let rowState">
-      <div>works</div>
+    <ng-container *kklFormRow="let context">
+      <kkl-form-row
+        [columns]="context.columns"
+        [tableState]="context.tableState"
+        [cellTemplate]="{input, data}"
+      ></kkl-form-row>
     </ng-container>
   </kkl-table>
 </div>

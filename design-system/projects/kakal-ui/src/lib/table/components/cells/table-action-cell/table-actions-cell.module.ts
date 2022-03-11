@@ -13,14 +13,14 @@ import { KKLDirectivesModule } from '../../../../directives/directives.module';
 @NgModule({
   imports: [
     CommonModule,
+    MatButtonModule,
+    MatTooltipModule,
     FlexLayoutModule,
     KKLIconModule,
     KKLTypographyModule,
     KKLDirectivesModule,
-    MatButtonModule,
-    MatTooltipModule,
   ],
   declarations: [TableActionCellComponent, KKLActionCellDirective],
   exports: [TableActionCellComponent, KKLActionCellDirective],
 })
-export class KKLTableActionsCellModule {}
+export class KKLActionsCellModule {}

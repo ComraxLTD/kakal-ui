@@ -6,7 +6,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormRowComponent } from './form-row/form-row.component';
 import { KKLTypographyModule } from '../../../typography/typography.module';
-import { KKLFormCellModule } from '../cells/table-form-cell/table-cell-form.module';
+import { KKLTableCellModule } from '../cells/table-cell.module';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { KKLIconModule } from '../../../icon/icon.module';
 
 @NgModule({
   declarations: [FormRowDirective, FormRowComponent],
@@ -14,7 +17,9 @@ import { KKLFormCellModule } from '../cells/table-form-cell/table-cell-form.modu
     CommonModule,
     MatButtonModule,
     FlexLayoutModule,
-    KKLFormCellModule,
+    MatDividerModule,
+    KKLIconModule,
+    KKLTableCellModule,
     KKLTypographyModule,
   ],
   exports: [FormRowDirective, FormRowComponent],
