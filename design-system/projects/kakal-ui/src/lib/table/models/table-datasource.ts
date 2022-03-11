@@ -40,7 +40,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      pagination: { itemsPerPage: 3, currentPage: 1 },
+      pagination: { itemsPerPage: 10, currentPage: 1 },
       forms: {},
       filters: {},
       action: FormActions.DEFAULT,
@@ -182,14 +182,18 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   public connectFetchState(): Observable<FetchState> {
     return this.tableState.asObservable().pipe(
-      skip(1),
+      // skip(1),
       filter(
         (tableState) =>
+          tableState.action === TableActions.INIT_STATE ||
           tableState.action === FetchActions.FILTER ||
           tableState.action === FetchActions.SORT ||
           tableState.action === FetchActions.PAGING
       ),
       map((tableState: TableState) => {
+
+        console.log(tableState.action)
+
         return {
           itemsPerPage: tableState.pagination.itemsPerPage,
           next: tableState.pagination.currentPage,

@@ -1,8 +1,15 @@
 import { Directive, Host, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationInstance } from 'ngx-pagination';
-import { combineLatest, distinctUntilChanged, map, tap } from 'rxjs';
+import {
+  combineLatest,
+  distinctUntilChanged,
+  map,
+  Observable,
+  tap,
+} from 'rxjs';
 import { TableDataSource } from '../../models/table-datasource';
+import { TableSelector } from '../../models/table.selctors';
 import { TableState } from '../../models/table.state';
 import { TableComponent } from '../table/table.component';
 import IPaginationChangeEvent from './pagination.types';
@@ -36,33 +43,25 @@ export class KKLPaginationDirective implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.invalidate();
-
     this.hostTable.pagination$ = this.setPagination$();
     this.setCurrentPageFromUrl();
   }
 
-  private dispatchPagination() {
-    this.tableDataSource.dispatchPagination({ pagination: this.pagination });
-  }
-
-  private invalidate() {
-    if (!this.pagination) {
-      throw new Error('kklPagination must get a PaginationInstance as input');
-    } else {
-      this.dispatchPagination();
-    }
-  }
-
   private setPagination$() {
-    const itemsPerPage$ = this.tableDataSource.connectTableState().pipe(
-      map((tableState: TableState) => tableState.pagination.itemsPerPage),
-      distinctUntilChanged()
-    );
-    const totalItems$ = this.tableDataSource.connectTableState().pipe(
-      map((tableState: TableState) => tableState.pagination.totalItems),
-      distinctUntilChanged()
-    );
+    
+    const totalItems$: Observable<number> = this.tableDataSource
+      .select(TableSelector.PAGINATION)
+      .pipe(
+        map((pagination: PaginationInstance) => pagination.totalItems),
+        distinctUntilChanged()
+      );
+
+    const itemsPerPage$: Observable<number> = this.tableDataSource
+      .select(TableSelector.PAGINATION)
+      .pipe(
+        map((pagination: PaginationInstance) => pagination.itemsPerPage),
+        distinctUntilChanged()
+      );
 
     return combineLatest([totalItems$, itemsPerPage$]).pipe(
       map(([totalItems, itemsPerPage]) => totalItems > itemsPerPage)
