@@ -1,35 +1,13 @@
 import { Injectable } from '@angular/core';
 import { deleteItem } from './table.helpers';
-import { map, Observable, distinctUntilKeyChanged, filter } from 'rxjs';
 import { FormActions } from '../../../form/models/form.actions';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState } from '../../models/table.state';
-import { PaginationInstance } from 'ngx-pagination';
-import { TableSelector } from '../../models/table.selctors';
-import { FetchActions } from '../../models/table-actions';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TableStateService {
   constructor() {}
-
-  // public onDataChange(
-  //   tableDataSource: TableDataSource
-  // ): Observable<TableState> {
-  //   return tableDataSource.select(TableSelector.PAGINATION).pipe(
-  //     filter((tableState: TableState) => tableState.action === FetchActions.PAGING),
-  //     distinctUntilKeyChanged('totalItems'),
-  //     map((paginationState: PaginationInstance) => {
-  //       const oldState = tableDataSource.getTableState();
-
-  //       return {
-  //         ...oldState,
-  //         pagination: {
-  //           ...paginationState,
-  //         },
-  //       } as TableState;
-  //     })
-  //   );
-  // }
 
   private setRowWithForm(options: {
     oldState: TableState;
@@ -44,16 +22,13 @@ export class TableStateService {
       editing = [];
     }
 
-    console.log('work')
-
     editing.push(item[key]);
 
-    console.log(event)
 
     const tableState = {
       ...oldState,
       editing,
-      event,
+      action : event,
       forms: {
         ...oldState.forms,
         [item[key]]: group,
