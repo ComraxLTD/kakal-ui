@@ -1,7 +1,6 @@
 <ng-container *ngIf="tableState$ | async as tableState">
   <ng-container *ngIf="table$ | async as table">
     <ng-container *ngIf="data$ | async as data">
-      {{ data.length }}
       <div dir="rtl" fxLayout="column" fxLayoutGap="1rem">
         <mat-table
           mat-table

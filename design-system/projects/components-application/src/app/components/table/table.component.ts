@@ -46,7 +46,7 @@ export class TableComponent implements OnInit {
 
   public itemKey: string = 'id';
 
-  private columns: HeaderCellModel<RootObject>[] = [
+  public columns: HeaderCellModel<RootObject>[] = [
     {
       columnDef: 'first_name',
       label: 'first_name',
