@@ -68,12 +68,12 @@
 
 <ng-template #email let-rowState>
   <kkl-typography color="primary" underline="true">
-    {{ rowState.item.email }}
+    {{ rowState.item.email | slice : -20 }}
   </kkl-typography>
 </ng-template>
 
 <ng-template #actions let-rowState>
-  <div >
+  <div>
     <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
       הוסף מכונית
     </kkl-create-button>

@@ -94,9 +94,9 @@ export class TableComponent implements OnInit {
   public optionsMap: OptionMap;
 
   public pagination: PaginationInstance = {
-    itemsPerPage: 3,
+    itemsPerPage: 5,
     currentPage: 1,
-    totalItems: 5,
+    totalItems: 15,
   };
 
   constructor(
@@ -121,7 +121,6 @@ export class TableComponent implements OnInit {
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
       switchMap((fetchState: FetchState) => {
-        console.log(fetchState);
         return of(DEMO_DATA);
       })
     );
@@ -297,7 +296,7 @@ export class TableComponent implements OnInit {
               updateData[indexToUpdate] = {
                 ...data[indexToUpdate],
                 ...res,
-                city: city.label,
+                city: city?.label,
               };
               return updateData;
             })

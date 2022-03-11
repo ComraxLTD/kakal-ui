@@ -162,7 +162,7 @@ export class TableComponent<T = any> implements OnInit {
   private setTableState$() {
     return merge(
       // this.tableStateService.onDataChange(this.tableDataSource),
-      this.tableStateService.onEditCloseEvent(this.tableDataSource),
+      this.tableStateService.onCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource),
       this.tableStateService.onCreateEvent(this.tableDataSource)
     );
@@ -174,7 +174,7 @@ export class TableComponent<T = any> implements OnInit {
   public onPageChange(event: { next: number; prev: number }) {
     const { next } = event;
     this.tableDataSource.dispatchPagination({
-      pagination: { currentPage: next } as PaginationInstance,
+      pageState: { currentPage: next } as PaginationInstance,
     });
   }
 

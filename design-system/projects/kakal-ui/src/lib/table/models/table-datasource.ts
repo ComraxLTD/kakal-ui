@@ -147,20 +147,23 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   // pagination
-  public dispatchPagination(state: { pagination: any }): void {
-    const { pagination } = state;
+  public dispatchPagination(state: { pageState: any }): void {
+    const { pageState } = state;
     const oldState = this.getTableState();
-    this.tableState.next({
+    const newState = {
       ...oldState,
-      pagination: { ...oldState.pagination, ...pagination },
+      pagination: { ...oldState.pagination, ...pageState },
       action: FetchActions.PAGING,
-    });
+    } as TableState;
+    this.loadTableState({ tableState: newState });
   }
 
   public dispatchSort(action: { sortState: SortState }): void {
     const { sortState } = action;
+    const oldState = this.getTableState();
+
     const newState = {
-      ...this.tableState.getValue(),
+      ...oldState,
       sort: { ...sortState },
       action: FetchActions.SORT,
     } as TableState;
@@ -169,10 +172,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   public dispatchFilter(action: { filterState: FilterState }): void {
     const { filterState } = action;
+    const oldState = this.getTableState();
     const newState = {
-      ...this.tableState.getValue(),
+      ...oldState,
       filters: {
-        ...this.tableState.getValue().filters,
+        ...oldState.filters,
         ...filterState,
       },
       action: FetchActions.FILTER,
@@ -191,9 +195,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
           tableState.action === FetchActions.PAGING
       ),
       map((tableState: TableState) => {
-
-        console.log(tableState.action)
-
         return {
           itemsPerPage: tableState.pagination.itemsPerPage,
           next: tableState.pagination.currentPage,
