@@ -22,7 +22,7 @@
           </mat-header-cell>
 
           <mat-cell
-            *matCellDef="let item"
+            *matCellDef="let item; let itemIndex = dataIndex"
             [class.form]="tableState.editing.indexOf(item[key]) !== -1"
           >
             <ng-container [ngSwitch]="column.columnDef">
@@ -64,12 +64,23 @@
           </mat-cell>
         </ng-container>
 
+        <ng-container matColumnDef="form">
+          <mat-cell *matCellDef="let item; let itemIndex = dataIndex">
+            create action work
+          </mat-cell>
+        </ng-container>
+
         <!-- HEADER ROW -->
         <mat-header-row [ngClass]="[theme]" *matHeaderRowDef="table.columnDefs">
         </mat-header-row>
 
         <!-- TABLE ROW -->
         <mat-row *matRowDef="let row; columns: table.columnDefs"></mat-row>
+
+        <!-- FORM ROW -->
+        <mat-row
+          *matRowDef="let row; columns: ['form']; when: isForm"
+        ></mat-row>
 
         <!-- FOOTER ROW -->
         <ng-container *ngIf="hasFooter">

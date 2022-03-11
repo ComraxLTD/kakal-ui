@@ -120,7 +120,6 @@ export class TableComponent<T = any> implements OnInit {
       map((columns: HeaderCellModel<T>[]) => {
         const newState = [...columns];
 
-
         if (this.hasActions) {
           newState.push(new HeaderCellModel({ columnDef: 'actions' }));
         }
@@ -177,5 +176,9 @@ export class TableComponent<T = any> implements OnInit {
     this.tableDataSource.dispatchPagination({
       pagination: { currentPage: next } as PaginationInstance,
     });
+  }
+
+  public isForm(index, item): boolean {
+    return index === 0 && item.id === null;
   }
 }

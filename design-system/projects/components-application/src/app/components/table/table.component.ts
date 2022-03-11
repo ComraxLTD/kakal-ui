@@ -94,9 +94,9 @@ export class TableComponent implements OnInit {
   public optionsMap: OptionMap;
 
   public pagination: PaginationInstance = {
-    itemsPerPage: 5,
+    itemsPerPage: 3,
     currentPage: 1,
-    totalItems: 10,
+    totalItems: 5,
   };
 
   constructor(

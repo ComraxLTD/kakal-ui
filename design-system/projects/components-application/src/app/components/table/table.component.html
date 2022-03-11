@@ -3,6 +3,7 @@
     <code *ngIf="tableState$ | async as tableState">
       <div>tableState :</div>
       <pre>
+       {{ tableState.pagination | json }}
        {{ tableState.editing | json }}
        {{ tableState.action | json }}
       </pre>
