@@ -1,0 +1,38 @@
+<!-- <div
+  class="row"
+  fxFill
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  fxLayoutGap="1rem"
+>
+  <ng-container *ngFor="let column of columns; let columnIndex = index">
+    <div kkl-cell [columnDef]="column.columnDef" [flex]="column.flex">
+      <ng-container [ngSwitch]="column.columnDef">
+        <ng-container *ngSwitchCase="'actions'">
+          <button
+            mat-raised-button
+            type="su"
+            (click)="onSave()"
+            matTooltip="שמור"
+          >
+            <kkl-typography color="text"> שמור </kkl-typography>
+          </button>
+        </ng-container>
+
+        <ng-container *ngSwitchDefault>
+          <div fxFill>
+            <ng-container>
+              <kkl-form-cell
+                fxFlex="70"
+                [group]="tableState.forms['create']"
+                [columnDef]="column.columnDef"
+              ></kkl-form-cell>
+            </ng-container>
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+  </ng-container>
+</div> -->
+
+works

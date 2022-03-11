@@ -39,6 +39,12 @@
           </ng-container>
         </ng-container>
 
+        <!-- <ng-container matColumnDef="form">
+          <mat-cell *matCellDef="let item; let itemIndex = dataIndex">
+            create action work
+          </mat-cell>
+        </ng-container> -->
+
         <!-- EXPEND ROW -->
         <ng-container>
           <mat-accordion displayMode="flat">
@@ -54,6 +60,21 @@
                   [disabled]="true"
                   fxFill
                 >
+                  <mat-expansion-panel-header
+                    *ngIf="
+                      tableState.editing.indexOf('create') !== -1 &&
+                      itemIndex === 0
+                    "
+                  >
+                    <ng-container
+                      *ngTemplateOutlet="
+                  formRowDirective?.template;
+                  context: { $implicit: {item , column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
+                  "
+                    >
+                    </ng-container>
+                  </mat-expansion-panel-header>
+
                   <mat-expansion-panel-header
                     [class.expand]="accordion"
                     [class.form]="tableState.editing.indexOf(item[key]) !== -1"
@@ -131,6 +152,9 @@
         </mat-header-row>
 
         <!-- TABLE ROW -->
+        <!-- <mat-row
+          *matRowDef="let row; columns: ['form']; when: isCreate"
+        ></mat-row> -->
         <mat-row *matRowDef="let row; columns: ['row']"></mat-row>
 
         <!-- FOOTER ROW -->

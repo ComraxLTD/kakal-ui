@@ -62,6 +62,11 @@
         (submit)="onSubmitEvent($event)"
       ></kkl-actions-cell>
     </ng-container>
+
+    <!-- use kkl-form-row  -->
+    <ng-container *kklFormRow="let rowState">
+      <div>works</div>
+    </ng-container>
   </kkl-table>
 </div>
 
@@ -72,7 +77,7 @@
 </ng-template>
 
 <ng-template #actions let-rowState>
-  <div >
+  <div>
     <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
       הוסף מכונית
     </kkl-create-button>

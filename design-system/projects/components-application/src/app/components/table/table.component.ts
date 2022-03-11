@@ -313,7 +313,7 @@ export class TableComponent implements OnInit {
 
   public onCreateEvent(state: RowState) {
     const item: RootObject = {
-      id: 0,
+      id: 'create',
       first_name: '',
       last_name: '',
       phone: '',
@@ -324,28 +324,15 @@ export class TableComponent implements OnInit {
       currency: '',
     };
 
-    of(item)
-      .pipe(
-        switchMap((item) => {
-          return this.demoStore$.pipe(
-            take(1),
-            map((data) => {
-              const updateData = [...data];
-              updateData.unshift(item);
-              return updateData;
-            })
-          );
-        })
-      )
-      .subscribe((updateData) => {
-        this.demoStore$.next(updateData);
-        const group = this.setGroup(
-          this.setQuestions(this.questions, item, this.optionsMap)
-        );
-        this.tableDataSource.actions.create({
-          state: { ...state, item, group },
-        });
+    of(item).subscribe((updateItem) => {
+      // this.demoStore$.next(updateData);
+      const group = this.setGroup(
+        this.setQuestions(this.questions, item, this.optionsMap)
+      );
+      this.tableDataSource.actions.create({
+        state: { ...state, item: updateItem, group },
       });
+    });
   }
 
   public onFetchOptions(columnDef: string) {

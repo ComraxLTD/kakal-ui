@@ -25,6 +25,7 @@ import { FetchState, TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
 import { Observable, map, combineLatest, merge } from 'rxjs';
+import { FormRowDirective } from '../rows/form-row/form-row.directive';
 
 @Component({
   selector: 'kkl-table',
@@ -35,6 +36,9 @@ import { Observable, map, combineLatest, merge } from 'rxjs';
 export class TableComponent<T = any> implements OnInit {
   @ContentChild(KKLHeaderCellDirective)
   cellHeaderDirective: KKLHeaderCellDirective | undefined;
+
+  @ContentChild(FormRowDirective)
+  formRowDirective: FormRowDirective | undefined;
 
   @ContentChild(KKLDataCellDirective)
   cellDirective: KKLDataCellDirective | undefined;
@@ -120,7 +124,6 @@ export class TableComponent<T = any> implements OnInit {
       map((columns: HeaderCellModel<T>[]) => {
         const newState = [...columns];
 
-
         if (this.hasActions) {
           newState.push(new HeaderCellModel({ columnDef: 'actions' }));
         }
@@ -155,6 +158,9 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   ngAfterViewInit() {
+
+    console.log(this.formRowDirective)
+
     if (this.hasActions && !this.cellActionDirective) {
       throw new Error('kkl-table missing *kklActionCell');
     }
@@ -177,5 +183,9 @@ export class TableComponent<T = any> implements OnInit {
     this.tableDataSource.dispatchPagination({
       pagination: { currentPage: next } as PaginationInstance,
     });
+  }
+
+  isCreate(index, item): boolean {
+    return index === 0 && item.id === 0;
   }
 }

@@ -31,4 +31,4 @@ import { TableFormCellComponent } from './table-cell-form.component';
   ],
   exports: [TableFormCellComponent],
 })
-export class KKLTableFormCellModule {}
+export class KKLFormCellModule {}

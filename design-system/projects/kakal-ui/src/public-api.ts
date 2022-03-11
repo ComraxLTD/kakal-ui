@@ -82,13 +82,19 @@ export * from './lib/form/models/question.model';
 // TABLE EXPORTS
 // ------------------------------------------------------------------------------------------
 
-
 // TABLE
 export * from './lib/table/components/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table.state.service';
 
+// ROWS
+
+export * from './lib/table/components/rows/rows.module';
+export * from './lib/table/components/rows/form-row/form-row.component';
+export * from './lib/table/components/rows/form-row/form-row.directive';
+
+// CELLS
 export * from './lib/table/components/cells/table-cell.module';
 
 export * from './lib/table/components/cells/table-form-cell/table-cell-form.module';
@@ -102,12 +108,14 @@ export * from './lib/table/components/cells/table-data-cell/table-data-cell.modu
 export * from './lib/table/components/cells/table-data-cell/table-data-cell.component';
 export * from './lib/table/components/cells/table-data-cell/cell-data.directive';
 
+// HEADER CELLS
 export * from './lib/table/components/header-cells/header-cells.module';
 export * from './lib/table/components/header-cells/components/header-cell/header-cell.component';
 export * from './lib/table/components/header-cells/cell-header.directive';
 export * from './lib/table/components/header-cells/models/header-cell.model';
 export * from './lib/table/components/header-cells/models/header.types';
 
+// PAGINATION
 export * from './lib/table/components/pagination/pagination.module';
 export * from './lib/table/components/pagination/pagination.component';
 export * from './lib/table/components/pagination/pagination.directive';
