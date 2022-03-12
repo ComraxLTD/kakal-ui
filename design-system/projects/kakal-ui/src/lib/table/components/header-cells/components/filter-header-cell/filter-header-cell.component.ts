@@ -12,7 +12,7 @@ import { MatListOption } from '@angular/material/list';
 
 import {
   KKLSelectOption,
-  KKLFormOption,
+  FormChangeEvent,
 } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';

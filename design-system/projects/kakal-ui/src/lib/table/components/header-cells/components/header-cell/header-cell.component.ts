@@ -9,7 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FilterOption, KKLFormOption } from 'projects/kakal-ui/src/public-api';
+import { FilterOption, FormChangeEvent } from 'projects/kakal-ui/src/public-api';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderCellModel } from '../../models/header-cell.model';
 import { FilterRange } from '../../models/header.types';
@@ -39,7 +39,7 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
   @Output() fetchOptions: EventEmitter<string> = new EventEmitter();
 
   // emit whenever input of select or multiSelect is type
-  @Output() queryOptionsChanged: EventEmitter<KKLFormOption> = new EventEmitter();
+  @Output() queryOptionsChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
@@ -79,15 +79,15 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
     this.fetchOptions.emit(this.columnDef);
   }
 
-  public onValueChanged(FormChnageEvent: KKLFormOption) {
-    const { value } = FormChnageEvent;
+  public onValueChanged(formChangeEvent: FormChangeEvent) {
+    const { value } = formChangeEvent;
 
     if (
       this.column.filterType === 'select' ||
       this.column.filterType === 'multiSelect'
     ) {
       // filter options
-      this.queryOptionsChanged.emit(FormChnageEvent);
+      this.queryOptionsChanged.emit(formChangeEvent);
     } else {
       const filterState = this.setFilterState(value);
       this.tableDataSource.dispatchFilter({ filterState });
