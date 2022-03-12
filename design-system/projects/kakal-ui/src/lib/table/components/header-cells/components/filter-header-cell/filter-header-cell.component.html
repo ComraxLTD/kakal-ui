@@ -19,52 +19,17 @@
   <mat-menu #menu="matMenu" xPosition="after">
     <div class="filter-menu" fxLayout="column">
       <div fxLayout="row" fxLayoutGap="1rem" (click)="$event.stopPropagation()">
-        <ng-container [ngSwitch]="filterType">
-          <!-- DATES FILTER-->
-          <ng-container *ngSwitchCase="'dateRange'">
-            <ng-container *ngIf="dateRange$ | async as value">
-              <kkl-filter-range-cell
-                fxFlex="75"
-                [filterType]="filterType"
-                [value]="value"
-                (rangeChange)="onRangeChange($event)"
-              ></kkl-filter-range-cell>
-            </ng-container>
-          </ng-container>
-
-          <!-- CURRENCY FILTER-->
-
-          <ng-container *ngSwitchCase="'numberRange'">
-            <ng-container *ngIf="numberRange$ | async as value">
-              <kkl-filter-range-cell
-                fxFlex="75"
-                [filterType]="filterType"
-                [value]="value"
-                (rangeChange)="onRangeChange($event)"
-              ></kkl-filter-range-cell>
-            </ng-container>
-          </ng-container>
-
-          <ng-container *ngSwitchDefault>
-            <kkl-form-input
-              fxFlex="75"
-              [control]="control"
-              [key]="key"
-              [icon]="'search'"
-              (valueChanged)="onValueChanged($event)"
-            >
-            </kkl-form-input>
-          </ng-container>
-        </ng-container>
+        <ng-template
+          *ngTemplateOutlet="filterTemplate[key] || defaultTemplate; context: {$implicit : { filterType, value$}}"
+        ></ng-template>
 
         <!-- SORT BUTTON -->
-        <div class="sort-button" fxLayout="column" fxLayoutAlign="end center">
-          <div fxFlex="95">
-            <kkl-sort-button
-              (sortChange)="onSortChange($event)"
-              [sortBy]="sortBy"
-            ></kkl-sort-button>
-          </div>
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <kkl-sort-button
+            kkl-form-button
+            (sortChange)="onSortChange($event)"
+            [sortBy]="sortBy"
+          ></kkl-sort-button>
         </div>
       </div>
       <ng-controller
@@ -73,7 +38,9 @@
         <mat-selection-list
           #selectionList
           [compareWith]="compareWith"
-          (selectionChange)="onSelectionChange(selectionList.selectedOptions.selected)"
+          (selectionChange)="
+            onSelectionChange(selectionList.selectedOptions.selected)
+          "
           [multiple]="filterType === 'multiSelect'"
         >
           <ng-container *ngFor="let option of options$ | async">
@@ -85,18 +52,19 @@
               <kkl-typography> {{ option.label }}</kkl-typography>
             </mat-list-option>
           </ng-container>
-
-          <!-- <ng-container *ngFor="let item of options$ | async | keyvalue">
-            <mat-list-option
-              (click)="$event.stopPropagation()"
-              [value]="item.value"
-              [selected]="item.value.selected"
-            >
-              <kkl-typography> {{ item.value.label }}</kkl-typography>
-            </mat-list-option>
-          </ng-container> -->
         </mat-selection-list>
       </ng-controller>
     </div>
   </mat-menu>
 </div>
+
+<ng-template #defaultTemplate>
+  <kkl-form-input
+    fxFlex="75"
+    [control]="control"
+    [key]="key"
+    [icon]="'search'"
+    (valueChanged)="onValueChanged($event)"
+  >
+  </kkl-form-input>
+</ng-template>

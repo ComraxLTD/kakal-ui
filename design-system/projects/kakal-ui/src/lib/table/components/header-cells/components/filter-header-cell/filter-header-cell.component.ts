@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
 import { MatListOption } from '@angular/material/list';
@@ -36,11 +43,12 @@ export class FilterHeaderCellComponent implements OnInit {
   @Input() public label: string;
   @Input() public sortBy: SortDirection;
 
+  @Input() public filterTemplate: { [key: string]: TemplateRef<any> } = {};
+
   public control: FormControl = new FormControl();
 
   public options$: Observable<KKLSelectOption[]>;
-  public dateRange$: Observable<FilterRange<Date>>;
-  public numberRange$: Observable<FilterRange<number>>;
+  public value$: Observable<FilterRange>;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
@@ -55,11 +63,11 @@ export class FilterHeaderCellComponent implements OnInit {
       this.options$ = this.initOptionsWithState();
     }
 
-    if (this.filterType === FilterType.DATE_RANGE) {
-      this.dateRange$ = this.initRange$<Date>();
-    }
-    if (this.filterType === FilterType.NUMBER_RANGE) {
-      this.numberRange$ = this.initRange$<number>();
+    if (
+      this.filterType === FilterType.DATE_RANGE ||
+      this.filterType === FilterType.NUMBER_RANGE
+    ) {
+      this.value$ = this.initRange$();
     }
   }
 
@@ -152,7 +160,7 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public compareWith(o1: KKLSelectOption, o2: KKLSelectOption) {
-    console.log(1)
+    console.log(1);
     return o1?.label === o2?.label && o1.value === o2.value;
   }
 }
