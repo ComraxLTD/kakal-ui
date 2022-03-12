@@ -44,7 +44,6 @@ import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
-import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 import { KKLCardDashboardModule } from './cards/card-dashboard/card-dashboard.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
@@ -121,9 +120,9 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     NavbarBottomModule,
 
     // STEPPER
-    // StepperModule,
-    // StepperMobileModule,
-    // StepperLayoutModule,
+    StepperModule,
+    StepperMobileModule,
+    StepperLayoutModule,
   ],
   exports: [
     //TOOLS
@@ -178,9 +177,9 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     NavbarBottomModule,
 
     // STEPPER
-    // StepperModule,
-    // StepperMobileModule,
-    // StepperLayoutModule,
+    StepperModule,
+    StepperMobileModule,
+    StepperLayoutModule,
   ],
 })
 export class KakalUiModule {}
