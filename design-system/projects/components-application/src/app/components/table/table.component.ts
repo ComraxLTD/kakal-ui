@@ -120,7 +120,7 @@ export class TableComponent implements OnInit {
     this.tableState$ = this.tableDataSource.connectTableState();
     this.fetchState$ = this.tableDataSource.connectFetchState();
 
-    this.initTableState();
+    // this.initTableState();
   }
 
   private connectToFetchState() {

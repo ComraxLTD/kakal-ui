@@ -7,11 +7,9 @@ import { QuestionBase } from '../../../../form/models/question.model';
   templateUrl: './table-cell-form.component.html',
   styleUrls: ['./table-cell-form.component.scss'],
 })
-export class TableFormCellComponent implements OnInit {
+export class FormCellComponent implements OnInit {
   @Input() public group: QuestionGroupModel;
   @Input() public columnDef: string;
-  @Input() public template: TemplateRef<any>;
-  @Input() public index: number;
 
   public question: QuestionBase;
 
@@ -20,6 +18,7 @@ export class TableFormCellComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log('work')
     this.question = this.group.controls[this.columnDef];
   }
 

@@ -47,9 +47,8 @@
         [item]="context.item"
         [key]="context.key"
         [column]="context.column"
-        [group]="context.group"
         [tableState]="context.tableState"
-        [inputTemplate]="{input}"
+        [action]="context.tableState.action"
         [cellTemplate]="{email}"
       ></kkl-data-cell>
     </ng-container>
@@ -82,12 +81,3 @@
   </div>
 </ng-template>
 
-<ng-template #input let-rowState>
-  <div fxFill fxLayout="row">
-    <kkl-form-cell
-      fxFlex="70"
-      [group]="rowState.group"
-      [columnDef]="rowState.column.columnDef"
-    ></kkl-form-cell>
-  </div>
-</ng-template>

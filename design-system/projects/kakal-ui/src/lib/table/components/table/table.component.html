@@ -44,7 +44,7 @@
                   <ng-container
                     *ngTemplateOutlet="
                   cellActionDirective?.template;
-              context: { $implicit: {item , column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
+              context: { $implicit: {item , column, itemIndex, key, tableState}}
               "
                   >
                   </ng-container>
@@ -56,7 +56,7 @@
                   <ng-container
                     *ngTemplateOutlet="
                 cellDirective.template;
-                context: { $implicit: {item, column, itemIndex, key, group: tableState.forms[item[key]], tableState}}
+                context: { $implicit: {item, column, itemIndex, key, tableState}}
                 "
                   >
                   </ng-container>

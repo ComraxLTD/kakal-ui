@@ -11,11 +11,11 @@ import { KKLFormDateModule } from '../../../../form/form-date/form-date.module';
 import { KKLFormInputModule } from '../../../../form/form-input/form-input.module';
 import { KKLFormSelectModule } from '../../../../form/form-select/form-select.module';
 import { KKLFormUploadModule } from '../../../../form/form-upload/form-upload.module';
-import { TableFormCellComponent } from './table-cell-form.component';
+import { FormCellComponent } from './table-cell-form.component';
 import { KKLDirectivesModule } from '../../../../directives/directives.module';
 
 @NgModule({
-  declarations: [TableFormCellComponent],
+  declarations: [FormCellComponent],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
@@ -31,6 +31,6 @@ import { KKLDirectivesModule } from '../../../../directives/directives.module';
     KKLFormUploadModule,
     KKLDirectivesModule,
   ],
-  exports: [TableFormCellComponent],
+  exports: [FormCellComponent],
 })
-export class KKLTableFormCellModule {}
+export class KKLFormCellModule {}

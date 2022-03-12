@@ -3,14 +3,14 @@
     *ngIf="tableState.editing.indexOf(item[key]) === -1; else editBlock"
   >
     <ng-container
-      *ngTemplateOutlet="cellTemplate[column.columnDef] || defaultBlock; context : {$implicit : {item, column, itemIndex, key}} "
+      *ngTemplateOutlet="cellTemplate[column.columnDef] || defaultBlock; context : {$implicit : {item, column, itemIndex, key, tableState, group : tableState.forms[item[key]]}} "
     ></ng-container>
   </ng-container>
 
   <!-- Default block -->
   <ng-template #defaultBlock>
     <kkl-typography>
-      {{ item[column.columnDef] | format: column?.format  }}
+      {{ item[column.columnDef] | format: column?.format }}
     </kkl-typography>
   </ng-template>
 
@@ -18,8 +18,18 @@
   <ng-template #editBlock>
     <div [class.form-cell]="true">
       <ng-container
-        *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{item, column, itemIndex, key, group : tableState.forms[item[key]]}} "
+        *ngTemplateOutlet="inputTemplate[column.columnDef] || defaultInput; context : {$implicit :{column, group : tableState.forms[item[key]]}} "
       ></ng-container>
     </div>
   </ng-template>
 </div>
+
+<ng-template #defaultInput>
+  <div fxFill fxLayout="row">
+    <kkl-form-cell
+      fxFlex="70"
+      [group]="tableState.forms[item[key]]"
+      [columnDef]="column.columnDef"
+    ></kkl-form-cell>
+  </div>
+</ng-template>

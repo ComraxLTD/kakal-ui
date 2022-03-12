@@ -1,16 +1,16 @@
 export interface RootObject {
   id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
-  phone: string;
-  gender: string;
-  city: string;
-  date: Date | string;
-  currency: string;
+  first_name?: string;
+  last_name?: string;
+  email?: string;
+  phone?: string;
+  gender?: string;
+  city?: string;
+  date?: Date | string;
+  currency?: string;
 }
 export interface OptionObject {
-  id: number;
+  id?: number;
   city: string;
 }
 

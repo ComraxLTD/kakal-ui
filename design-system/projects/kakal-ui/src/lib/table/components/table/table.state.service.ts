@@ -25,6 +25,7 @@ export class TableStateService {
 
     editing.push(item[key]);
 
+
     const tableState = {
       ...oldState,
       pagination,
