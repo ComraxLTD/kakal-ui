@@ -7,7 +7,6 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 
 import { ThemePalette } from '@angular/material/core';
@@ -20,11 +19,11 @@ import { KKLHeaderCellDirective } from '../../components/header-cells/cell-heade
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
 import { ColumnSortOption } from '../../../columns/models/column-sort-option';
 import { TableDataSource } from '../../models/table-datasource';
-import { FetchState, TableState } from '../../models/table.state';
+import IPaginationChangeEvent from '../pagination/pagination.types';
+import { TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
 import { Observable, map, combineLatest, merge } from 'rxjs';
-import IPaginationChangeEvent from '../pagination/pagination.types';
 
 @Component({
   selector: 'kkl-table',

@@ -51,7 +51,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
 
     this.headerState = new BehaviorSubject<HeaderState<T>>({
-      event: ColumnActions.DEFAULT,
+      action: ColumnActions.DEFAULT,
     });
 
     this.formDataSource = new FormDataSource();

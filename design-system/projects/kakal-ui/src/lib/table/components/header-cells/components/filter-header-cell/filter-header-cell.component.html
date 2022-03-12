@@ -20,7 +20,7 @@
     <div class="filter-menu" fxLayout="column">
       <div fxLayout="row" fxLayoutGap="1rem" (click)="$event.stopPropagation()">
         <ng-template
-          *ngTemplateOutlet="filterTemplate[key] || defaultTemplate; context: {$implicit : { filterType, value$}}"
+          *ngTemplateOutlet="filterTemplate; context: {$implicit : { filterType, value$}}"
         ></ng-template>
 
         <!-- SORT BUTTON -->
@@ -43,7 +43,7 @@
           "
           [multiple]="filterType === 'multiSelect'"
         >
-          <ng-container *ngFor="let option of options$ | async">
+          <ng-container *ngFor="let option of options$ | async as options">
             <mat-list-option
               (click)="$event.stopPropagation()"
               [value]="option"

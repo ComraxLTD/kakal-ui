@@ -18,6 +18,7 @@ import {
   TableActions,
   FilterOption,
   FilterRange,
+  KKLFormOption,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
@@ -25,12 +26,16 @@ import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.ac
 import { PaginationInstance } from 'ngx-pagination';
 import {
   BehaviorSubject,
+  debounce,
+  debounceTime,
+  distinctUntilChanged,
   firstValueFrom,
   map,
   merge,
   Observable,
   of,
   switchMap,
+  switchMapTo,
   take,
 } from 'rxjs';
 
@@ -182,7 +187,7 @@ export class TableComponent implements OnInit {
           filterType: FilterType.MULTI_SELECTED,
           value: [
             {
-              id : 3,
+              id: 3,
               label: 'Russia',
               value: { name: 'Russia', code: 3 },
             },
@@ -351,10 +356,29 @@ export class TableComponent implements OnInit {
   public onFetchOptions(columnDef: string) {
     const headerState: HeaderState = {
       key: columnDef,
-      event: ColumnActions.UPDATE_FILTERS,
+      action: ColumnActions.INIT_OPTIONS,
       options: this.optionsMap[columnDef],
     };
 
     this.tableDataSource.loadHeaderState({ headerState });
+  }
+
+  public onQueryOptions(formOption: KKLFormOption) {
+    const { key, value } = formOption;
+
+    of(value)
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged()
+        // some filter logic - server or local - for filtered options
+      )
+      .subscribe(() => {
+        const headerState: HeaderState = {
+          key,
+          action: ColumnActions.INIT_OPTIONS,
+          options: [],
+        };
+        this.tableDataSource.loadHeaderState({ headerState });
+      });
   }
 }

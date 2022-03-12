@@ -42,12 +42,6 @@ export function setSelectState(
   const initSelectState$ = getHeaderFilterState(initState$, type, key);
   const updateSelectState$ = getHeaderFilterState(updateState$, type, key);
 
-  // const updateSelectState$ = filterSelectState$.pipe(
-  //   pairwise(),
-  //   filter(([prev, current]) => prev.length > current.length),
-  //   map(([prev, current]) => current)
-  // );
-
   return merge(initSelectState$, updateSelectState$);
 }
 
@@ -63,7 +57,6 @@ export function setFilterOptionState(
         ),
         map((selectedOptions: (string | number)[]) => {
           return options.map((option : KKLSelectOption) => {
-            console.log(selectedOptions)
             return {
               ...option,
               selected: selectedOptions.indexOf(option.id) !== -1,
