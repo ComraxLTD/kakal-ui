@@ -46,7 +46,7 @@ export class TableComponent implements OnInit {
 
   public itemKey: string = 'id';
 
-  private columns: HeaderCellModel<RootObject>[] = [
+  public columns: HeaderCellModel<RootObject>[] = [
     {
       columnDef: 'first_name',
       label: 'first_name',
@@ -96,7 +96,7 @@ export class TableComponent implements OnInit {
   public pagination: PaginationInstance = {
     itemsPerPage: 5,
     currentPage: 1,
-    totalItems: 10,
+    totalItems: 15,
   };
 
   constructor(
@@ -121,7 +121,6 @@ export class TableComponent implements OnInit {
   private connectToFetchState() {
     return this.tableDataSource.connectFetchState().pipe(
       switchMap((fetchState: FetchState) => {
-        console.log(fetchState);
         return of(DEMO_DATA);
       })
     );
@@ -297,7 +296,7 @@ export class TableComponent implements OnInit {
               updateData[indexToUpdate] = {
                 ...data[indexToUpdate],
                 ...res,
-                city: city.label,
+                city: city?.label,
               };
               return updateData;
             })

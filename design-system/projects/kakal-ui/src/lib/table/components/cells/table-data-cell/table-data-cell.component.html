@@ -1,4 +1,4 @@
-<div fxFill>
+<div fxFill fxLayout="column" fxLayoutAlign="center center">
   <ng-container
     *ngIf="tableState.editing.indexOf(item[key]) === -1; else editBlock"
   >
@@ -10,14 +10,16 @@
   <!-- Default block -->
   <ng-template #defaultBlock>
     <kkl-typography>
-      {{ item[column.columnDef] | format: column?.format }}
+      {{ item[column.columnDef] | format: column?.format  }}
     </kkl-typography>
   </ng-template>
 
   <!-- Edit block -->
   <ng-template #editBlock>
-    <ng-container
-      *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{item, column, itemIndex, key, group : tableState.forms[item[key]]}} "
-    ></ng-container>
+    <div [class.form-cell]="true">
+      <ng-container
+        *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{item, column, itemIndex, key, group : tableState.forms[item[key]]}} "
+      ></ng-container>
+    </div>
   </ng-template>
 </div>
