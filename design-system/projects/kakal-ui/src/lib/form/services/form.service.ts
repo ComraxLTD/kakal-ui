@@ -43,8 +43,7 @@ export type Question =
   | QuestionTextareaModel
   | QuestionNumberModel
   | QuestionAutocompleteModel
-  | QuestionGroupModel
-  ;
+  | QuestionGroupModel;
 
 export interface QuestionGroup {
   key?: string;
@@ -57,7 +56,7 @@ export interface QuestionGroup {
   providedIn: 'root',
 })
 export class FormService {
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder) {}
 
   // method which create a control template for FormBuilder
   private setFieldControl(question: Question): ControlTemplate {
@@ -120,7 +119,7 @@ export class FormService {
     });
   }
 
-  private activator<T extends any>(type: { new(): T }): T {
+  private activator<T extends any>(type: { new (): T }): T {
     return new type();
   }
 
@@ -172,10 +171,6 @@ export class FormService {
 
   // method which create a question instance
   public setQuestion(question: Question): Question {
-    const questionsMap = {
-      select: (question) => new QuestionSelectModel(question),
-    };
-
     switch (question.controlType) {
       case 'group':
         const { key, type, gridProps, label } = question;
@@ -198,7 +193,8 @@ export class FormService {
         const cq = question as QuestionCurrencyModel;
         return new QuestionCurrencyModel(cq);
       case 'select':
-        return new QuestionSelectModel(question);
+        const sq = question as QuestionSelectModel;
+        return new QuestionSelectModel(sq);
       case 'file':
         const fq = question as QuestionFileModel;
         return new QuestionFileModel(fq);
@@ -213,14 +209,17 @@ export class FormService {
         const dq = question as QuestionDateModel;
         return new QuestionDateModel(dq);
       case 'autocomplete':
-        return new QuestionAutocompleteModel(question);
+        const aq = question as QuestionAutocompleteModel;
+        return new QuestionAutocompleteModel(aq);
       default:
         return new QuestionTextModel(question);
     }
   }
 
   // create questions object for row instance to render to kkl-form {}
-  public setQuestionsAsGroup(questions: Question[]): { [key: string]: Question } {
+  public setQuestionsAsGroup(questions: Question[]): {
+    [key: string]: Question;
+  } {
     return questions
       .map((question: Question) => question)
       .reduce((acc, control: Question) => {

@@ -1,13 +1,21 @@
 import { SelectOption } from "./question-select.model";
 import { QuestionBase } from "./question.model";
 
+export interface CheckboxOption {
+  label: string;
+  value: any;
+  checked?: boolean;
+}
+
+
 export class QuestionCheckBoxModel extends QuestionBase {
-    public options?: SelectOption[];
+    public options?: CheckboxOption[];
     public labelPosition?:string;
+
     constructor(options?: {
         key: string;
         label?: string;
-        options?: SelectOption[];
+        options?: CheckboxOption[];
         labelPosition?:string;
     }
     ) {

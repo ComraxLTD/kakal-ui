@@ -1,12 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { RadioOption } from '../form-radio/question-radio.model';
+import { CheckboxOption } from '../models/question-checkbox.model';
 
-export interface CheckboxOption {
-  label: string;
-  value: any;
-  checked?: boolean;
-}
 
 @Component({
   selector: 'kkl-form-checkbox-group',

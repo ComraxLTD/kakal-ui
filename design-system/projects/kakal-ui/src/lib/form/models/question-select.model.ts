@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Appearance, GridProps, QuestionBase } from './question.model';
 
 export interface SelectOption {
+  id: number | string;
   label: string;
   value: any;
   selected?: boolean;
