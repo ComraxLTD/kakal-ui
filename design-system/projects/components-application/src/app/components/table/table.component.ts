@@ -143,7 +143,8 @@ export class TableComponent implements OnInit {
       map((options: OptionObject[]) => {
         return options.map((option: OptionObject) => {
           return {
-            value: option.id,
+            id: option.id,
+            value: { code: option.id, name: option.city },
             label: option.city,
           };
         });
@@ -181,9 +182,9 @@ export class TableComponent implements OnInit {
           filterType: FilterType.MULTI_SELECTED,
           value: [
             {
+              id : 3,
               label: 'Russia',
-              value: 3,
-              selected: true,
+              value: { name: 'Russia', code: 3 },
             },
           ],
         } as FilterOption<KKLSelectOption[]>,

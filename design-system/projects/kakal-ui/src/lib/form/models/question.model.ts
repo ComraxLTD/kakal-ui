@@ -78,7 +78,6 @@ export abstract class QuestionBase {
   public control?: AbstractControl | FormControl;
   public cleave?: {};
   public localFilter?: boolean;
-  public autocomplete?: boolean;
 
   constructor(options: {
     key: string;
@@ -97,7 +96,6 @@ export abstract class QuestionBase {
     control?: AbstractControl | FormControl;
     cleave?: {};
     localFilter?: boolean;
-    autocomplete?: boolean;
   }) {
     this.key = options.key || '';
     this.value = options.value;
@@ -121,6 +119,5 @@ export abstract class QuestionBase {
     this.control = options.control || null;
     this.cleave = options.cleave || {};
     this.localFilter = options.localFilter;
-    this.autocomplete = options.autocomplete;
   }
 }

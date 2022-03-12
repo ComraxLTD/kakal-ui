@@ -17,6 +17,7 @@ import { HeaderCellModel } from '../../models/header-cell.model';
 })
 export class HeaderCellComponent implements OnInit, AfterViewInit {
   @ViewChild('filterCell') filterHeaderTemplate: TemplateRef<any>;
+  @ViewChild('rangeFilter') rangeFilterTemplate: TemplateRef<any>;
 
   @Input() column: HeaderCellModel;
   @Input() label: string;
@@ -32,11 +33,20 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
+    const filterTemplateMap = {
+      numberRange: this.rangeFilterTemplate,
+      dateRange: this.rangeFilterTemplate,
+    };
+
     if (this.column.filterType) {
-      this.filterTemplate = {
+      this.headerTemplate = {
         [this.column.columnDef]: this.filterHeaderTemplate,
       };
     }
+
+    this.filterTemplate = {
+      [this.column.columnDef]: filterTemplateMap[this.column.filterType],
+    };
   }
 
   public onMenuOpen() {

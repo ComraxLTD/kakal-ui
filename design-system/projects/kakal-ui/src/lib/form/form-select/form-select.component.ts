@@ -28,7 +28,7 @@ export class FormSelectComponent implements OnInit {
 
   public error$: BehaviorSubject<string>;
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
@@ -37,10 +37,6 @@ export class FormSelectComponent implements OnInit {
   public onSelectChange() {
     const formOption: FormOption = this.getFormOption(this.control.value);
     this.selected.emit(formOption);
-  }
-
-  compareFunction(o1: SelectOption, o2: SelectOption) {
-    return (o1?.label == o2?.label && o1.value == o2.value);
   }
 
   private getFormOption(value?: SelectOption): FormOption {
@@ -68,5 +64,9 @@ export class FormSelectComponent implements OnInit {
   }
   public onFocus() {
     this.focus.emit(this.getFormOption());
+  }
+
+  public compareFunction(o1: SelectOption, o2: SelectOption) {
+    return o1?.label === o2?.label && o1.value === o2.value;
   }
 }

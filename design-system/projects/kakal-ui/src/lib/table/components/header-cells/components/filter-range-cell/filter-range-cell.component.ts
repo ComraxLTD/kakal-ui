@@ -6,8 +6,7 @@ import {
 } from '../../../../../form/models/form.types';
 import { FormService } from '../../../../../form/services/form.service';
 import { FilterRange, FilterType } from '../../models/header.types';
-import { Observable, skip, Subject, take, takeUntil } from 'rxjs';
-
+import { skip, Subject, take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-filter-range-cell',
@@ -16,7 +15,6 @@ import { Observable, skip, Subject, take, takeUntil } from 'rxjs';
 })
 export class FilterRangeCellComponent implements OnInit {
   @Input() public filterType: FilterType.NUMBER_RANGE | FilterType.DATE_RANGE;
-  @Input() public range$: Observable<FilterRange>;
   @Input() public value: FilterRange;
 
   public amountGroup: QuestionGroupModel<FilterRange<number>>;

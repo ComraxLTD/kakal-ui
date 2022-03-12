@@ -1,9 +1,21 @@
-<mat-form-field [color]="theme" [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
+<mat-form-field
+  [color]="theme"
+  [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
+>
   <mat-label>{{ label }}</mat-label>
 
-  <mat-select panelClass="select-panel-form" overlayPanelClass="overlay-panel" [multiple]="multi"
-    [disableOptionCentering]="true" (selectionChange)="onSelectChange()" [formControl]="control" [attr.name]="key" [compareWith]="compareFunction"
-    (focusout)="setErrorMessage()" (focus)="onFocus()">
+  <mat-select
+    panelClass="select-panel-form"
+    overlayPanelClass="overlay-panel"
+    [multiple]="multi"
+    [disableOptionCentering]="true"
+    (selectionChange)="onSelectChange()"
+    [formControl]="control"
+    [attr.name]="key"
+    [compareWith]="compareFunction"
+    (focusout)="setErrorMessage()"
+    (focus)="onFocus()"
+  >
     <ng-container *ngIf="multi">
       <mat-select-trigger>
         {{ control.value ? control.value[0].label : "" }}
@@ -16,6 +28,11 @@
       {{ option.label }}
     </mat-option>
   </mat-select>
-  <kkl-icon matSuffix [size]="1.8" color="primary" key="keyboard_arrow_down"></kkl-icon>
+  <kkl-icon
+    matSuffix
+    [size]="1.8"
+    color="primary"
+    key="keyboard_arrow_down"
+  ></kkl-icon>
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>

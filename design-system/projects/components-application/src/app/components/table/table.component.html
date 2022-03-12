@@ -8,13 +8,13 @@
        {{ tableState.action | json }}
       </pre>
     </code>
-    <!-- <mat-divider [vertical]="true"></mat-divider>
+    <mat-divider [vertical]="true"></mat-divider>
     <code *ngIf="fetchState$ | async as fetchState">
       <div>fetchState :</div>
       <pre>
         {{ fetchState | json }}
       </pre>
-    </code> -->
+    </code>
   </div>
 
   <kkl-table
@@ -68,7 +68,7 @@
 
 <ng-template #email let-rowState>
   <kkl-typography color="primary" underline="true">
-    {{ rowState.item.email | slice : -20 }}
+    {{ rowState.item.email | slice: -20 }}
   </kkl-typography>
 </ng-template>
 

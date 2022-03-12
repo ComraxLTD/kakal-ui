@@ -3,14 +3,19 @@ import { SelectOption } from '../models/question-select.model';
 import { GridProps, QuestionBase } from '../models/question.model';
 import { CurrencyModel } from './form-currency.model';
 
+export interface CurrencyOptions {
+  label: string;
+  value: number;
+}
+
 export class QuestionCurrencyModel extends QuestionBase {
   // symbol of currency
-  public default: SelectOption;
+  public default: CurrencyOptions;
 
   constructor(options: {
     key: string;
     label?: string;
-    default?: SelectOption;
+    default?: CurrencyOptions;
     gridProps?: GridProps;
     value?: CurrencyModel;
     disabled?: boolean;
@@ -19,7 +24,7 @@ export class QuestionCurrencyModel extends QuestionBase {
     super(options);
     this.key = options.key;
     this.label = options.label;
-    this.default = options.default || {label:'',value:0};
+    this.default = options.default || { label: '', value: 0 };
     this.type = 'currency';
     this.controlType = 'currency';
     this.gridProps = options.gridProps;
