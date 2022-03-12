@@ -10,7 +10,6 @@ import { FormControlStatus, FormGroup } from '@angular/forms';
 import {
   Observable,
   merge,
-  mapTo,
   filter,
   map,
   switchMap,
@@ -18,7 +17,6 @@ import {
   distinctUntilChanged,
   tap,
   pairwise,
-  take,
 } from 'rxjs';
 import { TableDataSource } from '../../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../../models/table.state';
@@ -86,7 +84,7 @@ export class TableActionCellComponent implements OnInit {
   private onDefaultButtonsState(): Observable<ButtonActionState> {
     return this.tableDataSource
       .listenByAction({ action: FormActions.DEFAULT })
-      .pipe(mapTo(this.getButtonsStateOnDefault()));
+      .pipe(map((_) => this.getButtonsStateOnDefault()));
   }
 
   private setFormState(formGroup: FormGroup, event: FormActions) {
@@ -133,25 +131,21 @@ export class TableActionCellComponent implements OnInit {
 
   private onCancelButtonState() {
     const editClose$ = this.getRowEditState(FormActions.CANCEL).pipe(
-      tap(({isEditing}) =>console.log(isEditing)),
+      tap(({ isEditing }) => console.log(isEditing)),
       filter(({ group, isEditing }) => !isEditing),
-      tap(() => console.log('close edit')),
-      mapTo(this.getButtonsStateOnDefault())
+      map((_) => this.getButtonsStateOnDefault())
     );
 
     const createClose$ = this.tableDataSource.select(TableSelector.ACTION).pipe(
       pairwise(),
       filter(([prev, current]) => prev === FormActions.CREATE),
-      tap(() => console.log('close create')),
-      mapTo(this.getButtonsStateOnDefault())
+      map((_) => this.getButtonsStateOnDefault())
     );
 
     return merge(createClose$, editClose$);
   }
 
   private onCreateButtonState() {
-    const id = this.rowState.item[this.rowState.key];
-
     const createTrue$ = this.getRowEditState(FormActions.CREATE).pipe(
       filter(({ group, isEditing }) => isEditing),
       switchMap(({ group, isEditing }) => {
@@ -162,7 +156,6 @@ export class TableActionCellComponent implements OnInit {
 
     const createFalse$ = this.getRowEditState(FormActions.CREATE).pipe(
       filter(({ isEditing }) => !isEditing),
-      tap(() => console.log('create false')),
       map((_) => {
         const defaultState = this.getButtonsStateOnDefault();
         return {
