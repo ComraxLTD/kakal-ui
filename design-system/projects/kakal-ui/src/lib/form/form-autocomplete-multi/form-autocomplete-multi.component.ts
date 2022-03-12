@@ -12,7 +12,7 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
 import { FormDataSource } from '../models/form-datasource';
 import { Observable, of } from 'rxjs';
-import { FormChnageEvent } from '../models/form.options';
+import { FormChangeEvent } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-autocomplete-multi',
@@ -36,9 +36,9 @@ export class FormAutocompleteComponentMulti implements OnInit {
 
   @Input() public formDataSource: FormDataSource;
 
-  @Output() autocomplete: EventEmitter<FormChnageEvent> = new EventEmitter();
-  @Output() optionSelected: EventEmitter<FormChnageEvent> = new EventEmitter();
-  @Output() multiOptionsSelected: EventEmitter<FormChnageEvent> = new EventEmitter();
+  @Output() autocomplete: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() optionSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   public autocomplete$: Observable<string>;
 
@@ -55,22 +55,22 @@ export class FormAutocompleteComponentMulti implements OnInit {
   //   );
   // }
 
-  // private onAutocompleteEvent(): Observable<FormChnageEvent> {
+  // private onAutocompleteEvent(): Observable<FormChangeEvent> {
   //   return this.formDataSource.listen.autocomplete().pipe(
   //     debounceTime(500),
   //     distinctUntilKeyChanged('value'),
-  //     tap((FormChnageEvent: FormChnageEvent) => {
+  //     tap((FormChangeEvent: FormChangeEvent) => {
   //       const option: SelectOption = this.options.find((option) =>
-  //         option.label.indexOf(FormChnageEvent.value)
+  //         option.label.indexOf(FormChangeEvent.value)
   //       );
 
   //       this.autocomplete.emit({
   //         key: this.key,
   //         option,
-  //         value: FormChnageEvent.value,
-  //         value$: of(FormChnageEvent.value),
+  //         value: FormChangeEvent.value,
+  //         value$: of(FormChangeEvent.value),
   //       });
-  //       return FormChnageEvent;
+  //       return FormChangeEvent;
   //     })
   //   );
   // }
@@ -80,14 +80,14 @@ export class FormAutocompleteComponentMulti implements OnInit {
       option.label.indexOf(query)
     );
 
-    const FormChnageEvent = {
+    const FormChangeEvent = {
       key: this.key,
       option,
       query,
       query$: of(query),
     };
 
-    this.formDataSource.dispatch.queryChanged(FormChnageEvent);
+    this.formDataSource.dispatch.queryChanged(FormChangeEvent);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
@@ -98,13 +98,13 @@ export class FormAutocompleteComponentMulti implements OnInit {
     //   option,
     // });
 
-    const FormChnageEvent: FormChnageEvent = {
+    const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       value: option.value,
       option,
     };
 
-    this.formDataSource.dispatch.optionSelected(FormChnageEvent);
+    this.formDataSource.dispatch.optionSelected(FormChangeEvent);
   }
 
   public onSelectionChange(selectionList: MatSelectionList): void {

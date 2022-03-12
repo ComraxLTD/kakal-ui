@@ -18,16 +18,14 @@ import {
   TableActions,
   FilterOption,
   FilterRange,
-  KKLFormOption,
+  FormChangeEvent,
   PageState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
 import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
-import { PaginationInstance } from 'ngx-pagination';
 import {
   BehaviorSubject,
-  debounce,
   debounceTime,
   distinctUntilChanged,
   firstValueFrom,
@@ -103,7 +101,7 @@ export class TableComponent implements OnInit {
     itemsPerPage: 5,
     currentPage: 1,
     totalItems: 15,
-    pages : [5, 10, 15]
+    pages: [5, 10, 15],
   };
 
   constructor(
@@ -368,8 +366,8 @@ export class TableComponent implements OnInit {
     this.tableDataSource.loadHeaderState({ headerState });
   }
 
-  public onQueryOptions(FormChangeEvent: KKLFormOption) {
-    const { key, value } = FormChangeEvent;
+  public onQueryOptions(formChangeEvent: FormChangeEvent) {
+    const { key, value } = formChangeEvent;
 
     of(value)
       .pipe(

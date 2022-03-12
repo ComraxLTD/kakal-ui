@@ -21,7 +21,7 @@ import { RangePipe } from '../../pipes/range.pipe';
 
 import { ColumnFilterOption } from '../models/column-filter-options';
 import { ColumnSortOption } from '../models/column-sort-option';
-import { FormChnageEvent } from '../../form/models/form.options';
+import { FormChangeEvent } from '../../form/models/form.options';
 
 export interface Range {
   from: any;
@@ -166,8 +166,8 @@ export class ColumnFilterComponent<T> implements OnInit {
         const label ='';
         return { label, value: range };
       }),
-      map((FormChnageEvent: FormChnageEvent) => {
-        return this.emitFilter(FormChnageEvent);
+      map((FormChangeEvent: FormChangeEvent) => {
+        return this.emitFilter(FormChangeEvent);
       })
     );
   }
