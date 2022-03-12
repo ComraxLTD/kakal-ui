@@ -1,6 +1,7 @@
 
 export enum TableSelector  {
   SELECTED = 'selected',
+  ACTION = 'action',
   EDITING = 'editing',
   EXTENDED = 'extended',
   DISABLED = 'disabled',

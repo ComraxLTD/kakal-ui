@@ -22,11 +22,11 @@ export function getHeaderFilterState(
 }
 
 function getState(tableDataSource: TableDataSource) {
-  const initState$ = tableDataSource.selectActions({
+  const initState$ = tableDataSource.listenByAction({
     action: TableActions.INIT_STATE,
   });
 
-  const updateState$ = tableDataSource.selectActions({
+  const updateState$ = tableDataSource.listenByAction({
     action: FetchActions.TABLE_FILTER,
   });
 

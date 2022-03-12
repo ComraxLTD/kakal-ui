@@ -117,7 +117,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.tableState.asObservable();
   }
 
-  public selectActions(options: {
+  public listenByAction(options: {
     action: TableActions | FetchActions | FormActions;
   }): Observable<TableState> {
     const { action } = options;
@@ -126,17 +126,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
       .pipe(filter((tableState) => tableState.action === action));
   }
 
-  public getTableStateByEvent(
-    eventFilters: (FormActions | TableActions | FetchActions)[]
-  ) {
-    return this.tableState.asObservable().pipe(
-      filter((tableState) => {
-        return eventFilters
-          ? eventFilters.indexOf(tableState.action) !== -1
-          : true;
-      })
-    );
-  }
 
   public connectPagination() {
     return this.tableState.asObservable().pipe(
@@ -215,6 +204,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
       sort: this.tableState.asObservable().pipe(
         map((tableState) => {
           return tableState.sort;
+        })
+      ),
+     action: this.tableState.asObservable().pipe(
+        map((tableState) => {
+          return tableState.action;
         })
       ),
     };
