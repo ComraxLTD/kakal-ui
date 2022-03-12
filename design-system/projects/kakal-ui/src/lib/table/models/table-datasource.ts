@@ -40,7 +40,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      pagination: { itemsPerPage: 3, currentPage: 1 },
+      pagination: { itemsPerPage: 10, currentPage: 1 },
       forms: {},
       filters: {},
       action: FormActions.DEFAULT,
@@ -147,20 +147,23 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   // pagination
-  public dispatchPagination(state: { pagination: any }): void {
-    const { pagination } = state;
+  public dispatchPagination(state: { pageState: any }): void {
+    const { pageState } = state;
     const oldState = this.getTableState();
-    this.tableState.next({
+    const newState = {
       ...oldState,
-      pagination: { ...oldState.pagination, ...pagination },
+      pagination: { ...oldState.pagination, ...pageState },
       action: FetchActions.PAGING,
-    });
+    } as TableState;
+    this.loadTableState({ tableState: newState });
   }
 
   public dispatchSort(action: { sortState: SortState }): void {
     const { sortState } = action;
+    const oldState = this.getTableState();
+
     const newState = {
-      ...this.tableState.getValue(),
+      ...oldState,
       sort: { ...sortState },
       action: FetchActions.SORT,
     } as TableState;
@@ -169,10 +172,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   public dispatchFilter(action: { filterState: FilterState }): void {
     const { filterState } = action;
+    const oldState = this.getTableState();
     const newState = {
-      ...this.tableState.getValue(),
+      ...oldState,
       filters: {
-        ...this.tableState.getValue().filters,
+        ...oldState.filters,
         ...filterState,
       },
       action: FetchActions.FILTER,
@@ -182,9 +186,10 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   public connectFetchState(): Observable<FetchState> {
     return this.tableState.asObservable().pipe(
-      skip(1),
+      // skip(1),
       filter(
         (tableState) =>
+          tableState.action === TableActions.INIT_STATE ||
           tableState.action === FetchActions.FILTER ||
           tableState.action === FetchActions.SORT ||
           tableState.action === FetchActions.PAGING

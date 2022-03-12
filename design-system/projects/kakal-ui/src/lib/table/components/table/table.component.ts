@@ -44,7 +44,6 @@ export class TableComponent<T = any> implements OnInit {
 
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<HeaderCellModel<T>[]>;
-  @Input() public pagination: PaginationInstance;
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
@@ -63,16 +62,10 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
 
-  // ng template for cell header
-  @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
-
-  // ng template for column filter options
-  @Input() public filterTemplate: { [key: string]: TemplateRef<any> };
 
   // ng template for footer cell
   @Input() public footerTemplate: { [key: string]: TemplateRef<any> };
 
-  // ng template for select cell
   @Input() public selectTemplate: { [key: string]: TemplateRef<any> };
 
   // ng template for expand cell
@@ -85,12 +78,6 @@ export class TableComponent<T = any> implements OnInit {
   @Output() pageChange: EventEmitter<{
     fetchState: FetchState;
   }> = new EventEmitter();
-
-  // emit filter event : ColumnModel<T>
-  @Output() filter: EventEmitter<ColumnFilterOption<T>> = new EventEmitter();
-
-  @Output() filterAutocomplete: EventEmitter<ColumnFilterOption<T>> =
-    new EventEmitter();
 
   // emit select event : Observable<T[]>
   @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
@@ -119,7 +106,6 @@ export class TableComponent<T = any> implements OnInit {
     const columns$ = this.columns$.pipe(
       map((columns: HeaderCellModel<T>[]) => {
         const newState = [...columns];
-
 
         if (this.hasActions) {
           newState.push(new HeaderCellModel({ columnDef: 'actions' }));
@@ -162,8 +148,8 @@ export class TableComponent<T = any> implements OnInit {
 
   private setTableState$() {
     return merge(
-      this.tableStateService.onDataChange(this.tableDataSource),
-      this.tableStateService.onEditCloseEvent(this.tableDataSource),
+      // this.tableStateService.onDataChange(this.tableDataSource),
+      this.tableStateService.onCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource),
       this.tableStateService.onCreateEvent(this.tableDataSource)
     );
@@ -175,7 +161,11 @@ export class TableComponent<T = any> implements OnInit {
   public onPageChange(event: { next: number; prev: number }) {
     const { next } = event;
     this.tableDataSource.dispatchPagination({
-      pagination: { currentPage: next } as PaginationInstance,
+      pageState: { currentPage: next } as PaginationInstance,
     });
+  }
+
+  public isForm(index, item): boolean {
+    return index === 0 && item.id === null;
   }
 }

@@ -18,6 +18,7 @@ import {
   distinctUntilChanged,
   tap,
   pairwise,
+  take,
 } from 'rxjs';
 import { TableDataSource } from '../../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../../models/table.state';
@@ -82,9 +83,10 @@ export class TableActionCellComponent implements OnInit {
   }
 
   private onDefaultButtonsState(): Observable<ButtonActionState> {
-    return this.dataSource
-      .getTableStateByEvent([FormActions.DEFAULT])
-      .pipe(mapTo(this.getButtonsStateOnDefault()));
+    return this.dataSource.getTableStateByEvent([FormActions.DEFAULT]).pipe(
+      tap(() => console.log('default')),
+      mapTo(this.getButtonsStateOnDefault())
+    );
   }
 
   private setFormState(formGroup: FormGroup, event: FormActions) {
@@ -123,6 +125,7 @@ export class TableActionCellComponent implements OnInit {
 
     const editClose$ = this.dataSource.on(FormActions.CANCEL).pipe(
       filter((rowState: RowState) => rowState.item[rowState.key] === id),
+      tap(() => console.log('close edit')),
       mapTo(this.getButtonsStateOnDefault())
     );
 
@@ -133,10 +136,9 @@ export class TableActionCellComponent implements OnInit {
           prev.event === FormActions.CREATE &&
           current.event === FormActions.CANCEL
       ),
-      map(() => {
-        return this.getButtonsStateOnDefault();
-      })
-    );
+      tap(() => console.log('close create')),
+      mapTo(this.getButtonsStateOnDefault())
+      );
 
     return merge(createClose$, editClose$);
   }
@@ -150,10 +152,11 @@ export class TableActionCellComponent implements OnInit {
       switchMap((formGroup: FormGroup) => {
         return this.setFormState(formGroup, FormActions.CREATE);
       })
-    );
+      );
 
-    const createFalse$ = this.dataSource.on(FormActions.CREATE).pipe(
-      filter((rowState: RowState) => rowState.item[rowState.key] !== id),
+      const createFalse$ = this.dataSource.on(FormActions.CREATE).pipe(
+        filter((rowState: RowState) => rowState.item[rowState.key] !== id),
+        tap(() => console.log('create false')),
       map((_) => {
         const defaultState = this.getButtonsStateOnDefault();
         return {

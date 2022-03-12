@@ -1,4 +1,8 @@
-<div fxLayout="row" class="kkl-form-cell" (click)="$event.stopPropagation()">
+<div
+  fxLayout="column"
+  fxFlexAlign="center center"
+  (click)="$event.stopPropagation()"
+>
   <ng-container *ngIf="question">
     <ng-container [ngSwitch]="question.controlType">
       <ng-container *ngSwitchCase="'custom'">
@@ -14,11 +18,13 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="'checkbox'">
-        <kkl-form-checkbox
-          [control]="group.formGroup.controls[question.key]"
-          [key]="question?.key"
-          [options]="question?.options"
-        ></kkl-form-checkbox>
+        <div kkl-form-button>
+          <kkl-form-checkbox
+            [control]="group.formGroup.controls[question.key]"
+            [key]="question?.key"
+            [options]="question?.options"
+          ></kkl-form-checkbox>
+        </div>
       </ng-container>
 
       <ng-container *ngSwitchCase="'currency'">

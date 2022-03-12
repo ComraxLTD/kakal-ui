@@ -3,16 +3,18 @@
     <code *ngIf="tableState$ | async as tableState">
       <div>tableState :</div>
       <pre>
-       {{ tableState.filters | json }}
+       {{ tableState.pagination | json }}
+       {{ tableState.editing | json }}
+       {{ tableState.action | json }}
       </pre>
     </code>
-    <mat-divider [vertical]="true"></mat-divider>
+    <!-- <mat-divider [vertical]="true"></mat-divider>
     <code *ngIf="fetchState$ | async as fetchState">
       <div>fetchState :</div>
       <pre>
         {{ fetchState | json }}
       </pre>
-    </code>
+    </code> -->
   </div>
 
   <kkl-table
@@ -21,7 +23,6 @@
     [data$]="data$"
     [columns$]="columns$"
     [itemKey]="itemKey"
-    [pagination]="pagination"
     [hasActions]="true"
   >
     <!-- use kklHeaderCell for render header cell -->
@@ -67,14 +68,16 @@
 
 <ng-template #email let-rowState>
   <kkl-typography color="primary" underline="true">
-    {{ rowState.item.email }}
+    {{ rowState.item.email | slice : -20 }}
   </kkl-typography>
 </ng-template>
 
 <ng-template #actions let-rowState>
-  <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
-    הוסף מכונית
-  </kkl-create-button>
+  <div>
+    <kkl-create-button (clickEvent)="onCreateEvent(rowState)">
+      הוסף מכונית
+    </kkl-create-button>
+  </div>
 </ng-template>
 
 <ng-template #input let-rowState>

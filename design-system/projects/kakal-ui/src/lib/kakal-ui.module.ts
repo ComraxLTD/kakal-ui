@@ -26,7 +26,7 @@ import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
-import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-checkbox-group.module'
+import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-checkbox-group.module';
 
 import { KKLTableModule } from './table/components/table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
@@ -60,14 +60,11 @@ import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.mo
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { FilterCardComponent } from './cards/filter-card/filter-card.component';
-import {KKLHoverModule} from '../lib/kkl-hover/kkl-hover.module';
+import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 
 @NgModule({
-  declarations: [
-    FormExampleComponent,
-    SidenavExampleComponent,
-  ],
+  declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
     CoreModule,
     CommonModule,
@@ -124,9 +121,9 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
-    StepperLayoutModule,
+    // StepperModule,
+    // StepperMobileModule,
+    // StepperLayoutModule,
   ],
   exports: [
     //TOOLS
@@ -181,9 +178,9 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
-    StepperLayoutModule,
+    // StepperModule,
+    // StepperMobileModule,
+    // StepperLayoutModule,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}

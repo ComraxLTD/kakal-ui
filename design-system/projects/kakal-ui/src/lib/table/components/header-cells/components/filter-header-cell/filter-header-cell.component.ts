@@ -11,26 +11,14 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import {
-  map,
-  Observable,
-  filter,
-  tap,
-  take,
-  of,
-  merge,
-  startWith,
-  BehaviorSubject,
-} from 'rxjs';
-import { FilterType } from '../../models/header.types';
-import { FilterOption } from '../../models/header.filter';
+import { FilterType, FilterOption, FilterRange } from '../../models/header.types';
+import { map, Observable, filter, of, merge } from 'rxjs';
 
 import {
   setFilterOptionState,
   setRangeState,
   setSelectState,
 } from './filter-header.helpers';
-import { FilterRange } from '../filter-range-cell/filter-range-cell.component';
 
 @Component({
   selector: 'kkl-filter-header-cell',
