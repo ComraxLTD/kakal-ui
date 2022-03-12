@@ -59,14 +59,14 @@ export function setFilterOptionState(
     switchMap((options: KKLSelectOption[]) => {
       return selectedOptions$.pipe(
         map((options: KKLSelectOption[]) =>
-          options.map((option) => option.value)
+          options.map((option) => option.id)
         ),
-        map((selectedOptions: any[]) => {
+        map((selectedOptions: (string | number)[]) => {
           return options.map((option : KKLSelectOption) => {
             console.log(selectedOptions)
             return {
               ...option,
-              selected: selectedOptions.indexOf(option.value) !== -1,
+              selected: selectedOptions.indexOf(option.id) !== -1,
             } as KKLSelectOption;
           });
         })

@@ -182,9 +182,9 @@ export class TableComponent implements OnInit {
           filterType: FilterType.MULTI_SELECTED,
           value: [
             {
+              id : 3,
               label: 'Russia',
               value: { name: 'Russia', code: 3 },
-              selected: true,
             },
           ],
         } as FilterOption<KKLSelectOption[]>,
