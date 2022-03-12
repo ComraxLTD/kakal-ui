@@ -131,7 +131,6 @@ export class TableActionCellComponent implements OnInit {
 
   private onCancelButtonState() {
     const editClose$ = this.getRowEditState(FormActions.CANCEL).pipe(
-      tap(({ isEditing }) => console.log(isEditing)),
       filter(({ group, isEditing }) => !isEditing),
       map((_) => this.getButtonsStateOnDefault())
     );
