@@ -12,7 +12,7 @@ import {
 import { FormDataSource } from '../../form/models/form-datasource';
 import { FormActions } from '../../form/models/form.actions';
 import { FetchActions, TableActions } from '../models/table-actions';
-import { TableSelector } from '../models/table.selctors';
+import { TableSelector } from '../models/table.selectors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 

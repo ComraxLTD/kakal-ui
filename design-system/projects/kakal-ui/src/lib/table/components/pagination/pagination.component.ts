@@ -13,7 +13,7 @@ export class PaginationComponent implements OnInit {
   @Input() paginationCount: number;
   @Input() maxSize: number;
 
-  @Output() newPage: EventEmitter<IPaginationChangeEvent> = new EventEmitter();
+  @Output() pageChange: EventEmitter<IPaginationChangeEvent> = new EventEmitter();
 
   public labels: any = {
     previousLabel: 'הקודם',
@@ -26,6 +26,6 @@ export class PaginationComponent implements OnInit {
   }
 
   public onPageChange(number: number) {
-    this.newPage.emit({ next: number, current: this.pagination.currentPage });
+    this.pageChange.emit({ next: number, current: this.pagination.currentPage });
   }
 }

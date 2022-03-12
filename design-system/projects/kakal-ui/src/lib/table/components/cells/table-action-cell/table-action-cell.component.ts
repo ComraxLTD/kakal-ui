@@ -22,7 +22,7 @@ import { TableDataSource } from '../../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../../models/table.state';
 import { ActionStateRules } from '../../../models/table-actions';
 import { FormActions } from '../../../../form/models/form.actions';
-import { TableSelector } from '../../../models/table.selctors';
+import { TableSelector } from '../../../models/table.selectors';
 
 export interface ButtonActionState {
   editState?: ActionState;
