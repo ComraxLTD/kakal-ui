@@ -19,7 +19,7 @@ import { KKLHeaderCellDirective } from '../../components/header-cells/cell-heade
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
 import { ColumnSortOption } from '../../../columns/models/column-sort-option';
 import { TableDataSource } from '../../models/table-datasource';
-import PaginationChangeEvent from '../pagination/pagination.types';
+import IPaginationChangeEvent from '../pagination/pagination.types';
 import { TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
@@ -73,7 +73,7 @@ export class TableComponent<T = any> implements OnInit {
   @Output() sortChange: EventEmitter<ColumnSortOption<T>> = new EventEmitter();
 
   // emit pagination event : {next : number, prev : number}
-  @Output() pageChange: EventEmitter<PaginationChangeEvent> =
+  @Output() pageChange: EventEmitter<IPaginationChangeEvent> =
     new EventEmitter();
 
   // emit select event : Observable<T[]>
@@ -154,10 +154,13 @@ export class TableComponent<T = any> implements OnInit {
   // EMIT EVENTS
 
   // method which emit page data
-  public onPageChange(pageEvent: PaginationChangeEvent) {
+  public onPageChange(pageEvent: IPaginationChangeEvent) {
     const { next } = pageEvent;
     this.tableDataSource.dispatchPagination({
-      pageState: { currentPage: next } as PaginationInstance,
+      pageState: {
+        currentPage: next,
+        itemsPerPage: pageEvent.itemsPerPage,
+      } as PaginationInstance,
     });
 
     this.pageChange.emit({ ...pageEvent });

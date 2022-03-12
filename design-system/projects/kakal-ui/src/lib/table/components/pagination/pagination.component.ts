@@ -4,6 +4,7 @@ import PaginationChangeEvent from './pagination.types';
 import { FormControl } from '@angular/forms';
 import { SelectOption } from '../../../form/models/question-select.model';
 import { FormChangeEvent } from '../../../form/models/form.options';
+import { KKLSelectOption } from '../../../form/models/form.types';
 
 @Component({
   selector: 'kkl-pagination',
@@ -42,11 +43,17 @@ export class PaginationComponent implements OnInit {
   public onPageChange(number: number) {
     this.pageChange.emit({
       next: number,
-      current: this.pagination.currentPage,
+      currentPage: this.pagination.currentPage
     });
   }
 
-  public onOptionSelected(FormChangeEvent: FormChangeEvent) {
-    const { value } = FormChangeEvent;
+  public onOptionSelected(formChangeEvent: FormChangeEvent) {
+    const { value } = formChangeEvent ;
+
+    this.pageChange.emit({
+      next: this.pagination.currentPage,
+      currentPage: this.pagination.currentPage,
+      itemsPerPage: value.value,
+    });
   }
 }

@@ -23,7 +23,7 @@ export class FormSelectComponent implements OnInit {
   @Input() public theme: Palette;
   @Input() public appearance: Appearance;
 
-  @Output() public selected: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   public error$: BehaviorSubject<string>;
@@ -36,7 +36,7 @@ export class FormSelectComponent implements OnInit {
 
   public onSelectChange() {
     const FormChangeEvent: FormChangeEvent = this.getFormOption(this.control.value);
-    this.selected.emit(FormChangeEvent);
+    this.selectChanged.emit(FormChangeEvent);
   }
 
   private getFormOption(value?: SelectOption): FormChangeEvent {

@@ -111,6 +111,7 @@ export * from './lib/table/components/header-cells/models/header.types';
 export * from './lib/table/components/pagination/pagination.module';
 export * from './lib/table/components/pagination/pagination.component';
 export * from './lib/table/components/pagination/pagination.directive';
+export * from './lib/table/components/pagination/url-pagination.directive';
 export * from './lib/table/components/pagination/pagination.types';
 
 export * from './lib/table/models/table';
