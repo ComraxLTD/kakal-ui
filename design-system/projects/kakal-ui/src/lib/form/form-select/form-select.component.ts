@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
 import { Palette } from '../../../styles/theme';
-import { FormOption } from '../models/form.options';
+import { FormChangeEvent } from '../models/form.options';
 import { SelectOption } from '../models/question-select.model';
 import { Appearance } from '../models/question.model';
 import { MessageService } from '../services/message.service';
@@ -23,8 +23,8 @@ export class FormSelectComponent implements OnInit {
   @Input() public theme: Palette;
   @Input() public appearance: Appearance;
 
-  @Output() public selected: EventEmitter<FormOption> = new EventEmitter();
-  @Output() public focus: EventEmitter<FormOption> = new EventEmitter();
+  @Output() public selected: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   public error$: BehaviorSubject<string>;
 
@@ -35,20 +35,20 @@ export class FormSelectComponent implements OnInit {
   }
 
   public onSelectChange() {
-    const formOption: FormOption = this.getFormOption(this.control.value);
-    this.selected.emit(formOption);
+    const FormChangeEvent: FormChangeEvent = this.getFormOption(this.control.value);
+    this.selected.emit(FormChangeEvent);
   }
 
-  private getFormOption(value?: SelectOption): FormOption {
-    const formOption: FormOption = {
+  private getFormOption(value?: SelectOption): FormChangeEvent {
+    const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       control: this.control,
       index: this.index,
       value$: of(value),
-      option: value,
+      value
     };
 
-    return formOption;
+    return FormChangeEvent;
   }
 
   public setErrorMessage() {

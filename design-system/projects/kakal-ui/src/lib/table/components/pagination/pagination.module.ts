@@ -5,19 +5,25 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { PaginationComponent } from './pagination.component';
 import { KKLPaginationDirective } from './pagination.directive';
 import { UrlPaginationDirective } from './url-pagination.directive';
+import { KKLFormSelectModule } from '../../../form/form-select/form-select.module';
 
 @NgModule({
   declarations: [
     PaginationComponent,
     KKLPaginationDirective,
-    UrlPaginationDirective
+    UrlPaginationDirective,
   ],
-  imports: [CommonModule, FlexLayoutModule, NgxPaginationModule],
+  imports: [
+    CommonModule,
+    FlexLayoutModule,
+    NgxPaginationModule,
+    KKLFormSelectModule,
+  ],
   exports: [
     PaginationComponent,
     NgxPaginationModule,
     KKLPaginationDirective,
-    UrlPaginationDirective
+    UrlPaginationDirective,
   ],
 })
 export class KKLPaginationModule {}

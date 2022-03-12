@@ -39,7 +39,7 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
   @Output() fetchOptions: EventEmitter<string> = new EventEmitter();
 
   // emit whenever input of select or multiSelect is type
-  @Output() queryOptions: EventEmitter<KKLFormOption> = new EventEmitter();
+  @Output() queryOptionsChanged: EventEmitter<KKLFormOption> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
@@ -79,15 +79,15 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
     this.fetchOptions.emit(this.columnDef);
   }
 
-  public onValueChanged(formOption: KKLFormOption) {
-    const { value } = formOption;
+  public onValueChanged(FormChnageEvent: KKLFormOption) {
+    const { value } = FormChnageEvent;
 
     if (
       this.column.filterType === 'select' ||
       this.column.filterType === 'multiSelect'
     ) {
       // filter options
-      this.queryOptions.emit(formOption);
+      this.queryOptionsChanged.emit(FormChnageEvent);
     } else {
       const filterState = this.setFilterState(value);
       this.tableDataSource.dispatchFilter({ filterState });

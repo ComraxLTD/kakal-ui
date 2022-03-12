@@ -1,6 +1,9 @@
 import { PaginationInstance } from 'ngx-pagination';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import IPaginationChangeEvent from './pagination.types';
+import PaginationChangeEvent from './pagination.types';
+import { FormControl } from '@angular/forms';
+import { SelectOption } from '../../../form/models/question-select.model';
+import { FormChangeEvent } from '../../../form/models/form.options';
 
 @Component({
   selector: 'kkl-pagination',
@@ -13,19 +16,37 @@ export class PaginationComponent implements OnInit {
   @Input() paginationCount: number;
   @Input() maxSize: number;
 
-  @Output() pageChange: EventEmitter<IPaginationChangeEvent> = new EventEmitter();
-
   public labels: any = {
     previousLabel: 'הקודם',
     nextLabel: 'הבא',
   };
 
+  public control: FormControl = new FormControl({
+    id: 10,
+    value: 10,
+    label: '10',
+  });
+  public options: SelectOption[] = [
+    { id: 10, value: 10, label: '10' },
+    { id: 20, value: 20, label: '20' },
+    { id: 30, value: 30, label: '30' },
+  ];
+
+  @Output() pageChange: EventEmitter<PaginationChangeEvent> =
+    new EventEmitter();
+
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   public onPageChange(number: number) {
-    this.pageChange.emit({ next: number, current: this.pagination.currentPage });
+    this.pageChange.emit({
+      next: number,
+      current: this.pagination.currentPage,
+    });
+  }
+
+  public onOptionSelected(FormChangeEvent: FormChangeEvent) {
+    const { value } = FormChangeEvent;
   }
 }

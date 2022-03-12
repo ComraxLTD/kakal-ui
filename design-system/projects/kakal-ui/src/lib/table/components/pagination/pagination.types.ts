@@ -9,7 +9,8 @@ export class PaginationModel {
   }
 }
 
-export default interface IPaginationChangeEvent {
+export default interface PaginationChangeEvent {
   next: number;
   current: number;
+  perPage?: number;
 }

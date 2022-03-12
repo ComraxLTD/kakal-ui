@@ -2,7 +2,7 @@ import { Directive, Host, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TableDataSource } from '../../models/table-datasource';
 import { TableState } from '../../models/table.state';
-import IPaginationChangeEvent from './pagination.types';
+import PaginationChangeEvent from './pagination.types';
 
 /**
  * This directive listens to the pageChange event
@@ -18,7 +18,7 @@ export class UrlPaginationDirective implements OnInit {
    * In order to keep the state of the pagination store the current page in the query params
    */
   @HostListener('pageChange', ['$event']) updateUrlQueryParams(
-    $event: IPaginationChangeEvent
+    $event: PaginationChangeEvent
   ) {
     const { next } = $event;
 

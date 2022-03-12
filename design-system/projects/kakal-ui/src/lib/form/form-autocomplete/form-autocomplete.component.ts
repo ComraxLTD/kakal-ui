@@ -11,8 +11,8 @@ import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
+import { FormChangeEvent } from '../models/form.options';
 import { of } from 'rxjs';
-import { FormOption } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-autocomplete',
@@ -35,9 +35,9 @@ export class FormAutocompleteComponent implements OnInit {
     options: SelectOption[];
   }) => SelectOption;
 
-  @Output() queryChanged: EventEmitter<FormOption> = new EventEmitter();
-  @Output() optionSelected: EventEmitter<FormOption> = new EventEmitter();
-  @Output() multiOptionsSelected: EventEmitter<FormOption> = new EventEmitter();
+  @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() optionSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor() {}
 
@@ -48,25 +48,24 @@ export class FormAutocompleteComponent implements OnInit {
       option.label.indexOf(query)
     );
 
-    const formOption = {
+    const FormChangeEvent = {
       key: this.key,
       option,
       query,
       query$: of(query),
     };
-    this.queryChanged.emit(formOption);
+    this.queryChanged.emit(FormChangeEvent);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent): void {
     const option: SelectOption = event.option.value;
 
-    const formOption: FormOption = {
+    const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       value: option.value,
-      option,
     };
 
-    this.optionSelected.emit(formOption);
+    this.optionSelected.emit(FormChangeEvent);
   }
 
   public onSelectionChange(selectionList: MatSelectionList): void {

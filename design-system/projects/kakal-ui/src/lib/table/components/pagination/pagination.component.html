@@ -1,9 +1,17 @@
-<div class="pagination" fxLayout="row" fxLayoutAlign="center center" dir="ltr">
+<div [class.kkl-pagination]="true" fxLayoutGap="1rem" fxLayout="row" fxLayoutAlign="center center">
   <pagination-controls
+    dir="ltr"
     [id]="pagination.id"
     [previousLabel]="labels.previousLabel"
     [nextLabel]="labels.nextLabel"
     (pageChange)="onPageChange($event)"
     [maxSize]="maxSize || 5"
   ></pagination-controls>
+  <kkl-form-select
+    fxFlex="5"
+    [control]="control"
+    [key]="'perPage'"
+    [options]="options"
+    (optionSelected)="onOptionSelected($event)"
+  ></kkl-form-select>
 </div>

@@ -363,8 +363,8 @@ export class TableComponent implements OnInit {
     this.tableDataSource.loadHeaderState({ headerState });
   }
 
-  public onQueryOptions(formOption: KKLFormOption) {
-    const { key, value } = formOption;
+  public onQueryOptions(FormChangeEvent: KKLFormOption) {
+    const { key, value } = FormChangeEvent;
 
     of(value)
       .pipe(
