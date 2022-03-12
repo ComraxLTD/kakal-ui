@@ -9,10 +9,10 @@ import {
   ViewChild,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { FilterOption, FormChangeEvent } from 'projects/kakal-ui/src/public-api';
+import { FormChangeEvent } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderCellModel } from '../../models/header-cell.model';
-import { FilterRange } from '../../models/header.types';
+import { FilterOption, FilterRange } from '../../models/header.types';
 
 @Component({
   selector: 'kkl-header-cell',
