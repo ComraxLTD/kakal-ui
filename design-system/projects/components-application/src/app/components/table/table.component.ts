@@ -18,6 +18,8 @@ import {
   TableActions,
   FilterOption,
   FilterRange,
+  KKLFormOption,
+  PageState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
@@ -25,12 +27,16 @@ import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.ac
 import { PaginationInstance } from 'ngx-pagination';
 import {
   BehaviorSubject,
+  debounce,
+  debounceTime,
+  distinctUntilChanged,
   firstValueFrom,
   map,
   merge,
   Observable,
   of,
   switchMap,
+  switchMapTo,
   take,
 } from 'rxjs';
 
@@ -93,10 +99,11 @@ export class TableComponent implements OnInit {
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
 
-  public pagination: PaginationInstance = {
+  public pagination: PageState = {
     itemsPerPage: 5,
     currentPage: 1,
     totalItems: 15,
+    pages : [5, 10, 15]
   };
 
   constructor(
@@ -175,14 +182,17 @@ export class TableComponent implements OnInit {
     const oldState = this.tableDataSource.getTableState();
     const tableState: TableState = {
       ...oldState,
-      pagination: this.pagination,
+      pagination: {
+        ...oldState.pagination,
+        ...this.pagination,
+      },
       filters: {
         city: {
           key: 'city',
           filterType: FilterType.MULTI_SELECTED,
           value: [
             {
-              id : 3,
+              id: 3,
               label: 'Russia',
               value: { name: 'Russia', code: 3 },
             },
@@ -351,10 +361,29 @@ export class TableComponent implements OnInit {
   public onFetchOptions(columnDef: string) {
     const headerState: HeaderState = {
       key: columnDef,
-      event: ColumnActions.UPDATE_FILTERS,
+      action: ColumnActions.INIT_OPTIONS,
       options: this.optionsMap[columnDef],
     };
 
     this.tableDataSource.loadHeaderState({ headerState });
+  }
+
+  public onQueryOptions(FormChangeEvent: KKLFormOption) {
+    const { key, value } = FormChangeEvent;
+
+    of(value)
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged()
+        // some filter logic - server or local - for filtered options
+      )
+      .subscribe(() => {
+        const headerState: HeaderState = {
+          key,
+          action: ColumnActions.INIT_OPTIONS,
+          options: [],
+        };
+        this.tableDataSource.loadHeaderState({ headerState });
+      });
   }
 }

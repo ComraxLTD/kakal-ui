@@ -100,7 +100,7 @@ export default {
       description: 'Event that is emitted whenever the user is typing. ',
       table: {
         type: {
-          summary: 'EventEmitter<FormOption>',
+          summary: 'EventEmitter<FormChnageEvent>',
         },
       },
     },
@@ -110,7 +110,7 @@ export default {
         'Event that is emitted whenever an option from the list is selected. ',
       table: {
         type: {
-          summary: 'EventEmitter<FormOption>',
+          summary: 'EventEmitter<FormChnageEvent>',
         },
       },
     },
@@ -120,7 +120,7 @@ export default {
         'Event that is emitted whenever an option from the list is selected. ',
       table: {
         type: {
-          summary: 'EventEmitter<FormOption>',
+          summary: 'EventEmitter<FormChnageEvent>',
         },
       },
     },

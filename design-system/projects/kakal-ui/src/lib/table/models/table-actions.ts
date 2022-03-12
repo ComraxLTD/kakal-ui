@@ -13,7 +13,7 @@ export enum TableActions {
 }
 export enum ColumnActions {
   DEFAULT = 'default',
-  UPDATE_FILTERS = 'updateOptions',
+  INIT_OPTIONS = 'initOptions',
 }
 
 export enum FetchActions {

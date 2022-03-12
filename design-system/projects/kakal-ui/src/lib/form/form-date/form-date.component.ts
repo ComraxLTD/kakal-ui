@@ -15,7 +15,7 @@ import { MessageService } from '../services/message.service';
 
 import { map, Observable, startWith } from 'rxjs';
 import { Appearance } from '../models/question.model';
-import { FormOption } from '../models/form.options';
+import { FormChangeEvent } from '../models/form.options';
 
 export const MY_FORMATS = {
   parse: {
@@ -63,7 +63,7 @@ export class FormDateComponent implements OnInit {
     end: new FormControl(),
   });
 
-  @Output() focus: EventEmitter<FormOption> = new EventEmitter();
+  @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(private messageService: MessageService) { }
 
@@ -75,14 +75,14 @@ export class FormDateComponent implements OnInit {
     this.message$ = this.setErrorMessage$();
   }
 
-  private getFormOption(): FormOption {
-    const formOption: FormOption = {
+  private getFormOption(): FormChangeEvent {
+    const FormChangeEvent: FormChangeEvent = {
       key: this?.key,
       control: this?.control,
       index: this?.index,
     };
 
-    return formOption;
+    return FormChangeEvent;
   }
 
   private setErrorMessage$() {

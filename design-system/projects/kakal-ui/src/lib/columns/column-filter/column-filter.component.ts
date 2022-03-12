@@ -21,7 +21,7 @@ import { RangePipe } from '../../pipes/range.pipe';
 
 import { ColumnFilterOption } from '../models/column-filter-options';
 import { ColumnSortOption } from '../models/column-sort-option';
-import { FormOption } from '../../form/models/form.options';
+import { FormChnageEvent } from '../../form/models/form.options';
 
 export interface Range {
   from: any;
@@ -166,8 +166,8 @@ export class ColumnFilterComponent<T> implements OnInit {
         const label ='';
         return { label, value: range };
       }),
-      map((formOption: FormOption) => {
-        return this.emitFilter(formOption);
+      map((FormChnageEvent: FormChnageEvent) => {
+        return this.emitFilter(FormChnageEvent);
       })
     );
   }
@@ -248,7 +248,7 @@ export class ColumnFilterComponent<T> implements OnInit {
     this.sortChange.emit(sortOption);
   }
 
-  public onCurrencyAutocomplete(formOption: FormOption) {
+  public onCurrencyAutocomplete(FormChnageEvent: FormChnageEvent) {
     const value = this.amountFilter.getValue();
     this.filterSubject.next({
       value,

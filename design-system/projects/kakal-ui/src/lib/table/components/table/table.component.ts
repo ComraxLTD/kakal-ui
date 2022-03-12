@@ -7,11 +7,9 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 
 import { ThemePalette } from '@angular/material/core';
-import { PaginationInstance } from 'ngx-pagination';
 
 import { KKLDataCellDirective } from '../../components/cells/table-data-cell/cell-data.directive';
 import { KKLActionCellDirective } from '../cells/table-action-cell/cell-action.directive';
@@ -19,12 +17,12 @@ import { KKLHeaderCellDirective } from '../../components/header-cells/cell-heade
 
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
 import { ColumnSortOption } from '../../../columns/models/column-sort-option';
-import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
 import { TableDataSource } from '../../models/table-datasource';
-import { FetchState, TableState } from '../../models/table.state';
+import { PageState, TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
 import { Observable, map, combineLatest, merge } from 'rxjs';
+import PaginationChangeEvent from '../pagination/pagination.types';
 
 @Component({
   selector: 'kkl-table',
@@ -62,7 +60,6 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
 
-
   // ng template for footer cell
   @Input() public footerTemplate: { [key: string]: TemplateRef<any> };
 
@@ -75,9 +72,8 @@ export class TableComponent<T = any> implements OnInit {
   @Output() sortChange: EventEmitter<ColumnSortOption<T>> = new EventEmitter();
 
   // emit pagination event : {next : number, prev : number}
-  @Output() pageChange: EventEmitter<{
-    fetchState: FetchState;
-  }> = new EventEmitter();
+  @Output() pageChange: EventEmitter<PaginationChangeEvent> =
+    new EventEmitter();
 
   // emit select event : Observable<T[]>
   @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
@@ -148,7 +144,6 @@ export class TableComponent<T = any> implements OnInit {
 
   private setTableState$() {
     return merge(
-      // this.tableStateService.onDataChange(this.tableDataSource),
       this.tableStateService.onCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource),
       this.tableStateService.onCreateEvent(this.tableDataSource)
@@ -158,11 +153,15 @@ export class TableComponent<T = any> implements OnInit {
   // EMIT EVENTS
 
   // method which emit page data
-  public onPageChange(event: { next: number; prev: number }) {
-    const { next } = event;
+  public onPageChange(pageEvent: PaginationChangeEvent) {
+    const { next } = pageEvent;
     this.tableDataSource.dispatchPagination({
-      pageState: { currentPage: next } as PaginationInstance,
+      pageState: {
+        ...pageEvent,
+      } as PageState,
     });
+
+    this.pageChange.emit({ ...pageEvent });
   }
 
   public isForm(index, item): boolean {

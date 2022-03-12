@@ -101,7 +101,7 @@
 
   <ng-container *ngIf="pagination$ | async">
     <kkl-pagination
-      (newPage)="onPageChange($event)"
+      (pageChange)="onPageChange($event)"
       [pagination]="tableState.pagination"
     >
     </kkl-pagination>

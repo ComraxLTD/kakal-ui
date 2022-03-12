@@ -12,7 +12,7 @@ import {
 import { FormDataSource } from '../../form/models/form-datasource';
 import { FormActions } from '../../form/models/form.actions';
 import { FetchActions, TableActions } from '../models/table-actions';
-import { TableSelector } from '../models/table.selctors';
+import { TableSelector } from '../models/table.selectors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
@@ -40,7 +40,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      pagination: { itemsPerPage: 10, currentPage: 1 },
+      pagination: {
+        itemsPerPage: 10,
+        currentPage: 1,
+        pages: [10, 20, 30],
+      },
       forms: {},
       filters: {},
       action: FormActions.DEFAULT,
@@ -51,7 +55,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
 
     this.headerState = new BehaviorSubject<HeaderState<T>>({
-      event: ColumnActions.DEFAULT,
+      action: ColumnActions.DEFAULT,
     });
 
     this.formDataSource = new FormDataSource();
@@ -117,25 +121,13 @@ export class TableDataSource<T = any> implements DataSource<T> {
     return this.tableState.asObservable();
   }
 
-  public selectActions(options: {
+  public listenByAction(options: {
     action: TableActions | FetchActions | FormActions;
   }): Observable<TableState> {
     const { action } = options;
     return this.tableState
       .asObservable()
       .pipe(filter((tableState) => tableState.action === action));
-  }
-
-  public getTableStateByEvent(
-    eventFilters: (FormActions | TableActions | FetchActions)[]
-  ) {
-    return this.tableState.asObservable().pipe(
-      filter((tableState) => {
-        return eventFilters
-          ? eventFilters.indexOf(tableState.action) !== -1
-          : true;
-      })
-    );
   }
 
   public connectPagination() {
@@ -215,6 +207,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
       sort: this.tableState.asObservable().pipe(
         map((tableState) => {
           return tableState.sort;
+        })
+      ),
+      action: this.tableState.asObservable().pipe(
+        map((tableState) => {
+          return tableState.action;
         })
       ),
     };

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormOption, QuestionAutocompleteModel } from '@ComraxLTD/kakal-ui';
+import { FormChnageEvent, QuestionAutocompleteModel } from '@ComraxLTD/kakal-ui';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { FormDataSource } from '@ComraxLTD/kakal-ui';
@@ -62,7 +62,7 @@ export class AppComponent {
   }
 
   // Output of autocomplete event
-  public onAutocomplete(formOption: FormOption) {
+  public onAutocomplete(FormChnageEvent: FormChnageEvent) {
     this.http
       .get<any>(
         `https://virtserver.swaggerhub.com/Comrax/KKL-demo/1.0.0/autocomplete`
@@ -73,8 +73,8 @@ export class AppComponent {
   }
 
   // Output of option select event
-  public onOptionSelected(formOption: FormOption) {
-    alert('I have been selected' + formOption);
-    console.log(formOption);
+  public onOptionSelected(FormChnageEvent: FormChnageEvent) {
+    alert('I have been selected' + FormChnageEvent);
+    console.log(FormChnageEvent);
   }
 }

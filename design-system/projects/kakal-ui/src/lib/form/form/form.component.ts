@@ -11,7 +11,7 @@ import {
 } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
-import { FormOption } from '../models/form.options';
+import { FormChangeEvent } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form',
@@ -39,17 +39,17 @@ export class FormComponent implements OnInit {
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
-  @Output() public changeSelect: EventEmitter<FormOption> = new EventEmitter();
+  @Output() public changeSelect: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() public changeOption: EventEmitter<MatAutocompleteSelectedEvent> =
     new EventEmitter();
 
-  @Output() public autocompleteEvent: EventEmitter<FormOption> =
+  @Output() public autocompleteEvent: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
   @Output() fileChange = new EventEmitter<File[]>();
 
   @Output() focusoutEvent: EventEmitter<string> = new EventEmitter();
-  @Output() focus: EventEmitter<FormOption> = new EventEmitter();
+  @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor() {}
 
@@ -64,12 +64,12 @@ export class FormComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public onSelect(option: FormOption) {
+  public onSelect(option: FormChangeEvent) {
     this.changeSelect.emit(option);
   }
 
-  public onAutocomplete(formOption: FormOption): void {
-    this.autocompleteEvent.emit(formOption);
+  public onAutocomplete(FormChangeEvent: FormChangeEvent): void {
+    this.autocompleteEvent.emit(FormChangeEvent);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
@@ -84,7 +84,7 @@ export class FormComponent implements OnInit {
     this.focusoutEvent.emit(key);
   }
 
-  public onFocus(formOption: FormOption) {
-    this.focus.emit(formOption);
+  public onFocus(FormChangeEvent: FormChangeEvent) {
+    this.focus.emit(FormChangeEvent);
   }
 }

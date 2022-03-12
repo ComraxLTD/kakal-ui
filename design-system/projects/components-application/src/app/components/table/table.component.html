@@ -20,6 +20,7 @@
   <kkl-table
     kkl-table
     kklPagination
+    kklUrlPagination
     [data$]="data$"
     [columns$]="columns$"
     [itemKey]="itemKey"
@@ -33,6 +34,7 @@
         [columnDef]="context.column.columnDef"
         [headerTemplate]="{actions}"
         (fetchOptions)="onFetchOptions($event)"
+        (queryOptions)="onQueryOptions($event)"
       ></kkl-header-cell>
     </ng-container>
 
