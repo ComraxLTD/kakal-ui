@@ -11,7 +11,11 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import { FilterType, FilterOption, FilterRange } from '../../models/header.types';
+import {
+  FilterType,
+  FilterOption,
+  FilterRange,
+} from '../../models/header.types';
 import { map, Observable, filter, of, merge } from 'rxjs';
 
 import {
@@ -145,5 +149,10 @@ export class FilterHeaderCellComponent implements OnInit {
 
     const filterState = this.setFilterState(options);
     this.tableDataSource.dispatchFilter({ filterState });
+  }
+
+  public compareWith(o1: KKLSelectOption, o2: KKLSelectOption) {
+    console.log(1)
+    return o1?.label === o2?.label && o1.value === o2.value;
   }
 }

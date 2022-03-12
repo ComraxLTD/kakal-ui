@@ -61,8 +61,9 @@ export function setFilterOptionState(
         map((options: KKLSelectOption[]) =>
           options.map((option) => option.value)
         ),
-        map((selectedOptions: string[]) => {
-          return options.map((option) => {
+        map((selectedOptions: any[]) => {
+          return options.map((option : KKLSelectOption) => {
+            console.log(selectedOptions)
             return {
               ...option,
               selected: selectedOptions.indexOf(option.value) !== -1,

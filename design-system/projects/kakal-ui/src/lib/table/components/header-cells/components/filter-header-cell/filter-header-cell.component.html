@@ -1,12 +1,12 @@
 <div fxFill>
   <!-- BUTTON SECTION -->
 
-    <div
+  <div
     kkl-button
     color="primary"
     [matMenuTriggerFor]="menu"
     (menuOpened)="onMenuOpen()"
-    >
+  >
     <div fxLayout="row" fxLayoutAlign="space-between center">
       <kkl-typography>
         {{ label }}
@@ -71,10 +71,10 @@
         *ngIf="filterType === 'select' || filterType === 'multiSelect'"
       >
         <mat-selection-list
-          #list
-          (selectionChange)="onSelectionChange(list.selectedOptions.selected)"
+          #selectionList
+          [compareWith]="compareWith"
+          (selectionChange)="onSelectionChange(selectionList.selectedOptions.selected)"
           [multiple]="filterType === 'multiSelect'"
-          dir="rtl"
         >
           <ng-container *ngFor="let option of options$ | async">
             <mat-list-option

@@ -143,7 +143,7 @@ export class TableComponent implements OnInit {
       map((options: OptionObject[]) => {
         return options.map((option: OptionObject) => {
           return {
-            value: option.id,
+            value: { code: option.id, name: option.city },
             label: option.city,
           };
         });
@@ -182,7 +182,7 @@ export class TableComponent implements OnInit {
           value: [
             {
               label: 'Russia',
-              value: 3,
+              value: { name: 'Russia', code : 3},
               selected: true,
             },
           ],

@@ -7,7 +7,6 @@ export interface SelectOption {
   value: any;
   selected?: boolean;
   disabled?: boolean;
-  checked?:boolean;
 }
 
 export class QuestionSelectModel extends QuestionBase {
