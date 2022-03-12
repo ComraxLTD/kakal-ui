@@ -20,11 +20,11 @@ export class UrlPaginationDirective implements OnInit {
   @HostListener('pageChange', ['$event']) updateUrlQueryParams(
     $event: PaginationChangeEvent
   ) {
-    const { next } = $event;
+    const { currentPage } = $event;
 
     this.router.navigate([], {
       relativeTo: this.route,
-      queryParams: { page: next },
+      queryParams: { page: currentPage },
       queryParamsHandling: 'merge',
     });
   }

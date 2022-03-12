@@ -1,19 +1,23 @@
 import { SortDirection } from '@angular/material/sort';
 import { TableColumnModel } from '../../columns/models/column.model';
-import { ColumnActions, FetchActions, TableActions } from '../models/table-actions';
+import {
+  ColumnActions,
+  FetchActions,
+  TableActions,
+} from '../models/table-actions';
 import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
-import { FilterOption } from '../components/header-cells/models/header.types';
+import { ColumnDef, FilterOption } from '../components/header-cells/models/header.types';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
   editing?: number[];
   extended?: number[];
   disabled?: number[];
-  activeColumns?: string[];
-  pagination?: PaginationInstance;
+  activeColumns?: ColumnDef[];
+  pagination?: PageState;
   forms?: { [key: string]: QuestionGroupModel };
   action?: FormActions | TableActions | FetchActions;
   filters?: FilterState;
@@ -57,4 +61,12 @@ export interface ActionState {
   disabled: boolean;
   valid?: boolean;
   event?: FormActions;
+}
+
+export interface PageState extends PaginationInstance {
+  currentPage: number;
+  itemsPerPage: number;
+  pages?: number[];
+  next?: number;
+  totalItems?: number;
 }

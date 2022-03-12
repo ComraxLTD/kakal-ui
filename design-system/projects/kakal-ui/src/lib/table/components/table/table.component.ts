@@ -10,7 +10,6 @@ import {
 } from '@angular/core';
 
 import { ThemePalette } from '@angular/material/core';
-import { PaginationInstance } from 'ngx-pagination';
 
 import { KKLDataCellDirective } from '../../components/cells/table-data-cell/cell-data.directive';
 import { KKLActionCellDirective } from '../cells/table-action-cell/cell-action.directive';
@@ -19,11 +18,11 @@ import { KKLHeaderCellDirective } from '../../components/header-cells/cell-heade
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
 import { ColumnSortOption } from '../../../columns/models/column-sort-option';
 import { TableDataSource } from '../../models/table-datasource';
-import IPaginationChangeEvent from '../pagination/pagination.types';
-import { TableState } from '../../models/table.state';
+import { PageState, TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
 import { Observable, map, combineLatest, merge } from 'rxjs';
+import PaginationChangeEvent from '../pagination/pagination.types';
 
 @Component({
   selector: 'kkl-table',
@@ -73,7 +72,7 @@ export class TableComponent<T = any> implements OnInit {
   @Output() sortChange: EventEmitter<ColumnSortOption<T>> = new EventEmitter();
 
   // emit pagination event : {next : number, prev : number}
-  @Output() pageChange: EventEmitter<IPaginationChangeEvent> =
+  @Output() pageChange: EventEmitter<PaginationChangeEvent> =
     new EventEmitter();
 
   // emit select event : Observable<T[]>
@@ -154,13 +153,12 @@ export class TableComponent<T = any> implements OnInit {
   // EMIT EVENTS
 
   // method which emit page data
-  public onPageChange(pageEvent: IPaginationChangeEvent) {
+  public onPageChange(pageEvent: PaginationChangeEvent) {
     const { next } = pageEvent;
     this.tableDataSource.dispatchPagination({
       pageState: {
-        currentPage: next,
-        itemsPerPage: pageEvent.itemsPerPage,
-      } as PaginationInstance,
+        ...pageEvent,
+      } as PageState,
     });
 
     this.pageChange.emit({ ...pageEvent });

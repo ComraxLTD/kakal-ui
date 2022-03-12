@@ -19,6 +19,7 @@ import {
   FilterOption,
   FilterRange,
   KKLFormOption,
+  PageState,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
@@ -98,10 +99,11 @@ export class TableComponent implements OnInit {
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
 
-  public pagination: PaginationInstance = {
+  public pagination: PageState = {
     itemsPerPage: 5,
     currentPage: 1,
     totalItems: 15,
+    pages : [5, 10, 15]
   };
 
   constructor(
@@ -180,7 +182,10 @@ export class TableComponent implements OnInit {
     const oldState = this.tableDataSource.getTableState();
     const tableState: TableState = {
       ...oldState,
-      pagination: this.pagination,
+      pagination: {
+        ...oldState.pagination,
+        ...this.pagination,
+      },
       filters: {
         city: {
           key: 'city',

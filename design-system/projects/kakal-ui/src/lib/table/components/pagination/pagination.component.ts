@@ -5,6 +5,7 @@ import { FormControl } from '@angular/forms';
 import { SelectOption } from '../../../form/models/question-select.model';
 import { FormChangeEvent } from '../../../form/models/form.options';
 import { KKLSelectOption } from '../../../form/models/form.types';
+import { PageState } from '../../models/table.state';
 
 @Component({
   selector: 'kkl-pagination',
@@ -12,7 +13,7 @@ import { KKLSelectOption } from '../../../form/models/form.types';
   styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-  @Input() public pagination: PaginationInstance;
+  @Input() public pagination: PageState;
 
   @Input() paginationCount: number;
   @Input() maxSize: number;
@@ -22,33 +23,35 @@ export class PaginationComponent implements OnInit {
     nextLabel: 'הבא',
   };
 
-  public control: FormControl = new FormControl({
-    id: 10,
-    value: 10,
-    label: '10',
-  });
-  public options: SelectOption[] = [
-    { id: 10, value: 10, label: '10' },
-    { id: 20, value: 20, label: '20' },
-    { id: 30, value: 30, label: '30' },
-  ];
+  public control: FormControl;
+  public options: SelectOption[];
 
   @Output() pageChange: EventEmitter<PaginationChangeEvent> =
     new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    const options = this.setPageOptions();
+    this.control = new FormControl({ ...options[0] });
+    this.options = [...options];
+  }
 
-  public onPageChange(number: number) {
-    this.pageChange.emit({
-      next: number,
-      currentPage: this.pagination.currentPage
+  private setPageOptions() {
+    return [...this.pagination.pages].map((page: number) => {
+      return { id: page, value: page, label: page.toString() } as SelectOption;
     });
   }
 
-  public onOptionSelected(formChangeEvent: FormChangeEvent) {
-    const { value } = formChangeEvent ;
+  public onPageChange(number: number) {
+    this.pageChange.emit({
+      next: number + 1,
+      currentPage: number,
+    });
+  }
+
+  public onOptionSelected(event: FormChangeEvent) {
+    const { value } = event;
 
     this.pageChange.emit({
       next: this.pagination.currentPage,

@@ -40,7 +40,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      pagination: { itemsPerPage: 10, currentPage: 1 },
+      pagination: {
+        itemsPerPage: 10,
+        currentPage: 1,
+        pages: [10, 20, 30],
+      },
       forms: {},
       filters: {},
       action: FormActions.DEFAULT,
@@ -126,7 +130,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
       .pipe(filter((tableState) => tableState.action === action));
   }
 
-
   public connectPagination() {
     return this.tableState.asObservable().pipe(
       map((tableState) => {
@@ -206,7 +209,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
           return tableState.sort;
         })
       ),
-     action: this.tableState.asObservable().pipe(
+      action: this.tableState.asObservable().pipe(
         map((tableState) => {
           return tableState.action;
         })
