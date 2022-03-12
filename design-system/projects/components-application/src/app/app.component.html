@@ -1,39 +1,34 @@
 <!-- <kkl-filter-card [card]="card"></kkl-filter-card> -->
-<!-- <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" 
-                [hasNext]="true" [hasSave]="true"> -->
-<div fxFill>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <app-table fxFlex="90"></app-table>
-  </div>
-</div>
-<div class="container" fxLayout="column" fxLayoutGap="2rem">
-  
-  <div fxLayout="row">
-    <p kkl-hover text="TEST" [template]="hoverTemplate"  hoverColor="white">new test</p>
-  </div>
-</div>
-<ng-template #hoverTemplate>
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <div>
-      <p>Custom Template</p>
-    </div>
-    <div>
-      <kkl-icon key="tree" color="primary"></kkl-icon>
+<kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" 
+[hasNext]="true" [hasSave]="true" [showSave$]="showSave$">
+  <div fxFill>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <app-table fxFlex="90"></app-table>
     </div>
   </div>
-</ng-template>
-<ng-template #test let-option="option">
-  <div
-    fxLayout="row"
-    fxLayoutAlign="space-between"
-    dir="rtl"
-    (click)="logOption(option)"
-  >
-    <div>
-      {{ option }}
-    </div>
-    <div>
-      <kkl-icon key="tree"></kkl-icon>
+  <div class="container" fxLayout="column" fxLayoutGap="2rem">
+
+    <div fxLayout="row">
+      <p kkl-hover text="TEST" [template]="hoverTemplate" hoverColor="white">new test</p>
     </div>
   </div>
-</ng-template>
+  <ng-template #hoverTemplate>
+    <div fxLayout="column" fxLayoutAlign="center center">
+      <div>
+        <p>Custom Template</p>
+      </div>
+      <div>
+        <kkl-icon key="tree" color="primary"></kkl-icon>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template #test let-option="option">
+    <div fxLayout="row" fxLayoutAlign="space-between" dir="rtl" (click)="logOption(option)">
+      <div>
+        {{ option }}
+      </div>
+      <div>
+        <kkl-icon key="tree"></kkl-icon>
+      </div>
+    </div>
+  </ng-template>

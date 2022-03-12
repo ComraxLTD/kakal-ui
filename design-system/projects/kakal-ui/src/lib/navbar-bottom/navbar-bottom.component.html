@@ -1,16 +1,7 @@
-<mat-toolbar
-  fxLayout="row"
-  fxLayoutAlign="space-between center"
-  fxFill
-  dir="rtl"
->
+<mat-toolbar fxLayout="row" fxLayoutAlign="space-between center" fxFill dir="rtl">
   <div fxFlex="10">
     <div fxLayout="column" fxLayoutAlign="center start">
-      <button
-        class="prev mat-elevation-z1"
-        mat-icon-button
-        (click)="onPrevious()"
-      >
+      <button class="prev mat-elevation-z1" mat-icon-button (click)="onPrevious()">
         <kkl-icon type="mat" key="chevron_right"></kkl-icon>
       </button>
     </div>
@@ -22,29 +13,22 @@
     <ng-container *ngIf="buttonState$ | async as buttonState">
       <!-- template button -->
       <ng-container>
-        <ng-template
-          *ngTemplateOutlet="
+        <ng-template *ngTemplateOutlet="
             buttonSlots;
             context: { $implicit: buttonState.disableNext }
-          "
-        ></ng-template>
+          "></ng-template>
       </ng-container>
 
       <!--save button -->
       <ng-container *ngIf="buttonState.save">
-        <button mat-raised-button appBorder [thick]="2" (click)="onSave()">
+        <button mat-raised-button kkl-border [thick]="2" (click)="onSave()">
           <kkl-typography> שמור </kkl-typography>
         </button>
       </ng-container>
 
       <!--next button -->
       <ng-container *ngIf="buttonState.next">
-        <button
-          mat-raised-button
-          [disabled]="buttonState.disableNext"
-          color="primary"
-          (click)="onNext()"
-        >
+        <button mat-raised-button [disabled]="buttonState.disableNext" color="primary" (click)="onNext()">
           <kkl-typography [disabled]="buttonState.disableNext" color="paper">
             {{ nextText || "המשך" }}
           </kkl-typography>
