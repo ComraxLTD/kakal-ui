@@ -51,7 +51,7 @@
             <div fxFlex="80" fxLayout="column" fxLayoutAlign="center center" *ngIf="showDrawer$ | async">
               <button [ngStyle]="{
                   position: drawer.opened ? 'fixed' : 'relative'
-                }" (click)="drawer.toggle()" mat-fab drawerButton appBorder [thick]="2" color="accent"
+                }" (click)="drawer.toggle()" mat-fab drawerButton kkl-border [thick]="2" color="accent"
                 [ngClass]="{ open: drawer.opened }" [matBadge]="drawer.opened ? 'x' : '+'"
                 [matBadgeColor]="drawer.opened ? 'text' : 'accent'">
                 <div fxLayout="column" fxLayoutAlign="space-between center">
