@@ -12,6 +12,6 @@ export class AppComponent implements OnInit {
   showSave$:Observable<boolean>;
 
   ngOnInit(): void {
-    this.showSave$ = of(true)
+    this.showSave$ = of(true);
   }
 }
