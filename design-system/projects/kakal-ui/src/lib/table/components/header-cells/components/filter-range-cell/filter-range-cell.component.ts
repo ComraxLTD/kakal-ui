@@ -63,7 +63,7 @@ export class FilterRangeCellComponent implements OnInit {
       )
       .subscribe(() => {
         if (this.filterType === FilterType.DATE_RANGE) {
-          // console.log('reset DATE');
+          console.log('reset DATE');
           this.dateControl.reset();
         }
 

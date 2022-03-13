@@ -187,6 +187,10 @@ export class TableActionCellComponent implements OnInit {
       ...this.rowState,
       event,
       item: { ...this.rowState.item },
+      group:
+        this.tableDataSource.getTableState().forms[
+          this.rowState.item[this.rowState.key]
+        ],
     });
   }
 }

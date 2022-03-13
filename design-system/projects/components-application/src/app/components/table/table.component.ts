@@ -285,6 +285,7 @@ export class TableComponent implements OnInit {
 
     const updateItem = {
       ...item,
+      ...formItem,
       city: formItem.city,
     } as RootObject;
     // imitate http response
@@ -322,7 +323,7 @@ export class TableComponent implements OnInit {
   public onCreateEvent(state: RowState) {
     const item: RootObject = {
       id: 0,
-      };
+    };
 
     of(item)
       .pipe(
