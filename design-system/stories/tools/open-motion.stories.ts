@@ -12,24 +12,25 @@ export default {
     ],
     component: OpenMotionsComponent,
     argTypes: {
-        question: {
-            name: 'Question',
-            description: 'Observable of Question .',
+        title: {
+            name: 'Title',
+            description: 'Title of content',
             table: {
-                type: { summary: 'Observable<Question>' },
+                type: { summary: 'string' },
+                defaultValue: { summary: "My title" },
+            },
+            control: {
+                type: 'text'
+            }
+        },
+        content: {
+            name: 'Content',
+            description: 'Ng-template of your content',
+            table: {
+                type: { summary: 'TemplateRef<any>' },
             },
             control: {
                 type: 'object'
-            }
-        },
-        steps$: {
-            name: 'steps$',
-            description: 'Observable of CardStepModel array .',
-            table: {
-                type: { summary: 'Observable<CardStepModel[]>' },
-            },
-            control: {
-                type: 'array'
             }
         },
         direction: {
@@ -37,22 +38,22 @@ export default {
             description: 'direction of steps layout.',
             table: {
                 type: {
-                    summary: 'StepperDirection', detail: "'column' | 'row'"
+                    summary: 'string', detail: "'right' | 'left'"
                 },
-                defaultValue: { summary: "row" },
+                defaultValue: { summary: "left" },
             },
             control: {
-                type: 'string'
+                type: 'text'
             }
         },
-        stepRef: {
-            name: 'stepRef',
-            description: 'Use ng template for step',
+        closeEvent: {
+            name: '@Output() closeEvent',
+            description: 'Emit event to service when user click on close button or click outside component',
             table: {
-                type: { summary: 'ElementRef' },
+                type: { summary: 'EventEmitter' },
             },
             control: {
-                type: 'ElementRef'
+                type: 'EventEmitter'
             }
         },
     },
