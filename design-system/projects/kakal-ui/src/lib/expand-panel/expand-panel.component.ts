@@ -1,38 +1,41 @@
-import { Component, OnInit, Input, TemplateRef } from '@angular/core';
-import { ExpandPanelModel } from "./expand-panel.model"
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'kkl-expand-panel',
   templateUrl: './expand-panel.component.html',
-  styleUrls: ['./expand-panel.component.scss']
+  styleUrls: ['./expand-panel.component.scss'],
 })
 export class ExpandPanelComponent implements OnInit {
+  // prop for custom class
+  @Input() public variant: string;
+  @Input() public hideToggle: boolean;
+  @Input() public showHeader: boolean;
+  @Input() public disabled: boolean;
+  @Input() public expanded: boolean;
+  @Input() public dir: 'rtl' | 'ltr';
 
-  @Input() checkMobile: Boolean;
-  @Input() tabContent: TemplateRef<any>;
-  @Input() tabs: ExpandPanelModel[];
+  public panelOpenState = false;
 
-  openAll: boolean = false;
+  @Output() closed: EventEmitter<void> = new EventEmitter();
+  @Output() opened: EventEmitter<void> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
-    this.tabs[0].isOpen = true
+    this.variant = this.variant || '';
+    this.expanded = this.expanded || false;
+    this.hideToggle = this.hideToggle || false;
+    this.showHeader = this.showHeader || false;
+    this.dir = 'rtl'
   }
 
-  openContainer(id: ExpandPanelModel["id"]): void {
-    this.tabs.forEach(tab => {if(tab.id === id) tab.isOpen = !tab.isOpen})
-    this.checkAllOpen()
+  public onPanelClosed() {
+    this.panelOpenState = false
+    this.closed.emit();
   }
 
-  toggleOpenAll(bol: boolean): void {
-    this.tabs.forEach(tab => tab.isOpen = bol)
-    this.openAll = bol
-  }
-
-  checkAllOpen(): void {
-    let isAllOpen: boolean = true
-    this.tabs.forEach(tab => {if (!tab.isOpen) isAllOpen = false})
-    this.openAll = isAllOpen
+  public onPanelOpen() {
+    this.panelOpenState = true
+    this.opened.emit();
   }
 }

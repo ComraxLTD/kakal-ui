@@ -141,7 +141,6 @@ export * from './lib/bread-crumbes/bread-crumbes.model';
 // expand-panel
 export * from './lib/expand-panel/expand-panel.component';
 export * from './lib/expand-panel/expand-panel.module';
-export * from './lib/expand-panel/expand-panel.model';
 
 export * from './lib/list-menu/list-menu.component';
 export * from './lib/list-menu/list-menu.module';
@@ -269,7 +268,7 @@ export * from './screens/stepper-layout/stepper-layout.component';
 export * from './screens/stepper-layout/stepper-layout.module';
 export * from './screens/stepper-layout/stepper-layout.service';
 
-// chips 
+// chips
 export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component'
 export * from './lib/chips/chips.module';

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,8 @@ import { Observable, of } from 'rxjs';
 export class AppComponent implements OnInit {
   title = 'components-application';
   constructor() { }
-  showSave$:Observable<boolean>;
+
 
   ngOnInit(): void {
-    this.showSave$ = of(true);
   }
 }
