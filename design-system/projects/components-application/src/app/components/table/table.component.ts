@@ -101,7 +101,6 @@ export class TableComponent implements OnInit {
     itemsPerPage: 5,
     currentPage: 1,
     totalItems: 15,
-    pages: [5, 10, 15],
   };
 
   constructor(
@@ -183,35 +182,6 @@ export class TableComponent implements OnInit {
       pagination: {
         ...oldState.pagination,
         ...this.pagination,
-      },
-      filters: {
-        city: {
-          key: 'city',
-          filterType: FilterType.MULTI_SELECTED,
-          value: [
-            {
-              id: 3,
-              label: 'Russia',
-              value: { name: 'Russia', code: 3 },
-            },
-          ],
-        } as FilterChangeEvent<KKLSelectOption[]>,
-        // currency: {
-        //   key: 'currency',
-        //   filterType: FilterType.NUMBER_RANGE,
-        //   value: {
-        //     start: 1,
-        //     end: 10,
-        //   } as FilterRange<number>,
-        // } as FilterChangeEvent,
-        date: {
-          key: 'date',
-          filterType: FilterType.DATE_RANGE,
-          value: {
-            start: new Date('2022-03-04T10:21:31.215Z'),
-            end: new Date('2022-03-15T10:21:31.215Z'),
-          },
-        } as FilterChangeEvent<FilterRange<Date>>,
       },
       action: TableActions.INIT_STATE,
     };
