@@ -18,10 +18,10 @@ import {
   TableActions,
   FormChangeEvent,
   PageState,
-  KKLFormActions
+  FormActions,
+  TableService
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
-import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
 import {
   BehaviorSubject,
   debounceTime,
