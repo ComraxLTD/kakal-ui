@@ -1,6 +1,6 @@
 import { TableDataSource } from '../../../../models/table-datasource';
 import { TableState } from '../../../../models/table.state';
-import { FilterOption, FilterRange, FilterType } from '../../models/header.types';
+import { FilterChangeEvent, FilterRange, FilterType } from '../../models/header.types';
 import { TableActions, FetchActions } from '../../../../models/table-actions';
 import { KKLSelectOption } from '../../../../../form/models/form.types';
 import { Observable, map, filter, merge, tap, switchMap } from 'rxjs';
@@ -12,12 +12,12 @@ export function getHeaderFilterState(
 ) {
   return tableState$.pipe(
     map((tableState: TableState) => tableState.filters[key]),
-    filter((filterOption) => filterOption !== undefined),
+    filter((FilterChangeEvent) => FilterChangeEvent !== undefined),
     filter(
-      (filterOption: FilterOption) =>
-        filterSelectors.indexOf(filterOption.filterType) !== -1
+      (FilterChangeEvent: FilterChangeEvent) =>
+        filterSelectors.indexOf(FilterChangeEvent.filterType) !== -1
     ),
-    map((filterOption) => filterOption.value)
+    map((FilterChangeEvent) => FilterChangeEvent.value)
   );
 }
 

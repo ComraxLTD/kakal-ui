@@ -20,7 +20,7 @@ import { ColumnActions } from '../../../../models/table-actions';
 
 import {
   FilterType,
-  FilterOption,
+  FilterChangeEvent,
   FilterRange,
 } from '../../models/header.types';
 import { map, Observable, filter, of, merge, tap } from 'rxjs';
@@ -49,7 +49,7 @@ export class FilterHeaderCellComponent implements OnInit {
   public value$: Observable<FilterRange>;
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
-  @Output() filterChanged: EventEmitter<FilterOption> = new EventEmitter();
+  @Output() filterChanged: EventEmitter<FilterChangeEvent> = new EventEmitter();
 
   constructor(private tableDataSource: TableDataSource) {}
 
@@ -70,14 +70,14 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   private setFilterState(value: any) {
-    const filterOption: FilterOption = {
+    const FilterChangeEvent: FilterChangeEvent = {
       key: this.columnDef.toString(),
       value,
       filterType: this.filterType,
       format: this.format,
     };
 
-    return { [this.columnDef]: filterOption };
+    return { [this.columnDef]: FilterChangeEvent };
   }
 
   private initOptions$() {

@@ -12,7 +12,7 @@ import { FormControl } from '@angular/forms';
 import { FormChangeEvent } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderCellModel } from '../../models/header-cell.model';
-import { FilterOption, FilterRange } from '../../models/header.types';
+import { FilterChangeEvent, FilterRange } from '../../models/header.types';
 
 @Component({
   selector: 'kkl-header-cell',
@@ -63,14 +63,14 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
   }
 
   private setFilterState(value: any) {
-    const filterOption: FilterOption = {
+    const FilterChangeEvent: FilterChangeEvent = {
       key: this.columnDef.toString(),
       value,
       filterType: this.column.filterType,
       format: this.column.format,
     };
 
-    return { [this.columnDef.toString()]: filterOption };
+    return { [this.columnDef.toString()]: FilterChangeEvent };
   }
 
   // DOE EVENTS
