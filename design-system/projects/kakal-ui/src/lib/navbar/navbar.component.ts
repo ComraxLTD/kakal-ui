@@ -38,10 +38,10 @@ export class NavbarComponent implements OnInit {
   constructor(
     private navbarService: NavbarService,
     private breakpointService: BreakpointService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.title$ = this.navbarService.getHeadersObs();
+    this.title$ = this.navbarService.getTitle();
     this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
   }

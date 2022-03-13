@@ -1,6 +1,17 @@
+<div fxLayout="column">
+  <kkl-navbar fxFlex='100' [logos]="logos"></kkl-navbar>
+  <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="start center">
+    <kkl-form-input label="Enter title" [control]="control"></kkl-form-input>
+    <button mat-raised-button color="primary" (click)="updateTitle()">
+      <kkl-typography color="paper"> raised primary </kkl-typography>
+    </button>
+  </div>
+</div>
+<!-- <kkl-button label="test" icon="tree" direction="rtl"></kkl-button> -->
+
 <!-- <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" 
 [hasNext]="true" [hasSave]="true" [showSave$]="showSave$"> -->
-<div fxFill>
+<!-- <div fxFill>
   <div fxLayout="row" fxLayoutAlign="center center">
     <app-table fxFlex="90"></app-table>
   </div>
@@ -42,4 +53,4 @@
         <kkl-icon key="tree"></kkl-icon>
       </div>
     </div>
-  </ng-template>
+  </ng-template> -->
