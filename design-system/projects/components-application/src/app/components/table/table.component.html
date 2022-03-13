@@ -22,7 +22,6 @@
   <kkl-table
     kkl-table
     kklPagination
-    kklUrlPagination
     [data$]="data$"
     [columns$]="columns$"
     [itemKey]="itemKey"
@@ -71,7 +70,7 @@
 
 <ng-template #email let-rowState>
   <kkl-typography color="primary" underline="true">
-    {{ rowState.item.email | slice: -20 }}
+    {{ rowState.item.email | slice: -18 }}
   </kkl-typography>
 </ng-template>
 
