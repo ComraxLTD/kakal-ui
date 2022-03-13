@@ -268,3 +268,7 @@ export * from './lib/stepper-mobile/stepper-mobile.module';
 export * from './screens/stepper-layout/stepper-layout.component';
 export * from './screens/stepper-layout/stepper-layout.module';
 export * from './screens/stepper-layout/stepper-layout.service';
+
+// chips 
+export * from './lib/chips/chips.module';
+
