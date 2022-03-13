@@ -270,5 +270,7 @@ export * from './screens/stepper-layout/stepper-layout.module';
 export * from './screens/stepper-layout/stepper-layout.service';
 
 // chips 
+export * from './lib/chips/chip/chip.component';
+export * from './lib/chips/chip-list/chip-list.component'
 export * from './lib/chips/chips.module';
 
