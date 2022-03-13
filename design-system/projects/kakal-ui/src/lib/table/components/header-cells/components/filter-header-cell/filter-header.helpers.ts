@@ -1,9 +1,13 @@
 import { TableDataSource } from '../../../../models/table-datasource';
 import { TableState } from '../../../../models/table.state';
-import { FilterChangeEvent, FilterRange, FilterType } from '../../models/header.types';
+import {
+  FilterChangeEvent,
+  FilterRange,
+  FilterType,
+} from '../../models/header.types';
 import { TableActions, FetchActions } from '../../../../models/table-actions';
 import { KKLSelectOption } from '../../../../../form/models/form.types';
-import { Observable, map, filter, merge, tap, switchMap } from 'rxjs';
+import { Observable, map, filter, merge, tap, switchMap, pluck } from 'rxjs';
 
 export function getHeaderFilterState(
   tableState$: Observable<TableState>,
@@ -11,13 +15,15 @@ export function getHeaderFilterState(
   key: string
 ) {
   return tableState$.pipe(
-    map((tableState: TableState) => tableState.filters[key]),
-    filter((FilterChangeEvent) => FilterChangeEvent !== undefined),
+    // map((tableState: TableState) => tableState.filters[key]),
+    pluck('filters'),
+    pluck(key),
+    filter((filterChangeEvent) => filterChangeEvent !== undefined),
     filter(
-      (FilterChangeEvent: FilterChangeEvent) =>
-        filterSelectors.indexOf(FilterChangeEvent.filterType) !== -1
+      (filterChangeEvent: FilterChangeEvent) =>
+        filterSelectors.indexOf(filterChangeEvent.filterType) !== -1
     ),
-    map((FilterChangeEvent) => FilterChangeEvent.value)
+    map((filterChangeEvent) => filterChangeEvent.value)
   );
 }
 
@@ -52,11 +58,9 @@ export function setFilterOptionState(
   return options$.pipe(
     switchMap((options: KKLSelectOption[]) => {
       return selectedOptions$.pipe(
-        map((options: KKLSelectOption[]) =>
-          options.map((option) => option.id)
-        ),
+        map((options: KKLSelectOption[]) => options.map((option) => option.id)),
         map((selectedOptions: (string | number)[]) => {
-          return options.map((option : KKLSelectOption) => {
+          return options.map((option: KKLSelectOption) => {
             return {
               ...option,
               selected: selectedOptions.indexOf(option.id) !== -1,
