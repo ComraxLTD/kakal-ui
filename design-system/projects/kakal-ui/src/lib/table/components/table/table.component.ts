@@ -16,13 +16,13 @@ import { KKLActionCellDirective } from '../cells/table-action-cell/cell-action.d
 import { KKLHeaderCellDirective } from '../../components/header-cells/cell-header.directive';
 
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
-import { ColumnSortOption } from '../../../columns/models/column-sort-option';
 import { TableDataSource } from '../../models/table-datasource';
-import { PageState, TableState } from '../../models/table.state';
+import { PageState, SortState, TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
-import { Observable, map, combineLatest, merge } from 'rxjs';
 import PaginationChangeEvent from '../pagination/pagination.types';
+
+import { Observable, map, combineLatest, merge } from 'rxjs';
 
 @Component({
   selector: 'kkl-table',
@@ -69,7 +69,7 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public expandTemplate: { [key: string]: TemplateRef<any> };
 
   // emit sort event : Sort
-  @Output() sortChange: EventEmitter<ColumnSortOption<T>> = new EventEmitter();
+  @Output() sortChange: EventEmitter<SortState> = new EventEmitter();
 
   // emit pagination event : {next : number, prev : number}
   @Output() pageChange: EventEmitter<PaginationChangeEvent> =
