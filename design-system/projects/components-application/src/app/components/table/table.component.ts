@@ -16,7 +16,7 @@ import {
   FilterType,
   HeaderCellModel,
   TableActions,
-  FilterOption,
+  FilterChangeEvent,
   FilterRange,
   FormChangeEvent,
   PageState,
@@ -120,7 +120,7 @@ export class TableComponent implements OnInit {
     this.tableState$ = this.tableDataSource.connectTableState();
     this.fetchState$ = this.tableDataSource.connectFetchState();
 
-    // this.initTableState();
+    this.initTableState();
   }
 
   private connectToFetchState() {
@@ -195,7 +195,7 @@ export class TableComponent implements OnInit {
               value: { name: 'Russia', code: 3 },
             },
           ],
-        } as FilterOption<KKLSelectOption[]>,
+        } as FilterChangeEvent<KKLSelectOption[]>,
         // currency: {
         //   key: 'currency',
         //   filterType: FilterType.NUMBER_RANGE,
@@ -203,7 +203,7 @@ export class TableComponent implements OnInit {
         //     start: 1,
         //     end: 10,
         //   } as FilterRange<number>,
-        // } as FilterOption,
+        // } as FilterChangeEvent,
         date: {
           key: 'date',
           filterType: FilterType.DATE_RANGE,
@@ -211,7 +211,7 @@ export class TableComponent implements OnInit {
             start: new Date('2022-03-04T10:21:31.215Z'),
             end: new Date('2022-03-15T10:21:31.215Z'),
           },
-        } as FilterOption<FilterRange<Date>>,
+        } as FilterChangeEvent<FilterRange<Date>>,
       },
       action: TableActions.INIT_STATE,
     };
@@ -322,15 +322,7 @@ export class TableComponent implements OnInit {
   public onCreateEvent(state: RowState) {
     const item: RootObject = {
       id: 0,
-      first_name: '',
-      last_name: '',
-      phone: '',
-      email: '',
-      gender: '',
-      city: '',
-      date: null,
-      currency: '',
-    };
+      };
 
     of(item)
       .pipe(

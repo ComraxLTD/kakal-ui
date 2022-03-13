@@ -9,7 +9,7 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
-import { ColumnDef, FilterOption } from '../components/header-cells/models/header.types';
+import { ColumnDef, FilterChangeEvent } from '../components/header-cells/models/header.types';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -35,7 +35,7 @@ export interface SortState {
   sorting: string;
   sortBy: SortDirection;
 }
-export declare type FilterState = { [key: string]: FilterOption | null };
+export declare type FilterState = { [key: string]: FilterChangeEvent | null };
 
 export interface RowState<T = any> {
   item?: T;
