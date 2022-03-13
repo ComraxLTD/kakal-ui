@@ -7,7 +7,17 @@ import {
 } from '../../models/header.types';
 import { TableActions, FetchActions } from '../../../../models/table-actions';
 import { KKLSelectOption } from '../../../../../form/models/form.types';
-import { Observable, map, filter, merge, tap, switchMap, pluck } from 'rxjs';
+import {
+  Observable,
+  map,
+  filter,
+  merge,
+  tap,
+  switchMap,
+  pluck,
+  pairwise,
+} from 'rxjs';
+import { TableSelector } from '../../../../models/table.selectors';
 
 export function getHeaderFilterState(
   tableState$: Observable<TableState>,
@@ -15,15 +25,25 @@ export function getHeaderFilterState(
   key: string
 ) {
   return tableState$.pipe(
-    // map((tableState: TableState) => tableState.filters[key]),
-    pluck('filters'),
+    pluck(TableSelector.FILTERS),
     pluck(key),
     filter((filterChangeEvent) => filterChangeEvent !== undefined),
-    filter(
-      (filterChangeEvent: FilterChangeEvent) =>
-        filterSelectors.indexOf(filterChangeEvent.filterType) !== -1
-    ),
     map((filterChangeEvent) => filterChangeEvent.value)
+  );
+}
+
+function getRemoveState(
+  tableState$: Observable<TableState>,
+  columnDef: string
+) {
+  return tableState$.pipe(
+    pluck(TableSelector.FILTERS),
+    pluck(columnDef),
+    pairwise(),
+    filter(([prev, current]) => prev !== undefined && current === undefined),
+    map(([prev, current]) => {
+      return { start: null, end: null };
+    })
   );
 }
 
@@ -36,7 +56,9 @@ function getState(tableDataSource: TableDataSource) {
     action: FetchActions.TABLE_FILTER,
   });
 
-  return { initState$, updateState$ };
+  const removeState$ = tableDataSource.connectTableState();
+
+  return { initState$, updateState$, removeState$ };
 }
 
 export function setSelectState(
@@ -44,7 +66,7 @@ export function setSelectState(
   key: string
 ): Observable<KKLSelectOption[]> {
   const type = [FilterType.SELECTED, FilterType.MULTI_SELECTED];
-  const { initState$, updateState$ } = getState(tableDataSource);
+  const { initState$, updateState$, removeState$ } = getState(tableDataSource);
   const initSelectState$ = getHeaderFilterState(initState$, type, key);
   const updateSelectState$ = getHeaderFilterState(updateState$, type, key);
 
@@ -77,12 +99,14 @@ export function setRangeState<T = Date | number>(
   key: string,
   type: FilterType
 ): Observable<FilterRange<T>> {
-  const { initState$, updateState$ } = getState(tableDataSource);
-  const initSelectState$ = getHeaderFilterState(initState$, [type], key);
-  const updateSelectState$ = getHeaderFilterState(updateState$, [type], key);
+  const { initState$, updateState$, removeState$ } = getState(tableDataSource);
+  const initRangeState$ = getHeaderFilterState(initState$, [type], key);
+  // const updateSelectState$ = getHeaderFilterState(updateState$, [type], key);
+  const removeRangeState$ = getRemoveState(removeState$, key);
 
-  return merge(initSelectState$, updateSelectState$).pipe(
+  return merge(initRangeState$, removeRangeState$).pipe(
     map((range) => {
+      console.log(range);
       return { ...range, type };
     })
   );

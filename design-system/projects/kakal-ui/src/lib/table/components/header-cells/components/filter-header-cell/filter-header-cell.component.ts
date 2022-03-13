@@ -23,13 +23,14 @@ import {
   FilterChangeEvent,
   FilterRange,
 } from '../../models/header.types';
-import { map, Observable, filter, of, merge, tap } from 'rxjs';
+import { map, Observable, filter, of, merge, tap, pluck, pairwise } from 'rxjs';
 
 import {
   setFilterOptionState,
   setRangeState,
   setSelectState,
 } from './filter-header.helpers';
+import { TableSelector } from '../../../../models/table.selectors';
 
 @Component({
   selector: 'kkl-filter-header-cell',
@@ -65,8 +66,10 @@ export class FilterHeaderCellComponent implements OnInit {
       this.filterType === FilterType.DATE_RANGE ||
       this.filterType === FilterType.NUMBER_RANGE
     ) {
-      this.value$ = this.initRange$();
+      this.value$ = this.setRange$();
     }
+
+
   }
 
   private setFilterState(value: any) {
@@ -105,7 +108,7 @@ export class FilterHeaderCellComponent implements OnInit {
     return merge(initOptions$, tableStateOptions$);
   }
 
-  private initRange$<T>(): Observable<FilterRange<T>> {
+  private setRange$<T>(): Observable<FilterRange<T>> {
     const initRange$: Observable<FilterRange> = of({ start: null, end: null });
     const tableStateRange$ = setRangeState<T>(
       this.tableDataSource,
