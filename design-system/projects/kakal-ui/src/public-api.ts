@@ -18,6 +18,12 @@ export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.model';
 export * from './lib/icon/icon.module';
 
+export * from './lib/open-motions/open-motions.component';
+export * from './lib/open-motions/open-motions.module';
+export * from './lib/open-motions/open-motions.service';
+
+
+
 // form exports
 
 export * from './lib/form/models/form-datasource';
