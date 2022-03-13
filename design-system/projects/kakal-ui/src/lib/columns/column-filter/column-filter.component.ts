@@ -248,7 +248,7 @@ export class ColumnFilterComponent<T> implements OnInit {
     this.sortChange.emit(sortOption);
   }
 
-  public onCurrencyAutocomplete(FormChnageEvent: FormChnageEvent) {
+  public onCurrencyAutocomplete(FormChnageEvent: FormChangeEvent) {
     const value = this.amountFilter.getValue();
     this.filterSubject.next({
       value,
