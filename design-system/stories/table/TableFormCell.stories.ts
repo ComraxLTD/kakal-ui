@@ -50,7 +50,7 @@ export default {
 const Template: Story<FormCellComponent> = (
   args: FormCellComponent
 ) => ({
-  component: TableFormCellComponent,
+  // component: TableFormCellComponent,
   props: args,
 });
 

@@ -24,7 +24,7 @@ export class ColumnFilterService<T> {
         numericOnly: true,
       },
       format: 'currency',
-      autocomplete: true,
+      // autocomplete: true,
     },
     {
       key: 'to',
@@ -35,7 +35,7 @@ export class ColumnFilterService<T> {
         numericOnly: true,
       },
       format: 'currency',
-      autocomplete: true,
+      // autocomplete: true,
     },
   ];
 

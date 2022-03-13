@@ -101,7 +101,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       value: option.value,
-      option,
+      // option,
     };
 
     this.formDataSource.dispatch.optionSelected(FormChangeEvent);
