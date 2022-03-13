@@ -35,7 +35,7 @@ export interface SortState {
   sorting: string;
   sortBy: SortDirection;
 }
-export declare type FilterState = { [key: string]: FilterOption };
+export declare type FilterState = { [key: string]: FilterOption | null };
 
 export interface RowState<T = any> {
   item?: T;

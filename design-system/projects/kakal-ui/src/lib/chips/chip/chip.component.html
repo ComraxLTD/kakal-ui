@@ -1,0 +1,9 @@
+<mat-chip appBorder (removed)="handleRemoved()">
+    <ng-content></ng-content>
+
+    <ng-container *ngIf="removable">
+        <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+        </button>
+    </ng-container>
+</mat-chip>

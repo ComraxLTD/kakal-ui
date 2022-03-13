@@ -162,8 +162,14 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.loadTableState({ tableState: newState });
   }
 
+  /**
+   * To remove a key send a null value
+   */
   public dispatchFilter(action: { filterState: FilterState }): void {
     const { filterState } = action;
+    /**
+     * @Note: Dvir - we don't need to add an "internal self made redux" solution
+     */
     const oldState = this.getTableState();
     const newState = {
       ...oldState,
@@ -173,6 +179,13 @@ export class TableDataSource<T = any> implements DataSource<T> {
       },
       action: FetchActions.FILTER,
     } as TableState;
+
+
+    /**
+     * Remove null values
+     */
+    Object.keys(newState.filters).forEach((k) => newState.filters[k] == null && delete newState.filters[k]);
+
     this.loadTableState({ tableState: newState });
   }
 

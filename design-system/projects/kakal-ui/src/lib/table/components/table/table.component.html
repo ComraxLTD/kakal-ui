@@ -1,6 +1,11 @@
 <ng-container *ngIf="tableState$ | async as tableState">
   <ng-container *ngIf="table$ | async as table">
     <ng-container *ngIf="data$ | async as data">
+      <!-- @Todo: Dvir - the table's state needs to be stored in the table service -->
+      <kkl-table-filters
+        [tableState]="this.tableState$ | async"
+      ></kkl-table-filters>
+
       <div dir="rtl" fxLayout="column" fxLayoutGap="1rem">
         <mat-table
           mat-table

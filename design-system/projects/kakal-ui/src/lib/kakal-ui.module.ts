@@ -61,6 +61,7 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { FilterCardComponent } from './cards/filter-card/filter-card.component';
 import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
+import { KKLChipsModule } from './chips/chips.module';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -123,6 +124,9 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
+
+
+    KKLChipsModule
   ],
   exports: [
     //TOOLS
@@ -180,6 +184,8 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
+
+    KKLChipsModule
   ],
 })
 export class KakalUiModule {}
