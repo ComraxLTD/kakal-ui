@@ -21,7 +21,7 @@ export interface FilterRange<T = any> {
   type?: FilterType;
 }
 
-export interface FilterOption<T = any> {
+export interface FilterChangeEvent<T = any> {
   key: string;
   label?: string;
   value?: T;

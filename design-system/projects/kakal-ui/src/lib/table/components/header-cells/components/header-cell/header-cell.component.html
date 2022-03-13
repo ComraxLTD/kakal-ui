@@ -32,6 +32,7 @@
     <kkl-filter-range-cell
       fxFlex="75"
       [value]="value"
+      [value$]="filterContext.value$"
       [filterType]="filterContext.filterType"
       (rangeChange)="onRangeChange($event)"
     ></kkl-filter-range-cell>
