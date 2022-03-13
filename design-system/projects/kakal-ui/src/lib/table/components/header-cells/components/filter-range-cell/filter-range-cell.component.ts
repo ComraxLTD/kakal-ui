@@ -61,14 +61,14 @@ export class FilterRangeCellComponent implements OnInit {
         filter((range: FilterRange) => !range.start && !range.end),
         takeUntil(this.destroy)
       )
-      .subscribe((range: FilterRange) => {
+      .subscribe(() => {
         if (this.filterType === FilterType.DATE_RANGE) {
-          console.log('reset DATE');
+          // console.log('reset DATE');
           this.dateControl.reset();
         }
 
         if (this.filterType === FilterType.NUMBER_RANGE) {
-          console.log('reset NUMBER');
+          // console.log('reset NUMBER');
           this.amountGroup.formGroup.reset();
         }
       });
@@ -106,8 +106,16 @@ export class FilterRangeCellComponent implements OnInit {
 
   public onRangeNumberChange() {
     this.amountGroup.formGroup.valueChanges
-      .pipe(skip(1), take(1), takeUntil(this.destroy))
-      .subscribe((range: FilterRange<number>) => this.rangeChange.emit(range));
-    // }}
+      .pipe(
+        skip(1),
+        take(1),
+
+        filter((range) => range.start !== null && range.end !== null),
+        filter((range) => range.start !== '' && range.end !== ''),
+        takeUntil(this.destroy)
+      )
+      .subscribe((range: FilterRange<number>) => {
+        this.rangeChange.emit(range);
+      });
   }
 }

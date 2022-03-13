@@ -106,7 +106,6 @@ export function setRangeState<T = Date | number>(
 
   return merge(initRangeState$, removeRangeState$).pipe(
     map((range) => {
-      console.log(range);
       return { ...range, type };
     })
   );
