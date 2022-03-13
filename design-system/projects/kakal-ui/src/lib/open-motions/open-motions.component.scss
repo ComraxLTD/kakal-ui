@@ -39,22 +39,24 @@
 
 .icon-left {
     right: 72%;
+    bottom: 80%;
     position: absolute;
     z-index: 1;
 }
 .icon-right {
     left: 72%;
+    bottom: 80%;
     position: absolute;
     z-index: 1;
 }
 
 @media only screen and (max-width: 1024px) {
-        .icon-right {
-            bottom: 75%;
-            left: 70%;
-        }
-        .icon-left {
-            bottom: 75%;
-            right: 70%;
-        }
+    .icon-right {
+        bottom: 75%;
+        left: 70%;
+    }
+    .icon-left {
+        bottom: 75%;
+        right: 70%;
+    }
 }
