@@ -61,11 +61,10 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
-import { OpenMotionsComponent } from './open-motions/open-motions.component';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent, OpenMotionsComponent],
+  declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
     CoreModule,
     CommonModule,
