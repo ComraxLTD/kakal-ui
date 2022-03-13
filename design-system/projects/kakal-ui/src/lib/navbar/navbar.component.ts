@@ -41,16 +41,15 @@ export class NavbarComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.title$ = this.navbarService.getTitle();
+    this.title$ = this.navbarService.getHeadersObs();
     this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
   }
 
   public toggleMenu(toggle: boolean) {
+    
     this.toggle$.next({ value: !toggle });
     this.menuToggle.emit();
   }
 
-  public onNavigate() {
-  }
 }
