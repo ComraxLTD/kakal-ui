@@ -1,0 +1,60 @@
+@use "../../styles/variables" as main;
+
+.left {
+    left: 0;
+}
+
+.right {
+    right: 0;
+}
+.kkl-info-container {
+    position: absolute;
+    top: 8rem;
+    bottom: 0;
+    width: 25%;
+    z-index: 2;
+    box-shadow: 2px 5px 6px #00000017;
+    backdrop-filter: blur(12px);
+    background-image: none !important;
+    overflow: auto;
+    .main {
+        background-color: transparent;
+        padding: main.spacing(2);
+        // margin-top: 1rem;
+    }
+    .content {
+        margin-top: 1rem;
+    }
+    .title {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+}
+// .close-box {
+//     bottom: 80%;
+//     left: 72%;
+//     position: absolute;
+//     z-index: 1;
+// }
+
+.icon-left {
+    right: 72%;
+    position: absolute;
+    z-index: 1;
+}
+.icon-right {
+    left: 72%;
+    position: absolute;
+    z-index: 1;
+}
+
+@media only screen and (max-width: 1024px) {
+        .icon-right {
+            bottom: 75%;
+            left: 70%;
+        }
+        .icon-left {
+            bottom: 75%;
+            right: 70%;
+        }
+}

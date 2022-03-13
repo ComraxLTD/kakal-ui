@@ -58,19 +58,21 @@ import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
-import { FilterCardComponent } from './cards/filter-card/filter-card.component';
 import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
+import { OpenMotionsComponent } from './open-motions/open-motions.component';
+import { OpenMotionsModule } from './open-motions/open-motions.module';
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent],
+  declarations: [FormExampleComponent, SidenavExampleComponent, OpenMotionsComponent],
   imports: [
     CoreModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    OpenMotionsModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLNavigationModule,
@@ -130,6 +132,7 @@ import { KKLChipsModule } from './chips/chips.module';
   ],
   exports: [
     //TOOLS
+    OpenMotionsModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLBreadCrumbsModule,
@@ -188,4 +191,4 @@ import { KKLChipsModule } from './chips/chips.module';
     KKLChipsModule
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }

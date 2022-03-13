@@ -1,28 +1,44 @@
 import { Injectable } from '@angular/core';
 import { CardStepModel } from '../cards/card-step/card-step.model';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavbarService {
+  private headers: { [key: string]: string };
+
+  private titleSubject: BehaviorSubject<string>;
+  private headersSubject: BehaviorSubject<Observable<string>>;
   private statusSubject: BehaviorSubject<CardStepModel[]>;
   private selectStatusSubject: BehaviorSubject<CardStepModel>;
-  private titleSubject: BehaviorSubject<string>;
+
   constructor() {
+    this.titleSubject = new BehaviorSubject<string>('');
     this.statusSubject = new BehaviorSubject<CardStepModel[]>([]);
     this.selectStatusSubject = new BehaviorSubject<CardStepModel>(null);
-    this.titleSubject = new BehaviorSubject('');
+  }
+
+  // headers section
+  public setHeaders(headers: { [key: string]: string }): void {
+    this.headers = headers;
+  }
+
+  public setHeadersObs(headers: Observable<string>): void {
+    this.headersSubject = new BehaviorSubject<Observable<string>>(headers);
+  }
+
+  public getHeadersObs(): Observable<string> {
+    return this.headersSubject.asObservable().pipe(mergeAll());
   }
 
   // title section
-
-  getTitle(): Observable<string> {
+  public getTitleObs(): Observable<string> {
     return this.titleSubject.asObservable();
   }
 
-  setTitle(str: string): void {
-    this.titleSubject.next(str);
+  public emitTitle(key: string): void {
+    this.titleSubject.next(this.headers[key]);
   }
 
   // status section
@@ -42,7 +58,7 @@ export class NavbarService {
   public emitSelectStatus(value: CardStepModel): void {
     this.selectStatusSubject.next(value);
   }
-  // *** need table filters ****
+
   // public getSelectedStatusFilters(filters: FilterMap): Observable<FilterMap> {
   //   return this.getSelectStatusObs().pipe(
   //     skipWhile((status) => !status),
