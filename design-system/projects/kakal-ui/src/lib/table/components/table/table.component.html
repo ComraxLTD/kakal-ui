@@ -3,6 +3,7 @@
     <ng-container *ngIf="data$ | async as data">
       <!-- @Todo: Dvir - the table's state needs to be stored in the table service -->
       <kkl-table-filters
+        *ngIf="!hideChipFilters"
         [tableState]="this.tableState$ | async"
       ></kkl-table-filters>
 

@@ -84,6 +84,9 @@ export class TableComponent<T = any> implements OnInit {
   // emit row : Observable<T>
   @Output() rowClicked: EventEmitter<T> = new EventEmitter();
 
+  // set true to hide the filters above the table
+  @Input() hideChipFilters: boolean;
+
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
   public tableState$: Observable<TableState>;
@@ -130,6 +133,7 @@ export class TableComponent<T = any> implements OnInit {
   ngOnInit() {
     this.table$ = this.setTable$();
     this.tableState$ = this.tableDataSource.connectTableState();
+    this.hideChipFilters = this.hideChipFilters !== undefined;
 
     this.setTableState$().subscribe((tableState) => {
       this.tableDataSource.loadTableState({ tableState });
