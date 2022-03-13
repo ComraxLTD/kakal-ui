@@ -9,8 +9,11 @@ import {
   PageState,
 } from './table.state';
 
+import { TableActions, ColumnActions, FetchActions, ActionStateRules } from './table-actions';
+
 export {
   TableSelector,
+
   TableState,
   FetchState,
   SortState,
@@ -18,4 +21,9 @@ export {
   HeaderState,
   ActionState,
   PageState,
+
+  TableActions,
+  ColumnActions,
+  FetchActions,
+  ActionStateRules,
 };

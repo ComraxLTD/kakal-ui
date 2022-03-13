@@ -120,10 +120,8 @@ export * from './lib/table/components/pagination/pagination.directive';
 export * from './lib/table/components/pagination/url-pagination.directive';
 export * from './lib/table/components/pagination/pagination.types';
 
-export * from './lib/table/models/table';
-export * from './lib/table/models/table-actions';
 export * from './lib/table/models/table-datasource';
-export * from './lib/table/models/table.state';
+export * from './lib/table/models/table.types';
 
 export * from './lib/table/directives/cell.directive';
 
@@ -275,7 +273,7 @@ export * from './screens/stepper-layout/stepper-layout.component';
 export * from './screens/stepper-layout/stepper-layout.module';
 export * from './screens/stepper-layout/stepper-layout.service';
 
-// chips 
+// chips
 export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component'
 export * from './lib/chips/chips.module';
