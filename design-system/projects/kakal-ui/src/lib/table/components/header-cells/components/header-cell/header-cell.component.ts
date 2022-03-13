@@ -70,7 +70,7 @@ export class HeaderCellComponent implements OnInit, AfterViewInit {
       format: this.column.format,
     };
 
-    return { [this.key]: filterOption };
+    return { [this.columnDef.toString()]: filterOption };
   }
 
   // DOE EVENTS

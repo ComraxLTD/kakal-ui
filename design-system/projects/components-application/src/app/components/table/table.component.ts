@@ -322,15 +322,7 @@ export class TableComponent implements OnInit {
   public onCreateEvent(state: RowState) {
     const item: RootObject = {
       id: 0,
-      first_name: '',
-      last_name: '',
-      phone: '',
-      email: '',
-      gender: '',
-      city: '',
-      date: null,
-      currency: '',
-    };
+      };
 
     of(item)
       .pipe(
