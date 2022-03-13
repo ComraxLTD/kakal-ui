@@ -96,6 +96,9 @@ export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table.state.service';
 export * from './lib/table/components/table/table.service';
 
+export * from './lib/table/models/table-datasource';
+export * from './lib/table/models/table.types';
+
 export * from './lib/table/components/cells/table-cell.module';
 
 export * from './lib/table/components/cells/table-form-cell/table-cell-form.module';
@@ -121,8 +124,6 @@ export * from './lib/table/components/pagination/pagination.directive';
 export * from './lib/table/components/pagination/url-pagination.directive';
 export * from './lib/table/components/pagination/pagination.types';
 
-export * from './lib/table/models/table-datasource';
-export * from './lib/table/models/table.types';
 
 export * from './lib/table/directives/cell.directive';
 
