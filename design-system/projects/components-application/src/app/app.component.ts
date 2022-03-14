@@ -36,27 +36,35 @@ export class AppComponent implements OnInit {
  
    //stepper steps
    public steps: CardStepModel[] = [
-     new CardStepModel({
-       svgUrl: 'notes',
-       label: 'פרטי האיסוף',
-       path: 'details',
-       size: 2.8,
-       spacer: true,
-     }),
-     new CardStepModel({
-       svgUrl: 'location_mpk',
-       label: 'מיקום האיסוף',
-       path: 'location',
-       size: 2.8,
-       spacer: true,
-     }),
-     new CardStepModel({
-       svgUrl: 'ready_stcok_icon',
-       label: 'ניהול מלאי',
-       path: 'inventory',
-       size: 2.8,
-       spacer: true,
-     }),
+    new CardStepModel({
+      label: 'פרטי ההתקשרות',
+      svgUrl: 'contact',
+      path: 'details',
+      size: 3,
+      variant: 'circle',
+      type: 'step',
+      spacer: true,
+      isActive: true
+    }),
+    new CardStepModel({
+      label: 'בניית הצעת מחיר',
+      svgUrl: 'offer',
+      path: 'bid',
+      size: 3,
+      variant: 'circle',
+      type: 'step',
+      spacer: true,
+      stroke: true,
+    }),
+    new CardStepModel({
+      label: 'בחירת ספקים',
+      svgUrl: 'send_mail',
+      path: 'supplier',
+      size: 3,
+      variant: 'circle',
+      type: 'step',
+      spacer: true,
+    }),
    ];
  
    //page headline items
@@ -162,12 +170,12 @@ export class AppComponent implements OnInit {
            this.openDrawer = 45;
            this.closedDrawer = 10;
          }
-         console.log('----' + this.closedDrawer);
+         console.log('----' + this.openDrawer);
          this.stepperLayoutService.emitDrawerSizeChanged(this.openDrawer);
  
          return this.stepperLayoutService.getStepPrefixObs().pipe(
            startWith(this.routerService.getCurrentPath()),
-           map((prefix: string) => {
+           map((prefix: string) => {             
              return 100 - this.openDrawer;
            })
          );
