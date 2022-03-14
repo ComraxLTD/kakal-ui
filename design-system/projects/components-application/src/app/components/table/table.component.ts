@@ -19,7 +19,7 @@ import {
   FormChangeEvent,
   PageState,
   FormActions,
-  TableService
+  TableService,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -89,6 +89,7 @@ export class TableComponent implements OnInit {
   public data$: Observable<RootObject[]>;
   public columns$: Observable<HeaderCellModel<RootObject>[]>;
   public tableState$: Observable<TableState>;
+  public initTableState$: Observable<TableState>;
   public fetchState$: Observable<FetchState>;
 
   public group: QuestionGroupModel;
@@ -97,7 +98,6 @@ export class TableComponent implements OnInit {
   public pagination: PageState = {
     itemsPerPage: 5,
     currentPage: 1,
-    totalItems: 15,
   };
 
   constructor(
@@ -108,19 +108,39 @@ export class TableComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
+    // call first!
+    // this.initTableState$ = this.initTableState()
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
 
     // form demo only
-    this.tableState$ = this.tableDataSource.connectTableState();
-    this.fetchState$ = this.tableDataSource.connectFetchState();
+    this.tableState$ = this.tableDataSource.listenTableState();
+    this.fetchState$ = this.tableDataSource.listenFetchState();
 
-    this.initTableState();
   }
 
-  private connectToFetchState() {
-    return this.tableDataSource.connectFetchState().pipe(
+  private initTableState() {
+    return of(this.pagination).pipe(
+      map((pagState: PageState) => {
+        const oldState = this.tableDataSource.getTableState();
+        const tableState: TableState = {
+          ...oldState,
+          pagination: {
+            ...oldState.pagination,
+            ...pagState,
+            totalItems : 100
+          },
+          action: TableActions.INIT_STATE,
+        };
+
+        return tableState;
+      })
+    );
+  }
+
+  private listenToFetchState() {
+    return this.tableDataSource.listenFetchState().pipe(
       switchMap((fetchState: FetchState) => {
         return of(DEMO_DATA);
       })
@@ -129,7 +149,7 @@ export class TableComponent implements OnInit {
 
   private demoServerData(): Observable<RootObject[]> {
     const initData$ = of(DEMO_DATA);
-    const fetchData$ = this.connectToFetchState();
+    const fetchData$ = this.listenToFetchState();
 
     return merge(initData$, fetchData$).pipe(
       switchMap((data: RootObject[]) => {
@@ -162,28 +182,14 @@ export class TableComponent implements OnInit {
     return storeData$.pipe(
       switchMap((data) => {
         this.tableDataSource.load(data);
-        return this.tableDataSource.connect();
+        return this.tableDataSource.listen();
       })
     );
   }
 
   private setColumns$() {
     this.tableDataSource.loadColumns(this.columns);
-    return this.tableDataSource.connectColumns();
-  }
-
-  private initTableState() {
-    const oldState = this.tableDataSource.getTableState();
-    const tableState: TableState = {
-      ...oldState,
-      pagination: {
-        ...oldState.pagination,
-        ...this.pagination,
-      },
-      action: TableActions.INIT_STATE,
-    };
-
-    this.tableDataSource.loadTableState({ tableState });
+    return this.tableDataSource.listenColumns();
   }
 
   private setQuestions(

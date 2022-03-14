@@ -20,7 +20,7 @@ import {
 } from 'rxjs';
 import { TableDataSource } from '../../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../../models/table.state';
-import { ActionStateRules } from '../../../models/table-actions';
+import { ActionStateRules, TableActions } from '../../../models/table-actions';
 import { FormActions } from '../../../../form/models/form.actions';
 import { TableSelector } from '../../../models/table.selectors';
 
@@ -83,7 +83,9 @@ export class TableActionCellComponent implements OnInit {
 
   private onDefaultButtonsState(): Observable<ButtonActionState> {
     return this.tableDataSource
-      .listenByAction({ action: FormActions.DEFAULT })
+      .listenByAction({
+        actions: [TableActions.INIT_STATE, FormActions.DEFAULT],
+      })
       .pipe(map((_) => this.getButtonsStateOnDefault()));
   }
 
@@ -108,15 +110,17 @@ export class TableActionCellComponent implements OnInit {
   }
 
   private getRowEditState(selectAction: FormActions) {
-    return this.tableDataSource.listenByAction({ action: selectAction }).pipe(
-      map((tableState: TableState) => {
-        const id = this.rowState.item[this.rowState.key];
-        const { forms, editing, action } = tableState;
-        const group = forms[id];
-        const isEditing = editing.indexOf(id) !== -1;
-        return { group, isEditing, action };
-      })
-    );
+    return this.tableDataSource
+      .listenByAction({ actions: [selectAction] })
+      .pipe(
+        map((tableState: TableState) => {
+          const id = this.rowState.item[this.rowState.key];
+          const { forms, editing, action } = tableState;
+          const group = forms[id];
+          const isEditing = editing.indexOf(id) !== -1;
+          return { group, isEditing, action };
+        })
+      );
   }
 
   private onEditButtonsState(): Observable<ButtonActionState> {

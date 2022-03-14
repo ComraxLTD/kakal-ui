@@ -22,7 +22,7 @@ import { TableStateService } from './table.state.service';
 
 import PaginationChangeEvent from '../pagination/pagination.types';
 
-import { Observable, map, combineLatest, merge } from 'rxjs';
+import { Observable, map, combineLatest, merge, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'kkl-table',
@@ -42,6 +42,7 @@ export class TableComponent<T = any> implements OnInit {
 
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<HeaderCellModel<T>[]>;
+  @Input() public initTableState$: Observable<TableState>;
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
@@ -132,12 +133,8 @@ export class TableComponent<T = any> implements OnInit {
 
   ngOnInit() {
     this.table$ = this.setTable$();
-    this.tableState$ = this.tableDataSource.connectTableState();
+    this.tableState$ = this.setTableState$();
     this.hideChipFilters = this.hideChipFilters !== undefined;
-
-    this.setTableState$().subscribe((tableState) => {
-      this.tableDataSource.loadTableState({ tableState });
-    });
   }
 
   ngAfterViewInit() {
@@ -147,10 +144,23 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTableState$() {
+    const initState$ =
+      this.initTableState$ ||
+      this.tableDataSource.listenTableState().pipe(take(1));
+
     return merge(
+      initState$,
       this.tableStateService.onCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource),
       this.tableStateService.onCreateEvent(this.tableDataSource)
+    ).pipe(
+      switchMap((tableState) => {
+        console.log(tableState);
+        if (tableState) {
+          this.tableDataSource.loadTableState({ tableState });
+        }
+        return this.tableDataSource.listenTableState();
+      })
     );
   }
 

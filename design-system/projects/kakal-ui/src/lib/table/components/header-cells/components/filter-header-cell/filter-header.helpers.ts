@@ -49,14 +49,14 @@ function getRemoveState(
 
 function getState(tableDataSource: TableDataSource) {
   const initState$ = tableDataSource.listenByAction({
-    action: TableActions.INIT_STATE,
+    actions: [TableActions.INIT_STATE],
   });
 
   const updateState$ = tableDataSource.listenByAction({
-    action: FetchActions.TABLE_FILTER,
+    actions: [FetchActions.TABLE_FILTER],
   });
 
-  const removeState$ = tableDataSource.connectTableState();
+  const removeState$ = tableDataSource.listenTableState();
 
   return { initState$, updateState$, removeState$ };
 }

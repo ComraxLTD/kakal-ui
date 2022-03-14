@@ -1,7 +1,6 @@
-
 <div fxFill dir="rtl">
   <div dir="ltr" fxLayout="row" fxLayoutGap="3rem">
-    <code *ngIf="tableState$ | async as tableState">
+    <code *ngIf="initTableState$ | async as tableState">
       <div>tableState :</div>
       <pre>
        {{ tableState.pagination | json }}
@@ -18,13 +17,14 @@
     </code>
   </div>
 
-
   <kkl-table
     kkl-table
     kklPagination
     [data$]="data$"
     [columns$]="columns$"
+    [initTableState$]="initTableState$"
     [itemKey]="itemKey"
+    [hasActions]="true"
   >
     <!-- use kklHeaderCell for render header cell -->
     <ng-container *kklHeaderCell="let context">
@@ -80,4 +80,3 @@
     </kkl-create-button>
   </div>
 </ng-template>
-
