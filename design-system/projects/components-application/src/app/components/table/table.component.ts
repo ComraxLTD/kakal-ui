@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import {
   TableDataSource,
@@ -39,10 +39,11 @@ import {
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource, TableService],
+  providers: [TableDataSource],
 })
 export class TableComponent implements OnInit {
-  // demo data from server
+  @Input()
+  totalItems: number; // demo data from server
   private demoStore$: BehaviorSubject<RootObject[]>;
 
   public itemKey: string = 'id';
@@ -98,6 +99,7 @@ export class TableComponent implements OnInit {
   public pagination: PageState = {
     itemsPerPage: 5,
     currentPage: 1,
+    totalItems : 50
   };
 
   constructor(
@@ -109,7 +111,7 @@ export class TableComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     // call first!
-    // this.initTableState$ = this.initTableState()
+    this.initTableState$ = this.initTableState();
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
@@ -117,7 +119,6 @@ export class TableComponent implements OnInit {
     // form demo only
     this.tableState$ = this.tableDataSource.listenTableState();
     this.fetchState$ = this.tableDataSource.listenFetchState();
-
   }
 
   private initTableState() {
@@ -129,7 +130,7 @@ export class TableComponent implements OnInit {
           pagination: {
             ...oldState.pagination,
             ...pagState,
-            totalItems : 100
+            totalItems: this.totalItems || pagState.totalItems,
           },
           action: TableActions.INIT_STATE,
         };

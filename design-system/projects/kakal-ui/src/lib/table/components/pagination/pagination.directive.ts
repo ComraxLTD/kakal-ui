@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationInstance } from 'ngx-pagination';
 import { TableDataSource } from '../../models/table-datasource';
 import { TableSelector } from '../../models/table.selectors';
-import { PageState, TableState } from '../../models/table.state';
+import { TableState } from '../../models/table.state';
 import { TableComponent } from '../table/table.component';
 import IPaginationChangeEvent from './pagination.types';
 
@@ -13,8 +13,8 @@ import {
   map,
   Observable,
   pipe,
-  tap,
 } from 'rxjs';
+import { tap } from 'rxjs';
 /**
  * This directive listens to the pageChange event
  * and stores the current page in the url query params
@@ -33,31 +33,22 @@ export class KKLPaginationDirective implements OnInit {
   }
 
   private setPagination$() {
-    // const totalItems$: Observable<number> = this.tableDataSource
-    //   .select(TableSelector.PAGINATION)
-    //   .pipe(
-    //     map((pagination: PageState) => pagination.totalItems),
-    //     distinctUntilChanged()
-    //   );
+    const totalItems$: Observable<number> = this.tableDataSource
+      .select(TableSelector.PAGINATION)
+      .pipe(
+        map((pagination: PaginationInstance) => pagination.totalItems),
+        distinctUntilChanged()
+      );
 
-    // const itemsPerPage$: Observable<number> = this.tableDataSource
-    //   .select(TableSelector.PAGINATION)
-    //   .pipe(
-    //     map((pagination: PageState) => pagination.itemsPerPage),
-    //     distinctUntilChanged()
-    //   );
+    const itemsPerPage$: Observable<number> = this.tableDataSource
+      .select(TableSelector.PAGINATION)
+      .pipe(
+        map((pagination: PaginationInstance) => pagination.itemsPerPage),
+        distinctUntilChanged()
+      );
 
-    return this.tableDataSource.select(TableSelector.PAGINATION).pipe(
-      map((pagination: PageState) => {
-        return {
-          totalItems: pagination.totalItems,
-          itemsPerPage: pagination.itemsPerPage,
-        };
-      }),
-      tap(({ totalItems, itemsPerPage }) =>
-        console.log(totalItems, itemsPerPage)
-      ),
-      map(({ totalItems, itemsPerPage }) => totalItems > itemsPerPage)
+    return combineLatest([totalItems$, itemsPerPage$]).pipe(
+      map(([totalItems, itemsPerPage]) => totalItems > itemsPerPage)
     );
   }
 }
