@@ -36,13 +36,14 @@ export class StepperComponent {
   constructor(
     private breakpointService: BreakpointService,
     private formService: FormService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
     if (this.question$) {
       this.selectQuestion$ = this.setInputSelect();
     }
+
   }
 
   private setInputSelect(): Observable<Question> {

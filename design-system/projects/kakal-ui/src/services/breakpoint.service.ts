@@ -48,6 +48,15 @@ export class BreakpointService implements OnDestroy {
         );
     }
 
+    public isSmall(): Observable<boolean> {
+      return this.breakpointObserver.observe(Breakpoints.Small).pipe(
+        map((result) => {
+          return result.matches;
+        }),
+        shareReplay()
+      );
+    }
+    
     public isMobile(): Observable<boolean> {
       return this.breakpointObserver.observe(Breakpoints.Handset)
         .pipe(

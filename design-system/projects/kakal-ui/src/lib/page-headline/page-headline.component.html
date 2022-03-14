@@ -1,6 +1,6 @@
-<div fxLayout="row-reverse" fxLayoutAlign="start end" fxLayoutGap=".5rem">
+<div fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="1rem">
   <div
-    *ngFor="let item of headlineItems$ | async; let i = index"
+    *ngFor="let item of headlineItems$ | async;  let first = first; let last = last"
     fxLayout="row"
     fxLayoutAlign="space-between center"
     fxLayoutGap=".5rem"
@@ -23,8 +23,6 @@
         </ng-container>
       </ng-container>
     </ng-container>
-    <kkl-typography *ngIf="i != 0" [size]="2" [color]="'primary'">
-      &#8226;</kkl-typography
-    >
+    <kkl-typography *ngIf="!last" [size]="2" [color]="'primary'">&#8226;</kkl-typography>
   </div>
 </div>
