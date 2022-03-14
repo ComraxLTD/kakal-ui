@@ -2,16 +2,23 @@
   <!-- BUTTON SECTION -->
 
   <div
+    [matMenuTriggerFor]="menu"
     kkl-button
     color="primary"
-    [matMenuTriggerFor]="menu"
     (menuOpened)="onMenuOpen()"
   >
-    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign="end center">
       <kkl-typography>
         {{ label }}
       </kkl-typography>
-      <mat-icon color="primary"> arrow_drop_down </mat-icon>
+      <button
+        mat-icon-button
+        color="accent"
+        [class.active]="active$ | async"
+        (click)="$event.stopPropagation()"
+      >
+        <mat-icon> arrow_drop_down </mat-icon>
+      </button>
     </div>
   </div>
 

@@ -16,7 +16,6 @@ import { BidComponent } from './components/bid/bid.component';
   declarations: [AppComponent, TableComponent, DetailsComponent, BidComponent],
   imports: [
     BrowserModule,
-    KKLFilterCardModule,
     AppRoutingModule,
     FlexLayoutModule,
     MaterialModule,

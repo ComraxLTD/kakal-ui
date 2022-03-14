@@ -48,6 +48,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
   public options$: Observable<KKLSelectOption[]>;
   public value$: Observable<FilterRange>;
+  public active$: Observable<boolean> = of(true);
 
   @Output() menuOpened: EventEmitter<void> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterChangeEvent> = new EventEmitter();
@@ -69,7 +70,14 @@ export class FilterHeaderCellComponent implements OnInit {
       this.value$ = this.setRange$();
     }
 
+    this.active$ = this.setActiveFilter();
+  }
 
+  private setActiveFilter() {
+    return this.tableDataSource.select(TableSelector.FILTERS).pipe(
+      pluck(this.columnDef),
+      map((key) => key !== undefined)
+    );
   }
 
   private setFilterState(value: any) {
