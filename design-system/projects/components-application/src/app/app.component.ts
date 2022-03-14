@@ -1,10 +1,8 @@
-// import { Component, OnInit } from '@angular/core';
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { NavbarService } from '../../../kakal-ui/src/lib/navbar/navbar.service';
 import { OpenMotionService } from '../../../kakal-ui/src/lib/open-motions/open-motions.service';
-
 
 @Component({
   selector: 'app-root',
@@ -13,10 +11,6 @@ import { OpenMotionService } from '../../../kakal-ui/src/lib/open-motions/open-m
 })
 export class AppComponent implements OnInit {
   title = 'components-application';
-  // constructor() { }
-
-
-  // ngOnInit(): void {
 
   @ViewChild('container', { read: ViewContainerRef, static: true }) container: ViewContainerRef;
   @ViewChild('testTemplate', { read: TemplateRef, static: true }) testTemplate: TemplateRef<any>;
@@ -36,8 +30,6 @@ export class AppComponent implements OnInit {
     console.log(this.testTemplate);
 
     this.motionService.createDynamicSideNav(this.container, 'test', this.testTemplate)
-
-
 
   }
 
