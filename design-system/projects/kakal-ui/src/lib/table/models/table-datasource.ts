@@ -1,5 +1,3 @@
-import { CollectionViewer, DataSource } from '@angular/cdk/collections';
-
 import {
   HeaderState,
   FetchState,
@@ -16,14 +14,10 @@ import { TableSelector } from '../models/table.selectors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
-import { Observable, BehaviorSubject, merge } from 'rxjs';
-import {
-  filter,
-  map,
-  pluck,
-} from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { filter, map, pluck } from 'rxjs/operators';
 
-export class TableDataSource<T = any> implements DataSource<T> {
+export class TableDataSource<T = any> {
   private dataSubject: BehaviorSubject<T[]>;
   private columnSubject: BehaviorSubject<HeaderCellModel<T>[]>;
 
@@ -65,24 +59,19 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.formDataSource = new FormDataSource();
   }
 
-  public connect(): Observable<T[]> {
-    return this.dataSubject.asObservable();
-  }
-  public disconnect(): void {
-
-  }
-
   public load(data: T[], columns?: HeaderCellModel<T>[]): void {
     this.dataSubject.next([...data]);
     if (columns) {
       this.columnSubject.next([...columns]);
     }
   }
-
   public listen(): Observable<T[]> {
     return this.dataSubject.asObservable();
   }
 
+  public getData(): T[] {
+    return this.dataSubject.value;
+  }
 
   public loadColumns(columns: HeaderCellModel<T>[]): void {
     return this.columnSubject.next(columns);
@@ -116,10 +105,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.headerState.next(headerState);
   }
 
-  // tableState
-  public getTableState(): TableState {
-    return this.tableState.value;
-  }
+  // Table State Section
 
   public loadTableState(state: { tableState: TableState }): void {
     const { tableState } = state;
@@ -130,20 +116,22 @@ export class TableDataSource<T = any> implements DataSource<T> {
   public listenTableState(): Observable<TableState> {
     return this.tableState.asObservable();
   }
+  public getTableState(): TableState {
+    return this.tableState.value;
+  }
 
   public select(selector: TableSelector) {
     return this.tableState.asObservable().pipe(pluck(selector));
   }
 
-
   public listenByAction(options: {
-    actions?: (TableActions | FetchActions | FormActions)[],
+    actions?: (TableActions | FetchActions | FormActions)[];
     selector?: TableSelector;
   }): Observable<TableState> {
     const { actions, selector } = options;
-    return this.tableState.asObservable().pipe(
-      filter((tableState) => actions.indexOf(tableState.action) !== -1),
-    );
+    return this.tableState
+      .asObservable()
+      .pipe(filter((tableState) => actions.indexOf(tableState.action) !== -1));
   }
 
   // pagination
@@ -158,6 +146,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.loadTableState({ tableState: newState });
   }
 
+  // sort
   public dispatchSort(action: { sortState: SortState }): void {
     const { sortState } = action;
     const oldState = this.getTableState();
