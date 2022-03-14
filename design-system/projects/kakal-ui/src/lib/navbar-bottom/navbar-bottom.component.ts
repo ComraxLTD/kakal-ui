@@ -55,6 +55,7 @@ export class NavbarBottomComponent implements OnInit {
       this.changeStep$ = this.stepperLayoutService.getChangeStepObs();
     }
     this.buttonState$ = this.setShowButtons();
+    
   }
 
   private setShowButtons() {
@@ -77,7 +78,7 @@ export class NavbarBottomComponent implements OnInit {
     return this.hasSave ? this.showSave$ : of(false);
   }
 
-  private setShowNext(): Observable<boolean> {
+  private setShowNext(): Observable<boolean> {    
     return this.hasNext && this.stepper
       ? merge(this.handleOnNext(), this.onChangeStep(), this.setShowNextStep$())
       : of(this.hasNext);

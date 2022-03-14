@@ -1,3 +1,5 @@
+import { Observable, of } from 'rxjs';
+
 export enum FormActions {
   DEFAULT = 'default',
   CREATE = 'create',
@@ -16,3 +18,22 @@ export enum FormActions {
   MULTI_SELECTED = 'multiOptionSelected',
 }
 
+export function valueChanged<T>(options: {
+  key: keyof T;
+  value: T;
+}): Observable<{
+  key: keyof T;
+  value?: T | T[] | null;
+  options?: {
+    value: T | T[] | null;
+    label: string;
+  };
+  event: 'valueChanged';
+}> {
+  const { key, value } = options;
+  return of({
+    key,
+    value,
+    event: FormActions.VALUE_CHANGED,
+  });
+}

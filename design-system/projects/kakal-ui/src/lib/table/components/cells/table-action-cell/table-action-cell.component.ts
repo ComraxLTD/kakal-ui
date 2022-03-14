@@ -10,7 +10,6 @@ import { FormControlStatus, FormGroup } from '@angular/forms';
 import {
   Observable,
   merge,
-  mapTo,
   filter,
   map,
   switchMap,
@@ -21,8 +20,9 @@ import {
 } from 'rxjs';
 import { TableDataSource } from '../../../models/table-datasource';
 import { RowState, TableState, ActionState } from '../../../models/table.state';
-import { ActionStateRules } from '../../../models/table-actions';
+import { ActionStateRules, TableActions } from '../../../models/table-actions';
 import { FormActions } from '../../../../form/models/form.actions';
+import { TableSelector } from '../../../models/table.selectors';
 
 export interface ButtonActionState {
   editState?: ActionState;
@@ -52,7 +52,7 @@ export class TableActionCellComponent implements OnInit {
 
   public buttonActionState$: Observable<ButtonActionState>;
 
-  constructor(private dataSource: TableDataSource<any>) {}
+  constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {
     this.buttonActionState$ = this.setButtonActionState();
@@ -61,7 +61,7 @@ export class TableActionCellComponent implements OnInit {
   private setButtonActionState() {
     const defaultState$ = this.onDefaultButtonsState();
     const editState$ = this.onEditButtonsState();
-    const cancelState$ = this.onCloseButtonState();
+    const cancelState$ = this.onCancelButtonState();
     const createState$ = this.onCreateButtonState();
 
     return merge(defaultState$, editState$, cancelState$, createState$);
@@ -82,9 +82,11 @@ export class TableActionCellComponent implements OnInit {
   }
 
   private onDefaultButtonsState(): Observable<ButtonActionState> {
-    return this.dataSource
-      .getTableStateByEvent([FormActions.DEFAULT])
-      .pipe(mapTo(this.getButtonsStateOnDefault()));
+    return this.tableDataSource
+      .listenByAction({
+        actions: [TableActions.INIT_STATE, FormActions.DEFAULT],
+      })
+      .pipe(map((_) => this.getButtonsStateOnDefault()));
   }
 
   private setFormState(formGroup: FormGroup, event: FormActions) {
@@ -107,53 +109,56 @@ export class TableActionCellComponent implements OnInit {
     );
   }
 
+  private getRowEditState(selectAction: FormActions) {
+    return this.tableDataSource
+      .listenByAction({ actions: [selectAction] })
+      .pipe(
+        map((tableState: TableState) => {
+          const id = this.rowState.item[this.rowState.key];
+          const { forms, editing, action } = tableState;
+          const group = forms[id];
+          const isEditing = editing.indexOf(id) !== -1;
+          return { group, isEditing, action };
+        })
+      );
+  }
+
   private onEditButtonsState(): Observable<ButtonActionState> {
-    const id = this.rowState.item[this.rowState.key];
-    return this.dataSource.on(FormActions.EDIT).pipe(
-      filter((rowState: RowState) => rowState.item[rowState.key] === id),
-      map((rowState: RowState) => rowState.group.formGroup),
-      switchMap((formGroup: FormGroup) => {
+    return this.getRowEditState(FormActions.EDIT).pipe(
+      filter(({ group, isEditing }) => isEditing),
+      switchMap(({ group, isEditing }) => {
+        const { formGroup } = group;
         return this.setFormState(formGroup, FormActions.EDIT);
       })
     );
   }
 
-  private onCloseButtonState() {
-    const id = this.rowState.item[this.rowState.key];
-
-    const editClose$ = this.dataSource.on(FormActions.CANCEL).pipe(
-      filter((rowState: RowState) => rowState.item[rowState.key] === id),
-      mapTo(this.getButtonsStateOnDefault())
+  private onCancelButtonState() {
+    const editClose$ = this.getRowEditState(FormActions.CANCEL).pipe(
+      filter(({ group, isEditing }) => !isEditing),
+      map((_) => this.getButtonsStateOnDefault())
     );
 
-    const createClose$ = this.dataSource.getRowState().pipe(
+    const createClose$ = this.tableDataSource.select(TableSelector.ACTION).pipe(
       pairwise(),
-      filter(
-        ([prev, current]) =>
-          prev.event === FormActions.CREATE &&
-          current.event === FormActions.CANCEL
-      ),
-      map(() => {
-        return this.getButtonsStateOnDefault();
-      })
+      filter(([prev, current]) => prev === FormActions.CREATE),
+      map((_) => this.getButtonsStateOnDefault())
     );
 
     return merge(createClose$, editClose$);
   }
 
   private onCreateButtonState() {
-    const id = this.rowState.item[this.rowState.key];
-
-    const createTrue$ = this.dataSource.on(FormActions.CREATE).pipe(
-      filter((rowState: RowState) => rowState.item[rowState.key] === id),
-      map((rowState: RowState) => rowState.group.formGroup),
-      switchMap((formGroup: FormGroup) => {
+    const createTrue$ = this.getRowEditState(FormActions.CREATE).pipe(
+      filter(({ group, isEditing }) => isEditing),
+      switchMap(({ group, isEditing }) => {
+        const { formGroup } = group;
         return this.setFormState(formGroup, FormActions.CREATE);
       })
     );
 
-    const createFalse$ = this.dataSource.on(FormActions.CREATE).pipe(
-      filter((rowState: RowState) => rowState.item[rowState.key] !== id),
+    const createFalse$ = this.getRowEditState(FormActions.CREATE).pipe(
+      filter(({ isEditing }) => !isEditing),
       map((_) => {
         const defaultState = this.getButtonsStateOnDefault();
         return {
@@ -186,6 +191,10 @@ export class TableActionCellComponent implements OnInit {
       ...this.rowState,
       event,
       item: { ...this.rowState.item },
+      group:
+        this.tableDataSource.getTableState().forms[
+          this.rowState.item[this.rowState.key]
+        ],
     });
   }
 }

@@ -1,53 +1,36 @@
 import { Injectable } from '@angular/core';
 import { deleteItem } from './table.helpers';
-import { map, Observable, distinctUntilKeyChanged } from 'rxjs';
 import { FormActions } from '../../../form/models/form.actions';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState } from '../../models/table.state';
-import { PaginationInstance } from 'ngx-pagination';
-import { TableSelector } from '../../models/table.selctors';
+import { FetchActions, TableActions } from '../../models/table-actions';
+import { map, Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class TableStateService {
   constructor() {}
 
-  public onDataChange(
-    tableDataSource: TableDataSource
-  ): Observable<TableState> {
-    return tableDataSource.select(TableSelector.PAGINATION).pipe(
-      distinctUntilKeyChanged('totalItems'),
-      map((paginationState: PaginationInstance) => {
-        const oldState = tableDataSource.getTableState();
-
-        return {
-          ...oldState,
-          pagination: {
-            ...paginationState,
-          },
-        } as TableState;
-      })
-    );
-  }
-
   private setRowWithForm(options: {
     oldState: TableState;
     rowState: RowState;
-    event: string;
+    action: TableActions | FormActions | FetchActions;
   }) {
-    const { oldState, rowState, event } = options;
+    const { oldState, rowState, action } = options;
     const { item, key, group } = rowState;
-    let { editing } = oldState;
+    let { editing, pagination } = oldState;
 
-    if (event === FormActions.CREATE) {
+    if (action === FormActions.CREATE) {
       editing = [];
     }
 
     editing.push(item[key]);
 
+
     const tableState = {
       ...oldState,
+      pagination,
       editing,
-      event,
+      action: action,
       forms: {
         ...oldState.forms,
         [item[key]]: group,
@@ -63,7 +46,7 @@ export class TableStateService {
         return this.setRowWithForm({
           oldState,
           rowState,
-          event: FormActions.EDIT,
+          action: FormActions.EDIT,
         });
       })
     );
@@ -78,12 +61,12 @@ export class TableStateService {
         return this.setRowWithForm({
           oldState,
           rowState,
-          event: FormActions.CREATE,
+          action: FormActions.CREATE,
         });
       })
     );
   }
-  public onEditCloseEvent(
+  public onCloseEvent(
     tableDataSource: TableDataSource
   ): Observable<TableState> {
     return tableDataSource.on(FormActions.CANCEL).pipe(
@@ -92,10 +75,11 @@ export class TableStateService {
         const { item, key } = state;
         const { editing } = oldState;
 
+
         const tableState = {
           ...oldState,
           editing: deleteItem({ array: editing, value: item[key] }),
-          event: FormActions.CANCEL,
+          action: FormActions.CANCEL,
         } as TableState;
 
         return tableState;

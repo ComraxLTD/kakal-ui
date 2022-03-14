@@ -6,7 +6,7 @@ import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
-import { FormOption } from '../models/form.options';
+import { FormChangeEvent } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-input',
@@ -29,8 +29,8 @@ export class FormInputComponent implements OnInit {
   public error$: BehaviorSubject<string>;
   public color$: Observable<Palette>;
 
-  @Output() focus: EventEmitter<FormOption> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<FormOption> = new EventEmitter();
+  @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(
     private messageService: MessageService,
@@ -116,8 +116,8 @@ export class FormInputComponent implements OnInit {
     this.setErrorMessage();
   }
 
-  private getFormOption(value?: string): FormOption {
-    const formOption: FormOption = {
+  private getFormOption(value?: string): FormChangeEvent {
+    const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       control: this.control,
       index: this.index,
@@ -125,7 +125,7 @@ export class FormInputComponent implements OnInit {
       value$: of(value),
     };
 
-    return formOption;
+    return FormChangeEvent;
   }
 
   // EVENTS SECTION
@@ -134,7 +134,7 @@ export class FormInputComponent implements OnInit {
   }
 
   public onValueChanged(value: string) {
-    const formOption: FormOption = this.getFormOption(value);
-    this.valueChanged.emit(formOption);
+    const FormChangeEvent: FormChangeEvent = this.getFormOption(value);
+    this.valueChanged.emit(FormChangeEvent);
   }
 }

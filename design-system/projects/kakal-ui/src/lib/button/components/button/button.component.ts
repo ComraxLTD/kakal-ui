@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Palette } from '../../../../styles/theme';
 
 @Component({
   selector: 'kkl-button',
@@ -8,6 +9,9 @@ import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 })
 export class ButtonComponent implements OnInit {
   @Input() label = 'Button';
+  @Input() icon: string;
+  @Input() textColor: Palette = 'paper';
+  @Input() direction: 'rtl' | 'ltr' = 'rtl';
   @Input() type: 'primary' | 'secondary' = 'primary';
   constructor() { }
 

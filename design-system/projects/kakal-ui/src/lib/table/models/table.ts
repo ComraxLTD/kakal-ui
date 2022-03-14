@@ -1,8 +1,7 @@
 import { Observable } from 'rxjs';
-import { TableColumnModel } from '../../columns/models/column.model';
+import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 import { TableDataSource } from './table-datasource';
 import { TableOptions } from './table-options';
-
 
 // interface for every comp which want to use kkl-table = {
 // data : array of objects to render in table
@@ -13,8 +12,7 @@ import { TableOptions } from './table-options';
 export interface Table<T> {
   dataSource: TableDataSource<T>;
   data$: Observable<T[]>;
-  columns: TableColumnModel<T>[];
+  columns: HeaderCellModel<T>[];
   options: TableOptions<T>;
   model: T;
 }
-

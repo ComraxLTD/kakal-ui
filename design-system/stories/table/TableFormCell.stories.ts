@@ -3,7 +3,7 @@ import { table } from 'console';
 import {
   KKLTableModule,
   QuestionGroupModel,
-  TableFormCellComponent,
+  FormCellComponent,
 } from '../../projects/kakal-ui/src/public-api';
 
 export default {
@@ -14,7 +14,7 @@ export default {
       providers: [],
     }),
   ],
-  component: TableFormCellComponent,
+  component: FormCellComponent,
   argTypes: {
     cell: {
       name: 'kkl-form-cell',
@@ -47,10 +47,10 @@ export default {
   },
 } as Meta;
 
-const Template: Story<TableFormCellComponent> = (
-  args: TableFormCellComponent
+const Template: Story<FormCellComponent> = (
+  args: FormCellComponent
 ) => ({
-  component: TableFormCellComponent,
+  // component: TableFormCellComponent,
   props: args,
 });
 

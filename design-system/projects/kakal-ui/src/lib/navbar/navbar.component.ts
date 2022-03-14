@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private navbarService: NavbarService,
     private breakpointService: BreakpointService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.title$ = this.navbarService.getHeadersObs();
@@ -47,10 +47,9 @@ export class NavbarComponent implements OnInit {
   }
 
   public toggleMenu(toggle: boolean) {
+    
     this.toggle$.next({ value: !toggle });
     this.menuToggle.emit();
   }
 
-  public onNavigate() {
-  }
 }

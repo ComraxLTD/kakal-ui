@@ -1,5 +1,3 @@
-import { DataSource } from '@angular/cdk/collections';
-
 import {
   HeaderState,
   FetchState,
@@ -12,14 +10,16 @@ import {
 import { FormDataSource } from '../../form/models/form-datasource';
 import { FormActions } from '../../form/models/form.actions';
 import { FetchActions, TableActions } from '../models/table-actions';
-import { TableSelector } from '../models/table.selctors';
+import { TableSelector } from '../models/table.selectors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
-import { Observable, BehaviorSubject, merge } from 'rxjs';
-import { filter, map, distinctUntilKeyChanged, skip } from 'rxjs/operators';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { filter, map, pluck } from 'rxjs/operators';
 
-export class TableDataSource<T = any> implements DataSource<T> {
+import * as uuid from 'uuid';
+
+export class TableDataSource<T = any> {
   private dataSubject: BehaviorSubject<T[]>;
   private columnSubject: BehaviorSubject<HeaderCellModel<T>[]>;
 
@@ -40,7 +40,12 @@ export class TableDataSource<T = any> implements DataSource<T> {
       extended: [],
       disabled: [],
       activeColumns: [],
-      pagination: { itemsPerPage: 3, currentPage: 1 },
+      pagination: {
+        id: uuid.v4(),
+        itemsPerPage: 10,
+        currentPage: 1,
+        pages: [10, 20, 30],
+      },
       forms: {},
       filters: {},
       action: FormActions.DEFAULT,
@@ -51,13 +56,11 @@ export class TableDataSource<T = any> implements DataSource<T> {
     });
 
     this.headerState = new BehaviorSubject<HeaderState<T>>({
-      event: ColumnActions.DEFAULT,
+      action: ColumnActions.DEFAULT,
     });
 
     this.formDataSource = new FormDataSource();
   }
-
-  disconnect(): void {}
 
   public load(data: T[], columns?: HeaderCellModel<T>[]): void {
     this.dataSubject.next([...data]);
@@ -65,9 +68,12 @@ export class TableDataSource<T = any> implements DataSource<T> {
       this.columnSubject.next([...columns]);
     }
   }
-
-  public connect(): Observable<T[]> {
+  public listen(): Observable<T[]> {
     return this.dataSubject.asObservable();
+  }
+
+  public getData(): T[] {
+    return this.dataSubject.value;
   }
 
   public loadColumns(columns: HeaderCellModel<T>[]): void {
@@ -75,7 +81,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
   }
 
   // get columns
-  public connectColumns(): Observable<HeaderCellModel<T>[]> {
+  public listenColumns(): Observable<HeaderCellModel<T>[]> {
     return this.columnSubject.asObservable();
   }
 
@@ -90,7 +96,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
 
   // get column statement
 
-  public connectHeaderState(columnDef: string) {
+  public listenHeaderState(columnDef: string) {
     return this.headerState
       .asObservable()
       .pipe(
@@ -102,10 +108,7 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.headerState.next(headerState);
   }
 
-  // tableState
-  public getTableState(): TableState {
-    return this.tableState.value;
-  }
+  // Table State Section
 
   public loadTableState(state: { tableState: TableState }): void {
     const { tableState } = state;
@@ -113,78 +116,86 @@ export class TableDataSource<T = any> implements DataSource<T> {
     this.tableState.next({ ...oldState, ...tableState });
   }
 
-  public connectTableState(): Observable<TableState> {
+  public listenTableState(): Observable<TableState> {
     return this.tableState.asObservable();
   }
+  public getTableState(): TableState {
+    return this.tableState.value;
+  }
 
-  public selectActions(options: {
-    action: TableActions | FetchActions | FormActions;
+  public select(selector: TableSelector) {
+    return this.tableState.asObservable().pipe(pluck(selector));
+  }
+
+  public listenByAction(options: {
+    actions?: (TableActions | FetchActions | FormActions)[];
+    selector?: TableSelector;
   }): Observable<TableState> {
-    const { action } = options;
+    const { actions, selector } = options;
     return this.tableState
       .asObservable()
-      .pipe(filter((tableState) => tableState.action === action));
-  }
-
-  public getTableStateByEvent(
-    eventFilters: (FormActions | TableActions | FetchActions)[]
-  ) {
-    return this.tableState.asObservable().pipe(
-      filter((tableState) => {
-        return eventFilters
-          ? eventFilters.indexOf(tableState.action) !== -1
-          : true;
-      })
-    );
-  }
-
-  public connectPagination() {
-    return this.tableState.asObservable().pipe(
-      map((tableState) => {
-        return tableState.pagination;
-      })
-    );
+      .pipe(filter((tableState) => actions.indexOf(tableState.action) !== -1));
   }
 
   // pagination
-  public dispatchPagination(state: { pagination: any }): void {
-    const { pagination } = state;
+  public dispatchPagination(state: { pageState: any }): void {
+    const { pageState } = state;
     const oldState = this.getTableState();
-    this.tableState.next({
+    const newState = {
       ...oldState,
-      pagination: { ...oldState.pagination, ...pagination },
+      pagination: { ...oldState.pagination, ...pageState },
       action: FetchActions.PAGING,
-    });
+    } as TableState;
+    this.loadTableState({ tableState: newState });
   }
 
+  // sort
   public dispatchSort(action: { sortState: SortState }): void {
     const { sortState } = action;
+    const oldState = this.getTableState();
+
     const newState = {
-      ...this.tableState.getValue(),
+      ...oldState,
       sort: { ...sortState },
       action: FetchActions.SORT,
     } as TableState;
     this.loadTableState({ tableState: newState });
   }
 
+  /**
+   * To remove a key send a null value
+   */
   public dispatchFilter(action: { filterState: FilterState }): void {
     const { filterState } = action;
+    /**
+     * @Note: Dvir - we don't need to add an "internal self made redux" solution
+     */
+    const oldState = this.getTableState();
     const newState = {
-      ...this.tableState.getValue(),
+      ...oldState,
       filters: {
-        ...this.tableState.getValue().filters,
+        ...oldState.filters,
         ...filterState,
       },
       action: FetchActions.FILTER,
     } as TableState;
+
+    /**
+     * Remove null values
+     */
+    Object.keys(newState.filters).forEach(
+      (k) => newState.filters[k] == null && delete newState.filters[k]
+    );
+
     this.loadTableState({ tableState: newState });
   }
 
-  public connectFetchState(): Observable<FetchState> {
+  public listenFetchState(): Observable<FetchState> {
     return this.tableState.asObservable().pipe(
-      skip(1),
+      // skip(1),
       filter(
         (tableState) =>
+          tableState.action === TableActions.INIT_STATE ||
           tableState.action === FetchActions.FILTER ||
           tableState.action === FetchActions.SORT ||
           tableState.action === FetchActions.PAGING
@@ -198,23 +209,6 @@ export class TableDataSource<T = any> implements DataSource<T> {
         } as FetchState;
       })
     );
-  }
-
-  public select(selector: TableSelector) {
-    const state = {
-      pagination: this.tableState.asObservable().pipe(
-        map((tableState) => {
-          return tableState.pagination;
-        })
-      ),
-      sort: this.tableState.asObservable().pipe(
-        map((tableState) => {
-          return tableState.sort;
-        })
-      ),
-    };
-
-    return state[selector.toString()];
   }
 
   private getRowStateByEvent(event) {

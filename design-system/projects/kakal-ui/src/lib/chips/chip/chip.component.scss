@@ -1,0 +1,16 @@
+@use "../../../styles/variables" as main;
+
+
+[dir="rtl"]  {
+    .mat-standard-chip {
+        .mat-chip-remove {
+            margin-right: 8px;
+            margin-left: 0;
+        }
+    }
+}
+
+.mat-chip {
+    background-color: main.color(paper);
+    border: 1px solid main.color(primary);
+}

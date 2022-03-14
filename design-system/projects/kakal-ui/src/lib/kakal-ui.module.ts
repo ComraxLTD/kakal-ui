@@ -26,7 +26,7 @@ import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
-import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-checkbox-group.module'
+import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-checkbox-group.module';
 
 import { KKLTableModule } from './table/components/table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
@@ -44,7 +44,6 @@ import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
-import { FormPhoneComponent } from './examples/form-phone/form-phone.component';
 import { KKLCardDashboardModule } from './cards/card-dashboard/card-dashboard.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
@@ -59,21 +58,20 @@ import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
-import { FilterCardComponent } from './cards/filter-card/filter-card.component';
-import {KKLHoverModule} from '../lib/kkl-hover/kkl-hover.module';
+import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
+import { KKLChipsModule } from './chips/chips.module';
+import { OpenMotionsModule } from './open-motions/open-motions.module';
 
 @NgModule({
-  declarations: [
-    FormExampleComponent,
-    SidenavExampleComponent,
-  ],
+  declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
     CoreModule,
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    OpenMotionsModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLNavigationModule,
@@ -126,10 +124,14 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     // STEPPER
     StepperModule,
     StepperMobileModule,
-    // StepperLayoutModule,
+    StepperLayoutModule,
+
+
+    KKLChipsModule
   ],
   exports: [
     //TOOLS
+    OpenMotionsModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLBreadCrumbsModule,
@@ -183,7 +185,9 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
     // STEPPER
     StepperModule,
     StepperMobileModule,
-    // StepperLayoutModule,
+    StepperLayoutModule,
+
+    KKLChipsModule
   ],
 })
 export class KakalUiModule { }

@@ -1,6 +1,6 @@
 <ng-container
   *ngTemplateOutlet="
-    filterTemplate[column.columnDef.toString()]  || headerTemplate[column.columnDef.toString()] || defaultHeader;
+     headerTemplate[column.columnDef.toString()] || defaultHeader;
     context: { $implicit: {column, key} }
   "
 >
@@ -13,13 +13,39 @@
   </kkl-typography>
 </ng-template>
 
-<ng-template #filterCell let-rowState>
+<ng-template #filterHeader let-rowState>
   <kkl-filter-header-cell
     (menuOpened)="onMenuOpen()"
     [filterType]="rowState.column.filterType"
-    [key]="rowState.column.columnDef"
+    [columnDef]="rowState.column.columnDef"
     [format]="rowState.column.format"
     [label]="rowState.column.label"
     [sortBy]="rowState.column.sortBy"
+    [filterTemplate]="
+      filterTemplate[rowState.column.columnDef] || defaultFilterTemplate
+    "
   ></kkl-filter-header-cell>
+</ng-template>
+
+<ng-template #rangeFilter let-filterContext>
+  <ng-container *ngIf="filterContext.value$ | async as value">
+    <kkl-filter-range-cell
+      fxFlex="75"
+      [value]="value"
+      [value$]="filterContext.value$"
+      [filterType]="filterContext.filterType"
+      (rangeChange)="onRangeChange($event)"
+    ></kkl-filter-range-cell>
+  </ng-container>
+</ng-template>
+
+<ng-template #defaultFilterTemplate>
+  <kkl-form-input
+    fxFlex="75"
+    [control]="control"
+    [key]="columnDef"
+    [icon]="'search'"
+    (valueChanged)="onValueChanged($event)"
+  >
+  </kkl-form-input>
 </ng-template>
