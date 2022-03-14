@@ -45,21 +45,24 @@ export class FormDataSource {
   // FORM EVENTS SECTION
 
   // use when delete item form array
-  private autocomplete(FormChangeEvent?: FormChangeEvent) {
+  private autocomplete(formChangeEvent?: FormChangeEvent) {
     this.formStateSubject.next({
-      ...FormChangeEvent,
+      ...formChangeEvent,
       event: FormActions.VALUE_CHANGED,
     });
   }
 
   //  use when update form - formGroup.pathValue/setValue
-  private edit(FormChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...FormChangeEvent, event: FormActions.EDIT });
+  private edit(formChangeEvent?: FormChangeEvent) {
+    this.formStateSubject.next({ ...formChangeEvent, event: FormActions.EDIT });
   }
 
   //  use when reset form - formGroup.reset()
-  private clear(FormChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...FormChangeEvent, event: FormActions.CLEAR });
+  private clear(formChangeEvent?: FormChangeEvent) {
+    this.formStateSubject.next({
+      ...formChangeEvent,
+      event: FormActions.CLEAR,
+    });
   }
   //  use when reset form disable - formGroup.disabled()
   private disable() {
@@ -67,64 +70,77 @@ export class FormDataSource {
   }
 
   //  use when update form options
-  private updateOptions(FormChangeEvent?: FormChangeEvent) {
+  private updateOptions(formChangeEvent?: FormChangeEvent) {
     // this.formStateSubject.next({ ...FormChangeEvent, event: 'updateOptions' });
   }
 
   // DATA EVENTS SECTION
 
   // use when delete item form array
-  private delete(FormChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...FormChangeEvent, event: FormActions.DELETE });
+  private delete(formChangeEvent?: FormChangeEvent) {
+    this.formStateSubject.next({
+      ...formChangeEvent,
+      event: FormActions.DELETE,
+    });
   }
 
   // use to create new item
-  private create(FormChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...FormChangeEvent, event: FormActions.CREATE });
+  private create(formChangeEvent?: FormChangeEvent) {
+    this.formStateSubject.next({
+      ...formChangeEvent,
+      event: FormActions.CREATE,
+    });
   }
 
   // use when to add created item
-  private add(FormChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...FormChangeEvent, event: FormActions.ADD });
+  private add(formChangeEvent?: FormChangeEvent) {
+    this.formStateSubject.next({ ...formChangeEvent, event: FormActions.ADD });
   }
 
   // use when save item form array
-  private submit(FormChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...FormChangeEvent, event: FormActions.SUBMIT });
+  private submit(formChangeEvent?: FormChangeEvent) {
+    this.formStateSubject.next({
+      ...formChangeEvent,
+      event: FormActions.SUBMIT,
+    });
   }
 
   // use when save item form array
-  private update(FormChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...FormChangeEvent, event: FormActions.UPDATE });
+  private update(formChangeEvent?: FormChangeEvent) {
+    this.formStateSubject.next({
+      ...formChangeEvent,
+      event: FormActions.UPDATE,
+    });
   }
 
   private createAction<T>(
-    prop: { FormChangeEvent: FormChangeEvent },
+    prop: { formChangeEvent: FormChangeEvent },
     event?: FormActions
   ) {
-    const { FormChangeEvent } = prop;
-    this.formStateSubject.next({ ...FormChangeEvent, event });
+    const { formChangeEvent } = prop;
+    this.formStateSubject.next({ ...formChangeEvent, event });
   }
 
   public dispatch = {
-    queryChanged: (FormChangeEvent?: FormChangeEvent) =>
-      this.createAction({ FormChangeEvent }, FormActions.QUERY_CHANGED),
-    valueChanged: (FormChangeEvent?: FormChangeEvent) =>
-      this.createAction({ FormChangeEvent }, FormActions.VALUE_CHANGED),
-    optionSelected: (FormChangeEvent?: FormChangeEvent) =>
-      this.createAction({ FormChangeEvent }, FormActions.OPTION_SELECTED),
+    queryChanged: (formChangeEvent?: FormChangeEvent) =>
+      this.createAction({ formChangeEvent }, FormActions.QUERY_CHANGED),
+    valueChanged: (formChangeEvent?: FormChangeEvent) =>
+      this.createAction({ formChangeEvent }, FormActions.VALUE_CHANGED),
+    optionSelected: (formChangeEvent?: FormChangeEvent) =>
+      this.createAction({ formChangeEvent }, FormActions.OPTION_SELECTED),
   };
 
   public events = {
-    edit: (FormChangeEvent?: FormChangeEvent) => this.edit(FormChangeEvent),
-    add: (FormChangeEvent?: FormChangeEvent) => this.add(FormChangeEvent),
-    create: (FormChangeEvent?: FormChangeEvent) => this.create(FormChangeEvent),
-    clear: (FormChangeEvent?: FormChangeEvent) => this.clear(FormChangeEvent),
+    edit: (formChangeEvent?: FormChangeEvent) => this.edit(formChangeEvent),
+    add: (formChangeEvent?: FormChangeEvent) => this.add(formChangeEvent),
+    create: (formChangeEvent?: FormChangeEvent) => this.create(formChangeEvent),
+    clear: (formChangeEvent?: FormChangeEvent) => this.clear(formChangeEvent),
     disable: () => this.disable(),
-    updateOptions: (FormChangeEvent?: FormChangeEvent) => this.updateOptions(FormChangeEvent),
-    delete: (FormChangeEvent?: FormChangeEvent) => this.delete(FormChangeEvent),
-    submit: (FormChangeEvent?: FormChangeEvent) => this.submit(FormChangeEvent),
-    update: (FormChangeEvent?: FormChangeEvent) => this.update(FormChangeEvent),
+    updateOptions: (formChangeEvent?: FormChangeEvent) =>
+      this.updateOptions(formChangeEvent),
+    delete: (formChangeEvent?: FormChangeEvent) => this.delete(formChangeEvent),
+    submit: (formChangeEvent?: FormChangeEvent) => this.submit(formChangeEvent),
+    update: (formChangeEvent?: FormChangeEvent) => this.update(formChangeEvent),
   };
 
   public on(event: FormActions): Observable<FormChangeEvent> {
