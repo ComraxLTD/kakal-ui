@@ -84,7 +84,7 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   private initOptions$() {
-    return this.tableDataSource.connectHeaderState(this.columnDef).pipe(
+    return this.tableDataSource.listenHeaderState(this.columnDef).pipe(
       filter(
         (headerState: HeaderState) =>
           headerState.action === ColumnActions.INIT_OPTIONS

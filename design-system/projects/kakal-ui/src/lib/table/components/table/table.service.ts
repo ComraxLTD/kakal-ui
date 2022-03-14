@@ -20,7 +20,7 @@ export class TableService {
     selector: keyof TableState
   ) {
     return tableDataSource
-      .connectTableState()
+      .listenTableState()
       .pipe(map((tableState: TableState) => tableState[selector]));
   }
 
