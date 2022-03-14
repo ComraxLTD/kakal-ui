@@ -38,13 +38,12 @@ export interface SortState {
 export declare type FilterState = { [key: string]: FilterChangeEvent | null };
 
 export interface RowState<T = any> {
-  item?: T;
-  key?: string;
-  event?: FormActions | TableActions;
-  itemIndex?: number;
+  itemIndex: number;
+  item: T;
+  key: string;
+  event: FormActions | TableActions;
   column?: HeaderCellModel<T>;
   group?: QuestionGroupModel<T>;
-  // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };
 }
 
 // interface for update select and filter options
