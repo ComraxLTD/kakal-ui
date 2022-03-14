@@ -26,7 +26,7 @@ import { SelectOption } from '../../lib/form/models/question-select.model';
 export class StepperLayoutComponent {
   //mat split drawer
   @ViewChild('sidenav') sidenav: MatSidenav;
-  @Output() emitEndDrawerBtn:EventEmitter<void>=new EventEmitter();
+  @Output() emitEndDrawerBtn: EventEmitter<void> = new EventEmitter();
   isExpanded = true;
   showSubmenu: boolean = false;
   isShowing = false;
@@ -66,7 +66,7 @@ export class StepperLayoutComponent {
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService
-  ) {}
+  ) { }
 
   @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
   @Output() selectStep: EventEmitter<FormControl> = new EventEmitter();
@@ -81,16 +81,13 @@ export class StepperLayoutComponent {
   private setSteps$(): Observable<CardStepModel[]> {
     return this.stepperLayoutService.getStepsObs().pipe(
       switchMap((steps) => {
-        return this.stepperLayoutService.getStepPrefixObs().pipe(
-          startWith(this.routerService.getCurrentPath()),
-          map((prefix: string) => {
-            
+        return this.routerService.getLastPathObs().pipe(
+          map((url: string) => {
             steps.map((step) => {
               if (step.isActive) {
                 step.unactive();
               }
-              if (step.path === prefix) {
-
+              if (step.path === url) {
                 this.stepperLayoutService.emitChangeStep(step);
                 step.active();
               }
@@ -98,9 +95,30 @@ export class StepperLayoutComponent {
 
             return steps;
           })
-        );
+        )
       })
-    );
+    )
+
+    // return this.stepperLayoutService.getStepPrefixObs().pipe(
+    //   startWith(this.routerService.getCurrentPath()),
+    //   map((prefix: string) => {
+
+    //     steps.map((step) => {
+    //       if (step.isActive) {
+    //         step.unactive();
+    //       }
+    //       if (step.path === prefix) {
+
+    //         this.stepperLayoutService.emitChangeStep(step);
+    //         step.active();
+    //       }
+    //     });
+
+    //     return steps;
+    //   })
+    // );
+    // })
+    // );
   }
 
   // private setSelectQuestion(): Observable<Question> {
@@ -137,7 +155,7 @@ export class StepperLayoutComponent {
     this.selectStep.emit(control);
   }
 
-  emitEndDrawer():void{
+  emitEndDrawer(): void {
     this.emitEndDrawerBtn.emit()
   }
 }

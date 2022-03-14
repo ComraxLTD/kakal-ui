@@ -43,6 +43,8 @@ export class RouterService {
       map((event: any) => {
         this.history.push(event.urlAfterRedirects);
         this.currentRoute = (event as NavigationEnd).url;
+        // const path = event.url.slice(1, event.url.length);
+        // if (event.url[0] === "/") event.url = path;
         return event.url;
       })
     );
