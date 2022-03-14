@@ -147,7 +147,6 @@ export * from './lib/bread-crumbes/bread-crumbes.model';
 // expand-panel
 export * from './lib/expand-panel/expand-panel.component';
 export * from './lib/expand-panel/expand-panel.module';
-export * from './lib/expand-panel/expand-panel.model';
 
 export * from './lib/list-menu/list-menu.component';
 export * from './lib/list-menu/list-menu.module';

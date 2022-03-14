@@ -4,7 +4,6 @@ import { FormControl } from '@angular/forms';
 import { NavbarService } from '../../../kakal-ui/src/lib/navbar/navbar.service';
 import { OpenMotionService } from '../../../kakal-ui/src/lib/open-motions/open-motions.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -31,8 +30,6 @@ export class AppComponent implements OnInit {
     console.log(this.testTemplate);
 
     this.motionService.createDynamicSideNav(this.container, 'test', this.testTemplate)
-
-
 
   }
 
