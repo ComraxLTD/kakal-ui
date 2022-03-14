@@ -30,7 +30,7 @@ export class AppComponent implements OnInit {
     console.log(this.container);
     console.log(this.testTemplate);
 
-    this.motionService.createDynamicSideNav(this.container, 'test', this.testTemplate)
+    // this.motionService.createDynamicSideNav(this.container, 'test', this.testTemplate)
 
 
 
