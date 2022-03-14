@@ -14,7 +14,7 @@ import { TableSelector } from '../models/table.selectors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, pluck } from 'rxjs/operators';
 
 import * as uuid from 'uuid';
@@ -27,7 +27,7 @@ export class TableDataSource<T = any> {
 
   private headerState: BehaviorSubject<HeaderState<T>>;
 
-  private rowState: BehaviorSubject<RowState<T>>;
+  private rowState: Subject<RowState<T>>;
 
   private formDataSource: FormDataSource;
 
@@ -51,9 +51,7 @@ export class TableDataSource<T = any> {
       action: FormActions.DEFAULT,
     });
 
-    this.rowState = new BehaviorSubject<RowState<T>>({
-      event: FormActions.DEFAULT,
-    });
+    this.rowState = new Subject<RowState<T>>();
 
     this.headerState = new BehaviorSubject<HeaderState<T>>({
       action: ColumnActions.DEFAULT,
