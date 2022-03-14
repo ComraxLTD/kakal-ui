@@ -31,6 +31,8 @@ export class AppComponent implements OnInit {
   showSave$: Observable<boolean>;
 
   ngOnInit(): void {
+
+    console.log('app')
     this.logos = [
       {
         key: 'logo',

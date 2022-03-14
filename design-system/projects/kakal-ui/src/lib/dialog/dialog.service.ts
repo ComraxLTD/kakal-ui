@@ -20,10 +20,7 @@ export class DialogService {
   public readonly DISPLAY_MSG_PREFIX = 'thisMessageIsForDisplay';
   public readonly ERROR_MSG = 'מצטערים, קרתה תקלה ולא ניתן לבצע את הפעולה';
 
-  constructor(
-    private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) private data: DialogData
-  ) {}
+  constructor(private dialog: MatDialog) {}
 
   public open(
     dialogRef?: TemplateRef<any>,

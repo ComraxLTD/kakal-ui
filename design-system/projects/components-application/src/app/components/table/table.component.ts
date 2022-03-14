@@ -20,6 +20,7 @@ import {
   PageState,
   FormActions,
   TableService,
+  DialogService,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
 import {
@@ -105,10 +106,12 @@ export class TableComponent implements OnInit {
   constructor(
     public tableDataSource: TableDataSource<RootObject>,
     private tableService: TableService,
+    private dialogService : DialogService,
     private formService: FormService
   ) {}
 
   async ngOnInit(): Promise<void> {
+
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
     // call first!
     this.initTableState$ = this.initTableState();

@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {
   KakalUiModule,
-  KKLFilterCardModule,
 } from '../../../kakal-ui/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,7 +15,6 @@ import { TableComponent } from './components/table/table.component';
   declarations: [AppComponent, TableComponent],
   imports: [
     BrowserModule,
-    KKLFilterCardModule,
     AppRoutingModule,
     FlexLayoutModule,
     MaterialModule,
