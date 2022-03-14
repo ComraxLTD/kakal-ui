@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { FormActions } from 'projects/kakal-ui/src/lib/form/models/form.actions';
+import { FormActions } from '../../../../form/models/form.actions';
 import { TableDataSource } from '../../../models/table-datasource';
 import { TableState } from '../../../models/table.state';
 import { HeaderCellModel } from '../../header-cells/models/header-cell.model';

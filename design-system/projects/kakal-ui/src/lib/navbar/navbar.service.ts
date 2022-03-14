@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { CardStepModel } from '../cards/card-step/card-step.model';
-import { SelectOption } from '../form/models/question-select.model';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, mergeAll, skipWhile } from 'rxjs/operators';
+import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -61,7 +58,7 @@ export class NavbarService {
   public emitSelectStatus(value: CardStepModel): void {
     this.selectStatusSubject.next(value);
   }
-   // *** need table filters ****
+
   // public getSelectedStatusFilters(filters: FilterMap): Observable<FilterMap> {
   //   return this.getSelectStatusObs().pipe(
   //     skipWhile((status) => !status),

@@ -16,14 +16,12 @@ import {
   FilterType,
   HeaderCellModel,
   TableActions,
-  FilterOption,
-  FilterRange,
   FormChangeEvent,
   PageState,
+  FormActions,
+  TableService
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
-import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
-import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
 import {
   BehaviorSubject,
   debounceTime,
@@ -34,7 +32,6 @@ import {
   Observable,
   of,
   switchMap,
-  switchMapTo,
   take,
 } from 'rxjs';
 
@@ -101,7 +98,6 @@ export class TableComponent implements OnInit {
     itemsPerPage: 5,
     currentPage: 1,
     totalItems: 15,
-    pages: [5, 10, 15],
   };
 
   constructor(
@@ -120,7 +116,7 @@ export class TableComponent implements OnInit {
     this.tableState$ = this.tableDataSource.connectTableState();
     this.fetchState$ = this.tableDataSource.connectFetchState();
 
-    // this.initTableState();
+    this.initTableState();
   }
 
   private connectToFetchState() {
@@ -183,35 +179,6 @@ export class TableComponent implements OnInit {
       pagination: {
         ...oldState.pagination,
         ...this.pagination,
-      },
-      filters: {
-        city: {
-          key: 'city',
-          filterType: FilterType.MULTI_SELECTED,
-          value: [
-            {
-              id: 3,
-              label: 'Russia',
-              value: { name: 'Russia', code: 3 },
-            },
-          ],
-        } as FilterOption<KKLSelectOption[]>,
-        // currency: {
-        //   key: 'currency',
-        //   filterType: FilterType.NUMBER_RANGE,
-        //   value: {
-        //     start: 1,
-        //     end: 10,
-        //   } as FilterRange<number>,
-        // } as FilterOption,
-        date: {
-          key: 'date',
-          filterType: FilterType.DATE_RANGE,
-          value: {
-            start: new Date('2022-03-04T10:21:31.215Z'),
-            end: new Date('2022-03-15T10:21:31.215Z'),
-          },
-        } as FilterOption<FilterRange<Date>>,
       },
       action: TableActions.INIT_STATE,
     };
@@ -285,6 +252,7 @@ export class TableComponent implements OnInit {
 
     const updateItem = {
       ...item,
+      ...formItem,
       city: formItem.city,
     } as RootObject;
     // imitate http response
@@ -322,14 +290,6 @@ export class TableComponent implements OnInit {
   public onCreateEvent(state: RowState) {
     const item: RootObject = {
       id: 0,
-      first_name: '',
-      last_name: '',
-      phone: '',
-      email: '',
-      gender: '',
-      city: '',
-      date: null,
-      currency: '',
     };
 
     of(item)

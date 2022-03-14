@@ -1,24 +1,24 @@
 <kkl-chip-list *ngIf="tableState">
-    <kkl-chip 
+  <kkl-chip
     *ngFor="let item of tableState.filters | keyvalue"
     (removed)="removeFilter(item.key)"
+  >
+    <ng-container [ngSwitch]="item.value.filterType">
+      <ng-container *ngSwitchCase="'multiSelect'">{{
+        item.value.value | pluck: "label"
+      }}</ng-container>
 
-    >
-        <ng-container [ngSwitch]="item.value.filterType">
-            <ng-container *ngSwitchCase="'multiSelect'">{{ item.value.value | pluck:"label"  }}</ng-container>
+      <ng-container *ngSwitchCase="'dateRange'">
+        {{ item.value.value.start | date: "YYYY/MM/dd" }} -
+        {{ item.value.value.end | date: "YYYY/MM/dd" }}
+      </ng-container>
 
-            <ng-container *ngSwitchCase="'dateRange'">
-                {{ item.value.value.start | date:"YYYY/MM/dd" }} - 
-                {{ item.value.value.end | date:"YYYY/MM/dd" }}
-            </ng-container>
+      <ng-container *ngSwitchCase="'numberRange'">
+        {{ item.value.value.start }} -
+        {{ item.value.value.end }}
+      </ng-container>
 
-            
-            <ng-container *ngSwitchCase="'numberRange'">
-                {{ item.value.value.start }} - 
-                {{ item.value.value.end }}
-            </ng-container>
-
-            <ng-container *ngSwitchDefault>{{ item.value.value }}</ng-container>
-        </ng-container>
-    </kkl-chip>
+      <ng-container *ngSwitchDefault>{{ item.value.value }}</ng-container>
+    </ng-container>
+  </kkl-chip>
 </kkl-chip-list>

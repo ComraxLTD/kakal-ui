@@ -4,7 +4,7 @@
       <!-- @Todo: Dvir - the table's state needs to be stored in the table service -->
       <kkl-table-filters
         *ngIf="!hideChipFilters"
-        [tableState]="this.tableState$ | async"
+        [tableState]="tableState"
       ></kkl-table-filters>
 
       <div dir="rtl" fxLayout="column" fxLayoutGap="1rem">

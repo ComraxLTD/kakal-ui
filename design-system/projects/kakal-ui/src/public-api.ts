@@ -18,6 +18,12 @@ export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.model';
 export * from './lib/icon/icon.module';
 
+export * from './lib/open-motions/open-motions.component';
+export * from './lib/open-motions/open-motions.module';
+export * from './lib/open-motions/open-motions.service';
+
+
+
 // form exports
 
 export * from './lib/form/models/form-datasource';
@@ -88,6 +94,10 @@ export * from './lib/table/components/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table.state.service';
+export * from './lib/table/components/table/table.service';
+
+export * from './lib/table/models/table-datasource';
+export * from './lib/table/models/table.types';
 
 export * from './lib/table/components/cells/table-cell.module';
 
@@ -114,10 +124,6 @@ export * from './lib/table/components/pagination/pagination.directive';
 export * from './lib/table/components/pagination/url-pagination.directive';
 export * from './lib/table/components/pagination/pagination.types';
 
-export * from './lib/table/models/table';
-export * from './lib/table/models/table-actions';
-export * from './lib/table/models/table-datasource';
-export * from './lib/table/models/table.state';
 
 export * from './lib/table/directives/cell.directive';
 

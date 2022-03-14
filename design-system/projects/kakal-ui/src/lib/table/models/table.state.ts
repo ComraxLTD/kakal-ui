@@ -1,5 +1,4 @@
 import { SortDirection } from '@angular/material/sort';
-import { TableColumnModel } from '../../columns/models/column.model';
 import {
   ColumnActions,
   FetchActions,
@@ -9,7 +8,8 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
-import { ColumnDef, FilterOption } from '../components/header-cells/models/header.types';
+import { ColumnDef, FilterChangeEvent } from '../components/header-cells/models/header.types';
+import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -35,14 +35,14 @@ export interface SortState {
   sorting: string;
   sortBy: SortDirection;
 }
-export declare type FilterState = { [key: string]: FilterOption | null };
+export declare type FilterState = { [key: string]: FilterChangeEvent | null };
 
 export interface RowState<T = any> {
   item?: T;
   key?: string;
   event?: FormActions | TableActions;
   itemIndex?: number;
-  column?: TableColumnModel<T>;
+  column?: HeaderCellModel<T>;
   group?: QuestionGroupModel<T>;
   // options?: { panel?: MatExpansionPanel; item?: T; selected?: number[], key? : string, validations? : any[] };
 }
