@@ -14,6 +14,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { KKLStrokedButtonDirective } from './directives/stroked-button';
 import { CreateButtonComponent } from './components/create-button/create-button.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { KKLDirectivesModule } from '../directives/directives.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -24,6 +25,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule,
     KKLIconModule,
     KKLTypographyModule,
+    KKLDirectivesModule
   ],
   declarations: [
     ButtonComponent,
