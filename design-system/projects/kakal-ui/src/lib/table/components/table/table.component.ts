@@ -7,24 +7,22 @@ import {
   OnInit,
   Output,
   TemplateRef,
-  ViewChild,
 } from '@angular/core';
 
 import { ThemePalette } from '@angular/material/core';
-import { PaginationInstance } from 'ngx-pagination';
 
 import { KKLDataCellDirective } from '../../components/cells/table-data-cell/cell-data.directive';
 import { KKLActionCellDirective } from '../cells/table-action-cell/cell-action.directive';
 import { KKLHeaderCellDirective } from '../../components/header-cells/cell-header.directive';
 
 import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
-import { ColumnSortOption } from '../../../columns/models/column-sort-option';
-import { ColumnFilterOption } from '../../../columns/models/column-filter-options';
 import { TableDataSource } from '../../models/table-datasource';
-import { FetchState, TableState } from '../../models/table.state';
+import { PageState, SortState, TableState } from '../../models/table.state';
 import { TableStateService } from './table.state.service';
 
-import { Observable, map, combineLatest, merge } from 'rxjs';
+import PaginationChangeEvent from '../pagination/pagination.types';
+
+import { Observable, map, combineLatest, merge, switchMap, take } from 'rxjs';
 
 @Component({
   selector: 'kkl-table',
@@ -44,7 +42,7 @@ export class TableComponent<T = any> implements OnInit {
 
   @Input() public data$: Observable<T[]>;
   @Input() public columns$: Observable<HeaderCellModel<T>[]>;
-  @Input() public pagination: PaginationInstance;
+  @Input() public initTableState$: Observable<TableState>;
 
   // table data instance for column keys
   @Input('itemKey') public key: keyof T;
@@ -63,33 +61,19 @@ export class TableComponent<T = any> implements OnInit {
   @Input() public hasFooter: boolean;
   @Input() public hasActions: boolean;
 
-  // ng template for cell header
-  @Input() public headerTemplate: { [key: string]: TemplateRef<any> };
-
-  // ng template for column filter options
-  @Input() public filterTemplate: { [key: string]: TemplateRef<any> };
-
   // ng template for footer cell
   @Input() public footerTemplate: { [key: string]: TemplateRef<any> };
 
-  // ng template for select cell
   @Input() public selectTemplate: { [key: string]: TemplateRef<any> };
 
   // ng template for expand cell
   @Input() public expandTemplate: { [key: string]: TemplateRef<any> };
 
   // emit sort event : Sort
-  @Output() sortChange: EventEmitter<ColumnSortOption<T>> = new EventEmitter();
+  @Output() sortChange: EventEmitter<SortState> = new EventEmitter();
 
   // emit pagination event : {next : number, prev : number}
-  @Output() pageChange: EventEmitter<{
-    fetchState: FetchState;
-  }> = new EventEmitter();
-
-  // emit filter event : ColumnModel<T>
-  @Output() filter: EventEmitter<ColumnFilterOption<T>> = new EventEmitter();
-
-  @Output() filterAutocomplete: EventEmitter<ColumnFilterOption<T>> =
+  @Output() pageChange: EventEmitter<PaginationChangeEvent> =
     new EventEmitter();
 
   // emit select event : Observable<T[]>
@@ -100,6 +84,9 @@ export class TableComponent<T = any> implements OnInit {
 
   // emit row : Observable<T>
   @Output() rowClicked: EventEmitter<T> = new EventEmitter();
+
+  // set true to hide the filters above the table
+  @Input() hideChipFilters: boolean;
 
   // main obj which subscribe to table data - rows & columns & pagination
   public table$: any;
@@ -119,7 +106,6 @@ export class TableComponent<T = any> implements OnInit {
     const columns$ = this.columns$.pipe(
       map((columns: HeaderCellModel<T>[]) => {
         const newState = [...columns];
-
 
         if (this.hasActions) {
           newState.push(new HeaderCellModel({ columnDef: 'actions' }));
@@ -147,11 +133,8 @@ export class TableComponent<T = any> implements OnInit {
 
   ngOnInit() {
     this.table$ = this.setTable$();
-    this.tableState$ = this.tableDataSource.connectTableState();
-
-    this.setTableState$().subscribe((tableState) => {
-      this.tableDataSource.loadTableState({ tableState });
-    });
+    this.tableState$ = this.setTableState$();
+    this.hideChipFilters = this.hideChipFilters !== undefined;
   }
 
   ngAfterViewInit() {
@@ -161,21 +144,40 @@ export class TableComponent<T = any> implements OnInit {
   }
 
   private setTableState$() {
+    const initState$ =
+      this.initTableState$ ||
+      this.tableDataSource.listenTableState().pipe(take(1));
+
     return merge(
-      this.tableStateService.onDataChange(this.tableDataSource),
-      this.tableStateService.onEditCloseEvent(this.tableDataSource),
+      initState$,
+      this.tableStateService.onCloseEvent(this.tableDataSource),
       this.tableStateService.onEditEvent(this.tableDataSource),
       this.tableStateService.onCreateEvent(this.tableDataSource)
+    ).pipe(
+      switchMap((tableState) => {
+        if (tableState) {
+          this.tableDataSource.loadTableState({ tableState });
+        }
+        return this.tableDataSource.listenTableState();
+      })
     );
   }
 
   // EMIT EVENTS
 
   // method which emit page data
-  public onPageChange(event: { next: number; prev: number }) {
-    const { next } = event;
+  public onPageChange(pageEvent: PaginationChangeEvent) {
+    const { next } = pageEvent;
     this.tableDataSource.dispatchPagination({
-      pagination: { currentPage: next } as PaginationInstance,
+      pageState: {
+        ...pageEvent,
+      } as PageState,
     });
+
+    this.pageChange.emit({ ...pageEvent });
+  }
+
+  public isForm(index, item): boolean {
+    return index === 0 && item.id === null;
   }
 }

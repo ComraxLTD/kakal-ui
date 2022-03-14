@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Validators } from '@angular/forms';
 import {
   TableDataSource,
@@ -16,13 +16,16 @@ import {
   FilterType,
   HeaderCellModel,
   TableActions,
+  FormChangeEvent,
+  PageState,
+  FormActions,
+  TableService,
 } from '../../../../../kakal-ui/src/public-api';
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
-import { TableService } from '../../../../../kakal-ui/src/lib/table/components/table/table.service';
-import { FormActions } from '../../../../../kakal-ui/src/lib/form/models/form.actions';
-import { PaginationInstance } from 'ngx-pagination';
 import {
   BehaviorSubject,
+  debounceTime,
+  distinctUntilChanged,
   firstValueFrom,
   map,
   merge,
@@ -31,22 +34,21 @@ import {
   switchMap,
   take,
 } from 'rxjs';
-import { FilterOption } from '../../../../../kakal-ui/src/lib/table/components/header-cells/models/header.filter';
-import { FilterRange } from '../../../../../kakal-ui/src/lib/table/components/header-cells/components/filter-range-cell/filter-range-cell.component';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource, TableService],
+  providers: [TableDataSource],
 })
 export class TableComponent implements OnInit {
-  // demo data from server
+  @Input()
+  totalItems: number; // demo data from server
   private demoStore$: BehaviorSubject<RootObject[]>;
 
   public itemKey: string = 'id';
 
-  private columns: HeaderCellModel<RootObject>[] = [
+  public columns: HeaderCellModel<RootObject>[] = [
     {
       columnDef: 'first_name',
       label: 'first_name',
@@ -88,15 +90,16 @@ export class TableComponent implements OnInit {
   public data$: Observable<RootObject[]>;
   public columns$: Observable<HeaderCellModel<RootObject>[]>;
   public tableState$: Observable<TableState>;
+  public initTableState$: Observable<TableState>;
   public fetchState$: Observable<FetchState>;
 
   public group: QuestionGroupModel;
   public optionsMap: OptionMap;
 
-  public pagination: PaginationInstance = {
+  public pagination: PageState = {
     itemsPerPage: 5,
     currentPage: 1,
-    totalItems: 100,
+    totalItems : 50
   };
 
   constructor(
@@ -107,19 +110,38 @@ export class TableComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
+    // call first!
+    this.initTableState$ = this.initTableState();
     this.data$ = this.setData();
     this.columns$ = this.setColumns$();
     this.optionsMap = await firstValueFrom(this.demoServerOptions());
 
     // form demo only
-    this.tableState$ = this.tableDataSource.connectTableState();
-    this.fetchState$ = this.tableDataSource.connectFetchState();
-
-    this.initTableState();
+    this.tableState$ = this.tableDataSource.listenTableState();
+    this.fetchState$ = this.tableDataSource.listenFetchState();
   }
 
-  private connectToFetchState() {
-    return this.tableDataSource.connectFetchState().pipe(
+  private initTableState() {
+    return of(this.pagination).pipe(
+      map((pagState: PageState) => {
+        const oldState = this.tableDataSource.getTableState();
+        const tableState: TableState = {
+          ...oldState,
+          pagination: {
+            ...oldState.pagination,
+            ...pagState,
+            totalItems: this.totalItems || pagState.totalItems,
+          },
+          action: TableActions.INIT_STATE,
+        };
+
+        return tableState;
+      })
+    );
+  }
+
+  private listenToFetchState() {
+    return this.tableDataSource.listenFetchState().pipe(
       switchMap((fetchState: FetchState) => {
         return of(DEMO_DATA);
       })
@@ -128,7 +150,7 @@ export class TableComponent implements OnInit {
 
   private demoServerData(): Observable<RootObject[]> {
     const initData$ = of(DEMO_DATA);
-    const fetchData$ = this.connectToFetchState();
+    const fetchData$ = this.listenToFetchState();
 
     return merge(initData$, fetchData$).pipe(
       switchMap((data: RootObject[]) => {
@@ -143,7 +165,8 @@ export class TableComponent implements OnInit {
       map((options: OptionObject[]) => {
         return options.map((option: OptionObject) => {
           return {
-            value: option.id,
+            id: option.id,
+            value: { code: option.id, name: option.city },
             label: option.city,
           };
         });
@@ -160,53 +183,14 @@ export class TableComponent implements OnInit {
     return storeData$.pipe(
       switchMap((data) => {
         this.tableDataSource.load(data);
-        return this.tableDataSource.connect();
+        return this.tableDataSource.listen();
       })
     );
   }
 
   private setColumns$() {
     this.tableDataSource.loadColumns(this.columns);
-    return this.tableDataSource.connectColumns();
-  }
-
-  private initTableState() {
-    const oldState = this.tableDataSource.getTableState();
-    const tableState: TableState = {
-      ...oldState,
-      filters: {
-        city: {
-          key: 'city',
-          filterType: FilterType.MULTI_SELECTED,
-          value: [
-            {
-              label: 'Russia',
-              value: 3,
-              selected: true,
-            },
-          ] as KKLSelectOption[],
-        } as FilterOption,
-        // currency: {
-        //   key: 'currency',
-        //   filterType: FilterType.NUMBER_RANGE,
-        //   value: {
-        //     start: 1,
-        //     end: 10,
-        //   } as FilterRange<number>,
-        // } as FilterOption,
-        // date: {
-        //   key: 'currency',
-        //   filterType: FilterType.DATE_RANGE,
-        //   value: {
-        //     start: new Date('2022-03-04T10:21:31.215Z'),
-        //     end: new Date('2022-03-15T10:21:31.215Z'),
-        //   } as FilterRange<Date>,
-        // } as FilterOption,
-      },
-      action: TableActions.INIT_STATE,
-    };
-
-    this.tableDataSource.loadTableState({ tableState });
+    return this.tableDataSource.listenColumns();
   }
 
   private setQuestions(
@@ -275,6 +259,7 @@ export class TableComponent implements OnInit {
 
     const updateItem = {
       ...item,
+      ...formItem,
       city: formItem.city,
     } as RootObject;
     // imitate http response
@@ -295,7 +280,7 @@ export class TableComponent implements OnInit {
               updateData[indexToUpdate] = {
                 ...data[indexToUpdate],
                 ...res,
-                city: city.label,
+                city: city?.label,
               };
               return updateData;
             })
@@ -312,14 +297,6 @@ export class TableComponent implements OnInit {
   public onCreateEvent(state: RowState) {
     const item: RootObject = {
       id: 0,
-      first_name: '',
-      last_name: '',
-      phone: '',
-      email: '',
-      gender: '',
-      city: '',
-      date: null,
-      currency: '',
     };
 
     of(item)
@@ -349,12 +326,29 @@ export class TableComponent implements OnInit {
   public onFetchOptions(columnDef: string) {
     const headerState: HeaderState = {
       key: columnDef,
-      event: ColumnActions.UPDATE_FILTERS,
+      action: ColumnActions.INIT_OPTIONS,
       options: this.optionsMap[columnDef],
     };
 
-    console.log('work');
-
     this.tableDataSource.loadHeaderState({ headerState });
+  }
+
+  public onQueryOptions(formChangeEvent: FormChangeEvent) {
+    const { key, value } = formChangeEvent;
+
+    of(value)
+      .pipe(
+        debounceTime(400),
+        distinctUntilChanged()
+        // some filter logic - server or local - for filtered options
+      )
+      .subscribe(() => {
+        const headerState: HeaderState = {
+          key,
+          action: ColumnActions.INIT_OPTIONS,
+          options: [],
+        };
+        this.tableDataSource.loadHeaderState({ headerState });
+      });
   }
 }

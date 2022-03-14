@@ -1,5 +1,5 @@
-import { FormActions as KKLFormActions } from './form.actions';
-import { FormOption as KKLFormOption } from './form.options';
+import { FormActions as FormActions } from './form.actions';
+import { FormChangeEvent as FormChangeEvent } from './form.options';
 import { SelectOption as KKLSelectOption } from './question-select.model';
 import { FormDataSource as KKLFormDataSource } from './form-datasource';
 
@@ -9,9 +9,9 @@ import { QuestionGroupModel } from './question-group.model';
 declare type OptionMap = { [key: string]: KKLSelectOption[] };
 
 export {
-  KKLFormActions,
+  FormActions,
   KKLFormDataSource,
-  KKLFormOption,
+  FormChangeEvent,
   KKLSelectOption,
   OptionMap,
   Question,

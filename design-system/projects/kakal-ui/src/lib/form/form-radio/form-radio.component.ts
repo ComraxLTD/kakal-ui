@@ -2,6 +2,7 @@ import { FormControl } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { SelectOption } from '../models/question-select.model';
+import { RadioOption } from './question-radio.model';
 
 
 @Component({
@@ -12,7 +13,7 @@ import { SelectOption } from '../models/question-select.model';
 export class FormRadioComponent implements OnInit {
   @Input() key: string;
   @Input() label: string;
-  @Input() options: SelectOption[];
+  @Input() options: RadioOption[];
   @Input() public control: FormControl
   @Output() public change = new EventEmitter<any>();
   constructor() { }

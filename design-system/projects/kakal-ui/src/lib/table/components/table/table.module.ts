@@ -14,10 +14,13 @@ import { KKLTypographyModule } from '../../../typography/typography.module';
 import { KKLTableCellModule } from '../../components/cells/table-cell.module';
 import { KKLHeaderCellModule } from '../../components/header-cells/header-cells.module';
 import { KKLPaginationModule } from '../../components/pagination/pagination.module';
+import { KKLTableFiltersComponent } from '../../components/filters/filters.component'
 import { KKLCellDirective } from '../../directives/cell.directive';
+import { PluckPipe } from '../../pipes/pluck.pipe';
 
 import { TableComponent } from './table.component';
 import { KKLTableDirective } from './table.directive';
+import { KKLChipsModule } from '../../../chips/chips.module';
 
 @NgModule({
   imports: [
@@ -35,8 +38,10 @@ import { KKLTableDirective } from './table.directive';
     KKLTypographyModule,
     KKLDirectivesModule,
     KKLPipesModule,
+
+    KKLChipsModule
   ],
-  declarations: [TableComponent, KKLCellDirective, KKLTableDirective],
+  declarations: [TableComponent, KKLCellDirective, KKLTableDirective, KKLTableFiltersComponent, PluckPipe],
   providers: [],
   exports: [
     TableComponent,

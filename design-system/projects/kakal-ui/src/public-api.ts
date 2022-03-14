@@ -18,6 +18,12 @@ export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.model';
 export * from './lib/icon/icon.module';
 
+export * from './lib/open-motions/open-motions.component';
+export * from './lib/open-motions/open-motions.module';
+export * from './lib/open-motions/open-motions.service';
+
+
+
 // form exports
 
 export * from './lib/form/models/form-datasource';
@@ -88,6 +94,10 @@ export * from './lib/table/components/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table.state.service';
+export * from './lib/table/components/table/table.service';
+
+export * from './lib/table/models/table-datasource';
+export * from './lib/table/models/table.types';
 
 export * from './lib/table/components/cells/table-cell.module';
 
@@ -111,12 +121,9 @@ export * from './lib/table/components/header-cells/models/header.types';
 export * from './lib/table/components/pagination/pagination.module';
 export * from './lib/table/components/pagination/pagination.component';
 export * from './lib/table/components/pagination/pagination.directive';
+export * from './lib/table/components/pagination/url-pagination.directive';
 export * from './lib/table/components/pagination/pagination.types';
 
-export * from './lib/table/models/table';
-export * from './lib/table/models/table-actions';
-export * from './lib/table/models/table-datasource';
-export * from './lib/table/models/table.state';
 
 export * from './lib/table/directives/cell.directive';
 
@@ -140,7 +147,6 @@ export * from './lib/bread-crumbes/bread-crumbes.model';
 // expand-panel
 export * from './lib/expand-panel/expand-panel.component';
 export * from './lib/expand-panel/expand-panel.module';
-export * from './lib/expand-panel/expand-panel.model';
 
 export * from './lib/list-menu/list-menu.component';
 export * from './lib/list-menu/list-menu.module';
@@ -267,3 +273,9 @@ export * from './lib/stepper-mobile/stepper-mobile.module';
 export * from './screens/stepper-layout/stepper-layout.component';
 export * from './screens/stepper-layout/stepper-layout.module';
 export * from './screens/stepper-layout/stepper-layout.service';
+
+// chips
+export * from './lib/chips/chip/chip.component';
+export * from './lib/chips/chip-list/chip-list.component'
+export * from './lib/chips/chips.module';
+

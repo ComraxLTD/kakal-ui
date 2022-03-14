@@ -1,11 +1,20 @@
 import { Directive, Host, HostListener, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PaginationInstance } from 'ngx-pagination';
-import { combineLatest, distinctUntilChanged, map, tap } from 'rxjs';
 import { TableDataSource } from '../../models/table-datasource';
+import { TableSelector } from '../../models/table.selectors';
 import { TableState } from '../../models/table.state';
 import { TableComponent } from '../table/table.component';
 import IPaginationChangeEvent from './pagination.types';
+
+import {
+  combineLatest,
+  distinctUntilChanged,
+  map,
+  Observable,
+  pipe,
+} from 'rxjs';
+import { tap } from 'rxjs';
 /**
  * This directive listens to the pageChange event
  * and stores the current page in the url query params
@@ -14,76 +23,32 @@ import IPaginationChangeEvent from './pagination.types';
   selector: '[kklPagination]',
 })
 export class KKLPaginationDirective implements OnInit {
-  @Input() pagination: PaginationInstance;
-
-  @HostListener('pageChange', ['$event']) updateUrlQueryParams(
-    $event: IPaginationChangeEvent
-  ) {
-    const { next } = $event;
-
-    this.router.navigate([], {
-      relativeTo: this.route,
-      queryParams: { page: next },
-      queryParamsHandling: 'merge',
-    });
-  }
-
   constructor(
     @Host() private hostTable: TableComponent,
-    private tableDataSource: TableDataSource,
-    private route: ActivatedRoute,
-    private router: Router
+    private tableDataSource: TableDataSource
   ) {}
 
   ngOnInit(): void {
-    this.invalidate();
-
     this.hostTable.pagination$ = this.setPagination$();
-    this.setCurrentPageFromUrl();
-  }
-
-  private dispatchPagination() {
-    this.tableDataSource.dispatchPagination({ pagination: this.pagination });
-  }
-
-  private invalidate() {
-    if (!this.pagination) {
-      throw new Error('kklPagination must get a PaginationInstance as input');
-    } else {
-      this.dispatchPagination();
-    }
   }
 
   private setPagination$() {
-    const itemsPerPage$ = this.tableDataSource.connectTableState().pipe(
-      map((tableState: TableState) => tableState.pagination.itemsPerPage),
-      distinctUntilChanged()
-    );
-    const totalItems$ = this.tableDataSource.connectTableState().pipe(
-      map((tableState: TableState) => tableState.pagination.totalItems),
-      distinctUntilChanged()
-    );
+    const totalItems$: Observable<number> = this.tableDataSource
+      .select(TableSelector.PAGINATION)
+      .pipe(
+        map((pagination: PaginationInstance) => pagination.totalItems),
+        distinctUntilChanged()
+      );
+
+    const itemsPerPage$: Observable<number> = this.tableDataSource
+      .select(TableSelector.PAGINATION)
+      .pipe(
+        map((pagination: PaginationInstance) => pagination.itemsPerPage),
+        distinctUntilChanged()
+      );
 
     return combineLatest([totalItems$, itemsPerPage$]).pipe(
       map(([totalItems, itemsPerPage]) => totalItems > itemsPerPage)
     );
-  }
-
-  private setCurrentPageFromUrl() {
-    const currentPage = this.route.snapshot.queryParamMap.get('page');
-
-    if (currentPage) {
-      const oldState = this.tableDataSource.getTableState();
-      const tableState = {
-        ...oldState,
-        pagination: {
-          ...oldState.pagination,
-          currentPage: Number(currentPage),
-        },
-      } as TableState;
-
-      this.tableDataSource.loadTableState({ tableState });
-      // this.hostTable.pagination.currentPage = Number(currentPage);
-    }
   }
 }

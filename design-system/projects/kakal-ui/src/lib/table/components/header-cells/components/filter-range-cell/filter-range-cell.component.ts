@@ -5,14 +5,8 @@ import {
   QuestionGroupModel,
 } from '../../../../../form/models/form.types';
 import { FormService } from '../../../../../form/services/form.service';
-import { Observable, skip, Subject, take, takeUntil } from 'rxjs';
-import { FilterType } from '../../models/header.types';
-
-export interface FilterRange<T = any> {
-  start?: T;
-  end?: T;
-  type?: FilterType;
-}
+import { FilterRange, FilterType } from '../../models/header.types';
+import { filter, Observable, skip, Subject, take, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-filter-range-cell',
@@ -21,8 +15,8 @@ export interface FilterRange<T = any> {
 })
 export class FilterRangeCellComponent implements OnInit {
   @Input() public filterType: FilterType.NUMBER_RANGE | FilterType.DATE_RANGE;
-  @Input() public range$: Observable<FilterRange>;
   @Input() public value: FilterRange;
+  @Input() public value$: Observable<FilterRange>;
 
   public amountGroup: QuestionGroupModel<FilterRange<number>>;
   public dateControl: FormControl;
@@ -60,6 +54,24 @@ export class FilterRangeCellComponent implements OnInit {
         end: this.value.end,
       });
     }
+
+    this.value$
+      .pipe(
+        skip(1),
+        filter((range: FilterRange) => !range.start && !range.end),
+        takeUntil(this.destroy)
+      )
+      .subscribe(() => {
+        if (this.filterType === FilterType.DATE_RANGE) {
+          console.log('reset DATE');
+          this.dateControl.reset();
+        }
+
+        if (this.filterType === FilterType.NUMBER_RANGE) {
+          // console.log('reset NUMBER');
+          this.amountGroup.formGroup.reset();
+        }
+      });
   }
 
   ngOnDestroy(): void {
@@ -94,8 +106,16 @@ export class FilterRangeCellComponent implements OnInit {
 
   public onRangeNumberChange() {
     this.amountGroup.formGroup.valueChanges
-      .pipe(skip(1), take(1), takeUntil(this.destroy))
-      .subscribe((range: FilterRange<number>) => this.rangeChange.emit(range));
-    // }}
+      .pipe(
+        skip(1),
+        take(1),
+
+        filter((range) => range.start !== null && range.end !== null),
+        filter((range) => range.start !== '' && range.end !== ''),
+        takeUntil(this.destroy)
+      )
+      .subscribe((range: FilterRange<number>) => {
+        this.rangeChange.emit(range);
+      });
   }
 }

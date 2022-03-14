@@ -1,9 +1,9 @@
-<div fxFill>
+<div fxFill fxLayout="column" fxLayoutAlign="center center">
   <ng-container
     *ngIf="tableState.editing.indexOf(item[key]) === -1; else editBlock"
   >
     <ng-container
-      *ngTemplateOutlet="cellTemplate[column.columnDef] || defaultBlock; context : {$implicit : {item, column, itemIndex, key}} "
+      *ngTemplateOutlet="cellTemplate[column.columnDef] || defaultBlock; context : {$implicit : {item, column, itemIndex, key, tableState, group : tableState.forms[item[key]]}} "
     ></ng-container>
   </ng-container>
 
@@ -16,8 +16,20 @@
 
   <!-- Edit block -->
   <ng-template #editBlock>
-    <ng-container
-      *ngTemplateOutlet="inputTemplate[column.columnDef]; context : {$implicit :{item, column, itemIndex, key, group : tableState.forms[item[key]]}} "
-    ></ng-container>
+    <div [class.form-cell]="true">
+      <ng-container
+        *ngTemplateOutlet="inputTemplate[column.columnDef] || defaultInput; context : {$implicit :{column, group : tableState.forms[item[key]]}} "
+      ></ng-container>
+    </div>
   </ng-template>
 </div>
+
+<ng-template #defaultInput>
+  <div fxFill fxLayout="row">
+    <kkl-form-cell
+      fxFlex="70"
+      [group]="tableState.forms[item[key]]"
+      [columnDef]="column.columnDef"
+    ></kkl-form-cell>
+  </div>
+</ng-template>

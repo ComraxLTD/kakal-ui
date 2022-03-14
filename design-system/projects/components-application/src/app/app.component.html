@@ -1,37 +1,29 @@
-<!-- <kkl-filter-card [card]="card"></kkl-filter-card> -->
-<div fxFill>
+<div fxLayout="column" #container>
+  <!--
+<ng-template #testTemplate>
+  <p>test test test test test test test test test test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+</ng-template> -->
+
   <div fxLayout="row" fxLayoutAlign="center center">
     <app-table fxFlex="90"></app-table>
   </div>
-</div>
-<div class="container" fxLayout="column" fxLayoutGap="2rem">
-  
-  <div fxLayout="row">
-    <p kkl-hover text="TEST" [template]="hoverTemplate"  hoverColor="white">new test</p>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <app-table [totalItems]="200" fxFlex="90"></app-table>
   </div>
 </div>
-<ng-template #hoverTemplate>
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <div>
-      <p>Custom Template</p>
-    </div>
-    <div>
-      <kkl-icon key="tree" color="primary"></kkl-icon>
-    </div>
-  </div>
-</ng-template>
-<ng-template #test let-option="option">
-  <div
-    fxLayout="row"
-    fxLayoutAlign="space-between"
-    dir="rtl"
-    (click)="logOption(option)"
-  >
-    <div>
-      {{ option }}
-    </div>
-    <div>
-      <kkl-icon key="tree"></kkl-icon>
-    </div>
-  </div>
-</ng-template>

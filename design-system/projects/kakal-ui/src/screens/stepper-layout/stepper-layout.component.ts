@@ -60,7 +60,6 @@ export class StepperLayoutComponent {
   public steps$: Observable<CardStepModel[]>;
   public showDrawer$: Observable<boolean>;
   public showEndDrawer$: Observable<boolean>;
-  public question$: Observable<Question>;
   public mobile$: Observable<boolean>;
 
   constructor(
@@ -74,7 +73,7 @@ export class StepperLayoutComponent {
 
   ngOnInit(): void {
     this.steps$ = this.setSteps$();
-    this.question$ = this.setSelectQuestion();
+    // this.question$ = this.setSelectQuestion();
     this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
     this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
     this.mobile$ = this.breakpointService.isMobile();
@@ -90,7 +89,7 @@ export class StepperLayoutComponent {
                 step.unactive();
               }
               if (step.path === prefix) {
-                
+
                 this.stepperLayoutService.emitChangeStep(step);
                 step.active();
               }
@@ -103,32 +102,32 @@ export class StepperLayoutComponent {
     );
   }
 
-  private setSelectQuestion(): Observable<Question> {
-    return this.stepperLayoutService.getStepsObs().pipe(
-      switchMap((steps) => {
-        return this.stepperLayoutService.getStepPrefixObs().pipe(
-          startWith(this.routerService.getCurrentPath()),
-          map((prefix: string) => {
-            const options: SelectOption[] = steps.map((step) => {
-              return {
-                label: step.label,
-                value: step.path,
-              };
-            });
+  // private setSelectQuestion(): Observable<Question> {
+  //   return this.stepperLayoutService.getStepsObs().pipe(
+  //     switchMap((steps) => {
+  //       return this.stepperLayoutService.getStepPrefixObs().pipe(
+  //         startWith(this.routerService.getCurrentPath()),
+  //         map((prefix: string) => {
+  //           const options: SelectOption[] = steps.map((step) => {
+  //             return {
+  //               label: step.label,
+  //               value: step.path,
+  //             };
+  //           });
 
-            const question: Question = {
-              key: 'selectMobile',
-              controlType: 'select',
-              value: prefix,
-              options,
-            };
+  //           const question: Question = {
+  //             key: 'selectMobile',
+  //             controlType: 'select',
+  //             value: prefix,
+  //             options,
+  //           };
 
-            return question;
-          })
-        );
-      })
-    );
-  }
+  //           return question;
+  //         })
+  //       );
+  //     })
+  //   );
+  // }
 
   public onChangeStep(step: CardStepModel): void {
     this.changeStep.emit(step);
