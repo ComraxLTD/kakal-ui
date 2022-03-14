@@ -9,9 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../../../kakal-ui/src/lib/angular-material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableComponent } from './components/table/table.component';
+import { DetailsComponent } from './components/details/details.component';
+import { BidComponent } from './components/bid/bid.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent],
+  declarations: [AppComponent, TableComponent, DetailsComponent, BidComponent],
   imports: [
     BrowserModule,
     KKLFilterCardModule,

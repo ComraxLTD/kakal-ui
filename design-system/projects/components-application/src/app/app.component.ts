@@ -17,8 +17,8 @@ export class AppComponent implements OnInit {
   title = 'components-application';
   //storybook url for comrax use
   public storybookUrl!: string;
-
-
+  //navbar bottom
+  public showSave$!: Observable<boolean>;
   //steps 
   public steps$!: Observable<CardStepModel[]>
   //decides the portion of the screen that the right side(main/static content) will have
@@ -56,15 +56,7 @@ export class AppComponent implements OnInit {
       spacer: true,
       stroke: true,
     }),
-    new CardStepModel({
-      label: 'בחירת ספקים',
-      svgUrl: 'send_mail',
-      path: 'supplier',
-      size: 3,
-      variant: 'circle',
-      type: 'step',
-      spacer: true,
-    }),
+
   ];
 
   //page headline items
@@ -89,14 +81,15 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.showSave$ = of(true);
+
     //add size to page header
     this.headlineItems = this.headlineItems.map((item, index) => ({
       ...item,
       size: index != 0 ? 1.8 : 2.9,
     }));
-
     //
-    this.steps$ = this.stepperLayoutService.getStepsObs()
+    this.steps$ = this.stepperLayoutService.getStepsObs();
 
     //emit new headline items
     this.pageHeadlineService.emitPageHeadlineItems(this.headlineItems);
@@ -118,6 +111,7 @@ export class AppComponent implements OnInit {
       ))
     );
   }
+  
   private getBreakPoints() {
     return this.mergeBreakPoints().pipe(
       map((value: boolean[]) => {
@@ -142,19 +136,20 @@ export class AppComponent implements OnInit {
   }
 
   // NAVIGATION EVENTS SECTION
-  private stepNavigate(path: string) {
+  private navigate(path: string) {
     path = `/${path}`;
     this.routerService.navigate(path);
   }
 
   // navigate from stepper
   public onChangeStep(step: CardStepModel) {
+    this.navigate(step.path);
     console.log(step);
   }
 
   // navigate from select - mobile
   public onSelectStep(control: FormControl) {
-    this.stepNavigate(control.value);
+    // this.stepNavigate(control.value);
   }
 
   // navigate from bottom-navbar - next
@@ -166,9 +161,6 @@ export class AppComponent implements OnInit {
     this.routerService.goBack();
   }
 
-  navigate() {
-    console.log('navigate');
-  }
 
   // function called each time the left(end) drawer is closed/opened
   onEndDrawerEmitted() {

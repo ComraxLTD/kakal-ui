@@ -84,6 +84,7 @@ export class StepperLayoutComponent {
         return this.stepperLayoutService.getStepPrefixObs().pipe(
           startWith(this.routerService.getCurrentPath()),
           map((prefix: string) => {
+            
             steps.map((step) => {
               if (step.isActive) {
                 step.unactive();
