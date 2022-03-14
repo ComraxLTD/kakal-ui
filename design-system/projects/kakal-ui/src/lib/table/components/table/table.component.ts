@@ -155,7 +155,6 @@ export class TableComponent<T = any> implements OnInit {
       this.tableStateService.onCreateEvent(this.tableDataSource)
     ).pipe(
       switchMap((tableState) => {
-        console.log(tableState);
         if (tableState) {
           this.tableDataSource.loadTableState({ tableState });
         }

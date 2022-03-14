@@ -17,6 +17,8 @@ import { HeaderCellModel } from '../components/header-cells/models/header-cell.m
 import { Observable, BehaviorSubject } from 'rxjs';
 import { filter, map, pluck } from 'rxjs/operators';
 
+import * as uuid from 'uuid';
+
 export class TableDataSource<T = any> {
   private dataSubject: BehaviorSubject<T[]>;
   private columnSubject: BehaviorSubject<HeaderCellModel<T>[]>;
@@ -39,6 +41,7 @@ export class TableDataSource<T = any> {
       disabled: [],
       activeColumns: [],
       pagination: {
+        id: uuid.v4(),
         itemsPerPage: 10,
         currentPage: 1,
         pages: [10, 20, 30],
