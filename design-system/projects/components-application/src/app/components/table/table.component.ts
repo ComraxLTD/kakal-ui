@@ -39,7 +39,7 @@ import {
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
-  providers: [TableDataSource],
+  providers: [TableDataSource, TableService],
 })
 export class TableComponent implements OnInit {
   @Input()
@@ -236,8 +236,13 @@ export class TableComponent implements OnInit {
       this.setQuestions(this.questions, item, this.optionsMap)
     );
 
-    this.tableDataSource.actions.edit({
-      state: { ...state, group },
+    // this.tableDataSource.actions.edit({
+    //   state: { ...state, group },
+    // });
+
+    this.tableService.dispatchEdit({
+      tableDataSource: this.tableDataSource,
+      rowState: {...state, group},
     });
   }
 

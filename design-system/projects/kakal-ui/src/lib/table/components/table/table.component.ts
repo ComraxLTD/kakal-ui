@@ -151,7 +151,7 @@ export class TableComponent<T = any> implements OnInit {
     return merge(
       initState$,
       this.tableStateService.onCloseEvent(this.tableDataSource),
-      this.tableStateService.onEditEvent(this.tableDataSource),
+      // this.tableStateService.onEditEvent(this.tableDataSource),
       this.tableStateService.onCreateEvent(this.tableDataSource)
     ).pipe(
       switchMap((tableState) => {

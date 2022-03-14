@@ -14,7 +14,7 @@ export class TableStateService {
     oldState: TableState;
     rowState: RowState;
     action: TableActions | FormActions | FetchActions;
-  }) {
+  }): TableState {
     const { oldState, rowState, action } = options;
     const { item, key, group } = rowState;
     let { editing, pagination } = oldState;
@@ -24,7 +24,6 @@ export class TableStateService {
     }
 
     editing.push(item[key]);
-
 
     const tableState = {
       ...oldState,
@@ -39,17 +38,16 @@ export class TableStateService {
     return tableState;
   }
 
-  public onEditEvent(tableDataSource: TableDataSource): Observable<TableState> {
-    return tableDataSource.on(FormActions.EDIT).pipe(
-      map((rowState: RowState) => {
-        const oldState = tableDataSource.getTableState();
-        return this.setRowWithForm({
-          oldState,
-          rowState,
-          action: FormActions.EDIT,
-        });
-      })
-    );
+  public onEditEvent(options: {
+    rowState: RowState;
+    oldState: TableState;
+  }): void {
+    const { oldState, rowState } = options;
+    const tableState = this.setRowWithForm({
+      oldState,
+      rowState,
+      action: FormActions.EDIT,
+    });
   }
 
   public onCreateEvent(
@@ -74,7 +72,6 @@ export class TableStateService {
         const oldState = tableDataSource.getTableState();
         const { item, key } = state;
         const { editing } = oldState;
-
 
         const tableState = {
           ...oldState,
