@@ -236,19 +236,19 @@ export class TableComponent implements OnInit {
       this.setQuestions(this.questions, item, this.optionsMap)
     );
 
-    // this.tableDataSource.actions.edit({
-    //   state: { ...state, group },
-    // });
-
-    this.tableService.dispatchEdit({
-      tableDataSource: this.tableDataSource,
-      rowState: {...state, group},
+    this.tableService.dispatch({
+      rowState: { ...state, group },
+      action: FormActions.EDIT,
     });
   }
 
   public onCancelEvent(state: RowState) {
     const { event } = state;
-    this.tableDataSource.actions.cancel({ state });
+
+    this.tableService.dispatch({
+      rowState: { ...state },
+      action: FormActions.CANCEL,
+    });
 
     if (event == FormActions.CREATE) {
       const data = this.demoStore$.getValue();
@@ -295,7 +295,10 @@ export class TableComponent implements OnInit {
       .subscribe((updateData) => {
         this.demoStore$.next(updateData);
 
-        this.tableDataSource.actions.cancel({ state });
+        this.tableService.dispatch({
+          rowState: { ...state },
+          action: FormActions.CANCEL,
+        });
       });
   }
 
@@ -322,8 +325,10 @@ export class TableComponent implements OnInit {
         const group = this.setGroup(
           this.setQuestions(this.questions, item, this.optionsMap)
         );
-        this.tableDataSource.actions.create({
-          state: { ...state, item, group },
+
+        this.tableService.dispatch({
+          rowState: { ...state, item, group },
+          action: FormActions.CREATE,
         });
       });
   }

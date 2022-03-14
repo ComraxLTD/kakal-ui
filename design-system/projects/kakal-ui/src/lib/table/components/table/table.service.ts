@@ -3,10 +3,11 @@ import { FormActions } from '../../../form/models/form.actions';
 import { TableActions, FetchActions } from '../../models/table-actions';
 import { TableDataSource } from '../../models/table-datasource';
 import { RowState, TableState } from '../../models/table.state';
+import { deleteItem } from './table.helpers';
 
 @Injectable({ providedIn: 'root' })
 export class TableService {
-  constructor() {}
+  constructor(private tableDataSource: TableDataSource) {}
 
   private setRowWithForm(options: {
     oldState: TableState;
@@ -36,27 +37,48 @@ export class TableService {
     return tableState;
   }
 
-  private onEditEvent(options: {
+  public onCancelEvent(prop: {
     rowState: RowState;
     oldState: TableState;
   }): TableState {
-    const { oldState, rowState } = options;
-    const tableState = this.setRowWithForm({
-      oldState,
-      rowState,
-      action: FormActions.EDIT,
-    });
+    const { rowState, oldState } = prop;
+    const { item, key } = rowState;
+    const { editing } = oldState;
+
+    const tableState = {
+      ...oldState,
+      editing: deleteItem({ array: editing, value: item[key] }),
+      action: FormActions.CANCEL,
+    } as TableState;
 
     return tableState;
   }
 
-  public dispatchEdit(options: {
-    tableDataSource: TableDataSource;
-    rowState: RowState;
-  }) {
-    const { tableDataSource, rowState } = options;
-    const oldState = tableDataSource.getTableState();
-    const editState = this.onEditEvent({ oldState, rowState });
-    tableDataSource.loadTableState({ tableState: editState });
+  public dispatch(options: { rowState: RowState; action: FormActions }) {
+    const { rowState, action } = options;
+    const oldState = this.tableDataSource.getTableState();
+
+    switch (action) {
+      case FormActions.EDIT:
+        const editState = this.setRowWithForm({
+          oldState,
+          rowState,
+          action: FormActions.EDIT,
+        });
+        this.tableDataSource.loadTableState({ tableState: editState });
+        break;
+      case FormActions.CREATE:
+        const createState = this.setRowWithForm({
+          oldState,
+          rowState,
+          action: FormActions.CREATE,
+        });
+        this.tableDataSource.loadTableState({ tableState: createState });
+        break;
+      case FormActions.CANCEL:
+        const cancelState = this.onCancelEvent({ oldState, rowState });
+        this.tableDataSource.loadTableState({ tableState: cancelState });
+        break;
+    }
   }
 }

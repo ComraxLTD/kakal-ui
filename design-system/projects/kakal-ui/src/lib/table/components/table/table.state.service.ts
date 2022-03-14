@@ -50,37 +50,38 @@ export class TableStateService {
     });
   }
 
-  public onCreateEvent(
-    tableDataSource: TableDataSource
-  ): Observable<TableState> {
-    return tableDataSource.on(FormActions.CREATE).pipe(
-      map((rowState: RowState) => {
-        const oldState = tableDataSource.getTableState();
-        return this.setRowWithForm({
-          oldState,
-          rowState,
-          action: FormActions.CREATE,
-        });
-      })
-    );
-  }
-  public onCloseEvent(
-    tableDataSource: TableDataSource
-  ): Observable<TableState> {
-    return tableDataSource.on(FormActions.CANCEL).pipe(
-      map((state: RowState) => {
-        const oldState = tableDataSource.getTableState();
-        const { item, key } = state;
-        const { editing } = oldState;
+  // public onCreateEvent(
+  //   tableDataSource: TableDataSource
+  // ): Observable<TableState> {
+  //   return tableDataSource.on(FormActions.CREATE).pipe(
+  //     map((rowState: RowState) => {
+  //       const oldState = tableDataSource.getTableState();
+  //       return this.setRowWithForm({
+  //         oldState,
+  //         rowState,
+  //         action: FormActions.CREATE,
+  //       });
+  //     })
+  //   );
+  // }
 
-        const tableState = {
-          ...oldState,
-          editing: deleteItem({ array: editing, value: item[key] }),
-          action: FormActions.CANCEL,
-        } as TableState;
+  // public onCloseEvent(
+  //   tableDataSource: TableDataSource
+  // ): Observable<TableState> {
+  //   return tableDataSource.on(FormActions.CANCEL).pipe(
+  //     map((state: RowState) => {
+  //       const oldState = tableDataSource.getTableState();
+  //       const { item, key } = state;
+  //       const { editing } = oldState;
 
-        return tableState;
-      })
-    );
-  }
+  //       const tableState = {
+  //         ...oldState,
+  //         editing: deleteItem({ array: editing, value: item[key] }),
+  //         action: FormActions.CANCEL,
+  //       } as TableState;
+
+  //       return tableState;
+  //     })
+  //   );
+  // }
 }
