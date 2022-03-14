@@ -99,7 +99,7 @@ export class TableComponent implements OnInit {
   public pagination: PageState = {
     itemsPerPage: 5,
     currentPage: 1,
-    totalItems : 50
+    totalItems: 50,
   };
 
   constructor(

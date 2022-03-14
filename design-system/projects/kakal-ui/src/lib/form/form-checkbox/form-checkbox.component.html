@@ -1,6 +1,7 @@
 <div fxLayout="column">
   <mat-checkbox
     fxFill
+    [formControl]="control"
     color="primary"
     [labelPosition]="labelPosition"
     [disabled]="control.disabled"

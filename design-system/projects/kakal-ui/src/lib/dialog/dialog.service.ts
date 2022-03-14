@@ -20,10 +20,7 @@ export class DialogService {
   public readonly DISPLAY_MSG_PREFIX = 'thisMessageIsForDisplay';
   public readonly ERROR_MSG = 'מצטערים, קרתה תקלה ולא ניתן לבצע את הפעולה';
 
-  constructor(
-    private dialog: MatDialog,
-    @Inject(MAT_DIALOG_DATA) private data: DialogData
-  ) {}
+  constructor(private dialog: MatDialog) {}
 
   public open(
     dialogRef?: TemplateRef<any>,
@@ -37,7 +34,6 @@ export class DialogService {
   ): MatDialogRef<DialogAlertComponent> {
     const alertConfig = {
       ...config,
-      panelClass: 'kkl-alert-dialog',
     };
 
     return this.dialog.open(DialogAlertComponent, alertConfig);
@@ -45,7 +41,6 @@ export class DialogService {
 
   public openConfirm(options: {
     message: string;
-    title?: string;
     isConfirm?: boolean;
   }): Observable<boolean> {
     const dialogRef: MatDialogRef<DialogAlertComponent> = this.openAlert({
@@ -76,14 +71,16 @@ export class DialogService {
 
   public openError(options: {
     message: string;
+    title?: string;
     config?: MatDialogConfig;
   }): MatDialogRef<DialogAlertComponent> {
-    const { config, message } = options;
+    const { config, message, title } = options;
 
     const configError = {
       ...config,
+      panelClass: 'kkl-alert-dialog',
       data: {
-        title: 'הפעולה לא הושלמה',
+        title: title || 'הפעולה לא הושלמה',
         message:
           message?.indexOf(this.DISPLAY_MSG_PREFIX) >= 0
             ? message?.replace(this.DISPLAY_MSG_PREFIX, '')
@@ -102,6 +99,7 @@ export class DialogService {
     const { config, message, title } = options;
     const configError = {
       ...config,
+      panelClass: 'kkl-alert-dialog',
       data: {
         title: title || 'הפעולה הושלמה בהצלחה!',
         message,

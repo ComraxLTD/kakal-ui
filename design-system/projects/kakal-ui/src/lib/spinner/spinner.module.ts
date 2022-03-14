@@ -5,14 +5,9 @@ import { MaterialModule } from '../angular-material/material.module';
 import { SpinnerComponent } from './spinner.component';
 import { SpinnerService } from './spinner.service';
 
-
 @NgModule({
   declarations: [SpinnerComponent],
-  imports: [
-    CoreModule,
-    CommonModule,
-    MaterialModule,
-  ],
+  imports: [CoreModule, CommonModule, MaterialModule],
   providers: [SpinnerService],
   exports: [SpinnerComponent],
 })
