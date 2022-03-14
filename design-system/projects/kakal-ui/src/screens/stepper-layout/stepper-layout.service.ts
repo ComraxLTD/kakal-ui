@@ -62,7 +62,6 @@ export class StepperLayoutService {
   }
 
   public getDrawerSizeChanged(): Observable<number> {
-    
     return this.drawerSize.asObservable();
   }
 

@@ -1,31 +1,22 @@
-
-
 <div class="collect-seed-order-container" fxFill fxLayout="row-reverse">
   <ng-container>
-    <kkl-stepper-layout
-      (emitEndDrawerBtn)="onEndDrawerEmitted()"
-      [fxFlex]="100"
-      [portion$]="portion$"
-      [drawerSize$]="drawerSize$"
-      [hasTitle]="true"
-      (changeStep)="onChangeStep($event)"
-      (selectStep)="onSelectStep($event)"
-      [drawerBtn]="{ icon: 'bell', label: 'תזכורת' }"
-    >
+    <kkl-stepper-layout (emitEndDrawerBtn)="onEndDrawerEmitted()" [fxFlex]="100" [portion$]="portion$"
+      [drawerSize$]="drawerSize$" [hasTitle]="true" (changeStep)="onChangeStep($event)"
+      (selectStep)="onSelectStep($event)" [drawerBtn]="{ icon: 'bell', label: 'תזכורת' }">
       <kkl-page-headline title [slots]="{thired}"></kkl-page-headline>
       <ng-template #thired let-row="row">
         <kkl-status-bars [status]="status"></kkl-status-bars>
       </ng-template>
-      
+
       <router-outlet content></router-outlet>
-      <!-- <kkl-navbar-bottom
+      <kkl-navbar-bottom
     bottom-navbar
     bottomIcon="tree_top_gradient_mpk"
     [hasNext]="false"
     (previous)="onPrevious()"
     (next)="onNext($event)"
     >
-</kkl-navbar-bottom> -->
+</kkl-navbar-bottom>
       <div endDrawerContent>replace this content with your own feature</div>
     </kkl-stepper-layout>
   </ng-container>
