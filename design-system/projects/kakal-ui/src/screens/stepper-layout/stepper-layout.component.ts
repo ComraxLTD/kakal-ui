@@ -73,6 +73,7 @@ export class StepperLayoutComponent {
 
   ngOnInit(): void {
     this.steps$ = this.setSteps$();
+   
     // this.question$ = this.setSelectQuestion();
     this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
     this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
@@ -81,7 +82,7 @@ export class StepperLayoutComponent {
   private setSteps$(): Observable<CardStepModel[]> {
     return this.stepperLayoutService.getStepsObs().pipe(
       switchMap((steps) => {
-        return this.routerService.getLastPathObs().pipe(
+        return this.routerService.getLastPathObs(steps).pipe(
           map((url: string) => {
             steps.map((step) => {
               if (step.isActive) {
@@ -99,26 +100,6 @@ export class StepperLayoutComponent {
       })
     )
 
-    // return this.stepperLayoutService.getStepPrefixObs().pipe(
-    //   startWith(this.routerService.getCurrentPath()),
-    //   map((prefix: string) => {
-
-    //     steps.map((step) => {
-    //       if (step.isActive) {
-    //         step.unactive();
-    //       }
-    //       if (step.path === prefix) {
-
-    //         this.stepperLayoutService.emitChangeStep(step);
-    //         step.active();
-    //       }
-    //     });
-
-    //     return steps;
-    //   })
-    // );
-    // })
-    // );
   }
 
   // private setSelectQuestion(): Observable<Question> {

@@ -5,6 +5,7 @@ import { DetailsComponent } from './components/details/details.component';
 
 const routes: Routes = [
   {path:'details' ,component:DetailsComponent},
+  {path:'details/:id' ,component:DetailsComponent},
   {path:'bid',component:BidComponent}
 ];
 

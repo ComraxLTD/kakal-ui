@@ -1,21 +1,22 @@
 <div fxFill fxLayout="column">
+  <div fxLayout="row">
+    <kkl-navbar [fxFlex]="portion$ | async"></kkl-navbar>
+  </div>
   <div fxFlex="90">
     <kkl-stepper-layout (emitEndDrawerBtn)="onEndDrawerEmitted()" [portion$]="portion$" [drawerSize$]="drawerSize$"
       [hasTitle]="true" (changeStep)="onChangeStep($event)" (selectStep)="onSelectStep($event)"
       [drawerBtn]="{ icon: 'bell', label: 'תזכורת' }">
-      <kkl-page-headline title [slots]="{thired}"></kkl-page-headline>
-      <ng-template #thired let-row="row">
+      <kkl-page-headline title [slots]="{statusBar}"></kkl-page-headline>
+      <ng-template #statusBar let-row="row">
         <kkl-status-bars [status]="status"></kkl-status-bars>
       </ng-template>
 
       <router-outlet content></router-outlet>
       <div endDrawerContent>replace this content with your own feature</div>
+      <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" [hasNext]="true" [hasSave]="true"
+        [showSave$]="showSave$" (previous)="onPrevious()" (next)="onNext($event)" [stepper]="true">
+      </kkl-navbar-bottom>
     </kkl-stepper-layout>
-  </div>
-  <div fxFlex="10">
-    <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" [hasNext]="true" [hasSave]="true"
-      [showSave$]="showSave$">
-    </kkl-navbar-bottom>
   </div>
 </div>
 <!-- <div fxLayout="column" #container> -->

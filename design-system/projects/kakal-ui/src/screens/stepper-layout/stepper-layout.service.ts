@@ -6,7 +6,6 @@ import { CardStepModel } from '../../lib/cards/card-step/card-step.model';
   providedIn: 'root',
 })
 export class StepperLayoutService {
-  private stepPrefixSubject: Subject<string>;
   private stepperSubject: BehaviorSubject<CardStepModel[]>;
   private showDrawer: BehaviorSubject<boolean>;
   private showEndDrawer: BehaviorSubject<boolean>;
@@ -20,7 +19,6 @@ export class StepperLayoutService {
     this.drawerSize = new BehaviorSubject<number>(1);
     this.showEndDrawer = new BehaviorSubject<boolean>(false);
     this.changeStep = new Subject<CardStepModel>();
-    this.stepPrefixSubject = new Subject<string>();
   }
 
   public setSteps(steps: CardStepModel[]): void {
@@ -32,13 +30,6 @@ export class StepperLayoutService {
   }
   public emitSteps(steps: CardStepModel[]): void {
     this.stepperSubject.next(steps);
-  }
-
-  public getStepPrefixObs(): Observable<string> {
-    return this.stepPrefixSubject.asObservable();
-  }
-  public emitStepPrefix(prefix: string): void {
-    this.stepPrefixSubject.next(prefix);
   }
 
   public emitDisplayDrawer(value: boolean): void {

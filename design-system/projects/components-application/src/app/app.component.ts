@@ -44,7 +44,6 @@ export class AppComponent implements OnInit {
       variant: 'circle',
       type: 'step',
       spacer: true,
-      isActive: true
     }),
     new CardStepModel({
       label: 'בניית הצעת מחיר',
@@ -68,8 +67,8 @@ export class AppComponent implements OnInit {
   ];
   //status model fot the page headline
   status: StatusBarsModel = {
-    label: 'statusBars',
-    authorizedBars: 3,
+    label: 'ממתין לשקילה',
+    authorizedBars: 2,
     totalBars: 6,
   };
 
@@ -82,7 +81,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.showSave$ = of(true);
-
+    
     //add size to page header
     this.headlineItems = this.headlineItems.map((item, index) => ({
       ...item,
@@ -111,7 +110,7 @@ export class AppComponent implements OnInit {
       ))
     );
   }
-  
+
   private getBreakPoints() {
     return this.mergeBreakPoints().pipe(
       map((value: boolean[]) => {
@@ -123,18 +122,10 @@ export class AppComponent implements OnInit {
           this.closedDrawer = 10;
         }
         this.stepperLayoutService.emitDrawerSizeChanged(this.openDrawer);
-      }),
-      switchMap(_ => {
-        return this.stepperLayoutService.getStepPrefixObs().pipe(
-          startWith(this.routerService.getCurrentPath()),
-          map((prefix: string) => {
-            return 100 - this.openDrawer;
-          })
-        );
+        return 100 - this.openDrawer;
       })
     );
   }
-
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
     path = `/${path}`;
@@ -144,7 +135,6 @@ export class AppComponent implements OnInit {
   // navigate from stepper
   public onChangeStep(step: CardStepModel) {
     this.navigate(step.path);
-    console.log(step);
   }
 
   // navigate from select - mobile
@@ -154,7 +144,7 @@ export class AppComponent implements OnInit {
 
   // navigate from bottom-navbar - next
   public onNext(step: CardStepModel) {
-    console.log(step);
+    this.navigate(step.path);
   }
 
   public onPrevious(): void {

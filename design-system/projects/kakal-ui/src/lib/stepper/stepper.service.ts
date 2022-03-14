@@ -10,8 +10,6 @@ export class StepperService {
   constructor() { }
 
   private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {
-    console.log(items);
-
     items.find((item) => {
       if (item[key] === value) {
         item.active();
@@ -42,7 +40,6 @@ export class StepperService {
     key: ListItemKeys,
     path: string
   ): CardStepModel[] {
-    console.log(path);
     return this.setStepsStatus(steps, key, path);
   }
 }
