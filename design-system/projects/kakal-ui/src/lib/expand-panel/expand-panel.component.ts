@@ -12,7 +12,6 @@ export class ExpandPanelComponent implements OnInit {
   @Input() public showHeader: boolean;
   @Input() public disabled: boolean;
   @Input() public expanded: boolean;
-  @Input() public dir: 'rtl' | 'ltr';
 
   public panelOpenState = false;
 
@@ -26,7 +25,6 @@ export class ExpandPanelComponent implements OnInit {
     this.expanded = this.expanded || false;
     this.hideToggle = this.hideToggle || false;
     this.showHeader = this.showHeader || false;
-    this.dir = 'rtl'
   }
 
   public onPanelClosed() {
