@@ -11,10 +11,12 @@ import { KKLTypographyModule } from '../typography/typography.module';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { ButtonComponent } from './components/button/button.component';
-import { KKLStrokedButtonDirective } from './directives/stroked-button';
+import { KKLStrokedButtonDirective } from './directives/stroked-button.directive';
 import { CreateButtonComponent } from './components/create-button/create-button.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLDirectivesModule } from '../directives/directives.module';
+import { KKLActionButtonDirective } from './directives/action-button.directive';
+import { KKLFormButtonDirective } from './directives/form-button.directive';
 @NgModule({
   imports: [
     CommonModule,
@@ -25,13 +27,23 @@ import { KKLDirectivesModule } from '../directives/directives.module';
     FlexLayoutModule,
     KKLIconModule,
     KKLTypographyModule,
-    KKLDirectivesModule
+    KKLDirectivesModule,
   ],
   declarations: [
     ButtonComponent,
     KKLStrokedButtonDirective,
+    KKLFormButtonDirective,
+    KKLActionButtonDirective,
     CreateButtonComponent,
   ],
-  exports: [ButtonComponent, KKLStrokedButtonDirective, CreateButtonComponent],
+  exports: [
+    
+    MatButtonModule,
+    ButtonComponent,
+    KKLStrokedButtonDirective,
+    KKLFormButtonDirective,
+    KKLActionButtonDirective,
+    CreateButtonComponent,
+  ],
 })
 export class KKLButtonModule {}

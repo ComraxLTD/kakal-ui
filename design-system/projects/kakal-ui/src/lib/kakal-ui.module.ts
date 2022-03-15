@@ -165,6 +165,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLFormUploadModule,
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
+    KKLFormSearchModule,
 
     KKLTableModule,
     KKLHeaderCellModule,

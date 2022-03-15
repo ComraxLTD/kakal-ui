@@ -7,7 +7,9 @@ export * from './lib/angular-material/material.module';
 
 export * from './lib/button/components/button/button.component';
 export * from './lib/button/components/create-button/create-button.component';
-export * from './lib/button/directives/stroked-button';
+export * from './lib/button/directives/stroked-button.directive';
+export * from './lib/button/directives/action-button.directive';
+export * from './lib/button/directives/form-button.directive';
 export * from './lib/button/button.module';
 
 export * from './lib/typography/typography.component';
@@ -214,8 +216,7 @@ export * from './lib/directives/underline.directive';
 export * from './lib/directives/border.directive';
 export * from './lib/directives/outside.directive';
 export * from './lib/directives/wizard.directive';
-export * from './lib/directives/action-button.directive';
-export * from './lib/directives/form-button.directive';
+
 export * from './lib/directives/outside-button.directive';
 
 export * from './lib/directives/directives.module';

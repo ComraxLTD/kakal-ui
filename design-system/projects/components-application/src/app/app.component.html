@@ -1,8 +1,8 @@
-<div fxFill fxLayout="column">
+<div fxFill fxLayout="column" fxLayoutGap="1rem">
   <div fxLayout="row">
     <kkl-navbar [fxFlex]="portion$ | async"></kkl-navbar>
   </div>
-  <div fxFlex="90">
+  <!-- <div fxFlex="90">
     <kkl-stepper-layout (emitEndDrawerBtn)="onEndDrawerEmitted()" [portion$]="portion$" [drawerSize$]="drawerSize$"
       [hasTitle]="true" (changeStep)="onChangeStep($event)" (selectStep)="onSelectStep($event)"
       [drawerBtn]="{ icon: 'bell', label: 'תזכורת' }">
@@ -17,37 +17,9 @@
         [showSave$]="showSave$" (previous)="onPrevious()" (next)="onNext($event)" [stepper]="true">
       </kkl-navbar-bottom>
     </kkl-stepper-layout>
-  </div>
+  </div> -->
   <div fxLayout="row" fxLayoutAlign="center center">
-    <app-table fxFlex="90"></app-table>
+    <!-- <app-table fxFlex="90"></app-table> -->
+    <app-form-filter-search></app-form-filter-search>
   </div>
 </div>
-<!-- <div fxLayout="column" #container> -->
-<!--
-<ng-template #testTemplate>
-  <p>test test test test test test test test test test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-  <p>test test test test test test test test test</p>
-</ng-template> -->
-
-<!-- <div fxLayout="row" fxLayoutAlign="center center">
-    <app-table fxFlex="90"></app-table>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <app-table [totalItems]="200" fxFlex="90"></app-table>
-  </div>
-</div> -->
