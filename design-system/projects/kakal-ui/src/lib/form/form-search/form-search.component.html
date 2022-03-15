@@ -28,36 +28,10 @@
       [expanded]="expended"
     >
       <ng-container
-        *ngTemplateOutlet="formTemplate || defaultTemplate; context : { $implicit: {questions, formGroup}}"
+        *ngTemplateOutlet="formSearchDirective.template || defaultTemplate; context : { $implicit: {questions, formGroup}}"
       ></ng-container>
-      <!-- <div fxLayout="row wrap" fxLayoutAlign="start center">
-        <ng-container
-          *ngFor="
-            let item of inputs;
-            let odd = odd;
-            let even = even;
-            let first = first;
-            let last = last;
-            let i = index
-          "
-        >
-          <div
-            [class.input]="true"
-            [class.odd]="odd"
-            [class.even]="even"
-            [fxFlex]="flex"
-          >
-            <kkl-form-autocomplete [control]="control"></kkl-form-autocomplete>
-          </div>
-        </ng-container>
-      </div> -->
     </mat-expansion-panel>
   </mat-accordion>
 </div>
 
-<ng-template #defaultTemplate let-context>
-  <kkl-flex-form
-    [questions]="context.questions"
-    [formGroup]="context.formGroup"
-  ></kkl-flex-form>
-</ng-template>
+<ng-template #defaultTemplate let-context> please enter context </ng-template>

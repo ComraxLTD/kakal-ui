@@ -1,7 +1,8 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
+import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { Question } from '../services/form.service';
+import { KKLFormSearchContentDirective } from './form-search.directive';
 
 @Component({
   selector: 'kkl-form-search',
@@ -10,6 +11,8 @@ import { Question } from '../services/form.service';
   providers: [FormDataSource],
 })
 export class FormSearchComponent implements OnInit {
+
+  @ContentChild(KKLFormSearchContentDirective) formSearchDirective
 
   @Input() public searchControl: FormControl;
   @Input() public expended: boolean = true;

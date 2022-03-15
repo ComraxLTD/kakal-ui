@@ -6,11 +6,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLButtonModule } from '../../button/button.module';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { KKLFlexFormModule } from '../flex-form/flex-form.module';
+import { MatExpansionModule } from '@angular/material/expansion';
+
+import { KKLFormSearchContentDirective } from './form-search.directive';
 
 @NgModule({
-  declarations: [FormSearchComponent],
+  declarations: [FormSearchComponent, KKLFormSearchContentDirective],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -18,9 +19,8 @@ import { KKLFlexFormModule } from '../flex-form/flex-form.module';
     KKLButtonModule,
     KKLTypographyModule,
     KKLIconModule,
-    KKLFlexFormModule,
     KKLFormAutoCompleteModule,
   ],
-  exports: [FormSearchComponent],
+  exports: [FormSearchComponent, KKLFormSearchContentDirective],
 })
 export class KKLFormSearchModule {}

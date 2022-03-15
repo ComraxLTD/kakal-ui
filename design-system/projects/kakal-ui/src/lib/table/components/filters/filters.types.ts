@@ -1,7 +1,7 @@
 export enum FilterType {
   SEARCH = 'search',
-  SELECTED = 'select',
-  MULTI_SELECTED = 'multiSelect',
+  SELECT = 'select',
+  MULTI_SELECT = 'multiSelect',
   DATE_RANGE = 'dateRange',
   NUMBER_RANGE = 'numberRange',
 }

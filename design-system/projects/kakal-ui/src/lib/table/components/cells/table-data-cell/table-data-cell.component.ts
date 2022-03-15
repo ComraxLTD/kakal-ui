@@ -32,4 +32,6 @@ export class TableDataCellComponent implements OnInit {
   constructor(private tableDataSource: TableDataSource) {}
 
   ngOnInit(): void {}
+
+
 }
