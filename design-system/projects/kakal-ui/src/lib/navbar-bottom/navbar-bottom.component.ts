@@ -46,7 +46,7 @@ export class NavbarBottomComponent implements OnInit {
     private navbarBottomService: NavbarBottomService,
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     if (this.stepper) {
@@ -55,7 +55,7 @@ export class NavbarBottomComponent implements OnInit {
       this.changeStep$ = this.stepperLayoutService.getChangeStepObs();
     }
     this.buttonState$ = this.setShowButtons();
-    
+
   }
 
   private setShowButtons() {
@@ -78,7 +78,7 @@ export class NavbarBottomComponent implements OnInit {
     return this.hasSave ? this.showSave$ : of(false);
   }
 
-  private setShowNext(): Observable<boolean> {    
+  private setShowNext(): Observable<boolean> {
     return this.hasNext && this.stepper
       ? merge(this.handleOnNext(), this.onChangeStep(), this.setShowNextStep$())
       : of(this.hasNext);
@@ -98,7 +98,7 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   public onNext(): void {
-    if (this.hasNext && this.stepper) {
+    if (this.hasNext && this.stepper) {      
       this.navbarBottomService.emitNextStep();
     } else {
       this.next.emit();
@@ -112,8 +112,8 @@ export class NavbarBottomComponent implements OnInit {
     const currentStepIndex = currentStep
       ? steps.findIndex((item) => item.path === currentStep.path)
       : steps.findIndex((step) => {
-          return step.isActive;
-        });
+        return step.isActive;
+      });
     return currentStepIndex + 1;
   }
 
@@ -147,14 +147,13 @@ export class NavbarBottomComponent implements OnInit {
   private setShowNextStep$(): Observable<boolean> {
     return this.stepperLayoutService.getStepsObs().pipe(
       switchMap((steps: CardStepModel[]) => {
-        return this.stepperLayoutService.getStepPrefixObs().pipe(
-          startWith(this.routerService.getCurrentPath()),
-          map((prefix: string) => {
-            const index = steps.findIndex((item) => item.path === prefix);
+        return this.routerService.getLastPathObs().pipe(
+          map((url: string) => {
+            const index = steps.findIndex((item) => item.path === url);
             return !(steps.length === index + 1);
           })
-        );
+        )
       })
-    );
+    )
   }
 }

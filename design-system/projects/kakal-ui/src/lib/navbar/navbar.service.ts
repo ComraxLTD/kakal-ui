@@ -29,7 +29,7 @@ export class NavbarService {
   }
 
   public getHeadersObs(): Observable<string> {
-    return this.headersSubject.asObservable().pipe(mergeAll());
+    return this.headersSubject?.asObservable().pipe(mergeAll());
   }
 
   // title section

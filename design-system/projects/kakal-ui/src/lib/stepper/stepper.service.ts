@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class StepperService {
 
-  constructor() {}
+  constructor() { }
 
   private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {
     items.find((item) => {
