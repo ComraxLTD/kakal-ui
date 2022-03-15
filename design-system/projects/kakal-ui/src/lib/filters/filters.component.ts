@@ -19,28 +19,5 @@ export class FiltersComponent implements OnInit {
   }
 
 
-  // public dispatchFilter(action: { filterState: FilterState }): void {
-  //   const { filterState } = action;
-  //   /**
-  //    * @Note: Dvir - we don't need to add an "internal self made redux" solution
-  //    */
-  //   const oldState = this.getTableState();
-  //   const newState = {
-  //     ...oldState,
-  //     filters: {
-  //       ...oldState.filters,
-  //       ...filterState,
-  //     },
-  //     action: FetchActions.FILTER,
-  //   } as TableState;
 
-  //   /**
-  //    * Remove null values
-  //    */
-  //   Object.keys(newState.filters).forEach(
-  //     (k) => newState.filters[k] == null && delete newState.filters[k]
-  //   );
-
-  //   this.loadTableState({ tableState: newState });
-  // }
 }
