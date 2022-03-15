@@ -62,6 +62,7 @@ import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
+import { KKLLayoutModule } from '../screens/layout/layout.module';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -125,7 +126,8 @@ import { OpenMotionsModule } from './open-motions/open-motions.module';
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
-
+    // LAYOUT
+    KKLLayoutModule,
 
     KKLChipsModule
   ],
@@ -186,7 +188,8 @@ import { OpenMotionsModule } from './open-motions/open-motions.module';
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
-
+    // LAYOUT
+    KKLLayoutModule,
     KKLChipsModule
   ],
 })

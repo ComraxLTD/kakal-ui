@@ -1,27 +1,25 @@
-<div fxFill fxLayout="column">
-  <div fxLayout="row">
-    <kkl-navbar [fxFlex]="portion$ | async"></kkl-navbar>
-  </div>
-  <div fxFlex="90">
-    <kkl-stepper-layout (emitEndDrawerBtn)="onEndDrawerEmitted()" [portion$]="portion$" [drawerSize$]="drawerSize$"
-      [hasTitle]="true" (changeStep)="onChangeStep($event)" (selectStep)="onSelectStep($event)"
-      [drawerBtn]="{ icon: 'bell', label: 'תזכורת' }">
-      <kkl-page-headline title [slots]="{statusBar}"></kkl-page-headline>
-      <ng-template #statusBar let-row="row">
-        <kkl-status-bars [status]="status"></kkl-status-bars>
-      </ng-template>
+<div fxFill>
+  <kkl-layout [logos]="logos" [openIcon]="openIcon$ | async" [hideWizardPath]="hideWizardPath"
+    [showStatusPath]="showStatusPath" [wizardCards]="wizardCards" [menu]="menu" [wizard]="wizard">
+    <ng-content></ng-content>
+  </kkl-layout>
 
-      <router-outlet content></router-outlet>
-      <div endDrawerContent>replace this content with your own feature</div>
-      <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" [hasNext]="true" [hasSave]="true"
-        [showSave$]="showSave$" (previous)="onPrevious()" (next)="onNext($event)" [stepper]="true">
-      </kkl-navbar-bottom>
-    </kkl-stepper-layout>
-  </div>
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <app-table fxFlex="90"></app-table>
-  </div>
+  <ng-container *ngIf="path$ | async"></ng-container>
+
+  <ng-template #menu let-menu>
+    <kkl-menu (changePath)="onChangeMenu($event)" [menu]="menu" [menu$]="menu$" type="list">
+    </kkl-menu>
+  </ng-template>
+
+  <ng-template #wizard>
+    <kkl-stepper [steps$]="steps$" [direction]="direction" (changeStep)="onChangeModule($event)">
+    </kkl-stepper>
+  </ng-template>
+
 </div>
+<!-- <div fxLayout="row" fxLayoutAlign="center center">
+    <app-table fxFlex="90"></app-table>
+  </div> -->
 <!-- <div fxLayout="column" #container> -->
 <!--
 <ng-template #testTemplate>
