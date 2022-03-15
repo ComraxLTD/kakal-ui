@@ -1,0 +1,28 @@
+<mat-sidenav-container class="kkl-sidenav-container">
+
+  <mat-sidenav #menuDrawer class="menu" mode="push" position="end">
+    <div class="menu-container" fxLayout="column" fxLayoutAlign="start end">
+      <ng-template *ngTemplateOutlet="
+          menu;
+          context: {
+            $implicit: menuDrawer
+          }
+        "></ng-template>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <kkl-navbar class="mat-elevation-z14" [logos]="logos" [openIcon]="openIcon" (menuToggle)="menuDrawer.toggle()"
+      [show$]="show$"></kkl-navbar>
+
+    <ng-container *ngIf="!(mobile$ | async)">
+      <mat-sidenav appWizard [cards]="wizardCards" class="wizard-sidenav mat-elevation-z4" [opened]="!(wizard$ | async)"
+        mode="side" position="start">
+        <div fxFill class="wizard-container" fxLayout="column">
+          <ng-template *ngTemplateOutlet="wizard"></ng-template>
+        </div>
+      </mat-sidenav>
+    </ng-container>
+
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

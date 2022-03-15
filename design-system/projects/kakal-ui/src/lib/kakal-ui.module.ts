@@ -64,6 +64,8 @@ import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
+import { KKLLayoutModule } from '../screens/layout/layout.module';
+import { KKLDashboarModule} from '../lib/dashboard/dashboard.module';
 
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
@@ -131,8 +133,9 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
-
-
+    // LAYOUT
+    KKLLayoutModule,
+    KKLDashboarModule,
     KKLChipsModule
   ],
   exports: [
@@ -193,7 +196,9 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
-
+    // LAYOUT
+    KKLLayoutModule,
+    KKLDashboarModule,
     KKLChipsModule
   ],
 })
