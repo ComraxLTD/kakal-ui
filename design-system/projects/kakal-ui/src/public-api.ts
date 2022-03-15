@@ -72,6 +72,7 @@ export * from './lib/form/form-autocomplete/form-autocomplete.component';
 
 export * from './lib/form/form-search/form-search.module';
 export * from './lib/form/form-search/form-search.component';
+export * from './lib/form/form-search/form-search.directive';
 
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
