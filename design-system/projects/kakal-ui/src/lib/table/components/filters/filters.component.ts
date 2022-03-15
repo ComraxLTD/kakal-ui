@@ -14,7 +14,7 @@ export class KKLTableFiltersComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  removeFilter(key: string) {
+  public removeFilter(key: string) {
     this.tableDataSource.dispatchFilter({ filterState: { [key]: null } });
   }
 }
