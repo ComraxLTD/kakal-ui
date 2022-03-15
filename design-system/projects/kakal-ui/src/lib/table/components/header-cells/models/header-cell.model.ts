@@ -19,7 +19,7 @@ export class HeaderCellModel<T = any> {
 
   public sortDir?: SortDirection;
 
-  public filterType?: FilterType;
+  // public filterType?: FilterType;
 
   constructor(options?: {
     columnDef: ColumnDef<T>;
@@ -57,6 +57,6 @@ export class HeaderCellModel<T = any> {
 
     this.sortDir = options?.sortDir || '';
 
-    this.filterType = options?.filterType || null;
+    // this.filterType = options?.filterType || null;
   }
 }

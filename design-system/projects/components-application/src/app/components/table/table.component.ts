@@ -52,28 +52,24 @@ export class TableComponent implements OnInit {
     {
       columnDef: 'first_name',
       label: 'first_name',
-      filterType: FilterType.SEARCH,
     },
     {
       columnDef: 'last_name',
       label: 'last_name',
-      filterType: FilterType.MULTI_SELECTED,
     },
     { columnDef: 'phone', label: 'phone' },
     { columnDef: 'email', label: 'email' },
     { columnDef: 'gender', label: 'gender' },
-    { columnDef: 'city', label: 'city', filterType: FilterType.MULTI_SELECTED },
+    { columnDef: 'city', label: 'city' },
     {
       columnDef: 'date',
       label: 'date',
       format: 'date',
-      filterType: FilterType.DATE_RANGE,
     },
     {
       columnDef: 'currency',
       label: 'currency',
       flex: 0.5,
-      filterType: FilterType.NUMBER_RANGE,
     },
   ];
 
