@@ -6,24 +6,14 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { SortDirection } from '@angular/material/sort';
 import { MatListOption } from '@angular/material/list';
 
-import {
-  KKLSelectOption,
-  FormChangeEvent,
-} from '../../../../../form/models/form.types';
+import { KKLSelectOption } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-import {
-  FilterType,
-  FilterChangeEvent,
-  FilterRange,
-} from '../../models/header.types';
-import { map, Observable, filter, of, merge, tap, pluck, pairwise } from 'rxjs';
 
 import {
   setFilterOptionState,
@@ -31,6 +21,13 @@ import {
   setSelectState,
 } from './filter-header.helpers';
 import { TableSelector } from '../../../../models/table.selectors';
+import {
+  FilterType,
+  FilterRange,
+  FilterChangeEvent,
+} from '../../../filters/filters.types';
+
+import { map, Observable, filter, of, merge, pluck } from 'rxjs';
 
 @Component({
   selector: 'kkl-filter-header-cell',

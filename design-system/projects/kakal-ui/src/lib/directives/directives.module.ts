@@ -7,8 +7,6 @@ import { UnderlineDirective } from './underline.directive';
 import { KKLBorderDirective } from './border.directive';
 import { OutsideDirective } from './outside.directive';
 import { WizardDirective } from './wizard.directive';
-import { KKLActionButtonDirective } from './action-button.directive';
-import { KKLFormButtonDirective } from './form-button.directive';
 import { KKLOutsideButtonDirective } from './outside-button.directive';
 import { KKLHoverDirective } from './hover.directive';
 
@@ -22,8 +20,6 @@ import { KKLHoverDirective } from './hover.directive';
     UnderlineDirective,
     VariantDirective,
     WizardDirective,
-    KKLActionButtonDirective,
-    KKLFormButtonDirective,
     KKLOutsideButtonDirective,
 
   ],
@@ -37,8 +33,6 @@ import { KKLHoverDirective } from './hover.directive';
     UnderlineDirective,
     VariantDirective,
     WizardDirective,
-    KKLActionButtonDirective,
-    KKLFormButtonDirective,
     KKLOutsideButtonDirective,
   ],
 })

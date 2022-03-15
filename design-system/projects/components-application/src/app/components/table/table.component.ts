@@ -13,7 +13,6 @@ import {
   FetchState,
   HeaderState,
   ColumnActions,
-  FilterType,
   HeaderCellModel,
   TableActions,
   FormChangeEvent,
