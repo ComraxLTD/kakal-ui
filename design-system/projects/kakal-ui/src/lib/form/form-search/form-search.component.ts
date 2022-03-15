@@ -8,13 +8,13 @@ import { FormControl } from '@angular/forms';
 })
 export class FormSearchComponent implements OnInit {
   @Input() public control: FormControl;
-  @Input() public open: boolean = false;
+  @Input() public expended: boolean = true;
 
   constructor() {}
 
   ngOnInit(): void {}
 
   public onClick() {
-    this.open = !this.open;
+    this.expended = !this.expended;
   }
 }

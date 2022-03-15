@@ -5,14 +5,15 @@ import { KKLFormAutoCompleteModule } from '../form-autocomplete/form-autocomplet
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLIconModule } from '../../icon/icon.module';
-import { MatButtonModule } from '@angular/material/button';
 import { KKLButtonModule } from '../../button/button.module';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [FormSearchComponent],
   imports: [
     CommonModule,
     FlexLayoutModule,
+    MatExpansionModule,
     KKLButtonModule,
     KKLTypographyModule,
     KKLIconModule,
