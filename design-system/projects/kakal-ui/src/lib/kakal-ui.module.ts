@@ -63,6 +63,7 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLLayoutModule } from '../screens/layout/layout.module';
+import { KKLDashboarModule} from '../lib/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -128,7 +129,7 @@ import { KKLLayoutModule } from '../screens/layout/layout.module';
     StepperLayoutModule,
     // LAYOUT
     KKLLayoutModule,
-
+    KKLDashboarModule,
     KKLChipsModule
   ],
   exports: [
@@ -190,6 +191,7 @@ import { KKLLayoutModule } from '../screens/layout/layout.module';
     StepperLayoutModule,
     // LAYOUT
     KKLLayoutModule,
+    KKLDashboarModule,
     KKLChipsModule
   ],
 })

@@ -1,22 +1,5 @@
-<div fxFill>
-  <kkl-layout [logos]="logos" [openIcon]="openIcon$ | async" [hideWizardPath]="hideWizardPath"
-    [showStatusPath]="showStatusPath" [wizardCards]="wizardCards" [menu]="menu" [wizard]="wizard">
-    <ng-content></ng-content>
-  </kkl-layout>
+<kkl-dashboard [cards]="cards"></kkl-dashboard>
 
-  <ng-container *ngIf="path$ | async"></ng-container>
-
-  <ng-template #menu let-menu>
-    <kkl-menu (changePath)="onChangeMenu($event)" [menu]="menu" [menu$]="menu$" type="list">
-    </kkl-menu>
-  </ng-template>
-
-  <ng-template #wizard>
-    <kkl-stepper [steps$]="steps$" [direction]="direction" (changeStep)="onChangeModule($event)">
-    </kkl-stepper>
-  </ng-template>
-
-</div>
 <!-- <div fxLayout="row" fxLayoutAlign="center center">
     <app-table fxFlex="90"></app-table>
   </div> -->
