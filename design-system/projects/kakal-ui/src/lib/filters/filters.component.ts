@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FilterState } from './filters.types';
+import { FiltersService } from './filters.service';
 
 @Component({
   selector: 'kkl-table-filters',
@@ -7,17 +8,13 @@ import { FilterState } from './filters.types';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
+  @Input() filtersState: FilterState;
 
-  @Input() filtersState : FilterState
-
-  constructor() {}
+  constructor(private filterService: FiltersService) {}
 
   ngOnInit(): void {}
 
   public removeFilter(key: string) {
-    // this.tableDataSource.dispatchFilter({ filterState: { [key]: null } });
+    this.filterService.dispatch({ filterState: { [key]: null } });
   }
-
-
-
 }
