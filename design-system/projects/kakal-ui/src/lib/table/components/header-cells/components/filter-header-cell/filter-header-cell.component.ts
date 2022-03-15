@@ -54,8 +54,8 @@ export class FilterHeaderCellComponent implements OnInit {
 
   ngOnInit(): void {
     if (
-      this.filterType === FilterType.SELECTED ||
-      this.filterType === FilterType.MULTI_SELECTED
+      this.filterType === FilterType.SELECT||
+      this.filterType === FilterType.MULTI_SELECT
     ) {
       this.options$ = this.initOptionsWithState();
     }

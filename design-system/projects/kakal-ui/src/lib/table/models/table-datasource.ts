@@ -210,49 +210,4 @@ export class TableDataSource<T = any> {
       })
     );
   }
-
-  // private getRowStateByEvent(event) {
-  //   return this.rowState
-  //     .asObservable()
-  //     .pipe(filter((rowState: RowState) => rowState.event === event));
-  // }
-
-  // private createAction(prop: { state: RowState }, event?: FormActions) {
-  //   const { state } = prop;
-  //   this.rowState.next({ ...state, event });
-  // }
-
-  // public on(event: FormActions | TableActions): Observable<RowState<T>> {
-  //   return this.getRowStateByEvent(event);
-  // }
-
-  // // main actions object
-  // public actions = {
-  //   // add: (prop: { state: RowState }) => this.createAction(prop, 'add'),
-
-  //   create: (prop: { state: RowState }) =>
-  //     this.createAction(prop, FormActions.CREATE),
-
-  //   save: (prop: { state: RowState }) =>
-  //     this.createAction(prop, FormActions.SUBMIT),
-
-  //   // form: (prop: { state: RowState }) => this.createAction(prop, 'form'),
-
-  //   edit: (prop: { state: RowState }) =>
-  //     this.createAction(prop, FormActions.EDIT),
-
-  //   cancel: (prop: { state: RowState }) =>
-  //     this.createAction(prop, FormActions.CANCEL),
-
-  //   // close: (prop: { state: RowState }) =>
-  //   //   this.createAction(prop, FormActions.CLOSE),
-
-  //   // expand: (prop: { state: RowState }) => this.createAction(prop, 'expand'),
-
-  //   delete: (prop: { state: RowState }) =>
-  //     this.createAction(prop, FormActions.DELETE),
-
-  //   reset: (prop: { state: RowState }) =>
-  //     this.createAction(prop, FormActions.DEFAULT),
-  // };
 }

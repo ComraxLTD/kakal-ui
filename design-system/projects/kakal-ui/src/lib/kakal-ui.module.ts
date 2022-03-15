@@ -18,8 +18,9 @@ import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { KKLMenuModule } from './menu/menu.module';
 import { KKLStepTitleModule } from './step-title/step-title.module';
 
-import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
 import { KKLFormModule } from './form/form/form.module';
+import { KKLFlexFormModule } from './form/flex-form/flex-form.module';
+import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
@@ -96,6 +97,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
 
     // FORMS MODULES
     KKLFormModule,
+    KKLFlexFormModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
     KKLFormDateModule,
@@ -158,6 +160,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLExpandPanelModule,
 
     KKLFormModule,
+    KKLFlexFormModule,
     KKLFormCheckboxModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
