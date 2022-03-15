@@ -10,7 +10,6 @@ import { CardDashboardModel } from '../cards/card-dashboard/card-dashboard.model
 })
 export class DashboardComponent implements OnInit {
 
-  @Input() public prefix: string;
   @Input() public cols: number;
   @Input() public rows: number;
   @Input() public moduleTitle: string;
@@ -26,7 +25,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.md$ = this.breakpointService.isMobile();
-    this.cols = this.cols ||  this.cards.length /2
+    this.cols = this.cols || this.cards.length / 2
     this.rows = this.rows || 2
   }
 
