@@ -22,50 +22,51 @@ export * from './lib/open-motions/open-motions.component';
 export * from './lib/open-motions/open-motions.module';
 export * from './lib/open-motions/open-motions.service';
 
-
-
 // form exports
 
 export * from './lib/form/models/form-datasource';
 export * from './lib/form/models/form.types';
 
-export * from './lib/form/form/form.component';
 export * from './lib/form/form/form.module';
+export * from './lib/form/form/form.component';
 
-export * from './lib/form/form-counter/form-counter.component';
 export * from './lib/form/form-counter/form-counter.module';
+export * from './lib/form/form-counter/form-counter.component';
 
-export * from './lib/form/form-upload/form-upload.component';
 export * from './lib/form/form-upload/form-upload.module';
+export * from './lib/form/form-upload/form-upload.component';
 
-export * from './lib/form/form-date/form-date.component';
 export * from './lib/form/form-date/form-date.module';
+export * from './lib/form/form-date/form-date.component';
 
-export * from './lib/form/form-checkbox/form-checkbox.component';
 export * from './lib/form/form-checkbox/form-checkbox.module';
+export * from './lib/form/form-checkbox/form-checkbox.component';
 
-export * from './lib/form/form-checkbox-group/form-checkbox-group.component';
 export * from './lib/form/form-checkbox-group/form-checkbox-group.module';
+export * from './lib/form/form-checkbox-group/form-checkbox-group.component';
 
-export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.module';
+export * from './lib/form/form-input/form-input.component';
 export * from './lib/form/form-input/form-input.service';
 
 export * from './lib/form/form-texteditor/form-texteditor.module';
 export * from './lib/form/form-texteditor/form-texteditor.component';
 
-export * from './lib/form/form-select/form-select.component';
 export * from './lib/form/form-select/form-select.module';
+export * from './lib/form/form-select/form-select.component';
 
-export * from './lib/form/form-radio/form-radio.component';
 export * from './lib/form/form-radio/form-radio.module';
+export * from './lib/form/form-radio/form-radio.component';
 
-export * from './lib/form/form-currency/form-currency.component';
 export * from './lib/form/form-currency/form-currency.module';
+export * from './lib/form/form-currency/form-currency.component';
 export * from './lib/form/form-currency/form-currency.service';
 
-export * from './lib/form/form-autocomplete/form-autocomplete.component';
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
+export * from './lib/form/form-autocomplete/form-autocomplete.component';
+
+export * from './lib/form/form-search/form-search.module';
+export * from './lib/form/form-search/form-search.component';
 
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
@@ -87,7 +88,6 @@ export * from './lib/form/models/question.model';
 // ------------------------------------------------------------------------------------------
 // TABLE EXPORTS
 // ------------------------------------------------------------------------------------------
-
 
 // TABLE
 export * from './lib/table/components/table/table.module';
@@ -123,7 +123,6 @@ export * from './lib/table/components/pagination/pagination.component';
 export * from './lib/table/components/pagination/pagination.directive';
 export * from './lib/table/components/pagination/url-pagination.directive';
 export * from './lib/table/components/pagination/pagination.types';
-
 
 export * from './lib/table/directives/cell.directive';
 
@@ -276,6 +275,5 @@ export * from './screens/stepper-layout/stepper-layout.service';
 
 // chips
 export * from './lib/chips/chip/chip.component';
-export * from './lib/chips/chip-list/chip-list.component'
+export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
-
