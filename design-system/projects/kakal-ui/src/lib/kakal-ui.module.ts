@@ -27,6 +27,9 @@ import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
 import { KKLFormUploadModule } from './form/form-upload/form-upload.module';
 import { KKLFormCheckboxGroupModule } from './form/form-checkbox-group/form-checkbox-group.module';
+import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module';
+import { KKLFormSearchModule } from '../lib/form/form-search/form-search.module';
+import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 
 import { KKLTableModule } from './table/components/table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
@@ -42,7 +45,6 @@ import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
-import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 import { KKLCardDashboardModule } from './cards/card-dashboard/card-dashboard.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
@@ -50,18 +52,21 @@ import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
-import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module';
+
+
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { StepperModule } from './stepper/stepper.module';
 import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
-import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
+
+
+import { FormExampleComponent } from './examples/form-example/form-example.component';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -100,6 +105,7 @@ import { OpenMotionsModule } from './open-motions/open-motions.module';
     KKLFormCheckboxModule,
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
+    KKLFormSearchModule,
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,

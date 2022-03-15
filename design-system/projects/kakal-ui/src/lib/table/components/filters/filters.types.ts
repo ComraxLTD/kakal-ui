@@ -12,10 +12,10 @@ export interface FilterRange<T = any> {
   type?: FilterType;
 }
 
-export interface FilterChangeEvent<T = any> {
+export interface FilterChangeEvent<T = FilterType> {
   key: string;
   label?: string;
-  value?: T;
-  filterType?: FilterType;
+  value?: any;
+  filterType?: T;
   format?: string;
 }
