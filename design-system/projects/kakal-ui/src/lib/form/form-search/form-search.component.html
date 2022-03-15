@@ -6,8 +6,14 @@
     ></kkl-form-autocomplete>
 
     <div kkl-form-button>
-      <button mat-icon-button kkl-action-button (click)="onClick()">
+      <button
+        [disableRipple]="true"
+        mat-icon-button
+        kkl-action-button
+        (click)="onClick()"
+      >
         <kkl-icon
+          [size]="3"
           [key]="
             expended ? 'keyboard_double_arrow_up' : 'keyboard_double_arrow_down'
           "
@@ -21,6 +27,27 @@
       [class.mat-elevation-z0]="true"
       [expanded]="expended"
     >
+      <div fxLayout="row wrap" fxLayoutAlign="start center">
+        <ng-container
+          *ngFor="
+            let item of inputs;
+            let odd = odd;
+            let even = even;
+            let first = first;
+            let last = last;
+            let i = index
+          "
+        >
+          <div
+            [class.input]="true"
+            [class.odd]="odd"
+            [class.even]="even"
+            [fxFlex]="flex"
+          >
+            <kkl-form-autocomplete [control]="control"></kkl-form-autocomplete>
+          </div>
+        </ng-container>
+      </div>
     </mat-expansion-panel>
   </mat-accordion>
 </div>
