@@ -37,7 +37,9 @@ export class FlexFormComponent implements OnInit {
 
   constructor(private formDataSource: FormDataSource) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.flex = 100 / this.inRow;
+  }
 
   public onSubmit() {
     this.submitEvent.emit(this.formGroup);

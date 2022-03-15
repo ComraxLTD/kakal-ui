@@ -27,9 +27,7 @@ export class FormSearchComponent implements OnInit {
   public inputs = [1, 3, 4, 5, 5, 6, 6, 6, 7, 7, 8];
 
   ngOnInit(): void {
-    console.log(this.questions)
-    console.log(this.formGroup)
-    this.flex = 100 / this.inRow;
+
   }
 
   public onClick() {

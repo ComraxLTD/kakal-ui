@@ -1,8 +1,4 @@
-<form
-  fxLayout="row wrap"
-  fxLayoutAlign="start center"
-  [formGroup]="formGroup"
->
+<form fxLayout="row wrap" fxLayoutAlign="start center" [formGroup]="formGroup">
   <ng-container *ngFor="let question of questions; let index = index">
     <ng-container [ngSwitch]="question.type">
       <div
@@ -33,7 +29,6 @@
           <kkl-form-checkbox
             [control]="formGroup.controls[question.key]"
             [key]="question?.key"
-            [options]="question?.options"
           ></kkl-form-checkbox>
         </ng-container>
 
@@ -92,7 +87,6 @@
             [theme]="question?.theme"
             [appearance]="question?.appearance"
             [cleave]="question?.cleave"
-            [gridProps]="question?.gridProps"
             [icon]="question?.icon"
             [label]="question?.label"
             [index]="index"
