@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { filter, map, Observable, skip, tap } from 'rxjs';
+import { FilterState } from '../../../../../kakal-ui/src/lib/table/models/table.state';
 import {
   FilterChangeEvent,
   FilterType,
-} from '../../../../../kakal-ui/src/lib/table/components/filters/filters.types';
-import { FilterState } from '../../../../../kakal-ui/src/lib/table/models/table.state';
-import {
-  ControlType,
   FormService,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
+import { filter, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',

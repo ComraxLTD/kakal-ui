@@ -8,4 +8,4 @@ import { KKLChipsModule } from '../chips/chips.module';
   declarations: [FiltersComponent],
   exports: [FiltersComponent],
 })
-export class KKLIconModule {}
+export class KKLFiltersModule {}

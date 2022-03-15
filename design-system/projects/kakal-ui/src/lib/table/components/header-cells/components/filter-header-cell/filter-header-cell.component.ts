@@ -25,7 +25,7 @@ import {
   FilterType,
   FilterRange,
   FilterChangeEvent,
-} from '../../../filters/filters.types';
+} from '../../../../../filters/filters.types';
 
 import { map, Observable, filter, of, merge, pluck } from 'rxjs';
 

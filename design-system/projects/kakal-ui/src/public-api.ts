@@ -134,6 +134,13 @@ export * from './lib/table/directives/cell.directive';
 
 // -------------------------------------------------------------------------------------------------------
 
+
+// filters
+
+export * from './lib/filters/filters.module'
+export * from './lib/filters/filters.component'
+export * from './lib/filters/filters.types'
+
 //menu
 export * from './lib/menu-item/menu-item.module';
 export * from './lib/menu-item/menu-item.component';

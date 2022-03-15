@@ -1,4 +1,4 @@
-<kkl-chip-list *ngIf="filters">
+<kkl-chip-list *ngIf="filtersState">
   <kkl-chip
     *ngFor="let item of filters | keyvalue"
     (removed)="removeFilter(item.key)"
