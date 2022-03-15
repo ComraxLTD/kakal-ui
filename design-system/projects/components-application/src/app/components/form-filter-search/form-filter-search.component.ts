@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { FilterState } from '../../../../../kakal-ui/src/lib/table/models/table.state';
 import {
   FilterChangeEvent,
+  FilterState,
   FilterType,
   FormService,
   Question,

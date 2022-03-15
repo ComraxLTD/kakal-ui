@@ -1,11 +1,3 @@
-import {
-  HeaderState,
-  FetchState,
-  FilterState,
-  RowState,
-  SortState,
-  TableState,
-} from './table.state';
 
 import { FormDataSource } from '../../form/models/form-datasource';
 import { FormActions } from '../../form/models/form.actions';
@@ -13,6 +5,7 @@ import { FetchActions, TableActions } from '../models/table-actions';
 import { TableSelector } from '../models/table.selectors';
 import { ColumnActions } from '../models/table-actions';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
+import { HeaderState, FetchState, SortState, TableState } from './table.state';
 
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, pluck } from 'rxjs/operators';
@@ -31,7 +24,6 @@ export class TableDataSource<T = any> {
 
   private formDataSource: FormDataSource;
 
-
   constructor() {
     this.dataSubject = new BehaviorSubject<T[]>([]);
     this.columnSubject = new BehaviorSubject<HeaderCellModel<T>[]>([]);
@@ -48,7 +40,6 @@ export class TableDataSource<T = any> {
         pages: [10, 20, 30],
       },
       forms: {},
-      filters: {},
       action: FormActions.DEFAULT,
     });
 
@@ -59,7 +50,6 @@ export class TableDataSource<T = any> {
     });
 
     this.formDataSource = new FormDataSource();
-
   }
 
   public load(data: T[], columns?: HeaderCellModel<T>[]): void {
@@ -165,30 +155,6 @@ export class TableDataSource<T = any> {
   /**
    * To remove a key send a null value
    */
-  public dispatchFilter(action: { filterState: FilterState }): void {
-    const { filterState } = action;
-    /**
-     * @Note: Dvir - we don't need to add an "internal self made redux" solution
-     */
-    const oldState = this.getTableState();
-    const newState = {
-      ...oldState,
-      filters: {
-        ...oldState.filters,
-        ...filterState,
-      },
-      action: FetchActions.FILTER,
-    } as TableState;
-
-    /**
-     * Remove null values
-     */
-    Object.keys(newState.filters).forEach(
-      (k) => newState.filters[k] == null && delete newState.filters[k]
-    );
-
-    this.loadTableState({ tableState: newState });
-  }
 
   public listenFetchState(): Observable<FetchState> {
     return this.tableState.asObservable().pipe(
@@ -205,7 +171,6 @@ export class TableDataSource<T = any> {
           itemsPerPage: tableState.pagination.itemsPerPage,
           next: tableState.pagination.currentPage,
           ...tableState.sort,
-          ...tableState.filters,
         } as FetchState;
       })
     );
