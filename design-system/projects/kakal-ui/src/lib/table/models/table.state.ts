@@ -8,8 +8,9 @@ import { QuestionGroupModel } from '../../form/models/question-group.model';
 import { FormActions } from '../../form/models/form.actions';
 import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
-import { ColumnDef, FilterChangeEvent } from '../components/header-cells/models/header.types';
+import { ColumnDef } from '../components/header-cells/models/header.types';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
+import { FilterChangeEvent } from '../components/filters/filters.types';
 
 export interface TableState {
   selected?: { [key: string]: boolean };

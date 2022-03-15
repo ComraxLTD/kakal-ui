@@ -1,5 +1,5 @@
 import { SortDirection } from '@angular/material/sort';
-import { ColumnDef, FilterType, HeaderType } from './header.types';
+import { ColumnDef, HeaderType } from './header.types';
 
 export class HeaderCellModel<T = any> {
   public columnDef: ColumnDef<T>;
@@ -37,8 +37,6 @@ export class HeaderCellModel<T = any> {
     disableSelect?: boolean;
 
     sortDir?: SortDirection;
-
-    filterType?: FilterType;
   }) {
     this.columnDef = options.columnDef;
     this.label = options?.label || '';
@@ -57,6 +55,5 @@ export class HeaderCellModel<T = any> {
 
     this.sortDir = options?.sortDir || '';
 
-    // this.filterType = options?.filterType || null;
   }
 }
