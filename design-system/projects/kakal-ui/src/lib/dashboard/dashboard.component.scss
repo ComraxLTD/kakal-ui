@@ -1,0 +1,25 @@
+@use "../../styles/variables" as main;
+
+:host {
+  width: 100%;
+  height: 100%;
+}
+
+div {
+  height: main.$content-height;
+}
+
+div.container {
+  height: inherit;
+  width: 40%;
+}
+
+kkl-dashboard-card {
+  width: 100;
+  height: 100%;
+}
+
+.card {
+  padding: 1.6rem;
+  box-sizing: border-box;
+}
