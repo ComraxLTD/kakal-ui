@@ -1,65 +1,112 @@
-<form  fxLayout="row wrap" fxLayoutAlign="start center"  [formGroup]="group.formGroup">
+<form
+  fxLayout="row wrap"
+  fxLayoutAlign="start center"
+  [formGroup]="group.formGroup"
+>
   <ng-container *ngFor="let question of group.questions; let index = index">
     <ng-container [ngSwitch]="question.type">
-             <div
-            [class.input]="true"
-            [class.odd]="odd"
-            [class.even]="even"
-            [fxFlex]="flex"
-          >
-
+      <div
+        [class.input]="true"
+        [class.odd]="odd"
+        [class.even]="even"
+        [fxFlex]="flex"
+      >
         <!-- SELECT INPUT SECTION -->
         <ng-container *ngSwitchCase="'select'">
-            <kkl-form-select fxFlex="100" [control]="group.formGroup.controls[question.key]" [key]="question?.key"
-              [multi]="question?.multi" [options]="question?.options" [index]="index"
-              [placeHolder]="question?.placeHolder" [theme]="question?.theme" [appearance]="question?.appearance"
-              (focus)="onFocus($event)" [optionsSlot]="optionsSlot" (selected)="onSelect($event)"></kkl-form-select>
+          <kkl-form-select
+            fxFlex="100"
+            [control]="group.formGroup.controls[question.key]"
+            [key]="question?.key"
+            [multi]="question?.multi"
+            [options]="question?.options"
+            [index]="index"
+            [placeHolder]="question?.placeHolder"
+            [theme]="question?.theme"
+            [appearance]="question?.appearance"
+            (focus)="onFocus($event)"
+            [optionsSlot]="optionsSlot"
+            (selected)="onSelect($event)"
+          ></kkl-form-select>
         </ng-container>
+
         <!-- CHECKBOX INPUT SECTION -->
         <ng-container *ngSwitchCase="'checkbox'">
-            <kkl-form-checkbox fxFlex="100" [control]="group.formGroup.controls[question.key]" [key]="question?.key"
-              [options]="question?.options"></kkl-form-checkbox>
+          <kkl-form-checkbox
+            fxFlex="100"
+            [control]="group.formGroup.controls[question.key]"
+            [key]="question?.key"
+            [options]="question?.options"
+          ></kkl-form-checkbox>
         </ng-container>
 
         <!-- RADIO BUTTON INPUT SECTION -->
         <ng-container *ngSwitchCase="'radio'">
-            <kkl-form-radio fxFlex="100" [control]="group.formGroup.controls[question.key]" [key]="question?.key"
-              [options]="question?.options"></kkl-form-radio>
+          <kkl-form-radio
+            fxFlex="100"
+            [control]="group.formGroup.controls[question.key]"
+            [key]="question?.key"
+            [options]="question?.options"
+          ></kkl-form-radio>
         </ng-container>
 
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'date'">
-            <kkl-form-date fxFlex="100" [control]="group.formGroup.controls[question.key]" [key]="question?.key"
-              [range]="question?.range" [placeHolder]="question?.placeHolder" [maxDate]="question?.maxDate"
-              [minDate]="question?.minDate" [appearance]="question?.appearance" [index]="index"
-              (focus)="onFocus($event)">
-            </kkl-form-date>
+          <kkl-form-date
+            fxFlex="100"
+            [control]="group.formGroup.controls[question.key]"
+            [key]="question?.key"
+            [range]="question?.range"
+            [placeHolder]="question?.placeHolder"
+            [maxDate]="question?.maxDate"
+            [minDate]="question?.minDate"
+            [appearance]="question?.appearance"
+            [index]="index"
+            (focus)="onFocus($event)"
+          >
+          </kkl-form-date>
         </ng-container>
 
         <!-- FILE INPUT SECTION -->
         <ng-container *ngSwitchCase="'file'">
-            <kkl-form-upload fxFlex="100" [label]="question?.label" [multi]="question?.multi"
-              [formControl]="group.formGroup.controls[question.key]" [index]="index"
-              (fileChange)="onFileChange($event)"></kkl-form-upload>
+          <kkl-form-upload
+            fxFlex="100"
+            [label]="question?.label"
+            [multi]="question?.multi"
+            [formControl]="group.formGroup.controls[question.key]"
+            [index]="index"
+            (fileChange)="onFileChange($event)"
+          ></kkl-form-upload>
         </ng-container>
 
         <!-- CURRENCY INPUT SECTION -->
         <ng-container *ngSwitchCase="'currency'">
-            <kkl-form-currency fxFlex="100" [control]="group.formGroup.controls[question.key]"
-              [validations]="question?.validations" [index]="index">
-            </kkl-form-currency>
+          <kkl-form-currency
+            fxFlex="100"
+            [control]="group.formGroup.controls[question.key]"
+            [validations]="question?.validations"
+            [index]="index"
+          >
+          </kkl-form-currency>
         </ng-container>
 
         <!-- DEFAULT INPUT -->
         <ng-container *ngSwitchDefault>
-                <kkl-form-input [control]="group.formGroup.controls[question.key]" [key]="question?.key"
-                  [placeHolder]="question?.placeHolder" [theme]="question?.theme" [appearance]="question?.appearance"
-                  [cleave]="question?.cleave" [gridProps]="question?.gridProps" [icon]="question?.icon"
-                  [label]="question?.label" [index]="index" (focus)="onFocus($event)"
-                  [controlType]="question?.controlType">
+          <kkl-form-input
+            [control]="group.formGroup.controls[question.key]"
+            [key]="question?.key"
+            [placeHolder]="question?.placeHolder"
+            [theme]="question?.theme"
+            [appearance]="question?.appearance"
+            [cleave]="question?.cleave"
+            [gridProps]="question?.gridProps"
+            [icon]="question?.icon"
+            [label]="question?.label"
+            [index]="index"
+            (focus)="onFocus($event)"
+            [controlType]="question?.controlType"
+          ></kkl-form-input>
         </ng-container>
-        </div>
-      </ng-container>
+      </div>
     </ng-container>
-
+  </ng-container>
 </form>

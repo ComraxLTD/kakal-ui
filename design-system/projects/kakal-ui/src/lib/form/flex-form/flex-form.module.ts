@@ -19,7 +19,6 @@ import { KKLFormAutoCompleteModule } from '../form-autocomplete/form-autocomplet
 import { KKLFormRadioModule } from '../form-radio/form-radio.module';
 import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.module';
 import { KKLFormCheckboxModule } from '../form-checkbox/form-checkbox.module';
-import { KKLFormCheckboxGroupModule } from '../form-checkbox-group/form-checkbox-group.module';
 
 import { FlexFormComponent } from './flex-form.component';
 
@@ -27,15 +26,7 @@ import { FlexFormComponent } from './flex-form.component';
   declarations: [FlexFormComponent],
   imports: [
     ReactiveFormsModule,
-    MatMenuModule,
-    MatListModule,
-    MatSelectModule,
-    MatFormFieldModule,
-    MatIconModule,
     BrowserAnimationsModule,
-    MatInputModule,
-    KKLIconModule,
-    MatGridListModule,
     FlexLayoutModule,
 
     // form components
