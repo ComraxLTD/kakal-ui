@@ -1,10 +1,5 @@
 import { TableDataSource } from '../../../../models/table-datasource';
 import { TableState } from '../../../../models/table.state';
-import {
-  FilterChangeEvent,
-  FilterRange,
-  FilterType,
-} from '../../models/header.types';
 import { TableActions, FetchActions } from '../../../../models/table-actions';
 import { KKLSelectOption } from '../../../../../form/models/form.types';
 import {
@@ -12,16 +7,15 @@ import {
   map,
   filter,
   merge,
-  tap,
   switchMap,
   pluck,
   pairwise,
 } from 'rxjs';
 import { TableSelector } from '../../../../models/table.selectors';
+import { FilterRange, FilterType } from '../../../filters/filters.types';
 
 export function getHeaderFilterState(
   tableState$: Observable<TableState>,
-  filterSelectors: FilterType[],
   key: string
 ) {
   return tableState$.pipe(
@@ -65,10 +59,9 @@ export function setSelectState(
   tableDataSource: TableDataSource,
   key: string
 ): Observable<KKLSelectOption[]> {
-  const type = [FilterType.SELECTED, FilterType.MULTI_SELECTED];
   const { initState$, updateState$, removeState$ } = getState(tableDataSource);
-  const initSelectState$ = getHeaderFilterState(initState$, type, key);
-  const updateSelectState$ = getHeaderFilterState(updateState$, type, key);
+  const initSelectState$ = getHeaderFilterState(initState$, key);
+  const updateSelectState$ = getHeaderFilterState(updateState$, key);
 
   return merge(initSelectState$, updateSelectState$);
 }
@@ -100,8 +93,7 @@ export function setRangeState<T = Date | number>(
   type: FilterType
 ): Observable<FilterRange<T>> {
   const { initState$, updateState$, removeState$ } = getState(tableDataSource);
-  const initRangeState$ = getHeaderFilterState(initState$, [type], key);
-  // const updateSelectState$ = getHeaderFilterState(updateState$, [type], key);
+  const initRangeState$ = getHeaderFilterState(initState$, key);
   const removeRangeState$ = getRemoveState(removeState$, key);
 
   return merge(initRangeState$, removeRangeState$).pipe(

@@ -11,9 +11,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableComponent } from './components/table/table.component';
 import { DetailsComponent } from './components/details/details.component';
 import { BidComponent } from './components/bid/bid.component';
+import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 
 @NgModule({
-  declarations: [AppComponent, TableComponent, DetailsComponent, BidComponent],
+  declarations: [AppComponent, TableComponent, DetailsComponent, BidComponent, FormFilterSearchComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

@@ -5,8 +5,8 @@ import {
   QuestionGroupModel,
 } from '../../../../../form/models/form.types';
 import { FormService } from '../../../../../form/services/form.service';
-import { FilterRange, FilterType } from '../../models/header.types';
 import { filter, Observable, skip, Subject, take, takeUntil } from 'rxjs';
+import { FilterRange, FilterType } from '../../../filters/filters.types';
 
 @Component({
   selector: 'kkl-filter-range-cell',

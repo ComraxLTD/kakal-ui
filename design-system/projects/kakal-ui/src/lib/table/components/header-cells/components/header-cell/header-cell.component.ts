@@ -1,18 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  TemplateRef,
-  ViewChild,
-} from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { FormChangeEvent } from '../../../../../form/models/form.types';
-import { TableDataSource } from '../../../../models/table-datasource';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { HeaderCellModel } from '../../models/header-cell.model';
-import { FilterChangeEvent, FilterRange } from '../../models/header.types';
 
 @Component({
   selector: 'kkl-header-cell',
