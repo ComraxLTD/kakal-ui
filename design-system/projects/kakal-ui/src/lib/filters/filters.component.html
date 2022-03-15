@@ -1,6 +1,6 @@
 <kkl-chip-list *ngIf="filtersState">
   <kkl-chip
-    *ngFor="let item of filters | keyvalue"
+    *ngFor="let item of filtersState | keyvalue"
     (removed)="removeFilter(item.key)"
   >
     <ng-container [ngSwitch]="item.value.filterType">

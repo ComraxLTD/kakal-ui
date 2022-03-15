@@ -13,7 +13,9 @@ export class FiltersComponent implements OnInit {
 
   constructor(private filterService: FiltersService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+
+  }
 
   public removeFilter(key: string) {
     this.filterService.dispatch({ filterState: { [key]: null } });

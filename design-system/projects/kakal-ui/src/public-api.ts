@@ -140,6 +140,7 @@ export * from './lib/table/directives/cell.directive';
 export * from './lib/filters/filters.module'
 export * from './lib/filters/filters.component'
 export * from './lib/filters/filters.types'
+export * from './lib/filters/filters.service'
 
 //menu
 export * from './lib/menu-item/menu-item.module';

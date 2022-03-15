@@ -9,5 +9,8 @@
     </kkl-form-search>
   </div>
   <div>
+    <ng-container *ngIf="filtersState$ | async as filtersState">
+      <kkl-filters [filtersState]="filtersState"></kkl-filters>
+    </ng-container>
   </div>
 </div>

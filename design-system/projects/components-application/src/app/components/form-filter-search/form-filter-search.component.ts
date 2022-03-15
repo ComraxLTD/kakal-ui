@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {
   FilterChangeEvent,
+  FiltersService,
   FilterState,
   FilterType,
   FormService,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
-import { filter, map, Observable } from 'rxjs';
+import { filter, map, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
+  providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
   public control: FormControl;
@@ -29,14 +31,24 @@ export class FormFilterSearchComponent implements OnInit {
 
   public searchGroup: QuestionGroupModel;
 
-  constructor(private formService: FormService) {}
+  public filtersState$: Observable<FilterState>;
+
+  constructor(
+    private filterService: FiltersService,
+    private formService: FormService
+  ) {}
 
   ngOnInit(): void {
     this.control = new FormControl();
 
     this.searchGroup = this.setGroup(this.questions);
 
-    this.getFiltersMap().subscribe((filters) => console.log(filters));
+    this.filtersState$ = this.getFiltersMap().pipe(
+      switchMap((filterState) => {
+        this.filterService.dispatch({ filterState });
+        return this.filterService.listen();
+      })
+    );
   }
 
   private setGroup(questions: Question[]) {
