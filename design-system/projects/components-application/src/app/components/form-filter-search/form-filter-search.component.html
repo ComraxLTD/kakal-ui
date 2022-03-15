@@ -1,3 +1,8 @@
 <div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
-  <kkl-form-search fxFlex="40" [control]="control"></kkl-form-search>
+  <kkl-form-search
+    fxFlex="40"
+    [searchControl]="control"
+    [formGroup]="searchGroup.formGroup"
+    [questions]="searchGroup.questions"
+  ></kkl-form-search>
 </div>

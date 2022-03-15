@@ -1,9 +1,9 @@
 <form
   fxLayout="row wrap"
   fxLayoutAlign="start center"
-  [formGroup]="group.formGroup"
+  [formGroup]="formGroup"
 >
-  <ng-container *ngFor="let question of group.questions; let index = index">
+  <ng-container *ngFor="let question of questions; let index = index">
     <ng-container [ngSwitch]="question.type">
       <div
         [class.input]="true"
@@ -14,8 +14,7 @@
         <!-- SELECT INPUT SECTION -->
         <ng-container *ngSwitchCase="'select'">
           <kkl-form-select
-            fxFlex="100"
-            [control]="group.formGroup.controls[question.key]"
+            [control]="formGroup.controls[question.key]"
             [key]="question?.key"
             [multi]="question?.multi"
             [options]="question?.options"
@@ -32,8 +31,7 @@
         <!-- CHECKBOX INPUT SECTION -->
         <ng-container *ngSwitchCase="'checkbox'">
           <kkl-form-checkbox
-            fxFlex="100"
-            [control]="group.formGroup.controls[question.key]"
+            [control]="formGroup.controls[question.key]"
             [key]="question?.key"
             [options]="question?.options"
           ></kkl-form-checkbox>
@@ -42,8 +40,7 @@
         <!-- RADIO BUTTON INPUT SECTION -->
         <ng-container *ngSwitchCase="'radio'">
           <kkl-form-radio
-            fxFlex="100"
-            [control]="group.formGroup.controls[question.key]"
+            [control]="formGroup.controls[question.key]"
             [key]="question?.key"
             [options]="question?.options"
           ></kkl-form-radio>
@@ -52,8 +49,7 @@
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'date'">
           <kkl-form-date
-            fxFlex="100"
-            [control]="group.formGroup.controls[question.key]"
+            [control]="formGroup.controls[question.key]"
             [key]="question?.key"
             [range]="question?.range"
             [placeHolder]="question?.placeHolder"
@@ -69,10 +65,9 @@
         <!-- FILE INPUT SECTION -->
         <ng-container *ngSwitchCase="'file'">
           <kkl-form-upload
-            fxFlex="100"
             [label]="question?.label"
             [multi]="question?.multi"
-            [formControl]="group.formGroup.controls[question.key]"
+            [formControl]="formGroup.controls[question.key]"
             [index]="index"
             (fileChange)="onFileChange($event)"
           ></kkl-form-upload>
@@ -81,8 +76,7 @@
         <!-- CURRENCY INPUT SECTION -->
         <ng-container *ngSwitchCase="'currency'">
           <kkl-form-currency
-            fxFlex="100"
-            [control]="group.formGroup.controls[question.key]"
+            [control]="formGroup.controls[question.key]"
             [validations]="question?.validations"
             [index]="index"
           >
@@ -92,7 +86,7 @@
         <!-- DEFAULT INPUT -->
         <ng-container *ngSwitchDefault>
           <kkl-form-input
-            [control]="group.formGroup.controls[question.key]"
+            [control]="formGroup.controls[question.key]"
             [key]="question?.key"
             [placeHolder]="question?.placeHolder"
             [theme]="question?.theme"

@@ -7,6 +7,7 @@ import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLButtonModule } from '../../button/button.module';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { KKLFlexFormModule } from '../flex-form/flex-form.module';
 
 @NgModule({
   declarations: [FormSearchComponent],
@@ -17,6 +18,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     KKLButtonModule,
     KKLTypographyModule,
     KKLIconModule,
+    KKLFlexFormModule,
     KKLFormAutoCompleteModule,
   ],
   exports: [FormSearchComponent],

@@ -2,7 +2,7 @@
   <div fxLayout="row" fxLayoutAlign="space-between center">
     <kkl-form-autocomplete
       fxFlex="90"
-      [control]="control"
+      [control]="searchControl"
     ></kkl-form-autocomplete>
 
     <div kkl-form-button>
@@ -27,7 +27,10 @@
       [class.mat-elevation-z0]="true"
       [expanded]="expended"
     >
-      <div fxLayout="row wrap" fxLayoutAlign="start center">
+      <ng-container
+        *ngTemplateOutlet="formTemplate || defaultTemplate; context : { $implicit: {questions, formGroup}}"
+      ></ng-container>
+      <!-- <div fxLayout="row wrap" fxLayoutAlign="start center">
         <ng-container
           *ngFor="
             let item of inputs;
@@ -47,7 +50,14 @@
             <kkl-form-autocomplete [control]="control"></kkl-form-autocomplete>
           </div>
         </ng-container>
-      </div>
+      </div> -->
     </mat-expansion-panel>
   </mat-accordion>
 </div>
+
+<ng-template #defaultTemplate let-context>
+  <kkl-flex-form
+    [questions]="context.questions"
+    [formGroup]="context.formGroup"
+  ></kkl-flex-form>
+</ng-template>

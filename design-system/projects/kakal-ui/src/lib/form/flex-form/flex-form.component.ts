@@ -1,87 +1,66 @@
-import { GridProps } from '../models/question.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { QuestionGroupModel } from './../models/question-group.model';
 import { FormGroup } from '@angular/forms';
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
+import { Question } from '../services/form.service';
 
 @Component({
   selector: 'kkl-flex-form',
   templateUrl: './flex-form.component.html',
   styleUrls: ['./flex-form.component.scss'],
+  providers: [FormDataSource],
 })
 export class FlexFormComponent implements OnInit {
-  @Input() public group: QuestionGroupModel;
-  @Input() public formDataSource: FormDataSource;
+  @Input() public questions: Question[];
+  @Input() public formGroup: FormGroup;
 
-  @Input() public rowHeight: number;
-  @Input() public gutter: number;
+  // default inputs in row
+  @Input() inRow: number = 3;
 
-  @Input() public slots: {
-    button?: ElementRef;
-    group?: ElementRef;
-  };
-
-  @Input() optionsSlot: { [key: string]: ElementRef };
-
-  public formGroup: FormGroup;
-  public grid: GridProps;
-  public hasButton: boolean = false;
-  public cols: string | number;
+  public flex: number;
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
-  @Output() public changeSelect: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() public changeOption: EventEmitter<MatAutocompleteSelectedEvent> =
+  @Output() public selectChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+  @Output() public optionSelected: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  @Output() public autocompleteEvent: EventEmitter<FormChangeEvent> =
+  @Output() public queryChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
   @Output() fileChange = new EventEmitter<File[]>();
 
-  @Output() focusoutEvent: EventEmitter<string> = new EventEmitter();
+  @Output() focusout: EventEmitter<string> = new EventEmitter();
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  constructor() {}
+  constructor(private formDataSource: FormDataSource) {}
 
-  ngOnInit() {
-    this.formGroup = this.group.formGroup;
-    this.grid = this.group.gridProps;
-    this.cols = this.group.gridProps?.cols || 1;
-    this.hasButton = this.group.hasButton || false;
-  }
+  ngOnInit() {}
 
   public onSubmit() {
     this.submitEvent.emit(this.formGroup);
   }
 
   public onSelect(option: FormChangeEvent) {
-    this.changeSelect.emit(option);
+    this.selectChanged.emit(option);
   }
 
   public onAutocomplete(FormChangeEvent: FormChangeEvent): void {
-    this.autocompleteEvent.emit(FormChangeEvent);
+    this.queryChanged.emit(FormChangeEvent);
   }
 
-  public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    this.changeOption.emit(event);
-  }
+  // public onOptionSelected(event: MatAutocompleteSelectedEvent) {
+  //   this.optionSelected.emit(event);
+  // }
 
   public onFileChange(files: File[]) {
     this.fileChange.emit(files);
   }
 
   public onFocusOut(key: string) {
-    this.focusoutEvent.emit(key);
+    this.focusout.emit(key);
   }
 
   public onFocus(FormChangeEvent: FormChangeEvent) {
