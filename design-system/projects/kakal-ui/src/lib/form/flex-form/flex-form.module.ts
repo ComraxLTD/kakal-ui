@@ -47,9 +47,8 @@ import { FlexFormComponent } from './flex-form.component';
     KKLFormUploadModule,
     KKLFormTextEditorModule,
     KKLFormCheckboxModule,
-    KKLFormCheckboxGroupModule,
     KKLFormRadioModule,
   ],
-  exports: [FlexFormComponent, KKLFormInputModule],
+  exports: [FlexFormComponent],
 })
-export class KKLFormModule {}
+export class KKLFlexFormModule {}

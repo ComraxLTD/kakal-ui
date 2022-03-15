@@ -1,16 +1,12 @@
 @use ".././../../styles/variables" as main;
 
-
-
-form,
+.kkl-flex-form,
 kkl-form-input {
   width: 100%;
   font-size: main.spacing(2);
 }
 
-// margin and padding of mat-form-field
-.btn-form {
-  margin:3px 0px;
-  padding-bottom: 16.125px;
+div.input {
+  box-sizing: border-box;
+  padding: 0px 8px;
 }
-
