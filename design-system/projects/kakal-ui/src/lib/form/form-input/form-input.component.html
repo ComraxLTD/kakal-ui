@@ -49,6 +49,7 @@
       />
     </ng-container>
   </ng-container>
+
   <kkl-icon
     *ngIf="icon"
     matSuffix
@@ -56,5 +57,6 @@
     [size]="1.8"
     [key]="icon"
   ></kkl-icon>
+
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>

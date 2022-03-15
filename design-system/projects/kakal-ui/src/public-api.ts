@@ -32,6 +32,9 @@ export * from './lib/form/models/form.types';
 export * from './lib/form/form/form.module';
 export * from './lib/form/form/form.component';
 
+export * from './lib/form/flex-form/flex-form.module';
+export * from './lib/form/flex-form/flex-form.component';
+
 export * from './lib/form/form-counter/form-counter.module';
 export * from './lib/form/form-counter/form-counter.component';
 
@@ -69,6 +72,7 @@ export * from './lib/form/form-autocomplete/form-autocomplete.component';
 
 export * from './lib/form/form-search/form-search.module';
 export * from './lib/form/form-search/form-search.component';
+export * from './lib/form/form-search/form-search.directive';
 
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
