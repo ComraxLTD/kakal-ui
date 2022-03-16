@@ -25,7 +25,10 @@ export class FiltersService {
      * @Note: Dvir - we don't need to add an "internal self made redux" solution
      */
     const oldState = this.getState();
-    
+
+    console.log(filterState);
+    console.log(oldState);
+
     const newState = {
       ...oldState,
       ...filterState,
@@ -35,9 +38,18 @@ export class FiltersService {
      * Remove null values
      */
     Object.keys(newState).forEach(
-      (k) => newState[k] == null && delete newState[k]
+      (k) =>
+        (newState[k] === null ||
+          newState[k].value === null ||
+          newState[k].value === undefined ||
+          newState[k].value === '') &&
+        delete newState[k]
     );
 
     this.filterState.next(newState);
+  }
+
+  private clearFilterState() {
+
   }
 }

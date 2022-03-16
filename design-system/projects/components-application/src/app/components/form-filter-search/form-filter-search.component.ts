@@ -9,7 +9,7 @@ import {
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
-import { filter, map, Observable, switchMap } from 'rxjs';
+import { filter, iif, map, merge, Observable, of, skip, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
@@ -46,7 +46,12 @@ export class FormFilterSearchComponent implements OnInit {
     this.filtersState$ = this.getFiltersMap().pipe(
       switchMap((filterState) => {
         this.filterService.dispatch({ filterState });
-        return this.filterService.listen();
+
+        return iif(
+          () => filterState !== null,
+          this.filterService.listen(),
+          of(null)
+        );
       })
     );
   }
@@ -62,18 +67,18 @@ export class FormFilterSearchComponent implements OnInit {
   private getFilterValues() {
     const { formGroup } = this.searchGroup;
     return formGroup.valueChanges.pipe(
+      skip(1),
       map((form) => {
-        Object.keys(form).forEach(
-          (k) =>
-            (form[k] === null || form[k] === undefined || form[k] === '') &&
-            delete form[k]
-        );
+        // Object.keys(form).forEach(
+        //   (k) =>
+        //     (form[k] === null || form[k] === undefined || form[k] === '') &&
+        //     delete form[k]
+        // );
 
         return form;
       })
     );
   }
-
   private getFiltersTypes() {
     const filterTypesMap = {
       select: FilterType.SELECT,
@@ -112,26 +117,58 @@ export class FormFilterSearchComponent implements OnInit {
   }
 
   private setFiltersMap(filters: FilterChangeEvent[]) {
-    return filters.reduce((acc, filterOption) => {
-      return {
-        [filterOption.key]: filterOption,
-        ...acc,
-      };
-    }, {} as { [key: string]: FilterChangeEvent });
+    return (
+      filters
+        // .filter(
+        //   ({ value }) => value !== undefined && value !== null && value !== ''
+        // )
+        .reduce((acc, filterEvent) => {
+          return {
+            [filterEvent.key]: filterEvent,
+            ...acc,
+          };
+        }, {} as { [key: string]: FilterChangeEvent })
+    );
   }
 
-  private getFiltersMap(): Observable<FilterState> {
+  private clearFilters(filterMap: FilterState) {
+    return Object.keys(filterMap)
+      .filter(
+        (k) =>
+          filterMap[k].value !== '' &&
+          filterMap[k].value !== null &&
+          filterMap[k].value !== undefined
+      )
+      .reduce((acc, key) => {
+        return {
+          ...acc,
+          [key]: filterMap[key],
+        };
+      }, {});
+  }
+
+  private getFiltersMap(): Observable<FilterState | null> {
     const filtersValues$ = this.getFilterValues();
     const filterTypes = this.getFiltersTypes();
 
-    return filtersValues$.pipe(
+    const true$ = filtersValues$.pipe(
       filter((filterValues) => Object.keys(filterValues).length !== 0),
       map((filterValues) => {
+        console.log('true');
         const filters = this.setValueAsFilterChange(filterValues, filterTypes);
         const filterMap = this.setFiltersMap(filters);
 
         return filterMap;
       })
     );
+    const false$ = filtersValues$.pipe(
+      filter((filterValues) => Object.keys(filterValues).length === 0),
+      map((_) => {
+        console.log('false');
+        return null;
+      })
+    );
+
+    return merge(true$, false$);
   }
 }
