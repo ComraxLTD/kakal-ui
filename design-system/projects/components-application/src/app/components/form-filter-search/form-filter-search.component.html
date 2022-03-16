@@ -9,7 +9,11 @@
     </kkl-form-search>
     <div>
       <ng-container *ngIf="filtersState$ | async as filtersState">
-        <kkl-filters [filtersState]="filtersState"></kkl-filters>
+        <kkl-filters
+          (remove)="onRemove($event)"
+          (clear)="onRemove()"
+          [filtersState]="filtersState"
+        ></kkl-filters>
       </ng-container>
     </div>
   </div>

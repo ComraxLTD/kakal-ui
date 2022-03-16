@@ -130,24 +130,22 @@ export class FormFilterSearchComponent implements OnInit {
     return formGroup.valueChanges.pipe(
       skip(1),
       map((form) => {
-        // Object.keys(form).forEach(
-        //   (k) =>
-        //     (form[k] === null || form[k] === undefined || form[k] === '') &&
-        //     delete form[k]
-        // );
-        console.log(form);
         return form;
       })
     );
   }
-  private getFiltersTypes() {
+  private setQuestionsAsFilters() {
     const formFilterTypes = this.questions
       .map((q) => {
-        return { key: q.key, filterType: q.filterType };
-      })
-      .reduce((acc, { filterType, key }) => {
         return {
-          [key]: filterType,
+          key: q.key,
+          filterType: q.filterType,
+          format: q.format,
+        } as FilterChangeEvent;
+      })
+      .reduce((acc, filterEvent) => {
+        return {
+          [filterEvent.key]: filterEvent,
           ...acc,
         };
       }, {});
@@ -161,9 +159,8 @@ export class FormFilterSearchComponent implements OnInit {
   ): FilterChangeEvent[] {
     return Object.keys(filterValues).map((key) => {
       return {
-        key,
+        ...filterTypes[key],
         value: filterValues[key],
-        filterType: filterTypes[key],
       } as FilterChangeEvent;
     });
   }
@@ -185,12 +182,11 @@ export class FormFilterSearchComponent implements OnInit {
 
   private getFiltersMap(): Observable<FilterState | null> {
     const filtersValues$ = this.getFilterValues();
-    const filterTypes = this.getFiltersTypes();
+    const filterTypes = this.setQuestionsAsFilters();
 
     const true$ = filtersValues$.pipe(
       filter((filterValues) => Object.keys(filterValues).length !== 0),
       map((filterValues) => {
-        console.log('true');
         const filters = this.setValueAsFilterChange(filterValues, filterTypes);
         const filterMap = this.setFiltersMap(filters);
 
@@ -200,11 +196,20 @@ export class FormFilterSearchComponent implements OnInit {
     const false$ = filtersValues$.pipe(
       filter((filterValues) => Object.keys(filterValues).length === 0),
       map((_) => {
-        console.log('false');
         return null;
       })
     );
 
     return merge(true$, false$);
+  }
+
+  public onRemove(key: string) {
+    console.log(key);
+    this.searchGroup.getControl(key).reset();
+    this.filterService.dispatch({ filterState: { [key]: null } });
+  }
+  public onClear() {
+    this.searchGroup.formGroup.reset();
+    this.filterService.dispatch({ filterState: null });
   }
 }

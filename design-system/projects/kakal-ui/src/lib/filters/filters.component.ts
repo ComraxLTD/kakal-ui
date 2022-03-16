@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FilterState } from './filters.types';
 import { FiltersService } from './filters.service';
-import { map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-filters',
@@ -14,38 +14,18 @@ export class FiltersComponent implements OnInit {
 
   public filters$: Observable<any>;
 
-  constructor(private filterService: FiltersService) {}
+  @Output() clear: EventEmitter<void> = new EventEmitter();
+  @Output() remove: EventEmitter<string> = new EventEmitter();
 
-  ngOnInit(): void {
-    // this.filters$ = this.filtersState$.pipe(
-    //   map((filterState: FilterState) => {
-    //     console.log(filterState);
+  constructor() {}
 
-    //     const filters = Object.keys(filterState)
-    //       .filter(
-    //         (k) =>
-    //           filterState[k].value !== '' &&
-    //           filterState[k].value !== null &&
-    //           filterState[k].value !== undefined
-    //       )
-    //       .reduce((acc, key) => {
-    //         return {
-    //           ...acc,
-    //           [key]: filterState[key],
-    //         };
-    //       }, {});
-
-    //     console.log(filters);
-    //     return filters;
-    //   })
-    // );
-  }
+  ngOnInit(): void {}
 
   public onRemoveFilter(key: string): void {
-    this.filterService.dispatch({ filterState: { [key]: null } });
+    this.remove.emit(key);
   }
 
   public onClearFilters(): void {
-    // this.tableFilterService.clear();
+    this.clear.emit();
   }
 }

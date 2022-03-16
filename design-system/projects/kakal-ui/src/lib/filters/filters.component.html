@@ -1,13 +1,14 @@
-<div fxLayout="row">
-  <ng-container *ngIf="filtersState">
-    {{ filtersState | json }}
+<ng-container *ngIf="filtersState">
+  <div fxLayout="row" fxLayoutGap="0.5rem">
     <kkl-chip-list>
       <ng-container *ngFor="let item of filtersState | keyvalue">
         <ng-container
           *ngIf="item.value.filterType === 'multiSelect'; else elseBlock"
         >
           <ng-container *ngFor="let option of item.value.value">
-            <kkl-chip> {{ option | pluck: "label" }} </kkl-chip>
+            <kkl-chip (removed)="onRemoveFilter(item.key)">
+              {{ option | pluck: "label" }}
+            </kkl-chip>
           </ng-container>
         </ng-container>
 
@@ -24,8 +25,8 @@
               </ng-container>
 
               <ng-container *ngSwitchCase="'range'">
-                {{ item.value.value.start }} -
-                {{ item.value.value.end }}
+                {{ item.value.value.start | format: item.value.format }} -
+                {{ item.value.value.end | format: item.value.format }}
               </ng-container>
 
               <ng-container *ngSwitchDefault>{{
@@ -36,10 +37,8 @@
         </ng-template>
       </ng-container>
     </kkl-chip-list>
-  </ng-container>
-  <div>
     <button mat-button (click)="onClearFilters()">
       <kkl-typography [underline]="true"> בטל סינונים </kkl-typography>
     </button>
   </div>
-</div>
+</ng-container>
