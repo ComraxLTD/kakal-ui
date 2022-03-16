@@ -16,10 +16,6 @@ import { KKLFormCurrencyModule } from '../form-currency/form-currency.module';
 import { KKLFormDateModule } from '../form-date/form-date.module';
 import { KKLFormSelectModule } from '../form-select/form-select.module';
 import { KKLFormAutoCompleteModule } from '../form-autocomplete/form-autocomplete.module';
-import { KKLFormRadioModule } from '../form-radio/form-radio.module';
-import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.module';
-import { KKLFormCheckboxModule } from '../form-checkbox/form-checkbox.module';
-
 import { FlexFormComponent } from './flex-form.component';
 
 @NgModule({
@@ -34,11 +30,6 @@ import { FlexFormComponent } from './flex-form.component';
     KKLFormInputModule,
     KKLFormSelectModule,
     KKLFormAutoCompleteModule,
-    KKLFormCurrencyModule,
-    KKLFormUploadModule,
-    KKLFormTextEditorModule,
-    KKLFormCheckboxModule,
-    KKLFormRadioModule,
   ],
   exports: [FlexFormComponent],
 })

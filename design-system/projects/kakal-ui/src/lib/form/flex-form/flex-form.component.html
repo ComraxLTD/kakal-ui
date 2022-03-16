@@ -24,29 +24,12 @@
           ></kkl-form-select>
         </ng-container>
 
-        <!-- CHECKBOX INPUT SECTION -->
-        <ng-container *ngSwitchCase="'checkbox'">
-          <kkl-form-checkbox
-            [control]="formGroup.controls[question.key]"
-            [key]="question?.key"
-          ></kkl-form-checkbox>
-        </ng-container>
-
-        <!-- RADIO BUTTON INPUT SECTION -->
-        <ng-container *ngSwitchCase="'radio'">
-          <kkl-form-radio
-            [control]="formGroup.controls[question.key]"
-            [key]="question?.key"
-            [options]="question?.options"
-          ></kkl-form-radio>
-        </ng-container>
-
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'date'">
           <kkl-form-date
             [control]="formGroup.controls[question.key]"
             [key]="question?.key"
-            [range]="question?.range"
+            [range]="true"
             [placeHolder]="question?.placeHolder"
             [maxDate]="question?.maxDate"
             [minDate]="question?.minDate"
@@ -57,25 +40,32 @@
           </kkl-form-date>
         </ng-container>
 
-        <!-- FILE INPUT SECTION -->
-        <ng-container *ngSwitchCase="'file'">
-          <kkl-form-upload
-            [label]="question?.label"
-            [multi]="question?.multi"
-            [formControl]="formGroup.controls[question.key]"
-            [index]="index"
-            (fileChange)="onFileChange($event)"
-          ></kkl-form-upload>
-        </ng-container>
-
-        <!-- CURRENCY INPUT SECTION -->
-        <ng-container *ngSwitchCase="'currency'">
-          <kkl-form-currency
+        <!-- DATE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'range'">
+          <kkl-form-date
             [control]="formGroup.controls[question.key]"
-            [validations]="question?.validations"
+            [key]="question?.key"
+            [range]="true"
+            [placeHolder]="question?.placeHolder"
+            [maxDate]="question?.maxDate"
+            [minDate]="question?.minDate"
+            [appearance]="question?.appearance"
             [index]="index"
+            (focus)="onFocus($event)"
           >
-          </kkl-form-currency>
+          </kkl-form-date>
+        </ng-container>
+        <!-- DATE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'autocomplete'">
+          <kkl-form-autocomplete
+            (queryChanged)="onQueryChanged($event)"
+            [key]="question?.key"
+            [multi]="question.multi"
+            [options]="question.options"
+            [control]="formGroup.controls[question.key]"
+            (multiOptionsSelected)="onMultiOptionSelected($event)"
+            (optionSelected)="onOptionSelected($event)"
+          ></kkl-form-autocomplete>
         </ng-container>
 
         <!-- DEFAULT INPUT -->

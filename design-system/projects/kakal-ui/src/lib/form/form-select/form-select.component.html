@@ -16,14 +16,12 @@
     (focusout)="setErrorMessage()"
     (focus)="onFocus()"
   >
-    <ng-container *ngIf="multi">
-      <mat-select-trigger>
-        {{ control.value ? control.value[0].label : "" }}
-        <span *ngIf="control.value?.length > 1">
-          (+{{ control.value.length - 1 }})
-        </span>
-      </mat-select-trigger>
-    </ng-container>
+    <mat-select-trigger *ngIf="multi">
+      {{ control.value ? control.value[0].label : "" }}
+      <span *ngIf="control.value?.length > 1">
+        (+{{ control.value.length - 1 }})
+      </span>
+    </mat-select-trigger>
     <mat-option *ngFor="let option of options" [value]="option">
       {{ option.label }}
     </mat-option>

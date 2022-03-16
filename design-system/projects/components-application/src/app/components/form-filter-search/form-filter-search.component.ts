@@ -22,13 +22,46 @@ export class FormFilterSearchComponent implements OnInit {
   public control: FormControl;
 
   private questions: Question[] = [
-    { key: 'first_name', validations: [Validators.required] },
+    {
+      key: 'first_name',
+    },
     { key: 'last_name' },
-    { key: 'email', controlType: 'email' },
+    {
+      key: 'email',
+      filterType: FilterType.SELECT,
+      controlType: 'autocomplete',
+      options: MOCK_OPTIONS,
+    },
     { key: 'phone', controlType: 'phone' },
-    { key: 'city', controlType: 'multiSelect', options: MOCK_OPTIONS },
-    { key: 'country', controlType: 'select', options: MOCK_OPTIONS },
-    { key: 'date', controlType: 'date', validations: [Validators.required] },
+    {
+      key: 'area',
+      filterType: FilterType.RANGE,
+      controlType: 'range',
+      format: 'area',
+    },
+    {
+      key: 'currency',
+      filterType: FilterType.RANGE,
+      controlType: 'range',
+      format: 'area',
+    },
+    {
+      key: 'city',
+      filterType: FilterType.MULTI_SELECT,
+      controlType: 'multiSelect',
+      options: MOCK_OPTIONS,
+    },
+    {
+      key: 'country',
+      filterType: FilterType.SELECT,
+      controlType: 'select',
+      options: MOCK_OPTIONS,
+    },
+    {
+      key: 'date',
+      filterType: FilterType.DATE_RANGE,
+      controlType: 'date',
+    },
   ];
 
   public searchGroup: QuestionGroupModel;
@@ -82,22 +115,13 @@ export class FormFilterSearchComponent implements OnInit {
     );
   }
   private getFiltersTypes() {
-    const filterTypesMap = {
-      select: FilterType.SELECT,
-      multiSelect: FilterType.MULTI_SELECT,
-      date: FilterType.DATE_RANGE,
-      sum: FilterType.NUMBER_RANGE,
-      number: FilterType.NUMBER_RANGE,
-      currency: FilterType.NUMBER_RANGE,
-    };
-
     const formFilterTypes = this.questions
       .map((q) => {
-        return { controlType: q.controlType, key: q.key };
+        return { key: q.key, filterType: q.filterType };
       })
-      .reduce((acc, { controlType, key }) => {
+      .reduce((acc, { filterType, key }) => {
         return {
-          [key]: filterTypesMap[controlType] || FilterType.SEARCH,
+          [key]: filterType,
           ...acc,
         };
       }, {});
