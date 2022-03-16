@@ -8,6 +8,7 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
 } from '@angular/core';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
@@ -26,7 +27,7 @@ export class FormComponent implements OnInit {
   @Input() public gutter: number;
 
   @Input() public slots: {
-    button?: ElementRef;
+    button?: TemplateRef<any>;
     group?: ElementRef;
   };
 
@@ -51,7 +52,7 @@ export class FormComponent implements OnInit {
   @Output() focusoutEvent: EventEmitter<string> = new EventEmitter();
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.formGroup = this.group.formGroup;
