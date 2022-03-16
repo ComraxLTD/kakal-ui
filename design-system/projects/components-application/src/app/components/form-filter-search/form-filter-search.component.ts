@@ -6,11 +6,12 @@ import {
   FilterState,
   FilterType,
   FormService,
+  OptionMap,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
-import { Observable } from 'rxjs';
+import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
@@ -97,10 +98,10 @@ export class FormFilterSearchComponent implements OnInit {
     private formService: FormService
   ) {}
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.control = new FormControl();
 
-    this.searchGroup = this.setGroup(this.questions);
+    this.searchGroup = await this.setGroup(this.questions);
 
     this.filtersState$ = this.filterService.getFilterMap({
       formGroup: this.searchGroup.formGroup,
@@ -108,7 +109,29 @@ export class FormFilterSearchComponent implements OnInit {
     });
   }
 
-  private setGroup(questions: Question[]) {
+  public getOptions(): Observable<OptionMap> {
+    const city$ = of(MOCK_OPTIONS);
+    const email$ = of(MOCK_OPTIONS);
+    const country$ = of(MOCK_OPTIONS);
+
+    return forkJoin([city$, email$, country$]).pipe(
+      map(([city, email, country]) => {
+        return { city, email, country };
+      })
+    );
+  }
+
+  private async setQuestionsWithOptions(
+    questions: Question[]
+  ): Promise<Question[]> {
+    const optionsMap = await firstValueFrom(this.getOptions());
+    return this.formService.setQuestionsWithOptions(questions, optionsMap);
+  }
+
+  private async setGroup(
+    initQuestions: Question[]
+  ): Promise<QuestionGroupModel> {
+    const questions = await this.setQuestionsWithOptions(initQuestions);
     const group = this.formService.createQuestionGroup({
       questions,
     });
