@@ -1,6 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { Appearance, GridProps, QuestionBase } from './question.model';
+import { Appearance, ControlType, GridProps, QuestionBase } from './question.model';
 
 export interface SelectOption {
   id: number | string;
@@ -21,6 +21,7 @@ export class QuestionSelectModel extends QuestionBase {
     label?: string;
     appearance?: Appearance;
     validations?: ValidatorFn[];
+    controlType?: ControlType;
     gridProps?: GridProps;
     options?: SelectOption[];
     icon?: string;
@@ -33,7 +34,7 @@ export class QuestionSelectModel extends QuestionBase {
     this.controlType = 'select';
     this.options = options.options || [];
     this.icon = options.icon || 'keyboard_arrow_down';
-    this.multi = options.multi || false;
+    this.multi = options.multi || options.controlType === 'multiSelect';
     this.value = options.value;
     this.onSelectChange = options.onSelectChange || null;
     this.getOptionsAsync = options.getOptionsAsync || null;

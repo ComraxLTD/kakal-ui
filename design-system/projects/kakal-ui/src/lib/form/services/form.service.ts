@@ -25,6 +25,8 @@ import { QuestionDateModel } from '../form-date/question-date.model';
 import { QuestionFileModel } from '../models/question-file.model';
 import { QuestionCheckBoxModel } from '../models/question-checkbox.model';
 
+import { QuestionRangeModel } from '../form-range/question-range.model';
+
 export type ControlTemplate = [
   state: any,
   validatorOrOpts?: ValidatorFn | AbstractControlOptions | ValidatorFn[],
@@ -34,6 +36,7 @@ export type ControlTemplate = [
 export type Question =
   | QuestionBase
   | QuestionSelectModel
+  | QuestionRangeModel
   | QuestionTextModel
   | QuestionRadioModel
   | QuestionFileModel
@@ -192,9 +195,15 @@ export class FormService {
       case 'currency':
         const cq = question as QuestionCurrencyModel;
         return new QuestionCurrencyModel(cq);
+      case 'range':
+        const rq = question as QuestionRangeModel;
+        return new QuestionRangeModel(rq);
       case 'select':
         const sq = question as QuestionSelectModel;
         return new QuestionSelectModel(sq);
+      case 'multiSelect':
+        const msq = question as QuestionSelectModel;
+        return new QuestionSelectModel(msq);
       case 'file':
         const fq = question as QuestionFileModel;
         return new QuestionFileModel(fq);

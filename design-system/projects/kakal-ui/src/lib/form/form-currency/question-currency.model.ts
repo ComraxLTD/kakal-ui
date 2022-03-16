@@ -1,7 +1,11 @@
 import { ValidatorFn } from '@angular/forms';
 import { SelectOption } from '../models/question-select.model';
-import { GridProps, QuestionBase } from '../models/question.model';
-import { CurrencyModel } from './form-currency.model';
+import { GridProps, QuestionBase } from '../models/question.model'
+;
+export interface Currency {
+  currency?: SelectOption;
+  sum?: string | number;
+}
 
 export interface CurrencyOptions {
   label: string;
@@ -17,7 +21,7 @@ export class QuestionCurrencyModel extends QuestionBase {
     label?: string;
     default?: CurrencyOptions;
     gridProps?: GridProps;
-    value?: CurrencyModel;
+    value?: Currency;
     disabled?: boolean;
     validations?: ValidatorFn[];
   }) {

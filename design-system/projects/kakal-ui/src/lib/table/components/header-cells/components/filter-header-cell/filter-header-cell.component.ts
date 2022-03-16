@@ -25,7 +25,7 @@ import {
   FilterType,
   FilterRange,
   FilterChangeEvent,
-} from '../../../filters/filters.types';
+} from '../../../../../filters/filters.types';
 
 import { map, Observable, filter, of, merge, pluck } from 'rxjs';
 
@@ -149,7 +149,7 @@ export class FilterHeaderCellComponent implements OnInit {
     );
 
     const filterState = this.setFilterState(options);
-    this.tableDataSource.dispatchFilter({ filterState });
+    // this.tableDataSource.dispatchFilter({ filterState });
   }
 
   public compareWith(o1: KKLSelectOption, o2: KKLSelectOption) {

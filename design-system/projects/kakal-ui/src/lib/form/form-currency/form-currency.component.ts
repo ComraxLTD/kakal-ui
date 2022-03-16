@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, ValidatorFn } from '@angular/forms';
 
-import { QuestionCurrencyModel } from './question-currency.model';
 import { QuestionGroupModel } from '../models/question-group.model';
-import { CurrencyModel } from './form-currency.model';
 import { SelectOption } from '../models/question-select.model';
 
 import { Question } from '../services/form.service';
@@ -16,6 +14,7 @@ import {
   startWith,
   switchMap,
 } from 'rxjs';
+import { Currency } from './question-currency.model';
 
 @Component({
   selector: 'kkl-form-currency',
@@ -27,10 +26,10 @@ export class FormCurrencyComponent implements OnInit {
   @Input() public index: number;
   @Input() public validations: ValidatorFn[];
   public currencyGroupSubject: BehaviorSubject<
-    QuestionGroupModel<CurrencyModel>
+    QuestionGroupModel<Currency>
   >;
 
-  public currencyGroup$: Observable<QuestionGroupModel<CurrencyModel>>;
+  public currencyGroup$: Observable<QuestionGroupModel<Currency>>;
 
   public currencyQuestion: Question[] = [
     {
@@ -110,7 +109,7 @@ export class FormCurrencyComponent implements OnInit {
     return currencyGroup.formGroup.valueChanges.pipe(
       startWith(currencyGroup.getValue()),
       debounceTime(400),
-      map((value: CurrencyModel) => {
+      map((value: Currency) => {
         if (value) {
           const { sum } = value;
           this.control.setValue({

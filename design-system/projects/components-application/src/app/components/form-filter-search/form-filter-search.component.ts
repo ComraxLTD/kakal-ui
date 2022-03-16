@@ -1,45 +1,112 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { filter, map, Observable, skip, tap } from 'rxjs';
 import {
   FilterChangeEvent,
+  FiltersService,
+  FilterState,
   FilterType,
-} from '../../../../../kakal-ui/src/lib/table/components/filters/filters.types';
-import { FilterState } from '../../../../../kakal-ui/src/lib/table/models/table.state';
-import {
-  ControlType,
+  FormChangeEvent,
   FormService,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
+import { filter, iif, map, merge, Observable, of, skip, switchMap } from 'rxjs';
+import { MOCK_OPTIONS } from '../table/mock_data';
 
 @Component({
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
+  providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
   public control: FormControl;
 
   private questions: Question[] = [
-    { key: 'first_name', validations: [Validators.required] },
+    {
+      key: 'first_name',
+    },
     { key: 'last_name' },
-    { key: 'email', controlType: 'email' },
+    {
+      key: 'email',
+      filterType: FilterType.SELECT,
+      controlType: 'autocomplete',
+      options: MOCK_OPTIONS,
+    },
     { key: 'phone', controlType: 'phone' },
-    { key: 'city', controlType: 'select' },
-    { key: 'date', controlType: 'date', validations: [Validators.required] },
+    {
+      key: 'area',
+      filterType: FilterType.RANGE,
+      controlType: 'range',
+      format: 'area',
+      questions: [
+        {
+          key: 'start',
+          label: 'משטח',
+          controlType: 'sum',
+        },
+        {
+          key: 'end',
+          label: 'עד שטח',
+          controlType: 'sum',
+        },
+      ],
+    },
+    {
+      key: 'currency',
+      filterType: FilterType.RANGE,
+      controlType: 'range',
+      questions: [
+        {
+          key: 'start',
+          label: 'מסכום',
+          controlType: 'sum',
+        },
+        {
+          key: 'end',
+          label: 'עד סכום',
+          controlType: 'sum',
+        },
+      ],
+      format: 'currency',
+    },
+    {
+      key: 'city',
+      filterType: FilterType.MULTI_SELECT,
+      controlType: 'multiSelect',
+      options: MOCK_OPTIONS,
+    },
+    {
+      key: 'country',
+      filterType: FilterType.SELECT,
+      controlType: 'select',
+      options: MOCK_OPTIONS,
+    },
+    {
+      key: 'date',
+      filterType: FilterType.DATE_RANGE,
+      controlType: 'date',
+    },
   ];
 
   public searchGroup: QuestionGroupModel;
 
-  constructor(private formService: FormService) {}
+  public filtersState$: Observable<FilterState>;
+
+  constructor(
+    private filterService: FiltersService,
+    private formService: FormService
+  ) {}
 
   ngOnInit(): void {
     this.control = new FormControl();
 
     this.searchGroup = this.setGroup(this.questions);
 
-    this.getFiltersMap().subscribe((filters) => console.log(filters));
+    this.filtersState$ = this.filterService.getFilterMap({
+      formGroup: this.searchGroup.formGroup,
+      questions: this.questions,
+    });
   }
 
   private setGroup(questions: Question[]) {
@@ -50,79 +117,18 @@ export class FormFilterSearchComponent implements OnInit {
     return group;
   }
 
-  private getFilterValues() {
-    const { formGroup } = this.searchGroup;
-    return formGroup.valueChanges.pipe(
-      map((form) => {
-        Object.keys(form).forEach(
-          (k) =>
-            (form[k] === null || form[k] === undefined || form[k] === '') &&
-            delete form[k]
-        );
+  // DOM EVENTS SECTION
 
-        return form;
-      })
-    );
+  public onRemove(key: string) {
+    this.searchGroup.getControl(key).reset();
   }
 
-  private getFiltersTypes() {
-    const filterTypesMap = {
-      select: FilterType.SELECT,
-      multiSelect: FilterType.MULTI_SELECT,
-      date: FilterType.DATE_RANGE,
-      sum: FilterType.NUMBER_RANGE,
-      number: FilterType.NUMBER_RANGE,
-      currency: FilterType.NUMBER_RANGE,
-    };
-
-    const formFilterTypes = this.questions
-      .map((q) => {
-        return { controlType: q.controlType, key: q.key };
-      })
-      .reduce((acc, { controlType, key }) => {
-        return {
-          [key]: filterTypesMap[controlType] || FilterType.SEARCH,
-          ...acc,
-        };
-      }, {});
-
-    return formFilterTypes;
+  public onRemoveMulti(filterChangeEvent: FilterChangeEvent) {
+    const { key, value } = filterChangeEvent;
+    this.searchGroup.getControl(key).setValue([...value]);
   }
 
-  private setValueAsFilterChange(
-    filterValues,
-    filterTypes
-  ): FilterChangeEvent[] {
-    return Object.keys(filterValues).map((key) => {
-      return {
-        key,
-        value: filterValues[key],
-        filterType: filterTypes[key],
-      } as FilterChangeEvent;
-    });
-  }
-
-  private setFiltersMap(filters: FilterChangeEvent[]) {
-    return filters.reduce((acc, filterOption) => {
-      return {
-        [filterOption.key]: filterOption,
-        ...acc,
-      };
-    }, {} as { [key: string]: FilterChangeEvent });
-  }
-
-  private getFiltersMap(): Observable<FilterState> {
-    const filtersValues$ = this.getFilterValues();
-    const filterTypes = this.getFiltersTypes();
-
-    return filtersValues$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length !== 0),
-      map((filterValues) => {
-        const filters = this.setValueAsFilterChange(filterValues, filterTypes);
-        const filterMap = this.setFiltersMap(filters);
-
-        return filterMap;
-      })
-    );
+  public onClear() {
+    this.searchGroup.formGroup.reset();
   }
 }

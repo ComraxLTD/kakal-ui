@@ -1,6 +1,7 @@
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 import { Palette } from '../../../styles/theme';
+import { FilterType } from '../../filters/filters.types';
 
 export interface GridProps {
   cols?: number;
@@ -29,11 +30,13 @@ export type ControlType =
   | 'number'
   | 'textarea'
   | 'select'
+  | 'multiSelect'
   | 'calendar'
   | 'checkbox'
   | 'radio'
   | 'date'
   | 'time'
+  | 'range'
   | 'group'
   | 'custom'
   | 'sum'
@@ -78,6 +81,7 @@ export abstract class QuestionBase {
   public control?: AbstractControl | FormControl;
   public cleave?: {};
   public localFilter?: boolean;
+  public filterType?: FilterType;
 
   constructor(options: {
     key: string;
@@ -96,6 +100,7 @@ export abstract class QuestionBase {
     control?: AbstractControl | FormControl;
     cleave?: {};
     localFilter?: boolean;
+    filterType?: FilterType;
   }) {
     this.key = options.key || '';
     this.value = options.value;
@@ -119,5 +124,6 @@ export abstract class QuestionBase {
     this.control = options.control || null;
     this.cleave = options.cleave || {};
     this.localFilter = options.localFilter;
+    this.filterType = options.filterType || FilterType.SEARCH;
   }
 }

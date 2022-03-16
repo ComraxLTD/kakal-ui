@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { FilterRange } from '../table/components/filters/filters.types';
+import { FilterRange } from '../filters/filters.types';
 
 import { FormatPipe } from './format.pipe';
 

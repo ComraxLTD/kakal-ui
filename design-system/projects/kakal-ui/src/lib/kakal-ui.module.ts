@@ -54,7 +54,6 @@ import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 
-
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { StepperModule } from './stepper/stepper.module';
@@ -66,8 +65,8 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLLayoutModule } from '../screens/layout/layout.module';
-import { KKLDashboarModule} from '../lib/dashboard/dashboard.module';
-
+import { KKLDashboarModule } from '../lib/dashboard/dashboard.module';
+import { KKLFiltersModule } from '../lib/filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 
@@ -95,6 +94,8 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLListMenuModule,
     KKLExpandPanelModule,
 
+    KKLFiltersModule,
+
     // FORMS MODULES
     KKLFormModule,
     KKLFlexFormModule,
@@ -110,6 +111,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+
     // TABLE MODULES
     KKLTableModule,
     KKLHeaderCellModule,
@@ -138,7 +140,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     // LAYOUT
     KKLLayoutModule,
     KKLDashboarModule,
-    KKLChipsModule
+    KKLChipsModule,
   ],
   exports: [
     //TOOLS
@@ -158,6 +160,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLStatusBarsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
+    KKLFiltersModule,
 
     KKLFormModule,
     KKLFlexFormModule,
@@ -202,7 +205,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     // LAYOUT
     KKLLayoutModule,
     KKLDashboarModule,
-    KKLChipsModule
+    KKLChipsModule,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}
