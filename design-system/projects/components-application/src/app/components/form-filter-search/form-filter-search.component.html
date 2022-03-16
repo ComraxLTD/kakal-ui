@@ -1,16 +1,16 @@
-<div fxLayout="column">
-  <div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
-    <kkl-form-search fxFlex="40" [searchControl]="control">
+<div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
+  <div fxLayout="column" fxFlex="50">
+    <kkl-form-search [searchControl]="control">
       <kkl-flex-form
         *kklFormSearchContent
         [questions]="searchGroup.questions"
         [formGroup]="searchGroup.formGroup"
       ></kkl-flex-form>
     </kkl-form-search>
-  </div>
-  <div>
-    <ng-container *ngIf="filtersState$ | async as filtersState">
-      <kkl-filters [filtersState]="filtersState"></kkl-filters>
-    </ng-container>
+    <div>
+      <ng-container *ngIf="filtersState$ | async as filtersState">
+        <kkl-filters [filtersState]="filtersState"></kkl-filters>
+      </ng-container>
+    </div>
   </div>
 </div>
