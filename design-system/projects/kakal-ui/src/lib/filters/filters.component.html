@@ -27,8 +27,8 @@
               </ng-container>
 
               <ng-container *ngSwitchCase="'range'">
-                {{ item.value.value.start }} -
-                {{ item.value.value.end }}
+                {{ item.value.value.start | format: item.value.format }} -
+                {{ item.value.value.end | format: item.value.format }}
               </ng-container>
 
               <ng-container *ngSwitchDefault>{{

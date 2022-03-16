@@ -38,7 +38,7 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'area',
       filterType: FilterType.RANGE,
       controlType: 'range',
-      format: 'area',
+      format: { type: 'area' },
       questions: [
         {
           key: 'start',
@@ -68,7 +68,7 @@ export class FormFilterSearchComponent implements OnInit {
           controlType: 'sum',
         },
       ],
-      format: 'currency',
+      format: { type: 'currency' },
     },
     {
       key: 'city',

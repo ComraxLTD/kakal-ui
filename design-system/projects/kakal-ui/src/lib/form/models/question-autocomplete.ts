@@ -17,7 +17,7 @@ export class QuestionAutocompleteModel extends QuestionSelectModel {
     onOptionSelect?: Function;
     multi?: boolean;
     panelWidth?: boolean;
-    format?: string;
+    format?: { type: string; args?: any };
     cleave?: {};
   }) {
     super(options);
