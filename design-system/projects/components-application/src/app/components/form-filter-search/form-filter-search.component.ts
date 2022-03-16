@@ -35,7 +35,6 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'email',
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
-      options: MOCK_OPTIONS,
     },
     { key: 'phone', controlType: 'phone' },
     {
@@ -78,13 +77,11 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'city',
       filterType: FilterType.MULTI_SELECT,
       controlType: 'multiSelect',
-      options: MOCK_OPTIONS,
     },
     {
       key: 'country',
       filterType: FilterType.SELECT,
       controlType: 'select',
-      options: MOCK_OPTIONS,
     },
     {
       key: 'date',
