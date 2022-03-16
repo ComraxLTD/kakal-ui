@@ -10,7 +10,7 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     MatCheckboxModule,
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    
     FlexLayoutModule,
     MatListModule,
   ],

@@ -10,7 +10,7 @@ import { SortButtonComponent } from './sort-button.component';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    
     MatButtonModule,
     MatIconModule,
     FlexLayoutModule,

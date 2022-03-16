@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TypographyComponent } from './typography.component';
 
 @NgModule({
-  imports: [CommonModule, ReactiveFormsModule, BrowserAnimationsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   declarations: [TypographyComponent],
   exports: [TypographyComponent],
 })

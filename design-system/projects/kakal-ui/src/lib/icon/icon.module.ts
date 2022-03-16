@@ -11,7 +11,7 @@ import { KKLDirectivesModule } from '../directives/directives.module';
     CommonModule,
     ReactiveFormsModule,
     MatIconModule,
-    BrowserAnimationsModule,
+    
     KKLDirectivesModule,
   ],
   declarations: [IconComponent],

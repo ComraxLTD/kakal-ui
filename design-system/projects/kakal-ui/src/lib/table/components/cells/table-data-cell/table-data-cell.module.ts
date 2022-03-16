@@ -12,7 +12,7 @@ import { KKLFormCellModule } from '../table-form-cell/table-cell-form.module';
   imports: [
     CommonModule,
     FlexLayoutModule,
-    BrowserAnimationsModule,
+    
     KKLPipesModule,
     KKLFormCellModule
   ],

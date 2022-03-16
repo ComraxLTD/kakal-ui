@@ -11,7 +11,7 @@ import { KKLDirectivesModule } from "../../directives/directives.module";
 
 @NgModule({
     imports: [FlexLayoutModule, KKLIconModule, KKLTypographyModule, KKLDirectivesModule
-        , MatInputModule, CommonModule, BrowserAnimationsModule, ReactiveFormsModule],
+        , MatInputModule, CommonModule,  ReactiveFormsModule],
     declarations: [KKLFormCounterComponent],
     exports: [KKLFormCounterComponent]
 })

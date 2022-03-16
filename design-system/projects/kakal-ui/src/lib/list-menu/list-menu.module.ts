@@ -7,7 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
-    imports: [MatMenuModule, KKLIconModule,BrowserAnimationsModule,MatButtonModule,MatIconModule],
+    imports: [MatMenuModule, KKLIconModule,MatButtonModule,MatIconModule],
     declarations: [KKLListMenuComponent],
     exports: [KKLListMenuComponent]
 })
