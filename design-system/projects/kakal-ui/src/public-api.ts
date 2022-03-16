@@ -292,3 +292,8 @@ export * from './lib/dashboard/dashboard.module';
 export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
+
+
+// display-data
+export * from './lib/display-data/display-data.component';
+export * from './lib/display-data/display-data.module';

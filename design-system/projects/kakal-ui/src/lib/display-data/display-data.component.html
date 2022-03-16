@@ -1,0 +1,27 @@
+<div fxLayout="row" >
+    <ng-container [ngSwitch]="type">
+        <!-- DEFAULT -->
+        <div class="default" fxLayout="row" fxLayoutGap="8rem" *ngSwitchCase="'default'">
+            <div fxLayout="column" fxLayoutGap="0.2rem" *ngFor="let item of data">
+                <div class="title padding"><kkl-typography>{{item.label}}</kkl-typography></div>
+                <div class="padding"><kkl-typography>{{item.value}}</kkl-typography></div>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table" fxLayout="row" fxLayoutGap="8rem" *ngSwitchCase="'table'">
+            <div fxLayout="column" fxLayoutGap="0.2rem" *ngFor="let item of data">
+                <div class="table-title padding"><kkl-typography>{{item.label}}</kkl-typography></div>
+                <div class="padding"><kkl-typography>{{item.value}}</kkl-typography></div>
+            </div>
+        </div>
+
+        <!-- INPUT -->
+        <div class="input" fxLayout="row" fxLayoutGap="8rem" *ngSwitchCase="'input'">
+            <div fxLayout="column" fxLayoutGap="0.2rem" *ngFor="let item of data">
+                <div class="input-title padding"><kkl-typography>{{item.label}}</kkl-typography></div>
+                <div class="padding"><kkl-typography>{{item.value}}</kkl-typography></div>
+            </div>
+        </div>
+    </ng-container>
+</div>

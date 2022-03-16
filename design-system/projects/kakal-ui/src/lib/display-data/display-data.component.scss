@@ -1,0 +1,12 @@
+@use "../../styles/variables" as main;
+
+
+.title {
+    background-color: #f3f3f3;
+}
+.table-title {
+border-bottom: 1px solid main.color(primary);
+}
+.padding {
+    padding: 0.5rem 2rem 0.5rem;
+}
