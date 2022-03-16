@@ -60,6 +60,10 @@ export * from './lib/form/form-texteditor/form-texteditor.component';
 export * from './lib/form/form-select/form-select.module';
 export * from './lib/form/form-select/form-select.component';
 
+export * from './lib/form/form-range/form-range.module';
+export * from './lib/form/form-range/form-range.component';
+export * from './lib/form/form-range/question-range.model';
+
 export * from './lib/form/form-radio/form-radio.module';
 export * from './lib/form/form-radio/form-radio.component';
 

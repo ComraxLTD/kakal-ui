@@ -1,0 +1,13 @@
+<div fxLayout="row" fxLayoutAlign="space-between">
+  <ng-container *ngFor="let q of questions">
+    <kkl-form-input
+      fxFlex="47"
+      [key]="q.key"
+      [control]="formGroup.controls[q.key]"
+      [cleave]="q.cleave"
+      [controlType]="'sum'"
+      [label]="q.label"
+      (valueChanged)="onRangeNumberChange()"
+    ></kkl-form-input>
+  </ng-container>
+</div>

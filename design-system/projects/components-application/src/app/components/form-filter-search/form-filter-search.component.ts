@@ -38,12 +38,36 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.RANGE,
       controlType: 'range',
       format: 'area',
+      questions: [
+        {
+          key: 'start',
+          label: 'משטח',
+          controlType: 'sum',
+        },
+        {
+          key: 'end',
+          label: 'עד שטח',
+          controlType: 'sum',
+        },
+      ],
     },
     {
       key: 'currency',
       filterType: FilterType.RANGE,
       controlType: 'range',
-      format: 'area',
+      questions: [
+        {
+          key: 'start',
+          label: 'מסכום',
+          controlType: 'sum',
+        },
+        {
+          key: 'end',
+          label: 'עד סכום',
+          controlType: 'sum',
+        },
+      ],
+      format: 'currency',
     },
     {
       key: 'city',
@@ -77,6 +101,8 @@ export class FormFilterSearchComponent implements OnInit {
     this.control = new FormControl();
 
     this.searchGroup = this.setGroup(this.questions);
+
+    console.log(this.searchGroup.questions);
 
     this.filtersState$ = this.getFiltersMap().pipe(
       switchMap((filterState) => {

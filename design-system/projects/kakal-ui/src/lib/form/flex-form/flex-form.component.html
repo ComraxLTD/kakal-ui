@@ -42,7 +42,8 @@
 
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'range'">
-          <kkl-form-date
+          <kkl-form-range [questions]="question.questions"></kkl-form-range>
+          <!-- <kkl-form-date
             [control]="formGroup.controls[question.key]"
             [key]="question?.key"
             [range]="true"
@@ -53,7 +54,7 @@
             [index]="index"
             (focus)="onFocus($event)"
           >
-          </kkl-form-date>
+          </kkl-form-date> -->
         </ng-container>
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'autocomplete'">
