@@ -14,7 +14,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     CommonModule,
     KKLTypographyModule,
     KKLIconModule,
-    BrowserAnimationsModule,
+    
     KKLDirectivesModule,
     FlexLayoutModule,
     MatTooltipModule

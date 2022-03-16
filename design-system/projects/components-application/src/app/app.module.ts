@@ -20,7 +20,7 @@ import { FormFilterSearchComponent } from './components/form-filter-search/form-
     AppRoutingModule,
     FlexLayoutModule,
     MaterialModule,
-    BrowserAnimationsModule,
+    
     KKLPageHeadlineModule,
     KKLStatusBarsModule,
     StepperLayoutModule,

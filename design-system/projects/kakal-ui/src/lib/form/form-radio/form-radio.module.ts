@@ -12,7 +12,7 @@ import { FormRadioComponent } from './form-radio.component';
     ReactiveFormsModule,
     FlexLayoutModule,
     MatRadioModule,
-    BrowserAnimationsModule,
+    
   ],
   declarations: [FormRadioComponent],
   exports: [FormRadioComponent],

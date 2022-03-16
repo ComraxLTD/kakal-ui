@@ -20,7 +20,7 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,

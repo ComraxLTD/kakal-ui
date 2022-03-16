@@ -26,7 +26,7 @@ import { FlexFormComponent } from './flex-form.component';
   declarations: [FlexFormComponent],
   imports: [
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+    
     FlexLayoutModule,
 
     // form components

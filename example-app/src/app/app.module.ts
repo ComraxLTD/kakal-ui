@@ -19,7 +19,7 @@ import { FormService } from '@ComraxLTD/kakal-ui/lib/form/services/form.service'
     AppRoutingModule,
     KakalUiModule,
     FlexLayoutModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   providers: [FormService],
   bootstrap: [AppComponent],

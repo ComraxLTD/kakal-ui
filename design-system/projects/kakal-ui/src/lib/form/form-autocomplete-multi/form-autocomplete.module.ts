@@ -23,7 +23,7 @@ import { FormAutocompleteComponentMulti } from './form-autocomplete-multi.compon
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
-    BrowserAnimationsModule,
+    
     MatInputModule,
     MatAutocompleteModule,
     KKLIconModule,

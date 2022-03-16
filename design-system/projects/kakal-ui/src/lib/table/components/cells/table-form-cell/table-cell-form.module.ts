@@ -18,7 +18,7 @@ import { KKLDirectivesModule } from '../../../../directives/directives.module';
   declarations: [FormCellComponent],
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
