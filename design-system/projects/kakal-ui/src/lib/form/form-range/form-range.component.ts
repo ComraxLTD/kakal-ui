@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { skip, take, filter, takeUntil, Subject } from 'rxjs';
 import { FilterRange } from '../../filters/filters.types';
 import { FormService, Question } from '../services/form.service';
@@ -10,6 +10,7 @@ import { FormService, Question } from '../services/form.service';
   styleUrls: ['./form-range.component.scss'],
 })
 export class FormRangeComponent implements OnInit {
+  @Input() control: FormControl;
   @Input() questions: Question[];
 
   constructor(private formService: FormService) {}
@@ -21,6 +22,7 @@ export class FormRangeComponent implements OnInit {
   @Output() rangeChange: EventEmitter<FilterRange<number>> = new EventEmitter();
 
   ngOnInit(): void {
+    this.destroy = new Subject();
     this.formGroup = this.setAmountGroup(this.questions);
   }
 
@@ -36,17 +38,20 @@ export class FormRangeComponent implements OnInit {
   }
 
   public onRangeNumberChange() {
-    // this.formGroup.valueChanges
-    //   .pipe(
-    //     skip(1),
-    //     take(1),
+    this.formGroup.valueChanges
+      .pipe(
+        skip(1),
+        take(1),
 
-    //     filter((range) => range.start !== null && range.end !== null),
-    //     filter((range) => range.start !== '' && range.end !== ''),
-    //     takeUntil(this.destroy)
-    //   )
-    //   .subscribe((range: FilterRange<number>) => {
-    //     this.rangeChange.emit(range);
-    //   });
+        // filter((range) => range.start !== null && range.end !== null),
+        // filter((range) => range.start !== '' && range.end !== ''),
+        takeUntil(this.destroy)
+      )
+      .subscribe((range: FilterRange<number>) => {
+        this.control.setValue({
+          ...range,
+        });
+        this.rangeChange.emit(range);
+      });
   }
 }

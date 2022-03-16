@@ -135,7 +135,7 @@ export class FormFilterSearchComponent implements OnInit {
         //     (form[k] === null || form[k] === undefined || form[k] === '') &&
         //     delete form[k]
         // );
-
+        console.log(form);
         return form;
       })
     );
@@ -181,22 +181,6 @@ export class FormFilterSearchComponent implements OnInit {
           };
         }, {} as { [key: string]: FilterChangeEvent })
     );
-  }
-
-  private clearFilters(filterMap: FilterState) {
-    return Object.keys(filterMap)
-      .filter(
-        (k) =>
-          filterMap[k].value !== '' &&
-          filterMap[k].value !== null &&
-          filterMap[k].value !== undefined
-      )
-      .reduce((acc, key) => {
-        return {
-          ...acc,
-          [key]: filterMap[key],
-        };
-      }, {});
   }
 
   private getFiltersMap(): Observable<FilterState | null> {

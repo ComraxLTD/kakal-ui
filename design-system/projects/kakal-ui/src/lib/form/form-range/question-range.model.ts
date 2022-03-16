@@ -13,7 +13,7 @@ export class QuestionRangeModel extends QuestionBase {
     super(options);
     this.key = options.key;
     this.controlType = 'range';
-    this.value = options.value || { start: 0, end: 0 };
+    this.value = options.value || null;
     this.questions = options.questions;
   }
 }
