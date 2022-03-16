@@ -71,7 +71,7 @@ export abstract class QuestionBase {
   public value?: any | undefined;
   public appearance?: Appearance;
   public type?: QuestionType;
-  public format?: string;
+  public format?: { type: string; args?: any };
   public selector?: string;
   public controlType?: ControlType;
   public gridProps?: GridProps;
@@ -90,7 +90,7 @@ export abstract class QuestionBase {
     placeHolder?: string;
     appearance?: Appearance;
     type?: QuestionType;
-    format?: string;
+    format?: { type: string; args?: any };
     selector?: string;
     controlType?: ControlType;
     disabled?: boolean;

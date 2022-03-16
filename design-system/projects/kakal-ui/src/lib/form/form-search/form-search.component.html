@@ -9,7 +9,7 @@
       [control]="searchControl"
     ></kkl-form-autocomplete>
 
-    <div kkl-form-button>
+    <div kkl-form-button *ngIf="expended">
       <button
         [disableRipple]="true"
         mat-icon-button
@@ -33,7 +33,7 @@
         [expanded]="expended"
       >
         <ng-container
-          *ngTemplateOutlet="formSearchDirective.template || defaultTemplate; context : { $implicit: {questions, formGroup}}"
+          *ngTemplateOutlet="formSearchDirective?.template || defaultTemplate; context : { $implicit: {questions, formGroup}}"
         ></ng-container>
       </mat-expansion-panel>
     </mat-accordion>

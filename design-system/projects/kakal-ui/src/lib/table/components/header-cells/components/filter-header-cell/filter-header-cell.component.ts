@@ -14,7 +14,6 @@ import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
 
-
 import {
   setFilterOptionState,
   setRangeState,
@@ -37,7 +36,7 @@ import { map, Observable, filter, of, merge, pluck } from 'rxjs';
 export class FilterHeaderCellComponent implements OnInit {
   @Input() public filterType: FilterType;
   @Input() public columnDef: string;
-  @Input() public format: string;
+  @Input() public format: { type: string; args: any };
   @Input() public label: string;
   @Input() public sortBy: SortDirection;
 
@@ -54,7 +53,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
   ngOnInit(): void {
     if (
-      this.filterType === FilterType.SELECT||
+      this.filterType === FilterType.SELECT ||
       this.filterType === FilterType.MULTI_SELECT
     ) {
       this.options$ = this.initOptionsWithState();

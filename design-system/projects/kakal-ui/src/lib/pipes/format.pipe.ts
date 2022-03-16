@@ -5,8 +5,8 @@ import { PrefixPipe } from './prefix.pipe';
 import { LocationPipe } from './location.pipe';
 
 export interface FormatPipe {
-  type : string,
-  args : any
+  type: string;
+  args: any;
 }
 
 @Pipe({
@@ -20,15 +20,24 @@ export class FormatPipe implements PipeTransform {
     @Inject(LOCALE_ID) private locale: string
   ) {}
 
+  private setCurrency(value: any, args) {
+    console.log();
+    if (value.includes(',')) {
+      value = value.split(',').reduce((acc, val) => acc + val);
+    }
+
+    return formatCurrency(value, this.locale, args(), '', '1.0');
+  }
+
   private formatObj(value: any, format: string, args?: string): string {
     const formats = {
-      location: this.location.transform(value),
-      area: this.area.transform(value),
-      prefix: this.prefix.transform(value, args),
-      currency: formatCurrency(value, this.locale, '₪', 'ILS', '1.0'),
-      number: formatNumber(value, this.locale),
+      location: (value) => this.location.transform(value),
+      area: (value) => this.area.transform(value),
+      prefix: (value, args) => this.prefix.transform(value, args),
+      currency: (value, args) => this.setCurrency(value, args),
+      number: (value) => formatNumber(value, this.locale),
     };
-    return formats[format] !== undefined ? formats[format] : value;
+    return formats[format] !== undefined ? formats[format](value, args) : value;
   }
 
   private formatDate(value: any, format: string, args?: string): string {
@@ -48,7 +57,7 @@ export class FormatPipe implements PipeTransform {
       : this.formatObj(value, format, args);
   }
 
-  public transform(value: unknown, format?: string, args?): unknown {
+  public transform(value: unknown, format?: string, args?: any): unknown {
     return format && value ? this.formatValue(value, format, args) : value;
   }
 }

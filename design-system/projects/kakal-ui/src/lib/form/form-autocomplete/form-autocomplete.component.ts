@@ -37,20 +37,27 @@ export class FormAutocompleteComponent implements OnInit {
 
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
+  private getOption(query: string) {
+    const options = this.options;
+
+    return options !== undefined
+      ? options.find((option) => option.label.indexOf(query))
+      : null;
+  }
+
   public search(query: string): void {
-    const option: SelectOption = this.options.find((option) =>
-      option.label.indexOf(query)
-    );
+    const options = this.options;
 
     const FormChangeEvent = {
       key: this.key,
-      option,
+      option: this.getOption(query),
       query,
       query$: of(query),
     };

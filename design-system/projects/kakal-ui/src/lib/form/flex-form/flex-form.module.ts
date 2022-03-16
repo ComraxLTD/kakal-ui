@@ -9,12 +9,13 @@ import { KKLFormAutoCompleteModule } from '../form-autocomplete/form-autocomplet
 import { KKLFormRangeModule } from '../form-range/form-range.module';
 
 import { FlexFormComponent } from './flex-form.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [FlexFormComponent],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
-    
     FlexLayoutModule,
 
     // form components

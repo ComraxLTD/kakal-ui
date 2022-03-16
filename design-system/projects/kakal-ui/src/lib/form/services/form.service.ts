@@ -26,6 +26,7 @@ import { QuestionFileModel } from '../models/question-file.model';
 import { QuestionCheckBoxModel } from '../models/question-checkbox.model';
 
 import { QuestionRangeModel } from '../form-range/question-range.model';
+import { OptionMap } from '../models/form.types';
 
 export type ControlTemplate = [
   state: any,
@@ -145,6 +146,15 @@ export class FormService {
       formGroup: this.setFormGroup(questions, options?.validations),
       controls: this.setQuestionsAsGroup(questions),
     });
+  }
+
+  public setQuestionsWithOptions(
+    questions: Question[],
+    optionsMap: OptionMap
+  ): Question[] {
+    return questions.map((q: Question) =>
+      optionsMap[q.key] === undefined ? q : { ...q, options: optionsMap[q.key] }
+    );
   }
 
   public createFormArray(arr) {

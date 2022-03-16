@@ -5,13 +5,13 @@ import {
   FiltersService,
   FilterState,
   FilterType,
-  FormChangeEvent,
   FormService,
+  OptionMap,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
-import { filter, iif, map, merge, Observable, of, skip, switchMap } from 'rxjs';
 import { MOCK_OPTIONS } from '../table/mock_data';
+import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
@@ -20,9 +20,13 @@ import { MOCK_OPTIONS } from '../table/mock_data';
   providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
-  public control: FormControl;
-
   private questions: Question[] = [
+    // first for the general search
+    // key must be search!
+    {
+      key: 'search',
+      controlType: 'autocomplete',
+    },
     {
       key: 'first_name',
     },
@@ -38,7 +42,7 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'area',
       filterType: FilterType.RANGE,
       controlType: 'range',
-      format: 'area',
+      format: { type: 'area' },
       questions: [
         {
           key: 'start',
@@ -68,7 +72,7 @@ export class FormFilterSearchComponent implements OnInit {
           controlType: 'sum',
         },
       ],
-      format: 'currency',
+      format: { type: 'currency', args: (item) => '$' },
     },
     {
       key: 'city',
@@ -98,10 +102,8 @@ export class FormFilterSearchComponent implements OnInit {
     private formService: FormService
   ) {}
 
-  ngOnInit(): void {
-    this.control = new FormControl();
-
-    this.searchGroup = this.setGroup(this.questions);
+  async ngOnInit(): Promise<void> {
+    this.searchGroup = await this.setGroup(this.questions);
 
     this.filtersState$ = this.filterService.getFilterMap({
       formGroup: this.searchGroup.formGroup,
@@ -109,12 +111,37 @@ export class FormFilterSearchComponent implements OnInit {
     });
   }
 
-  private setGroup(questions: Question[]) {
+  public getOptions(): Observable<OptionMap> {
+    const city$ = of(MOCK_OPTIONS);
+    const email$ = of(MOCK_OPTIONS);
+    const country$ = of(MOCK_OPTIONS);
+
+    return forkJoin([city$, email$, country$]).pipe(
+      map(([city, email, country]) => {
+        return { city, email, country };
+      })
+    );
+  }
+
+  private async setQuestionsWithOptions(
+    questions: Question[]
+  ): Promise<Question[]> {
+    const optionsMap = await firstValueFrom(this.getOptions());
+    return this.formService.setQuestionsWithOptions(questions, optionsMap);
+  }
+
+  private async setGroup(
+    initQuestions: Question[]
+  ): Promise<QuestionGroupModel> {
+    const questions = await this.setQuestionsWithOptions(initQuestions);
     const group = this.formService.createQuestionGroup({
       questions,
     });
 
-    return group;
+    const advancedQuestions = [...group.questions];
+    advancedQuestions.splice(0, 1);
+
+    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
   }
 
   // DOM EVENTS SECTION

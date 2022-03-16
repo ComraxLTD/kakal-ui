@@ -11,13 +11,8 @@ import {
   skip,
   switchMap,
 } from 'rxjs';
-import { Question, SelectOption } from '../../public-api';
-import {
-  FilterChangeEvent,
-  FilterRange,
-  FilterState,
-  FilterType,
-} from './filters.types';
+import { Question } from '../../public-api';
+import { FilterChangeEvent, FilterState } from './filters.types';
 
 @Injectable({
   providedIn: 'root',

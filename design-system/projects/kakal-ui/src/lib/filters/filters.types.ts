@@ -20,5 +20,5 @@ export interface FilterChangeEvent<T = FilterType> {
   label?: string;
   value?: any;
   filterType?: T;
-  format?: string;
+  format?: { type: string; args: any };
 }
