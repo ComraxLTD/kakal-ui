@@ -68,7 +68,7 @@ export class FormFilterSearchComponent implements OnInit {
           controlType: 'sum',
         },
       ],
-      format: { type: 'currency' },
+      format: { type: 'currency', args: (item) => '$' },
     },
     {
       key: 'city',
