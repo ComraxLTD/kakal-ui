@@ -5,13 +5,12 @@ import {
   FiltersService,
   FilterState,
   FilterType,
-  FormChangeEvent,
   FormService,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
-import { filter, iif, map, merge, Observable, of, skip, switchMap } from 'rxjs';
 import { MOCK_OPTIONS } from '../table/mock_data';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
