@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
   <div fxLayout="column" fxFlex="50">
     <ng-container *ngIf="searchGroup">
-      <kkl-form-search [searchControl]="control">
+      <kkl-form-search [searchControl]="searchGroup.formGroup.controls['search']" [advanced]="true">
         <kkl-flex-form
           *kklFormSearchContent
           [questions]="searchGroup.questions"

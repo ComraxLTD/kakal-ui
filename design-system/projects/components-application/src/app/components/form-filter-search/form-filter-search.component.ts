@@ -20,9 +20,13 @@ import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
   providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
-  public control: FormControl;
-
   private questions: Question[] = [
+    // first for the general search
+    // key must be search!
+    {
+      key: 'search',
+      controlType: 'autocomplete',
+    },
     {
       key: 'first_name',
     },
@@ -99,8 +103,6 @@ export class FormFilterSearchComponent implements OnInit {
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.control = new FormControl();
-
     this.searchGroup = await this.setGroup(this.questions);
 
     this.filtersState$ = this.filterService.getFilterMap({
@@ -136,7 +138,10 @@ export class FormFilterSearchComponent implements OnInit {
       questions,
     });
 
-    return group;
+    const advancedQuestions = [...group.questions];
+    advancedQuestions.splice(0, 1);
+
+    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
   }
 
   // DOM EVENTS SECTION
