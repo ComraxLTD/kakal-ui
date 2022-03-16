@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { SelectOption } from '../../public-api';
 import {
   FilterChangeEvent,
   FilterRange,
@@ -49,6 +50,34 @@ export class FiltersService {
     );
 
     this.filterState.next(newState);
+  }
+
+  public getUpdateFilters(option: { key: string; index: number }) {
+    const { key, index } = option;
+    const filterState = this.getState();
+
+    const filters = filterState[key].value;
+    filters.splice(index, 1);
+    return filters;
+  }
+
+  public removeMultiFilter(option: { key: string; index: number }) {
+    const { key, index } = option;
+    const filterState = this.getState();
+
+    const filters = filterState[key].value;
+    filters.splice(index, 1);
+
+    const filterEvent =
+      filters.length === 0
+        ? null
+        : ({ ...filterState[key], value: filters } as FilterChangeEvent);
+
+    const newState = {
+      ...filterState,
+      [key]: filterEvent,
+    };
+    return newState;
   }
 
   private clearFilters(filterState: FilterState) {

@@ -39,13 +39,7 @@ export class FormRangeComponent implements OnInit {
 
   public onRangeNumberChange() {
     this.formGroup.valueChanges
-      .pipe(
-        skip(1),
-        take(1),
-        // filter((range) => range.start !== null && range.end !== null),
-        // filter((range) => range.start !== '' && range.end !== ''),
-        takeUntil(this.destroy)
-      )
+      .pipe(skip(1), take(1), takeUntil(this.destroy))
       .subscribe((range: FilterRange<number>) => {
         this.control.setValue({
           ...range,

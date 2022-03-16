@@ -5,8 +5,10 @@
         <ng-container
           *ngIf="item.value.filterType === 'multiSelect'; else elseBlock"
         >
-          <ng-container *ngFor="let option of item.value.value">
-            <kkl-chip (removed)="onRemoveFilter(item.key)">
+          <ng-container
+            *ngFor="let option of item.value.value; let index = index"
+          >
+            <kkl-chip (removed)="onRemoveMultiFilter({key : item.key, index})">
               {{ option | pluck: "label" }}
             </kkl-chip>
           </ng-container>
@@ -25,8 +27,8 @@
               </ng-container>
 
               <ng-container *ngSwitchCase="'range'">
-                {{ item.value.value.start | format: item.value.format }} -
-                {{ item.value.value.end | format: item.value.format }}
+                {{ item.value.value.start }} -
+                {{ item.value.value.end }}
               </ng-container>
 
               <ng-container *ngSwitchDefault>{{

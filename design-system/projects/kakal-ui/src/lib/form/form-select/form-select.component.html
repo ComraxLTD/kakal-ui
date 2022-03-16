@@ -17,7 +17,7 @@
     (focus)="onFocus()"
   >
     <mat-select-trigger *ngIf="multi">
-      {{ control.value ? control.value[0].label : "" }}
+      {{ control.value ? control.value[0]?.label : "" }}
       <span *ngIf="control.value?.length > 1">
         (+{{ control.value.length - 1 }})
       </span>

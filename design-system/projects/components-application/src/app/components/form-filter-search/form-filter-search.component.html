@@ -11,7 +11,8 @@
       <ng-container *ngIf="filtersState$ | async as filtersState">
         <kkl-filters
           (remove)="onRemove($event)"
-          (clear)="onRemove()"
+          (removeMulti)="onRemoveMulti($event)"
+          (clear)="onClear()"
           [filtersState]="filtersState"
         ></kkl-filters>
       </ng-container>

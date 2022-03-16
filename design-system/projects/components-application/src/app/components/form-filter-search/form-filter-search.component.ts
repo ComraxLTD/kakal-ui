@@ -5,6 +5,7 @@ import {
   FiltersService,
   FilterState,
   FilterType,
+  FormChangeEvent,
   FormService,
   Question,
   QuestionGroupModel,
@@ -101,8 +102,6 @@ export class FormFilterSearchComponent implements OnInit {
     this.control = new FormControl();
 
     this.searchGroup = this.setGroup(this.questions);
-
-    console.log(this.searchGroup.questions);
 
     this.filtersState$ = this.getFiltersMap().pipe(
       switchMap((filterState) => {
@@ -206,10 +205,14 @@ export class FormFilterSearchComponent implements OnInit {
   public onRemove(key: string) {
     console.log(key);
     this.searchGroup.getControl(key).reset();
-    this.filterService.dispatch({ filterState: { [key]: null } });
   }
+
+  public onRemoveMulti(filterChangeEvent: FilterChangeEvent) {
+    const { key, value } = filterChangeEvent;
+    this.searchGroup.getControl(key).setValue([...value]);
+  }
+
   public onClear() {
     this.searchGroup.formGroup.reset();
-    this.filterService.dispatch({ filterState: null });
   }
 }
