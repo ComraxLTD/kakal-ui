@@ -13,7 +13,7 @@ import { FormSelectComponent } from './form-select.component';
     CommonModule,
     MatFormFieldModule,
     MatSelectModule,
-    BrowserAnimationsModule,
+    
     ReactiveFormsModule,
     KKLIconModule
   ],

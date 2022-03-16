@@ -31,7 +31,7 @@ import { KKLFormCheckboxGroupModule } from '../form-checkbox-group/form-checkbox
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
-    BrowserAnimationsModule,
+    
     MatInputModule,
     KKLIconModule,
     MatGridListModule,

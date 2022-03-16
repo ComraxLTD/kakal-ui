@@ -8,7 +8,7 @@ import {PageHeadlineComponent}from './page-headline.component'
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    
     FlexLayoutModule,
     KKLTypographyModule,
     KKLIconModule

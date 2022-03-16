@@ -13,7 +13,7 @@ import { KKLIconModule } from '../../icon/icon.module';
     CommonModule,
     MatFormFieldModule,
     MatInputModule,
-    BrowserAnimationsModule,
+    
     ReactiveFormsModule,
     NgxCleaveDirectiveModule,
     KKLIconModule,

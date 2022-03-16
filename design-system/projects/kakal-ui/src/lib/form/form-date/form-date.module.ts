@@ -18,7 +18,6 @@ import { FormDateComponent } from "./form-date.component";
         MatNativeDateModule,
         MatDatepickerModule,
         MatInputModule,
-        BrowserAnimationsModule
     ],
     declarations:[FormDateComponent],
     exports:[FormDateComponent]

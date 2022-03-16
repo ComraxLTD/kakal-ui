@@ -7,7 +7,7 @@ import {BreadCrumbesComponent}  from './bread-crumbes.component'
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    
     KKLTypographyModule,
     FlexLayoutModule
 

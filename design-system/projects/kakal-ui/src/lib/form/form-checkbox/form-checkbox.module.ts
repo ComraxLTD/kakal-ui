@@ -7,7 +7,7 @@ import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatListModule } from "@angular/material/list";
 
 @NgModule({
-    imports: [MatCheckboxModule,ReactiveFormsModule,BrowserAnimationsModule,FlexLayoutModule,MatListModule],
+    imports: [MatCheckboxModule,ReactiveFormsModule,FlexLayoutModule,MatListModule],
     declarations: [FormCheckboxComponent],
     exports: [FormCheckboxComponent]
 })

@@ -17,7 +17,7 @@ import { MessageService } from '../services/message.service';
 @NgModule({
   imports: [
     CommonModule,
-    BrowserAnimationsModule,
+    
     ReactiveFormsModule,
     MatMenuModule,
     MatListModule,
