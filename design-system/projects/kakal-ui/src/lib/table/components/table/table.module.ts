@@ -15,7 +15,6 @@ import { KKLTableCellModule } from '../../components/cells/table-cell.module';
 import { KKLHeaderCellModule } from '../../components/header-cells/header-cells.module';
 import { KKLPaginationModule } from '../../components/pagination/pagination.module';
 import { KKLCellDirective } from '../../directives/cell.directive';
-import { PluckPipe } from '../../pipes/pluck.pipe';
 
 import { TableComponent } from './table.component';
 import { KKLTableDirective } from './table.directive';
@@ -40,7 +39,7 @@ import { KKLFiltersModule } from '../../../filters/filters.module';
 
     KKLFiltersModule
   ],
-  declarations: [TableComponent, KKLCellDirective, KKLTableDirective, PluckPipe],
+  declarations: [TableComponent, KKLCellDirective, KKLTableDirective],
   providers: [],
   exports: [
     TableComponent,

@@ -1,3 +1,5 @@
+import { KKLSelectOption } from '../../../../../kakal-ui/src/public-api';
+
 export interface RootObject {
   id: number;
   first_name?: string;
@@ -277,5 +279,58 @@ export const DEMO_OPTIONS: OptionObject[] = [
   {
     id: 10,
     city: 'China',
+  },
+];
+
+export const MOCK_OPTIONS: KKLSelectOption[] = [
+  {
+    id: 1,
+    label: 'Argentina',
+    value: 1,
+  },
+  {
+    id: 2,
+    label: 'Afghanistan',
+    value: 2,
+  },
+  {
+    id: 3,
+    label: 'Russia',
+    value: 3,
+  },
+  {
+    id: 4,
+    label: 'Indonesia',
+    value: 4,
+  },
+  {
+    id: 5,
+    label: 'Tupsan',
+    value: 5,
+  },
+  {
+    id: 6,
+    label: 'Nigeria',
+    value: 6,
+  },
+  {
+    id: 7,
+    label: 'United States',
+    value: 7,
+  },
+  {
+    id: 8,
+    label: 'Poland',
+    value: 8,
+  },
+  {
+    id: 9,
+    label: 'Indonesia',
+    value: 9,
+  },
+  {
+    id: 10,
+    label: 'China',
+    value: 10,
   },
 ];

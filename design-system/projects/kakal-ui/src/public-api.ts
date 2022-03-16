@@ -134,13 +134,12 @@ export * from './lib/table/directives/cell.directive';
 
 // -------------------------------------------------------------------------------------------------------
 
-
 // filters
 
-export * from './lib/filters/filters.module'
-export * from './lib/filters/filters.component'
-export * from './lib/filters/filters.types'
-export * from './lib/filters/filters.service'
+export * from './lib/filters/filters.module';
+export * from './lib/filters/filters.component';
+export * from './lib/filters/filters.types';
+export * from './lib/filters/filters.service';
 
 //menu
 export * from './lib/menu-item/menu-item.module';
@@ -211,28 +210,6 @@ export * from './constants/module-prefix';
 export * from './constants/project-prefix';
 export * from './constants/step-prefix';
 
-// pipes
-export * from './lib/pipes/area.pipe';
-export * from './lib/pipes/format.pipe';
-export * from './lib/pipes/location.pipe';
-export * from './lib/pipes/prefix.pipe';
-export * from './lib/pipes/range.pipe';
-export * from './lib/pipes/pipes.module';
-
-//directives
-export * from './lib/directives/hover.directive';
-export * from './lib/directives/variant.directive';
-export * from './lib/directives/size.directive';
-export * from './lib/directives/button.directive';
-export * from './lib/directives/underline.directive';
-export * from './lib/directives/border.directive';
-export * from './lib/directives/outside.directive';
-export * from './lib/directives/wizard.directive';
-
-export * from './lib/directives/outside-button.directive';
-
-export * from './lib/directives/directives.module';
-
 // styles
 export * from './styles/theme';
 // hover component
@@ -300,3 +277,26 @@ export * from './lib/dashboard/dashboard.module';
 export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
+
+// pipes
+export * from './lib/pipes/area.pipe';
+export * from './lib/pipes/format.pipe';
+export * from './lib/pipes/location.pipe';
+export * from './lib/pipes/prefix.pipe';
+export * from './lib/pipes/range.pipe';
+export * from './lib/pipes/pluck.pipe';
+export * from './lib/pipes/pipes.module';
+
+//directives
+export * from './lib/directives/hover.directive';
+export * from './lib/directives/variant.directive';
+export * from './lib/directives/size.directive';
+export * from './lib/directives/button.directive';
+export * from './lib/directives/underline.directive';
+export * from './lib/directives/border.directive';
+export * from './lib/directives/outside.directive';
+export * from './lib/directives/wizard.directive';
+
+export * from './lib/directives/outside-button.directive';
+
+export * from './lib/directives/directives.module';

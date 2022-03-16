@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { FilterState } from './filters.types';
+import {
+  FilterChangeEvent,
+  FilterRange,
+  FilterState,
+  FilterType,
+} from './filters.types';
 
 @Injectable({
   providedIn: 'root',
@@ -26,9 +31,6 @@ export class FiltersService {
      */
     const oldState = this.getState();
 
-    console.log(filterState);
-    console.log(oldState);
-
     const newState = {
       ...oldState,
       ...filterState,
@@ -49,7 +51,32 @@ export class FiltersService {
     this.filterState.next(newState);
   }
 
-  private clearFilterState() {
+  private clearFilters(filterState: FilterState) {
+    return Object.keys(filterState).filter(
+      (k) =>
+        filterState[k].value === null &&
+        filterState[k].value === undefined &&
+        filterState[k].value === ''
+    );
+  }
 
+  private formatFilterValue(filterEvent: FilterChangeEvent) {
+    switch (filterEvent.filterType) {
+      case FilterType.NUMBER_RANGE: {
+        filterEvent = {
+          ...filterEvent,
+          value: { end: 0, start: 0 } as FilterRange<number>,
+        };
+      }
+    }
+  }
+
+  private mapFilters(filterState: FilterState, keys: string[]) {
+    return keys.reduce((acc, k) => {
+      return {
+        [k]: filterState[k],
+        ...acc,
+      };
+    }, {});
   }
 }

@@ -10,6 +10,7 @@ import {
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { filter, iif, map, merge, Observable, of, skip, switchMap } from 'rxjs';
+import { MOCK_OPTIONS } from '../table/mock_data';
 
 @Component({
   selector: 'app-form-filter-search',
@@ -25,7 +26,8 @@ export class FormFilterSearchComponent implements OnInit {
     { key: 'last_name' },
     { key: 'email', controlType: 'email' },
     { key: 'phone', controlType: 'phone' },
-    { key: 'city', controlType: 'select' },
+    { key: 'city', controlType: 'multiSelect', options: MOCK_OPTIONS },
+    { key: 'country', controlType: 'select', options: MOCK_OPTIONS },
     { key: 'date', controlType: 'date', validations: [Validators.required] },
   ];
 

@@ -195,6 +195,10 @@ export class FormService {
       case 'select':
         const sq = question as QuestionSelectModel;
         return new QuestionSelectModel(sq);
+      case 'multiSelect':
+        console.log(question)
+        const msq = question as QuestionSelectModel;
+        return new QuestionSelectModel(msq);
       case 'file':
         const fq = question as QuestionFileModel;
         return new QuestionFileModel(fq);

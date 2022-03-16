@@ -29,6 +29,7 @@ export type ControlType =
   | 'number'
   | 'textarea'
   | 'select'
+  |'multiSelect'
   | 'calendar'
   | 'checkbox'
   | 'radio'
