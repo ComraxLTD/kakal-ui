@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { SelectOption } from '../../public-api';
+import { FormGroup } from '@angular/forms';
+import {
+  BehaviorSubject,
+  filter,
+  iif,
+  map,
+  merge,
+  Observable,
+  of,
+  skip,
+  switchMap,
+} from 'rxjs';
+import { Question, SelectOption } from '../../public-api';
 import {
   FilterChangeEvent,
   FilterRange,
@@ -52,7 +63,7 @@ export class FiltersService {
     this.filterState.next(newState);
   }
 
-  public getUpdateFilters(option: { key: string; index: number }) {
+  private getUpdateFilters(option: { key: string; index: number }) {
     const { key, index } = option;
     const filterState = this.getState();
 
@@ -80,32 +91,83 @@ export class FiltersService {
     return newState;
   }
 
-  private clearFilters(filterState: FilterState) {
-    return Object.keys(filterState).filter(
-      (k) =>
-        filterState[k].value === null &&
-        filterState[k].value === undefined &&
-        filterState[k].value === ''
-    );
-  }
-
-  private formatFilterValue(filterEvent: FilterChangeEvent) {
-    switch (filterEvent.filterType) {
-      case FilterType.NUMBER_RANGE: {
-        filterEvent = {
-          ...filterEvent,
-          value: { end: 0, start: 0 } as FilterRange<number>,
+  private setQuestionsAsFilters(questions: Question[]) {
+    const formFilterTypes = questions
+      .map((q) => {
+        return {
+          key: q.key,
+          filterType: q.filterType,
+          format: q.format,
+        } as FilterChangeEvent;
+      })
+      .reduce((acc, filterEvent) => {
+        return {
+          [filterEvent.key]: filterEvent,
+          ...acc,
         };
-      }
-    }
+      }, {});
+
+    return formFilterTypes;
   }
 
-  private mapFilters(filterState: FilterState, keys: string[]) {
-    return keys.reduce((acc, k) => {
+  private setValueAsFilterChange(
+    filterValues,
+    filterTypes
+  ): FilterChangeEvent[] {
+    return Object.keys(filterValues).map((key) => {
       return {
-        [k]: filterState[k],
+        ...filterTypes[key],
+        value: filterValues[key],
+      } as FilterChangeEvent;
+    });
+  }
+
+  private setFiltersMap(filters: FilterChangeEvent[]) {
+    return filters.reduce((acc, filterEvent) => {
+      return {
+        [filterEvent.key]: filterEvent,
         ...acc,
       };
-    }, {});
+    }, {} as { [key: string]: FilterChangeEvent });
+  }
+
+  private getFilterValues(formGroup: FormGroup) {
+    return formGroup.valueChanges.pipe(skip(1));
+  }
+
+  private initFiltersMap(prop: {
+    formGroup: FormGroup;
+    questions: Question[];
+  }): Observable<FilterState | null> {
+    const { formGroup, questions } = prop;
+
+    const values$ = this.getFilterValues(formGroup);
+    const filterTypes = this.setQuestionsAsFilters(questions);
+
+    const true$ = values$.pipe(
+      filter((filterValues) => Object.keys(filterValues).length !== 0),
+      map((filterValues) => {
+        const filters = this.setValueAsFilterChange(filterValues, filterTypes);
+        const filterMap = this.setFiltersMap(filters);
+        return filterMap;
+      })
+    );
+    const false$ = values$.pipe(
+      filter((filterValues) => Object.keys(filterValues).length === 0),
+      map((_) => {
+        return null;
+      })
+    );
+
+    return merge(true$, false$);
+  }
+
+  public getFilterMap(prop: { formGroup: FormGroup; questions: Question[] }) {
+    return this.initFiltersMap(prop).pipe(
+      switchMap((filterState) => {
+        this.dispatch({ filterState });
+        return iif(() => filterState !== null, this.listen(), of(null));
+      })
+    );
   }
 }

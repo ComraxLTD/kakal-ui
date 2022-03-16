@@ -103,17 +103,10 @@ export class FormFilterSearchComponent implements OnInit {
 
     this.searchGroup = this.setGroup(this.questions);
 
-    this.filtersState$ = this.getFiltersMap().pipe(
-      switchMap((filterState) => {
-        this.filterService.dispatch({ filterState });
-
-        return iif(
-          () => filterState !== null,
-          this.filterService.listen(),
-          of(null)
-        );
-      })
-    );
+    this.filtersState$ = this.filterService.getFilterMap({
+      formGroup: this.searchGroup.formGroup,
+      questions: this.questions,
+    });
   }
 
   private setGroup(questions: Question[]) {
@@ -124,86 +117,9 @@ export class FormFilterSearchComponent implements OnInit {
     return group;
   }
 
-  private getFilterValues() {
-    const { formGroup } = this.searchGroup;
-    return formGroup.valueChanges.pipe(
-      skip(1),
-      map((form) => {
-        return form;
-      })
-    );
-  }
-  private setQuestionsAsFilters() {
-    const formFilterTypes = this.questions
-      .map((q) => {
-        return {
-          key: q.key,
-          filterType: q.filterType,
-          format: q.format,
-        } as FilterChangeEvent;
-      })
-      .reduce((acc, filterEvent) => {
-        return {
-          [filterEvent.key]: filterEvent,
-          ...acc,
-        };
-      }, {});
-
-    return formFilterTypes;
-  }
-
-  private setValueAsFilterChange(
-    filterValues,
-    filterTypes
-  ): FilterChangeEvent[] {
-    return Object.keys(filterValues).map((key) => {
-      return {
-        ...filterTypes[key],
-        value: filterValues[key],
-      } as FilterChangeEvent;
-    });
-  }
-
-  private setFiltersMap(filters: FilterChangeEvent[]) {
-    return (
-      filters
-        // .filter(
-        //   ({ value }) => value !== undefined && value !== null && value !== ''
-        // )
-        .reduce((acc, filterEvent) => {
-          return {
-            [filterEvent.key]: filterEvent,
-            ...acc,
-          };
-        }, {} as { [key: string]: FilterChangeEvent })
-    );
-  }
-
-  private getFiltersMap(): Observable<FilterState | null> {
-    const filtersValues$ = this.getFilterValues();
-    const filterTypes = this.setQuestionsAsFilters();
-
-    const true$ = filtersValues$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length !== 0),
-      map((filterValues) => {
-        const filters = this.setValueAsFilterChange(filterValues, filterTypes);
-        const filterMap = this.setFiltersMap(filters);
-
-        return filterMap;
-      })
-    );
-    const false$ = filtersValues$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length === 0),
-      map((_) => {
-        return null;
-      })
-    );
-
-    return merge(true$, false$);
-  }
+  // DOM EVENTS SECTION
 
   public onRemove(key: string) {
-    console.log(key);
     this.searchGroup.getControl(key).reset();
   }
 
