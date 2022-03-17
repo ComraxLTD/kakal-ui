@@ -10,7 +10,7 @@
         </div>
       </div>
     </mat-sidenav>
-    <mat-sidenav #endDrawer class="sidenav-drawer" mode="side" position="end" [opened]="true"
+    <mat-sidenav *ngIf="hasDrawer" #endDrawer class="sidenav-drawer" mode="side" position="end" [opened]="true"
       [ngStyle]="{width: (drawerSize$ | async) + '%' }">
       <!-- end drawer content -->
       <div fxLayout="row" fxLayoutAlign="strech strech" fxFill>
