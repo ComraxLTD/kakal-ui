@@ -20,6 +20,7 @@ import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
   providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
+
   private questions: Question[] = [
     // first for the general search
     // key must be search!
