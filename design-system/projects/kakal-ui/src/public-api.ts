@@ -282,12 +282,10 @@ export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
 
-<<<<<<< HEAD
 
 // display-data
 export * from './lib/display-data/display-data.component';
 export * from './lib/display-data/display-data.module';
-=======
 // pipes
 export * from './lib/pipes/area.pipe';
 export * from './lib/pipes/format.pipe';
@@ -310,4 +308,3 @@ export * from './lib/directives/wizard.directive';
 export * from './lib/directives/outside-button.directive';
 
 export * from './lib/directives/directives.module';
->>>>>>> 50f965b1ecd4e15763de16813b4863f91a5993ea

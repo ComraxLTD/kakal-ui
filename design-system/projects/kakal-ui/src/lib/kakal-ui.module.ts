@@ -66,12 +66,9 @@ import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLLayoutModule } from '../screens/layout/layout.module';
 import { KKLDashboarModule } from '../lib/dashboard/dashboard.module';
-<<<<<<< HEAD
 import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
-=======
 import { KKLFiltersModule } from '../lib/filters/filters.module';
 
->>>>>>> 50f965b1ecd4e15763de16813b4863f91a5993ea
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 
 @NgModule({
@@ -145,10 +142,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLLayoutModule,
     KKLDashboarModule,
     KKLChipsModule,
-<<<<<<< HEAD
     KKLDisplayDataModule
-=======
->>>>>>> 50f965b1ecd4e15763de16813b4863f91a5993ea
   ],
   exports: [
     //TOOLS
@@ -214,10 +208,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLLayoutModule,
     KKLDashboarModule,
     KKLChipsModule,
-<<<<<<< HEAD
     KKLDisplayDataModule
-=======
->>>>>>> 50f965b1ecd4e15763de16813b4863f91a5993ea
   ],
 })
 export class KakalUiModule {}
