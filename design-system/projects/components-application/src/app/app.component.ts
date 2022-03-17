@@ -15,6 +15,7 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'components-application';
+  data  = [{label:'בדיקה',value:5},{label:'test',value:'test' , icon:'tree'}]
 
   public cards: CardDashboardModel[] = [
     new CardDashboardModel({
