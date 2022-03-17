@@ -15,6 +15,7 @@
             [multi]="question?.multi"
             [options]="question?.options"
             [index]="index"
+            [label]="question?.label"
             [placeHolder]="question?.placeHolder"
             [theme]="question?.theme"
             [appearance]="question?.appearance"
@@ -30,6 +31,7 @@
             [control]="formGroup.controls[question.key]"
             [key]="question?.key"
             [range]="true"
+            [label]="question?.label"
             [placeHolder]="question?.placeHolder"
             [maxDate]="question?.maxDate"
             [minDate]="question?.minDate"
@@ -46,18 +48,6 @@
             [formControl]="formGroup.controls[question.key]"
             [questions]="question.questions"
           ></kkl-form-range>
-          <!-- <kkl-form-date
-            [control]="formGroup.controls[question.key]"
-            [key]="question?.key"
-            [range]="true"
-            [placeHolder]="question?.placeHolder"
-            [maxDate]="question?.maxDate"
-            [minDate]="question?.minDate"
-            [appearance]="question?.appearance"
-            [index]="index"
-            (focus)="onFocus($event)"
-          >
-          </kkl-form-date> -->
         </ng-container>
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'autocomplete'">
