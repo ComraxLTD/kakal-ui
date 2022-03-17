@@ -1,128 +1,159 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { filter, map, Observable, skip, tap } from 'rxjs';
 import {
   FilterChangeEvent,
+  FiltersService,
+  FilterState,
   FilterType,
-} from '../../../../../kakal-ui/src/lib/table/components/filters/filters.types';
-import { FilterState } from '../../../../../kakal-ui/src/lib/table/models/table.state';
-import {
-  ControlType,
   FormService,
+  OptionMap,
   Question,
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
+import { MOCK_OPTIONS } from '../table/mock_data';
+import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
+  providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
-  public control: FormControl;
 
   private questions: Question[] = [
-    { key: 'first_name', validations: [Validators.required] },
+    // first for the general search
+    // key must be search!
+    {
+      key: 'search',
+      controlType: 'autocomplete',
+    },
+    {
+      key: 'first_name',
+    },
     { key: 'last_name' },
-    { key: 'email', controlType: 'email' },
+    {
+      key: 'email',
+      filterType: FilterType.SELECT,
+      controlType: 'autocomplete',
+    },
     { key: 'phone', controlType: 'phone' },
-    { key: 'city', controlType: 'select' },
-    { key: 'date', controlType: 'date', validations: [Validators.required] },
+    {
+      key: 'area',
+      filterType: FilterType.RANGE,
+      controlType: 'range',
+      format: { type: 'area' },
+      questions: [
+        {
+          key: 'start',
+          label: 'משטח',
+          controlType: 'sum',
+        },
+        {
+          key: 'end',
+          label: 'עד שטח',
+          controlType: 'sum',
+        },
+      ],
+    },
+    {
+      key: 'currency',
+      filterType: FilterType.RANGE,
+      controlType: 'range',
+      questions: [
+        {
+          key: 'start',
+          label: 'מסכום',
+          controlType: 'sum',
+        },
+        {
+          key: 'end',
+          label: 'עד סכום',
+          controlType: 'sum',
+        },
+      ],
+      format: { type: 'currency', args: (item) => '$' },
+    },
+    {
+      key: 'city',
+      filterType: FilterType.MULTI_SELECT,
+      controlType: 'multiSelect',
+    },
+    {
+      key: 'country',
+      filterType: FilterType.SELECT,
+      controlType: 'select',
+    },
+    {
+      key: 'date',
+      filterType: FilterType.DATE_RANGE,
+      controlType: 'date',
+    },
   ];
 
   public searchGroup: QuestionGroupModel;
 
-  constructor(private formService: FormService) {}
+  public filtersState$: Observable<FilterState>;
 
-  ngOnInit(): void {
-    this.control = new FormControl();
+  constructor(
+    private filterService: FiltersService,
+    private formService: FormService
+  ) {}
 
-    this.searchGroup = this.setGroup(this.questions);
+  async ngOnInit(): Promise<void> {
+    this.searchGroup = await this.setGroup(this.questions);
 
-    this.getFiltersMap().subscribe((filters) => console.log(filters));
+    this.filtersState$ = this.filterService.getFilterMap({
+      formGroup: this.searchGroup.formGroup,
+      questions: this.questions,
+    });
   }
 
-  private setGroup(questions: Question[]) {
+  public getOptions(): Observable<OptionMap> {
+    const city$ = of(MOCK_OPTIONS);
+    const email$ = of(MOCK_OPTIONS);
+    const country$ = of(MOCK_OPTIONS);
+
+    return forkJoin([city$, email$, country$]).pipe(
+      map(([city, email, country]) => {
+        return { city, email, country };
+      })
+    );
+  }
+
+  private async setQuestionsWithOptions(
+    questions: Question[]
+  ): Promise<Question[]> {
+    const optionsMap = await firstValueFrom(this.getOptions());
+    return this.formService.setQuestionsWithOptions(questions, optionsMap);
+  }
+
+  private async setGroup(
+    initQuestions: Question[]
+  ): Promise<QuestionGroupModel> {
+    const questions = await this.setQuestionsWithOptions(initQuestions);
     const group = this.formService.createQuestionGroup({
       questions,
     });
 
-    return group;
+    const advancedQuestions = [...group.questions];
+    advancedQuestions.splice(0, 1);
+
+    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
   }
 
-  private getFilterValues() {
-    const { formGroup } = this.searchGroup;
-    return formGroup.valueChanges.pipe(
-      map((form) => {
-        Object.keys(form).forEach(
-          (k) =>
-            (form[k] === null || form[k] === undefined || form[k] === '') &&
-            delete form[k]
-        );
+  // DOM EVENTS SECTION
 
-        return form;
-      })
-    );
+  public onRemove(key: string) {
+    this.searchGroup.getControl(key).reset();
   }
 
-  private getFiltersTypes() {
-    const filterTypesMap = {
-      select: FilterType.SELECT,
-      multiSelect: FilterType.MULTI_SELECT,
-      date: FilterType.DATE_RANGE,
-      sum: FilterType.NUMBER_RANGE,
-      number: FilterType.NUMBER_RANGE,
-      currency: FilterType.NUMBER_RANGE,
-    };
-
-    const formFilterTypes = this.questions
-      .map((q) => {
-        return { controlType: q.controlType, key: q.key };
-      })
-      .reduce((acc, { controlType, key }) => {
-        return {
-          [key]: filterTypesMap[controlType] || FilterType.SEARCH,
-          ...acc,
-        };
-      }, {});
-
-    return formFilterTypes;
+  public onRemoveMulti(filterChangeEvent: FilterChangeEvent) {
+    const { key, value } = filterChangeEvent;
+    this.searchGroup.getControl(key).setValue([...value]);
   }
 
-  private setValueAsFilterChange(
-    filterValues,
-    filterTypes
-  ): FilterChangeEvent[] {
-    return Object.keys(filterValues).map((key) => {
-      return {
-        key,
-        value: filterValues[key],
-        filterType: filterTypes[key],
-      } as FilterChangeEvent;
-    });
-  }
-
-  private setFiltersMap(filters: FilterChangeEvent[]) {
-    return filters.reduce((acc, filterOption) => {
-      return {
-        [filterOption.key]: filterOption,
-        ...acc,
-      };
-    }, {} as { [key: string]: FilterChangeEvent });
-  }
-
-  private getFiltersMap(): Observable<FilterState> {
-    const filtersValues$ = this.getFilterValues();
-    const filterTypes = this.getFiltersTypes();
-
-    return filtersValues$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length !== 0),
-      map((filterValues) => {
-        const filters = this.setValueAsFilterChange(filterValues, filterTypes);
-        const filterMap = this.setFiltersMap(filters);
-
-        return filterMap;
-      })
-    );
+  public onClear() {
+    this.searchGroup.formGroup.reset();
   }
 }

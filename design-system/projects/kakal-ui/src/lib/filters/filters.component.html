@@ -1,0 +1,53 @@
+<ng-container *ngIf="filtersState">
+  <div fxLayout="row" fxLayoutGap="0.5rem">
+    <kkl-chip-list>
+      <ng-container *ngFor="let item of filtersState | keyvalue">
+        <ng-container
+          *ngIf="item.value.filterType === 'multiSelect'; else elseBlock"
+        >
+          <ng-container
+            *ngFor="let option of item.value.value; let index = index"
+          >
+            <kkl-chip (removed)="onRemoveMultiFilter({key : item.key, index})">
+              {{ option | pluck: "label" }}
+            </kkl-chip>
+          </ng-container>
+        </ng-container>
+
+        <ng-template #elseBlock>
+          <ng-container [ngSwitch]="item.value.filterType">
+            <kkl-chip (removed)="onRemoveFilter(item.key)">
+              <ng-container *ngSwitchCase="'select'">{{
+                item.value.value | pluck: "label"
+              }}</ng-container>
+
+              <ng-container *ngSwitchCase="'dateRange'">
+                {{ item.value.value.start | date: "YYYY/MM/dd" }} -
+                {{ item.value.value.end | date: "YYYY/MM/dd" }}
+              </ng-container>
+
+              <ng-container *ngSwitchCase="'range'">
+                {{
+                  item.value.value.start
+                    | format: item.value.format.type:item.value.format.args
+                }}
+                -
+                {{
+                  item.value.value.end
+                    | format: item.value.format.type:item.value.format.args
+                }}
+              </ng-container>
+
+              <ng-container *ngSwitchDefault>{{
+                item.value.value
+              }}</ng-container>
+            </kkl-chip>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+    </kkl-chip-list>
+    <button mat-button (click)="onClearFilters()">
+      <kkl-typography [underline]="true"> בטל סינונים </kkl-typography>
+    </button>
+  </div>
+</ng-container>

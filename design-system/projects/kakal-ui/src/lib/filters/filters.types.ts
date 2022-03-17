@@ -1,6 +1,9 @@
+export declare type FilterState = { [key: string]: FilterChangeEvent | null };
+
 export enum FilterType {
   SEARCH = 'search',
   SELECT = 'select',
+  RANGE = 'range',
   MULTI_SELECT = 'multiSelect',
   DATE_RANGE = 'dateRange',
   NUMBER_RANGE = 'numberRange',
@@ -17,5 +20,5 @@ export interface FilterChangeEvent<T = FilterType> {
   label?: string;
   value?: any;
   filterType?: T;
-  format?: string;
+  format?: { type: string; args: any };
 }

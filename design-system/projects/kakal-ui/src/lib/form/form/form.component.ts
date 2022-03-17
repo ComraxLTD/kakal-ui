@@ -40,11 +40,11 @@ export class FormComponent implements OnInit {
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
-  @Output() public changeSelect: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() public changeOption: EventEmitter<MatAutocompleteSelectedEvent> =
+  @Output() public selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> =
     new EventEmitter();
 
-  @Output() public autocompleteEvent: EventEmitter<FormChangeEvent> =
+  @Output() public queryChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
   @Output() fileChange = new EventEmitter<File[]>();
@@ -66,15 +66,15 @@ export class FormComponent implements OnInit {
   }
 
   public onSelect(option: FormChangeEvent) {
-    this.changeSelect.emit(option);
+    this.selectChanged.emit(option);
   }
 
   public onAutocomplete(FormChangeEvent: FormChangeEvent): void {
-    this.autocompleteEvent.emit(FormChangeEvent);
+    this.queryChanged.emit(FormChangeEvent);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-    this.changeOption.emit(event);
+    this.optionSelected.emit(event);
   }
 
   public onFileChange(files: File[]) {

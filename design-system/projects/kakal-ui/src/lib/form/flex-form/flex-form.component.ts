@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { Question } from '../services/form.service';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'kkl-flex-form',
@@ -49,13 +50,13 @@ export class FlexFormComponent implements OnInit {
     this.selectChanged.emit(option);
   }
 
-  public onAutocomplete(FormChangeEvent: FormChangeEvent): void {
-    this.queryChanged.emit(FormChangeEvent);
+  public onAutocomplete(event: FormChangeEvent): void {
+    this.queryChanged.emit(event);
   }
 
-  // public onOptionSelected(event: MatAutocompleteSelectedEvent) {
-  //   this.optionSelected.emit(event);
-  // }
+  public onOptionSelected(event: FormChangeEvent) : void {
+    this.optionSelected.emit(event);
+  }
 
   public onFileChange(files: File[]) {
     this.fileChange.emit(files);
@@ -65,7 +66,7 @@ export class FlexFormComponent implements OnInit {
     this.focusout.emit(key);
   }
 
-  public onFocus(FormChangeEvent: FormChangeEvent) {
-    this.focus.emit(FormChangeEvent);
+  public onFocus(event: FormChangeEvent) {
+    this.focus.emit(event);
   }
 }

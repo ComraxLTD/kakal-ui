@@ -10,7 +10,7 @@ import { PaginationInstance } from 'ngx-pagination';
 import { KKLSelectOption } from '../../form/models/form.types';
 import { ColumnDef } from '../components/header-cells/models/header.types';
 import { HeaderCellModel } from '../components/header-cells/models/header-cell.model';
-import { FilterChangeEvent } from '../components/filters/filters.types';
+import { FilterChangeEvent, FilterState } from '../../filters/filters.types';
 
 export interface TableState {
   selected?: { [key: string]: boolean };
@@ -36,7 +36,6 @@ export interface SortState {
   sorting: string;
   sortBy: SortDirection;
 }
-export declare type FilterState = { [key: string]: FilterChangeEvent | null };
 
 export interface RowState<T = any> {
   itemIndex: number;

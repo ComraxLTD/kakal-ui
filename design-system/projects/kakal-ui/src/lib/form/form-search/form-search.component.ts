@@ -1,4 +1,10 @@
-import { Component, ContentChild, Input, OnInit, TemplateRef } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  Input,
+  OnInit,
+  TemplateRef,
+} from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { Question } from '../services/form.service';
@@ -11,26 +17,24 @@ import { KKLFormSearchContentDirective } from './form-search.directive';
   providers: [FormDataSource],
 })
 export class FormSearchComponent implements OnInit {
-
-  @ContentChild(KKLFormSearchContentDirective) formSearchDirective
+  @ContentChild(KKLFormSearchContentDirective) formSearchDirective;
 
   @Input() public searchControl: FormControl;
-  @Input() public expended: boolean = true;
-  @Input() public formTemplate: TemplateRef<any>;
 
   @Input() public questions: Question[];
+  @Input() public advanced: boolean;
   @Input() public formGroup: FormGroup;
 
+  @Input() public inRow: number = 3;
+
   // default inputs in row
-  @Input() inRow: number = 3;
+  public expended: boolean;
   public flex: number;
 
   constructor() {}
 
-  public inputs = [1, 3, 4, 5, 5, 6, 6, 6, 7, 7, 8];
-
   ngOnInit(): void {
-
+    this.expended = this.advanced;
   }
 
   public onClick() {

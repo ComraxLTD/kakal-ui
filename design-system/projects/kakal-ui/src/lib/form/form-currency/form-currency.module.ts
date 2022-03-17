@@ -16,7 +16,6 @@ import { KKLFormSelectModule } from '../form-select/form-select.module';
     KKLFormInputModule,
     KKLFormSelectModule,
     KKLIconModule,
-    // MatSelectModule,
   ],
   providers: [CurrencyService, FormBuilder],
   declarations: [FormCurrencyComponent],

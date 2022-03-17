@@ -12,7 +12,7 @@ import {
   pairwise,
 } from 'rxjs';
 import { TableSelector } from '../../../../models/table.selectors';
-import { FilterRange, FilterType } from '../../../filters/filters.types';
+import { FilterType, FilterRange } from '../../../../../filters/filters.types';
 
 export function getHeaderFilterState(
   tableState$: Observable<TableState>,
