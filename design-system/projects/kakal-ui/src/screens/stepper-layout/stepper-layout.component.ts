@@ -6,17 +6,15 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { map, startWith, switchMap, tap } from 'rxjs/operators';
+import { map, startWith, switchMap } from 'rxjs/operators';
 import { StepperLayoutService } from './stepper-layout.service';
 import { RouterService } from '../../services/route.service';
 import { FormControl } from '@angular/forms';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { CardStepModel } from '../../lib/cards/card-step/card-step.model';
-import { Question } from '../../lib/form/services/form.service';
-import { SelectOption } from '../../lib/form/models/question-select.model';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -45,10 +43,10 @@ export class StepperLayoutComponent {
   }
   // ---------------------------------
 
-  @Input() portion$: Observable<number>;
+  @Input() portion$: Observable<number> = of(100);
   @Input() drawerSize$: Observable<number>;
   @Input() hasTitle: boolean;
-
+  @Input() hasDrawer: boolean;
   @Input() drawerBtn: {
     icon: string;
     label: string;
