@@ -11,7 +11,7 @@ export class QuestionRangeModel extends QuestionBase {
 
   constructor(options: {
     key: string;
-    value?: Range<number>;
+    value?: Range<number> | null;
     questions: Question[];
   }) {
     super(options);

@@ -21,34 +21,42 @@ import { Range } from './question-range.model';
       multi: true,
     },
   ],
+  host: {
+    class: 'kkl-form-range',
+    '[class.kkl-disabled]': 'disabled',
+  },
+  inputs: ['disabled'],
 })
 export class FormRangeComponent implements OnInit, ControlValueAccessor {
-  @Input() control: FormControl;
   @Input() questions: Question[];
 
   constructor(private formService: FormService) {}
 
   public formGroup: FormGroup;
+  public disabled: boolean;
 
-  private range: Range;
+  private range: Range | null;
 
   private destroy: Subject<void>;
 
-  @Output() rangeChange: EventEmitter<FilterRange<number>> = new EventEmitter();
+  @Output() rangeChange: EventEmitter<FilterRange<number> | null> =
+    new EventEmitter();
 
   ngOnInit(): void {
     this.destroy = new Subject();
     this.formGroup = this.setAmountGroup(this.questions);
   }
-  private _onChange: (v: Range) => void = (value: Range) => { };
 
+  private _onChange: (v: Range | null) => void = (value: Range | null) => {};
 
   // ControlValueAccessor interface methods
-  writeValue(value: Range) {
+  writeValue(value: Range | null) {
     if (!value) {
-      this.rangeChange.emit(null);
+      this.formGroup.reset();
+      return;
     }
-    this.range = value || null;
+
+    this.range = value;
     this._emitChangeEvent();
   }
 
@@ -69,6 +77,15 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
     this.rangeChange.emit(this.range);
   }
 
+  public setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+    if (isDisabled) {
+      this.formGroup.disable();
+    } else {
+      this.formGroup.enable();
+
+    }
+  }
 
   public setAmountGroup(questions: Question[]): FormGroup {
     const group = this.formService.createQuestionGroup<FilterRange<number>>({
@@ -85,10 +102,13 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
     this.formGroup.valueChanges
       .pipe(skip(1), take(1), takeUntil(this.destroy))
       .subscribe((range: FilterRange<number>) => {
-        this.control.setValue({
-          ...range,
-        });
-        this.rangeChange.emit(range);
+        this.range = range;
+
+        if (range.end === null) {
+          this.range = null;
+        }
+
+        this._emitChangeEvent();
       });
   }
 }
