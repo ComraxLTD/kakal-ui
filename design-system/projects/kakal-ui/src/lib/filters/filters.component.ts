@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FilterChangeEvent, FilterState } from './filters.types';
 import { FiltersService } from './filters.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-filters',
@@ -9,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-  
+
   @Input() filtersState: FilterState;
 
   @Output() clear: EventEmitter<void> = new EventEmitter();
