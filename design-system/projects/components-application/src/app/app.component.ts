@@ -16,8 +16,9 @@ import {
 })
 export class AppComponent implements OnInit {
   title = 'components-application';
-  data  = [{ label: 'מעדכן', value: 'בנצי שפירא' }, { label: 'תאריך יצירה', value: '10.02.2021' }
-  , { label: 'מרחב', value: 'גליל עליון' }, { label: 'יער', value: 'ביריה' }, { label: 'חלקות ועומדים', value: '25-211' }]
+  data  =  [{label:'גיל היער המחטני',value:'קבוצת גיל'},{label:'מספר שכבות יער',value:'חד שכבתי'},{label:'תצורת צומח יערנית קיימת',value:'בוסתני ומטעים'}
+  ,{label:'רמת צפיפות קיימת',value:'מספר עצים לדונם'},{label:'רמת כיסוי צמרות קיימת',value:'בשכבות המטופלות ללא מינים פולשים'},{label:'מצב היער',value:'סכנה בטיחותית'},
+  {label:'גיל היער המחטני',value:'קבוצת גיל'},{label:'מספר שכבות יער',value:'חד שכבתי'},{label:'תצורת צומח יערנית קיימת',value:'בוסתני ומטעים'}]
 
   public cards: CardDashboardModel[] = [
     new CardDashboardModel({
