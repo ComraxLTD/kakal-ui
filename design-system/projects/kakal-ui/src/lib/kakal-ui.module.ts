@@ -66,6 +66,7 @@ import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLLayoutModule } from '../screens/layout/layout.module';
 import { KKLDashboarModule } from '../lib/dashboard/dashboard.module';
+import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
 import { KKLFiltersModule } from '../lib/filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
@@ -141,6 +142,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLLayoutModule,
     KKLDashboarModule,
     KKLChipsModule,
+    KKLDisplayDataModule
   ],
   exports: [
     //TOOLS
@@ -206,6 +208,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLLayoutModule,
     KKLDashboarModule,
     KKLChipsModule,
+    KKLDisplayDataModule
   ],
 })
 export class KakalUiModule {}

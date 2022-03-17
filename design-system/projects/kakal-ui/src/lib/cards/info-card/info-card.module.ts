@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { InfoCardComponent } from './info-card.component';
 import { KKLDirectivesModule } from '../../directives/directives.module';
 import { KKLIconModule } from '../../icon/icon.module';

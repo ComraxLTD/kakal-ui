@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { KKLFormInputModule } from '../form-input/form-input.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLFormDateModule } from '../form-date/form-date.module';
