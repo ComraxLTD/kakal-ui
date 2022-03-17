@@ -122,7 +122,7 @@ export class FiltersService {
   }
 
   private getFilterValues(formGroup: FormGroup) {
-    return formGroup.valueChanges.pipe(skip(1));
+    return formGroup.valueChanges.pipe();
   }
 
   private initFiltersMap(prop: {

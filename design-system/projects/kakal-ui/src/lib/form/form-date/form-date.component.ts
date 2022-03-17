@@ -44,6 +44,7 @@ export const MY_FORMATS = {
   ],
 })
 export class FormDateComponent implements OnInit {
+  
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public range: boolean;
@@ -65,14 +66,25 @@ export class FormDateComponent implements OnInit {
 
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  constructor(private messageService: MessageService) { }
+  constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
-    this.control = this.control || new FormControl();
     if (this.control.value) {
-      if (this.control.value.start || this.control.value.end) this.rangeForm.setValue(this.control.value)
+      if (this.control.value.start || this.control.value.end)
+        this.rangeForm.setValue(this.control.value);
     }
     this.message$ = this.setErrorMessage$();
+
+    this.listenToControlReset();
+  }
+
+  private listenToControlReset() {
+    return this.control.valueChanges
+    .subscribe((value) => {
+      if (!value) {
+        this.rangeForm.reset();
+      }
+    });
   }
 
   private getFormOption(): FormChangeEvent {
@@ -112,7 +124,6 @@ export class FormDateComponent implements OnInit {
         this.rangeForm.controls['end'].setValue(event.value['_d']);
       }
       if (this.control) this.control.setValue(this.rangeForm.value);
-
 
       this.dateEvent.emit(this.rangeForm.value);
     }
