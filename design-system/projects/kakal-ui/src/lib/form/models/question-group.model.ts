@@ -19,22 +19,22 @@ export interface GroupOptions {
 }
 
 export class QuestionGroupModel<T = any> extends QuestionBase {
-  public questions?: Question[];
+  public questions: Question[];
+  public formGroup: FormGroup;
   public type?: QuestionType;
-  public formGroup?: FormGroup;
   public hasButton?: boolean;
-  public controls?: { [key: string]: Question };
+  public controls: { [key: string]: Question };
 
   constructor(options?: {
     key: string;
-    questions?: Question[];
+    formGroup: FormGroup;
+    controls: { [key: string]: Question };
+    questions: Question[];
     label?: string;
     icon?: string;
     type?: QuestionType;
-    formGroup?: FormGroup;
     gridProps?: GridProps;
     hasButton?: boolean;
-    controls?: { [key: string]: Question };
     validations?: ValidatorFn[];
   }) {
     super(options);
@@ -44,7 +44,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     this.controlType = 'group';
     this.icon = '';
     this.questions = options.questions || [];
-    this.formGroup = options.formGroup;
+    this.formGroup = options.formGroup || null;
     this.gridProps = options.gridProps || { cols: 1 };
     this.hasButton = options.hasButton || false;
     this.controls = options.controls || null;
