@@ -6,7 +6,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { map, startWith, switchMap } from 'rxjs/operators';
+import { map, startWith, switchMap, tap } from 'rxjs/operators';
 import { StepperLayoutService } from './stepper-layout.service';
 import { RouterService } from '../../services/route.service';
 import { FormControl } from '@angular/forms';
@@ -73,11 +73,12 @@ export class StepperLayoutComponent {
 
   ngOnInit(): void {
     this.steps$ = this.setSteps$();
-   
+
     // this.question$ = this.setSelectQuestion();
     this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
     this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
     this.mobile$ = this.breakpointService.isMobile();
+
   }
   private setSteps$(): Observable<CardStepModel[]> {
     return this.stepperLayoutService.getStepsObs().pipe(

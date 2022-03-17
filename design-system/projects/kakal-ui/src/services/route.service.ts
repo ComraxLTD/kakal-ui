@@ -70,7 +70,7 @@ export class RouterService {
       return steps.map(step => {
         if (step.path === path) currentStep = step;
       })
-    });
+    });    
     return currentStep?.path;
   }
 
