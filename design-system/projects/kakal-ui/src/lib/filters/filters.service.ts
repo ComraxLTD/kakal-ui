@@ -55,16 +55,11 @@ export class FiltersService {
         delete newState[k]
     );
 
-    this.filterState.next(newState);
-  }
-
-  private getUpdateFilters(option: { key: string; index: number }) {
-    const { key, index } = option;
-    const filterState = this.getState();
-
-    const filters = filterState[key].value;
-    filters.splice(index, 1);
-    return filters;
+    if (Object.keys(newState).length === 0) {
+      this.filterState.next(null);
+    } else {
+      this.filterState.next(newState);
+    }
   }
 
   public removeMultiFilter(option: { key: string; index: number }) {
