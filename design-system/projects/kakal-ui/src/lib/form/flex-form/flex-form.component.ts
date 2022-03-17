@@ -19,6 +19,9 @@ export class FlexFormComponent implements OnInit {
   // default inputs in row
   @Input() inRow: number = 3;
 
+  // default inputs in row
+  @Input() hasButton: boolean
+
   public flex: number;
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
