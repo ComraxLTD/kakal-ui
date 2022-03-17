@@ -11,7 +11,7 @@ export class DisplayDataComponent implements OnInit {
   @Input() type: 'table' | 'default' | 'input' = 'default';
 
   constructor() { }
-  fakeDATA = [{ label: 'test', value: 'test' }, { label: 'יתרה פיננסית :', value: '143,300' , icon:'tree' }];
+  fakeDATA = [{ label: 'test', value: 'test' }, { label: 'יתרה פיננסית :', value: '143,300', icon: 'tree' }];
   ngOnInit(): void {
     this.data = this.fakeDATA;
     if (!Array.isArray(this.data)) this.data = [this.data];
