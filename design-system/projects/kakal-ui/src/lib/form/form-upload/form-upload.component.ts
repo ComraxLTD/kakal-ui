@@ -35,14 +35,14 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
   @Input() public label: string = 'העלה מסמך';
   @Input() public index: number;
   @Input() public multi: boolean = true;
+
   public disabled: boolean;
-  // public placeholder$: Observable<string>;
   public label$: Observable<string>;
   public files: File[] = [];
   private labelSub: Subscription;
+
   // emit the file
   @Output() fileChange = new EventEmitter<File[]>();
-  // @Output() removeFile = new EventEmitter<File>();
 
   constructor() { }
 
@@ -72,6 +72,7 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
   }
 
   registerOnTouched(fn: Function) { }
+
   // SET PROPS SECTION
   public setLabelFormFileLength$(): Observable<string> {
     return this.fileChange.pipe(

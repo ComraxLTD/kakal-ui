@@ -20,7 +20,6 @@ import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
   providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
-
   private questions: Question[] = [
     // first for the general search
     // key must be search!
@@ -88,6 +87,7 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'date',
       filterType: FilterType.DATE_RANGE,
       controlType: 'date',
+      // value: { start: new Date(), end: new Date() },
     },
   ];
 
@@ -145,12 +145,14 @@ export class FormFilterSearchComponent implements OnInit {
   // DOM EVENTS SECTION
 
   public onRemove(key: string) {
-    this.searchGroup.getControl(key).reset();
+    const formGroup = this.searchGroup.formGroup;
+    formGroup.controls[key].disable();
   }
 
   public onRemoveMulti(filterChangeEvent: FilterChangeEvent) {
     const { key, value } = filterChangeEvent;
-    this.searchGroup.getControl(key).setValue([...value]);
+    const formGroup = this.searchGroup.formGroup;
+    formGroup.controls[key].setValue([...value]);
   }
 
   public onClear() {

@@ -1,11 +1,17 @@
-<!-- <div fxFlex="50">
-  <kkl-display-data [data]="data" type="input"></kkl-display-data>
-</div> -->
-<router-outlet></router-outlet>
+<div fxLayout="column">
+  <router-outlet></router-outlet>
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <app-form-filter-search></app-form-filter-search>
+  </div>
+  <div fxFlex="50">
+    <kkl-display-data [data]="data" type="input"></kkl-display-data>
+  </div>
+</div>
+
 <!-- <kkl-stepper-layout (changeStep)="onStepChange($event)" [hasTitle]="true">
 
   <router-outlet content></router-outlet> -->
-<!-- 
+<!--
   <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" [hasNext]="true" [hasSave]="true"
       (previous)="onPrevious()" (next)="onNext($event)" [stepper]="true">
   </kkl-navbar-bottom> -->
@@ -28,10 +34,10 @@
 <!-- <div fxLayout="row" fxLayoutAlign="center center">
     <app-table fxFlex="90"></app-table>
   </div> -->
-  <!-- <div fxLayout="row" fxLayoutAlign="center center"> -->
-    <!-- <app-table fxFlex="90"></app-table> -->
-    <!-- <app-form-filter-search></app-form-filter-search> -->
-  <!-- </div> -->
+<!-- <div fxLayout="row" fxLayoutAlign="center center"> -->
+<!-- <app-table fxFlex="90"></app-table> -->
+<!-- <app-form-filter-search></app-form-filter-search> -->
+<!-- </div> -->
 <!-- <div fxLayout="column" fxLayoutAlign="center center">
   <app-form-filter-search></app-form-filter-search>
 </div> -->

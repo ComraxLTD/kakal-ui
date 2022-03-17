@@ -2,10 +2,10 @@
     <kkl-stepper-layout (changeStep)="onChangeStep($event)">
 
         <router-outlet content></router-outlet>
-    
-        <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" [hasNext]="true" 
+
+        <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" [hasNext]="true"
             (previous)="onPrevious()" (next)="onNext($event)" [stepper]="true">
         </kkl-navbar-bottom>
-    
+
     </kkl-stepper-layout>
 </div>

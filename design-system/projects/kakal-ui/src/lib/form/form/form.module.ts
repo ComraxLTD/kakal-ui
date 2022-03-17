@@ -21,21 +21,24 @@ import { KKLFormRadioModule } from '../form-radio/form-radio.module';
 import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.module';
 import { KKLFormCheckboxModule } from '../form-checkbox/form-checkbox.module';
 import { KKLFormCheckboxGroupModule } from '../form-checkbox-group/form-checkbox-group.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [FormComponent],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatMenuModule,
     MatListModule,
     MatSelectModule,
     MatFormFieldModule,
     MatIconModule,
-    
-    MatInputModule,
-    KKLIconModule,
     MatGridListModule,
+    MatInputModule,
+
     FlexLayoutModule,
+
+    KKLIconModule,
 
     // form components
     KKLFormDateModule,

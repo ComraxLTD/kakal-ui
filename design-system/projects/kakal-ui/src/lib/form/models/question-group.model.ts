@@ -1,4 +1,9 @@
-import { AbstractControl, FormGroup, ValidatorFn } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ValidatorFn,
+} from '@angular/forms';
 import { Question } from '../services/form.service';
 import {
   ControlType,
@@ -21,9 +26,9 @@ export interface GroupOptions {
 export class QuestionGroupModel<T = any> extends QuestionBase {
   public questions: Question[];
   public formGroup: FormGroup;
+  public controls: { [key: string]: Question };
   public type?: QuestionType;
   public hasButton?: boolean;
-  public controls: { [key: string]: Question };
 
   constructor(options?: {
     key: string;
@@ -44,7 +49,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     this.controlType = 'group';
     this.icon = '';
     this.questions = options.questions || [];
-    this.formGroup = options.formGroup || null;
+    this.formGroup = options.formGroup;
     this.gridProps = options.gridProps || { cols: 1 };
     this.hasButton = options.hasButton || false;
     this.controls = options.controls || null;
@@ -52,8 +57,8 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
   }
 
   // method to get question control
-  public getControl(key: string): AbstractControl {
-    const control: AbstractControl = this.formGroup.controls[key];
+  public getControl(key: string): FormControl {
+    const control: FormControl = this.formGroup.controls[key] as FormControl;
     if (control) {
       return control;
     }

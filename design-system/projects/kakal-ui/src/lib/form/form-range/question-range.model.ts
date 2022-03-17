@@ -1,13 +1,17 @@
-import { FilterRange } from '../../filters/filters.types';
 import { QuestionBase } from '../models/question.model';
 import { Question } from '../services/form.service';
+
+export interface Range<T = any> {
+  start?: T;
+  end?: T;
+}
 
 export class QuestionRangeModel extends QuestionBase {
   public questions: Question[];
 
   constructor(options: {
     key: string;
-    value?: FilterRange<number>;
+    value?: Range<number> | null;
     questions: Question[];
   }) {
     super(options);
