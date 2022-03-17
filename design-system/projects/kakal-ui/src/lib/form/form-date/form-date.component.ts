@@ -13,7 +13,7 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { map, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { Appearance } from '../models/question.model';
 import { FormChangeEvent } from '../models/form.options';
 
@@ -44,7 +44,6 @@ export const MY_FORMATS = {
   ],
 })
 export class FormDateComponent implements OnInit {
-  
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public range: boolean;
@@ -55,6 +54,8 @@ export class FormDateComponent implements OnInit {
   @Input() public appearance: Appearance;
   // MatFormFieldAppearance
   public message$: Observable<string>;
+
+  private destroy: Subject<void>;
 
   @Output() public dateEvent: EventEmitter<MatDatepickerInputEvent<Date>> =
     new EventEmitter();
@@ -69,6 +70,8 @@ export class FormDateComponent implements OnInit {
   constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
+    this.destroy = new Subject();
+
     if (this.control.value) {
       if (this.control.value.start || this.control.value.end)
         this.rangeForm.setValue(this.control.value);
@@ -78,13 +81,18 @@ export class FormDateComponent implements OnInit {
     this.listenToControlReset();
   }
 
+  ngOnDestroy() {
+    this.destroy.next();
+  }
+
   private listenToControlReset() {
     return this.control.valueChanges
-    .subscribe((value) => {
-      if (!value) {
-        this.rangeForm.reset();
-      }
-    });
+      .pipe(takeUntil(this.destroy))
+      .subscribe((value) => {
+        if (!value) {
+          this.rangeForm.reset();
+        }
+      });
   }
 
   private getFormOption(): FormChangeEvent {
