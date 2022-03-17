@@ -98,7 +98,7 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
     return group.formGroup;
   }
 
-  public onRangeNumberChange() {
+  public onValueChanged() {
     this.formGroup.valueChanges
       .pipe(skip(1), take(1), takeUntil(this.destroy))
       .subscribe((range: FilterRange<number>) => {
