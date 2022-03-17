@@ -1,9 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FilterChangeEvent, FilterState } from './filters.types';
-import { SelectOption } from '../form/models/question-select.model';
 import { FiltersService } from './filters.service';
 import { Observable } from 'rxjs';
-import { coerceStringArray } from '@angular/cdk/coercion';
 
 @Component({
   selector: 'kkl-filters',
@@ -11,10 +9,8 @@ import { coerceStringArray } from '@angular/cdk/coercion';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-  @Input() filtersState: Observable<FilterState>;
-  @Input() filtersState$: Observable<FilterState>;
-
-  public filters$: Observable<any>;
+  
+  @Input() filtersState: FilterState;
 
   @Output() clear: EventEmitter<void> = new EventEmitter();
   @Output() remove: EventEmitter<string> = new EventEmitter();
