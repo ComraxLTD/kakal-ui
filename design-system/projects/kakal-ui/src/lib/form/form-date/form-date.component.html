@@ -34,13 +34,17 @@
       matStartDate
       formControlName="start"
       placeholder="מתאריך"
-      
+      autocomplete="off"
+
+
       (dateChange)="rangeDateChange($event, 'start')"
     />
     <input
       matEndDate
       formControlName="end"
       placeholder="עד תאריך"
+      autocomplete="off"
+
       (dateChange)="rangeDateChange($event, 'end')"
     />
   </mat-date-range-input>
