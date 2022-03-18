@@ -165,14 +165,15 @@ export class FormRangeComponent
 
     if (this.strToInt(end) >= this.strToInt(start)) return null;
 
-    if (this.rangeGroup.getControl('start').touched) {
-      return {
-        range: {
-          message: 'start cent be grater then end',
-          actual: this.range,
-        },
-      };
-    }
+    const error = {
+      range: {
+        message: 'start cent be grater then end',
+        actual: this.range,
+      },
+    };
+    this.rangeGroup.formGroup.setErrors(error);
+
+    return error;
   }
   registerOnValidatorChange?(fn: () => void): void {
     // throw new Error('Method not implemented.');
