@@ -1,5 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import {
+  AbstractControl,
+  ControlValueAccessor,
+  NG_VALIDATORS,
+  NG_VALUE_ACCESSOR,
+  ValidationErrors,
+  Validator,
+} from '@angular/forms';
 import { FilterRange } from '../../filters/filters.types';
 import { QuestionGroupModel } from '../models/form.types';
 import { FormService, Question } from '../services/form.service';
@@ -17,6 +24,11 @@ import { skip, filter, takeUntil, Subject, map, merge } from 'rxjs';
       useExisting: FormRangeComponent,
       multi: true,
     },
+    {
+      provide: NG_VALIDATORS,
+      useExisting: FormRangeComponent,
+      multi: true,
+    },
   ],
   host: {
     class: 'kkl-form-range',
@@ -24,7 +36,9 @@ import { skip, filter, takeUntil, Subject, map, merge } from 'rxjs';
   },
   inputs: ['disabled'],
 })
-export class FormRangeComponent implements OnInit, ControlValueAccessor {
+export class FormRangeComponent
+  implements OnInit, ControlValueAccessor, Validator
+{
   @Input() key: string;
   @Input() label: string;
   @Input() index: number;
@@ -40,9 +54,8 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
   private destroy: Subject<void>;
 
   // @Output() rangeChange: EventEmitter<FilterRange<number> | null> =
-  @Output() public rangeChanged: EventEmitter<
-    FormChangeEvent<Range<number>>
-  > = new EventEmitter();
+  @Output() public rangeChanged: EventEmitter<FormChangeEvent<Range<number>>> =
+    new EventEmitter();
 
   ngOnInit(): void {
     this.destroy = new Subject();
@@ -55,6 +68,7 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
   }
 
   private _onChange: (v: Range | null) => void = (value: Range | null) => {};
+  private _onTouched: () => void = () => {};
 
   // ControlValueAccessor interface methods
   writeValue(value: Range | null) {
@@ -86,7 +100,9 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
     merge(true$, false$).pipe(skip(1), takeUntil(this.destroy)).subscribe(fn);
   }
 
-  registerOnTouched(fn: Function) {}
+  registerOnTouched(fn: () => void): void {
+    this._onTouched = fn;
+  }
 
   private setChangeEvent() {
     return {
@@ -133,5 +149,32 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
 
       this._emitChangeEvent();
     }
+  }
+
+  private strToInt(value) {
+    if (value?.includes(',')) {
+      value = value.split(',').reduce((acc, val) => acc + val);
+    }
+
+    return Number(value);
+  }
+
+  validate(control: AbstractControl): ValidationErrors {
+    const range = this.rangeGroup.formGroup.value;
+    const { start, end } = range;
+
+    if (this.strToInt(end) >= this.strToInt(start)) return null;
+
+    if (this.rangeGroup.getControl('start').touched) {
+      return {
+        range: {
+          message: 'start cent be grater then end',
+          actual: this.range,
+        },
+      };
+    }
+  }
+  registerOnValidatorChange?(fn: () => void): void {
+    // throw new Error('Method not implemented.');
   }
 }

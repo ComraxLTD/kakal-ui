@@ -36,7 +36,7 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    { key: 'phone', controlType: 'phone', value : '83928329' },
+    { key: 'phone', controlType: 'phone', value: '83928329' },
     {
       key: 'area',
       filterType: FilterType.RANGE,

@@ -14,13 +14,21 @@
       <div>
         <ng-container *ngIf="filtersState$ | async as filtersState">
           <kkl-filters
-          (remove)="onRemove($event)"
-          (removeMulti)="onRemoveMulti($event)"
-          (clear)="onClear()"
-          [filtersState]="filtersState"
+            (remove)="onRemove($event)"
+            (removeMulti)="onRemoveMulti($event)"
+            (clear)="onClear()"
+            [filtersState]="filtersState"
           ></kkl-filters>
         </ng-container>
       </div>
+
+      <code>
+        errors
+        <pre>
+          {{ searchGroup.formGroup.get('area')?.errors | json }}
+          {{ searchGroup.formGroup.get('currency')?.errors | json }}
+        </pre>
+      </code>
     </ng-container>
   </div>
 </div>

@@ -1,15 +1,14 @@
 <div fxLayout="row" fxLayoutAlign="space-between">
-  <ng-container [formGroup]="rangeGroup.formGroup" >
+  <ng-container [formGroup]="rangeGroup.formGroup">
     <ng-container *ngFor="let q of rangeGroup.questions">
       <kkl-form-input
-      fxFlex="47"
-      [key]="q.key"
-      [control]="rangeGroup.formGroup.controls[q.key]"
-      [cleave]="q.cleave"
-      [controlType]="'sum'"
-      [label]="q.label"
+        fxFlex="47"
+        [key]="q.key"
+        [control]="rangeGroup.formGroup.controls[q.key]"
+        [cleave]="q.cleave"
+        [controlType]="'sum'"
+        [label]="q.label"
       ></kkl-form-input>
-
-        </ng-container>
+    </ng-container>
   </ng-container>
 </div>
