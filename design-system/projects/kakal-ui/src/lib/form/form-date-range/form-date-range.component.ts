@@ -72,6 +72,8 @@ export class FormDateRangeComponent implements OnInit {
   constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
+
+    console.log('work')
     this.destroy = new Subject();
 
     if (this.control.value) {
