@@ -62,6 +62,26 @@
           ></kkl-form-autocomplete>
         </ng-container>
 
+        <!-- FILE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'upload'">
+          <kkl-form-upload
+            [label]="question?.label"
+            [multi]="question?.multi"
+            [formControl]="formGroup.controls[question.key]"
+            [index]="index"
+          ></kkl-form-upload>
+        </ng-container>
+
+        <!-- CURRENCY INPUT SECTION -->
+        <ng-container *ngSwitchCase="'currency'">
+          <kkl-form-currency
+            [control]="formGroup.controls[question.key]"
+            [validations]="question?.validations"
+            [index]="index"
+          >
+          </kkl-form-currency>
+        </ng-container>
+
         <!-- DEFAULT INPUT -->
         <ng-container *ngSwitchDefault>
           <kkl-form-input
