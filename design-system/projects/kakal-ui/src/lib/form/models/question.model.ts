@@ -40,7 +40,7 @@ export type ControlType =
   | 'group'
   | 'custom'
   | 'sum'
-  | 'file'
+  | 'upload'
   | 'currency'
   | 'autocomplete'
   | 'toggle'
