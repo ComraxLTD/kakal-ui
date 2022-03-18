@@ -9,6 +9,9 @@ import { KKLFormRangeModule } from '../form-range/form-range.module';
 
 import { FlexFormComponent } from './flex-form.component';
 import { CommonModule } from '@angular/common';
+import { KKLFormUploadModule } from '../form-upload/form-upload.module';
+import { KKLFormCurrencyModule } from '../form-currency/form-currency.module';
+import { KKLButtonModule } from '../../button/button.module';
 
 @NgModule({
   declarations: [FlexFormComponent],
@@ -17,10 +20,13 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     FlexLayoutModule,
 
+    KKLButtonModule,
     // form components
     KKLFormDateModule,
     KKLFormInputModule,
     KKLFormSelectModule,
+    KKLFormUploadModule,
+    KKLFormCurrencyModule,
     KKLFormRangeModule,
     KKLFormAutoCompleteModule,
   ],

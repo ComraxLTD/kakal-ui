@@ -5,12 +5,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLFormInputModule } from '../form-input/form-input.module';
 import { KKLPipesModule } from '../../pipes/pipes.module';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [FormRangeComponent],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     KKLFormInputModule,
     KKLPipesModule,

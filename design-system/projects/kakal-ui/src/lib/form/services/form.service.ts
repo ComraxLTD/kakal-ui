@@ -22,8 +22,8 @@ import { QuestionRadioModel } from '../form-radio/question-radio.model';
 import { QuestionSumModel } from '../models/question-sum.model';
 import { QuestionCurrencyModel } from '../form-currency/question-currency.model';
 import { QuestionDateModel } from '../form-date/question-date.model';
-import { QuestionFileModel } from '../models/question-file.model';
 import { QuestionCheckBoxModel } from '../models/question-checkbox.model';
+import { QuestionUploadModel } from '../form-upload/question-upload.model';
 
 import { QuestionRangeModel } from '../form-range/question-range.model';
 import { OptionMap } from '../models/form.types';
@@ -40,7 +40,7 @@ export type Question =
   | QuestionRangeModel
   | QuestionTextModel
   | QuestionRadioModel
-  | QuestionFileModel
+  | QuestionUploadModel
   | QuestionDateModel
   | QuestionCurrencyModel
   | QuestionSumModel
@@ -214,9 +214,9 @@ export class FormService {
       case 'multiSelect':
         const msq = question as QuestionSelectModel;
         return new QuestionSelectModel(msq);
-      case 'file':
-        const fq = question as QuestionFileModel;
-        return new QuestionFileModel(fq);
+      case 'upload':
+        const fq = question as QuestionUploadModel;
+        return new QuestionUploadModel(fq);
       case 'radio':
         return new QuestionRadioModel(question);
       case 'checkbox':

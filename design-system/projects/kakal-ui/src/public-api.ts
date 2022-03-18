@@ -40,9 +40,14 @@ export * from './lib/form/form-counter/form-counter.component';
 
 export * from './lib/form/form-upload/form-upload.module';
 export * from './lib/form/form-upload/form-upload.component';
+export * from './lib/form/form-upload/question-upload.model';
 
 export * from './lib/form/form-date/form-date.module';
 export * from './lib/form/form-date/form-date.component';
+export * from './lib/form/form-date/question-date.model';
+
+export * from './lib/form/form-date-range/form-date-range.module';
+export * from './lib/form/form-date-range/form-date-range.component';
 
 export * from './lib/form/form-checkbox/form-checkbox.module';
 export * from './lib/form/form-checkbox/form-checkbox.component';
@@ -69,6 +74,7 @@ export * from './lib/form/form-radio/form-radio.component';
 
 export * from './lib/form/form-currency/form-currency.module';
 export * from './lib/form/form-currency/form-currency.component';
+export * from './lib/form/form-currency/question-currency.model';
 export * from './lib/form/form-currency/form-currency.service';
 
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
@@ -85,7 +91,6 @@ export * from './lib/form/services/validations.service';
 // FORM QUESTIONS //
 
 export * from './lib/form/models/question-autocomplete';
-export * from './lib/form/models/question-file.model';
 export * from './lib/form/models/question-group.model';
 export * from './lib/form/models/question-number.model';
 export * from './lib/form/models/question-select.model';
@@ -281,7 +286,6 @@ export * from './lib/dashboard/dashboard.module';
 export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
-
 
 // display-data
 export * from './lib/display-data/display-data.component';

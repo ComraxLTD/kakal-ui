@@ -3,11 +3,11 @@ import { Observable } from "rxjs";
 import { FormActions } from "./form.actions";
 
 export interface FormChangeEvent<T = any> {
-  key?: keyof T;
+  key?: string;
   index?: number;
   event?: FormActions;
   control?: FormControl;
-  value?: any;
+  value?: T;
   query?: any;
   value$?: Observable<any>;
   query$?: Observable<any>;

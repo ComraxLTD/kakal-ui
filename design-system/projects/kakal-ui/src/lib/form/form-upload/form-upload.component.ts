@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { map, Observable, of, Subscription } from 'rxjs';
+import { map, merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-form-upload',
@@ -29,7 +29,9 @@ import { map, Observable, of, Subscription } from 'rxjs';
   },
   inputs: ['disabled', 'disableRipple', 'color'],
 })
-export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDestroy {
+export class FormUploadComponent
+  implements OnInit, ControlValueAccessor
+{
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
 
   @Input() public label: string = 'העלה מסמך';
@@ -39,23 +41,16 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
   public disabled: boolean;
   public label$: Observable<string>;
   public files: File[] = [];
-  private labelSub: Subscription;
 
   // emit the file
   @Output() fileChange = new EventEmitter<File[]>();
 
-  constructor() { }
+  constructor() {}
 
-  private _onChange: (v: File[]) => void = (value: File[]) => { };
+  private _onChange: (v: File[]) => void = (value: File[]) => {};
 
   ngOnInit(): void {
-    this.label$ = of(this.label);
-    // this.label$ = this.setLabelFormFileLength$();
-    this.labelSub = this.setLabelFormFileLength$().subscribe(res => this.label$ = of(res))
-  }
-
-  ngOnDestroy(): void {
-    this.labelSub.unsubscribe();
+    this.label$ = merge(of(this.label), this.setLabelFormFileLength$());
   }
 
   // ControlValueAccessor interface methods
@@ -71,7 +66,7 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
     this._onChange = fn;
   }
 
-  registerOnTouched(fn: Function) { }
+  registerOnTouched(fn: Function) {}
 
   // SET PROPS SECTION
   public setLabelFormFileLength$(): Observable<string> {
@@ -83,15 +78,11 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
         files.length === 0
           ? this.label
           : files.length === 1
-            ? '1 קובץ מצורף'
-            : `${files.length} קבצים מצורפים`
-      ),
+          ? '1 קובץ מצורף'
+          : `${files.length} קבצים מצורפים`
+      )
     );
   }
-
-  // private setLabel$(): Observable<string> {
-  //   return merge(of(this.question.label), this.setLabelFormFileLength$());
-  // }
 
   public onClick(fileUpload, menuTrigger: MatMenuTrigger) {
     if (this.files && this.files.length) menuTrigger.openMenu();
@@ -119,7 +110,7 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor, OnDest
       (filter) => filter.name === file.name
     );
     this.files.splice(chosenFile, 1);
-    this.fileChange.emit(this.files);
+    this._emitChangeEvent();
   }
 
   private _emitChangeEvent() {

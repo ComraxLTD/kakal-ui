@@ -36,12 +36,13 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    { key: 'phone', controlType: 'phone' },
+    { key: 'phone', controlType: 'phone', value: '83928329' },
     {
       key: 'area',
       filterType: FilterType.RANGE,
       controlType: 'range',
       format: { type: 'area' },
+      // value: { start: 0, end: 100 },
       questions: [
         {
           key: 'start',
@@ -86,8 +87,8 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'date',
       filterType: FilterType.DATE_RANGE,
-      controlType: 'date',
-      // value: { start: new Date(), end: new Date() },
+      controlType: 'dateRange',
+      value: { start: new Date(), end: new Date() },
     },
   ];
 
@@ -146,13 +147,13 @@ export class FormFilterSearchComponent implements OnInit {
 
   public onRemove(key: string) {
     const formGroup = this.searchGroup.formGroup;
-    formGroup.controls[key].disable();
+    formGroup.get(key).reset();
   }
 
   public onRemoveMulti(filterChangeEvent: FilterChangeEvent) {
     const { key, value } = filterChangeEvent;
     const formGroup = this.searchGroup.formGroup;
-    formGroup.controls[key].setValue([...value]);
+    formGroup.get(key).setValue([...value]);
   }
 
   public onClear() {

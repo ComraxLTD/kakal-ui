@@ -26,11 +26,25 @@
         </ng-container>
 
         <!-- DATE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'dateRange'">
+          <kkl-form-date-range
+            [formControl]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [label]="question?.label"
+            [placeHolder]="question?.placeHolder"
+            [maxDate]="question?.maxDate"
+            [minDate]="question?.minDate"
+            [appearance]="question?.appearance"
+            [index]="index"
+          >
+          </kkl-form-date-range>
+        </ng-container>
+
+        <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'date'">
           <kkl-form-date
             [control]="formGroup.controls[question.key]"
             [key]="question?.key"
-            [range]="true"
             [label]="question?.label"
             [placeHolder]="question?.placeHolder"
             [maxDate]="question?.maxDate"
@@ -47,6 +61,9 @@
           <kkl-form-range
             [formControl]="formGroup.controls[question.key]"
             [questions]="question.questions"
+            [index]="index"
+            [label]="question.label"
+            [key]="question.key"
           ></kkl-form-range>
         </ng-container>
         <!-- DATE INPUT SECTION -->
@@ -60,6 +77,26 @@
             (multiOptionsSelected)="onMultiOptionSelected($event)"
             (optionSelected)="onOptionSelected($event)"
           ></kkl-form-autocomplete>
+        </ng-container>
+
+        <!-- FILE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'upload'">
+          <kkl-form-upload
+            [label]="question?.label"
+            [multi]="question?.multi"
+            [formControl]="formGroup.controls[question.key]"
+            [index]="index"
+          ></kkl-form-upload>
+        </ng-container>
+
+        <!-- CURRENCY INPUT SECTION -->
+        <ng-container *ngSwitchCase="'currency'">
+          <kkl-form-currency
+            [control]="formGroup.controls[question.key]"
+            [validations]="question?.validations"
+            [index]="index"
+          >
+          </kkl-form-currency>
         </ng-container>
 
         <!-- DEFAULT INPUT -->

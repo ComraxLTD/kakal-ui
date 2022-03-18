@@ -142,7 +142,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLLayoutModule,
     KKLDashboarModule,
     KKLChipsModule,
-    KKLDisplayDataModule
+    KKLDisplayDataModule,
   ],
   exports: [
     //TOOLS
@@ -204,12 +204,12 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
-    
+
     // LAYOUT
     KKLLayoutModule,
     KKLDashboarModule,
     KKLChipsModule,
-    KKLDisplayDataModule
+    KKLDisplayDataModule,
   ],
 })
 export class KakalUiModule {}

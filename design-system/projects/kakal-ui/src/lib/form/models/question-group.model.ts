@@ -79,7 +79,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
 
   // return groupModel value
   public getControlValueChange(key: keyof T): Observable<any> {
-    const control: AbstractControl = this.formGroup.controls[key.toString()];
+    const control: AbstractControl = this.formGroup.get[key.toString()];
     if (control) {
       return control.valueChanges;
     }

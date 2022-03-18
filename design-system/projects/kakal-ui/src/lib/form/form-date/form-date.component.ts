@@ -44,6 +44,7 @@ export const MY_FORMATS = {
   ],
 })
 export class FormDateComponent implements OnInit {
+
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public range: boolean;
@@ -52,6 +53,7 @@ export class FormDateComponent implements OnInit {
   @Input() public minDate: Date;
   @Input() public index: number;
   @Input() public appearance: Appearance;
+
   // MatFormFieldAppearance
   public message$: Observable<string>;
 
