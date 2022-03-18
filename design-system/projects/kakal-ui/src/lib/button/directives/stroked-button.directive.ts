@@ -39,7 +39,7 @@ export class KKLStrokedButtonDirective {
     if (this._disabled) {
       this._class = this.baseClass + ' mat-button-disabled';
     } else {
-      this._class = this.baseClass + `  mat-elevation-z2 ${palletteClassesMap[this._color]}`;
+      this._class = this.baseClass + `  mat-elevation-z4 ${palletteClassesMap[this._color]}`;
     }
   }
 }

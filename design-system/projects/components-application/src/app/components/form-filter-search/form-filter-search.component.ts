@@ -6,6 +6,7 @@ import {
   FilterState,
   FilterType,
   FormService,
+  GridProps,
   OptionMap,
   Question,
   QuestionGroupModel,
@@ -37,60 +38,62 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    { key: 'phone', controlType: 'phone', value: '83928329' },
-    {
-      key: 'area',
-      filterType: FilterType.RANGE,
-      controlType: 'range',
-      format: { type: 'area' },
-      questions: [
-        {
-          key: 'start',
-          label: 'משטח',
-          controlType: 'sum',
-        },
-        {
-          key: 'end',
-          label: 'עד שטח',
-          controlType: 'sum',
-        },
-      ],
-    },
-    {
-      key: 'currency',
-      filterType: FilterType.RANGE,
-      controlType: 'range',
-      questions: [
-        {
-          key: 'start',
-          label: 'מסכום',
-          controlType: 'sum',
-        },
-        {
-          key: 'end',
-          label: 'עד סכום',
-          controlType: 'sum',
-        },
-      ],
-      format: { type: 'currency', args: (item) => '$' },
-    },
-    {
-      key: 'city',
-      filterType: FilterType.MULTI_SELECT,
-      controlType: 'multiSelect',
-    },
-    {
-      key: 'country',
-      filterType: FilterType.SELECT,
-      controlType: 'select',
-    },
-    {
-      key: 'date',
-      filterType: FilterType.DATE_RANGE,
-      controlType: 'dateRange',
-      value: { start: new Date(), end: new Date() },
-    },
+    // { key: 'phone', controlType: 'phone', value: '83928329' },
+    // {
+    //   key: 'area',
+    //   filterType: FilterType.RANGE,
+    //   controlType: 'range',
+    //   format: { type: 'area' },
+    //   questions: [
+    //     {
+    //       key: 'start',
+    //       label: 'משטח',
+    //       controlType: 'sum',
+    //     },
+    //     {
+    //       key: 'end',
+    //       label: 'עד שטח',
+    //       controlType: 'sum',
+    //     },
+    //   ],
+    // },
+    // {
+    //   key: 'currency',
+    //   filterType: FilterType.RANGE,
+    //   controlType: 'range',
+    //   questions: [
+    //     {
+    //       key: 'start',
+    //       label: 'מסכום',
+    //       controlType: 'sum',
+    //     },
+    //     {
+    //       key: 'end',
+    //       label: 'עד סכום',
+    //       controlType: 'sum',
+    //     },
+    //   ],
+    //   format: { type: 'currency', args: (item) => '$' },
+    // },
+    // {
+    //   key: 'city',
+    //   filterType: FilterType.MULTI_SELECT,
+    //   controlType: 'multiSelect',
+    // },
+    // {
+    //   key: 'country',
+    //   filterType: FilterType.SELECT,
+    //   controlType: 'select',
+    // },
+    // {
+    //   key: 'date',
+    //   filterType: FilterType.DATE_RANGE,
+    //   controlType: 'dateRange',
+    //   value: { start: new Date(), end: new Date() },
+    // },
   ];
+
+  public grid: GridProps = { cols: 4, buttonCols: 1 };
 
   public searchGroup: QuestionGroupModel;
 

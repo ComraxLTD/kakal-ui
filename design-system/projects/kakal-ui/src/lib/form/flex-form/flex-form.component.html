@@ -122,4 +122,10 @@
       </div>
     </ng-container>
   </ng-container>
+
+  <ng-container *ngIf="hasButton">
+    <div kkl-form-button>
+      <button [class.mat-elevation.z4]="true" color="accent" kkl-stroked-button mat-stroked-button>שמור</button>
+    </div>
+  </ng-container>
 </form>
