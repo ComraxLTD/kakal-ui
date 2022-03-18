@@ -23,6 +23,7 @@ import { KKLFlexFormModule } from './form/flex-form/flex-form.module';
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
+import { KKLFormDateRangeModule } from './form/form-date-range/form-date-range.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
 import { KKLFormSelectModule } from './form/form-select/form-select.module';
 import { KKLFormTextEditorModule } from './form/form-texteditor/form-texteditor.module';
@@ -103,6 +104,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
     KKLFormDateModule,
+    KKLFormDateRangeModule,
     KKLFormSelectModule,
     KKLFormCurrencyModule,
     KKLFormUploadModule,
@@ -204,7 +206,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
-    
+
     // LAYOUT
     KKLLayoutModule,
     KKLDashboarModule,

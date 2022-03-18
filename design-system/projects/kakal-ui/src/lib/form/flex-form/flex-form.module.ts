@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { KKLFormUploadModule } from '../form-upload/form-upload.module';
 import { KKLFormCurrencyModule } from '../form-currency/form-currency.module';
 import { KKLButtonModule } from '../../button/button.module';
+import { KKLFormDateRangeModule } from '../form-date-range/form-date-range.module';
 
 @NgModule({
   declarations: [FlexFormComponent],
@@ -24,6 +25,7 @@ import { KKLButtonModule } from '../../button/button.module';
 
     // form components
     KKLFormDateModule,
+    KKLFormDateRangeModule,
     KKLFormInputModule,
     KKLFormSelectModule,
     KKLFormUploadModule,

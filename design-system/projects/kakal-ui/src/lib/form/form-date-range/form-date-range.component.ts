@@ -23,18 +23,8 @@ import { Appearance } from '../models/question.model';
 import { FormChangeEvent, FormActions } from '../models/form.types';
 import { Range } from '../form-range/question-range.model';
 import { map, Observable, startWith, Subject } from 'rxjs';
+import { MY_FORMATS } from '../form-date/form-date.component';
 
-export const MY_FORMATS = {
-  parse: {
-    dateInput: 'DD/MM/YY',
-  },
-  display: {
-    dateInput: 'DD/MM/YY',
-    monthYearLabel: 'YYYY',
-    dateA11yLabel: 'LL',
-    monthYearA11yLabel: 'YYYY',
-  },
-};
 
 @Component({
   selector: 'kkl-form-date-range',
@@ -51,7 +41,7 @@ export const MY_FORMATS = {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS, multi: true },
     { provide: MAT_DATE_LOCALE, useValue: 'he-HE' },
   ],
 })
