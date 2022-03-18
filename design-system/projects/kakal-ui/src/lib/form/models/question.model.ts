@@ -54,7 +54,7 @@ export type ControlType =
 export type QuestionType =
   | 'default'
   | 'group'
-  | 'file'
+  | 'upload'
   | 'select'
   | 'custom'
   | 'date'
