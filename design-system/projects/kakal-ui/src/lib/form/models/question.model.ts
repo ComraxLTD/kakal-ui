@@ -35,6 +35,8 @@ export type ControlType =
   | 'checkbox'
   | 'radio'
   | 'date'
+  | 'dateRangePicker'
+  | 'dateRange'
   | 'time'
   | 'range'
   | 'group'

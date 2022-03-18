@@ -87,7 +87,7 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'date',
       filterType: FilterType.DATE_RANGE,
-      controlType: 'date',
+      controlType: 'dateRangePicker',
       value: { start: new Date(), end: new Date() },
     },
   ];

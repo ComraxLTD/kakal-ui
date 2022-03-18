@@ -41,7 +41,7 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
 
   // @Output() rangeChange: EventEmitter<FilterRange<number> | null> =
   @Output() public rangeChanged: EventEmitter<
-    FormChangeEvent<FilterRange<number>>
+    FormChangeEvent<Range<number>>
   > = new EventEmitter();
 
   ngOnInit(): void {

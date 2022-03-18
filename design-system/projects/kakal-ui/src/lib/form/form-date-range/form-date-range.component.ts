@@ -19,9 +19,10 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { map, Observable, startWith, Subject } from 'rxjs';
 import { Appearance } from '../models/question.model';
-import { FormChangeEvent } from '../models/form.types';
+import { FormChangeEvent, FormActions } from '../models/form.types';
+import { Range } from '../form-range/question-range.model';
+import { map, Observable, startWith, Subject } from 'rxjs';
 
 export const MY_FORMATS = {
   parse: {
@@ -68,17 +69,20 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
   private destroy: Subject<void>;
 
-  @Output() public rangeChanged: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
+  private range: Range<Date>;
 
   public dateRange = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
   });
 
+  @Output() readonly rangeChanged: EventEmitter<FormChangeEvent<Range<Date>>> =
+    new EventEmitter();
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(private messageService: MessageService) {}
+
+  private _onChange: (v: Range | null) => void = (value: Range | null) => {};
 
   ngOnInit(): void {
     this.destroy = new Subject();
@@ -99,9 +103,10 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
     // throw new Error('Method not implemented.');
   }
-  registerOnChange(fn: any): void {
-    // throw new Error('Method not implemented.');
+  registerOnChange(fn: (v: Range | null) => void): void {
+    this._onChange = fn;
   }
+
   registerOnTouched(fn: any): void {
     // throw new Error('Method not implemented.');
   }
@@ -112,18 +117,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     } else {
       this.dateRange.enable();
     }
-    // throw new Error('Method not implemented.');
   }
-
-  // private listenToControlReset() {
-  //   return this.control.valueChanges
-  //     .pipe(takeUntil(this.destroy))
-  //     .subscribe((value) => {
-  //       if (!value) {
-  //         this.rangeForm.reset();
-  //       }
-  //     });
-  // }
 
   private getFormOption(): FormChangeEvent {
     const FormChangeEvent: FormChangeEvent = {
@@ -147,21 +141,29 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     );
   }
 
-  public onDateChange(event: MatDatepickerInputEvent<Date>): void {
-    // this.control.setValue(event.value['_d']);
-    // this.dateEvent.emit(event.value['_d']);
+  public rangeDateChanged(event: MatDatepickerInputEvent<Date>, type: string) {
+    const date = event.value;
+
+    if (date) {
+      this.dateRange.patchValue({ [type]: date });
+      this.range = this.dateRange.value;
+    }
+
+    this._emitChangeEvent();
   }
 
-  public rangeDateChange(event: MatDatepickerInputEvent<Date>, type: string) {
-    // if (event.value) {
-    //   if (type === 'start') {
-    //     this.rangeForm.controls['start'].setValue(event.value['_d']);
-    //   } else {
-    //     this.rangeForm.controls['end'].setValue(event.value['_d']);
-    //   }
-    //   if (this.control) this.control.setValue(this.rangeForm.value);
-    //   this.dateEvent.emit(this.rangeForm.value);
-    // }
+  private setChangeEvent() {
+    return {
+      key: this.key,
+      value: { ...this.range, type: 'date' },
+      index: this.index,
+      event: FormActions.VALUE_CHANGED,
+    } as FormChangeEvent<Range<Date>>;
+  }
+
+  private _emitChangeEvent() {
+    this._onChange(this.range);
+    this.rangeChanged.emit(this.setChangeEvent());
   }
 
   public onFocus() {
