@@ -42,6 +42,7 @@ export class FlexFormComponent implements OnInit {
 
   ngOnInit() {
     this.flex = 100 / this.inRow;
+    console.log(this.flex)
   }
 
   public onSubmit() {

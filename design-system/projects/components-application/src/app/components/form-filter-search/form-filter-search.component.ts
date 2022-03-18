@@ -30,6 +30,7 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'first_name',
     },
+
     { key: 'last_name' },
     {
       key: 'email',
@@ -42,7 +43,6 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.RANGE,
       controlType: 'range',
       format: { type: 'area' },
-      // value: { start: 0, end: 100 },
       questions: [
         {
           key: 'start',
