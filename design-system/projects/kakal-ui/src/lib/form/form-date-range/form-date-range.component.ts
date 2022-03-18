@@ -30,9 +30,9 @@ export const MY_FORMATS = {
 };
 
 @Component({
-  selector: 'kkl-form-date',
-  templateUrl: './form-date.component.html',
-  styleUrls: ['./form-date.component.scss'],
+  selector: 'kkl-form-date-range',
+  templateUrl: './form-date-range.component.html',
+  styleUrls: ['./form-date-range.component.scss'],
   providers: [
     {
       provide: DateAdapter,
@@ -43,11 +43,11 @@ export const MY_FORMATS = {
     { provide: MAT_DATE_LOCALE, useValue: 'he-HE' },
   ],
 })
-export class FormDateComponent implements OnInit {
+export class FormDateRangeComponent implements OnInit {
 
   @Input() public control: FormControl;
   @Input() public key: string;
-  @Input() public range: boolean;
+  @Input() public label: string;
   @Input() public placeHolder: string;
   @Input() public maxDate: Date;
   @Input() public minDate: Date;

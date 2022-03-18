@@ -47,7 +47,6 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
   public disabled: boolean;
 
   private range: Range | null;
-  private range$: Observable<Range | null>;
 
   private destroy: Subject<void>;
 
@@ -56,12 +55,12 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     this.destroy = new Subject();
-    this.rangeGroup = this.setAmountGroup(this.questions);
-    this.range$ = this.rangeGroup.formGroup.valueChanges;
+    this.rangeGroup = this.seRangeGroup(this.questions);
   }
 
   OnDestroy() {
     this.destroy.next();
+    this.destroy.complete();
   }
 
   private _onChange: (v: Range | null) => void = (value: Range | null) => {};
@@ -69,8 +68,6 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
   // ControlValueAccessor interface methods
   writeValue(value: Range | null) {
     this.range = value;
-
-    console.log(value);
 
     if (value) {
       this.rangeGroup.formGroup.setValue(value), { emitEvent: false };
@@ -95,16 +92,10 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
       takeUntil(this.destroy)
     );
 
-    merge(true$, false$).pipe(takeUntil(this.destroy)).subscribe(fn);
+    merge(true$, false$).pipe(skip(1), takeUntil(this.destroy)).subscribe(fn);
   }
 
   registerOnTouched(fn: Function) {}
-
-  // public _onChangeEvent(event: Event) {
-  //   event.stopPropagation();
-
-  //   this._emitChangeEvent();
-  // }
 
   private _emitChangeEvent() {
     this._onChange(this.range);
@@ -120,7 +111,7 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  public setAmountGroup(questions: Question[]): QuestionGroupModel {
+  public seRangeGroup(questions: Question[]): QuestionGroupModel {
     const group = this.formService.createQuestionGroup<FilterRange<number>>({
       key: 'range',
       questions,

@@ -11,16 +11,16 @@
           [formGroup]="searchGroup.formGroup"
         ></kkl-flex-form>
       </kkl-form-search>
-    </ng-container>
-    <div>
-      <ng-container *ngIf="filtersState$ | async as filtersState">
-        <kkl-filters
+      <div>
+        <ng-container *ngIf="filtersState$ | async as filtersState">
+          <kkl-filters
           (remove)="onRemove($event)"
           (removeMulti)="onRemoveMulti($event)"
           (clear)="onClear()"
           [filtersState]="filtersState"
-        ></kkl-filters>
-      </ng-container>
-    </div>
+          ></kkl-filters>
+        </ng-container>
+      </div>
+    </ng-container>
   </div>
 </div>

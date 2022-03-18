@@ -1,0 +1,30 @@
+<mat-form-field
+  [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
+  class="kkl-datepicker"
+>
+  <mat-label>{{ label }}</mat-label>
+
+  <mat-date-range-input
+    [formGroup]="rangeForm"
+    [rangePicker]="picker"
+    (click)="picker.open()"
+  >
+    <input
+      matStartDate
+      formControlName="start"
+      placeholder="מתאריך"
+      (dateChange)="rangeDateChange($event, 'start')"
+    />
+    <input
+      matEndDate
+      formControlName="end"
+      placeholder="עד תאריך"
+      (dateChange)="rangeDateChange($event, 'end')"
+    />
+  </mat-date-range-input>
+
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+
+  <mat-error>{{ message$ | async }}</mat-error>
+</mat-form-field>
