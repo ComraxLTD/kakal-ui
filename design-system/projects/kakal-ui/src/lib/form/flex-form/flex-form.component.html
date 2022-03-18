@@ -1,4 +1,8 @@
-<form fxLayout="row wrap" fxLayoutAlign="start center" [formGroup]="formGroup">
+<form
+  [fxLayout]="variant + ' wrap'"
+  fxLayoutAlign="start center"
+  [formGroup]="formGroup"
+>
   <ng-container *ngFor="let question of questions; let index = index">
     <ng-container [ngSwitch]="question.controlType">
       <div

@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { QuestionGroupModel } from './../models/question-group.model';
 import { FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { Question } from '../services/form.service';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'kkl-flex-form',
@@ -13,6 +11,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
   providers: [FormDataSource],
 })
 export class FlexFormComponent implements OnInit {
+  @Input() public variant: 'row' | 'column' = 'row';
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
 
@@ -20,7 +19,7 @@ export class FlexFormComponent implements OnInit {
   @Input() inRow: number = 3;
 
   // default inputs in row
-  @Input() hasButton: boolean
+  @Input() hasButton: boolean;
 
   public flex: number;
 
@@ -57,7 +56,7 @@ export class FlexFormComponent implements OnInit {
     this.queryChanged.emit(event);
   }
 
-  public onOptionSelected(event: FormChangeEvent) : void {
+  public onOptionSelected(event: FormChangeEvent): void {
     this.optionSelected.emit(event);
   }
 
