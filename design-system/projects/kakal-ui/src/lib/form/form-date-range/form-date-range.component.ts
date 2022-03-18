@@ -19,9 +19,9 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
+import { map, Observable, startWith, Subject } from 'rxjs';
 import { Appearance } from '../models/question.model';
-import { FormChangeEvent } from '../models/form.options';
+import { FormChangeEvent } from '../models/form.types';
 
 export const MY_FORMATS = {
   parse: {
@@ -68,7 +68,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
   private destroy: Subject<void>;
 
-  @Output() public dateEvent: EventEmitter<MatDatepickerInputEvent<Date>> =
+  @Output() public rangeChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
   public dateRange = new FormGroup({
@@ -81,16 +81,9 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
   constructor(private messageService: MessageService) {}
 
   ngOnInit(): void {
-    console.log('work');
     this.destroy = new Subject();
 
-    // if (this.control.value) {
-    //   if (this.control.value.start || this.control.value.end)
-    //     this.rangeForm.setValue(this.control.value);
-    // }
     this.message$ = this.setErrorMessage$();
-
-    // this.listenToControlReset();
   }
 
   ngOnDestroy() {
@@ -99,8 +92,9 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
   writeValue(value: Range): void {
     if (value) {
-      console.log(value);
       this.dateRange.setValue(value);
+    } else {
+      this.dateRange.setValue({ start: null, end: null });
     }
 
     // throw new Error('Method not implemented.');
@@ -155,7 +149,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
   public onDateChange(event: MatDatepickerInputEvent<Date>): void {
     // this.control.setValue(event.value['_d']);
-    this.dateEvent.emit(event.value['_d']);
+    // this.dateEvent.emit(event.value['_d']);
   }
 
   public rangeDateChange(event: MatDatepickerInputEvent<Date>, type: string) {

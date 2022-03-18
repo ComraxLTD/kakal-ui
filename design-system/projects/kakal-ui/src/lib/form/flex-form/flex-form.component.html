@@ -47,6 +47,9 @@
           <kkl-form-range
             [formControl]="formGroup.controls[question.key]"
             [questions]="question.questions"
+            [index]="index"
+            [label]="question.label"
+            [key]="question.key"
           ></kkl-form-range>
         </ng-container>
         <!-- DATE INPUT SECTION -->

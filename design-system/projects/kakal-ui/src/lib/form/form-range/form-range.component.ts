@@ -1,25 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  ControlValueAccessor,
-  FormControl,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
-import {
-  skip,
-  take,
-  filter,
-  takeUntil,
-  Subject,
-  Observable,
-  tap,
-  map,
-  merge,
-} from 'rxjs';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FilterRange } from '../../filters/filters.types';
 import { QuestionGroupModel } from '../models/form.types';
 import { FormService, Question } from '../services/form.service';
 import { Range } from './question-range.model';
+import { FormChangeEvent, FormActions } from '../models/form.types';
+import { skip, filter, takeUntil, Subject, map, merge } from 'rxjs';
 
 @Component({
   selector: 'kkl-form-range',
@@ -39,6 +25,9 @@ import { Range } from './question-range.model';
   inputs: ['disabled'],
 })
 export class FormRangeComponent implements OnInit, ControlValueAccessor {
+  @Input() key: string;
+  @Input() label: string;
+  @Input() index: number;
   @Input() questions: Question[];
 
   constructor(private formService: FormService) {}
@@ -50,8 +39,10 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
 
   private destroy: Subject<void>;
 
-  @Output() rangeChange: EventEmitter<FilterRange<number> | null> =
-    new EventEmitter();
+  // @Output() rangeChange: EventEmitter<FilterRange<number> | null> =
+  @Output() public rangeChanged: EventEmitter<
+    FormChangeEvent<FilterRange<number>>
+  > = new EventEmitter();
 
   ngOnInit(): void {
     this.destroy = new Subject();
@@ -97,9 +88,18 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
 
   registerOnTouched(fn: Function) {}
 
+  private setChangeEvent() {
+    return {
+      key: this.key,
+      value: { ...this.range, type: 'number' },
+      index: this.index,
+      event: FormActions.VALUE_CHANGED,
+    } as FormChangeEvent;
+  }
+
   private _emitChangeEvent() {
     this._onChange(this.range);
-    this.rangeChange.emit(this.range);
+    this.rangeChanged.emit(this.setChangeEvent());
   }
 
   public setDisabledState(isDisabled: boolean): void {
@@ -113,7 +113,7 @@ export class FormRangeComponent implements OnInit, ControlValueAccessor {
 
   public seRangeGroup(questions: Question[]): QuestionGroupModel {
     const group = this.formService.createQuestionGroup<FilterRange<number>>({
-      key: 'range',
+      key: this.key,
       questions,
     });
 
