@@ -37,11 +37,13 @@ export class FormFilterSearchComponent implements OnInit {
       controlType: 'autocomplete',
     },
     { key: 'phone', controlType: 'phone' },
+    { key: 'upload', controlType: 'upload' },
     {
       key: 'area',
       filterType: FilterType.RANGE,
       controlType: 'range',
       format: { type: 'area' },
+      value: { start: 0, end: 100 },
       questions: [
         {
           key: 'start',
@@ -146,13 +148,13 @@ export class FormFilterSearchComponent implements OnInit {
 
   public onRemove(key: string) {
     const formGroup = this.searchGroup.formGroup;
-    formGroup.controls[key].disable();
+    formGroup.get(key).reset();
   }
 
   public onRemoveMulti(filterChangeEvent: FilterChangeEvent) {
     const { key, value } = filterChangeEvent;
     const formGroup = this.searchGroup.formGroup;
-    formGroup.controls[key].setValue([...value]);
+    formGroup.get(key).setValue([...value]);
   }
 
   public onClear() {

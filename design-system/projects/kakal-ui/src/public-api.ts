@@ -40,6 +40,7 @@ export * from './lib/form/form-counter/form-counter.component';
 
 export * from './lib/form/form-upload/form-upload.module';
 export * from './lib/form/form-upload/form-upload.component';
+export * from './lib/form/form-upload/question-upload.model';
 
 export * from './lib/form/form-date/form-date.module';
 export * from './lib/form/form-date/form-date.component';
@@ -85,7 +86,6 @@ export * from './lib/form/services/validations.service';
 // FORM QUESTIONS //
 
 export * from './lib/form/models/question-autocomplete';
-export * from './lib/form/models/question-file.model';
 export * from './lib/form/models/question-group.model';
 export * from './lib/form/models/question-number.model';
 export * from './lib/form/models/question-select.model';
