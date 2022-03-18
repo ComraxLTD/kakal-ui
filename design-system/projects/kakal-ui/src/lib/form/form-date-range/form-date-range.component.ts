@@ -25,7 +25,6 @@ import { Range } from '../form-range/question-range.model';
 import { map, Observable, startWith, Subject } from 'rxjs';
 import { MY_FORMATS } from '../form-date/form-date.component';
 
-
 @Component({
   selector: 'kkl-form-date-range',
   templateUrl: './form-date-range.component.html',
@@ -41,7 +40,7 @@ import { MY_FORMATS } from '../form-date/form-date.component';
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS, multi: true },
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
     { provide: MAT_DATE_LOCALE, useValue: 'he-HE' },
   ],
 })

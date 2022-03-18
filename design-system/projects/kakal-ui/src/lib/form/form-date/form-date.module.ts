@@ -9,7 +9,6 @@ import { NgxCleaveDirectiveModule } from 'ngx-cleave-directive';
 import { KKLFormDateRangeModule } from '../form-date-range/form-date-range.module';
 import { FormDateComponent } from './form-date.component';
 
-
 @NgModule({
   imports: [
     CommonModule,
@@ -19,8 +18,7 @@ import { FormDateComponent } from './form-date.component';
     MatNativeDateModule,
     MatDatepickerModule,
     MatInputModule,
-    KKLFormDateRangeModule
-
+    KKLFormDateRangeModule,
   ],
   declarations: [FormDateComponent],
   exports: [FormDateComponent, KKLFormDateRangeModule],

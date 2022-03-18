@@ -21,7 +21,6 @@ import { KKLButtonModule } from '../../button/button.module';
     FlexLayoutModule,
 
     KKLButtonModule,
-
     // form components
     KKLFormDateModule,
     KKLFormInputModule,
