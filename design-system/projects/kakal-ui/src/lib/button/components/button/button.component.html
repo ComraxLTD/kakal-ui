@@ -1,11 +1,21 @@
 <button *ngIf="type === 'primary'" mat-raised-button color="primary">
-  <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="center center" [dir]="direction" >
+  <div
+    fxLayout="row"
+    fxLayoutGap="1rem"
+    fxLayoutAlign="center center"
+    [dir]="direction"
+  >
     <kkl-icon *ngIf="icon" [key]="icon" color="primary"></kkl-icon>
     <kkl-typography [color]="textColor">{{ label }}</kkl-typography>
   </div>
 </button>
 <button *ngIf="type === 'secondary'" mat-stroked-button color="primary">
-  <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="center center" [dir]="direction" >
+  <div
+    fxLayout="row"
+    fxLayoutGap="1rem"
+    fxLayoutAlign="center center"
+    [dir]="direction"
+  >
     <kkl-icon *ngIf="icon" [key]="icon" color="primary"></kkl-icon>
     <kkl-typography [color]="textColor">{{ label }}</kkl-typography>
   </div>

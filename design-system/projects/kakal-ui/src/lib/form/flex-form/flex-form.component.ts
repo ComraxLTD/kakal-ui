@@ -1,7 +1,8 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
+import { GridProps } from '../models/question.model';
 import { Question } from '../services/form.service';
 
 @Component({
@@ -12,16 +13,19 @@ import { Question } from '../services/form.service';
 })
 export class FlexFormComponent implements OnInit {
   @Input() public variant: 'row' | 'column' = 'row';
+
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
 
-  // default inputs in row
-  @Input() inRow: number = 3;
+  @Input() public grid: GridProps;
 
-  // default inputs in row
-  @Input() hasButton: boolean;
+  @Input() public buttonLabel: string = 'שמור';
+  @Input() public buttonTemp: TemplateRef<any>;
 
+  public hasButton: boolean;
   public flex: number;
+
+  // default inputs in row
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -41,7 +45,8 @@ export class FlexFormComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
-    this.flex = 100 / this.inRow;
+    this.flex = 100 / (this.grid?.cols || 3);
+    this.hasButton = !!this.grid?.buttonCols;
   }
 
   public onSubmit() {

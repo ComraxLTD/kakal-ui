@@ -2,11 +2,12 @@
   [fxLayout]="variant + ' wrap'"
   fxLayoutAlign="start center"
   [formGroup]="formGroup"
+  (ngSubmit)="onSubmit()"
 >
   <ng-container *ngFor="let question of questions; let index = index">
     <ng-container [ngSwitch]="question.controlType">
       <div
-        [class.input]="true"
+        [class.input-container]="true"
         [class.odd]="odd"
         [class.even]="even"
         [fxFlex]="flex"
@@ -122,4 +123,24 @@
       </div>
     </ng-container>
   </ng-container>
+
+  <ng-container *ngIf="hasButton">
+    <div [class.button-container]="true" fxFlex kkl-form-button>
+      <ng-container
+        *ngTemplateOutlet="
+          buttonTemp || defaultTemplate;
+          context: { $implicit: formGroup }
+        "
+      ></ng-container>
+    </div>
+  </ng-container>
 </form>
+
+<ng-template #defaultTemplate let-formGroup>
+  <kkl-stroke-button
+    type="submit"
+    color="primary"
+    [disabled]="!formGroup.valid"
+    >{{ buttonLabel }}</kkl-stroke-button
+  >
+</ng-template>
