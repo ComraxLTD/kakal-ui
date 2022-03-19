@@ -5,23 +5,24 @@
 export * from './lib/kakal-ui.module';
 export * from './lib/angular-material/material.module';
 
+export * from './lib/button/button.module';
 export * from './lib/button/components/button/button.component';
 export * from './lib/button/components/create-button/create-button.component';
+export * from './lib/button/components/stroke-button/stroke-button.component';
 export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
 export * from './lib/button/directives/form-button.directive';
-export * from './lib/button/button.module';
 
+export * from './lib/typography/typography.module';
 export * from './lib/typography/typography.component';
 export * from './lib/typography/typography.directive';
-export * from './lib/typography/typography.module';
 
+export * from './lib/icon/icon.module';
 export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.model';
-export * from './lib/icon/icon.module';
 
-export * from './lib/open-motions/open-motions.component';
 export * from './lib/open-motions/open-motions.module';
+export * from './lib/open-motions/open-motions.component';
 export * from './lib/open-motions/open-motions.service';
 
 // form exports
