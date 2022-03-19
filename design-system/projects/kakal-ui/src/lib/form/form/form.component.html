@@ -108,7 +108,7 @@
                 ? cols
                 : question?.gridProps?.cols || 1
             " [rowspan]="question?.gridProps?.rows || 1">
-            <kkl-form-currency fxFlex="100" [control]="group.formGroup.controls[question.key]"
+            <kkl-form-currency fxFlex="100" [formControl]="group.formGroup.controls[question.key]"
               [validations]="question?.validations" [index]="index">
             </kkl-form-currency>
           </mat-grid-tile>

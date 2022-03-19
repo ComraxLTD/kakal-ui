@@ -29,7 +29,9 @@ export class FormFilterSearchComponent implements OnInit {
       controlType: 'autocomplete',
     },
     {
-      key: 'first_name',
+      key: 'currency',
+      controlType: 'currency',
+      // disabled : true
     },
 
     { key: 'last_name' },

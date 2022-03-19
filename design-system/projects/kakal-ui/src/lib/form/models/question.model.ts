@@ -35,7 +35,6 @@ export type ControlType =
   | 'checkbox'
   | 'radio'
   | 'date'
-  | 'dateRangePicker'
   | 'dateRange'
   | 'time'
   | 'range'
@@ -48,6 +47,7 @@ export type ControlType =
   | 'toggle'
   | 'email'
   | 'phone'
+  | 'group'
   | 'texteditor'
   | 'cleave';
 
@@ -58,6 +58,7 @@ export type QuestionType =
   | 'select'
   | 'custom'
   | 'date'
+  | 'dateRange'
   | 'checkbox'
   | 'radio'
   | 'textEditor'
