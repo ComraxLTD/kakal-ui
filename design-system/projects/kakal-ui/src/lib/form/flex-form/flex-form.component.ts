@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
@@ -13,9 +13,14 @@ import { Question } from '../services/form.service';
 })
 export class FlexFormComponent implements OnInit {
   @Input() public variant: 'row' | 'column' = 'row';
+
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
+
   @Input() public grid: GridProps;
+
+  @Input() public buttonLabel: string = 'שמור';
+  @Input() public buttonTemp: TemplateRef<any>;
 
   public hasButton: boolean;
   public flex: number;

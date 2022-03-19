@@ -8,6 +8,7 @@ import { Color } from '../../../../styles/theme';
 })
 export class StrokeButtonComponent implements OnInit {
   @Input() color: Color;
+  @Input() type: 'button' | 'submit' =  'button';
   @Input() disabled: boolean;
 
   @Output() clickEvent: EventEmitter<void> = new EventEmitter();
