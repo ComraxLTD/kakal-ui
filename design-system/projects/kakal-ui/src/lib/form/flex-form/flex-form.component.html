@@ -6,7 +6,7 @@
   <ng-container *ngFor="let question of questions; let index = index">
     <ng-container [ngSwitch]="question.controlType">
       <div
-        [class.input]="true"
+        [class.input-container]="true"
         [class.odd]="odd"
         [class.even]="even"
         [fxFlex]="flex"
@@ -124,8 +124,8 @@
   </ng-container>
 
   <ng-container *ngIf="hasButton">
-    <div kkl-form-button>
-      <button [class.mat-elevation.z4]="true" color="accent" kkl-stroked-button mat-stroked-button>שמור</button>
+    <div [class.button-container]="true" fxFlex kkl-form-button>
+      <kkl-stroke-button color="accent">שמור</kkl-stroke-button>
     </div>
   </ng-container>
 </form>
