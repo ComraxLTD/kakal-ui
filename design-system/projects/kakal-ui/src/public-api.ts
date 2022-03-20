@@ -231,9 +231,9 @@ export * from './lib/cards/info-card/info-card.module';
 export * from './lib/cards/info-card/info-card.model';
 export * from './lib/cards/info-card/info-card.component';
 
-export * from './lib/cards/card-dashboard/card-dashboard.component';
-export * from './lib/cards/card-dashboard/card-dashboard.model';
-export * from './lib/cards/card-dashboard/card-dashboard.module';
+export * from './lib/cards/card-lobby/card-lobby.component';
+export * from './lib/cards/card-lobby/card-lobby.model';
+export * from './lib/cards/card-lobby/card-lobby.module';
 export * from './lib/cards/card-info/card-info.component';
 export * from './lib/cards/card-info/card-info.model';
 export * from './lib/cards/card-info/card-info.module';

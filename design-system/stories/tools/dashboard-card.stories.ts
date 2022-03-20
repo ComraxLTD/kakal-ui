@@ -2,8 +2,8 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { KKLCardDashboardModule } from '../../projects/kakal-ui/src/lib/cards/card-dashboard/card-dashboard.module';
-import {CardDashboardComponent } from '../../projects/kakal-ui/src/lib/cards/card-dashboard/card-dashboard.component';
+import { KKLCardDashboardModule } from '../../projects/kakal-ui/src/lib/cards/card-lobby/card-lobby.module';
+import {CardDashboardComponent } from '../../projects/kakal-ui/src/lib/cards/card-lobby/card-lobby.component';
 import { CardStepModel} from '../../projects/kakal-ui/src/lib/cards/card-step/card-step.model';
 
 export default {

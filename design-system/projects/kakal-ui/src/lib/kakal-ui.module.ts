@@ -47,7 +47,7 @@ import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
-import { KKLCardLobbyModule } from './cards/card-dashboard/card-dashboard.module';
+import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';

@@ -6,19 +6,19 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { CardDashboardModel } from './card-dashboard.model';
+import { CardLobbyModel } from './card-lobby.model';
 import { Subscription } from 'rxjs';
 import { BreakpointService } from '../../../services/breakpoint.service';
 
 @Component({
-  selector: 'kkl-card-dashboard',
-  templateUrl: './card-dashboard.component.html',
-  styleUrls: ['./card-dashboard.component.scss'],
+  selector: 'kkl-card-lobby',
+  templateUrl: './card-lobby.component.html',
+  styleUrls: ['./card-lobby.component.scss'],
 })
 export class CardDashboardComponent implements OnInit, OnDestroy {
 
-  @Input() card: CardDashboardModel;
-  @Output() click = new EventEmitter<CardDashboardModel>();
+  @Input() card: CardLobbyModel;
+  @Output() click = new EventEmitter<CardLobbyModel>();
 
   private subscription: Subscription;
   constructor(private breakpointService: BreakpointService) {}

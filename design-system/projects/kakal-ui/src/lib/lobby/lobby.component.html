@@ -8,7 +8,7 @@
       <div fxLayout="row wrap" [fxFlex]="(((md$ | async) ? 16 : 18) * rows) + 'rem'">
         <div class="card" *ngFor="let card of cards; let i = index" appSize [size]="((md$ | async) ? 16 : 18)"
           (click)="onCardClick(card)">
-          <kkl-card-dashboard [card]="card"> </kkl-card-dashboard>
+          <kkl-card-lobby [card]="card"> </kkl-card-lobby>
         </div>
       </div>
     </div>
