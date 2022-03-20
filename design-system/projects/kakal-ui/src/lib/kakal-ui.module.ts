@@ -47,7 +47,7 @@ import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
-import { KKLCardDashboardModule } from './cards/card-dashboard/card-dashboard.module';
+import { KKLCardLobbyModule } from './cards/card-dashboard/card-dashboard.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
@@ -65,7 +65,7 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLLayoutModule } from '../screens/layout/layout.module';
-import { KKLLobbyModule } from '../lib/dashboard/dashboard.module';
+import { KKLLobbyModule } from '../lib/lobby/lobby.module';
 import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
 import { KKLFiltersModule } from '../lib/filters/filters.module';
 
@@ -123,7 +123,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     SpinnerModule,
 
     // CARDS
-    KKLCardDashboardModule,
+    KKLCardLobbyModule,
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
@@ -190,7 +190,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     SpinnerModule,
     KKLPageHeadlineModule,
     // CARDS
-    KKLCardDashboardModule,
+    KKLCardLobbyModule,
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
@@ -207,7 +207,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
 
     // LAYOUT
     KKLLayoutModule,
-    KKLDashboarModule,
+    KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
   ],

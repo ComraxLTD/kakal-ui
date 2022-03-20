@@ -10,4 +10,4 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     exports: [CardDashboardComponent]
 })
 
-export class KKLCardDashboardModule { }
+export class KKLCardLobbyModule { }
