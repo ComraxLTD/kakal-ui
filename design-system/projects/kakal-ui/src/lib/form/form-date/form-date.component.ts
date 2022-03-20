@@ -49,6 +49,7 @@ export class FormDateComponent implements OnInit {
   @Input() public key: string;
   @Input() public range: boolean;
   @Input() public placeHolder: string;
+  @Input() public label: string;
   @Input() public maxDate: Date;
   @Input() public minDate: Date;
   @Input() public index: number;

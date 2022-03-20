@@ -76,6 +76,7 @@
           <kkl-form-autocomplete
             (queryChanged)="onQueryChanged($event)"
             [key]="question?.key"
+            [label]="question?.label"
             [multi]="question.multi"
             [options]="question.options"
             [control]="formGroup.controls[question.key]"

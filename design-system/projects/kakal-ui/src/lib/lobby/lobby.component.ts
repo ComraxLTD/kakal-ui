@@ -1,19 +1,19 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointService } from '../../services/breakpoint.service';
-import { CardDashboardModel } from '../cards/card-dashboard/card-dashboard.model';
+import { CardLobbyModel } from '../cards/card-lobby/card-lobby.model';
 
 @Component({
-  selector: 'kkl-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  selector: 'kkl-lobby',
+  templateUrl: './lobby.component.html',
+  styleUrls: ['./lobby.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class LobbyComponent implements OnInit {
 
   @Input() public cols: number;
   @Input() public rows: number;
   @Input() public moduleTitle: string;
-  @Input() public cards: CardDashboardModel[];
+  @Input() public cards: CardLobbyModel[];
 
   public md$: Observable<boolean>;
 

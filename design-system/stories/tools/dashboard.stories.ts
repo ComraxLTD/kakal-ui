@@ -1,13 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { DashboardComponent } from '../../projects/kakal-ui/src/lib/dashboard/dashboard.component'
-import { KKLDashboarModule } from '../../projects/kakal-ui/src/lib/dashboard/dashboard.module';
+import { KKLLobbyModule } from '../../projects/kakal-ui/src/lib/dashboard/dashboard.module';
 
 export default {
     title: 'Tools',
     decorators: [
         moduleMetadata({
-            imports: [KKLDashboarModule],
+            imports: [KKLLobbyModule],
         }),
     ],
     component: DashboardComponent,
@@ -47,10 +47,10 @@ export default {
           name: 'Cards',
           description: 'Array of cards to display',
           table: {
-            type: { summary: 'CardDashboardModel[]' },
+            type: { summary: 'CardLobbyModel[]' },
           },
           control: {
-            type: 'CardDashboardModel[]'
+            type: 'CardLobbyModel[]'
           }
         },
     },

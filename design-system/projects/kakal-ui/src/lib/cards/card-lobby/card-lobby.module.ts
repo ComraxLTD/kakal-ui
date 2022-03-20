@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { KKLIconModule } from "../../icon/icon.module";
 import { KKLTypographyModule } from "../../typography/typography.module";
-import { CardDashboardComponent } from './card-dashboard.component';
+import { CardDashboardComponent } from './card-lobby.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -10,4 +10,4 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     exports: [CardDashboardComponent]
 })
 
-export class KKLCardDashboardModule { }
+export class KKLCardLobbyModule { }
