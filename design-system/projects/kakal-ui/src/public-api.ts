@@ -280,8 +280,8 @@ export * from './screens/layout/layout.service';
 
 // dashboard
 
-export * from './lib/dashboard/dashboard.component';
-export * from './lib/dashboard/dashboard.module';
+export * from './lib/lobby/lobby.component';
+export * from './lib/lobby/lobby.module';
 
 // chips
 export * from './lib/chips/chip/chip.component';

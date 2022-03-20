@@ -65,7 +65,7 @@ import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLLayoutModule } from '../screens/layout/layout.module';
-import { KKLDashboarModule } from '../lib/dashboard/dashboard.module';
+import { KKLLobbyModule } from '../lib/dashboard/dashboard.module';
 import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
 import { KKLFiltersModule } from '../lib/filters/filters.module';
 
@@ -140,7 +140,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     StepperLayoutModule,
     // LAYOUT
     KKLLayoutModule,
-    KKLDashboarModule,
+    KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
   ],
