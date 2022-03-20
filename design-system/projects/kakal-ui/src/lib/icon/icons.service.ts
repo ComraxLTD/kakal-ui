@@ -73,6 +73,16 @@ export class IconsService {
     // DIALOG
     accept_circle: AppIcons.ACCEPT_WITH_CIRCLE,
     cancel_circle: AppIcons.CANCEL_WITH_CIRCLE,
+
+    // forestry
+    strategy: AppIcons.STRATEGY,
+    logs:AppIcons.LOGS,
+    map:AppIcons.MAP,
+    plant:AppIcons.PLANT,
+    research:AppIcons.RESEARCH,
+    forest:AppIcons.FOREST,
+    driver_license:AppIcons.DRIVER_LICENSE,
+    car_parking:AppIcons.CAR_PARKING
   };
 
   private findIcon(key: string): string {
