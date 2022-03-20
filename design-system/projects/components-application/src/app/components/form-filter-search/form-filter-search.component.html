@@ -12,6 +12,11 @@
           [grid]="grid"
         ></kkl-flex-form>
       </kkl-form-search>
+
+      <kkl-form-upload
+        [formControl]="searchGroup.formGroup.controls['search']"
+        [index]="index"
+      ></kkl-form-upload>
       <div>
         <ng-container *ngIf="filtersState$ | async as filtersState">
           <kkl-filters

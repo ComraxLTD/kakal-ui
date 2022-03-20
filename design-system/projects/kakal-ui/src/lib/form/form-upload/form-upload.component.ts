@@ -10,7 +10,8 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { map, merge, Observable, of } from 'rxjs';
+import { map, merge, Observable, of, pluck } from 'rxjs';
+import { FormChangeEvent } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-upload',
@@ -29,11 +30,10 @@ import { map, merge, Observable, of } from 'rxjs';
   },
   inputs: ['disabled', 'disableRipple', 'color'],
 })
-export class FormUploadComponent
-  implements OnInit, ControlValueAccessor
-{
+export class FormUploadComponent implements OnInit, ControlValueAccessor {
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
 
+  @Input() public key: string;
   @Input() public label: string = 'העלה מסמך';
   @Input() public index: number;
   @Input() public multi: boolean = true;
@@ -43,7 +43,7 @@ export class FormUploadComponent
   public files: File[] = [];
 
   // emit the file
-  @Output() fileChange = new EventEmitter<File[]>();
+  @Output() fileChanged = new EventEmitter<FormChangeEvent>();
 
   constructor() {}
 
@@ -55,9 +55,6 @@ export class FormUploadComponent
 
   // ControlValueAccessor interface methods
   writeValue(value: File[]) {
-    if (!value) {
-      this.fileChange.emit([]);
-    }
     this.files = value || [];
     this._emitChangeEvent();
   }
@@ -70,7 +67,8 @@ export class FormUploadComponent
 
   // SET PROPS SECTION
   public setLabelFormFileLength$(): Observable<string> {
-    return this.fileChange.pipe(
+    return this.fileChanged.pipe(
+      pluck('value'),
       map((event: File[]) => {
         return Object.values(event);
       }),
@@ -115,10 +113,17 @@ export class FormUploadComponent
 
   private _emitChangeEvent() {
     this._onChange(this.files);
-    this.fileChange.emit(this.files);
+    this.fileChanged.emit(this.setFileChangeEvent());
   }
 
   setDisabledState(isDisabled: boolean): void {
     this.disabled = isDisabled;
+  }
+
+  private setFileChangeEvent() {
+    return {
+      key: this.key,
+      value: this.files,
+    } as FormChangeEvent;
   }
 }
