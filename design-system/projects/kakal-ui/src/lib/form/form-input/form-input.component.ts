@@ -116,7 +116,7 @@ export class FormInputComponent implements OnInit {
     this.setErrorMessage();
   }
 
-  private getFormOption(value?: string): FormChangeEvent {
+  private getFormOption(value?: any): FormChangeEvent {
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       control: this.control,

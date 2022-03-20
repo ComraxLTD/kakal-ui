@@ -7,6 +7,7 @@
       [cleave]="currencyGroup.controls['sum'].cleave"
       [controlType]="currencyGroup.controls['sum'].controlType"
       [control]="currencyGroup.formGroup.controls['sum']"
+      (valueChanged)="onValueChanged($event)"
     >
     </kkl-form-input>
     <kkl-form-select
@@ -16,6 +17,7 @@
       [appearance]="currencyGroup.controls['currency'].appearance"
       [options]="currencyGroup.controls['currency'].options"
       [control]="currencyGroup.formGroup.controls['currency']"
+      (selectChanged)="onSelectChanged($event)"
     >
     </kkl-form-select>
   </ng-container>

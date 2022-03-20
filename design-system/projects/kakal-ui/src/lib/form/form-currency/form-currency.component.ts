@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   ControlValueAccessor,
   FormControl,
@@ -21,6 +21,7 @@ import {
   startWith,
 } from 'rxjs';
 import { Currency, QuestionCurrencyModel } from './question-currency.model';
+import { FormChangeEvent } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-currency',
@@ -60,27 +61,22 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
     },
   ];
 
+  private _currency: Currency;
+
+  @Output() change: EventEmitter<Currency> = new EventEmitter();
+
   constructor(private formService: FormService) {}
 
   private _onChange: (v: Currency | null) => void = (
     value: Currency | null
   ) => {};
 
+  private _onTouched: () => void = () => {};
+
   ngOnInit(): void {
     this.currencyGroup = this.formService.createQuestionGroup<Currency>({
       questions: this.initQuestions(this.questions, this.options),
     });
-
-    // this.currencyGroupSubject = new BehaviorSubject<QuestionGroupModel>(
-    //   this.currencyService.setCurrencyGroup({
-    //     key: 'currency',
-    //     questions: this.setCurrencyQuestion(
-    //       this.currencyQuestion,
-    //       this.control
-    //     ),
-    //   })
-    // );
-    // this.currencyGroup$ = this.setCurrencyGroupWithQuestions();
   }
 
   private initQuestions(questions: Question[], options: SelectOption[]) {
@@ -131,67 +127,28 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
       : this.currencyGroup.formGroup.enable();
   }
 
-  private setCurrencyQuestion(questions, control: FormControl) {
-    return questions.map((question) => {
-      const { sum, currency } = control.value;
-      let value: any;
-
-      if (question.key === 'sum') value = sum ? sum : 0;
-      else value = currency ? currency : { label: '', value: 0 };
-
-      const validations = question.key === 'sum' ? this.validations : [];
-
-      return {
-        ...question,
-        // disabled: this.control.disabled,
-        value,
-        validations,
-      } as Question;
-    });
-  }
-
-  // private setCurrencyGroupWithQuestions(): Observable<QuestionGroupModel> {
-  //   return this.currencyService.getCurrencies$().pipe(
-  //     switchMap((questions: SelectOption[]) => {
-  //       return this.currencyGroupSubject.asObservable().pipe(
-  //         map((currencyGroup: QuestionGroupModel) => {
-  //           if (!this.control.disabled) {
-  //             currencyGroup.questions[0]['options'] = questions;
-  //           }
-  //           return currencyGroup;
-  //         }),
-  //         switchMap((currencyGroup: QuestionGroupModel) => {
-  //           return this.setControlValue(currencyGroup);
-  //         })
-  //       );
-  //     })
-  //   );
-  // }
-
-  private setControlValue(
-    currencyGroup: QuestionGroupModel
-  ): Observable<QuestionGroupModel<any>> {
-    return currencyGroup.formGroup.valueChanges.pipe(
-      startWith(currencyGroup.getValue()),
-      debounceTime(400),
-      map((value: Currency) => {
-        if (value) {
-          const { sum } = value;
-          // this.control.setValue({
-          //   ...value,
-          //   sum: this.setSumAsNumber(sum as string),
-          // });
-        }
-
-        return currencyGroup;
-      })
-    );
-  }
-
   private setSumAsNumber(sum: string): number {
     if (typeof sum === 'string' && sum.includes(',')) {
       sum = sum.split(',').reduce((acc, val) => acc + val);
     }
     return Number(sum);
+  }
+  public onValueChanged(event: FormChangeEvent) {
+    const currency = this.currencyGroup.formGroup.value;
+    const { value } = event;
+    this._currency = { ...currency, sum: this.setSumAsNumber(value) };
+    this._emitChangeEvent(this._currency);
+  }
+
+  public onSelectChanged(event: FormChangeEvent) {
+    const currencyValue = this.currencyGroup.formGroup.value;
+    const { value } = event;
+    this._currency = { ...currencyValue, currency: value };
+    this._emitChangeEvent(this._currency);
+  }
+
+  private _emitChangeEvent(value: Currency) {
+    this._onChange(value);
+    this.change.emit(value);
   }
 }
