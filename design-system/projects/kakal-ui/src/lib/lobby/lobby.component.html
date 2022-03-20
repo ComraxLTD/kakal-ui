@@ -1,13 +1,32 @@
-<div fxLayout="column" fxLayoutAlign="center center" dir="rtl" class="dashboard">
+<div
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  dir="rtl"
+  class="kkl-lobby"
+>
   <div fxLayout="row">
-    <div class="container" fxLayout="column" fxLayoutAlign="center center"
-      [fxFlex]="(((md$ | async) ? 16 : 18) * cols) + 'rem'">
+    <div
+      class="container"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      [fxFlex]="((md$ | async) ? 16 : 18) * cols + 'rem'"
+    >
       <div [fxFlex]="'8rem'">
-        <kkl-typography [weight]="600" [size]="3">{{ moduleTitle }}</kkl-typography>
+        <kkl-typography [weight]="600" [size]="3">{{
+          moduleTitle
+        }}</kkl-typography>
       </div>
-      <div fxLayout="row wrap" [fxFlex]="(((md$ | async) ? 16 : 18) * rows) + 'rem'">
-        <div class="card" *ngFor="let card of cards; let i = index" appSize [size]="((md$ | async) ? 16 : 18)"
-          (click)="onCardClick(card)">
+      <div
+        fxLayout="row wrap"
+        [fxFlex]="((md$ | async) ? 16 : 18) * rows + 'rem'"
+      >
+        <div
+          class="card"
+          *ngFor="let card of cards; let i = index"
+          appSize
+          [size]="(md$ | async) ? 16 : 18"
+          (click)="onCardClick(card)"
+        >
           <kkl-card-lobby [card]="card"> </kkl-card-lobby>
         </div>
       </div>
