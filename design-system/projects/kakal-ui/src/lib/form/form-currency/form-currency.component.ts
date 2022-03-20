@@ -7,17 +7,18 @@ import {
 } from '@angular/forms';
 
 import { QuestionGroupModel } from '../models/question-group.model';
-import { SelectOption } from '../models/question-select.model';
+import {
+  QuestionSelectModel,
+  SelectOption,
+} from '../models/question-select.model';
 
 import { FormService, Question } from '../services/form.service';
-import { CurrencyService } from './form-currency.service';
 import {
   BehaviorSubject,
   debounceTime,
   map,
   Observable,
   startWith,
-  switchMap,
 } from 'rxjs';
 import { Currency, QuestionCurrencyModel } from './question-currency.model';
 
@@ -36,6 +37,8 @@ import { Currency, QuestionCurrencyModel } from './question-currency.model';
 export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
   @Input() public question: QuestionCurrencyModel;
   @Input() public value: Currency;
+  @Input() public options: SelectOption[];
+  @Input() public default: SelectOption;
   @Input() public index: number;
   @Input() public validations: ValidatorFn[];
   public currencyGroupSubject: BehaviorSubject<QuestionGroupModel<Currency>>;
@@ -44,17 +47,16 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
 
   public questions: Question[] = [
     {
-      key: 'currency',
-      label: '',
-      controlType: 'select',
-      appearance: 'none',
-      icon: 'keyboard_arrow_down',
-    },
-    {
       key: 'sum',
       cleave: { numeral: true },
       controlType: 'cleave',
       label: '',
+    },
+    {
+      key: 'currency',
+      label: '',
+      controlType: 'select',
+      appearance: 'none',
     },
   ];
 
@@ -66,7 +68,7 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
 
   ngOnInit(): void {
     this.currencyGroup = this.formService.createQuestionGroup<Currency>({
-      questions: this.questions,
+      questions: this.initQuestions(this.questions, this.options),
     });
 
     // this.currencyGroupSubject = new BehaviorSubject<QuestionGroupModel>(
@@ -81,9 +83,33 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
     // this.currencyGroup$ = this.setCurrencyGroupWithQuestions();
   }
 
+  private initQuestions(questions: Question[], options: SelectOption[]) {
+    const newQuestions = [...questions];
+    const index: number = questions.findIndex(
+      (q) => q.controlType === 'select'
+    );
+
+    const value = options.find((option) => option.label === '₪');
+
+    newQuestions[index] = {
+      ...questions[index],
+      options,
+      value,
+    } as QuestionSelectModel;
+
+    return newQuestions;
+  }
+
   writeValue(value: Currency): void {
     if (value) {
-      this.currencyGroup.formGroup.setValue(value, { emitEvent: false });
+      const valueForm = this.currencyGroup.getValue();
+      this.currencyGroup.formGroup.setValue(
+        {
+          currency: value.currency || valueForm.currency,
+          sum: Number(value?.sum),
+        },
+        { emitEvent: false }
+      );
     } else {
       this.currencyGroup.formGroup.setValue(
         { sum: null, currency: null },

@@ -1,15 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import {
+  Currency,
   FilterChangeEvent,
   FiltersService,
   FilterState,
   FilterType,
   FormService,
   GridProps,
+  KKLSelectOption,
   OptionMap,
   Question,
   QuestionGroupModel,
+  SelectOption,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
@@ -31,7 +34,7 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'currency',
       controlType: 'currency',
-      // disabled : true
+      value: { sum: 100 } as Currency,
     },
 
     { key: 'last_name' },
@@ -115,14 +118,23 @@ export class FormFilterSearchComponent implements OnInit {
     });
   }
 
+  private getCurrencyOptions() {
+    return of([
+      { label: '$', value: 1 },
+      { label: '₪', value: 2 },
+      { label: '@', value: 3 },
+    ] as KKLSelectOption[]);
+  }
+
   public getOptions(): Observable<OptionMap> {
     const city$ = of(MOCK_OPTIONS);
     const email$ = of(MOCK_OPTIONS);
     const country$ = of(MOCK_OPTIONS);
+    const currency$ = this.getCurrencyOptions();
 
-    return forkJoin([city$, email$, country$]).pipe(
-      map(([city, email, country]) => {
-        return { city, email, country };
+    return forkJoin([city$, email$, country$, currency$]).pipe(
+      map(([city, email, country, currency]) => {
+        return { city, email, country, currency };
       })
     );
   }

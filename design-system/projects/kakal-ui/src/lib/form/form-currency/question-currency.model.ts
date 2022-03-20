@@ -12,12 +12,12 @@ export interface Currency {
 
 export class QuestionCurrencyModel extends QuestionSelectModel {
   // symbol of currency
-  public default: string;
+  public default: SelectOption;
 
   constructor(options: {
     key: string;
     label?: string;
-    default?: string;
+    default?: SelectOption;
     gridProps?: GridProps;
     value?: Currency;
     disabled?: boolean;
