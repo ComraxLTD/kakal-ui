@@ -133,10 +133,11 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
     }
     return Number(sum);
   }
+
   public onValueChanged(event: FormChangeEvent) {
-    const currency = this.currencyGroup.formGroup.value;
+    const currencyValue = this.currencyGroup.formGroup.value;
     const { value } = event;
-    this._currency = { ...currency, sum: this.setSumAsNumber(value) };
+    this._currency = { ...currencyValue, sum: this.setSumAsNumber(value) };
     this._emitChangeEvent(this._currency);
   }
 
