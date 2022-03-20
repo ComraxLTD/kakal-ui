@@ -1,38 +1,38 @@
 import { ValidatorFn } from '@angular/forms';
-import { SelectOption } from '../models/question-select.model';
-import { GridProps, QuestionBase } from '../models/question.model'
-;
+import {
+  QuestionSelectModel,
+  SelectOption,
+} from '../models/question-select.model';
+import { GridProps } from '../models/question.model';
+
 export interface Currency {
   currency?: SelectOption;
   sum?: string | number;
 }
 
-export interface CurrencyOptions {
-  label: string;
-  value: number;
-}
-
-export class QuestionCurrencyModel extends QuestionBase {
+export class QuestionCurrencyModel extends QuestionSelectModel {
   // symbol of currency
-  public default: CurrencyOptions;
+  public default: SelectOption;
 
   constructor(options: {
     key: string;
     label?: string;
-    default?: CurrencyOptions;
+    default?: SelectOption;
     gridProps?: GridProps;
     value?: Currency;
     disabled?: boolean;
+    options?: SelectOption[];
     validations?: ValidatorFn[];
   }) {
     super(options);
     this.key = options.key;
     this.label = options.label;
-    this.default = options.default || { label: '', value: 0 };
+    this.value = options.value || null;
+    this.options = options.options;
+    this.default = options.default || null;
     this.type = 'currency';
     this.controlType = 'currency';
     this.gridProps = options.gridProps;
-    this.value = options.value || { sum: 0, currency: this.default };
     this.validations = options.validations || [];
     this.disabled = options.disabled || false;
   }

@@ -97,8 +97,11 @@
         <!-- CURRENCY INPUT SECTION -->
         <ng-container *ngSwitchCase="'currency'">
           <kkl-form-currency
-            [control]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [formControl]="formGroup.controls[question.key]"
             [validations]="question?.validations"
+            [options]="question?.options"
+            [default]="question?.default"
             [index]="index"
           >
           </kkl-form-currency>

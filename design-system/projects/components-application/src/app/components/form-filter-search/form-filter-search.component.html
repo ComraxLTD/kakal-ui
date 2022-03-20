@@ -24,4 +24,11 @@
       </div>
     </ng-container>
 
+    <ng-container>
+      <pre *ngIf="searchGroup">
+      {{ searchGroup.formGroup.value | json }}
+    </pre
+      >
+    </ng-container>
+  </div>
 </div>
