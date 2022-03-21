@@ -15,6 +15,12 @@ hr {
   width: 90%;
   border-top: 1px dashed main.color(default);
 }
+input {
+  border: none;
+  &:focus {
+    border: none;
+  }
+}
 
 .form-counter {
   // border: 1px solid main.color(primary);
@@ -24,9 +30,9 @@ hr {
   // .border {
   //     border-bottom: 1px dashed main.color(default);
   // }
-  input {
-    text-align: center;
-  }
+  // input {
+  //   text-align: center;
+  // }
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
