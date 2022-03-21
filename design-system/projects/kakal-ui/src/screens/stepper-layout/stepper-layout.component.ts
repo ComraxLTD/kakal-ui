@@ -101,32 +101,6 @@ export class StepperLayoutComponent {
 
   }
 
-  // private setSelectQuestion(): Observable<Question> {
-  //   return this.stepperLayoutService.getStepsObs().pipe(
-  //     switchMap((steps) => {
-  //       return this.stepperLayoutService.getStepPrefixObs().pipe(
-  //         startWith(this.routerService.getCurrentPath()),
-  //         map((prefix: string) => {
-  //           const options: SelectOption[] = steps.map((step) => {
-  //             return {
-  //               label: step.label,
-  //               value: step.path,
-  //             };
-  //           });
-
-  //           const question: Question = {
-  //             key: 'selectMobile',
-  //             controlType: 'select',
-  //             value: prefix,
-  //             options,
-  //           };
-
-  //           return question;
-  //         })
-  //       );
-  //     })
-  //   );
-  // }
 
   public onChangeStep(step: CardStepModel): void {
     this.changeStep.emit(step);

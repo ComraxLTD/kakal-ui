@@ -30,25 +30,21 @@ export class StatusBarsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(status);
-    
+
     this.cols = this.cols || 8;
     this.color = this.color || 'accent';
 
     const approvedBars = Array(this.status.authorizedBars).fill('active');
     this.steps.push(...approvedBars);
-    console.log(this.steps);
     if (this.status.authorizedBars < this.status.totalBars) {
       this.steps.push('disable');
     }
-    console.log(this.steps);
 
-    const disapproveddBars = new Array(
+    const disableBars = new Array(
       this.status.totalBars - this.status.authorizedBars
     ).fill('');
 
-    this.steps.push(...disapproveddBars);
+    this.steps.push(...disableBars);
     this.steps=this.steps.reverse()
-    console.log(this.steps);
   }
 }
