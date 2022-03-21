@@ -177,6 +177,10 @@ export * from './lib/list-menu/list-menu.module';
 export * from './lib/navigation/navigation.module';
 export * from './lib/navigation/navigation.component';
 
+// section
+export * from './lib/section/section.module';
+export * from './lib/section/section.component';
+
 // dialog
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';

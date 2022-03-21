@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from './angular-material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from './core-module/core.module';
 
 import { KKLButtonModule } from './button/button.module';
@@ -63,13 +62,15 @@ import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
 import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
-import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLLayoutModule } from '../screens/layout/layout.module';
 import { KKLLobbyModule } from '../lib/lobby/lobby.module';
 import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
 import { KKLFiltersModule } from '../lib/filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
+import { OpenMotionsModule } from '../lib/open-motions/open-motions.module';
+import { KKSectionModule } from '../lib/section/section.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -80,6 +81,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
     ReactiveFormsModule,
     //TOOLS
     OpenMotionsModule,
+    KKSectionModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLNavigationModule,
@@ -147,6 +149,7 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
   exports: [
     //TOOLS
     OpenMotionsModule,
+    KKSectionModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLBreadCrumbsModule,
