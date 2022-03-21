@@ -55,6 +55,8 @@ export class IconsService {
     open: AppIcons.OPEN_PLUS,
     three_points: AppIcons.THREE_POINTS_ICON,
 
+    //-------CONTRACTS ICONS--------------------------------------------------------------
+
     // STEPPER
     offer: AppIcons.ORDER_ICON,
     medal: AppIcons.MEDAL_ICON,
@@ -74,15 +76,37 @@ export class IconsService {
     accept_circle: AppIcons.ACCEPT_WITH_CIRCLE,
     cancel_circle: AppIcons.CANCEL_WITH_CIRCLE,
 
-    // forestry
+    //-------FORESTRY ICONS--------------------------------------------------------------
     strategy: AppIcons.STRATEGY,
-    logs:AppIcons.LOGS,
-    map:AppIcons.MAP,
-    plant:AppIcons.PLANT,
-    research:AppIcons.RESEARCH,
-    forest:AppIcons.FOREST,
-    driver_license:AppIcons.DRIVER_LICENSE,
-    car_parking:AppIcons.CAR_PARKING
+    logs: AppIcons.LOGS,
+    map: AppIcons.MAP,
+    plant: AppIcons.PLANT,
+    research: AppIcons.RESEARCH,
+    forest: AppIcons.FOREST,
+    driver_license: AppIcons.DRIVER_LICENSE,
+    car_parking: AppIcons.CAR_PARKING,
+
+
+    //-------LANDS ICONS--------------------------------------------------------------
+
+    select: AppIcons.SELECT_ICON,
+    home: AppIcons.HOME_ICON,
+    building: AppIcons.BUILDING_ICON,
+    portfolio : AppIcons.PORTFOLIO_ICON,
+    measurements: AppIcons.MEASUREMENTS_ICON,
+    list: AppIcons.LIST_ICON,
+
+    // lobby
+    supervision: AppIcons.SUPERVISION_ICON,
+    planing: AppIcons.PLANING_ICON,
+    incoming: AppIcons.INCOMING_ICON,
+    expense: AppIcons.EXPENSE_ICON,
+    committee: AppIcons.COMMITTEE_ICON,
+    transactions: AppIcons.TRANSACTION_ICON,
+    tree_gradient_lands: AppIcons.TREE_GRADIENT_LANDS_ICON,
+    tree_bottom_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
+    estate: AppIcons.ESTATE_ICON,
+    mail: AppIcons.MAIL_ICON,
   };
 
   private findIcon(key: string): string {
