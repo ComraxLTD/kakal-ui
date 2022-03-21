@@ -38,6 +38,7 @@ export type ControlType =
   | 'dateRange'
   | 'time'
   | 'range'
+  | 'counter'
   | 'group'
   | 'custom'
   | 'sum'
