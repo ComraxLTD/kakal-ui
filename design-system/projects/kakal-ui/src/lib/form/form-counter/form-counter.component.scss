@@ -4,6 +4,10 @@
 //     margin-top: 0.5rem;
 // }
 
+mat-form-field  {
+  text-align: center !important;
+}
+
 .kkl-form-counter {
   width: 12rem;
   height: 12rem;
@@ -16,6 +20,8 @@ hr {
   border-top: 1px dashed main.color(default);
 }
 input {
+  width: 5rem;
+  height: 2rem;
   border: none;
   &:focus {
     border: none;
@@ -24,9 +30,6 @@ input {
 
 .form-counter {
   // border: 1px solid main.color(primary);
-  mat-form-field {
-    width: 100%;
-  }
   // .border {
   //     border-bottom: 1px dashed main.color(default);
   // }
@@ -37,11 +40,6 @@ input {
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    margin: 0;
   }
 
-  /* Firefox */
-  input[type="number"] {
-    -moz-appearance: textfield;
-  }
 }

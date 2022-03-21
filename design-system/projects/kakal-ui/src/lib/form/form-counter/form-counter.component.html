@@ -10,22 +10,22 @@
       <kkl-icon [key]="icon" color="primary"></kkl-icon>
     </div>
     <hr />
-    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
-      <div fxFlex="40" fxLayout="row" fxLayoutAlign="center center">
+    <div
+      fxFlex="35"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="1rem"
+    >
+      <div fxLayout="row" fxLayoutAlign="center center">
         <button class="decrease" mat-icon-button (click)="decrease()">-</button>
         <mat-form-field fxFlex="4rem">
           <input matInput type="number" [formControl]="control" />
         </mat-form-field>
-        <!-- <div class="input" fxFlex="2rem">
-        </div> -->
         <button class="increase" mat-icon-button (click)="increase()">+</button>
-        <!-- <div class="increase" kkl-button (click)="increase()">
-          <kkl-typography color="primary" size="2">+</kkl-typography>
-        </div> -->
       </div>
     </div>
   </div>
-  <div fxLayoutAlign="center center" class="title">
-    <kkl-typography size="1.5">{{ label }}</kkl-typography>
+  <div fxLayoutAlign="center center">
+    <kkl-typography>{{ label }}</kkl-typography>
   </div>
 </div>
