@@ -1,24 +1,29 @@
-<div fxFlex="10">
-    <div class="form-counter" fxLayout='column' fxLayoutGap="1rem" fxLayoutAlign="center center">
+<div fxFlex>
+  <div
+    class="form-counter"
+    fxLayout="column"
+    fxLayoutGap="1rem"
+    fxLayoutAlign="center center"
+  >
     <div class="form-counter-icon" fxFill fxLayoutGap="1rem">
-        <kkl-icon [key]="icon" color="primary"></kkl-icon>
+      <kkl-icon [key]="icon" color="primary"></kkl-icon>
     </div>
     <div fxFill class="border"></div>
-        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
-            <div class="decrease" kkl-button (click)="decrease()">
-                <kkl-typography color="primary" size="2">-</kkl-typography>
-            </div>
-            <div class="input" fxFlex="15">
-                <mat-form-field appearance="none">
-                    <input matInput type="number" [formControl]="control">
-                </mat-form-field>
-            </div>
-            <div class="increase" kkl-button (click)="increase()">
-                <kkl-typography color="primary" size="2">+</kkl-typography>
-            </div>
-        </div>
-</div>
-<div fxLayoutAlign="center center" class="title">
-    <kkl-typography size="1.5">{{title}}</kkl-typography>
-</div>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+      <div class="decrease" kkl-button (click)="decrease()">
+        <kkl-typography color="primary" size="2">-</kkl-typography>
+      </div>
+      <div class="input" fxFlex="15">
+        <mat-form-field appearance="none">
+          <input matInput type="number" [formControl]="control" />
+        </mat-form-field>
+      </div>
+      <div class="increase" kkl-button (click)="increase()">
+        <kkl-typography color="primary" size="2">+</kkl-typography>
+      </div>
+    </div>
+  </div>
+  <div fxLayoutAlign="center center" class="title">
+    <kkl-typography size="1.5">{{ label }}</kkl-typography>
+  </div>
 </div>

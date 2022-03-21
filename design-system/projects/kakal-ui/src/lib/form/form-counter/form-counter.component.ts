@@ -6,10 +6,11 @@ import { FormControl } from '@angular/forms';
   templateUrl: './form-counter.component.html',
   styleUrls: ['./form-counter.component.scss']
 })
-export class KKLFormCounterComponent implements OnInit {
+export class FormCounterComponent implements OnInit {
+
   @Input() control: FormControl;
   @Input() icon: string;
-  @Input() title: string;
+  @Input() label: string;
 
   constructor() { }
 

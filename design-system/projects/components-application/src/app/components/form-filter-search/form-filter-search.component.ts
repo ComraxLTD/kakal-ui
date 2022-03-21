@@ -38,6 +38,7 @@ export class FormFilterSearchComponent implements OnInit {
     },
 
     { key: 'last_name' },
+    { key: 'part', controlType : 'counter' },
     {
       key: 'email',
       filterType: FilterType.SELECT,

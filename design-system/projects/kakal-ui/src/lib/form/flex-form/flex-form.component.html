@@ -110,7 +110,12 @@
 
         <!-- CURRENCY INPUT SECTION -->
         <ng-container *ngSwitchCase="'counter'">
-          
+          <kkl-form-counter
+            [control]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [icon]="question?.icon"
+            [label]="question?.label"
+          ></kkl-form-counter>
         </ng-container>
 
         <!-- DEFAULT INPUT -->

@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { KKLFormCounterComponent } from './form-counter.component';
+import { FormCounterComponent } from './form-counter.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLIconModule } from '../../icon/icon.module';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLDirectivesModule } from '../../directives/directives.module';
@@ -19,7 +18,7 @@ import { KKLDirectivesModule } from '../../directives/directives.module';
     KKLTypographyModule,
     KKLDirectivesModule,
   ],
-  declarations: [KKLFormCounterComponent],
-  exports: [KKLFormCounterComponent],
+  declarations: [FormCounterComponent],
+  exports: [FormCounterComponent],
 })
 export class KKLFormCounterModule {}
