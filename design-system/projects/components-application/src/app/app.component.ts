@@ -45,13 +45,13 @@ export class AppComponent implements OnInit {
       label: 'בקרת הכנסות',
       svgUrl: 'incoming',
       path: 'incoming',
-      size : 7
+      size: 7,
     },
     {
       label: 'בקרת הוצאות',
       svgUrl: 'expense',
       path: 'expense',
-      size : 7
+      size: 7,
     },
     {
       label: 'משקיפים',
@@ -65,12 +65,7 @@ export class AppComponent implements OnInit {
     },
   ];
 
-  constructor(
-    private pageHeadlineService: PageHeadlineService,
-    private breakpointsService: BreakpointService,
-    private routerService: RouterService,
-    private stepperLayoutService: StepperLayoutService
-  ) {}
+  constructor(private stepperLayoutService: StepperLayoutService) {}
   public steps: CardStepModel[] = [
     new CardStepModel({
       label: 'פרטי ההתקשרות',
