@@ -32,28 +32,36 @@ export class AppComponent implements OnInit {
 
   public cards: CardLobbyModel[] = [
     {
-      label: 'התקשרות חדשה',
-      svgUrl: 'group',
-      path: 'create-new-contract',
-      size: 2.5,
+      label: 'ספר נכסים',
+      svgUrl: 'estate',
+      path: 'estate',
     },
     {
-      label: 'הליכים קיימים',
-      svgUrl: 'connect',
-      path: 'existing-procedures',
-      size: 2.5,
-    },
-    {
-      label: 'בדיקת ספקים',
+      label: 'בקרת רישום',
       svgUrl: 'evaluation',
-      path: 'supplier-check',
-      size: 2.5,
+      path: 'evaluation',
     },
     {
-      label: 'דוחות',
-      svgUrl: 'reports',
-      path: 'reports',
-      size: 2.5,
+      label: 'בקרת הכנסות',
+      svgUrl: 'incoming',
+      path: 'incoming',
+      size : 7
+    },
+    {
+      label: 'בקרת הוצאות',
+      svgUrl: 'expense',
+      path: 'expense',
+      size : 7
+    },
+    {
+      label: 'משקיפים',
+      svgUrl: 'committee',
+      path: 'committee',
+    },
+    {
+      label: 'בקרה תכנונית',
+      svgUrl: 'planing',
+      path: 'planing',
     },
   ];
 

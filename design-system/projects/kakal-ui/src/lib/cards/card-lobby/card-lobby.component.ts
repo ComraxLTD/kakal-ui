@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 import { CardLobbyModel } from './card-lobby.model';
-import { Subscription } from 'rxjs';
+import { map, Observable, startWith, Subscription } from 'rxjs';
 import { BreakpointService } from '../../../services/breakpoint.service';
 
 @Component({
@@ -15,30 +15,36 @@ import { BreakpointService } from '../../../services/breakpoint.service';
   templateUrl: './card-lobby.component.html',
   styleUrls: ['./card-lobby.component.scss'],
 })
-export class CardDashboardComponent implements OnInit, OnDestroy {
-
+export class CardLobbyComponent implements OnInit, OnDestroy {
   @Input() card: CardLobbyModel;
+
+  public card$: Observable<CardLobbyModel>;
+
   @Output() click = new EventEmitter<CardLobbyModel>();
 
   private subscription: Subscription;
   constructor(private breakpointService: BreakpointService) {}
 
   ngOnInit(): void {
-    this.subscribeToMobile();
+    this.card$ = this.setSizeInMobile$();
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  public onCardClick() {
-  }
+  public onCardClick() {}
 
-  private subscribeToMobile() {
-    this.subscription = this.breakpointService
-      .isMobile()
-      .subscribe((md: boolean) => {
-        this.card.size = md ? 4 : 5.5;
-      });
+  private setSizeInMobile$(): Observable<CardLobbyModel> {
+    return this.breakpointService.isMobile().pipe(
+      map((md: boolean) => {
+        const card = { ...this.card };
+        console.log(md);
+        return {
+          ...card,
+          size: md ? 4 : card.size || 5.5,
+        } as CardLobbyModel;
+      })
+    );
   }
 }
