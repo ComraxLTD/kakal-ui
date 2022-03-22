@@ -65,7 +65,9 @@ export class FormComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.variant)
+  }
 
   public onSubmit() {
     this.submitEvent.emit(this.formGroup);

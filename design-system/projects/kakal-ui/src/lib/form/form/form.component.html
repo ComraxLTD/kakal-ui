@@ -1,16 +1,15 @@
-<ng-container *[ngSwitch]="variant">
+<ng-container [ngSwitch]="variant">
   <ng-container *ngSwitchCase="'grid'">
     <kkl-form [group]="group"></kkl-form>
   </ng-container>
   <ng-container *ngSwitchCase="'flex'">
-    <kkl-flex-form
-      *kklFormSearchContent
-      [questions]="searchGroup.questions"
-      [formGroup]="searchGroup.formGroup"
-      [grid]="searchGroup.gridProps || {}"
-      [optionsMap]="searchObserversCommitteesResult.optionsMap || {}"
+    <kkl-form-flex
+      [questions]="questions"
+      [formGroup]="formGroup"
+      [grid]="grid"
+      [optionsMap]="optionsMap"
       (selectChanged)="onSelectChanged($event)"
       (queryChanged)="onQueryChanged($event)"
-    ></kkl-flex-form>
+    ></kkl-form-flex>
   </ng-container>
 </ng-container>

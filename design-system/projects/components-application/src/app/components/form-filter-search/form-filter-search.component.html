@@ -5,13 +5,15 @@
         [searchControl]="searchGroup.formGroup.controls['search']"
         [advanced]="true"
       >
-        <kkl-form-flex
-          *kklFormSearchContent
-          [questions]="searchGroup.questions"
-          [formGroup]="searchGroup.formGroup"
-          [grid]="grid"
-          [optionsMap]="optionsMap"
-        ></kkl-form-flex>
+        <ng-container *kklFormSearchContent>
+          <kkl-form
+            variant="flex"
+            [questions]="searchGroup.questions"
+            [formGroup]="searchGroup.formGroup"
+            [grid]="grid"
+            [optionsMap]="optionsMap"
+          ></kkl-form>
+        </ng-container>
       </kkl-form-search>
 
       <div>

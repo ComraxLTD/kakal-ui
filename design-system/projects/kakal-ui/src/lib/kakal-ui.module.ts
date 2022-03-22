@@ -18,7 +18,7 @@ import { KKLMenuModule } from './menu/menu.module';
 import { KKLStepTitleModule } from './step-title/step-title.module';
 
 import { KKLFormModule } from './form/form/form.module';
-import { KKLFormFlexModule } from './form/flex-form/flex-form.module';
+
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
@@ -101,7 +101,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 
     // FORMS MODULES
     KKLFormModule,
-    KKLFormFlexModule,
     KKLFormAutoCompleteModule,
     KKLFormRadioModule,
     KKLFormDateModule,
@@ -168,7 +167,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     KKLFiltersModule,
 
     KKLFormModule,
-    KKLFormFlexModule,
     KKLFormCheckboxModule,
     KKLFormTextEditorModule,
     KKLFormAutoCompleteModule,
