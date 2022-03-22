@@ -13,6 +13,7 @@ import {
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
+import { Question, OptionMap } from '../models/form.types';
 
 @Component({
   selector: 'kkl-form',
@@ -20,7 +21,6 @@ import { FormChangeEvent } from '../models/form.options';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  
   @Input() public variant: 'flex' | 'grid' = 'grid';
 
   @Input() public group: QuestionGroupModel;
@@ -36,8 +36,15 @@ export class FormComponent implements OnInit {
 
   @Input() optionsSlot: { [key: string]: ElementRef };
 
-  public formGroup: FormGroup;
-  public grid: GridProps;
+  @Input() public questions: Question[];
+  @Input() public formGroup: FormGroup;
+
+  @Input() public grid: GridProps;
+  @Input() public optionsMap: OptionMap = {};
+
+  @Input() public buttonLabel: string = 'שמור';
+  @Input() public buttonTemp: TemplateRef<any>;
+
   public hasButton: boolean = false;
   public cols: string | number;
 
@@ -58,12 +65,7 @@ export class FormComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    this.formGroup = this.group.formGroup;
-    this.grid = this.group.gridProps;
-    this.cols = this.group.gridProps?.cols || 1;
-    this.hasButton = this.group.hasButton || false;
-  }
+  ngOnInit() {}
 
   public onSubmit() {
     this.submitEvent.emit(this.formGroup);

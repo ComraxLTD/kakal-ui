@@ -14,12 +14,12 @@ import { GridProps } from '../models/question.model';
 import { Question } from '../services/form.service';
 
 @Component({
-  selector: 'kkl-flex-form',
+  selector: 'kkl-form-flex',
   templateUrl: './flex-form.component.html',
   styleUrls: ['./flex-form.component.scss'],
   providers: [FormDataSource],
 })
-export class FlexFormComponent implements OnInit {
+export class FormFlexComponent implements OnInit {
   @Input() public variant: 'row' | 'column' = 'row';
 
   @Input() public questions: Question[];

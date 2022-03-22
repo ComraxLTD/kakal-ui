@@ -53,4 +53,4 @@ import { CommonModule } from '@angular/common';
   ],
   exports: [FormGridComponent, KKLFormInputModule],
 })
-export class KKLFormModule {}
+export class KKLFormGridModule {}

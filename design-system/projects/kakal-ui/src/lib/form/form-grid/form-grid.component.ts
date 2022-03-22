@@ -20,9 +20,6 @@ import { FormChangeEvent } from '../models/form.options';
   styleUrls: ['./form-grid.component.scss'],
 })
 export class FormGridComponent implements OnInit {
-
-  @Input() public variant: 'flex' | 'grid' = 'grid';
-
   @Input() public group: QuestionGroupModel;
   @Input() public formDataSource: FormDataSource;
 
