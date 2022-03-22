@@ -32,6 +32,7 @@ export class FormDataSource {
   // method  which return form state filtered by events[]
   private getStateByAction(actions?: FormActions[]): Observable<FormChangeEvent> {
     return this.formStateSubject.asObservable().pipe(
+      filter((formState) => !!formState),
       filter((formState : FormChangeEvent) => {
         return actions ? actions.indexOf(formState.action) !== -1 : true;
       })

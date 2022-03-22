@@ -8,11 +8,11 @@
         <ng-container *kklFormSearchContent>
           <kkl-form
             variant="flex"
-            [questions]="searchGroup.questions"
+            console.log(formChangeEvent);
             [formGroup]="searchGroup.formGroup"
             [grid]="grid"
             [optionsMap]="optionsMap"
-            (formChangeEvent)="onFormChanged($event)"
+            (formChanged)="onFormChanged($event)"
           ></kkl-form>
         </ng-container>
       </kkl-form-search>
