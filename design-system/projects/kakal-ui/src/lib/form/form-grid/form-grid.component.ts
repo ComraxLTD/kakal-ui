@@ -38,20 +38,30 @@ export class FormGridComponent implements OnInit {
   public hasButton: boolean = false;
   public cols: string | number;
 
+
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
+
+  @Output() public valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   @Output() public selectChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
-  @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> =
+
+  @Output() public openChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+
+  @Output() public optionSelected: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+
+  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
   @Output() public queryChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  @Output() fileChange = new EventEmitter<File[]>();
+  @Output() public fileChanged = new EventEmitter<FormChangeEvent>();
 
-  @Output() focusoutEvent: EventEmitter<string> = new EventEmitter();
-  @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public focusout: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor() {}
 
@@ -66,27 +76,39 @@ export class FormGridComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public onSelectChanged(option: FormChangeEvent) {
-    this.selectChanged.emit(option);
+  public onValueChanged(event: FormChangeEvent) {
+    this.valueChanged.emit(event);
   }
 
-  public onQueryChanged(FormChangeEvent: FormChangeEvent): void {
-    this.queryChanged.emit(FormChangeEvent);
+  public onSelectChanged(event: FormChangeEvent) {
+    this.selectChanged.emit(event);
   }
 
-  public onOptionSelected(event: MatAutocompleteSelectedEvent) {
+  public onQueryChanged(event: FormChangeEvent): void {
+    this.queryChanged.emit(event);
+  }
+
+  public onOpenChange(event: FormChangeEvent) {
+    this.openChanged.emit(event);
+  }
+
+  public onOptionSelected(event: FormChangeEvent): void {
     this.optionSelected.emit(event);
   }
 
-  public onFileChange(files: File[]) {
-    this.fileChange.emit(files);
+  public onMultiOptionSelected(event: FormChangeEvent) {
+    this.optionSelected.emit(event);
   }
 
-  public onFocusOut(key: string) {
-    this.focusoutEvent.emit(key);
+  public onFileChange(event: FormChangeEvent) {
+    this.fileChanged.emit(event);
   }
 
-  public onFocus(FormChangeEvent: FormChangeEvent) {
-    this.focus.emit(FormChangeEvent);
+  public onFocusOut(event: FormChangeEvent) {
+    this.focusout.emit(event);
+  }
+
+  public onFocus(event: FormChangeEvent) {
+    this.focus.emit(event);
   }
 }

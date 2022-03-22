@@ -169,7 +169,7 @@
               [multi]="question?.multi"
               [formControl]="group.formGroup.controls[question.key]"
               [index]="index"
-              (fileChange)="onFileChange($event)"
+              (fileChanged)="onFileChanges($event)"
             ></kkl-form-upload>
           </mat-grid-tile>
         </ng-container>

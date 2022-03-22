@@ -29,7 +29,7 @@ export class FormInputComponent implements OnInit {
   public error$: BehaviorSubject<string>;
   public color$: Observable<Palette>;
 
-  @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(
@@ -116,7 +116,7 @@ export class FormInputComponent implements OnInit {
     this.setErrorMessage();
   }
 
-  private getFormOption(value?: any): FormChangeEvent {
+  private getFormOption(value: any): FormChangeEvent {
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       control: this.control,
@@ -130,7 +130,7 @@ export class FormInputComponent implements OnInit {
 
   // EVENTS SECTION
   public onFocus() {
-    this.focus.emit(this.getFormOption());
+    this.focusChanged.emit(this.getFormOption(true));
   }
 
   public onValueChanged(value: string) {

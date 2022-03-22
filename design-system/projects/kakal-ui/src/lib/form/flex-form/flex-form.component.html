@@ -84,6 +84,7 @@
             [control]="formGroup.controls[question.key]"
             (multiOptionsSelected)="onMultiOptionSelected($event)"
             (optionSelected)="onOptionSelected($event)"
+            (queryChanged)="onQueryChanged($event)"
           ></kkl-form-autocomplete>
         </ng-container>
 
@@ -94,6 +95,7 @@
             [multi]="question?.multi"
             [formControl]="formGroup.controls[question.key]"
             [index]="index"
+            (fileChanged)="onFileChanged($event)"
           ></kkl-form-upload>
         </ng-container>
 
@@ -133,6 +135,7 @@
             [label]="question?.label"
             [index]="index"
             (focus)="onFocus($event)"
+            (valueChanged)="onValueChanged($event)"
             [controlType]="question?.controlType"
           ></kkl-form-input>
         </ng-container>
