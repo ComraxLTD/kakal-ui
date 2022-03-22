@@ -27,7 +27,7 @@
             (focus)="onFocus($event)"
             [optionsSlot]="optionsSlot"
             (selectChanged)="onSelectChanged($event)"
-            (openChanged)="onOpenChange($event)"
+            (openChanged)="onOpenChanged($event)"
           ></kkl-form-select>
         </ng-container>
 
@@ -76,16 +76,15 @@
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'autocomplete'">
           <kkl-form-autocomplete
-            (queryChanged)="onQueryChanged($event)"
             [key]="question?.key"
             [label]="question?.label"
             [icon]="question?.icon"
             [multi]="question.multi"
             [options]="optionsMap[question?.key] || question.options"
             [control]="formGroup.controls[question.key]"
+            (queryChanged)="onQueryChanged($event)"
             (multiOptionsSelected)="onMultiOptionSelected($event)"
             (optionSelected)="onOptionSelected($event)"
-            (queryChanged)="onQueryChanged($event)"
           ></kkl-form-autocomplete>
         </ng-container>
 

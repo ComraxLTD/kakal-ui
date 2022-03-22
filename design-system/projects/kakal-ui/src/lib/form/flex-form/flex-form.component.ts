@@ -85,12 +85,11 @@ export class FormFlexComponent implements OnInit {
     this.selectChanged.emit(event);
   }
 
+  public onOpenChanged(event: FormChangeEvent) {
+    this.openChanged.emit(event);
+  }
   public onQueryChanged(event: FormChangeEvent): void {
     this.queryChanged.emit(event);
-  }
-
-  public onOpenChange(event: FormChangeEvent) {
-    this.openChanged.emit(event);
   }
 
   public onOptionSelected(event: FormChangeEvent): void {

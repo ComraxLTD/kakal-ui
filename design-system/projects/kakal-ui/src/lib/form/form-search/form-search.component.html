@@ -7,6 +7,9 @@
     <kkl-form-autocomplete
       fxFlex="90"
       [control]="searchControl"
+      (queryChanged)="onQueryChanged($event)"
+      (multiOptionsSelected)="onMultiOptionSelected($event)"
+      (optionSelected)="onOptionSelected($event)"
     ></kkl-form-autocomplete>
 
     <div kkl-form-button *ngIf="advanced">
