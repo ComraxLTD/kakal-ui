@@ -5,10 +5,10 @@ import { FormActions } from "./form.actions";
 export interface FormChangeEvent<T = any> {
   key?: string;
   index?: number;
-  event?: FormActions;
   control?: FormControl;
   value?: T;
   query?: any;
   value$?: Observable<any>;
   query$?: Observable<any>;
+  action : FormActions;
 }

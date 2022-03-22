@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   ControlValueAccessor,
-  FormControl,
   NG_VALUE_ACCESSOR,
   ValidatorFn,
 } from '@angular/forms';
@@ -13,15 +12,10 @@ import {
 } from '../models/question-select.model';
 
 import { FormService, Question } from '../services/form.service';
-import {
-  BehaviorSubject,
-  debounceTime,
-  map,
-  Observable,
-  startWith,
-} from 'rxjs';
 import { Currency, QuestionCurrencyModel } from './question-currency.model';
 import { FormChangeEvent } from '../models/form.options';
+import { BehaviorSubject } from 'rxjs';
+import { FormActions } from '../models/form.actions';
 
 @Component({
   selector: 'kkl-form-currency',
@@ -36,6 +30,7 @@ import { FormChangeEvent } from '../models/form.options';
   ],
 })
 export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
+  @Input() public key: string;
   @Input() public question: QuestionCurrencyModel;
   @Input() public value: Currency;
   @Input() public options: SelectOption[];
@@ -63,7 +58,8 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
 
   private _currency: Currency;
 
-  @Output() change: EventEmitter<Currency> = new EventEmitter();
+  @Output() change: EventEmitter<FormChangeEvent<Currency>> =
+    new EventEmitter();
 
   constructor(private formService: FormService) {}
 
@@ -150,6 +146,11 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
 
   private _emitChangeEvent(value: Currency) {
     this._onChange(value);
-    this.change.emit(value);
+    this.change.emit({
+      value,
+      key: this.key,
+      index: this.index,
+      action: FormActions.VALUE_CHANGED,
+    } as FormChangeEvent);
   }
 }

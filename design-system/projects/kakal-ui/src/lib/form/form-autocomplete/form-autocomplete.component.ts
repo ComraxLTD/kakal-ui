@@ -13,6 +13,7 @@ import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../models/question-select.model';
 import { FormChangeEvent } from '../models/form.options';
 import { of } from 'rxjs';
+import { FormActions } from '../models/form.actions';
 
 @Component({
   selector: 'kkl-form-autocomplete',
@@ -53,13 +54,12 @@ export class FormAutocompleteComponent implements OnInit {
   }
 
   public search(query: string): void {
-    const options = this.options;
-
     const FormChangeEvent = {
       key: this.key,
       option: this.getOption(query),
       query,
       query$: of(query),
+      action: FormActions.QUERY_CHANGED,
     };
     this.queryChanged.emit(FormChangeEvent);
   }
@@ -70,6 +70,7 @@ export class FormAutocompleteComponent implements OnInit {
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       value: option.value,
+      action: FormActions.OPTION_SELECTED,
     };
 
     this.optionSelected.emit(FormChangeEvent);
@@ -87,6 +88,7 @@ export class FormAutocompleteComponent implements OnInit {
     this.multiOptionsSelected.emit({
       key: this.key,
       value: options,
+      action: FormActions.MULTI_SELECTED,
     });
   }
 

@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import { DashboardComponent } from '../../projects/kakal-ui/src/lib/dashboard/dashboard.component'
-import { KKLLobbyModule } from '../../projects/kakal-ui/src/lib/dashboard/dashboard.module';
+import { LobbyComponent } from '../../projects/kakal-ui/src/lib/lobby/lobby.component'
+import { KKLLobbyModule } from '../../projects/kakal-ui/src/lib/lobby/lobby.module';
 
 export default {
     title: 'Tools',
@@ -10,7 +10,7 @@ export default {
             imports: [KKLLobbyModule],
         }),
     ],
-    component: DashboardComponent,
+    component: LobbyComponent,
     argTypes: {
         cols: {
           name: 'Cols',
@@ -56,8 +56,8 @@ export default {
     },
 } as Meta;
 
-const Template: Story<DashboardComponent> = (args: DashboardComponent) => ({
-    component: DashboardComponent,
+const Template: Story<LobbyComponent> = (args: LobbyComponent) => ({
+    component: LobbyComponent,
     props: args,
 });
 

@@ -13,6 +13,7 @@ import { SelectOption } from '../models/question-select.model';
 import { FormDataSource } from '../models/form-datasource';
 import { Observable, of } from 'rxjs';
 import { FormChangeEvent } from '../models/form.options';
+import { FormActions } from '../models/form.actions';
 
 @Component({
   selector: 'kkl-form-autocomplete-multi',
@@ -85,6 +86,8 @@ export class FormAutocompleteComponentMulti implements OnInit {
       option,
       query,
       query$: of(query),
+      action : FormActions.QUERY_CHANGED
+
     };
 
     this.formDataSource.dispatch.queryChanged(FormChangeEvent);
@@ -92,16 +95,11 @@ export class FormAutocompleteComponentMulti implements OnInit {
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
     const option: SelectOption = event.option.value;
-    // this.optionSelected.emit({
-    //   key: this.key,
-    //   value: option.value,
-    //   option,
-    // });
 
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       value: option.value,
-      // option,
+      action : FormActions.OPTION_SELECTED
     };
 
     this.formDataSource.dispatch.optionSelected(FormChangeEvent);
@@ -119,6 +117,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
     this.multiOptionsSelected.emit({
       key: this.key,
       value: options,
+      action : FormActions.MULTI_SELECTED
     });
   }
 
