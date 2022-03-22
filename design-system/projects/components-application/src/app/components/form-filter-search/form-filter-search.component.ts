@@ -37,6 +37,8 @@ export class FormFilterSearchComponent implements OnInit {
     //   value: { sum: 100 } as Currency,
     // },
 
+    { key: 'last_name' },
+    // { key: 'part', controlType: 'counter' },
     { key: 'last_name', controlType: 'select' },
     {
       key: 'email',
@@ -84,12 +86,12 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'city',
       filterType: FilterType.MULTI_SELECT,
-      label : 'city',
+      label: 'city',
       controlType: 'multiSelect',
     },
     {
       key: 'country',
-      label : 'country',
+      label: 'country',
       filterType: FilterType.SELECT,
       controlType: 'select',
     },
@@ -101,7 +103,6 @@ export class FormFilterSearchComponent implements OnInit {
     // },
   ];
 
-  public grid: GridProps = { cols: 4, buttonCols: 1 };
   public optionsMap$: Observable<OptionMap>;
 
   public searchGroup: QuestionGroupModel;
@@ -121,7 +122,7 @@ export class FormFilterSearchComponent implements OnInit {
       questions: this.questions,
     });
 
-    this.optionsMap$ = this.getOptionsMap$()
+    this.optionsMap$ = this.getOptionsMap$();
   }
 
   private getCurrencyOptions() {
@@ -179,18 +180,9 @@ export class FormFilterSearchComponent implements OnInit {
 
   // DOM EVENTS SECTION
 
-  public onRemove(key: string) {
-    const formGroup = this.searchGroup.formGroup;
-    formGroup.get(key).reset();
+  public onFilterChanged(state : FilterState) {
+    console.log(state)
   }
 
-  public onRemoveMulti(filterChangeEvent: FilterChangeEvent) {
-    const { key, value } = filterChangeEvent;
-    const formGroup = this.searchGroup.formGroup;
-    formGroup.get(key).setValue([...value]);
-  }
 
-  public onClear() {
-    this.searchGroup.formGroup.reset();
-  }
 }

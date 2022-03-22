@@ -32,7 +32,6 @@ import { FormFilterSearchComponent } from './components/form-filter-search/form-
     AppRoutingModule,
     FlexLayoutModule,
     MaterialModule,
-
     KakalUiModule,
   ],
   providers: [StepperLayoutService, BreakpointService, RouterService],
