@@ -3,7 +3,7 @@
     <kkl-form-grid
       [group]="group"
       (submitEvent)="onSubmitEvent()"
-      (formChanged)="formChanged($event)"
+      (formChangeEvent)="formChanged($event)"
     ></kkl-form-grid>
   </ng-container>
   <ng-container *ngSwitchCase="'flex'">
@@ -13,7 +13,7 @@
       [grid]="grid"
       [optionsMap]="optionsMap"
       (submitEvent)="onSubmitEvent()"
-      (formChanged)="formChanged($event)"
+      (formChangeEvent)="onFormChanged($event)"
     ></kkl-form-flex>
   </ng-container>
 </ng-container>

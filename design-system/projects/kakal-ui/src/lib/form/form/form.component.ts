@@ -50,7 +50,7 @@ export class FormComponent implements OnInit {
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
-  @Output() public formChangeEvent: EventEmitter<FormChangeEvent> =
+  @Output() public formChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
   ngOnInit() {}
@@ -59,7 +59,8 @@ export class FormComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public formChanged(event: FormChangeEvent) {
-    this.formChangeEvent.emit(event);
+  public onFormChanged(event: FormChangeEvent) {
+    console.log(event)
+    this.formChanged.emit(event);
   }
 }
