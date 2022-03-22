@@ -7,6 +7,7 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Range } from '../form-range/question-range.model';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { OptionMap } from '../models/form.types';
@@ -38,7 +39,8 @@ export class FormFlexComponent implements OnInit {
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
-  @Output() public valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public valueChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
 
   @Output() public selectChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
@@ -56,6 +58,10 @@ export class FormFlexComponent implements OnInit {
     new EventEmitter();
 
   @Output() public fileChanged = new EventEmitter<FormChangeEvent>();
+
+  @Output() readonly dateRangeChanged: EventEmitter<
+    FormChangeEvent<Range<Date>>
+  > = new EventEmitter();
 
   @Output() public focusout: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
@@ -97,6 +103,10 @@ export class FormFlexComponent implements OnInit {
 
   public onFileChange(event: FormChangeEvent) {
     this.fileChanged.emit(event);
+  }
+
+  public onDateRangedChanged(event: FormChangeEvent) {
+    this.dateRangeChanged.emit(event);
   }
 
   public onFocusOut(event: FormChangeEvent) {
