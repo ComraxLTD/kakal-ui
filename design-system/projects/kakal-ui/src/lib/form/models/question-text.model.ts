@@ -3,7 +3,6 @@ import {
   ControlType,
   GridProps,
   QuestionBase,
-  QuestionType,
 } from './question.model';
 
 export class QuestionTextModel extends QuestionBase {
@@ -12,7 +11,6 @@ export class QuestionTextModel extends QuestionBase {
     key: string;
     label?: string;
     value?: any;
-    type?: QuestionType;
     controlType?: ControlType;
     gridProps?: GridProps;
     icon?: string;

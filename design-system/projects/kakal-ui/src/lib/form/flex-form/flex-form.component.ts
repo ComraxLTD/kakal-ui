@@ -62,7 +62,7 @@ export class FlexFormComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public onSelect(option: FormChangeEvent) {
+  public onSelectChanged(option: FormChangeEvent) {
     this.selectChanged.emit(option);
   }
 

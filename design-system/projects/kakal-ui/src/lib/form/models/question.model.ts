@@ -52,18 +52,18 @@ export type ControlType =
   | 'texteditor'
   | 'cleave';
 
-export type QuestionType =
-  | 'default'
-  | 'group'
-  | 'upload'
-  | 'select'
-  | 'custom'
-  | 'date'
-  | 'dateRange'
-  | 'checkbox'
-  | 'radio'
-  | 'textEditor'
-  | 'currency';
+// export type QuestionType =
+//   | 'default'
+//   | 'group'
+//   | 'upload'
+//   | 'select'
+//   | 'custom'
+//   | 'date'
+//   | 'dateRange'
+//   | 'checkbox'
+//   | 'radio'
+//   | 'textEditor'
+//   | 'currency';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 
@@ -74,7 +74,7 @@ export abstract class QuestionBase {
   public placeHolder?: string;
   public value?: any | undefined;
   public appearance?: Appearance;
-  public type?: QuestionType;
+  // public type?: QuestionType;
   public format?: { type: string; args?: any };
   public selector?: string;
   public controlType?: ControlType;
@@ -93,7 +93,7 @@ export abstract class QuestionBase {
     label?: string;
     placeHolder?: string;
     appearance?: Appearance;
-    type?: QuestionType;
+    // type?: QuestionType;
     format?: { type: string; args?: any };
     selector?: string;
     controlType?: ControlType;
@@ -111,7 +111,7 @@ export abstract class QuestionBase {
     this.label = options.label || '';
     this.placeHolder = options.placeHolder || '';
     this.appearance = options.appearance || 'outline';
-    this.type = options.type || 'default';
+    // this.type = options.type || 'default';
     this.format = options.format;
     this.selector = options.selector;
     this.controlType = options.controlType || 'text';

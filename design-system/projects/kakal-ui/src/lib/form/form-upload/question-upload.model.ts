@@ -1,5 +1,5 @@
 import { ValidatorFn } from '@angular/forms';
-import { QuestionBase, QuestionType, GridProps } from '../models/question.model';
+import { QuestionBase, GridProps } from '../models/question.model';
 
 export class QuestionUploadModel extends QuestionBase {
   public multi?: boolean;
@@ -9,7 +9,6 @@ export class QuestionUploadModel extends QuestionBase {
     key: string;
     label?: string;
     value?: File[];
-    type?: QuestionType;
     gridProps?: GridProps;
     icon?: string;
     validations?: ValidatorFn[];
@@ -28,6 +27,5 @@ export class QuestionUploadModel extends QuestionBase {
     this.disabled = options.disabled || false;
     this.multi = options.multi || false;
     this.onDeleteFile = options.onDeleteFile || null;
-
   }
 }
