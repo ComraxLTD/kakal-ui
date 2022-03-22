@@ -129,21 +129,11 @@ export class FormFilterSearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchGroup = this.setGroup(this.questions);
 
-    this.filtersState$ = this.mergeFilterState();
+    // this.filtersState$ = this.mergeFilterState();
 
     this.optionsMap$ = this.getOptionsMap$();
   }
 
-  private mergeFilterState() {
-    const initFilterState$ = this.filterService.getFilterMap({
-      formGroup: this.searchGroup.formGroup,
-      questions: this.questions,
-    });
-
-    const updateFirstsState$ = this.onOptionSelect();
-
-    return merge(initFilterState$, updateFirstsState$);
-  }
 
   private getCurrencyOptions() {
     return of([
@@ -166,13 +156,6 @@ export class FormFilterSearchComponent implements OnInit {
     );
   }
 
-  private async setQuestionsWithOptions(
-    questions: Question[]
-  ): Promise<Question[]> {
-    const optionsMap = await firstValueFrom(this.getOptionsMap$());
-    return this.formService.setQuestionsWithOptions(questions, optionsMap);
-  }
-
   private setGroup(initQuestions: Question[]): QuestionGroupModel {
     const group = this.formService.createQuestionGroup({
       questions: initQuestions,
@@ -190,25 +173,6 @@ export class FormFilterSearchComponent implements OnInit {
     console.log(state);
   }
 
-  private onOptionSelect() {
-    return this.formDataSource.listen(FormActions.OPTION_SELECTED).pipe(
-      map((formChangeEvent: FormChangeEvent) => {
-        const filterState = this.filterService.getState();
-
-        const { key, value } = formChangeEvent;
-
-        console.log(key);
-        return {
-          ...filterState,
-          [key]: {
-            key,
-            value,
-            filterType: FilterType.SELECT,
-          } as FilterChangeEvent,
-        };
-      })
-    );
-  }
 
   public onFormChanged(event: FormChangeEvent) {
     this.formDataSource.dispatch(event);

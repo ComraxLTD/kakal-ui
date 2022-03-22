@@ -8,7 +8,7 @@
         <ng-container *kklFormSearchContent>
           <kkl-form
             variant="flex"
-            console.log(formChangeEvent);
+            [questions]="searchGroup.questions"
             [formGroup]="searchGroup.formGroup"
             [grid]="grid"
             [optionsMap]="optionsMap"
@@ -18,14 +18,14 @@
       </kkl-form-search>
 
       <div>
-        <ng-container *ngIf="filtersState$ | async as filtersState">
+        <!-- <ng-container *ngIf="filtersState$ | async as filtersState"> -->
 
-          <kkl-filters
-            [formGroup]="searchGroup.formGroup"
-            [filtersState]="filtersState"
-            (filterChanged)="onFilterChanged($event)"
-          ></kkl-filters>
-        </ng-container>
+        <kkl-filters
+          [formGroup]="searchGroup.formGroup"
+          [questions]="searchGroup.questions"
+          (filterChanged)="onFilterChanged($event)"
+        ></kkl-filters>
+        <!-- </ng-container> -->
       </div>
     </ng-container>
 
