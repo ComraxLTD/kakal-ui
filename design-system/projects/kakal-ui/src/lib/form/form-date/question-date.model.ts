@@ -22,7 +22,6 @@ export class QuestionDateModel extends QuestionBase {
     this.label = options.label;
     this.value = options.value || null;
     this.disabled = options.disabled;
-    this.type = 'date';
     this.controlType = 'date';
     this.gridProps = options.gridProps;
     this.icon = this.icon;

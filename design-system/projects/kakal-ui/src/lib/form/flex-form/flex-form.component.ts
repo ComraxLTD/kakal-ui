@@ -54,7 +54,6 @@ export class FlexFormComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
-    console.log(this.optionsMap)
     this.flex = 100 / (this.grid?.cols || 3);
     this.hasButton = !!this.grid?.buttonCols;
   }
@@ -63,7 +62,7 @@ export class FlexFormComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public onSelect(option: FormChangeEvent) {
+  public onSelectChanged(option: FormChangeEvent) {
     this.selectChanged.emit(option);
   }
 

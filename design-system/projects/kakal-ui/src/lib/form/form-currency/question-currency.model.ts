@@ -30,7 +30,6 @@ export class QuestionCurrencyModel extends QuestionSelectModel {
     this.value = options.value || null;
     this.options = options.options;
     this.default = options.default || null;
-    this.type = 'currency';
     this.controlType = 'currency';
     this.gridProps = options.gridProps;
     this.validations = options.validations || [];
