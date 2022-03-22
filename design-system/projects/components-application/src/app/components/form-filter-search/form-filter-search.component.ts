@@ -31,15 +31,16 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'search',
       controlType: 'autocomplete',
     },
-    {
-      key: 'currency',
-      controlType: 'currency',
-      value: { sum: 100 } as Currency,
-    },
+    // {
+    //   key: 'currency',
+    //   controlType: 'currency',
+    //   value: { sum: 100 } as Currency,
+    // },
 
-    { key: 'last_name' },
+    { key: 'last_name', controlType: 'select' },
     {
       key: 'email',
+      label: 'email',
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
@@ -80,16 +81,18 @@ export class FormFilterSearchComponent implements OnInit {
     //   ],
     //   format: { type: 'currency', args: (item) => '$' },
     // },
-    // {
-    //   key: 'city',
-    //   filterType: FilterType.MULTI_SELECT,
-    //   controlType: 'multiSelect',
-    // },
-    // {
-    //   key: 'country',
-    //   filterType: FilterType.SELECT,
-    //   controlType: 'select',
-    // },
+    {
+      key: 'city',
+      filterType: FilterType.MULTI_SELECT,
+      label : 'city',
+      controlType: 'multiSelect',
+    },
+    {
+      key: 'country',
+      label : 'country',
+      filterType: FilterType.SELECT,
+      controlType: 'select',
+    },
     // {
     //   key: 'date',
     //   filterType: FilterType.DATE_RANGE,
@@ -99,6 +102,7 @@ export class FormFilterSearchComponent implements OnInit {
   ];
 
   public grid: GridProps = { cols: 4, buttonCols: 1 };
+  public optionsMap$: Observable<OptionMap>;
 
   public searchGroup: QuestionGroupModel;
 
@@ -109,13 +113,15 @@ export class FormFilterSearchComponent implements OnInit {
     private formService: FormService
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    this.searchGroup = await this.setGroup(this.questions);
+  ngOnInit(): void {
+    this.searchGroup = this.setGroup(this.questions);
 
     this.filtersState$ = this.filterService.getFilterMap({
       formGroup: this.searchGroup.formGroup,
       questions: this.questions,
     });
+
+    this.optionsMap$ = this.getOptionsMap$()
   }
 
   private getCurrencyOptions() {
@@ -126,7 +132,7 @@ export class FormFilterSearchComponent implements OnInit {
     ] as KKLSelectOption[]);
   }
 
-  public getOptions(): Observable<OptionMap> {
+  public getOptionsMap$(): Observable<OptionMap> {
     const city$ = of(MOCK_OPTIONS);
     const email$ = of(MOCK_OPTIONS);
     const country$ = of(MOCK_OPTIONS);
@@ -142,11 +148,22 @@ export class FormFilterSearchComponent implements OnInit {
   private async setQuestionsWithOptions(
     questions: Question[]
   ): Promise<Question[]> {
-    const optionsMap = await firstValueFrom(this.getOptions());
+    const optionsMap = await firstValueFrom(this.getOptionsMap$());
     return this.formService.setQuestionsWithOptions(questions, optionsMap);
   }
 
-  private async setGroup(
+  private setGroup(initQuestions: Question[]): QuestionGroupModel {
+    const group = this.formService.createQuestionGroup({
+      questions: initQuestions,
+    });
+
+    const advancedQuestions = [...group.questions];
+    advancedQuestions.splice(0, 1);
+
+    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
+  }
+
+  private async setGroupAsync(
     initQuestions: Question[]
   ): Promise<QuestionGroupModel> {
     const questions = await this.setQuestionsWithOptions(initQuestions);

@@ -1,7 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
+import { OptionMap } from '../models/form.types';
 import { GridProps } from '../models/question.model';
 import { Question } from '../services/form.service';
 
@@ -18,6 +26,7 @@ export class FlexFormComponent implements OnInit {
   @Input() public formGroup: FormGroup;
 
   @Input() public grid: GridProps;
+  @Input() public optionsMap: OptionMap = {};
 
   @Input() public buttonLabel: string = 'שמור';
   @Input() public buttonTemp: TemplateRef<any>;
@@ -45,6 +54,7 @@ export class FlexFormComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
+    console.log(this.optionsMap)
     this.flex = 100 / (this.grid?.cols || 3);
     this.hasButton = !!this.grid?.buttonCols;
   }
