@@ -54,7 +54,7 @@ export class FlexFormComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
-    this.flex = 100 / (this.grid?.cols || 3);
+    this.flex = 100 / (this.grid?.cols || 4);
     this.hasButton = !!this.grid?.buttonCols;
   }
 
