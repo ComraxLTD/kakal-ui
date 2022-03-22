@@ -128,6 +128,8 @@ export class FormDataSource {
       this.createAction({ formChangeEvent }, FormActions.VALUE_CHANGED),
     optionSelected: (formChangeEvent?: FormChangeEvent) =>
       this.createAction({ formChangeEvent }, FormActions.OPTION_SELECTED),
+    selectedChanged: (formChangeEvent?: FormChangeEvent) =>
+      this.createAction({ formChangeEvent }, FormActions.SELECT_CHANGED),
   };
 
   public events = {

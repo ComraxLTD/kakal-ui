@@ -27,6 +27,7 @@
             (focus)="onFocus($event)"
             [optionsSlot]="optionsSlot"
             (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChange($event)"
           ></kkl-form-select>
         </ng-container>
 
@@ -77,11 +78,13 @@
             (queryChanged)="onQueryChanged($event)"
             [key]="question?.key"
             [label]="question?.label"
+            [icon]="question?.icon"
             [multi]="question.multi"
             [options]="optionsMap[question?.key] || question.options"
             [control]="formGroup.controls[question.key]"
             (multiOptionsSelected)="onMultiOptionSelected($event)"
             (optionSelected)="onOptionSelected($event)"
+            (queryChanged)="onQueryChanged($event)"
           ></kkl-form-autocomplete>
         </ng-container>
 
@@ -92,6 +95,7 @@
             [multi]="question?.multi"
             [formControl]="formGroup.controls[question.key]"
             [index]="index"
+            (fileChanged)="onFileChanged($event)"
           ></kkl-form-upload>
         </ng-container>
 
@@ -108,6 +112,16 @@
           </kkl-form-currency>
         </ng-container>
 
+        <!-- CURRENCY INPUT SECTION -->
+        <ng-container *ngSwitchCase="'counter'">
+          <kkl-form-counter
+            [control]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [icon]="question?.icon"
+            [label]="question?.label"
+          ></kkl-form-counter>
+        </ng-container>
+
         <!-- DEFAULT INPUT -->
         <ng-container *ngSwitchDefault>
           <kkl-form-input
@@ -121,6 +135,7 @@
             [label]="question?.label"
             [index]="index"
             (focus)="onFocus($event)"
+            (valueChanged)="onValueChanged($event)"
             [controlType]="question?.controlType"
           ></kkl-form-input>
         </ng-container>

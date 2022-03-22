@@ -5,22 +5,23 @@
         [searchControl]="searchGroup.formGroup.controls['search']"
         [advanced]="true"
       >
-        <kkl-flex-form
-          *kklFormSearchContent
-          [questions]="searchGroup.questions"
-          [formGroup]="searchGroup.formGroup"
-          [grid]="grid"
-          [optionsMap]="optionsMap"
-        ></kkl-flex-form>
+        <ng-container *kklFormSearchContent>
+          <kkl-form
+            variant="flex"
+            [questions]="searchGroup.questions"
+            [formGroup]="searchGroup.formGroup"
+            [grid]="grid"
+            [optionsMap]="optionsMap"
+          ></kkl-form>
+        </ng-container>
       </kkl-form-search>
 
       <div>
         <ng-container *ngIf="filtersState$ | async as filtersState">
           <kkl-filters
-            (remove)="onRemove($event)"
-            (removeMulti)="onRemoveMulti($event)"
-            (clear)="onClear()"
+            [formGroup]="searchGroup.formGroup"
             [filtersState]="filtersState"
+            (filterChanged)="onFilterChanged($event)"
           ></kkl-filters>
         </ng-container>
       </div>

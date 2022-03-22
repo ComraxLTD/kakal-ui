@@ -1,40 +1,43 @@
+import { GridProps } from '../models/question.model';
+import { QuestionGroupModel } from '../models/question-group.model';
+import { FormGroup } from '@angular/forms';
 import {
   Component,
+  ElementRef,
   EventEmitter,
   Input,
   OnInit,
   Output,
   TemplateRef,
 } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
-import { OptionMap } from '../models/form.types';
-import { GridProps } from '../models/question.model';
-import { Question } from '../services/form.service';
 
 @Component({
-  selector: 'kkl-form-flex',
-  templateUrl: './flex-form.component.html',
-  styleUrls: ['./flex-form.component.scss'],
-  providers: [FormDataSource],
+  selector: 'kkl-form-gird',
+  templateUrl: './form-grid.component.html',
+  styleUrls: ['./form-grid.component.scss'],
 })
-export class FormFlexComponent implements OnInit {
-  @Input() public variant: 'row' | 'column' = 'row';
+export class FormGridComponent implements OnInit {
+  @Input() public group: QuestionGroupModel;
+  @Input() public formDataSource: FormDataSource;
 
-  @Input() public questions: Question[];
-  @Input() public formGroup: FormGroup;
+  @Input() public rowHeight: number;
+  @Input() public gutter: number;
 
-  @Input() public grid: GridProps;
-  @Input() public optionsMap: OptionMap = {};
+  @Input() public slots: {
+    button?: TemplateRef<any>;
+    group?: ElementRef;
+  };
 
-  @Input() public buttonLabel: string = 'שמור';
-  @Input() public buttonTemp: TemplateRef<any>;
+  @Input() optionsSlot: { [key: string]: ElementRef };
 
-  public hasButton: boolean;
-  public flex: number;
+  public formGroup: FormGroup;
+  public grid: GridProps;
+  public hasButton: boolean = false;
+  public cols: string | number;
 
-  // default inputs in row
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -60,11 +63,13 @@ export class FormFlexComponent implements OnInit {
   @Output() public focusout: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  constructor(private formDataSource: FormDataSource) {}
+  constructor() {}
 
   ngOnInit() {
-    this.flex = 100 / (this.grid?.cols || 4);
-    this.hasButton = !!this.grid?.buttonCols;
+    this.formGroup = this.group.formGroup;
+    this.grid = this.group.gridProps;
+    this.cols = this.group.gridProps?.cols || 1;
+    this.hasButton = this.group.hasButton || false;
   }
 
   public onSubmit() {

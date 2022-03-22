@@ -10,6 +10,7 @@
     [multiple]="multi"
     [disableOptionCentering]="true"
     (selectionChange)="onSelectChange()"
+    (openedChange)="onOpenChange($event)"
     [formControl]="control"
     [attr.name]="key"
     [compareWith]="compareFunction"

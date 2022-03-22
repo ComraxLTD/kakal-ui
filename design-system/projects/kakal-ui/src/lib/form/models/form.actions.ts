@@ -15,6 +15,7 @@ export enum FormActions {
   VALUE_CHANGED = 'valueChanged',
   QUERY_CHANGED = 'queryChanged',
   OPTION_SELECTED = 'optionSelected',
+  SELECT_CHANGED = 'selectChanged',
   MULTI_SELECTED = 'multiOptionSelected',
 }
 

@@ -24,6 +24,7 @@ import { QuestionCurrencyModel } from '../form-currency/question-currency.model'
 import { QuestionDateModel } from '../form-date/question-date.model';
 import { QuestionCheckBoxModel } from '../models/question-checkbox.model';
 import { QuestionUploadModel } from '../form-upload/question-upload.model';
+import { QuestionCounterModel } from '../form-counter/question-counter.model';
 
 import { QuestionRangeModel } from '../form-range/question-range.model';
 import { OptionMap } from '../models/form.types';
@@ -37,6 +38,7 @@ export type ControlTemplate = [
 export type Question =
   | QuestionBase
   | QuestionSelectModel
+  | QuestionCounterModel
   | QuestionRangeModel
   | QuestionTextModel
   | QuestionRadioModel
@@ -217,6 +219,9 @@ export class FormService {
       case 'upload':
         const fq = question as QuestionUploadModel;
         return new QuestionUploadModel(fq);
+      case 'counter':
+        const counterQ = question as QuestionCounterModel;
+        return new QuestionCounterModel(counterQ);
       case 'radio':
         return new QuestionRadioModel(question);
       case 'checkbox':
