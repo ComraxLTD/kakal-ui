@@ -26,11 +26,11 @@ export class FiltersService {
     this.filterChanged$ = new Subject<FilterState>();
   }
 
-  public filterChanged(state: FilterState): void {
+  public dispatchState(state: FilterState): void {
     this.filterChanged$.next(state);
   }
 
-  public onFilterChanged(): Observable<FilterState> {
+  public stateChanged(): Observable<FilterState> {
     return this.filterChanged$.asObservable();
   }
 

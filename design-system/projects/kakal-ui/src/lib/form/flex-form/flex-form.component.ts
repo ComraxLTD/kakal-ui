@@ -42,6 +42,12 @@ export class FormFlexComponent implements OnInit {
   @Output() public formChangeEvent: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
+  @Output() public openChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+
+  @Output() public focusChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
@@ -53,7 +59,15 @@ export class FormFlexComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public formChanged(event: FormChangeEvent) {
+  public onFormChanged(event: FormChangeEvent) {
     this.formChangeEvent.emit(event);
+  }
+
+  public onOpenChanged(event: FormChangeEvent) {
+    this.openChanged.emit(event);
+  }
+
+  public onFocusChanged(event: FormChangeEvent) {
+    this.focusChanged.emit(event);
   }
 }
