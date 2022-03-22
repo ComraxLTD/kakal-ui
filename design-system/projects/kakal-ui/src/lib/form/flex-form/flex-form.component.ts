@@ -101,7 +101,7 @@ export class FormFlexComponent implements OnInit {
     this.optionSelected.emit(event);
   }
 
-  public onFileChange(event: FormChangeEvent) {
+  public onFileChanged(event: FormChangeEvent) {
     this.fileChanged.emit(event);
   }
 

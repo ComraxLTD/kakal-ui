@@ -93,7 +93,7 @@ export class FormComponent implements OnInit {
     this.queryChanged.emit(event);
   }
 
-  public onOpenChange(event: FormChangeEvent) {
+  public onOpenChanged(event: FormChangeEvent) {
     this.openChanged.emit(event);
   }
 
