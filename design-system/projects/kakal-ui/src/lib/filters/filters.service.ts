@@ -92,8 +92,9 @@ export class FiltersService {
     return newState;
   }
 
-  private setQuestionsAsFilters(questions: Question[]) {
-    const formFilterTypes = questions
+  private setQuestionsAsFilterState(questions: Question[]): FilterState {
+    const filterState = questions
+      .filter((q) => q.controlType !== 'autocomplete')
       .map((q) => {
         return {
           key: q.key,
@@ -108,28 +109,19 @@ export class FiltersService {
         };
       }, {});
 
-    return formFilterTypes;
+    return filterState;
   }
 
-  private setValueAsFilterChange(
-    filterValues,
-    filterTypes
-  ): FilterChangeEvent[] {
-    return Object.keys(filterValues).map((key) => {
+  private setFilterStateWithValue(valueMap, filterState: FilterState) {
+    return Object.keys(filterState).reduce((acc, key) => {
       return {
-        ...filterTypes[key],
-        value: filterValues[key],
-      } as FilterChangeEvent;
-    });
-  }
-
-  private setFiltersMap(filters: FilterChangeEvent[]) {
-    return filters.reduce((acc, filterEvent) => {
-      return {
-        [filterEvent.key]: filterEvent,
         ...acc,
+        [key]: {
+          ...filterState[key],
+          value: valueMap[key],
+        } as FilterChangeEvent,
       };
-    }, {} as { [key: string]: FilterChangeEvent });
+    }, filterState);
   }
 
   private getFilterValues(formGroup: FormGroup) {
@@ -143,18 +135,20 @@ export class FiltersService {
     const { formGroup, questions } = prop;
 
     const values$ = this.getFilterValues(formGroup);
-    const filterTypes = this.setQuestionsAsFilters(questions);
+    const initFilterState = this.setQuestionsAsFilterState(questions);
 
     const true$ = values$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length !== 0),
-      map((filterValues) => {
-        const filters = this.setValueAsFilterChange(filterValues, filterTypes);
-        const filterMap = this.setFiltersMap(filters);
-        return filterMap;
+      filter((valueMap) => Object.keys(valueMap).length !== 0),
+      map((valueMap) => {
+        const filterState = this.setFilterStateWithValue(
+          valueMap,
+          initFilterState
+        );
+        return filterState;
       })
     );
     const false$ = values$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length === 0),
+      filter((valueMap) => Object.keys(valueMap).length === 0),
       map((_) => {
         return null;
       })

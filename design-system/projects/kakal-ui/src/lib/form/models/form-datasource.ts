@@ -46,13 +46,6 @@ export class FormDataSource {
 
   // FORM EVENTS SECTION
 
-  // use when delete item form array
-  private autocomplete(formChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({
-      ...formChangeEvent,
-      action: FormActions.VALUE_CHANGED,
-    });
-  }
 
   //  use when update form - formGroup.pathValue/setValue
   private edit(formChangeEvent?: FormChangeEvent) {
@@ -151,20 +144,6 @@ export class FormDataSource {
     return this.getStateByAction([action]);
   }
 
-  // public listen = {
-  //   edit: () => this.getStateByAction([FormActions.EDIT]),
-  //   add: () => this.getStateByAction([FormActions.ADD]),
-  //   create: () => this.getStateByAction([FormActions.CREATE]),
-  //   clear: () => this.getStateByAction([FormActions.CLEAR]),
-  //   disable: () => this.getStateByAction([FormActions.DELETE]),
-  //   updateOptions: () => this.getStateByAction([FormActions.EDIT]),
-  //   delete: () => this.getStateByAction([FormActions.DELETE]),
-  //   submit: () => this.getStateByAction([FormActions.SUBMIT]),
-  //   update: () => this.getStateByAction([FormActions.UPDATE]),
-  //   autocomplete: () => this.getStateByAction([FormActions.VALUE_CHANGED]),
-  //   optionSelected: () =>
-  //     this.getStateByAction([FormActions.OPTION_SELECTED]),
-  // };
 
   public toggleEvent(
     trueEvents: FormActions[],

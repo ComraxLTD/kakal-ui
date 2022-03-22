@@ -19,6 +19,7 @@
 
       <div>
         <ng-container *ngIf="filtersState$ | async as filtersState">
+
           <kkl-filters
             [formGroup]="searchGroup.formGroup"
             [filtersState]="filtersState"
@@ -30,6 +31,7 @@
 
     <ng-container>
       <pre *ngIf="searchGroup">
+        formGroup
       {{ searchGroup.formGroup.value | json }}
     </pre
       >
