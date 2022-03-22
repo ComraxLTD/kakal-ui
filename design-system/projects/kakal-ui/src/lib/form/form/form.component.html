@@ -3,6 +3,14 @@
     <kkl-form [group]="group"></kkl-form>
   </ng-container>
   <ng-container *ngSwitchCase="'flex'">
-    <kkl-form-flex></kkl-form-flex>
+    <kkl-flex-form
+      *kklFormSearchContent
+      [questions]="searchGroup.questions"
+      [formGroup]="searchGroup.formGroup"
+      [grid]="searchGroup.gridProps || {}"
+      [optionsMap]="searchObserversCommitteesResult.optionsMap || {}"
+      (selectChanged)="onSelectChanged($event)"
+      (queryChanged)="onQueryChanged($event)"
+    ></kkl-flex-form>
   </ng-container>
 </ng-container>

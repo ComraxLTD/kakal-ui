@@ -66,7 +66,7 @@ export class FormFlexComponent implements OnInit {
     this.selectChanged.emit(option);
   }
 
-  public onAutocomplete(event: FormChangeEvent): void {
+  public onQueryChanged(event: FormChangeEvent): void {
     this.queryChanged.emit(event);
   }
 
