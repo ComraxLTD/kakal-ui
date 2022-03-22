@@ -186,14 +186,14 @@ export class FormService {
   public setQuestion(question: Question): Question {
     switch (question.controlType) {
       case 'group':
-        const { key, type, gridProps, label } = question;
+        const { key, gridProps, label } = question;
         return this.createQuestionGroup({
           key,
           questions: question['questions'],
           model: question['model'],
           options: {
             label,
-            type,
+            controlType : 'group',
             gridProps,
           },
         });

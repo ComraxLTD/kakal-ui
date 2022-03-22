@@ -9,13 +9,11 @@ import {
   ControlType,
   GridProps,
   QuestionBase,
-  QuestionType,
 } from './question.model';
 import { Observable, of } from 'rxjs';
 
 export interface GroupOptions {
   label?: string;
-  type?: QuestionType;
   controlType?: ControlType;
   formGroup?: FormGroup;
   gridProps?: GridProps;
@@ -27,7 +25,6 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
   public questions: Question[];
   public formGroup: FormGroup;
   public controls: { [key: string]: Question };
-  public type?: QuestionType;
   public hasButton?: boolean;
 
   constructor(options?: {
@@ -37,7 +34,6 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     questions: Question[];
     label?: string;
     icon?: string;
-    type?: QuestionType;
     gridProps?: GridProps;
     hasButton?: boolean;
     validations?: ValidatorFn[];
@@ -45,7 +41,6 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     super(options);
     this.key = options.key || '';
     this.label = options.label || '';
-    this.type = options.type || 'default';
     this.controlType = 'group';
     this.icon = '';
     this.questions = options.questions || [];

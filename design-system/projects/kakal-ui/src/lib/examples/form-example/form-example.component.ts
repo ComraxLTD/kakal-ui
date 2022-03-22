@@ -29,7 +29,6 @@ export class FormExampleComponent implements OnInit {
     },
     {
       key: 'date',
-      type: 'date'
     },
     {
       key: 'text',
