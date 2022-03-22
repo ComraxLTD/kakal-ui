@@ -65,7 +65,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     end: new FormControl(),
   });
 
-  @Output() readonly rangeChanged: EventEmitter<FormChangeEvent<Range<Date>>> =
+  @Output() readonly dateRangeChanged: EventEmitter<FormChangeEvent<Range<Date>>> =
     new EventEmitter();
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
@@ -152,7 +152,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
   private _emitChangeEvent() {
     this._onChange(this.range);
-    this.rangeChanged.emit(this.setChangeEvent());
+    this.dateRangeChanged.emit(this.setChangeEvent());
   }
 
   public onFocus() {

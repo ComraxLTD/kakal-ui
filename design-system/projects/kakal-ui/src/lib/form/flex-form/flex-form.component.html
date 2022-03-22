@@ -42,6 +42,7 @@
             [minDate]="question?.minDate"
             [appearance]="question?.appearance"
             [index]="index"
+            (dateRangeChanged)="onDateRangedChanged($event)"
           >
           </kkl-form-date-range>
         </ng-container>
