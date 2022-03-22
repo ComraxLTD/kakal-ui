@@ -317,3 +317,8 @@ export * from './lib/directives/wizard.directive';
 export * from './lib/directives/outside-button.directive';
 
 export * from './lib/directives/directives.module';
+
+// test
+
+export * from './lib/form/form-date-calendar/form-date-calendar.component';
+export * from './lib/form/form-date-calendar/form-date-calendar.module';

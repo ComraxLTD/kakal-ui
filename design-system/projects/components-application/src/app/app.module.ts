@@ -17,6 +17,7 @@ import { TableComponent } from './components/table/table.component';
 import { DetailsComponent } from './components/details/details.component';
 import { BidComponent } from './components/bid/bid.component';
 import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,9 @@ import { FormFilterSearchComponent } from './components/form-filter-search/form-
     AppRoutingModule,
     FlexLayoutModule,
     MaterialModule,
-
+    FormsModule,
     KakalUiModule,
+    ReactiveFormsModule
   ],
   providers: [StepperLayoutService, BreakpointService, RouterService],
   bootstrap: [AppComponent],

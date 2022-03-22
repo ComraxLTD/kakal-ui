@@ -1,32 +1,33 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  selector: 'pl-form-date-calendar',
+  templateUrl: './form-date-calendar.component.html',
+  styleUrls: ['./form-date-calendar.component.scss']
 })
-export class AppComponent implements OnInit {
-  title = 'components-application';
-  constructor() { }
-  month:number;
+export class FormDateCalendarComponent implements OnInit {
+  // ********** TEST COMPONENT !!! ***************** //
+  month: number;
+
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
   });
 
-  ngOnInit(): void {
-    //init steps
-  }
-
-  /// EXAMPLE
-  dates = [
+  // EXAMPLE
+  @Input() data:any[] = [
     { date: new Date("2022-03-01"), text: "one text", occupancy: 4 },
     { date: new Date("2022-03-20"), text: "another text", occupancy: 3 },
     { date: new Date("2022-04-20"), text: "another text", occupancy: 3 }
   ];
 
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+  
   dateClass(): MatCalendarCellClassFunction<Date> {
     return (date: Date) => {
       if(!this.month) {
@@ -41,7 +42,7 @@ export class AppComponent implements OnInit {
     };
   };
   changeMonth(date: Date) {
-    const [filter] = this.dates.filter(item => this.compareDates(item.date, date));
+    const [filter] = this.data.filter(item => this.compareDates(item.date, date));
     if (filter) {
       this.changeInnerContent(filter);
       return 'example-custom-date-class';
