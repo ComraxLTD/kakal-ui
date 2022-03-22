@@ -14,12 +14,12 @@ import { GridProps } from '../models/question.model';
 import { Question } from '../services/form.service';
 
 @Component({
-  selector: 'kkl-flex-form',
+  selector: 'kkl-form-flex',
   templateUrl: './flex-form.component.html',
   styleUrls: ['./flex-form.component.scss'],
   providers: [FormDataSource],
 })
-export class FlexFormComponent implements OnInit {
+export class FormFlexComponent implements OnInit {
   @Input() public variant: 'row' | 'column' = 'row';
 
   @Input() public questions: Question[];
@@ -40,6 +40,10 @@ export class FlexFormComponent implements OnInit {
 
   @Output() public selectChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
+
+  @Output() public openChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+
   @Output() public optionSelected: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
@@ -66,8 +70,12 @@ export class FlexFormComponent implements OnInit {
     this.selectChanged.emit(option);
   }
 
-  public onAutocomplete(event: FormChangeEvent): void {
+  public onQueryChanged(event: FormChangeEvent): void {
     this.queryChanged.emit(event);
+  }
+
+  public onOpenChange(event: FormChangeEvent) {
+    this.openChanged.emit(event);
   }
 
   public onOptionSelected(event: FormChangeEvent): void {
