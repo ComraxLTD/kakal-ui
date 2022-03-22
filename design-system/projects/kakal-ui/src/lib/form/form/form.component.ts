@@ -65,11 +65,11 @@ export class FormComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public onSelect(option: FormChangeEvent) {
+  public onSelectChanged(option: FormChangeEvent) {
     this.selectChanged.emit(option);
   }
 
-  public onAutocomplete(FormChangeEvent: FormChangeEvent): void {
+  public onQueryChanged(FormChangeEvent: FormChangeEvent): void {
     this.queryChanged.emit(FormChangeEvent);
   }
 

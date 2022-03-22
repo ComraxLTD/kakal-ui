@@ -87,7 +87,7 @@
               [appearance]="question?.appearance"
               (focus)="onFocus($event)"
               [optionsSlot]="optionsSlot"
-              (selected)="onSelect($event)"
+              (selectChanged)="onSelectChanged($event)"
             ></kkl-form-select>
           </mat-grid-tile>
         </ng-container>
