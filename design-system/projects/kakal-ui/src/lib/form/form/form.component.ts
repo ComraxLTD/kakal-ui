@@ -20,6 +20,9 @@ import { FormChangeEvent } from '../models/form.options';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
+  
+  @Input() public variant: 'flex' | 'grid' = 'grid';
+
   @Input() public group: QuestionGroupModel;
   @Input() public formDataSource: FormDataSource;
 
@@ -40,7 +43,8 @@ export class FormComponent implements OnInit {
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
-  @Output() public selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public selectChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
   @Output() public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> =
     new EventEmitter();
 
@@ -52,7 +56,7 @@ export class FormComponent implements OnInit {
   @Output() focusoutEvent: EventEmitter<string> = new EventEmitter();
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     this.formGroup = this.group.formGroup;
