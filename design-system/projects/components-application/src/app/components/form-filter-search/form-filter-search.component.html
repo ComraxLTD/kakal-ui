@@ -15,14 +15,13 @@
       </kkl-form-search>
 
       <div>
-        <!-- <ng-container *ngIf="filtersState$ | async as filtersState">
+        <ng-container *ngIf="filtersState$ | async as filtersState">
           <kkl-filters
-            (remove)="onRemove($event)"
-            (removeMulti)="onRemoveMulti($event)"
-            (clear)="onClear()"
+            [formGroup]="searchGroup.formGroup"
             [filtersState]="filtersState"
+            (filterChanged)="onFilterChanged($event)"
           ></kkl-filters>
-        </ng-container> -->
+        </ng-container>
       </div>
     </ng-container>
 

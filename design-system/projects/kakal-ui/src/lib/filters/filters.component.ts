@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FilterChangeEvent, FilterState } from './filters.types';
 import { FiltersService } from './filters.service';
+import { FormGroup } from '@angular/forms';
+import { SelectOption } from '../../public-api';
 
 @Component({
   selector: 'kkl-filters',
@@ -8,12 +10,10 @@ import { FiltersService } from './filters.service';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-
   @Input() filtersState: FilterState;
+  @Input() formGroup: FormGroup;
 
-  @Output() clear: EventEmitter<void> = new EventEmitter();
-  @Output() remove: EventEmitter<string> = new EventEmitter();
-  @Output() removeMulti: EventEmitter<FilterChangeEvent> = new EventEmitter();
+  @Output() filterChanged: EventEmitter<FilterState> = new EventEmitter();
 
   constructor(private filterService: FiltersService) {}
 
@@ -21,7 +21,8 @@ export class FiltersComponent implements OnInit {
 
   public onRemoveFilter(key: string): void {
     this.filterService.dispatch({ filterState: { [key]: null } });
-    this.remove.emit(key);
+    this.formGroup.get(key).reset();
+    this._emitChanged();
   }
 
   public onRemoveMultiFilter(option: { key: string; index: number }): void {
@@ -29,16 +30,24 @@ export class FiltersComponent implements OnInit {
     const filterState = this.filterService.removeMultiFilter(option);
 
     if (filterState[key]) {
-      this.removeMulti.emit(filterState[key]);
+      const value = filterState[key].value as SelectOption[];
+      this.formGroup.get(key).setValue([...value]);
     } else {
-      this.removeMulti.emit({ key, value: [] });
+      this.formGroup.get(key).setValue([]);
     }
 
     this.filterService.dispatch({ filterState });
+    this._emitChanged();
   }
 
   public onClearFilters(): void {
-    this.clear.emit();
+    this.formGroup.reset();
     this.filterService.dispatch({ filterState: null });
+    this._emitChanged();
+  }
+
+  private _emitChanged() {
+    const filterState = this.filterService.getState();
+    this.filterChanged.emit(filterState);
   }
 }
