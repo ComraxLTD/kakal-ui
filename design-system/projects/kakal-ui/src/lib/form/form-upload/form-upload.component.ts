@@ -11,6 +11,7 @@ import {
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { map, merge, Observable, of, pluck } from 'rxjs';
+import { FormActions } from '../models/form.actions';
 import { FormChangeEvent } from '../models/form.options';
 
 @Component({
@@ -124,6 +125,7 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor {
     return {
       key: this.key,
       value: this.files,
+      action: FormActions.VALUE_CHANGED,
     } as FormChangeEvent;
   }
 }

@@ -53,7 +53,7 @@
                           [icon]="q?.icon"
                           [label]="q?.label"
                           [index]="index"
-                          (focus)="onFocus($event)"
+                          (focus)="formChangeEvent($event)"
                           [controlType]="q?.controlType"
                         >
                         </kkl-form-input>
@@ -85,9 +85,9 @@
               [placeHolder]="question?.placeHolder"
               [theme]="question?.theme"
               [appearance]="question?.appearance"
-              (focus)="onFocus($event)"
               [optionsSlot]="optionsSlot"
-              (selectChanged)="onSelectChanged($event)"
+              (focus)="formChangeEvent($event)"
+              (selectChanged)="formChangeEvent($event)"
             ></kkl-form-select>
           </mat-grid-tile>
         </ng-container>
@@ -147,7 +147,7 @@
               [minDate]="question?.minDate"
               [appearance]="question?.appearance"
               [index]="index"
-              (focus)="onFocus($event)"
+              (focus)="formChangeEvent($event)"
             >
             </kkl-form-date>
           </mat-grid-tile>
@@ -169,7 +169,7 @@
               [multi]="question?.multi"
               [formControl]="group.formGroup.controls[question.key]"
               [index]="index"
-              (fileChanged)="onFileChanges($event)"
+              (fileChanged)="formChangeEvent($event)"
             ></kkl-form-upload>
           </mat-grid-tile>
         </ng-container>
@@ -264,7 +264,7 @@
                   [icon]="question?.icon"
                   [label]="question?.label"
                   [index]="index"
-                  (focus)="onFocus($event)"
+                  (focus)="formChangeEvent($event)"
                   [controlType]="question?.controlType"
                 >
                 </kkl-form-input>

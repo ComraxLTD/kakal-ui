@@ -24,10 +24,10 @@
             [placeHolder]="question?.placeHolder"
             [theme]="question?.theme"
             [appearance]="question?.appearance"
-            (focus)="onFocus($event)"
+            (focus)="formChanged($event)"
             [optionsSlot]="optionsSlot"
-            (selectChanged)="onSelectChanged($event)"
-            (openChanged)="onOpenChanged($event)"
+            (selectChanged)="formChanged($event)"
+            (openChanged)="formChanged($event)"
           ></kkl-form-select>
         </ng-container>
 
@@ -42,7 +42,7 @@
             [minDate]="question?.minDate"
             [appearance]="question?.appearance"
             [index]="index"
-            (dateRangeChanged)="onDateRangedChanged($event)"
+            (dateRangeChanged)="formChanged($event)"
           >
           </kkl-form-date-range>
         </ng-container>
@@ -58,7 +58,7 @@
             [minDate]="question?.minDate"
             [appearance]="question?.appearance"
             [index]="index"
-            (focus)="onFocus($event)"
+            (focus)="formChanged($event)"
           >
           </kkl-form-date>
         </ng-container>
@@ -82,9 +82,9 @@
             [multi]="question.multi"
             [options]="optionsMap[question?.key] || question.options"
             [control]="formGroup.controls[question.key]"
-            (queryChanged)="onQueryChanged($event)"
-            (multiOptionsSelected)="onMultiOptionSelected($event)"
-            (optionSelected)="onOptionSelected($event)"
+            (queryChanged)="formChanged($event)"
+            (multiOptionsSelected)="formChanged($event)"
+            (optionSelected)="formChanged($event)"
           ></kkl-form-autocomplete>
         </ng-container>
 
@@ -95,7 +95,7 @@
             [multi]="question?.multi"
             [formControl]="formGroup.controls[question.key]"
             [index]="index"
-            (fileChanged)="onFileChanged($event)"
+            (fileChanged)="formChanged($event)"
           ></kkl-form-upload>
         </ng-container>
 
@@ -134,8 +134,8 @@
             [icon]="question?.icon"
             [label]="question?.label"
             [index]="index"
-            (focus)="onFocus($event)"
-            (valueChanged)="onValueChanged($event)"
+            (focus)="formChanged($event)"
+            (valueChanged)="formChanged($event)"
             [controlType]="question?.controlType"
           ></kkl-form-input>
         </ng-container>
