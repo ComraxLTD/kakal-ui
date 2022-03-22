@@ -39,18 +39,21 @@ export class FormSelectComponent implements OnInit {
   }
 
   public onSelectChanged() {
-    const FormChangeEvent: FormChangeEvent = this.getFormOption({
+    const formChangeEvent: FormChangeEvent = this.getFormOption({
       value: this.control.value,
-      action: FormActions.SELECT_CHANGED,
+      action: this.multi
+        ? FormActions.MULTI_SELECTED
+        : FormActions.SELECT_CHANGED,
     });
-    this.selectChanged.emit(FormChangeEvent);
+    this.selectChanged.emit(formChangeEvent);
   }
+
   public onOpenChanged(event: boolean) {
-    const FormChangeEvent: FormChangeEvent = this.getFormOption({
+    const formChangeEvent: FormChangeEvent = this.getFormOption({
       value: event,
       action: FormActions.OPEN_CHANGED,
     });
-    this.openChanged.emit(FormChangeEvent);
+    this.openChanged.emit(formChangeEvent);
   }
 
   private getFormOption(props: {
