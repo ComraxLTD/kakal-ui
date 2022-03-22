@@ -9,6 +9,7 @@ import {
   Observable,
   of,
   skip,
+  Subject,
   switchMap,
 } from 'rxjs';
 import { Question } from '../../public-api';
@@ -18,17 +19,27 @@ import { FilterChangeEvent, FilterState } from './filters.types';
   providedIn: 'root',
 })
 export class FiltersService {
-  private filterState: BehaviorSubject<FilterState>;
+  private filterState$: BehaviorSubject<FilterState>;
+  private filterChanged$: Subject<FilterState>;
   constructor() {
-    this.filterState = new BehaviorSubject<FilterState>(null);
+    this.filterState$ = new BehaviorSubject<FilterState>(null);
+    this.filterChanged$ = new Subject<FilterState>();
+  }
+
+  public filterChanged(state: FilterState): void {
+    this.filterChanged$.next(state);
+  }
+
+  public onFilterChanged(): Observable<FilterState> {
+    return this.filterChanged$.asObservable();
   }
 
   public getState(): FilterState {
-    return this.filterState.getValue();
+    return this.filterState$.getValue();
   }
 
   public listen(): Observable<FilterState> {
-    return this.filterState.asObservable();
+    return this.filterState$.asObservable();
   }
 
   public dispatch(prop: { filterState: FilterState }): void {
@@ -56,9 +67,9 @@ export class FiltersService {
     );
 
     if (Object.keys(newState).length === 0) {
-      this.filterState.next(null);
+      this.filterState$.next(null);
     } else {
-      this.filterState.next(newState);
+      this.filterState$.next(newState);
     }
   }
 
