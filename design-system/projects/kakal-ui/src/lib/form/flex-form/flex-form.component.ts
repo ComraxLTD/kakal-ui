@@ -40,6 +40,10 @@ export class FormFlexComponent implements OnInit {
 
   @Output() public selectChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
+
+  @Output() public openChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+
   @Output() public optionSelected: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
@@ -68,6 +72,10 @@ export class FormFlexComponent implements OnInit {
 
   public onQueryChanged(event: FormChangeEvent): void {
     this.queryChanged.emit(event);
+  }
+
+  public onOpenChange(event: FormChangeEvent) {
+    this.openChanged.emit(event);
   }
 
   public onOptionSelected(event: FormChangeEvent): void {
