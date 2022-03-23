@@ -10,18 +10,16 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 
 @Component({
-  selector: 'kkl-form-gird',
+  selector: 'kkl-form-grid',
   templateUrl: './form-grid.component.html',
   styleUrls: ['./form-grid.component.scss'],
 })
 export class FormGridComponent implements OnInit {
   @Input() public group: QuestionGroupModel;
-  @Input() public formDataSource: FormDataSource;
 
   @Input() public rowHeight: number;
   @Input() public gutter: number;
@@ -49,7 +47,7 @@ export class FormGridComponent implements OnInit {
   @Output() public formChangeEvent: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  constructor() {}
+  constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
     this.formGroup = this.group.formGroup;
