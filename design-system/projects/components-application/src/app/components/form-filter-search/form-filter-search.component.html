@@ -12,24 +12,26 @@
             [formGroup]="searchGroup.formGroup"
             [grid]="grid"
             [optionsMap]="optionsMap"
-            (formChangeEvent)="onFormChanged($event)"
+            (formChanged)="onFormChanged($event)"
           ></kkl-form>
         </ng-container>
       </kkl-form-search>
 
       <div>
-        <ng-container *ngIf="filtersState$ | async as filtersState">
-          <kkl-filters
-            [formGroup]="searchGroup.formGroup"
-            [filtersState]="filtersState"
-            (filterChanged)="onFilterChanged($event)"
-          ></kkl-filters>
-        </ng-container>
+        <!-- <ng-container *ngIf="filtersState$ | async as filtersState"> -->
+
+        <kkl-filters
+          [formGroup]="searchGroup.formGroup"
+          [questions]="searchGroup.questions"
+          (filterChanged)="onFilterChanged($event)"
+        ></kkl-filters>
+        <!-- </ng-container> -->
       </div>
     </ng-container>
 
     <ng-container>
       <pre *ngIf="searchGroup">
+        formGroup
       {{ searchGroup.formGroup.value | json }}
     </pre
       >

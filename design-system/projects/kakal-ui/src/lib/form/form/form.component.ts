@@ -60,7 +60,6 @@ export class FormComponent implements OnInit {
   }
 
   public onFormChanged(event: FormChangeEvent) {
-    console.log(event)
     this.formChanged.emit(event);
   }
 }

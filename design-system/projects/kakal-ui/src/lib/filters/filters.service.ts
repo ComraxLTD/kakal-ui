@@ -8,6 +8,7 @@ import {
   merge,
   Observable,
   of,
+  pluck,
   skip,
   Subject,
   switchMap,
@@ -34,6 +35,11 @@ export class FiltersService {
     return this.filterChanged$.asObservable();
   }
 
+  public on(callback: (state: FilterState, ...args: any) => any, ...args: any) {
+    const state = this.filterState$.getValue();
+    return callback(state, ...args);
+  }
+
   public getState(): FilterState {
     return this.filterState$.getValue();
   }
@@ -47,6 +53,12 @@ export class FiltersService {
     /**
      * @Note: Dvir - we don't need to add an "internal self made redux" solution
      */
+
+    // if null return null
+    if (!filterState) {
+      return this.filterState$.next(null);
+    }
+
     const oldState = this.getState();
 
     const newState = {
@@ -90,85 +102,5 @@ export class FiltersService {
       [key]: filterEvent,
     };
     return newState;
-  }
-
-  private setQuestionsAsFilters(questions: Question[]) {
-    const formFilterTypes = questions
-      .map((q) => {
-        return {
-          key: q.key,
-          filterType: q.filterType,
-          format: q.format,
-        } as FilterChangeEvent;
-      })
-      .reduce((acc, filterEvent) => {
-        return {
-          [filterEvent.key]: filterEvent,
-          ...acc,
-        };
-      }, {});
-
-    return formFilterTypes;
-  }
-
-  private setValueAsFilterChange(
-    filterValues,
-    filterTypes
-  ): FilterChangeEvent[] {
-    return Object.keys(filterValues).map((key) => {
-      return {
-        ...filterTypes[key],
-        value: filterValues[key],
-      } as FilterChangeEvent;
-    });
-  }
-
-  private setFiltersMap(filters: FilterChangeEvent[]) {
-    return filters.reduce((acc, filterEvent) => {
-      return {
-        [filterEvent.key]: filterEvent,
-        ...acc,
-      };
-    }, {} as { [key: string]: FilterChangeEvent });
-  }
-
-  private getFilterValues(formGroup: FormGroup) {
-    return formGroup.valueChanges.pipe();
-  }
-
-  private initFiltersMap(prop: {
-    formGroup: FormGroup;
-    questions: Question[];
-  }): Observable<FilterState | null> {
-    const { formGroup, questions } = prop;
-
-    const values$ = this.getFilterValues(formGroup);
-    const filterTypes = this.setQuestionsAsFilters(questions);
-
-    const true$ = values$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length !== 0),
-      map((filterValues) => {
-        const filters = this.setValueAsFilterChange(filterValues, filterTypes);
-        const filterMap = this.setFiltersMap(filters);
-        return filterMap;
-      })
-    );
-    const false$ = values$.pipe(
-      filter((filterValues) => Object.keys(filterValues).length === 0),
-      map((_) => {
-        return null;
-      })
-    );
-
-    return merge(true$, false$);
-  }
-
-  public getFilterMap(prop: { formGroup: FormGroup; questions: Question[] }) {
-    return this.initFiltersMap(prop).pipe(
-      switchMap((filterState) => {
-        this.dispatch({ filterState });
-        return iif(() => filterState !== null, this.listen(), of(null));
-      })
-    );
   }
 }

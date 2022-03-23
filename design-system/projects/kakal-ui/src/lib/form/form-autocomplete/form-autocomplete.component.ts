@@ -69,7 +69,7 @@ export class FormAutocompleteComponent implements OnInit {
 
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
-      value: option.value,
+      value: option,
       action: FormActions.OPTION_SELECTED,
     };
 

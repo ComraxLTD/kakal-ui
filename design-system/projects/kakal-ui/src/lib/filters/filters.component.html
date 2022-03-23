@@ -1,4 +1,4 @@
-<ng-container *ngIf="filtersState">
+<ng-container *ngIf="filtersState$ | async as filtersState">
   <div fxLayout="row" fxLayoutGap="0.5rem">
     <kkl-chip-list>
       <ng-container *ngFor="let item of filtersState | keyvalue">

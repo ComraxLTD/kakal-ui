@@ -6,7 +6,9 @@ import {
   FiltersService,
   FilterState,
   FilterType,
+  FormActions,
   FormChangeEvent,
+  FormDataSource,
   FormService,
   GridProps,
   KKLSelectOption,
@@ -16,13 +18,21 @@ import {
   SelectOption,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
-import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
+import {
+  combineLatest,
+  firstValueFrom,
+  forkJoin,
+  map,
+  merge,
+  Observable,
+  of,
+} from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
-  providers: [FiltersService],
+  providers: [FiltersService, FormDataSource],
 })
 export class FormFilterSearchComponent implements OnInit {
   private questions: Question[] = [
@@ -47,7 +57,8 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    // { key: 'phone', controlType: 'phone', value: '83928329' },
+    { key: 'birthDay', label : 'יום הולדת', controlType: 'date' },
+    { key: 'committee', label: 'committee', controlType: 'dateRange' },
     // {
     //   key: 'area',
     //   filterType: FilterType.RANGE,
@@ -112,16 +123,14 @@ export class FormFilterSearchComponent implements OnInit {
 
   constructor(
     private filterService: FiltersService,
-    private formService: FormService
+    private formService: FormService,
+    private formDataSource: FormDataSource
   ) {}
 
   ngOnInit(): void {
     this.searchGroup = this.setGroup(this.questions);
 
-    this.filtersState$ = this.filterService.getFilterMap({
-      formGroup: this.searchGroup.formGroup,
-      questions: this.questions,
-    });
+    // this.filtersState$ = this.mergeFilterState();
 
     this.optionsMap$ = this.getOptionsMap$();
   }
@@ -147,13 +156,6 @@ export class FormFilterSearchComponent implements OnInit {
     );
   }
 
-  private async setQuestionsWithOptions(
-    questions: Question[]
-  ): Promise<Question[]> {
-    const optionsMap = await firstValueFrom(this.getOptionsMap$());
-    return this.formService.setQuestionsWithOptions(questions, optionsMap);
-  }
-
   private setGroup(initQuestions: Question[]): QuestionGroupModel {
     const group = this.formService.createQuestionGroup({
       questions: initQuestions,
@@ -165,28 +167,13 @@ export class FormFilterSearchComponent implements OnInit {
     return { ...group, questions: advancedQuestions } as QuestionGroupModel;
   }
 
-  private async setGroupAsync(
-    initQuestions: Question[]
-  ): Promise<QuestionGroupModel> {
-    const questions = await this.setQuestionsWithOptions(initQuestions);
-    const group = this.formService.createQuestionGroup({
-      questions,
-    });
-
-    const advancedQuestions = [...group.questions];
-    advancedQuestions.splice(0, 1);
-
-    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
-  }
-
   // DOM EVENTS SECTION
 
-  public onFilterChanged(state : FilterState) {
-    console.log(state)
-  }
-  public onFormChanged(event : FormChangeEvent) {
-    console.log(event)
+  public onFilterChanged(state: FilterState) {
+    console.log(state);
   }
 
-
+  public onFormChanged(event: FormChangeEvent) {
+    this.formDataSource.dispatch(event);
+  }
 }
