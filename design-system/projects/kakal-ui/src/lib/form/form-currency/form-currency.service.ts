@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SelectOption } from '../models/question-select.model';
+import { SelectOption } from '../form-select/question-select.model';
 import { FormService, QuestionGroup } from '../services/form.service';
 
 @Injectable({

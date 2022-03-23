@@ -11,22 +11,23 @@ import {
 import { QuestionBase } from '../models/question.model';
 import { QuestionTextareaModel } from '../models/question-textarea.model';
 import { QuestionTextModel } from '../models/question-text.model';
-import { QuestionSelectModel } from '../models/question-select.model';
 import {
   GroupOptions,
   QuestionGroupModel,
 } from '../models/question-group.model';
-import { QuestionNumberModel } from '../models/question-number.model';
-import { QuestionAutocompleteModel } from '../models/question-autocomplete';
-import { QuestionRadioModel } from '../form-radio/question-radio.model';
 import { QuestionSumModel } from '../models/question-sum.model';
+import { QuestionNumberModel } from '../models/question-number.model';
+
+import { QuestionSelectModel } from '../form-select/question-select.model';
+import { QuestionAutocompleteModel } from '../form-autocomplete/question-autocomplete';
+import { QuestionRadioModel } from '../form-radio/question-radio.model';
 import { QuestionCurrencyModel } from '../form-currency/question-currency.model';
 import { QuestionDateModel } from '../form-date/question-date.model';
-import { QuestionCheckBoxModel } from '../models/question-checkbox.model';
+import { QuestionCheckBoxModel } from '../form-checkbox/question-checkbox.model';
 import { QuestionUploadModel } from '../form-upload/question-upload.model';
 import { QuestionCounterModel } from '../form-counter/question-counter.model';
-
 import { QuestionRangeModel } from '../form-range/question-range.model';
+
 import { OptionMap } from '../models/form.types';
 
 export type ControlTemplate = [

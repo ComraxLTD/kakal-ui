@@ -7,11 +7,10 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { Range } from '../form-range/question-range.model';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { OptionMap } from '../models/form.types';
-import { GridProps } from '../models/question.model';
+import { GridProps } from '../models/question.types';
 import { Question } from '../services/form.service';
 
 @Component({

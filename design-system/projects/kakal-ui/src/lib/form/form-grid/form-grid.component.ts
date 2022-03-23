@@ -1,5 +1,3 @@
-import { GridProps } from '../models/question.model';
-import { QuestionGroupModel } from '../models/question-group.model';
 import { FormGroup } from '@angular/forms';
 import {
   Component,
@@ -13,6 +11,7 @@ import {
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { Question, OptionMap } from '../models/form.types';
+import { GridProps } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-grid',

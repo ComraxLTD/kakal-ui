@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormControlStatus, FormGroup } from '@angular/forms';
+import { FormControl, FormControlStatus } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {
   MomentDateAdapter,
@@ -13,11 +13,10 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
-import { Appearance } from '../models/question.model';
 import { FormChangeEvent } from '../models/form.options';
 import { FormActions } from '../models/form.actions';
-import { Range } from '../form-range/question-range.model';
+import { map, Observable, startWith, Subject, } from 'rxjs';
+import { Appearance } from '../models/question.types';
 
 export const MY_FORMATS = {
   parse: {
@@ -118,6 +117,15 @@ export class FormDateComponent implements OnInit {
     });
 
     this.dateChanged.emit(formChangeEvent);
+  }
+  public onDateInput(event: MatDatepickerInputEvent<Date>): void {
+    const formChangeEvent = this.setFormChangeEvent({
+      value: event.value['_d'],
+      action: FormActions.DATE_CHANGED,
+    });
+
+    console.log(formChangeEvent)
+    // this.dateChanged.emit(formChangeEvent);
   }
 
   public onFocus(): void {

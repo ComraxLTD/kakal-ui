@@ -13,6 +13,7 @@
     [min]="minDate"
     (click)="dp.open()"
     (dateChange)="onDateChange($event)"
+    (dateInput)="onDateInput($event)"
     (focus)="onFocus()"
   />
   <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>

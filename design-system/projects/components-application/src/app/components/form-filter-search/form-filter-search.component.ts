@@ -1,21 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import {
-  Currency,
-  FilterChangeEvent,
   FiltersService,
   FilterState,
   FilterType,
-  FormActions,
   FormChangeEvent,
   FormDataSource,
   FormService,
-  GridProps,
   KKLSelectOption,
   OptionMap,
   Question,
   QuestionGroupModel,
-  SelectOption,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import {
@@ -52,6 +46,18 @@ export class FormFilterSearchComponent implements OnInit {
     // { key: 'part', controlType: 'counter' },
     { key: 'last_name', controlType: 'select' },
     {
+      key: 'multiSelectTest',
+      label: 'multiSelectTest',
+      controlType: 'select',
+      multi: true,
+    },
+    {
+      key: 'email',
+      label: 'multiAutocompleteTest',
+      controlType: 'autocomplete',
+      multi: true,
+    },
+    {
       key: 'email',
       label: 'email',
       filterType: FilterType.SELECT,
@@ -59,42 +65,6 @@ export class FormFilterSearchComponent implements OnInit {
     },
     { key: 'birthDay', label: 'יום הולדת', controlType: 'date' },
     { key: 'committee', label: 'committee', controlType: 'dateRange' },
-    // {
-    //   key: 'area',
-    //   filterType: FilterType.RANGE,
-    //   controlType: 'range',
-    //   format: { type: 'area' },
-    //   questions: [
-    //     {
-    //       key: 'start',
-    //       label: 'משטח',
-    //       controlType: 'sum',
-    //     },
-    //     {
-    //       key: 'end',
-    //       label: 'עד שטח',
-    //       controlType: 'sum',
-    //     },
-    //   ],
-    // },
-    // {
-    //   key: 'currency',
-    //   filterType: FilterType.RANGE,
-    //   controlType: 'range',
-    //   questions: [
-    //     {
-    //       key: 'start',
-    //       label: 'מסכום',
-    //       controlType: 'sum',
-    //     },
-    //     {
-    //       key: 'end',
-    //       label: 'עד סכום',
-    //       controlType: 'sum',
-    //     },
-    //   ],
-    //   format: { type: 'currency', args: (item) => '$' },
-    // },
     {
       key: 'city',
       filterType: FilterType.MULTI_SELECT,
@@ -157,7 +127,7 @@ export class FormFilterSearchComponent implements OnInit {
       questions: initQuestions,
       options: { gridProps: { cols: 5 } },
     });
-
+    console.log(group);
     return group;
   }
 

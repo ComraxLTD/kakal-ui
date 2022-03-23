@@ -1,11 +1,9 @@
-import { PaginationInstance } from 'ngx-pagination';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import PaginationChangeEvent from './pagination.types';
 import { FormControl } from '@angular/forms';
-import { SelectOption } from '../../../form/models/question-select.model';
+import { SelectOption } from '../../../form/form-select/question-select.model';
 import { FormChangeEvent } from '../../../form/models/form.options';
-import { KKLSelectOption } from '../../../form/models/form.types';
 import { PageState } from '../../models/table.state';
+import PaginationChangeEvent from './pagination.types';
 
 @Component({
   selector: 'kkl-pagination',

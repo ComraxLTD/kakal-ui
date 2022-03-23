@@ -1,5 +1,4 @@
-import { SelectOption } from "./question-select.model";
-import { QuestionBase } from "./question.model";
+import { QuestionBase } from "../models/question.model";
 
 export interface CheckboxOption {
   label: string;

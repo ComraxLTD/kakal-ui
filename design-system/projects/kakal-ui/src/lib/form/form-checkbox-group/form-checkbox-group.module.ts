@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { FormCheckboxGroupComponent } from './form-checkbox-group.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ReactiveFormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatListModule } from '@angular/material/list';
 
@@ -10,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
   imports: [
     MatCheckboxModule,
     ReactiveFormsModule,
-    
+
     FlexLayoutModule,
     MatListModule,
   ],

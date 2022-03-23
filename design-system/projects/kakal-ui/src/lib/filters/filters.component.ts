@@ -36,14 +36,16 @@ export class FiltersComponent implements OnInit {
     const formChangedEvents$ = this.formDataSource.listen([
       FormActions.VALUE_CHANGED,
       FormActions.SELECT_CHANGED,
-      FormActions.MULTI_SELECTED,
+      FormActions.MULTI_OPTION_SELECTED,
+      FormActions.MULTI_SELECT_CHANGED,
       FormActions.OPTION_SELECTED,
     ]);
 
     const filterTypeMap = {
       [FormActions.VALUE_CHANGED]: FilterType.SEARCH,
       [FormActions.SELECT_CHANGED]: FilterType.SELECT,
-      [FormActions.MULTI_SELECTED]: FilterType.MULTI_SELECT,
+      [FormActions.MULTI_OPTION_SELECTED]: FilterType.MULTI_SELECT,
+      [FormActions.MULTI_SELECT_CHANGED]: FilterType.MULTI_SELECT,
       [FormActions.OPTION_SELECTED]: FilterType.SELECT,
       [FormActions.RANGE_CHANGED]: FilterType.RANGE,
       [FormActions.DATE_RANGE_CHANGED]: FilterType.DATE_RANGE,

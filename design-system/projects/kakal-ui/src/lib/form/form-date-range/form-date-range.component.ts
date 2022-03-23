@@ -19,11 +19,11 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { Appearance } from '../models/question.model';
 import { FormChangeEvent, FormActions } from '../models/form.types';
 import { Range } from '../form-range/question-range.model';
 import { map, Observable, startWith, Subject } from 'rxjs';
 import { MY_FORMATS } from '../form-date/form-date.component';
+import { Appearance } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-date-range',
@@ -151,7 +151,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     this.dateRangeChanged.emit(this.setChangeEvent());
   }
 
-  // DATES DATA LOGIC 
+  // DATES DATA LOGIC
 
   dateClass(): MatCalendarCellClassFunction<Date> {
     return (date: any) => {
