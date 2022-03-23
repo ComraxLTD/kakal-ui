@@ -10,7 +10,7 @@
   <!-- Default block -->
   <ng-template #defaultBlock>
     <kkl-typography>
-      {{ item[column.columnDef] | format: column?.format }}
+      {{ item[column.columnDef] | format: column?.format:column?.selector }}
     </kkl-typography>
   </ng-template>
 
