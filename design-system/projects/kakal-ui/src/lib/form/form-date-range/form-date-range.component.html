@@ -1,7 +1,7 @@
-<mat-form-field [appearance]="dateRange.disabled ? 'fill' : appearance || 'outline'" class="kkl-datepicker">
-  <mat-label>{{ label }}</mat-label>
+<ng-container *ngIf="!dates">
+  <mat-form-field [appearance]="dateRange.disabled ? 'fill' : appearance || 'outline'" class="kkl-datepicker">
+    <mat-label>{{ label }}</mat-label>
 
-  <ng-container *ngIf="!dates">
     <mat-date-range-input [formGroup]="dateRange" [rangePicker]="picker" (click)="picker.open()">
       <input matStartDate formControlName="start" placeholder="מתאריך" (dateChange)="rangeDateChanged($event, 'start')"
         autocomplete="off" />
@@ -11,11 +11,17 @@
 
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker #picker></mat-date-range-picker>
-  </ng-container>
 
-  <!-- DATES -->
-  <ng-container *ngIf="dates">
-    <mat-date-range-input [formGroup]="dateRange" [dateFilter]="myFilter" [rangePicker]="picker" (click)="picker.open()">
+    <mat-error>{{ message$ | async }}</mat-error>
+  </mat-form-field>
+</ng-container>
+
+<ng-container *ngIf="dates">
+  <mat-form-field [appearance]="dateRange.disabled ? 'fill' : appearance || 'outline'" class="kkl-datepicker">
+    <mat-label>{{ label }}</mat-label>
+
+    <mat-date-range-input [formGroup]="dateRange" [dateFilter]="myFilter" [rangePicker]="picker"
+      (click)="picker.open()">
       <input matStartDate formControlName="start" placeholder="מתאריך" (dateChange)="rangeDateChanged($event, 'start')"
         autocomplete="off" />
       <input matEndDate formControlName="end" placeholder="עד תאריך" (dateChange)="rangeDateChanged($event, 'end')"
@@ -24,8 +30,8 @@
 
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker [dateClass]="dateClass()" #picker></mat-date-range-picker>
-  </ng-container>
 
+    <mat-error>{{ message$ | async }}</mat-error>
+  </mat-form-field>
 
-  <mat-error>{{ message$ | async }}</mat-error>
-</mat-form-field>
+</ng-container>
