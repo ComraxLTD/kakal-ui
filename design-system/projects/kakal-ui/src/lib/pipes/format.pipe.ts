@@ -29,6 +29,14 @@ export class FormatPipe implements PipeTransform {
     return formatCurrency(value, this.locale, args(), '', '1.0');
   }
 
+  private plunk(value: any, args: any) {
+    if (typeof args === 'string') {
+      return value[args];
+    } else {
+      return args(value);
+    }
+  }
+
   private formatObj(value: any, format: string, args?: string): string {
     const formats = {
       location: (value) => this.location.transform(value),
@@ -36,6 +44,7 @@ export class FormatPipe implements PipeTransform {
       prefix: (value, args) => this.prefix.transform(value, args),
       currency: (value, args) => this.setCurrency(value, args),
       number: (value) => formatNumber(value, this.locale),
+      plunk: (value, args) => this.plunk(value, args),
     };
     return formats[format] !== undefined ? formats[format](value, args) : value;
   }

@@ -6,7 +6,7 @@ export class HeaderCellModel<T = any> {
   public label?: string;
   public format?: string;
   public type?: HeaderType;
-  public selector?: string;
+  public selector?: string | (() => string);
 
   public flex?: number;
   public center?: boolean;
@@ -26,7 +26,7 @@ export class HeaderCellModel<T = any> {
     label?: string;
     type?: HeaderType;
     format?: string;
-    selector?: string;
+    selector?: string | (() => string);
 
     center?: boolean;
     flex?: number;
@@ -54,6 +54,5 @@ export class HeaderCellModel<T = any> {
     this.expendable = options?.expendable || false;
 
     this.sortDir = options?.sortDir || '';
-
   }
 }
