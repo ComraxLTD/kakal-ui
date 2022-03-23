@@ -99,6 +99,8 @@ export class FormFilterSearchComponent implements OnInit {
   ngOnInit(): void {
     this.searchGroup = this.setGroup(this.questions);
     this.optionsMap$ = this.getOptionsMap$();
+
+    // this.searchGroup.formGroup.disable();
   }
 
   private getCurrencyOptions() {
@@ -127,15 +129,12 @@ export class FormFilterSearchComponent implements OnInit {
       questions: initQuestions,
       options: { gridProps: { cols: 5 } },
     });
-    console.log(group);
     return group;
   }
 
   // DOM EVENTS SECTION
 
-  public onFilterChanged(state: FilterState) {
-    console.log(state);
-  }
+  public onFilterChanged(state: FilterState) {}
 
   public onFormChanged(event: FormChangeEvent) {
     this.formDataSource.dispatch(event);

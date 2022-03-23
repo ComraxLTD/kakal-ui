@@ -39,5 +39,7 @@ export const palletteClassesMap = {
   primary: 'mat-primary',
   accent: 'mat-accent',
   warn: 'mat-warn',
+  disable: 'mat-disable',
+  success: 'kkl-success',
 };
 

@@ -1,4 +1,5 @@
 <mat-form-field
+  color="primary"
   [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
   class="kkl-form-date"
 >
@@ -11,12 +12,15 @@
     autocomplete="off"
     [max]="maxDate"
     [min]="minDate"
-    (click)="dp.open()"
     (dateChange)="onDateChange($event)"
     (dateInput)="onDateInput($event)"
-    (focus)="onFocus()"
+    (focus)="dp.open()"
   />
-  <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+  <mat-datepicker-toggle
+    [disabled]="control.disabled"
+    matSuffix
+    [for]="dp"
+  ></mat-datepicker-toggle>
   <mat-datepicker #dp></mat-datepicker>
 
   <mat-error>{{ message$ | async }}</mat-error>
