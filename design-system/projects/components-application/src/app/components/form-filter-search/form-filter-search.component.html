@@ -1,15 +1,12 @@
 <div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
   <div fxLayout="column" fxFlex="50">
     <ng-container *ngIf="optionsMap$ | async as optionsMap">
-      <kkl-form-search
-        [searchControl]="searchGroup.formGroup.controls['search']"
-        [advanced]="true"
-      >
-        <ng-container *kklFormSearchContent>
+      <kkl-form-search [searchGroup]="searchGroup" [advanced]="true">
+        <ng-container *kklFormSearchContent="let context">
           <kkl-form
             variant="flex"
-            [questions]="searchGroup.questions"
-            [formGroup]="searchGroup.formGroup"
+            [questions]="context.questions"
+            [formGroup]="context.formGroup"
             [grid]="grid"
             [optionsMap]="optionsMap"
             (formChanged)="onFormChanged($event)"
@@ -22,7 +19,6 @@
 
         <kkl-filters
           [formGroup]="searchGroup.formGroup"
-          [questions]="searchGroup.questions"
           (filterChanged)="onFilterChanged($event)"
         ></kkl-filters>
         <!-- </ng-container> -->

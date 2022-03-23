@@ -27,17 +27,12 @@ export class FiltersService {
     this.filterChanged$ = new Subject<FilterState>();
   }
 
-  public dispatchState(state: FilterState): void {
+  public emit(state: FilterState): void {
     this.filterChanged$.next(state);
   }
 
   public stateChanged(): Observable<FilterState> {
     return this.filterChanged$.asObservable();
-  }
-
-  public on(callback: (state: FilterState, ...args: any) => any, ...args: any) {
-    const state = this.filterState$.getValue();
-    return callback(state, ...args);
   }
 
   public getState(): FilterState {
@@ -85,22 +80,34 @@ export class FiltersService {
     }
   }
 
-  public removeMultiFilter(option: { key: string; index: number }) {
-    const { key, index } = option;
-    const filterState = this.getState();
+  public on(callback: (state: FilterState, ...args: any) => any, ...args: any) {
+    const state = this.filterState$.getValue();
+    return callback(state, ...args);
+  }
 
-    const filters = filterState[key].value;
-    filters.splice(index, 1);
+  // use when filterState keys are different form api interface
+  public mapFilterStateToLookups<T>(searchLookups: {
+    [key: string]: keyof T;
+  }): Observable<T> {
+    const true$ = this.listen().pipe(
+      filter((filterState) => filterState !== null),
+      map((filterState) => {
+        const searchLookupMap = searchLookups;
+        return Object.keys(filterState).reduce((acc, key) => {
+          return {
+            ...acc,
+            [searchLookupMap[key]]: filterState[key]?.value,
+          };
+        }, {} as any);
+      })
+    );
+    const false$ = this.listen().pipe(
+      filter((filterState) => filterState === null),
+      map((_) => {
+        return {};
+      })
+    );
 
-    const filterEvent =
-      filters.length === 0
-        ? null
-        : ({ ...filterState[key], value: filters } as FilterChangeEvent);
-
-    const newState = {
-      ...filterState,
-      [key]: filterEvent,
-    };
-    return newState;
+    return merge(true$, false$);
   }
 }

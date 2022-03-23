@@ -122,16 +122,12 @@ export class FormFilterSearchComponent implements OnInit {
   public filtersState$: Observable<FilterState>;
 
   constructor(
-    private filterService: FiltersService,
     private formService: FormService,
     private formDataSource: FormDataSource
   ) {}
 
   ngOnInit(): void {
     this.searchGroup = this.setGroup(this.questions);
-
-    // this.filtersState$ = this.mergeFilterState();
-
     this.optionsMap$ = this.getOptionsMap$();
   }
 
@@ -161,10 +157,7 @@ export class FormFilterSearchComponent implements OnInit {
       questions: initQuestions,
     });
 
-    const advancedQuestions = [...group.questions];
-    advancedQuestions.splice(0, 1);
-
-    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
+    return group
   }
 
   // DOM EVENTS SECTION

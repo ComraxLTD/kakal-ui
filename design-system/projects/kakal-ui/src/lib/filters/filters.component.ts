@@ -1,15 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FilterChangeEvent, FilterState, FilterType } from './filters.types';
 import { FiltersService } from './filters.service';
+import { removeMultiFilter } from './filters.helpers';
 import { FormGroup } from '@angular/forms';
 import {
   FormActions,
   FormChangeEvent,
   FormDataSource,
-  Question,
   SelectOption,
 } from '../../public-api';
-import { iif, map, merge, Observable, of, switchMap, tap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'kkl-filters',
@@ -17,9 +17,7 @@ import { iif, map, merge, Observable, of, switchMap, tap } from 'rxjs';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-  // @Input() filtersState: FilterState;
   @Input() formGroup: FormGroup;
-  @Input() questions: Question[];
 
   public filtersState$: Observable<FilterState>;
 
@@ -99,7 +97,7 @@ export class FiltersComponent implements OnInit {
   // on multi remove event
   public onRemoveMultiFilter(option: { key: string; index: number }): void {
     const { key } = option;
-    const filterState = this.filterService.removeMultiFilter(option);
+    const filterState = removeMultiFilter(option);
 
     if (filterState[key]) {
       const value = filterState[key].value as SelectOption[];
@@ -122,7 +120,6 @@ export class FiltersComponent implements OnInit {
 
   private _emitChanged() {
     const filterState = this.filterService.getState();
-    console.log('emit changed', filterState);
     this.filterChanged.emit(filterState);
   }
 }
