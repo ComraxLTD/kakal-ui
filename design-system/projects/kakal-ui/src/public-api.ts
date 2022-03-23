@@ -323,3 +323,6 @@ export * from './lib/directives/wizard.directive';
 export * from './lib/directives/outside-button.directive';
 
 export * from './lib/directives/directives.module';
+//
+export * from './lib/tabs/tabs.component';
+export * from './lib/tabs/tabs.module';

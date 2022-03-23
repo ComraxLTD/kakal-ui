@@ -1,19 +1,32 @@
-<div fxLayout="column" fxFill>
-  <kkl-form-date-range [dates]="data"></kkl-form-date-range>
-  <kkl-form-date-range></kkl-form-date-range>
+<div>
+  <kkl-tabs [data]='data' [templates]="{First,Second,Third}"></kkl-tabs>
+</div>
 
-  <!-- <mat-form-field appearance="fill">
-  <mat-label>Enter a date range</mat-label>
-  <mat-date-range-input [formGroup]="range" [dateFilter]="myFilter" [rangePicker]="picker">
-    <input matStartDate formControlName="start" placeholder="Start date">
-    <input matEndDate formControlName="end" placeholder="End date">
-  </mat-date-range-input>
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-date-range-picker #picker
-   [dateClass]="dateClass()"></mat-date-range-picker>
-</mat-form-field> -->
-  <div fxLayout="row" fxFill fxLayoutAlign="center center">
-    <!-- <app-form-filter-search></app-form-filter-search> -->
-    <app-table fxFlex="80"></app-table>
+<ng-template #First>
+<div fxLayout="row" fxLayoutGap="1rem">
+  <div> 
+    <kkl-form-date-range [dates]='data'></kkl-form-date-range>
+    <kkl-form-date-range></kkl-form-date-range>
+  </div>
+  <div> 
+    <kkl-form-date-range [dates]='data'></kkl-form-date-range>
+    <kkl-form-date-range></kkl-form-date-range>
+  </div>
+  <div> 
+    <kkl-form-date-range [dates]='data'></kkl-form-date-range>
+    <kkl-form-date-range></kkl-form-date-range>
   </div>
 </div>
+</ng-template>
+<ng-template #Second>
+  21312213
+</ng-template>
+<ng-template #Third>
+  AA
+</ng-template>
+<!-- 
+<div fxLayout="column" fxLayoutGap="5rem">
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <app-form-filter-search></app-form-filter-search>
+  </div>
+</div> -->

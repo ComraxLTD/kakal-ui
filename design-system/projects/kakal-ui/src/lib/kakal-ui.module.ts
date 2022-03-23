@@ -71,6 +71,8 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
 import { OpenMotionsModule } from '../lib/open-motions/open-motions.module';
 import { KKSectionModule } from '../lib/section/section.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { KKLTabsModule } from '../lib/tabs/tabs.module';
+
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
@@ -79,6 +81,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    KKLTabsModule,
     OpenMotionsModule,
     KKSectionModule,
     KKLHoverModule,
@@ -146,6 +149,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     //TOOLS
+    KKLTabsModule,
     OpenMotionsModule,
     KKSectionModule,
     KKLHoverModule,
@@ -212,4 +216,4 @@ import { ReactiveFormsModule } from '@angular/forms';
     KKLDisplayDataModule,
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }
