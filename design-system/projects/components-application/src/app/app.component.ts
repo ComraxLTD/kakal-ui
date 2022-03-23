@@ -10,7 +10,7 @@ import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 export class AppComponent implements OnInit {
   title = 'components-application';
   constructor() { }
-  month:number;
+  month: number;
   range = new FormGroup({
     start: new FormControl(),
     end: new FormControl(),
@@ -21,30 +21,32 @@ export class AppComponent implements OnInit {
   }
 
   /// EXAMPLE
-  dates = [
-    { date: new Date("2022-03-01"), text: "one text", occupancy: 4 },
-    { date: new Date("2022-03-20"), text: "another text", occupancy: 3 },
-    { date: new Date("2022-04-20"), text: "another text", occupancy: 3 }
+  data = [
+    { date: new Date("2022-03-01"), occupancy: 4 },
+    { date: new Date("2022-03-20"), occupancy: 3 },
+    { date: new Date("2022-03-5"), disabled: true },
+    { date: new Date("2022-04-20"), occupancy: 3 }
   ];
 
   dateClass(): MatCalendarCellClassFunction<Date> {
     return (date: Date) => {
-      if(!this.month) {
-        this.month = date.getMonth() +1;
+      if (!this.month) {
+        this.month = date.getMonth() + 1;
         console.log('emit');
       }
-      if(this.month !== date.getMonth() +1) {
-        this.month = date.getMonth() +1;
+      if (this.month !== date.getMonth() + 1) {
+        this.month = date.getMonth() + 1;
         console.log('emit');
       }
       return this.changeMonth(date);
     };
   };
   changeMonth(date: Date) {
-    const [filter] = this.dates.filter(item => this.compareDates(item.date, date));
-    if (filter) {
-      this.changeInnerContent(filter);
-      return 'example-custom-date-class';
+    const [filtered] = this.data.filter(item => this.compareDates(item.date, date));
+    if (filtered) {
+      if (filtered?.disabled) return 'disabled';
+      this.changeInnerContent(filtered);
+      return 'primary';
     }
   }
   compareDates(first: Date, second: Date) {
@@ -58,8 +60,13 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       const cells = Array.from(document.querySelectorAll<HTMLDivElement>('.mat-calendar .mat-calendar-body-cell-content'));
       const [cell] = cells.filter(cell => +cell.outerText == object.date.getDate()) as HTMLDivElement[];
-      cell.innerText = cell.innerText + `\n${object.occupancy}`;
+      if (object.occupancy) cell.innerText = cell.innerText + `\n${object.occupancy}`;
     });
+  }
+
+  myFilter = (date: Date): boolean => {
+    const [filter] = this.data.filter(item => this.compareDates(item.date, date));
+    return filter?.disabled ? false : true;
   }
 
 }
