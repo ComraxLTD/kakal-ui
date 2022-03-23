@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FilterChangeEvent, FilterState, FilterType } from './filters.types';
 import { FiltersService } from './filters.service';
+import { removeMultiFilter } from './filters.helpers';
 import { FormGroup } from '@angular/forms';
 import {
   FormActions,
@@ -96,7 +97,7 @@ export class FiltersComponent implements OnInit {
   // on multi remove event
   public onRemoveMultiFilter(option: { key: string; index: number }): void {
     const { key } = option;
-    const filterState = this.filterService.removeMultiFilter(option);
+    const filterState = removeMultiFilter(option);
 
     if (filterState[key]) {
       const value = filterState[key].value as SelectOption[];
@@ -119,7 +120,6 @@ export class FiltersComponent implements OnInit {
 
   private _emitChanged() {
     const filterState = this.filterService.getState();
-    console.log('emit changed', filterState);
     this.filterChanged.emit(filterState);
   }
 }
