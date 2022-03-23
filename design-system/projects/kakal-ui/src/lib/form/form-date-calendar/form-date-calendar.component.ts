@@ -30,12 +30,12 @@ export class FormDateCalendarComponent implements OnInit {
   
   dateClass(): MatCalendarCellClassFunction<Date> {
     return (date: Date) => {
-      if(!this.month) {
-        this.month = date.getMonth() +1;
+      if (!this.month) {
+        this.month = date.getMonth() + 1;
         console.log('emit');
       }
-      if(this.month !== date.getMonth() +1) {
-        this.month = date.getMonth() +1;
+      if (this.month !== date.getMonth() + 1) {
+        this.month = date.getMonth() + 1;
         console.log('emit');
       }
       return this.changeMonth(date);
@@ -44,8 +44,9 @@ export class FormDateCalendarComponent implements OnInit {
   changeMonth(date: Date) {
     const [filter] = this.data.filter(item => this.compareDates(item.date, date));
     if (filter) {
+      if (filter?.disabled) return 'disabled';
       this.changeInnerContent(filter);
-      return 'example-custom-date-class';
+      return 'primary';
     }
   }
   compareDates(first: Date, second: Date) {
@@ -59,8 +60,12 @@ export class FormDateCalendarComponent implements OnInit {
     setTimeout(() => {
       const cells = Array.from(document.querySelectorAll<HTMLDivElement>('.mat-calendar .mat-calendar-body-cell-content'));
       const [cell] = cells.filter(cell => +cell.outerText == object.date.getDate()) as HTMLDivElement[];
-      cell.innerText = cell.innerText + `\n${object.occupancy}`;
+      if (object.occupancy) cell.innerText = cell.innerText + `\n${object.occupancy}`;
     });
   }
 
+  myFilter = (date: Date): boolean => {
+    const [filter] = this.data.filter(item => this.compareDates(item.date, date));
+    return filter?.disabled ? false : true;
+  }
 }

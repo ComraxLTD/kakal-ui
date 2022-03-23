@@ -1,4 +1,15 @@
-::ng-deep .example-custom-date-class {
-    background: orange!important;
+@use "../../../kakal-ui/src/styles/variables" as main;
+
+// ::ng-deep .example-custom-date-class {
+//     background: orange !important;
+//     border-radius: 100%;
+// }
+::ng-deep .primary {
+    background: rgba($color: main.color(primary), $alpha: 0.2) !important;
     border-radius: 100%;
-  }
+}
+
+::ng-deep .disabled {
+    background: rgba($color: main.color(disable), $alpha: 0.2) !important;
+    border-radius: 100%;
+}
