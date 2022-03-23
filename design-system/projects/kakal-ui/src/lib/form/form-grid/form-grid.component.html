@@ -107,6 +107,24 @@
             ></kkl-form-checkbox>
           </mat-grid-tile>
         </ng-container>
+            <!-- COUNTER INPUT SECTION -->
+            <ng-container *ngSwitchCase="'checkbox'">
+              <mat-grid-tile
+                [colspan]="
+                  question?.gridProps?.fullWidth
+                    ? cols
+                    : question?.gridProps?.cols || 1
+                "
+                [rowspan]="question?.gridProps?.rows || 1"
+              >
+                <kkl-form-counter
+                [control]="formGroup.controls[question.key]"
+                [key]="question?.key"
+                [icon]="question?.icon"
+                [label]="question?.label"
+              ></kkl-form-counter>
+              </mat-grid-tile>
+            </ng-container>
         <!-- RADIO BUTTON INPUT SECTION -->
         <ng-container *ngSwitchCase="'radio'">
           <mat-grid-tile
