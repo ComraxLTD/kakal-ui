@@ -119,6 +119,15 @@ export class FormDateComponent implements OnInit {
 
     this.dateChanged.emit(formChangeEvent);
   }
+  public onDateInput(event: MatDatepickerInputEvent<Date>): void {
+    const formChangeEvent = this.setFormChangeEvent({
+      value: event.value['_d'],
+      action: FormActions.DATE_CHANGED,
+    });
+
+    console.log(formChangeEvent)
+    // this.dateChanged.emit(formChangeEvent);
+  }
 
   public onFocus(): void {
     const formChangeEvent = this.setFormChangeEvent({
