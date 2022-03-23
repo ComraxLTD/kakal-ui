@@ -1,28 +1,26 @@
-<div class="icon-container">
-  <mat-icon
-    appSize
-    [color]="color"
-    [size]="size"
-    type="icon"
-    [ngStyle]="{
-      background: backgroundColor
-    }"
-    *ngIf="type === 'svg'"
-    [svgIcon]="key"
-    >
-  </mat-icon>
-  <mat-icon
-    kkl-icon
-    [color]="color"
-    [ngStyle]="{
-      transform: scale,
-      fontSize: size + 'rem'
-    }"
-    *ngIf="type === 'mat'"
-    >{{ key }}</mat-icon
-    >
-  </div>
+<mat-icon
+  appSize
+  [color]="color"
+  [size]="size"
+  type="icon"
+  [ngStyle]="{
+    background: backgroundColor
+  }"
+  *ngIf="type === 'svg'"
+  [svgIcon]="key"
+>
+</mat-icon>
+<mat-icon
+  kkl-icon
+  [color]="color"
+  [ngStyle]="{
+    transform: scale,
+    fontSize: size + 'rem'
+  }"
+  *ngIf="type === 'mat'"
+  >{{ key }}</mat-icon
+>
 
-  <!-- color: palette[disabled ? 'disable' : color],
+<!-- color: palette[disabled ? 'disable' : color],
   fill: palette[disabled ? 'disable' : color],
   stroke: stroke && palette[disabled ? 'disable' : stroke], -->

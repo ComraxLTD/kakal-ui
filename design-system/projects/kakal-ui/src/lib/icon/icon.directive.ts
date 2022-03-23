@@ -1,8 +1,8 @@
 import { Directive, HostBinding, Input } from '@angular/core';
-import { palletteClassesMap } from '../../styles/theme';
+import { palletteClassesMap, palette, Palette } from '../../styles/theme';
 
 @Directive({
-  selector: '[kkl-icon]',
+  selector: '[kkl-icon], mat-icon',
 })
 export class KKLIconDirective {
   @HostBinding('class') private _class;
@@ -17,13 +17,16 @@ export class KKLIconDirective {
     this.invalidate();
   }
 
-  private _color: string = 'text';
+  @HostBinding('style.color')
+  private iconColor: string;
+
+  private _color: Palette = 'default';
 
   @Input()
-  get color(): string {
+  get color(): Palette {
     return this._color;
   }
-  set color(value: string) {
+  set color(value: Palette) {
     this._color = value;
     this.invalidate();
   }
@@ -34,6 +37,10 @@ export class KKLIconDirective {
     this.invalidate();
   }
   private invalidate() {
-    this._class = this._class + ` ${palletteClassesMap[this._color]}`;
+    if (palletteClassesMap[this._color]) {
+      this._class = this._class + ` ${palletteClassesMap[this._color]}`;
+    } else {
+      this.iconColor = palette[this._color];
+    }
   }
 }
