@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { KKLFormCounterModule } from '../../projects/kakal-ui/src/lib/form/form-counter/form-counter.module';
-import { KKLFormCounterComponent } from '../../projects/kakal-ui/src/lib/form/form-counter/form-counter.component';
+import { FormCounterComponent } from '../../projects/kakal-ui/src/lib/form/form-counter/form-counter.component';
 
 export default {
   title: 'Form/Counter',
@@ -10,7 +10,7 @@ export default {
       imports: [KKLFormCounterModule],
     }),
   ],
-  component: KKLFormCounterComponent,
+  component: FormCounterComponent,
   argTypes: {
     control: {
       name: 'control',
@@ -46,8 +46,8 @@ export default {
 },
 } as Meta;
 
-const Template: Story<KKLFormCounterComponent> = (args: KKLFormCounterComponent) => ({
-  component: KKLFormCounterComponent,
+const Template: Story<FormCounterComponent> = (args: FormCounterComponent) => ({
+  component: FormCounterComponent,
   props: args,
 });
 

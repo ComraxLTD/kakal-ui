@@ -16,6 +16,7 @@ import { MessageService } from '../services/message.service';
 import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { Appearance } from '../models/question.model';
 import { FormChangeEvent } from '../models/form.options';
+import { FormActions } from '../models/form.actions';
 
 export const MY_FORMATS = {
   parse: {
@@ -44,7 +45,6 @@ export const MY_FORMATS = {
   ],
 })
 export class FormDateComponent implements OnInit {
-
   @Input() public control: FormControl;
   @Input() public key: string;
   @Input() public range: boolean;
@@ -98,11 +98,16 @@ export class FormDateComponent implements OnInit {
       });
   }
 
-  private getFormOption(): FormChangeEvent {
+  private getFormOption(props: {
+    value: any;
+    action: FormActions;
+  }): FormChangeEvent {
+    const { value, action } = props;
     const FormChangeEvent: FormChangeEvent = {
       key: this?.key,
       control: this?.control,
       index: this?.index,
+      action,
     };
 
     return FormChangeEvent;
@@ -141,6 +146,8 @@ export class FormDateComponent implements OnInit {
   }
 
   public onFocus() {
-    this.focus.emit(this.getFormOption());
+    this.focus.emit(
+      this.getFormOption({ value: true, action: FormActions.FOCUS_CHANGED })
+    );
   }
 }

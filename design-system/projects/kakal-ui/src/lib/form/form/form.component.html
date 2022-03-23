@@ -2,16 +2,8 @@
   <ng-container *ngSwitchCase="'grid'">
     <kkl-form-grid
       [group]="group"
-      (valueChanged)="onValueChanged($event)"
-      (selectChanged)="onSelectChanged($event)"
-      (queryChanged)="onQueryChanged($event)"
       (submitEvent)="onSubmitEvent()"
-      (openChanged)="onOpenChanged($event)"
-      (multiOptionsSelected)="onMultiOptionSelected($event)"
-      (optionSelected)="onOptionSelected($event)"
-      (queryChanged)="onQueryChanged($event)"
-      (fileChanged)="onFileChanged($event)"
-      (focus)="onFocus($event)"
+      (formChangeEvent)="formChanged($event)"
     ></kkl-form-grid>
   </ng-container>
   <ng-container *ngSwitchCase="'flex'">
@@ -20,16 +12,8 @@
       [formGroup]="formGroup"
       [grid]="grid"
       [optionsMap]="optionsMap"
-      (valueChanged)="onValueChanged($event)"
-      (selectChanged)="onSelectChanged($event)"
-      (queryChanged)="onQueryChanged($event)"
       (submitEvent)="onSubmitEvent()"
-      (openChanged)="onOpenChange($event)"
-      (multiOptionsSelected)="onMultiOptionSelected($event)"
-      (optionSelected)="onOptionSelected($event)"
-      (queryChanged)="onQueryChanged($event)"
-      (fileChanged)="onFileChanged($event)"
-      (focus)="onFocus($event)"
+      (formChangeEvent)="onFormChanged($event)"
     ></kkl-form-flex>
   </ng-container>
 </ng-container>

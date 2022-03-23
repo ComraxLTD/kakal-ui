@@ -4,6 +4,7 @@ import {
   mapTo,
   merge,
   Observable,
+  pluck,
   startWith,
   Subject,
 } from 'rxjs';
@@ -21,7 +22,7 @@ export class FormDataSource {
   }
 
   public getFormState$(
-    FormChangeEvent: FormChangeEvent = { event: FormActions.DEFAULT }
+    FormChangeEvent: FormChangeEvent = { action: FormActions.DEFAULT }
   ): Observable<FormChangeEvent> {
     return this.formState$.pipe(startWith(FormChangeEvent));
   }
@@ -30,15 +31,16 @@ export class FormDataSource {
   public getStateByAction(events?: FormActions[]): Observable<FormChangeEvent> {
     return this.getFormState$().pipe(
       filter((FormChangeEvent) => {
-        return events ? events.indexOf(FormChangeEvent.event) !== -1 : true;
+        return events ? events.indexOf(FormChangeEvent.action) !== -1 : true;
       })
     );
   }
   // method  which return only form events
-  public getEvents(events?: FormActions[]): Observable<FormActions> {
+  public getEvents(actions?: FormActions[]): Observable<FormActions> {
     return this.getFormState$().pipe(
-      map((FormChangeEvent: FormChangeEvent) => FormChangeEvent.event),
-      filter((event) => (events ? events.indexOf(event) !== -1 : true))
+      // map((formChangeEvent: FormChangeEvent) => formChangeEvent.action),
+      pluck('action'),
+      filter((action) => (actions ? actions.indexOf(action) !== -1 : true))
     );
   }
 
@@ -48,30 +50,30 @@ export class FormDataSource {
   private autocomplete(formChangeEvent?: FormChangeEvent) {
     this.formStateSubject.next({
       ...formChangeEvent,
-      event: FormActions.VALUE_CHANGED,
+      action: FormActions.VALUE_CHANGED,
     });
   }
 
   //  use when update form - formGroup.pathValue/setValue
   private edit(formChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...formChangeEvent, event: FormActions.EDIT });
+    this.formStateSubject.next({ ...formChangeEvent, action: FormActions.EDIT });
   }
 
   //  use when reset form - formGroup.reset()
   private clear(formChangeEvent?: FormChangeEvent) {
     this.formStateSubject.next({
       ...formChangeEvent,
-      event: FormActions.CLEAR,
+      action: FormActions.CLEAR,
     });
   }
   //  use when reset form disable - formGroup.disabled()
   private disable() {
-    this.formStateSubject.next({ event: FormActions.DISABLED });
+    this.formStateSubject.next({ action: FormActions.DISABLED });
   }
 
   //  use when update form options
   private updateOptions(formChangeEvent?: FormChangeEvent) {
-    // this.formStateSubject.next({ ...FormChangeEvent, event: 'updateOptions' });
+    // this.formStateSubject.next({ ...FormChangeEvent, action: 'updateOptions' });
   }
 
   // DATA EVENTS SECTION
@@ -80,7 +82,7 @@ export class FormDataSource {
   private delete(formChangeEvent?: FormChangeEvent) {
     this.formStateSubject.next({
       ...formChangeEvent,
-      event: FormActions.DELETE,
+      action: FormActions.DELETE,
     });
   }
 
@@ -88,20 +90,20 @@ export class FormDataSource {
   private create(formChangeEvent?: FormChangeEvent) {
     this.formStateSubject.next({
       ...formChangeEvent,
-      event: FormActions.CREATE,
+      action: FormActions.CREATE,
     });
   }
 
   // use when to add created item
   private add(formChangeEvent?: FormChangeEvent) {
-    this.formStateSubject.next({ ...formChangeEvent, event: FormActions.ADD });
+    this.formStateSubject.next({ ...formChangeEvent, action: FormActions.ADD });
   }
 
   // use when save item form array
   private submit(formChangeEvent?: FormChangeEvent) {
     this.formStateSubject.next({
       ...formChangeEvent,
-      event: FormActions.SUBMIT,
+      action: FormActions.SUBMIT,
     });
   }
 
@@ -109,16 +111,16 @@ export class FormDataSource {
   private update(formChangeEvent?: FormChangeEvent) {
     this.formStateSubject.next({
       ...formChangeEvent,
-      event: FormActions.UPDATE,
+      action: FormActions.UPDATE,
     });
   }
 
   private createAction<T>(
     prop: { formChangeEvent: FormChangeEvent },
-    event?: FormActions
+    action?: FormActions
   ) {
     const { formChangeEvent } = prop;
-    this.formStateSubject.next({ ...formChangeEvent, event });
+    this.formStateSubject.next({ ...formChangeEvent, action });
   }
 
   public dispatch = {
@@ -145,8 +147,8 @@ export class FormDataSource {
     update: (formChangeEvent?: FormChangeEvent) => this.update(formChangeEvent),
   };
 
-  public on(event: FormActions): Observable<FormChangeEvent> {
-    return this.getStateByAction([event]);
+  public on(action: FormActions): Observable<FormChangeEvent> {
+    return this.getStateByAction([action]);
   }
 
   // public listen = {

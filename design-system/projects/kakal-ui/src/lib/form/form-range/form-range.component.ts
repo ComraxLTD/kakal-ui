@@ -109,7 +109,7 @@ export class FormRangeComponent
       key: this.key,
       value: { ...this.range, type: 'number' },
       index: this.index,
-      event: FormActions.VALUE_CHANGED,
+      action: FormActions.RANGE_CHANGED,
     } as FormChangeEvent;
   }
 

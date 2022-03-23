@@ -108,14 +108,16 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  private getFormOption(): FormChangeEvent {
-    const FormChangeEvent: FormChangeEvent = {
-      key: this?.key,
-      index: this?.index,
-    };
+  // private getFormOption(): FormChangeEvent {
+  //   const FormChangeEvent: FormChangeEvent = {
+  //     key: this?.key,
+  //     index: this?.index,
+  //     action
 
-    return FormChangeEvent;
-  }
+  //   };
+
+  //   return FormChangeEvent;
+  // }
 
   private setErrorMessage$() {
     return this.dateRange.statusChanges.pipe(
@@ -146,7 +148,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
       key: this.key,
       value: { ...this.range, type: 'date' },
       index: this.index,
-      event: FormActions.VALUE_CHANGED,
+      action: FormActions.VALUE_CHANGED,
     } as FormChangeEvent<Range<Date>>;
   }
 
@@ -155,7 +157,4 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     this.dateRangeChanged.emit(this.setChangeEvent());
   }
 
-  public onFocus() {
-    this.focus.emit(this.getFormOption());
-  }
 }
