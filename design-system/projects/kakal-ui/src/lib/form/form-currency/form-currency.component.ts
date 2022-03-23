@@ -9,7 +9,7 @@ import { QuestionGroupModel } from '../models/question-group.model';
 import {
   QuestionSelectModel,
   SelectOption,
-} from '../models/question-select.model';
+} from '../form-select/question-select.model';
 
 import { FormService, Question } from '../services/form.service';
 import { Currency, QuestionCurrencyModel } from './question-currency.model';

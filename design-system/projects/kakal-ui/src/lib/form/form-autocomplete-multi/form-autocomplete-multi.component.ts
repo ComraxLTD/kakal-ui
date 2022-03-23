@@ -9,7 +9,7 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
-import { SelectOption } from '../models/question-select.model';
+import { SelectOption } from '../form-select/question-select.model';
 import { FormDataSource } from '../models/form-datasource';
 import { Observable, of } from 'rxjs';
 import { FormChangeEvent } from '../models/form.options';
@@ -90,7 +90,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
 
     };
 
-    this.formDataSource.dispatch.queryChanged(FormChangeEvent);
+    this.formDataSource.dispatch(FormChangeEvent);
   }
 
   public onOptionSelected(event: MatAutocompleteSelectedEvent) {
@@ -102,7 +102,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
       action : FormActions.OPTION_SELECTED
     };
 
-    this.formDataSource.dispatch.optionSelected(FormChangeEvent);
+    this.formDataSource.dispatch(FormChangeEvent);
   }
 
   public onSelectionChange(selectionList: MatSelectionList): void {
@@ -117,7 +117,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
     this.multiOptionsSelected.emit({
       key: this.key,
       value: options,
-      action : FormActions.MULTI_SELECTED
+      action : FormActions.MULTI_OPTION_SELECTED
     });
   }
 

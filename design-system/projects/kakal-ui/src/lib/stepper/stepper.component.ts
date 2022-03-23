@@ -10,7 +10,7 @@ import {
   CardStepModel,
   StepperDirection,
 } from '../cards/card-step/card-step.model';
-import { QuestionSelectModel } from '../form/models/question-select.model';
+import { QuestionSelectModel } from '../form/form-select/question-select.model';
 import { FormService, Question } from '../form/services/form.service';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -40,25 +40,10 @@ export class StepperComponent {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    if (this.question$) {
-      this.selectQuestion$ = this.setInputSelect();
-    }
+    
 
   }
 
-  private setInputSelect(): Observable<Question> {
-    return this.question$.pipe(
-      map((question) => {
-        const select = this.formService.setQuestion(question);
-        const control = this.formService.getFieldControl(question);
-
-        if (select instanceof QuestionSelectModel) {
-          select.control = control;
-        }
-        return select;
-      })
-    );
-  }
 
   public onChangeStep(step: CardStepModel) {
     this.changeStep.emit(step);

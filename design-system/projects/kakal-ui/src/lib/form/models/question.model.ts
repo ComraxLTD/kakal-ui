@@ -52,18 +52,7 @@ export type ControlType =
   | 'texteditor'
   | 'cleave';
 
-// export type QuestionType =
-//   | 'default'
-//   | 'group'
-//   | 'upload'
-//   | 'select'
-//   | 'custom'
-//   | 'date'
-//   | 'dateRange'
-//   | 'checkbox'
-//   | 'radio'
-//   | 'textEditor'
-//   | 'currency';
+
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 

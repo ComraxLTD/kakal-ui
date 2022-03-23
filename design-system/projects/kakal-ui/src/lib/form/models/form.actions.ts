@@ -34,11 +34,15 @@ export enum FormActions {
   // Event that is emitted whenever an option from the list is selected.
   OPTION_SELECTED = 'optionSelected',
 
+
+  // Emits a change event whenever the selected state of an option changes.
+  MULTI_OPTION_SELECTED = 'multiOptionSelected',
+
   // Event emitted when the selected value has been changed by the user.
   SELECT_CHANGED = 'selectChanged',
 
   // Emits a change event whenever the selected state of an option changes.
-  MULTI_SELECTED = 'multiOptionSelected',
+  MULTI_SELECT_CHANGED = 'multiChangedSelected',
 }
 
 export function valueChanged<T>(options: {

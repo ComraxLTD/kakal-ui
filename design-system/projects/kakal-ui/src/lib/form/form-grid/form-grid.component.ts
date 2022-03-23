@@ -1,5 +1,4 @@
 import { GridProps } from '../models/question.model';
-import { QuestionGroupModel } from '../models/question-group.model';
 import { FormGroup } from '@angular/forms';
 import {
   Component,

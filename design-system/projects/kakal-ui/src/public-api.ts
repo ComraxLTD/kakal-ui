@@ -68,6 +68,8 @@ export * from './lib/form/form-texteditor/form-texteditor.component';
 
 export * from './lib/form/form-select/form-select.module';
 export * from './lib/form/form-select/form-select.component';
+export * from './lib/form/form-select/question-select.model';
+
 
 export * from './lib/form/form-range/form-range.module';
 export * from './lib/form/form-range/form-range.component';
@@ -83,6 +85,7 @@ export * from './lib/form/form-currency/form-currency.service';
 
 export * from './lib/form/form-autocomplete/form-autocomplete.module';
 export * from './lib/form/form-autocomplete/form-autocomplete.component';
+export * from './lib/form/form-autocomplete/question-autocomplete';
 
 export * from './lib/form/form-search/form-search.module';
 export * from './lib/form/form-search/form-search.component';
@@ -94,10 +97,9 @@ export * from './lib/form/services/validations.service';
 
 // FORM QUESTIONS //
 
-export * from './lib/form/models/question-autocomplete';
+
 export * from './lib/form/models/question-group.model';
 export * from './lib/form/models/question-number.model';
-export * from './lib/form/models/question-select.model';
 export * from './lib/form/models/question-sum.model';
 export * from './lib/form/models/question-text.model';
 export * from './lib/form/models/question-textarea.model';

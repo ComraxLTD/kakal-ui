@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { CheckboxOption } from '../models/question-checkbox.model';
+import { CheckboxOption } from '../form-checkbox/question-checkbox.model';
 
 
 @Component({

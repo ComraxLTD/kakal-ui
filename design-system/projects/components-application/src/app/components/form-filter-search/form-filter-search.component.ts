@@ -133,7 +133,7 @@ export class FormFilterSearchComponent implements OnInit {
       questions: initQuestions,
       options: { gridProps: { cols: 5 } },
     });
-
+    console.log(group);
     return group;
   }
 

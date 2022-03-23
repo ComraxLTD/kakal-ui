@@ -1,6 +1,6 @@
 import { FormActions as FormActions } from './form.actions';
 import { FormChangeEvent as FormChangeEvent } from './form.options';
-import { SelectOption as KKLSelectOption } from './question-select.model';
+import { SelectOption as KKLSelectOption } from '../form-select/question-select.model';
 import { FormDataSource as KKLFormDataSource } from './form-datasource';
 
 import { Question } from '../services/form.service';

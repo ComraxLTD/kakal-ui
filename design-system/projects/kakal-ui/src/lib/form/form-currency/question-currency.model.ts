@@ -2,7 +2,7 @@ import { ValidatorFn } from '@angular/forms';
 import {
   QuestionSelectModel,
   SelectOption,
-} from '../models/question-select.model';
+} from '../form-select/question-select.model';
 import { GridProps } from '../models/question.model';
 
 export interface Currency {

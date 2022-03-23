@@ -1,6 +1,5 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnInit,
@@ -10,10 +9,10 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
-import { SelectOption } from '../models/question-select.model';
+import { SelectOption } from '../form-select/question-select.model';
 import { FormChangeEvent } from '../models/form.options';
-import { of } from 'rxjs';
 import { FormActions } from '../models/form.actions';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'kkl-form-autocomplete',
@@ -88,7 +87,7 @@ export class FormAutocompleteComponent implements OnInit {
     this.multiOptionsSelected.emit({
       key: this.key,
       value: options,
-      action: FormActions.MULTI_SELECTED,
+      action: FormActions.MULTI_OPTION_SELECTED,
     });
   }
 
