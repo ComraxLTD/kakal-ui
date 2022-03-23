@@ -290,13 +290,13 @@
             "methods": []
         },
         {
-            "name": "ColumnState",
-            "id": "interface-ColumnState-069aefea2edd14ee08c4208af9f3a4f3",
+            "name": "headerState",
+            "id": "interface-headerState-069aefea2edd14ee08c4208af9f3a4f3",
             "file": "projects/lib-kakal-ui/src/lib/app/components/columns/column.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { SelectOption } from '../form/models/question-select.model';\r\nimport { ElementRef } from '@angular/core';\r\nimport { Question } from '../form/services/form.service';\r\nimport { ControlType } from '../form/models/question.model';\r\n\r\nexport interface ColumnState {\r\n  expendable?: boolean;\r\n  selectable?: boolean;\r\n  sortable?: boolean;\r\n  filterable?: boolean;\r\n  data : any\r\n}\r\n\r\nexport declare type ColumnDef<T> = keyof T | 'select' | 'actions' | 'accordion' | string;\r\n\r\nexport declare type SortDir = 'desc' | 'asc';\r\n\r\nexport declare type ColumnType =\r\n  | 'number'\r\n  | 'date'\r\n  | 'text'\r\n  | 'custom'\r\n  | 'actions'\r\n  | 'select'\r\n  | 'expend';\r\n\r\nexport class ColumnModel<T> {\r\n  public rowId?: string | number;\r\n  public columnDef?: ColumnDef<T>;\r\n  public label?: string;\r\n  public type?: ColumnType;\r\n  public control?: ControlType;\r\n  public question?: Question;\r\n  public slotRef?: ElementRef;\r\n  public center?: boolean;\r\n  public expendable?: boolean;\r\n  public selectable?: boolean;\r\n  public sortable?: boolean;\r\n  public sortDir?: SortDir;\r\n  public filterable?: boolean;\r\n  public filterOptions?: SelectOption[];\r\n  public footer?: boolean;\r\n  public icon?: string;\r\n\r\n  constructor(options?: {\r\n    rowId?: string | number;\r\n    columnDef?: ColumnDef<T>;\r\n    label?: string;\r\n    type?: ColumnType;\r\n    control?: ControlType;\r\n    question?: Question;\r\n    slotRef?: ElementRef;\r\n    expendable?: boolean;\r\n    selectable?: boolean;\r\n    center?: boolean;\r\n    sortable?: boolean;\r\n    sortDir?: SortDir;\r\n    filterable?: boolean;\r\n    filterOptions?: SelectOption[];\r\n    footer?: boolean;\r\n    icon?: string;\r\n  }) {\r\n    this.rowId = options.rowId;\r\n    this.columnDef = options?.columnDef || '';\r\n    this.label = options?.label || '';\r\n    this.type = options?.type || 'text';\r\n    this.control = options?.control;\r\n    this.question = options?.question;\r\n    this.slotRef = options?.slotRef || null;\r\n    this.center = options?.center || false;\r\n    this.expendable = options?.expendable || false;\r\n    this.selectable = options?.selectable || false;\r\n    this.sortable = options?.sortable || false;\r\n    this.sortDir = options?.sortDir || 'asc';\r\n    this.filterable = options?.filterable || false;\r\n    this.filterOptions = options?.filterOptions || [];\r\n    this.footer = options?.footer || false;\r\n    this.icon = options?.icon || '';\r\n  }\r\n}\r\n",
+            "sourceCode": "import { SelectOption } from '../form/models/question-select.model';\r\nimport { ElementRef } from '@angular/core';\r\nimport { Question } from '../form/services/form.service';\r\nimport { ControlType } from '../form/models/question.model';\r\n\r\nexport interface headerState {\r\n  expendable?: boolean;\r\n  selectable?: boolean;\r\n  sortable?: boolean;\r\n  filterable?: boolean;\r\n  data : any\r\n}\r\n\r\nexport declare type ColumnDef<T> = keyof T | 'select' | 'actions' | 'accordion' | string;\r\n\r\nexport declare type SortDir = 'desc' | 'asc';\r\n\r\nexport declare type ColumnType =\r\n  | 'number'\r\n  | 'date'\r\n  | 'text'\r\n  | 'custom'\r\n  | 'actions'\r\n  | 'select'\r\n  | 'expend';\r\n\r\nexport class ColumnModel<T> {\r\n  public rowId?: string | number;\r\n  public columnDef?: ColumnDef<T>;\r\n  public label?: string;\r\n  public type?: ColumnType;\r\n  public control?: ControlType;\r\n  public question?: Question;\r\n  public slotRef?: ElementRef;\r\n  public center?: boolean;\r\n  public expendable?: boolean;\r\n  public selectable?: boolean;\r\n  public sortable?: boolean;\r\n  public sortDir?: SortDir;\r\n  public filterable?: boolean;\r\n  public filterOptions?: SelectOption[];\r\n  public footer?: boolean;\r\n  public icon?: string;\r\n\r\n  constructor(options?: {\r\n    rowId?: string | number;\r\n    columnDef?: ColumnDef<T>;\r\n    label?: string;\r\n    type?: ColumnType;\r\n    control?: ControlType;\r\n    question?: Question;\r\n    slotRef?: ElementRef;\r\n    expendable?: boolean;\r\n    selectable?: boolean;\r\n    center?: boolean;\r\n    sortable?: boolean;\r\n    sortDir?: SortDir;\r\n    filterable?: boolean;\r\n    filterOptions?: SelectOption[];\r\n    footer?: boolean;\r\n    icon?: string;\r\n  }) {\r\n    this.rowId = options.rowId;\r\n    this.columnDef = options?.columnDef || '';\r\n    this.label = options?.label || '';\r\n    this.type = options?.type || 'text';\r\n    this.control = options?.control;\r\n    this.question = options?.question;\r\n    this.slotRef = options?.slotRef || null;\r\n    this.center = options?.center || false;\r\n    this.expendable = options?.expendable || false;\r\n    this.selectable = options?.selectable || false;\r\n    this.sortable = options?.sortable || false;\r\n    this.sortDir = options?.sortDir || 'asc';\r\n    this.filterable = options?.filterable || false;\r\n    this.filterOptions = options?.filterOptions || [];\r\n    this.footer = options?.footer || false;\r\n    this.icon = options?.icon || '';\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "data",
@@ -5277,13 +5277,13 @@
             "hostListeners": []
         },
         {
-            "name": "CardDashboardModel",
-            "id": "class-CardDashboardModel-9709954d527c7bea7c712dbebc595407",
-            "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-dashboard/card-dashboard.model.ts",
+            "name": "CardLobbyModel",
+            "id": "class-CardLobbyModel-9709954d527c7bea7c712dbebc595407",
+            "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-lobby/card-lobby.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ListItem } from \"../../list-item/list-item.model\";\r\n\r\nexport class CardDashboardModel implements ListItem {\r\n  public label?: string;\r\n  public path?: string;\r\n  public svgUrl?: string;\r\n  public size?: number;\r\n\r\n  constructor(options: {\r\n    label?: string;\r\n    path?: string;\r\n    svgUrl?: string;\r\n    size?: number;\r\n  }) {\r\n    this.label = options?.label;\r\n    this.path = options?.path;\r\n    this.svgUrl = options?.svgUrl;\r\n    this.size = options?.size;\r\n\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { ListItem } from \"../../list-item/list-item.model\";\r\n\r\nexport class CardLobbyModel implements ListItem {\r\n  public label?: string;\r\n  public path?: string;\r\n  public svgUrl?: string;\r\n  public size?: number;\r\n\r\n  constructor(options: {\r\n    label?: string;\r\n    path?: string;\r\n    svgUrl?: string;\r\n    size?: number;\r\n  }) {\r\n    this.label = options?.label;\r\n    this.path = options?.path;\r\n    this.svgUrl = options?.svgUrl;\r\n    this.size = options?.size;\r\n\r\n  }\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -5686,7 +5686,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { SelectOption } from '../form/models/question-select.model';\r\nimport { ElementRef } from '@angular/core';\r\nimport { Question } from '../form/services/form.service';\r\nimport { ControlType } from '../form/models/question.model';\r\n\r\nexport interface ColumnState {\r\n  expendable?: boolean;\r\n  selectable?: boolean;\r\n  sortable?: boolean;\r\n  filterable?: boolean;\r\n  data : any\r\n}\r\n\r\nexport declare type ColumnDef<T> = keyof T | 'select' | 'actions' | 'accordion' | string;\r\n\r\nexport declare type SortDir = 'desc' | 'asc';\r\n\r\nexport declare type ColumnType =\r\n  | 'number'\r\n  | 'date'\r\n  | 'text'\r\n  | 'custom'\r\n  | 'actions'\r\n  | 'select'\r\n  | 'expend';\r\n\r\nexport class ColumnModel<T> {\r\n  public rowId?: string | number;\r\n  public columnDef?: ColumnDef<T>;\r\n  public label?: string;\r\n  public type?: ColumnType;\r\n  public control?: ControlType;\r\n  public question?: Question;\r\n  public slotRef?: ElementRef;\r\n  public center?: boolean;\r\n  public expendable?: boolean;\r\n  public selectable?: boolean;\r\n  public sortable?: boolean;\r\n  public sortDir?: SortDir;\r\n  public filterable?: boolean;\r\n  public filterOptions?: SelectOption[];\r\n  public footer?: boolean;\r\n  public icon?: string;\r\n\r\n  constructor(options?: {\r\n    rowId?: string | number;\r\n    columnDef?: ColumnDef<T>;\r\n    label?: string;\r\n    type?: ColumnType;\r\n    control?: ControlType;\r\n    question?: Question;\r\n    slotRef?: ElementRef;\r\n    expendable?: boolean;\r\n    selectable?: boolean;\r\n    center?: boolean;\r\n    sortable?: boolean;\r\n    sortDir?: SortDir;\r\n    filterable?: boolean;\r\n    filterOptions?: SelectOption[];\r\n    footer?: boolean;\r\n    icon?: string;\r\n  }) {\r\n    this.rowId = options.rowId;\r\n    this.columnDef = options?.columnDef || '';\r\n    this.label = options?.label || '';\r\n    this.type = options?.type || 'text';\r\n    this.control = options?.control;\r\n    this.question = options?.question;\r\n    this.slotRef = options?.slotRef || null;\r\n    this.center = options?.center || false;\r\n    this.expendable = options?.expendable || false;\r\n    this.selectable = options?.selectable || false;\r\n    this.sortable = options?.sortable || false;\r\n    this.sortDir = options?.sortDir || 'asc';\r\n    this.filterable = options?.filterable || false;\r\n    this.filterOptions = options?.filterOptions || [];\r\n    this.footer = options?.footer || false;\r\n    this.icon = options?.icon || '';\r\n  }\r\n}\r\n",
+            "sourceCode": "import { SelectOption } from '../form/models/question-select.model';\r\nimport { ElementRef } from '@angular/core';\r\nimport { Question } from '../form/services/form.service';\r\nimport { ControlType } from '../form/models/question.model';\r\n\r\nexport interface headerState {\r\n  expendable?: boolean;\r\n  selectable?: boolean;\r\n  sortable?: boolean;\r\n  filterable?: boolean;\r\n  data : any\r\n}\r\n\r\nexport declare type ColumnDef<T> = keyof T | 'select' | 'actions' | 'accordion' | string;\r\n\r\nexport declare type SortDir = 'desc' | 'asc';\r\n\r\nexport declare type ColumnType =\r\n  | 'number'\r\n  | 'date'\r\n  | 'text'\r\n  | 'custom'\r\n  | 'actions'\r\n  | 'select'\r\n  | 'expend';\r\n\r\nexport class ColumnModel<T> {\r\n  public rowId?: string | number;\r\n  public columnDef?: ColumnDef<T>;\r\n  public label?: string;\r\n  public type?: ColumnType;\r\n  public control?: ControlType;\r\n  public question?: Question;\r\n  public slotRef?: ElementRef;\r\n  public center?: boolean;\r\n  public expendable?: boolean;\r\n  public selectable?: boolean;\r\n  public sortable?: boolean;\r\n  public sortDir?: SortDir;\r\n  public filterable?: boolean;\r\n  public filterOptions?: SelectOption[];\r\n  public footer?: boolean;\r\n  public icon?: string;\r\n\r\n  constructor(options?: {\r\n    rowId?: string | number;\r\n    columnDef?: ColumnDef<T>;\r\n    label?: string;\r\n    type?: ColumnType;\r\n    control?: ControlType;\r\n    question?: Question;\r\n    slotRef?: ElementRef;\r\n    expendable?: boolean;\r\n    selectable?: boolean;\r\n    center?: boolean;\r\n    sortable?: boolean;\r\n    sortDir?: SortDir;\r\n    filterable?: boolean;\r\n    filterOptions?: SelectOption[];\r\n    footer?: boolean;\r\n    icon?: string;\r\n  }) {\r\n    this.rowId = options.rowId;\r\n    this.columnDef = options?.columnDef || '';\r\n    this.label = options?.label || '';\r\n    this.type = options?.type || 'text';\r\n    this.control = options?.control;\r\n    this.question = options?.question;\r\n    this.slotRef = options?.slotRef || null;\r\n    this.center = options?.center || false;\r\n    this.expendable = options?.expendable || false;\r\n    this.selectable = options?.selectable || false;\r\n    this.sortable = options?.sortable || false;\r\n    this.sortDir = options?.sortDir || 'asc';\r\n    this.filterable = options?.filterable || false;\r\n    this.filterOptions = options?.filterOptions || [];\r\n    this.footer = options?.footer || false;\r\n    this.icon = options?.icon || '';\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -9173,13 +9173,13 @@
     ],
     "directives": [
         {
-            "name": "BorderDirective",
-            "id": "directive-BorderDirective-e3d4674126633274fc48e4acad410664",
+            "name": "KKLBorderDirective",
+            "id": "directive-KKLBorderDirective-e3d4674126633274fc48e4acad410664",
             "file": "projects/lib-kakal-ui/src/lib/app/utilities/directives/border.directive.ts",
             "type": "directive",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { palette, Palette } from '../../../styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appBorder]'\r\n})\r\nexport class BorderDirective {\r\n\r\n  private palette = palette;\r\n\r\n  @Input() color: Palette;\r\n  @Input() size: number;\r\n\r\n  @HostBinding('style.border') private border: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.border = `${this.size || 1}px solid ${this.palette[this.color || 'primary']}`;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Directive, HostBinding, Input } from '@angular/core';\r\nimport { palette, Palette } from '../../../styles/theme';\r\n\r\n@Directive({\r\n  selector: '[appBorder]'\r\n})\r\nexport class KKLBorderDirective {\r\n\r\n  private palette = palette;\r\n\r\n  @Input() color: Palette;\r\n  @Input() size: number;\r\n\r\n  @HostBinding('style.border') private border: string;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.border = `${this.size || 1}px solid ${this.palette[this.color || 'primary']}`;\r\n  }\r\n}\r\n",
             "selector": "[appBorder]",
             "providers": [],
             "inputsClass": [
@@ -9996,19 +9996,19 @@
         {
             "name": "CardDashboardComponent",
             "id": "component-CardDashboardComponent-982408251f5e29e4b11f11d55c0ffc79",
-            "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-dashboard/card-dashboard.component.ts",
+            "file": "projects/lib-kakal-ui/src/lib/app/components/cards/card-lobby/card-lobby.component.ts",
             "encapsulation": [],
             "entryComponents": [],
             "inputs": [],
             "outputs": [],
             "providers": [],
-            "selector": "kkl-card-dashboard",
+            "selector": "kkl-card-lobby",
             "styleUrls": [
-                "./card-dashboard.component.scss"
+                "./card-lobby.component.scss"
             ],
             "styles": [],
             "templateUrl": [
-                "./card-dashboard.component.html"
+                "./card-lobby.component.html"
             ],
             "viewProviders": [],
             "inputsClass": [
@@ -10017,13 +10017,13 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 14,
-                    "type": "CardDashboardModel"
+                    "type": "CardLobbyModel"
                 }
             ],
             "outputsClass": [
                 {
                     "name": "onClick",
-                    "defaultValue": "new EventEmitter<CardDashboardModel>()",
+                    "defaultValue": "new EventEmitter<CardLobbyModel>()",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 15,
@@ -10099,12 +10099,12 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Subscription } from 'rxjs';\r\nimport { BreakpointService } from '../../../utilities/services/breakpoint.service';\r\nimport { CardDashboardModel } from './card-dashboard.model';\r\n\r\n@Component({\r\n  selector: 'kkl-card-dashboard',\r\n  templateUrl: './card-dashboard.component.html',\r\n  styleUrls: ['./card-dashboard.component.scss']\r\n})\r\nexport class CardDashboardComponent implements OnInit {\r\n\r\n\r\n  @Input() card: CardDashboardModel;\r\n  @Output() onClick = new EventEmitter<CardDashboardModel>();\r\n\r\n  private subscription: Subscription;\r\n  constructor(private breakpointService: BreakpointService) {}\r\n\r\n  ngOnInit(): void {\r\n    this.subscribeToTablet();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.subscription.unsubscribe();\r\n  }\r\n\r\n  public onCardClick() {\r\n    this.onClick.emit(this.card);\r\n  }\r\n\r\n  private subscribeToTablet() {\r\n    this.subscription = this.breakpointService\r\n      .isTablet()\r\n      .subscribe((table: boolean) => {\r\n        this.card.size = table ? 6 : 8;\r\n      });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { Subscription } from 'rxjs';\r\nimport { BreakpointService } from '../../../utilities/services/breakpoint.service';\r\nimport { CardLobbyModel } from './card-lobby.model';\r\n\r\n@Component({\r\n  selector: 'kkl-card-lobby',\r\n  templateUrl: './card-lobby.component.html',\r\n  styleUrls: ['./card-lobby.component.scss']\r\n})\r\nexport class CardDashboardComponent implements OnInit {\r\n\r\n\r\n  @Input() card: CardLobbyModel;\r\n  @Output() onClick = new EventEmitter<CardLobbyModel>();\r\n\r\n  private subscription: Subscription;\r\n  constructor(private breakpointService: BreakpointService) {}\r\n\r\n  ngOnInit(): void {\r\n    this.subscribeToTablet();\r\n  }\r\n\r\n  ngOnDestroy(): void {\r\n    this.subscription.unsubscribe();\r\n  }\r\n\r\n  public onCardClick() {\r\n    this.onClick.emit(this.card);\r\n  }\r\n\r\n  private subscribeToTablet() {\r\n    this.subscription = this.breakpointService\r\n      .isTablet()\r\n      .subscribe((table: boolean) => {\r\n        this.card.size = table ? 6 : 8;\r\n      });\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
                     "data": "@import \"../../../../styles/styles\";\r\n\r\n:host {\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\ndiv {\r\n  height: calc(100% - 10vh);\r\n}\r\n\r\n.card {\r\n  cursor: pointer;\r\n  background-color: rgba($color: #ffffff, $alpha: 0.82);\r\n  border-radius: 10px;\r\n  height: 100%;\r\n}\r\n\r\n",
-                    "styleUrl": "./card-dashboard.component.scss"
+                    "styleUrl": "./card-lobby.component.scss"
                 }
             ],
             "stylesData": "",
@@ -10969,7 +10969,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 17,
-                    "type": "CardDashboardModel[]"
+                    "type": "CardLobbyModel[]"
                 },
                 {
                     "name": "cols",
@@ -11074,7 +11074,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardDashboardModel } from '../../components/cards/card-dashboard/card-dashboard.model';\r\nimport { BreakpointService } from '../../utilities/services/breakpoint.service';\r\n\r\n@Component({\r\n  selector: 'kkl-dashboard',\r\n  templateUrl: './dashboard.component.html',\r\n  styleUrls: ['./dashboard.component.scss']\r\n})\r\nexport class DashboardComponent {\r\n\r\n  @Input() public prefix: string;\r\n  @Input() public cols: number;\r\n  @Input() public rows: number;\r\n  @Input() public moduleTitle: string;\r\n  @Input() public cards: CardDashboardModel[];\r\n\r\n  public md$: Observable<boolean>;\r\n\r\n  @Output() cardClick: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n  constructor(\r\n    private breakpointService: BreakpointService,\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.md$ = this.breakpointService.isTablet();\r\n    this.cols = this.cols ||  this.cards.length /2\r\n    this.rows = this.rows || 2\r\n  }\r\n\r\n  public onCardClick(card) {\r\n    this.cardClick.emit(card.path)\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\nimport { CardLobbyModel } from '../../components/cards/card-lobby/card-lobby.model';\r\nimport { BreakpointService } from '../../utilities/services/breakpoint.service';\r\n\r\n@Component({\r\n  selector: 'kkl-dashboard',\r\n  templateUrl: './dashboard.component.html',\r\n  styleUrls: ['./dashboard.component.scss']\r\n})\r\nexport class DashboardComponent {\r\n\r\n  @Input() public prefix: string;\r\n  @Input() public cols: number;\r\n  @Input() public rows: number;\r\n  @Input() public moduleTitle: string;\r\n  @Input() public cards: CardLobbyModel[];\r\n\r\n  public md$: Observable<boolean>;\r\n\r\n  @Output() cardClick: EventEmitter<string> = new EventEmitter<string>();\r\n\r\n  constructor(\r\n    private breakpointService: BreakpointService,\r\n  ) { }\r\n\r\n  ngOnInit(): void {\r\n    this.md$ = this.breakpointService.isTablet();\r\n    this.cols = this.cols ||  this.cards.length /2\r\n    this.rows = this.rows || 2\r\n  }\r\n\r\n  public onCardClick(card) {\r\n    this.cardClick.emit(card.path)\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -11109,7 +11109,7 @@
                     }
                 ]
             },
-            "templateData": "<div fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\">\r\n  <div fxLayout=\"row\">\r\n    <div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\"\r\n      [fxFlex]=\"(((md$ | async) ? 16 : 24) * cols) + 'rem'\">\r\n      <div [fxFlex]=\"'8rem'\">\r\n        <kkl-typography [bold]=\"600\" [size]=\"3\">{{ moduleTitle }}</kkl-typography>\r\n      </div>\r\n      <div fxLayout=\"row wrap\" [fxFlex]=\"(((md$ | async) ? 16 : 24) * rows) + 'rem'\">\r\n        <div class=\"card\" *ngFor=\"let card of cards; let i = index\" appSize [size]=\"((md$ | async) ? 16 : 24)\"\r\n          (click)=\"onCardClick(card)\">\r\n          <kkl-card-dashboard [card]=\"card\"> </kkl-card-dashboard>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div fxLayout=\"column\" fxLayoutAlign=\"center center\" dir=\"rtl\">\r\n  <div fxLayout=\"row\">\r\n    <div class=\"container\" fxLayout=\"column\" fxLayoutAlign=\"center center\"\r\n      [fxFlex]=\"(((md$ | async) ? 16 : 24) * cols) + 'rem'\">\r\n      <div [fxFlex]=\"'8rem'\">\r\n        <kkl-typography [bold]=\"600\" [size]=\"3\">{{ moduleTitle }}</kkl-typography>\r\n      </div>\r\n      <div fxLayout=\"row wrap\" [fxFlex]=\"(((md$ | async) ? 16 : 24) * rows) + 'rem'\">\r\n        <div class=\"card\" *ngFor=\"let card of cards; let i = index\" appSize [size]=\"((md$ | async) ? 16 : 24)\"\r\n          (click)=\"onCardClick(card)\">\r\n          <kkl-card-lobby [card]=\"card\"> </kkl-card-lobby>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "DashboardExComponent",
@@ -11135,7 +11135,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 11,
-                    "type": "CardDashboardModel[]"
+                    "type": "CardLobbyModel[]"
                 },
                 {
                     "name": "moduleTitle",
@@ -11166,7 +11166,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { CardDashboardModel } from '../../components/cards/card-dashboard/card-dashboard.model';\r\n\r\n@Component({\r\n  selector: 'kkl-dashboard-ex',\r\n  templateUrl: './dashboard-ex.component.html',\r\n  styleUrls: ['./dashboard-ex.component.scss']\r\n})\r\nexport class DashboardExComponent implements OnInit {\r\n\r\n  @Input() public cards: CardDashboardModel[];\r\n  @Input() public moduleTitle: string;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, Input, OnInit } from '@angular/core';\r\nimport { CardLobbyModel } from '../../components/cards/card-lobby/card-lobby.model';\r\n\r\n@Component({\r\n  selector: 'kkl-dashboard-ex',\r\n  templateUrl: './dashboard-ex.component.html',\r\n  styleUrls: ['./dashboard-ex.component.scss']\r\n})\r\nexport class DashboardExComponent implements OnInit {\r\n\r\n  @Input() public cards: CardLobbyModel[];\r\n  @Input() public moduleTitle: string;\r\n\r\n  constructor() { }\r\n\r\n  ngOnInit(): void {\r\n  }\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -17234,7 +17234,7 @@
             "deprecated": false,
             "file": "projects/lib-kakal-ui/src/lib/app/app.module.ts",
             "methods": [],
-            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-dashboard/card-dashboard.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { FormUploadComponent } from './components/form/form-upload/form-upload.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { BorderDirective } from './utilities/directives/border.directive';\r\n\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\nimport { TitleComponent } from './components/title/title.component';\r\nimport { ExpandPanelExComponent } from './examples/expand-panel-ex/expand-panel-ex.component';\r\nimport { TitleExComponent } from './examples/title-ex/title-ex.component';\r\n\r\nimport { LoginDashboardComponent } from './screens/login/components/login-dashboard/login-dashboard.component';\r\nimport { LoginFormComponent } from './screens/login/components/login-form/login-form.component';\r\nimport { LoginExComponent } from './examples/login-ex/login-ex.component';\r\nimport { IconModel } from './components/icon/icon.model';\r\nimport { FormUploadExComponent } from './examples/formupload-ex/formupload-ex.component';\r\nimport { FormAutocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';\r\nimport { NavbarExComponent } from './examples/navbar-ex/navbar-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n\r\n    // SCREEN COMPS\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n\r\n    LoginFormComponent,\r\n    LoginDashboardComponent,\r\n    LoginExComponent,\r\n\r\n\r\n    // SHARED COMPS\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n    ListItemComponent,\r\n    ExpandPanelComponent,\r\n    TitleComponent,\r\n\r\n    // FORM COMPS\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n    FormUploadComponent,\r\n\r\n    // TABLE COMPS\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n    // CARD COMPS\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    // NAVIGATION COMPS\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n    StepperComponent,\r\n\r\n    // DIRECTIVES\r\n    VariantDirective,\r\n    SizeDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n    BorderDirective,\r\n\r\n    StatusComponent,\r\n\r\n\r\n    DashboardExComponent,\r\n    LayoutExComponent,\r\n    FormExComponent,\r\n    InputExComponent,\r\n    TitleExComponent,\r\n    TableExComponent,\r\n    FormUploadExComponent,\r\n    FormAutocompleteExComponent,\r\n    StepperExComponent,\r\n    NavbarExComponent,\r\n    FiltersExComponent,\r\n\r\n    ExpandPanelExComponent,\r\n\r\n\r\n\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
+            "sourceCode": "import { NgModule } from '@angular/core';\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms';\r\nimport { DecimalPipe, DatePipe } from '@angular/common';\r\n\r\nimport { BrowserAnimationsModule } from '@angular/platform-browser/animations';\r\nimport { MaterialModule } from '../material/material.module';\r\nimport { AppComponent } from './components/root/app.component';\r\n\r\nimport { DashboardComponent } from './screens/dashboard/dashboard.component';\r\n\r\nimport { IconComponent } from './components/icon/icon.component';\r\nimport { TypographyComponent } from './components/typography/typography.component';\r\n\r\nimport { MenuComponent } from './components/menu/menu.component';\r\n\r\nimport { PaginationComponent } from './components/pagination/pagination.component';\r\nimport { TableComponent } from './components/table/table.component';\r\nimport { NgxPaginationModule } from 'ngx-pagination';\r\n\r\nimport { CardDashboardComponent } from './components/cards/card-lobby/card-lobby.component';\r\nimport { CardStatusComponent } from './components/cards/card-status/card-status.component';\r\nimport { CardStepComponent } from './components/cards/card-step/card-step.component';\r\nimport { CardWizardComponent } from './components/cards/card-wizard/card-wizard.component';\r\nimport { CardUserComponent } from './components/cards/card-user/card-user.component';\r\nimport { CardFilterComponent } from './components/cards/card-filter/card-filter.component';\r\n\r\nimport { ColorDirective } from './utilities/directives/color.directive';\r\nimport { SizeDirective } from './utilities/directives/size.directive';\r\nimport { ButtonDirective } from './utilities/directives/button.directive';\r\nimport { VariantDirective } from './utilities/directives/variant.directive';\r\n\r\nimport { StepperComponent } from './components/stepper/stepper.component';\r\n\r\nimport { FormComponent } from './components/form/form/form.component';\r\nimport { FormInputComponent } from './components/form/form-input/form-input.component';\r\nimport { FormGroupComponent } from './components/form/form-group/form-group.component';\r\nimport { FormAutocompleteComponent } from './components/form/form-autocomplete/form-autocomplete.component';\r\nimport { FormUploadComponent } from './components/form/form-upload/form-upload.component';\r\n\r\nimport { ExpandPanelComponent } from './components/expand-panel/expand-panel.component';\r\nimport { MenuItemComponent } from './components/menu-item/menu-item.component';\r\nimport { ListItemComponent } from './components/list-item/list-item.component';\r\n\r\nimport { FormExComponent } from './examples/form-ex/form-ex.component';\r\nimport { InputExComponent } from './examples/input-ex/input-ex.component';\r\nimport { TableExComponent } from './examples/table-ex/table-ex.component';\r\nimport { StepperExComponent } from './examples/stepper-ex/stepper-ex.component';\r\nimport { DashboardExComponent } from './examples/dashboard-ex/dashboard-ex.component';\r\n\r\nimport { AreaPipe } from './utilities/pipes/area.pipe';\r\nimport { FormatPipe } from './utilities/pipes/format.pipe';\r\n\r\nimport { ColumnFormComponent } from './components/columns/column-form/column-form.component';\r\nimport { StatusComponent } from './components/status/status.component';\r\nimport { LayoutComponent } from './screens/layout/layout.component';\r\nimport { LayoutExComponent } from './examples/layout-ex/layout-ex.component';\r\nimport { UnderlineDirective } from './utilities/directives/underline.directive';\r\nimport { FormRadioComponent } from './components/form/form-radio/form-radio.component';\r\nimport { ColumnFilterComponent } from './components/columns/column-filter/column-filter.component';\r\nimport { KKLBorderDirective } from './utilities/directives/border.directive';\r\n\r\nimport { NavbarComponent } from './components/navbar/navbar.component';\r\nimport { NavbarBottomComponent } from './components/navbar-bottom/navbar-bottom.component';\r\nimport { TitleComponent } from './components/title/title.component';\r\nimport { ExpandPanelExComponent } from './examples/expand-panel-ex/expand-panel-ex.component';\r\nimport { TitleExComponent } from './examples/title-ex/title-ex.component';\r\n\r\nimport { LoginDashboardComponent } from './screens/login/components/login-dashboard/login-dashboard.component';\r\nimport { LoginFormComponent } from './screens/login/components/login-form/login-form.component';\r\nimport { LoginExComponent } from './examples/login-ex/login-ex.component';\r\nimport { IconModel } from './components/icon/icon.model';\r\nimport { FormUploadExComponent } from './examples/formupload-ex/formupload-ex.component';\r\nimport { FormAutocompleteExComponent } from './examples/formautocomplete-ex/formautocomplete-ex.component';\r\nimport { NavbarExComponent } from './examples/navbar-ex/navbar-ex.component';\r\nimport { FiltersExComponent } from './examples/filters-ex/filters-ex.component';\r\n\r\n@NgModule({\r\n  declarations: [\r\n    AppComponent,\r\n\r\n    // SCREEN COMPS\r\n    DashboardComponent,\r\n    LayoutComponent,\r\n\r\n\r\n    LoginFormComponent,\r\n    LoginDashboardComponent,\r\n    LoginExComponent,\r\n\r\n\r\n    // SHARED COMPS\r\n\r\n    IconComponent,\r\n    TypographyComponent,\r\n    ListItemComponent,\r\n    ExpandPanelComponent,\r\n    TitleComponent,\r\n\r\n    // FORM COMPS\r\n    FormComponent,\r\n    FormInputComponent,\r\n    FormGroupComponent,\r\n    FormRadioComponent,\r\n    FormAutocompleteComponent,\r\n    FormUploadComponent,\r\n\r\n    // TABLE COMPS\r\n    PaginationComponent,\r\n    TableComponent,\r\n    ColumnFilterComponent,\r\n    ColumnFormComponent,\r\n\r\n    // CARD COMPS\r\n    CardDashboardComponent,\r\n    CardStatusComponent,\r\n    CardStepComponent,\r\n    CardWizardComponent,\r\n    CardUserComponent,\r\n    CardFilterComponent,\r\n\r\n    // NAVIGATION COMPS\r\n    MenuComponent,\r\n    MenuItemComponent,\r\n    NavbarComponent,\r\n    NavbarBottomComponent,\r\n    StepperComponent,\r\n\r\n    // DIRECTIVES\r\n    VariantDirective,\r\n    SizeDirective,\r\n    ColorDirective,\r\n    SizeDirective,\r\n    ButtonDirective,\r\n    VariantDirective,\r\n    UnderlineDirective,\r\n    KKLBorderDirective,\r\n\r\n    StatusComponent,\r\n\r\n\r\n    DashboardExComponent,\r\n    LayoutExComponent,\r\n    FormExComponent,\r\n    InputExComponent,\r\n    TitleExComponent,\r\n    TableExComponent,\r\n    FormUploadExComponent,\r\n    FormAutocompleteExComponent,\r\n    StepperExComponent,\r\n    NavbarExComponent,\r\n    FiltersExComponent,\r\n\r\n    ExpandPanelExComponent,\r\n\r\n\r\n\r\n  ],\r\n  imports: [\r\n    BrowserModule,\r\n    BrowserAnimationsModule,\r\n    MaterialModule,\r\n    FormsModule,\r\n    ReactiveFormsModule,\r\n    NgxPaginationModule,\r\n  ],\r\n  providers: [AreaPipe, DecimalPipe, DatePipe, FormatPipe],\r\n  bootstrap: [AppComponent],\r\n})\r\nexport class AppModule {}\r\n",
             "children": [
                 {
                     "type": "providers",
@@ -17247,7 +17247,7 @@
                             "name": "AppComponent"
                         },
                         {
-                            "name": "BorderDirective"
+                            "name": "KKLBorderDirective"
                         },
                         {
                             "name": "ButtonDirective"
@@ -17667,7 +17667,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "Story<CardDashboardComponent>",
-                "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n  template: `\r\n    <div style='\r\n    height: 100px;\r\n    background: black;\r\n    width: 100px;\r\n    border-radius: 12px;\r\n    margin: 0 auto;'>\r\n    <app-card-dashboard ${Object.keys(args).reduce(\r\n      (acc, key) =>\r\n        `${acc} [${key}]='${\r\n          typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n        }'`,\r\n      ''\r\n    )}>\r\n    </app-card-dashboard>\r\n    </div>`,\r\n})"
+                "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n  template: `\r\n    <div style='\r\n    height: 100px;\r\n    background: black;\r\n    width: 100px;\r\n    border-radius: 12px;\r\n    margin: 0 auto;'>\r\n    <app-card-lobby ${Object.keys(args).reduce(\r\n      (acc, key) =>\r\n        `${acc} [${key}]='${\r\n          typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n        }'`,\r\n      ''\r\n    )}>\r\n    </app-card-lobby>\r\n    </div>`,\r\n})"
             },
             {
                 "name": "CardStatusTemplate",
@@ -19858,7 +19858,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "Story<CardDashboardComponent>",
-                    "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n  template: `\r\n    <div style='\r\n    height: 100px;\r\n    background: black;\r\n    width: 100px;\r\n    border-radius: 12px;\r\n    margin: 0 auto;'>\r\n    <app-card-dashboard ${Object.keys(args).reduce(\r\n      (acc, key) =>\r\n        `${acc} [${key}]='${\r\n          typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n        }'`,\r\n      ''\r\n    )}>\r\n    </app-card-dashboard>\r\n    </div>`,\r\n})"
+                    "defaultValue": "(\r\n  args: CardDashboardComponent\r\n) => ({\r\n  props: args,\r\n  template: `\r\n    <div style='\r\n    height: 100px;\r\n    background: black;\r\n    width: 100px;\r\n    border-radius: 12px;\r\n    margin: 0 auto;'>\r\n    <app-card-lobby ${Object.keys(args).reduce(\r\n      (acc, key) =>\r\n        `${acc} [${key}]='${\r\n          typeof args[key] === 'object' ? JSON.stringify(args[key]) : args[key]\r\n        }'`,\r\n      ''\r\n    )}>\r\n    </app-card-lobby>\r\n    </div>`,\r\n})"
                 },
                 {
                     "name": "CardStatusTemplate",
@@ -20903,7 +20903,7 @@
         "status": "low",
         "files": [
             {
-                "filePath": "projects/lib-kakal-ui/src/lib/app/components/cards/card-dashboard/card-dashboard.component.ts",
+                "filePath": "projects/lib-kakal-ui/src/lib/app/components/cards/card-lobby/card-lobby.component.ts",
                 "type": "component",
                 "linktype": "component",
                 "name": "CardDashboardComponent",
@@ -20912,10 +20912,10 @@
                 "status": "low"
             },
             {
-                "filePath": "projects/lib-kakal-ui/src/lib/app/components/cards/card-dashboard/card-dashboard.model.ts",
+                "filePath": "projects/lib-kakal-ui/src/lib/app/components/cards/card-lobby/card-lobby.model.ts",
                 "type": "class",
                 "linktype": "classe",
-                "name": "CardDashboardModel",
+                "name": "CardLobbyModel",
                 "coveragePercent": 0,
                 "coverageCount": "0/6",
                 "status": "low"
@@ -21023,7 +21023,7 @@
                 "filePath": "projects/lib-kakal-ui/src/lib/app/components/columns/column.model.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "ColumnState",
+                "name": "headerState",
                 "coveragePercent": 0,
                 "coverageCount": "0/6",
                 "status": "low"
@@ -22244,7 +22244,7 @@
                 "filePath": "projects/lib-kakal-ui/src/lib/app/utilities/directives/border.directive.ts",
                 "type": "directive",
                 "linktype": "directive",
-                "name": "BorderDirective",
+                "name": "KKLBorderDirective",
                 "coveragePercent": 0,
                 "coverageCount": "0/8",
                 "status": "low"

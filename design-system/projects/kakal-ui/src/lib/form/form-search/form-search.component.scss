@@ -1,0 +1,20 @@
+:host {
+  width: 100%;
+  height: 100%;
+
+  div.kkl-form-button {
+    height: 100%;
+    margin: 0.25em 0;
+    padding-bottom: 2.5rem;
+  }
+}
+::ng-deep .kkl-form-search {
+  header.kkl-form-search {
+    box-sizing: border-box;
+    padding: 0px 8px;
+  }
+
+  div.mat-expansion-panel-body {
+    padding: 0px !important;
+  }
+}

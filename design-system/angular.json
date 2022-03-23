@@ -1,0 +1,160 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "a12e9002-b3b8-4685-8604-8bdfcde9a7a3"
+  },
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "kakal-ui": {
+      "projectType": "library",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/kakal-ui",
+      "sourceRoot": "projects/kakal-ui/src",
+      "prefix": "pl",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/kakal-ui/tsconfig.lib.json",
+            "project": "projects/kakal-ui/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/kakal-ui/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/kakal-ui/src/test.ts",
+            "tsConfig": "projects/kakal-ui/tsconfig.spec.json",
+            "karmaConfig": "projects/kakal-ui/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/kakal-ui/tsconfig.lib.json",
+              "projects/kakal-ui/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "components-application": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/components-application",
+      "sourceRoot": "projects/components-application/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/components-application",
+            "index": "projects/components-application/src/index.html",
+            "main": "projects/components-application/src/main.ts",
+            "polyfills": "projects/components-application/src/polyfills.ts",
+            "tsConfig": "projects/components-application/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/components-application/src/favicon.ico",
+              "projects/components-application/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/components-application/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/components-application/src/environments/environment.ts",
+                  "with": "projects/components-application/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "components-application:build:production"
+            },
+            "development": {
+              "browserTarget": "components-application:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "components-application:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/components-application/src/test.ts",
+            "polyfills": "projects/components-application/src/polyfills.ts",
+            "tsConfig": "projects/components-application/tsconfig.spec.json",
+            "karmaConfig": "projects/components-application/karma.conf.js",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "projects/components-application/src/favicon.ico",
+              "projects/components-application/src/assets"
+            ],
+            "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "projects/components-application/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        }
+      }
+    }},
+  "defaultProject": "kakal-ui"
+}

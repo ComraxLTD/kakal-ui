@@ -1,0 +1,19 @@
+<mat-list-item
+  kkl-button
+  [ngClass]="{ active: (active$ | async) }"
+  (click)="onLinkClick()"
+>
+  <kkl-icon
+    [color]="(active$ | async) ? 'paper' : color || 'primary'"
+    [key]="item.svgUrl"
+    class="mat-icon-rtl-mirror"
+    mat-list-icon
+  ></kkl-icon>
+  <kkl-typography
+    [weight]="bold ? 600 : 500"
+    [color]="(active$ | async) ? 'paper' : color || 'primary'"
+    mat-line
+  >
+    {{ item.label }}
+  </kkl-typography>
+</mat-list-item>

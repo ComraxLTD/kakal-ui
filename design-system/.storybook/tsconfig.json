@@ -1,0 +1,21 @@
+{
+  "extends": "../projects/kakal-ui/tsconfig.lib.json",
+  "compilerOptions": {
+    "types": [
+      "node"
+    ]
+  },
+  "exclude": [
+    "../src/test.ts",
+    "../src/**/*.spec.ts",
+    "../projects/**/*.spec.ts"
+  ],
+  "include": [
+    "../src/**/*",
+    "../projects/**/*",
+    "../stories/**/*"
+  ],
+  "files": [
+    "./typings.d.ts"
+  ]
+}

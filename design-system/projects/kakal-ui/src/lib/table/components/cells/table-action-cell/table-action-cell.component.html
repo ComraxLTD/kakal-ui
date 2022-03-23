@@ -1,0 +1,87 @@
+<div
+  fxLayout="row"
+  fxLayoutAlign="start center"
+  dir="rtl"
+  fxLayoutGap="1rem"
+  fxFill
+>
+  <!-- slots buttons -->
+  <ng-container>
+    <ng-template
+      *ngTemplateOutlet="
+        startSlot;
+        context: {
+          $implicit: rowState
+        }
+      "
+    ></ng-template>
+  </ng-container>
+
+  <ng-container *ngIf="buttonActionState$ | async as buttonState">
+    <!-- edit button -->
+    <ng-container *ngIf="buttonState.editState.show; else saveBlock">
+      <button
+        mat-icon-button
+        [class.mat-raised-button]="buttonState.editState.disabled"
+        (click)="onEdit()"
+        matTooltip="ערוך"
+        [disabled]="buttonState.editState.disabled"
+      >
+        <kkl-icon key="edit"></kkl-icon>
+      </button>
+    </ng-container>
+
+    <!-- save button -->
+    <ng-template #saveBlock>
+      <div fxFill kkl-form-button fxLayout="row" fxLayoutGap="1rem">
+        <button
+          mat-raised-button
+          type="su"
+          class="kkl-save-button"
+          (click)="onSave(buttonState.editState.event)"
+          [disabled]="!buttonState.editState.valid"
+          matTooltip="שמור"
+        >
+          <kkl-typography
+            color="text"
+            [disabled]="!buttonState.editState.valid"
+          >
+            שמור
+          </kkl-typography>
+        </button>
+        <button
+          matTooltip="בטל"
+          mat-icon-button
+          (click)="onCancel(buttonState.editState.event)"
+        >
+          <kkl-icon key="cancel"></kkl-icon>
+        </button>
+      </div>
+    </ng-template>
+
+    <!-- delete button -->
+    <ng-container *ngIf="buttonState.deleteState.show">
+      <button
+        mat-icon-button
+        (click)="onDelete()"
+        [class.mat-raised-button]="buttonState.deleteState.disabled"
+        [disabled]="buttonState.deleteState.disabled"
+        matTooltip="מחק"
+      >
+        <kkl-icon key="delete"></kkl-icon>
+      </button>
+    </ng-container>
+  </ng-container>
+
+  <!-- slots buttons -->
+  <ng-container>
+    <ng-template
+      *ngTemplateOutlet="
+        endSlot;
+        context: {
+          $implicit: rowState
+        }
+      "
+    ></ng-template>
+  </ng-container>
+</div>

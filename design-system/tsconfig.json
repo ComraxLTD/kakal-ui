@@ -1,0 +1,29 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "paths": {
+      "kakal-ui": [
+        "dist/kakal-ui/kakal-ui",
+        "dist/kakal-ui"
+      ]
+    }
+  },
+  "include": [
+    "stories/*.stories.*"
+, "stories/form/form-autocomplete.stories.ts", "stories/assets/Typography.stories.ts", "stories/layout/menu.stories.ts", "stories/assets/Button.stories.ts"  ]
+}

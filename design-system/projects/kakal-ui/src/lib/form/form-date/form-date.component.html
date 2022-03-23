@@ -1,0 +1,60 @@
+<mat-form-field
+  [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
+  class="kkl-datepicker"
+>
+  <mat-label>{{ label }}</mat-label>
+
+  <input
+    *ngIf="!range"
+    matInput
+    [matDatepicker]="dp"
+    [formControl]="control"
+    autocomplete="off"
+    [placeholder]="placeHolder"
+    [max]="maxDate"
+    [min]="minDate"
+    (click)="dp.open()"
+    (dateChange)="onDateChange($event)"
+    (focus)="onFocus()"
+  />
+  <mat-datepicker-toggle
+    matSuffix
+    [for]="dp"
+    *ngIf="!range"
+  ></mat-datepicker-toggle>
+  <mat-datepicker #dp></mat-datepicker>
+
+  <mat-date-range-input
+    *ngIf="range"
+    [formGroup]="rangeForm"
+    [rangePicker]="picker"
+    (click)="picker.open()"
+  >
+    <input
+      matStartDate
+      formControlName="start"
+      placeholder="מתאריך"
+      autocomplete="off"
+
+
+      (dateChange)="rangeDateChange($event, 'start')"
+    />
+    <input
+      matEndDate
+      formControlName="end"
+      placeholder="עד תאריך"
+      autocomplete="off"
+
+      (dateChange)="rangeDateChange($event, 'end')"
+    />
+  </mat-date-range-input>
+
+  <mat-datepicker-toggle
+    matSuffix
+    [for]="picker"
+    *ngIf="range"
+  ></mat-datepicker-toggle>
+  <mat-date-range-picker #picker></mat-date-range-picker>
+
+  <mat-error>{{ message$ | async }}</mat-error>
+</mat-form-field>

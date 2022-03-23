@@ -1,0 +1,62 @@
+<mat-form-field
+  [color]="theme"
+  [ngClass]="{ 'input-slot': controlType === 'custom' }"
+  [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
+>
+  <mat-label *ngIf="controlType !== 'custom'">{{ label }}</mat-label>
+
+  <ng-container [ngSwitch]="controlType">
+    <!-- TEXTAREA -->
+    <ng-container *ngSwitchCase="'textarea'">
+      <textarea
+        matInput
+        [rows]="gridProps?.rows * 2"
+        [formControl]="control"
+        [name]="key"
+        (focusout)="validate()"
+        (focus)="onFocus()"
+      ></textarea>
+    </ng-container>
+
+    <!-- CLEAVE FORMAT -->
+    <ng-container *ngSwitchCase="'cleave'">
+      <input
+        matInput
+        #cleaveInput
+        autocomplete="off"
+        [formControl]="control"
+        [cleave]="cleave"
+        [name]="key"
+        [type]="'text'"
+        (focusout)="validate()"
+        (focus)="onFocus()"
+        (input)="onValueChanged(cleaveInput.value)"
+      />
+    </ng-container>
+
+    <!-- TEXT/NUMBER -->
+    <ng-container *ngSwitchDefault>
+      <input
+        matInput
+        autocomplete="off"
+        [formControl]="control"
+        [name]="key"
+        [type]="controlType"
+        (focusout)="validate()"
+        (focus)="onFocus()"
+        #input
+        (input)="onValueChanged(input.value)"
+      />
+    </ng-container>
+  </ng-container>
+
+  <kkl-icon
+    *ngIf="icon"
+    matSuffix
+    [color]="color$ | async"
+    [size]="1.8"
+    [key]="icon"
+  ></kkl-icon>
+
+  <mat-error>{{ error$ | async }}</mat-error>
+</mat-form-field>

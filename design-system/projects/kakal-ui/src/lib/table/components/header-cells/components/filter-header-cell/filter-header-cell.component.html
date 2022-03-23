@@ -1,0 +1,77 @@
+<div fxFill>
+  <!-- BUTTON SECTION -->
+
+  <div
+    [matMenuTriggerFor]="menu"
+    kkl-button
+    color="primary"
+    (menuOpened)="onMenuOpen()"
+  >
+    <div fxLayout="row" fxLayoutGap=".5rem" fxLayoutAlign="end center">
+      <kkl-typography>
+        {{ label }}
+      </kkl-typography>
+      <button
+        mat-icon-button
+        color="accent"
+        [class.active]="active$ | async"
+        (click)="$event.stopPropagation()"
+      >
+        <mat-icon> arrow_drop_down </mat-icon>
+      </button>
+    </div>
+  </div>
+
+  <!-- MENU SECTION -->
+  <mat-menu #menu="matMenu" xPosition="after">
+    <div class="filter-menu" fxLayout="column">
+      <div fxLayout="row" fxLayoutGap="1rem" (click)="$event.stopPropagation()">
+        <ng-template
+          *ngTemplateOutlet="filterTemplate; context: {$implicit : { filterType, value$}}"
+        ></ng-template>
+
+        <!-- SORT BUTTON -->
+        <div fxLayout="column" fxLayoutAlign="center center">
+          <kkl-sort-button
+            kkl-form-button
+            (sortChange)="onSortChange($event)"
+            [sortBy]="sortBy"
+          ></kkl-sort-button>
+        </div>
+      </div>
+      <ng-controller
+        *ngIf="filterType === 'select' || filterType === 'multiSelect'"
+      >
+        <mat-selection-list
+          #selectionList
+          [compareWith]="compareWith"
+          (selectionChange)="
+            onSelectionChange(selectionList.selectedOptions.selected)
+          "
+          [multiple]="filterType === 'multiSelect'"
+        >
+          <ng-container *ngFor="let option of options$ | async as options">
+            <mat-list-option
+              (click)="$event.stopPropagation()"
+              [value]="option"
+              [selected]="option.selected"
+            >
+              <kkl-typography> {{ option.label }}</kkl-typography>
+            </mat-list-option>
+          </ng-container>
+        </mat-selection-list>
+      </ng-controller>
+    </div>
+  </mat-menu>
+</div>
+
+<ng-template #defaultTemplate>
+  <kkl-form-input
+    fxFlex="75"
+    [control]="control"
+    [key]="key"
+    [icon]="'search'"
+    (valueChanged)="onValueChanged($event)"
+  >
+  </kkl-form-input>
+</ng-template>

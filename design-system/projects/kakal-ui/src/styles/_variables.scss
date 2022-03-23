@@ -1,0 +1,92 @@
+@use "./theme" as theme;
+
+// @include theme.theme();
+
+// this is just a sample! everything will get deleted here
+$toolbar-height: 8rem;
+$bottomBar-height: 8rem;
+$menu-width: 24.6rem;
+$wizard-width: 8rem;
+$backdrop-width: calc(100% - #{$menu-width});
+$content-height: calc(100% - #{$toolbar-height});
+$wizard-height: calc(100% - #{$toolbar-height + $bottomBar-height});
+$font-size: 10px;
+
+$primary: #d6a348;
+$accent: #ff6f2e;
+$primary-light: var(--p-100);
+
+$paper: #fff;
+
+$default: #bababa;
+
+$disable: #a2a2a2;
+
+$disableButton: var(--b-selected-button);
+$disableSelectedButton: var(--b-selected-disabled-button);
+$disableText: var(--f-disabled-text);
+$disableButtonText: var(--f-disabled-button);
+
+$table: #f8f8f8;
+
+$text: #000000;
+$text-light: #a2a2a2;
+
+$warn: #d83020;
+$female: #d220ba;
+
+$success: #59a437;
+$success-light: #37c563;
+
+$colors: (
+  primary: $primary,
+  accent: $accent,
+  default: $default,
+  disable: $disable,
+  disableButton: $disableButton,
+  disableSelectedButton: $disableSelectedButton,
+  disableText: $disableText,
+  disableButtonText: $disableButtonText,
+  paper: $paper,
+  table: $table,
+  text: $text,
+  text-light: $text-light,
+  warn: $warn,
+  success: $success,
+  success-light: $success-light,
+);
+@function color($color-name) {
+  @return map-get($colors, $color-name);
+}
+
+@function colorWithOpacity($color-name, $opacity) {
+  @return rgba(map-get($colors, $color-name), $opacity);
+}
+
+@function spacing($spacing) {
+  @return $spacing * 8px;
+}
+
+@mixin font-size($sizeValue: 1.6) {
+  font-size: ($sizeValue * 10) + px;
+  font-size: $sizeValue + rem;
+}
+
+::ng-deep mat-grid-list,
+mat-grid-tile {
+  height: 100%;
+  width: 100%;
+}
+
+button.mat-button-disabled {
+  border: none !important;
+}
+
+
+//btn variavbles
+$pl-button-shadow-alt:1px 1px 1px 1px #000;
+$primary-col-shadowbase: #000;
+$primary-col-shadow: #000;
+$primary-col:#000;
+$button-radius:3px;
+$primary-col-text:white;

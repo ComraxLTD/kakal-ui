@@ -1,0 +1,22 @@
+@use "../../../styles/variables" as main;
+
+:host {
+  .kkl-form-upload {
+    * {
+      color: main.color(primary) !important;
+    }
+  }
+}
+
+mat-icon {
+  cursor: pointer;
+}
+::ng-deep mat-option.file {
+  display: none !important;
+}
+
+// @media screen and (max-width: 1024px) {
+//   mat-form-field {
+//     font-size: 9px !important;
+//   }
+// }
