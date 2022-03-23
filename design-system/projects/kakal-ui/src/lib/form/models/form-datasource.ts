@@ -30,10 +30,12 @@ export class FormDataSource {
   }
 
   // method  which return form state filtered by events[]
-  private getStateByAction(actions?: FormActions[]): Observable<FormChangeEvent> {
+  private getStateByAction(
+    actions?: FormActions[]
+  ): Observable<FormChangeEvent> {
     return this.formStateSubject.asObservable().pipe(
       filter((formState) => !!formState),
-      filter((formState : FormChangeEvent) => {
+      filter((formState: FormChangeEvent) => {
         return actions ? actions.indexOf(formState.action) !== -1 : true;
       })
     );
@@ -51,22 +53,16 @@ export class FormDataSource {
     return this.createAction({ formChangeEvent });
   }
 
-  public listen(action: FormActions): Observable<FormChangeEvent> {
-    return this.getStateByAction([action]);
+  public listen(
+    action?: FormActions | FormActions[]
+  ): Observable<FormChangeEvent> {
+    const listenTo: FormActions[] =
+      typeof action == 'object' ? action : [action];
+
+    return this.getStateByAction(listenTo);
   }
 
-  // public events = {
-  //   edit: (formChangeEvent?: FormChangeEvent) => this.edit(formChangeEvent),
-  //   add: (formChangeEvent?: FormChangeEvent) => this.add(formChangeEvent),
-  //   create: (formChangeEvent?: FormChangeEvent) => this.create(formChangeEvent),
-  //   clear: (formChangeEvent?: FormChangeEvent) => this.clear(formChangeEvent),
-  //   disable: () => this.disable(),
-  //   updateOptions: (formChangeEvent?: FormChangeEvent) =>
-  //     this.updateOptions(formChangeEvent),
-  //   delete: (formChangeEvent?: FormChangeEvent) => this.delete(formChangeEvent),
-  //   submit: (formChangeEvent?: FormChangeEvent) => this.submit(formChangeEvent),
-  //   update: (formChangeEvent?: FormChangeEvent) => this.update(formChangeEvent),
-  // };
+
 
   // method  which return only form events
   public getEvents(actions?: FormActions[]): Observable<FormActions> {

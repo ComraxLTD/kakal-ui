@@ -15,6 +15,7 @@ export enum FormActions {
   OPEN_CHANGED = 'openChanged',
   VALUE_CHANGED = 'valueChanged',
   RANGE_CHANGED = 'rangeChanged',
+  DATE_RANGE_CHANGED = 'dateRangeChanged',
   QUERY_CHANGED = 'queryChanged',
   OPTION_SELECTED = 'optionSelected',
   SELECT_CHANGED = 'selectChanged',

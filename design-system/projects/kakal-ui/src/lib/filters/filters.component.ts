@@ -9,7 +9,7 @@ import {
   Question,
   SelectOption,
 } from '../../public-api';
-import { combineLatest, map, merge, Observable } from 'rxjs';
+import { iif, map, merge, Observable, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'kkl-filters',
@@ -31,39 +31,59 @@ export class FiltersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.filtersState$ = this.mergeFilterState();
+    this.filtersState$ = this.setFilterState();
   }
 
-  private onOptionSelect() {
-    return this.formDataSource.listen(FormActions.OPTION_SELECTED).pipe(
-      map((formChangeEvent: FormChangeEvent) => {
-        const { key, value } = formChangeEvent;
+  private onFormChanged() {
+    const formChangedEvents$ = this.formDataSource.listen([
+      FormActions.VALUE_CHANGED,
+      FormActions.SELECT_CHANGED,
+      FormActions.MULTI_SELECTED,
+      FormActions.OPTION_SELECTED,
+    ]);
 
-        return {
-          [key]: {
-            key,
-            value,
-            filterType: FilterType.SELECT,
-          } as FilterChangeEvent,
-        };
+    const filterTypeMap = {
+      [FormActions.VALUE_CHANGED]: FilterType.SEARCH,
+      [FormActions.SELECT_CHANGED]: FilterType.SELECT,
+      [FormActions.MULTI_SELECTED]: FilterType.MULTI_SELECT,
+      [FormActions.OPTION_SELECTED]: FilterType.SELECT,
+      [FormActions.RANGE_CHANGED]: FilterType.RANGE,
+      [FormActions.DATE_RANGE_CHANGED]: FilterType.DATE_RANGE,
+    };
+
+    const mapFormValueToFilter = (
+      oldState: FilterState,
+      formChangeEvent: FormChangeEvent,
+      filterTypeMap: { [key: string]: FilterType }
+    ) => {
+      const { key, value, action } = formChangeEvent;
+
+      return {
+        ...oldState,
+        [key]: {
+          key,
+          value,
+          filterType: filterTypeMap[action],
+        } as FilterChangeEvent,
+      };
+    };
+
+    return formChangedEvents$.pipe(
+      map((formChangeEvent: FormChangeEvent) => {
+        return this.filterService.on(
+          mapFormValueToFilter,
+          formChangeEvent,
+          filterTypeMap
+        );
       })
     );
   }
 
-  private mergeFilterState() {
-    const initFilterState$ = this.filterService.getFilterMap({
-      formGroup: this.formGroup,
-      questions: this.questions,
-    });
-
-    const updateFirstsState$ = this.onOptionSelect();
-
-    return combineLatest([initFilterState$, updateFirstsState$]).pipe(
-      map(([initState, updateOptionState]) => {
-        return {
-          ...initState,
-          ...updateOptionState,
-        };
+  private setFilterState() {
+    return this.onFormChanged().pipe(
+      switchMap((filterState: FilterState) => {
+        this.filterService.dispatch({ filterState });
+        return this.filterService.listen();
       })
     );
   }
@@ -102,6 +122,7 @@ export class FiltersComponent implements OnInit {
 
   private _emitChanged() {
     const filterState = this.filterService.getState();
+    console.log('emit changed', filterState);
     this.filterChanged.emit(filterState);
   }
 }
