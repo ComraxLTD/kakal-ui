@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 
 @Component({
-  selector: 'pl-form-date-calendar',
+  selector: 'kkl-form-date-calendar',
   templateUrl: './form-date-calendar.component.html',
   styleUrls: ['./form-date-calendar.component.scss']
 })
@@ -23,7 +23,7 @@ export class FormDateCalendarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  
+
   dateClass(): MatCalendarCellClassFunction<Date> {
     return (date: Date) => {
       if (!this.month) {
