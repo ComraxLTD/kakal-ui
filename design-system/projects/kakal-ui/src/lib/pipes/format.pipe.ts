@@ -23,7 +23,6 @@ export class FormatPipe implements PipeTransform {
   ) {}
 
   private setCurrency(value: any, args) {
-    console.log();
     if (value.includes(',')) {
       value = value.split(',').reduce((acc, val) => acc + val);
     }
