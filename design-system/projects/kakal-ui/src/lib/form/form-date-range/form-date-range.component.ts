@@ -67,6 +67,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
   @Output() readonly dateRangeChanged: EventEmitter<FormChangeEvent<Range<Date>>> =
     new EventEmitter();
+
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(private messageService: MessageService) {}
@@ -108,16 +109,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  // private getFormOption(): FormChangeEvent {
-  //   const FormChangeEvent: FormChangeEvent = {
-  //     key: this?.key,
-  //     index: this?.index,
-  //     action
 
-  //   };
-
-  //   return FormChangeEvent;
-  // }
 
   private setErrorMessage$() {
     return this.dateRange.statusChanges.pipe(

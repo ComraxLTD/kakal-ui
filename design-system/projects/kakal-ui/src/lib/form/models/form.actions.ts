@@ -13,6 +13,7 @@ export enum FormActions {
   UPDATE = 'update',
   FOCUS_CHANGED = 'focusChanged',
   OPEN_CHANGED = 'openChanged',
+  DATE_CHANGED = 'dateChanged',
   VALUE_CHANGED = 'valueChanged',
   RANGE_CHANGED = 'rangeChanged',
   DATE_RANGE_CHANGED = 'dateRangeChanged',

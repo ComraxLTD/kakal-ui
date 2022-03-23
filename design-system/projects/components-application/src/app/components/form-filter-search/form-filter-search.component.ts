@@ -57,7 +57,8 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    // { key: 'phone', controlType: 'phone', value: '83928329' },
+    { key: 'birthDay', label : 'יום הולדת', controlType: 'date' },
+    { key: 'committee', label: 'committee', controlType: 'dateRange' },
     // {
     //   key: 'area',
     //   filterType: FilterType.RANGE,
@@ -134,7 +135,6 @@ export class FormFilterSearchComponent implements OnInit {
     this.optionsMap$ = this.getOptionsMap$();
   }
 
-
   private getCurrencyOptions() {
     return of([
       { label: '$', value: 1 },
@@ -172,7 +172,6 @@ export class FormFilterSearchComponent implements OnInit {
   public onFilterChanged(state: FilterState) {
     console.log(state);
   }
-
 
   public onFormChanged(event: FormChangeEvent) {
     this.formDataSource.dispatch(event);
