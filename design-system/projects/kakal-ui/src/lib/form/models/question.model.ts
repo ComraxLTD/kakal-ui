@@ -11,7 +11,6 @@ export abstract class QuestionBase {
   public placeHolder?: string;
   public value?: any | undefined;
   public appearance?: Appearance;
-  // public type?: QuestionType;
   public format?: { type: string; args?: any };
   public selector?: string;
   public controlType?: ControlType;
@@ -47,7 +46,6 @@ export abstract class QuestionBase {
     this.label = options.label || '';
     this.placeHolder = options.placeHolder || '';
     this.appearance = options.appearance || 'outline';
-    // this.type = options.type || 'default';
     this.format = options.format;
     this.selector = options.selector;
     this.controlType = options.controlType || 'text';
