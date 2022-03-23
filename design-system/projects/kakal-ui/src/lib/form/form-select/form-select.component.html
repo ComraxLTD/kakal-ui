@@ -9,11 +9,11 @@
     overlayPanelClass="overlay-panel"
     [multiple]="multi"
     [disableOptionCentering]="true"
-    (selectionChange)="onSelectChange()"
-    (openedChange)="onOpenChange($event)"
     [formControl]="control"
     [attr.name]="key"
     [compareWith]="compareFunction"
+    (selectionChange)="onSelectChanged()"
+    (openedChange)="onOpenChanged($event)"
     (focusout)="setErrorMessage()"
     (focus)="onFocus()"
   >

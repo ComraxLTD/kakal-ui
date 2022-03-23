@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
 import { Palette } from '../../../styles/theme';
+import { FormActions } from '../models/form.actions';
 import { FormChangeEvent } from '../models/form.options';
 import { SelectOption } from '../models/question-select.model';
 import { Appearance } from '../models/question.model';
@@ -23,8 +24,10 @@ export class FormSelectComponent implements OnInit {
   @Input() public theme: Palette;
   @Input() public appearance: Appearance;
 
-  @Output() public selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() public openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() public selectChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
+  @Output() public openChanged: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
   @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   public error$: BehaviorSubject<string>;
@@ -35,22 +38,36 @@ export class FormSelectComponent implements OnInit {
     this.error$ = new BehaviorSubject<string>('');
   }
 
-  public onSelectChange() {
-    const FormChangeEvent: FormChangeEvent = this.getFormOption(this.control.value);
-    this.selectChanged.emit(FormChangeEvent);
-  }
-  public onOpenChange(event : boolean) {
-    const FormChangeEvent: FormChangeEvent = this.getFormOption(event);
-    this.openChanged.emit(FormChangeEvent);
+  public onSelectChanged() {
+    const formChangeEvent: FormChangeEvent = this.getFormOption({
+      value: this.control.value,
+      action: this.multi
+        ? FormActions.MULTI_SELECTED
+        : FormActions.SELECT_CHANGED,
+    });
+    this.selectChanged.emit(formChangeEvent);
   }
 
-  private getFormOption(value?: SelectOption | boolean): FormChangeEvent {
+  public onOpenChanged(event: boolean) {
+    const formChangeEvent: FormChangeEvent = this.getFormOption({
+      value: event,
+      action: FormActions.OPEN_CHANGED,
+    });
+    this.openChanged.emit(formChangeEvent);
+  }
+
+  private getFormOption(props: {
+    value?: SelectOption | boolean;
+    action: FormActions;
+  }): FormChangeEvent {
+    const { value, action } = props;
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       control: this.control,
       index: this.index,
       value$: of(value),
-      value
+      value,
+      action,
     };
 
     return FormChangeEvent;
@@ -68,7 +85,9 @@ export class FormSelectComponent implements OnInit {
     }
   }
   public onFocus() {
-    this.focus.emit(this.getFormOption());
+    this.focus.emit(
+      this.getFormOption({ value: true, action: FormActions.FOCUS_CHANGED })
+    );
   }
 
   public compareFunction(o1: SelectOption, o2: SelectOption) {

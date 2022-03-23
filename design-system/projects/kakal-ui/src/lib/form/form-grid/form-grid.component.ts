@@ -38,30 +38,16 @@ export class FormGridComponent implements OnInit {
   public hasButton: boolean = false;
   public cols: string | number;
 
-
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
-
-  @Output() public valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-
-  @Output() public selectChanged: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
 
   @Output() public openChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  @Output() public optionSelected: EventEmitter<FormChangeEvent> =
+  @Output() public focusChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
+  @Output() public formChangeEvent: EventEmitter<FormChangeEvent> =
     new EventEmitter();
-
-  @Output() public queryChanged: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
-
-  @Output() public fileChanged = new EventEmitter<FormChangeEvent>();
-
-  @Output() public focusout: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor() {}
 
@@ -76,39 +62,15 @@ export class FormGridComponent implements OnInit {
     this.submitEvent.emit(this.formGroup);
   }
 
-  public onValueChanged(event: FormChangeEvent) {
-    this.valueChanged.emit(event);
+  public onFormChanged(event: FormChangeEvent) {
+    this.formChangeEvent.emit(event);
   }
 
-  public onSelectChanged(event: FormChangeEvent) {
-    this.selectChanged.emit(event);
-  }
-
-  public onQueryChanged(event: FormChangeEvent): void {
-    this.queryChanged.emit(event);
-  }
-
-  public onOpenChange(event: FormChangeEvent) {
+  public onOpenChanged(event: FormChangeEvent) {
     this.openChanged.emit(event);
   }
 
-  public onOptionSelected(event: FormChangeEvent): void {
-    this.optionSelected.emit(event);
-  }
-
-  public onMultiOptionSelected(event: FormChangeEvent) {
-    this.optionSelected.emit(event);
-  }
-
-  public onFileChange(event: FormChangeEvent) {
-    this.fileChanged.emit(event);
-  }
-
-  public onFocusOut(event: FormChangeEvent) {
-    this.focusout.emit(event);
-  }
-
-  public onFocus(event: FormChangeEvent) {
-    this.focus.emit(event);
+  public onFocusChanged(event: FormChangeEvent) {
+    this.focusChanged.emit(event);
   }
 }

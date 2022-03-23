@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
 import { FormChangeEvent } from '../models/form.options';
+import { FormActions } from '../models/form.actions';
 
 @Component({
   selector: 'kkl-form-input',
@@ -116,13 +117,18 @@ export class FormInputComponent implements OnInit {
     this.setErrorMessage();
   }
 
-  private getFormOption(value: any): FormChangeEvent {
+  private getFormOption(props: {
+    value: any;
+    action: FormActions;
+  }): FormChangeEvent {
+    const { value, action } = props;
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       control: this.control,
       index: this.index,
       value,
       value$: of(value),
+      action,
     };
 
     return FormChangeEvent;
@@ -130,11 +136,16 @@ export class FormInputComponent implements OnInit {
 
   // EVENTS SECTION
   public onFocus() {
-    this.focusChanged.emit(this.getFormOption(true));
+    this.focusChanged.emit(
+      this.getFormOption({ value: true, action: FormActions.FOCUS_CHANGED })
+    );
   }
 
   public onValueChanged(value: string) {
-    const FormChangeEvent: FormChangeEvent = this.getFormOption(value);
+    const FormChangeEvent: FormChangeEvent = this.getFormOption({
+      value,
+      action: FormActions.VALUE_CHANGED,
+    });
     this.valueChanged.emit(FormChangeEvent);
   }
 }

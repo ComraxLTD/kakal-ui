@@ -12,6 +12,7 @@
             [formGroup]="searchGroup.formGroup"
             [grid]="grid"
             [optionsMap]="optionsMap"
+            (formChangeEvent)="onFormChanged($event)"
           ></kkl-form>
         </ng-container>
       </kkl-form-search>

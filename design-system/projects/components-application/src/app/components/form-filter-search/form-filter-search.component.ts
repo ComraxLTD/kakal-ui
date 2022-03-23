@@ -6,6 +6,7 @@ import {
   FiltersService,
   FilterState,
   FilterType,
+  FormChangeEvent,
   FormService,
   GridProps,
   KKLSelectOption,
@@ -182,6 +183,9 @@ export class FormFilterSearchComponent implements OnInit {
 
   public onFilterChanged(state : FilterState) {
     console.log(state)
+  }
+  public onFormChanged(event : FormChangeEvent) {
+    console.log(event)
   }
 
 
