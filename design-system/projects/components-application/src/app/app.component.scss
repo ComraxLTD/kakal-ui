@@ -1,34 +1,5 @@
 @use "../../../kakal-ui/src/styles/variables" as main;
 
-// ::ng-deep .example-custom-date-class {
-//     background: orange !important;
-//     border-radius: 100%;
-// }
-// ::ng-deep .mat-calendar-body-in-range .primary{
-//     background: none;
-//     border-radius: none;
-// }
-
-::ng-deep .primary {
-    background: rgba($color: main.color(primary), $alpha: 0.2) !important;
-    border-radius: 100%;
-}
-
-::ng-deep .occupancy {
-    color: main.color(primary);
-    font-size: 1.1rem;
-}
-
-::ng-deep .mat-calendar-body-selected {
-    background-color: main.color(primary);
-    * {
-        color:white!important;
-    }
-}
-::ng-deep .mat-calendar-body-in-range::before {
-    background: rgba($color: main.color(accent), $alpha: 0.2) !important;
-
-}
-::ng-deep .mat-calendar-body-in-preview {
-    background: rgba($color: main.color(accent), $alpha: 0.2) !important;
+.mydiv{
+    background: lightblue;
 }
