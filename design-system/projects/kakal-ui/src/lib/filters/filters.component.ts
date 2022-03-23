@@ -6,10 +6,9 @@ import {
   FormActions,
   FormChangeEvent,
   FormDataSource,
-  Question,
   SelectOption,
 } from '../../public-api';
-import { iif, map, merge, Observable, of, switchMap, tap } from 'rxjs';
+import { map, Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'kkl-filters',
@@ -17,9 +16,7 @@ import { iif, map, merge, Observable, of, switchMap, tap } from 'rxjs';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-  // @Input() filtersState: FilterState;
   @Input() formGroup: FormGroup;
-  @Input() questions: Question[];
 
   public filtersState$: Observable<FilterState>;
 
