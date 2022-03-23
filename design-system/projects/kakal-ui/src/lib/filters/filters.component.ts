@@ -1,8 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FilterChangeEvent, FilterState } from './filters.types';
+import { FilterChangeEvent, FilterState, FilterType } from './filters.types';
 import { FiltersService } from './filters.service';
 import { FormGroup } from '@angular/forms';
-import { SelectOption } from '../../public-api';
+import {
+  FormActions,
+  FormChangeEvent,
+  FormDataSource,
+  Question,
+  SelectOption,
+} from '../../public-api';
+import { iif, map, merge, Observable, of, switchMap, tap } from 'rxjs';
 
 @Component({
   selector: 'kkl-filters',
@@ -10,14 +17,78 @@ import { SelectOption } from '../../public-api';
   styleUrls: ['./filters.component.scss'],
 })
 export class FiltersComponent implements OnInit {
-  @Input() filtersState: FilterState;
+  // @Input() filtersState: FilterState;
   @Input() formGroup: FormGroup;
+  @Input() questions: Question[];
+
+  public filtersState$: Observable<FilterState>;
 
   @Output() filterChanged: EventEmitter<FilterState> = new EventEmitter();
 
-  constructor(private filterService: FiltersService) {}
+  constructor(
+    private formDataSource: FormDataSource,
+    private filterService: FiltersService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.filtersState$ = this.setFilterState();
+  }
+
+  private onFormChanged() {
+    const formChangedEvents$ = this.formDataSource.listen([
+      FormActions.VALUE_CHANGED,
+      FormActions.SELECT_CHANGED,
+      FormActions.MULTI_SELECTED,
+      FormActions.OPTION_SELECTED,
+    ]);
+
+    const filterTypeMap = {
+      [FormActions.VALUE_CHANGED]: FilterType.SEARCH,
+      [FormActions.SELECT_CHANGED]: FilterType.SELECT,
+      [FormActions.MULTI_SELECTED]: FilterType.MULTI_SELECT,
+      [FormActions.OPTION_SELECTED]: FilterType.SELECT,
+      [FormActions.RANGE_CHANGED]: FilterType.RANGE,
+      [FormActions.DATE_RANGE_CHANGED]: FilterType.DATE_RANGE,
+    };
+
+    const mapFormValueToFilter = (
+      oldState: FilterState,
+      formChangeEvent: FormChangeEvent,
+      filterTypeMap: { [key: string]: FilterType }
+    ) => {
+      const { key, value, action } = formChangeEvent;
+
+      return {
+        ...oldState,
+        [key]: {
+          key,
+          value,
+          filterType: filterTypeMap[action],
+        } as FilterChangeEvent,
+      };
+    };
+
+    return formChangedEvents$.pipe(
+      map((formChangeEvent: FormChangeEvent) => {
+        return this.filterService.on(
+          mapFormValueToFilter,
+          formChangeEvent,
+          filterTypeMap
+        );
+      })
+    );
+  }
+
+  private setFilterState() {
+    return this.onFormChanged().pipe(
+      switchMap((filterState: FilterState) => {
+        this.filterService.dispatch({ filterState });
+        return this.filterService.listen();
+      })
+    );
+  }
+
+  // on remove event
 
   public onRemoveFilter(key: string): void {
     this.filterService.dispatch({ filterState: { [key]: null } });
@@ -25,6 +96,7 @@ export class FiltersComponent implements OnInit {
     this._emitChanged();
   }
 
+  // on multi remove event
   public onRemoveMultiFilter(option: { key: string; index: number }): void {
     const { key } = option;
     const filterState = this.filterService.removeMultiFilter(option);
@@ -40,6 +112,8 @@ export class FiltersComponent implements OnInit {
     this._emitChanged();
   }
 
+  // on clear filters
+
   public onClearFilters(): void {
     this.formGroup.reset();
     this.filterService.dispatch({ filterState: null });
@@ -48,6 +122,7 @@ export class FiltersComponent implements OnInit {
 
   private _emitChanged() {
     const filterState = this.filterService.getState();
+    console.log('emit changed', filterState);
     this.filterChanged.emit(filterState);
   }
 }
