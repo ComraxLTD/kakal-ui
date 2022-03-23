@@ -64,4 +64,3 @@ const Template: Story<LobbyComponent> = (args: LobbyComponent) => ({
 export const dashboard = Template.bind({});
 dashboard.args = {
 }
-
