@@ -1,18 +1,18 @@
-<div>
+<!-- <div>
   <kkl-tabs [data]='data' [templates]="{First,Second,Third}"></kkl-tabs>
 </div>
 
 <ng-template #First>
 <div fxLayout="row" fxLayoutGap="1rem">
-  <div> 
+  <div>
     <kkl-form-date-range [dates]='data'></kkl-form-date-range>
     <kkl-form-date-range></kkl-form-date-range>
   </div>
-  <div> 
+  <div>
     <kkl-form-date-range [dates]='data'></kkl-form-date-range>
     <kkl-form-date-range></kkl-form-date-range>
   </div>
-  <div> 
+  <div>
     <kkl-form-date-range [dates]='data'></kkl-form-date-range>
     <kkl-form-date-range></kkl-form-date-range>
   </div>
@@ -23,10 +23,11 @@
 </ng-template>
 <ng-template #Third>
   AA
-</ng-template>
-<!-- 
+</ng-template> -->
+
 <div fxLayout="column" fxLayoutGap="5rem">
   <div fxLayout="column" fxLayoutAlign="center center">
+    <kkl-lobby  [cards]="cards"></kkl-lobby>
     <app-form-filter-search></app-form-filter-search>
   </div>
-</div> -->
+</div>

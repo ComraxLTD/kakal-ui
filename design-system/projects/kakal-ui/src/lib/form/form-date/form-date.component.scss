@@ -5,11 +5,11 @@
   font-size: 14px !important;
 }
 
-.kkl-form-date {
-  ::ng-deep svg * {
-    fill: main.color(primary);
-  }
-}
+// .kkl-form-date {
+//   ::ng-deep svg * {
+//     fill: main.color(primary);
+//   }
+// }
 
 @media screen and (max-width: 1024px) {
   mat-form-field {

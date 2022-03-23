@@ -19,6 +19,7 @@ export * from './lib/typography/typography.directive';
 
 export * from './lib/icon/icon.module';
 export * from './lib/icon/icon.component';
+export * from './lib/icon/icon.directive';
 export * from './lib/icon/icon.model';
 
 export * from './lib/open-motions/open-motions.module';
@@ -52,6 +53,7 @@ export * from './lib/form/form-date/question-date.model';
 
 export * from './lib/form/form-date-range/form-date-range.module';
 export * from './lib/form/form-date-range/form-date-range.component';
+export * from './lib/form/form-date-range/form-date.directive';
 
 export * from './lib/form/form-checkbox/form-checkbox.module';
 export * from './lib/form/form-checkbox/form-checkbox.component';
