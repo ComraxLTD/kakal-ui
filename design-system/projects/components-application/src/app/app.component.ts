@@ -22,9 +22,9 @@ export class AppComponent implements OnInit {
 
   /// EXAMPLE
   data = [
-    { date: new Date("2022-03-01"), occupancy: 4 },
+    { date: new Date("2022-03-01"), occupancy: 40 },
+    { date: new Date("2022-03-06"), occupancy: 40 },
     { date: new Date("2022-03-20"), occupancy: 3 },
-    { date: new Date("2022-03-5"), disabled: true },
     { date: new Date("2022-04-20"), occupancy: 3 }
   ];
 
@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   changeMonth(date: Date) {
     const [filtered] = this.data.filter(item => this.compareDates(item.date, date));
     if (filtered) {
-      if (filtered?.disabled) return 'disabled';
+      // if (filtered?.disabled) return 'disabled';
       this.changeInnerContent(filtered);
       return 'primary';
     }
@@ -60,13 +60,24 @@ export class AppComponent implements OnInit {
     setTimeout(() => {
       const cells = Array.from(document.querySelectorAll<HTMLDivElement>('.mat-calendar .mat-calendar-body-cell-content'));
       const [cell] = cells.filter(cell => +cell.outerText == object.date.getDate()) as HTMLDivElement[];
-      if (object.occupancy) cell.innerText = cell.innerText + `\n${object.occupancy}`;
+      if (object.occupancy) cell.innerHTML =  
+      `
+      <div fxLayout='column'>
+      <div>
+      ${cell.innerText}
+      </div>
+      <div fxLayout='row' class='occupancy'>
+      ${object.occupancy} פנוי
+      </div>
+
+      </div>
+      `;
     });
   }
 
   myFilter = (date: Date): boolean => {
     const [filter] = this.data.filter(item => this.compareDates(item.date, date));
-    return filter?.disabled ? false : true;
+    return filter?.occupancy ? true : false;
   }
 
 }
