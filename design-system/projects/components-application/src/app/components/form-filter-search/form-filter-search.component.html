@@ -4,9 +4,7 @@
       <kkl-form-search [searchGroup]="searchGroup" [advanced]="true">
         <ng-container *kklFormSearchContent="let context">
           <kkl-form
-            [questions]="context.questions"
-            [formGroup]="context.formGroup"
-            [grid]="grid"
+            [group]="context"
             [optionsMap]="optionsMap"
             (formChanged)="onFormChanged($event)"
           ></kkl-form>

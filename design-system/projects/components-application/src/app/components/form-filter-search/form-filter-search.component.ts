@@ -57,7 +57,7 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    { key: 'birthDay', label : 'יום הולדת', controlType: 'date' },
+    { key: 'birthDay', label: 'יום הולדת', controlType: 'date' },
     { key: 'committee', label: 'committee', controlType: 'dateRange' },
     // {
     //   key: 'area',
@@ -155,9 +155,10 @@ export class FormFilterSearchComponent implements OnInit {
   private setGroup(initQuestions: Question[]): QuestionGroupModel {
     const group = this.formService.createQuestionGroup({
       questions: initQuestions,
+      options: { gridProps: { cols: 5 } },
     });
 
-    return group
+    return group;
   }
 
   // DOM EVENTS SECTION

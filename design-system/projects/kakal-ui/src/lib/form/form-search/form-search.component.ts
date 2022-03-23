@@ -25,13 +25,12 @@ export class FormSearchComponent implements OnInit {
 
   @Input() public searchControl: FormControl;
   @Input() public searchGroup: QuestionGroupModel;
-
-  @Input() public questions: Question[];
   @Input() public advanced: boolean;
-  @Input() public formGroup: FormGroup;
 
   // default inputs in row
   public expended: boolean;
+
+  public contextGroup: QuestionGroupModel;
 
   @Output() public optionSelected: EventEmitter<FormChangeEvent> =
     new EventEmitter();
@@ -58,9 +57,14 @@ export class FormSearchComponent implements OnInit {
     const advancedQuestions = [...this.searchGroup.questions];
     advancedQuestions.splice(0, 1);
 
-    this.questions = advancedQuestions;
-    this.formGroup = this.searchGroup.formGroup;
-    this.searchControl = this.formGroup.get('search') as FormControl;
+    this.searchControl = this.searchGroup.formGroup.get(
+      'search'
+    ) as FormControl;
+
+    this.contextGroup = {
+      ...this.searchGroup,
+      questions: advancedQuestions,
+    } as QuestionGroupModel;
   }
 
   public onClick() {
