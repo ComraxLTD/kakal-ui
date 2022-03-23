@@ -71,7 +71,6 @@ import { FormExampleComponent } from './examples/form-example/form-example.compo
 import { OpenMotionsModule } from '../lib/open-motions/open-motions.module';
 import { KKSectionModule } from '../lib/section/section.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import {KKLFormDateCalendarModule} from '../lib/form/form-date-calendar/form-date-calendar.module';
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
@@ -79,7 +78,6 @@ import {KKLFormDateCalendarModule} from '../lib/form/form-date-calendar/form-dat
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    KKLFormDateCalendarModule,
     //TOOLS
     OpenMotionsModule,
     KKSectionModule,
@@ -147,7 +145,6 @@ import {KKLFormDateCalendarModule} from '../lib/form/form-date-calendar/form-dat
     KKLDisplayDataModule,
   ],
   exports: [
-    KKLFormDateCalendarModule,
     //TOOLS
     OpenMotionsModule,
     KKSectionModule,
