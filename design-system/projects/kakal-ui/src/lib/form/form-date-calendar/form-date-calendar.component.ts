@@ -17,11 +17,7 @@ export class FormDateCalendarComponent implements OnInit {
   });
 
   // EXAMPLE
-  @Input() data:any[] = [
-    { date: new Date("2022-03-01"), text: "one text", occupancy: 4 },
-    { date: new Date("2022-03-20"), text: "another text", occupancy: 3 },
-    { date: new Date("2022-04-20"), text: "another text", occupancy: 3 }
-  ];
+  @Input() data:any[];
 
   constructor() { }
 
