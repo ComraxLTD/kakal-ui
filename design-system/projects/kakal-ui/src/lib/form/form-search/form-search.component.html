@@ -36,7 +36,7 @@
         [expanded]="expended"
       >
         <ng-container
-          *ngTemplateOutlet="formSearchDirective?.template || defaultTemplate; context : { $implicit: {questions, formGroup}}"
+          *ngTemplateOutlet="formSearchDirective?.template || defaultTemplate; context : { $implicit: contextGroup}"
         ></ng-container>
       </mat-expansion-panel>
     </mat-accordion>

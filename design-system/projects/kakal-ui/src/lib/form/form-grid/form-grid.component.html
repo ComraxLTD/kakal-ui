@@ -1,11 +1,11 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="group.formGroup">
+<form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
   <mat-grid-list
     [cols]="cols"
     [rowHeight]="(rowHeight || 9) + 'rem'"
     [gutterSize]="(gutter || 1) + 'rem'"
     [dir]="'rtl'"
   >
-    <ng-container *ngFor="let question of group.questions; let index = index">
+    <ng-container *ngFor="let question of questions; let index = index">
       <ng-container [ngSwitch]="question.controlType">
         <!-- GROUP INPUT SECTION -->
         <ng-container *ngSwitchCase="'group'">
@@ -40,9 +40,7 @@
                       <div [fxFlex]="q?.gridProps?.flex?.width || 100">
                         <kkl-form-input
                           [control]="
-                            group.formGroup.controls[question.key].controls[
-                              q.key
-                            ]
+                            formGroup.controls[question.key].controls[q.key]
                           "
                           [key]="q?.key"
                           [placeHolder]="q?.placeHolder"
@@ -77,7 +75,7 @@
           >
             <kkl-form-select
               fxFlex="100"
-              [control]="group.formGroup.controls[question.key]"
+              [control]="formGroup.controls[question.key]"
               [key]="question?.key"
               [multi]="question?.multi"
               [options]="question?.options"
@@ -103,7 +101,7 @@
           >
             <kkl-form-checkbox
               fxFlex="100"
-              [control]="group.formGroup.controls[question.key]"
+              [control]="formGroup.controls[question.key]"
               [key]="question?.key"
               [options]="question?.options"
             ></kkl-form-checkbox>
@@ -121,7 +119,7 @@
           >
             <kkl-form-radio
               fxFlex="100"
-              [control]="group.formGroup.controls[question.key]"
+              [control]="formGroup.controls[question.key]"
               [key]="question?.key"
               [options]="question?.options"
             ></kkl-form-radio>
@@ -139,7 +137,7 @@
           >
             <kkl-form-date
               fxFlex="100"
-              [control]="group.formGroup.controls[question.key]"
+              [control]="formGroup.controls[question.key]"
               [key]="question?.key"
               [range]="question?.range"
               [placeHolder]="question?.placeHolder"
@@ -167,7 +165,7 @@
               fxFlex="100"
               [label]="question?.label"
               [multi]="question?.multi"
-              [formControl]="group.formGroup.controls[question.key]"
+              [formControl]="formGroup.controls[question.key]"
               [index]="index"
               (fileChanged)="onFormChanged($event)"
             ></kkl-form-upload>
@@ -186,7 +184,7 @@
           >
             <kkl-form-currency
               fxFlex="100"
-              [formControl]="group.formGroup.controls[question.key]"
+              [formControl]="formGroup.controls[question.key]"
               [validations]="question?.validations"
               [index]="index"
             >
@@ -205,7 +203,7 @@
           >
             <kkl-form-texteditor
               fxFlex="100"
-              [control]="group.formGroup.controls[question.key]"
+              [control]="formGroup.controls[question.key]"
               [placeHolder]="question?.placeHolder"
               [validations]="question?.validations"
               [index]="index"
@@ -225,10 +223,10 @@
           >
             <ng-container
               *ngTemplateOutlet="
-                slots[question.key];
+              templates[question.key];
                 context: {
                   question: question,
-                  control: group.formGroup.controls[question.key]
+                  control: formGroup.controls[question.key]
                 }
               "
             >
@@ -254,7 +252,7 @@
             >
               <div [fxFlex]="question?.gridProps?.flex?.width || 100">
                 <kkl-form-input
-                  [control]="group.formGroup.controls[question.key]"
+                  [control]="formGroup.controls[question.key]"
                   [key]="question?.key"
                   [placeHolder]="question?.placeHolder"
                   [theme]="question?.theme"
@@ -284,11 +282,9 @@
       <div class="btn-form" fxFlex="100">
         <ng-container
           *ngTemplateOutlet="
-            slots?.button;
+            buttonTemp || defaultTemplate;
             context: {
-              $implicit: group.formGroup.value,
-              $implicit: group.formGroup.disabled,
-              $implicit: group.formGroup.valid
+              $implicit: formGroup
             }
           "
         >
@@ -297,3 +293,12 @@
     </mat-grid-tile>
   </mat-grid-list>
 </form>
+
+<ng-template #defaultTemplate let-formGroup>
+  <kkl-stroke-button
+    type="submit"
+    color="primary"
+    [disabled]="!formGroup.valid"
+    >{{ buttonLabel }}</kkl-stroke-button
+  >
+</ng-template>

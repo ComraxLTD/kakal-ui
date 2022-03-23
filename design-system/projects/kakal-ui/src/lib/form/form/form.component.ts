@@ -10,7 +10,6 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { Question, OptionMap } from '../models/form.types';
@@ -28,11 +27,6 @@ export class FormComponent implements OnInit {
 
   @Input() public rowHeight: number;
   @Input() public gutter: number;
-
-  @Input() public slots: {
-    button?: TemplateRef<any>;
-    group?: ElementRef;
-  };
 
   @Input() optionsSlot: { [key: string]: ElementRef };
 
@@ -53,7 +47,9 @@ export class FormComponent implements OnInit {
   @Output() public formChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.group)
+  }
 
   public onSubmitEvent() {
     this.submitEvent.emit(this.formGroup);
