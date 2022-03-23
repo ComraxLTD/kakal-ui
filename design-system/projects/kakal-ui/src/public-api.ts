@@ -105,6 +105,7 @@ export * from './lib/form/models/question-text.model';
 export * from './lib/form/models/question-textarea.model';
 export * from './lib/form/models/question-toggle.model';
 export * from './lib/form/models/question.model';
+export * from './lib/form/models/question.types';
 
 // ------------------------------------------------------------------------------------------
 // TABLE EXPORTS

@@ -6,10 +6,9 @@ import {
 } from '@angular/forms';
 import { Question } from '../services/form.service';
 import {
-  ControlType,
-  GridProps,
   QuestionBase,
 } from './question.model';
+import { ControlType, GridProps } from './question.types';
 import { Observable, of } from 'rxjs';
 
 export interface GroupOptions {

@@ -13,10 +13,10 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { Appearance } from '../models/question.model';
 import { FormChangeEvent } from '../models/form.options';
 import { FormActions } from '../models/form.actions';
 import { map, Observable, startWith, Subject, } from 'rxjs';
+import { Appearance } from '../models/question.types';
 
 export const MY_FORMATS = {
   parse: {

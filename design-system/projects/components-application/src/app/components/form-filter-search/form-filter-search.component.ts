@@ -1,21 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
 import {
-  Currency,
-  FilterChangeEvent,
   FiltersService,
   FilterState,
   FilterType,
-  FormActions,
   FormChangeEvent,
   FormDataSource,
   FormService,
-  GridProps,
   KKLSelectOption,
   OptionMap,
   Question,
   QuestionGroupModel,
-  SelectOption,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import {

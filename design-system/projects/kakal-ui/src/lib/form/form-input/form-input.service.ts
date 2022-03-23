@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ValidationService } from '../services/validations.service';
 import { ValidatorFn } from '@angular/forms';
-import { ControlType } from '../models/question.model';
+import { ControlType } from '../models/question.types';
 
 @Injectable({
   providedIn: 'root',

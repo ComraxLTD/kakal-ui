@@ -1,5 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBase } from '../models/question.model';
+import {  QuestionBase } from '../models/question.model';
+import { GridProps } from '../models/question.types';
 
 export interface RadioOption {
   label: string;

@@ -1,6 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 import { QuestionTextModel } from './question-text.model';
-import { GridProps } from './question.model';
+import { GridProps } from './question.types';
 
 export class QuestionSumModel extends QuestionTextModel {
   constructor(options: {

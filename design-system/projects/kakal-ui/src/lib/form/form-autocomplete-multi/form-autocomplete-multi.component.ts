@@ -39,42 +39,14 @@ export class FormAutocompleteComponentMulti implements OnInit {
 
   @Output() autocomplete: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
+    new EventEmitter();
 
   public autocomplete$: Observable<string>;
 
   constructor() {}
 
-  ngOnInit(): void {
-    // this.autocomplete$ = this.mergeFormEvents().pipe(mapTo(''));
-  }
-
-  // private mergeFormEvents() {
-  //   return merge(
-  //     this.onAutocompleteEvent(),
-  //     this.formDataSource.listen.optionSelected()
-  //   );
-  // }
-
-  // private onAutocompleteEvent(): Observable<FormChangeEvent> {
-  //   return this.formDataSource.listen.autocomplete().pipe(
-  //     debounceTime(500),
-  //     distinctUntilKeyChanged('value'),
-  //     tap((FormChangeEvent: FormChangeEvent) => {
-  //       const option: SelectOption = this.options.find((option) =>
-  //         option.label.indexOf(FormChangeEvent.value)
-  //       );
-
-  //       this.autocomplete.emit({
-  //         key: this.key,
-  //         option,
-  //         value: FormChangeEvent.value,
-  //         value$: of(FormChangeEvent.value),
-  //       });
-  //       return FormChangeEvent;
-  //     })
-  //   );
-  // }
+  ngOnInit(): void {}
 
   public search(query: string): void {
     const option: SelectOption = this.options.find((option) =>
@@ -86,8 +58,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
       option,
       query,
       query$: of(query),
-      action : FormActions.QUERY_CHANGED
-
+      action: FormActions.QUERY_CHANGED,
     };
 
     this.formDataSource.dispatch(FormChangeEvent);
@@ -99,7 +70,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
       value: option.value,
-      action : FormActions.OPTION_SELECTED
+      action: FormActions.OPTION_SELECTED,
     };
 
     this.formDataSource.dispatch(FormChangeEvent);
@@ -117,7 +88,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
     this.multiOptionsSelected.emit({
       key: this.key,
       value: options,
-      action : FormActions.MULTI_OPTION_SELECTED
+      action: FormActions.MULTI_OPTION_SELECTED,
     });
   }
 

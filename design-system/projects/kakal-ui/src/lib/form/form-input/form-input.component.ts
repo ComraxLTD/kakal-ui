@@ -1,13 +1,13 @@
 import { MessageService } from './../services/message.service';
 import { FormControl, FormControlStatus } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Appearance, ControlType, GridProps } from '../models/question.model';
 import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
 import { FormChangeEvent } from '../models/form.options';
 import { FormActions } from '../models/form.actions';
+import { ControlType, Appearance, GridProps } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-input',

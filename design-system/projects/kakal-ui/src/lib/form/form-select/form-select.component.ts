@@ -5,8 +5,8 @@ import { Palette } from '../../../styles/theme';
 import { FormActions } from '../models/form.actions';
 import { FormChangeEvent } from '../models/form.options';
 import { SelectOption } from './question-select.model';
-import { Appearance } from '../models/question.model';
 import { MessageService } from '../services/message.service';
+import { Appearance } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-select',

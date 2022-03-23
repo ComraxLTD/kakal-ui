@@ -3,7 +3,7 @@ import {
   QuestionSelectModel,
   SelectOption,
 } from '../form-select/question-select.model';
-import { GridProps } from '../models/question.model';
+import { GridProps } from '../models/question.types';
 
 export interface Currency {
   currency?: SelectOption;
