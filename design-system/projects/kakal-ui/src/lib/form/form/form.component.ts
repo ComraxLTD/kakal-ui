@@ -47,9 +47,7 @@ export class FormComponent implements OnInit {
   @Output() public formChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  ngOnInit() {
-    console.log(this.group)
-  }
+  ngOnInit() {}
 
   public onSubmitEvent() {
     this.submitEvent.emit(this.formGroup);
