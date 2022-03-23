@@ -6,7 +6,7 @@ export class HeaderCellModel<T = any> {
   public label?: string;
   public format?: string;
   public type?: HeaderType;
-  public selector?: string | (() => string);
+  public selector?: string | ((args?: any) => string);
 
   public flex?: number;
   public center?: boolean;

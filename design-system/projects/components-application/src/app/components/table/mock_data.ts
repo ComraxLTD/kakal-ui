@@ -1,4 +1,5 @@
 import { KKLSelectOption } from '../../../../../kakal-ui/src/public-api';
+import { ObserversCommittee } from '../../model/observersCommittee';
 
 export interface RootObject {
   id: number;
@@ -332,5 +333,43 @@ export const MOCK_OPTIONS: KKLSelectOption[] = [
     id: 10,
     label: 'China',
     value: 10,
+  },
+];
+
+export interface OptionObject {
+  id?: number;
+  city: string;
+}
+
+export const ROOT_DATA: ObserversCommittee[] = [
+  {
+    committeeDate: '03/10/2021',
+    committeeId: 1,
+    observer: [
+      {
+        email: null,
+        phone: null,
+        userData: 'מערכות מידע',
+        userId: 'RafiN',
+        userName: 'רפאל נוימן',
+      },
+    ],
+    region: { regionId: 1, regionName: 'ירושלים' },
+    remiTikim: [
+      {
+        monetaryValue: 230000,
+        nechasim: [],
+        nechasimCount: 2,
+        tikId: 12,
+        tikStatus: { statusId: 1, statusName: '????' },
+      },
+      {
+        monetaryValue: 5670000,
+        nechasim: [],
+        nechasimCount: 1,
+        tikId: 331,
+        tikStatus: { statusId: 1, statusName: '????' },
+      },
+    ],
   },
 ];

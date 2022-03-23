@@ -1,7 +1,8 @@
-<kkl-form-date-range [dates]='data'></kkl-form-date-range>
-<kkl-form-date-range></kkl-form-date-range>
+<div fxLayout="column" fxFill>
+  <kkl-form-date-range [dates]="data"></kkl-form-date-range>
+  <kkl-form-date-range></kkl-form-date-range>
 
-<!-- <mat-form-field appearance="fill">
+  <!-- <mat-form-field appearance="fill">
   <mat-label>Enter a date range</mat-label>
   <mat-date-range-input [formGroup]="range" [dateFilter]="myFilter" [rangePicker]="picker">
     <input matStartDate formControlName="start" placeholder="Start date">
@@ -11,10 +12,8 @@
   <mat-date-range-picker #picker
    [dateClass]="dateClass()"></mat-date-range-picker>
 </mat-form-field> -->
-
-<div fxLayout="column" fxLayoutGap="5rem">
-  <div fxLayout="column" fxLayoutAlign="center center">
+  <div fxLayout="row" fxFill fxLayoutAlign="center center">
     <!-- <app-form-filter-search></app-form-filter-search> -->
-    <app-table></app-table>
+    <app-table fxFlex="80"></app-table>
   </div>
 </div>

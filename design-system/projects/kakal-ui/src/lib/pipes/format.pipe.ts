@@ -3,6 +3,7 @@ import { AreaPipe } from './area.pipe';
 import { formatDate, formatNumber, formatCurrency } from '@angular/common';
 import { PrefixPipe } from './prefix.pipe';
 import { LocationPipe } from './location.pipe';
+import { PluckPipe } from './pluck.pipe';
 
 export interface FormatPipe {
   type: string;
@@ -17,6 +18,7 @@ export class FormatPipe implements PipeTransform {
     private area: AreaPipe,
     private prefix: PrefixPipe,
     private location: LocationPipe,
+    private pluck: PluckPipe,
     @Inject(LOCALE_ID) private locale: string
   ) {}
 
@@ -29,44 +31,45 @@ export class FormatPipe implements PipeTransform {
     return formatCurrency(value, this.locale, args(), '', '1.0');
   }
 
-  private plunk(value: any, args: any) {
-    if (typeof args === 'string') {
-      return value[args];
-    } else {
-      return args(value);
-    }
-  }
+  // private plunk(value: any, args: any) {
+  //   if (typeof args === 'string') {
+  //     return value[args];
+  //   } else {
+  //     return args(value);
+  //   }
+  // }
 
-  private formatObj(value: any, format: string, args?: string): string {
+  private format(value: any, format: string, args?: string): string {
     const formats = {
       location: (value) => this.location.transform(value),
       area: (value) => this.area.transform(value),
       prefix: (value, args) => this.prefix.transform(value, args),
       currency: (value, args) => this.setCurrency(value, args),
       number: (value) => formatNumber(value, this.locale),
-      plunk: (value, args) => this.plunk(value, args),
+      pluck: (value, args) => this.pluck.transform(value, args),
+      time: (value) => formatDate(new Date(value), 'HH:mm', this.locale),
+      date: (value) => formatDate(new Date(value), 'd/M/yy', this.locale),
+      fullDate: (value) => formatDate(value, 'HH:mm d/M/yy', this.locale),
     };
     return formats[format] !== undefined ? formats[format](value, args) : value;
   }
 
-  private formatDate(value: any, format: string, args?: string): string {
-    const formats = {
-      time: formatDate(new Date(value), 'HH:mm', this.locale),
-      date: formatDate(new Date(value), 'd/M/yy', this.locale),
-      fullDate: formatDate(value, 'HH:mm d/M/yy', this.locale),
-    };
-    return format === 'date' && value.toString() !== 'Invalid Date'
-      ? formats[format]
-      : value;
-  }
+  // private formatDate(value: any, format: string): string {
+  //   const formats = {
+  //     time: (value) => formatDate(new Date(value), 'HH:mm', this.locale),
+  //     date: (value) => formatDate(new Date(value), 'd/M/yy', this.locale),
+  //     fullDate: (value) => formatDate(value, 'HH:mm d/M/yy', this.locale),
+  //   };
+  //   return value.toString() !== 'Invalid Date' ? formats[format] : value;
+  // }
 
   private formatValue(value: unknown, format?: string, args?): unknown {
-    return format === 'date'
-      ? this.formatDate(value, format, args)
-      : this.formatObj(value, format, args);
+    return this.format(value, format, args);
   }
 
   public transform(value: unknown, format?: string, args?: any): unknown {
-    return format && value ? this.formatValue(value, format, args) : value;
+    return format && value && value.toString() !== 'Invalid Date'
+      ? this.formatValue(value, format, args)
+      : value;
   }
 }
