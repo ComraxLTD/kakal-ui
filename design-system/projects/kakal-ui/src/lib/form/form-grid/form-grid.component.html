@@ -76,6 +76,7 @@
             <kkl-form-select
               fxFlex="100"
               [control]="formGroup.controls[question.key]"
+              [label]="question?.label"
               [key]="question?.key"
               [multi]="question?.multi"
               [options]="question?.options"
@@ -182,6 +183,7 @@
           >
             <kkl-form-date
               fxFlex="100"
+              [label]="question?.label"
               [control]="formGroup.controls[question.key]"
               [key]="question?.key"
               [range]="question?.range"
@@ -298,6 +300,7 @@
               <div [fxFlex]="question?.gridProps?.flex?.width || 100">
                 <kkl-form-input
                   [control]="formGroup.controls[question.key]"
+                  [label]="question?.label"
                   [key]="question?.key"
                   [placeHolder]="question?.placeHolder"
                   [theme]="question?.theme"
@@ -305,7 +308,6 @@
                   [cleave]="question?.cleave"
                   [gridProps]="question?.gridProps"
                   [icon]="question?.icon"
-                  [label]="question?.label"
                   [index]="index"
                   (focus)="onFocusChanged($event)"
                   [controlType]="question?.controlType"
