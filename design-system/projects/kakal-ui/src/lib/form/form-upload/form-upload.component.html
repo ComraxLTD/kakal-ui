@@ -2,10 +2,10 @@
   class="kkl-form-uplaod"
   [appearance]="disabled ? 'fill' : 'outline'"
 >
-  <mat-label #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu">
-    <kkl-typography color="primary" [disabled]="disabled" underline="true">
-      {{ label$ | async }}
-    </kkl-typography>
+  <mat-label #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" kkl-underline>
+    {{ label$ | async }}
+    <!-- <kkl-typography color="primary" [disabled]="disabled" underline="true">
+    </kkl-typography> -->
   </mat-label>
   <mat-select [disabled]="disabled" (click)="onClick(fileUpload, menuTrigger)">
     <input
@@ -24,8 +24,8 @@
     matSuffix
     [size]="2"
     [disabled]="disabled"
-    stroke="primary"
-    key="open_border"
+    key="add_circle_outline"
+    color="primary"
   >
   </kkl-icon>
 </mat-form-field>
@@ -47,3 +47,5 @@
     </ng-container>
   </mat-list>
 </mat-menu>
+
+<!-- key="open_border" -->

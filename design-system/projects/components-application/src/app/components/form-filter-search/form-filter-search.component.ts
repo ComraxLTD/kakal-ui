@@ -12,15 +12,7 @@ import {
   QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
-import {
-  combineLatest,
-  firstValueFrom,
-  forkJoin,
-  map,
-  merge,
-  Observable,
-  of,
-} from 'rxjs';
+import { forkJoin, map, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
@@ -44,7 +36,7 @@ export class FormFilterSearchComponent implements OnInit {
 
     { key: 'last_name' },
     // { key: 'part', controlType: 'counter' },
-    { key: 'last_name', controlType: 'select' },
+    { key: 'last_name', controlType: 'upload' },
     {
       key: 'multiSelectTest',
       label: 'multiSelectTest',

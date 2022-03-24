@@ -8,6 +8,11 @@
   }
 }
 
+mat-label {
+  color: main.color(primary) !important;
+  text-decoration: underline;
+}
+
 mat-icon {
   cursor: pointer;
 }
