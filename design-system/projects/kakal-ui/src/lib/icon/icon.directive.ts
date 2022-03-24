@@ -10,6 +10,18 @@ export class KKLIconDirective {
 
   @HostBinding('class') private _class;
 
+  @HostBinding('style.color')
+  private currentColor: string;
+
+  @HostBinding('style.fill')
+  private fill: string;
+
+  @HostBinding('style.stroke')
+  private stroke: string;
+
+
+
+
   private _disabled: boolean;
   @Input()
   get disabled(): boolean {
@@ -20,8 +32,6 @@ export class KKLIconDirective {
     this.invalidate();
   }
 
-  @HostBinding('style.color')
-  private iconColor: string;
 
   private _color: Palette = 'default';
 
@@ -38,7 +48,6 @@ export class KKLIconDirective {
 
   ngOnInit(): void {
     if (this.svgIcon) {
-      console.log(this.svgIcon)
       this.iconsService.setIcon(this.svgIcon);
     }
 
@@ -47,8 +56,11 @@ export class KKLIconDirective {
   private invalidate() {
     if (palletteClassesMap[this._color]) {
       this._class = this._class + ` ${palletteClassesMap[this._color]}`;
+      this.fill = palette[this._color];
+      this.stroke = palette[this._color];
+      console.log(this.stroke)
     } else {
-      this.iconColor = palette[this._color];
+      this.currentColor = palette[this._color];
     }
   }
 }

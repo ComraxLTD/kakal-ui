@@ -33,10 +33,9 @@ import { FormChangeEvent } from '../models/form.options';
 })
 export class FormUploadComponent implements OnInit, ControlValueAccessor {
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
-
-  @Input() public key: string;
+  @Input() public key!: string;
   @Input() public label: string = 'העלה מסמך';
-  @Input() public index: number;
+  @Input() public index!: number;
   @Input() public multi: boolean = true;
 
   public disabled: boolean;

@@ -1,5 +1,5 @@
 import { MessageService } from './../services/message.service';
-import { FormControl, FormControlStatus } from '@angular/forms';
+import { AbstractControl, FormControl, FormControlStatus } from '@angular/forms';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, Observable, of } from 'rxjs';
@@ -15,17 +15,17 @@ import { ControlType, Appearance, GridProps } from '../models/question.types';
   styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
-  @Input() public control: FormControl;
-  @Input() public key: string;
-  @Input() public controlType: ControlType;
-  @Input() public label: string;
-  @Input() public placeHolder: string;
-  @Input() public appearance: Appearance;
-  @Input() public theme: Palette;
-  @Input() public index: number;
-  @Input() public cleave: {};
-  @Input() public gridProps: GridProps;
-  @Input() public icon: string;
+  @Input() control!: FormControl | AbstractControl;
+  @Input() public key!: string;
+  @Input() public controlType!: ControlType;
+  @Input() public label!: string;
+  @Input() public placeHolder!: string;
+  @Input() public appearance!: Appearance;
+  @Input() public theme!: Palette;
+  @Input() public index!: number;
+  @Input() public cleave!: {};
+  @Input() public gridProps!: GridProps;
+  @Input() public icon!: string;
 
   public error$: BehaviorSubject<string>;
   public color$: Observable<Palette>;
@@ -103,7 +103,7 @@ export class FormInputComponent implements OnInit {
 
   private setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control,
+      this.control as FormControl,
       this.placeHolder
     );
 
@@ -124,7 +124,7 @@ export class FormInputComponent implements OnInit {
     const { value, action } = props;
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
-      control: this.control,
+      control: this.control as FormControl,
       index: this.index,
       value,
       value$: of(value),

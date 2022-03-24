@@ -1,4 +1,4 @@
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { RadioOption } from './question-radio.model';
@@ -9,11 +9,13 @@ import { RadioOption } from './question-radio.model';
   styleUrls: ['./form-radio.component.scss'],
 })
 export class FormRadioComponent implements OnInit {
-  @Input() key: string;
-  @Input() label: string;
-  @Input() options: RadioOption[];
-  @Input() public control: FormControl;
+  @Input() public control!: FormControl | AbstractControl;
+  @Input() key!: string;
+  @Input() label!: string;
+  @Input() options!: RadioOption[];
+
   @Output() public change = new EventEmitter<any>();
+
   constructor() {}
 
   ngOnInit(): void {

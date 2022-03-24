@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
@@ -8,8 +8,8 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./form-checkbox.component.scss'],
 })
 export class FormCheckboxComponent implements OnInit {
-  @Input() control: FormControl;
-  @Input() label: string;
+  @Input() control!: FormControl | AbstractControl;
+  @Input() label!: string;
   @Input() labelPosition: 'after' | 'before' = 'after';
 
   @Output() valueChanged: EventEmitter<MatCheckboxChange> = new EventEmitter();
