@@ -18,7 +18,7 @@ export class IconComponent implements OnInit {
   }
   set key(value: string) {
     this._key = value;
-    this.iconsService.setIcon(this._key);
+    // this.iconsService.setIcon(this._key);
   }
 
   private _color: string = 'default';
