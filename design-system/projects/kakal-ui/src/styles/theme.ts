@@ -19,7 +19,7 @@ export declare type Palette =
 export type Color = { [key in Palette]: string };
 
 export const palette: Color = {
-  primary: '#01a7b4',
+  primary: '#d83020',
   accent: '#37c56b',
   warn: '#d83020',
   paper: '#fff',
@@ -39,5 +39,7 @@ export const palletteClassesMap = {
   primary: 'mat-primary',
   accent: 'mat-accent',
   warn: 'mat-warn',
+  disable: 'mat-disable',
+  success: 'kkl-success',
 };
 

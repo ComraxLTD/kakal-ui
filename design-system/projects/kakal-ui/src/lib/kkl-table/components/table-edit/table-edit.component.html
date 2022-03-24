@@ -1,0 +1,94 @@
+<button *ngIf="addButton" mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="addNewRowGroup()">
+  <mat-icon>add</mat-icon>
+  {{addButton.label}}
+</button>
+<form [formGroup]="form">
+  <div *ngIf="displayedColumns.length" class="mat-elevation-z8 table-wrapper">
+    <table dir="rtl" mat-table [dataSource]="dataTable" matSort multiTemplateDataRows formArrayName="myRows">
+
+      <ng-container *ngFor="let column of oneColumns" [matColumnDef]="column.key">
+        <th mat-header-cell *matHeaderCellDef>
+          <h3 mat-sort-header>{{column.label}}</h3>
+        </th>
+        <td mat-cell *matCellDef="let element; let i = dataIndex"
+                    [style.display]="(i | tableGroupCell : column.group : spans) ? '' : 'none'"
+                    [attr.rowspan]="(!expandTemplate || element == expandedElement)? (i | tableGroupCell : column.group : spans) : (i | tableGroupCell : column.group : spans)*2">
+          <ng-container *ngIf="!(element | arrInclueds : editItems); else editBlock">
+            <!-- <ng-container *ngIf="column.template">
+              <mat-progress-bar mode="query" [value]="60"></mat-progress-bar>
+              <ng-container *ngTemplateOutlet="column.template"></ng-container>
+            </ng-container> -->
+            <kkl-icon *ngIf="column.colIcon" [key]="column.colIcon.key"></kkl-icon>
+            <span *ngIf="column.button; else withButton">
+              <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(column.button, element)">
+                <mat-icon>{{column.button.icon.key}}</mat-icon>
+                <span *ngIf="element[column.key]" style="white-space: pre-wrap;">
+                  {{element[column.key] | tableCellPipe: column.controlType}}
+                </span>
+              </button>
+            </span>
+            <ng-template #withButton>
+              <span *ngIf="element[column.key]" style="white-space: pre-wrap;">
+                {{element[column.key] | tableCellPipe: column.controlType}}
+              </span>
+            </ng-template>
+          </ng-container>
+          <ng-template #editBlock>
+            <ng-container >
+              <app-table-form [formGroupName]="(element | arrIndex : editItems)" [question]="column"></app-table-form>
+            </ng-container>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+      <ng-container matColumnDef="expandedDetail">
+        <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div class="example-element-detail"
+              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div class="example-element-description">
+              <ng-container *ngIf="expandTemplate">
+                <ng-template *ngTemplateOutlet="expandTemplate"></ng-template>
+              </ng-container>
+            </div>
+          </div>
+        </td>
+      </ng-container>
+
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef><h3>פעולות</h3></th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container *ngIf="!(element | arrInclueds : editItems); else addButton">
+            <ng-container *ngFor="let butt of buttons">
+              <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(butt, element)">
+                <mat-icon>{{butt.icon}}</mat-icon>
+                {{butt.label}}
+              </button>
+            </ng-container>
+          </ng-container>
+          <ng-template #addButton>
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="saveRowClick(element)">
+              <mat-icon>save</mat-icon>
+            </button>
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let element; columns: displayedColumns;"
+          class="example-element-row"
+          [class.example-expanded-row]="expandedElement === element"
+          >
+      </tr>
+      <tr mat-row *matRowDef="let row; columns: expandedElement? ['expandedDetail'] : []" class="example-detail-row"></tr>
+
+      <!-- Row shown when there is no matching data. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">No data</td>
+      </tr>
+    </table>
+
+    <mat-paginator dir="ltr" [pageSizeOptions]="[10, 25, 100]" aria-label="Select page"></mat-paginator>
+  </div>
+</form>

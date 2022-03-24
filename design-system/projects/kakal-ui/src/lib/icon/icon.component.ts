@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Color, palette, Palette } from '../../styles/theme';
-import { IconType } from './icon.model';
 import { IconsService } from './icons.service';
 
 @Component({
@@ -19,7 +18,7 @@ export class IconComponent implements OnInit {
   }
   set key(value: string) {
     this._key = value;
-    this.iconsService.setIcon(this._key)
+    // this.iconsService.setIcon(this._key);
   }
 
   private _color: string = 'default';
@@ -32,8 +31,7 @@ export class IconComponent implements OnInit {
     this._color = value;
   }
 
-
-  @Input() public type: IconType;
+  @Input() public type: 'mat' | 'svg';
   @Input() public size: number;
 
   @Input() public formType: string = 'form';
@@ -42,8 +40,7 @@ export class IconComponent implements OnInit {
 
   @Input() public backgroundColor: Palette;
 
-  @Input() public disabled: boolean
-
+  @Input() public disabled: boolean;
 
   public scale: string;
 

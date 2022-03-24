@@ -18,6 +18,8 @@ import { DetailsComponent } from './components/details/details.component';
 import { BidComponent } from './components/bid/bid.component';
 import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NewOrderLayoutComponent } from './components/new-order-layout/new-order-layout.component';
+import { ButtonComponent } from './components/button/button.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TableComponent,
     DetailsComponent,
     BidComponent,
+    ButtonComponent,
+    NewOrderLayoutComponent,
     FormFilterSearchComponent,
   ],
   imports: [

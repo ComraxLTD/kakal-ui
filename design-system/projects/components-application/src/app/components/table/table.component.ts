@@ -11,11 +11,8 @@ import {
   TableState,
   KKLSelectOption,
   FetchState,
-  HeaderState,
-  ColumnActions,
   HeaderCellModel,
   TableActions,
-  FormChangeEvent,
   PageState,
   FormActions,
   TableService,
@@ -23,15 +20,12 @@ import {
 import { DEMO_DATA, DEMO_OPTIONS, OptionObject, ROOT_DATA } from './mock_data';
 import {
   BehaviorSubject,
-  debounceTime,
-  distinctUntilChanged,
   firstValueFrom,
   map,
   merge,
   Observable,
   of,
   switchMap,
-  take,
 } from 'rxjs';
 import { ObserversCommittee } from '../../model/observersCommittee';
 
