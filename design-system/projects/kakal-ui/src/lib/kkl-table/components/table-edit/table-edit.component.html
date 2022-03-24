@@ -23,13 +23,13 @@
               <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(column.button, element)">
                 <mat-icon>{{column.button.icon.key}}</mat-icon>
                 <span *ngIf="element[column.key]" style="white-space: pre-wrap;">
-                  {{element[column.key] | tableCellPipe: column.type}}
+                  {{element[column.key] | tableCellPipe: column.controlType}}
                 </span>
               </button>
             </span>
             <ng-template #withButton>
               <span *ngIf="element[column.key]" style="white-space: pre-wrap;">
-                {{element[column.key] | tableCellPipe: column.type}}
+                {{element[column.key] | tableCellPipe: column.controlType}}
               </span>
             </ng-template>
           </ng-container>

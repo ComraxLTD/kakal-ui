@@ -9,7 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlinePrint', 'inlineExpand'];
 
 @Component({
-  selector: 'app-table-edit',
+  selector: 'kkl-table-edit',
   templateUrl: './table-edit.component.html',
   styleUrls: ['./table-edit.component.scss'],
   animations: [
