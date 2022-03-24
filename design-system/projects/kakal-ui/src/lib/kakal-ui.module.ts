@@ -73,6 +73,8 @@ import { KKSectionModule } from '../lib/section/section.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { KKLTabsModule } from '../lib/tabs/tabs.module';
 
+import { KKLNewTableModule } from '../lib/kkl-table/kkl-table.module';
+
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
@@ -115,6 +117,9 @@ import { KKLTabsModule } from '../lib/tabs/tabs.module';
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+
+    //KKL NEW TABLE MODULES
+    KKLNewTableModule,
 
     // TABLE MODULES
     KKLTableModule,
@@ -182,6 +187,10 @@ import { KKLTabsModule } from '../lib/tabs/tabs.module';
     KKLFormCounterModule,
     KKLFormSearchModule,
 
+    // NEW TABLE
+    KKLNewTableModule,
+
+    // TABLE
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
