@@ -56,9 +56,6 @@ export class KKLIconDirective {
   private invalidate() {
     if (palletteClassesMap[this._color]) {
       this._class = this._class + ` ${palletteClassesMap[this._color]}`;
-      this.fill = palette[this._color];
-      this.stroke = palette[this._color];
-      console.log(this.stroke)
     } else {
       this.currentColor = palette[this._color];
     }
