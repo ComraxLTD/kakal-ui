@@ -23,12 +23,13 @@ import { KKLFormSearchContentDirective } from './form-search.directive';
 export class FormSearchComponent implements OnInit {
   @ContentChild(KKLFormSearchContentDirective) formSearchDirective;
 
-  @Input() public searchControl!: FormControl | AbstractControl;
-  @Input() public searchGroup!: QuestionGroupModel;
-  @Input() public advanced!: boolean;
+  @Input() searchControl!: FormControl | AbstractControl;
+  @Input() searchGroup!: QuestionGroupModel;
+  @Input() advanced!: boolean;
+  @Input() expended: boolean = true;
+  @Input() asButton!: boolean;
 
   // default inputs in row
-  public expended: boolean;
 
   public contextGroup: QuestionGroupModel;
 
@@ -44,8 +45,6 @@ export class FormSearchComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.expended = this.advanced;
-
     this.onAdvanced();
   }
 
