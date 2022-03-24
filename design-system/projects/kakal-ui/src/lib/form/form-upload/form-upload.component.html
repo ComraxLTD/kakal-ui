@@ -2,7 +2,11 @@
   class="kkl-form-uplaod"
   [appearance]="disabled ? 'fill' : 'outline'"
 >
-  <mat-label #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" kkl-underline>
+  <mat-label
+    #menuTrigger="matMenuTrigger"
+    [matMenuTriggerFor]="menu"
+    kkl-underline
+  >
     {{ label$ | async }}
     <!-- <kkl-typography color="primary" [disabled]="disabled" underline="true">
     </kkl-typography> -->
@@ -19,15 +23,15 @@
     />
   </mat-select>
 
-  <kkl-icon
-    (click)="fileUpload.click()"
+  <button
     matSuffix
-    [size]="2"
+    mat-icon-button
+    (click)="fileUpload.click()"
     [disabled]="disabled"
-    key="add_circle_outline"
-    color="primary"
+    [class.active]="disabled"
   >
-  </kkl-icon>
+    <mat-icon [svgIcon]="'open_border'"></mat-icon>
+  </button>
 </mat-form-field>
 
 <mat-menu #menu="matMenu">

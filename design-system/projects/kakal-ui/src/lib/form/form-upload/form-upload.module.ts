@@ -9,6 +9,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { KKLButtonModule } from '../../button/button.module';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatMenuModule,
     MatIconModule,
     MatSelectModule,
-
+    KKLButtonModule,
     KKLIconModule,
     KKLTypographyModule
   ],
