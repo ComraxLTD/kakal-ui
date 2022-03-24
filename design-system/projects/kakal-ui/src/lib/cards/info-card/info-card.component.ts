@@ -12,9 +12,6 @@ export class InfoCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.card=new InfoCardModel({icon:'search',headline:'first headline',subHeadline:'text long text liong tasd faser'})
     console.log(this.card);
-    
   }
-
 }
