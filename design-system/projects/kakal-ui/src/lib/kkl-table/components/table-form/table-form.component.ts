@@ -10,7 +10,7 @@ export const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
 };
 
 @Component({
-  selector: 'app-table-form',
+  selector: 'kkl-table-form',
   templateUrl: './table-form.component.html',
   styleUrls: ['./table-form.component.scss'],
 })
