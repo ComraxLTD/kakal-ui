@@ -113,6 +113,16 @@ export * from './lib/form/models/question.types';
 // TABLE EXPORTS
 // ------------------------------------------------------------------------------------------
 
+// NEW TABLE
+export * from './lib/kkl-table/components/table-edit/table-edit.component';
+export * from './lib/kkl-table/components/table-form/table-form.component';
+export * from './lib/kkl-table/kkl-table.module';
+export * from './lib/kkl-table/pipes/arr-includes.pipe';
+export * from './lib/kkl-table/pipes/arr-index.pipe';
+export * from './lib/kkl-table/pipes/table-cell-pipe.pipe';
+export * from './lib/kkl-table/pipes/table-group-cell.pipe';
+export * from './lib/kkl-table/table.model';
+
 // TABLE
 export * from './lib/table/components/table/table.module';
 export * from './lib/table/components/table/table.component';
