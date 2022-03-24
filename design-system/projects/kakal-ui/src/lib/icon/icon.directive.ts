@@ -38,7 +38,6 @@ export class KKLIconDirective {
 
   ngOnInit(): void {
     if (this.svgIcon) {
-      console.log(this.svgIcon)
       this.iconsService.setIcon(this.svgIcon);
     }
 
