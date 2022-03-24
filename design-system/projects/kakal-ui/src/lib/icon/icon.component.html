@@ -1,27 +1,24 @@
-<ng-container *ngIf="type === 'svg'; else elseBlock">
-  <mat-icon
-    appSize
-    [color]="color"
-    [size]="size"
-    type="icon"
-    [ngStyle]="{
-      background: backgroundColor
-    }"
-    [svgIcon]="key"
-  >
-  </mat-icon>
-</ng-container>
-<ng-template #elseBlock>
-  <mat-icon
-    kkl-icon
-    [color]="color"
-    [ngStyle]="{
-      transform: scale,
-      fontSize: size + 'rem'
-    }"
-    >{{ key }}</mat-icon
-  >
-</ng-template>
+<mat-icon
+  *ngIf="type === 'svg'"
+  appSize
+  [color]="color"
+  [size]="size"
+  [ngStyle]="{
+    background: backgroundColor
+  }"
+  [svgIcon]="key"
+>
+</mat-icon>
+<mat-icon
+  *ngIf="type === 'mat'"
+  kkl-icon
+  [color]="color"
+  [ngStyle]="{
+    transform: scale,
+    fontSize: size + 'rem'
+  }"
+  >{{ key }}</mat-icon
+>
 
 <!-- color: palette[disabled ? 'disable' : color],
   fill: palette[disabled ? 'disable' : color],
