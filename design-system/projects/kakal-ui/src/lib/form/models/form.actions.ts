@@ -11,7 +11,10 @@ export enum FormActions {
   CLEAR = 'clear',
   CANCEL = 'cancel',
   UPDATE = 'update',
+
   FOCUS_CHANGED = 'focusChanged',
+
+  SEARCH_EVENT = 'focusChanged',
 
   // Event emitted when the select panel has been toggled.
   OPEN_CHANGED = 'openChanged',
