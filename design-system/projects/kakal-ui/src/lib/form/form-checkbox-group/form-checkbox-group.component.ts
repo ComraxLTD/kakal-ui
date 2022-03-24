@@ -1,7 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { CheckboxOption } from '../form-checkbox/question-checkbox.model';
-
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+} from '@angular/forms';
+import { MatCheckboxChange } from '@angular/material/checkbox';
+import { CheckboxOption, QuestionCheckboxModel } from '../form-checkbox/question-checkbox.model';
 
 @Component({
   selector: 'kkl-form-checkbox-group',
@@ -9,51 +15,47 @@ import { CheckboxOption } from '../form-checkbox/question-checkbox.model';
   styleUrls: ['./form-checkbox-group.component.scss'],
 })
 export class FormCheckboxGroupComponent implements OnInit {
-  @Input() control: FormControl;
+  @Input() control: FormControl | AbstractControl;
   @Input() label: string;
   @Input() options: CheckboxOption[];
+  @Input() question: QuestionCheckboxModel[];
   @Input() labelPosition: 'after' | 'before' = 'after';
 
   interestFormGroup: FormGroup;
-  interests: any;
+  items: any;
 
   constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    if (!this.control) this.control = new FormControl();
     this.interestFormGroup = this.formBuilder.group({
-      interests: this.formBuilder.array([]),
+      items: this.formBuilder.array([]),
     });
     this.updateFirstValue();
   }
 
   updateFirstValue(): void {
     if (this.control.value && this.control.value.length !== 0) {
-      const interests = (<FormArray>(
-        this.interestFormGroup.get('interests')
+      const items = (<FormArray>(
+        this.interestFormGroup.get('items')
       )) as FormArray;
       this.control.value.map((item) => {
         const index = this.options.findIndex(
           (option) => option.label === item.label && option.value === item.value
         );
         this.options[index].checked = true;
-        interests.push(new FormControl(item));
+        items.push(new FormControl(item));
       });
     }
   }
 
-  onChange(event) {
-    const interests = (<FormArray>(
-      this.interestFormGroup.get('interests')
-    )) as FormArray;
+  onChange(event: MatCheckboxChange) {
+    const items = (<FormArray>this.interestFormGroup.get('items')) as FormArray;
     if (event.checked) {
-      interests.push(new FormControl(event.source.value));
+      items.push(new FormControl(event.source.value));
     } else {
-      const i = interests.controls.findIndex(
-        (x) => x.value === event.source.value
-      );
-      interests.removeAt(i);
+      const i = items.controls.findIndex((x) => x.value === event.source.value);
+      items.removeAt(i);
     }
-    this.control.setValue(interests.value);
+    this.control.setValue(items.value);
   }
 }
