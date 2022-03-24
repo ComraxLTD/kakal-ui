@@ -42,8 +42,8 @@ export class AppComponent implements OnInit {
     },
   ];
   title = 'components-application';
-  constructor() {}
-  data = ['First', 'Second', 'Third'];
+  constructor() { }
+  data = [{key:'First',label:'בדיקה'},{key:'Second',label:'test'},{key:'Third',label:'עמוד 3'}];
 
   ngOnInit(): void {}
 }
