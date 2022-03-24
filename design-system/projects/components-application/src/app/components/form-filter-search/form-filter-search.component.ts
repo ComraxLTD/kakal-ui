@@ -92,7 +92,7 @@ export class FormFilterSearchComponent implements OnInit {
     this.searchGroup = this.setGroup(this.questions);
     this.optionsMap$ = this.getOptionsMap$();
 
-    // this.searchGroup.formGroup.disable();
+    this.searchGroup.formGroup.disable();
   }
 
   private getCurrencyOptions() {
