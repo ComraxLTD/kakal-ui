@@ -20,8 +20,8 @@ import { GridProps } from '../models/question.types';
 })
 export class FormGridComponent implements OnInit {
 
-  @Input() public questions: Question[];
-  @Input() public formGroup: FormGroup;
+  @Input() public questions!: Question[];
+  @Input() public formGroup!: FormGroup;
   @Input() public grid: GridProps = { cols: 4 };
   @Input() public optionsMap: OptionMap = {};
   @Input() public hasButton: boolean = false;

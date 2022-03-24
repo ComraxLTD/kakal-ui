@@ -7,7 +7,7 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { QuestionGroupModel } from '../models/form.types';
@@ -23,9 +23,9 @@ import { KKLFormSearchContentDirective } from './form-search.directive';
 export class FormSearchComponent implements OnInit {
   @ContentChild(KKLFormSearchContentDirective) formSearchDirective;
 
-  @Input() public searchControl: FormControl;
-  @Input() public searchGroup: QuestionGroupModel;
-  @Input() public advanced: boolean;
+  @Input() public searchControl!: FormControl | AbstractControl;
+  @Input() public searchGroup!: QuestionGroupModel;
+  @Input() public advanced!: boolean;
 
   // default inputs in row
   public expended: boolean;

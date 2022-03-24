@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { BehaviorSubject, of } from 'rxjs';
 import { Palette } from '../../../styles/theme';
 import { FormActions } from '../models/form.actions';
@@ -14,15 +14,15 @@ import { Appearance } from '../models/question.types';
   styleUrls: ['./form-select.component.scss'],
 })
 export class FormSelectComponent implements OnInit {
-  @Input() public control: FormControl;
-  @Input() public label: string;
-  @Input() public index: number;
-  @Input() public multi: boolean;
-  @Input() public key: string;
-  @Input() public options: SelectOption[];
-  @Input() public placeHolder: string;
-  @Input() public theme: Palette;
-  @Input() public appearance: Appearance;
+  @Input() public control!: FormControl | AbstractControl;
+  @Input() public label!: string;
+  @Input() public index!: number;
+  @Input() public multi!: boolean;
+  @Input() public key!: string;
+  @Input() public options!: SelectOption[];
+  @Input() public placeHolder!: string;
+  @Input() public theme!: Palette;
+  @Input() public appearance!: Appearance;
 
   @Output() public selectChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
@@ -63,7 +63,7 @@ export class FormSelectComponent implements OnInit {
     const { value, action } = props;
     const FormChangeEvent: FormChangeEvent = {
       key: this.key,
-      control: this.control,
+      control: this.control as FormControl,
       index: this.index,
       value$: of(value),
       value,
@@ -75,7 +75,7 @@ export class FormSelectComponent implements OnInit {
 
   public setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control,
+      this.control as FormControl,
       this.placeHolder
     );
 
