@@ -1,10 +1,13 @@
-import { Directive, HostBinding, Input } from '@angular/core';
+import { ContentChild, Directive, HostBinding, Input } from '@angular/core';
 import { palletteClassesMap, palette, Palette } from '../../styles/theme';
+import { IconsService } from './icons.service';
 
 @Directive({
   selector: '[kkl-icon], mat-icon',
 })
 export class KKLIconDirective {
+  @Input() svgIcon: string;
+
   @HostBinding('class') private _class;
 
   private _disabled: boolean;
@@ -31,9 +34,14 @@ export class KKLIconDirective {
     this.invalidate();
   }
 
-  constructor() {}
+  constructor(private iconsService: IconsService) {}
 
   ngOnInit(): void {
+    console.log(this.svgIcon)
+    if (this.svgIcon) {
+      this.iconsService.setIcon(this.svgIcon);
+    }
+
     this.invalidate();
   }
   private invalidate() {
