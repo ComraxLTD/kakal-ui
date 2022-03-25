@@ -1,5 +1,5 @@
-<div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
-  <div fxLayout="column" fxFlex="50">
+<div fxLayout="row" dir="rtl">
+  <div fxLayout="column" fxFlex="90">
     <ng-container *ngIf="optionsMap$ | async as optionsMap">
       <kkl-form-search [searchGroup]="searchGroup" [advanced]="true">
         <ng-container *kklFormSearchContent="let context">
