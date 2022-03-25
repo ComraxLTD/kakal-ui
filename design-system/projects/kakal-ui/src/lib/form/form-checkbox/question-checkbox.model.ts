@@ -2,7 +2,6 @@ import { QuestionBase } from '../models/question.model';
 
 export interface CheckboxOption {
   label: string;
-  value: any;
   checked?: boolean;
 }
 

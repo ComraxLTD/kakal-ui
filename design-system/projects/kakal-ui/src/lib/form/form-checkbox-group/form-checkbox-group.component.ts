@@ -38,10 +38,6 @@ export class FormCheckboxGroupComponent implements OnInit {
         this.interestFormGroup.get('items')
       )) as FormArray;
       this.control.value.map((item) => {
-        const index = this.options.findIndex(
-          (option) => option.label === item.label && option.value === item.value
-        );
-        this.options[index].checked = true;
         items.push(new FormControl(item));
       });
     }
