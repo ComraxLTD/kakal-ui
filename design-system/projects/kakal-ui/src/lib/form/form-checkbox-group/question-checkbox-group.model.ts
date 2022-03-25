@@ -1,19 +1,14 @@
-import { QuestionCheckboxModel } from '../form-checkbox/question-checkbox.model';
+import { CheckboxOption, QuestionCheckboxModel } from '../form-checkbox/question-checkbox.model';
 
-export interface CheckboxOption {
-  label: string;
-  value: any;
-  checked?: boolean;
-}
+
 
 export class QuestionCheckboxGroup extends QuestionCheckboxModel {
-  public options: CheckboxOption[];
+  public label?: string;
 
   constructor(options?: {
     key: string;
-    options: CheckboxOption[];
     label?: string;
-    value?: boolean;
+    value?: CheckboxOption | CheckboxOption[];
     labelPosition?: string;
   }) {
     super(options);
@@ -21,7 +16,6 @@ export class QuestionCheckboxGroup extends QuestionCheckboxModel {
     this.label = options.label;
     this.value = options.value;
     this.controlType = 'checkboxGroup';
-    this.options = options.options || [];
     this.labelPosition = options.labelPosition || 'after';
   }
 }

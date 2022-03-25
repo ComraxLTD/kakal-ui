@@ -1,8 +1,9 @@
 import { QuestionBase } from '../models/question.model';
 
 export interface CheckboxOption {
+  id: number;
   label: string;
-  value: any;
+  value?: string;
   checked?: boolean;
 }
 
@@ -12,16 +13,12 @@ export class QuestionCheckboxModel extends QuestionBase {
 
   constructor(options?: {
     key: string;
-    label?: string;
-    value?: boolean;
-    group?: boolean;
+    value?: CheckboxOption | CheckboxOption[];
     labelPosition?: string;
   }) {
     super(options);
     this.key = options.key;
-    this.label = options.label;
     this.value = options.value;
-    this.group = options.group || false;
     this.controlType = 'checkbox';
     this.labelPosition = options.labelPosition || 'after';
   }
