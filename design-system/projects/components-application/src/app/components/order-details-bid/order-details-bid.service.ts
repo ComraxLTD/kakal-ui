@@ -58,13 +58,15 @@ export class OrderDetailsBidService {
     {
       key: 'priceGroup',
       controlType: 'checkboxGroup',
-      options: [
+      value: [
         {
-          value: false,
+          checked: true,
+          value: 'perUnit',
           label: 'מחיר לפריט בודד',
         },
         {
-          value: false,
+          checked: false,
+          value: 'total',
           label: 'סה"כ',
         },
       ],

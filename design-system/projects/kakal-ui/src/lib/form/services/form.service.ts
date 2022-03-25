@@ -224,12 +224,9 @@ export class FormService {
       case 'radio':
         return new QuestionRadioModel(question);
       case 'checkbox':
-        const checkQ = question as QuestionCheckboxModel;
-        if (checkQ.group) {
-          return new QuestionCheckboxGroup(question as QuestionCheckboxGroup);
-        } else {
-          return new QuestionCheckboxModel(question);
-        }
+        return new QuestionCheckboxModel(question as QuestionCheckboxModel);
+      case 'checkboxGroup':
+        return new QuestionCheckboxGroup(question as QuestionCheckboxGroup);
 
       case 'textarea':
         return new QuestionTextareaModel(question);

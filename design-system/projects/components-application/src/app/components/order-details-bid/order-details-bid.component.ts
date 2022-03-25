@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { QuestionCheckboxGroup } from '../../../../../kakal-ui/src/lib/form/form-checkbox-group/question-checkbox-group.model';
 import {
   QuestionGroupModel,
   QuestionUploadModel,
@@ -25,6 +26,10 @@ export class OrderDetailsBidComponent implements OnInit {
     return this.bidGroup.getControl('upload');
   }
 
+  get priceGroup() {
+    return this.bidGroup.controls['priceGroup'] as QuestionCheckboxGroup;
+  }
+
   constructor(
     private orderDetailsBidService: OrderDetailsBidService,
     private formService: FormService
@@ -34,6 +39,11 @@ export class OrderDetailsBidComponent implements OnInit {
     this.bidGroup = this.initBidGroup();
     this.bidQuestions = this.bidGroup.questions.slice(0, 4);
     this.uploadGroup = this.initUploadControl();
+
+
+    this.bidGroup.formGroup.valueChanges.subscribe((value) =>
+      console.log('bidGroup', value)
+    );
   }
 
   private initBidGroup(): QuestionGroupModel<OrderDetailsBid> {

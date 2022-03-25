@@ -25,12 +25,15 @@
           ></kkl-form-texteditor>
         </div>
         <div fxLayout="row" fxLayoutGap="1.5rem">
-          <ng-container *ngFor="let q of bidGroup.questions | slice: -2">
+          <kkl-form-checkbox-group
+            [control]="bidGroup.formGroup.controls['priceGroup']"
+          ></kkl-form-checkbox-group>
+          <!-- <ng-container *ngFor="let q of bidGroup.questions | slice: -2">
             <kkl-form-checkbox
               [label]="q.label!"
               [control]="bidGroup.formGroup.controls[q.key]"
             ></kkl-form-checkbox>
-          </ng-container>
+          </ng-container> -->
         </div>
       </div>
     </section>
