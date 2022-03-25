@@ -3,8 +3,8 @@ import { NgModule } from "@angular/core";
 import { LayoutComponent } from "./layout.component";
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { FlexLayoutModule } from "@angular/flex-layout";
-import { KKLNavbarModule } from '../../lib/navbar/navbar.module';
-import { KKLDirectivesModule } from '../../lib/directives/directives.module';
+import { KKLDirectivesModule } from "../../directives/directives.module";
+import { KKLNavbarModule } from "../../navbar/navbar.module";
 
 @NgModule({
     imports: [CommonModule, MatSidenavModule, FlexLayoutModule

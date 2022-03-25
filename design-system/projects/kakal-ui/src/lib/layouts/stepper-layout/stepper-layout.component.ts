@@ -6,15 +6,16 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { map, startWith, switchMap } from 'rxjs/operators';
 import { StepperLayoutService } from './stepper-layout.service';
-import { RouterService } from '../../services/route.service';
 import { FormControl } from '@angular/forms';
 
-import { Observable, of } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
-import { BreakpointService } from '../../services/breakpoint.service';
-import { CardStepModel } from '../../lib/cards/card-step/card-step.model';
+
+import { RouterService, BreakpointService } from 'projects/kakal-ui/src/public-api';
+import { CardStepModel } from '../../cards/card-step/card-step.model';
+
+import { map,  switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',

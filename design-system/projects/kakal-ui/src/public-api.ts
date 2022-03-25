@@ -291,14 +291,19 @@ export * from './lib/stepper-mobile/stepper-mobile.component';
 export * from './lib/stepper-mobile/stepper-mobile.module';
 
 // stepper layout
-export * from './screens/stepper-layout/stepper-layout.component';
-export * from './screens/stepper-layout/stepper-layout.module';
-export * from './screens/stepper-layout/stepper-layout.service';
+export * from './lib/layouts/stepper-layout/stepper-layout.component';
+export * from './lib/layouts/stepper-layout/stepper-layout.module';
+export * from './lib/layouts/stepper-layout/stepper-layout.service';
 
 // layout
-export * from './screens/layout/layout.component';
-export * from './screens/layout/layout.module';
-export * from './screens/layout/layout.service';
+export * from './lib/layouts/layout/layout.component';
+export * from './lib/layouts/layout/layout.module';
+export * from './lib/layouts/layout/layout.service';
+
+// vertical stepper
+
+export * from './lib/vertical-stepper/vertical-stepper.module'
+export * from './lib/vertical-stepper/vertical-stepper.component'
 
 // dashboard
 

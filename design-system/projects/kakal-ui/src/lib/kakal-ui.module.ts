@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from './angular-material/material.module';
 import { CoreModule } from './core-module/core.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
@@ -53,27 +54,29 @@ import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 
+import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
+import { KKLLayoutModule } from './layouts/layout/layout.module';
+
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { StepperModule } from './stepper/stepper.module';
 import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
-import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
-import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
-import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
+import { KKLListMenuModule } from './list-menu/list-menu.module';
+import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
-import { KKLLayoutModule } from '../screens/layout/layout.module';
-import { KKLLobbyModule } from '../lib/lobby/lobby.module';
-import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
-import { KKLFiltersModule } from '../lib/filters/filters.module';
+
+import { KKLLobbyModule } from './lobby/lobby.module';
+import { KKLDisplayDataModule } from './display-data/display-data.module';
+import { KKLFiltersModule } from './filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
-import { OpenMotionsModule } from '../lib/open-motions/open-motions.module';
-import { KKSectionModule } from '../lib/section/section.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import { KKLTabsModule } from '../lib/tabs/tabs.module';
+import { OpenMotionsModule } from './open-motions/open-motions.module';
+import { KKSectionModule } from './section/section.module';
+import { KKLTabsModule } from './tabs/tabs.module';
 
-import { KKLNewTableModule } from '../lib/kkl-table/kkl-table.module';
+import { KKLNewTableModule } from './kkl-table/kkl-table.module';
+import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.module'
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -151,6 +154,7 @@ import { KKLNewTableModule } from '../lib/kkl-table/kkl-table.module';
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+    KKLVerticalStepperModule
   ],
   exports: [
     //TOOLS
@@ -223,6 +227,8 @@ import { KKLNewTableModule } from '../lib/kkl-table/kkl-table.module';
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+
+    KKLVerticalStepperModule
   ],
 })
 export class KakalUiModule { }
