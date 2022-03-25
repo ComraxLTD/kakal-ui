@@ -1,6 +1,6 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
-function hasGutter(index: number, cols: number): boolean {
+function hasOffset(index: number, cols: number): boolean {
   return (index + 1) % cols !== 0;
 }
 
@@ -9,41 +9,44 @@ function hasGutter(index: number, cols: number): boolean {
 })
 export class FlexFormInputDirective {
   @Input()
-  index: number;
-
-  @Input() cols: number;
+  @HostBinding('style.padding-left')
+  offset: string;
 
   @Input()
-  @HostBinding('style.padding-left')
-  colGutter: string = '16';
-
   @HostBinding('style.padding-bottom')
-  @Input() rowGutter: string;
+  gutter: string;
 
-  @HostBinding('class')
+  @HostBinding('style.width')
+  width: string;
 
-  @HostBinding('style.width') width : string
+  @Input()
+  index: number;
 
-  private _class;
+  private _cols: number;
 
-  // @Input()
-  // get color(): Palette {
-  //   return this._color;
-  // }
+  @Input()
+  get cols(): number {
+    return this._cols;
+  }
 
-  // set color(value: Palette) {
-  //   this._color = value;
-  //   this.invalidate();
-  // }
+  set cols(value: number) {
+    this._cols = value;
+    // this.invalidate();
+  }
 
   constructor() {}
 
   ngOnInit(): void {
-    if (hasGutter(this.index, this.cols)) {
-      this.colGutter = this.colGutter + 'px';
+    if (hasOffset(this.index, this.cols)) {
+      this.offset = (this.offset || 16) + 'px';
     }
-    this.rowGutter = this.rowGutter + 'px';
-    this.width = '100%'
+    this.gutter = this.gutter + 'px';
+    this.width = '100%';
   }
-  private invalidate() {}
+
+  private invalidate() {
+    if (hasOffset(this.index, this.cols)) {
+      this.offset = (this.offset || 16) + 'px';
+    }
+  }
 }
