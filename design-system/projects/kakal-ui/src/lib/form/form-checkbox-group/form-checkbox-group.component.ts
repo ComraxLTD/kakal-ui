@@ -7,7 +7,7 @@ import {
   FormGroup,
 } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { CheckboxOption, QuestionCheckboxModel } from '../form-checkbox/question-checkbox.model';
+import { CheckboxOption } from '../form-checkbox/question-checkbox.model';
 
 @Component({
   selector: 'kkl-form-checkbox-group',
@@ -18,7 +18,6 @@ export class FormCheckboxGroupComponent implements OnInit {
   @Input() control: FormControl | AbstractControl;
   @Input() label: string;
   @Input() options: CheckboxOption[];
-  @Input() question: QuestionCheckboxModel[];
   @Input() labelPosition: 'after' | 'before' = 'after';
 
   interestFormGroup: FormGroup;
