@@ -13,9 +13,10 @@ import { KKLFormUploadModule } from '../form-upload/form-upload.module';
 import { KKLFormCurrencyModule } from '../form-currency/form-currency.module';
 import { KKLButtonModule } from '../../button/button.module';
 import { KKLFormCounterModule } from '../form-counter/form-counter.module';
+import { FlexFormInputDirective } from './flex-form-input.directive';
 
 @NgModule({
-  declarations: [FormFlexComponent],
+  declarations: [FormFlexComponent, FlexFormInputDirective],
   imports: [
     CommonModule,
     ReactiveFormsModule,
