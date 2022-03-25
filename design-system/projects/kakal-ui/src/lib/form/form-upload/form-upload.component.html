@@ -6,6 +6,7 @@
     #menuTrigger="matMenuTrigger"
     [matMenuTriggerFor]="menu"
     kkl-underline
+    [class.active]="!disabled"
   >
     {{ label$ | async }}
     <!-- <kkl-typography color="primary" [disabled]="disabled" underline="true">
@@ -28,9 +29,8 @@
     mat-icon-button
     (click)="fileUpload.click()"
     [disabled]="disabled"
-    [class.active]="disabled"
   >
-    <mat-icon [svgIcon]="'open_border'"></mat-icon>
+    <mat-icon [class.active]="!disabled" [svgIcon]="'open_border'"></mat-icon>
   </button>
 </mat-form-field>
 
