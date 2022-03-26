@@ -298,13 +298,14 @@ export * from './lib/layouts/layout/layout.service';
 export * from './lib/layouts/accordion-layout/accordion-layout.module';
 export * from './lib/layouts/accordion-layout/accordion-layout.component';
 
+// page
+export * from './lib/layouts/page/page.module';
+export * from './lib/layouts/page/page.component';
+
 // section
 export * from './lib/layouts/section/section.module';
 export * from './lib/layouts/section/section.component';
 
-// page
-export * from './lib/layouts/page/page.module';
-export * from './lib/layouts/page/page.component';
 
 // vertical stepper
 

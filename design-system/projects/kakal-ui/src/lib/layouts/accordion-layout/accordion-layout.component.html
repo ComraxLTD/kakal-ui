@@ -8,31 +8,30 @@
   <!-- the "multi" attribute determines weather the mat-accordion will allow multiple panels to open at the same time or not -->
   <main>
     <mat-accordion multi="multi">
-      <mat-expansion-panel
-        [hideToggle]="true"
-        [ngClass]="['default', 'mat-elevation-z0']"
-        (closed)="onPanelClosed()"
-        (opened)="onPanelOpen()"
-      >
-        <mat-expansion-panel-header >
-          <mat-panel-title [ngClass]="['default']">
-            <div class="title" fxLayout="row" fxLayoutGap="1rem">
-              <ng-content select="[title]"></ng-content>
-              <kkl-icon
-                [color]="'primary'"
-                [key]="expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
-              ></kkl-icon>
-            </div>
-          </mat-panel-title>
-          <mat-panel-description>
-            <ng-content select="[description]"></ng-content>
-          </mat-panel-description>
-        </mat-expansion-panel-header>
+      <ng-container *ngFor="let panel of panels; let index = i">
+        <mat-expansion-panel
+          [hideToggle]="true"
+          [ngClass]="['default', 'mat-elevation-z0']"
+        >
+          <mat-expansion-panel-header>
+            <mat-panel-title [ngClass]="['default']">
+              <div class="title" fxLayout="row" fxLayoutGap="1rem">
+                {{ panel | pluck: "label" }}
+                <kkl-icon
+                  [color]="'primary'"
+                  [key]="expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
+                ></kkl-icon>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-        <div class="content">
-          <ng-content select="[content]"></ng-content>
-        </div>
-      </mat-expansion-panel>
+          <div class="content">
+            <ng-container
+              *ngComponentOutlet="panel | pluck: 'comp'"
+            ></ng-container>
+          </div>
+        </mat-expansion-panel>
+      </ng-container>
     </mat-accordion>
   </main>
 </div>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AccordionPanel} from './accordion-types'
 
 @Component({
   selector: 'kkl-accordion-layout',
@@ -6,6 +7,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./accordion-layout.component.scss'],
 })
 export class AccordionLayoutComponent implements OnInit {
+
+  @Input() panels  :AccordionPanel[]
   @Input() buttonLabel: string;
   @Input() expanded: boolean;
   @Input() expandedAll: boolean;

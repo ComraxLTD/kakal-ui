@@ -1,10 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { AccordionState } from './accordion-types';
 
-export interface AccordionState {
-  expendAll: boolean;
-  expended: number[];
-}
 
 @Injectable({
   providedIn: 'root',

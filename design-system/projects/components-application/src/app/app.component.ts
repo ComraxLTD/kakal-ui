@@ -9,6 +9,7 @@ import { FormFilterSearchComponent } from './components/form-filter-search/form-
 })
 export class AppComponent implements OnInit {
   public steps = [{ key: 1, label: 'working', comp: OrderDetailsBidComponent }, { key: 2, label: 'working2', comp: FormFilterSearchComponent }];
+  public panels = [{ label: 'working', comp: OrderDetailsBidComponent }, { label: 'working2', comp: FormFilterSearchComponent }];
 
   constructor() {}
 

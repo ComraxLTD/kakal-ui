@@ -6,6 +6,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { KKLButtonModule } from '../../button/button.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLIconModule } from '../../icon/icon.module';
+import { KKLPipesModule } from '../../pipes/pipes.module';
 
 
 
@@ -19,7 +20,8 @@ import { KKLIconModule } from '../../icon/icon.module';
     MatCheckboxModule,
     FlexLayoutModule,
     KKLButtonModule,
-    KKLIconModule
+    KKLIconModule,
+    KKLPipesModule,
   ],
   exports: [AccordionLayoutComponent]
 })
