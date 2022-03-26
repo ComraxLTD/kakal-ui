@@ -36,9 +36,10 @@ import { KKLTableModule } from './table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
 
 import { KKLDialogModule } from './dialog/dialog.module';
+
+import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';

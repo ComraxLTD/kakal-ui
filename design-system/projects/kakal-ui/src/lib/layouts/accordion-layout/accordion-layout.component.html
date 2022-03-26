@@ -2,11 +2,37 @@
   <!-- the checkbox will appear only if the "multi" value is set to true, the checkbox controls and presents weather all panels are open or not -->
   <header fxLayout="row" fxLayoutGap="3rem" fxLayoutAlign="end center">
     <mat-checkbox [color]="'primary'"> פתח הכול</mat-checkbox>
-    <kkl-add-button>הוסף וועידה חדשה</kkl-add-button>
+    <kkl-add-button *ngIf="buttonLabel">{{ buttonLabel }}</kkl-add-button>
   </header>
 
   <!-- the "multi" attribute determines weather the mat-accordion will allow multiple panels to open at the same time or not -->
   <main>
-    <mat-accordion multi="multi"> </mat-accordion>
+    <mat-accordion multi="multi">
+      <mat-expansion-panel
+        [hideToggle]="true"
+        [ngClass]="['default', 'mat-elevation-z0']"
+        (closed)="onPanelClosed()"
+        (opened)="onPanelOpen()"
+      >
+        <mat-expansion-panel-header >
+          <mat-panel-title [ngClass]="['default']">
+            <div class="title" fxLayout="row" fxLayoutGap="1rem">
+              <ng-content select="[title]"></ng-content>
+              <kkl-icon
+                [color]="'primary'"
+                [key]="expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
+              ></kkl-icon>
+            </div>
+          </mat-panel-title>
+          <mat-panel-description>
+            <ng-content select="[description]"></ng-content>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="content">
+          <ng-content select="[content]"></ng-content>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </main>
 </div>

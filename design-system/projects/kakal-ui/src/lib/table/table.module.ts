@@ -21,6 +21,7 @@ import { TableComponent } from './components/table/table.component';
 import { KKLTableDirective } from './components/table/table.directive';
 
 @NgModule({
+  declarations: [TableComponent, KKLCellDirective, KKLTableDirective],
   imports: [
     CommonModule,
     FlexLayoutModule,
@@ -39,7 +40,6 @@ import { KKLTableDirective } from './components/table/table.directive';
 
     KKLFiltersModule
   ],
-  declarations: [TableComponent, KKLCellDirective, KKLTableDirective],
   providers: [],
   exports: [
     TableComponent,
