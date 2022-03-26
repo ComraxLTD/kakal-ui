@@ -72,7 +72,6 @@ export * from './lib/form/form-select/form-select.module';
 export * from './lib/form/form-select/form-select.component';
 export * from './lib/form/form-select/question-select.model';
 
-
 export * from './lib/form/form-range/form-range.module';
 export * from './lib/form/form-range/form-range.component';
 export * from './lib/form/form-range/question-range.model';
@@ -98,7 +97,6 @@ export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
 
 // FORM QUESTIONS //
-
 
 export * from './lib/form/models/question-group.model';
 export * from './lib/form/models/question-number.model';
@@ -194,10 +192,6 @@ export * from './lib/list-menu/list-menu.module';
 // title
 export * from './lib/navigation/navigation.module';
 export * from './lib/navigation/navigation.component';
-
-// section
-export * from './lib/section/section.module';
-export * from './lib/section/section.component';
 
 // dialog
 export * from './lib/dialog/dialog.module';
@@ -300,10 +294,18 @@ export * from './lib/layouts/layout/layout.component';
 export * from './lib/layouts/layout/layout.module';
 export * from './lib/layouts/layout/layout.service';
 
+// section
+export * from './lib/layouts/section/section.module';
+export * from './lib/layouts/section/section.component';
+
+// page
+export * from './lib/layouts/page/page.module';
+export * from './lib/layouts/page/page.component';
+
 // vertical stepper
 
-export * from './lib/vertical-stepper/vertical-stepper.module'
-export * from './lib/vertical-stepper/vertical-stepper.component'
+export * from './lib/vertical-stepper/vertical-stepper.module';
+export * from './lib/vertical-stepper/vertical-stepper.component';
 
 // dashboard
 

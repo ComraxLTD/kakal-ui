@@ -72,11 +72,12 @@ import { KKLFiltersModule } from './filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
-import { KKSectionModule } from './section/section.module';
+import { KKSectionModule } from './layouts/section/section.module';
+import { KKPageModule } from './layouts/page/page.module';
 import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
-import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.module'
+import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.module';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -88,7 +89,6 @@ import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.modu
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLNavigationModule,
@@ -154,13 +154,15 @@ import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.modu
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
-    KKLVerticalStepperModule
+    KKLVerticalStepperModule,
+
+    KKSectionModule,
+    KKPageModule,
   ],
   exports: [
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLBreadCrumbsModule,
@@ -228,7 +230,10 @@ import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.modu
     KKLChipsModule,
     KKLDisplayDataModule,
 
-    KKLVerticalStepperModule
+    KKSectionModule,
+    KKPageModule,
+
+    KKLVerticalStepperModule,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}
