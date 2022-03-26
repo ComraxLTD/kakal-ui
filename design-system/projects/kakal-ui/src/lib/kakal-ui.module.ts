@@ -57,6 +57,10 @@ import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
 
+import { KKSectionModule } from './layouts/section/section.module';
+import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
+import { KKPageModule } from './layouts/page/page.module';
+
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { StepperModule } from './stepper/stepper.module';
@@ -72,8 +76,7 @@ import { KKLFiltersModule } from './filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
-import { KKSectionModule } from './layouts/section/section.module';
-import { KKPageModule } from './layouts/page/page.module';
+
 import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
@@ -155,6 +158,7 @@ import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.mo
     KKLChipsModule,
     KKLDisplayDataModule,
     KKLVerticalStepperModule,
+    KKLAccordionLayoutModule,
 
     KKSectionModule,
     KKPageModule,
@@ -229,6 +233,7 @@ import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.mo
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+    KKLAccordionLayoutModule,
 
     KKSectionModule,
     KKPageModule,

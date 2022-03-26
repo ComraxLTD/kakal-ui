@@ -294,6 +294,10 @@ export * from './lib/layouts/layout/layout.component';
 export * from './lib/layouts/layout/layout.module';
 export * from './lib/layouts/layout/layout.service';
 
+// accordion layout
+export * from './lib/layouts/accordion-layout/accordion-layout.module';
+export * from './lib/layouts/accordion-layout/accordion-layout.component';
+
 // section
 export * from './lib/layouts/section/section.module';
 export * from './lib/layouts/section/section.component';
