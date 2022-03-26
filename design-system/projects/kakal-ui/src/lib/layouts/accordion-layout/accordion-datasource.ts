@@ -1,11 +1,7 @@
-import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { AccordionState } from './accordion-types';
 
 
-@Injectable({
-  providedIn: 'root',
-})
 export class AccordionDataSource {
   private accordionState$: BehaviorSubject<AccordionState>;
 

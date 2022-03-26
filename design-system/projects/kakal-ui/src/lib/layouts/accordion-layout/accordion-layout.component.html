@@ -1,43 +1,48 @@
 <div fxFill fxLayout="column" fxLayoutGap="1rem" dir="rtl">
   <!-- the checkbox will appear only if the "multi" value is set to true, the checkbox controls and presents weather all panels are open or not -->
   <header fxLayout="row" fxLayoutGap="3rem" fxLayoutAlign="end center">
-    <mat-checkbox [color]="'primary'"> פתח הכול</mat-checkbox>
+    <mat-checkbox [color]="'primary'" (change)="expandAll($event)">
+      פתח הכול</mat-checkbox
+    >
     <kkl-add-button *ngIf="buttonLabel">{{ buttonLabel }}</kkl-add-button>
   </header>
 
   <!-- the "multi" attribute determines weather the mat-accordion will allow multiple panels to open at the same time or not -->
   <main>
-    <mat-accordion multi="multi">
-      <ng-container *ngFor="let panel of panels; let index = i">
-        <mat-expansion-panel
-          [hideToggle]="true"
-          [ngClass]="['default', 'mat-elevation-z0']"
-        >
-          <mat-expansion-panel-header>
-            <mat-panel-title [ngClass]="['default']">
-              <div
-                class="title"
-                fxLayout="row"
-                fxLayoutAlign="start center"
-                fxLayoutGap="1rem"
-              >
-                <kkl-typography color="primary">
-                  {{ panel | pluck: "label" }}
-                </kkl-typography>
-                <kkl-icon
-                  color="primary"
-                  [key]="expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
-                ></kkl-icon>
-              </div>
-            </mat-panel-title>
-          </mat-expansion-panel-header>
+    <mat-accordion #accordion multi hideToggle>
+      <ng-container *ngIf="accordionState$ | async as accordionState">
+        <ng-container *ngFor="let panel of panels; let i = index">
+          <mat-expansion-panel #expandPanel [expanded]="i === 0">
+            <mat-expansion-panel-header>
+              <mat-panel-title [ngClass]="['default']">
+                <div
+                  class="title"
+                  fxLayout="row"
+                  fxLayoutAlign="start center"
+                  fxLayoutGap="1rem"
+                >
+                  <kkl-typography color="primary">
+                    {{ panel | pluck: "label" }}
+                  </kkl-typography>
+                  <kkl-icon
+                    color="primary"
+                    [key]="
+                      expandPanel.expanded
+                        ? 'keyboard_arrow_down'
+                        : 'keyboard_arrow_up'
+                    "
+                  ></kkl-icon>
+                </div>
+              </mat-panel-title>
+            </mat-expansion-panel-header>
 
-          <div class="content">
-            <ng-container
-              *ngComponentOutlet="panel | pluck: 'comp'"
-            ></ng-container>
-          </div>
-        </mat-expansion-panel>
+            <div class="content">
+              <ng-container
+                *ngComponentOutlet="panel | pluck: 'comp'"
+              ></ng-container>
+            </div>
+          </mat-expansion-panel>
+        </ng-container>
       </ng-container>
     </mat-accordion>
   </main>
