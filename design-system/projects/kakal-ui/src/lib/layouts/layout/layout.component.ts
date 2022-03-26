@@ -1,8 +1,9 @@
-import { Component,  Input, OnInit } from '@angular/core';
-import { RouterService, BreakpointService } from 'projects/kakal-ui/src/public-api';
+import { Component, Input, OnInit } from '@angular/core';
+import { MenuComponent } from '../../menu/menu.component';
+import { RouterService, BreakpointService } from '../../../services/services';
+
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { MenuComponent } from '../../menu/menu.component';
 
 @Component({
   selector: 'kkl-layout',
@@ -21,7 +22,7 @@ export class LayoutComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.currentPath$ = this.routerService.getLastPathObs();
@@ -41,5 +42,4 @@ export class LayoutComponent implements OnInit {
   private findPath(list: any[], value: string): boolean {
     return !!list?.find((path: string) => path == value);
   }
-
 }
