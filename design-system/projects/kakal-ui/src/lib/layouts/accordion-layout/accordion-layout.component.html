@@ -1,1 +1,12 @@
-<p>accordion-layout works!</p>
+<div fxFill fxLayout="column" fxLayoutGap="1rem" dir="rtl">
+  <!-- the checkbox will appear only if the "multi" value is set to true, the checkbox controls and presents weather all panels are open or not -->
+  <header fxLayout="row" fxLayoutGap="3rem" fxLayoutAlign="end center">
+    <mat-checkbox [color]="'primary'"> פתח הכול</mat-checkbox>
+    <kkl-add-button>הוסף וועידה חדשה</kkl-add-button>
+  </header>
+
+  <!-- the "multi" attribute determines weather the mat-accordion will allow multiple panels to open at the same time or not -->
+  <main>
+    <mat-accordion multi="multi"> </mat-accordion>
+  </main>
+</div>

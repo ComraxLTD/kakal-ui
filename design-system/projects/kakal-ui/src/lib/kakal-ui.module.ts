@@ -32,7 +32,7 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
 import { KKLFormSearchModule } from '../lib/form/form-search/form-search.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 
-import { KKLTableModule } from './table/components/table/table.module';
+import { KKLTableModule } from './table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 

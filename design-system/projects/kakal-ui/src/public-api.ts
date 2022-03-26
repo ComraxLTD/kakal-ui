@@ -7,7 +7,7 @@ export * from './lib/angular-material/material.module';
 
 export * from './lib/button/button.module';
 export * from './lib/button/components/button/button.component';
-export * from './lib/button/components/create-button/create-button.component';
+export * from './lib/button/components/add-button/add-button.component';
 export * from './lib/button/components/stroke-button/stroke-button.component';
 export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
@@ -122,7 +122,7 @@ export * from './lib/kkl-table/pipes/table-group-cell.pipe';
 export * from './lib/kkl-table/table.model';
 
 // TABLE
-export * from './lib/table/components/table/table.module';
+export * from './lib/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table.state.service';

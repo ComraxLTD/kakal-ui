@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'pl-page',
+  selector: 'kkl-page',
   templateUrl: './page.component.html',
   styleUrls: ['./page.component.scss']
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'pl-accordion-layout',
+  selector: 'kkl-accordion-layout',
   templateUrl: './accordion-layout.component.html',
   styleUrls: ['./accordion-layout.component.scss']
 })

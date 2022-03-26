@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Color } from '../../../../styles/theme';
 
 @Component({
-  selector: 'kkl-create-button',
-  templateUrl: './create-button.component.html',
-  styleUrls: ['./create-button.component.scss'],
+  selector: 'kkl-add-button',
+  templateUrl: './add-button.component.html',
+  styleUrls: ['./add-button.component.scss'],
 })
-export class CreateButtonComponent implements OnInit {
+export class AddButtonComponent implements OnInit {
   @Input() color: Color;
   @Input() disabled: boolean;
 
