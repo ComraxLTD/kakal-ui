@@ -15,10 +15,17 @@
         >
           <mat-expansion-panel-header>
             <mat-panel-title [ngClass]="['default']">
-              <div class="title" fxLayout="row" fxLayoutGap="1rem">
-                {{ panel | pluck: "label" }}
+              <div
+                class="title"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="1rem"
+              >
+                <kkl-typography color="primary">
+                  {{ panel | pluck: "label" }}
+                </kkl-typography>
                 <kkl-icon
-                  [color]="'primary'"
+                  color="primary"
                   [key]="expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
                 ></kkl-icon>
               </div>

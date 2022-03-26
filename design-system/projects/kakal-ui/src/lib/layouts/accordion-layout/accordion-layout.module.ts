@@ -7,13 +7,10 @@ import { KKLButtonModule } from '../../button/button.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLPipesModule } from '../../pipes/pipes.module';
-
-
+import { KKLTypographyModule } from '../../typography/typography.module';
 
 @NgModule({
-  declarations: [
-    AccordionLayoutComponent
-  ],
+  declarations: [AccordionLayoutComponent],
   imports: [
     CommonModule,
     MatExpansionModule,
@@ -22,7 +19,8 @@ import { KKLPipesModule } from '../../pipes/pipes.module';
     KKLButtonModule,
     KKLIconModule,
     KKLPipesModule,
+    KKLTypographyModule,
   ],
-  exports: [AccordionLayoutComponent]
+  exports: [AccordionLayoutComponent],
 })
-export class KKLAccordionLayoutModule { }
+export class KKLAccordionLayoutModule {}
