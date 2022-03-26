@@ -39,11 +39,6 @@ export class OrderDetailsBidComponent implements OnInit {
     this.bidGroup = this.initBidGroup();
     this.bidQuestions = this.bidGroup.questions.slice(0, 4);
     this.uploadGroup = this.initUploadControl();
-
-
-    this.bidGroup.formGroup.valueChanges.subscribe((value) =>
-      console.log('bidGroup', value)
-    );
   }
 
   private initBidGroup(): QuestionGroupModel<OrderDetailsBid> {

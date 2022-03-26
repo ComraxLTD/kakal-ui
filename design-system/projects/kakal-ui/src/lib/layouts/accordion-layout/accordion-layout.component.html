@@ -21,9 +21,13 @@
                   fxLayoutAlign="start center"
                   fxLayoutGap="1rem"
                 >
-                  <kkl-typography color="primary">
-                    {{ panel | pluck: "label" }}
-                  </kkl-typography>
+                  <ng-container
+                    *ngTemplateOutlet="
+                      panel.headers ? headerTemplate : defaultTemplate;
+                      context: { $implicit: panel }
+                    "
+                  ></ng-container>
+
                   <kkl-icon
                     color="primary"
                     [key]="
@@ -47,3 +51,21 @@
     </mat-accordion>
   </main>
 </div>
+
+<ng-template #defaultTemplate let-panel>
+  <kkl-typography color="primary">
+    {{ panel | pluck: "label" }}
+  </kkl-typography>
+</ng-template>
+
+<ng-template #headerTemplate let-panel>
+  <ng-container *ngFor="let header of panel.headers; let i = index">
+    <kkl-typography color="primary" [size]="sizeIndexMap[i]" [weight]="weightIndexMap[i]">
+      {{
+        panel.item
+          | pluck: (header | pluck: "key")
+          | format: (header | pluck: "format")
+      }}
+    </kkl-typography>
+  </ng-container>
+</ng-template>

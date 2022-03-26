@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
-import { MatAccordion, MatExpansionPanel } from '@angular/material/expansion';
+import { MatAccordion } from '@angular/material/expansion';
 import { Observable } from 'rxjs';
 import { AccordionDataSource } from './accordion-datasource';
 import { AccordionPanel, AccordionState } from './accordion-types';
@@ -29,6 +29,15 @@ export class AccordionLayoutComponent implements OnInit {
 
   @Output() closed: EventEmitter<void> = new EventEmitter();
   @Output() opened: EventEmitter<void> = new EventEmitter();
+
+  sizeIndexMap: { [key: number]: number } = {
+    0: 2,
+    1: 1.8,
+  };
+
+  weightIndexMap: { [key: number]: number } = {
+    0: 600,
+  };
 
   constructor(private accordionDataSource: AccordionDataSource) {}
 
