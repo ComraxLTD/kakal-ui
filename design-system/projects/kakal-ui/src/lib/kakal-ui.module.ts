@@ -32,13 +32,14 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
 import { KKLFormSearchModule } from '../lib/form/form-search/form-search.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 
-import { KKLTableModule } from './table/components/table/table.module';
+import { KKLTableModule } from './table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
 
 import { KKLDialogModule } from './dialog/dialog.module';
+
+import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
@@ -57,6 +58,10 @@ import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
 
+import { KKSectionModule } from './layouts/section/section.module';
+import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
+import { KKPageModule } from './layouts/page/page.module';
+
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { StepperModule } from './stepper/stepper.module';
@@ -72,11 +77,11 @@ import { KKLFiltersModule } from './filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
-import { KKSectionModule } from './section/section.module';
+
 import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
-import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.module'
+import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.module';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -88,7 +93,6 @@ import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.modu
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLNavigationModule,
@@ -154,13 +158,16 @@ import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.modu
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
-    KKLVerticalStepperModule
+    KKLVerticalStepperModule,
+    KKLAccordionLayoutModule,
+
+    KKSectionModule,
+    KKPageModule,
   ],
   exports: [
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
     KKLFilterCardModule,
     KKLBreadCrumbsModule,
@@ -227,8 +234,12 @@ import {KKLVerticalStepperModule} from './vertical-stepper/vertical-stepper.modu
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+    KKLAccordionLayoutModule,
 
-    KKLVerticalStepperModule
+    KKSectionModule,
+    KKPageModule,
+
+    KKLVerticalStepperModule,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}

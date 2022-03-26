@@ -1,9 +1,10 @@
-<div fxLayout="column" fxLayoutAlign="center center" fxFlex>
-  <div fxLayout="row" fxLayoutAlign="center center" fxFlex="50">
-    <!-- <app-form-filter-search></app-form-filter-search> -->
-    <!-- <app-order-details-bid fxFlex="90"></app-order-details-bid> -->
-    <div fxFlex="95">
-      <kkl-vertical-stepper [steps]="steps"></kkl-vertical-stepper>
-    </div>
-  </div>
-</div>
+<!-- <kkl-stepper-layout>
+</kkl-stepper-layout> -->
+
+<app-new-order-layout>
+  <ng-container content>
+    <kkl-page title="תיק">
+      <kkl-accordion-layout [panels]="panels"></kkl-accordion-layout>
+    </kkl-page>
+  </ng-container>
+</app-new-order-layout>

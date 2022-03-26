@@ -68,10 +68,10 @@ export class NewOrderLayoutComponent implements OnInit {
 
   //page headline items
   headlineItems: PageHeadlineModel[] = [
-    { label: 'הזמנה חדשה', type: 'custom', size: 1.5, key: 'headline' },
-    { label: 'מפ/1234/22', type: 'default', size: 1.5, key: 'x' },
-    { label: 'ה כיבוד', type: 'default', size: 1.5, key: 'x' },
-    { label: 'אקליפטוס יער', type: 'custom', size: 1.5, key: 'statusBar' },
+    { label: 'הזמנה חדשה', type: 'template', key: 'headline' },
+    { label: 'מפ/1234/22', key: 'x', format: 'date' },
+    { label: 'ה כיבוד', key: 'x' },
+    { label: 'אקליפטוס יער', type: 'template', key: 'statusBar' },
   ];
   //status model fot the page headline
   status: StatusBarsModel = {
@@ -91,7 +91,6 @@ export class NewOrderLayoutComponent implements OnInit {
     //add size to page header
     this.headlineItems = this.headlineItems.map((item, index) => ({
       ...item,
-      size: index != 0 ? 1.8 : 2.9,
     }));
     //
     this.steps$ = this.stepperLayoutService.getStepsObs();
