@@ -19,7 +19,7 @@ import { Question } from '../services/form.service';
   styleUrls: ['./flex-form.component.scss'],
 })
 export class FormFlexComponent implements OnInit {
-  @Input() public variant: 'row' | 'column' = 'row';
+  @Input() public layout: 'row' | 'column' = 'row';
 
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
@@ -30,9 +30,9 @@ export class FormFlexComponent implements OnInit {
   @Input() public buttonLabel: string = 'שמור';
   @Input() public buttonTemp: TemplateRef<any>;
 
-  public hasButton: boolean;
-  public flex: number;
-  public cols: number;
+  hasButton: boolean;
+  flex: number;
+  cols: number;
 
   // default inputs in row
 
