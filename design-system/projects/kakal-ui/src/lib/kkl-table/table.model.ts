@@ -11,7 +11,7 @@ export class QuestionTableModel extends QuestionBase{
   public colIcon?: IconModel;
   public group?: string;
   public button?: {
-    icon: string;
+    icon: IconModel;
   };
   public onSelectChange?: (value: any) => void;
 
