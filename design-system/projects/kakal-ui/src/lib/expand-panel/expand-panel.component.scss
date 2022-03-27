@@ -1,9 +1,14 @@
 @use "../../styles/variables" as main;
 
+.kkl-expansion-panel {
+  ::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+  }
+}
 mat-expansion-panel {
   margin-bottom: main.spacing(2) !important;
 
- ::ng-deep &.table {
+  ::ng-deep &.table {
     .mat-expansion-panel-content,
     .mat-expansion-panel-body {
       background-color: main.color(table) !important;
@@ -32,7 +37,6 @@ mat-expansion-panel {
 }
 
 :ng-deep mat-expansion-panel-header {
-
   &.form {
     background-color: main.color(warn) !important;
   }
@@ -42,13 +46,12 @@ mat-expansion-panel {
   }
 
   background-color: inherit !important;
-
 }
 
-.content {
-  font-size: 16px !important;
-  padding-top: 16px;
-}
+// .content {
+//   font-size: 16px !important;
+//   padding-top: 16px;
+// }
 
 // override indicator color
 ::ng-deep span.mat-expansion-indicator::after {
