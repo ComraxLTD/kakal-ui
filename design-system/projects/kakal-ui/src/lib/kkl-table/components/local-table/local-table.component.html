@@ -1,9 +1,6 @@
-<button *ngIf="addButton" mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="addNewRowGroup()">
-  <mat-icon>add</mat-icon>
-  {{addButton.label}}
-</button>
 <form [formGroup]="form">
   <div *ngIf="displayedColumns.length" class="mat-elevation-z8 table-wrapper">
+    <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
     <table dir="rtl" mat-table [dataSource]="dataTable" matSort multiTemplateDataRows formArrayName="myRows">
 
       <ng-container *ngFor="let column of oneColumns" [matColumnDef]="column.key">
@@ -12,7 +9,7 @@
         </th>
         <td mat-cell *matCellDef="let element; let i = dataIndex"
                     [style.display]="(i | tableGroupCell : column.group : spans) ? '' : 'none'"
-                    [attr.rowspan]="(!expandTemplate || element == expandedElement)? (i | tableGroupCell : column.group : spans) : (i | tableGroupCell : column.group : spans)*2">
+                    [attr.rowspan]="(element == expandedElement)? (i | tableGroupCell : column.group : spans) : (i | tableGroupCell : column.group : spans)*2">
           <ng-container *ngIf="!(element | arrInclueds : editItems); else editBlock">
             <!-- <ng-container *ngIf="column.template">
               <mat-progress-bar mode="query" [value]="60"></mat-progress-bar>
@@ -21,7 +18,7 @@
             <kkl-icon *ngIf="column.colIcon" [key]="column.colIcon.key"></kkl-icon>
             <span *ngIf="column.button; else withButton">
               <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(column.button, element)">
-                <mat-icon>{{column.button.icon.key}}</mat-icon>
+                <kkl-icon [key]="column.button.icon.key"></kkl-icon>
                 <span *ngIf="element[column.key]" style="white-space: pre-wrap;">
                   {{element[column.key] | tableCellPipe: column.controlType}}
                 </span>
@@ -35,7 +32,7 @@
           </ng-container>
           <ng-template #editBlock>
             <ng-container >
-              <app-table-form [formGroupName]="(element | arrIndex : editItems)" [question]="column"></app-table-form>
+              <kkl-table-form [formGroupName]="(element | arrIndex : editItems)" [question]="column"></kkl-table-form>
             </ng-container>
           </ng-template>
         </td>
@@ -44,9 +41,8 @@
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
         <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-          <div class="example-element-detail"
-              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <div class="example-element-description">
+          <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+            <div *ngIf="element == expandedElement" class="example-element-detail">
               <ng-container *ngIf="expandTemplate">
                 <ng-template *ngTemplateOutlet="expandTemplate"></ng-template>
               </ng-container>
@@ -56,20 +52,25 @@
       </ng-container>
 
 
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef><h3>פעולות</h3></th>
-        <td mat-cell *matCellDef="let element">
+      <ng-container matColumnDef="actions" class="center-butt">
+        <th mat-header-cell *matHeaderCellDef>
+          <button *ngIf="addButton" mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="addNewRowGroup()">
+            <kkl-icon key="add"></kkl-icon>
+            {{addButton.label}}
+          </button>
+        </th>
+        <td mat-cell *matCellDef="let element" class="center-butt">
           <ng-container *ngIf="!(element | arrInclueds : editItems); else addButton">
-            <ng-container *ngFor="let butt of buttons">
+            <ng-container *ngFor="let butt of localButtons">
               <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(butt, element)">
-                <mat-icon>{{butt.icon}}</mat-icon>
+                <kkl-icon [key]="butt.icon.key"></kkl-icon>
                 {{butt.label}}
               </button>
             </ng-container>
           </ng-container>
           <ng-template #addButton>
             <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="saveRowClick(element)">
-              <mat-icon>save</mat-icon>
+              <kkl-icon key="add"></kkl-icon>
             </button>
           </ng-template>
         </td>
@@ -81,7 +82,7 @@
           [class.example-expanded-row]="expandedElement === element"
           >
       </tr>
-      <tr mat-row *matRowDef="let row; columns: expandedElement? ['expandedDetail'] : []" class="example-detail-row"></tr>
+      <tr mat-row *matRowDef="let row; columns: expandTemplate? ['expandedDetail'] : []" class="example-detail-row"></tr>
 
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
@@ -89,6 +90,8 @@
       </tr>
     </table>
 
-    <mat-paginator dir="ltr" [pageSizeOptions]="[10, 25, 100]" aria-label="Select page"></mat-paginator>
+  </div>
+  <div [hidden]="!paging">
+    <mat-paginator dir="ltr" class="mat-elevation-z8" [pageSizeOptions]="[10, 25, 100]" aria-label="Select page"></mat-paginator>
   </div>
 </form>
