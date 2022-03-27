@@ -9,7 +9,7 @@ import {
   OptionMap,
   QuestionSelectModel,
   TableState,
-  KKLSelectOption,
+  SelectOption,
   FetchState,
   HeaderCellModel,
   TableActions,
@@ -195,8 +195,8 @@ export class TableComponent implements OnInit {
       if (question.controlType === 'select') {
         const options = [
           ...optionsMap[question.key.toString()],
-        ] as KKLSelectOption[];
-        const value: KKLSelectOption = options.find(
+        ] as SelectOption[];
+        const value: SelectOption = options.find(
           (option) => option.label === item[question.key]
         );
 
