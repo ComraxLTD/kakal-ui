@@ -4,18 +4,16 @@
       [questions]="group.questions"
       [formGroup]="group.formGroup"
       [grid]="group.gridProps"
-      [hasButton]="group.hasButton"
       [rowHeight]="rowHeight"
-      [gutter]="gutter"
       [buttonTemp]="buttonTemp"
       [buttonLabel]="buttonLabel"
       [optionsMap]="optionsMap"
       (submitEvent)="onSubmitEvent()"
       (formChangeEvent)="onFormChanged($event)"
-      ></kkl-form-grid>
-    </ng-container>
-    <ng-container *ngSwitchCase="'flex'">
-      <kkl-form-flex
+    ></kkl-form-grid>
+  </ng-container>
+  <ng-container *ngSwitchCase="'flex'">
+    <kkl-form-flex
       [questions]="questions"
       [formGroup]="formGroup"
       [grid]="grid"
