@@ -30,7 +30,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() questions!: Question[];
   @Input() asButton!: boolean;
   @Input() expended: boolean = false;
-  @Input() hasFilters: boolean = true;
+  @Input() hasFilters: boolean = false;
   @Input() optionsMap$: Observable<OptionMap> = of({});
 
   filtersState$!: Observable<FilterState>;
@@ -71,7 +71,6 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   }
 
   public onFormChanged(event: FormChangeEvent) {
-    console.log(event);
     this.formDataSource.dispatch(event);
   }
 }
