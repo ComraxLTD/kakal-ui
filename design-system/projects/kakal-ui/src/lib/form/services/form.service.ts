@@ -65,7 +65,7 @@ export interface QuestionGroup {
 @Injectable({
   providedIn: 'root',
 })
-export class FormService {
+export class FormService<T = any> {
   constructor(private fb: FormBuilder) {}
 
   // method which create a control template for FormBuilder
@@ -134,7 +134,7 @@ export class FormService {
   }
 
   // method which return QuestionGroupModel instance
-  public createQuestionGroup<T = any>(
+  public createQuestionGroup<T>(
     config: QuestionGroup
   ): QuestionGroupModel<T> {
     let { key, questions, options, model } = config;
