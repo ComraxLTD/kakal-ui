@@ -7,12 +7,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { KKLButtonModule } from '../../button/button.module';
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLTypographyModule } from '../../typography/typography.module';
-import { KKLFormFlexModule } from '../../form/flex-form/flex-form.module';
 import { KKLFormAutoCompleteModule } from '../../form/form-autocomplete/form-autocomplete.module';
 
 import { AdvancedSearchLayoutComponent } from './advanced-search-layout.component';
-import { KKLFiltersModule } from '../../filters/filters.module';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
+import { KKLFiltersModule } from '../../filters/filters.module';
+import { KKLFormModule } from '../../form/form/form.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
     KKLTypographyModule,
     KKLIconModule,
     KKLFormAutoCompleteModule,
-    KKLFormFlexModule,
+    KKLFormModule,
     KKLFiltersModule,
   ],
   exports: [AdvancedSearchLayoutComponent, KKLAdvancedSearchContentDirective],
