@@ -28,7 +28,7 @@
       </button>
     </div>
   </header>
-  <main>
+  <main *ngIf="searchGroup">
     <mat-accordion [class.kkl-form-search]="true" displayMode="flat">
       <mat-expansion-panel
         [class.kkl-form-search]="true"
