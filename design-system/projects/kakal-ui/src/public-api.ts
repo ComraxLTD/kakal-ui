@@ -319,8 +319,8 @@ export * from './lib/layouts/section/section.component';
 
 // vertical stepper
 
-export * from './lib/vertical-stepper/vertical-stepper.module';
-export * from './lib/vertical-stepper/vertical-stepper.component';
+export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.module';
+export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.component';
 
 // dashboard
 

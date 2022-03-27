@@ -61,6 +61,8 @@ import { KKLLayoutModule } from './layouts/layout/layout.module';
 import { KKSectionModule } from './layouts/section/section.module';
 import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
 import { KKPageModule } from './layouts/page/page.module';
+import { KKLVerticalStepperModule } from './layouts/vertical-stepper-layout/vertical-stepper.module';
+import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
@@ -81,8 +83,6 @@ import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
-import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.module';
-import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],

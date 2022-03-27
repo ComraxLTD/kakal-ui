@@ -2,7 +2,7 @@ import { Component, Input, OnInit, Type } from '@angular/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 
 @Component({
-  selector: 'kkl-vertical-stepper',
+  selector: 'kkl-vertical-stepper-layout',
   templateUrl: './vertical-stepper.component.html',
   styleUrls: ['./vertical-stepper.component.scss'],
   providers: [
