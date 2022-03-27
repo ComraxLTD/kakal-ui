@@ -34,8 +34,8 @@ export * from './lib/form/models/form.types';
 export * from './lib/form/form/form.module';
 export * from './lib/form/form/form.component';
 
-export * from './lib/form/flex-form/flex-form.module';
-export * from './lib/form/flex-form/flex-form.component';
+export * from './lib/form/form-flex/flex-form.module';
+export * from './lib/form/form-flex/flex-form.component';
 
 export * from './lib/form/form-grid/form-grid.module';
 export * from './lib/form/form-grid/form-grid.component';
