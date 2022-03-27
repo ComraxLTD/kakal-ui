@@ -17,7 +17,7 @@ import {
 import { FormService } from '../../form/services/form.service';
 import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
@@ -31,7 +31,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() asButton!: boolean;
   @Input() expended: boolean = false;
   @Input() hasFilters: boolean = true;
-  @Input() optionsMap$!: Observable<OptionMap>;
+  @Input() optionsMap$: Observable<OptionMap> = of({});
 
   filtersState$!: Observable<FilterState>;
   searchGroup!: QuestionGroupModel;
