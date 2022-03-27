@@ -1,8 +1,22 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FilterState } from '../../filters/filters.types';
 import { FormChangeEvent } from '../../form/models/form.options';
-import { Question, QuestionGroupModel } from '../../form/models/form.types';
+import {
+  OptionMap,
+  Question,
+  QuestionGroupModel,
+} from '../../form/models/form.types';
 import { FormService } from '../../form/services/form.service';
+import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
@@ -10,11 +24,14 @@ import { FormService } from '../../form/services/form.service';
   styleUrls: ['./advanced-search-layout.component.scss'],
 })
 export class AdvancedSearchLayoutComponent implements OnInit {
+  @ContentChild(KKLAdvancedSearchContentDirective) advancedSearchDirective;
+
   @Input() questions!: Question[];
   @Input() asButton!: boolean;
   @Input() expended: boolean = false;
+  @Input() optionsMap$!: Observable<OptionMap>;
 
-  // default inputs in row
+  filtersState$!: Observable<FilterState>;
   searchGroup!: QuestionGroupModel;
   advancedQuestions!: Question[];
   advanced: boolean = true;
@@ -36,16 +53,10 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchGroup = this.setGroup();
-
-
-    // const advancedQuestions = [...this.questions];
-    // advancedQuestions.splice(0, 1);
-
-    console.log(this.searchGroup.questions)
+    this.advancedQuestions = this.setAdvancedQuestions();
   }
 
   private setGroup(): QuestionGroupModel {
-
     const group = this.formService.createQuestionGroup({
       questions: [...this.questions],
       options: { gridProps: { cols: 4 } },
@@ -53,20 +64,10 @@ export class AdvancedSearchLayoutComponent implements OnInit {
     return group;
   }
 
-  private onAdvanced(): void {
-    if (this.advanced && !this.searchGroup) {
-      throw new Error('Advanced search is missing a searchGroup instance.');
-    }
-
-    if (this.searchGroup) {
-      const advancedQuestions = [...this.searchGroup.questions];
-      advancedQuestions.splice(0, 1);
-
-      this.searchGroup = {
-        ...this.searchGroup,
-        questions: advancedQuestions,
-      } as QuestionGroupModel;
-    }
+  private setAdvancedQuestions() {
+    const advancedQuestions = [...this.questions];
+    advancedQuestions.splice(0, 1);
+    return advancedQuestions;
   }
 
   public onClick() {

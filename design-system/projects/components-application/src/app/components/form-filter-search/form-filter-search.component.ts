@@ -27,11 +27,6 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'search',
       controlType: 'autocomplete',
     },
-    // {
-    //   key: 'currency',
-    //   controlType: 'currency',
-    //   value: { sum: 100 } as Currency,
-    // },
 
     { key: 'last_name' },
     // { key: 'part', controlType: 'counter' },
@@ -68,27 +63,18 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'select',
     },
-    // {
-    //   key: 'date',
-    //   filterType: FilterType.DATE_RANGE,
-    //   controlType: 'dateRange',
-    //   value: { start: new Date(), end: new Date() },
-    // },
+
   ];
 
   public optionsMap$: Observable<OptionMap>;
 
-  public searchGroup: QuestionGroupModel;
-
   public filtersState$: Observable<FilterState>;
 
   constructor(
-    private formService: FormService,
     private formDataSource: FormDataSource
   ) {}
 
   ngOnInit(): void {
-    this.searchGroup = this.setGroup(this.questions);
     this.optionsMap$ = this.getOptionsMap$();
 
     // this.searchGroup.formGroup.disable();
@@ -115,13 +101,7 @@ export class FormFilterSearchComponent implements OnInit {
     );
   }
 
-  private setGroup(initQuestions: Question[]): QuestionGroupModel {
-    const group = this.formService.createQuestionGroup({
-      questions: initQuestions,
-      options: { gridProps: { cols: 5 } },
-    });
-    return group;
-  }
+
 
   // DOM EVENTS SECTION
 

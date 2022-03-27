@@ -1,8 +1,12 @@
 <div fxLayout="row" dir="rtl">
   <div fxLayout="column" fxFlex="90">
     <ng-container *ngIf="optionsMap$ | async as optionsMap">
-
-      <kkl-advanced-search-layout [questions]="questions"></kkl-advanced-search-layout>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <kkl-advanced-search-layout
+          fxFlex="60"
+          [questions]="questions"
+        ></kkl-advanced-search-layout>
+      </div>
 
       <!-- <kkl-form-search [searchGroup]="searchGroup" [advanced]="true">
       </kkl-form-search> -->
@@ -16,14 +20,6 @@
         ></kkl-filters> -->
         <!-- </ng-container> -->
       </div>
-    </ng-container>
-
-    <ng-container>
-      <pre *ngIf="searchGroup">
-        formGroup
-      {{ searchGroup.formGroup.value | json }}
-    </pre
-      >
     </ng-container>
   </div>
 </div>

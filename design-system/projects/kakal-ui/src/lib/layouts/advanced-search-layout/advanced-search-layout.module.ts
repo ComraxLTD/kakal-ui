@@ -12,9 +12,13 @@ import { KKLFormAutoCompleteModule } from '../../form/form-autocomplete/form-aut
 
 import { AdvancedSearchLayoutComponent } from './advanced-search-layout.component';
 import { KKLFiltersModule } from '../../filters/filters.module';
+import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 
 @NgModule({
-  declarations: [AdvancedSearchLayoutComponent],
+  declarations: [
+    AdvancedSearchLayoutComponent,
+    KKLAdvancedSearchContentDirective,
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -25,8 +29,8 @@ import { KKLFiltersModule } from '../../filters/filters.module';
     KKLIconModule,
     KKLFormAutoCompleteModule,
     KKLFormFlexModule,
-    KKLFiltersModule
+    KKLFiltersModule,
   ],
-  exports: [AdvancedSearchLayoutComponent],
+  exports: [AdvancedSearchLayoutComponent, KKLAdvancedSearchContentDirective],
 })
 export class KKLAdvancedSearchLayoutModule {}
