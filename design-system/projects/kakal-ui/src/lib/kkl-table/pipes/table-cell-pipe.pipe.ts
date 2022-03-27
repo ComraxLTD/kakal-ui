@@ -9,6 +9,7 @@ export class TableCellPipe implements PipeTransform {
     }
     transform(element: any, type: any) {
         switch (type) {
+            case 'input':
             case 'text':
             case 'password':
             case 'number':

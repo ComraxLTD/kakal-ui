@@ -114,7 +114,8 @@ export * from './lib/form/models/question.types';
 // ------------------------------------------------------------------------------------------
 
 // NEW TABLE
-export * from './lib/kkl-table/components/table-edit/table-edit.component';
+export * from './lib/kkl-table/components/server-table/server-table.component';
+export * from './lib/kkl-table/components/local-table/local-table.component';
 export * from './lib/kkl-table/components/table-form/table-form.component';
 export * from './lib/kkl-table/kkl-table.module';
 export * from './lib/kkl-table/pipes/arr-includes.pipe';

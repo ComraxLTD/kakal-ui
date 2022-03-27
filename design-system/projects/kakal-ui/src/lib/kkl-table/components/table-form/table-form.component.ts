@@ -1,13 +1,6 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Optional, Output, Self, SkipSelf, TemplateRef } from '@angular/core';
-import { ControlContainer, ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
+import { Component, Input, OnInit } from '@angular/core';
+import { ControlContainer } from '@angular/forms';
 import { QuestionBase } from '../../../form/models/question.model';
-
-export const NOOP_VALUE_ACCESSOR: ControlValueAccessor = {
-  writeValue(): void {},
-  registerOnChange(): void {},
-  registerOnTouched(): void {}
-};
 
 @Component({
   selector: 'kkl-table-form',
