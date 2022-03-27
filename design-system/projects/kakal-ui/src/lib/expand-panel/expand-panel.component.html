@@ -1,15 +1,7 @@
-<mat-expansion-panel
-  [hideToggle]="true"
-  [expanded]="expanded"
-  [disabled]="disabled"
-  [ngClass]="[variant, 'default', 'mat-elevation-z0']"
-  (closed)="onPanelClosed()"
-  (opened)="onPanelOpen()"
->
-  <mat-expansion-panel-header
-    *ngIf="!showHeader"
-    [ngClass]="[variant]"
-  >
+<div class="kkl-expansion-panel">
+  <mat-expansion-panel [hideToggle]="true" [expanded]="expanded" [disabled]="disabled"
+  [ngClass]="[variant, 'default', 'mat-elevation-z0']" (closed)="onPanelClosed()" (opened)="onPanelOpen()">
+  <mat-expansion-panel-header *ngIf="!showHeader" [ngClass]="[variant]">
     <mat-panel-title [ngClass]="[variant, 'default']">
       <div class="title" fxLayout="row" fxLayoutGap="1rem">
         <ng-content select="[title]"></ng-content>
@@ -25,3 +17,4 @@
     <ng-content select="[content]"></ng-content>
   </div>
 </mat-expansion-panel>
+</div>

@@ -1,14 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
 import { FilterChangeEvent, FilterState, FilterType } from './filters.types';
 import { FiltersService } from './filters.service';
 import { removeMultiFilter } from './filters.helpers';
-import { FormGroup } from '@angular/forms';
-import {
-  FormActions,
-  FormChangeEvent,
-  FormDataSource,
-  SelectOption,
-} from '../../public-api';
+import { FormDataSource } from '../form/models/form-datasource';
+import { FormActions, FormChangeEvent, SelectOption } from '../form/models/form.types';
 import { map, Observable, switchMap } from 'rxjs';
 
 @Component({

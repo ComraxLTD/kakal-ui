@@ -11,8 +11,6 @@ import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { QuestionGroupModel } from '../models/form.types';
-import { FormService, Question } from '../services/form.service';
-import { KKLFormSearchContentDirective } from './form-search.directive';
 
 @Component({
   selector: 'kkl-form-search',
@@ -21,8 +19,6 @@ import { KKLFormSearchContentDirective } from './form-search.directive';
   providers: [FormDataSource],
 })
 export class FormSearchComponent implements OnInit {
-  @ContentChild(KKLFormSearchContentDirective) formSearchDirective;
-
   @Input() searchControl!: FormControl | AbstractControl;
   @Input() searchGroup!: QuestionGroupModel;
   @Input() advanced!: boolean;
@@ -33,14 +29,6 @@ export class FormSearchComponent implements OnInit {
 
   public contextGroup: QuestionGroupModel;
 
-  @Output() public optionSelected: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
-
-  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
-
-  @Output() public queryChanged: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
 
   constructor() {}
 
@@ -72,15 +60,9 @@ export class FormSearchComponent implements OnInit {
     this.expended = !this.expended;
   }
 
-  public onQueryChanged(event: FormChangeEvent): void {
-    this.queryChanged.emit(event);
-  }
+  public onQueryChanged(event: FormChangeEvent): void {}
 
-  public onOptionSelected(event: FormChangeEvent): void {
-    this.optionSelected.emit(event);
-  }
+  public onOptionSelected(event: FormChangeEvent): void {}
 
-  public onMultiOptionSelected(event: FormChangeEvent) {
-    this.optionSelected.emit(event);
-  }
+  public onMultiOptionSelected(event: FormChangeEvent) {}
 }
