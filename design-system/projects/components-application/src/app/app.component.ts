@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { CardLobbyModel } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -45,5 +46,7 @@ export class AppComponent implements OnInit {
   constructor() { }
   data = [{key:'First',label:'בדיקה'},{key:'Second',label:'test'},{key:'Third',label:'עמוד 3'}];
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 }
