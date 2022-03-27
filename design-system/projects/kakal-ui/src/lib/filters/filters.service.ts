@@ -86,7 +86,7 @@ export class FiltersService {
   }
 
   // use when filterState keys are different form api interface
-  public getFilterState<T>(searchLookups?: {
+  public listenToFilterState<T>(searchLookups?: {
     [key: string]: keyof T;
   }): Observable<FilterState> {
     const true$ = this.listen().pipe(
