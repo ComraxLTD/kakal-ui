@@ -68,8 +68,6 @@ export class FiltersService {
 
   public on(callback: (state: FilterState, ...args: any) => any, ...args: any) {
     const state = this.filterState$.getValue();
-    console.log(args)
-    console.log(state)
     return callback(state, ...args);
   }
 
