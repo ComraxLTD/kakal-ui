@@ -215,10 +215,10 @@ export class FormService<T = any> {
       case 'select':
         return new QuestionSelectModel(question as QuestionSelectModel);
       case 'multiSelect':
+        console.log(question);
         return new QuestionSelectModel(question as QuestionSelectModel);
       case 'upload':
-        const fq = question as QuestionUploadModel;
-        return new QuestionUploadModel(fq);
+        return new QuestionUploadModel(question as QuestionUploadModel);
       case 'counter':
         return new QuestionCounterModel(question as QuestionCounterModel);
       case 'radio':

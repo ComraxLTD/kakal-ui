@@ -26,34 +26,44 @@ export class FormFilterSearchComponent implements OnInit {
       controlType: 'autocomplete',
     },
 
-    { key: 'last_name' },
-    // { key: 'part', controlType: 'counter' },
-    { key: 'last_name', controlType: 'upload' },
-    {
-      key: 'multiSelectTest',
-      label: 'multiSelectTest',
-      controlType: 'select',
-      multi: true,
-    },
-    {
-      key: 'email',
-      label: 'multiAutocompleteTest',
-      controlType: 'autocomplete',
-      multi: true,
-    },
+    // { key: 'last_name' },
+    // { key: 'last_name', controlType: 'upload' },
+    // {
+    //   key: 'multiSelectTest',
+    //   label: 'multiSelectTest',
+    //   controlType: 'select',
+    //   multi: true,
+    // },
+    // {
+    //   key: 'email',
+    //   label: 'multiAutocompleteTest',
+    //   controlType: 'autocomplete',
+    //   multi: true,
+    // },
     {
       key: 'email',
       label: 'email',
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    { key: 'birthDay', label: 'יום הולדת', controlType: 'date' },
-    { key: 'committee', label: 'committee', controlType: 'dateRange' },
     {
+      key: 'birthDay',
+      label: 'יום הולדת',
+      controlType: 'date',
+      filterType: FilterType.SELECT,
+    },
+    {
+      key: 'committee',
+      label: 'committee',
+      controlType: 'dateRange',
+      filterType: FilterType.DATE_RANGE,
+    },
+    {
+      label: 'city',
       key: 'city',
       filterType: FilterType.MULTI_SELECT,
-      label: 'city',
       controlType: 'multiSelect',
+      multi : true
     },
     {
       key: 'country',
@@ -71,8 +81,6 @@ export class FormFilterSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.optionsMap$ = this.getOptionsMap$();
-
-    // this.searchGroup.formGroup.disable();
   }
 
   private getCurrencyOptions() {
@@ -99,8 +107,4 @@ export class FormFilterSearchComponent implements OnInit {
   // DOM EVENTS SECTION
 
   public onFilterChanged(state: FilterState) {}
-
-  public onFormChanged(event: FormChangeEvent) {
-    this.formDataSource.dispatch(event);
-  }
 }
