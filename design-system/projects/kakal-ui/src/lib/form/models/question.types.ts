@@ -30,6 +30,7 @@ export type ControlType =
   | 'multiSelect'
   | 'calendar'
   | 'checkbox'
+  | 'checkboxGroup'
   | 'radio'
   | 'date'
   | 'dateRange'

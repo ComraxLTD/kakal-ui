@@ -7,7 +7,7 @@ export * from './lib/angular-material/material.module';
 
 export * from './lib/button/button.module';
 export * from './lib/button/components/button/button.component';
-export * from './lib/button/components/create-button/create-button.component';
+export * from './lib/button/components/add-button/add-button.component';
 export * from './lib/button/components/stroke-button/stroke-button.component';
 export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
@@ -72,7 +72,6 @@ export * from './lib/form/form-select/form-select.module';
 export * from './lib/form/form-select/form-select.component';
 export * from './lib/form/form-select/question-select.model';
 
-
 export * from './lib/form/form-range/form-range.module';
 export * from './lib/form/form-range/form-range.component';
 export * from './lib/form/form-range/question-range.model';
@@ -99,7 +98,6 @@ export * from './lib/form/services/validations.service';
 
 // FORM QUESTIONS //
 
-
 export * from './lib/form/models/question-group.model';
 export * from './lib/form/models/question-number.model';
 export * from './lib/form/models/question-sum.model';
@@ -125,7 +123,7 @@ export * from './lib/kkl-table/pipes/table-group-cell.pipe';
 export * from './lib/kkl-table/table.model';
 
 // TABLE
-export * from './lib/table/components/table/table.module';
+export * from './lib/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table.state.service';
@@ -195,10 +193,6 @@ export * from './lib/list-menu/list-menu.module';
 // title
 export * from './lib/navigation/navigation.module';
 export * from './lib/navigation/navigation.component';
-
-// section
-export * from './lib/section/section.module';
-export * from './lib/section/section.component';
 
 // dialog
 export * from './lib/dialog/dialog.module';
@@ -292,14 +286,34 @@ export * from './lib/stepper-mobile/stepper-mobile.component';
 export * from './lib/stepper-mobile/stepper-mobile.module';
 
 // stepper layout
-export * from './screens/stepper-layout/stepper-layout.component';
-export * from './screens/stepper-layout/stepper-layout.module';
-export * from './screens/stepper-layout/stepper-layout.service';
+export * from './lib/layouts/stepper-layout/stepper-layout.component';
+export * from './lib/layouts/stepper-layout/stepper-layout.module';
+export * from './lib/layouts/stepper-layout/stepper-layout.service';
 
 // layout
-export * from './screens/layout/layout.component';
-export * from './screens/layout/layout.module';
-export * from './screens/layout/layout.service';
+export * from './lib/layouts/layout/layout.component';
+export * from './lib/layouts/layout/layout.module';
+export * from './lib/layouts/layout/layout.service';
+
+// accordion layout
+export * from './lib/layouts/accordion-layout/accordion-layout.module';
+export * from './lib/layouts/accordion-layout/accordion-layout.component';
+export * from './lib/layouts/accordion-layout/accordion-datasource';
+export * from './lib/layouts/accordion-layout/accordion-types';
+
+// page
+export * from './lib/layouts/page/page.module';
+export * from './lib/layouts/page/page.component';
+
+// section
+export * from './lib/layouts/section/section.module';
+export * from './lib/layouts/section/section.component';
+
+
+// vertical stepper
+
+export * from './lib/vertical-stepper/vertical-stepper.module';
+export * from './lib/vertical-stepper/vertical-stepper.component';
 
 // dashboard
 

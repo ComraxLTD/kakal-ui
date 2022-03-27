@@ -18,23 +18,23 @@ import { GridProps } from '../models/question.types';
   selector: 'kkl-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
+  providers: [FormDataSource],
 })
 export class FormComponent implements OnInit {
   @Input() public variant: 'flex' | 'grid' = 'grid';
 
   @Input() public group: QuestionGroupModel;
   @Input() public formDataSource: FormDataSource;
+  @Input() public questions: Question[];
+  @Input() public formGroup: FormGroup;
+  @Input() public grid: GridProps;
+  @Input() public optionsMap: OptionMap = {};
 
   @Input() public rowHeight: number;
   @Input() public gutter: number;
 
   @Input() optionsSlot: { [key: string]: ElementRef };
 
-  @Input() public questions: Question[];
-  @Input() public formGroup: FormGroup;
-
-  @Input() public grid: GridProps;
-  @Input() public optionsMap: OptionMap = {};
 
   @Input() public buttonLabel: string = 'שמור';
   @Input() public buttonTemp: TemplateRef<any>;

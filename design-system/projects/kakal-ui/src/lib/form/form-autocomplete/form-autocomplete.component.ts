@@ -27,6 +27,7 @@ export class FormAutocompleteComponent implements OnInit {
   @Input() public options!: SelectOption[];
   @Input() public panelWidth!: boolean;
   @Input() public multi!: boolean;
+  @Input() public asButton!: boolean;
 
   @Input() public optionSlot: TemplateRef<any>;
 
@@ -35,6 +36,7 @@ export class FormAutocompleteComponent implements OnInit {
     options: SelectOption[];
   }) => SelectOption;
 
+  @Output() searchEvent: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
@@ -89,6 +91,15 @@ export class FormAutocompleteComponent implements OnInit {
       value: options,
       action: FormActions.MULTI_OPTION_SELECTED,
     });
+  }
+
+  public onSearchEvent() {
+    this.searchEvent.emit({
+      key: this.key,
+      option: this.getOption(this.control.value),
+      query: this.control.value,
+      action: FormActions.SEARCH_EVENT,
+    } as FormChangeEvent);
   }
 
   public displayFn(option: any): string {

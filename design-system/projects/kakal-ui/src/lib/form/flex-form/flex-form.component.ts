@@ -33,6 +33,7 @@ export class FormFlexComponent implements OnInit {
 
   public hasButton: boolean;
   public flex: number;
+  public cols: number;
 
   // default inputs in row
 
@@ -50,9 +51,11 @@ export class FormFlexComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
-    this.flex = 100 / (this.grid?.cols || 4);
+    this.cols = this.grid?.cols || 4
+    this.flex = 100 / (this.grid?.cols || this.cols);
     this.hasButton = !!this.grid?.buttonCols;
   }
+
 
   public onSubmit() {
     this.submitEvent.emit(this.formGroup);

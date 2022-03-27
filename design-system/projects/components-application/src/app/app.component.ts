@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
+import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 
 export const ELEMENT_DATA = [ {
   id : 5922,
@@ -16939,59 +16941,24 @@ export const ELEMENT_DATA = [ {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  public steps = [
+    { key: 1, label: 'working', comp: OrderDetailsBidComponent },
+    { key: 2, label: 'working2', comp: FormFilterSearchComponent },
+  ];
+  public panels = [
+    { label: 'working', comp: OrderDetailsBidComponent },
+    {
+      item: { birthDate: new Date(), location: 'city', test: 'test' },
+      headers: [
+        { key: 'location' },
+        { key: 'birthDate', format: 'date' },
+        { key: 'test' },
+      ],
+      comp: FormFilterSearchComponent,
+    },
+  ];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {}
-
-  dataSource = ELEMENT_DATA;
-
-  columnsShow = [
-    {
-      controlType: 'input',
-      key: 'poCodes',
-      label: `PO#`,
-      group: 'poCodes',
-    },
-    {
-      controlType: 'input',
-      key: 'suppliers',
-      label: `Supplier`,
-      group: 'poCodes',
-    },
-    {
-      controlType: 'date',
-      key: 'recordedTime',
-      label: `Recorded time`,
-      button:
-        {
-          type: 'inlineExpand',
-          icon: {key: 'expand'},
-        }
-    },
-    {
-      controlType: 'input',
-      key: 'status',
-      label: `Status`,
-      colIcon: {key:'add'}
-    },
-  ];
-
-  localButtons = [
-    {
-      icon: {key:'delete'},
-      type: 'inlineDelete',
-      // func: (arr: any[], elem:any) => arr.filter(d => d['id'] !== elem['id'])
-    },
-    {
-      icon: {key:'edit'},
-      type: 'inlineEdit',
-      // func: (arr: any[], elem:any) => arr.filter(d => d['id'] !== elem['id'])
-    }
-  ];
-
-  addButton = {
-    label: 'new user'
-  }
-
 }

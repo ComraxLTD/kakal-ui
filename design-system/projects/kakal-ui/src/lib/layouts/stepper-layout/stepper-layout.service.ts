@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { CardStepModel } from '../../lib/cards/card-step/card-step.model';
+import { CardStepModel } from '../../cards/card-step/card-step.model';
 
 @Injectable({
   providedIn: 'root',

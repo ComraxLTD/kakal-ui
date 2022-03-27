@@ -1,0 +1,28 @@
+@use "../../../styles/variables" as main;
+
+:host {
+  mat-expansion-panel {
+    margin-bottom: main.spacing(2) !important;
+    box-shadow: none !important;
+
+    & mat-expansion-panel-header {
+      border-bottom: 1px solid main.colorWithOpacity(primary, 0.2);
+      align-items: flex-end;
+      padding: 0 !important;
+    }
+
+    & .title {
+      border-bottom: 2px solid main.colorWithOpacity(primary, 1);
+      padding-right: main.spacing(1);
+    }
+  }
+
+  // override indicator color
+  ::ng-deep span.mat-expansion-indicator::after {
+    color: main.color(accent) !important;
+  }
+
+  mat-checkbox {
+    font-size: 1.4rem;
+  }
+}

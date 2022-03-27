@@ -2,6 +2,8 @@ import { AbstractControl, FormControl } from '@angular/forms';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatRadioChange } from '@angular/material/radio';
 import { RadioOption } from './question-radio.model';
+import { FormChangeEvent } from '../models/form.options';
+import { FormActions } from '../models/form.actions';
 
 @Component({
   selector: 'kkl-form-radio',
@@ -14,7 +16,7 @@ export class FormRadioComponent implements OnInit {
   @Input() label!: string;
   @Input() options!: RadioOption[];
 
-  @Output() public change = new EventEmitter<any>();
+  @Output() public change = new EventEmitter<FormChangeEvent<RadioOption>>();
 
   constructor() {}
 
@@ -23,17 +25,21 @@ export class FormRadioComponent implements OnInit {
   }
 
   onInitValue() {
-    if (this.control.value) {
-      const index = this.options.findIndex(
-        (option) =>
-          option.label === this.control.value.label &&
-          option.value === this.control.value.value
-      );
-      if (index) this.options[index].checked = true;
-    }
+    // if (this.control.value) {
+    //   const index = this.options.findIndex(
+    //     (option) =>
+    //       option.label === this.control.value.label &&
+    //       option.value === this.control.value.value
+    //   );
+    //   if (index) this.options[index].checked = true;
+    // }
   }
-  public handleChange(radio: MatRadioChange) {
-    this.control.setValue(radio.value);
-    this.change.emit({ key: this.key, value: radio.value });
+  public handleChange(radioChange: MatRadioChange) {
+    this.control.setValue(radioChange.value);
+    this.change.emit({
+      key: this.key,
+      value: radioChange.value,
+      action: FormActions.VALUE_CHANGED,
+    } as FormChangeEvent);
   }
 }
