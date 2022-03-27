@@ -5,11 +5,9 @@ import {
   FilterType,
   FormChangeEvent,
   FormDataSource,
-  FormService,
-  KKLSelectOption,
+  SelectOption,
   OptionMap,
   Question,
-  QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { forkJoin, map, Observable, of } from 'rxjs';
@@ -63,16 +61,13 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'select',
     },
-
   ];
 
   public optionsMap$: Observable<OptionMap>;
 
   public filtersState$: Observable<FilterState>;
 
-  constructor(
-    private formDataSource: FormDataSource
-  ) {}
+  constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit(): void {
     this.optionsMap$ = this.getOptionsMap$();
@@ -85,7 +80,7 @@ export class FormFilterSearchComponent implements OnInit {
       { label: '$', value: 1 },
       { label: '₪', value: 2 },
       { label: '@', value: 3 },
-    ] as KKLSelectOption[]);
+    ] as SelectOption[]);
   }
 
   public getOptionsMap$(): Observable<OptionMap> {
@@ -100,8 +95,6 @@ export class FormFilterSearchComponent implements OnInit {
       })
     );
   }
-
-
 
   // DOM EVENTS SECTION
 

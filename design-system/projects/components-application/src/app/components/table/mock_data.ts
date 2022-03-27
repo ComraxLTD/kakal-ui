@@ -1,4 +1,4 @@
-import { KKLSelectOption } from '../../../../../kakal-ui/src/public-api';
+import { SelectOption } from '../../../../../kakal-ui/src/public-api';
 import { ObserversCommittee } from '../../model/observersCommittee';
 
 export interface RootObject {
@@ -283,7 +283,7 @@ export const DEMO_OPTIONS: OptionObject[] = [
   },
 ];
 
-export const MOCK_OPTIONS: KKLSelectOption[] = [
+export const MOCK_OPTIONS: SelectOption[] = [
   {
     id: 1,
     label: 'Argentina',
