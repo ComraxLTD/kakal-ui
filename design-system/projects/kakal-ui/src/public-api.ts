@@ -301,6 +301,12 @@ export * from './lib/layouts/accordion-layout/accordion-layout.component';
 export * from './lib/layouts/accordion-layout/accordion-datasource';
 export * from './lib/layouts/accordion-layout/accordion-types';
 
+
+export * from './lib/layouts/advanced-search-layout/advanced-search-layout.module';
+export * from './lib/layouts/advanced-search-layout/advanced-search-layout.component';
+
+
+
 // page
 export * from './lib/layouts/page/page.module';
 export * from './lib/layouts/page/page.component';

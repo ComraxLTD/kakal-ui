@@ -21,9 +21,8 @@ import { forkJoin, map, Observable, of } from 'rxjs';
   providers: [FiltersService, FormDataSource],
 })
 export class FormFilterSearchComponent implements OnInit {
-  private questions: Question[] = [
-    // first for the general search
-    // key must be search!
+  questions: Question[] = [
+    // key must be search for general search!
     {
       key: 'search',
       controlType: 'autocomplete',
