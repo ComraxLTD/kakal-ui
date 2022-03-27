@@ -6,7 +6,7 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { MatListOption, MatSelectionList } from '@angular/material/list';
 import { SelectOption } from '../form-select/question-select.model';
@@ -20,13 +20,14 @@ import { of } from 'rxjs';
   styleUrls: ['./form-autocomplete.component.scss'],
 })
 export class FormAutocompleteComponent implements OnInit {
-  @Input() public control: FormControl;
-  @Input() public key: string;
-  @Input() public icon: string;
-  @Input() public label: string;
-  @Input() public options: SelectOption[];
-  @Input() public panelWidth: boolean;
-  @Input() public multi: boolean;
+  @Input() control!: FormControl | AbstractControl;
+  @Input() public key!: string;
+  @Input() public icon!: string;
+  @Input() public label!: string;
+  @Input() public options!: SelectOption[];
+  @Input() public panelWidth!: boolean;
+  @Input() public multi!: boolean;
+  @Input() public asButton!: boolean;
 
   @Input() public optionSlot: TemplateRef<any>;
 
@@ -35,6 +36,7 @@ export class FormAutocompleteComponent implements OnInit {
     options: SelectOption[];
   }) => SelectOption;
 
+  @Output() searchEvent: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() optionSelected: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
@@ -89,6 +91,15 @@ export class FormAutocompleteComponent implements OnInit {
       value: options,
       action: FormActions.MULTI_OPTION_SELECTED,
     });
+  }
+
+  public onSearchEvent() {
+    this.searchEvent.emit({
+      key: this.key,
+      option: this.getOption(this.control.value),
+      query: this.control.value,
+      action: FormActions.SEARCH_EVENT,
+    } as FormChangeEvent);
   }
 
   public displayFn(option: any): string {

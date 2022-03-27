@@ -15,18 +15,18 @@ import { MaterialModule } from '../../../kakal-ui/src/lib/angular-material/mater
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableComponent } from './components/table/table.component';
 import { DetailsComponent } from './components/details/details.component';
-import { BidComponent } from './components/bid/bid.component';
 import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewOrderLayoutComponent } from './components/new-order-layout/new-order-layout.component';
 import { ButtonComponent } from './components/button/button.component';
+import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TableComponent,
     DetailsComponent,
-    BidComponent,
+    OrderDetailsBidComponent,
     ButtonComponent,
     NewOrderLayoutComponent,
     FormFilterSearchComponent,
@@ -39,7 +39,7 @@ import { ButtonComponent } from './components/button/button.component';
     MaterialModule,
     FormsModule,
     KakalUiModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [StepperLayoutService, BreakpointService, RouterService],
   bootstrap: [AppComponent],

@@ -6,15 +6,17 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
-import { map, startWith, switchMap } from 'rxjs/operators';
 import { StepperLayoutService } from './stepper-layout.service';
-import { RouterService } from '../../services/route.service';
 import { FormControl } from '@angular/forms';
 
-import { Observable, of } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
-import { BreakpointService } from '../../services/breakpoint.service';
-import { CardStepModel } from '../../lib/cards/card-step/card-step.model';
+
+import { RouterService, BreakpointService } from '../../../services/services';
+
+import { CardStepModel } from '../../cards/card-step/card-step.model';
+
+import { map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -64,7 +66,7 @@ export class StepperLayoutComponent {
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService
-  ) { }
+  ) {}
 
   @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
   @Output() selectStep: EventEmitter<FormControl> = new EventEmitter();
@@ -76,7 +78,6 @@ export class StepperLayoutComponent {
     this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
     this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
     this.mobile$ = this.breakpointService.isMobile();
-
   }
   private setSteps$(): Observable<CardStepModel[]> {
     return this.stepperLayoutService.getStepsObs().pipe(
@@ -95,12 +96,10 @@ export class StepperLayoutComponent {
 
             return steps;
           })
-        )
+        );
       })
-    )
-
+    );
   }
-
 
   public onChangeStep(step: CardStepModel): void {
     this.changeStep.emit(step);
@@ -110,6 +109,6 @@ export class StepperLayoutComponent {
   }
 
   emitEndDrawer(): void {
-    this.emitEndDrawerBtn.emit()
+    this.emitEndDrawerBtn.emit();
   }
 }

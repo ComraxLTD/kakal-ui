@@ -1,41 +1,10 @@
-<!-- <div>
-  <kkl-tabs [data]='data' [templates]="{First,Second,Third}"></kkl-tabs>
-</div>
+<!-- <kkl-stepper-layout>
+</kkl-stepper-layout> -->
 
-<ng-template #First>
-<div fxLayout="row" fxLayoutGap="1rem">
-  <div>
-    <kkl-form-date-range [dates]='data'></kkl-form-date-range>
-    <kkl-form-date-range></kkl-form-date-range>
-  </div>
-  <div>
-    <kkl-form-date-range [dates]='data'></kkl-form-date-range>
-    <kkl-form-date-range></kkl-form-date-range>
-  </div>
-  <div>
-    <kkl-form-date-range [dates]='data'></kkl-form-date-range>
-    <kkl-form-date-range></kkl-form-date-range>
-  </div>
-</div>
-</ng-template>
-<ng-template #Second>
-  21312213
-</ng-template>
-<ng-template #Third>
-<kkl-icon key="tree"></kkl-icon>
-</ng-template>
-<div fxLayout="column" fxLayoutGap="5rem">
-  AA
-</ng-template> -->
-<!-- 
-<app-new-order-layout></app-new-order-layout>
-<div fxLayout="column" fxLayoutGap="5rem" dir="ltr">
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <kkl-lobby  [cards]="cards"></kkl-lobby>
-    <app-form-filter-search></app-form-filter-search> -->
-    <!-- <app-button></app-button> -->
-  <!-- </div> -->
-<!-- </div> -->
-<kkl-bread-crumbes></kkl-bread-crumbes>
-<router-outlet></router-outlet>
-
+<app-new-order-layout>
+  <ng-container content>
+    <kkl-page title="תיק">
+      <kkl-accordion-layout [panels]="panels"></kkl-accordion-layout>
+    </kkl-page>
+  </ng-container>
+</app-new-order-layout>

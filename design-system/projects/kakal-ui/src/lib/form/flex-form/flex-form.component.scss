@@ -6,13 +6,18 @@ kkl-form-input {
   width: 100%;
 }
 
-div.input-container {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 0px 8px;
-}
+div {
+  &.input-container {
+    width: 100%;
+  }
 
-div.button-container {
-  box-sizing: border-box;
-  padding-right: 8px;
+  &.input-space {
+    box-sizing: border-box;
+    padding-left: main.spacing(2);
+  }
+
+  &.button-container {
+    box-sizing: border-box;
+    padding-left: main.spacing(1);
+  }
 }

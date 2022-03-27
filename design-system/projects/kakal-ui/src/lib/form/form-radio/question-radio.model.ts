@@ -4,7 +4,6 @@ import { GridProps } from '../models/question.types';
 
 export interface RadioOption {
   label: string;
-  value: any;
   checked?: boolean;
 }
 

@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class ExpandPanelComponent implements OnInit {
   // prop for custom class
+
   @Input() public variant: string;
   @Input() public hideToggle: boolean;
   @Input() public showHeader: boolean;

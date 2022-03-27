@@ -1,29 +1,59 @@
-<div class="form-checkbox" dir="rtl">
-  <div fxLayout="column" fxLayoutGap="1rem" fxLayoutAlign="start start">
-    <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
-      <label>
-        {{ label }}
-      </label>
-    </div>
-    <section>
-      <div
-        fxLayout="row"
-        fxFlex="20"
-        fxLayoutGap="1.5rem"
-        fxLayoutAlign="space-between center"
-      >
-        <mat-checkbox
-          *ngFor="let option of options"
-          color="primary"
-          [labelPosition]="labelPosition"
-          [disabled]="option.disabled"
-          [checked]="option.checked"
-          [value]="option"
-          (change)="onChange($event)"
+<ng-container *ngIf="label; else elseTemplate">
+  <div class="kkl-form-checkbox-group" dir="rtl">
+    <div fxLayout="column" fxLayoutGap="1rem" fxLayoutAlign="start start">
+      <ng-container>
+        <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
+          <label>
+            {{ label }}
+          </label>
+        </div>
+      </ng-container>
+      <section>
+        <div
+          fxLayout="row"
+          fxFlex="20"
+          fxLayoutGap="1.5rem"
+          fxLayoutAlign="space-between center"
         >
-          {{ option.label }}
-        </mat-checkbox>
-      </div>
-    </section>
+          <mat-checkbox
+            *ngFor="let option of options"
+            color="primary"
+            [labelPosition]="labelPosition"
+            [disabled]="option.disabled"
+            [checked]="option.checked"
+            [value]="option"
+            (change)="onChange($event)"
+          >
+            {{ option.label }}
+          </mat-checkbox>
+        </div>
+      </section>
+    </div>
   </div>
-</div>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <!-- <ng-container *ngFor="let control of checkboxGroup.controls; let i = index"> -->
+    <!-- <mat-checkbox
+      fxFlexOffset="1rem"
+      color="primary"
+      [checked]="control.value.checked"
+      [formControl]="control"
+      [labelPosition]="labelPosition"
+      (change)="onChange($event, i)"
+    >
+      {{ value[i] | pluck: "label" }}
+    </mat-checkbox> -->
+    <ng-container *ngFor="let item of control.value; let i = index">
+    <mat-checkbox
+      fxFlexOffset="1rem"
+      color="primary"
+      [disabled]="control.disabled"
+      [checked]="item.checked"
+      [labelPosition]="labelPosition"
+      (change)="onChange($event, i)"
+    >
+      {{ item | pluck: "label" }}
+    </mat-checkbox>
+  </ng-container>
+</ng-template>

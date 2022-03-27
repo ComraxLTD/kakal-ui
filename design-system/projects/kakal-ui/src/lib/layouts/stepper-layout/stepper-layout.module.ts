@@ -5,11 +5,10 @@ import { StepperLayoutComponent } from './stepper-layout.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { MatBadgeModule } from '@angular/material/badge';
-import { StepperModule } from '../../lib/stepper/stepper.module';
-import { StepperMobileModule } from '../../lib/stepper-mobile/stepper-mobile.module';
-import { KKLIconModule } from '../../lib/icon/icon.module';
-import { KKLTypographyModule } from '../../lib/typography/typography.module';
-
+import { KKLIconModule } from '../../icon/icon.module';
+import { StepperMobileModule } from '../../stepper-mobile/stepper-mobile.module';
+import { StepperModule } from '../../stepper/stepper.module';
+import { KKLTypographyModule } from '../../typography/typography.module';
 @NgModule({
   imports: [
     MatSidenavModule,

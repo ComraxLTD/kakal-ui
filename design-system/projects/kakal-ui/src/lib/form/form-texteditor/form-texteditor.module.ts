@@ -1,11 +1,11 @@
 import { NgModule } from "@angular/core";
-import { FormTexteditorComponent } from "./form-texteditor.component";
+import { FormTextEditorComponent } from "./form-texteditor.component";
 import { NgxEditorModule } from 'ngx-editor';
 
 @NgModule({
-    declarations:[FormTexteditorComponent],
+    declarations:[FormTextEditorComponent],
     imports:[NgxEditorModule],
-    exports:[FormTexteditorComponent]
+    exports:[FormTextEditorComponent]
 })
 
 export class KKLFormTextEditorModule {}

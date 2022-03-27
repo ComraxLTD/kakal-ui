@@ -4,12 +4,14 @@
   [formGroup]="formGroup"
   (ngSubmit)="onSubmit()"
 >
+  <!-- [class.input-space]="(index + 1) % cols !== 0" -->
   <ng-container *ngFor="let question of questions; let index = index">
     <ng-container [ngSwitch]="question.controlType">
       <div
-        [class.input-container]="true"
-        [class.odd]="odd"
-        [class.even]="even"
+        flex-form-input
+        [index]="index"
+        [cols]="cols"
+        [offset]="16"
         [fxFlex]="flex"
       >
         <!-- SELECT INPUT SECTION -->

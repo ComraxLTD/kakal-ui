@@ -2,10 +2,15 @@
   class="kkl-form-uplaod"
   [appearance]="disabled ? 'fill' : 'outline'"
 >
-  <mat-label #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu">
-    <kkl-typography color="primary" [disabled]="disabled" underline="true">
-      {{ label$ | async }}
-    </kkl-typography>
+  <mat-label
+    #menuTrigger="matMenuTrigger"
+    [matMenuTriggerFor]="menu"
+    kkl-underline
+    [class.active]="!disabled"
+  >
+    {{ label$ | async }}
+    <!-- <kkl-typography color="primary" [disabled]="disabled" underline="true">
+    </kkl-typography> -->
   </mat-label>
   <mat-select [disabled]="disabled" (click)="onClick(fileUpload, menuTrigger)">
     <input
@@ -19,15 +24,14 @@
     />
   </mat-select>
 
-  <kkl-icon
-    (click)="fileUpload.click()"
+  <button
     matSuffix
-    [size]="2"
+    mat-icon-button
+    (click)="fileUpload.click()"
     [disabled]="disabled"
-    stroke="primary"
-    key="open_border"
   >
-  </kkl-icon>
+    <mat-icon [class.active]="!disabled" [svgIcon]="'open_border'"></mat-icon>
+  </button>
 </mat-form-field>
 
 <mat-menu #menu="matMenu">
@@ -47,3 +51,5 @@
     </ng-container>
   </mat-list>
 </mat-menu>
+
+<!-- key="open_border" -->

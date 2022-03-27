@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CardLobbyModel } from '../../../kakal-ui/src/public-api';
+import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
+import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 
 @Component({
   selector: 'app-root',
@@ -8,43 +8,24 @@ import { CardLobbyModel } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public cards: CardLobbyModel[] = [
+  public steps = [
+    { key: 1, label: 'working', comp: OrderDetailsBidComponent },
+    { key: 2, label: 'working2', comp: FormFilterSearchComponent },
+  ];
+  public panels = [
+    { label: 'working', comp: OrderDetailsBidComponent },
     {
-      label: 'ספר נכסים',
-      svgUrl: 'estate',
-      path: 'estate',
-    },
-    {
-      label: 'בקרת רישום',
-      svgUrl: 'evaluation',
-      path: 'evaluation',
-    },
-    {
-      label: 'בקרת הכנסות',
-      svgUrl: 'incoming',
-      path: 'incoming',
-      
-    },
-    {
-      label: 'בקרת הוצאות',
-      svgUrl: 'expense',
-      path: 'expense',
-      
-    },
-    {
-      label: 'משקיפים',
-      svgUrl: 'committee',
-      path: 'spectator',
-    },
-    {
-      label: 'בקרה תכנונית',
-      svgUrl: 'planing',
-      path: 'planing',
+      item: { birthDate: new Date(), location: 'city', test: 'test' },
+      headers: [
+        { key: 'location' },
+        { key: 'birthDate', format: 'date' },
+        { key: 'test' },
+      ],
+      comp: FormFilterSearchComponent,
     },
   ];
-  title = 'components-application';
-  constructor() { }
-  data = [{key:'First',label:'בדיקה'},{key:'Second',label:'test'},{key:'Third',label:'עמוד 3'}];
+
+  constructor() {}
 
   ngOnInit(): void {
     
