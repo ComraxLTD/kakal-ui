@@ -53,17 +53,19 @@ export class FormSearchComponent implements OnInit {
       throw new Error('Advanced search is missing a searchGroup instance.');
     }
 
-    const advancedQuestions = [...this.searchGroup.questions];
-    advancedQuestions.splice(0, 1);
+    if (this.searchGroup) {
+      const advancedQuestions = [...this.searchGroup.questions];
+      advancedQuestions.splice(0, 1);
 
-    this.searchControl = this.searchGroup.formGroup.get(
-      'search'
-    ) as FormControl;
+      this.searchControl = this.searchGroup.formGroup.get(
+        'search'
+      ) as FormControl;
 
-    this.contextGroup = {
-      ...this.searchGroup,
-      questions: advancedQuestions,
-    } as QuestionGroupModel;
+      this.contextGroup = {
+        ...this.searchGroup,
+        questions: advancedQuestions,
+      } as QuestionGroupModel;
+    }
   }
 
   public onClick() {
