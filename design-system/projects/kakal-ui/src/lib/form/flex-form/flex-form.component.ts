@@ -17,7 +17,6 @@ import { Question } from '../services/form.service';
   selector: 'kkl-form-flex',
   templateUrl: './flex-form.component.html',
   styleUrls: ['./flex-form.component.scss'],
-  providers: [FormDataSource],
 })
 export class FormFlexComponent implements OnInit {
   @Input() public variant: 'row' | 'column' = 'row';
@@ -51,11 +50,10 @@ export class FormFlexComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
-    this.cols = this.grid?.cols || 4
+    this.cols = this.grid?.cols || 4;
     this.flex = 100 / (this.grid?.cols || this.cols);
     this.hasButton = !!this.grid?.buttonCols;
   }
-
 
   public onSubmit() {
     this.submitEvent.emit(this.formGroup);

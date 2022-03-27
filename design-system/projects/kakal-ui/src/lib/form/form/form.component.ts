@@ -18,7 +18,6 @@ import { GridProps } from '../models/question.types';
   selector: 'kkl-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  providers: [FormDataSource],
 })
 export class FormComponent implements OnInit {
   @Input() public variant: 'flex' | 'grid' = 'grid';
@@ -34,7 +33,6 @@ export class FormComponent implements OnInit {
   @Input() public gutter: number;
 
   @Input() optionsSlot: { [key: string]: ElementRef };
-
 
   @Input() public buttonLabel: string = 'שמור';
   @Input() public buttonTemp: TemplateRef<any>;

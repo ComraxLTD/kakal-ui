@@ -15,6 +15,7 @@ import {
   QuestionGroupModel,
 } from '../../form/models/form.types';
 import { FormService } from '../../form/services/form.service';
+import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 import { Observable } from 'rxjs';
 
@@ -29,6 +30,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() questions!: Question[];
   @Input() asButton!: boolean;
   @Input() expended: boolean = false;
+  @Input() hasFilters: boolean = true;
   @Input() optionsMap$!: Observable<OptionMap>;
 
   filtersState$!: Observable<FilterState>;
@@ -40,20 +42,14 @@ export class AdvancedSearchLayoutComponent implements OnInit {
     return this.searchGroup.formGroup.get('search') as FormControl;
   }
 
-  @Output() public optionSelected: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
-
-  @Output() multiOptionsSelected: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
-
-  @Output() public queryChanged: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
-
-  constructor(private formService: FormService) {}
+  constructor(
+    private formService: FormService,
+    private formDataSource: FormDataSource
+  ) {}
 
   ngOnInit(): void {
     this.searchGroup = this.setGroup();
-    this.advancedQuestions = this.setAdvancedQuestions();
+    this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
   }
 
   private setGroup(): QuestionGroupModel {
@@ -64,8 +60,8 @@ export class AdvancedSearchLayoutComponent implements OnInit {
     return group;
   }
 
-  private setAdvancedQuestions() {
-    const advancedQuestions = [...this.questions];
+  private setAdvancedQuestions(group: QuestionGroupModel) {
+    const advancedQuestions = [...group.questions];
     advancedQuestions.splice(0, 1);
     return advancedQuestions;
   }
@@ -74,15 +70,8 @@ export class AdvancedSearchLayoutComponent implements OnInit {
     this.expended = !this.expended;
   }
 
-  public onQueryChanged(event: FormChangeEvent): void {
-    this.queryChanged.emit(event);
-  }
-
-  public onOptionSelected(event: FormChangeEvent): void {
-    this.optionSelected.emit(event);
-  }
-
-  public onMultiOptionSelected(event: FormChangeEvent) {
-    this.optionSelected.emit(event);
+  public onFormChanged(event: FormChangeEvent) {
+    console.log(event);
+    this.formDataSource.dispatch(event);
   }
 }
