@@ -19,46 +19,12 @@ import { QuestionGroupModel } from '../models/form.types';
   providers: [FormDataSource],
 })
 export class FormSearchComponent implements OnInit {
-  @Input() searchControl!: FormControl | AbstractControl;
-  @Input() searchGroup!: QuestionGroupModel;
-  @Input() advanced!: boolean;
-  @Input() expended: boolean = true;
+  @Input() control!: FormControl | AbstractControl;
   @Input() asButton!: boolean;
-
-  // default inputs in row
-
-  public contextGroup: QuestionGroupModel;
-
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.onAdvanced();
-  }
-
-  private onAdvanced(): void {
-    if (this.advanced && !this.searchGroup) {
-      throw new Error('Advanced search is missing a searchGroup instance.');
-    }
-
-    if (this.searchGroup) {
-      const advancedQuestions = [...this.searchGroup.questions];
-      advancedQuestions.splice(0, 1);
-
-      this.searchControl = this.searchGroup.formGroup.get(
-        'search'
-      ) as FormControl;
-
-      this.contextGroup = {
-        ...this.searchGroup,
-        questions: advancedQuestions,
-      } as QuestionGroupModel;
-    }
-  }
-
-  public onClick() {
-    this.expended = !this.expended;
-  }
+  ngOnInit(): void {}
 
   public onQueryChanged(event: FormChangeEvent): void {}
 
