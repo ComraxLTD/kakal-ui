@@ -22,13 +22,14 @@ export class FormSearchComponent implements OnInit {
   @Input() control!: FormControl | AbstractControl;
   @Input() asButton!: boolean;
 
+  @Output() searchChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
 
-  public onQueryChanged(event: FormChangeEvent): void {}
+  public onSearchChanged(event: FormChangeEvent) {
+    this.searchChanged.emit(event);
+  }
 
-  public onOptionSelected(event: FormChangeEvent): void {}
-
-  public onMultiOptionSelected(event: FormChangeEvent) {}
 }

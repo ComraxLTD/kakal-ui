@@ -10,6 +10,7 @@
       (queryChanged)="onSearchChanged($event)"
       (multiOptionsSelected)="onSearchChanged($event)"
       (optionSelected)="onSearchChanged($event)"
+      (searchEvent)="onSearchChanged($event)"
     ></kkl-form-autocomplete>
 
     <div kkl-form-button *ngIf="advanced">

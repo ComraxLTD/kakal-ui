@@ -1,6 +1,7 @@
 <kkl-form-autocomplete
   [control]="control"
-  (queryChanged)="onQueryChanged($event)"
-  (multiOptionsSelected)="onMultiOptionSelected($event)"
-  (optionSelected)="onOptionSelected($event)"
+  (queryChanged)="onSearchChanged($event)"
+  (multiOptionsSelected)="onSearchChanged($event)"
+  (optionSelected)="onSearchChanged($event)"
+  (searchEvent)="onSearchChanged($event)"
 ></kkl-form-autocomplete>
