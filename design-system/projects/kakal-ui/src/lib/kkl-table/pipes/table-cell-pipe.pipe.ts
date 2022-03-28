@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'tableCellPipe'
@@ -37,9 +37,9 @@ export class TableCellPipe implements PipeTransform {
             case 'multiSelect':
               return element.map((a: any) => a.label);
             case 'date':
-              return new DatePipe('he-HE').transform(element);
+              return formatDate(new Date(element), 	'EEEE, MMMM d, y', 'he-HE');
             case 'dateRange':
-              return new DatePipe('he-HE').transform(element.begin)+' - '+new DatePipe('he-HE').transform(element.end);
+              return formatDate(new Date(element.begin), 	'EEEE, MMMM d, y', 'he-HE')+' - '+formatDate(new Date(element.end), 	'EEEE, MMMM d, y', 'he-HE');
             // case 'currency':
             //   return new CurrencyPipe(this.locale).transform(element['amount'], element['currency'], 'symbol', '1.0-3');
             default:

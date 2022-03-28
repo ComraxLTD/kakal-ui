@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
 import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 import { FormControl } from '@angular/forms';
-import { CurrencyService } from '../../../kakal-ui/src/public-api';
+import { CurrencyService, TableBase } from '../../../kakal-ui/src/public-api';
 
 
 @Component({
@@ -11,48 +11,30 @@ import { CurrencyService } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  control = new FormControl();
-  public steps = [
-    { key: 1, label: 'working', comp: OrderDetailsBidComponent },
-    { key: 2, label: 'working2', comp: FormFilterSearchComponent },
-  ];
-  public panels = [
-    { label: 'working', comp: OrderDetailsBidComponent },
-    {
-      controlType: 'input',
-      key: 'poCodes',
-      label: `PO#`,
-      group: 'poCodes',
-    },
-    {
-      controlType: 'input',
-      key: 'suppliers',
-      label: `Supplier`,
-      group: 'poCodes',
-    },
-    {
-      controlType: 'date',
-      key: 'recordedTime',
-      label: `Recorded time`,
-      button:
-        {
-          type: 'inlineExpand',
-          icon: 'expand',
-        }
-    },
-    {
-      controlType: 'input',
-      key: 'status',
-      label: `Status`,
-      // colIcon: {key: 'add'},
-      templateName: 'status'
-    },
+
+  dataSource: any[] = []
+
+  columns: TableBase[] = [
+    { key: 'id', label: 'Id', controlType: 'number'},
+    { key: 'name', label: 'Name', controlType: 'text', },
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', },
+    { key: 'occupation', label: 'Occupation', controlType: 'text', },
+    { key: 'city', label: 'עיר', controlType: 'select'},
+    { key: 'dob', label: 'תאריך', controlType: 'date',},
   ];
 
-  constructor(private currencyService:CurrencyService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.currencyService.setCurrencies([{id:0,label:'$',value:0}])
-
+    this.dataSource = [
+      {
+        city: {label: 'Tel Aviv', value: 5},
+        dob: "2022-03-28T00:00:00Z",
+        id: 1,
+        name: "Hillyer Bowkley",
+        occupation: "Physical Therapy Assistant",
+        yearsOfExperience: 32,
+      }
+    ]
   }
 }
