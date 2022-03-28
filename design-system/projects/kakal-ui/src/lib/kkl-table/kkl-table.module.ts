@@ -40,12 +40,10 @@ import { KKLButtonModule } from '../button/button.module';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatProgressBarModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -60,14 +58,14 @@ import { KKLButtonModule } from '../button/button.module';
     KKLButtonModule
   ],
   exports: [
-    // TableCellPipe,
+    TableCellPipe,
     LocalTableComponent,
     ServerTableComponent,
-    // TableGroupCellPipe,
-    // ArrIncludesPipe,
-    // ArrIndexPipe,
-    // TableFormComponent,
-    // TableCellComponent,
+    TableGroupCellPipe,
+    ArrIncludesPipe,
+    ArrIndexPipe,
+    TableFormComponent,
+    TableCellComponent,
   ]
 })
 export class KKLNewTableModule { }
