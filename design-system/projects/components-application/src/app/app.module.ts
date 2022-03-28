@@ -20,9 +20,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewOrderLayoutComponent } from './components/new-order-layout/new-order-layout.component';
 import { ButtonComponent } from './components/button/button.component';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
-import he from '@angular/common/locales/he';
-import { registerLocaleData } from '@angular/common';
-registerLocaleData(he);
+// import he from '@angular/common/locales/he';
+// import { registerLocaleData } from '@angular/common';
+// registerLocaleData(he);
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,8 +43,7 @@ registerLocaleData(he);
     KakalUiModule,
     ReactiveFormsModule,
   ],
-  providers: [StepperLayoutService, BreakpointService, RouterService,
-    {provide: LOCALE_ID, useValue: 'he-HE' }],
+  providers: [StepperLayoutService, BreakpointService, RouterService,],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -86,6 +86,10 @@ import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 
 import { KKLVerticalStepsModule} from './vertical-steps/vertical-steps.module'
 
+import he from '@angular/common/locales/he';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(he);
+
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
