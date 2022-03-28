@@ -30,7 +30,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() questions!: Question[];
   @Input() asButton!: boolean;
   @Input() expended: boolean = false;
-  @Input() hasFilters: boolean = true;
+  @Input() hasFilters: boolean = false;
   @Input() optionsMap$: Observable<OptionMap> = of({});
 
   filtersState$!: Observable<FilterState>;
@@ -41,6 +41,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   get searchControl() {
     return this.searchGroup.formGroup.get('search') as FormControl;
   }
+
+  @Output() formChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() searchChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(
     private formService: FormService,
@@ -70,8 +73,12 @@ export class AdvancedSearchLayoutComponent implements OnInit {
     this.expended = !this.expended;
   }
 
+  public onSearchChanged(event: FormChangeEvent) {
+    this.searchChanged.emit(event);
+  }
+
   public onFormChanged(event: FormChangeEvent) {
-    console.log(event);
     this.formDataSource.dispatch(event);
+    this.formChanged.emit(event);
   }
 }

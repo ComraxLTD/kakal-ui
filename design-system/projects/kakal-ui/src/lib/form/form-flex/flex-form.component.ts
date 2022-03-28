@@ -19,8 +19,6 @@ import { Question } from '../services/form.service';
   styleUrls: ['./flex-form.component.scss'],
 })
 export class FormFlexComponent implements OnInit {
-  @Input() public variant: 'row' | 'column' = 'row';
-
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
 
@@ -30,9 +28,10 @@ export class FormFlexComponent implements OnInit {
   @Input() public buttonLabel: string = 'שמור';
   @Input() public buttonTemp: TemplateRef<any>;
 
-  public hasButton: boolean;
-  public flex: number;
-  public cols: number;
+  layout: 'row' | 'column' = 'row';
+  hasButton: boolean;
+  flex: number;
+  cols: number;
 
   // default inputs in row
 
@@ -52,6 +51,7 @@ export class FormFlexComponent implements OnInit {
   ngOnInit() {
     this.cols = this.grid?.cols || 4;
     this.flex = 100 / (this.grid?.cols || this.cols);
+    this.layout = this.grid.layout;
     this.hasButton = !!this.grid?.buttonCols;
   }
 

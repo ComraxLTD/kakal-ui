@@ -19,17 +19,14 @@ import { GridProps } from '../models/question.types';
   styleUrls: ['./form-grid.component.scss'],
 })
 export class FormGridComponent implements OnInit {
-
   @Input() public questions!: Question[];
   @Input() public formGroup!: FormGroup;
-  @Input() public grid: GridProps = { cols: 4 };
+  @Input() public grid: GridProps;
   @Input() public optionsMap: OptionMap = {};
-  @Input() public hasButton: boolean = false;
 
   @Input() public buttonTemp: TemplateRef<any>;
 
   @Input() public rowHeight: number;
-  @Input() public gutter: number;
 
   @Input() public templates: {
     [key: string]: TemplateRef<any>;
@@ -37,7 +34,9 @@ export class FormGridComponent implements OnInit {
 
   @Input() optionsSlot: { [key: string]: ElementRef };
 
-  public cols: string | number;
+  gutter: number;
+  hasButton: boolean;
+  cols: string | number;
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -54,7 +53,8 @@ export class FormGridComponent implements OnInit {
 
   ngOnInit() {
     this.cols = this.grid?.cols || 1;
-    this.hasButton = this.hasButton || false;
+    this.hasButton = !!this.grid?.buttonCols || false;
+    this.gutter = this.grid.gutter || 1;
   }
 
   public onSubmit() {
