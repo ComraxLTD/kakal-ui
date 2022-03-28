@@ -11,24 +11,7 @@
                     [style.display]="(i | tableGroupCell : column.group : spans) ? '' : 'none'"
                     [attr.rowspan]="(element == expandedElement)? (i | tableGroupCell : column.group : spans) : (i | tableGroupCell : column.group : spans)*2">
           <ng-container *ngIf="!(element | arrInclueds : editItems); else editBlock">
-            <!-- <ng-container *ngIf="column.template">
-              <mat-progress-bar mode="query" [value]="60"></mat-progress-bar>
-              <ng-container *ngTemplateOutlet="column.template"></ng-container>
-            </ng-container> -->
-            <kkl-icon *ngIf="column.colIcon" [key]="column.colIcon.key"></kkl-icon>
-            <span *ngIf="column.button; else withButton">
-              <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(column.button, element)">
-                <kkl-icon [key]="column.button.icon.key"></kkl-icon>
-                <span *ngIf="element[column.key]" style="white-space: pre-wrap;">
-                  {{element[column.key] | tableCellPipe: column.controlType}}
-                </span>
-              </button>
-            </span>
-            <ng-template #withButton>
-              <span *ngIf="element[column.key]" style="white-space: pre-wrap;">
-                {{element[column.key] | tableCellPipe: column.controlType}}
-              </span>
-            </ng-template>
+            <kkl-table-cell [data]="element[column.key]" [question]="column" (buttClick)="buttonClick(column.button, element)" [colsTemplate]="colsTemplate"></kkl-table-cell>
           </ng-container>
           <ng-template #editBlock>
             <ng-container >
@@ -54,23 +37,23 @@
 
       <ng-container matColumnDef="actions" class="center-butt">
         <th mat-header-cell *matHeaderCellDef>
-          <button *ngIf="addButton" mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="addNewRowGroup()">
+          <button *ngIf="newRowAction" mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="addNewRowGroup()">
             <kkl-icon key="add"></kkl-icon>
-            {{addButton.label}}
+            {{newRowAction.label}}
           </button>
         </th>
         <td mat-cell *matCellDef="let element" class="center-butt">
           <ng-container *ngIf="!(element | arrInclueds : editItems); else addButton">
             <ng-container *ngFor="let butt of localButtons">
               <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(butt, element)">
-                <kkl-icon [key]="butt.icon.key"></kkl-icon>
+                <kkl-icon [key]="butt.icon"></kkl-icon>
                 {{butt.label}}
               </button>
             </ng-container>
           </ng-container>
           <ng-template #addButton>
             <button mat-mini-fab color="primary" aria-label="Example icon button with a menu icon" (click)="saveRowClick(element)">
-              <kkl-icon key="add"></kkl-icon>
+              <kkl-icon key="save"></kkl-icon>
             </button>
           </ng-template>
         </td>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { TableFormComponent } from './components/table-form/table-form.component';
 import { LocalTableComponent } from './components/local-table/local-table.component';
 import { ServerTableComponent } from './components/server-table/server-table.component';
+import { TableCellComponent } from './components/table-cell/table-cell.component';
 import { TableCellPipe } from './pipes/table-cell-pipe.pipe';
 import { TableGroupCellPipe } from './pipes/table-group-cell.pipe';
 import { ArrIncludesPipe } from './pipes/arr-includes.pipe';
@@ -35,6 +36,7 @@ import { KKLButtonModule } from '../button/button.module';
     ArrIncludesPipe,
     ArrIndexPipe,
     TableFormComponent,
+    TableCellComponent,
   ],
   imports: [
     CommonModule,
@@ -65,6 +67,7 @@ import { KKLButtonModule } from '../button/button.module';
     ArrIncludesPipe,
     ArrIndexPipe,
     TableFormComponent,
+    TableCellComponent,
   ]
 })
 export class KKLNewTableModule { }

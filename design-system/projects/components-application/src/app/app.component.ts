@@ -16941,24 +16941,57 @@ export const ELEMENT_DATA = [ {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public steps = [
-    { key: 1, label: 'working', comp: OrderDetailsBidComponent },
-    { key: 2, label: 'working2', comp: FormFilterSearchComponent },
-  ];
-  public panels = [
-    { label: 'working', comp: OrderDetailsBidComponent },
-    {
-      item: { birthDate: new Date(), location: 'city', test: 'test' },
-      headers: [
-        { key: 'location' },
-        { key: 'birthDate', format: 'date' },
-        { key: 'test' },
-      ],
-      comp: FormFilterSearchComponent,
-    },
-  ];
 
   constructor() {}
 
   ngOnInit(): void {}
+
+  dataSource = ELEMENT_DATA;
+
+  columnsShow = [
+    {
+      controlType: 'input',
+      key: 'poCodes',
+      label: `PO#`,
+      group: 'poCodes',
+    },
+    {
+      controlType: 'input',
+      key: 'suppliers',
+      label: `Supplier`,
+      group: 'poCodes',
+    },
+    {
+      controlType: 'date',
+      key: 'recordedTime',
+      label: `Recorded time`,
+      button:
+        {
+          type: 'inlineExpand',
+          icon: 'expand',
+        }
+    },
+    {
+      controlType: 'input',
+      key: 'status',
+      label: `Status`,
+      // colIcon: {key: 'add'},
+      templateName: 'status'
+    },
+  ];
+
+  localButtons = [
+    {
+      icon: 'delete',
+      type: 'inlineDelete',
+      // func: (arr: any[], elem:any) => arr.filter(d => d['id'] !== elem['id'])
+    },
+    {
+      icon: 'edit',
+      type: 'inlineEdit',
+      // func: (arr: any[], elem:any) => arr.filter(d => d['id'] !== elem['id'])
+    }
+  ];
+
+  stat = {label  : 'string', authorizedBars  : 4, totalBars  : 8}
 }
