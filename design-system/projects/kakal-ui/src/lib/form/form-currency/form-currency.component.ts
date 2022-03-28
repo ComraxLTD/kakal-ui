@@ -16,7 +16,7 @@ import { Currency, QuestionCurrencyModel } from './question-currency.model';
 import { FormChangeEvent } from '../models/form.options';
 import { BehaviorSubject } from 'rxjs';
 import { FormActions } from '../models/form.actions';
-import { CurrencyService } from 'projects/kakal-ui/src/public-api';
+import { CurrencyService } from './form-currency.service';
 
 @Component({
   selector: 'kkl-form-currency',
