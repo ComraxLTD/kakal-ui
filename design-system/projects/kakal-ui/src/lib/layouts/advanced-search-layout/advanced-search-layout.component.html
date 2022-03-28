@@ -62,14 +62,12 @@
 </div>
 
 <ng-template #defaultTemplate let-context>
-  <ng-container *ngIf="optionsMap$ | async as optionsMap">
+  <!-- <ng-container *ngIf="optionsMap$ | async as optionsMap"> -->
     <kkl-form
-      variant="flex"
       [questions]="context.questions"
       [formGroup]="context.formGroup"
       [grid]="context.grid"
-      [optionsMap]="optionsMap"
       (formChanged)="onFormChanged($event)"
     ></kkl-form>
-  </ng-container>
+  <!-- </ng-container> -->
 </ng-template>

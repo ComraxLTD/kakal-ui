@@ -68,8 +68,6 @@ export class FiltersService {
 
   public on(callback: (state: FilterState, ...args: any) => any, ...args: any) {
     const state = this.filterState$.getValue();
-    console.log(args)
-    console.log(state)
     return callback(state, ...args);
   }
 
@@ -86,7 +84,7 @@ export class FiltersService {
   }
 
   // use when filterState keys are different form api interface
-  public getFilterState<T>(searchLookups?: {
+  public listenToFilterState<T>(searchLookups?: {
     [key: string]: keyof T;
   }): Observable<FilterState> {
     const true$ = this.listen().pipe(

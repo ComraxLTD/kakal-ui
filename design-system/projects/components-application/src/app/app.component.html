@@ -1,16 +1,28 @@
 <!-- <kkl-stepper-layout>
 </kkl-stepper-layout> -->
-<kkl-bread-crumbes></kkl-bread-crumbes>
+<kkl-bread-crumbs></kkl-bread-crumbs>
 <div>
-  <kkl-form-currency [formControl]="control"></kkl-form-currency>
+  <!-- <app-form-filter-search></app-form-filter-search> -->
+  <!-- <kkl-vertical-steps [steps]="steps" [templates]="{filterForm, groupForm}">
+  </kkl-vertical-steps> -->
 </div>
-<div>
+<kkl-page title="תיק" dir="rtl">
+  <kkl-accordion-steps-layout
+    [complete$]="complete$"
+    [panels]="panels"
+    [steps]="steps"
+    [templates]="{filterForm, groupForm}"
+  ></kkl-accordion-steps-layout>
+  <!-- <kkl-accordion-layout
+    [panels]="panels"
+    [templates]="{filterForm, groupForm}"
+  ></kkl-accordion-layout> -->
+</kkl-page>
+
+<ng-template #filterForm>
   <app-form-filter-search></app-form-filter-search>
-</div>
-<app-new-order-layout>
-  <ng-container content>
-    <!-- <kkl-page title="תיק">
-      <kkl-accordion-layout [panels]="panels"></kkl-accordion-layout>
-    </kkl-page> -->
-  </ng-container>
-</app-new-order-layout>
+</ng-template>
+
+<ng-template #groupForm>
+  <app-form-filter-search></app-form-filter-search>
+</ng-template>

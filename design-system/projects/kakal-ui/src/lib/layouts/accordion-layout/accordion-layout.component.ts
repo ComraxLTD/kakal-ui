@@ -4,13 +4,14 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatAccordion } from '@angular/material/expansion';
-import { Observable } from 'rxjs';
 import { AccordionDataSource } from './accordion-datasource';
-import { AccordionPanel, AccordionState } from './accordion-types';
+import { Panel, AccordionState } from './accordion-types';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-accordion-layout',
@@ -21,9 +22,10 @@ import { AccordionPanel, AccordionState } from './accordion-types';
 export class AccordionLayoutComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
-  @Input() panels: AccordionPanel[];
+  @Input() panels: Panel[];
   @Input() accordionState: AccordionState;
   @Input() buttonLabel: string;
+  @Input() templates: { [key: string]: TemplateRef<any> };
 
   accordionState$: Observable<AccordionState>;
 
@@ -42,6 +44,7 @@ export class AccordionLayoutComponent implements OnInit {
   constructor(private accordionDataSource: AccordionDataSource) {}
 
   ngOnInit(): void {
+    console.log(this.templates)
     this.accordionState$ = this.accordionDataSource.listen();
   }
 

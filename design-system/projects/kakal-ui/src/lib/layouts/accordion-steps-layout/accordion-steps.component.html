@@ -1,0 +1,11 @@
+<ng-container *ngIf="complete$ | async; else elseTemplate">
+  <kkl-accordion-layout
+    [panels]="panels"
+    [templates]="templates"
+  ></kkl-accordion-layout>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <kkl-vertical-steps [steps]="steps" [templates]="templates">
+  </kkl-vertical-steps
+></ng-template>

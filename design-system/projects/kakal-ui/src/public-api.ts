@@ -180,9 +180,9 @@ export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
 // bread-crumbs
-export * from './lib/bread-crumbes/bread-crumbes.component';
-export * from './lib/bread-crumbes/bread-crumbs.module';
-export * from './lib/bread-crumbes/bread-crumbes.model';
+export * from './lib/bread-crumbs/bread-crumbs.component';
+export * from './lib/bread-crumbs/bread-crumbs.module';
+export * from './lib/bread-crumbs/bread-crumbs.model';
 
 // expand-panel
 export * from './lib/expand-panel/expand-panel.component';
@@ -302,13 +302,14 @@ export * from './lib/layouts/accordion-layout/accordion-layout.component';
 export * from './lib/layouts/accordion-layout/accordion-datasource';
 export * from './lib/layouts/accordion-layout/accordion-types';
 
-
+// advanced search-layout
 export * from './lib/layouts/advanced-search-layout/advanced-search-layout.module';
 export * from './lib/layouts/advanced-search-layout/advanced-search-layout.component';
 export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
 
-
-
+// vertical steps-layout
+export * from './lib/layouts/accordion-steps-layout/accordion-steps.module';
+export * from './lib/layouts/accordion-steps-layout/accordion-steps.component';
 
 // page
 export * from './lib/layouts/page/page.module';
@@ -318,16 +319,15 @@ export * from './lib/layouts/page/page.component';
 export * from './lib/layouts/section/section.module';
 export * from './lib/layouts/section/section.component';
 
-
-// vertical stepper
-
-export * from './lib/vertical-stepper/vertical-stepper.module';
-export * from './lib/vertical-stepper/vertical-stepper.component';
-
 // dashboard
-
 export * from './lib/lobby/lobby.component';
 export * from './lib/lobby/lobby.module';
+
+// vertical-steps
+export * from './lib/vertical-steps/vertical-steps.component';
+export * from './lib/vertical-steps/vertical-steps.module';
+export * from './lib/vertical-steps/step/step.module';
+export * from './lib/vertical-steps/step/step.component';
 
 // chips
 export * from './lib/chips/chip/chip.component';
