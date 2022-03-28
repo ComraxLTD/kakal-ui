@@ -300,13 +300,15 @@ export * from './lib/layouts/accordion-layout/accordion-layout.component';
 export * from './lib/layouts/accordion-layout/accordion-datasource';
 export * from './lib/layouts/accordion-layout/accordion-types';
 
-
+// advanced search-layout
 export * from './lib/layouts/advanced-search-layout/advanced-search-layout.module';
 export * from './lib/layouts/advanced-search-layout/advanced-search-layout.component';
 export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
 
+// vertical steps-layout
 
-
+export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.module';
+export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.component';
 
 // page
 export * from './lib/layouts/page/page.module';
@@ -316,16 +318,13 @@ export * from './lib/layouts/page/page.component';
 export * from './lib/layouts/section/section.module';
 export * from './lib/layouts/section/section.component';
 
-
-// vertical stepper
-
-export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.module';
-export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.component';
-
 // dashboard
-
 export * from './lib/lobby/lobby.component';
 export * from './lib/lobby/lobby.module';
+
+// vertical-steps
+export * from './lib/vertical-steps/vertical-steps.component';
+export * from './lib/vertical-steps/vertical-steps.module';
 
 // chips
 export * from './lib/chips/chip/chip.component';
