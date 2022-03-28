@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
-import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
-
-import { FormControl } from '@angular/forms';
 import { CurrencyService } from '../../../kakal-ui/src/public-api';
 
 @Component({
