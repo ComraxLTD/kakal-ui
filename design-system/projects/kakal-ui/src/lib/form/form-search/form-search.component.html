@@ -1,29 +1,7 @@
-<header
-  [class.kkl-form-search]="true"
-  fxLayout="row"
-  fxLayoutAlign="space-between center"
->
-  <kkl-form-autocomplete
-    fxFlex="90"
-    [control]="searchControl"
-    (queryChanged)="onQueryChanged($event)"
-    (multiOptionsSelected)="onMultiOptionSelected($event)"
-    (optionSelected)="onOptionSelected($event)"
-  ></kkl-form-autocomplete>
-
-  <div kkl-form-button *ngIf="advanced">
-    <button
-      [disableRipple]="true"
-      mat-icon-button
-      kkl-action-button
-      (click)="onClick()"
-    >
-      <kkl-icon
-        [color]="'primary'"
-        [key]="
-          expended ? 'keyboard_double_arrow_up' : 'keyboard_double_arrow_down'
-        "
-      ></kkl-icon>
-    </button>
-  </div>
-</header>
+<kkl-form-autocomplete
+  [control]="control"
+  (queryChanged)="onSearchChanged($event)"
+  (multiOptionsSelected)="onSearchChanged($event)"
+  (optionSelected)="onSearchChanged($event)"
+  (searchEvent)="onSearchChanged($event)"
+></kkl-form-autocomplete>

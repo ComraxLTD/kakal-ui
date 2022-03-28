@@ -1,6 +1,8 @@
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 
 export interface GridProps {
+  variant?: 'flex' | 'grid';
+  layout?: 'column' | 'row';
   cols?: number;
   rows?: number;
   offset?: number;

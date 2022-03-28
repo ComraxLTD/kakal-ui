@@ -2,7 +2,7 @@
   <mat-grid-list
     [cols]="cols"
     [rowHeight]="(rowHeight || 9) + 'rem'"
-    [gutterSize]="(gutter || 1) + 'rem'"
+    [gutterSize]="(gutter) + 'rem'"
     [dir]="'rtl'"
   >
     <ng-container *ngFor="let question of questions; let index = index">
