@@ -1,6 +1,6 @@
 {
   "name": "@ComraxLTD/kakal-ui",
-  "version": "0.2.06",
+  "version": "0.2.05",
   "repository": "git@github.com:ComraxLTD/kakal-ui.git",
   "publishConfig": {
     "registry":"https://npm.pkg.github.com"
