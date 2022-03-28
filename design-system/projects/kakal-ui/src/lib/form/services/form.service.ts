@@ -134,9 +134,7 @@ export class FormService<T = any> {
   }
 
   // method which return QuestionGroupModel instance
-  public createQuestionGroup<T>(
-    config: QuestionGroup
-  ): QuestionGroupModel<T> {
+  public createQuestionGroup<T>(config: QuestionGroup): QuestionGroupModel<T> {
     let { key, questions, options, model } = config;
 
     if (model) {
@@ -215,7 +213,6 @@ export class FormService<T = any> {
       case 'select':
         return new QuestionSelectModel(question as QuestionSelectModel);
       case 'multiSelect':
-        console.log(question);
         return new QuestionSelectModel(question as QuestionSelectModel);
       case 'upload':
         return new QuestionUploadModel(question as QuestionUploadModel);

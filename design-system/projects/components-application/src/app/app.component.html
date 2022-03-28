@@ -1,12 +1,25 @@
 <!-- <kkl-stepper-layout>
 </kkl-stepper-layout> -->
 <div>
-  <app-form-filter-search></app-form-filter-search>
+  <!-- <app-form-filter-search></app-form-filter-search> -->
+  <kkl-vertical-steps
+    [steps]="steps"
+    [templates]="{filterForm, groupForm}"
+  >
+  </kkl-vertical-steps>
 </div>
-<app-new-order-layout>
+<!-- <app-new-order-layout>
   <ng-container content>
-    <!-- <kkl-page title="תיק">
+    <kkl-page title="תיק">
       <kkl-accordion-layout [panels]="panels"></kkl-accordion-layout>
-    </kkl-page> -->
+    </kkl-page>
   </ng-container>
-</app-new-order-layout>
+</app-new-order-layout> -->
+
+<ng-template #filterForm>
+  <app-form-filter-search></app-form-filter-search>
+</ng-template>
+
+<ng-template #groupForm>
+  <app-form-filter-search></app-form-filter-search>
+</ng-template>

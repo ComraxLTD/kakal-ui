@@ -306,7 +306,6 @@ export * from './lib/layouts/advanced-search-layout/advanced-search-layout.compo
 export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
 
 // vertical steps-layout
-
 export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.module';
 export * from './lib/layouts/vertical-stepper-layout/vertical-stepper.component';
 
@@ -325,6 +324,8 @@ export * from './lib/lobby/lobby.module';
 // vertical-steps
 export * from './lib/vertical-steps/vertical-steps.component';
 export * from './lib/vertical-steps/vertical-steps.module';
+export * from './lib/vertical-steps/step/step.module';
+export * from './lib/vertical-steps/step/step.component';
 
 // chips
 export * from './lib/chips/chip/chip.component';
