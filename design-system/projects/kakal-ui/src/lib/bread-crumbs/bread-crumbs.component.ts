@@ -15,7 +15,6 @@ export class BreadCrumbsComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe((res) => console.log(res));
     this.breadCrumbs$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map((routes: NavigationEnd) => {
