@@ -1,26 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VerticalStepperComponent } from './vertical-stepper.component';
-import {MatStepperModule} from '@angular/material/stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLIconModule } from '../icon/icon.module';
-
-
+import { VerticalStepsComponent } from './vertical-steps.component';
+import { KKLStepsModule } from './step/step.module';
 
 @NgModule({
-  declarations: [
-    VerticalStepperComponent
-  ],
+  declarations: [VerticalStepsComponent],
   imports: [
     CommonModule,
     MatStepperModule,
     MatTooltipModule,
     FlexLayoutModule,
     KKLIconModule,
-    KKLDirectivesModule
+    KKLDirectivesModule,
+    KKLStepsModule
   ],
-  exports: [MatStepperModule, VerticalStepperComponent]
+  exports: [MatStepperModule, KKLStepsModule, VerticalStepsComponent],
 })
-export class KKLVerticalStepperModule { }
+export class KKLVerticalStepsModule {}

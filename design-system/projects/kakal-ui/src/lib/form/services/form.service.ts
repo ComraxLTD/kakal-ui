@@ -65,7 +65,7 @@ export interface QuestionGroup {
 @Injectable({
   providedIn: 'root',
 })
-export class FormService {
+export class FormService<T = any> {
   constructor(private fb: FormBuilder) {}
 
   // method which create a control template for FormBuilder
@@ -134,9 +134,7 @@ export class FormService {
   }
 
   // method which return QuestionGroupModel instance
-  public createQuestionGroup<T = any>(
-    config: QuestionGroup
-  ): QuestionGroupModel<T> {
+  public createQuestionGroup<T>(config: QuestionGroup): QuestionGroupModel<T> {
     let { key, questions, options, model } = config;
 
     if (model) {
@@ -215,7 +213,6 @@ export class FormService {
       case 'select':
         return new QuestionSelectModel(question as QuestionSelectModel);
       case 'multiSelect':
-        console.log(question);
         return new QuestionSelectModel(question as QuestionSelectModel);
       case 'upload':
         return new QuestionUploadModel(question as QuestionUploadModel);

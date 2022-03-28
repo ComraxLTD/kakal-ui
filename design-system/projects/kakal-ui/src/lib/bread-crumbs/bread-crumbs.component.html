@@ -1,12 +1,12 @@
 <div fxLayout="row-reverse" fxLayoutGap=".5rem">
     <ng-container
-    *ngFor="let item of breadCrumbes$ | async; let last = last">
+    *ngFor="let item of breadCrumbs$ | async; let last = last">
     <kkl-typography
     [color]="'primary'"
     (click)="breadCrumbClicked(item)"
     [size]="1"
     >
-    {{last?'':'-'}} {{ item }}  
+    {{last?'':'-'}} {{ item }}
 </kkl-typography>
 </ng-container>
 </div>

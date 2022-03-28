@@ -42,7 +42,7 @@
 
             <div class="content">
               <ng-container
-                *ngComponentOutlet="panel | pluck: 'comp'"
+                *ngTemplateOutlet="templates[panel.key]"
               ></ng-container>
             </div>
           </mat-expansion-panel>
@@ -60,7 +60,11 @@
 
 <ng-template #headerTemplate let-panel>
   <ng-container *ngFor="let header of panel.headers; let i = index">
-    <kkl-typography color="primary" [size]="sizeIndexMap[i]" [weight]="weightIndexMap[i]">
+    <kkl-typography
+      color="primary"
+      [size]="sizeIndexMap[i]"
+      [weight]="weightIndexMap[i]"
+    >
       {{
         panel.item
           | pluck: (header | pluck: "key")

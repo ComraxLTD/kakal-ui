@@ -1,9 +1,8 @@
 import { Type } from '@angular/core';
 
-
 export interface PanelHeader<T = any> {
-  key : keyof T,
-  format? : string
+  key: keyof T;
+  format?: string;
 }
 
 export interface AccordionState {
@@ -11,9 +10,8 @@ export interface AccordionState {
   expended: number[];
 }
 
-export interface AccordionPanel<T = any> {
+export interface Panel<T = any> {
   item: T;
   headers: PanelHeader<T>[];
   label: string;
-  content: Type<any>;
 }

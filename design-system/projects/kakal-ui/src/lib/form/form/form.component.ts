@@ -21,10 +21,9 @@ import { GridProps } from '../models/question.types';
 })
 export class FormComponent implements OnInit {
   @Input() group: QuestionGroupModel;
-  @Input() formDataSource: FormDataSource;
   @Input() questions: Question[];
   @Input() formGroup: FormGroup;
-  @Input() grid: GridProps = { cols: 4 };
+  @Input() grid: GridProps;
   @Input() optionsMap: OptionMap = {};
 
   @Input() rowHeight: number;
@@ -42,7 +41,7 @@ export class FormComponent implements OnInit {
     new EventEmitter();
 
   ngOnInit() {
-    this.variant = this.grid.variant;
+    this.variant = this.grid.variant || this.variant;
   }
 
   public onSubmitEvent() {
