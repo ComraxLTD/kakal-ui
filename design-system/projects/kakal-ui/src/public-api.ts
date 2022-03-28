@@ -220,7 +220,7 @@ export * from './lib/cards/filter-card/filter-card.component';
 export * from './lib/cards/filter-card/filter-card.model';
 export * from './lib/cards/filter-card/filter-card.module';
 
-// stautts-bars
+// status-bars
 export * from './lib/status-bars/status-bars.module';
 export * from './lib/status-bars/status-bars.component';
 
@@ -328,6 +328,7 @@ export * from './lib/vertical-steps/vertical-steps.component';
 export * from './lib/vertical-steps/vertical-steps.module';
 export * from './lib/vertical-steps/step/step.module';
 export * from './lib/vertical-steps/step/step.component';
+export * from './lib/vertical-steps/step/step.directive';
 
 // chips
 export * from './lib/chips/chip/chip.component';
