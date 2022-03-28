@@ -12,6 +12,7 @@ import { SecondScreenComponent } from './components/second-screen/second-screen.
         FirstScreenComponent,
         SecondScreenComponent
     ],
-    exports: [TestComponent]
+    exports: [TestComponent],
 })
-export class TestModule {}
+export class TestModule {
+}

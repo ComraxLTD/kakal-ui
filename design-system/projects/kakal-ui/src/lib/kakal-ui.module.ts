@@ -82,6 +82,7 @@ import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.module';
+import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -160,6 +161,7 @@ import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.mo
     KKLDisplayDataModule,
     KKLVerticalStepperModule,
     KKLAccordionLayoutModule,
+    KKLAdvancedSearchLayoutModule,
 
     KKSectionModule,
     KKPageModule,
@@ -235,6 +237,8 @@ import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.mo
     KKLChipsModule,
     KKLDisplayDataModule,
     KKLAccordionLayoutModule,
+    KKLAdvancedSearchLayoutModule,
+
 
     KKSectionModule,
     KKPageModule,

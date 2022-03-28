@@ -18,36 +18,32 @@ import { GridProps } from '../models/question.types';
   selector: 'kkl-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
-  providers: [FormDataSource],
 })
 export class FormComponent implements OnInit {
-  @Input() public variant: 'flex' | 'grid' = 'grid';
+  @Input() group: QuestionGroupModel;
+  @Input() formDataSource: FormDataSource;
+  @Input() questions: Question[];
+  @Input() formGroup: FormGroup;
+  @Input() grid: GridProps = { cols: 4 };
+  @Input() optionsMap: OptionMap = {};
 
-  @Input() public group: QuestionGroupModel;
-  @Input() public formDataSource: FormDataSource;
-  @Input() public questions: Question[];
-  @Input() public formGroup: FormGroup;
-  @Input() public grid: GridProps;
-  @Input() public optionsMap: OptionMap = {};
-
-  @Input() public rowHeight: number;
-  @Input() public gutter: number;
+  @Input() rowHeight: number;
 
   @Input() optionsSlot: { [key: string]: ElementRef };
 
+  @Input() buttonLabel: string = 'שמור';
+  @Input() buttonTemp: TemplateRef<any>;
 
-  @Input() public buttonLabel: string = 'שמור';
-  @Input() public buttonTemp: TemplateRef<any>;
-
-  public hasButton: boolean = false;
-  public cols: string | number;
+  variant: 'flex' | 'grid' = 'grid';
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
   @Output() public formChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.variant = this.grid.variant;
+  }
 
   public onSubmitEvent() {
     this.submitEvent.emit(this.formGroup);

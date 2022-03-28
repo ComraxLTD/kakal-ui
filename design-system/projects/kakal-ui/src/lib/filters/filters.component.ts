@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+
 import { FilterChangeEvent, FilterState, FilterType } from './filters.types';
 import { FiltersService } from './filters.service';
 import { removeMultiFilter } from './filters.helpers';
-import { FormGroup } from '@angular/forms';
+import { FormDataSource } from '../form/models/form-datasource';
 import {
   FormActions,
   FormChangeEvent,
-  FormDataSource,
   SelectOption,
-} from '../../public-api';
+} from '../form/models/form.types';
 import { map, Observable, switchMap } from 'rxjs';
 
 @Component({
@@ -39,6 +40,8 @@ export class FiltersComponent implements OnInit {
       FormActions.MULTI_OPTION_SELECTED,
       FormActions.MULTI_SELECT_CHANGED,
       FormActions.OPTION_SELECTED,
+      FormActions.RANGE_CHANGED,
+      FormActions.DATE_RANGE_CHANGED,
     ]);
 
     const filterTypeMap = {
@@ -57,6 +60,8 @@ export class FiltersComponent implements OnInit {
       filterTypeMap: { [key: string]: FilterType }
     ) => {
       const { key, value, action } = formChangeEvent;
+
+      console.log(formChangeEvent)
 
       return {
         ...oldState,
@@ -99,7 +104,8 @@ export class FiltersComponent implements OnInit {
   // on multi remove event
   public onRemoveMultiFilter(option: { key: string; index: number }): void {
     const { key } = option;
-    const filterState = removeMultiFilter(option);
+    const state = this.filterService.getState();
+    const filterState = removeMultiFilter(option, state);
 
     if (filterState[key]) {
       const value = filterState[key].value as SelectOption[];

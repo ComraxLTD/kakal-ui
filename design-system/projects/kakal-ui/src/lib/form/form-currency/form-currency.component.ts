@@ -16,6 +16,7 @@ import { Currency, QuestionCurrencyModel } from './question-currency.model';
 import { FormChangeEvent } from '../models/form.options';
 import { BehaviorSubject } from 'rxjs';
 import { FormActions } from '../models/form.actions';
+import { CurrencyService } from 'projects/kakal-ui/src/public-api';
 
 @Component({
   selector: 'kkl-form-currency',
@@ -31,10 +32,8 @@ import { FormActions } from '../models/form.actions';
 })
 export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
   @Input() public key: string;
-  @Input() public question: QuestionCurrencyModel;
   @Input() public value: Currency;
   @Input() public options: SelectOption[];
-  @Input() public default: SelectOption;
   @Input() public index: number;
   @Input() public validations: ValidatorFn[];
   public currencyGroupSubject: BehaviorSubject<QuestionGroupModel<Currency>>;
@@ -61,13 +60,13 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
   @Output() change: EventEmitter<FormChangeEvent<Currency>> =
     new EventEmitter();
 
-  constructor(private formService: FormService) {}
+  constructor(private formService: FormService, private currencyService: CurrencyService) { }
 
   private _onChange: (v: Currency | null) => void = (
     value: Currency | null
-  ) => {};
+  ) => { };
 
-  private _onTouched: () => void = () => {};
+  private _onTouched: () => void = () => { };
 
   ngOnInit(): void {
     this.currencyGroup = this.formService.createQuestionGroup<Currency>({
@@ -80,7 +79,9 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
     const index: number = questions.findIndex(
       (q) => q.controlType === 'select'
     );
-
+    if (!options) {
+      options = this.currencyService.getCurrencies();
+    }
     const value = options.find((option) => option.label === '₪');
 
     newQuestions[index] = {

@@ -34,8 +34,8 @@ export * from './lib/form/models/form.types';
 export * from './lib/form/form/form.module';
 export * from './lib/form/form/form.component';
 
-export * from './lib/form/flex-form/flex-form.module';
-export * from './lib/form/flex-form/flex-form.component';
+export * from './lib/form/form-flex/flex-form.module';
+export * from './lib/form/form-flex/flex-form.component';
 
 export * from './lib/form/form-grid/form-grid.module';
 export * from './lib/form/form-grid/form-grid.component';
@@ -90,7 +90,6 @@ export * from './lib/form/form-autocomplete/question-autocomplete';
 
 export * from './lib/form/form-search/form-search.module';
 export * from './lib/form/form-search/form-search.component';
-export * from './lib/form/form-search/form-search.directive';
 
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
@@ -297,6 +296,14 @@ export * from './lib/layouts/accordion-layout/accordion-layout.module';
 export * from './lib/layouts/accordion-layout/accordion-layout.component';
 export * from './lib/layouts/accordion-layout/accordion-datasource';
 export * from './lib/layouts/accordion-layout/accordion-types';
+
+
+export * from './lib/layouts/advanced-search-layout/advanced-search-layout.module';
+export * from './lib/layouts/advanced-search-layout/advanced-search-layout.component';
+export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
+
+
+
 
 // page
 export * from './lib/layouts/page/page.module';

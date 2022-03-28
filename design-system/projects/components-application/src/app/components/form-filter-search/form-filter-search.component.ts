@@ -5,11 +5,9 @@ import {
   FilterType,
   FormChangeEvent,
   FormDataSource,
-  FormService,
-  KKLSelectOption,
+  SelectOption,
   OptionMap,
   Question,
-  QuestionGroupModel,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { forkJoin, map, Observable, of } from 'rxjs';
@@ -21,47 +19,51 @@ import { forkJoin, map, Observable, of } from 'rxjs';
   providers: [FiltersService, FormDataSource],
 })
 export class FormFilterSearchComponent implements OnInit {
-  private questions: Question[] = [
-    // first for the general search
-    // key must be search!
+  questions: Question[] = [
+    // key must be search for general search!
     {
       key: 'search',
       controlType: 'autocomplete',
     },
-    // {
-    //   key: 'currency',
-    //   controlType: 'currency',
-    //   value: { sum: 100 } as Currency,
-    // },
 
-    { key: 'last_name' },
-    // { key: 'part', controlType: 'counter' },
-    { key: 'last_name', controlType: 'upload' },
-    {
-      key: 'multiSelectTest',
-      label: 'multiSelectTest',
-      controlType: 'select',
-      multi: true,
-    },
-    {
-      key: 'email',
-      label: 'multiAutocompleteTest',
-      controlType: 'autocomplete',
-      multi: true,
-    },
+    // { key: 'last_name' },
+    // { key: 'last_name', controlType: 'upload' },
+    // {
+    //   key: 'multiSelectTest',
+    //   label: 'multiSelectTest',
+    //   controlType: 'select',
+    //   multi: true,
+    // },
+    // {
+    //   key: 'email',
+    //   label: 'multiAutocompleteTest',
+    //   controlType: 'autocomplete',
+    //   multi: true,
+    // },
     {
       key: 'email',
       label: 'email',
       filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
-    { key: 'birthDay', label: 'יום הולדת', controlType: 'date' },
-    { key: 'committee', label: 'committee', controlType: 'dateRange' },
     {
+      key: 'birthDay',
+      label: 'יום הולדת',
+      controlType: 'date',
+      filterType: FilterType.SELECT,
+    },
+    {
+      key: 'committee',
+      label: 'committee',
+      controlType: 'dateRange',
+      filterType: FilterType.DATE_RANGE,
+    },
+    {
+      label: 'city',
       key: 'city',
       filterType: FilterType.MULTI_SELECT,
-      label: 'city',
       controlType: 'multiSelect',
+      multi : true
     },
     {
       key: 'country',
@@ -69,30 +71,16 @@ export class FormFilterSearchComponent implements OnInit {
       filterType: FilterType.SELECT,
       controlType: 'select',
     },
-    // {
-    //   key: 'date',
-    //   filterType: FilterType.DATE_RANGE,
-    //   controlType: 'dateRange',
-    //   value: { start: new Date(), end: new Date() },
-    // },
   ];
 
   public optionsMap$: Observable<OptionMap>;
 
-  public searchGroup: QuestionGroupModel;
-
   public filtersState$: Observable<FilterState>;
 
-  constructor(
-    private formService: FormService,
-    private formDataSource: FormDataSource
-  ) {}
+  constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit(): void {
-    this.searchGroup = this.setGroup(this.questions);
     this.optionsMap$ = this.getOptionsMap$();
-
-    // this.searchGroup.formGroup.disable();
   }
 
   private getCurrencyOptions() {
@@ -100,7 +88,7 @@ export class FormFilterSearchComponent implements OnInit {
       { label: '$', value: 1 },
       { label: '₪', value: 2 },
       { label: '@', value: 3 },
-    ] as KKLSelectOption[]);
+    ] as SelectOption[]);
   }
 
   public getOptionsMap$(): Observable<OptionMap> {
@@ -116,19 +104,7 @@ export class FormFilterSearchComponent implements OnInit {
     );
   }
 
-  private setGroup(initQuestions: Question[]): QuestionGroupModel {
-    const group = this.formService.createQuestionGroup({
-      questions: initQuestions,
-      options: { gridProps: { cols: 5 } },
-    });
-    return group;
-  }
-
   // DOM EVENTS SECTION
 
   public onFilterChanged(state: FilterState) {}
-
-  public onFormChanged(event: FormChangeEvent) {
-    this.formDataSource.dispatch(event);
-  }
 }

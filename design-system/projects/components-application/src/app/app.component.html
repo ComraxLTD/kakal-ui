@@ -1,20 +1,16 @@
 <!-- <kkl-stepper-layout>
 </kkl-stepper-layout> -->
-<ng-template #customTabExpand>
-  <div>
-      i am here ehfyedb ewebuihfwe bwfbewrufi4hdf ewbfuh3ud ebfu23d32 bu23h238rg38h3
-  </div>
-</ng-template>
-<ng-template #firstTemplate let-val>
-    <kkl-status-bars [status]="stat"></kkl-status-bars>
-
-</ng-template>
-<kkl-local-table [dataSource]="dataSource" [columns]="columnsShow" [rowActions]="localButtons" [expandTemplate]="customTabExpand" [colsTemplate]="{status: firstTemplate}" [newRowAction]="{label: 'add new something'}"></kkl-local-table>
-
-<!-- <app-new-order-layout>
+<kkl-bread-crumbes></kkl-bread-crumbes>
+<div>
+  <kkl-form-currency [formControl]="control"></kkl-form-currency>
+</div>
+<div>
+  <app-form-filter-search></app-form-filter-search>
+</div>
+<app-new-order-layout>
   <ng-container content>
-    <kkl-page title="תיק">
+    <!-- <kkl-page title="תיק">
       <kkl-accordion-layout [panels]="panels"></kkl-accordion-layout>
-    </kkl-page>
+    </kkl-page> -->
   </ng-container>
-</app-new-order-layout> -->
+</app-new-order-layout>

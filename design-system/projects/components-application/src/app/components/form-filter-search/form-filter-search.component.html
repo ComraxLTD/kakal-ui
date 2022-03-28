@@ -1,36 +1,26 @@
 <div fxLayout="row" dir="rtl">
   <div fxLayout="column" fxFlex="90">
     <ng-container *ngIf="optionsMap$ | async as optionsMap">
-      <kkl-form-search [searchGroup]="searchGroup" [advanced]="true">
-        <ng-container *kklFormSearchContent="let context">
-          <kkl-form
-            variant="flex"
-            [questions]="context.questions"
-            [formGroup]="context.formGroup"
-            [grid]="context.grid"
-            [optionsMap]="optionsMap"
-            (formChanged)="onFormChanged($event)"
-          ></kkl-form>
-        </ng-container>
-      </kkl-form-search>
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <kkl-advanced-search-layout
+          fxFlex="60"
+          [questions]="questions"
+          [optionsMap$]="optionsMap$"
+        ></kkl-advanced-search-layout>
+      </div>
+
+      <!-- <kkl-form-search [searchGroup]="searchGroup" [advanced]="true">
+      </kkl-form-search> -->
 
       <div>
         <!-- <ng-container *ngIf="filtersState$ | async as filtersState"> -->
 
-        <kkl-filters
+        <!-- <kkl-filters
           [formGroup]="searchGroup.formGroup"
           (filterChanged)="onFilterChanged($event)"
-        ></kkl-filters>
+        ></kkl-filters> -->
         <!-- </ng-container> -->
       </div>
-    </ng-container>
-
-    <ng-container>
-      <pre *ngIf="searchGroup">
-        formGroup
-      {{ searchGroup.formGroup.value | json }}
-    </pre
-      >
     </ng-container>
   </div>
 </div>

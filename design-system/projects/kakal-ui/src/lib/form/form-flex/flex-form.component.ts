@@ -17,11 +17,8 @@ import { Question } from '../services/form.service';
   selector: 'kkl-form-flex',
   templateUrl: './flex-form.component.html',
   styleUrls: ['./flex-form.component.scss'],
-  providers: [FormDataSource],
 })
 export class FormFlexComponent implements OnInit {
-  @Input() public variant: 'row' | 'column' = 'row';
-
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
 
@@ -31,9 +28,10 @@ export class FormFlexComponent implements OnInit {
   @Input() public buttonLabel: string = 'שמור';
   @Input() public buttonTemp: TemplateRef<any>;
 
-  public hasButton: boolean;
-  public flex: number;
-  public cols: number;
+  layout: 'row' | 'column' = 'row';
+  hasButton: boolean;
+  flex: number;
+  cols: number;
 
   // default inputs in row
 
@@ -51,11 +49,11 @@ export class FormFlexComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
-    this.cols = this.grid?.cols || 4
+    this.cols = this.grid?.cols || 4;
     this.flex = 100 / (this.grid?.cols || this.cols);
+    this.layout = this.grid.layout;
     this.hasButton = !!this.grid?.buttonCols;
   }
-
 
   public onSubmit() {
     this.submitEvent.emit(this.formGroup);
