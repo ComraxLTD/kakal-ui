@@ -9,10 +9,12 @@ import { CurrencyService } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
   public steps: Step[] = [
     { key: 'filterForm', label: 'working' },
     { key: 'groupForm', label: 'working2' },
   ];
+
   public panels = [
     { label: 'working', comp: OrderDetailsBidComponent },
     {
