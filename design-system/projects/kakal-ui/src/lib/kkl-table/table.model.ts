@@ -26,7 +26,7 @@ export abstract class TableBase {
   public colIcon?: string;
   public group?: string;
   public button?: RowActionModel;
-  public templateName: string;
+  public templateName?: string;
 
   constructor(options: {
     key: string;
