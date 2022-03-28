@@ -5,10 +5,10 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-accordion-steps-layout',
-  templateUrl: './accordion-stepper.component.html',
-  styleUrls: ['./accordion-stepper.component.scss'],
+  templateUrl: './accordion-steps.component.html',
+  styleUrls: ['./accordion-steps.component.scss'],
 })
-export class AccordionStepperComponent implements OnInit {
+export class AccordionStepsComponent implements OnInit {
 
   @Input()complete$: Observable<boolean>;
   @Input() steps: Step[];

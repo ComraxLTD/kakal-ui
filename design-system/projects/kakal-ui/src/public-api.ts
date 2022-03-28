@@ -308,8 +308,8 @@ export * from './lib/layouts/advanced-search-layout/advanced-search-layout.compo
 export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
 
 // vertical steps-layout
-export * from './lib/layouts/accordion-stepper-layout/accordion-stepper.module';
-export * from './lib/layouts/accordion-stepper-layout/accordion-stepper.component';
+export * from './lib/layouts/accordion-steps-layout/accordion-steps.module';
+export * from './lib/layouts/accordion-steps-layout/accordion-steps.component';
 
 // page
 export * from './lib/layouts/page/page.module';

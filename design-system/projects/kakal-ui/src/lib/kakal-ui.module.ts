@@ -61,7 +61,7 @@ import { KKLLayoutModule } from './layouts/layout/layout.module';
 import { KKSectionModule } from './layouts/section/section.module';
 import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
 import { KKPageModule } from './layouts/page/page.module';
-import { KKLAccordionStepperModule } from './layouts/accordion-stepper-layout/accordion-stepper.module';
+import { KKLAccordionStepsModule } from './layouts/accordion-steps-layout/accordion-steps.module';
 import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
@@ -164,7 +164,7 @@ import { KKLVerticalStepsModule} from './vertical-steps/vertical-steps.module'
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
-    KKLAccordionStepperModule,
+    KKLAccordionStepsModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
 
@@ -249,7 +249,7 @@ import { KKLVerticalStepsModule} from './vertical-steps/vertical-steps.module'
     KKSectionModule,
     KKPageModule,
 
-    KKLAccordionStepperModule,
+    KKLAccordionStepsModule,
   ],
 })
 export class KakalUiModule {}
