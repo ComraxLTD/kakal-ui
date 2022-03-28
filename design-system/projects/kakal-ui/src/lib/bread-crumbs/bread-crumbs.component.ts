@@ -1,13 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import {
-  ActivatedRoute,
-  NavigationEnd,
-  Router,
-  Data,
-  PRIMARY_OUTLET,
-} from '@angular/router';
-import { filter, map, Observable } from 'rxjs';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BreadCrumbsModel } from './bread-crumbs.model';
+import { filter, map, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-bread-crumbs',
