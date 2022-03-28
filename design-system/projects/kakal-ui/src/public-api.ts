@@ -180,9 +180,9 @@ export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
 // bread-crumbs
-export * from './lib/bread-crumbes/bread-crumbes.component';
-export * from './lib/bread-crumbes/bread-crumbs.module';
-export * from './lib/bread-crumbes/bread-crumbes.model';
+export * from './lib/bread-crumbs/bread-crumbs.component';
+export * from './lib/bread-crumbs/bread-crumbs.module';
+export * from './lib/bread-crumbs/bread-crumbs.model';
 
 // expand-panel
 export * from './lib/expand-panel/expand-panel.component';

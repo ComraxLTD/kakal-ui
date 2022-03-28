@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLNavigationModule } from './navigation/navigation.module';
-import { KKLBreadCrumbsModule } from './bread-crumbes/bread-crumbs.module';
+import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLInfoCardModule } from './cards/info-card/info-card.module';

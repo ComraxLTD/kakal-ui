@@ -1,6 +1,6 @@
 <!-- <kkl-stepper-layout>
 </kkl-stepper-layout> -->
-<kkl-bread-crumbes></kkl-bread-crumbes>
+<kkl-bread-crumbs></kkl-bread-crumbs>
 <div>
   <!-- <app-form-filter-search></app-form-filter-search> -->
   <!-- <kkl-vertical-steps [steps]="steps" [templates]="{filterForm, groupForm}">
@@ -8,6 +8,7 @@
 </div>
 <kkl-page title="תיק" dir="rtl">
   <kkl-accordion-steps-layout
+    [complete$]="complete$"
     [panels]="panels"
     [steps]="steps"
     [templates]="{filterForm, groupForm}"

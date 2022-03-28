@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
 import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
 import { CurrencyService } from '../../../kakal-ui/src/public-api';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,9 @@ import { CurrencyService } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  public complete$ = new BehaviorSubject<boolean>(true);
+
   public steps: Step[] = [
     { key: 'filterForm', label: 'working' },
     { key: 'groupForm', label: 'working2' },
