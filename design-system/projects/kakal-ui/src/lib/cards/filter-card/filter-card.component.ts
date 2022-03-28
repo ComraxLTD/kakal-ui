@@ -6,10 +6,10 @@ import {FilterCardModel} from './filter-card.model'
   styleUrls: ['./filter-card.component.scss']
 })
 export class FilterCardComponent implements OnInit {
- 
+
   @Input() card!:FilterCardModel
   @Input() chosen:Boolean=false
-  @Output() emitCard:EventEmitter<FilterCardModel>
+  @Output() emitCard:EventEmitter<FilterCardModel> = new EventEmitter()
 
   constructor() { }
 
