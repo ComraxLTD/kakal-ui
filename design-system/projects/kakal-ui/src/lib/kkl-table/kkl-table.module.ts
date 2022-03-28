@@ -40,12 +40,10 @@ import { KKLButtonModule } from '../button/button.module';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    MatProgressBarModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatButtonModule,
