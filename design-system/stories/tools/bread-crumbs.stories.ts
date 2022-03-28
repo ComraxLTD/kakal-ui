@@ -16,8 +16,8 @@ export default {
   ],
   component: BreadCrumbsComponent,
   argTypes: {
-    breadCrumbes$: {
-      name: ' breadCrumbes$',
+    breadCrumbs$: {
+      name: ' breadCrumbs$',
       description: 'every step of the url path is a "bread-crumb',
       table: {
         type: {
@@ -36,7 +36,7 @@ const Template: Story<BreadCrumbsComponent> = (args: BreadCrumbsComponent) => ({
 export const breadCrumbs = Template.bind({});
 
 breadCrumbs.args = {
-    breadCrumbes$: of([
+    breadCrumbs$: of([
     new BreadCrumbsModel({route:'asd',value:'התקשרויות'}),
     new BreadCrumbsModel({route:'asd',value:'דרגה שניה'}),
     new BreadCrumbsModel({route:'asd',value:'דרגה שלישית'}),

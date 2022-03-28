@@ -15,14 +15,14 @@ import { BreadCrumbsModel } from './bread-crumbs.model';
   styleUrls: ['./bread-crumbs.component.scss'],
 })
 export class BreadCrumbsComponent implements OnInit {
-  @Input() breadCrumbes$!: Observable<any>;
+  @Input() breadCrumbs$!: Observable<any>;
   @Output() emitBreadCrumb: EventEmitter<BreadCrumbsModel> = new EventEmitter();
 
   constructor(private router: Router, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.data.subscribe((res) => console.log(res));
-    this.breadCrumbes$ = this.router.events.pipe(
+    this.breadCrumbs$ = this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map((routes: NavigationEnd) => {
         const split = this.splitRoutes(routes.url);
