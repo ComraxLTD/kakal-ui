@@ -122,7 +122,6 @@ export * from './lib/kkl-table/pipes/table-group-cell.pipe';
 export * from './lib/kkl-table/table-actions.model';
 export * from './lib/kkl-table/table.model';
 export * from './lib/kkl-table/kkl-table.module';
-export * from './lib/kkl-table/table.model';
 
 // TABLE
 export * from './lib/table/table.module';
