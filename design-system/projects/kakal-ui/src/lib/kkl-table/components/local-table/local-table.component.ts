@@ -5,6 +5,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
+import { RowActionEvent, RowActionModel } from '../../table-actions.model';
+import { TableBase } from '../../table.model';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
@@ -23,18 +25,22 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 export class LocalTableComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
 
-  @Output() buttClicked = new EventEmitter<any>();
+  isLoading: boolean = true;
+
+  @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
   @Output() editRow = new EventEmitter<any>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
 
-  @Input() newRowAction: any;
+  @Input() colsTemplate: any;
+
+  @Input() newRowAction: RowActionModel;
 
   @Input() paging: boolean = true;
 
-  oneColumns: any[] = [];
-  @Input() set columns(value: any[]) {
+  oneColumns: TableBase[] = [];
+  @Input() set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
   }
@@ -54,11 +60,12 @@ export class LocalTableComponent implements OnInit {
     } else {
       this.dataTable.data = [];
     }
+    this.isLoading = false;
   }
 
 
-  localButtons: any[];
-  @Input() set rowActions(val: any[]) {
+  localButtons: RowActionModel[];
+  @Input() set rowActions(val: RowActionModel[]) {
     if(val.length && !this.displayedColumns.includes('actions')) {
       this.displayedColumns.push('actions');
     }
@@ -135,18 +142,18 @@ export class LocalTableComponent implements OnInit {
     }
   }
 
-  buttonClick(butt: any, obj:any) {
+  buttonClick(butt: RowActionModel, obj:any) {
     if(normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
-          this.dataTable.data = this.dataTable.data.filter((a:any) => a !== obj);
-          this.deleteRow.emit(obj);
-          // this.readySpanData(this.paginator.pageIndex*this.paginator.pageSize, Math.min((this.paginator.pageIndex+1)*this.paginator.pageSize, this.dataTable.filteredData.length) - this.paginator.pageIndex*this.paginator.pageSize);
+          if(confirm("Are you sure you want to delete?")) {
+            this.dataTable.data = this.dataTable.data.filter((a:any) => a !== obj);
+            this.deleteRow.emit(obj);
+          }
           break;
         case 'inlineEdit':
           this.addRowGroup(obj);
           this.editItems = [...this.editItems, obj];
-          // this.readySpanData(this.paginator.pageIndex*this.paginator.pageSize, Math.min((this.paginator.pageIndex+1)*this.paginator.pageSize, this.dataTable.filteredData.length) - this.paginator.pageIndex*this.paginator.pageSize);
           break;
         case 'inlineExpand':
           this.expandedElement = this.expandedElement == obj? null : obj;
@@ -156,7 +163,7 @@ export class LocalTableComponent implements OnInit {
       }
       this.groupDataReload();
     } else {
-      this.buttClicked.emit({action: butt.type, row: obj});
+      this.actionClicked.emit({action: butt.type, row: obj});
     }
   }
 

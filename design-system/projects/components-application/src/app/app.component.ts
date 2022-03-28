@@ -19,13 +19,33 @@ export class AppComponent implements OnInit {
   public panels = [
     { label: 'working', comp: OrderDetailsBidComponent },
     {
-      item: { birthDate: new Date(), location: 'city', test: 'test' },
-      headers: [
-        { key: 'location' },
-        { key: 'birthDate', format: 'date' },
-        { key: 'test' },
-      ],
-      comp: FormFilterSearchComponent,
+      controlType: 'input',
+      key: 'poCodes',
+      label: `PO#`,
+      group: 'poCodes',
+    },
+    {
+      controlType: 'input',
+      key: 'suppliers',
+      label: `Supplier`,
+      group: 'poCodes',
+    },
+    {
+      controlType: 'date',
+      key: 'recordedTime',
+      label: `Recorded time`,
+      button:
+        {
+          type: 'inlineExpand',
+          icon: 'expand',
+        }
+    },
+    {
+      controlType: 'input',
+      key: 'status',
+      label: `Status`,
+      // colIcon: {key: 'add'},
+      templateName: 'status'
     },
   ];
 
@@ -33,6 +53,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.currencyService.setCurrencies([{id:0,label:'$',value:0}])
-    
+
   }
 }
