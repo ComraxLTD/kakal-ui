@@ -10,7 +10,7 @@ import {
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatAccordion } from '@angular/material/expansion';
 import { AccordionDataSource } from './accordion-datasource';
-import { AccordionPanel, AccordionState } from './accordion-types';
+import { Panel, AccordionState } from './accordion-types';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 export class AccordionLayoutComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
-  @Input() panels: AccordionPanel[];
+  @Input() panels: Panel[];
   @Input() accordionState: AccordionState;
   @Input() buttonLabel: string;
   @Input() templates: { [key: string]: TemplateRef<any> };

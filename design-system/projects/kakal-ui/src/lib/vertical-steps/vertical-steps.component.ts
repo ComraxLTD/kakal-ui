@@ -21,7 +21,5 @@ export class VerticalStepsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log('working');
-  }
+  ngOnInit(): void {}
 }

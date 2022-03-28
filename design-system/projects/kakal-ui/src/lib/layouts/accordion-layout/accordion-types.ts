@@ -10,7 +10,7 @@ export interface AccordionState {
   expended: number[];
 }
 
-export interface AccordionPanel<T = any> {
+export interface Panel<T = any> {
   item: T;
   headers: PanelHeader<T>[];
   label: string;

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { VerticalStepperComponent } from './vertical-stepper.component';
+import { AccordionStepperComponent } from './accordion-stepper.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -11,7 +11,7 @@ import { KKLIconModule } from '../../icon/icon.module';
 
 @NgModule({
   declarations: [
-    VerticalStepperComponent
+    AccordionStepperComponent
   ],
   imports: [
     CommonModule,
@@ -21,6 +21,6 @@ import { KKLIconModule } from '../../icon/icon.module';
     KKLIconModule,
     KKLDirectivesModule
   ],
-  exports: [MatStepperModule, VerticalStepperComponent]
+  exports: [MatStepperModule, AccordionStepperComponent]
 })
-export class KKLVerticalStepperModule { }
+export class KKLAccordionStepperModule { }
