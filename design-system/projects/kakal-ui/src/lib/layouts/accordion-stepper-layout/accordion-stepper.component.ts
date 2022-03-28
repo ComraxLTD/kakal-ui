@@ -4,7 +4,7 @@ import { Panel } from '../accordion-layout/accordion-types';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'kkl-accordion-stepper-layout',
+  selector: 'kkl-accordion-steps-layout',
   templateUrl: './accordion-stepper.component.html',
   styleUrls: ['./accordion-stepper.component.scss'],
 })

@@ -3,14 +3,19 @@
 <kkl-bread-crumbes></kkl-bread-crumbes>
 <div>
   <!-- <app-form-filter-search></app-form-filter-search> -->
-  <kkl-vertical-steps [steps]="steps" [templates]="{filterForm, groupForm}">
-  </kkl-vertical-steps>
+  <!-- <kkl-vertical-steps [steps]="steps" [templates]="{filterForm, groupForm}">
+  </kkl-vertical-steps> -->
 </div>
 <kkl-page title="תיק" dir="rtl">
-  <kkl-accordion-layout
+  <kkl-accordion-steps-layout
+    [panels]="panels"
+    [steps]="steps"
+    [templates]="{filterForm, groupForm}"
+  ></kkl-accordion-steps-layout>
+  <!-- <kkl-accordion-layout
     [panels]="panels"
     [templates]="{filterForm, groupForm}"
-  ></kkl-accordion-layout>
+  ></kkl-accordion-layout> -->
 </kkl-page>
 
 <ng-template #filterForm>
