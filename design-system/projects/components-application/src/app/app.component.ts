@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
-import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
-import { CurrencyService } from '../../../kakal-ui/src/public-api';
-import { BehaviorSubject } from 'rxjs';
+import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
+import { FormControl } from '@angular/forms';
+import { CurrencyService, TableBase } from '../../../kakal-ui/src/public-api';
+
 
 @Component({
   selector: 'app-root',
@@ -11,48 +12,29 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppComponent implements OnInit {
 
-  public complete$ = new BehaviorSubject<boolean>(true);
+  dataSource: any[] = []
 
-  public steps: Step[] = [
-    { key: 'filterForm', label: 'working' },
-    { key: 'groupForm', label: 'working2' },
+  columns: TableBase[] = [
+    { key: 'id', label: 'Id', controlType: 'number'},
+    { key: 'name', label: 'Name', controlType: 'text', },
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', },
+    { key: 'occupation', label: 'Occupation', controlType: 'text', },
+    { key: 'city', label: 'עיר', controlType: 'select'},
+    { key: 'dob', label: 'תאריך', controlType: 'date',},
   ];
 
-  public panels = [
-    { label: 'working', key: 'filterForm' },
-    {
-      controlType: 'input',
-      key: 'filterForm',
-      label: `PO#`,
-      group: 'poCodes',
-    },
-    // {
-    //   controlType: 'input',
-    //   key: 'groupForm',
-    //   label: `Supplier`,
-    //   group: 'poCodes',
-    // },
-    // {
-    //   controlType: 'date',
-    //   key: 'recordedTime',
-    //   label: `Recorded time`,
-    //   button: {
-    //     type: 'inlineExpand',
-    //     icon: 'expand',
-    //   },
-    // },
-    // {
-    //   controlType: 'input',
-    //   key: 'status',
-    //   label: `Status`,
-    //   // colIcon: {key: 'add'},
-    //   templateName: 'status',
-    // },
-  ];
-
-  constructor(private currencyService: CurrencyService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.currencyService.setCurrencies([{ id: 0, label: '$', value: 0 }]);
+    this.dataSource = [
+      {
+        city: {label: 'Tel Aviv', value: 5},
+        dob: "2022-03-28T00:00:00Z",
+        id: 1,
+        name: "Hillyer Bowkley",
+        occupation: "Physical Therapy Assistant",
+        yearsOfExperience: 32,
+      }
+    ]
   }
 }
