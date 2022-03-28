@@ -18,6 +18,7 @@ import { FormService } from '../../form/services/form.service';
 import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 import { Observable, of } from 'rxjs';
+import { GridProps } from '../../form/models/question.types';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
@@ -28,6 +29,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @ContentChild(KKLAdvancedSearchContentDirective) advancedSearchDirective;
 
   @Input() questions!: Question[];
+  @Input() grid!: GridProps;
   @Input() asButton!: boolean;
   @Input() expended: boolean = false;
   @Input() hasFilters: boolean = false;
@@ -58,7 +60,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   private setGroup(): QuestionGroupModel {
     const group = this.formService.createQuestionGroup({
       questions: [...this.questions],
-      options: { gridProps: { cols: 4 } },
+      options: { gridProps: { cols: 4, variant: 'flex', ...this.grid } },
     });
     return group;
   }
