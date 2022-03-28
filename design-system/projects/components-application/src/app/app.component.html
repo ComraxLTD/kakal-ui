@@ -6,13 +6,12 @@
   <kkl-vertical-steps [steps]="steps" [templates]="{filterForm, groupForm}">
   </kkl-vertical-steps>
 </div>
-<!-- <app-new-order-layout>
-  <ng-container content>
-    <kkl-page title="תיק">
-      <kkl-accordion-layout [panels]="panels"></kkl-accordion-layout>
-    </kkl-page>
-  </ng-container>
-</app-new-order-layout> -->
+<kkl-page title="תיק" dir="rtl">
+  <kkl-accordion-layout
+    [panels]="panels"
+    [templates]="{filterForm, groupForm}"
+  ></kkl-accordion-layout>
+</kkl-page>
 
 <ng-template #filterForm>
   <app-form-filter-search></app-form-filter-search>

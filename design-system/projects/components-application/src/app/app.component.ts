@@ -9,42 +9,41 @@ import { CurrencyService } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   public steps: Step[] = [
     { key: 'filterForm', label: 'working' },
     { key: 'groupForm', label: 'working2' },
   ];
 
   public panels = [
-    { label: 'working', comp: OrderDetailsBidComponent },
+    { label: 'working', key: 'filterForm' },
     {
       controlType: 'input',
-      key: 'poCodes',
+      key: 'filterForm',
       label: `PO#`,
       group: 'poCodes',
     },
-    {
-      controlType: 'input',
-      key: 'suppliers',
-      label: `Supplier`,
-      group: 'poCodes',
-    },
-    {
-      controlType: 'date',
-      key: 'recordedTime',
-      label: `Recorded time`,
-      button: {
-        type: 'inlineExpand',
-        icon: 'expand',
-      },
-    },
-    {
-      controlType: 'input',
-      key: 'status',
-      label: `Status`,
-      // colIcon: {key: 'add'},
-      templateName: 'status',
-    },
+    // {
+    //   controlType: 'input',
+    //   key: 'groupForm',
+    //   label: `Supplier`,
+    //   group: 'poCodes',
+    // },
+    // {
+    //   controlType: 'date',
+    //   key: 'recordedTime',
+    //   label: `Recorded time`,
+    //   button: {
+    //     type: 'inlineExpand',
+    //     icon: 'expand',
+    //   },
+    // },
+    // {
+    //   controlType: 'input',
+    //   key: 'status',
+    //   label: `Status`,
+    //   // colIcon: {key: 'add'},
+    //   templateName: 'status',
+    // },
   ];
 
   constructor(private currencyService: CurrencyService) {}

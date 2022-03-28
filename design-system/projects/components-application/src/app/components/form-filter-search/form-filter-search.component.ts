@@ -26,20 +26,6 @@ export class FormFilterSearchComponent implements OnInit {
       controlType: 'autocomplete',
     },
 
-    // { key: 'last_name' },
-    // { key: 'last_name', controlType: 'upload' },
-    // {
-    //   key: 'multiSelectTest',
-    //   label: 'multiSelectTest',
-    //   controlType: 'select',
-    //   multi: true,
-    // },
-    // {
-    //   key: 'email',
-    //   label: 'multiAutocompleteTest',
-    //   controlType: 'autocomplete',
-    //   multi: true,
-    // },
     {
       key: 'email',
       label: 'email',
