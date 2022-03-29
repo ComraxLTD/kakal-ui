@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardFilter } from './card-filter.model';
 @Component({
-  selector: 'kkl-filter-card',
+  selector: 'kkl-card-filter',
   templateUrl: './card-filter.component.html',
   styleUrls: ['./card-filter.component.scss'],
 })

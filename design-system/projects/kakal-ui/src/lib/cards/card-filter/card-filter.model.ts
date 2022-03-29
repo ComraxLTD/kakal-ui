@@ -1,5 +1,5 @@
 export interface CardFilter {
-  name: string;
-  count: number;
+  label: string;
+  value: number;
   svgIcon: string;
 }
