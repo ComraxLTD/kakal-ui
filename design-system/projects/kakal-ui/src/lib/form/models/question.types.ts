@@ -7,11 +7,13 @@ export interface FormGrid {
   rows?: number;
   gutter?: number;
   buttonCols?: number;
+  buttonSkip?: number;
 }
 export interface InputGrid {
   cols?: number;
   rows?: number;
-  offset?: number;
+  offset?: number | 'none';
+  skip?: number;
   fullWidth?: boolean;
   flex?: {
     width?: number;

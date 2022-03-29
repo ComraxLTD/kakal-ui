@@ -37,6 +37,7 @@ export class FormFilterSearchComponent implements OnInit {
       label: 'יום הולדת',
       controlType: 'date',
       filterType: FilterType.SELECT,
+      gridProps: { cols: 2, skip: 1, offset: 'none' },
     },
     {
       key: 'committee',
@@ -49,7 +50,7 @@ export class FormFilterSearchComponent implements OnInit {
       key: 'city',
       filterType: FilterType.MULTI_SELECT,
       controlType: 'multiSelect',
-      multi : true
+      multi: true,
     },
     {
       key: 'country',
