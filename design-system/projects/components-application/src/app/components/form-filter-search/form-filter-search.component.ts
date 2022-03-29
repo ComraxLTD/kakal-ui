@@ -3,11 +3,11 @@ import {
   FiltersService,
   FilterState,
   FilterType,
-  FormChangeEvent,
   FormDataSource,
   SelectOption,
   OptionMap,
   Question,
+  FormService,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { forkJoin, map, Observable, of } from 'rxjs';
@@ -16,7 +16,7 @@ import { forkJoin, map, Observable, of } from 'rxjs';
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
-  providers: [FiltersService, FormDataSource],
+  providers: [FiltersService, FormDataSource, FormService],
 })
 export class FormFilterSearchComponent implements OnInit {
   questions: Question[] = [

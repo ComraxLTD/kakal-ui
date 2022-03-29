@@ -64,7 +64,6 @@
 
 <ng-template #defaultTemplate let-context>
   <ng-container *ngIf="optionsMap$ | async as optionsMap">
-    {{ optionsMap | json }}
     <kkl-form
       [questions]="context.questions"
       [formGroup]="context.formGroup"
