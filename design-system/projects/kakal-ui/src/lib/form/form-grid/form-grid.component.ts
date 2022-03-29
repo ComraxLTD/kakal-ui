@@ -19,6 +19,7 @@ import { FormGrid } from '../models/question.types';
   styleUrls: ['./form-grid.component.scss'],
 })
 export class FormGridComponent implements OnInit {
+  
   @Input() public questions!: Question[];
   @Input() public formGroup!: FormGroup;
   @Input() public grid: FormGrid;

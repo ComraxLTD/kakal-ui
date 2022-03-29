@@ -19,7 +19,7 @@ import { FormGrid } from '../models/question.types';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  @Input() group: QuestionGroupModel;
+
   @Input() questions: Question[];
   @Input() formGroup: FormGroup;
   @Input() grid: FormGrid;
@@ -32,7 +32,7 @@ export class FormComponent implements OnInit {
   @Input() buttonLabel: string = 'שמור';
   @Input() buttonTemp: TemplateRef<any>;
 
-  variant: 'flex' | 'grid' = 'grid';
+  variant: 'flex' | 'grid';
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -40,7 +40,7 @@ export class FormComponent implements OnInit {
     new EventEmitter();
 
   ngOnInit() {
-    this.variant = this.grid.variant || this.variant;
+    this.variant = this.grid.variant || 'grid';
   }
 
   public onSubmitEvent() {
