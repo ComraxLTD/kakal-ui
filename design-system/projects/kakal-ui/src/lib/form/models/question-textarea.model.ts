@@ -1,12 +1,12 @@
 import { ValidatorFn } from '@angular/forms';
 import {  QuestionBase } from './question.model';
-import { GridProps } from './question.types';
+import { InputGrid } from './question.types';
 
 export class QuestionTextareaModel extends QuestionBase {
   constructor(options: {
     key: string;
     label?: string;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     validations?: ValidatorFn[];
     disabled?: boolean;

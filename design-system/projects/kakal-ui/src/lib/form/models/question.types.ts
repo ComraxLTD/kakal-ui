@@ -1,13 +1,17 @@
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 
-export interface GridProps {
+export interface FormGrid {
   variant?: 'flex' | 'grid';
   layout?: 'column' | 'row';
   cols?: number;
   rows?: number;
-  offset?: number;
   gutter?: number;
   buttonCols?: number;
+}
+export interface InputGrid {
+  cols?: number;
+  rows?: number;
+  offset?: number;
   fullWidth?: boolean;
   flex?: {
     width?: number;
@@ -54,4 +58,4 @@ export type ControlType =
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 
-// export type InputTypes = { Appearance; ControlType; Cleave; GridProps };
+// export type InputTypes = { Appearance; ControlType; Cleave; InputGrid };

@@ -10,7 +10,7 @@ import { FormGroup } from '@angular/forms';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { OptionMap } from '../models/form.types';
-import { GridProps } from '../models/question.types';
+import { FormGrid } from '../models/question.types';
 import { Question } from '../services/form.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class FormFlexComponent implements OnInit {
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
 
-  @Input() public grid: GridProps;
+  @Input() public grid: FormGrid;
   @Input() public optionsMap: OptionMap = {};
 
   @Input() public buttonLabel: string = 'שמור';

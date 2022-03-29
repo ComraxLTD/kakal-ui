@@ -8,14 +8,14 @@ import { Question } from '../services/form.service';
 import {
   QuestionBase,
 } from './question.model';
-import { ControlType, GridProps } from './question.types';
+import { ControlType, FormGrid } from './question.types';
 import { Observable, of } from 'rxjs';
 
 export interface GroupOptions {
   label?: string;
   controlType?: ControlType;
   formGroup?: FormGroup;
-  gridProps?: GridProps;
+  gridProps?: FormGrid;
   hasButton?: boolean;
   validations?: any;
 }
@@ -33,7 +33,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     questions: Question[];
     label?: string;
     icon?: string;
-    gridProps?: GridProps;
+    gridProps?: FormGrid;
     hasButton?: boolean;
     validations?: ValidatorFn[];
   }) {

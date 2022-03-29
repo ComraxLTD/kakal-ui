@@ -18,7 +18,7 @@ import { FormService } from '../../form/services/form.service';
 import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 import { Observable, of } from 'rxjs';
-import { GridProps } from '../../form/models/question.types';
+import { InputGrid } from '../../form/models/question.types';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
@@ -29,7 +29,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @ContentChild(KKLAdvancedSearchContentDirective) advancedSearchDirective;
 
   @Input() questions!: Question[];
-  @Input() grid!: GridProps;
+  @Input() grid!: InputGrid;
   @Input() asButton!: boolean;
   @Input() expended: boolean;
   @Input() hasFilters: boolean = false;
