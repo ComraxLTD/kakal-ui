@@ -8,7 +8,7 @@
   <kkl-icon *ngIf="question.colIcon" [key]="question.colIcon"></kkl-icon>
   <span *ngIf="question.button; else withoutButton">
     <button mat-button color="primary" (click)="buttonClick()">
-      <kkl-icon [key]="question.button.icon"></kkl-icon>
+      <kkl-icon *ngIf="question.button.icon" [key]="question.button.icon"></kkl-icon>
       <span *ngIf="data" style="white-space: pre-wrap;">
         {{data | tableCellPipe: question.controlType}}
       </span>

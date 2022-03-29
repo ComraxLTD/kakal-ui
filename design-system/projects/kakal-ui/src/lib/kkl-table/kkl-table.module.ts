@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 import { KKLFormSelectModule } from '../form/form-select/form-select.module';
@@ -48,6 +49,7 @@ import { KKLButtonModule } from '../button/button.module';
     MatFormFieldModule,
     MatButtonModule,
     MatProgressBarModule,
+    DragDropModule,
     KKLFormSelectModule,
     KKLFormDateModule,
     KKLFormInputModule,

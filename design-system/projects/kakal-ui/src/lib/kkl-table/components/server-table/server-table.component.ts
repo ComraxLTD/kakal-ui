@@ -35,7 +35,7 @@ export class ServerTableComponent implements OnInit {
 
   @Input() colsTemplate: any;
 
-  @Input() newRowAction: RowActionModel;
+  @Input() newRowAction: string;
 
   @Input() paging: boolean = true;
 

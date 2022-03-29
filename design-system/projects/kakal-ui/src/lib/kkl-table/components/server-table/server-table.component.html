@@ -39,14 +39,14 @@
         <th mat-header-cell *matHeaderCellDef>
           <button *ngIf="newRowAction" mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="addNewRowGroup()">
             <kkl-icon key="add"></kkl-icon>
-            {{newRowAction.label}}
+            {{newRowAction}}
           </button>
         </th>
         <td mat-cell *matCellDef="let element" class="center-butt">
           <ng-container *ngIf="!(element | arrInclueds : editItems); else addButton">
             <ng-container *ngFor="let butt of localButtons">
               <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(butt, element)">
-                <kkl-icon [key]="butt.icon"></kkl-icon>
+                <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
                 {{butt.label}}
               </button>
             </ng-container>
