@@ -33,7 +33,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() asButton!: boolean;
   @Input() expended: boolean;
   @Input() hasFilters: boolean = false;
-  @Input() optionsMap$: Observable<OptionMap> = of({});
+  @Input() optionsMap$: Observable<OptionMap>;
 
   filtersState$!: Observable<FilterState>;
   searchGroup!: QuestionGroupModel;
@@ -55,6 +55,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.searchGroup = this.setGroup();
     this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
+    this.optionsMap$ = this.optionsMap$ || of({});
   }
 
   private setGroup(): QuestionGroupModel {
