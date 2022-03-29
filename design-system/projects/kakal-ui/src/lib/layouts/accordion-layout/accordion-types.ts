@@ -1,4 +1,3 @@
-import { Type } from '@angular/core';
 
 export interface PanelHeader<T = any> {
   key: keyof T;
@@ -11,7 +10,8 @@ export interface AccordionState {
 }
 
 export interface Panel<T = any> {
-  item: T;
-  headers: PanelHeader<T>[];
+  key: keyof T;
   label: string;
+  item?: T;
+  headers?: PanelHeader<T>[];
 }
