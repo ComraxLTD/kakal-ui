@@ -31,7 +31,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() questions!: Question[];
   @Input() grid!: GridProps;
   @Input() asButton!: boolean;
-  @Input() expended: boolean = false;
+  @Input() expended: boolean;
   @Input() hasFilters: boolean = false;
   @Input() optionsMap$: Observable<OptionMap> = of({});
 
