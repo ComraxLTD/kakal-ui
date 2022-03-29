@@ -107,6 +107,8 @@ export class IconsService {
     tree_bottom_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
     estate: AppIcons.ESTATE_ICON,
     mail: AppIcons.MAIL_ICON,
+    meetings:AppIcons.MEETINGS,
+    union:AppIcons.UNION
   };
 
   private findIcon(key: string): string {
