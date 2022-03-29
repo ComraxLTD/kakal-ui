@@ -1145,7 +1145,7 @@ export const UNION = `
   </g>
 </svg>`;
 
-export const meetings = `
+export const MEETINGS = `
 <svg xmlns="http://www.w3.org/2000/svg" width="56" height="66" viewBox="0 0 56 66">
   <g id="Group_684" data-name="Group 684" transform="translate(-899 -334)">
     <g id="Rectangle_439" data-name="Rectangle 439" transform="translate(899 334)" fill="none" stroke="'none'" stroke-width="4">
