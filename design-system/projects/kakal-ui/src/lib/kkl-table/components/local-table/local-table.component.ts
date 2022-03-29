@@ -1,4 +1,5 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
+// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
@@ -35,7 +36,7 @@ export class LocalTableComponent implements OnInit {
 
   @Input() colsTemplate: any;
 
-  @Input() newRowAction: RowActionModel;
+  @Input() newRowAction: string;
 
   @Input() paging: boolean = true;
 
@@ -253,6 +254,16 @@ export class LocalTableComponent implements OnInit {
     }
 
   }
+
+
+  // drop(event: CdkDragDrop<any[]>) {
+  //   console.log(event);
+
+  //   // const previousIndex = this.dataTable.filteredData.findIndex(row => row === event.item.data);
+  //   moveItemInArray(this.dataTable.filteredData,event.previousIndex/2, event.currentIndex/2);
+  //   // this.groupDataReload();
+  //   // this.dataTable.filteredData = this.dataTable.filteredData.slice();
+  // }
 
   ngOnDestroy() {
     this.destroySubject$.next();
