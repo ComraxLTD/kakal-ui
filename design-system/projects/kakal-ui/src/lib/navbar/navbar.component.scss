@@ -3,7 +3,7 @@
 mat-toolbar {
   z-index: 2;
   position: relative;
-  background-color: main.color(paper);
+  background-color: main.color(paper) !important;
   height: main.$toolbar-height !important;
   box-sizing: border-box;
 }

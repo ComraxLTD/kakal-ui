@@ -39,9 +39,6 @@ export class FormComponent implements OnInit {
     new EventEmitter();
 
   ngOnInit() {
-    console.log(this.questions)
-    console.log(this.grid)
-    console.log(this.formGroup)
     this.variant = this.grid.variant || 'grid';
   }
 
