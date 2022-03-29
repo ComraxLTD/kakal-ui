@@ -2,7 +2,7 @@ import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { Palette } from '../../../styles/theme';
 import { FilterType } from '../../filters/filters.types';
 
-import { Appearance, InputGrid, ControlType } from './question.types';
+import { Appearance, InputGrid, ControlType, FormGrid } from './question.types';
 
 export abstract class QuestionBase {
   public key: string;
@@ -14,7 +14,7 @@ export abstract class QuestionBase {
   public format?: { type: string; args?: any };
   public selector?: string;
   public controlType?: ControlType;
-  public gridProps?: InputGrid;
+  public gridProps?: InputGrid | FormGrid;
   public icon?: string;
   public validations?: ValidatorFn[];
   public disabled?: boolean;

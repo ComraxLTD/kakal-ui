@@ -4,5 +4,11 @@
 ></kkl-local-table>
 
 <kkl-page>
-  <app-form-filter-search></app-form-filter-search>
+  <!-- <app-form-filter-search></app-form-filter-search> -->
+
+  <kkl-form
+  [formGroup]="groupGrid.formGroup"
+  [questions]="groupGrid.questions"
+  [grid]="groupGrid.gridProps!"
+></kkl-form>
 </kkl-page>

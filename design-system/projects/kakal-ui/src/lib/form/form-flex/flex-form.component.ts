@@ -52,8 +52,8 @@ export class FormFlexComponent implements OnInit {
     this.cols = this.grid?.cols || 4;
     this.flex = 100 / (this.grid?.cols || this.cols);
     this.layout = this.grid.layout;
-    this.buttonCols = this.grid?.button.cols;
-    this.buttonSkip = new Array(this.grid?.button.skip);
+    this.buttonCols = this.grid?.button?.cols;
+    this.buttonSkip = new Array(this.grid?.button?.skip);
   }
 
   public onSubmit() {
