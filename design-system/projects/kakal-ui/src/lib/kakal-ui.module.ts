@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLNavigationModule } from './navigation/navigation.module';
-import { KKLBreadCrumbsModule } from './bread-crumbes/bread-crumbs.module';
+import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 import { KKLInfoCardModule } from './cards/info-card/info-card.module';
@@ -61,6 +61,8 @@ import { KKLLayoutModule } from './layouts/layout/layout.module';
 import { KKSectionModule } from './layouts/section/section.module';
 import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
 import { KKPageModule } from './layouts/page/page.module';
+import { KKLAccordionStepsModule } from './layouts/accordion-steps-layout/accordion-steps.module';
+import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
@@ -81,8 +83,12 @@ import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
-import { KKLVerticalStepperModule } from './vertical-stepper/vertical-stepper.module';
-import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
+
+import { KKLVerticalStepsModule} from './vertical-steps/vertical-steps.module'
+
+import he from '@angular/common/locales/he';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(he);
 
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
@@ -154,12 +160,15 @@ import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
+
+    KKLVerticalStepsModule,
+
     // LAYOUT
     KKLLayoutModule,
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
-    KKLVerticalStepperModule,
+    KKLAccordionStepsModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
 
@@ -239,11 +248,12 @@ import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
 
+    KKLVerticalStepsModule,
 
     KKSectionModule,
     KKPageModule,
 
-    KKLVerticalStepperModule,
+    KKLAccordionStepsModule,
   ],
 })
 export class KakalUiModule {}

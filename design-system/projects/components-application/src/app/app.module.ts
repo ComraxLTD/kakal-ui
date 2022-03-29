@@ -21,7 +21,7 @@ import { NewOrderLayoutComponent } from './components/new-order-layout/new-order
 import { ButtonComponent } from './components/button/button.component';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
 // import he from '@angular/common/locales/he';
-import { registerLocaleData } from '@angular/common';
+// import { registerLocaleData } from '@angular/common';
 // registerLocaleData(he);
 @NgModule({
   declarations: [
@@ -43,8 +43,7 @@ import { registerLocaleData } from '@angular/common';
     KakalUiModule,
     ReactiveFormsModule,
   ],
-  providers: [StepperLayoutService, BreakpointService, RouterService,
-    ],
+  providers: [StepperLayoutService, BreakpointService, RouterService,],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

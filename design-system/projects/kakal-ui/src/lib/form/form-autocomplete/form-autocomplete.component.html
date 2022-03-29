@@ -65,7 +65,13 @@
     </ng-container>
   </mat-autocomplete>
 
-  <button *ngIf="asButton" matSuffix mat-icon-button (click)="onSearchEvent()">
+  <button
+    type="button"
+    *ngIf="asButton"
+    matSuffix
+    mat-icon-button
+    (click)="onSearchEvent()"
+  >
     <kkl-icon color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   </button>
   <kkl-icon

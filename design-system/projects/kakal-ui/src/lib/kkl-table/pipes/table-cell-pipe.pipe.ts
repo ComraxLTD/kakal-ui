@@ -1,5 +1,5 @@
-import { DatePipe } from '@angular/common';
-import { Pipe, PipeTransform } from '@angular/core';
+import { DatePipe, formatDate } from '@angular/common';
+import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'tableCellPipe'
 })
@@ -39,7 +39,7 @@ export class TableCellPipe implements PipeTransform {
             case 'date':
               return new DatePipe('he-HE').transform(element);
             case 'dateRange':
-              return new DatePipe('he-HE').transform(element.begin)+' - '+new DatePipe('he-HE').transform(element.end);
+              return new DatePipe('he-HE').transform(element.begin) +' - '+ new DatePipe('he-HE').transform(element.end);
             // case 'currency':
             //   return new CurrencyPipe(this.locale).transform(element['amount'], element['currency'], 'symbol', '1.0-3');
             default:

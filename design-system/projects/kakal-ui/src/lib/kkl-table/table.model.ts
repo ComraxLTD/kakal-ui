@@ -1,5 +1,6 @@
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
-import { Palette, Appearance, ControlType } from '../../public-api';
+import { Palette } from '../../styles/theme'
+import { Appearance, ControlType } from '../form/models/question.types'
 import { FilterType } from '../filters/filters.types';
 
 import { RowActionModel } from './table-actions.model';
@@ -25,7 +26,7 @@ export abstract class TableBase {
   public colIcon?: string;
   public group?: string;
   public button?: RowActionModel;
-  public templateName: string;
+  public templateName?: string;
 
   constructor(options: {
     key: string;
