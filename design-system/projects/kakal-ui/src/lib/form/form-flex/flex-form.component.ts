@@ -21,8 +21,7 @@ import { Question } from '../services/form.service';
 export class FormFlexComponent implements OnInit {
   @Input() public questions: Question[];
   @Input() public formGroup: FormGroup;
-
-  @Input() public grid: FormGrid;
+  @Input() public grid: FormGrid = {};
   @Input() public optionsMap: OptionMap = {};
 
   @Input() public buttonLabel: string = 'שמור';

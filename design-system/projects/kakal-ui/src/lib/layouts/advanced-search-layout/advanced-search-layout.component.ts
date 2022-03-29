@@ -60,7 +60,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   private setGroup(): QuestionGroupModel {
     const group = this.formService.createQuestionGroup({
       questions: [...this.questions],
-      options: { gridProps: { cols: 4, variant: 'flex', ...this.grid } },
+      options: { gridProps: { cols: 4, ...this.grid } },
     });
     return group;
   }

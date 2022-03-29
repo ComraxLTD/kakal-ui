@@ -19,7 +19,6 @@ import { FormGrid } from '../models/question.types';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-
   @Input() questions: Question[];
   @Input() formGroup: FormGroup;
   @Input() grid: FormGrid;
@@ -40,6 +39,9 @@ export class FormComponent implements OnInit {
     new EventEmitter();
 
   ngOnInit() {
+    console.log(this.questions)
+    console.log(this.grid)
+    console.log(this.formGroup)
     this.variant = this.grid.variant || 'grid';
   }
 
