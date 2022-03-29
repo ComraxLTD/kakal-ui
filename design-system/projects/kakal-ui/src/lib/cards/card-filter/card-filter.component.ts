@@ -12,9 +12,20 @@ export interface CardFilter {
   styleUrls: ['./card-filter.component.scss'],
 })
 export class CardFilterComponent implements OnInit {
-
   @Input() card!: CardFilter;
-  @Input() chosen: boolean = false;
+
+  public _chosen: boolean;
+
+  @Input()
+  get chosen(): boolean {
+    return this._chosen;
+  }
+
+  set cols(value: boolean) {
+    this._chosen = value;
+    // this.invalidate();
+  }
+
   @Output() emitCard: EventEmitter<CardFilter> = new EventEmitter();
 
   constructor() {}

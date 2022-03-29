@@ -24,7 +24,7 @@
   mat-stroked-button
   [class.kkl-card-filter]="true"
   (click)="onCardClick()"
-  [ngClass]="{ chosen: true }"
+  [ngClass]="{ chosen: _chosen }"
   color="primary"
   [disableRipple]="true"
 >
