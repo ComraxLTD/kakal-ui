@@ -36,6 +36,7 @@ export * from './lib/form/form/form.component';
 
 export * from './lib/form/form-flex/flex-form.module';
 export * from './lib/form/form-flex/flex-form.component';
+export * from './lib/form/form-flex/flex-form-input.directive';
 
 export * from './lib/form/form-grid/form-grid.module';
 export * from './lib/form/form-grid/form-grid.component';
