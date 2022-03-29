@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import {
   CardFilter,
   FormDataSource,
@@ -16,6 +17,7 @@ import {
   providers: [FormDataSource],
 })
 export class AppComponent implements OnInit {
+  control = new FormControl();
   dataSource: any[] = [];
 
   columns: TableBase[] = [
