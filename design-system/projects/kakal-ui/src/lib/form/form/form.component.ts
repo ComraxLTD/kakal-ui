@@ -9,10 +9,9 @@ import {
 } from '@angular/core';
 import { QuestionGroupModel } from './../models/question-group.model';
 import { FormGroup } from '@angular/forms';
-import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { Question, OptionMap } from '../models/form.types';
-import { GridProps } from '../models/question.types';
+import { FormGrid } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form',
@@ -20,10 +19,9 @@ import { GridProps } from '../models/question.types';
   styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
-  @Input() group: QuestionGroupModel;
   @Input() questions: Question[];
   @Input() formGroup: FormGroup;
-  @Input() grid: GridProps;
+  @Input() grid: FormGrid;
   @Input() optionsMap: OptionMap = {};
 
   @Input() rowHeight: number;
@@ -33,7 +31,7 @@ export class FormComponent implements OnInit {
   @Input() buttonLabel: string = 'שמור';
   @Input() buttonTemp: TemplateRef<any>;
 
-  variant: 'flex' | 'grid' = 'grid';
+  variant: 'flex' | 'grid';
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -41,7 +39,7 @@ export class FormComponent implements OnInit {
     new EventEmitter();
 
   ngOnInit() {
-    this.variant = this.grid.variant || this.variant;
+    this.variant = this.grid.variant || 'grid';
   }
 
   public onSubmitEvent() {

@@ -36,10 +36,10 @@ export class FormExampleComponent implements OnInit {
     },
 
   ]
-  formGroup!: QuestionGroupModel;
+  group!: QuestionGroupModel;
 
   ngOnInit(): void {
-    this.formGroup = this.formService.createQuestionGroup({
+    this.group = this.formService.createQuestionGroup({
       questions: this.questions,
       key: 'test',
     });

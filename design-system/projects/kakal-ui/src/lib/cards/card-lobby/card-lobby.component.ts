@@ -1,14 +1,13 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { CardLobbyModel } from './card-lobby.model';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { map, Observable } from 'rxjs';
+
+export interface CardLobbyModel {
+  label: string;
+  path: string;
+  svgIcon: string;
+  size?: number;
+}
 
 @Component({
   selector: 'kkl-card-lobby',

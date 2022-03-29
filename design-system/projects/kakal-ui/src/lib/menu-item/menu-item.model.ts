@@ -4,7 +4,7 @@ export class MenuItemModel {
   public key?: string;
   public label?: string;
   public path?: string;
-  public svgUrl?: string;
+  public svgIcon?: string;
   public scale?: number;
   public size?: number;
   public isActive?: boolean;
@@ -14,13 +14,13 @@ export class MenuItemModel {
   constructor(options: {
     label?: string;
     path?: string;
-    svgUrl?: string;
+    svgIcon?: string;
     isActive?: boolean;
   }) {
     this.label = options?.label;
     this.path = options?.path;
     this.isActive = options?.isActive || false;
-    this.svgUrl = options?.svgUrl || 'arrow_right_alt';
+    this.svgIcon = options?.svgIcon || 'arrow_right_alt';
     this.active$ = new BehaviorSubject(this.isActive || false);
   }
 

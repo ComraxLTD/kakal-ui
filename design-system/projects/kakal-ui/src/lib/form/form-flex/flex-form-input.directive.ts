@@ -37,9 +37,7 @@ export class FlexFormInputDirective {
   constructor() {}
 
   ngOnInit(): void {
-    if (hasOffset(this.index, this.cols)) {
-      this.offset = (this.offset || 16) + 'px';
-    }
+    this.offset = (this.offset === 'none' ? 0 : 16) + 'px';
     this.gutter = this.gutter + 'px';
     this.width = '100%';
   }

@@ -7,7 +7,7 @@ import { map, startWith } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
 import { FormChangeEvent } from '../models/form.options';
 import { FormActions } from '../models/form.actions';
-import { ControlType, Appearance, GridProps } from '../models/question.types';
+import { ControlType, Appearance, InputGrid } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-input',
@@ -24,7 +24,7 @@ export class FormInputComponent implements OnInit {
   @Input() public theme!: Palette;
   @Input() public index!: number;
   @Input() public cleave!: {};
-  @Input() public gridProps!: GridProps;
+  @Input() public gridProps!: InputGrid;
   @Input() public icon!: string;
 
   public error$: BehaviorSubject<string>;
