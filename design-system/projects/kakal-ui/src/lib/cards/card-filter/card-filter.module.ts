@@ -2,12 +2,12 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { KKLDirectivesModule } from "../../directives/directives.module";
 import { KKLIconModule } from "../../icon/icon.module";
-import { FilterCardComponent } from './filter-card.component';
+import { CardFilterComponent } from './card-filter.component';
 
 @NgModule({
     imports: [KKLIconModule,KKLDirectivesModule,CommonModule],
-    declarations: [FilterCardComponent],
-    exports: [FilterCardComponent]
+    declarations: [CardFilterComponent],
+    exports: [CardFilterComponent]
 })
 
-export class KKLFilterCardModule { }
+export class KKLCardFilterModule { }

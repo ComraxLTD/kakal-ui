@@ -36,7 +36,6 @@ export * from './lib/form/form/form.component';
 
 export * from './lib/form/form-flex/flex-form.module';
 export * from './lib/form/form-flex/flex-form.component';
-export * from './lib/form/form-flex/flex-form-input.directive';
 
 export * from './lib/form/form-grid/form-grid.module';
 export * from './lib/form/form-grid/form-grid.component';
@@ -266,9 +265,9 @@ export * from './lib/cards/card-wizard/card-wizard.component';
 export * from './lib/cards/card-wizard/card-wizard.module';
 
 // card-filter
-export * from './lib/cards/filter-card/filter-card.component';
-export * from './lib/cards/filter-card/filter-card.model';
-export * from './lib/cards/filter-card/filter-card.module';
+export * from './lib/cards/card-filter/card-filter.component';
+export * from './lib/cards/card-filter/card-filter.model';
+export * from './lib/cards/card-filter/card-filter.module';
 
 export * from './lib/cards/card.model';
 
