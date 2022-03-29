@@ -37,13 +37,14 @@ export class FormFilterSearchComponent implements OnInit {
       label: 'יום הולדת',
       controlType: 'date',
       filterType: FilterType.SELECT,
-      gridProps: { cols: 2, skip: 1, offset: 'none' },
+      gridProps: { cols: 2 },
     },
     {
       key: 'committee',
       label: 'committee',
       controlType: 'dateRange',
       filterType: FilterType.DATE_RANGE,
+      gridProps: { offset: 'none' },
     },
     {
       label: 'city',

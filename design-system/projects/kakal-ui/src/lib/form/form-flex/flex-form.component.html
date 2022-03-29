@@ -150,15 +150,14 @@
   </ng-container>
 
   <ng-container *ngIf="buttonCols">
-    {{ flex }}
-
-    <ng-container *ngIf="buttonSkip">
-      <div flex-form-input [fxFlex]="flex * buttonSkip"></div>
-    </ng-container>
+    <!-- <ng-container *ngFor="let item of buttonSkip; let i = index">
+      <div flex-form-input [fxFlex]="flex"></div>
+    </ng-container> -->
 
     <div
       [class.button-container]="true"
       [fxFlex]="flex * buttonCols"
+      fxLayoutAlign="end center"
       kkl-form-button
     >
       <ng-container

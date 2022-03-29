@@ -6,8 +6,11 @@ export interface FormGrid {
   cols?: number;
   rows?: number;
   gutter?: number;
-  buttonCols?: number;
-  buttonSkip?: number;
+  button?: {
+    cols?: number;
+    skip?: number;
+    align?: 'start' | 'center' | 'end';
+  };
 }
 export interface InputGrid {
   cols?: number;

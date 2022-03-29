@@ -53,7 +53,7 @@ export class FormGridComponent implements OnInit {
 
   ngOnInit() {
     this.cols = this.grid?.cols || 1;
-    this.hasButton = !!this.grid?.buttonCols || false;
+    this.hasButton = !!this.grid?.button.cols || false;
     this.gutter = this.grid.gutter || 1;
   }
 

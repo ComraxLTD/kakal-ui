@@ -30,7 +30,7 @@ export class FormFlexComponent implements OnInit {
 
   layout: 'row' | 'column' = 'row';
   buttonCols: number;
-  buttonSkip: number;
+  buttonSkip: number[];
   flex: number;
   cols: number;
 
@@ -50,12 +50,11 @@ export class FormFlexComponent implements OnInit {
   constructor(private formDataSource: FormDataSource) {}
 
   ngOnInit() {
-    console.log(this.grid)
     this.cols = this.grid?.cols || 4;
     this.flex = 100 / (this.grid?.cols || this.cols);
     this.layout = this.grid.layout;
-    this.buttonCols = this.grid?.buttonCols;
-    this.buttonSkip = this.grid?.buttonSkip;
+    this.buttonCols = this.grid?.button.cols;
+    this.buttonSkip = new Array(this.grid?.button.skip);
   }
 
   public onSubmit() {
