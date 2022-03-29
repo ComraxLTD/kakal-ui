@@ -215,10 +215,6 @@ export * from './lib/page-headline/page-headline.component';
 export * from './lib/page-headline/page-headline.model';
 export * from './lib/page-headline/page-headline.module';
 export * from './lib/page-headline/page-headline.service';
-// card-filter
-export * from './lib/cards/filter-card/filter-card.component';
-export * from './lib/cards/filter-card/filter-card.model';
-export * from './lib/cards/filter-card/filter-card.module';
 
 // status-bars
 export * from './lib/status-bars/status-bars.module';
@@ -245,26 +241,34 @@ export * from './lib/kkl-hover/kkl-hover.component';
 export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards
-export * from './lib/cards/info-card/info-card.module';
-export * from './lib/cards/info-card/info-card.model';
-export * from './lib/cards/info-card/info-card.component';
 
 export * from './lib/cards/card-lobby/card-lobby.component';
 export * from './lib/cards/card-lobby/card-lobby.model';
 export * from './lib/cards/card-lobby/card-lobby.module';
+
 export * from './lib/cards/card-info/card-info.component';
 export * from './lib/cards/card-info/card-info.model';
 export * from './lib/cards/card-info/card-info.module';
+
 export * from './lib/cards/card-status/card-status.component';
 export * from './lib/cards/card-status/card-status.model';
 export * from './lib/cards/card-status/card-status.module';
+
 export * from './lib/cards/card-step/card-step.component';
-export * from './lib/cards/card-step/card-step.model';
 export * from './lib/cards/card-step/card-step.module';
-export * from './lib/cards/card-user/card-user.component';
+export * from './lib/cards/card-step/card-step.model';
+
 export * from './lib/cards/card-user/card-user.module';
+export * from './lib/cards/card-user/card-user.component';
+
 export * from './lib/cards/card-wizard/card-wizard.component';
 export * from './lib/cards/card-wizard/card-wizard.module';
+
+// card-filter
+export * from './lib/cards/filter-card/filter-card.component';
+export * from './lib/cards/filter-card/filter-card.model';
+export * from './lib/cards/filter-card/filter-card.module';
+
 export * from './lib/cards/card.model';
 
 // navbar

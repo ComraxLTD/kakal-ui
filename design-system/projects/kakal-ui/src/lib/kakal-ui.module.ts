@@ -11,7 +11,6 @@ import { KKLNavigationModule } from './navigation/navigation.module';
 import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
-import { KKLInfoCardModule } from './cards/info-card/info-card.module';
 import { KKLFilterCardModule } from './cards/filter-card/filter-card.module';
 
 import { KKLMenuItemModule } from './menu-item/menu-item.module';
@@ -110,7 +109,6 @@ registerLocaleData(he);
     KKLStepTitleModule,
     SidenavModule,
     KKLPageHeadlineModule,
-    KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
@@ -218,7 +216,6 @@ registerLocaleData(he);
     KKLTableCellModule,
 
     KKLDialogModule,
-    KKLInfoCardModule,
 
     KKLPipesModule,
     KKLDirectivesModule,
