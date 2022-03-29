@@ -1,29 +1,39 @@
 @use "../../../styles/variables" as main;
 
-mat-card.kkl-card-filter {
+:host {
+  direction: rtl;
+}
+
+::ng-deep button.mat-stroked-button.kkl-card-filter {
   position: relative;
-  padding: 1rem;
+  // padding: 1rem;
   min-width: 18rem;
+
+  span.mat-button-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+  }
 }
 
 .kkl-card-filter-svg {
   position: absolute;
   cursor: initial;
   border: 1px solid main.color(default);
-  right: -10%;
-  transform: translateY(-100%);
+  z-index: 100;
+  top: -25%;
+  transform: translateX(80%);
   background-color: main.color(paper) !important;
   box-shadow: 0px 0px 1px 3px main.color(paper) !important;
 }
 
 .chosen {
   background-color: main.color(paper) !important;
-  border: 1px solid main.color(primary);
+  border: 1px solid main.color(primary) !important;
 
-  & svg-icon {
-    background-color: main.color(primary);
-    & * {
-      fill: main.color(paper);
-    }
-  }
+  // & svg-icon {
+  //   background-color: main.color(primary);
+  //   & * {
+  //     fill: main.color(paper);
+  //   }
+  // }
 }

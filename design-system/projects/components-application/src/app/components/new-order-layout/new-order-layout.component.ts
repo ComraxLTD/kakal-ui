@@ -37,7 +37,7 @@ export class NewOrderLayoutComponent implements OnInit {
   public steps: CardStepModel[] = [
     new CardStepModel({
       label: 'פרטי הזמנה',
-      svgUrl: 'contact',
+      svgIcon: 'contact',
       path: 'details',
       size: 3,
       variant: 'circle',
@@ -46,7 +46,7 @@ export class NewOrderLayoutComponent implements OnInit {
     }),
     new CardStepModel({
       label: 'בחירת ספק',
-      svgUrl: 'reports',
+      svgIcon: 'reports',
       path: 'select-supplier',
       size: 3,
       variant: 'circle',
@@ -56,7 +56,7 @@ export class NewOrderLayoutComponent implements OnInit {
     }),
     new CardStepModel({
       label: 'ספק זוכה',
-      svgUrl: 'medal',
+      svgIcon: 'medal',
       path: 'bid',
       size: 3,
       variant: 'circle',

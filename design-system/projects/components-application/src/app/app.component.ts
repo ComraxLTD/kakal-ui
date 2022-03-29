@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardFilter, TableBase } from '../../../kakal-ui/src/public-api';
+import {  CardFilter, TableBase } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',

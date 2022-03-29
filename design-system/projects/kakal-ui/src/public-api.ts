@@ -242,13 +242,12 @@ export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards
 
-export * from './lib/cards/card-lobby/card-lobby.component';
-export * from './lib/cards/card-lobby/card-lobby.model';
 export * from './lib/cards/card-lobby/card-lobby.module';
+export * from './lib/cards/card-lobby/card-lobby.component';
 
+export * from './lib/cards/card-info/card-info.module';
 export * from './lib/cards/card-info/card-info.component';
 export * from './lib/cards/card-info/card-info.model';
-export * from './lib/cards/card-info/card-info.module';
 
 export * from './lib/cards/card-status/card-status.component';
 export * from './lib/cards/card-status/card-status.model';
@@ -265,9 +264,8 @@ export * from './lib/cards/card-wizard/card-wizard.component';
 export * from './lib/cards/card-wizard/card-wizard.module';
 
 // card-filter
-export * from './lib/cards/card-filter/card-filter.component';
-export * from './lib/cards/card-filter/card-filter.model';
 export * from './lib/cards/card-filter/card-filter.module';
+export * from './lib/cards/card-filter/card-filter.component';
 
 export * from './lib/cards/card.model';
 

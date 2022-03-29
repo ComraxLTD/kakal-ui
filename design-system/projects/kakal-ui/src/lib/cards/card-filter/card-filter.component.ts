@@ -1,5 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardFilter } from './card-filter.model';
+
+export interface CardFilter {
+  label: string;
+  value: number;
+  svgIcon: string;
+}
+
 @Component({
   selector: 'kkl-card-filter',
   templateUrl: './card-filter.component.html',

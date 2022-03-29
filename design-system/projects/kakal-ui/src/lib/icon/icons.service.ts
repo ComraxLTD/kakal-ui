@@ -5,7 +5,7 @@ import { AppIcons } from './icons';
 
 export interface IconItem {
   key: string;
-  svgUrl: string;
+  svgIcon: string;
 }
 
 @Injectable({
@@ -134,7 +134,7 @@ export class IconsService {
 
   public setIconsList(items: any[]) {
     items.map((item) => {
-      this.setIcon(item.svgUrl);
+      this.setIcon(item.svgIcon);
     });
   }
 }

@@ -1,4 +1,4 @@
-export declare type ListItemKeys = 'path' | 'label' | 'svgUrl';
+export declare type ListItemKeys = 'path' | 'label' | 'svgIcon';
 
 export interface ListItem<T = any> {
   type?: string,
@@ -8,7 +8,7 @@ export interface ListItem<T = any> {
   format?: string,
   size?: number,
   value?: any,
-  svgUrl?: string,
+  svgIcon?: string,
   multi?: boolean,
   offset? : number
 }
@@ -19,7 +19,7 @@ export abstract class ListItemModel {
     public key?: string,
     public type?: string,
     public label?: string,
-    public svgUrl?: string,
+    public svgIcon?: string,
     public size?: number,
   ) {
   }

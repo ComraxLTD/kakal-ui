@@ -15,7 +15,7 @@ export default {
   ],
   component: CardStatusComponent,
   argTypes: {
-    card: { 
+    card: {
       name: 'card',
       description: 'An object containes all the card info',
       table: {
@@ -43,4 +43,3 @@ StatusCard.args = {
     path: 'existing-procedures', // the link it should redirect to
   })
 };
- 

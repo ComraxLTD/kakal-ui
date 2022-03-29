@@ -23,7 +23,7 @@ export class CardStepComponent implements OnInit {
   ngOnInit(): void {
     this.active$ = this.step.getActiveObs();
     this.mobile$ = this.breakpointService.isMobile()
-    this.iconsService.setIcon(this.step.svgUrl)
+    this.iconsService.setIcon(this.step.svgIcon)
   }
 
   public onStepClick(): void {
