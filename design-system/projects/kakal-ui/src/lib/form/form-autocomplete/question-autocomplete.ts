@@ -3,7 +3,7 @@ import {
   QuestionSelectModel,
   SelectOption,
 } from '../form-select/question-select.model';
-import { ControlType, GridProps } from '../models/question.types';
+import { ControlType, InputGrid } from '../models/question.types';
 
 export class QuestionAutocompleteModel extends QuestionSelectModel {
   public onOptionSelect?: Function;
@@ -14,7 +14,7 @@ export class QuestionAutocompleteModel extends QuestionSelectModel {
     label?: string;
     controlType?: ControlType;
     validations?: ValidatorFn[];
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     options?: SelectOption[];
     onOptionSelect?: Function;

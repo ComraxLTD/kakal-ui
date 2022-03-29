@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableBase } from '../../../kakal-ui/src/public-api';
+import {  CardFilter, TableBase } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +21,12 @@ export class AppComponent implements OnInit {
     { key: 'city', label: 'עיר', controlType: 'select' },
     { key: 'dob', label: 'תאריך', controlType: 'date' },
   ];
+
+  public card: CardFilter = {
+    label: 'שם הכרטיס', // label inside card
+    value: 2, // number inside card
+    svgIcon: 'search', // svg key
+  };
 
   constructor() {}
 

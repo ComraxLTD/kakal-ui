@@ -1,1 +1,11 @@
-<kkl-local-table [dataSource]="dataSource" [columns]="columns" ></kkl-local-table>
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+></kkl-local-table>
+
+<kkl-page>
+  <!-- <app-form-filter-search></app-form-filter-search> -->
+  <div fxLayoutAlign="center">
+    <kkl-card-filter [card]="card"></kkl-card-filter>
+  </div>
+</kkl-page>

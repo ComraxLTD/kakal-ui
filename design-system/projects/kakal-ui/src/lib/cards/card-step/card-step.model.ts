@@ -15,7 +15,7 @@ export class CardStepModel extends MenuItemModel {
   constructor(options?: {
     label?: string;
     path?: string;
-    svgUrl?: string;
+    svgIcon?: string;
     stroke?: boolean;
     isActive?: boolean;
     variant?: CardVariant;
@@ -31,7 +31,7 @@ export class CardStepModel extends MenuItemModel {
     this.path = options?.path || '';
     this.stroke = options?.stroke || false;
     this.isActive = options?.isActive || false;
-    this.svgUrl = options?.svgUrl || '';
+    this.svgIcon = options?.svgIcon || '';
     this.variant = options?.variant || 'circle';
     this.type = options?.type || 'step';
     this.size = options?.size || 6;

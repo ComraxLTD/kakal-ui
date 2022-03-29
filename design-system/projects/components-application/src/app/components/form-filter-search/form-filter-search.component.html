@@ -3,8 +3,10 @@
     <ng-container *ngIf="optionsMap$ | async as optionsMap">
       <div fxLayout="row" fxLayoutAlign="center center">
         <kkl-advanced-search-layout
+          [expended]="true"
           fxFlex="60"
           [questions]="questions"
+          [grid]="{ button: { cols: 1, skip: 5 } }"
         ></kkl-advanced-search-layout>
       </div>
 

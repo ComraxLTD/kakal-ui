@@ -13,7 +13,7 @@ export class TestComponent implements OnInit {
   public steps: CardStepModel[] = [
     new CardStepModel({
       label: 'פרטי ההתקשרות',
-      svgUrl: 'contact',
+      svgIcon: 'contact',
       path: 'first',
       size: 3,
       variant: 'circle',
@@ -22,7 +22,7 @@ export class TestComponent implements OnInit {
     }),
     new CardStepModel({
       label: 'בניית הצעת מחיר',
-      svgUrl: 'offer',
+      svgIcon: 'offer',
       path: 'second',
       size: 3,
       variant: 'circle',
