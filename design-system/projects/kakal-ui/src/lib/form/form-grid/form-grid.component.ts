@@ -32,8 +32,9 @@ export class FormGridComponent implements OnInit {
     [key: string]: TemplateRef<any>;
   } = {};
 
-  @Input() optionsSlot: { [key: string]: ElementRef };
+  @Input() optionsTemplates: { [key: string]: ElementRef };
 
+  buttonLabel: string = 'שמור';
   gutter: number;
   hasButton: boolean;
   cols: string | number;
@@ -52,9 +53,10 @@ export class FormGridComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    this.gutter = this.grid.gutter || 1;
     this.cols = this.grid?.cols || 1;
     this.hasButton = !!this.grid?.button?.cols || false;
-    this.gutter = this.grid.gutter || 1;
+    this.buttonLabel = this.grid?.button?.label;
   }
 
   public onSubmit() {
