@@ -8,6 +8,7 @@ import {
   Question,
   QuestionGroupModel,
   TableBase,
+  CardInfoModel
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -33,52 +34,25 @@ export class AppComponent implements OnInit {
     { key: 'dob', label: 'תאריך', controlType: 'date' },
   ];
 
-  public card: CardFilter = {
-    label: 'שם הכרטיס', // label inside card
-    value: 2, // number inside card
-    svgIcon: 'search', // svg key
-  };
+  // public card: CardFilter = {
+  //   label: 'שם הכרטיס', // label inside card
+  //   value: 2, // number inside card
+  //   svgIcon: 'search', // svg key
+  // };
 
-  questions: Question[] = [
-    {
-      key: 'name',
-    },
-    {
-      key: 'select',
-      controlType: 'select',
-      options: [{ id: 0, label: 'test', value: 0 }],
-    },
-    {
-      key: 'email',
-      controlType: 'email',
-    },
-    {
-      key: 'phone',
-      controlType: 'phone',
-    },
-    {
-      key: 'date',
-    },
-    {
-      key: 'upload',
-      controlType: 'upload',
-    },
-    {
-      key: 'text',
-      controlType: 'textarea',
-    },
-  ];
 
-  groupGrid!: QuestionGroupModel;
+  card : CardInfoModel
 
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-    this.groupGrid = this.formService.createQuestionGroup({
-      questions: this.questions,
-      key: 'test',
-      options: { gridProps: { cols: 1, variant: 'grid' } as FormGrid },
-    });
+
+
+    this.card = {
+      svgIcon: 'home',
+      label: 'first headline',
+      subLabel: 'text long text liong tasd faser',
+    };
 
     this.dataSource = [
       {

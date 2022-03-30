@@ -7,6 +7,7 @@ import { CardInfoModel } from './card-info.model';
   styleUrls: ['./card-info.component.scss'],
 })
 export class CardInfoComponent implements OnInit {
+  
   @Input() public card: CardInfoModel;
 
   constructor() {}
