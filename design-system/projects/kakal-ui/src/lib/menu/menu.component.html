@@ -16,7 +16,7 @@
             <div mat-subheader>
               <kkl-typography
                 [color]="list.active ? 'paper' : 'primary'"
-                [bold]="600"
+                [weight]="600"
               >
                 {{ list.label }}
               </kkl-typography>
@@ -31,7 +31,7 @@
             ></kkl-menu-item>
           </mat-list>
         </mat-expansion-panel>
-        <kkl-menu-item [bold]="true" [item]="logoutItem"></kkl-menu-item>
+        <kkl-menu-item [weight]="true" [item]="logoutItem"></kkl-menu-item>
       </mat-list>
     </mat-accordion>
   </div>

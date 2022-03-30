@@ -12,7 +12,6 @@ export class CardWizardComponent implements OnInit {
   @Input() public step: CardStepModel;
 
   public type: CardType;
-  public active$: Observable<boolean>;
 
   @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
 
@@ -20,7 +19,6 @@ export class CardWizardComponent implements OnInit {
 
   ngOnInit(): void {
     this.type = this.step.type;
-    this.active$ = this.step.getActiveObs();
   }
 
   public onStepClick(): void {
