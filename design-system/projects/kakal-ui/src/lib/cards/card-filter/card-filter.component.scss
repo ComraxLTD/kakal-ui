@@ -6,7 +6,6 @@
 
 ::ng-deep button.mat-stroked-button.kkl-card-filter {
   position: relative;
-  // padding: 1rem;
   min-width: 18rem;
 
   span.mat-button-wrapper {
@@ -29,11 +28,4 @@
 .chosen {
   background-color: main.color(paper) !important;
   border: 1px solid main.color(primary) !important;
-
-  // & svg-icon {
-  //   background-color: main.color(primary);
-  //   & * {
-  //     fill: main.color(paper);
-  //   }
-  // }
 }

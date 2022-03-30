@@ -10,6 +10,7 @@ import {
   FormService,
   FormChangeEvent,
   FormActions,
+  FilterLookups,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { forkJoin, map, Observable, of } from 'rxjs';
@@ -112,6 +113,10 @@ export class FormFilterSearchComponent implements OnInit {
     }
   }
   public onFilterChanged(state: FilterState) {
+    console.log(state);
+  }
+
+  public onFilterLookUpChanged(state: FilterLookups) {
     console.log(state);
   }
 }

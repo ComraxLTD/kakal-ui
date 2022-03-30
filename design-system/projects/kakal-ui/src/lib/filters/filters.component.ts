@@ -1,7 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 
-import { FilterChangeEvent, FilterState, FilterType } from './filters.types';
+import {
+  FilterChangeEvent,
+  FilterLookups,
+  FilterState,
+  FilterType,
+} from './filters.types';
 import { FiltersService } from './filters.service';
 import { removeMultiFilter } from './filters.helpers';
 import { FormDataSource } from '../form/models/form-datasource';
@@ -17,13 +22,14 @@ import { map, Observable, switchMap } from 'rxjs';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
-
 export class FiltersComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
   public filtersState$: Observable<FilterState>;
 
   @Output() filterChanged: EventEmitter<FilterState> = new EventEmitter();
+  @Output() filterLookupChanged: EventEmitter<FilterLookups> =
+    new EventEmitter();
 
   constructor(
     private formDataSource: FormDataSource,
@@ -129,5 +135,10 @@ export class FiltersComponent implements OnInit {
   private _emitChanged() {
     const filterState = this.filterService.getState();
     this.filterChanged.emit(filterState);
+
+    const filterLookups = this.filterService.getFilterLookups();
+    this.filterLookupChanged.emit(filterLookups);
   }
+
+
 }

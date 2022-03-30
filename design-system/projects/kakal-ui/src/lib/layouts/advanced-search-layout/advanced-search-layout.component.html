@@ -60,6 +60,7 @@
   <ng-container *ngIf="_hasFilters">
     <kkl-filters
       (filterChanged)="onFilterChanged($event)"
+      (filterLookupChanged)="onFilterLookUpChanged($event)"
       [formGroup]="searchGroup.formGroup"
     ></kkl-filters>
   </ng-container>
