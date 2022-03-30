@@ -58,7 +58,10 @@
   <!-- FILTER CHIPS SECTION -->
 
   <ng-container *ngIf="_hasFilters">
-    <kkl-filters [formGroup]="searchGroup.formGroup"></kkl-filters>
+    <kkl-filters
+      (filterChanged)="onFilterChanged($event)"
+      [formGroup]="searchGroup.formGroup"
+    ></kkl-filters>
   </ng-container>
 </div>
 

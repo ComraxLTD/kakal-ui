@@ -6,7 +6,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { FilterState } from '../../filters/filters.types';
 import { FormChangeEvent } from '../../form/models/form.options';
 import {
@@ -15,17 +14,16 @@ import {
   QuestionGroupModel,
 } from '../../form/models/form.types';
 import { FormService } from '../../form/services/form.service';
-import { FiltersService } from '../../filters/filters.service';
 import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
-import { Observable, of } from 'rxjs';
-import { FormGrid, InputGrid } from '../../form/models/question.types';
+import { Observable } from 'rxjs';
+import { FormGrid } from '../../form/models/question.types';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
   templateUrl: './advanced-search-layout.component.html',
   styleUrls: ['./advanced-search-layout.component.scss'],
-  providers: [FiltersService, FormDataSource],
+  providers: [FormDataSource],
 })
 export class AdvancedSearchLayoutComponent implements OnInit {
   @ContentChild(KKLAdvancedSearchContentDirective) advancedSearchDirective;
@@ -59,6 +57,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   advanced: boolean = true;
 
   @Output() formChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() filterChanged: EventEmitter<FilterState> = new EventEmitter();
   @Output() searchChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(
@@ -96,5 +95,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   public onFormChanged(event: FormChangeEvent) {
     this.formDataSource.dispatch(event);
     this.formChanged.emit(event);
+  }
+
+  public onFilterChanged(state: FilterState) {
+    this.filterChanged.emit(state);
   }
 }
