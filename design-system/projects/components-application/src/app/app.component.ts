@@ -1,14 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import {
-  CardFilter,
   FormDataSource,
-  FormGrid,
   FormService,
-  Question,
-  QuestionGroupModel,
   TableBase,
-  CardInfoModel
+  CardInfoModel,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -40,14 +36,11 @@ export class AppComponent implements OnInit {
   //   svgIcon: 'search', // svg key
   // };
 
-
-  card : CardInfoModel
+  card: CardInfoModel;
 
   constructor(private formService: FormService) {}
 
   ngOnInit(): void {
-
-
     this.card = {
       svgIcon: 'home',
       label: 'first headline',
