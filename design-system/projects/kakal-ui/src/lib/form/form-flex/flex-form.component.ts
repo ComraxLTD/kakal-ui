@@ -22,10 +22,9 @@ export class FormFlexComponent implements OnInit {
   @Input() public formGroup: FormGroup;
   @Input() public grid: FormGrid = {};
   @Input() public optionsMap: OptionMap = {};
-
-  @Input() public buttonLabel: string = 'שמור';
   @Input() public buttonTemp: TemplateRef<any>;
 
+  buttonLabel: string = 'שמור';
   layout: 'row' | 'column' = 'row';
   buttonCols: number;
   buttonSkip: number[];
@@ -53,6 +52,7 @@ export class FormFlexComponent implements OnInit {
     this.layout = this.grid.layout;
     this.buttonCols = this.grid?.button?.cols;
     this.buttonSkip = new Array(this.grid?.button?.skip);
+    this.buttonLabel = this.grid?.button?.label;
   }
 
   public onSubmit() {

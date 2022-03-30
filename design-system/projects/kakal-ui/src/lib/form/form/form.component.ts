@@ -22,9 +22,8 @@ export class FormComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
   @Input() rowHeight: number;
-  @Input() optionsSlot: { [key: string]: ElementRef };
+  @Input() optionsTemplates: { [key: string]: ElementRef };
 
-  @Input() buttonLabel: string = 'שמור';
   @Input() buttonTemp: TemplateRef<any>;
 
   private _questions: Question[];
