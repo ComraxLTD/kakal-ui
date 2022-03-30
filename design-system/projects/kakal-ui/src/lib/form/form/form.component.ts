@@ -7,7 +7,6 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { QuestionGroupModel } from './../models/question-group.model';
 import { FormGroup } from '@angular/forms';
 import { FormChangeEvent } from '../models/form.options';
 import { Question, OptionMap } from '../models/form.types';

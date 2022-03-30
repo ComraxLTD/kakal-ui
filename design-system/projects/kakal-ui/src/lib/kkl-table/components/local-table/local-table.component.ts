@@ -41,13 +41,15 @@ export class LocalTableComponent implements OnInit {
   @Input() paging: boolean = true;
 
   oneColumns: TableBase[] = [];
-  @Input() set columns(value: TableBase[]) {
+  @Input()
+  set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
   }
 
 
   dataTable: MatTableDataSource<any[]> = new MatTableDataSource();
+  
   @Input() set dataSource(value: any[]) {
     if(value) {
       this.dataTable.data = value;
