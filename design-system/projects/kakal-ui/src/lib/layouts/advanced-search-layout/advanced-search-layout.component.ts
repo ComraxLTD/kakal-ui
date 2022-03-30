@@ -42,11 +42,11 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   private _optionsMap: OptionMap = {};
 
+  @Input()
   get optionsMap(): OptionMap {
     return this._optionsMap;
   }
 
-  @Input()
   set optionsMap(value: OptionMap) {
     this._optionsMap = { ...value };
   }
