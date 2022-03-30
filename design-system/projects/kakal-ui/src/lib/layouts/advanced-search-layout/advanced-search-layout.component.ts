@@ -15,34 +15,48 @@ import {
   QuestionGroupModel,
 } from '../../form/models/form.types';
 import { FormService } from '../../form/services/form.service';
+import { FiltersService } from '../../filters/filters.service';
 import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 import { Observable, of } from 'rxjs';
-import { InputGrid } from '../../form/models/question.types';
+import { FormGrid, InputGrid } from '../../form/models/question.types';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
   templateUrl: './advanced-search-layout.component.html',
   styleUrls: ['./advanced-search-layout.component.scss'],
+  providers: [FiltersService, FormDataSource],
 })
 export class AdvancedSearchLayoutComponent implements OnInit {
   @ContentChild(KKLAdvancedSearchContentDirective) advancedSearchDirective;
 
   @Input() questions!: Question[];
-  @Input() grid!: InputGrid;
+  @Input() grid!: FormGrid;
   @Input() asButton!: boolean;
   @Input() expended: boolean;
-  @Input() hasFilters: boolean = false;
-  @Input() optionsMap$: Observable<OptionMap>;
+
+  public _hasFilters: boolean;
+
+  @Input()
+  set hasFilters(value: boolean) {
+    this._hasFilters = value;
+  }
+
+  private _optionsMap: OptionMap = {};
+
+  get optionsMap(): OptionMap {
+    return this._optionsMap;
+  }
+
+  @Input()
+  set optionsMap(value: OptionMap) {
+    this._optionsMap = { ...value };
+  }
 
   filtersState$!: Observable<FilterState>;
   searchGroup!: QuestionGroupModel;
   advancedQuestions!: Question[];
   advanced: boolean = true;
-
-  get searchControl() {
-    return this.searchGroup.formGroup.get('search') as FormControl;
-  }
 
   @Output() formChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() searchChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
@@ -55,7 +69,6 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.searchGroup = this.setGroup();
     this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
-    this.optionsMap$ = this.optionsMap$ || of({});
   }
 
   private setGroup(): QuestionGroupModel {

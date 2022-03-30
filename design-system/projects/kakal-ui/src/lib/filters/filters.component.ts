@@ -17,6 +17,7 @@ import { map, Observable, switchMap } from 'rxjs';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
+
 export class FiltersComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
@@ -60,8 +61,6 @@ export class FiltersComponent implements OnInit {
       filterTypeMap: { [key: string]: FilterType }
     ) => {
       const { key, value, action } = formChangeEvent;
-
-      console.log(formChangeEvent)
 
       return {
         ...oldState,
