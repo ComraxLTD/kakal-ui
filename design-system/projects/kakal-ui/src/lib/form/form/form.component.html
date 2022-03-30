@@ -4,7 +4,7 @@
       [questions]="questions"
       [formGroup]="formGroup"
       [grid]="grid"
-      [rowHeight]="rowHeight"
+      [rowHeight]="grid.rowHeight || 9"
       [buttonTemp]="buttonTemp"
       [optionsMap]="optionsMap"
       (submitEvent)="onSubmitEvent()"

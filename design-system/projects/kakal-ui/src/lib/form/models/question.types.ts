@@ -5,6 +5,7 @@ export interface FormGrid {
   layout?: 'column' | 'row';
   cols?: number;
   rows?: number;
+  rowHeight?: number;
   gutter?: number;
   button?: ButtonGrid;
 }

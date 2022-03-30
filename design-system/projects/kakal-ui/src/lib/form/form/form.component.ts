@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormChangeEvent } from '../models/form.options';
-import { Question, OptionMap } from '../models/form.types';
+import { Question, OptionMap, FormDataSource } from '../models/form.types';
 import { FormGrid } from '../models/question.types';
 import { FormService } from '../services/form.service';
 
@@ -17,13 +17,11 @@ import { FormService } from '../services/form.service';
   selector: 'kkl-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
+  providers: [FormDataSource],
 })
 export class FormComponent implements OnInit {
   @Input() formGroup: FormGroup;
-
-  @Input() rowHeight: number;
   @Input() optionsTemplates: { [key: string]: ElementRef };
-
   @Input() buttonTemp: TemplateRef<any>;
 
   private _questions: Question[];
