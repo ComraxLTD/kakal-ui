@@ -27,12 +27,16 @@ export class FiltersService {
 
   public getFilterLookups(): FilterLookups {
     const filterState = this.getState();
-    return Object.keys(filterState).reduce((acc, key) => {
-      return {
-        ...acc,
-        [key]: filterState[key]?.value,
-      };
-    }, {} as any);
+    if (filterState) {
+      return Object.keys(filterState).reduce((acc, key) => {
+        return {
+          ...acc,
+          [key]: filterState[key]?.value,
+        };
+      }, {} as any);
+    } else {
+      return {}
+    }
   }
 
   public listen(): Observable<FilterState> {
