@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { FilterState } from './filters.types';
+import { FilterLookups, FilterState } from './filters.types';
 import { BehaviorSubject, filter, map, merge, Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -23,6 +23,16 @@ export class FiltersService {
 
   public getState(): FilterState {
     return this.filterState$.getValue();
+  }
+
+  public getFilterLookups(): FilterLookups {
+    const filterState = this.getState();
+    return Object.keys(filterState).reduce((acc, key) => {
+      return {
+        ...acc,
+        [key]: filterState[key]?.value,
+      };
+    }, {} as any);
   }
 
   public listen(): Observable<FilterState> {
