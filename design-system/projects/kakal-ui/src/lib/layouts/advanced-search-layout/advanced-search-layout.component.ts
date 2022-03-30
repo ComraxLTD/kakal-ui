@@ -32,6 +32,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() grid!: FormGrid;
   @Input() asButton!: boolean;
   @Input() expended: boolean;
+  @Input()  advanced: boolean
 
   public _hasFilters: boolean;
 
@@ -54,7 +55,6 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   filtersState$!: Observable<FilterState>;
   searchGroup!: QuestionGroupModel;
   advancedQuestions!: Question[];
-  advanced: boolean = true;
 
   @Output() searchChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterState> = new EventEmitter();
