@@ -29,11 +29,4 @@
 .chosen {
   background-color: main.color(paper) !important;
   border: 1px solid main.color(primary) !important;
-
-  // & svg-icon {
-  //   background-color: main.color(primary);
-  //   & * {
-  //     fill: main.color(paper);
-  //   }
-  // }
 }

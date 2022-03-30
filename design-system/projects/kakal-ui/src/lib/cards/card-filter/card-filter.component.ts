@@ -17,13 +17,8 @@ export class CardFilterComponent implements OnInit {
   public _chosen: boolean;
 
   @Input()
-  get chosen(): boolean {
-    return this._chosen;
-  }
-
-  set cols(value: boolean) {
+  set chosen(value: boolean) {
     this._chosen = value;
-    // this.invalidate();
   }
 
   @Output() emitCard: EventEmitter<CardFilter> = new EventEmitter();
