@@ -6,7 +6,7 @@ const routes: Routes = [
   { path: 'details', component: DetailsComponent, },
   { path: 'details/:id', component: DetailsComponent },
   {
-    path: 'test',data:{breadcrumb:'בדיקה'}, children: [
+    path: 'test', children: [
       { path: '', loadChildren: () => import('./test/test.module').then((m) => m.TestModule) }
     ]
   }
