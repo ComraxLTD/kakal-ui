@@ -1,26 +1,25 @@
 <div fxLayout="row" dir="rtl">
   <div fxLayout="column" fxFlex="90">
-    <ng-container *ngIf="optionsMap$ | async as optionsMap">
-      <div fxLayout="row" fxLayoutAlign="center center">
-        <kkl-advanced-search-layout
-          [expended]="true"
-          fxFlex="65"
-          [questions]="questions"
-          [hasFilters]="true"
-          [optionsMap$]="optionsMap$"
-          [grid]="{ button: { cols: 1, skip: 5 } }"
-        ></kkl-advanced-search-layout>
-      </div>
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <kkl-advanced-search-layout
+        [expended]="true"
+        fxFlex="65"
+        [questions]="questions"
+        [hasFilters]="hasFilters"
+        [optionsMap]="optionsMap"
+        [grid]="{ button: { cols: 1, skip: 5 } }"
+        (formChanged)="onFormChanged($event)"
+      ></kkl-advanced-search-layout>
+    </div>
 
-      <div>
-        <!-- <ng-container *ngIf="filtersState$ | async as filtersState"> -->
+    <div>
+      <!-- <ng-container *ngIf="filtersState$ | async as filtersState"> -->
 
-        <!-- <kkl-filters
+      <!-- <kkl-filters
           [formGroup]="searchGroup.formGroup"
           (filterChanged)="onFilterChanged($event)"
-        ></kkl-filters> -->
-        <!-- </ng-container> -->
-      </div>
-    </ng-container>
+          ></kkl-filters> -->
+      <!-- </ng-container> -->
+    </div>
   </div>
 </div>
