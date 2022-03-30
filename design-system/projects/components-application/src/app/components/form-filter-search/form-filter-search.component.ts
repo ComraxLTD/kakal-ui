@@ -31,34 +31,29 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'email',
       label: 'email',
-      filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
     {
       key: 'birthDay',
       label: 'יום הולדת',
       controlType: 'date',
-      filterType: FilterType.SELECT,
       gridProps: { cols: 2 },
     },
     {
       key: 'committee',
       label: 'committee',
       controlType: 'dateRange',
-      filterType: FilterType.DATE_RANGE,
       gridProps: { offset: 'none' },
     },
     {
       label: 'city',
       key: 'city',
-      filterType: FilterType.MULTI_SELECT,
       controlType: 'multiSelect',
       multi: true,
     },
     {
       key: 'country',
       label: 'country',
-      filterType: FilterType.SELECT,
       controlType: 'select',
     },
   ];
@@ -115,5 +110,8 @@ export class FormFilterSearchComponent implements OnInit {
       optionsMap[key] = [...options];
       this.optionsMap = { ...optionsMap };
     }
+  }
+  public onFilterChanged(state: FilterState) {
+    console.log(state);
   }
 }

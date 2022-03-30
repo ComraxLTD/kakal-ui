@@ -87,6 +87,7 @@ export class FiltersComponent implements OnInit {
     return this.onFormChanged().pipe(
       switchMap((filterState: FilterState) => {
         this.filterService.dispatch({ filterState });
+        this._emitChanged();
         return this.filterService.listen();
       })
     );
