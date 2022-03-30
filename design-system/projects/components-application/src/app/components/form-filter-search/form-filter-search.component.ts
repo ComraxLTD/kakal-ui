@@ -8,6 +8,8 @@ import {
   OptionMap,
   Question,
   FormService,
+  FormChangeEvent,
+  FormActions,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { forkJoin, map, Observable, of } from 'rxjs';
@@ -16,7 +18,7 @@ import { forkJoin, map, Observable, of } from 'rxjs';
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
-  providers: [FiltersService, FormDataSource, FormService],
+  providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
   questions: Question[] = [
@@ -29,46 +31,50 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'email',
       label: 'email',
-      filterType: FilterType.SELECT,
       controlType: 'autocomplete',
     },
     {
       key: 'birthDay',
       label: 'יום הולדת',
       controlType: 'date',
-      filterType: FilterType.SELECT,
       gridProps: { cols: 2 },
     },
     {
       key: 'committee',
       label: 'committee',
       controlType: 'dateRange',
-      filterType: FilterType.DATE_RANGE,
       gridProps: { offset: 'none' },
     },
     {
       label: 'city',
       key: 'city',
-      filterType: FilterType.MULTI_SELECT,
       controlType: 'multiSelect',
       multi: true,
     },
     {
       key: 'country',
       label: 'country',
-      filterType: FilterType.SELECT,
       controlType: 'select',
     },
   ];
 
   public optionsMap$: Observable<OptionMap>;
+  public optionsMap: OptionMap;
 
   public filtersState$: Observable<FilterState>;
 
-  constructor(private formDataSource: FormDataSource) {}
+  public hasFilters: boolean;
+
+  constructor() {}
 
   ngOnInit(): void {
+    this.hasFilters = true;
+
     this.optionsMap$ = this.getOptionsMap$();
+
+    this.getOptionsMap$().subscribe((options: OptionMap) => {
+      this.optionsMap = options;
+    });
   }
 
   private getCurrencyOptions() {
@@ -94,5 +100,18 @@ export class FormFilterSearchComponent implements OnInit {
 
   // DOM EVENTS SECTION
 
-  public onFilterChanged(state: FilterState) {}
+  public onFormChanged(state: FormChangeEvent) {
+    const { action } = state;
+
+    if (action === FormActions.OPTION_SELECTED) {
+      const { key } = state;
+      const optionsMap = { ...this.optionsMap };
+      const options = [...optionsMap[key].slice(0, 4)];
+      optionsMap[key] = [...options];
+      this.optionsMap = { ...optionsMap };
+    }
+  }
+  public onFilterChanged(state: FilterState) {
+    console.log(state);
+  }
 }

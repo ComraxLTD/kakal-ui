@@ -6,7 +6,6 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { FilterState } from '../../filters/filters.types';
 import { FormChangeEvent } from '../../form/models/form.options';
 import {
@@ -17,34 +16,48 @@ import {
 import { FormService } from '../../form/services/form.service';
 import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
-import { Observable, of } from 'rxjs';
-import { InputGrid } from '../../form/models/question.types';
+import { Observable } from 'rxjs';
+import { FormGrid } from '../../form/models/question.types';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
   templateUrl: './advanced-search-layout.component.html',
   styleUrls: ['./advanced-search-layout.component.scss'],
+  providers: [FormDataSource],
 })
 export class AdvancedSearchLayoutComponent implements OnInit {
   @ContentChild(KKLAdvancedSearchContentDirective) advancedSearchDirective;
 
   @Input() questions!: Question[];
-  @Input() grid!: InputGrid;
+  @Input() grid!: FormGrid;
   @Input() asButton!: boolean;
   @Input() expended: boolean;
-  @Input() hasFilters: boolean = false;
-  @Input() optionsMap$: Observable<OptionMap>;
+
+  public _hasFilters: boolean;
+
+  @Input()
+  set hasFilters(value: boolean) {
+    this._hasFilters = value;
+  }
+
+  private _optionsMap: OptionMap = {};
+
+  get optionsMap(): OptionMap {
+    return this._optionsMap;
+  }
+
+  @Input()
+  set optionsMap(value: OptionMap) {
+    this._optionsMap = { ...value };
+  }
 
   filtersState$!: Observable<FilterState>;
   searchGroup!: QuestionGroupModel;
   advancedQuestions!: Question[];
   advanced: boolean = true;
 
-  get searchControl() {
-    return this.searchGroup.formGroup.get('search') as FormControl;
-  }
-
   @Output() formChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() filterChanged: EventEmitter<FilterState> = new EventEmitter();
   @Output() searchChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor(
@@ -55,7 +68,6 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.searchGroup = this.setGroup();
     this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
-    this.optionsMap$ = this.optionsMap$ || of({});
   }
 
   private setGroup(): QuestionGroupModel {
@@ -83,5 +95,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   public onFormChanged(event: FormChangeEvent) {
     this.formDataSource.dispatch(event);
     this.formChanged.emit(event);
+  }
+
+  public onFilterChanged(state: FilterState) {
+    this.filterChanged.emit(state);
   }
 }

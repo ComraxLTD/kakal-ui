@@ -7,7 +7,6 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { OptionMap } from '../models/form.types';
 import { FormGrid } from '../models/question.types';
@@ -46,7 +45,7 @@ export class FormFlexComponent implements OnInit {
   @Output() public focusChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  constructor(private formDataSource: FormDataSource) {}
+  constructor() {}
 
   ngOnInit() {
     this.cols = this.grid?.cols || 4;

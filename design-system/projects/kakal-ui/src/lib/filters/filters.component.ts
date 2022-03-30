@@ -17,6 +17,7 @@ import { map, Observable, switchMap } from 'rxjs';
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
+
 export class FiltersComponent implements OnInit {
   @Input() formGroup: FormGroup;
 
@@ -61,8 +62,6 @@ export class FiltersComponent implements OnInit {
     ) => {
       const { key, value, action } = formChangeEvent;
 
-      console.log(formChangeEvent)
-
       return {
         ...oldState,
         [key]: {
@@ -88,6 +87,7 @@ export class FiltersComponent implements OnInit {
     return this.onFormChanged().pipe(
       switchMap((filterState: FilterState) => {
         this.filterService.dispatch({ filterState });
+        this._emitChanged();
         return this.filterService.listen();
       })
     );
