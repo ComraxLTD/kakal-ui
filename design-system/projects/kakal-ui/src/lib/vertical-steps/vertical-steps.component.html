@@ -1,11 +1,18 @@
-<mat-stepper orientation="vertical" [linear]="true" #stepper>
+<mat-stepper
+  [class.kkl-vertical-steps]="true"
+  orientation="vertical"
+  [linear]="true"
+  #stepper
+>
   <ng-container *ngFor="let step of steps; let i = index">
     <mat-step [stepControl]="step.control || step.key" completed>
       <ng-template matStepLabel>
-        <div [class.kkl-vertical-stepper-label]="true">{{ step.label }}</div>
+        <kkl-typography [size]="2.4" color="primary" [weight]="600">
+          {{ step.label }} .{{ i + 1 }}
+        </kkl-typography>
       </ng-template>
       <div fxLayout="row" fxLayoutAlign="end">
-        <div fxFlex="95" [matTooltip]="step.label">
+        <div fxFlex="95">
           <ng-container *ngTemplateOutlet="templates[step.key]"></ng-container>
         </div>
       </div>

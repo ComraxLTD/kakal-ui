@@ -21,17 +21,19 @@ import { of } from 'rxjs';
 })
 export class FormAutocompleteComponent implements OnInit {
   @Input() control!: FormControl | AbstractControl;
-  @Input() public key!: string;
-  @Input() public icon!: string;
-  @Input() public label!: string;
-  @Input() public options!: SelectOption[];
-  @Input() public panelWidth!: boolean;
-  @Input() public multi!: boolean;
-  @Input() public asButton!: boolean;
+  @Input() label!: string;
+  @Input() key!: string;
+  @Input() icon!: string;
+  @Input() options!: SelectOption[];
 
-  @Input() public optionSlot: TemplateRef<any>;
 
-  @Input() public selector: (config: {
+  @Input() panelWidth!: boolean;
+  @Input() multi!: boolean;
+  @Input() asButton!: boolean;
+
+  @Input() optionSlot: TemplateRef<any>;
+
+  @Input() selector: (config: {
     selector: string;
     options: SelectOption[];
   }) => SelectOption;
