@@ -19,24 +19,20 @@ export class BreadCrumbsComponent implements OnInit {
     this.router.events.pipe(
       filter((event: any) => event instanceof NavigationEnd),
       distinctUntilChanged(),
-    ).subscribe(() => {
+    ).subscribe(router => {
       this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
-      console.log(this.activatedRoute.root);
-      console.log(this.activatedRoute);
-      
-      console.log(this.breadcrumbs);
       
     })
 
   }
 
  
-  buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: IBreadCrumb[] = []): IBreadCrumb[] {
+  buildBreadCrumb(route: ActivatedRoute, url: string = '', breadcrumbs: IBreadCrumb[] = []): IBreadCrumb[] {    
     //If no routeConfig is avalailable we are on the root path
     let label = route.routeConfig && route.routeConfig.data ? route.routeConfig.data.breadcrumb : '';
     let isClickable = route.routeConfig && route.routeConfig.data && route.routeConfig.data.isClickable;
     let path = route.routeConfig && route.routeConfig.data ? route.routeConfig.path : '';
-  
+    
     // If the route is dynamic route such as ':id', remove it
     const lastRoutePart = path.split('/').pop();
     const isDynamicRoute = lastRoutePart.startsWith(':');
