@@ -50,7 +50,6 @@ export class BreadCrumbsComponent implements OnInit {
     // Only adding route with non-empty label
     const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
     const arrangedBreadcrumbs = this.arangeBreadcrumbsPath(newBreadcrumbs, this.router.url);
-    console.log(arrangedBreadcrumbs);
     
     if (route.firstChild) {
       //If we are not on our current path yet,
@@ -61,8 +60,6 @@ export class BreadCrumbsComponent implements OnInit {
   }
 
   arangeBreadcrumbsPath(breadcrumbs: IBreadCrumb[], path: string) {
-    console.log(path);
-    
     const filter = path.split('/').filter(path => path);
     return breadcrumbs.map((item, index) => {
       if(item.homepage)item.url = ''
