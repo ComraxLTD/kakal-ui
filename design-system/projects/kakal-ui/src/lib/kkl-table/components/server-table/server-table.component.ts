@@ -46,11 +46,16 @@ export class ServerTableComponent implements OnInit {
   @Input() set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
+    if(this.localButtons?.length) {
+      this.displayedColumns.push('actions');
+    }
   }
 
-
   dataTable: any[] = undefined;
-  @Input() dataSourceUrl: string;
+  myDataSourceUrl: string;
+  @Input() set dataSourceUrl(url: string){
+    this.myDataSourceUrl = url;
+  }
 
 
   localButtons: RowActionModel[];
@@ -102,7 +107,7 @@ export class ServerTableComponent implements OnInit {
     .set('page', page)
     .set('pageSize', pageSize)
     .set('sort', sort);
-    this.http.get(this.dataSourceUrl, { params: params }).pipe(take(1)).subscribe((value:any) => {
+    this.http.get(this.myDataSourceUrl, { params: params }).pipe(take(1)).subscribe((value:any) => {
       if(value) {
         this.dataTable = value.rows;
         setTimeout(() => {

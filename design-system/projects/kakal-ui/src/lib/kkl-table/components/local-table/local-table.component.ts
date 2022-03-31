@@ -48,14 +48,14 @@ export class LocalTableComponent implements OnInit {
   set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
-    if(this.localButtons.length) {
+    if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
   }
 
 
   dataTable: MatTableDataSource<any[]> = new MatTableDataSource();
-  
+
   @Input() set dataSource(value: any[]) {
     if(value) {
       this.dataTable.data = value;

@@ -128,4 +128,8 @@ export class AppComponent implements OnInit {
       },
     ];
   }
+
+  on(event: any) {
+    console.log(event);
+  }
 }

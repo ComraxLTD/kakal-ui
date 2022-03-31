@@ -47,6 +47,9 @@ export class EventTableComponent implements OnInit {
   @Input() set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
+    if(this.localButtons?.length) {
+      this.displayedColumns.push('actions');
+    }
   }
 
 
