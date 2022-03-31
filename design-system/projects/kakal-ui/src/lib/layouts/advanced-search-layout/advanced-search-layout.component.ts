@@ -18,6 +18,7 @@ import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 import { FormGrid } from '../../form/models/question.types';
 import { Observable } from 'rxjs';
+import { QuestionAutocompleteModel } from '../../form/form-autocomplete/question-autocomplete';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
@@ -30,10 +31,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   @Input() questions!: Question[];
   @Input() grid!: FormGrid;
-  @Input() asButton!: boolean;
   @Input() expended: boolean;
   @Input() advanced: boolean;
-
+  @Input() searchKey : string
 
   private _optionsMap: OptionMap = {};
 
@@ -49,6 +49,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   filtersState$!: Observable<FilterState>;
   searchGroup!: QuestionGroupModel;
   advancedQuestions!: Question[];
+  autocomplete!: QuestionAutocompleteModel;
 
   @Output() searchChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() filterChanged: EventEmitter<FilterState> = new EventEmitter();
@@ -75,7 +76,11 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   private setAdvancedQuestions(group: QuestionGroupModel) {
     const advancedQuestions = [...group.questions];
-    advancedQuestions.splice(0, 1);
+    const autoIndex = advancedQuestions.findIndex((q) => q.key === this.searchKey);
+    this.autocomplete = advancedQuestions.splice(
+      autoIndex,
+      1
+    )[0] as QuestionAutocompleteModel;
     return advancedQuestions;
   }
 
@@ -84,12 +89,12 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   }
 
   public onSearchChanged(event: FormChangeEvent) {
+    console.log(event)
     this.searchChanged.emit(event);
   }
 
   public onFormChanged(event: FormChangeEvent) {
     this.formDataSource.dispatch(event);
-    console.log(event)
     this.formChanged.emit(event);
   }
 
