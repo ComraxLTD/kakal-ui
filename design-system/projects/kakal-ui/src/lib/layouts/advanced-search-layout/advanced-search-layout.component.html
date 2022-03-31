@@ -57,7 +57,7 @@
 
   <!-- FILTER CHIPS SECTION -->
 
-  <ng-container *ngIf="_hasFilters">
+  <ng-container *ngIf="advanced">
     <kkl-filters
       (filterChanged)="onFilterChanged($event)"
       (filterLookupChanged)="onFilterLookUpChanged($event)"

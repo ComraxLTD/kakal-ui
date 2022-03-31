@@ -38,6 +38,7 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.filtersState$ = this.setFilterState();
+    console.log(this.formGroup)
   }
 
   private onFormChanged() {
