@@ -1,18 +1,17 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
-import { RowActionEvent, RowActionModel } from '../../table-actions.model';
+import { RowActionEvent, RowActionModel } from '../../table-actions.model'
 import { TableBase } from '../../table.model';
+import { TableServerModel } from '../../table-server.model';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
 @Component({
-  selector: 'kkl-local-table',
+  selector: 'kkl-event-table',
   templateUrl: '../all-tabels/all-table.component.html',
   styleUrls: ['../all-tabels/all-table.component.scss'],
   animations: [
@@ -23,9 +22,7 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
     ]),
   ],
 })
-export class LocalTableComponent implements OnInit {
-  // @ViewChild('table') table: MatTable<any>;
-
+export class EventTableComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
 
   isLoading: boolean = true;
@@ -34,6 +31,8 @@ export class LocalTableComponent implements OnInit {
   @Output() deleteRow = new EventEmitter<any>();
   @Output() editRow = new EventEmitter<any>();
   @Output() expandRow = new EventEmitter<any>();
+  @Output() requestChanged = new EventEmitter<any>();
+
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
 
@@ -42,30 +41,25 @@ export class LocalTableComponent implements OnInit {
   @Input() newRowAction: string;
 
   @Input() paging: boolean = true;
+  @Input() pageSize: number = 10;
 
   oneColumns: TableBase[] = [];
   @Input() set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
-    if(this.localButtons.length) {
-      this.displayedColumns.push('actions');
-    }
   }
 
 
-  dataTable: MatTableDataSource<any[]> = new MatTableDataSource();
-  @Input() set dataSource(value: any[]) {
+  dataTable: any[] = undefined;
+  @Input() set dataSourceServer(value: TableServerModel) {
     if(value) {
-      this.dataTable.data = value;
-      if(this.paginator) {
-        if(this.paging) {
-          this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
-        } else {
-          this.readySpanData(0, this.dataTable.filteredData.length);
-        }
-      }
+      this.dataTable = value.rows;
+      setTimeout(() => {
+        this.paginator.length = value.count;
+      });
+      this.readySpanData(0, this.dataTable.length);
     } else {
-      this.dataTable.data = [];
+      this.dataTable = [];
     }
     this.isLoading = false;
   }
@@ -103,50 +97,28 @@ export class LocalTableComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataTable.sort = this.sort;
     if(this.paging) {
-      this.dataTable.paginator = this.paginator;
-      this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
-        this.filteredDataSort(sor);
-        if(this.paginator.pageIndex === 0) {
-          this.paginator.firstPage();
-        }
-        this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
-      });
-      this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
-    } else {
-      this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
-        this.filteredDataSort(sor);
-        this.readySpanData(0, this.dataTable.filteredData.length);
-      });
-      this.readySpanData(0, this.dataTable.filteredData.length);
+      this.paginator.pageSize = this.pageSize;
     }
+    this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
+      this.requestChanged.emit({page: 0, pageSize: this.paginator.pageSize, sort: sor});
+      this.paginator.pageIndex = 0;
+      this.cleanPreLoading();
+    });
   }
 
   pageChanged(event: PageEvent) {
-    this.readySpanData(event.pageIndex*event.pageSize, Math.min((event.pageIndex+1)*event.pageSize, this.dataTable.filteredData.length) - event.pageIndex*event.pageSize);
+    this.requestChanged.emit({page: event.pageIndex, pageSize: event.pageSize});
+    this.cleanPreLoading();
   }
 
-  filteredDataSort(sor: any) {
-    if(sor.direction === 'asc') {
-      this.dataTable.filteredData.sort((a, b) => {
-        if(a[sor.active] > b[sor.active]) {
-          return 1;
-        } else if(a[sor.active] < b[sor.active]) {
-          return -1;
-        }
-        return 0;
-      });
-    } else {
-      this.dataTable.filteredData.sort((a, b) => {
-        if(a[sor.active] > b[sor.active]) {
-          return -1;
-        } else if(a[sor.active] < b[sor.active]) {
-          return 1;
-        }
-        return 0;
-      });
-    }
+
+  cleanPreLoading() {
+    this.editItems = [];
+    this.expandedElement = undefined;
+    this.rows.clear();
+    this.isLoading = false;
+    this.dataTable = undefined;
   }
 
   buttonClick(butt: RowActionModel, obj:any) {
@@ -154,7 +126,7 @@ export class LocalTableComponent implements OnInit {
       switch (butt.type) {
         case 'inlineDelete':
           if(confirm("Are you sure you want to delete?")) {
-            this.dataTable.data = this.dataTable.data.filter((a:any) => a !== obj);
+            this.dataTable = this.dataTable.filter((a:any) => a !== obj);
             this.deleteRow.emit(obj);
           }
           break;
@@ -169,7 +141,6 @@ export class LocalTableComponent implements OnInit {
         default:
           break;
       }
-      this.groupDataReload();
     } else {
       this.actionClicked.emit({action: butt.type, row: obj});
     }
@@ -180,18 +151,9 @@ export class LocalTableComponent implements OnInit {
     if (index > -1) {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
-      this.groupDataReload();
       Object.assign(ele, this.rows.at(index).value);
       this.editRow.emit(ele);
       this.rows.removeAt(index);
-    }
-  }
-
-  groupDataReload() {
-    if(this.paging){
-      this.readySpanData(this.paginator.pageIndex*this.paginator.pageSize, Math.min((this.paginator.pageIndex+1)*this.paginator.pageSize, this.dataTable.filteredData.length) - this.paginator.pageIndex*this.paginator.pageSize);
-    } else {
-      this.readySpanData(0, this.dataTable.filteredData.length);
     }
   }
 
@@ -211,8 +173,8 @@ export class LocalTableComponent implements OnInit {
     this.rows.push(row);
     const rowData: any = row.value;
     this.editItems = [...this.editItems, rowData];
-    this.dataTable.data.unshift(rowData);
-    this.dataTable.data = [...this.dataTable.data];
+    this.dataTable.unshift(rowData);
+    this.dataTable = [...this.dataTable]
   }
 
   readySpanData(offset:number, pageEnd:number) {
@@ -242,12 +204,12 @@ export class LocalTableComponent implements OnInit {
   }
   spanWorkData(accessor: any, key: any, start:number, end:number, offset: number) {
     for (let i = start; i < end;) {
-      let currentValue = accessor(this.dataTable.filteredData[i+offset]);
+      let currentValue = accessor(this.dataTable[i+offset]);
       let count = 1;
 
-      if(!this.editItems.includes(this.dataTable.filteredData[i+offset]) && this.expandedElement !== this.dataTable.filteredData[i+offset]) {
+      if(!this.editItems.includes(this.dataTable[i+offset]) && this.expandedElement !== this.dataTable[i+offset]) {
         for (let j = i + 1; j < end; j++) {
-          if(JSON.stringify(currentValue) !== JSON.stringify(accessor(this.dataTable.filteredData[j+offset])) || this.editItems.includes(this.dataTable.filteredData[j+offset]) || this.expandedElement == this.dataTable.filteredData[j+offset]) {
+          if(JSON.stringify(currentValue) !== JSON.stringify(accessor(this.dataTable[j+offset])) || this.editItems.includes(this.dataTable[j+offset]) || this.expandedElement == this.dataTable[j+offset]) {
             break;
           }
           count++;
@@ -261,31 +223,6 @@ export class LocalTableComponent implements OnInit {
     }
 
   }
-
-  // drop(event: CdkDragDrop<any[]>) {
-  //   console.log(this.dataTable.filteredData.findIndex((d) => d === event.item.data));
-
-  //   console.log(event);
-
-  //   moveItemInArray(this.dataTable.filteredData, event.previousIndex, event.currentIndex);
-  // }
-
-  // drop(event: CdkDragDrop<any[]>) {
-  //   const prevIndex = this.dataTable.data.findIndex(d => d === event.item.data);
-  //   moveItemInArray(this.dataTable.data, prevIndex, event.currentIndex);
-  //   // this.dataSource[event.currentIndex].level = event.currentIndex + 1;
-  //   // event.item.dropContainer.data.map((x, i) => (x.level = i + 1));
-  //   // this.table.renderRows();
-  // }
-
-  // drop(event: CdkDragDrop<any[]>) {
-  //   console.log(event);
-
-  //   // const previousIndex = this.dataTable.filteredData.findIndex(row => row === event.item.data);
-  //   moveItemInArray(this.dataTable.filteredData,event.previousIndex/2, event.currentIndex/2);
-  //   // this.groupDataReload();
-  //   // this.dataTable.filteredData = this.dataTable.filteredData.slice();
-  // }
 
   ngOnDestroy() {
     this.destroySubject$.next();

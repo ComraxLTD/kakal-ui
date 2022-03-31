@@ -1,9 +1,10 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { RowActionEvent, RowActionModel } from '../../table-actions.model'
 import { TableBase } from '../../table.model';
 
@@ -11,8 +12,8 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
 @Component({
   selector: 'kkl-server-table',
-  templateUrl: './server-table.component.html',
-  styleUrls: ['./server-table.component.scss'],
+  templateUrl: '../all-tabels/all-table.component.html',
+  styleUrls: ['../all-tabels/all-table.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
@@ -24,11 +25,12 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 export class ServerTableComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
 
+  isLoading: boolean = true;
+
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
   @Output() editRow = new EventEmitter<any>();
   @Output() expandRow = new EventEmitter<any>();
-  @Output() requestChanged = new EventEmitter<any>();
 
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
@@ -38,6 +40,7 @@ export class ServerTableComponent implements OnInit {
   @Input() newRowAction: string;
 
   @Input() paging: boolean = true;
+  @Input() pageSize: number = 10;
 
   oneColumns: TableBase[] = [];
   @Input() set columns(value: TableBase[]) {
@@ -47,14 +50,7 @@ export class ServerTableComponent implements OnInit {
 
 
   dataTable: any[] = undefined;
-  @Input() set dataSource(value: any[]) {
-    if(value) {
-      this.dataTable = value;
-      this.readySpanData(0, this.dataTable.length);
-    } else {
-      this.dataTable = [];
-    }
-  }
+  @Input() dataSourceUrl: string;
 
 
   localButtons: RowActionModel[];
@@ -85,26 +81,51 @@ export class ServerTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
   }
 
   ngAfterViewInit() {
     if(this.paging) {
-      this.paginator.page.pipe(takeUntil(this.destroySubject$)).subscribe(pag => {
-        this.requestChanged.emit({page: pag.pageIndex, pageSize: pag.pageSize});
-        this.cleanPreLoading();
-      });
+      this.paginator.pageSize = this.pageSize;
     }
     this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
-      this.requestChanged.emit({page: 0, pageSize: this.paginator.pageSize, sort: sor});
+      this.getData(0, this.paginator.pageSize, sor);
+      this.paginator.pageIndex = 0;
       this.cleanPreLoading();
     });
+    this.getData(0, this.paginator.pageSize, undefined);
   }
+
+
+  getData(page: number, pageSize: number, sort: any) {
+    let params = new HttpParams()
+    .set('page', page)
+    .set('pageSize', pageSize)
+    .set('sort', sort);
+    this.http.get(this.dataSourceUrl, { params: params }).pipe(take(1)).subscribe((value:any) => {
+      if(value) {
+        this.dataTable = value.rows;
+        setTimeout(() => {
+          this.paginator.length = value.count;
+        });
+        this.readySpanData(0, this.dataTable.length);
+      } else {
+        this.dataTable = [];
+      }
+      this.isLoading = false;
+    });
+  }
+  pageChanged(event: PageEvent) {
+    this.getData(event.pageIndex, event.pageSize, undefined);
+    this.cleanPreLoading();
+  }
+
 
   cleanPreLoading() {
     this.editItems = [];
     this.expandedElement = undefined;
     this.rows.clear();
+    this.isLoading = false;
     this.dataTable = undefined;
   }
 

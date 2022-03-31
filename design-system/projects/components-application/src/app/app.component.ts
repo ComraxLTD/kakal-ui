@@ -16946,13 +16946,13 @@ export class AppComponent implements OnInit {
 
   columns: TableBase[] = [
     {
-      controlType: 'select',
+      controlType: 'text',
       key: 'poCodes',
         label: `PO#`,
         group: 'poCodes',
     },
     {
-      controlType: 'select',
+      controlType: 'text',
       key: 'suppliers',
         label: `Supplier`,
         group: 'poCodes',

@@ -67,7 +67,6 @@ $plt-accent: (
   ),
 );
 
-
 $plt-primary: mat.define-palette($plt-primary, 500);
 $plt-accent: mat.define-palette($plt-accent, 500);
 $warn: mat.define-palette(mat.$red-palette);
