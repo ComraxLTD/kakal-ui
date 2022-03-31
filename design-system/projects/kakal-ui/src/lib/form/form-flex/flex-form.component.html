@@ -86,6 +86,7 @@
             [label]="question?.label"
             [icon]="question?.icon"
             [multi]="question.multi"
+            [asButton]="question.asButton"
             [options]="optionsMap[question?.key] || question.options"
             [control]="formGroup.controls[question.key]"
             (queryChanged)="onFormChanged($event)"

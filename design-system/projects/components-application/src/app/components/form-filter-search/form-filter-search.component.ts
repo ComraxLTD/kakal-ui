@@ -26,37 +26,39 @@ export class FormFilterSearchComponent implements OnInit {
     // key must be search for general search!
     {
       key: 'search',
+      label : 'חיפוש',
       controlType: 'autocomplete',
+      asButton : true
     },
 
-    {
-      key: 'email',
-      label: 'email',
-      controlType: 'autocomplete',
-    },
-    {
-      key: 'birthDay',
-      label: 'יום הולדת',
-      controlType: 'date',
-      gridProps: { cols: 2 },
-    },
-    {
-      key: 'committee',
-      label: 'committee',
-      controlType: 'dateRange',
-      gridProps: { offset: 'none' },
-    },
-    {
-      label: 'city',
-      key: 'city',
-      controlType: 'multiSelect',
-      multi: true,
-    },
-    {
-      key: 'country',
-      label: 'country',
-      controlType: 'select',
-    },
+    // {
+    //   key: 'email',
+    //   label: 'email',
+    //   controlType: 'autocomplete',
+    // },
+    // {
+    //   key: 'birthDay',
+    //   label: 'יום הולדת',
+    //   controlType: 'date',
+    //   gridProps: { cols: 2 },
+    // },
+    // {
+    //   key: 'committee',
+    //   label: 'committee',
+    //   controlType: 'dateRange',
+    //   gridProps: { offset: 'none' },
+    // },
+    // {
+    //   label: 'city',
+    //   key: 'city',
+    //   controlType: 'multiSelect',
+    //   multi: true,
+    // },
+    // {
+    //   key: 'country',
+    //   label: 'country',
+    //   controlType: 'select',
+    // },
   ];
 
   public optionsMap$: Observable<OptionMap>;
