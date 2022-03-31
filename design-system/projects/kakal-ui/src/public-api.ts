@@ -327,6 +327,11 @@ export * from './lib/layouts/section/section.component';
 export * from './lib/lobby/lobby.component';
 export * from './lib/lobby/lobby.module';
 
+// facility card 
+
+export * from './lib/facility-card/facility-card.component';
+export * from './lib/facility-card/facility-card.module';
+
 // vertical-steps
 export * from './lib/vertical-steps/vertical-steps.component';
 export * from './lib/vertical-steps/vertical-steps.module';
@@ -349,8 +354,8 @@ export * from './lib/pipes/location.pipe';
 export * from './lib/pipes/prefix.pipe';
 export * from './lib/pipes/range.pipe';
 export * from './lib/pipes/pluck.pipe';
+export * from './lib/pipes/numberToTime.pipe';
 export * from './lib/pipes/pipes.module';
-
 //directives
 export * from './lib/directives/hover.directive';
 export * from './lib/directives/variant.directive';

@@ -62,7 +62,7 @@ export class BreadCrumbsComponent implements OnInit {
   arangeBreadcrumbsPath(breadcrumbs: IBreadCrumb[], path: string) {
     const filter = path.split('/').filter(path => path);
     return breadcrumbs.map((item, index) => {
-      if(item.homepage)item.url = ''
+      if(item.homepage)item.url = '';
       else item.url = filter.slice(0, index).join('/');
       return item;
     });
