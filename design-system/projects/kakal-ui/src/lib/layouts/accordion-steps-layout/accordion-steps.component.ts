@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 import { Step } from '../../vertical-steps/step/step.model';
 import { Panel } from '../accordion-layout/accordion-types';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-accordion-steps-layout',

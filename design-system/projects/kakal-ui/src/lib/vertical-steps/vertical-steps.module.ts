@@ -7,6 +7,7 @@ import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { VerticalStepsComponent } from './vertical-steps.component';
 import { KKLStepsModule } from './step/step.module';
+import { KKLTypographyModule } from '../typography/typography.module';
 
 @NgModule({
   declarations: [VerticalStepsComponent],
@@ -16,6 +17,7 @@ import { KKLStepsModule } from './step/step.module';
     MatTooltipModule,
     FlexLayoutModule,
     KKLIconModule,
+    KKLTypographyModule,
     KKLDirectivesModule,
     KKLStepsModule
   ],
