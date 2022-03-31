@@ -2,13 +2,14 @@
   <div fxLayout="column" fxFlex="90">
     <div fxLayout="row" fxLayoutAlign="center center">
       <kkl-advanced-search-layout
-        [expended]="true"
         fxFlex="65"
+        [expended]="true"
         [advanced]="true"
+        [searchKey]="'search'"
         [questions]="questions"
         [optionsMap]="optionsMap"
         (formChanged)="onFormChanged($event)"
-        (filterChanged)="onFilterChanged($event)"
+        (searchChanged)="onSearchChanged($event)"
         (filterLookupChanged)="onFilterLookUpChanged($event)"
       ></kkl-advanced-search-layout>
     </div>

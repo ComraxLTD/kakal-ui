@@ -31,9 +31,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   @Input() questions!: Question[];
   @Input() grid!: FormGrid;
-  @Input() asButton!: boolean;
   @Input() expended: boolean;
   @Input() advanced: boolean;
+  @Input() searchKey : string
 
   private _optionsMap: OptionMap = {};
 
@@ -76,7 +76,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   private setAdvancedQuestions(group: QuestionGroupModel) {
     const advancedQuestions = [...group.questions];
-    const autoIndex = advancedQuestions.findIndex((q) => q.key === 'search');
+    const autoIndex = advancedQuestions.findIndex((q) => q.key === this.searchKey);
     this.autocomplete = advancedQuestions.splice(
       autoIndex,
       1
@@ -89,6 +89,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   }
 
   public onSearchChanged(event: FormChangeEvent) {
+    console.log(event)
     this.searchChanged.emit(event);
   }
 

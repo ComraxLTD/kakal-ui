@@ -114,8 +114,8 @@ export class FormFilterSearchComponent implements OnInit {
       this.optionsMap = { ...optionsMap };
     }
   }
-  public onFilterChanged(state: FilterState) {
-    console.log(state);
+  public onSearchChanged(state: FilterState) {
+    console.log('searchChanged', state);
   }
 
   public onFilterLookUpChanged(state: FilterLookups) {
