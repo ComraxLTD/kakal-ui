@@ -67,11 +67,11 @@
 </div>
 
 <ng-template #defaultTemplate let-context>
-  <kkl-form
+  <kkl-form-flex
     [questions]="context.questions"
     [formGroup]="context.formGroup"
     [grid]="context.grid"
     [optionsMap]="optionsMap"
-    (formChanged)="onFormChanged($event)"
-  ></kkl-form>
+    (formChangeEvent)="onFormChanged($event)"
+  ></kkl-form-flex>
 </ng-template>

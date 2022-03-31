@@ -10,11 +10,19 @@
     <kkl-stepper fxFlex="100" [steps$]="steps$" direction="row"></kkl-stepper>
   </div> -->
 
+<kkl-page>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <app-form-filter-search></app-form-filter-search>
+
+    <!-- <kkl-stepper fxFlex="100" [steps$]="steps$" direction="row"></kkl-stepper> -->
+  </div>
+
   <!-- <kkl-form
   [formGroup]="groupGrid.formGroup"
   [questions]="groupGrid.questions"
   [grid]="groupGrid.gridProps!"
 ></kkl-form> -->
-<!-- </kkl-page> -->
 <!-- <kkl-bread-crumbs></kkl-bread-crumbs> -->
 <router-outlet></router-outlet>
+</kkl-page>
+<router-outlet></router-outlet> -->

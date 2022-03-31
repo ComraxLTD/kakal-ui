@@ -5,13 +5,18 @@ export interface FormGrid {
   layout?: 'column' | 'row';
   cols?: number;
   rows?: number;
+  rowHeight?: number;
   gutter?: number;
-  button?: {
-    cols?: number;
-    skip?: number;
-    align?: 'start' | 'center' | 'end';
-  };
+  button?: ButtonGrid;
 }
+
+export interface ButtonGrid {
+  label?: string;
+  cols?: number;
+  skip?: number;
+  align?: 'start' | 'center' | 'end';
+}
+
 export interface InputGrid {
   cols?: number;
   rows?: number;
