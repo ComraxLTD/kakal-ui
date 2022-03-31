@@ -79,6 +79,7 @@
             [key]="question.key"
           ></kkl-form-range>
         </ng-container>
+
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'autocomplete'">
           <kkl-form-autocomplete
@@ -104,6 +105,13 @@
             [index]="index"
             (fileChanged)="onFormChanged($event)"
           ></kkl-form-upload>
+        </ng-container>
+
+        <!-- CHECKBOX SECTION -->
+        <ng-container *ngSwitchCase="'checkbox'">
+          <mat-checkbox [formControl]="formGroup.controls[question.key]">{{
+            question?.label
+          }}</mat-checkbox>
         </ng-container>
 
         <!-- CURRENCY INPUT SECTION -->
