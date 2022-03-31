@@ -32,14 +32,8 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() grid!: FormGrid;
   @Input() asButton!: boolean;
   @Input() expended: boolean;
-  @Input()  advanced: boolean
+  @Input() advanced: boolean;
 
-  public _hasFilters: boolean;
-
-  @Input()
-  set hasFilters(value: boolean) {
-    this._hasFilters = value;
-  }
 
   private _optionsMap: OptionMap = {};
 
@@ -95,6 +89,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   public onFormChanged(event: FormChangeEvent) {
     this.formDataSource.dispatch(event);
+    console.log(event)
     this.formChanged.emit(event);
   }
 
