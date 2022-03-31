@@ -1,15 +1,20 @@
-<kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-></kkl-local-table>
-<kkl-bread-crumbs></kkl-bread-crumbs>
-<kkl-navbar></kkl-navbar>
-<kkl-page>
+<kkl-page fxFill>
   <div fxLayout="row" fxLayoutAlign="center center">
-    <app-form-filter-search></app-form-filter-search>
+    <kkl-accordion-steps-layout
+      fxFlex="90"
+      [panels]="panels"
+      [steps]="steps"
+      [templates]="{filterForm, groupForm}"
+    ></kkl-accordion-steps-layout>
+    <!-- <app-form-filter-search></app-form-filter-search> -->
 
     <!-- <kkl-stepper fxFlex="100" [steps$]="steps$" direction="row"></kkl-stepper>
   </div> -->
 
     <kkl-page> </kkl-page></div
 ></kkl-page>
+
+<!-- templates for layouts -->
+<ng-template #filterForm> working 1 </ng-template>
+
+<ng-template #groupForm> working 2 </ng-template>
