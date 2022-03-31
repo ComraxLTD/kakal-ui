@@ -2,7 +2,7 @@ import { trigger, state, style, transition, animate } from '@angular/animations'
 // import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
@@ -13,8 +13,8 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
 @Component({
   selector: 'kkl-local-table',
-  templateUrl: './local-table.component.html',
-  styleUrls: ['./local-table.component.scss'],
+  templateUrl: '../all-tabels/all-table.component.html',
+  styleUrls: ['../all-tabels/all-table.component.scss'],
   animations: [
     trigger('detailExpand', [
       state('collapsed', style({height: '0px', minHeight: '0'})),
@@ -24,6 +24,8 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
   ],
 })
 export class LocalTableComponent implements OnInit {
+  // @ViewChild('table') table: MatTable<any>;
+
   destroySubject$: Subject<void> = new Subject();
 
   isLoading: boolean = true;
@@ -31,6 +33,7 @@ export class LocalTableComponent implements OnInit {
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
   @Output() editRow = new EventEmitter<any>();
+  @Output() expandRow = new EventEmitter<any>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
 
@@ -45,6 +48,9 @@ export class LocalTableComponent implements OnInit {
   set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
+    if(this.localButtons.length) {
+      this.displayedColumns.push('actions');
+    }
   }
 
 
@@ -102,16 +108,12 @@ export class LocalTableComponent implements OnInit {
     this.dataTable.sort = this.sort;
     if(this.paging) {
       this.dataTable.paginator = this.paginator;
-      this.paginator.page.pipe(takeUntil(this.destroySubject$)).subscribe(pag => {
-        this.readySpanData(pag.pageIndex*pag.pageSize, Math.min((pag.pageIndex+1)*pag.pageSize, this.dataTable.filteredData.length) - pag.pageIndex*pag.pageSize);
-      });
       this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
         this.filteredDataSort(sor);
         if(this.paginator.pageIndex === 0) {
-          this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
-        } else {
           this.paginator.firstPage();
         }
+        this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
       });
       this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
     } else {
@@ -121,6 +123,10 @@ export class LocalTableComponent implements OnInit {
       });
       this.readySpanData(0, this.dataTable.filteredData.length);
     }
+  }
+
+  pageChanged(event: PageEvent) {
+    this.readySpanData(event.pageIndex*event.pageSize, Math.min((event.pageIndex+1)*event.pageSize, this.dataTable.filteredData.length) - event.pageIndex*event.pageSize);
   }
 
   filteredDataSort(sor: any) {
@@ -159,6 +165,7 @@ export class LocalTableComponent implements OnInit {
           this.editItems = [...this.editItems, obj];
           break;
         case 'inlineExpand':
+          this.expandRow.emit(obj);
           this.expandedElement = this.expandedElement == obj? null : obj;
           break;
         default:
@@ -207,7 +214,7 @@ export class LocalTableComponent implements OnInit {
     const rowData: any = row.value;
     this.editItems = [...this.editItems, rowData];
     this.dataTable.data.unshift(rowData);
-    this.dataTable.data = [...this.dataTable.data]
+    this.dataTable.data = [...this.dataTable.data];
   }
 
   readySpanData(offset:number, pageEnd:number) {
@@ -257,6 +264,21 @@ export class LocalTableComponent implements OnInit {
 
   }
 
+  // drop(event: CdkDragDrop<any[]>) {
+  //   console.log(this.dataTable.filteredData.findIndex((d) => d === event.item.data));
+
+  //   console.log(event);
+
+  //   moveItemInArray(this.dataTable.filteredData, event.previousIndex, event.currentIndex);
+  // }
+
+  // drop(event: CdkDragDrop<any[]>) {
+  //   const prevIndex = this.dataTable.data.findIndex(d => d === event.item.data);
+  //   moveItemInArray(this.dataTable.data, prevIndex, event.currentIndex);
+  //   // this.dataSource[event.currentIndex].level = event.currentIndex + 1;
+  //   // event.item.dropContainer.data.map((x, i) => (x.level = i + 1));
+  //   // this.table.renderRows();
+  // }
 
   // drop(event: CdkDragDrop<any[]>) {
   //   console.log(event);

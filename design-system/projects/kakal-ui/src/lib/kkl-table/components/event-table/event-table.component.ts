@@ -1,17 +1,17 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Subject, take, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { RowActionEvent, RowActionModel } from '../../table-actions.model'
 import { TableBase } from '../../table.model';
+import { TableServerModel } from '../../table-server.model';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
 @Component({
-  selector: 'kkl-server-table',
+  selector: 'kkl-event-table',
   templateUrl: '../all-tabels/all-table.component.html',
   styleUrls: ['../all-tabels/all-table.component.scss'],
   animations: [
@@ -22,7 +22,7 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
     ]),
   ],
 })
-export class ServerTableComponent implements OnInit {
+export class EventTableComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
 
   isLoading: boolean = true;
@@ -31,6 +31,7 @@ export class ServerTableComponent implements OnInit {
   @Output() deleteRow = new EventEmitter<any>();
   @Output() editRow = new EventEmitter<any>();
   @Output() expandRow = new EventEmitter<any>();
+  @Output() requestChanged = new EventEmitter<any>();
 
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
@@ -50,7 +51,18 @@ export class ServerTableComponent implements OnInit {
 
 
   dataTable: any[] = undefined;
-  @Input() dataSourceUrl: string;
+  @Input() set dataSourceServer(value: TableServerModel) {
+    if(value) {
+      this.dataTable = value.rows;
+      setTimeout(() => {
+        this.paginator.length = value.count;
+      });
+      this.readySpanData(0, this.dataTable.length);
+    } else {
+      this.dataTable = [];
+    }
+    this.isLoading = false;
+  }
 
 
   localButtons: RowActionModel[];
@@ -81,7 +93,7 @@ export class ServerTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngAfterViewInit() {
@@ -89,34 +101,14 @@ export class ServerTableComponent implements OnInit {
       this.paginator.pageSize = this.pageSize;
     }
     this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
-      this.getData(0, this.paginator.pageSize, sor);
+      this.requestChanged.emit({page: 0, pageSize: this.paginator.pageSize, sort: sor});
       this.paginator.pageIndex = 0;
       this.cleanPreLoading();
     });
-    this.getData(0, this.paginator.pageSize, undefined);
   }
 
-
-  getData(page: number, pageSize: number, sort: any) {
-    let params = new HttpParams()
-    .set('page', page)
-    .set('pageSize', pageSize)
-    .set('sort', sort);
-    this.http.get(this.dataSourceUrl, { params: params }).pipe(take(1)).subscribe((value:any) => {
-      if(value) {
-        this.dataTable = value.rows;
-        setTimeout(() => {
-          this.paginator.length = value.count;
-        });
-        this.readySpanData(0, this.dataTable.length);
-      } else {
-        this.dataTable = [];
-      }
-      this.isLoading = false;
-    });
-  }
   pageChanged(event: PageEvent) {
-    this.getData(event.pageIndex, event.pageSize, undefined);
+    this.requestChanged.emit({page: event.pageIndex, pageSize: event.pageSize});
     this.cleanPreLoading();
   }
 
