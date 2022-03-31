@@ -328,7 +328,7 @@ export * from './lib/lobby/lobby.component';
 export * from './lib/lobby/lobby.module';
 
 // facility card 
-
+export * from './lib/facility-card/facility-card.model';
 export * from './lib/facility-card/facility-card.component';
 export * from './lib/facility-card/facility-card.module';
 

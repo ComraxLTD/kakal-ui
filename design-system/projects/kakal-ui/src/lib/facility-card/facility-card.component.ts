@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { FacilityCardInterface } from './facility-card.model';
 
 @Component({
   selector: 'kkl-facility-card',
@@ -7,13 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FacilityCardComponent implements OnInit {
   occupiedHoursArray: { totalHours?: number; user?: string }[] = [];
-  @Input() data: {
-    startingHour?: number;
-    endingHour?: number;
-    totalTime?: number;
-    user?: string;
-    gender?: 'males' | 'females';
-  }[] = [];
+  @Input() data: FacilityCardInterface[] = [];
 
   constructor() { }
 
