@@ -23,9 +23,32 @@ export class AppComponent implements OnInit {
     { key: 'id', label: 'Id', controlType: 'number' },
     { key: 'name', label: 'Name', controlType: 'text' },
     {
-      key: 'yearsOfExperience',
-      label: 'YearsOfExperience',
-      controlType: 'number',
+      controlType: 'text',
+      key: 'poCodes',
+        label: `PO#`,
+        group: 'poCodes',
+    },
+    {
+      controlType: 'text',
+      key: 'suppliers',
+        label: `Supplier`,
+        group: 'poCodes',
+    },
+    {
+      controlType: 'date',
+      key: 'recordedTime',
+        label: `Recorded time`,
+        button:
+          {
+            type: 'inlineExpand',
+            icon: 'expand',
+          }
+    },
+    {
+      controlType: 'text',
+      key: 'status',
+        label: `Status`,
+        colIcon: 'add'
     },
     { key: 'occupation', label: 'Occupation', controlType: 'text' },
     { key: 'city', label: 'עיר', controlType: 'select' },
@@ -104,5 +127,9 @@ export class AppComponent implements OnInit {
         yearsOfExperience: 32,
       },
     ];
+  }
+
+  on(event: any) {
+    console.log(event);
   }
 }
