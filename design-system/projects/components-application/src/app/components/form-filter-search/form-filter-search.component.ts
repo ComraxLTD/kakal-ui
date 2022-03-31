@@ -14,6 +14,7 @@ import {
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { forkJoin, map, Observable, of } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-filter-search',
@@ -48,18 +49,24 @@ export class FormFilterSearchComponent implements OnInit {
     //   controlType: 'dateRange',
     //   gridProps: { offset: 'none' },
     // },
-    // {
-    //   label: 'city',
-    //   key: 'city',
-    //   controlType: 'multiSelect',
-    //   multi: true,
-    // },
-    // {
-    //   key: 'country',
-    //   label: 'country',
-    //   controlType: 'select',
-    // },
+    {
+      label: 'city',
+      key: 'city',
+      controlType: 'multiSelect',
+      multi: true,
+    },
+    {
+      key: 'country',
+      label: 'country',
+      controlType: 'select',
+    },
   ];
+
+  control: FormControl = new FormControl();
+  controlMulti: FormControl = new FormControl();
+  key: string = 'select input';
+  options$!: Observable<SelectOption[]>;
+
 
   public optionsMap$: Observable<OptionMap>;
   public optionsMap: OptionMap;
@@ -120,5 +127,16 @@ export class FormFilterSearchComponent implements OnInit {
 
   public onFilterLookUpChanged(state: FilterLookups) {
     console.log(state);
+  }
+
+  selectedOption(event: FormChangeEvent) {
+    const { value } = event;
+    console.log(value)
+    this.controlMulti.setValue([value]);
+  }
+  selectedMultiOption(event: FormChangeEvent) {
+    const { value } = event;
+    const option = value[0];
+    this.control.setValue(option);
   }
 }

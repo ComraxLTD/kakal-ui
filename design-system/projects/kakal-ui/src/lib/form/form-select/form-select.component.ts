@@ -8,6 +8,10 @@ import { SelectOption } from './question-select.model';
 import { MessageService } from '../services/message.service';
 import { Appearance } from '../models/question.types';
 
+function compare(o1: Object, o2: Object) {
+  return JSON.stringify(o1) === JSON.stringify(o2);
+}
+
 @Component({
   selector: 'kkl-form-select',
   templateUrl: './form-select.component.html',
@@ -91,12 +95,13 @@ export class FormSelectComponent implements OnInit {
   }
 
   public compareFunction(o1: SelectOption, o2: SelectOption) {
+
+    console.log(compare(o1, o2))
+
     return typeof o1.value !== 'object' && typeof o1.value !== null
-      ? this.compare(o1, o2)
-      : this.compare(o1.value, o2.value);
+      ? compare(o1, o2)
+      : compare(o1.value, o2.value);
   }
 
-  private compare(o1: Object, o2: Object) {
-    return JSON.stringify(o1) === JSON.stringify(o2);
-  }
+
 }
