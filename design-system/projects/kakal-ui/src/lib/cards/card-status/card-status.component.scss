@@ -1,0 +1,25 @@
+@use "../../../styles/variables" as main;
+
+div {
+  height: 100%;
+}
+
+.kkl-card-status {
+  transform: translateY(1.5rem);
+  box-sizing: border-box;
+}
+
+.mat-badge-content {
+  color: main.color(paper) !important;
+}
+
+.text-container {
+  width: fit-content;
+  height: 5rem;
+  transform: translateX(-1rem);
+}
+
+::ng-deep .cdk-overlay-container .status-menu {
+  margin-top: 1.2rem;
+  overflow: hidden;
+}

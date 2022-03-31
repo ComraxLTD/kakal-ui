@@ -1,0 +1,55 @@
+<mat-form-field
+  class="kkl-form-uplaod"
+  [appearance]="disabled ? 'fill' : 'outline'"
+>
+  <mat-label
+    #menuTrigger="matMenuTrigger"
+    [matMenuTriggerFor]="menu"
+    kkl-underline
+    [class.active]="!disabled"
+  >
+    {{ label$ | async }}
+    <!-- <kkl-typography color="primary" [disabled]="disabled" underline="true">
+    </kkl-typography> -->
+  </mat-label>
+  <mat-select [disabled]="disabled" (click)="onClick(fileUpload, menuTrigger)">
+    <input
+      #input
+      hidden
+      type="file"
+      #fileUpload
+      [multiple]="multi"
+      [disabled]="disabled"
+      (change)="_onChangeEvent($event)"
+    />
+  </mat-select>
+
+  <button
+    matSuffix
+    mat-icon-button
+    (click)="fileUpload.click()"
+    [disabled]="disabled"
+  >
+    <mat-icon [class.active]="!disabled" [svgIcon]="'open_border'"></mat-icon>
+  </button>
+</mat-form-field>
+
+<mat-menu #menu="matMenu">
+  <mat-list dir="ltr">
+    <ng-container *ngFor="let file of files; let i = index">
+      <mat-list-item>
+        <kkl-typography mat-line>{{ file.name }} </kkl-typography>
+        <mat-icon
+          class="mat-icon-rtl-mirror"
+          mat-list-icon
+          (click)="onRemoveFile(file, $event)"
+          color="primary"
+        >
+          cancel
+        </mat-icon>
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+</mat-menu>
+
+<!-- key="open_border" -->

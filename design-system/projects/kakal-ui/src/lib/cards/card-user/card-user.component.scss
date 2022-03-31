@@ -1,0 +1,21 @@
+@use "../../../styles/variables" as main;
+
+::ng-deep mat-card.user {
+  .mat-card-header-text {
+    display: none;
+  }
+
+  div.divider-container {
+    height: 100%;
+    width: 80%;
+  }
+
+  mat-card-title {
+    font-size: 1.6rem !important;
+  }
+
+  mat-card-subtitle {
+    color: main.color(primary) !important;
+    font-size: 1.4rem !important;
+  }
+}

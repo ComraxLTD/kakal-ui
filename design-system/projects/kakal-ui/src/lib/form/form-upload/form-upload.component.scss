@@ -1,0 +1,33 @@
+@use "../../../styles/variables" as main;
+
+:host {
+  mat-label {
+    text-decoration: underline;
+    &.active {
+      color: main.color(primary) !important;
+    }
+    &:not(.active) {
+      color: main.color(default) !important;
+    }
+  }
+
+  mat-icon {
+    font-size: 1.8rem;
+
+    &.active {
+      stroke: main.color(primary) !important;
+    }
+    &:not(.active) {
+      stroke: main.color(default) !important;
+    }
+  }
+  ::ng-deep mat-option.file {
+    display: none !important;
+  }
+}
+
+// @media screen and (max-width: 1024px) {
+//   mat-form-field {
+//     font-size: 9px !important;
+//   }
+// }

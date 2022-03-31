@@ -1,0 +1,29 @@
+@use "../../styles/variables" as main;
+
+.title {
+    background-color: #f3f3f3;
+}
+.table-title {
+    border-bottom: 1px solid main.color(primary);
+}
+.padding {
+    padding: 0.5rem 2rem 0.5rem;
+    text-align: center;
+}
+.input-title {
+    background-color: rgba(main.color(primary), 0.2);
+    border-radius: 2px;
+    text-align: center;
+}
+
+.input-icon {
+    background: white;
+    padding: 0.2rem;
+    border-radius: 4px;
+}
+
+.spacing {
+    padding-left: 6rem;
+    padding-right: 6rem;
+    padding-bottom: 3rem;
+}

@@ -1,0 +1,127 @@
+@use "@angular/material" as mat;
+
+$plt-primary: (
+  50: var(--p-50),
+  100: var(--p-100),
+  200: var(--p-200),
+  300: var(--p-300),
+  400: var(--p-400),
+  500: var(--p-500),
+  600: var(--p-600),
+  700: var(--p-700),
+  800: var(--p-800),
+  900: var(--p-900),
+  A100: var(--p-A100),
+  A200: var(--p-A200),
+  A400: var(--p-A400),
+  A700: var(--p-A700),
+  contrast: (
+    50: var(--p-50),
+    100: var(--p-100),
+    200: var(--p-200),
+    300: var(--p-300),
+    400: var(--p-400),
+    500: var(--p-500),
+    600: var(--p-600),
+    700: var(--p-700),
+    800: var(--p-800),
+    900: var(--p-900),
+    A100: var(--p-A100),
+    A200: var(--p-A200),
+    A400: var(--p-A400),
+    A700: var(--p-A700),
+  ),
+);
+$plt-accent: (
+  50: var(--a-50),
+  100: var(--a-100),
+  200: var(--a-200),
+  300: var(--a-300),
+  400: var(--a-400),
+  500: var(--a-500),
+  600: var(--a-600),
+  700: var(--a-700),
+  800: var(--a-800),
+  900: var(--a-900),
+  A100: var(--a-A100),
+  A200: var(--a-A200),
+  A400: var(--a-A400),
+  A700: var(--a-A700),
+  contrast: (
+    50: var(--a-50),
+    100: var(--a-100),
+    200: var(--a-200),
+    300: var(--a-300),
+    400: var(--a-400),
+    500: var(--a-500),
+    600: var(--a-600),
+    700: var(--a-700),
+    800: var(--a-800),
+    900: var(--a-900),
+    A100: var(--a-A100),
+    A200: var(--a-A200),
+    A400: var(--a-A400),
+    A700: var(--a-A700),
+  ),
+);
+
+$plt-primary: mat.define-palette($plt-primary, 500);
+$plt-accent: mat.define-palette($plt-accent, 500);
+$warn: mat.define-palette(mat.$red-palette);
+
+$kkl-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: $plt-primary,
+      accent: $plt-accent,
+      warn: $warn,
+    ),
+  )
+);
+
+$plt-background: map-get($kkl-theme, background);
+$plt-foreground: map-get($kkl-theme, foreground);
+
+$p-keys: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900;
+$a-keys: (
+  100: A100,
+  200: A200,
+  400: A400,
+  700: A700,
+  500: 500,
+);
+
+$w-keys: (
+  100: A100,
+  200: A200,
+  400: A400,
+  700: A700,
+  500: 500,
+);
+
+@mixin theme {
+  @include mat.core();
+  @include mat.all-component-themes($kkl-theme);
+
+  :root {
+    @each $key in $p-keys {
+      --p-#{$key}: #{map-get($plt-primary, $key)};
+    }
+
+    @each $key, $value in $a-keys {
+      --a-#{$key}: #{map-get($plt-accent, $value)};
+    }
+
+    @each $key, $value in $w-keys {
+      --w-#{$key}: #{map-get(mat.define-palette(mat.$red-palette), $value)};
+    }
+
+    @each $key, $value in $plt-background {
+      --b-#{$key}: #{$value};
+    }
+
+    @each $key, $value in $plt-foreground {
+      --f-#{$key}: #{$value};
+    }
+  }
+}

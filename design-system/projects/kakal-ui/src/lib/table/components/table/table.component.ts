@@ -1,0 +1,183 @@
+import { SelectionModel } from '@angular/cdk/collections';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
+
+import { ThemePalette } from '@angular/material/core';
+
+import { KKLDataCellDirective } from '../../components/cells/table-data-cell/cell-data.directive';
+import { KKLActionCellDirective } from '../cells/table-action-cell/cell-action.directive';
+import { KKLHeaderCellDirective } from '../../components/header-cells/cell-header.directive';
+
+import { HeaderCellModel } from '../../components/header-cells/models/header-cell.model';
+import { TableDataSource } from '../../models/table-datasource';
+import { PageState, SortState, TableState } from '../../models/table.state';
+import { TableStateService } from './table.state.service';
+
+import PaginationChangeEvent from '../pagination/pagination.types';
+
+import { Observable, map, combineLatest, merge, switchMap, take } from 'rxjs';
+
+@Component({
+  selector: 'kkl-table',
+  templateUrl: './table.component.html',
+  styleUrls: ['./table.component.scss'],
+  providers: [TableStateService],
+})
+export class TableComponent<T = any> implements OnInit {
+  @ContentChild(KKLHeaderCellDirective)
+  cellHeaderDirective: KKLHeaderCellDirective | undefined;
+
+  @ContentChild(KKLDataCellDirective)
+  cellDirective: KKLDataCellDirective | undefined;
+
+  @ContentChild(KKLActionCellDirective)
+  cellActionDirective: KKLActionCellDirective | undefined;
+
+  @Input() public data$: Observable<T[]>;
+  @Input() public columns$: Observable<HeaderCellModel<T>[]>;
+  @Input() public initTableState$: Observable<TableState>;
+
+  // table data instance for column keys
+  @Input('itemKey') public key: keyof T;
+
+  @Input() public theme: ThemePalette = 'accent';
+
+  // if table have state modes
+  // @Input() public paginator: boolean;
+
+  @Input() public expendable: boolean;
+  @Input() public clickable: boolean;
+  @Input() public accordion: boolean;
+  @Input() public selectable: boolean;
+
+  // if table have additional features
+  @Input() public hasFooter: boolean;
+  @Input() public hasActions: boolean;
+
+  // ng template for footer cell
+  @Input() public footerTemplate: { [key: string]: TemplateRef<any> };
+
+  @Input() public selectTemplate: { [key: string]: TemplateRef<any> };
+
+  // ng template for expand cell
+  @Input() public expandTemplate: { [key: string]: TemplateRef<any> };
+
+  // emit sort event : Sort
+  @Output() sortChange: EventEmitter<SortState> = new EventEmitter();
+
+  // emit pagination event : {next : number, prev : number}
+  @Output() pageChange: EventEmitter<PaginationChangeEvent> =
+    new EventEmitter();
+
+  // emit select event : Observable<T[]>
+  @Output() selected: EventEmitter<Observable<T[]>> = new EventEmitter();
+
+  // emit row event expand : Observable<T>
+  @Output() expand: EventEmitter<any> = new EventEmitter();
+
+  // emit row : Observable<T>
+  @Output() rowClicked: EventEmitter<T> = new EventEmitter();
+
+  // set true to hide the filters above the table
+  @Input() hideChipFilters: boolean;
+
+  // main obj which subscribe to table data - rows & columns & pagination
+  public table$: any;
+  public tableState$: Observable<TableState>;
+
+  public pagination$: Observable<boolean>;
+
+  // cdk object that handle selection
+  public selection: SelectionModel<T> = new SelectionModel<T>(true, [], true);
+
+  constructor(
+    private tableStateService: TableStateService,
+    private tableDataSource: TableDataSource<T>
+  ) {}
+
+  private setColumns$() {
+    const columns$ = this.columns$.pipe(
+      map((columns: HeaderCellModel<T>[]) => {
+        const newState = [...columns];
+
+        if (this.hasActions) {
+          newState.push(new HeaderCellModel({ columnDef: 'actions' }));
+        }
+
+        if (this.selectable) {
+          newState.unshift(new HeaderCellModel({ columnDef: 'select' }));
+        }
+
+        return newState;
+      })
+    );
+
+    return columns$;
+  }
+
+  private setTable$() {
+    return combineLatest([this.setColumns$()]).pipe(
+      map(([columns]) => {
+        const columnDefs = columns.map((column) => column.columnDef);
+        return { columns, columnDefs };
+      })
+    );
+  }
+
+  ngOnInit() {
+    this.table$ = this.setTable$();
+    this.tableState$ = this.setTableState$();
+    this.hideChipFilters = this.hideChipFilters !== undefined;
+  }
+
+  ngAfterViewInit() {
+    if (this.hasActions && !this.cellActionDirective) {
+      throw new Error('kkl-table missing *kklActionCell');
+    }
+  }
+
+  private setTableState$() {
+    const initState$ =
+      this.initTableState$ ||
+      this.tableDataSource.listenTableState().pipe(take(1));
+
+    return merge(
+      initState$,
+      // this.tableStateService.onCloseEvent(this.tableDataSource),
+      // this.tableStateService.onEditEvent(this.tableDataSource),
+      // this.tableStateService.onCreateEvent(this.tableDataSource)
+    ).pipe(
+      switchMap((tableState) => {
+        if (tableState) {
+          this.tableDataSource.loadTableState({ tableState });
+        }
+        return this.tableDataSource.listenTableState();
+      })
+    );
+  }
+
+  // EMIT EVENTS
+
+  // method which emit page data
+  public onPageChange(pageEvent: PaginationChangeEvent) {
+    const { next } = pageEvent;
+    this.tableDataSource.dispatchPagination({
+      pageState: {
+        ...pageEvent,
+      } as PageState,
+    });
+
+    this.pageChange.emit({ ...pageEvent });
+  }
+
+  public isForm(index, item): boolean {
+    return index === 0 && item.id === null;
+  }
+}

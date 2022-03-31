@@ -1,0 +1,54 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxLayout="column" fxFlex="80" fxFlexOffset="1rem">
+    <div fxLayout="column" fxLayoutGap="1rem">
+      <kkl-typography [size]="1.4">Simple Autocomplete example </kkl-typography>
+
+      <kkl-typography>
+        Set autocomplete ui
+        1. create an AutocompleteQuestionModel, or a
+        Question Model with controlType property set to autocomplete
+        2. import
+        FormService 3. call the method getFiledControl() to create new
+        FormControl instance 4. create kkl-form-autocomplete in the html
+        template 5. pass the question and the control as inputs
+      </kkl-typography>
+      <kkl-typography [size]="1.1">
+        Set options 1. options array should be in the format of SelectOption
+        interface 2. after subscribe inject the array to the question model
+      </kkl-typography>
+
+      <form dir="rtl">
+        <kkl-form-autocomplete
+          [question]="question"
+          [control]="control"
+          [formDataSource]="formDataSource"
+          (autocomplete)="onAutocomplete($event)"
+          (optionSelected)="onOptionSelected($event)"
+        ></kkl-form-autocomplete>
+      </form>
+    </div>
+
+    <div fxLayout="column">
+      <kkl-typography> Multi options Autocomplete example </kkl-typography>
+      <div>
+        to create a multi options panel set the multi prop in the question model
+        to true
+      </div>
+      <kkl-form-autocomplete
+        [question]="questionMulti"
+        [control]="control"
+        [formDataSource]="formDataSource"
+        (autocomplete)="onAutocomplete($event)"
+        (optionSelected)="onOptionSelected($event)"
+      ></kkl-form-autocomplete>
+    </div>
+  </div>
+</div>
+
+<ng-template #optionsTemplates let-option="option">
+  <div>
+    <kkl-typography color="primary">
+      {{ option.label }}
+    </kkl-typography>
+  </div>
+</ng-template>

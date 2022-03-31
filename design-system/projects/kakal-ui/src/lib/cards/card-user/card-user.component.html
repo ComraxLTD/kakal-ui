@@ -1,0 +1,18 @@
+<mat-card class="mat-elevation-z0 user" dir="rtl">
+  <mat-card-header fxLayout="row" fxLayoutGap="2rem" fxFill>
+    <div>
+      <img mat-card-avatar [src]="user.imgUrl" />
+    </div>
+    <div>
+      <mat-card-title>
+        {{ user.name }}
+      </mat-card-title>
+      <mat-card-subtitle appButton (click)="onChangeUser()">
+        {{ action }}
+      </mat-card-subtitle>
+    </div>
+  </mat-card-header>
+  <div class="divider-container">
+    <mat-divider></mat-divider>
+  </div>
+</mat-card>

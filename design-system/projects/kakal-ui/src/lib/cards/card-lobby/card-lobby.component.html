@@ -1,0 +1,18 @@
+<ng-container *ngIf="card$ | async as card">
+  <div
+    class="kkl-lobby-card"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxLayoutGap="1rem"
+    (click)="onCardClick()"
+  >
+    <kkl-icon
+      [size]="card.size"
+      [color]="'primary'"
+      [key]="card.svgIcon"
+    ></kkl-icon>
+    <kkl-typography [size]="1.6" [weight]="600">
+      {{ card.label }}
+    </kkl-typography>
+  </div>
+</ng-container>

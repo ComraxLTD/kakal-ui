@@ -1,0 +1,9 @@
+<mat-checkbox
+  [formControl]="control"
+  color="primary"
+  [labelPosition]="labelPosition"
+  [disabled]="control.disabled"
+  (change)="onChange($event)"
+>
+  {{ label }}
+</mat-checkbox>

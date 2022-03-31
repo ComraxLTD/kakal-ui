@@ -1,0 +1,13 @@
+<div [class.kkl-form-currency]="true" fxFill dir="rtl">
+  <ng-container *ngIf="currencyGroup">
+    <kkl-form-input [class.number-input]="true" fxFlex="100" [key]="'sum'"
+      [cleave]="currencyGroup.controls['sum'].cleave" [controlType]="currencyGroup.controls['sum'].controlType"
+      [control]="currencyGroup.formGroup.controls['sum']" (valueChanged)="onValueChanged($event)">
+    </kkl-form-input>
+    <kkl-form-select fxFlex="3.8rem" [class.select-currency]="true" [key]="'currency'"
+      [appearance]="currencyGroup.controls['currency'].appearance"
+      [options]="currencyGroup.controls['currency'].options" [control]="currencyGroup.formGroup.controls['currency']"
+      (selectChanged)="onSelectChanged($event)">
+    </kkl-form-select>
+  </ng-container>
+</div>

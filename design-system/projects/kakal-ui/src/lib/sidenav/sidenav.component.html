@@ -1,0 +1,13 @@
+<div class="kkl-info-container" appOutside (clickOutside)="closeEvent.emit()">
+    <div class="main" fxLayout="column" fxLayoutGap="2rem">
+      <div class="title">
+        {{ title }}
+      </div>
+      <div class="content">
+        <ng-container *ngTemplateOutlet="content"></ng-container>
+      </div>
+    </div>
+  </div>
+  <div kkl-button class="close-box" (click)="closeEvent.emit()">
+    <kkl-icon size="8" key="close_box"></kkl-icon>
+  </div>

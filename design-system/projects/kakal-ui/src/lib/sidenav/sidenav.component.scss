@@ -1,0 +1,42 @@
+@use "../../styles//variables" as main;
+
+.kkl-info-container {
+  position: absolute;
+  top: 7rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 25%;
+  z-index: 2;
+  box-shadow: 2px 5px 6px #00000017;
+  backdrop-filter: blur(12px);
+  background-image: none !important;
+  overflow: auto;
+  .main {
+    background-color: transparent;
+    padding: main.spacing(2);
+    margin-top: 1rem;
+  }
+  .content {
+    margin-top: 1rem;
+  }
+  .title {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+}
+.close-box {
+  bottom: 80%;
+  left: 24%;
+  position: absolute;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 1024px) {
+  .sidenav-container {
+    .close-box {
+      bottom: 75%;
+      left: 23%;
+    }
+  }
+}

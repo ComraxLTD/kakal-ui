@@ -1,0 +1,35 @@
+<div dir="rtl" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="1rem">
+  <ng-container *ngIf="headlineItems$ | async as headlineItems">
+    <div
+      *ngFor="
+        let item of headlineItems;
+        let first = first;
+        let last = last;
+        let i = index
+      "
+      fxLayout="row"
+      fxLayoutAlign="space-between center"
+      fxLayoutGap=".5rem"
+    >
+      <kkl-typography [size]="sizeIndexMap[i]" [weight]="weightIndexMap[i]">
+        {{ item | pluck: "label" }}
+      </kkl-typography>
+      <ng-container
+        *ngTemplateOutlet="
+          templates[item.key] || defaultTemplate;
+          context: { $implicit: item }
+        "
+      ></ng-container>
+
+      <kkl-typography *ngIf="!last" [size]="2" [color]="'primary'"
+        >&#8226;</kkl-typography
+      >
+    </div>
+  </ng-container>
+</div>
+
+<ng-template #defaultTemplate let-item>
+  <kkl-typography [size]="sizeIndexMap[i]" [weight]="weightIndexMap[i]">
+    {{ item?.value | format: item?.format }}</kkl-typography
+  >
+</ng-template>

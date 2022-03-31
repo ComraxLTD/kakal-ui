@@ -1,0 +1,11 @@
+@use ".././../../styles/variables" as main;
+
+
+::ng-deep mat-form-field {
+  width: 100%;
+  font-size: 14px !important;
+}
+
+::ng-deep .mat-select-arrow {
+  opacity: 0;
+}

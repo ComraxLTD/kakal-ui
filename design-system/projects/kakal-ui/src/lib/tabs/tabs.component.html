@@ -1,0 +1,9 @@
+<div class="kkl-tabs">
+    <mat-tab-group animationDuration="0ms" fxLayout="row" [backgroundColor]="backgroundColor">
+        <ng-container *ngFor="let item of data">
+            <mat-tab [label]="item.label">
+                <ng-container *ngTemplateOutlet="templates[item.key]"></ng-container>
+            </mat-tab>
+        </ng-container>
+    </mat-tab-group>
+</div>

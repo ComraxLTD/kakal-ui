@@ -1,0 +1,21 @@
+<div class="kkl-card-status" fxLayout="row" fxLayoutAlign="center center">
+  <div
+    kkl-button
+    appSize
+    [size]="6"
+    [matBadge]="status.value"
+    matBadgeColor="accent"
+    matBadgeSize="medium"
+    (click)="onStatusCLick()"
+  >
+    <div class="status" appVariant [type]="status.type">
+      <kkl-icon [key]="status.svgIcon" [size]="3.5"></kkl-icon>
+    </div>
+  </div>
+
+  <div class="text-container" fxLayout="column" fxLayoutAlign="end start">
+    <kkl-typography [size]="1.2" [weight]="600">
+      {{ status.label }}
+    </kkl-typography>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<span
+  [ngClass]="['fontFamily', 'kkl-typography']"
+  [ngStyle]="{
+    color: palette[disabled ? 'disable' : color],
+    'font-size.rem': size,
+    'font-weight': weight,
+    'text-decoration': underline ? 'underline' : 'none'
+  }"
+>
+  <ng-content></ng-content>
+</span>

@@ -1,0 +1,17 @@
+<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1rem">
+  <mat-card kkl-button fxLayout="column" >
+    <mat-card-content>
+      <ng-container *ngIf="card.value; else iconBlock">
+        {{ card.value }}
+      </ng-container>
+      <ng-template #iconBlock>
+        <kkl-icon [color]="card.color" [key]="card.svgIcon" [size]="3.5">
+        </kkl-icon>
+      </ng-template>
+    </mat-card-content>
+  </mat-card>
+  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0.5rem">
+    <kkl-typography [weight]="600">{{ card.label }}</kkl-typography>
+    <kkl-typography [size]="1.2">{{ card.subLabel }}</kkl-typography>
+  </div>
+</div>

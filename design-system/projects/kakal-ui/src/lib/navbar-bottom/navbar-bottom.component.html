@@ -1,0 +1,49 @@
+<mat-toolbar
+  fxLayout="row"
+  fxLayoutAlign="space-between center"
+  fxFill
+  dir="rtl"
+>
+  <div fxFlex="10">
+    <div fxLayout="column" fxLayoutAlign="center start">
+      <button mat-mini-fab (click)="onPrevious()">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  </div>
+  <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
+    <kkl-icon type="svg" [size]="20" [key]="bottomIcon"></kkl-icon>
+  </div>
+  <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
+    <ng-container *ngIf="buttonState$ | async as buttonState">
+      <!-- template button -->
+      <ng-container>
+        <ng-template
+          *ngTemplateOutlet="
+            buttonSlots;
+            context: { $implicit: buttonState.disableNext }
+          "
+        ></ng-template>
+      </ng-container>
+
+      <!--save button -->
+      <ng-container *ngIf="buttonState.save">
+        <button mat-raised-button kkl-border [thick]="2" (click)="onSave()">
+          שמור
+        </button>
+      </ng-container>
+
+      <!--next button -->
+      <ng-container *ngIf="buttonState.next">
+        <button
+          mat-raised-button
+          [disabled]="buttonState.disableNext"
+          color="primary"
+          (click)="onNext()"
+        >
+          {{ nextText || "המשך" }}
+        </button>
+      </ng-container>
+    </ng-container>
+  </div>
+</mat-toolbar>

@@ -1,0 +1,77 @@
+<div fxLayout="column" [class.kkl-form-search]="true">
+  <header
+    [class.kkl-form-search]="true"
+    fxLayout="row"
+    fxLayoutAlign="space-between center"
+  >
+    <kkl-form-autocomplete
+      fxFlex="90"
+      [asButton]="asButton"
+      [control]="searchGroup.formGroup.controls['search']"
+      (queryChanged)="onSearchChanged($event)"
+      (multiOptionsSelected)="onSearchChanged($event)"
+      (optionSelected)="onSearchChanged($event)"
+      (searchEvent)="onSearchChanged($event)"
+    ></kkl-form-autocomplete>
+
+    <div kkl-form-button *ngIf="advanced">
+      <button
+        [disableRipple]="true"
+        mat-icon-button
+        kkl-action-button
+        (click)="onClick()"
+      >
+        <kkl-icon
+          [color]="'primary'"
+          [key]="
+            expended ? 'keyboard_double_arrow_up' : 'keyboard_double_arrow_down'
+          "
+        ></kkl-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- expand panel section -->
+  <main>
+    <mat-accordion [class.kkl-form-search]="true">
+      <mat-expansion-panel
+        [class.kkl-form-search]="true"
+        [class.mat-elevation-z0]="true"
+        [expanded]="expended"
+      >
+        <ng-container
+          *ngTemplateOutlet="
+            advancedSearchDirective?.template || defaultTemplate;
+            context: {
+              $implicit: {
+                questions: advancedQuestions,
+                formGroup: searchGroup.formGroup,
+                grid: searchGroup.gridProps
+              }
+            }
+          "
+        ></ng-container>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </main>
+
+  <!-- FILTER CHIPS SECTION -->
+
+  <ng-container *ngIf="_hasFilters">
+    <kkl-filters
+      (filterChanged)="onFilterChanged($event)"
+      (filterLookupChanged)="onFilterLookUpChanged($event)"
+      [formGroup]="searchGroup.formGroup"
+    ></kkl-filters>
+  </ng-container>
+</div>
+
+<ng-template #defaultTemplate let-context>
+  <kkl-form-flex
+    [questions]="context.questions"
+    [formGroup]="context.formGroup"
+    [grid]="context.grid"
+    [optionsMap]="optionsMap"
+    (formChangeEvent)="onFormChanged($event)"
+  ></kkl-form-flex>
+</ng-template>

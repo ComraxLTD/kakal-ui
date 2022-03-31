@@ -1,0 +1,23 @@
+@use ".././../../styles/variables" as main;
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.kkl-flex-form,
+kkl-form-input {
+  width: 100%;
+}
+
+div {
+  &.input-container {
+    width: 100%;
+  }
+
+  &.input-space {
+    box-sizing: border-box;
+    padding-left: main.spacing(2);
+  }
+
+  &.button-container {
+    box-sizing: border-box;
+    padding-left: main.spacing(1);
+  }
+}

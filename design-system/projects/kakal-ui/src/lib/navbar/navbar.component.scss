@@ -1,0 +1,25 @@
+@use "../../styles/variables" as main;
+
+mat-toolbar {
+  z-index: 2;
+  position: relative;
+  background-color: main.color(paper)!important;
+  height: main.$toolbar-height !important;
+  box-sizing: border-box;
+}
+
+kkl-stepper {
+  width: 100%;
+}
+
+/* Mobile  ----------- */
+@media screen and (max-width: 600px) {
+  mat-toolbar {
+    padding-right: 0px;
+
+    &.mobile-status {
+      padding-right: main.spacing(1);
+      padding-left: main.spacing(1);
+    }
+  }
+}

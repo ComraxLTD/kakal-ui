@@ -1,0 +1,10 @@
+@use "../../../styles/variables" as main;
+
+
+.kkl-lobby-card {
+  cursor: pointer;
+  background-color: rgba($color: #ffffff, $alpha: 0.82);
+  border-radius: 0.5rem;
+  height: 100%;
+}
+

@@ -9,7 +9,6 @@ on:
 
 jobs:
   publish-gpr:
-    needs: build
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -22,7 +21,10 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - run: npm ci
         working-directory: design-system
-      - run: npm publish
+      - run: npm run build:prod
         working-directory: design-system
+      - name: Publish package
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        run: npm publish
+        working-directory: design-system/dist/kakal-ui

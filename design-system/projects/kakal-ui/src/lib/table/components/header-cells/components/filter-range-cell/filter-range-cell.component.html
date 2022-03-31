@@ -1,0 +1,27 @@
+
+
+<ng-container *ngIf="filterType === 'numberRange'; else dateRange">
+  <div fxLayout="row" fxLayoutGap="1rem">
+    <ng-container *ngFor="let q of amountGroup.questions">
+      <kkl-form-input
+        fxFlex="50"
+        [key]="q.key"
+        [control]="amountGroup.formGroup.controls[q.key]"
+        [cleave]="q.cleave"
+        [controlType]="q.controlType"
+        [label]="q.label"
+        (valueChanged)="onRangeNumberChange()"
+      ></kkl-form-input>
+    </ng-container>
+  </div>
+</ng-container>
+
+<ng-template #dateRange>
+  <kkl-form-date
+    [range]="true"
+    [control]="dateControl"
+    [key]="columnDef"
+    (dateEvent)="onRangeDateChange($event)"
+  >
+  </kkl-form-date>
+</ng-template>
