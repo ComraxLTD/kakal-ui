@@ -85,7 +85,8 @@ import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 
-import { KKLVerticalStepsModule} from './vertical-steps/vertical-steps.module'
+import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
+import { FacilityCardModule } from './facility-card/facility-card.module';
 
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
@@ -174,6 +175,7 @@ registerLocaleData(he);
 
     KKSectionModule,
     KKPageModule,
+    FacilityCardModule
   ],
   exports: [
     //TOOLS
@@ -253,6 +255,7 @@ registerLocaleData(he);
     KKPageModule,
 
     KKLAccordionStepsModule,
+    FacilityCardModule
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }

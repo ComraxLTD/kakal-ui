@@ -1,0 +1,36 @@
+<div class="facility-card" fxLayout="column" dir="rtl" fxLayoutGap='1rem'>
+    <div>
+        <kkl-typography>תפוסת מתקן :</kkl-typography>
+    </div>
+    <div>
+        <div class="items" fxLayout="row" *ngFor="let item of data" fxLayoutAlign=" center">
+            <div>
+                <kkl-typography>{{item.startingHour | numberToTimePipe}}</kkl-typography> - <kkl-typography>
+                    {{item.endingHour | numberToTimePipe}}</kkl-typography>
+            </div>
+            <div class="box" [ngClass]="item.gender"></div>
+            <div>
+                <kkl-typography>תפוס ע"י {{item.user}}</kkl-typography>
+            </div>
+        </div>
+    </div>
+    <div class="bar">
+        <span class="slot" *ngFor="let item of occupiedHoursArray" [ngClass]="{'background-green':item.user =='none',
+          'background-grey':(item.user !=='none' && item.user !== username) }"
+            [ngStyle]="{'width': calculateWidth(item.totalHours) }"></span>
+    </div>
+    <div fxLayout="row">
+        <div class="explanation" fxLayout="row" fxLayoutAlign="space-between center">
+            <div class="box unoccupied"></div>
+            <div>
+                <kkl-typography>פנוי</kkl-typography>
+            </div>
+        </div>
+        <div class="explanation" fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="2rem">
+            <div class="box occupied"></div>
+            <div>
+                <kkl-typography>תפוס</kkl-typography>
+            </div>
+        </div>
+    </div>
+</div>
