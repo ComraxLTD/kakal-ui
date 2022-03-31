@@ -138,9 +138,4 @@ export class IconsService {
     this.icons = { ...this.icons, ...iconsMap };
   }
 
-  // public setIconsList(items: any[]) {
-  //   items.map((item) => {
-  //     this.setIcon(item.svgIcon);
-  //   });
-  // }
 }
