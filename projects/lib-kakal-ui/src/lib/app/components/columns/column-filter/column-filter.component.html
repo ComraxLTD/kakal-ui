@@ -1,0 +1,31 @@
+<ng-container>
+    <div [matMenuTriggerFor]="menu" class="column-filter-div">
+    <kkl-typography [bold]="600" [size]="1.4" class="first-flex">
+      {{ label }}
+    </kkl-typography>
+    <button mat-icon-button color="primary"  class="column-filter-button second-flex">
+      <mat-icon> arrow_drop_down </mat-icon>
+    </button>
+  </div>
+    <mat-menu #menu="matMenu" xPosition="after">
+      <div class="column-filter-inputs">
+        <ng-container *ngFor="let template of filterSlots | keyvalue">
+          <ng-container *ngIf="template.key === this.column.key">
+            <ng-container
+              *ngTemplateOutlet="filterSlots[template.key]"
+            ></ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+
+      <ng-container *ngIf="column.filterOptions.length !== 0">
+        <button
+          mat-menu-item
+          *ngFor="let option of column.filterOptions"
+          (click)="onOptionSelect(option)"
+        >
+          <kkl-typography> {{ option.label }}</kkl-typography>
+        </button>
+      </ng-container>
+    </mat-menu>
+  </ng-container>

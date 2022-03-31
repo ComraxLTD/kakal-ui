@@ -1,0 +1,17 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "types": []
+  },
+  "files": [
+    "projects/lib-kakal-ui/src/lib/main.ts",
+    "projects/lib-kakal-ui/src/lib/polyfills.ts"
+  ],
+  "include": [
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "**/*.stories.*"
+  ]
+}
