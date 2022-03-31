@@ -86,13 +86,12 @@ export class IconsService {
     driver_license: AppIcons.DRIVER_LICENSE,
     car_parking: AppIcons.CAR_PARKING,
 
-
     //-------LANDS ICONS--------------------------------------------------------------
 
     select: AppIcons.SELECT_ICON,
     home: AppIcons.HOME_ICON,
     building: AppIcons.BUILDING_ICON,
-    portfolio : AppIcons.PORTFOLIO_ICON,
+    portfolio: AppIcons.PORTFOLIO_ICON,
     measurements: AppIcons.MEASUREMENTS_ICON,
     list: AppIcons.LIST_ICON,
 
@@ -100,6 +99,7 @@ export class IconsService {
     supervision: AppIcons.SUPERVISION_ICON,
     planing: AppIcons.PLANING_ICON,
     incoming: AppIcons.INCOMING_ICON,
+    survey: AppIcons.SURVEY_ICON,
     expense: AppIcons.EXPENSE_ICON,
     committee: AppIcons.COMMITTEE_ICON,
     transactions: AppIcons.TRANSACTION_ICON,
@@ -107,8 +107,8 @@ export class IconsService {
     tree_bottom_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
     estate: AppIcons.ESTATE_ICON,
     mail: AppIcons.MAIL_ICON,
-    meetings:AppIcons.MEETINGS,
-    union:AppIcons.UNION
+    meetings: AppIcons.MEETINGS,
+    union: AppIcons.UNION,
   };
 
   private findIcon(key: string): string {
@@ -134,9 +134,13 @@ export class IconsService {
     return false;
   }
 
-  public setIconsList(items: any[]) {
-    items.map((item) => {
-      this.setIcon(item.svgIcon);
-    });
+  public addIconsToList(iconsMap: { [key: string]: string }) {
+    this.icons = { ...this.icons, ...iconsMap };
   }
+
+  // public setIconsList(items: any[]) {
+  //   items.map((item) => {
+  //     this.setIcon(item.svgIcon);
+  //   });
+  // }
 }
