@@ -91,6 +91,12 @@ export class FormSelectComponent implements OnInit {
   }
 
   public compareFunction(o1: SelectOption, o2: SelectOption) {
-    return o1?.label === o2?.label && o1.value === o2.value;
+    return typeof o1.value !== 'object' && typeof o1.value !== null
+      ? this.compare(o1, o2)
+      : this.compare(o1.value, o2.value);
+  }
+
+  private compare(o1: Object, o2: Object) {
+    return JSON.stringify(o1) === JSON.stringify(o2);
   }
 }
