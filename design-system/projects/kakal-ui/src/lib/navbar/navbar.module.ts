@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { MatIconModule } from "@angular/material/icon";
 import { MatToolbarModule } from "@angular/material/toolbar";
+import { KKLBreadCrumbsModule } from "../bread-crumbs/bread-crumbs.module";
 import { KKLDirectivesModule } from "../directives/directives.module";
 import { KKLIconModule } from "../icon/icon.module";
 import { KKLTypographyModule } from "../typography/typography.module";
@@ -10,7 +11,7 @@ import { NavbarComponent } from "./navbar.component";
 
 @NgModule({
     imports:[MatToolbarModule,KKLTypographyModule,KKLDirectivesModule
-        ,CommonModule,KKLIconModule,MatIconModule,FlexLayoutModule],
+        ,CommonModule,KKLIconModule,MatIconModule,FlexLayoutModule,KKLBreadCrumbsModule],
     declarations:[NavbarComponent],
     exports:[NavbarComponent]
 })
