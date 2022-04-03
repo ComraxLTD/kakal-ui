@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { TableFormComponent } from './components/table-form/table-form.component';
 import { LocalTableComponent } from './components/local-table/local-table.component';
-import { ServerTableComponent } from './components/server-table/server-table.component';
+// import { ServerTableComponent } from './components/server-table/server-table.component';
 import { EventTableComponent } from './components/event-table/event-table.component';
 import { TableCellComponent } from './components/table-cell/table-cell.component';
 import { TableCellPipe } from './pipes/table-cell-pipe.pipe';
@@ -18,6 +18,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { KKLFormSelectModule } from '../form/form-select/form-select.module';
@@ -28,12 +29,13 @@ import { KKLFormInputModule } from '../form/form-input/form-input.module';
 import { KKLFormUploadModule } from '../form/form-upload/form-upload.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { KKLButtonModule } from '../button/button.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     TableCellPipe,
     LocalTableComponent,
-    ServerTableComponent,
+    // ServerTableComponent,
     EventTableComponent,
     TableGroupCellPipe,
     ArrIncludesPipe,
@@ -52,6 +54,8 @@ import { KKLButtonModule } from '../button/button.module';
     MatButtonModule,
     MatProgressBarModule,
     DragDropModule,
+    MatMenuModule,
+    HttpClientModule,
     KKLFormSelectModule,
     KKLFormDateModule,
     KKLFormInputModule,
@@ -64,7 +68,7 @@ import { KKLButtonModule } from '../button/button.module';
   exports: [
     TableCellPipe,
     LocalTableComponent,
-    ServerTableComponent,
+    // ServerTableComponent,
     EventTableComponent,
     TableGroupCellPipe,
     ArrIncludesPipe,

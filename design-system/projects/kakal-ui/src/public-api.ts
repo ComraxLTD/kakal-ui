@@ -111,7 +111,7 @@ export * from './lib/form/models/question.types';
 // ------------------------------------------------------------------------------------------
 
 // NEW TABLE
-export * from './lib/kkl-table/components/server-table/server-table.component';
+// export * from './lib/kkl-table/components/server-table/server-table.component';
 export * from './lib/kkl-table/components/local-table/local-table.component';
 export * from './lib/kkl-table/components/event-table/event-table.component';
 export * from './lib/kkl-table/components/table-cell/table-cell.component';
