@@ -6,8 +6,9 @@
   >
     <kkl-form-autocomplete
       fxFlex="90"
-      [asButton]="asButton"
-      [control]="searchGroup.formGroup.controls['search']"
+      [key]="searchKey"
+      [asButton]="autocomplete.asButton"
+      [control]="searchGroup.formGroup.controls[searchKey]"
       (queryChanged)="onSearchChanged($event)"
       (multiOptionsSelected)="onSearchChanged($event)"
       (optionSelected)="onSearchChanged($event)"
@@ -57,7 +58,7 @@
 
   <!-- FILTER CHIPS SECTION -->
 
-  <ng-container *ngIf="_hasFilters">
+  <ng-container *ngIf="advanced">
     <kkl-filters
       (filterChanged)="onFilterChanged($event)"
       (filterLookupChanged)="onFilterLookUpChanged($event)"
