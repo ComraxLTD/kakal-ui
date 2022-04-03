@@ -12,7 +12,7 @@ export class CardStatusModel extends CardStepModel {
     key? : string
     label?: string;
     path?: string;
-    svgUrl?: string;
+    svgIcon?: string;
     variant?: CardVariant;
     type?: CardType;
     size?: number;
@@ -23,7 +23,7 @@ export class CardStatusModel extends CardStepModel {
     this.key = options.key;
     this.label = options?.label || '';
     this.path = options?.path || 'search';
-    this.svgUrl = options?.svgUrl || 'reload';
+    this.svgIcon = options?.svgIcon || 'reload';
     this.variant = options?.variant || 'circle';
     this.type = options?.type || 'status';
     this.size = options?.size || 6;

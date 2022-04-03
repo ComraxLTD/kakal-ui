@@ -1,4 +1,8 @@
+import { SelectOption } from '../form/form-select/question-select.model';
+import { Range } from '../form/form-range/question-range.model';
+
 export declare type FilterState = { [key: string]: FilterChangeEvent | null };
+export declare type FilterLookups = { [key: string]: FilterValue };
 
 export enum FilterType {
   SEARCH = 'search',
@@ -9,10 +13,16 @@ export enum FilterType {
   NUMBER_RANGE = 'numberRange',
 }
 
+export declare type FilterValue =
+  | string
+  | SelectOption
+  | SelectOption[]
+  | Range<Date>
+  | Range<Number>;
+
 export interface FilterRange<T = any> {
   start?: T;
   end?: T;
-  type?: FilterType;
 }
 
 export interface FilterChangeEvent<T = FilterType> {

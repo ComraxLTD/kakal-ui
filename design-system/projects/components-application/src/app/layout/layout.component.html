@@ -1,0 +1,28 @@
+<!-- <p>layout works!</p>
+<div fxFlex="10">
+    <kkl-facility-card></kkl-facility-card>
+</div>
+
+<div>
+    <a [routerLink]="['']">home</a>
+    <br>
+    <a [routerLink]="['test']">test</a>
+    <br>
+    <a [routerLink]="['test/test2']">test2</a>
+</div> -->
+
+<div fxLayoutAlign="center center" fxLayout="column">
+    <h1 kkl-hover [template]="test">Test</h1>
+    <h1 kkl-hover [template]="test">test</h1> 
+    <h1 kkl-hover [template]="test">test</h1> 
+    <h1 kkl-hover [template]="test">test</h1> 
+    <h1 kkl-hover [template]="test">test</h1> 
+    <h1 kkl-hover [template]="test">test</h1> 
+    <h1 kkl-hover [template]="test">test</h1> 
+    <h1 kkl-hover [template]="test">test</h1> 
+
+</div>
+
+<ng-template #test>
+    <kkl-facility-card></kkl-facility-card>
+</ng-template>

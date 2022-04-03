@@ -86,11 +86,11 @@ export class StepperLayoutComponent {
           map((url: string) => {
             steps.map((step) => {
               if (step.isActive) {
-                step.unactive();
+                step.isActive = false;
               }
               if (step.path === url) {
                 this.stepperLayoutService.emitChangeStep(step);
-                step.active();
+                step.isActive = true;
               }
             });
 

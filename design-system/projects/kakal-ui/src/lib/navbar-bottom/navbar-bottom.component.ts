@@ -19,9 +19,8 @@ import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.s
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-  @Input() bottomIcon: string = '';
-
-  @Input() nextText: string = '';
+  @Input() bottomIcon: string
+  @Input() nextText: string
   @Input() hasNext: boolean;
   @Input() disableNext$: Observable<boolean>;
 

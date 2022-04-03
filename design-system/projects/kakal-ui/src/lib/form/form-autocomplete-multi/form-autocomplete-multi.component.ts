@@ -29,7 +29,7 @@ export class FormAutocompleteComponentMulti implements OnInit {
   @Input() public panelWidth: boolean;
   @Input() public multi: boolean;
 
-  @Input() public optionsSlot: ElementRef;
+  @Input() public optionsTemplates: ElementRef;
   @Input() public selector: (config: {
     selector: string;
     options: SelectOption[];

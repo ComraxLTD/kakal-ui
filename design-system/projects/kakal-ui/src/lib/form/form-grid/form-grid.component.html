@@ -84,7 +84,7 @@
               [placeHolder]="question?.placeHolder"
               [theme]="question?.theme"
               [appearance]="question?.appearance"
-              [optionsSlot]="optionsSlot"
+              [optionsTemplates]="optionsTemplates"
               (focus)="onFocusChanged($event)"
               (selectChanged)="onFormChanged($event)"
             ></kkl-form-select>
@@ -324,7 +324,7 @@
 
     <mat-grid-tile
       *ngIf="hasButton"
-      [colspan]="group?.gridProps.buttonCols || 1"
+      [colspan]="group?.gridProps.button.cols || 1"
     >
       <div class="btn-form" fxFlex="100">
         <ng-container

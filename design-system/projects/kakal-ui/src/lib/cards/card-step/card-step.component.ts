@@ -12,18 +12,18 @@ import { CardStepModel } from './card-step.model';
 export class CardStepComponent implements OnInit {
   @Input() public step: CardStepModel;
 
-  public active$: Observable<boolean>;
-
   public mobile$: Observable<boolean>;
 
   @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
 
-  constructor(private iconsService : IconsService, private breakpointService:  BreakpointService) {}
+  constructor(
+    private iconsService: IconsService,
+    private breakpointService: BreakpointService
+  ) {}
 
   ngOnInit(): void {
-    this.active$ = this.step.getActiveObs();
-    this.mobile$ = this.breakpointService.isMobile()
-    this.iconsService.setIcon(this.step.svgUrl)
+    this.mobile$ = this.breakpointService.isMobile();
+    this.iconsService.setIcon(this.step.svgIcon);
   }
 
   public onStepClick(): void {

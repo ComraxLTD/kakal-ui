@@ -19,8 +19,8 @@ export declare type Palette =
 export type Color = { [key in Palette]: string };
 
 export const palette: Color = {
-  primary: '#d83020',
-  accent: '#37c56b',
+  primary: 'var(--p-500)',
+  accent: 'var(--a-500)',
   warn: '#d83020',
   paper: '#fff',
   default: '#bababa',
