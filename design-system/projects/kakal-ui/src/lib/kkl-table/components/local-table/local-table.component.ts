@@ -50,6 +50,11 @@ export class LocalTableComponent implements OnInit {
     if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
+    const row = this.fb.group({});
+    this.oneColumns.forEach(col => {
+      row.addControl(col.key, this.fb.control(null));
+    })
+    this.searchRow = row;
   }
 
 
@@ -83,7 +88,8 @@ export class LocalTableComponent implements OnInit {
 
   editItems: any[] = [];
   rows: FormArray = this.fb.array([]);
-  form: FormGroup = this.fb.group({ 'myRows': this.rows });
+  searchRow: FormGroup = this.fb.group({});
+  form: FormGroup = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -121,6 +127,10 @@ export class LocalTableComponent implements OnInit {
       });
       this.readySpanData(0, this.dataTable.filteredData.length);
     }
+  }
+
+  searchChanged() {
+    // this.requsetChange(null);
   }
 
   pageChanged(event: PageEvent) {
