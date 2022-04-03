@@ -177,6 +177,12 @@ export * from './lib/menu-item/menu-item.component';
 export * from './lib/menu/menu.module';
 export * from './lib/menu/menu.component';
 
+// menu-bar
+
+// export * from './lib/menu-bar/menu-bar.module';
+// export * from './lib/menu-bar/menu-bar/menu-bar.component';
+// export * from './lib/menu-bar/menu-card/menu-card.component';
+
 // title
 export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
@@ -327,7 +333,7 @@ export * from './lib/layouts/section/section.component';
 export * from './lib/lobby/lobby.component';
 export * from './lib/lobby/lobby.module';
 
-// facility card 
+// facility card
 export * from './lib/facility-card/facility-card.model';
 export * from './lib/facility-card/facility-card.component';
 export * from './lib/facility-card/facility-card.module';

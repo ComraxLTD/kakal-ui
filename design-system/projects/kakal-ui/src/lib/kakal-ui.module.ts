@@ -37,13 +37,14 @@ import { KKLHeaderCellModule } from './table/components/header-cells/header-cell
 
 import { KKLDialogModule } from './dialog/dialog.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
+import { KKLSidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
+import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 
@@ -104,13 +105,16 @@ registerLocaleData(he);
     OpenMotionsModule,
     KKLHoverModule,
     KKLCardFilterModule,
+
     KKLNavigationModule,
-    KKLStatusBarsModule,
     KKLMenuModule,
+    KKLMenuBarModule,
+
+    KKLStatusBarsModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLPageHeadlineModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
@@ -178,6 +182,7 @@ registerLocaleData(he);
     FacilityCardModule
   ],
   exports: [
+
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
@@ -185,14 +190,16 @@ registerLocaleData(he);
     KKLCardFilterModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
-    MaterialModule,
+
     KKLMenuItemModule,
+
     KKLButtonModule,
+
     KKLIconModule,
     KKLTypographyModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLStatusBarsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
@@ -253,6 +260,8 @@ registerLocaleData(he);
 
     KKSectionModule,
     KKPageModule,
+
+
 
     KKLAccordionStepsModule,
     FacilityCardModule

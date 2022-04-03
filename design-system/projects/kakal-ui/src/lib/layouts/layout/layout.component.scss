@@ -6,30 +6,15 @@
 
     mat-sidenav {
       &.menu {
-        width: main.$menu-width;
         top: main.$toolbar-height;
         height: main.$content-height;
 
         div.menu-container {
           height: inherit;
-          padding-right: main.spacing(1);
+          // padding-right: main.spacing(1);
         }
       }
 
-      &.wizard-sidenav {
-        background-color: transparent !important;
-        width: main.$wizard-width;
-        transform: translateY(-50%) !important;
-        top: 50%;
-        border: none;
-        background-color: main.color(paper);
-
-        div.wizard-container {
-          background-color: main.color(paper);
-          padding-top: main.spacing(1);
-          padding-bottom: main.spacing(1);
-        }
-      }
     }
   }
 
