@@ -1,13 +1,7 @@
 <mat-sidenav-container class="kkl-sidenav-container">
-
   <mat-sidenav #menuDrawer class="menu" mode="push" position="end">
     <div class="menu-container" fxLayout="column" fxLayoutAlign="start end">
-      <ng-template *ngTemplateOutlet="
-          menu;
-          context: {
-            $implicit: menuDrawer
-          }
-        "></ng-template>
+      <kkl-menu-bar [cards]="cards"></kkl-menu-bar>
     </div>
   </mat-sidenav>
   <mat-sidenav-content>

@@ -1,12 +1,7 @@
-<kkl-form-date
-            dir="rtl"
-            [key]="key"
-            [control]="control"
-          ></kkl-form-date>
-<kkl-local-table
-              [dataSource]="dataSource"
-              [columns]="columns"
-              [rowActions]="rowActions"
-              (actionClicked)="onClicked($event)"
-              (editRow)="editRow($event)"
-            ></kkl-local-table>
+<kkl-layout></kkl-layout>
+<kkl-server-table
+  [dataSourceServer]="{ rows: dataSource, count: 145, pageSize: 145 }"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  (actionClicked)="onClicked($event)"
+></kkl-server-table>
