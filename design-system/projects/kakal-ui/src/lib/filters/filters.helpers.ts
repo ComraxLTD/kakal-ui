@@ -1,19 +1,18 @@
-import { FilterChangeEvent } from "./filters.types";
+import { FilterChangeEvent, FilterState } from "./filters.types";
 
-  export function removeMultiFilter(option: { key: string; index: number }) {
+  export function removeMultiFilter(option: { key: string; index: number }, state : FilterState) {
     const { key, index } = option;
-    const filterState = this.getState();
 
-    const filters = filterState[key].value;
+    const filters = state[key].value;
     filters.splice(index, 1);
 
     const filterEvent =
       filters.length === 0
         ? null
-        : ({ ...filterState[key], value: filters } as FilterChangeEvent);
+        : ({ ...state[key], value: filters } as FilterChangeEvent);
 
     const newState = {
-      ...filterState,
+      ...state,
       [key]: filterEvent,
     };
     return newState;

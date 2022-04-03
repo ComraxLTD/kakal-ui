@@ -7,7 +7,7 @@ export * from './lib/angular-material/material.module';
 
 export * from './lib/button/button.module';
 export * from './lib/button/components/button/button.component';
-export * from './lib/button/components/create-button/create-button.component';
+export * from './lib/button/components/add-button/add-button.component';
 export * from './lib/button/components/stroke-button/stroke-button.component';
 export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
@@ -19,6 +19,7 @@ export * from './lib/typography/typography.directive';
 
 export * from './lib/icon/icon.module';
 export * from './lib/icon/icon.component';
+export * from './lib/icon/icon.directive';
 export * from './lib/icon/icon.model';
 
 export * from './lib/open-motions/open-motions.module';
@@ -33,8 +34,8 @@ export * from './lib/form/models/form.types';
 export * from './lib/form/form/form.module';
 export * from './lib/form/form/form.component';
 
-export * from './lib/form/flex-form/flex-form.module';
-export * from './lib/form/flex-form/flex-form.component';
+export * from './lib/form/form-flex/flex-form.module';
+export * from './lib/form/form-flex/flex-form.component';
 
 export * from './lib/form/form-grid/form-grid.module';
 export * from './lib/form/form-grid/form-grid.component';
@@ -52,6 +53,7 @@ export * from './lib/form/form-date/question-date.model';
 
 export * from './lib/form/form-date-range/form-date-range.module';
 export * from './lib/form/form-date-range/form-date-range.component';
+export * from './lib/form/form-date-range/form-date.directive';
 
 export * from './lib/form/form-checkbox/form-checkbox.module';
 export * from './lib/form/form-checkbox/form-checkbox.component';
@@ -69,7 +71,6 @@ export * from './lib/form/form-texteditor/form-texteditor.component';
 export * from './lib/form/form-select/form-select.module';
 export * from './lib/form/form-select/form-select.component';
 export * from './lib/form/form-select/question-select.model';
-
 
 export * from './lib/form/form-range/form-range.module';
 export * from './lib/form/form-range/form-range.component';
@@ -89,14 +90,12 @@ export * from './lib/form/form-autocomplete/question-autocomplete';
 
 export * from './lib/form/form-search/form-search.module';
 export * from './lib/form/form-search/form-search.component';
-export * from './lib/form/form-search/form-search.directive';
 
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
 
 // FORM QUESTIONS //
-
 
 export * from './lib/form/models/question-group.model';
 export * from './lib/form/models/question-number.model';
@@ -111,8 +110,23 @@ export * from './lib/form/models/question.types';
 // TABLE EXPORTS
 // ------------------------------------------------------------------------------------------
 
+// NEW TABLE
+export * from './lib/kkl-table/components/server-table/server-table.component';
+export * from './lib/kkl-table/components/local-table/local-table.component';
+export * from './lib/kkl-table/components/event-table/event-table.component';
+export * from './lib/kkl-table/components/table-cell/table-cell.component';
+export * from './lib/kkl-table/components/table-form/table-form.component';
+export * from './lib/kkl-table/pipes/arr-includes.pipe';
+export * from './lib/kkl-table/pipes/arr-index.pipe';
+export * from './lib/kkl-table/pipes/table-cell-pipe.pipe';
+export * from './lib/kkl-table/pipes/table-group-cell.pipe';
+export * from './lib/kkl-table/table-actions.model';
+export * from './lib/kkl-table/table.model';
+export * from './lib/kkl-table/kkl-table.module';
+export * from './lib/kkl-table/table-server.model';
+
 // TABLE
-export * from './lib/table/components/table/table.module';
+export * from './lib/table/table.module';
 export * from './lib/table/components/table/table.component';
 export * from './lib/table/components/table/table.directive';
 export * from './lib/table/components/table/table.state.service';
@@ -168,9 +182,9 @@ export * from './lib/kkl-title/kkl-title.module';
 export * from './lib/kkl-title/kkl-title.component';
 
 // bread-crumbs
-export * from './lib/bread-crumbes/bread-crumbes.component';
-export * from './lib/bread-crumbes/bread-crumbs.module';
-export * from './lib/bread-crumbes/bread-crumbes.model';
+export * from './lib/bread-crumbs/bread-crumbs.component';
+export * from './lib/bread-crumbs/bread-crumbs.module';
+export * from './lib/bread-crumbs/bread-crumbs.model';
 
 // expand-panel
 export * from './lib/expand-panel/expand-panel.component';
@@ -182,10 +196,6 @@ export * from './lib/list-menu/list-menu.module';
 // title
 export * from './lib/navigation/navigation.module';
 export * from './lib/navigation/navigation.component';
-
-// section
-export * from './lib/section/section.module';
-export * from './lib/section/section.component';
 
 // dialog
 export * from './lib/dialog/dialog.module';
@@ -207,12 +217,8 @@ export * from './lib/page-headline/page-headline.component';
 export * from './lib/page-headline/page-headline.model';
 export * from './lib/page-headline/page-headline.module';
 export * from './lib/page-headline/page-headline.service';
-// card-filter
-export * from './lib/cards/filter-card/filter-card.component';
-export * from './lib/cards/filter-card/filter-card.model';
-export * from './lib/cards/filter-card/filter-card.module';
 
-// stautts-bars
+// status-bars
 export * from './lib/status-bars/status-bars.module';
 export * from './lib/status-bars/status-bars.component';
 
@@ -237,26 +243,32 @@ export * from './lib/kkl-hover/kkl-hover.component';
 export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards
-export * from './lib/cards/info-card/info-card.module';
-export * from './lib/cards/info-card/info-card.model';
-export * from './lib/cards/info-card/info-card.component';
 
-export * from './lib/cards/card-lobby/card-lobby.component';
-export * from './lib/cards/card-lobby/card-lobby.model';
 export * from './lib/cards/card-lobby/card-lobby.module';
+export * from './lib/cards/card-lobby/card-lobby.component';
+
+export * from './lib/cards/card-info/card-info.module';
 export * from './lib/cards/card-info/card-info.component';
 export * from './lib/cards/card-info/card-info.model';
-export * from './lib/cards/card-info/card-info.module';
+
 export * from './lib/cards/card-status/card-status.component';
 export * from './lib/cards/card-status/card-status.model';
 export * from './lib/cards/card-status/card-status.module';
+
 export * from './lib/cards/card-step/card-step.component';
-export * from './lib/cards/card-step/card-step.model';
 export * from './lib/cards/card-step/card-step.module';
-export * from './lib/cards/card-user/card-user.component';
+export * from './lib/cards/card-step/card-step.model';
+
 export * from './lib/cards/card-user/card-user.module';
+export * from './lib/cards/card-user/card-user.component';
+
 export * from './lib/cards/card-wizard/card-wizard.component';
 export * from './lib/cards/card-wizard/card-wizard.module';
+
+// card-filter
+export * from './lib/cards/card-filter/card-filter.module';
+export * from './lib/cards/card-filter/card-filter.component';
+
 export * from './lib/cards/card.model';
 
 // navbar
@@ -279,19 +291,53 @@ export * from './lib/stepper-mobile/stepper-mobile.component';
 export * from './lib/stepper-mobile/stepper-mobile.module';
 
 // stepper layout
-export * from './screens/stepper-layout/stepper-layout.component';
-export * from './screens/stepper-layout/stepper-layout.module';
-export * from './screens/stepper-layout/stepper-layout.service';
+export * from './lib/layouts/stepper-layout/stepper-layout.component';
+export * from './lib/layouts/stepper-layout/stepper-layout.module';
+export * from './lib/layouts/stepper-layout/stepper-layout.service';
 
 // layout
-export * from './screens/layout/layout.component';
-export * from './screens/layout/layout.module';
-export * from './screens/layout/layout.service';
+export * from './lib/layouts/layout/layout.component';
+export * from './lib/layouts/layout/layout.module';
+export * from './lib/layouts/layout/layout.service';
+
+// accordion layout
+export * from './lib/layouts/accordion-layout/accordion-layout.module';
+export * from './lib/layouts/accordion-layout/accordion-layout.component';
+export * from './lib/layouts/accordion-layout/accordion-datasource';
+export * from './lib/layouts/accordion-layout/accordion-types';
+
+// advanced search-layout
+export * from './lib/layouts/advanced-search-layout/advanced-search-layout.module';
+export * from './lib/layouts/advanced-search-layout/advanced-search-layout.component';
+export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
+
+// vertical steps-layout
+export * from './lib/layouts/accordion-steps-layout/accordion-steps.module';
+export * from './lib/layouts/accordion-steps-layout/accordion-steps.component';
+
+// page
+export * from './lib/layouts/page/page.module';
+export * from './lib/layouts/page/page.component';
+
+// section
+export * from './lib/layouts/section/section.module';
+export * from './lib/layouts/section/section.component';
 
 // dashboard
-
 export * from './lib/lobby/lobby.component';
 export * from './lib/lobby/lobby.module';
+
+// facility card 
+export * from './lib/facility-card/facility-card.model';
+export * from './lib/facility-card/facility-card.component';
+export * from './lib/facility-card/facility-card.module';
+
+// vertical-steps
+export * from './lib/vertical-steps/vertical-steps.component';
+export * from './lib/vertical-steps/vertical-steps.module';
+export * from './lib/vertical-steps/step/step.module';
+export * from './lib/vertical-steps/step/step.component';
+export * from './lib/vertical-steps/step/step.directive';
 
 // chips
 export * from './lib/chips/chip/chip.component';
@@ -308,8 +354,8 @@ export * from './lib/pipes/location.pipe';
 export * from './lib/pipes/prefix.pipe';
 export * from './lib/pipes/range.pipe';
 export * from './lib/pipes/pluck.pipe';
+export * from './lib/pipes/numberToTime.pipe';
 export * from './lib/pipes/pipes.module';
-
 //directives
 export * from './lib/directives/hover.directive';
 export * from './lib/directives/variant.directive';
@@ -323,3 +369,6 @@ export * from './lib/directives/wizard.directive';
 export * from './lib/directives/outside-button.directive';
 
 export * from './lib/directives/directives.module';
+//
+export * from './lib/tabs/tabs.component';
+export * from './lib/tabs/tabs.module';

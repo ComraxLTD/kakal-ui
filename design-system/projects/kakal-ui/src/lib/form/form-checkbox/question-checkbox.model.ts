@@ -1,29 +1,25 @@
-import { QuestionBase } from "../models/question.model";
+import { QuestionBase } from '../models/question.model';
 
 export interface CheckboxOption {
+  id: number;
   label: string;
-  value: any;
+  value?: string;
   checked?: boolean;
 }
 
+export class QuestionCheckboxModel extends QuestionBase {
+  public labelPosition?: string;
+  public group?: boolean;
 
-export class QuestionCheckBoxModel extends QuestionBase {
-    public options?: CheckboxOption[];
-    public labelPosition?:string;
-
-    constructor(options?: {
-        key: string;
-        label?: string;
-        options?: CheckboxOption[];
-        labelPosition?:string;
-    }
-    ) {
-        super(options)
-        this.key = options.key
-        this.label = options.label
-        this.controlType = 'checkbox';
-        this.options = options.options || [];
-        this.labelPosition = options.labelPosition || 'after';
-    }
-
+  constructor(options?: {
+    key: string;
+    value?: CheckboxOption | CheckboxOption[];
+    labelPosition?: string;
+  }) {
+    super(options);
+    this.key = options.key;
+    this.value = options.value;
+    this.controlType = 'checkbox';
+    this.labelPosition = options.labelPosition || 'after';
+  }
 }

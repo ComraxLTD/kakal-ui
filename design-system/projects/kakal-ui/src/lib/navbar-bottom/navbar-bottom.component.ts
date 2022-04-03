@@ -10,8 +10,8 @@ import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { RouterService } from '../../services/route.service';
 import { combineLatest, merge, Observable, of } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
-import { StepperLayoutService } from '../../screens/stepper-layout/stepper-layout.service';
+import { map, switchMap } from 'rxjs/operators';
+import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -19,9 +19,8 @@ import { StepperLayoutService } from '../../screens/stepper-layout/stepper-layou
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-  @Input() bottomIcon: string = '';
-
-  @Input() nextText: string = '';
+  @Input() bottomIcon: string
+  @Input() nextText: string
   @Input() hasNext: boolean;
   @Input() disableNext$: Observable<boolean>;
 
@@ -46,7 +45,7 @@ export class NavbarBottomComponent implements OnInit {
     private navbarBottomService: NavbarBottomService,
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     if (this.stepper) {
@@ -55,7 +54,6 @@ export class NavbarBottomComponent implements OnInit {
       this.changeStep$ = this.stepperLayoutService.getChangeStepObs();
     }
     this.buttonState$ = this.setShowButtons();
-
   }
 
   private setShowButtons() {
@@ -98,7 +96,7 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   public onNext(): void {
-    if (this.hasNext && this.stepper) {      
+    if (this.hasNext && this.stepper) {
       this.navbarBottomService.emitNextStep();
     } else {
       this.next.emit();
@@ -112,8 +110,8 @@ export class NavbarBottomComponent implements OnInit {
     const currentStepIndex = currentStep
       ? steps.findIndex((item) => item.path === currentStep.path)
       : steps.findIndex((step) => {
-        return step.isActive;
-      });
+          return step.isActive;
+        });
     return currentStepIndex + 1;
   }
 
@@ -152,8 +150,8 @@ export class NavbarBottomComponent implements OnInit {
             const index = steps.findIndex((item) => item.path === url);
             return !(steps.length === index + 1);
           })
-        )
+        );
       })
-    )
+    );
   }
 }

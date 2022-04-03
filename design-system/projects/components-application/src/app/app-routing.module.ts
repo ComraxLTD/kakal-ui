@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BidComponent } from './components/bid/bid.component';
 import { DetailsComponent } from './components/details/details.component';
+import { LayoutComponent } from './layout/layout.component';
 
 const routes: Routes = [
-  { path: 'details', component: DetailsComponent },
+  { path: '', component: LayoutComponent, data: { breadcrumb: 'דף הבית' ,homepage:true},children:[
+    {
+      path: 'test', children: [
+        { path: '', loadChildren: () => import('./test/test.module').then((m) => m.TestModule) }
+      ]
+    }
+  ]},
+  { path: 'details', component: DetailsComponent, },
   { path: 'details/:id', component: DetailsComponent },
-  { path: 'bid', component: BidComponent },
-  {
-    path: 'test', children: [
-      { path: '', loadChildren: () => import('./test/test.module').then((m) => m.TestModule) }
-    ]
-  }
+
 ];
 
 @NgModule({

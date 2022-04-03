@@ -1,0 +1,189 @@
+<form
+  [fxLayout]="layout + ' wrap'"
+  fxLayoutAlign="start center"
+  [formGroup]="formGroup"
+  (ngSubmit)="onSubmit()"
+>
+  <!-- [class.input-space]="(index + 1) % cols !== 0" -->
+  <ng-container *ngFor="let question of questions; let index = index">
+    <ng-container *ngIf="question.gridProps?.skip">
+      <div flex-form-input [fxFlex]="flex * question.gridProps.skip"></div>
+    </ng-container>
+
+    <ng-container [ngSwitch]="question.controlType">
+      <div
+        flex-form-input
+        [index]="index * (question.gridProps?.cols || 1)"
+        [cols]="cols"
+        [offset]="question.gridProps?.offset"
+        [fxFlex]="flex * (question.gridProps?.cols || 1)"
+      >
+        <!-- SELECT INPUT SECTION -->
+        <ng-container *ngSwitchCase="'select'">
+          <kkl-form-select
+            [control]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [multi]="question?.multi"
+            [options]="optionsMap[question?.key] || question?.options"
+            [index]="index"
+            [label]="question?.label"
+            [placeHolder]="question?.placeHolder"
+            [theme]="question?.theme"
+            [appearance]="question?.appearance"
+            [optionsTemplates]="optionsTemplates"
+            (focus)="onFocusChanged($event)"
+            (selectChanged)="onFormChanged($event)"
+            (openChanged)="onOpenChanged($event)"
+          ></kkl-form-select>
+        </ng-container>
+
+        <!-- DATE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'dateRange'">
+          <kkl-form-date-range
+            [formControl]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [label]="question?.label"
+            [placeHolder]="question?.placeHolder"
+            [maxDate]="question?.maxDate"
+            [minDate]="question?.minDate"
+            [appearance]="question?.appearance"
+            [index]="index"
+            (dateRangeChanged)="onFormChanged($event)"
+          >
+          </kkl-form-date-range>
+        </ng-container>
+
+        <!-- DATE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'date'">
+          <kkl-form-date
+            [control]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [label]="question?.label"
+            [placeHolder]="question?.placeHolder"
+            [maxDate]="question?.maxDate"
+            [minDate]="question?.minDate"
+            [appearance]="question?.appearance"
+            [index]="index"
+            (focus)="onFocusChanged($event)"
+          >
+          </kkl-form-date>
+        </ng-container>
+
+        <!-- DATE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'range'">
+          <kkl-form-range
+            [formControl]="formGroup.controls[question.key]"
+            [questions]="question.questions"
+            [index]="index"
+            [label]="question.label"
+            [key]="question.key"
+          ></kkl-form-range>
+        </ng-container>
+
+        <!-- DATE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'autocomplete'">
+          <kkl-form-autocomplete
+            [key]="question?.key"
+            [label]="question?.label"
+            [icon]="question?.icon"
+            [multi]="question.multi"
+            [asButton]="question.asButton"
+            [options]="optionsMap[question?.key] || question.options"
+            [control]="formGroup.controls[question.key]"
+            (queryChanged)="onFormChanged($event)"
+            (multiOptionsSelected)="onFormChanged($event)"
+            (optionSelected)="onFormChanged($event)"
+          ></kkl-form-autocomplete>
+        </ng-container>
+
+        <!-- FILE INPUT SECTION -->
+        <ng-container *ngSwitchCase="'upload'">
+          <kkl-form-upload
+            [label]="question?.label"
+            [multi]="question?.multi"
+            [formControl]="formGroup.controls[question.key]"
+            [index]="index"
+            (fileChanged)="onFormChanged($event)"
+          ></kkl-form-upload>
+        </ng-container>
+
+        <!-- CHECKBOX SECTION -->
+        <ng-container *ngSwitchCase="'checkbox'">
+          <mat-checkbox [formControl]="formGroup.controls[question.key]">{{
+            question?.label
+          }}</mat-checkbox>
+        </ng-container>
+
+        <!-- CURRENCY INPUT SECTION -->
+        <ng-container *ngSwitchCase="'currency'">
+          <kkl-form-currency
+            [key]="question?.key"
+            [formControl]="formGroup.controls[question.key]"
+            [validations]="question?.validations"
+            [options]="question?.options"
+            [default]="question?.default"
+            [index]="index"
+          >
+          </kkl-form-currency>
+        </ng-container>
+
+        <!-- COUNTER INPUT SECTION -->
+        <ng-container *ngSwitchCase="'counter'">
+          <kkl-form-counter
+            [control]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [icon]="question?.icon"
+            [label]="question?.label"
+          ></kkl-form-counter>
+        </ng-container>
+
+        <!-- DEFAULT INPUT -->
+        <ng-container *ngSwitchDefault>
+          <kkl-form-input
+            [control]="formGroup.controls[question.key]"
+            [key]="question?.key"
+            [placeHolder]="question?.placeHolder"
+            [theme]="question?.theme"
+            [appearance]="question?.appearance"
+            [cleave]="question?.cleave"
+            [icon]="question?.icon"
+            [label]="question?.label"
+            [index]="index"
+            (focus)="onFocusChanged($event)"
+            (valueChanged)="onFormChanged($event)"
+            [controlType]="question?.controlType"
+          ></kkl-form-input>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="buttonCols">
+    <!-- <ng-container *ngFor="let item of buttonSkip; let i = index">
+      <div flex-form-input [fxFlex]="flex"></div>
+    </ng-container> -->
+
+    <div
+      [class.button-container]="true"
+      [fxFlex]="flex * buttonCols"
+      fxLayoutAlign="end center"
+      kkl-form-button
+    >
+      <ng-container
+        *ngTemplateOutlet="
+          buttonTemp || defaultTemplate;
+          context: { $implicit: formGroup }
+        "
+      ></ng-container>
+    </div>
+  </ng-container>
+</form>
+
+<ng-template #defaultTemplate let-formGroup>
+  <kkl-stroke-button
+    type="submit"
+    color="primary"
+    [disabled]="!formGroup.valid"
+    >{{ buttonLabel }}</kkl-stroke-button
+  >
+</ng-template>

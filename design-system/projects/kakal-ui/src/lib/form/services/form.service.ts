@@ -23,7 +23,8 @@ import { QuestionAutocompleteModel } from '../form-autocomplete/question-autocom
 import { QuestionRadioModel } from '../form-radio/question-radio.model';
 import { QuestionCurrencyModel } from '../form-currency/question-currency.model';
 import { QuestionDateModel } from '../form-date/question-date.model';
-import { QuestionCheckBoxModel } from '../form-checkbox/question-checkbox.model';
+import { QuestionCheckboxModel } from '../form-checkbox/question-checkbox.model';
+import { QuestionCheckboxGroup } from '../form-checkbox-group/question-checkbox-group.model';
 import { QuestionUploadModel } from '../form-upload/question-upload.model';
 import { QuestionCounterModel } from '../form-counter/question-counter.model';
 import { QuestionRangeModel } from '../form-range/question-range.model';
@@ -50,6 +51,8 @@ export type Question =
   | QuestionTextareaModel
   | QuestionNumberModel
   | QuestionAutocompleteModel
+  | QuestionCheckboxModel
+  | QuestionCheckboxGroup
   | QuestionGroupModel;
 
 export interface QuestionGroup {
@@ -62,7 +65,7 @@ export interface QuestionGroup {
 @Injectable({
   providedIn: 'root',
 })
-export class FormService {
+export class FormService<T = any> {
   constructor(private fb: FormBuilder) {}
 
   // method which create a control template for FormBuilder
@@ -131,9 +134,7 @@ export class FormService {
   }
 
   // method which return QuestionGroupModel instance
-  public createQuestionGroup<T = any>(
-    config: QuestionGroup
-  ): QuestionGroupModel<T> {
+  public createQuestionGroup<T>(config: QuestionGroup): QuestionGroupModel<T> {
     let { key, questions, options, model } = config;
 
     if (model) {
@@ -196,7 +197,7 @@ export class FormService {
           model: question['model'],
           options: {
             label,
-            controlType : 'group',
+            controlType: 'group',
             gridProps,
           },
         });
@@ -206,36 +207,32 @@ export class FormService {
       case 'sum':
         return new QuestionSumModel(question);
       case 'currency':
-        const cq = question as QuestionCurrencyModel;
-        return new QuestionCurrencyModel(cq);
+        return new QuestionCurrencyModel(question as QuestionCurrencyModel);
       case 'range':
-        const rq = question as QuestionRangeModel;
-        return new QuestionRangeModel(rq);
+        return new QuestionRangeModel(question as QuestionRangeModel);
       case 'select':
-        const sq = question as QuestionSelectModel;
-        return new QuestionSelectModel(sq);
+        return new QuestionSelectModel(question as QuestionSelectModel);
       case 'multiSelect':
-        const msq = question as QuestionSelectModel;
-        return new QuestionSelectModel(msq);
+        return new QuestionSelectModel(question as QuestionSelectModel);
       case 'upload':
-        const fq = question as QuestionUploadModel;
-        return new QuestionUploadModel(fq);
+        return new QuestionUploadModel(question as QuestionUploadModel);
       case 'counter':
-        const counterQ = question as QuestionCounterModel;
-        return new QuestionCounterModel(counterQ);
+        return new QuestionCounterModel(question as QuestionCounterModel);
       case 'radio':
         return new QuestionRadioModel(question);
       case 'checkbox':
-        return new QuestionCheckBoxModel(question);
+        return new QuestionCheckboxModel(question as QuestionCheckboxModel);
+      case 'checkboxGroup':
+        return new QuestionCheckboxGroup(question as QuestionCheckboxGroup);
+
       case 'textarea':
         return new QuestionTextareaModel(question);
-
       case 'date':
-        const dq = question as QuestionDateModel;
-        return new QuestionDateModel(dq);
+        return new QuestionDateModel(question as QuestionDateModel);
       case 'autocomplete':
-        const aq = question as QuestionAutocompleteModel;
-        return new QuestionAutocompleteModel(aq);
+        return new QuestionAutocompleteModel(
+          question as QuestionAutocompleteModel
+        );
       default:
         return new QuestionTextModel(question);
     }

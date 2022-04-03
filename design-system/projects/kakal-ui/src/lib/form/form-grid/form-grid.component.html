@@ -2,7 +2,7 @@
   <mat-grid-list
     [cols]="cols"
     [rowHeight]="(rowHeight || 9) + 'rem'"
-    [gutterSize]="(gutter || 1) + 'rem'"
+    [gutterSize]="(gutter) + 'rem'"
     [dir]="'rtl'"
   >
     <ng-container *ngFor="let question of questions; let index = index">
@@ -76,6 +76,7 @@
             <kkl-form-select
               fxFlex="100"
               [control]="formGroup.controls[question.key]"
+              [label]="question?.label"
               [key]="question?.key"
               [multi]="question?.multi"
               [options]="question?.options"
@@ -83,7 +84,7 @@
               [placeHolder]="question?.placeHolder"
               [theme]="question?.theme"
               [appearance]="question?.appearance"
-              [optionsSlot]="optionsSlot"
+              [optionsTemplates]="optionsTemplates"
               (focus)="onFocusChanged($event)"
               (selectChanged)="onFormChanged($event)"
             ></kkl-form-select>
@@ -182,6 +183,7 @@
           >
             <kkl-form-date
               fxFlex="100"
+              [label]="question?.label"
               [control]="formGroup.controls[question.key]"
               [key]="question?.key"
               [range]="question?.range"
@@ -298,6 +300,7 @@
               <div [fxFlex]="question?.gridProps?.flex?.width || 100">
                 <kkl-form-input
                   [control]="formGroup.controls[question.key]"
+                  [label]="question?.label"
                   [key]="question?.key"
                   [placeHolder]="question?.placeHolder"
                   [theme]="question?.theme"
@@ -305,7 +308,6 @@
                   [cleave]="question?.cleave"
                   [gridProps]="question?.gridProps"
                   [icon]="question?.icon"
-                  [label]="question?.label"
                   [index]="index"
                   (focus)="onFocusChanged($event)"
                   [controlType]="question?.controlType"
@@ -322,7 +324,7 @@
 
     <mat-grid-tile
       *ngIf="hasButton"
-      [colspan]="group?.gridProps.buttonCols || 1"
+      [colspan]="group?.gridProps.button.cols || 1"
     >
       <div class="btn-form" fxFlex="100">
         <ng-container

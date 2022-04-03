@@ -1,0 +1,65 @@
+<div fxFill fxLayout="row" dir="rtl" fxLayoutGap="5rem">
+  <section fxLayout="column" fxFlex fxLayoutGap="1rem" fxFlex>
+    <section fxLayout="column" fxFlex fxLayoutGap="1rem">
+      <kkl-typography [weight]="600">שדות למילוי הצעות מחיר</kkl-typography>
+      <kkl-form
+        variant="flex"
+        [formGroup]="bidGroup.formGroup"
+        [questions]="bidGroup.questions.slice(0, 4)"
+        [grid]="bidGroup.gridProps!"
+      ></kkl-form>
+    </section>
+    <section fxLayout="row" fxLayoutGap="3rem" fxFlex fxFlex.lt-lg="65">
+      <div fxLayout="column" fxLayoutGap="1rem" fxFlex="24">
+        <kkl-typography [weight]="600">העלאת קבצי מכרזים</kkl-typography>
+        <kkl-form-upload
+          [formControl]="uploadControl"
+          [label]="bidGroup.controls['upload'].label!"
+        ></kkl-form-upload>
+      </div>
+      <div fxLayout="column" fxLayoutGap="3rem" fxFlex>
+        <div fxLayout="column" fxLayoutGap="1rem">
+          <kkl-typography [weight]="600">תוכן הפנייה לספק</kkl-typography>
+          <kkl-form-texteditor
+            [control]="bidGroup.formGroup.controls['supplierContent']"
+          ></kkl-form-texteditor>
+        </div>
+        <div fxLayout="row" fxLayoutGap="1.5rem">
+          <kkl-form-checkbox-group
+            [control]="bidGroup.formGroup.controls['priceGroup']"
+          ></kkl-form-checkbox-group>
+          <!-- <ng-container *ngFor="let q of bidGroup.questions | slice: -2">
+            <kkl-form-checkbox
+              [label]="q.label!"
+              [control]="bidGroup.formGroup.controls[q.key]"
+            ></kkl-form-checkbox>
+          </ng-container> -->
+        </div>
+      </div>
+    </section>
+  </section>
+
+  <section fxLayout="column" fxFlex="20" fxLayoutGap="1rem">
+    <!-- title -->
+    <kkl-typography [weight]="600">טופס לדוגמא</kkl-typography>
+
+    <!-- preview document -->
+    <div fxLayout="row" fxLayoutAlign="center">
+      <!-- <img class="img-response" [src]="imgPath" alt="img" fxFlex.lt-lg="100" /> -->
+    </div>
+
+    <!-- action button -->
+    <div fxLayout="row" fxLayoutAlign="center">
+      <button mat-button (click)="onViewPage()">
+        <kkl-typography
+          [size]="1.8"
+          [weight]="600"
+          color="primary"
+          [underline]="true"
+        >
+          תצוגה מקדימה
+        </kkl-typography>
+      </button>
+    </div>
+  </section>
+</div>

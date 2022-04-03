@@ -1,0 +1,53 @@
+@use "../../../../styles/variables" as main;
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-detail {
+  display: flex;
+  padding: 16px;
+}
+
+
+
+
+.center-butt {
+  text-align: center;
+}
+
+td.mat-cell {
+  border-bottom: 0.5px solid lightgray;
+}
+
+
+table {
+  width: 100%;
+  overflow-y: auto;
+}
+
+// td {
+//   min-width: 400px;
+// }
+
+// .table-wrapper {
+
+//   margin: auto;
+//   // overflow: auto;
+// }
+
+
+
+
+// mat-paginator {
+//   direction: ltr;
+// }
+

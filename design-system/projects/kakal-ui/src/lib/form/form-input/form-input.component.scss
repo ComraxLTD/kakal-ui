@@ -1,5 +1,11 @@
 @use ".././../../styles/variables" as main;
 
+.kkl-form-input {
+  ::ng-deep svg * {
+    fill: main.color(primary);
+  }
+}
+
 ::ng-deep mat-form-field {
   width: 100%;
   font-size: 14px !important;

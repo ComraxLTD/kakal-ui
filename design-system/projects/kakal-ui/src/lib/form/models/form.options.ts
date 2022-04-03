@@ -1,9 +1,9 @@
 import { FormControl } from "@angular/forms";
-import { Observable } from "rxjs";
 import { FormActions } from "./form.actions";
+import { Observable } from "rxjs";
 
 export interface FormChangeEvent<T = any> {
-  key?: string;
+  key: string;
   index?: number;
   control?: FormControl;
   value?: T;

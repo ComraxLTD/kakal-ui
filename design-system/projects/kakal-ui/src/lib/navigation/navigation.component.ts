@@ -20,14 +20,15 @@ export class NavigationComponent implements OnInit {
   @Input() public steps$: Observable<CardStatusModel[]>;
   @Input() public activeStepIndex: number;
 
-  @Input() slots: { content:TemplateRef<any>; step: TemplateRef<any> };
+  @Input() slots: { content: TemplateRef<any>; step: TemplateRef<any> };
 
   public currentIndexSubject: BehaviorSubject<number>;
   public stepMap$: Observable<{ [key: string]: CardStepModel }>;
   public activeStep$: Observable<{ value: number }>;
   public end$: Observable<boolean>;
 
-  @Output() changeStep: EventEmitter<{step:CardStepModel,index:number}> = new EventEmitter();
+  @Output() changeStep: EventEmitter<{ step: CardStepModel; index: number }> =
+    new EventEmitter();
 
   constructor() {}
 
@@ -57,7 +58,7 @@ export class NavigationComponent implements OnInit {
             ...acc,
             [steps.indexOf(step)]: step,
           };
-        }, {});
+        }, {} as { [key: string]: CardStepModel });
 
         return map;
       })
@@ -78,10 +79,10 @@ export class NavigationComponent implements OnInit {
 
   public onNext(index: number, step: CardStepModel) {
     this.currentIndexSubject.next(index + 1);
-    this.changeStep.emit({step:step,index:(index+1)});
+    this.changeStep.emit({ step: step, index: index + 1 });
   }
   public onPrev(index: number, step: CardStepModel) {
     this.currentIndexSubject.next(index - 1);
-    this.changeStep.emit({step:step,index:(index-1)});
+    this.changeStep.emit({ step: step, index: index - 1 });
   }
 }

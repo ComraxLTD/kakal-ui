@@ -1,36 +1,56 @@
-<div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
-  <div fxLayout="column" fxFlex="50">
-    <ng-container *ngIf="optionsMap$ | async as optionsMap">
-      <kkl-form-search [searchGroup]="searchGroup" [advanced]="true">
-        <ng-container *kklFormSearchContent="let context">
-          <kkl-form
-            variant="flex"
-            [questions]="context.questions"
-            [formGroup]="context.formGroup"
-            [grid]="grid"
-            [optionsMap]="optionsMap"
-            (formChanged)="onFormChanged($event)"
-          ></kkl-form>
-        </ng-container>
-      </kkl-form-search>
+<div fxLayout="row" dir="rtl" fxLayoutAlign="center">
+  <div fxLayout="column" fxFlex="90">
+    <!-- <div fxLayout="row" fxLayoutAlign="center center">
+      <kkl-advanced-search-layout
+        fxFlex="65"
+        [expended]="true"
+        [advanced]="true"
+        [searchKey]="'search'"
+        [questions]="questions"
+        [optionsMap]="optionsMap"
+        (formChanged)="onFormChanged($event)"
+        (searchChanged)="onSearchChanged($event)"
+        (filterLookupChanged)="onFilterLookUpChanged($event)"
+      ></kkl-advanced-search-layout>
+    </div> -->
 
-      <div>
-        <!-- <ng-container *ngIf="filtersState$ | async as filtersState"> -->
+    <div fxLayout="column" xLayoutGap="30px">
+      <ng-container *ngIf="optionsMap$ | async as optionsMap">
+        <div class="container" fxLayout="column" fxLayoutGap="30px" fxFlex="30">
+          <div fxLayout="row">
+            <kkl-form-select
+              dir="rtl"
+              [control]="control"
+              [key]="key"
+              [options]="optionsMap['city']"
+              [label]="'basic select '"
+              (selectChanged)="selectedOption($event)"
+            >
+            </kkl-form-select>
+          </div>
+        </div>
+        <div class="container" fxLayout="column" fxLayoutGap="30px" fxFlex="30">
+          <div fxLayout="row">
+            <kkl-form-select
+              dir="rtl"
+              [control]="controlMulti"
+              [key]="key"
+              [options]="optionsMap['country']"
+              [label]="'multi select'"
+              (selectChanged)="selectedMultiOption($event)"
+              [multi]="true"
+            ></kkl-form-select>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
 
-        <kkl-filters
+  <!-- <ng-container *ngIf="filtersState$ | async as filtersState"> -->
+
+  <!-- <kkl-filters
           [formGroup]="searchGroup.formGroup"
           (filterChanged)="onFilterChanged($event)"
-        ></kkl-filters>
-        <!-- </ng-container> -->
-      </div>
-    </ng-container>
-
-    <ng-container>
-      <pre *ngIf="searchGroup">
-        formGroup
-      {{ searchGroup.formGroup.value | json }}
-    </pre
-      >
-    </ng-container>
-  </div>
+          ></kkl-filters> -->
+  <!-- </ng-container> -->
 </div>

@@ -1,83 +1,67 @@
-import { Component, OnInit, Renderer2 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
+import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
+import {
+  FormDataSource,
+  FormService,
+  TableBase,
+  CardInfoModel,
+  CardStepModel,
+  Panel,
+} from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [FormDataSource],
 })
 export class AppComponent implements OnInit {
-  title = 'components-application';
-  constructor() { }
-  month: number;
-  range = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
-  });
+  control = new FormControl();
+  dataSource: any[] = [];
 
-  ngOnInit(): void {
-    //init steps
-  }
-
-  /// EXAMPLE
-  data = [
-    { date: new Date("2022-03-01"), occupancy: 40 },
-    { date: new Date("2022-03-06"), occupancy: 40 },
-    { date: new Date("2022-03-20"), occupancy: 3 },
-    { date: new Date("2022-04-20"), occupancy: 3 }
+  public steps: Step[] = [
+    { key: 'filterForm', label: 'working' },
+    { key: 'groupForm', label: 'working2' },
   ];
 
-  dateClass(): MatCalendarCellClassFunction<Date> {
-    return (date: Date) => {
-      if (!this.month) {
-        this.month = date.getMonth() + 1;
-        console.log('emit');
-      }
-      if (this.month !== date.getMonth() + 1) {
-        this.month = date.getMonth() + 1;
-        console.log('emit');
-      }
-      return this.changeMonth(date);
+  // array for panel layout
+  public panels: Panel[] = [
+    { key: 'filterForm', label: 'working' },
+    { key: 'groupForm', label: 'working2' },
+  ];
+
+  // public card: CardFilter = {
+  //   label: 'שם הכרטיס', // label inside card
+  //   value: 2, // number inside card
+  //   svgIcon: 'search', // svg key
+  // };
+
+  card: CardInfoModel;
+
+  constructor(private formService: FormService) {}
+
+  ngOnInit(): void {
+    this.card = {
+      svgIcon: 'home',
+      label: 'first headline',
+      subLabel: 'text long text liong tasd faser',
     };
-  };
-  changeMonth(date: Date) {
-    const [filtered] = this.data.filter(item => this.compareDates(item.date, date));
-    if (filtered) {
-      // if (filtered?.disabled) return 'disabled';
-      this.changeInnerContent(filtered);
-      return 'primary';
-    }
-  }
-  compareDates(first: Date, second: Date) {
-    if (first.getFullYear() !== second.getFullYear()) return false;
-    if (first.getMonth() !== second.getMonth()) return false;
-    if (first.getDate() !== second.getDate()) return false;
-    return true;
+
+    this.dataSource = [
+      {
+        city: { label: 'Tel Aviv', value: 5 },
+        dob: '2022-03-28T00:00:00Z',
+        id: 1,
+        name: 'Hillyer Bowkley',
+        occupation: 'Physical Therapy Assistant',
+        yearsOfExperience: 32,
+      },
+    ];
   }
 
-  changeInnerContent(object: any) {
-    setTimeout(() => {
-      const cells = Array.from(document.querySelectorAll<HTMLDivElement>('.mat-calendar .mat-calendar-body-cell-content'));
-      const [cell] = cells.filter(cell => +cell.outerText == object.date.getDate()) as HTMLDivElement[];
-      if (object.occupancy) cell.innerHTML =  
-      `
-      <div fxLayout='column'>
-      <div>
-      ${cell.innerText}
-      </div>
-      <div fxLayout='row' class='occupancy'>
-      ${object.occupancy} פנוי
-      </div>
-
-      </div>
-      `;
-    });
+  on(event: any) {
+    console.log(event);
   }
-
-  myFilter = (date: Date): boolean => {
-    const [filter] = this.data.filter(item => this.compareDates(item.date, date));
-    return filter?.occupancy ? true : false;
-  }
-
 }

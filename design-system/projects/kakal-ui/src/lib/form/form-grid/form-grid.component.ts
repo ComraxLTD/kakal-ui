@@ -11,7 +11,7 @@ import {
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
 import { Question, OptionMap } from '../models/form.types';
-import { GridProps } from '../models/question.types';
+import { FormGrid } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-grid',
@@ -19,25 +19,25 @@ import { GridProps } from '../models/question.types';
   styleUrls: ['./form-grid.component.scss'],
 })
 export class FormGridComponent implements OnInit {
-
-  @Input() public questions: Question[];
-  @Input() public formGroup: FormGroup;
-  @Input() public grid: GridProps = { cols: 4 };
+  @Input() public questions!: Question[];
+  @Input() public formGroup!: FormGroup;
+  @Input() public grid: FormGrid = {};
   @Input() public optionsMap: OptionMap = {};
-  @Input() public hasButton: boolean = false;
 
   @Input() public buttonTemp: TemplateRef<any>;
 
   @Input() public rowHeight: number;
-  @Input() public gutter: number;
 
   @Input() public templates: {
     [key: string]: TemplateRef<any>;
   } = {};
 
-  @Input() optionsSlot: { [key: string]: ElementRef };
+  @Input() optionsTemplates: { [key: string]: ElementRef };
 
-  public cols: string | number;
+  buttonLabel: string = 'שמור';
+  gutter: number;
+  hasButton: boolean;
+  cols: string | number;
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -50,11 +50,13 @@ export class FormGridComponent implements OnInit {
   @Output() public formChangeEvent: EventEmitter<FormChangeEvent> =
     new EventEmitter();
 
-  constructor(private formDataSource: FormDataSource) {}
+  constructor() {}
 
   ngOnInit() {
+    this.gutter = this.grid.gutter || 1;
     this.cols = this.grid?.cols || 1;
-    this.hasButton = this.hasButton || false;
+    this.hasButton = !!this.grid?.button?.cols || false;
+    this.buttonLabel = this.grid?.button?.label;
   }
 
   public onSubmit() {

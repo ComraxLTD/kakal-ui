@@ -1,22 +1,20 @@
-<kkl-layout>
-  <div class="mydiv" fxFill></div>
-</kkl-layout>
-<!-- <kkl-form-date-range [dates]='data'></kkl-form-date-range>
-<kkl-form-date-range></kkl-form-date-range> -->
+<kkl-page fxFill>
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <kkl-accordion-steps-layout
+      fxFlex="90"
+      [panels]="panels"
+      [steps]="steps"
+      [templates]="{filterForm, groupForm}"
+    ></kkl-accordion-steps-layout>
+    <!-- <app-form-filter-search></app-form-filter-search> -->
 
-<!-- <mat-form-field appearance="fill">
-  <mat-label>Enter a date range</mat-label>
-  <mat-date-range-input [formGroup]="range" [dateFilter]="myFilter" [rangePicker]="picker">
-    <input matStartDate formControlName="start" placeholder="Start date">
-    <input matEndDate formControlName="end" placeholder="End date">
-  </mat-date-range-input>
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-date-range-picker #picker
-   [dateClass]="dateClass()"></mat-date-range-picker>
-</mat-form-field> -->
+    <!-- <kkl-stepper fxFlex="100" [steps$]="steps$" direction="row"></kkl-stepper>
+  </div> -->
 
-<!-- <div fxLayout="column" fxLayoutGap="5rem">
-  <div fxLayout="column" fxLayoutAlign="center center">
-    <app-form-filter-search></app-form-filter-search>
-  </div>
-</div> -->
+    <kkl-page> </kkl-page></div
+></kkl-page>
+
+<!-- templates for layouts -->
+<ng-template #filterForm> working 1 </ng-template>
+
+<ng-template #groupForm> working 2 </ng-template>

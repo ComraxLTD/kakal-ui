@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
+import { KKLIconDirective } from './icon.directive';
 import { IconComponent } from './icon.component';
 import { KKLDirectivesModule } from '../directives/directives.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     MatIconModule,
-    
+    FlexLayoutModule,
     KKLDirectivesModule,
   ],
-  declarations: [IconComponent],
-  exports: [MatIconModule, IconComponent],
+  declarations: [IconComponent, KKLIconDirective],
+  exports: [MatIconModule, IconComponent, KKLIconDirective],
 })
 export class KKLIconModule {}

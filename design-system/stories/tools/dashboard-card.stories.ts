@@ -37,7 +37,7 @@ export const dashboardCard = Template.bind({});
 dashboardCard.args = {
   card:new CardStepModel({
     label: 'התקשרות חדשה',
-    svgUrl: 'group',
+    svgIcon: 'group',
     path: 'create-new-contract',
     size: 2.5,
     variant: 'square',

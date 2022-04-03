@@ -1,7 +1,7 @@
 import { ValidatorFn } from '@angular/forms';
 import { QuestionBase } from '../models/question.model';
 import { Observable } from 'rxjs';
-import { Appearance, ControlType, GridProps } from '../models/question.types';
+import { Appearance, ControlType, InputGrid } from '../models/question.types';
 
 export interface SelectOption {
   id: number | string;
@@ -23,7 +23,7 @@ export class QuestionSelectModel extends QuestionBase {
     appearance?: Appearance;
     validations?: ValidatorFn[];
     controlType?: ControlType;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     options?: SelectOption[];
     icon?: string;
     multi?: boolean;

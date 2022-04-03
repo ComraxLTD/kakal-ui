@@ -3,15 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { MaterialModule } from './angular-material/material.module';
 import { CoreModule } from './core-module/core.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLNavigationModule } from './navigation/navigation.module';
-import { KKLBreadCrumbsModule } from './bread-crumbes/bread-crumbs.module';
+import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
-import { KKLInfoCardModule } from './cards/info-card/info-card.module';
-import { KKLFilterCardModule } from './cards/filter-card/filter-card.module';
 
 import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { KKLMenuModule } from './menu/menu.module';
@@ -31,13 +30,14 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
 import { KKLFormSearchModule } from '../lib/form/form-search/form-search.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 
-import { KKLTableModule } from './table/components/table/table.module';
+import { KKLTableModule } from './table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
 
 import { KKLDialogModule } from './dialog/dialog.module';
+
+import { SidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
@@ -46,31 +46,52 @@ import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
+
+// CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
+import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
+
+import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
+import { KKLLayoutModule } from './layouts/layout/layout.module';
+
+import { KKSectionModule } from './layouts/section/section.module';
+import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
+import { KKPageModule } from './layouts/page/page.module';
+import { KKLAccordionStepsModule } from './layouts/accordion-steps-layout/accordion-steps.module';
+import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { StepperModule } from './stepper/stepper.module';
 import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
-import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
-import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
-import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
+import { KKLListMenuModule } from './list-menu/list-menu.module';
+import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
-import { KKLLayoutModule } from '../screens/layout/layout.module';
-import { KKLLobbyModule } from '../lib/lobby/lobby.module';
-import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
-import { KKLFiltersModule } from '../lib/filters/filters.module';
+
+import { KKLLobbyModule } from './lobby/lobby.module';
+import { KKLDisplayDataModule } from './display-data/display-data.module';
+import { KKLFiltersModule } from './filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
-import { OpenMotionsModule } from '../lib/open-motions/open-motions.module';
-import { KKSectionModule } from '../lib/section/section.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { OpenMotionsModule } from './open-motions/open-motions.module';
+
+import { KKLTabsModule } from './tabs/tabs.module';
+
+import { KKLNewTableModule } from './kkl-table/kkl-table.module';
+
+import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
+import { FacilityCardModule } from './facility-card/facility-card.module';
+
+import he from '@angular/common/locales/he';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(he);
+
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
@@ -79,10 +100,10 @@ import { ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     ReactiveFormsModule,
     //TOOLS
+    KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
     KKLNavigationModule,
     KKLStatusBarsModule,
     KKLMenuModule,
@@ -91,7 +112,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     KKLStepTitleModule,
     SidenavModule,
     KKLPageHeadlineModule,
-    KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
@@ -112,6 +132,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+
+    //KKL NEW TABLE MODULES
+    KKLNewTableModule,
 
     // TABLE MODULES
     KKLTableModule,
@@ -138,18 +161,28 @@ import { ReactiveFormsModule } from '@angular/forms';
     StepperModule,
     StepperMobileModule,
     StepperLayoutModule,
+
+    KKLVerticalStepsModule,
+
     // LAYOUT
     KKLLayoutModule,
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+    KKLAccordionStepsModule,
+    KKLAccordionLayoutModule,
+    KKLAdvancedSearchLayoutModule,
+
+    KKSectionModule,
+    KKPageModule,
+    FacilityCardModule
   ],
   exports: [
     //TOOLS
+    KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
     MaterialModule,
@@ -178,12 +211,15 @@ import { ReactiveFormsModule } from '@angular/forms';
     KKLFormCounterModule,
     KKLFormSearchModule,
 
+    // NEW TABLE
+    KKLNewTableModule,
+
+    // TABLE
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
 
     KKLDialogModule,
-    KKLInfoCardModule,
 
     KKLPipesModule,
     KKLDirectivesModule,
@@ -210,6 +246,16 @@ import { ReactiveFormsModule } from '@angular/forms';
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+    KKLAccordionLayoutModule,
+    KKLAdvancedSearchLayoutModule,
+
+    KKLVerticalStepsModule,
+
+    KKSectionModule,
+    KKPageModule,
+
+    KKLAccordionStepsModule,
+    FacilityCardModule
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }

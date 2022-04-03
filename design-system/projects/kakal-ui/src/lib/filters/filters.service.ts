@@ -1,20 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import {
-  BehaviorSubject,
-  filter,
-  iif,
-  map,
-  merge,
-  Observable,
-  of,
-  pluck,
-  skip,
-  Subject,
-  switchMap,
-} from 'rxjs';
-import { Question } from '../../public-api';
-import { FilterChangeEvent, FilterState } from './filters.types';
+import { FilterLookups, FilterState } from './filters.types';
+import { BehaviorSubject, filter, map, merge, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -37,6 +23,20 @@ export class FiltersService {
 
   public getState(): FilterState {
     return this.filterState$.getValue();
+  }
+
+  public getFilterLookups(): FilterLookups {
+    const filterState = this.getState();
+    if (filterState) {
+      return Object.keys(filterState).reduce((acc, key) => {
+        return {
+          ...acc,
+          [key]: filterState[key]?.value,
+        };
+      }, {} as any);
+    } else {
+      return {}
+    }
   }
 
   public listen(): Observable<FilterState> {
@@ -85,22 +85,35 @@ export class FiltersService {
     return callback(state, ...args);
   }
 
+  private mapFilterStateToLookups<T>(
+    filterState: FilterState,
+    searchLookups: { [key: string]: keyof T }
+  ) {
+    return Object.keys(filterState).reduce((acc, key) => {
+      return {
+        ...acc,
+        [searchLookups[key]]: filterState[key]?.value,
+      };
+    }, {} as any);
+  }
+
   // use when filterState keys are different form api interface
-  public mapFilterStateToLookups<T>(searchLookups: {
+  public listenToFilterState<T>(searchLookups?: {
     [key: string]: keyof T;
-  }): Observable<T> {
+  }): Observable<FilterState> {
     const true$ = this.listen().pipe(
       filter((filterState) => filterState !== null),
       map((filterState) => {
-        const searchLookupMap = searchLookups;
-        return Object.keys(filterState).reduce((acc, key) => {
-          return {
-            ...acc,
-            [searchLookupMap[key]]: filterState[key]?.value,
-          };
-        }, {} as any);
+        if (searchLookups) {
+          filterState = this.mapFilterStateToLookups<T>(
+            filterState,
+            searchLookups
+          );
+        }
+        return filterState;
       })
     );
+
     const false$ = this.listen().pipe(
       filter((filterState) => filterState === null),
       map((_) => {

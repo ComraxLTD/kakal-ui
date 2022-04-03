@@ -1,0 +1,13 @@
+<button
+  dir="rtl"
+  mat-stroked-button
+  kkl-stroked-button
+  [color]="color || 'primary'"
+  [disabled]="disabled"
+  (click)="onClick()"
+>
+  <div fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign=" center">
+    <mat-icon color="primary">add</mat-icon>
+    <span> <ng-content></ng-content> </span>
+  </div>
+</button>
