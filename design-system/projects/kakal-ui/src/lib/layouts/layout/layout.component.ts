@@ -1,9 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MenuComponent } from '../../menu/menu.component';
-import { RouterService, BreakpointService } from '../../../services/services';
 
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { RouterService, BreakpointService } from '../../../services/services';
+import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
 
 @Component({
   selector: 'kkl-layout',
@@ -11,13 +12,31 @@ import { Observable } from 'rxjs';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  @Input() public showStatusPath: string[];
 
+  @Input() public showStatusPath: string[];
   @Input() public menu: MenuComponent;
 
   public currentPath$: Observable<string>;
   public show$: Observable<boolean>;
   public mobile$: Observable<boolean>;
+
+  public cards : MenuCard[] = [
+    {
+      label: 'ועדות',
+      svgIcon: 'union',
+      path: 'committees',
+    },
+    {
+      label: 'ישיבות',
+      svgIcon: 'meetings',
+      path: 'meetings',
+    },
+    {
+      label: 'נושאים',
+      svgIcon: 'list',
+      path: 'subjects',
+    },
+  ]
 
   constructor(
     private routerService: RouterService,

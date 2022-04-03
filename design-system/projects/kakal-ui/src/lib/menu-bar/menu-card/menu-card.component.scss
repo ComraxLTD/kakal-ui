@@ -1,0 +1,23 @@
+@use "../../../styles/variables" as main;
+
+::ng-deep .kkl-card-menu-wrapper {
+  padding: main.spacing(1);
+  box-sizing: border-box;
+
+  button.mat-stroked-button {
+    border: none !important;
+    padding: main.spacing(0.5);
+
+    span.mat-button-wrapper {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+    }
+  }
+}
+
+
+
+kkl-icon {
+  font-size: 24px;
+}
