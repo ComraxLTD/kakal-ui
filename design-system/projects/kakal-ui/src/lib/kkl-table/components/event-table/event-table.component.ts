@@ -3,15 +3,18 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild 
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, take, takeUntil } from 'rxjs';
 import { RowActionEvent, RowActionModel } from '../../table-actions.model'
 import { TableBase } from '../../table.model';
 import { TableServerModel } from '../../table-server.model';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { MatTable } from '@angular/material/table';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
 @Component({
-  selector: 'kkl-event-table',
+  selector: 'kkl-server-table',
   templateUrl: '../all-tabels/all-table.component.html',
   styleUrls: ['../all-tabels/all-table.component.scss'],
   animations: [
@@ -24,6 +27,8 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 })
 export class EventTableComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
+
+  @ViewChild(MatTable) table: MatTable<any>;
 
   isLoading: boolean = true;
 
@@ -50,6 +55,11 @@ export class EventTableComponent implements OnInit {
     if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
+    const row = this.fb.group({});
+    this.oneColumns.forEach(col => {
+      row.addControl(col.key, this.fb.control(null));
+    })
+    this.searchRow = row;
   }
 
 
@@ -59,14 +69,24 @@ export class EventTableComponent implements OnInit {
       this.dataTable = value.rows;
       setTimeout(() => {
         this.paginator.length = value.count;
+        if(value.pageSize) {
+          this.paginator.pageSize = value.pageSize;
+        }
+        this.readySpanData(0, this.dataTable.length);
       });
-      this.readySpanData(0, this.dataTable.length);
     } else {
       this.dataTable = [];
     }
     this.isLoading = false;
   }
 
+  myDataSourceUrl: string;
+  @Input() set dataSourceUrl(val: string){
+    this.myDataSourceUrl = val;
+    setTimeout(() => {
+      this.getData(0, this.paginator.pageSize, undefined, this.searchRow.value);
+    });
+  }
 
   localButtons: RowActionModel[];
   @Input() set rowActions(val: RowActionModel[]) {
@@ -80,7 +100,8 @@ export class EventTableComponent implements OnInit {
 
   editItems: any[] = [];
   rows: FormArray = this.fb.array([]);
-  form: FormGroup = this.fb.group({ 'myRows': this.rows });
+  searchRow: FormGroup = this.fb.group({});
+  form: FormGroup = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -96,7 +117,7 @@ export class EventTableComponent implements OnInit {
   ngOnInit() {
   }
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: HttpClient) {
   }
 
   ngAfterViewInit() {
@@ -104,14 +125,51 @@ export class EventTableComponent implements OnInit {
       this.paginator.pageSize = this.pageSize;
     }
     this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
-      this.requestChanged.emit({page: 0, pageSize: this.paginator.pageSize, sort: sor});
-      this.paginator.pageIndex = 0;
-      this.cleanPreLoading();
+      this.requsetChange(sor);
     });
   }
 
+  searchChanged() {
+    this.requsetChange(null);
+  }
+
+  getData(page: number, pageSize: number, sort: any, search: any) {
+    let params = new HttpParams()
+    .set('page', page)
+    .set('pageSize', pageSize)
+    .set('sort', sort)
+    .set('search', search);
+    this.http.get(this.dataSourceUrl, { params: params }).pipe(take(1)).subscribe((value:any) => {
+      if(value) {
+        this.dataTable = value.rows;
+        setTimeout(() => {
+          this.paginator.length = value.count;
+        });
+        this.readySpanData(0, this.dataTable.length);
+      } else {
+        this.dataTable = [];
+      }
+      this.isLoading = false;
+    });
+  }
+
+  requsetChange(sor: any) {
+    if (this.myDataSourceUrl) {
+      this.getData(0, this.paginator.pageSize, sor, this.searchRow.value);
+    } else {
+      this.requestChanged.emit({page: 0, pageSize: this.paginator.pageSize, sort: sor, search: this.searchRow.value});
+    }
+    this.paginator.pageIndex = 0;
+    this.cleanPreLoading();
+  }
+
   pageChanged(event: PageEvent) {
-    this.requestChanged.emit({page: event.pageIndex, pageSize: event.pageSize});
+    if (this.myDataSourceUrl) {
+      this.getData(0, this.paginator.pageSize, null, this.searchRow.value);
+    } else {
+      this.requestChanged.emit({page: 0, pageSize: this.paginator.pageSize, sort: null, search: this.searchRow.value});
+    }
+    this.requestChanged.emit({page: event.pageIndex, pageSize: event.pageSize, search: this.searchRow.value});
     this.cleanPreLoading();
   }
 
@@ -226,6 +284,13 @@ export class EventTableComponent implements OnInit {
     }
 
   }
+
+  dropTable(event: CdkDragDrop<any[]>) {
+    moveItemInArray(this.dataTable, event.previousIndex, event.currentIndex);
+    this.table.renderRows();
+    this.readySpanData(0, this.dataTable.length);
+  }
+
 
   ngOnDestroy() {
     this.destroySubject$.next();
