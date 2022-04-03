@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ValidationService } from '../services/validations.service';
-import { ValidatorFn } from '@angular/forms';
+import { ValidatorFn, Validators } from '@angular/forms';
 import { ControlType } from '../models/question.types';
 
 @Injectable({
@@ -19,7 +19,7 @@ export class FormInputService {
       case 'email':
         return {
           icon: 'email',
-          validation: ValidationService.regex('email'),
+          validation: Validators.email,
           placeHolder: 'דוא"ל',
         };
       case 'phone':

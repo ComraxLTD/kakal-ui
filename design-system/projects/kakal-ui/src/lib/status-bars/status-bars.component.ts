@@ -41,7 +41,7 @@ export class StatusBarsComponent implements OnInit {
     }
 
     const disableBars = new Array(
-      this.status.totalBars - this.status.authorizedBars
+      this.status.totalBars - this.status.authorizedBars -1
     ).fill('');
 
     this.steps.push(...disableBars);
