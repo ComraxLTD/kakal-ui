@@ -2,7 +2,7 @@
 
   <mat-sidenav #menuDrawer class="menu" mode="push"  >
     <div class="menu-container" fxLayout="column" fxLayoutAlign="start end">
-      <kkl-navbar-menu></kkl-navbar-menu>
+      <!-- <kkl-navbar-menu></kkl-navbar-menu> -->
       <!-- <ng-template *ngTemplateOutlet="
           menu;
           context: {
@@ -14,6 +14,6 @@
   <mat-sidenav-content>
     <kkl-navbar (menuToggle)="menuDrawer.toggle()" [show$]="show$"></kkl-navbar>
 
-    <ng-content></ng-content> 
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>

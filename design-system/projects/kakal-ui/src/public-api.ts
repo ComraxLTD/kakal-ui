@@ -35,7 +35,8 @@ export * from './lib/form/form/form.module';
 export * from './lib/form/form/form.component';
 
 export * from './lib/form/form-flex/flex-form.module';
-export * from './lib/form/form-flex/flex-form.component';
+export * from './lib/form/form-flex/flex-form.module';
+export * from './lib/form/form-flex/flex-form-input.directive';
 
 export * from './lib/form/form-grid/form-grid.module';
 export * from './lib/form/form-grid/form-grid.component';
@@ -327,7 +328,7 @@ export * from './lib/layouts/section/section.component';
 export * from './lib/lobby/lobby.component';
 export * from './lib/lobby/lobby.module';
 
-// facility card 
+// facility card
 export * from './lib/facility-card/facility-card.model';
 export * from './lib/facility-card/facility-card.component';
 export * from './lib/facility-card/facility-card.module';
@@ -354,7 +355,6 @@ export * from './lib/pipes/location.pipe';
 export * from './lib/pipes/prefix.pipe';
 export * from './lib/pipes/range.pipe';
 export * from './lib/pipes/pluck.pipe';
-export * from './lib/pipes/numberToTime.pipe';
 export * from './lib/pipes/pipes.module';
 //directives
 export * from './lib/directives/hover.directive';
