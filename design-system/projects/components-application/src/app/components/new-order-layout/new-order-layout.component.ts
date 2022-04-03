@@ -68,10 +68,10 @@ export class NewOrderLayoutComponent implements OnInit {
 
   //page headline items
   headlineItems: PageHeadlineModel[] = [
-    { label: 'הזמנה חדשה', type: 'template', key: 'headline' },
-    { label: 'מפ/1234/22', key: 'x', format: 'date' },
-    { label: 'ה כיבוד', key: 'x' },
-    { label: 'אקליפטוס יער', type: 'template', key: 'statusBar' },
+    { value: 'הזמנה חדשה', type: 'template', key: 'headline' },
+    { value: 'מפ/1234/22', key: 'x', format: 'date' },
+    { value: 'ה כיבוד', key: 'x' },
+    { value: 'אקליפטוס יער', type: 'template', key: 'statusBar' },
   ];
   //status model fot the page headline
   status: StatusBarsModel = {

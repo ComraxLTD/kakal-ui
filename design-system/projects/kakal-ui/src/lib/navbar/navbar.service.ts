@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
+import { PageHeadlineModel } from '../page-headline/page-headline.model';
 
 @Injectable({
   providedIn: 'root',
@@ -9,10 +10,9 @@ export class NavbarService {
   private headers: { [key: string]: string };
 
   private titleSubject: BehaviorSubject<string>;
-  private headersSubject: BehaviorSubject<Observable<string>>;
+  private headersSubject: BehaviorSubject<Observable<PageHeadlineModel[]>>;
   private statusSubject: BehaviorSubject<CardStepModel[]>;
   private selectStatusSubject: BehaviorSubject<CardStepModel>;
-
   constructor() {
     this.titleSubject = new BehaviorSubject<string>('');
     this.statusSubject = new BehaviorSubject<CardStepModel[]>([]);
@@ -23,12 +23,12 @@ export class NavbarService {
   public setHeaders(headers: { [key: string]: string }): void {
     this.headers = headers;
   }
-
-  public setHeadersObs(headers: Observable<string>): void {
-    this.headersSubject = new BehaviorSubject<Observable<string>>(headers);
+  
+  public setHeadersObs(headers: Observable<PageHeadlineModel[]>): void {
+    this.headersSubject = new BehaviorSubject<Observable<PageHeadlineModel[]>>(headers);
   }
 
-  public getHeadersObs(): Observable<string> {
+  public getHeadersObs(): Observable<PageHeadlineModel[]> {
     return this.headersSubject?.asObservable().pipe(mergeAll());
   }
 

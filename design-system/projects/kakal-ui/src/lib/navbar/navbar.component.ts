@@ -11,6 +11,7 @@ import { NavbarService } from './navbar.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ListItem } from '../list-item/list-item.model';
+import { PageHeadlineModel } from '../page-headline/page-headline.model';
 
 @Component({
   selector: 'kkl-navbar',
@@ -26,7 +27,7 @@ export class NavbarComponent implements OnInit {
   }];
   @Input() public show$: Observable<boolean>;
 
-  public title$: Observable<string>;
+  public title$: Observable<PageHeadlineModel[]>;
   public status$: Observable<CardStepModel[]>;
   public mobile$: Observable<boolean>;
   public toggle$: BehaviorSubject<ListItem<boolean>> = new BehaviorSubject<

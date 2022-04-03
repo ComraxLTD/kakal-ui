@@ -9,6 +9,7 @@ import {
   CardInfoModel,
   CardStepModel,
   Panel,
+  PageHeadlineService,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -18,50 +19,24 @@ import {
   providers: [FormDataSource],
 })
 export class AppComponent implements OnInit {
-  control = new FormControl();
-  dataSource: any[] = [];
-
-  public steps: Step[] = [
-    { key: 'filterForm', label: 'working' },
-    { key: 'groupForm', label: 'working2' },
-  ];
-
-  // array for panel layout
-  public panels: Panel[] = [
-    { key: 'filterForm', label: 'working' },
-    { key: 'groupForm', label: 'working2' },
-  ];
-
-  // public card: CardFilter = {
-  //   label: 'שם הכרטיס', // label inside card
-  //   value: 2, // number inside card
-  //   svgIcon: 'search', // svg key
-  // };
-
-  card: CardInfoModel;
-
-  constructor(private formService: FormService) {}
+  show$: Observable<boolean> = of(true);
+  constructor(
+    private formService: FormService,
+    private pageHeadlineService: PageHeadlineService
+  ) {}
 
   ngOnInit(): void {
-    this.card = {
-      svgIcon: 'home',
-      label: 'first headline',
-      subLabel: 'text long text liong tasd faser',
-    };
-
-    this.dataSource = [
+    this.pageHeadlineService.emitPageHeadlineItems([
+      { key: 'as', value: new Date(), format: 'date' },
       {
-        city: { label: 'Tel Aviv', value: 5 },
-        dob: '2022-03-28T00:00:00Z',
-        id: 1,
-        name: 'Hillyer Bowkley',
-        occupation: 'Physical Therapy Assistant',
-        yearsOfExperience: 32,
+        key: 'as',
+        value: {
+          label: 'statusBars',
+          authorizedBars: 3,
+          totalBars: 6,
+        },
+        template: true,
       },
-    ];
-  }
-
-  on(event: any) {
-    console.log(event);
+    ]);
   }
 }

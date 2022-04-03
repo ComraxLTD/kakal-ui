@@ -20,9 +20,8 @@
       <kkl-bread-crumbs></kkl-bread-crumbs>
     </div>
     <div>
-      <kkl-typography [weight]="600" [size]="2">
-        {{ title$ | async }}
-      </kkl-typography>
+      <kkl-page-headline></kkl-page-headline>
+
     </div>
   </div>
 
@@ -37,6 +36,14 @@
 
   <!-- left side logo -->
   <div fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1rem">
+<div class="left-side-content">
+  <button matTooltip="ספק לא זוכה" color="primary" mat-icon-button kkl-action-button>
+    <kkl-icon [size]="2" [key]="'clear'" [color]="'warn'"></kkl-icon>
+  </button>
+  <button matTooltip="ספק לא זוכה" color="primary" mat-icon-button kkl-action-button>
+    <kkl-icon [size]="2" [key]="'clear'" [color]="'warn'"></kkl-icon>
+  </button>
+</div>
     <div *ngFor="let logo of logos" kkl-button>
       <kkl-icon [routerLink]="['/' + logo.path]" [key]="logo.key" [size]="6"></kkl-icon>
     </div>
