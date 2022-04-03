@@ -1,10 +1,10 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-// import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 import { RowActionEvent, RowActionModel } from '../../table-actions.model';
 import { TableBase } from '../../table.model';
@@ -24,7 +24,7 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
   ],
 })
 export class LocalTableComponent implements OnInit {
-  // @ViewChild('table') table: MatTable<any>;
+  @ViewChild(MatTable) table: MatTable<any>;
 
   destroySubject$: Subject<void> = new Subject();
 
@@ -47,7 +47,7 @@ export class LocalTableComponent implements OnInit {
   @Input() set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
-    if(this.localButtons.length) {
+    if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
   }
@@ -262,30 +262,14 @@ export class LocalTableComponent implements OnInit {
 
   }
 
-  // drop(event: CdkDragDrop<any[]>) {
-  //   console.log(this.dataTable.filteredData.findIndex((d) => d === event.item.data));
-
-  //   console.log(event);
-
-  //   moveItemInArray(this.dataTable.filteredData, event.previousIndex, event.currentIndex);
-  // }
-
-  // drop(event: CdkDragDrop<any[]>) {
-  //   const prevIndex = this.dataTable.data.findIndex(d => d === event.item.data);
-  //   moveItemInArray(this.dataTable.data, prevIndex, event.currentIndex);
-  //   // this.dataSource[event.currentIndex].level = event.currentIndex + 1;
-  //   // event.item.dropContainer.data.map((x, i) => (x.level = i + 1));
-  //   // this.table.renderRows();
-  // }
-
-  // drop(event: CdkDragDrop<any[]>) {
-  //   console.log(event);
-
-  //   // const previousIndex = this.dataTable.filteredData.findIndex(row => row === event.item.data);
-  //   moveItemInArray(this.dataTable.filteredData,event.previousIndex/2, event.currentIndex/2);
-  //   // this.groupDataReload();
-  //   // this.dataTable.filteredData = this.dataTable.filteredData.slice();
-  // }
+  dropTable(event: CdkDragDrop<MatTableDataSource<any>, any>) {
+    let cutOut = this.dataTable.data.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
+    this.dataTable.data.splice(event.currentIndex, 0, cutOut);
+    this.dataTable.data = this.dataTable.data.slice();
+    // moveItemInArray(this.dataTable.data, event.previousIndex, event.currentIndex);
+    this.table.renderRows();
+    this.groupDataReload();
+  }
 
   ngOnDestroy() {
     this.destroySubject$.next();

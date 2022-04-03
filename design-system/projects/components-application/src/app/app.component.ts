@@ -16934,7 +16934,7 @@ const ELEMENT_DATA = [ {
 
 
 import { Component, OnInit } from '@angular/core';
-import { TableBase } from '../../../kakal-ui/src/public-api';
+import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -16975,18 +16975,62 @@ export class AppComponent implements OnInit {
     },
   ];
 
-  constructor() {}
+  // constructor() {}
+
+  // ngOnInit(): void {
+  //   // this.dataSource = [
+  //   //   {
+  //   //     city: { label: 'Tel Aviv', value: 5 },
+  //   //     dob: '2022-03-28T00:00:00Z',
+  //   //     id: 1,
+  //   //     name: 'Hillyer Bowkley',
+  //   //     occupation: 'Physical Therapy Assistant',
+  //   //     yearsOfExperience: 32,
+  //   //   },
+  //   // ];
+  // }
+
+
+
+  description: string = ''
+
+  constructor(
+
+  ) { }
 
   ngOnInit(): void {
-    // this.dataSource = [
-    //   {
-    //     city: { label: 'Tel Aviv', value: 5 },
-    //     dob: '2022-03-28T00:00:00Z',
-    //     id: 1,
-    //     name: 'Hillyer Bowkley',
-    //     occupation: 'Physical Therapy Assistant',
-    //     yearsOfExperience: 32,
-    //   },
-    // ];
+
   }
+
+  // columns: TableBase[] = [
+  //   { key: 'id', label: 'Id', controlType: 'number', button: {type: 'visibility', icon: ''} },
+  //   { key: 'name', label: 'Name', controlType: 'text', },
+  //   { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', },
+  //   { key: 'occupation', label: 'Occupation', controlType: 'text', },
+  //   { key: 'city', label: 'עיר', controlType: 'select'},
+  //   { key: 'dob', label: 'תאריך', controlType: 'date', colIcon:'tree'},
+  // ];
+
+  onClicked(event: any) {
+    console.log(event);
+    this.description = `: (ID: ${event.row.id}, ActionName: ${event.action}, City: ${event.row.city.label}, Date: ${event.row.dob}, Occupation: ${event.row.occupation}, YearsOfExperience: ${event.row.yearsOfExperience})`
+  }
+
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      label: 'Edit'
+    },
+    {
+      type: 'inlineDelete',
+      icon: 'cancel',
+      label: 'Delete'
+    },
+    {
+      type: 'visibility',
+      icon: 'visibility',
+      label: 'Show'
+    },
+  ]
 }
