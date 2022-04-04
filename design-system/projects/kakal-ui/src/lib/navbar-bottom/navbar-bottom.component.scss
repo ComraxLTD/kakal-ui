@@ -14,5 +14,5 @@ button.mat-mini-fab {
 }
 
 button.kkl-next-button :not(.mat-button-disabled) {
-  color: main.color(paper);
+  color: main.color(paper) !important;
 }

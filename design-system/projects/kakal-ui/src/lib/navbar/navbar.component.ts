@@ -1,11 +1,5 @@
 import { IconModel } from '../icon/icon.model';
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
@@ -18,16 +12,14 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
-
-
   @Input() public openIcon: string = 'tree_gradient_tac';
 
-  @Input() public logos: IconModel[] = [{
-    key: "logo",
-    size: 7,
-    path: "small-contracts"
-  }];
+  @Input() public logos: IconModel[] = [
+    {
+      key: 'logo',
+      size: 7,
+    },
+  ];
 
   @Input() public show$: Observable<boolean>;
 
@@ -47,7 +39,7 @@ export class NavbarComponent implements OnInit {
   constructor(
     private navbarService: NavbarService,
     private breakpointService: BreakpointService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.title$ = this.navbarService.getHeadersObs();
@@ -56,9 +48,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public toggleMenu(toggle: boolean) {
-
     this.toggle$.next({ value: !toggle });
     this.menuToggle.emit();
   }
-
 }
