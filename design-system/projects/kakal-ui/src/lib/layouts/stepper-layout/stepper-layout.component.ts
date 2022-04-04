@@ -26,16 +26,11 @@ export class StepperLayoutComponent {
   // @ViewChild('sidenav') sidenav: MatSidenav;
 
   @Input() steps: CardStepModel[];
-  @Input() portion$: Observable<number> = of(100);
-  @Input() drawerSize$: Observable<number>;
 
   @Input() hasTitle: boolean;
 
-  @Input() hasDrawer: boolean;
-  @Input() drawerBtn: {
-    icon: string;
-    label: string;
-  };
+  @Input() hasEndDrawer: boolean;
+  @Input() drawerType: 'file' | 'notes';
 
   @Input() buttonLabel: ElementRef;
 
@@ -43,6 +38,10 @@ export class StepperLayoutComponent {
 
   // steps props
   steps$: Observable<CardStepModel[]>;
+
+  // drawer props
+  portion$: Observable<number> = of(100);
+  drawerSize$: Observable<number>;
   showDrawer$: Observable<boolean>;
   showEndDrawer$: Observable<boolean>;
   mobile$: Observable<boolean>;
@@ -51,6 +50,12 @@ export class StepperLayoutComponent {
   showSubmenu: boolean = false;
   isShowing = false;
   showSubSubMenu: boolean = false;
+
+  // drawer btn
+  drawerBtn: {
+    icon: string;
+    label: string;
+  };
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
@@ -64,6 +69,9 @@ export class StepperLayoutComponent {
     this.stepperLayoutService.setSteps(this.setSteps());
 
     this.steps$ = this.setSteps$();
+
+    this.drawerBtn = this.setDrawerBtn();
+
     this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
     this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
     this.mobile$ = this.breakpointService.isMobile();
@@ -102,12 +110,18 @@ export class StepperLayoutComponent {
     );
   }
 
+  private setDrawerBtn() {
+    if (this.drawerType === 'file') {
+      return { icon: 'portfolio', label: 'מסמכים' };
+    }
+  }
+
   // DO, EVENTS
   public onChangeStep(step: CardStepModel): void {
     this.changedStep.emit(step);
   }
 
-  emitEndDrawer(): void {
+  public emitEndDrawer(): void {
     this.emitEndDrawerBtn.emit();
   }
 
