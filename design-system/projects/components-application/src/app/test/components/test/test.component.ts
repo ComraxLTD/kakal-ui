@@ -15,25 +15,22 @@ export class TestComponent implements OnInit {
   portion$!: Observable<number>;
 
   public steps: CardStepModel[] = [
-    new CardStepModel({
+    {
       label: 'פרטי ההתקשרות',
       svgIcon: 'contact',
       path: 'first',
       size: 3,
       variant: 'circle',
       type: 'step',
-      spacer: true,
-    }),
-    new CardStepModel({
+    },
+    {
       label: 'בניית הצעת מחיר',
       svgIcon: 'offer',
       path: 'second',
       size: 3,
       variant: 'circle',
       type: 'step',
-      spacer: true,
-      stroke: true,
-    }),
+    },
   ];
   constructor(
     private stepperLayoutService: StepperLayoutService,

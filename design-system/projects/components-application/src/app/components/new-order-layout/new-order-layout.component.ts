@@ -1,14 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { map, mergeMap, Observable, of } from 'rxjs';
-import { StatusBarsModel } from '../../../../../kakal-ui/src/lib/status-bars/status-bars.model';
 import {
   CardStepModel,
-  PageHeadlineModel,
-  PageHeadlineService,
   BreakpointService,
   RouterService,
   StepperLayoutService,
 } from '../../../../../kakal-ui/src/public-api';
+import { map, mergeMap, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-new-order-layout',
@@ -16,7 +13,6 @@ import {
   styleUrls: ['./new-order-layout.component.scss'],
 })
 export class NewOrderLayoutComponent implements OnInit {
-
   public disableNext!: Observable<boolean>;
 
   //decides the portion of the screen that the right side(main/static content) will have
@@ -34,35 +30,30 @@ export class NewOrderLayoutComponent implements OnInit {
 
   //stepper steps
   public steps: CardStepModel[] = [
-    new CardStepModel({
+    {
       label: 'פרטי הזמנה',
       svgIcon: 'contact',
       path: 'details',
       size: 3,
       variant: 'circle',
       type: 'step',
-      spacer: true,
-    }),
-    new CardStepModel({
+    },
+    {
       label: 'בחירת ספק',
       svgIcon: 'reports',
       path: 'select-supplier',
       size: 3,
       variant: 'circle',
       type: 'step',
-      spacer: true,
-      stroke: true,
-    }),
-    new CardStepModel({
+    },
+    {
       label: 'ספק זוכה',
       svgIcon: 'medal',
       path: 'bid',
       size: 3,
       variant: 'circle',
       type: 'step',
-      spacer: true,
-      stroke: true,
-    }),
+    },
   ];
 
   constructor(
