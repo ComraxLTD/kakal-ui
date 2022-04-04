@@ -61,14 +61,25 @@ export class StepperLayoutComponent {
   @Output() changedStep: EventEmitter<CardStepModel> = new EventEmitter();
 
   ngOnInit(): void {
-    this.stepperLayoutService.setSteps(this.steps);
+    this.stepperLayoutService.setSteps(this.setSteps());
 
     this.steps$ = this.setSteps$();
     this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
     this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
     this.mobile$ = this.breakpointService.isMobile();
   }
-  
+
+  private setSteps(): CardStepModel[] {
+    return this.steps.map((step: CardStepModel) => {
+      return {
+        ...step,
+        size: 3,
+        variant: 'circle',
+        type: 'step',
+      };
+    });
+  }
+
   private setSteps$(): Observable<CardStepModel[]> {
     return this.stepperLayoutService.getStepsObs().pipe(
       switchMap((steps) => {

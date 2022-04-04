@@ -34,25 +34,19 @@ export class NewOrderLayoutComponent implements OnInit {
       label: 'פרטי הזמנה',
       svgIcon: 'contact',
       path: 'details',
-      size: 3,
-      variant: 'circle',
-      type: 'step',
+
     },
     {
       label: 'בחירת ספק',
       svgIcon: 'reports',
       path: 'select-supplier',
-      size: 3,
-      variant: 'circle',
-      type: 'step',
+    
     },
     {
       label: 'ספק זוכה',
       svgIcon: 'medal',
       path: 'bid',
-      size: 3,
-      variant: 'circle',
-      type: 'step',
+
     },
   ];
 
