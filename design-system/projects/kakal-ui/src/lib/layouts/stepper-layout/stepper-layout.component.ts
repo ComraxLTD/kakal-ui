@@ -16,11 +16,9 @@ import { Observable, of } from 'rxjs';
 export class StepperLayoutComponent {
   @Input() steps: CardStepModel[];
 
-  // control end drawer open and close width
-  @Input() drawerPortion: { open: number; close: number } = {
-    open: 0,
-    close: 100,
-  };
+  // control end drawer width
+
+  @Input() drawerPortion: number;
   @Input() drawerType: 'file' | 'notes';
 
   @Input() hasEndDrawer: boolean;
@@ -59,9 +57,6 @@ export class StepperLayoutComponent {
     this.stepperLayoutService.setSteps(this.setSteps());
 
     this.steps$ = this.setSteps$();
-
-    this._openDrawer = this.drawerPortion.open;
-    this._closedDrawer = this.drawerPortion.close;
 
     this.drawerBtn = this.setDrawerBtn();
 
@@ -135,8 +130,8 @@ export class StepperLayoutComponent {
           this._openDrawer = 1;
           this._closedDrawer = 99;
         } else {
-          this._openDrawer = this.drawerPortion.open;
-          this._closedDrawer = this.drawerPortion.close;
+          this._openDrawer = this.drawerPortion;
+          this._closedDrawer = 100 - this.drawerPortion;
         }
         this.endDrawerSize$ = of(this._openDrawer);
         return 100 - this._openDrawer;
