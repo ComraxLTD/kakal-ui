@@ -1,11 +1,10 @@
 <kkl-stepper-layout
   dir="rtl"
+  [hasEndDrawer]="true"
   [steps]="steps"
+  [contentPortion]="{ open: 10, close: 50 }"
   (stepChanged)="onChangeStep($event)"
 >
-  <!-- the page-headline of the stepper layout -->
-  <kkl-page-headline title [templates]="{statusBar}"></kkl-page-headline>
-
   <!-- the changing content of the stepper layout -->
   <div content>
     <router-outlet></router-outlet>
@@ -21,8 +20,3 @@
     [stepper]="true"
   ></kkl-navbar-bottom>
 </kkl-stepper-layout>
-
-<!-- component inserted to the page-headline -->
-<ng-template #statusBar let-item>
-  <kkl-status-bars [status]="status"></kkl-status-bars>
-</ng-template>

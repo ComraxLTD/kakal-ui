@@ -22,9 +22,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CommonModule } from '@angular/common';
-// import he from '@angular/common/locales/he';
-// import { registerLocaleData } from '@angular/common';
-// registerLocaleData(he);
+
 @NgModule({
   declarations: [
     AppComponent,
