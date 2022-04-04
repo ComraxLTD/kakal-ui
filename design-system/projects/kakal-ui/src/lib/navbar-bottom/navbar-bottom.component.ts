@@ -78,7 +78,7 @@ export class NavbarBottomComponent implements OnInit {
 
   private setShowNext(): Observable<boolean> {
     return this.hasNext && this.stepper
-      ? merge(this.handleOnNext(), this.onChangeStep(), this.setShowNextStep$())
+      ? merge(this.handleOnNext(), this.onChangedStep(), this.setShowNextStep$())
       : of(this.hasNext);
   }
 
@@ -115,7 +115,7 @@ export class NavbarBottomComponent implements OnInit {
     return currentStepIndex + 1;
   }
 
-  private onChangeStep() {
+  private onChangedStep() {
     return this.changeStep$.pipe(
       switchMap((step) => {
         return this.steps$.pipe(

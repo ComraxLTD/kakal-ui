@@ -1,20 +1,12 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StepperLayoutService } from './stepper-layout.service';
-import { FormControl } from '@angular/forms';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
-import { map, switchMap } from 'rxjs/operators';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -22,34 +14,29 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
   styleUrls: ['./stepper-layout.component.scss'],
 })
 export class StepperLayoutComponent {
-  //mat split drawer
-  // @ViewChild('sidenav') sidenav: MatSidenav;
-
   @Input() steps: CardStepModel[];
 
-  @Input() hasTitle: boolean;
-
-  @Input() hasEndDrawer: boolean;
+  // control end drawer open and close width
+  @Input() drawerPortion: { open: number; close: number } = {
+    open: 0,
+    close: 100,
+  };
   @Input() drawerType: 'file' | 'notes';
-
-  @Input() buttonLabel: ElementRef;
-
-  @Output() emitEndDrawerBtn: EventEmitter<void> = new EventEmitter();
 
   // steps props
   steps$: Observable<CardStepModel[]>;
 
   // drawer props
   portion$: Observable<number> = of(100);
-  drawerSize$: Observable<number>;
-  showDrawer$: Observable<boolean>;
-  showEndDrawer$: Observable<boolean>;
-  mobile$: Observable<boolean>;
+  showStartDrawer$: Observable<boolean>;
+  endDrawerSize$: Observable<number>;
 
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
+  //end drawer opened/closed
+  _endDrawerOpen: boolean = false;
+
+  //drawer sizes
+  _openDrawer!: number;
+  _closedDrawer!: number;
 
   // drawer btn
   drawerBtn: {
@@ -57,24 +44,28 @@ export class StepperLayoutComponent {
     label: string;
   };
 
+  @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
+  @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
+
   constructor(
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService
   ) {}
 
-  @Output() changedStep: EventEmitter<CardStepModel> = new EventEmitter();
-
   ngOnInit(): void {
     this.stepperLayoutService.setSteps(this.setSteps());
 
     this.steps$ = this.setSteps$();
 
+    this._openDrawer = this.drawerPortion.open;
+    this._closedDrawer = this.drawerPortion.close;
+
     this.drawerBtn = this.setDrawerBtn();
 
-    this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
-    this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
-    this.mobile$ = this.breakpointService.isMobile();
+    this.showStartDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
+
+    this.portion$ = this.getBreakPoints();
   }
 
   private setSteps(): CardStepModel[] {
@@ -116,24 +107,60 @@ export class StepperLayoutComponent {
     }
   }
 
-  // DO, EVENTS
+  // PORTION LOGIC SECTION
+
+  // breakpoints
+  private mergeBreakPoints() {
+    return this.breakpointService
+      .isSmall()
+      .pipe(
+        mergeMap((isSmall) =>
+          this.breakpointService
+            .isMobile()
+            .pipe(map((isMobile) => [isSmall, isMobile]))
+        )
+      );
+  }
+
+  private getBreakPoints() {
+    return this.mergeBreakPoints().pipe(
+      map((value: boolean[]) => {
+        if (value.includes(true)) {
+          this._openDrawer = 1;
+          this._closedDrawer = 99;
+        } else {
+          this._openDrawer = this.drawerPortion.open;
+          this._closedDrawer = this.drawerPortion.close;
+        }
+        this.endDrawerSize$ = of(this._openDrawer);
+        return 100 - this._openDrawer;
+      })
+    );
+  }
+
+  // function called each time the left(end) drawer is closed/opened
+  onEndDrawerEmitted() {
+    let portion: number = 0;
+
+    this._endDrawerOpen = !this._endDrawerOpen;
+    if (!this._endDrawerOpen) {
+      portion = 100 - this._openDrawer;
+      this.portion$ = of(portion);
+      this.endDrawerSize$ = of(this._openDrawer);
+    } else {
+      portion = 100 - this._closedDrawer;
+      this.portion$ = of(portion);
+      this.endDrawerSize$ = of(this._closedDrawer);
+    }
+    this.openChanged.emit(this._endDrawerOpen);
+  }
+
+  // DOM EVENTS
   public onChangeStep(step: CardStepModel): void {
-    this.changedStep.emit(step);
+    this.stepChanged.emit(step);
   }
 
   public emitEndDrawer(): void {
-    this.emitEndDrawerBtn.emit();
-  }
-
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
-
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
+    this.onEndDrawerEmitted();
   }
 }
