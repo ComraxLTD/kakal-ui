@@ -58,19 +58,17 @@ export class StepperLayoutComponent {
     private breakpointService: BreakpointService
   ) {}
 
-  @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
-  @Output() selectStep: EventEmitter<FormControl> = new EventEmitter();
+  @Output() changedStep: EventEmitter<CardStepModel> = new EventEmitter();
 
   ngOnInit(): void {
     this.stepperLayoutService.setSteps(this.steps);
 
     this.steps$ = this.setSteps$();
-
-    // this.question$ = this.setSelectQuestion();
     this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
     this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
     this.mobile$ = this.breakpointService.isMobile();
   }
+  
   private setSteps$(): Observable<CardStepModel[]> {
     return this.stepperLayoutService.getStepsObs().pipe(
       switchMap((steps) => {
@@ -95,10 +93,7 @@ export class StepperLayoutComponent {
 
   // DO, EVENTS
   public onChangeStep(step: CardStepModel): void {
-    this.changeStep.emit(step);
-  }
-  public onSelectStep(control: FormControl) {
-    this.selectStep.emit(control);
+    this.changedStep.emit(step);
   }
 
   emitEndDrawer(): void {
