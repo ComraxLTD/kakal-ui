@@ -1,9 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { RouterService, BreakpointService } from '../../../services/services';
 import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
+import { map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-layout',
@@ -11,9 +11,10 @@ import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-
-  @Input() public showStatusPath: string[];
-  @Input() public cards : MenuCard[]
+  
+  @Input() showStatusPath: string[];
+  @Input() cards: MenuCard[];
+  @Input() rootPrefix: string;
 
   public currentPath$: Observable<string>;
   public show$: Observable<boolean>;
