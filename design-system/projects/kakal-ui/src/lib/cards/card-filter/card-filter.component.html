@@ -22,13 +22,14 @@
 
 <button
   mat-stroked-button
+  [disabled]="disabled"
   [class.kkl-card-filter]="true"
   (click)="onCardClick()"
   [ngClass]="{ chosen: _chosen }"
   color="primary"
   [disableRipple]="true"
 >
-  <button class="kkl-card-filter-svg" mat-mini-fab>
+  <button [disabled]="disabled" class="kkl-card-filter-svg" mat-mini-fab>
     <kkl-icon [key]="card.svgIcon"></kkl-icon>
   </button>
   <kkl-typography [weight]="600">{{ card.label }}</kkl-typography>
