@@ -13,6 +13,7 @@ export interface CardFilter {
 })
 export class CardFilterComponent implements OnInit {
   @Input() card!: CardFilter;
+  @Input() disabled: boolean = false;
 
   public _chosen: boolean;
 

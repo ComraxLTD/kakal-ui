@@ -1,8 +1,7 @@
 <kkl-stepper-layout
-  (emitEndDrawerBtn)="onEndDrawerEmitted()"
-  [portion$]="portion$"
-  [hasTitle]="true"
-  (changeStep)="onChangeStep($event)"
+  dir="rtl"
+  [steps]="steps"
+  (stepChanged)="onChangeStep($event)"
 >
   <!-- the page-headline of the stepper layout -->
   <kkl-page-headline title [templates]="{statusBar}"></kkl-page-headline>

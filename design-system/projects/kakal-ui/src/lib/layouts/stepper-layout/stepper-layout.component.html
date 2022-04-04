@@ -10,14 +10,15 @@
         </div>
       </div>
     </mat-sidenav>
+
     <mat-sidenav
-      *ngIf="hasDrawer"
+      *ngIf="portion !== 100"
       #endDrawer
       class="sidenav-drawer"
       mode="side"
       position="end"
       [opened]="true"
-      [ngStyle]="{ width: (drawerSize$ | async) + '%' }"
+      [ngStyle]="{ width: (endDrawerSize$ | async) + '%' }"
     >
       <!-- end drawer content -->
       <div fxLayout="row" fxLayoutAlign="stretch stretch" fxFill>
@@ -85,7 +86,7 @@
                 fxFlex="80"
                 fxLayout="column"
                 fxLayoutAlign="center center"
-                *ngIf="showDrawer$ | async"
+                *ngIf="showStartDrawer$ | async"
               >
                 <button
                   [ngStyle]="{
@@ -112,11 +113,6 @@
                       <ng-container *ngIf="drawerBtn?.label; else labelBlock">{{
                         drawerBtn.label
                       }}</ng-container>
-
-                      <ng-template
-                        #labelBlock
-                        [ngTemplateOutlet]="buttonLabel"
-                      ></ng-template>
                     </kkl-typography>
                   </div>
                 </button>
@@ -131,7 +127,6 @@
                   [steps$]="steps$"
                   direction="row"
                   (changeStep)="onChangeStep($event)"
-                  (selectStep)="onSelectStep($event)"
                 ></kkl-stepper>
               </ng-container>
 
@@ -162,3 +157,5 @@
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-container>
+
+<ng-template #defaultTemplate> </ng-template>

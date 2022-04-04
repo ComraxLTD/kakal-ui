@@ -11,7 +11,7 @@ import { ListItem } from '../list-item/list-item.model';
 })
 export class StepperMobileComponent implements OnInit {
   @Input() public activeStepIndex: number;
-  @Input() public steps$: Observable<CardStatusModel[]>;
+  @Input() public steps$: Observable<CardStepModel[]>;
   @Output() changeStep = new EventEmitter<CardStepModel>();
 
   public end: number;
@@ -38,7 +38,7 @@ export class StepperMobileComponent implements OnInit {
 
   private setActiveStep$(): Observable<ListItem<number>> {
     return this.steps$.pipe(
-      map((steps) => steps.findIndex((step: CardStepModel) => step.isActive)),
+      map((steps : CardStepModel[]) => steps.findIndex((step: CardStepModel) => step.isActive) as number),
       map((index: number) => {
         const item: ListItem<number> = {
           value: index,
@@ -50,7 +50,7 @@ export class StepperMobileComponent implements OnInit {
 
   private setStepsMap() {
     return this.steps$.pipe(
-      map((steps: CardStatusModel[]) => {
+      map((steps: CardStepModel[]) => {
         const map = steps.reduce((acc, step) => {
           return {
             ...acc,

@@ -17,7 +17,7 @@ import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  @Input() public steps$: Observable<CardStatusModel[]>;
+  @Input() public steps$: Observable<CardStepModel[]>;
   @Input() public activeStepIndex: number;
 
   @Input() slots: { content: TemplateRef<any>; step: TemplateRef<any> };
@@ -52,7 +52,7 @@ export class NavigationComponent implements OnInit {
 
   private setStepsMap() {
     return this.steps$.pipe(
-      map((steps: CardStatusModel[]) => {
+      map((steps: CardStepModel[]) => {
         const map = steps.reduce((acc, step) => {
           return {
             ...acc,
