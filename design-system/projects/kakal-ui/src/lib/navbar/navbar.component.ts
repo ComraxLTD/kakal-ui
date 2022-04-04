@@ -18,12 +18,17 @@ import { ListItem } from '../list-item/list-item.model';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+
+
+
   @Input() public openIcon: string = 'tree_gradient_tac';
+
   @Input() public logos: IconModel[] = [{
     key: "logo",
     size: 7,
     path: "small-contracts"
   }];
+
   @Input() public show$: Observable<boolean>;
 
   public title$: Observable<string>;
