@@ -23,6 +23,8 @@ export class StepperLayoutComponent {
   };
   @Input() drawerType: 'file' | 'notes';
 
+  @Input() hasEndDrawer: boolean;
+
   // steps props
   steps$: Observable<CardStepModel[]>;
 
