@@ -1,4 +1,3 @@
-import { MenuItemModel } from '../../menu-item/menu-item.model';
 import { CardType, CardVariant } from '../card.model';
 
 export type StepperDirection = 'column' | 'row';
