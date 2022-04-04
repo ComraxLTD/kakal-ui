@@ -36,6 +36,7 @@
       <!--next button -->
       <ng-container *ngIf="buttonState.next">
         <button
+          [class.kkl-next-button]="true"
           mat-raised-button
           [disabled]="buttonState.disableNext"
           color="primary"

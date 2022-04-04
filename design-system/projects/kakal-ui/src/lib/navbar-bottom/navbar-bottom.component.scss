@@ -9,7 +9,10 @@ div {
   height: 100%;
 }
 
-
 button.mat-mini-fab {
   background-color: main.color(paper) !important;
+}
+
+button.kkl-next-button {
+  color: main.color(paper);
 }
