@@ -107,6 +107,10 @@ export class StepperLayoutComponent {
     if (this.drawerType === 'file') {
       return { icon: 'portfolio', label: 'מסמכים' };
     }
+
+    if (this.drawerType === 'notes') {
+      return { icon: 'bell', label: 'תזכורת' };
+    }
   }
 
   // PORTION LOGIC SECTION
