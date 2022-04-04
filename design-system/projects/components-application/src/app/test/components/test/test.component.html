@@ -1,11 +1,15 @@
 <div class="demo-layout" fxFill>
-    <kkl-stepper-layout (changeStep)="onChangeStep($event)">
+  <kkl-stepper-layout [steps]="steps" (changeStep)="onChangeStep($event)">
+    <router-outlet content></router-outlet>
 
-        <router-outlet content></router-outlet>
-
-        <kkl-navbar-bottom bottom-navbar [bottomIcon]="'bottom_tree_tac'" [hasNext]="true"
-            (previous)="onPrevious()" (next)="onNext($event)" [stepper]="true">
-        </kkl-navbar-bottom>
-
-    </kkl-stepper-layout>
+    <kkl-navbar-bottom
+      bottom-navbar
+      [bottomIcon]="'bottom_tree_tac'"
+      [hasNext]="true"
+      (previous)="onPrevious()"
+      (next)="onNext($event)"
+      [stepper]="true"
+    >
+    </kkl-navbar-bottom>
+  </kkl-stepper-layout>
 </div>

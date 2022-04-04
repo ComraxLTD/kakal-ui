@@ -16,10 +16,9 @@ import {
   styleUrls: ['./new-order-layout.component.scss'],
 })
 export class NewOrderLayoutComponent implements OnInit {
+
   public disableNext!: Observable<boolean>;
 
-  //steps
-  public steps$!: Observable<CardStepModel[]>;
   //decides the portion of the screen that the right side(main/static content) will have
   public portion$!: Observable<number>;
 
@@ -66,41 +65,13 @@ export class NewOrderLayoutComponent implements OnInit {
     }),
   ];
 
-  //page headline items
-  headlineItems: PageHeadlineModel[] = [
-    { label: 'הזמנה חדשה', type: 'template', key: 'headline' },
-    { label: 'מפ/1234/22', key: 'x', format: 'date' },
-    { label: 'ה כיבוד', key: 'x' },
-    { label: 'אקליפטוס יער', type: 'template', key: 'statusBar' },
-  ];
-  //status model fot the page headline
-  status: StatusBarsModel = {
-    label: 'חדש',
-    authorizedBars: 1,
-    totalBars: 7,
-  };
-
   constructor(
-    private pageHeadlineService: PageHeadlineService,
     private breakpointsService: BreakpointService,
     private routerService: RouterService,
     private stepperLayoutService: StepperLayoutService
   ) {}
 
   ngOnInit(): void {
-    //add size to page header
-    this.headlineItems = this.headlineItems.map((item, index) => ({
-      ...item,
-    }));
-    //
-    this.steps$ = this.stepperLayoutService.getStepsObs();
-
-    //emit new headline items
-    this.pageHeadlineService.emitPageHeadlineItems(this.headlineItems);
-
-    //init steps
-    this.stepperLayoutService.setSteps(this.steps);
-
     //decide if drawer is open or closed on init
     this.stepperLayoutService.emitDisplayDrawer(false);
 

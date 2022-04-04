@@ -9,9 +9,9 @@ import {
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { RouterService } from '../../services/route.service';
+import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
 import { combineLatest, merge, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
 
 @Component({
   selector: 'kkl-navbar-bottom',

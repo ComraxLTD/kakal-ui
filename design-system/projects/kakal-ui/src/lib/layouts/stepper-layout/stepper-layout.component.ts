@@ -9,14 +9,12 @@ import {
 import { StepperLayoutService } from './stepper-layout.service';
 import { FormControl } from '@angular/forms';
 
-import { MatSidenav } from '@angular/material/sidenav';
-
 import { RouterService, BreakpointService } from '../../../services/services';
 
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
 import { map, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -25,29 +23,14 @@ import { Observable, of } from 'rxjs';
 })
 export class StepperLayoutComponent {
   //mat split drawer
-  @ViewChild('sidenav') sidenav: MatSidenav;
-  @Output() emitEndDrawerBtn: EventEmitter<void> = new EventEmitter();
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
+  // @ViewChild('sidenav') sidenav: MatSidenav;
 
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
-
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
-  }
-  // ---------------------------------
-
+  @Input() steps: CardStepModel[];
   @Input() portion$: Observable<number> = of(100);
   @Input() drawerSize$: Observable<number>;
+
   @Input() hasTitle: boolean;
+
   @Input() hasDrawer: boolean;
   @Input() drawerBtn: {
     icon: string;
@@ -56,11 +39,18 @@ export class StepperLayoutComponent {
 
   @Input() buttonLabel: ElementRef;
 
+  @Output() emitEndDrawerBtn: EventEmitter<void> = new EventEmitter();
+
   // steps props
-  public steps$: Observable<CardStepModel[]>;
-  public showDrawer$: Observable<boolean>;
-  public showEndDrawer$: Observable<boolean>;
-  public mobile$: Observable<boolean>;
+  steps$: Observable<CardStepModel[]>;
+  showDrawer$: Observable<boolean>;
+  showEndDrawer$: Observable<boolean>;
+  mobile$: Observable<boolean>;
+
+  isExpanded = true;
+  showSubmenu: boolean = false;
+  isShowing = false;
+  showSubSubMenu: boolean = false;
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
@@ -72,6 +62,8 @@ export class StepperLayoutComponent {
   @Output() selectStep: EventEmitter<FormControl> = new EventEmitter();
 
   ngOnInit(): void {
+    this.stepperLayoutService.setSteps(this.steps);
+
     this.steps$ = this.setSteps$();
 
     // this.question$ = this.setSelectQuestion();
@@ -101,6 +93,7 @@ export class StepperLayoutComponent {
     );
   }
 
+  // DO, EVENTS
   public onChangeStep(step: CardStepModel): void {
     this.changeStep.emit(step);
   }
@@ -110,5 +103,17 @@ export class StepperLayoutComponent {
 
   emitEndDrawer(): void {
     this.emitEndDrawerBtn.emit();
+  }
+
+  mouseenter() {
+    if (!this.isExpanded) {
+      this.isShowing = true;
+    }
+  }
+
+  mouseleave() {
+    if (!this.isExpanded) {
+      this.isShowing = false;
+    }
   }
 }

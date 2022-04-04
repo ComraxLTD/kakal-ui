@@ -14,7 +14,7 @@ export class StepperLayoutService {
   private changeStep: Subject<CardStepModel>;
 
   constructor() {
-    this.stepperSubject= new BehaviorSubject<CardStepModel[]>([])
+    this.stepperSubject = new BehaviorSubject<CardStepModel[]>([]);
     this.showDrawer = new BehaviorSubject<boolean>(false);
     this.drawerSize = new BehaviorSubject<number>(1);
     this.showEndDrawer = new BehaviorSubject<boolean>(false);
@@ -28,10 +28,8 @@ export class StepperLayoutService {
   public getStepsObs(): Observable<CardStepModel[]> {
     return this.stepperSubject.asObservable();
   }
-  public emitSteps(steps: CardStepModel[]): void {
-    this.stepperSubject.next(steps);
-  }
 
+  
   public emitDisplayDrawer(value: boolean): void {
     this.showDrawer.next(value);
   }
@@ -44,11 +42,11 @@ export class StepperLayoutService {
     return this.showEndDrawer.asObservable();
   }
 
-  public emitDisplayEndDrawer(value:boolean):void{
-    this.showEndDrawer.next(value)
+  public emitDisplayEndDrawer(value: boolean): void {
+    this.showEndDrawer.next(value);
   }
 
-  public emitDrawerSizeChanged(value:number) {
+  public emitDrawerSizeChanged(value: number) {
     this.drawerSize.next(value);
   }
 
