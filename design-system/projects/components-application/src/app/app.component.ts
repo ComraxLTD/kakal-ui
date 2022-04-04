@@ -1,6 +1,3 @@
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
@@ -74,39 +71,12 @@ export class AppComponent implements OnInit {
 
   control: FormControl = new FormControl();
 
-
-
   constructor() { }
 
   ngOnInit(): void {
   }
 
 
-  onClicked(event: any) {
-    console.log(event);
-    this.description = `: (ID: ${event.row.id}, ActionName: ${event.action}, City: ${event.row.city.label}, Date: ${event.row.dob}, Occupation: ${event.row.occupation}, YearsOfExperience: ${event.row.yearsOfExperience})`
-  }
 
-  editRow(eve){
-    console.log(eve);
 
-  }
-
-  rowActions: RowActionModel[] = [
-    {
-      type: 'inlineEdit',
-      icon: 'edit',
-      label: 'Edit'
-    },
-    {
-      type: 'inlineDelete',
-      icon: 'cancel',
-      label: 'Delete'
-    },
-    {
-      type: 'visibility',
-      icon: 'visibility',
-      label: 'Show'
-    },
-  ]
 }
