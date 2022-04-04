@@ -32,11 +32,11 @@ export class FormFilterSearchComponent implements OnInit {
       asButton : true
     },
 
-    // {
-    //   key: 'email',
-    //   label: 'email',
-    //   controlType: 'autocomplete',
-    // },
+    {
+      key: 'email',
+      label: 'email',
+      controlType: 'checkbox',
+    },
     // {
     //   key: 'birthDay',
     //   label: 'יום הולדת',
@@ -49,17 +49,17 @@ export class FormFilterSearchComponent implements OnInit {
     //   controlType: 'dateRange',
     //   gridProps: { offset: 'none' },
     // },
-    {
-      label: 'city',
-      key: 'city',
-      controlType: 'multiSelect',
-      multi: true,
-    },
-    {
-      key: 'country',
-      label: 'country',
-      controlType: 'select',
-    },
+    // {
+    //   label: 'city',
+    //   key: 'city',
+    //   controlType: 'multiSelect',
+    //   multi: true,
+    // },
+    // {
+    //   key: 'country',
+    //   label: 'country',
+    //   controlType: 'select',
+    // },
   ];
 
   control: FormControl = new FormControl();

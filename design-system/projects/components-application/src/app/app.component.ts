@@ -1,10 +1,14 @@
-
-
-
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
-import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import {
+  FormGrid,
+  FormService,
+  Question,
+  QuestionGroupModel,
+  RowActionModel,
+  TableBase,
+} from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -12,101 +16,62 @@ import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  dataSource = [];
+  constructor(private formService: FormService) {}
 
-  columns: TableBase[] = [
+  questions: Question[] = [
     {
-      controlType: 'text',
-      key: 'poCodes',
-        label: `PO#`,
-        group: 'poCodes',
+      key: 'name',
     },
     {
-      controlType: 'text',
-      key: 'suppliers',
-        label: `Supplier`,
-        group: 'poCodes',
+      key: 'select',
+      controlType: 'select',
+      label: 'select',
+      options: [{ id: 0, label: 'test', value: 0 }],
     },
     {
+      key: 'email',
+      controlType: 'email',
+      // offset - set to none to remove padding from the end
+      gridProps: { offset: 'none' },
+    },
+    {
+      key: 'phone',
+      controlType: 'checkbox',
+    },
+    {
+      key: 'date',
       controlType: 'date',
-      key: 'recordedTime',
-        label: `Recorded time`,
-        button:
-          {
-            type: 'inlineExpand',
-            icon: 'expand',
-          }
+      // offset - set to none to remove padding from the end
+      // gridProps: { offset: 'none' },
     },
     {
-      controlType: 'text',
-      key: 'status',
-        label: `Status`,
-        colIcon: 'add'
+      key: 'upload',
+      controlType: 'upload',
+      // offset - set to none to remove padding from the end
+      gridProps: { offset: 'none' },
+    },
+    {
+      key: 'text',
+      controlType: 'textarea',
     },
   ];
-
-  // constructor() {}
-
-  // ngOnInit(): void {
-  //   // this.dataSource = [
-  //   //   {
-  //   //     city: { label: 'Tel Aviv', value: 5 },
-  //   //     dob: '2022-03-28T00:00:00Z',
-  //   //     id: 1,
-  //   //     name: 'Hillyer Bowkley',
-  //   //     occupation: 'Physical Therapy Assistant',
-  //   //     yearsOfExperience: 32,
-  //   //   },
-  //   // ];
-  // }
-
-  key: string = 'myDatePicker';
-
-  status:StatusBarsModel = {
-    label : "statusBars",
-    authorizedBars : 3,
-    totalBars : 6
-    }
-
-  description: string = ''
-
-
-
-  control: FormControl = new FormControl();
-
-
-
-  constructor() { }
+  groupFlex!: QuestionGroupModel;
 
   ngOnInit(): void {
+    // flex form ex
+    this.groupFlex = this.setGroup(this.questions, {
+      cols: 3,
+      variant: 'flex',
+    });
+
+    console.log(this.groupFlex.questions)
   }
 
-
-  onClicked(event: any) {
-    console.log(event);
-    this.description = `: (ID: ${event.row.id}, ActionName: ${event.action}, City: ${event.row.city.label}, Date: ${event.row.dob}, Occupation: ${event.row.occupation}, YearsOfExperience: ${event.row.yearsOfExperience})`
+  private setGroup(questions: Question[], grid: FormGrid) {
+    return this.formService.createQuestionGroup({
+      questions,
+      key: 'test',
+      options: { gridProps: grid },
+    });
   }
-
-  editRow(eve){
-    console.log(eve);
-
-  }
-
-  rowActions: RowActionModel[] = [
-    {
-      type: 'inlineEdit',
-      icon: 'edit',
-      label: 'Edit'
-    },
-    {
-      type: 'inlineDelete',
-      icon: 'cancel',
-      label: 'Delete'
-    },
-    {
-      type: 'visibility',
-      icon: 'visibility',
-      label: 'Show'
-    },
-  ]
 }
