@@ -8,9 +8,9 @@ import {
 } from '@angular/core';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ListItem } from '../list-item/list-item.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar',
