@@ -30,8 +30,10 @@ export class FormSelectComponent implements OnInit {
 
   @Output() public selectChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
+
   @Output() public openChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
+
   @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   public error$: BehaviorSubject<string>;
@@ -95,13 +97,8 @@ export class FormSelectComponent implements OnInit {
   }
 
   public compareFunction(o1: SelectOption, o2: SelectOption) {
-
-    console.log(compare(o1, o2))
-
     return typeof o1.value !== 'object' && typeof o1.value !== null
       ? compare(o1, o2)
       : compare(o1.value, o2.value);
   }
-
-
 }

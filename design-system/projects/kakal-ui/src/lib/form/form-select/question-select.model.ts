@@ -14,8 +14,6 @@ export interface SelectOption {
 export class QuestionSelectModel extends QuestionBase {
   public options?: SelectOption[];
   public multi?: boolean;
-  public onSelectChange?: (value: any) => void;
-  public getOptionsAsync?: () => Observable<SelectOption[]>;
 
   constructor(options?: {
     key: string;
@@ -28,8 +26,6 @@ export class QuestionSelectModel extends QuestionBase {
     icon?: string;
     multi?: boolean;
     value?: any;
-    onSelectChange?: (value: any) => void;
-    getOptionsAsync?: () => Observable<SelectOption[]>;
   }) {
     super(options);
     this.controlType = 'select';
@@ -37,7 +33,5 @@ export class QuestionSelectModel extends QuestionBase {
     this.icon = options.icon || 'keyboard_arrow_down';
     this.multi = options.multi || options.controlType === 'multiSelect';
     this.value = options.value;
-    this.onSelectChange = options.onSelectChange || null;
-    this.getOptionsAsync = options.getOptionsAsync || null;
   }
 }
