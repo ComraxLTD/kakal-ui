@@ -61,17 +61,12 @@
           *ngFor="let option of options"
           [value]="option"
         >
-          <ng-container *ngIf="!optionSlot">
-            {{ option.label }}
-          </ng-container>
-          <ng-container *ngIf="optionSlot">
-            <ng-container
-              *ngTemplateOutlet="
-                optionSlot;
-                context: { $implicit: this.option }
-              "
-            ></ng-container>
-          </ng-container>
+          <ng-container
+            *ngTemplateOutlet="
+              optionTemplate || defaultTemplate;
+              context: { $implicit: option }
+            "
+          ></ng-container>
         </mat-list-option>
       </mat-selection-list>
       <!-- empty mat-option for display mat-list -->
