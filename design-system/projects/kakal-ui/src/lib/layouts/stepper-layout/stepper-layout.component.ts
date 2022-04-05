@@ -6,7 +6,7 @@ import { RouterService, BreakpointService } from '../../../services/services';
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -24,6 +24,7 @@ export class StepperLayoutComponent {
   @Input() drawerType: 'file' | 'notes';
 
   @Input() hasEndDrawer: boolean;
+  @Input() hasStartDrawer: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -65,7 +66,7 @@ export class StepperLayoutComponent {
 
     this.drawerBtn = this.setDrawerBtn();
 
-    this.showStartDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
+    this.showStartDrawer$ = merge(of(this.hasStartDrawer), this.stepperLayoutService.getDisplayDrawerObs()) ;
 
     this.portion$ = this.getBreakPoints();
   }
