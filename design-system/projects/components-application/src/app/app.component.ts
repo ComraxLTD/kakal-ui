@@ -17,9 +17,11 @@ export class AppComponent implements OnInit {
   constructor(private formService: FormService) {}
 
   actions = [
-    { type: 'file', label: 'מסמכים' },
-    { svgIcon: 'edit', label: 'Edit', type: FormActions.EDIT },
-    { svgIcon: 'save', label: 'Edit', type: FormActions.SUBMIT },
+    { type: 'form', action: FormActions.EDIT },
+    {
+      type: 'form',
+      action: FormActions.SUBMIT,
+    },
   ];
 
   steps: CardStepModel[] = [

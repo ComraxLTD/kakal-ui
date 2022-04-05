@@ -8,6 +8,7 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
+import { FormActions } from '../../form/models/form.actions';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -22,11 +23,8 @@ export class StepperLayoutComponent {
     open: 0,
     close: 100,
   };
-  @Input() drawerType: 'file' | 'notes' | undefined;
 
   @Input() actions: ButtonModel[];
-
-  @Input() showEndDrawer: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -38,6 +36,7 @@ export class StepperLayoutComponent {
 
   //end drawer opened/closed
   _endDrawerOpen: boolean = false;
+  showEndDrawer!: boolean;
 
   //drawer sizes
   _openDrawer!: number;
@@ -69,8 +68,12 @@ export class StepperLayoutComponent {
 
     this.drawerAction = this.setDrawerAction();
 
+    this.showEndDrawer = this.actions.some(
+      (action) => action.type === 'portion'
+    );
+
     this.showStartDrawer$ = merge(
-      of(this.drawerType !== undefined),
+      of(!!this.drawerAction),
       this.stepperLayoutService.getDisplayDrawerObs()
     );
 
@@ -120,13 +123,23 @@ export class StepperLayoutComponent {
       (action: ButtonModel) => action.type === 'file' || action.type === 'notes'
     );
 
-    return {...action, svgIcon : iconMap[action.type]};
+    return action ? { ...action, svgIcon: iconMap[action.type] } : null;
   }
 
   private setRowActions() {
-    return this.actions.filter(
-      (action: ButtonModel) => action.type !== 'file' && action.type !== 'notes'
-    );
+    const iconLabelMap = {
+      [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
+      [FormActions.SUBMIT]: { svgIcon: 'save', label: 'שמירה' },
+    };
+
+    return this.actions
+      .filter((action: ButtonModel) => action.type === 'form')
+      .map((action: ButtonModel) => {
+        return {
+          ...action,
+          ...iconLabelMap[action.action],
+        };
+      });
   }
 
   // PORTION LOGIC SECTION
