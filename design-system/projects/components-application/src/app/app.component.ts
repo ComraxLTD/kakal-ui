@@ -28,6 +28,8 @@ export class AppComponent implements OnInit {
       controlType: 'date',
       key: 'recordedTime',
         label: `Recorded time`,
+        filter: false,
+        editable: false,
         button:
           {
             type: 'inlineExpand',
@@ -44,18 +46,21 @@ export class AppComponent implements OnInit {
 
   // constructor() {}
 
-  // ngOnInit(): void {
-  //   // this.dataSource = [
-  //   //   {
-  //   //     city: { label: 'Tel Aviv', value: 5 },
-  //   //     dob: '2022-03-28T00:00:00Z',
-  //   //     id: 1,
-  //   //     name: 'Hillyer Bowkley',
-  //   //     occupation: 'Physical Therapy Assistant',
-  //   //     yearsOfExperience: 32,
-  //   //   },
-  //   // ];
-  // }
+  ngOnInit(): void {
+    // setTimeout(() => {
+      // this.dataSource = ELEMENT_DATA;
+    // }, 5000);
+    // this.dataSource = [
+    //   {
+    //     city: { label: 'Tel Aviv', value: 5 },
+    //     dob: '2022-03-28T00:00:00Z',
+    //     id: 1,
+    //     name: 'Hillyer Bowkley',
+    //     occupation: 'Physical Therapy Assistant',
+    //     yearsOfExperience: 32,
+    //   },
+    // ];
+  }
 
   key: string = 'myDatePicker';
 
@@ -73,10 +78,30 @@ export class AppComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  // ngOnInit(): void {
+  //   // this.ComraxFormService.getMultiTypeSampleObject().subscribe(res => this.control.setValue(res.email))
+  // }
+  // ngOnInit(): void {
+  // }
 
 
 
 
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      // label: 'Edit'
+    },
+    {
+      type: 'inlineDelete',
+      icon: 'cancel',
+      // label: 'Delete'
+    },
+    {
+      type: 'visibility',
+      icon: 'visibility',
+      // label: 'Show'
+    },
+  ]
 }

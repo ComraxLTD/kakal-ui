@@ -1,10 +1,8 @@
-<!-- <kkl-layout></kkl-layout>
-<kkl-server-table
-  [dataSourceServer]="{ rows: dataSource, count: 145, pageSize: 145 }"
+<kkl-local-table
+  [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
   (actionClicked)="onClicked($event)"
-></kkl-server-table> -->
-
-<kkl-form-input [control]="control" controlType="phone"></kkl-form-input>
-<app-new-order-layout></app-new-order-layout>
+  (editRow)="editRow($event)"
+  dragable="true"
+></kkl-local-table>
