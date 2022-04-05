@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
 import {
   FormGrid,
   FormService,
   Question,
   QuestionGroupModel,
-  RowActionModel,
-  TableBase,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -64,7 +60,7 @@ export class AppComponent implements OnInit {
       variant: 'flex',
     });
 
-    console.log(this.groupFlex.questions)
+    console.log(this.groupFlex.questions);
   }
 
   private setGroup(questions: Question[], grid: FormGrid) {
