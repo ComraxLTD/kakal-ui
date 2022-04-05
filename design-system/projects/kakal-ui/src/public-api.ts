@@ -357,9 +357,19 @@ export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
 
-// display-data
+// drawer
 export * from './lib/display-data/display-data.component';
 export * from './lib/display-data/display-data.module';
+
+
+// display-data
+export * from './lib/drawers/drawer.module';
+export * from './lib/drawers/drawer-document/drawer-document.component';
+export * from './lib/drawers/drawer-document-item/drawer-document-item.component';
+
+
+
+
 // pipes
 export * from './lib/pipes/area.pipe';
 export * from './lib/pipes/format.pipe';
@@ -369,6 +379,7 @@ export * from './lib/pipes/range.pipe';
 export * from './lib/pipes/pluck.pipe';
 export * from './lib/pipes/numberToTime.pipe';
 export * from './lib/pipes/pipes.module';
+
 //directives
 export * from './lib/directives/hover.directive';
 export * from './lib/directives/variant.directive';

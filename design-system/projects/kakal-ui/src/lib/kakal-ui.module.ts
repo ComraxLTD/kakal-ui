@@ -90,6 +90,8 @@ import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
 import { FacilityCardModule } from './facility-card/facility-card.module';
 
+import {KKLDrawerModule} from './drawers/drawer.module'
+
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(he);
@@ -120,6 +122,8 @@ registerLocaleData(he);
     KKLBreadCrumbsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
+
+    KKLDrawerModule,
 
     KKLFiltersModule,
 
@@ -192,6 +196,8 @@ registerLocaleData(he);
     KKLCardFilterModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
+
+    KKLDrawerModule,
 
     KKLMenuItemModule,
 
