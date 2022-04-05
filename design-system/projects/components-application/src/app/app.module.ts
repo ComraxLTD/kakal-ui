@@ -45,7 +45,7 @@ import { CommonModule } from '@angular/common';
     KakalUiModule,
     ReactiveFormsModule,
   ],
-  providers: [StepperLayoutService, BreakpointService, RouterService,],
+  providers: [StepperLayoutService, BreakpointService, RouterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

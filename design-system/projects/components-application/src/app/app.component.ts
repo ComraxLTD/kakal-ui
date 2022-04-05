@@ -9,7 +9,608 @@ import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  dataSource = [];
+  dataSource = [
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '123123',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '123123',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '123123',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '123123',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '123123',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '123123',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '_________',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'fgd56gd56fgfd56gd',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '[][][][][][][]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '---------',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{[]}[{}]({[]})[){})]',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'sfd45sfd45',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'qqqqqqq',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: '{}{}{}{}{}{}{}{}{}',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+
+    },
+  ];
 
   columns: TableBase[] = [
     {
@@ -84,7 +685,9 @@ export class AppComponent implements OnInit {
   // ngOnInit(): void {
   // }
 
-
+  editRow(event:any) {
+    console.log(event);
+  }
 
 
   rowActions: RowActionModel[] = [
