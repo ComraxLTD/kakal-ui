@@ -20,9 +20,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewOrderLayoutComponent } from './components/new-order-layout/new-order-layout.component';
 import { ButtonComponent } from './components/button/button.component';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
-// import he from '@angular/common/locales/he';
-// import { registerLocaleData } from '@angular/common';
-// registerLocaleData(he);
+import { LayoutComponent } from './layout/layout.component';
+import { CommonModule } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,8 +32,10 @@ import { OrderDetailsBidComponent } from './components/order-details-bid/order-d
     ButtonComponent,
     NewOrderLayoutComponent,
     FormFilterSearchComponent,
+    LayoutComponent,
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

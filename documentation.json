@@ -381,13 +381,13 @@
             "methods": []
         },
         {
-            "name": "GridProps",
-            "id": "interface-GridProps-ce3694cf5fc5e0c994c868def65b5149",
+            "name": "InputGrid",
+            "id": "interface-InputGrid-ce3694cf5fc5e0c994c868def65b5149",
             "file": "projects/lib-kakal-ui/src/lib/app/components/form/models/question.model.ts",
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\n\r\nexport interface GridProps {\r\n  cols?: number;\r\n  rows?: number;\r\n  offset?: number;\r\n  gutter?: number;\r\n  fullWidth?: boolean;\r\n  buttonCols? : number\r\n}\r\n\r\nexport type ControlType =\r\n  | 'text'\r\n  | 'password'\r\n  | 'number'\r\n  | 'textarea'\r\n  | 'select'\r\n  | 'calendar'\r\n  | 'radio'\r\n  | 'date'\r\n  | 'time'\r\n  | 'group'\r\n  | 'custom'\r\n  | 'autocomplete';\r\n\r\nexport type QuestionType = 'default' | 'group' | 'custom';\r\n\r\nexport abstract class QuestionBaseModel<T> {\r\n  public key: any;\r\n  public label: string;\r\n  public value?: T | undefined;\r\n  public appearance?: MatFormFieldAppearance\r\n  public type?: QuestionType;\r\n  public controlType?: ControlType;\r\n  public gridProps?: GridProps;\r\n  public icon?: string;\r\n  public customRef?: string;\r\n  public validations?: ValidatorFn[];\r\n  public disabled?: boolean;\r\n  constructor(options: {\r\n    value?: T;\r\n    key?: string;\r\n    label?: string;\r\n    appearance?: MatFormFieldAppearance;\r\n    type?: QuestionType;\r\n    controlType?: ControlType;\r\n    disabled?: boolean;\r\n    gridProps?: GridProps;\r\n    icon?: string;\r\n    customRef?: string;\r\n    validations?: ValidatorFn[];\r\n  }) {\r\n    this.key = options.key || '';\r\n    this.value = options.value;\r\n    this.label = options.label || '';\r\n    this.appearance = options.appearance || 'outline';\r\n    this.type = options.type || 'default';\r\n    this.controlType = options.controlType || 'text';\r\n    this.disabled = this.disabled || false;\r\n    this.validations = options.validations || [];\r\n    this.gridProps = options.gridProps || {\r\n      cols: 1,\r\n      rows: 1,\r\n      gutter: 0,\r\n      offset: 0,\r\n      fullWidth: false,\r\n    };\r\n    this.icon = options.icon || '';\r\n    this.customRef = options.customRef || '';\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\n\r\nexport interface InputGrid {\r\n  cols?: number;\r\n  rows?: number;\r\n  offset?: number;\r\n  gutter?: number;\r\n  fullWidth?: boolean;\r\n  buttonCols? : number\r\n}\r\n\r\nexport type ControlType =\r\n  | 'text'\r\n  | 'password'\r\n  | 'number'\r\n  | 'textarea'\r\n  | 'select'\r\n  | 'calendar'\r\n  | 'radio'\r\n  | 'date'\r\n  | 'time'\r\n  | 'group'\r\n  | 'custom'\r\n  | 'autocomplete';\r\n\r\nexport type QuestionType = 'default' | 'group' | 'custom';\r\n\r\nexport abstract class QuestionBaseModel<T> {\r\n  public key: any;\r\n  public label: string;\r\n  public value?: T | undefined;\r\n  public appearance?: MatFormFieldAppearance\r\n  public type?: QuestionType;\r\n  public controlType?: ControlType;\r\n  public gridProps?: InputGrid;\r\n  public icon?: string;\r\n  public customRef?: string;\r\n  public validations?: ValidatorFn[];\r\n  public disabled?: boolean;\r\n  constructor(options: {\r\n    value?: T;\r\n    key?: string;\r\n    label?: string;\r\n    appearance?: MatFormFieldAppearance;\r\n    type?: QuestionType;\r\n    controlType?: ControlType;\r\n    disabled?: boolean;\r\n    gridProps?: InputGrid;\r\n    icon?: string;\r\n    customRef?: string;\r\n    validations?: ValidatorFn[];\r\n  }) {\r\n    this.key = options.key || '';\r\n    this.value = options.value;\r\n    this.label = options.label || '';\r\n    this.appearance = options.appearance || 'outline';\r\n    this.type = options.type || 'default';\r\n    this.controlType = options.controlType || 'text';\r\n    this.disabled = this.disabled || false;\r\n    this.validations = options.validations || [];\r\n    this.gridProps = options.gridProps || {\r\n      cols: 1,\r\n      rows: 1,\r\n      gutter: 0,\r\n      offset: 0,\r\n      fullWidth: false,\r\n    };\r\n    this.icon = options.icon || '';\r\n    this.customRef = options.customRef || '';\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "buttonCols",
@@ -455,7 +455,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { FormGroup } from '@angular/forms';\r\nimport { Question } from '../services/form.service';\r\nimport { ControlType, GridProps } from './question.model';\r\n\r\nexport type GroupType = 'default' | 'group' | 'custom';\r\n\r\nexport interface GroupOptions {\r\n  label?: string;\r\n  type?: GroupType;\r\n  controlType?: ControlType;\r\n  formGroup?: FormGroup;\r\n  gridProps?: GridProps;\r\n  hasButton?: boolean;\r\n}\r\n\r\nexport class QuestionGroupModel {\r\n  public key: string;\r\n  public questions: Question[];\r\n  public label?: string;\r\n  public type?: GroupType;\r\n  public controlType?: ControlType;\r\n  public formGroup?: FormGroup;\r\n  public gridProps?: GridProps;\r\n  public hasButton?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    questions: Question[];\r\n    label?: string;\r\n    type?: GroupType;\r\n    formGroup?: FormGroup;\r\n    gridProps?: GridProps;\r\n    hasButton?: boolean;\r\n  }) {\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.type = options.type || 'default';\r\n    this.controlType = 'group';\r\n    this.questions = options.questions;\r\n    this.formGroup = options.formGroup;\r\n    this.gridProps = options.gridProps || { cols: 1 };\r\n    this.hasButton = options.hasButton || false;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { FormGroup } from '@angular/forms';\r\nimport { Question } from '../services/form.service';\r\nimport { ControlType, InputGrid } from './question.model';\r\n\r\nexport type GroupType = 'default' | 'group' | 'custom';\r\n\r\nexport interface GroupOptions {\r\n  label?: string;\r\n  type?: GroupType;\r\n  controlType?: ControlType;\r\n  formGroup?: FormGroup;\r\n  gridProps?: InputGrid;\r\n  hasButton?: boolean;\r\n}\r\n\r\nexport class QuestionGroupModel {\r\n  public key: string;\r\n  public questions: Question[];\r\n  public label?: string;\r\n  public type?: GroupType;\r\n  public controlType?: ControlType;\r\n  public formGroup?: FormGroup;\r\n  public gridProps?: InputGrid;\r\n  public hasButton?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    questions: Question[];\r\n    label?: string;\r\n    type?: GroupType;\r\n    formGroup?: FormGroup;\r\n    gridProps?: InputGrid;\r\n    hasButton?: boolean;\r\n  }) {\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.type = options.type || 'default';\r\n    this.controlType = 'group';\r\n    this.questions = options.questions;\r\n    this.formGroup = options.formGroup;\r\n    this.gridProps = options.gridProps || { cols: 1 };\r\n    this.hasButton = options.hasButton || false;\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "controlType",
@@ -479,7 +479,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 12
@@ -523,7 +523,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export declare type ListItemKeys = 'path' | 'label' | 'svgUrl';\r\n\r\nexport interface ListItem {\r\n  type?: string,\r\n  key?: string,\r\n  selector? : string[],\r\n  label?: string,\r\n  size?: number,\r\n  value?: any,\r\n  svgUrl?: string,\r\n} \r\n\r\nexport abstract class ListItemModel implements ListItem {\r\n\r\n  constructor(\r\n    public key?: string,\r\n    public type?: string,\r\n    public label?: string,\r\n    public svgUrl?: string,\r\n    public size?: number,\r\n  ) {\r\n  }\r\n}\r\n",
+            "sourceCode": "export declare type ListItemKeys = 'path' | 'label' | 'svgIcon';\r\n\r\nexport interface ListItem {\r\n  type?: string,\r\n  key?: string,\r\n  selector? : string[],\r\n  label?: string,\r\n  size?: number,\r\n  value?: any,\r\n  svgIcon?: string,\r\n} \r\n\r\nexport abstract class ListItemModel implements ListItem {\r\n\r\n  constructor(\r\n    public key?: string,\r\n    public type?: string,\r\n    public label?: string,\r\n    public svgIcon?: string,\r\n    public size?: number,\r\n  ) {\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "key",
@@ -562,7 +562,7 @@
                     "line": 8
                 },
                 {
-                    "name": "svgUrl",
+                    "name": "svgIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -600,7 +600,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "export interface NavigationCardModel {\r\n  title? : string,\r\n  path? : string,\r\n  svgUrl? : string,\r\n  isActive ?  : boolean\r\n  hasBadge? : boolean\r\n  badgeValue? : number\r\n}\r\n",
+            "sourceCode": "export interface NavigationCardModel {\r\n  title? : string,\r\n  path? : string,\r\n  svgIcon? : string,\r\n  isActive ?  : boolean\r\n  hasBadge? : boolean\r\n  badgeValue? : number\r\n}\r\n",
             "properties": [
                 {
                     "name": "badgeValue",
@@ -639,7 +639,7 @@
                     "line": 3
                 },
                 {
-                    "name": "svgUrl",
+                    "name": "svgIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -668,7 +668,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from './question.model';\r\n\r\nexport interface RadioOption {\r\n  label: string;\r\n  value: any;\r\n  checked?: boolean;\r\n}\r\n\r\nexport class QuestionRadio extends QuestionBaseModel<string> {\r\n  public options?: RadioOption[];\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: GridProps;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n    options?: RadioOption[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = 'radio';\r\n    this.gridProps = options.gridProps;\r\n    this.validations = options.validations;\r\n    this.options = options.options;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { InputGrid, QuestionBaseModel } from './question.model';\r\n\r\nexport interface RadioOption {\r\n  label: string;\r\n  value: any;\r\n  checked?: boolean;\r\n}\r\n\r\nexport class QuestionRadio extends QuestionBaseModel<string> {\r\n  public options?: RadioOption[];\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: InputGrid;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n    options?: RadioOption[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = 'radio';\r\n    this.gridProps = options.gridProps;\r\n    this.validations = options.validations;\r\n    this.options = options.options;\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "checked",
@@ -709,7 +709,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { QuestionSelectModel } from '../models/question-select.model';\r\nimport { GridProps } from '../models/question.model';\r\nimport { QuestionGroupModel } from '../models/question-group.model';\r\nimport { FormGroup } from '@angular/forms';\r\nimport {\r\n  Component,\r\n  ElementRef,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\nimport { Question } from '../services/form.service';\r\nimport { BehaviorSubject } from 'rxjs';\r\n\r\nexport interface Register {\r\n  form: FormGroup;\r\n  questions$?: BehaviorSubject<Question[]>;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  @Input() public group: QuestionGroupModel;\r\n  @Input() public questions: Question[];\r\n  @Input() public editMode: boolean;\r\n  @Input() public rowHeight: number;\r\n\r\n  @Input() public slots: {\r\n    button?: ElementRef;\r\n    group?: ElementRef;\r\n  };\r\n\r\n  @Output() register: EventEmitter<Register> = new EventEmitter();\r\n  @Output() submit: EventEmitter<any> = new EventEmitter();\r\n\r\n  public questions$: BehaviorSubject<Question[]>;\r\n  public formGroup: FormGroup;\r\n  public grid: GridProps;\r\n  public hasButton: boolean;\r\n  public cols: string | number;\r\n  public buttonCols: string | number;\r\n  public gutter: number;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit() {\r\n    this.formGroup = this.group.formGroup;\r\n    this.setQuestions();\r\n    this.setGrid();\r\n\r\n    if (this.group.formGroup) {\r\n      this.register.emit({ form: this.formGroup, questions$: this.questions$ });\r\n    }\r\n\r\n    if (this.editMode) {\r\n      this.formGroup.disable();\r\n    }\r\n  }\r\n\r\n  private setQuestions() {\r\n    this.questions = this.questions || this.group.questions;\r\n    this.questions$ = new BehaviorSubject<Question[]>(this.questions);\r\n  }\r\n\r\n  private setGrid(): void {\r\n    this.grid = this.group.gridProps;\r\n    this.cols = this.group.gridProps?.cols || 1;\r\n    this.gutter = this.group.gridProps?.gutter || 1;\r\n    this.buttonCols = this.group.gridProps?.buttonCols || 1;\r\n    this.hasButton = this.group.hasButton || false;\r\n  }\r\n\r\n  public onSubmit() {\r\n    this.submit.emit(this.formGroup.value);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { QuestionSelectModel } from '../models/question-select.model';\r\nimport { InputGrid } from '../models/question.model';\r\nimport { QuestionGroupModel } from '../models/question-group.model';\r\nimport { FormGroup } from '@angular/forms';\r\nimport {\r\n  Component,\r\n  ElementRef,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\nimport { Question } from '../services/form.service';\r\nimport { BehaviorSubject } from 'rxjs';\r\n\r\nexport interface Register {\r\n  form: FormGroup;\r\n  questions$?: BehaviorSubject<Question[]>;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  @Input() public group: QuestionGroupModel;\r\n  @Input() public questions: Question[];\r\n  @Input() public editMode: boolean;\r\n  @Input() public rowHeight: number;\r\n\r\n  @Input() public slots: {\r\n    button?: ElementRef;\r\n    group?: ElementRef;\r\n  };\r\n\r\n  @Output() register: EventEmitter<Register> = new EventEmitter();\r\n  @Output() submit: EventEmitter<any> = new EventEmitter();\r\n\r\n  public questions$: BehaviorSubject<Question[]>;\r\n  public formGroup: FormGroup;\r\n  public grid: InputGrid;\r\n  public hasButton: boolean;\r\n  public cols: string | number;\r\n  public buttonCols: string | number;\r\n  public gutter: number;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit() {\r\n    this.formGroup = this.group.formGroup;\r\n    this.setQuestions();\r\n    this.setGrid();\r\n\r\n    if (this.group.formGroup) {\r\n      this.register.emit({ form: this.formGroup, questions$: this.questions$ });\r\n    }\r\n\r\n    if (this.editMode) {\r\n      this.formGroup.disable();\r\n    }\r\n  }\r\n\r\n  private setQuestions() {\r\n    this.questions = this.questions || this.group.questions;\r\n    this.questions$ = new BehaviorSubject<Question[]>(this.questions);\r\n  }\r\n\r\n  private setGrid(): void {\r\n    this.grid = this.group.gridProps;\r\n    this.cols = this.group.gridProps?.cols || 1;\r\n    this.gutter = this.group.gridProps?.gutter || 1;\r\n    this.buttonCols = this.group.gridProps?.buttonCols || 1;\r\n    this.hasButton = this.group.hasButton || false;\r\n  }\r\n\r\n  public onSubmit() {\r\n    this.submit.emit(this.formGroup.value);\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "form",
@@ -791,7 +791,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "interface",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  label: string;\r\n  value: any;\r\n  disabled?: boolean;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: GridProps\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { InputGrid, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  label: string;\r\n  value: any;\r\n  disabled?: boolean;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: InputGrid\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
             "properties": [
                 {
                     "name": "disabled",
@@ -2224,7 +2224,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { MatIconRegistry } from '@angular/material/icon';\r\nimport { DomSanitizer } from '@angular/platform-browser';\r\nimport { Injectable } from '@angular/core';\r\nimport {\r\n  ADD_ICON,\r\n  LIST_ICON,\r\n  CALENDAR_ICON,\r\n  LOGO_ICON,\r\n  TREE_ICON,\r\n  BOTTOM_TREE_LOGO_LANDS_ICON,\r\n  ASSETS_ICON,\r\n  MAIL_ICON,\r\n  LOYER_ICON,\r\n  TREE_GRADIENT_LANDS_ICON,\r\n  TRANSACTION_ICON,\r\n  PLANING_ICON,\r\n  EVALUATION_ICON,\r\n  SUPERVISION_ICON,\r\n  MEASUREMENTS_ICON,\r\n  LOCATION_ICON,\r\n  BUILDING_ICON,\r\n  HOME_ICON,\r\n  SAVE_ICON,\r\n  PRINT_ICON,\r\n  SELECT_ICON,\r\n  BED_ICON,\r\n  BELL_ICON,\r\n  BOTTOM_TREE_LOGO,\r\n  BUS_ICON,\r\n  BUTTON_ICON,\r\n  DESTINATION_ICON,\r\n  DINNER_ICON,\r\n  EDIT_ICON,\r\n  FLAG_ICON,\r\n  GENDER_ICON,\r\n  GROUP_ICON,\r\n  GUIDE_ICON,\r\n  MUSIC_ICON,\r\n  OPEN_PLUS,\r\n  PLAYGROUND_ICON,\r\n  RELOAD_ICON,\r\n  REPORTS_ICON,\r\n  RESTAURANT_ICON,\r\n  SHIELD_ICON,\r\n  SITE_ICON,\r\n  TENT_ICON,\r\n  THUMBUP_ICON,\r\n  TREE_LOGO,\r\n  V_SIGN,\r\n} from './icons.list';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class IconsService {\r\n  constructor(\r\n    private iconRegistry: MatIconRegistry,\r\n    private sanitizer: DomSanitizer\r\n  ) {}\r\n\r\n  public icons = {\r\n\r\n    like: THUMBUP_ICON,\r\n    button: BUTTON_ICON,\r\n    select: SELECT_ICON,\r\n\r\n    list: LIST_ICON,\r\n    add: ADD_ICON,\r\n\r\n    print: PRINT_ICON,\r\n    save: SAVE_ICON,\r\n\r\n    home: HOME_ICON,\r\n    location: LOCATION_ICON,\r\n    building: BUILDING_ICON,\r\n    measurements: MEASUREMENTS_ICON,\r\n    supervision: SUPERVISION_ICON,\r\n    evaluation: EVALUATION_ICON,\r\n    planing: PLANING_ICON,\r\n    transactions: TRANSACTION_ICON,\r\n    tree: TREE_ICON,\r\n    treegradientlands: TREE_GRADIENT_LANDS_ICON,\r\n    bottomtreelands: BOTTOM_TREE_LOGO_LANDS_ICON,\r\n    assets: ASSETS_ICON,\r\n    loyer: LOYER_ICON,\r\n    mail: MAIL_ICON,\r\n    logo: LOGO_ICON,\r\n    calendar: CALENDAR_ICON,\r\n    openPlus: OPEN_PLUS,\r\n\r\n    destination: DESTINATION_ICON,\r\n    vSign: V_SIGN,\r\n    edit: EDIT_ICON,\r\n\r\n    gender: GENDER_ICON,\r\n\r\n    report: REPORTS_ICON,\r\n    reload: RELOAD_ICON,\r\n    flag: FLAG_ICON,\r\n    shield: SHIELD_ICON,\r\n    restaurant: RESTAURANT_ICON,\r\n\r\n    bus: BUS_ICON,\r\n    site: SITE_ICON,\r\n    bed: BED_ICON,\r\n    tent: TENT_ICON,\r\n    guide: GUIDE_ICON,\r\n    dinner: DINNER_ICON,\r\n    music: MUSIC_ICON,\r\n    playground: PLAYGROUND_ICON,\r\n\r\n    bell: BELL_ICON,\r\n    bottomTreeLogo: BOTTOM_TREE_LOGO,\r\n    group: GROUP_ICON,\r\n    treeLogo: TREE_LOGO,\r\n  };\r\n\r\n  private findIcon(key: string): string {\r\n    const icon = this.icons[key.toLocaleLowerCase()];\r\n    return icon ? icon : null;\r\n  }\r\n\r\n  private registerIcon(key: string, icon: string) {\r\n    this.iconRegistry.addSvgIconLiteral(\r\n      key,\r\n      this.sanitizer.bypassSecurityTrustHtml(icon)\r\n    );\r\n  }\r\n\r\n  public setIcon(key: string): boolean {\r\n    const icon = this.findIcon(key);\r\n\r\n    if (icon) {\r\n      this.registerIcon(key, icon);\r\n      return true;\r\n    }\r\n\r\n    return false;\r\n  }\r\n\r\n  public setIconsList(items: any[]) {\r\n    items.map((item) => {\r\n      this.setIcon(item.svgUrl);\r\n    });\r\n  }\r\n}\r\n",
+            "sourceCode": "import { MatIconRegistry } from '@angular/material/icon';\r\nimport { DomSanitizer } from '@angular/platform-browser';\r\nimport { Injectable } from '@angular/core';\r\nimport {\r\n  ADD_ICON,\r\n  LIST_ICON,\r\n  CALENDAR_ICON,\r\n  LOGO_ICON,\r\n  TREE_ICON,\r\n  BOTTOM_TREE_LOGO_LANDS_ICON,\r\n  ASSETS_ICON,\r\n  MAIL_ICON,\r\n  LOYER_ICON,\r\n  TREE_GRADIENT_LANDS_ICON,\r\n  TRANSACTION_ICON,\r\n  PLANING_ICON,\r\n  EVALUATION_ICON,\r\n  SUPERVISION_ICON,\r\n  MEASUREMENTS_ICON,\r\n  LOCATION_ICON,\r\n  BUILDING_ICON,\r\n  HOME_ICON,\r\n  SAVE_ICON,\r\n  PRINT_ICON,\r\n  SELECT_ICON,\r\n  BED_ICON,\r\n  BELL_ICON,\r\n  BOTTOM_TREE_LOGO,\r\n  BUS_ICON,\r\n  BUTTON_ICON,\r\n  DESTINATION_ICON,\r\n  DINNER_ICON,\r\n  EDIT_ICON,\r\n  FLAG_ICON,\r\n  GENDER_ICON,\r\n  GROUP_ICON,\r\n  GUIDE_ICON,\r\n  MUSIC_ICON,\r\n  OPEN_PLUS,\r\n  PLAYGROUND_ICON,\r\n  RELOAD_ICON,\r\n  REPORTS_ICON,\r\n  RESTAURANT_ICON,\r\n  SHIELD_ICON,\r\n  SITE_ICON,\r\n  TENT_ICON,\r\n  THUMBUP_ICON,\r\n  TREE_LOGO,\r\n  V_SIGN,\r\n} from './icons.list';\r\n\r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class IconsService {\r\n  constructor(\r\n    private iconRegistry: MatIconRegistry,\r\n    private sanitizer: DomSanitizer\r\n  ) {}\r\n\r\n  public icons = {\r\n\r\n    like: THUMBUP_ICON,\r\n    button: BUTTON_ICON,\r\n    select: SELECT_ICON,\r\n\r\n    list: LIST_ICON,\r\n    add: ADD_ICON,\r\n\r\n    print: PRINT_ICON,\r\n    save: SAVE_ICON,\r\n\r\n    home: HOME_ICON,\r\n    location: LOCATION_ICON,\r\n    building: BUILDING_ICON,\r\n    measurements: MEASUREMENTS_ICON,\r\n    supervision: SUPERVISION_ICON,\r\n    evaluation: EVALUATION_ICON,\r\n    planing: PLANING_ICON,\r\n    transactions: TRANSACTION_ICON,\r\n    tree: TREE_ICON,\r\n    treegradientlands: TREE_GRADIENT_LANDS_ICON,\r\n    bottomtreelands: BOTTOM_TREE_LOGO_LANDS_ICON,\r\n    assets: ASSETS_ICON,\r\n    loyer: LOYER_ICON,\r\n    mail: MAIL_ICON,\r\n    logo: LOGO_ICON,\r\n    calendar: CALENDAR_ICON,\r\n    openPlus: OPEN_PLUS,\r\n\r\n    destination: DESTINATION_ICON,\r\n    vSign: V_SIGN,\r\n    edit: EDIT_ICON,\r\n\r\n    gender: GENDER_ICON,\r\n\r\n    report: REPORTS_ICON,\r\n    reload: RELOAD_ICON,\r\n    flag: FLAG_ICON,\r\n    shield: SHIELD_ICON,\r\n    restaurant: RESTAURANT_ICON,\r\n\r\n    bus: BUS_ICON,\r\n    site: SITE_ICON,\r\n    bed: BED_ICON,\r\n    tent: TENT_ICON,\r\n    guide: GUIDE_ICON,\r\n    dinner: DINNER_ICON,\r\n    music: MUSIC_ICON,\r\n    playground: PLAYGROUND_ICON,\r\n\r\n    bell: BELL_ICON,\r\n    bottomTreeLogo: BOTTOM_TREE_LOGO,\r\n    group: GROUP_ICON,\r\n    treeLogo: TREE_LOGO,\r\n  };\r\n\r\n  private findIcon(key: string): string {\r\n    const icon = this.icons[key.toLocaleLowerCase()];\r\n    return icon ? icon : null;\r\n  }\r\n\r\n  private registerIcon(key: string, icon: string) {\r\n    this.iconRegistry.addSvgIconLiteral(\r\n      key,\r\n      this.sanitizer.bypassSecurityTrustHtml(icon)\r\n    );\r\n  }\r\n\r\n  public setIcon(key: string): boolean {\r\n    const icon = this.findIcon(key);\r\n\r\n    if (icon) {\r\n      this.registerIcon(key, icon);\r\n      return true;\r\n    }\r\n\r\n    return false;\r\n  }\r\n\r\n  public setIconsList(items: any[]) {\r\n    items.map((item) => {\r\n      this.setIcon(item.svgIcon);\r\n    });\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -5283,7 +5283,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ListItem } from \"../../list-item/list-item.model\";\r\n\r\nexport class CardLobbyModel implements ListItem {\r\n  public label?: string;\r\n  public path?: string;\r\n  public svgUrl?: string;\r\n  public size?: number;\r\n\r\n  constructor(options: {\r\n    label?: string;\r\n    path?: string;\r\n    svgUrl?: string;\r\n    size?: number;\r\n  }) {\r\n    this.label = options?.label;\r\n    this.path = options?.path;\r\n    this.svgUrl = options?.svgUrl;\r\n    this.size = options?.size;\r\n\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { ListItem } from \"../../list-item/list-item.model\";\r\n\r\nexport class CardLobbyModel implements ListItem {\r\n  public label?: string;\r\n  public path?: string;\r\n  public svgIcon?: string;\r\n  public size?: number;\r\n\r\n  constructor(options: {\r\n    label?: string;\r\n    path?: string;\r\n    svgIcon?: string;\r\n    size?: number;\r\n  }) {\r\n    this.label = options?.label;\r\n    this.path = options?.path;\r\n    this.svgIcon = options?.svgIcon;\r\n    this.size = options?.size;\r\n\r\n  }\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -5348,7 +5348,7 @@
                     ]
                 },
                 {
-                    "name": "svgUrl",
+                    "name": "svgIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -5377,7 +5377,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { MenuItemModel } from \"../../menu-item/menu-item.model\";\r\n\r\nexport type StepVariant = 'circle' | 'square'\r\n\r\n\r\nexport type StepType = 'wizard' | 'status' | 'step' | 'info' | 'card'\r\n\r\n\r\nexport type StepperDirection = 'column' | 'row'\r\n\r\n\r\nexport class CardStepModel extends MenuItemModel {\r\n\r\n  public variant?: StepVariant;\r\n  public type?: StepType;\r\n  public size?: number;\r\n  public divider?: number;\r\n  public spacer?: boolean;\r\n  public value?: number;\r\n\r\n  constructor(options?: {\r\n    label?: string;\r\n    path?: string;\r\n    svgUrl?: string;\r\n    isActive?: boolean;\r\n    variant?: StepVariant;\r\n    type?: StepType;\r\n    size?: number;\r\n    divider?: number;\r\n    spacer?: boolean;\r\n    value?: number;\r\n  }) {\r\n    super(options)\r\n    this.label = options?.label || '';\r\n    this.path = options?.path || '';\r\n    this.isActive = options?.isActive || false;\r\n    this.svgUrl = options?.svgUrl || '';\r\n    this.variant = options?.variant || 'circle';\r\n    this.type = options?.type || 'step';\r\n    this.size = options?.size || 6;\r\n    this.value = options?.value || null;\r\n    this.divider = options?.divider || 0;\r\n    this.spacer = options?.spacer || false;\r\n  }\r\n\r\n\r\n\r\n}\r\n",
+            "sourceCode": "import { MenuItemModel } from \"../../menu-item/menu-item.model\";\r\n\r\nexport type StepVariant = 'circle' | 'square'\r\n\r\n\r\nexport type StepType = 'wizard' | 'status' | 'step' | 'info' | 'card'\r\n\r\n\r\nexport type StepperDirection = 'column' | 'row'\r\n\r\n\r\nexport class CardStepModel extends MenuItemModel {\r\n\r\n  public variant?: StepVariant;\r\n  public type?: StepType;\r\n  public size?: number;\r\n  public divider?: number;\r\n  public spacer?: boolean;\r\n  public value?: number;\r\n\r\n  constructor(options?: {\r\n    label?: string;\r\n    path?: string;\r\n    svgIcon?: string;\r\n    isActive?: boolean;\r\n    variant?: StepVariant;\r\n    type?: StepType;\r\n    size?: number;\r\n    divider?: number;\r\n    spacer?: boolean;\r\n    value?: number;\r\n  }) {\r\n    super(options)\r\n    this.label = options?.label || '';\r\n    this.path = options?.path || '';\r\n    this.isActive = options?.isActive || false;\r\n    this.svgIcon = options?.svgIcon || '';\r\n    this.variant = options?.variant || 'circle';\r\n    this.type = options?.type || 'step';\r\n    this.size = options?.size || 6;\r\n    this.value = options?.value || null;\r\n    this.divider = options?.divider || 0;\r\n    this.spacer = options?.spacer || false;\r\n  }\r\n\r\n\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -5573,7 +5573,7 @@
                     }
                 },
                 {
-                    "name": "svgUrl",
+                    "name": "svgIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -5923,7 +5923,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { MenuItemModel } from \"../../menu-item/menu-item.model\";\r\n\r\n\r\n\r\nexport class FilterModel extends MenuItemModel {\r\n\r\n  public size?: number;\r\n  public scale?: number;\r\n  public divider?: boolean;\r\n  public spacer?: boolean;\r\n  public value?: number;\r\n\r\n  constructor(options?: {\r\n    label?: string;\r\n    path?: string;\r\n    svgUrl?: string;\r\n    isActive?: boolean;\r\n    size?: number;\r\n    scale?: number;\r\n    divider?: boolean;\r\n    spacer?: boolean;\r\n    value?: number;\r\n  }) {\r\n    super(options)\r\n    this.label = options?.label || '';\r\n    this.path = options?.path || '';\r\n    this.isActive = options?.isActive || false;\r\n    this.svgUrl = options?.svgUrl || '';\r\n    this.size = options?.size || 80;\r\n    this.scale = options?.scale || 1;\r\n    this.value = options?.value || null;\r\n    this.divider = options?.divider || false;\r\n    this.spacer = options?.spacer || false;\r\n  }\r\n\r\n\r\n\r\n}\r\n",
+            "sourceCode": "import { MenuItemModel } from \"../../menu-item/menu-item.model\";\r\n\r\n\r\n\r\nexport class FilterModel extends MenuItemModel {\r\n\r\n  public size?: number;\r\n  public scale?: number;\r\n  public divider?: boolean;\r\n  public spacer?: boolean;\r\n  public value?: number;\r\n\r\n  constructor(options?: {\r\n    label?: string;\r\n    path?: string;\r\n    svgIcon?: string;\r\n    isActive?: boolean;\r\n    size?: number;\r\n    scale?: number;\r\n    divider?: boolean;\r\n    spacer?: boolean;\r\n    value?: number;\r\n  }) {\r\n    super(options)\r\n    this.label = options?.label || '';\r\n    this.path = options?.path || '';\r\n    this.isActive = options?.isActive || false;\r\n    this.svgIcon = options?.svgIcon || '';\r\n    this.size = options?.size || 80;\r\n    this.scale = options?.scale || 1;\r\n    this.value = options?.value || null;\r\n    this.divider = options?.divider || false;\r\n    this.spacer = options?.spacer || false;\r\n  }\r\n\r\n\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -6095,7 +6095,7 @@
                     }
                 },
                 {
-                    "name": "svgUrl",
+                    "name": "svgIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -6348,7 +6348,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "export declare type ListItemKeys = 'path' | 'label' | 'svgUrl';\r\n\r\nexport interface ListItem {\r\n  type?: string,\r\n  key?: string,\r\n  selector? : string[],\r\n  label?: string,\r\n  size?: number,\r\n  value?: any,\r\n  svgUrl?: string,\r\n} \r\n\r\nexport abstract class ListItemModel implements ListItem {\r\n\r\n  constructor(\r\n    public key?: string,\r\n    public type?: string,\r\n    public label?: string,\r\n    public svgUrl?: string,\r\n    public size?: number,\r\n  ) {\r\n  }\r\n}\r\n",
+            "sourceCode": "export declare type ListItemKeys = 'path' | 'label' | 'svgIcon';\r\n\r\nexport interface ListItem {\r\n  type?: string,\r\n  key?: string,\r\n  selector? : string[],\r\n  label?: string,\r\n  size?: number,\r\n  value?: any,\r\n  svgIcon?: string,\r\n} \r\n\r\nexport abstract class ListItemModel implements ListItem {\r\n\r\n  constructor(\r\n    public key?: string,\r\n    public type?: string,\r\n    public label?: string,\r\n    public svgIcon?: string,\r\n    public size?: number,\r\n  ) {\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -6377,7 +6377,7 @@
                         "optional": true
                     },
                     {
-                        "name": "svgUrl",
+                        "name": "svgIcon",
                         "type": "string",
                         "deprecated": false,
                         "deprecationMessage": "",
@@ -6424,7 +6424,7 @@
                         }
                     },
                     {
-                        "name": "svgUrl",
+                        "name": "svgIcon",
                         "type": "string",
                         "deprecated": false,
                         "deprecationMessage": "",
@@ -6483,7 +6483,7 @@
                     ]
                 },
                 {
-                    "name": "svgUrl",
+                    "name": "svgIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -6524,7 +6524,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { BehaviorSubject, Observable } from 'rxjs';\r\nimport { ListItem } from '../list-item/list-item.model';\r\n\r\n\r\nexport class MenuItemModel implements ListItem {\r\n\r\n  public key?: string;\r\n  public label?: string;\r\n  public path?: string;\r\n  public svgUrl?: string;\r\n  public scale?: number;\r\n  public size?: number;\r\n  public isActive?: boolean;\r\n\r\n  private active$: BehaviorSubject<boolean>;\r\n\r\n  constructor(options: {\r\n    label?: string;\r\n    path?: string;\r\n    svgUrl?: string;\r\n    isActive?: boolean;\r\n  }) {\r\n    this.label = options?.label;\r\n    this.path = options?.path;\r\n    this.isActive = options?.isActive || false;\r\n    this.svgUrl = options?.svgUrl || 'arrow_right_alt';\r\n    this.active$ = new BehaviorSubject(this.isActive || false);\r\n  }\r\n\r\n  public getActiveObs(): Observable<boolean> {\r\n    return this.active$.asObservable();\r\n  }\r\n\r\n  public emitActive(state: boolean) {\r\n    this.active$.next(state);\r\n  }\r\n\r\n  public active(): void {\r\n    this.isActive = true;\r\n    this.emitActive(this.isActive);\r\n  }\r\n  public unactive(): void {\r\n    this.isActive = false;\r\n    this.emitActive(this.isActive);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { BehaviorSubject, Observable } from 'rxjs';\r\nimport { ListItem } from '../list-item/list-item.model';\r\n\r\n\r\nexport class MenuItemModel implements ListItem {\r\n\r\n  public key?: string;\r\n  public label?: string;\r\n  public path?: string;\r\n  public svgIcon?: string;\r\n  public scale?: number;\r\n  public size?: number;\r\n  public isActive?: boolean;\r\n\r\n  private active$: BehaviorSubject<boolean>;\r\n\r\n  constructor(options: {\r\n    label?: string;\r\n    path?: string;\r\n    svgIcon?: string;\r\n    isActive?: boolean;\r\n  }) {\r\n    this.label = options?.label;\r\n    this.path = options?.path;\r\n    this.isActive = options?.isActive || false;\r\n    this.svgIcon = options?.svgIcon || 'arrow_right_alt';\r\n    this.active$ = new BehaviorSubject(this.isActive || false);\r\n  }\r\n\r\n  public getActiveObs(): Observable<boolean> {\r\n    return this.active$.asObservable();\r\n  }\r\n\r\n  public emitActive(state: boolean) {\r\n    this.active$.next(state);\r\n  }\r\n\r\n  public active(): void {\r\n    this.isActive = true;\r\n    this.emitActive(this.isActive);\r\n  }\r\n  public unactive(): void {\r\n    this.isActive = false;\r\n    this.emitActive(this.isActive);\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -6637,7 +6637,7 @@
                     ]
                 },
                 {
-                    "name": "svgUrl",
+                    "name": "svgIcon",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "string",
@@ -6816,7 +6816,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps } from \"./question.model\";\r\nimport { QuestionSelectModel, SelectOption } from './question-select.model';\r\n\r\n\r\nexport class QuestionAutocompleteModel extends QuestionSelectModel{\r\n\r\n  public onOptionSelect?: Function\r\n\r\n  constructor(options?: {\r\n\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: GridProps\r\n    icon?: string;\r\n    options?: SelectOption[]\r\n    onOptionSelect?: Function\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'autocomplete',\r\n    this.options = options.options || []\r\n    this.onOptionSelect = options.onOptionSelect || (() => console.log('select'))\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { InputGrid } from \"./question.model\";\r\nimport { QuestionSelectModel, SelectOption } from './question-select.model';\r\n\r\n\r\nexport class QuestionAutocompleteModel extends QuestionSelectModel{\r\n\r\n  public onOptionSelect?: Function\r\n\r\n  constructor(options?: {\r\n\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: InputGrid\r\n    icon?: string;\r\n    options?: SelectOption[]\r\n    onOptionSelect?: Function\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'autocomplete',\r\n    this.options = options.options || []\r\n    this.onOptionSelect = options.onOptionSelect || (() => console.log('select'))\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -6967,7 +6967,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -7084,7 +7084,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\n\r\nexport interface GridProps {\r\n  cols?: number;\r\n  rows?: number;\r\n  offset?: number;\r\n  gutter?: number;\r\n  fullWidth?: boolean;\r\n  buttonCols? : number\r\n}\r\n\r\nexport type ControlType =\r\n  | 'text'\r\n  | 'password'\r\n  | 'number'\r\n  | 'textarea'\r\n  | 'select'\r\n  | 'calendar'\r\n  | 'radio'\r\n  | 'date'\r\n  | 'time'\r\n  | 'group'\r\n  | 'custom'\r\n  | 'autocomplete';\r\n\r\nexport type QuestionType = 'default' | 'group' | 'custom';\r\n\r\nexport abstract class QuestionBaseModel<T> {\r\n  public key: any;\r\n  public label: string;\r\n  public value?: T | undefined;\r\n  public appearance?: MatFormFieldAppearance\r\n  public type?: QuestionType;\r\n  public controlType?: ControlType;\r\n  public gridProps?: GridProps;\r\n  public icon?: string;\r\n  public customRef?: string;\r\n  public validations?: ValidatorFn[];\r\n  public disabled?: boolean;\r\n  constructor(options: {\r\n    value?: T;\r\n    key?: string;\r\n    label?: string;\r\n    appearance?: MatFormFieldAppearance;\r\n    type?: QuestionType;\r\n    controlType?: ControlType;\r\n    disabled?: boolean;\r\n    gridProps?: GridProps;\r\n    icon?: string;\r\n    customRef?: string;\r\n    validations?: ValidatorFn[];\r\n  }) {\r\n    this.key = options.key || '';\r\n    this.value = options.value;\r\n    this.label = options.label || '';\r\n    this.appearance = options.appearance || 'outline';\r\n    this.type = options.type || 'default';\r\n    this.controlType = options.controlType || 'text';\r\n    this.disabled = this.disabled || false;\r\n    this.validations = options.validations || [];\r\n    this.gridProps = options.gridProps || {\r\n      cols: 1,\r\n      rows: 1,\r\n      gutter: 0,\r\n      offset: 0,\r\n      fullWidth: false,\r\n    };\r\n    this.icon = options.icon || '';\r\n    this.customRef = options.customRef || '';\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\n\r\nexport interface InputGrid {\r\n  cols?: number;\r\n  rows?: number;\r\n  offset?: number;\r\n  gutter?: number;\r\n  fullWidth?: boolean;\r\n  buttonCols? : number\r\n}\r\n\r\nexport type ControlType =\r\n  | 'text'\r\n  | 'password'\r\n  | 'number'\r\n  | 'textarea'\r\n  | 'select'\r\n  | 'calendar'\r\n  | 'radio'\r\n  | 'date'\r\n  | 'time'\r\n  | 'group'\r\n  | 'custom'\r\n  | 'autocomplete';\r\n\r\nexport type QuestionType = 'default' | 'group' | 'custom';\r\n\r\nexport abstract class QuestionBaseModel<T> {\r\n  public key: any;\r\n  public label: string;\r\n  public value?: T | undefined;\r\n  public appearance?: MatFormFieldAppearance\r\n  public type?: QuestionType;\r\n  public controlType?: ControlType;\r\n  public gridProps?: InputGrid;\r\n  public icon?: string;\r\n  public customRef?: string;\r\n  public validations?: ValidatorFn[];\r\n  public disabled?: boolean;\r\n  constructor(options: {\r\n    value?: T;\r\n    key?: string;\r\n    label?: string;\r\n    appearance?: MatFormFieldAppearance;\r\n    type?: QuestionType;\r\n    controlType?: ControlType;\r\n    disabled?: boolean;\r\n    gridProps?: InputGrid;\r\n    icon?: string;\r\n    customRef?: string;\r\n    validations?: ValidatorFn[];\r\n  }) {\r\n    this.key = options.key || '';\r\n    this.value = options.value;\r\n    this.label = options.label || '';\r\n    this.appearance = options.appearance || 'outline';\r\n    this.type = options.type || 'default';\r\n    this.controlType = options.controlType || 'text';\r\n    this.disabled = this.disabled || false;\r\n    this.validations = options.validations || [];\r\n    this.gridProps = options.gridProps || {\r\n      cols: 1,\r\n      rows: 1,\r\n      gutter: 0,\r\n      offset: 0,\r\n      fullWidth: false,\r\n    };\r\n    this.icon = options.icon || '';\r\n    this.customRef = options.customRef || '';\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -7164,7 +7164,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -7259,7 +7259,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { QuestionBaseModel, GridProps } from './question.model';\r\n\r\nexport class QuestionCalendar extends QuestionBaseModel<Date> {\r\n  public options?: any[];\r\n  constructor(options: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: GridProps;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n    options?: any[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = 'calendar';\r\n    this.gridProps = options.gridProps;\r\n    this.icon = 'calendar';\r\n    this.validations = options.validations;\r\n    this.options = options.options;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { QuestionBaseModel, InputGrid } from './question.model';\r\n\r\nexport class QuestionCalendar extends QuestionBaseModel<Date> {\r\n  public options?: any[];\r\n  constructor(options: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: InputGrid;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n    options?: any[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = 'calendar';\r\n    this.gridProps = options.gridProps;\r\n    this.icon = 'calendar';\r\n    this.validations = options.validations;\r\n    this.options = options.options;\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -7363,7 +7363,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -7480,7 +7480,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { QuestionBaseModel, GridProps } from './question.model';\r\n\r\nexport class QuestionDate extends QuestionBaseModel<Date> {\r\n\r\n\r\n  constructor(options: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: GridProps\r\n    icon?: string;\r\n    validations?: ValidatorFn[]\r\n  }\r\n  ) {\r\n    super(options)\r\n    this.key = options.key\r\n    this.label = options.label\r\n    this.controlType = 'date';\r\n    this.gridProps = options.gridProps\r\n    this.icon = this.icon\r\n    this.validations = options.validations\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { QuestionBaseModel, InputGrid } from './question.model';\r\n\r\nexport class QuestionDate extends QuestionBaseModel<Date> {\r\n\r\n\r\n  constructor(options: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: InputGrid\r\n    icon?: string;\r\n    validations?: ValidatorFn[]\r\n  }\r\n  ) {\r\n    super(options)\r\n    this.key = options.key\r\n    this.label = options.label\r\n    this.controlType = 'date';\r\n    this.gridProps = options.gridProps\r\n    this.icon = this.icon\r\n    this.validations = options.validations\r\n  }\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -7572,7 +7572,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -7689,7 +7689,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { FormGroup } from '@angular/forms';\r\nimport { Question } from '../services/form.service';\r\nimport { ControlType, GridProps } from './question.model';\r\n\r\nexport type GroupType = 'default' | 'group' | 'custom';\r\n\r\nexport interface GroupOptions {\r\n  label?: string;\r\n  type?: GroupType;\r\n  controlType?: ControlType;\r\n  formGroup?: FormGroup;\r\n  gridProps?: GridProps;\r\n  hasButton?: boolean;\r\n}\r\n\r\nexport class QuestionGroupModel {\r\n  public key: string;\r\n  public questions: Question[];\r\n  public label?: string;\r\n  public type?: GroupType;\r\n  public controlType?: ControlType;\r\n  public formGroup?: FormGroup;\r\n  public gridProps?: GridProps;\r\n  public hasButton?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    questions: Question[];\r\n    label?: string;\r\n    type?: GroupType;\r\n    formGroup?: FormGroup;\r\n    gridProps?: GridProps;\r\n    hasButton?: boolean;\r\n  }) {\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.type = options.type || 'default';\r\n    this.controlType = 'group';\r\n    this.questions = options.questions;\r\n    this.formGroup = options.formGroup;\r\n    this.gridProps = options.gridProps || { cols: 1 };\r\n    this.hasButton = options.hasButton || false;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { FormGroup } from '@angular/forms';\r\nimport { Question } from '../services/form.service';\r\nimport { ControlType, InputGrid } from './question.model';\r\n\r\nexport type GroupType = 'default' | 'group' | 'custom';\r\n\r\nexport interface GroupOptions {\r\n  label?: string;\r\n  type?: GroupType;\r\n  controlType?: ControlType;\r\n  formGroup?: FormGroup;\r\n  gridProps?: InputGrid;\r\n  hasButton?: boolean;\r\n}\r\n\r\nexport class QuestionGroupModel {\r\n  public key: string;\r\n  public questions: Question[];\r\n  public label?: string;\r\n  public type?: GroupType;\r\n  public controlType?: ControlType;\r\n  public formGroup?: FormGroup;\r\n  public gridProps?: InputGrid;\r\n  public hasButton?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    questions: Question[];\r\n    label?: string;\r\n    type?: GroupType;\r\n    formGroup?: FormGroup;\r\n    gridProps?: InputGrid;\r\n    hasButton?: boolean;\r\n  }) {\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.type = options.type || 'default';\r\n    this.controlType = 'group';\r\n    this.questions = options.questions;\r\n    this.formGroup = options.formGroup;\r\n    this.gridProps = options.gridProps || { cols: 1 };\r\n    this.hasButton = options.hasButton || false;\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -7747,7 +7747,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 23,
@@ -7830,7 +7830,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from \"@angular/forms\";\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport class QuestionNumberModel extends QuestionBaseModel<number>{\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: GridProps\r\n    icon?: string;\r\n    validations?: ValidatorFn[]\r\n  }\r\n  ) {\r\n    super(options)\r\n    this.key = options.key\r\n    this.label = options.label\r\n    this.controlType = 'number'\r\n    this.gridProps = options.gridProps\r\n    this.validations = options.validations\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from \"@angular/forms\";\r\nimport { InputGrid, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport class QuestionNumberModel extends QuestionBaseModel<number>{\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: InputGrid\r\n    icon?: string;\r\n    validations?: ValidatorFn[]\r\n  }\r\n  ) {\r\n    super(options)\r\n    this.key = options.key\r\n    this.label = options.label\r\n    this.controlType = 'number'\r\n    this.gridProps = options.gridProps\r\n    this.validations = options.validations\r\n  }\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -7924,7 +7924,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -8041,7 +8041,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from './question.model';\r\n\r\nexport interface RadioOption {\r\n  label: string;\r\n  value: any;\r\n  checked?: boolean;\r\n}\r\n\r\nexport class QuestionRadio extends QuestionBaseModel<string> {\r\n  public options?: RadioOption[];\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: GridProps;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n    options?: RadioOption[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = 'radio';\r\n    this.gridProps = options.gridProps;\r\n    this.validations = options.validations;\r\n    this.options = options.options;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { InputGrid, QuestionBaseModel } from './question.model';\r\n\r\nexport interface RadioOption {\r\n  label: string;\r\n  value: any;\r\n  checked?: boolean;\r\n}\r\n\r\nexport class QuestionRadio extends QuestionBaseModel<string> {\r\n  public options?: RadioOption[];\r\n\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: InputGrid;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n    options?: RadioOption[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = 'radio';\r\n    this.gridProps = options.gridProps;\r\n    this.validations = options.validations;\r\n    this.options = options.options;\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -8147,7 +8147,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -8264,7 +8264,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  label: string;\r\n  value: any;\r\n  disabled?: boolean;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: GridProps\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { InputGrid, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport interface SelectOption {\r\n  label: string;\r\n  value: any;\r\n  disabled?: boolean;\r\n}\r\n\r\nexport class QuestionSelectModel extends QuestionBaseModel<string>{\r\n\r\n  public options?: SelectOption[];\r\n  public onSelectChange?: Function;\r\n  public multi?: boolean;\r\n\r\n  constructor(options?: {\r\n    key: string,\r\n    label: string,\r\n    validations?: ValidatorFn[],\r\n    gridProps?: InputGrid\r\n    options?: SelectOption[];\r\n    icon?: string;\r\n    multi?: boolean;\r\n    onSelectChange?: Function;\r\n  }) {\r\n    super(options)\r\n    this.controlType = 'select'\r\n    this.options = options.options || []\r\n    this.icon = options.icon || 'keyboard_arrow_down'\r\n    this.multi = options.multi || false\r\n    this.onSelectChange = options.onSelectChange || (() => console.log('select'))\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -8394,7 +8394,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -8511,7 +8511,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from \"@angular/forms\";\r\nimport { GridProps, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport class QuestionTextareaModel extends QuestionBaseModel<string>{\r\n\r\n\r\n  constructor(options: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: GridProps\r\n    icon?: string;\r\n    validations?: ValidatorFn[]\r\n  }\r\n  ) {\r\n    super(options)\r\n    this.key = options.key\r\n    this.controlType = 'textarea'\r\n    this.label = options.label\r\n    this.gridProps = options.gridProps\r\n    this.icon = options.icon\r\n    this.validations = options.validations\r\n  }\r\n\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from \"@angular/forms\";\r\nimport { InputGrid, QuestionBaseModel } from \"./question.model\";\r\n\r\nexport class QuestionTextareaModel extends QuestionBaseModel<string>{\r\n\r\n\r\n  constructor(options: {\r\n    key: string;\r\n    label: string;\r\n    gridProps?: InputGrid\r\n    icon?: string;\r\n    validations?: ValidatorFn[]\r\n  }\r\n  ) {\r\n    super(options)\r\n    this.key = options.key\r\n    this.controlType = 'textarea'\r\n    this.label = options.label\r\n    this.gridProps = options.gridProps\r\n    this.icon = options.icon\r\n    this.validations = options.validations\r\n  }\r\n\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -8603,7 +8603,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -8720,7 +8720,7 @@
             "deprecated": false,
             "deprecationMessage": "",
             "type": "class",
-            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { ControlType, GridProps, QuestionBaseModel, QuestionType } from './question.model';\r\n\r\nexport class QuestionTextModel extends QuestionBaseModel<string> {\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    type?: QuestionType;\r\n    controlType? : ControlType\r\n    gridProps?: GridProps;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = options.controlType;\r\n    this.gridProps = options.gridProps || super.gridProps;\r\n    this.icon = options.icon;\r\n    this.validations = options.validations;\r\n  }\r\n}\r\n",
+            "sourceCode": "import { ValidatorFn } from '@angular/forms';\r\nimport { ControlType, InputGrid, QuestionBaseModel, QuestionType } from './question.model';\r\n\r\nexport class QuestionTextModel extends QuestionBaseModel<string> {\r\n  constructor(options?: {\r\n    key: string;\r\n    label: string;\r\n    type?: QuestionType;\r\n    controlType? : ControlType\r\n    gridProps?: InputGrid;\r\n    icon?: string;\r\n    validations?: ValidatorFn[];\r\n  }) {\r\n    super(options);\r\n    this.key = options.key;\r\n    this.label = options.label;\r\n    this.controlType = options.controlType;\r\n    this.gridProps = options.gridProps || super.gridProps;\r\n    this.icon = options.icon;\r\n    this.validations = options.validations;\r\n  }\r\n}\r\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -8814,7 +8814,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": true,
                     "description": "",
                     "line": 36,
@@ -10137,7 +10137,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"card\" fxLayout=\"column\" fxLayoutAlign=\"center center\" (click)=\"onCardClick()\">\r\n  <div fxFlex=\"80\">\r\n    <kkl-icon [size]=\"card.size\" type=\"svg\" [color]=\"'primary'\" [key]=\"card.svgUrl\"></kkl-icon>\r\n  </div>\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxFlex=\"30\">\r\n    <kkl-typography [size]=\"1.8\">\r\n      {{ card.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"card\" fxLayout=\"column\" fxLayoutAlign=\"center center\" (click)=\"onCardClick()\">\r\n  <div fxFlex=\"80\">\r\n    <kkl-icon [size]=\"card.size\" type=\"svg\" [color]=\"'primary'\" [key]=\"card.svgIcon\"></kkl-icon>\r\n  </div>\r\n  <div fxLayout=\"column\" fxLayoutAlign=\"start center\" fxFlex=\"30\">\r\n    <kkl-typography [size]=\"1.8\">\r\n      {{ card.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardFilterComponent",
@@ -10220,7 +10220,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div class=\"filter\" fxLayout=\"column\" fxLayoutAlign=\"space-evenly center\">\r\n  <kkl-icon\r\n    [color]=\"'primary'\"\r\n    [key]=\"filter.svgUrl\"\r\n    class=\"filter-svg\"\r\n  ></kkl-icon>\r\n  <kkl-typography [active$]=\"active$\" size=\"1.8\">\r\n    {{ filter.label }}\r\n  </kkl-typography>\r\n  <kkl-typography [active$]=\"active$\" size=\"1.8\">\r\n    {{ filter.value }}\r\n  </kkl-typography>\r\n</div>\r\n"
+            "templateData": "<div class=\"filter\" fxLayout=\"column\" fxLayoutAlign=\"space-evenly center\">\r\n  <kkl-icon\r\n    [color]=\"'primary'\"\r\n    [key]=\"filter.svgIcon\"\r\n    class=\"filter-svg\"\r\n  ></kkl-icon>\r\n  <kkl-typography [active$]=\"active$\" size=\"1.8\">\r\n    {{ filter.label }}\r\n  </kkl-typography>\r\n  <kkl-typography [active$]=\"active$\" size=\"1.8\">\r\n    {{ filter.value }}\r\n  </kkl-typography>\r\n</div>\r\n"
         },
         {
             "name": "CardStatusComponent",
@@ -10276,7 +10276,7 @@
                 "args": [],
                 "line": 11
             },
-            "templateData": "<div class=\"card-status\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n  <div appSize [size]=\"6\" [matBadge]=\"status.value\" matBadgeColor=\"accent\" matBadgeSize=\"medium\">\r\n    <div class=\"status\" appVariant [type]=\"status.type\">\r\n      <div class=\"icon-container\">\r\n        <kkl-icon [key]=\"status.svgUrl\" [size]=\"3.5\"></kkl-icon>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"text-container\" fxLayout=\"column\" fxLayoutAlign=\"end start\" [fxFlexOffset]=\"5\">\r\n    <kkl-typography [size]=\"1.2\" [bold]=\"600\">\r\n      {{ status.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div class=\"card-status\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\r\n  <div appSize [size]=\"6\" [matBadge]=\"status.value\" matBadgeColor=\"accent\" matBadgeSize=\"medium\">\r\n    <div class=\"status\" appVariant [type]=\"status.type\">\r\n      <div class=\"icon-container\">\r\n        <kkl-icon [key]=\"status.svgIcon\" [size]=\"3.5\"></kkl-icon>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"text-container\" fxLayout=\"column\" fxLayoutAlign=\"end start\" [fxFlexOffset]=\"5\">\r\n    <kkl-typography [size]=\"1.2\" [bold]=\"600\">\r\n      {{ status.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardStepComponent",
@@ -10393,7 +10393,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [ngClass]=\"step.type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <div appSize [size]=\"6\" (click)=\"onStepClick()\" [matBadge]=\"step.value\" matBadgeColor=\"accent\" matBadgeSize=\"medium\">\r\n    <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n        'mat-elevation-z0': true,\r\n        active: (active$ | async)\r\n      }\">\r\n      <mat-card-content appButton>\r\n        <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n          <div fxFlex=\"80\">\r\n            <kkl-icon [color]=\"(active$ | async) ? 'paper' : 'default'\" [key]=\"step.svgUrl\" [size]=\"step.size\">\r\n            </kkl-icon>\r\n          </div>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div class=\"label-container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"40\">\r\n    <kkl-typography [ngClass]=\"{ active: (active$ | async) }\" [bold]=\"(active$ | async) ? 600 : 500\" [size]=\"1.2\">\r\n      {{ step.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [ngClass]=\"step.type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <div appSize [size]=\"6\" (click)=\"onStepClick()\" [matBadge]=\"step.value\" matBadgeColor=\"accent\" matBadgeSize=\"medium\">\r\n    <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n        'mat-elevation-z0': true,\r\n        active: (active$ | async)\r\n      }\">\r\n      <mat-card-content appButton>\r\n        <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n          <div fxFlex=\"80\">\r\n            <kkl-icon [color]=\"(active$ | async) ? 'paper' : 'default'\" [key]=\"step.svgIcon\" [size]=\"step.size\">\r\n            </kkl-icon>\r\n          </div>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n  <div class=\"label-container\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFlex=\"40\">\r\n    <kkl-typography [ngClass]=\"{ active: (active$ | async) }\" [bold]=\"(active$ | async) ? 600 : 500\" [size]=\"1.2\">\r\n      {{ step.label }}\r\n    </kkl-typography>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "CardUserComponent",
@@ -10599,7 +10599,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <div class=\"card-svg-container\" (click)=\"onStepClick()\" [matBadge]=\"step.value\" matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\" fxFill>\r\n    <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n          'mat-elevation-z0': true,\r\n          active: (active$ | async)\r\n        }\">\r\n      <mat-card-content appButton>\r\n        <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n          <div fxFlex=\"80\">\r\n            <kkl-icon [color]=\"(active$ | async) ? 'paper' : 'primary'\" [key]=\"step.svgUrl\" [size]=\"step.size\">\r\n            </kkl-icon>\r\n          </div>\r\n          <div fxFlex=\"15\" [ngClass]=\"{ active: (active$ | async) }\" fxLayout=\"column\" fxLayoutAlign=\"end center\">\r\n            <kkl-typography [color]=\"(active$ | async) ? 'paper' : 'text'\" [size]=\"1.2\" [bold]=\"(active$ | async) ? 600 : 500\">\r\n              {{ step.label }}\r\n            </kkl-typography>\r\n          </div>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n</div>\r\n"
+            "templateData": "<div [ngClass]=\"type\" fxLayout=\"column\" fxLayoutAlign=\"center center\" fxFill>\r\n  <div class=\"card-svg-container\" (click)=\"onStepClick()\" [matBadge]=\"step.value\" matBadgeColor=\"accent\"\r\n    matBadgeSize=\"medium\" fxFill>\r\n    <mat-card appVariant [type]=\"step.type\" [variant]=\"step.variant\" [ngClass]=\"{\r\n          'mat-elevation-z0': true,\r\n          active: (active$ | async)\r\n        }\">\r\n      <mat-card-content appButton>\r\n        <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\r\n          <div fxFlex=\"80\">\r\n            <kkl-icon [color]=\"(active$ | async) ? 'paper' : 'primary'\" [key]=\"step.svgIcon\" [size]=\"step.size\">\r\n            </kkl-icon>\r\n          </div>\r\n          <div fxFlex=\"15\" [ngClass]=\"{ active: (active$ | async) }\" fxLayout=\"column\" fxLayoutAlign=\"end center\">\r\n            <kkl-typography [color]=\"(active$ | async) ? 'paper' : 'text'\" [size]=\"1.2\" [bold]=\"(active$ | async) ? 600 : 500\">\r\n              {{ step.label }}\r\n            </kkl-typography>\r\n          </div>\r\n        </div>\r\n      </mat-card-content>\r\n    </mat-card>\r\n  </div>\r\n</div>\r\n"
         },
         {
             "name": "ColumnFilterComponent",
@@ -11617,7 +11617,7 @@
                     "type": "Observable<SelectOption[]>"
                 },
                 {
-                    "name": "optionsSlot",
+                    "name": "optionsTemplates",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "line": 21,
@@ -11774,7 +11774,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { FormControl, FormGroup } from '@angular/forms';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { Observable } from 'rxjs';\r\nimport { QuestionAutocompleteModel } from '../models/question-autocomplete';\r\nimport { SelectOption } from '../models/question-select.model';\r\n\r\n\r\n\r\n@Component({\r\n  selector: 'kkl-form-autocomplete',\r\n  templateUrl: './form-autocomplete.component.html',\r\n  styleUrls: ['./form-autocomplete.component.scss']\r\n})\r\n\r\nexport class FormAutocompleteComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionAutocompleteModel;\r\n  @Input() public control: FormControl;\r\n  @Input() public options$: Observable<SelectOption[]>;\r\n  @Input() public optionsSlot: {};\r\n\r\n  public type: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n  public disabled: boolean;\r\n\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n  @Output() optionSelected: EventEmitter<MatAutocompleteSelectedEvent> =\r\n    new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n    this.options = this.question.options;\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n\r\n\r\n\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport { FormControl, FormGroup } from '@angular/forms';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { Observable } from 'rxjs';\r\nimport { QuestionAutocompleteModel } from '../models/question-autocomplete';\r\nimport { SelectOption } from '../models/question-select.model';\r\n\r\n\r\n\r\n@Component({\r\n  selector: 'kkl-form-autocomplete',\r\n  templateUrl: './form-autocomplete.component.html',\r\n  styleUrls: ['./form-autocomplete.component.scss']\r\n})\r\n\r\nexport class FormAutocompleteComponent implements OnInit {\r\n\r\n  @Input() public question: QuestionAutocompleteModel;\r\n  @Input() public control: FormControl;\r\n  @Input() public options$: Observable<SelectOption[]>;\r\n  @Input() public optionsTemplates: {};\r\n\r\n  public type: string;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n  public disabled: boolean;\r\n\r\n  @Output() autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n  @Output() optionSelected: EventEmitter<MatAutocompleteSelectedEvent> =\r\n    new EventEmitter();\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit(): void {\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n    this.options = this.question.options;\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n\r\n\r\n\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -11794,7 +11794,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-form-field [appearance]=\"disabled ? 'fill' : 'outline'\">\r\n  <mat-label>{{ label }}</mat-label>\r\n\r\n  <input\r\n    color=\"primary\"\r\n    type=\"text\"\r\n    matInput\r\n    [formControl]=\"control\"\r\n    [matAutocomplete]=\"auto\"\r\n  />\r\n  <mat-autocomplete\r\n    autoActiveFirstOption\r\n    #auto=\"matAutocomplete\"\r\n    (optionSelected)=\"onOptionSelected($event)\"\r\n  >\r\n    <mat-option\r\n      [disabled]=\"option.disabled\"\r\n      *ngFor=\"let option of options$ | async\"\r\n      [value]=\"option.value\"\r\n    >\r\n      <ng-container *ngIf=\"!optionsSlot\">\r\n        {{ option.label }}\r\n      </ng-container>\r\n      <ng-container *ngIf=\"optionsSlot\">\r\n        <ng-container\r\n          *ngTemplateOutlet=\"\r\n            optionsSlot[question.key];\r\n            context: { option }\r\n          \"\r\n        ></ng-container>\r\n      </ng-container>\r\n    </mat-option>\r\n  </mat-autocomplete>\r\n\r\n  <kkl-icon\r\n    *ngIf=\"icon\"\r\n    matSuffix\r\n    [color]=\"color || 'primary'\"\r\n    [key]=\"icon\"\r\n    [size]=\"1.8\"\r\n  ></kkl-icon>\r\n</mat-form-field>\r\n"
+            "templateData": "<mat-form-field [appearance]=\"disabled ? 'fill' : 'outline'\">\r\n  <mat-label>{{ label }}</mat-label>\r\n\r\n  <input\r\n    color=\"primary\"\r\n    type=\"text\"\r\n    matInput\r\n    [formControl]=\"control\"\r\n    [matAutocomplete]=\"auto\"\r\n  />\r\n  <mat-autocomplete\r\n    autoActiveFirstOption\r\n    #auto=\"matAutocomplete\"\r\n    (optionSelected)=\"onOptionSelected($event)\"\r\n  >\r\n    <mat-option\r\n      [disabled]=\"option.disabled\"\r\n      *ngFor=\"let option of options$ | async\"\r\n      [value]=\"option.value\"\r\n    >\r\n      <ng-container *ngIf=\"!optionsTemplates\">\r\n        {{ option.label }}\r\n      </ng-container>\r\n      <ng-container *ngIf=\"optionsTemplates\">\r\n        <ng-container\r\n          *ngTemplateOutlet=\"\r\n            optionsTemplates[question.key];\r\n            context: { option }\r\n          \"\r\n        ></ng-container>\r\n      </ng-container>\r\n    </mat-option>\r\n  </mat-autocomplete>\r\n\r\n  <kkl-icon\r\n    *ngIf=\"icon\"\r\n    matSuffix\r\n    [color]=\"color || 'primary'\"\r\n    [key]=\"icon\"\r\n    [size]=\"1.8\"\r\n  ></kkl-icon>\r\n</mat-form-field>\r\n"
         },
         {
             "name": "FormAutocompleteExComponent",
@@ -12042,7 +12042,7 @@
                     "name": "grid",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": false,
                     "description": "",
                     "line": 42,
@@ -12145,7 +12145,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { QuestionSelectModel } from '../models/question-select.model';\r\nimport { GridProps } from '../models/question.model';\r\nimport { QuestionGroupModel } from '../models/question-group.model';\r\nimport { FormGroup } from '@angular/forms';\r\nimport {\r\n  Component,\r\n  ElementRef,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\nimport { Question } from '../services/form.service';\r\nimport { BehaviorSubject } from 'rxjs';\r\n\r\nexport interface Register {\r\n  form: FormGroup;\r\n  questions$?: BehaviorSubject<Question[]>;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  @Input() public group: QuestionGroupModel;\r\n  @Input() public questions: Question[];\r\n  @Input() public editMode: boolean;\r\n  @Input() public rowHeight: number;\r\n\r\n  @Input() public slots: {\r\n    button?: ElementRef;\r\n    group?: ElementRef;\r\n  };\r\n\r\n  @Output() register: EventEmitter<Register> = new EventEmitter();\r\n  @Output() submit: EventEmitter<any> = new EventEmitter();\r\n\r\n  public questions$: BehaviorSubject<Question[]>;\r\n  public formGroup: FormGroup;\r\n  public grid: GridProps;\r\n  public hasButton: boolean;\r\n  public cols: string | number;\r\n  public buttonCols: string | number;\r\n  public gutter: number;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit() {\r\n    this.formGroup = this.group.formGroup;\r\n    this.setQuestions();\r\n    this.setGrid();\r\n\r\n    if (this.group.formGroup) {\r\n      this.register.emit({ form: this.formGroup, questions$: this.questions$ });\r\n    }\r\n\r\n    if (this.editMode) {\r\n      this.formGroup.disable();\r\n    }\r\n  }\r\n\r\n  private setQuestions() {\r\n    this.questions = this.questions || this.group.questions;\r\n    this.questions$ = new BehaviorSubject<Question[]>(this.questions);\r\n  }\r\n\r\n  private setGrid(): void {\r\n    this.grid = this.group.gridProps;\r\n    this.cols = this.group.gridProps?.cols || 1;\r\n    this.gutter = this.group.gridProps?.gutter || 1;\r\n    this.buttonCols = this.group.gridProps?.buttonCols || 1;\r\n    this.hasButton = this.group.hasButton || false;\r\n  }\r\n\r\n  public onSubmit() {\r\n    this.submit.emit(this.formGroup.value);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { QuestionSelectModel } from '../models/question-select.model';\r\nimport { InputGrid } from '../models/question.model';\r\nimport { QuestionGroupModel } from '../models/question-group.model';\r\nimport { FormGroup } from '@angular/forms';\r\nimport {\r\n  Component,\r\n  ElementRef,\r\n  EventEmitter,\r\n  Input,\r\n  OnInit,\r\n  Output,\r\n} from '@angular/core';\r\nimport { Question } from '../services/form.service';\r\nimport { BehaviorSubject } from 'rxjs';\r\n\r\nexport interface Register {\r\n  form: FormGroup;\r\n  questions$?: BehaviorSubject<Question[]>;\r\n}\r\n\r\n@Component({\r\n  selector: 'kkl-form',\r\n  templateUrl: './form.component.html',\r\n  styleUrls: ['./form.component.scss'],\r\n})\r\nexport class FormComponent implements OnInit {\r\n  @Input() public group: QuestionGroupModel;\r\n  @Input() public questions: Question[];\r\n  @Input() public editMode: boolean;\r\n  @Input() public rowHeight: number;\r\n\r\n  @Input() public slots: {\r\n    button?: ElementRef;\r\n    group?: ElementRef;\r\n  };\r\n\r\n  @Output() register: EventEmitter<Register> = new EventEmitter();\r\n  @Output() submit: EventEmitter<any> = new EventEmitter();\r\n\r\n  public questions$: BehaviorSubject<Question[]>;\r\n  public formGroup: FormGroup;\r\n  public grid: InputGrid;\r\n  public hasButton: boolean;\r\n  public cols: string | number;\r\n  public buttonCols: string | number;\r\n  public gutter: number;\r\n\r\n  constructor() {}\r\n\r\n  ngOnInit() {\r\n    this.formGroup = this.group.formGroup;\r\n    this.setQuestions();\r\n    this.setGrid();\r\n\r\n    if (this.group.formGroup) {\r\n      this.register.emit({ form: this.formGroup, questions$: this.questions$ });\r\n    }\r\n\r\n    if (this.editMode) {\r\n      this.formGroup.disable();\r\n    }\r\n  }\r\n\r\n  private setQuestions() {\r\n    this.questions = this.questions || this.group.questions;\r\n    this.questions$ = new BehaviorSubject<Question[]>(this.questions);\r\n  }\r\n\r\n  private setGrid(): void {\r\n    this.grid = this.group.gridProps;\r\n    this.cols = this.group.gridProps?.cols || 1;\r\n    this.gutter = this.group.gridProps?.gutter || 1;\r\n    this.buttonCols = this.group.gridProps?.buttonCols || 1;\r\n    this.hasButton = this.group.hasButton || false;\r\n  }\r\n\r\n  public onSubmit() {\r\n    this.submit.emit(this.formGroup.value);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -12504,7 +12504,7 @@
                     "name": "gridProps",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "type": "GridProps",
+                    "type": "InputGrid",
                     "optional": false,
                     "description": "",
                     "line": 34,
@@ -12708,7 +12708,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { MessageService } from './../services/message.service';\r\nimport { FormControl } from '@angular/forms';\r\nimport { QuestionBase } from '../services/form.service';\r\nimport { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport {\r\n  QuestionSelectModel,\r\n  SelectOption,\r\n} from './../models/question-select.model';\r\nimport { ControlType, GridProps } from '../models/question.model';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { Palette } from 'projects/lib-kakal-ui/src/lib/styles/theme';\r\n\r\n@Component({\r\n  selector: 'kkl-form-input',\r\n  templateUrl: './form-input.component.html',\r\n  styleUrls: ['./form-input.component.scss'],\r\n})\r\nexport class FormInputComponent implements OnInit {\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n  @Input() public apprence: MatFormFieldAppearance;\r\n\r\n  public controlType: ControlType;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n\r\n  public error$: BehaviorSubject<string>;\r\n  public color$: BehaviorSubject<Palette>;\r\n\r\n  public gridProps: GridProps;\r\n  public color: Palette;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output() public selected: EventEmitter<FormControl> = new EventEmitter();\r\n  @Output()\r\n  public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter();\r\n  @Output() public autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n\r\n  constructor(private messageService: MessageService) {}\r\n\r\n  ngOnInit(): void {\r\n    const color: Palette = this.control.disabled ? 'disable' : 'primary';\r\n    this.color$ = new BehaviorSubject<Palette>(color);\r\n    this.error$ = new BehaviorSubject<string>('');\r\n    this.controlType = this.question?.controlType;\r\n    this.gridProps = this.question?.gridProps;\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n  }\r\n\r\n  // private subscribeToControl() {\r\n  private setIconColor() {\r\n    if (this.control.disabled) {\r\n      this.color = 'disable';\r\n    } else if (this.control.errors) {\r\n      this.color = 'warn';\r\n    } else {\r\n      this.color = 'primary';\r\n    }\r\n  }\r\n\r\n  private setErrorMessage() {\r\n    this.error = this.messageService.getErrorMessage(this.control, this.label);\r\n    this.error$.next(this.error);\r\n\r\n    if (this.error) {\r\n      this.color$.next('warn');\r\n    } else {\r\n      this.color$.next('primary');\r\n    }\r\n  }\r\n\r\n  public validate() {\r\n    this.setErrorMessage();\r\n    this.setIconColor();\r\n  }\r\n\r\n  public onSelectChange() {\r\n    if (this.question instanceof QuestionSelectModel && this.question.onSelectChange) {\r\n      this.question.onSelectChange();\r\n    }\r\n    this.selected.emit(this.control);\r\n  }\r\n\r\n  public onAutocomplete(control: FormControl) {\r\n    this.autocomplete.emit(this.control);\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n}\r\n",
+            "sourceCode": "import { MessageService } from './../services/message.service';\r\nimport { FormControl } from '@angular/forms';\r\nimport { QuestionBase } from '../services/form.service';\r\nimport { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';\r\nimport {\r\n  QuestionSelectModel,\r\n  SelectOption,\r\n} from './../models/question-select.model';\r\nimport { ControlType, InputGrid } from '../models/question.model';\r\nimport { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';\r\nimport { MatFormFieldAppearance } from '@angular/material/form-field';\r\nimport { BehaviorSubject } from 'rxjs';\r\nimport { Palette } from 'projects/lib-kakal-ui/src/lib/styles/theme';\r\n\r\n@Component({\r\n  selector: 'kkl-form-input',\r\n  templateUrl: './form-input.component.html',\r\n  styleUrls: ['./form-input.component.scss'],\r\n})\r\nexport class FormInputComponent implements OnInit {\r\n  @Input() public question: QuestionBase;\r\n  @Input() public control: FormControl;\r\n  @Input() public apprence: MatFormFieldAppearance;\r\n\r\n  public controlType: ControlType;\r\n  public label: string;\r\n  public icon: string;\r\n  public options: SelectOption[];\r\n  public error: string = '';\r\n\r\n  public error$: BehaviorSubject<string>;\r\n  public color$: BehaviorSubject<Palette>;\r\n\r\n  public gridProps: InputGrid;\r\n  public color: Palette;\r\n  public iconType: string = 'svg';\r\n  public iconRotate: number = 0;\r\n\r\n  @Output() public selected: EventEmitter<FormControl> = new EventEmitter();\r\n  @Output()\r\n  public optionSelected: EventEmitter<MatAutocompleteSelectedEvent> = new EventEmitter();\r\n  @Output() public autocomplete: EventEmitter<FormControl> = new EventEmitter();\r\n\r\n  constructor(private messageService: MessageService) {}\r\n\r\n  ngOnInit(): void {\r\n    const color: Palette = this.control.disabled ? 'disable' : 'primary';\r\n    this.color$ = new BehaviorSubject<Palette>(color);\r\n    this.error$ = new BehaviorSubject<string>('');\r\n    this.controlType = this.question?.controlType;\r\n    this.gridProps = this.question?.gridProps;\r\n    this.label = this.question?.label || '';\r\n    this.icon = this.question?.icon || '';\r\n\r\n    if (this.question instanceof QuestionSelectModel) {\r\n      this.options = this.question.options;\r\n    }\r\n  }\r\n\r\n  // private subscribeToControl() {\r\n  private setIconColor() {\r\n    if (this.control.disabled) {\r\n      this.color = 'disable';\r\n    } else if (this.control.errors) {\r\n      this.color = 'warn';\r\n    } else {\r\n      this.color = 'primary';\r\n    }\r\n  }\r\n\r\n  private setErrorMessage() {\r\n    this.error = this.messageService.getErrorMessage(this.control, this.label);\r\n    this.error$.next(this.error);\r\n\r\n    if (this.error) {\r\n      this.color$.next('warn');\r\n    } else {\r\n      this.color$.next('primary');\r\n    }\r\n  }\r\n\r\n  public validate() {\r\n    this.setErrorMessage();\r\n    this.setIconColor();\r\n  }\r\n\r\n  public onSelectChange() {\r\n    if (this.question instanceof QuestionSelectModel && this.question.onSelectChange) {\r\n      this.question.onSelectChange();\r\n    }\r\n    this.selected.emit(this.control);\r\n  }\r\n\r\n  public onAutocomplete(control: FormControl) {\r\n    this.autocomplete.emit(this.control);\r\n  }\r\n\r\n  public onOptionSelected(event: MatAutocompleteSelectedEvent) {\r\n    this.optionSelected.emit(event);\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -14721,7 +14721,7 @@
             "propertiesClass": [
                 {
                     "name": "logoutItem",
-                    "defaultValue": "new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  })",
+                    "defaultValue": "new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgIcon: 'logout',\r\n  })",
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "MenuItemModel",
@@ -14798,7 +14798,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { Observable, of } from 'rxjs';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'kkl-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent {\r\n\r\n  @Input() public menu: MenuModel[];\r\n  @Input() public menu$: Observable<MenuModel[]>;\r\n  @Input() public hasLogin: boolean = true\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgUrl: 'logout',\r\n  });\r\n  @Output() changePath: EventEmitter<string> = new EventEmitter();\r\n\r\n  ngOnInit() {\r\n    this.menu$ = this.menu$ || of(this.menu);\r\n  }\r\n\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(item: MenuItemModel, modulePrefix: string) {\r\n    if (!item.isActive) {\r\n      const path = item.path === modulePrefix ? item.path : `${modulePrefix}/${item.path}`;\r\n      this.changePath.emit(path)\r\n    }\r\n  }\r\n}\r\n",
+            "sourceCode": "import { Component, EventEmitter, Input, Output } from '@angular/core';\r\nimport { Observable, of } from 'rxjs';\r\nimport { MenuItemModel } from '../menu-item/menu-item.model';\r\nimport { MenuModel } from './menu.model';\r\n\r\n@Component({\r\n  selector: 'kkl-menu',\r\n  templateUrl: './menu.component.html',\r\n  styleUrls: ['./menu.component.scss'],\r\n})\r\nexport class MenuComponent {\r\n\r\n  @Input() public menu: MenuModel[];\r\n  @Input() public menu$: Observable<MenuModel[]>;\r\n  @Input() public hasLogin: boolean = true\r\n\r\n  public logoutItem: MenuItemModel = new MenuItemModel({\r\n    label: 'יציאה',\r\n    isActive: false,\r\n    path: '',\r\n    svgIcon: 'logout',\r\n  });\r\n  @Output() changePath: EventEmitter<string> = new EventEmitter();\r\n\r\n  ngOnInit() {\r\n    this.menu$ = this.menu$ || of(this.menu);\r\n  }\r\n\r\n\r\n  // UPDATE METHOD WHEN CLICK ON STEP\r\n  public onLinkClick(item: MenuItemModel, modulePrefix: string) {\r\n    if (!item.isActive) {\r\n      const path = item.path === modulePrefix ? item.path : `${modulePrefix}/${item.path}`;\r\n      this.changePath.emit(path)\r\n    }\r\n  }\r\n}\r\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -14807,7 +14807,7 @@
                 }
             ],
             "stylesData": "",
-            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <kkl-card-user></kkl-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of (menu$ | async); let i = index\"\r\n    >\r\n      <mat-expansion-panel-header *ngIf=\"list.label\">\r\n        <div mat-subheader>\r\n          <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </kkl-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <kkl-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></kkl-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <kkl-icon color=\"primary\" mat-list-icon [key]=\"logoutItem.svgUrl\"></kkl-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </kkl-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
+            "templateData": "<div class=\"links themed-element\" [dir]=\"'rtl'\">\r\n  <kkl-card-user></kkl-card-user>\r\n  <mat-accordion class=\"menu\">\r\n    <mat-expansion-panel\r\n      class=\"mat-elevation-z0\"\r\n      *ngFor=\"let list of (menu$ | async); let i = index\"\r\n    >\r\n      <mat-expansion-panel-header *ngIf=\"list.label\">\r\n        <div mat-subheader>\r\n          <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n            {{ list.label }}\r\n          </kkl-typography>\r\n        </div>\r\n      </mat-expansion-panel-header>\r\n      <mat-list>\r\n        <kkl-menu-item\r\n          *ngFor=\"let link of list?.links; let i = index\"\r\n          [link]=\"link\"\r\n          (click)=\"onLinkClick(link, list.prefix)\"\r\n        ></kkl-menu-item>\r\n      </mat-list>\r\n    </mat-expansion-panel>\r\n  </mat-accordion>\r\n  <mat-list>\r\n    <mat-list-item appButton>\r\n      <kkl-icon color=\"primary\" mat-list-icon [key]=\"logoutItem.svgIcon\"></kkl-icon>\r\n      <div class=\"logout\" mat-line>\r\n        <kkl-typography variant=\"button\" color=\"primary\" [bold]=\"600\">\r\n          {{ logoutItem.label }}\r\n        </kkl-typography>\r\n      </div>\r\n    </mat-list-item>\r\n  </mat-list>\r\n</div>\r\n"
         },
         {
             "name": "MenuItemComponent",
@@ -14912,7 +14912,7 @@
             "implements": [
                 "OnInit"
             ],
-            "templateData": "<mat-list-item\r\n  appButton\r\n  [ngClass]=\"{ active: (active$ | async) }\"\r\n  (click)=\"onLinkClick()\"\r\n>\r\n  <mat-icon class=\"mat-icon-rtl-mirror\" mat-list-icon>{{\r\n    link.svgUrl\r\n  }}</mat-icon>\r\n  <div mat-line>\r\n    {{ link.label }}\r\n  </div>\r\n</mat-list-item>\r\n"
+            "templateData": "<mat-list-item\r\n  appButton\r\n  [ngClass]=\"{ active: (active$ | async) }\"\r\n  (click)=\"onLinkClick()\"\r\n>\r\n  <mat-icon class=\"mat-icon-rtl-mirror\" mat-list-icon>{{\r\n    link.svgIcon\r\n  }}</mat-icon>\r\n  <div mat-line>\r\n    {{ link.label }}\r\n  </div>\r\n</mat-list-item>\r\n"
         },
         {
             "name": "NavbarBottomComponent",
@@ -19031,7 +19031,7 @@
                 "name": "ListItemKeys",
                 "ctype": "miscellaneous",
                 "subtype": "typealias",
-                "rawtype": "\"path\" | \"label\" | \"svgUrl\"",
+                "rawtype": "\"path\" | \"label\" | \"svgIcon\"",
                 "file": "projects/lib-kakal-ui/src/lib/app/components/list-item/list-item.model.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
@@ -20839,7 +20839,7 @@
                     "name": "ListItemKeys",
                     "ctype": "miscellaneous",
                     "subtype": "typealias",
-                    "rawtype": "\"path\" | \"label\" | \"svgUrl\"",
+                    "rawtype": "\"path\" | \"label\" | \"svgIcon\"",
                     "file": "projects/lib-kakal-ui/src/lib/app/components/list-item/list-item.model.ts",
                     "deprecated": false,
                     "deprecationMessage": "",
@@ -21239,7 +21239,7 @@
                 "filePath": "projects/lib-kakal-ui/src/lib/app/components/form/models/question.model.ts",
                 "type": "interface",
                 "linktype": "interface",
-                "name": "GridProps",
+                "name": "InputGrid",
                 "coveragePercent": 0,
                 "coverageCount": "0/7",
                 "status": "low"

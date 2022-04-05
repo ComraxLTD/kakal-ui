@@ -1,6 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
 import { QuestionBase } from '../models/question.model';
-import { GridProps } from '../models/question.types';
+import { InputGrid } from '../models/question.types';
 
 export class QuestionUploadModel extends QuestionBase {
   public multi?: boolean;
@@ -10,7 +10,7 @@ export class QuestionUploadModel extends QuestionBase {
     key: string;
     label?: string;
     value?: File[];
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     validations?: ValidatorFn[];
     disabled?: boolean;

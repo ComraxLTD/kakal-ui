@@ -1,16 +1,14 @@
-
-
 .kkl-primary {
-  color: $primary;
+  color: var(--p-500);
 }
 .kkl-accent {
-  color: $accent;
+  color: var(--a-500);
 }
 .kkl-warn {
-  color: $warn;
+  color: #d83020;
 }
 .kkl-paper {
-  color: $paper;
+  color: white;
 }
 .kkl-default {
   color: $default;

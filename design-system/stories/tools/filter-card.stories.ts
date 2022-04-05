@@ -2,18 +2,18 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { KKLFilterCardModule } from '../../projects/kakal-ui/src/lib/cards/filter-card/filter-card.module';
-import {FilterCardComponent } from '../../projects/kakal-ui/src/lib/cards/filter-card/filter-card.component';
+import { KKLCardFilterModule } from '../../projects/kakal-ui/src/lib/cards/filter-card/filter-card.module';
+import {CardFilterComponent } from '../../projects/kakal-ui/src/lib/cards/filter-card/filter-card.component';
 import { FilterCardModel} from '../../projects/kakal-ui/src/lib/cards/filter-card/filter-card.model';
 
 export default {
   title: 'Tools',
   decorators: [
     moduleMetadata({
-      imports: [KKLFilterCardModule],
+      imports: [KKLCardFilterModule],
     }),
   ],
-  component: FilterCardComponent,
+  component: CardFilterComponent,
   argTypes: {
     card: {
       name: 'card',
@@ -27,7 +27,7 @@ export default {
   },
 } as Meta;
 
-const Template: Story<FilterCardComponent> = (args: FilterCardComponent) => ({
+const Template: Story<CardFilterComponent> = (args: CardFilterComponent) => ({
   component: FilterCardComponent,
   props: args,
 });
@@ -37,8 +37,7 @@ export const filterCard = Template.bind({});
 filterCard.args = {
   card:new FilterCardModel({
     name: 'שם הכרטיס',
-    count: 2, 
+    count: 2,
     svg: 'search',
   })
 };
- 

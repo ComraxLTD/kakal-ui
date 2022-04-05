@@ -32,7 +32,7 @@ export class KKLStrokedButtonDirective {
   private baseClass = `mat-focus-indicator mat-button-base mat-stroked-button `;
 
   ngOnInit(): void {
-    this.border = '1px solid';
+    this.border = '2px solid';
     this.invalidate()
   }
 

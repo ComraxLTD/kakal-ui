@@ -29,10 +29,9 @@
       <mat-card-content fxFill fxLayout="column" fxLayoutAlign="center center">
         <mat-icon
           appSize
+          [class.active]="step.isActive"
           [size]="step.size"
-          color="primary"
-          [svgIcon]="step.svgUrl"
-          [color]="step.isActive ? 'paper' : 'default'"
+          [svgIcon]="step.svgIcon"
         >
         </mat-icon>
       </mat-card-content>

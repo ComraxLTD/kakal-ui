@@ -11,8 +11,6 @@ import { KKLNavigationModule } from './navigation/navigation.module';
 import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
-import { KKLInfoCardModule } from './cards/info-card/info-card.module';
-import { KKLFilterCardModule } from './cards/filter-card/filter-card.module';
 
 import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { KKLMenuModule } from './menu/menu.module';
@@ -39,21 +37,25 @@ import { KKLHeaderCellModule } from './table/components/header-cells/header-cell
 
 import { KKLDialogModule } from './dialog/dialog.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
+import { KKLSidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
+import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
+
+// CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
+import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
 
 import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
@@ -84,7 +86,8 @@ import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 
-import { KKLVerticalStepsModule} from './vertical-steps/vertical-steps.module'
+import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
+import { FacilityCardModule } from './facility-card/facility-card.module';
 
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
@@ -101,16 +104,18 @@ registerLocaleData(he);
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
+
     KKLNavigationModule,
-    KKLStatusBarsModule,
     KKLMenuModule,
+    KKLMenuBarModule,
+
+    KKLStatusBarsModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLPageHeadlineModule,
-    KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
@@ -174,23 +179,27 @@ registerLocaleData(he);
 
     KKSectionModule,
     KKPageModule,
+    FacilityCardModule
   ],
   exports: [
+
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
-    MaterialModule,
+
     KKLMenuItemModule,
+
     KKLButtonModule,
+
     KKLIconModule,
     KKLTypographyModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLStatusBarsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
@@ -218,7 +227,6 @@ registerLocaleData(he);
     KKLTableCellModule,
 
     KKLDialogModule,
-    KKLInfoCardModule,
 
     KKLPipesModule,
     KKLDirectivesModule,
@@ -253,7 +261,10 @@ registerLocaleData(he);
     KKSectionModule,
     KKPageModule,
 
+
+
     KKLAccordionStepsModule,
+    FacilityCardModule
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }

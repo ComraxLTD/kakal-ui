@@ -24,16 +24,7 @@ export class FormRadioComponent implements OnInit {
     this.onInitValue();
   }
 
-  onInitValue() {
-    // if (this.control.value) {
-    //   const index = this.options.findIndex(
-    //     (option) =>
-    //       option.label === this.control.value.label &&
-    //       option.value === this.control.value.value
-    //   );
-    //   if (index) this.options[index].checked = true;
-    // }
-  }
+  onInitValue() {}
   public handleChange(radioChange: MatRadioChange) {
     this.control.setValue(radioChange.value);
     this.change.emit({

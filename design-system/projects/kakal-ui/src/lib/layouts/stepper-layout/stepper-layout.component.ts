@@ -1,21 +1,11 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StepperLayoutService } from './stepper-layout.service';
-import { FormControl } from '@angular/forms';
-
-import { MatSidenav } from '@angular/material/sidenav';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
-import { map, switchMap } from 'rxjs/operators';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -24,43 +14,40 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./stepper-layout.component.scss'],
 })
 export class StepperLayoutComponent {
-  //mat split drawer
-  @ViewChild('sidenav') sidenav: MatSidenav;
-  @Output() emitEndDrawerBtn: EventEmitter<void> = new EventEmitter();
-  isExpanded = true;
-  showSubmenu: boolean = false;
-  isShowing = false;
-  showSubSubMenu: boolean = false;
+  @Input() steps: CardStepModel[];
 
-  mouseenter() {
-    if (!this.isExpanded) {
-      this.isShowing = true;
-    }
-  }
+  // control content width when end drawer is open and close in %
+  @Input() contentPortion: { open: number; close: number } = {
+    open: 0,
+    close: 100,
+  };
+  @Input() drawerType: 'file' | 'notes';
 
-  mouseleave() {
-    if (!this.isExpanded) {
-      this.isShowing = false;
-    }
-  }
-  // ---------------------------------
+  @Input() hasEndDrawer: boolean;
 
-  @Input() portion$: Observable<number> = of(100);
-  @Input() drawerSize$: Observable<number>;
-  @Input() hasTitle: boolean;
-  @Input() hasDrawer: boolean;
-  @Input() drawerBtn: {
+  // steps props
+  steps$: Observable<CardStepModel[]>;
+
+  // drawer props
+  portion$: Observable<number> = of(100);
+  showStartDrawer$: Observable<boolean>;
+  endDrawerSize$: Observable<number>;
+
+  //end drawer opened/closed
+  _endDrawerOpen: boolean = false;
+
+  //drawer sizes
+  _openDrawer!: number;
+  _closedDrawer!: number;
+
+  // drawer btn
+  drawerBtn: {
     icon: string;
     label: string;
   };
 
-  @Input() buttonLabel: ElementRef;
-
-  // steps props
-  public steps$: Observable<CardStepModel[]>;
-  public showDrawer$: Observable<boolean>;
-  public showEndDrawer$: Observable<boolean>;
-  public mobile$: Observable<boolean>;
+  @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
+  @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
@@ -68,17 +55,32 @@ export class StepperLayoutComponent {
     private breakpointService: BreakpointService
   ) {}
 
-  @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
-  @Output() selectStep: EventEmitter<FormControl> = new EventEmitter();
-
   ngOnInit(): void {
+    this.stepperLayoutService.setSteps(this.setSteps());
+
     this.steps$ = this.setSteps$();
 
-    // this.question$ = this.setSelectQuestion();
-    this.showDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
-    this.drawerSize$ = this.stepperLayoutService.getDrawerSizeChanged();
-    this.mobile$ = this.breakpointService.isMobile();
+    this._openDrawer = this.contentPortion.open;
+    this._closedDrawer = this.contentPortion.close;
+
+    this.drawerBtn = this.setDrawerBtn();
+
+    this.showStartDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
+
+    this.portion$ = this.getBreakPoints();
   }
+
+  private setSteps(): CardStepModel[] {
+    return this.steps.map((step: CardStepModel) => {
+      return {
+        ...step,
+        size: 3,
+        variant: 'circle',
+        type: 'step',
+      };
+    });
+  }
+
   private setSteps$(): Observable<CardStepModel[]> {
     return this.stepperLayoutService.getStepsObs().pipe(
       switchMap((steps) => {
@@ -86,11 +88,11 @@ export class StepperLayoutComponent {
           map((url: string) => {
             steps.map((step) => {
               if (step.isActive) {
-                step.unactive();
+                step.isActive = false;
               }
               if (step.path === url) {
                 this.stepperLayoutService.emitChangeStep(step);
-                step.active();
+                step.isActive = true;
               }
             });
 
@@ -101,14 +103,70 @@ export class StepperLayoutComponent {
     );
   }
 
-  public onChangeStep(step: CardStepModel): void {
-    this.changeStep.emit(step);
-  }
-  public onSelectStep(control: FormControl) {
-    this.selectStep.emit(control);
+  private setDrawerBtn() {
+    if (this.drawerType === 'file') {
+      return { icon: 'portfolio', label: 'מסמכים' };
+    }
+
+    if (this.drawerType === 'notes') {
+      return { icon: 'bell', label: 'תזכורת' };
+    }
   }
 
-  emitEndDrawer(): void {
-    this.emitEndDrawerBtn.emit();
+  // PORTION LOGIC SECTION
+
+  // breakpoints
+  private mergeBreakPoints() {
+    return this.breakpointService
+      .isSmall()
+      .pipe(
+        mergeMap((isSmall) =>
+          this.breakpointService
+            .isMobile()
+            .pipe(map((isMobile) => [isSmall, isMobile]))
+        )
+      );
+  }
+
+  private getBreakPoints() {
+    return this.mergeBreakPoints().pipe(
+      map((value: boolean[]) => {
+        if (value.includes(true)) {
+          this._openDrawer = 1;
+          this._closedDrawer = 99;
+        } else {
+          this._openDrawer = this.contentPortion.open;
+          this._closedDrawer = this.contentPortion.close;
+        }
+        this.endDrawerSize$ = of(this._openDrawer);
+        return 100 - this._openDrawer;
+      })
+    );
+  }
+
+  // function called each time the left(end) drawer is closed/opened
+  onEndDrawerEmitted() {
+    let portion: number = 0;
+
+    this._endDrawerOpen = !this._endDrawerOpen;
+    if (!this._endDrawerOpen) {
+      portion = 100 - this._openDrawer;
+      this.portion$ = of(portion);
+      this.endDrawerSize$ = of(this._openDrawer);
+    } else {
+      portion = 100 - this._closedDrawer;
+      this.portion$ = of(portion);
+      this.endDrawerSize$ = of(this._closedDrawer);
+    }
+    this.openChanged.emit(this._endDrawerOpen);
+  }
+
+  // DOM EVENTS
+  public onChangeStep(step: CardStepModel): void {
+    this.stepChanged.emit(step);
+  }
+
+  public emitEndDrawer(): void {
+    this.onEndDrawerEmitted();
   }
 }

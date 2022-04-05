@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
+import { CardStatusModel } from '../cards/card-status/card-status.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,13 +11,13 @@ export class NavbarService {
 
   private titleSubject: BehaviorSubject<string>;
   private headersSubject: BehaviorSubject<Observable<string>>;
-  private statusSubject: BehaviorSubject<CardStepModel[]>;
-  private selectStatusSubject: BehaviorSubject<CardStepModel>;
+  private statusSubject: BehaviorSubject<CardStatusModel[]>;
+  private selectStatusSubject: BehaviorSubject<CardStatusModel>;
 
   constructor() {
     this.titleSubject = new BehaviorSubject<string>('');
-    this.statusSubject = new BehaviorSubject<CardStepModel[]>([]);
-    this.selectStatusSubject = new BehaviorSubject<CardStepModel>(null);
+    this.statusSubject = new BehaviorSubject<CardStatusModel[]>([]);
+    this.selectStatusSubject = new BehaviorSubject<CardStatusModel>(null);
   }
 
   // headers section
@@ -42,12 +43,20 @@ export class NavbarService {
   }
 
   // status section
-  public getStatusObs(): Observable<CardStepModel[]> {
+  public getStatusObs(): Observable<CardStatusModel[]> {
     return this.statusSubject.asObservable();
   }
 
-  public emitStatus(value: CardStepModel[]): void {
-    this.statusSubject.next(value);
+  public emitStatus(value: CardStatusModel[]): void {
+    const status: CardStatusModel[] = [...value].map(
+      (status: CardStatusModel) => {
+        return {
+          ...status,
+          size: 6,
+        };
+      }
+    );
+    this.statusSubject.next(status);
   }
 
   // status section
@@ -55,18 +64,7 @@ export class NavbarService {
     return this.selectStatusSubject.asObservable();
   }
 
-  public emitSelectStatus(value: CardStepModel): void {
+  public emitSelectStatus(value: CardStatusModel): void {
     this.selectStatusSubject.next(value);
   }
-
-  // public getSelectedStatusFilters(filters: FilterMap): Observable<FilterMap> {
-  //   return this.getSelectStatusObs().pipe(
-  //     skipWhile((status) => !status),
-  //     map((status: CardStatusModel) => status.options),
-  //     map((options: SelectOption[]) => {
-  //       filters['status'] = options;
-  //       return filters;
-  //     })
-  //   );
-  // }
 }

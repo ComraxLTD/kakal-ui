@@ -1,13 +1,13 @@
 import { MessageService } from './../services/message.service';
-import { AbstractControl, FormControl, FormControlStatus } from '@angular/forms';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { AbstractControl, FormControl, FormControlStatus, Validators } from '@angular/forms';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Palette } from '../../../styles/theme';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subject, Subscription } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { FormInputService } from './form-input.service';
 import { FormChangeEvent } from '../models/form.options';
 import { FormActions } from '../models/form.actions';
-import { ControlType, Appearance, GridProps } from '../models/question.types';
+import { ControlType, Appearance, InputGrid } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-input',
@@ -24,27 +24,55 @@ export class FormInputComponent implements OnInit {
   @Input() public theme!: Palette;
   @Input() public index!: number;
   @Input() public cleave!: {};
-  @Input() public gridProps!: GridProps;
+  @Input() public gridProps!: InputGrid;
   @Input() public icon!: string;
-
   public error$: BehaviorSubject<string>;
   public color$: Observable<Palette>;
 
   @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
+  public value: string;
+
   constructor(
     private messageService: MessageService,
     private formInputService: FormInputService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.invalidate();
-
     this.error$ = new BehaviorSubject<string>('');
     this.color$ = this.setColor$();
 
     this.setProps();
+  }
+
+  checkDigits(val: string) {
+    const twoDigits: string[] = ['02', '03', '04', '08', '09'];
+    const threeDigits: string[] = ['05', '07'];
+    if (val.length > 1) {
+      const str = val.charAt(0) !== '+' ? val.substring(0, 2) : val.substring(1,3);
+      delete this.cleave['delimiter'];
+      const [two, three] = [twoDigits.includes(str), threeDigits.includes(str)];
+      
+      if (!two && !three) {
+        this.cleave = {
+          ...this.cleave,
+          blocks: [0, 14],
+          delimiter: '+',
+        }
+      }
+      if (three) this.cleave = {
+        ...this.cleave,
+        blocks: [3, 3, 4],
+        delimiter: '-',
+      }
+      if (two) this.cleave = {
+        ...this.cleave,
+        blocks: [2, 3, 4],
+        delimiter: '-',
+      }
+    }
   }
 
   private invalidate() {
@@ -142,10 +170,14 @@ export class FormInputComponent implements OnInit {
   }
 
   public onValueChanged(value: string) {
+    if (value === this.value) return;
+    this.checkDigits(value);
+    this.value = value;
     const FormChangeEvent: FormChangeEvent = this.getFormOption({
       value,
       action: FormActions.VALUE_CHANGED,
     });
+
     this.valueChanged.emit(FormChangeEvent);
   }
 }

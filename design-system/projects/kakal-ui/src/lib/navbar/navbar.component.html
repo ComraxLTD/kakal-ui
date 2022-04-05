@@ -16,9 +16,14 @@
   </ng-container>
 
   <div fxLayout="column" fxLayoutAlign="center start" fxFlex fxFlexOffset="1rem">
-    <kkl-typography [weight]="600" [size]="2">
-      {{ title$ | async }}
-    </kkl-typography>
+    <div>
+      <kkl-bread-crumbs></kkl-bread-crumbs>
+    </div>
+    <div>
+      <kkl-typography [weight]="600" [size]="2">
+        {{ title$ | async }}
+      </kkl-typography>
+    </div>
   </div>
 
   <!-- main navbar links -->
