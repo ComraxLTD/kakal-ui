@@ -9,9 +9,12 @@ export * from './lib/button/button.module';
 export * from './lib/button/components/button/button.component';
 export * from './lib/button/components/add-button/add-button.component';
 export * from './lib/button/components/stroke-button/stroke-button.component';
+
 export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
 export * from './lib/button/directives/form-button.directive';
+
+export * from './lib/button/models/button.types';
 
 export * from './lib/typography/typography.module';
 export * from './lib/typography/typography.component';

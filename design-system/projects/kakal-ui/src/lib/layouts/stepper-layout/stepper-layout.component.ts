@@ -6,7 +6,8 @@ import { RouterService, BreakpointService } from '../../../services/services';
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { merge, Observable, of } from 'rxjs';
+import { ButtonModel } from '../../button/models/button.types';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -23,7 +24,10 @@ export class StepperLayoutComponent {
   };
   @Input() drawerType: 'file' | 'notes';
 
-  @Input() hasEndDrawer: boolean;
+  @Input() actions: ButtonModel[];
+
+  @Input() showEndDrawer: boolean;
+  @Input() showStartDrawer: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -48,6 +52,7 @@ export class StepperLayoutComponent {
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
@@ -65,7 +70,10 @@ export class StepperLayoutComponent {
 
     this.drawerBtn = this.setDrawerBtn();
 
-    this.showStartDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
+    this.showStartDrawer$ = merge(
+      of(this.showStartDrawer),
+      this.stepperLayoutService.getDisplayDrawerObs()
+    );
 
     this.portion$ = this.getBreakPoints();
   }
@@ -105,7 +113,7 @@ export class StepperLayoutComponent {
 
   private setDrawerBtn() {
     if (this.drawerType === 'file') {
-      return { icon: 'portfolio', label: 'מסמכים' };
+      return { icon: 'portfolio', label: 'מסמכי הליך' };
     }
 
     if (this.drawerType === 'notes') {
@@ -162,11 +170,16 @@ export class StepperLayoutComponent {
   }
 
   // DOM EVENTS
-  public onChangeStep(step: CardStepModel): void {
+
+  onChangeStep(step: CardStepModel): void {
     this.stepChanged.emit(step);
   }
 
-  public emitEndDrawer(): void {
+  emitEndDrawer(): void {
     this.onEndDrawerEmitted();
+  }
+
+  onAction(event: ButtonModel): void {
+    this.actionChanged.emit(event);
   }
 }

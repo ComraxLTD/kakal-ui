@@ -13,4 +13,4 @@ import { KKLCardWizardModule } from '../cards/card-wizard/card-wizard.module';
     exports: [StepperComponent]
 })
 
-export class StepperModule { }
+export class KKLStepperModule { }

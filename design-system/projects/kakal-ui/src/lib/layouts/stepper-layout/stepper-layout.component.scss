@@ -1,7 +1,6 @@
 @use "../../../styles/variables" as main;
 
 .sidenav-container {
-  height: main.$content-height;
   background-color: main.color(paper);
 }
 
@@ -24,27 +23,33 @@ div.content {
   z-index: -1;
 }
 
-div.stepper-container {
-  background: linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%) 0% 0%;
+// div.stepper-container {
 
-  mat-toolbar {
-    flex: 1;
-    background-color: transparent;
-  }
-
-  .stepper {
-    flex: 1;
-    margin-top: 4rem;
-    // padding-top: main.spacing(2);
-    box-sizing: border-box;
-  }
+mat-toolbar {
+  height: main.$content-height !important;
+  background: linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%) 0% 0% !important ;
 }
+
+.stepper {
+  flex: 1;
+  // margin-top: 2rem;
+  // padding-top: main.spacing(2);
+  box-sizing: border-box;
+}
+// }
 
 // style button of side menu
 button.mat-fab {
   background-color: main.color(paper);
   width: 7rem;
   height: 7rem;
+  z-index: 1000;
+  border: 1px solid main.color(accent) !important;
+
+  span.mat-button-wrapper {
+    display: flex !important;
+    flex-direction: column;
+  }
 
   kkl-typography {
     text-align: center;

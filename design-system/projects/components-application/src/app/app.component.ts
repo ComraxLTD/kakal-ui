@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  CardStepModel,
+  FormActions,
   FormGrid,
   FormService,
   Question,
@@ -14,6 +16,28 @@ import {
 export class AppComponent implements OnInit {
   constructor(private formService: FormService) {}
 
+  actions = [
+    { svgIcon: 'edit', type: FormActions.EDIT },
+    { svgIcon: 'save', type: FormActions.SUBMIT },
+  ];
+
+  steps: CardStepModel[] = [
+    {
+      label: 'פרטי נכס',
+      svgIcon: 'home',
+      path: 'details',
+    },
+    {
+      label: 'טיוטות והסכמים',
+      svgIcon: 'portfolio',
+      path: 'documents',
+    },
+    {
+      label: 'שליחת מייל',
+      svgIcon: 'mail',
+      path: 'mails',
+    },
+  ];
   questions: Question[] = [
     {
       key: 'name',
