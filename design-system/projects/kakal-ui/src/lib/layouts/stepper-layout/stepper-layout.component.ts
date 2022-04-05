@@ -105,7 +105,7 @@ export class StepperLayoutComponent {
 
   private setDrawerBtn() {
     if (this.drawerType === 'file') {
-      return { icon: 'portfolio', label: 'מסמכים' };
+      return { icon: 'portfolio', label: 'מסמכי הליך' };
     }
 
     if (this.drawerType === 'notes') {
