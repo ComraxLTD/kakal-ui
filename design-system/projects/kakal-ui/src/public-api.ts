@@ -179,9 +179,9 @@ export * from './lib/menu/menu.component';
 
 // menu-bar
 
-// export * from './lib/menu-bar/menu-bar.module';
-// export * from './lib/menu-bar/menu-bar/menu-bar.component';
-// export * from './lib/menu-bar/menu-card/menu-card.component';
+export * from './lib/menu-bar/menu-bar.module';
+export * from './lib/menu-bar/menu-bar/menu-bar.component';
+export * from './lib/menu-bar/menu-card/menu-card.component';
 
 // title
 export * from './lib/kkl-title/kkl-title.module';

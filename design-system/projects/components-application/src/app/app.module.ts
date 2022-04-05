@@ -2,6 +2,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import {
   BreakpointService,
   KakalUiModule,
+  ROOT_PREFIX,
   RouterService,
   StepperLayoutService,
 } from '../../../kakal-ui/src/public-api';
@@ -45,7 +46,12 @@ import { CommonModule } from '@angular/common';
     KakalUiModule,
     ReactiveFormsModule,
   ],
-  providers: [StepperLayoutService, BreakpointService, RouterService,],
+  providers: [
+    StepperLayoutService,
+    BreakpointService,
+    RouterService,
+    { provide: ROOT_PREFIX, useValue: '' },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

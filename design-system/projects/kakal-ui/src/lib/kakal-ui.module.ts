@@ -193,6 +193,8 @@ registerLocaleData(he);
 
     KKLMenuItemModule,
 
+    KKLMenuBarModule,
+
     KKLButtonModule,
 
     KKLIconModule,
