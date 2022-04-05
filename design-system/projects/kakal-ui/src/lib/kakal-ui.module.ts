@@ -89,7 +89,6 @@ import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 
 import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
 import { FacilityCardModule } from './facility-card/facility-card.module';
-import { AirbnbCalendarModule } from 'comrax-alex-airbnb-calendar';
 
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
@@ -138,7 +137,6 @@ registerLocaleData(he);
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
-    AirbnbCalendarModule,
     KklFormCalendarModule,
 
     //KKL NEW TABLE MODULES
