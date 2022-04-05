@@ -8,6 +8,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
 import { RowActionEvent, RowActionModel } from '../../table-actions.model';
 import { TableBase } from '../../table.model';
+import { customFilterPredicate } from './local-filter';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
@@ -43,6 +44,11 @@ export class LocalTableComponent implements OnInit {
 
   @Input() paging: boolean = true;
 
+  @Input() dragable: boolean;
+
+
+  dragDisabled = true;
+
   oneColumns: TableBase[] = [];
   @Input()
   set columns(value: TableBase[]) {
@@ -50,6 +56,9 @@ export class LocalTableComponent implements OnInit {
     this.displayedColumns = value.map(a => a.key);
     if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
+    }
+    if(this.dragable) {
+      this.displayedColumns.unshift('dragHandeler')
     }
     const row = this.fb.group({});
     this.oneColumns.forEach(col => {
@@ -71,10 +80,11 @@ export class LocalTableComponent implements OnInit {
           this.readySpanData(0, this.dataTable.filteredData.length);
         }
       }
-    } else {
+      this.isLoading = false;
+    }
+    else {
       this.dataTable.data = [];
     }
-    this.isLoading = false;
   }
 
 
@@ -129,10 +139,18 @@ export class LocalTableComponent implements OnInit {
       });
       this.readySpanData(0, this.dataTable.filteredData.length);
     }
+    this.dataTable.filterPredicate = customFilterPredicate;
   }
 
   searchChanged() {
-    // this.requsetChange(null);
+    const searchVal = this.searchRow.value;
+    let filters = [];
+    this.oneColumns.forEach(a => {
+      if(searchVal[a.key]){
+        filters.push({key: a.key, controlType: a.controlType, val: searchVal[a.key]});
+      }
+    })
+    this.dataTable.filter = JSON.stringify(filters);
   }
 
   pageChanged(event: PageEvent) {
@@ -195,6 +213,16 @@ export class LocalTableComponent implements OnInit {
       this.groupDataReload();
       Object.assign(ele, this.rows.at(index).value);
       this.editRow.emit(ele);
+      this.rows.removeAt(index);
+    }
+  }
+
+  cancelRowClick(ele: any) {
+    const index = this.editItems.indexOf(ele);
+    if (index > -1) {
+      this.editItems.splice(index, 1);
+      this.editItems = [...this.editItems];
+      this.groupDataReload();
       this.rows.removeAt(index);
     }
   }
@@ -275,6 +303,7 @@ export class LocalTableComponent implements OnInit {
   }
 
   dropTable(event: CdkDragDrop<MatTableDataSource<any>, any>) {
+    this.dragDisabled = true;
     let cutOut = this.dataTable.data.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
     this.dataTable.data.splice(event.currentIndex, 0, cutOut);
     this.dataTable.data = this.dataTable.data.slice();
@@ -282,6 +311,7 @@ export class LocalTableComponent implements OnInit {
     this.table.renderRows();
     this.groupDataReload();
   }
+
 
   ngOnDestroy() {
     this.destroySubject$.next();

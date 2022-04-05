@@ -48,12 +48,18 @@ export class EventTableComponent implements OnInit {
   @Input() paging: boolean = true;
   @Input() pageSize: number = 10;
 
+  @Input() dragable: boolean;
+
+
   oneColumns: TableBase[] = [];
   @Input() set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
     if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
+    }
+    if(this.dragable) {
+      this.displayedColumns.unshift('dragHandeler')
     }
     const row = this.fb.group({});
     this.oneColumns.forEach(col => {
@@ -113,6 +119,8 @@ export class EventTableComponent implements OnInit {
   lastSpan: string | undefined;
   spans: any[] = [];
 
+
+  dragDisabled = true;
 
   ngOnInit() {
   }
@@ -178,7 +186,7 @@ export class EventTableComponent implements OnInit {
     this.editItems = [];
     this.expandedElement = undefined;
     this.rows.clear();
-    this.isLoading = false;
+    this.isLoading = true;
     this.dataTable = undefined;
   }
 
@@ -215,6 +223,17 @@ export class EventTableComponent implements OnInit {
       Object.assign(ele, this.rows.at(index).value);
       this.editRow.emit(ele);
       this.rows.removeAt(index);
+      this.readySpanData(0, this.dataTable.length);
+    }
+  }
+
+  cancelRowClick(ele: any) {
+    const index = this.editItems.indexOf(ele);
+    if (index > -1) {
+      this.editItems.splice(index, 1);
+      this.editItems = [...this.editItems];
+      this.rows.removeAt(index);
+      this.readySpanData(0, this.dataTable.length);
     }
   }
 
@@ -286,6 +305,7 @@ export class EventTableComponent implements OnInit {
   }
 
   dropTable(event: CdkDragDrop<any[]>) {
+    this.dragDisabled = true;
     moveItemInArray(this.dataTable, event.previousIndex, event.currentIndex);
     this.table.renderRows();
     this.readySpanData(0, this.dataTable.length);

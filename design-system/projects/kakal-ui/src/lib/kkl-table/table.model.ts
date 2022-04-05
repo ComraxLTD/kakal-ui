@@ -1,7 +1,6 @@
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { Palette } from '../../styles/theme'
 import { Appearance, ControlType } from '../form/models/question.types'
-import { FilterType } from '../filters/filters.types';
 
 import { RowActionModel } from './table-actions.model';
 
@@ -20,13 +19,13 @@ export abstract class TableBase {
   public disabled?: boolean;
   public control?: AbstractControl | FormControl;
   public cleave?: {};
-  public localFilter?: boolean;
-  public filterType?: FilterType;
 
   public colIcon?: string;
   public group?: string;
   public button?: RowActionModel;
+  public filter?: boolean;
   public templateName?: string;
+  public editable?: boolean;
 
   constructor(options: {
     key: string;
@@ -42,8 +41,8 @@ export abstract class TableBase {
     validations?: ValidatorFn[];
     control?: AbstractControl | FormControl;
     cleave?: {};
-    localFilter?: boolean;
-    filterType?: FilterType;
+    filter?: boolean;
+    editable?: boolean;
   }) {
     this.key = options.key || '';
     this.value = options.value;
@@ -58,7 +57,7 @@ export abstract class TableBase {
     this.icon = options.icon || '';
     this.control = options.control || null;
     this.cleave = options.cleave || {};
-    this.localFilter = options.localFilter;
-    this.filterType = options.filterType || FilterType.SEARCH;
+    this.filter = options.filter === false? false : true;
+    this.editable = options.editable === false? false : true;
   }
 }

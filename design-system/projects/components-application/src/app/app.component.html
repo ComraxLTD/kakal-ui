@@ -10,3 +10,11 @@
     >
   </div>
 </kkl-layout>
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  (actionClicked)="onClicked($event)"
+  (editRow)="editRow($event)"
+  dragable="true"
+></kkl-local-table>
