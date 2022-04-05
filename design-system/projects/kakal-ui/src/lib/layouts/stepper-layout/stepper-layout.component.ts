@@ -27,7 +27,6 @@ export class StepperLayoutComponent {
   @Input() actions: ButtonModel[];
 
   @Input() showEndDrawer: boolean;
-  @Input() showStartDrawer: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -71,7 +70,7 @@ export class StepperLayoutComponent {
     this.drawerBtn = this.setDrawerBtn();
 
     this.showStartDrawer$ = merge(
-      of(this.showStartDrawer),
+      of(this.drawerType !== undefined),
       this.stepperLayoutService.getDisplayDrawerObs()
     );
 
