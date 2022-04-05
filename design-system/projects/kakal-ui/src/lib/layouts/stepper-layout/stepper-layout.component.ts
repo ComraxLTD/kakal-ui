@@ -22,7 +22,7 @@ export class StepperLayoutComponent {
     open: 0,
     close: 100,
   };
-  @Input() drawerType: 'file' | 'notes';
+  @Input() drawerType: 'file' | 'notes' | undefined;
 
   @Input() actions: ButtonModel[];
 
@@ -43,11 +43,9 @@ export class StepperLayoutComponent {
   _openDrawer!: number;
   _closedDrawer!: number;
 
-  // drawer btn
-  drawerBtn: {
-    icon: string;
-    label: string;
-  };
+  //
+  drawerAction: ButtonModel;
+  rowActions!: ButtonModel[];
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
@@ -67,7 +65,9 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
-    this.drawerBtn = this.setDrawerBtn();
+    this.rowActions = this.setRowActions();
+
+    this.drawerAction = this.setDrawerAction();
 
     this.showStartDrawer$ = merge(
       of(this.drawerType !== undefined),
@@ -110,14 +110,23 @@ export class StepperLayoutComponent {
     );
   }
 
-  private setDrawerBtn() {
-    if (this.drawerType === 'file') {
-      return { icon: 'portfolio', label: 'מסמכי הליך' };
-    }
+  private setDrawerAction(): ButtonModel {
+    const iconMap = {
+      file: 'portfolio',
+      notes: 'bell',
+    };
 
-    if (this.drawerType === 'notes') {
-      return { icon: 'bell', label: 'תזכורת' };
-    }
+    const action = this.actions.find(
+      (action: ButtonModel) => action.type === 'file' || action.type === 'notes'
+    );
+
+    return {...action, svgIcon : iconMap[action.type]};
+  }
+
+  private setRowActions() {
+    return this.actions.filter(
+      (action: ButtonModel) => action.type !== 'file' && action.type !== 'notes'
+    );
   }
 
   // PORTION LOGIC SECTION
