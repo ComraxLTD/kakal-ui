@@ -24,17 +24,6 @@
         *ngFor="let option of options"
         [value]="option"
       >
-        <!-- <ng-container *ngIf="!optionsTemplate; else slotBlock">
-          {{ option.label }}
-        </ng-container>
-        <ng-template #slotBlock>
-          <ng-container
-            *ngTemplateOutlet="
-              optionsTemplate;
-              context: { $implicit: this.option }
-            "
-          ></ng-container>
-        </ng-template> -->
 
         <ng-container
           *ngTemplateOutlet="
@@ -44,10 +33,6 @@
         ></ng-container>
       </mat-option>
     </ng-container>
-
-    <ng-template #defaultTemplate>
-      {{ option.label }}
-    </ng-template>
 
     <ng-container *ngIf="multi">
       <mat-selection-list
@@ -83,6 +68,7 @@
   >
     <kkl-icon color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   </button>
+  
   <kkl-icon
     matSuffix
     *ngIf="!asButton"
@@ -91,3 +77,7 @@
     [size]="3"
   ></kkl-icon>
 </mat-form-field>
+
+<ng-template #defaultTemplate let-option>
+  {{ option | pluck: "label" }}
+</ng-template>
