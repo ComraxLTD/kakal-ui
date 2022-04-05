@@ -113,6 +113,7 @@ export class StepperLayoutComponent {
     );
   }
 
+  // ACTIONS SECTION
   private setDrawerAction(): ButtonModel {
     const iconMap = {
       file: 'portfolio',
