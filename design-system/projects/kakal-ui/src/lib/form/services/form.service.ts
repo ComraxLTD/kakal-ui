@@ -221,6 +221,7 @@ export class FormService<T = any> {
       case 'radio':
         return new QuestionRadioModel(question);
       case 'checkbox':
+        console.log()
         return new QuestionCheckboxModel(question as QuestionCheckboxModel);
       case 'checkboxGroup':
         return new QuestionCheckboxGroup(question as QuestionCheckboxGroup);

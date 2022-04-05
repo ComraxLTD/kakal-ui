@@ -21,8 +21,10 @@
 </mat-card> -->
 
 <button
-  mat-stroked-button
   [class.kkl-card-filter]="true"
+  [class.mat-stroked-button]="!disabled"
+  [class.mat-raised-button]="!disabled"
+  [disabled]="disabled"
   (click)="onCardClick()"
   [ngClass]="{ chosen: _chosen }"
   color="primary"
