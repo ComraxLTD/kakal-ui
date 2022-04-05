@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
       key: 'select',
       controlType: 'select',
       label: 'select',
-      options: [{ id: 0, label: 'test', value: 0 }],
+      options: [{ label: 'test', value: 0 }],
     },
     {
       key: 'email',

@@ -19,6 +19,7 @@ import { KKLStepTitleModule } from './step-title/step-title.module';
 import { KKLFormModule } from './form/form/form.module';
 
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
+import { KklFormCalendarModule } from './form/form-calendar/form-calendar.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
@@ -88,6 +89,7 @@ import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 
 import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
 import { FacilityCardModule } from './facility-card/facility-card.module';
+import { AirbnbCalendarModule } from 'comrax-alex-airbnb-calendar';
 
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
@@ -136,6 +138,8 @@ registerLocaleData(he);
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    AirbnbCalendarModule,
+    KklFormCalendarModule,
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
@@ -219,6 +223,7 @@ registerLocaleData(he);
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    KklFormCalendarModule,
 
     // NEW TABLE
     KKLNewTableModule,
