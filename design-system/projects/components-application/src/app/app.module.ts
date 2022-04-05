@@ -2,6 +2,8 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import {
   BreakpointService,
   KakalUiModule,
+  KklFormCalendarModule,
+  KKLFormDateRangeModule,
   RouterService,
   StepperLayoutService,
 } from '../../../kakal-ui/src/public-api';
@@ -10,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-
+import {KKLFormDateModule} from '../../../kakal-ui/src/lib/form/form-date/form-date.module'
 import { MaterialModule } from '../../../kakal-ui/src/lib/angular-material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { TableComponent } from './components/table/table.component';
@@ -46,8 +48,10 @@ import { CommonModule } from '@angular/common';
     FormsModule,
     KakalUiModule,
     ReactiveFormsModule,
+    KKLFormDateModule,
+    KklFormCalendarModule,
   ],
-  providers: [StepperLayoutService, BreakpointService, RouterService,],
+  providers: [StepperLayoutService, BreakpointService, RouterService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

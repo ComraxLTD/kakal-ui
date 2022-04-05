@@ -1,4 +1,4 @@
-<ng-container *ngIf="!dates">
+<!-- <ng-container *ngIf="!dates">
   <mat-form-field
     [appearance]="dateRange.disabled ? 'fill' : appearance || 'outline'"
     class="kkl-datepicker"
@@ -31,9 +31,9 @@
 
     <mat-error>{{ message$ | async }}</mat-error>
   </mat-form-field>
-</ng-container>
+</ng-container> -->
 
-<ng-container *ngIf="dates">
+<ng-container>
   <mat-form-field
     [appearance]="dateRange.disabled ? 'fill' : appearance || 'outline'"
     class="kkl-datepicker"
@@ -64,9 +64,11 @@
 
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-date-range-picker
+      [calendarHeaderComponent]="formCalendarHeader"
       [dateClass]="dateClass()"
       #picker
-    ></mat-date-range-picker>
+    >
+    </mat-date-range-picker>
 
     <mat-error>{{ message$ | async }}</mat-error>
   </mat-form-field>

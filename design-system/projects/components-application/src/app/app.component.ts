@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, of } from 'rxjs';
+import { distinctUntilChanged, Observable, of } from 'rxjs';
 import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
 import {
   FormDataSource,
@@ -9,6 +9,9 @@ import {
   CardInfoModel,
   CardStepModel,
   Panel,
+  FormChangeEvent,
+  Range,
+  FormCalendarService,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -18,50 +21,41 @@ import {
   providers: [FormDataSource],
 })
 export class AppComponent implements OnInit {
-  control = new FormControl();
-  dataSource: any[] = [];
-
-  public steps: Step[] = [
-    { key: 'filterForm', label: 'working' },
-    { key: 'groupForm', label: 'working2' },
-  ];
-
-  // array for panel layout
-  public panels: Panel[] = [
-    { key: 'filterForm', label: 'working' },
-    { key: 'groupForm', label: 'working2' },
-  ];
-
-  // public card: CardFilter = {
-  //   label: 'שם הכרטיס', // label inside card
-  //   value: 2, // number inside card
-  //   svgIcon: 'search', // svg key
-  // };
-
-  card: CardInfoModel;
-
-  constructor(private formService: FormService) {}
-
-  ngOnInit(): void {
-    this.card = {
-      svgIcon: 'home',
-      label: 'first headline',
-      subLabel: 'text long text liong tasd faser',
-    };
-
-    this.dataSource = [
-      {
-        city: { label: 'Tel Aviv', value: 5 },
-        dob: '2022-03-28T00:00:00Z',
-        id: 1,
-        name: 'Hillyer Bowkley',
-        occupation: 'Physical Therapy Assistant',
-        yearsOfExperience: 32,
-      },
-    ];
+  key: string = 'myDatePicker';
+  constructor(private formService: FormService,private formCalendarService:FormCalendarService) {}
+  public onRangeChanged(event: FormChangeEvent<Range<Date>>) {
   }
+  ngOnInit(): void {
 
-  on(event: any) {
-    console.log(event);
+    this.formCalendarService.dateRange.get('sleepingPlace').valueChanges.subscribe(val => {
+      
+      this.data = [
+      
+        { date: this.getDay(), occupancy: 2 },
+        { date: this.getDay(), occupancy: 2 },
+        { date: this.getDay(), occupancy: 3 },
+      ];
+    });
+
+
+  //   this.formCalendarService.dateRange.valueChanges.pipe(distinctUntilChanged()).subscribe(value=>{this.data = [
+      
+  //     { date: this.getDay(), occupancy: 2 },
+  //     { date: this.getDay(), occupancy: 2 },
+  //     { date: this.getDay(), occupancy: 3 },
+  //   ];
+  //   console.log(value)
+  // }
+  //   )
+  }
+  data = [
+    { date: this.getDay(), occupancy: 40 },
+    { date: this.getDay(), occupancy: 40 },
+    { date: this.getDay(), occupancy: 3 },
+  ];
+  getDay(): Date {
+    const date = new Date();
+    date.setDate(Math.floor(Math.random() * 27));
+    return date;
   }
 }
