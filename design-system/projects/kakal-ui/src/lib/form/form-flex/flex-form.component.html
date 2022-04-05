@@ -89,6 +89,7 @@
             [multi]="question.multi"
             [asButton]="question.asButton"
             [options]="optionsMap[question?.key] || question.options"
+            [optionTemplate]="formTemplate[question.key]"
             [control]="formGroup.controls[question.key]"
             (queryChanged)="onFormChanged($event)"
             (multiOptionsSelected)="onFormChanged($event)"
