@@ -26,7 +26,7 @@ div.content {
 // div.stepper-container {
 
 mat-toolbar {
-  height: main.$content-height !important;
+  height: 15rem !important;
   background: linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%) 0% 0% !important ;
 }
 
@@ -40,7 +40,7 @@ mat-toolbar {
 
 // style button of side menu
 button.mat-fab {
-  background-color: main.color(paper);
+  background-color: main.color(paper) !important;
   width: 7rem;
   height: 7rem;
   z-index: 1000;

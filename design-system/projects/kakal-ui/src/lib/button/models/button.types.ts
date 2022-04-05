@@ -1,10 +1,11 @@
-import { FormActions } from "../../form/models/form.types";
+import { FormActions } from '../../form/models/form.types';
 
 export interface ButtonModel {
-  type: FormActions;
-  svgIcon: string;
-  label: string;
-  state? : ButtonState
+  type: string;
+  label?: string;
+  svgIcon?: string;
+  state?: ButtonState;
+  action: FormActions;
 }
 
 export interface ButtonState {

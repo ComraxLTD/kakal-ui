@@ -17,8 +17,11 @@ export class AppComponent implements OnInit {
   constructor(private formService: FormService) {}
 
   actions = [
-    { svgIcon: 'edit', type: FormActions.EDIT },
-    { svgIcon: 'save', type: FormActions.SUBMIT },
+    { type: 'form', action: FormActions.EDIT },
+    {
+      type: 'form',
+      action: FormActions.SUBMIT,
+    },
   ];
 
   steps: CardStepModel[] = [
@@ -83,8 +86,6 @@ export class AppComponent implements OnInit {
       cols: 3,
       variant: 'flex',
     });
-
-    console.log(this.groupFlex.questions);
   }
 
   private setGroup(questions: Question[], grid: FormGrid) {

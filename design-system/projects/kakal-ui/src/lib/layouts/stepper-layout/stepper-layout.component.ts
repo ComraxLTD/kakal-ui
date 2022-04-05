@@ -8,6 +8,7 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
+import { FormActions } from '../../form/models/form.actions';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -22,12 +23,8 @@ export class StepperLayoutComponent {
     open: 0,
     close: 100,
   };
-  @Input() drawerType: 'file' | 'notes';
 
   @Input() actions: ButtonModel[];
-
-  @Input() showEndDrawer: boolean;
-  @Input() showStartDrawer: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -39,16 +36,15 @@ export class StepperLayoutComponent {
 
   //end drawer opened/closed
   _endDrawerOpen: boolean = false;
+  showEndDrawer!: boolean;
 
   //drawer sizes
   _openDrawer!: number;
   _closedDrawer!: number;
 
-  // drawer btn
-  drawerBtn: {
-    icon: string;
-    label: string;
-  };
+  //
+  drawerAction: ButtonModel;
+  rowActions!: ButtonModel[];
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
@@ -68,10 +64,16 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
-    this.drawerBtn = this.setDrawerBtn();
+    this.rowActions = this.setRowActions();
+
+    this.drawerAction = this.setDrawerAction();
+
+    this.showEndDrawer = this.actions.some(
+      (action) => action.type === 'portion'
+    );
 
     this.showStartDrawer$ = merge(
-      of(this.showStartDrawer),
+      of(!!this.drawerAction),
       this.stepperLayoutService.getDisplayDrawerObs()
     );
 
@@ -111,14 +113,34 @@ export class StepperLayoutComponent {
     );
   }
 
-  private setDrawerBtn() {
-    if (this.drawerType === 'file') {
-      return { icon: 'portfolio', label: 'מסמכי הליך' };
-    }
+  // ACTIONS SECTION
+  private setDrawerAction(): ButtonModel {
+    const iconMap = {
+      file: 'portfolio',
+      notes: 'bell',
+    };
 
-    if (this.drawerType === 'notes') {
-      return { icon: 'bell', label: 'תזכורת' };
-    }
+    const action = this.actions.find(
+      (action: ButtonModel) => action.type === 'file' || action.type === 'notes'
+    );
+
+    return action ? { ...action, svgIcon: iconMap[action.type] } : null;
+  }
+
+  private setRowActions() {
+    const iconLabelMap = {
+      [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
+      [FormActions.SUBMIT]: { svgIcon: 'save', label: 'שמירה' },
+    };
+
+    return this.actions
+      .filter((action: ButtonModel) => action.type === 'form')
+      .map((action: ButtonModel) => {
+        return {
+          ...action,
+          ...iconLabelMap[action.action],
+        };
+      });
   }
 
   // PORTION LOGIC SECTION
