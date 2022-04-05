@@ -1,7 +1,15 @@
-import { AfterViewInit, ChangeDetectorRef,ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  ChangeDetectorRef,
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import {
   ControlValueAccessor,
-  FormControl,
   FormControlStatus,
   FormGroup,
   NG_VALUE_ACCESSOR,
@@ -9,7 +17,6 @@ import {
 import {
   MatCalendarCellClassFunction,
   MatDatepickerInputEvent,
-  MatDateRangePicker,
 } from '@angular/material/datepicker';
 import {
   MomentDateAdapter,
@@ -23,20 +30,20 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { FormChangeEvent, FormActions } from '../models/form.types';
 import { Range } from '../form-range/question-range.model';
-import { map, Observable, startWith, Subject } from 'rxjs';
+import { FormChangeEvent, FormActions } from '../models/form.types';
 import { MY_FORMATS } from '../form-date/form-date.component';
 import { Appearance } from '../models/question.types';
 import { FormCalendarHeaderComponent } from './form-calendar-header/form-calendar-header.component';
-import { FormCalendarService } from 'projects/kakal-ui/src/public-api';
-import { ElementRef } from 'react';
-import { MatDateRangePickerInput } from '@angular/material/datepicker/date-range-picker';
+import { FormCalendarService } from './form-calendar.service';
+
+import { map, Observable, startWith, Subject } from 'rxjs';
+
 @Component({
   selector: 'kkl-form-calendar',
   templateUrl: './form-calendar.component.html',
   styleUrls: ['./form-calendar.component.scss'],
-  changeDetection:ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -50,11 +57,11 @@ import { MatDateRangePickerInput } from '@angular/material/datepicker/date-range
     },
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
     { provide: MAT_DATE_LOCALE, useValue: 'he-HE' },
-  ]
+  ],
 })
 export class FormCalendarComponent implements OnInit, ControlValueAccessor {
-  occupiedDates!:any[]
-  @ViewChild('picker') picker:FormCalendarHeaderComponent<Date>
+  occupiedDates!: any[];
+  @ViewChild('picker') picker: FormCalendarHeaderComponent<Date>;
   @Input() public key: string;
   @Input() public label: string;
   @Input() public placeHolder: string;
@@ -64,12 +71,12 @@ export class FormCalendarComponent implements OnInit, ControlValueAccessor {
   @Input() public appearance: Appearance;
   @Input()
   set dates(dates: any[]) {
-    this.occupiedDates=dates
+    this.occupiedDates = dates;
     console.log('setter');
-    
-    this.cd.detectChanges()
+
+    this.cd.detectChanges();
   }
-  
+
   get dates(): any[] {
     console.log('getter');
     return this.occupiedDates;
@@ -100,16 +107,14 @@ export class FormCalendarComponent implements OnInit, ControlValueAccessor {
   constructor(
     private formCalendarService: FormCalendarService,
     private messageService: MessageService,
-    private cd:ChangeDetectorRef
+    private cd: ChangeDetectorRef
   ) {}
 
   private _onChange: (v: Range | null) => void = (value: Range | null) => {};
 
-
-
   ngOnInit(): void {
     console.log('ngoninit from claendar');
-    
+
     this.destroy = new Subject();
     this.dateRange = this.formCalendarService.dateRange;
     this.message$ = this.setErrorMessage$();
@@ -185,13 +190,12 @@ export class FormCalendarComponent implements OnInit, ControlValueAccessor {
   // DATES DATA LOGIC
 
   dateClass(): MatCalendarCellClassFunction<Date> {
-    
     return (date: any) => {
       // console.log(date);
-      
+
       // if (!this.month) {
-        // this.month = date._i.month + 1;
-        // this.monthChanged.emit(this.month);
+      // this.month = date._i.month + 1;
+      // this.monthChanged.emit(this.month);
       // }
       // if (this.month !== date._i.month + 1) {
       //   console.log(date,this.month);
@@ -202,7 +206,6 @@ export class FormCalendarComponent implements OnInit, ControlValueAccessor {
     };
   }
   changeMonth(date: any) {
-    
     const [filtered] = this.occupiedDates.filter((item) =>
       this.compareDates(item.date, date._d)
     );
@@ -220,7 +223,6 @@ export class FormCalendarComponent implements OnInit, ControlValueAccessor {
   }
 
   changeInnerContent(object: any) {
-
     setTimeout(() => {
       const cells = Array.from(
         document.querySelectorAll<HTMLDivElement>(
