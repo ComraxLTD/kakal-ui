@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   constructor(private formService: FormService) {}
 
   actions = [
+    { type: 'file', action: FormActions.EDIT },
     { type: 'form', action: FormActions.EDIT },
     {
       type: 'form',
