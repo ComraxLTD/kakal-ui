@@ -45,10 +45,6 @@
       </mat-option>
     </ng-container>
 
-    <ng-template #defaultTemplate>
-      {{ option.label }}
-    </ng-template>
-
     <ng-container *ngIf="multi">
       <mat-selection-list
         [multiple]="true"
@@ -91,3 +87,7 @@
     [size]="3"
   ></kkl-icon>
 </mat-form-field>
+
+<ng-template #defaultTemplate let-option>
+  {{ option | pluck: "label" }}
+</ng-template>
