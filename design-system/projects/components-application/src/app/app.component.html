@@ -1,12 +1,8 @@
-<kkl-form-date
-            dir="rtl"
-            [key]="key"
-            [control]="control"
-          ></kkl-form-date>
 <kkl-local-table
               [dataSource]="dataSource"
               [columns]="columns"
               [rowActions]="rowActions"
               (actionClicked)="onClicked($event)"
               (editRow)="editRow($event)"
+              dragable="true"
             ></kkl-local-table>
