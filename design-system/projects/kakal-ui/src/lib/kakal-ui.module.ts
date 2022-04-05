@@ -69,8 +69,8 @@ import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
-import { StepperModule } from './stepper/stepper.module';
-import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
+import { KKLStepperModule } from './stepper/stepper.module';
+import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { KKLListMenuModule } from './list-menu/list-menu.module';
 import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
@@ -164,8 +164,8 @@ registerLocaleData(he);
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
 
     KKLVerticalStepsModule,
@@ -249,8 +249,8 @@ registerLocaleData(he);
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
 
     // LAYOUT
