@@ -1,10 +1,8 @@
 import { ValidatorFn } from '@angular/forms';
 import { QuestionBase } from '../models/question.model';
-import { Observable } from 'rxjs';
 import { Appearance, ControlType, InputGrid } from '../models/question.types';
 
 export interface SelectOption {
-  id: number | string;
   label: string;
   value: any;
   selected?: boolean;
