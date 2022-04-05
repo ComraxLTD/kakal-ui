@@ -24,16 +24,30 @@
         *ngFor="let option of options"
         [value]="option"
       >
-        <ng-container *ngIf="!optionSlot; else slotBlock">
+        <!-- <ng-container *ngIf="!optionsTemplate; else slotBlock">
           {{ option.label }}
         </ng-container>
         <ng-template #slotBlock>
           <ng-container
-            *ngTemplateOutlet="optionSlot; context: { $implicit: this.option }"
+            *ngTemplateOutlet="
+              optionsTemplate;
+              context: { $implicit: this.option }
+            "
           ></ng-container>
-        </ng-template>
+        </ng-template> -->
+
+        <ng-container
+          *ngTemplateOutlet="
+            optionTemplate || defaultTemplate;
+            context: { $implicit: option }
+          "
+        ></ng-container>
       </mat-option>
     </ng-container>
+
+    <ng-template #defaultTemplate>
+      {{ option.label }}
+    </ng-template>
 
     <ng-container *ngIf="multi">
       <mat-selection-list
