@@ -14,6 +14,11 @@ import {
 export class AppComponent implements OnInit {
   constructor(private formService: FormService) {}
 
+  data = [
+    { key: '', label: 'בדיקה' },
+    { key: '', label: 'test' },
+  ];
+
   questions: Question[] = [
     {
       key: 'name',
