@@ -42,6 +42,7 @@
     "@storybook/builder-webpack5": "^6.5.0-alpha.11",
     "@storybook/manager-webpack5": "^6.5.0-alpha.11",
     "cleave.js": "^1.6.0",
+    "comrax-alex-airbnb-calendar": "^3.5.5",
     "moment": "^2.29.1",
     "ngx-cleave-directive": "^1.1.3",
     "ngx-editor": "^12.2.1",
