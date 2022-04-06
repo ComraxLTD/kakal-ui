@@ -6,14 +6,14 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { StatusBarsModel } from './status-bars.model';
+import { StatusBarsModel } from './status-steps.model';
 
 @Component({
   selector: 'kkl-status-steps',
-  templateUrl: './status-bars.component.html',
-  styleUrls: ['./status-bars.component.scss'],
+  templateUrl: './status-steps.component.html',
+  styleUrls: ['./status-steps.component.scss'],
 })
-export class StatusBarsComponent implements OnInit {
+export class StatusStepsComponent implements OnInit {
   @Input() public cols: number;
   @Input() public height: number;
   @Input() public gutter: number;
@@ -41,7 +41,7 @@ export class StatusBarsComponent implements OnInit {
     // }
 
     const disableBars = new Array(
-      this.status.totalBars - this.status.authorizedBars 
+      this.status.totalBars - this.status.authorizedBars
     ).fill('');
 
     this.steps.push(...disableBars);

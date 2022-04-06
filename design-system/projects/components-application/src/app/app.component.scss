@@ -3,3 +3,7 @@
 :host {
   margin: 16px;
 }
+::ng-deep div.status-bar.active{
+color: blue;
+background-color: blue !important;
+}

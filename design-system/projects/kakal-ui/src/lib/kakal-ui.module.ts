@@ -44,7 +44,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
-import { KKLStatusBarsModule } from './status-bars/status-bars.module';
+import { KKLStatusStepsModule } from './status-stpes/status-steps.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
@@ -96,6 +96,7 @@ import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
 import { CarouselModule } from './carousel/carousel.module';
 
+import { MeiFormModule } from './mei-form/mei-form.module';
 registerLocaleData(he);
 
 @NgModule({
@@ -115,7 +116,7 @@ registerLocaleData(he);
     KKLMenuModule,
     KKLMenuBarModule,
 
-    KKLStatusBarsModule,
+    KKLStatusStepsModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
@@ -147,6 +148,7 @@ registerLocaleData(he);
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
+    MeiFormModule,
 
     // TABLE MODULES
     KKLTableModule,
@@ -213,7 +215,7 @@ registerLocaleData(he);
     KklTitleModule,
     KKLStepTitleModule,
     KKLSidenavModule,
-    KKLStatusBarsModule,
+    KKLStatusStepsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
     KKLFiltersModule,
@@ -234,6 +236,7 @@ registerLocaleData(he);
 
     // NEW TABLE
     KKLNewTableModule,
+    MeiFormModule,
 
     // TABLE
     KKLTableModule,
