@@ -15,7 +15,16 @@ import { MessageService } from '../mei-services/message.service';
 export class MeiSelectComponent implements OnInit {
 
   @Input() control!: FormControl;
-  @Input() question!: QuestionBase;
+
+
+  @Input() options!: BehaviorSubject<MeiSelectOption[]> | MeiSelectOption[];
+  @Input() multi!: boolean;
+  @Input() placeHolder!: string;
+  @Input() label!: string;
+  @Input() theme!: string;
+  @Input() key!: string;
+  @Input() appearance!: string;
+  @Input() disabled!: boolean;
 
   options$: BehaviorSubject<MeiSelectOption[]>;
 
@@ -30,11 +39,11 @@ export class MeiSelectComponent implements OnInit {
 
   ngOnInit(): void {
     this.options$ = new BehaviorSubject<MeiSelectOption[]>([]);
-    if(Array.isArray(this.question.options)) {
-      this.options$.next(this.question.options);
+    if(Array.isArray(this.options)) {
+      this.options$.next(this.options);
     } else {
-      (this.question.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
-        if(this.question.multi){
+      (this.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
+        if(this.multi){
           this.control.setValue(a.filter(b => b.selected));
         } else {
           this.control.setValue(a.find(b => b.selected));
@@ -51,7 +60,7 @@ export class MeiSelectComponent implements OnInit {
 
   deselectAll() {
     this.control.patchValue([]);
-    (this.question.options as BehaviorSubject<MeiSelectOption[]>).pipe(take(1)).subscribe((a: MeiSelectOption[]) => {
+    (this.options as BehaviorSubject<MeiSelectOption[]>).pipe(take(1)).subscribe((a: MeiSelectOption[]) => {
       a.forEach(b => {
         b.selected = false;
       })
@@ -62,7 +71,7 @@ export class MeiSelectComponent implements OnInit {
   setErrorMessage() {
     const error = this.messageService.getErrorMessage(
       this.control as FormControl,
-      this.question.placeHolder
+      this.placeHolder
     );
 
     this.error$.next(error);
@@ -79,21 +88,21 @@ export class MeiSelectComponent implements OnInit {
   //   });
   // }
   onSelectChanged(event) {
-    if(this.question.multi) {
+    if(this.multi) {
       event.value.forEach(v => v.selected = true);
     } else {
       event.value.selected = true;
     }
 
     this.selectChanged.emit({
-      key: this.question.key,
+      key: this.key,
       value: this.control.value,
-      action: this.question.multi? FormActions.MULTI_SELECT_CHANGED : FormActions.SELECT_CHANGED
+      action: this.multi? FormActions.MULTI_SELECT_CHANGED : FormActions.SELECT_CHANGED
     });
   }
   onOpenChanged() {
     this.openChanged.emit({
-      key: this.question.key,
+      key: this.key,
       value: this.control.value,
       action: FormActions.OPEN_CHANGED
     });

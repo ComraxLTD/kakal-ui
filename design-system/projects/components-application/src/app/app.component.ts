@@ -17066,7 +17066,13 @@ export class AppComponent {
 options = [
   {key: 'autocomplete', val: [
     { label: 'test', value: 0 },
-    { label: 'test1', value: 1 },]}
+    { label: 'test1', value: 1 },]},
+    {key: 'autocomplete2', val: [
+      { label: 'test66', value: 0 },
+      { label: 'test166', value: 1 },]},
+      {key: 'select2', val: [
+        { label: 'test77', value: 0 },
+        { label: 'test177', value: 1 },]}
 ]
   ngOnInit() {
     setTimeout(() => {
@@ -17110,10 +17116,28 @@ options = [
       //,
     },
     {
+      key: 'select2',
+      controlType: 'select',
+      options: 'select2',
+      // multi: true,
+      label: 'local select',
+      // disabled: true
+      //,
+    },
+    {
       key: 'autocomplete',
       controlType: 'autocomplete',
       options: 'autocomplete',
       multi: true,
+      label: 'local autocomplete',
+      // disabled: true
+      //,
+    },
+    {
+      key: 'autocomplete2',
+      controlType: 'autocomplete',
+      options: 'autocomplete2',
+      // multi: true,
       label: 'local autocomplete',
       // disabled: true
       //,
