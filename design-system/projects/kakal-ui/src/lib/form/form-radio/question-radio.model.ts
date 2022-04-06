@@ -5,6 +5,7 @@ import { InputGrid } from '../models/question.types';
 export interface RadioOption {
   label: string;
   checked?: boolean;
+  value? : any
 }
 
 export class QuestionRadioModel extends QuestionBase {

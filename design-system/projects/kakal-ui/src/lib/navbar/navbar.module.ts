@@ -16,5 +16,4 @@ import { NavbarComponent } from "./navbar.component";
     declarations:[NavbarComponent],
     exports:[NavbarComponent]
 })
-
 export class KKLNavbarModule {}

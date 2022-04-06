@@ -73,12 +73,12 @@ export function setFilterOptionState(
   return options$.pipe(
     switchMap((options: SelectOption[]) => {
       return selectedOptions$.pipe(
-        map((options: SelectOption[]) => options.map((option) => option.id)),
+        map((options: SelectOption[]) => options.map((option) => option.value)),
         map((selectedOptions: (string | number)[]) => {
           return options.map((option: SelectOption) => {
             return {
               ...option,
-              selected: selectedOptions.indexOf(option.id) !== -1,
+              selected: selectedOptions.indexOf(option.value) !== -1,
             } as SelectOption;
           });
         })

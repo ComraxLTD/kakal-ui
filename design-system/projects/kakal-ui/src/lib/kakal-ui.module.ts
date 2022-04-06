@@ -19,6 +19,7 @@ import { KKLStepTitleModule } from './step-title/step-title.module';
 import { KKLFormModule } from './form/form/form.module';
 
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
+import { KklFormCalendarModule } from './form/form-calendar/form-calendar.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
@@ -37,13 +38,14 @@ import { KKLHeaderCellModule } from './table/components/header-cells/header-cell
 
 import { KKLDialogModule } from './dialog/dialog.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
+import { KKLSidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusBarsModule } from './status-bars/status-bars.module';
+import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
 
@@ -67,8 +69,8 @@ import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
-import { StepperModule } from './stepper/stepper.module';
-import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
+import { KKLStepperModule } from './stepper/stepper.module';
+import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { KKLListMenuModule } from './list-menu/list-menu.module';
 import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
@@ -88,6 +90,8 @@ import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
 import { FacilityCardModule } from './facility-card/facility-card.module';
 
+import {KKLDrawerModule} from './drawers/drawer.module'
+
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(he);
@@ -104,17 +108,22 @@ registerLocaleData(he);
     OpenMotionsModule,
     KKLHoverModule,
     KKLCardFilterModule,
+
     KKLNavigationModule,
-    KKLStatusBarsModule,
     KKLMenuModule,
+    KKLMenuBarModule,
+
+    KKLStatusBarsModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLPageHeadlineModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
+
+    KKLDrawerModule,
 
     KKLFiltersModule,
 
@@ -132,6 +141,7 @@ registerLocaleData(he);
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    KklFormCalendarModule,
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
@@ -158,8 +168,8 @@ registerLocaleData(he);
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
 
     KKLVerticalStepsModule,
@@ -178,6 +188,7 @@ registerLocaleData(he);
     FacilityCardModule
   ],
   exports: [
+
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
@@ -185,14 +196,20 @@ registerLocaleData(he);
     KKLCardFilterModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
-    MaterialModule,
+
+    KKLDrawerModule,
+
     KKLMenuItemModule,
+
+    KKLMenuBarModule,
+
     KKLButtonModule,
+
     KKLIconModule,
     KKLTypographyModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLStatusBarsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
@@ -210,6 +227,7 @@ registerLocaleData(he);
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    KklFormCalendarModule,
 
     // NEW TABLE
     KKLNewTableModule,
@@ -237,8 +255,8 @@ registerLocaleData(he);
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
 
     // LAYOUT
@@ -253,6 +271,8 @@ registerLocaleData(he);
 
     KKSectionModule,
     KKPageModule,
+
+
 
     KKLAccordionStepsModule,
     FacilityCardModule

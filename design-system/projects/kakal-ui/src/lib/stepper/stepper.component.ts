@@ -31,22 +31,14 @@ export class StepperComponent {
   public selectQuestion$: Observable<Question>;
 
   @Output() changeStep = new EventEmitter<CardStepModel>();
-  @Output() selectStep = new EventEmitter<FormControl>();
 
-  constructor(
-    private breakpointService: BreakpointService,
-    private formService: FormService
-  ) { }
+  constructor(private breakpointService: BreakpointService) {}
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    
-
   }
-
 
   public onChangeStep(step: CardStepModel) {
     this.changeStep.emit(step);
   }
-
 }

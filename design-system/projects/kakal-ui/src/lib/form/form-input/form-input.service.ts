@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { ValidationService } from '../services/validations.service';
-import { ValidatorFn } from '@angular/forms';
+import { ValidatorFn, Validators } from '@angular/forms';
 import { ControlType } from '../models/question.types';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FormInputService {
-  constructor() {}
+  constructor() { }
+
   getInputProps(type: string): {
     icon?: string;
     validation?: ValidatorFn;
@@ -19,16 +20,15 @@ export class FormInputService {
       case 'email':
         return {
           icon: 'email',
-          validation: ValidationService.regex('email'),
+          validation: Validators.email,
           placeHolder: 'דוא"ל',
         };
       case 'phone':
         return {
           icon: 'phone',
           cleave: {
-            blocks: [3, 3, 4],
             placeHolder: 'טלפון',
-            delimiter: '-',
+            blocks: [15],
             numericOnly: true,
           },
           controlType: 'cleave',
@@ -46,4 +46,5 @@ export class FormInputService {
         };
     }
   }
+  
 }
