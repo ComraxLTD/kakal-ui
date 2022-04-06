@@ -24,6 +24,7 @@ export abstract class QuestionBase {
   public multi?: boolean;
   public panelWidth?: boolean;
   public withButton?: boolean;
+  public debounce?: number;
 
   constructor(options: {
     key: string;
@@ -44,6 +45,7 @@ export abstract class QuestionBase {
     multi?: boolean;
     panelWidth?: boolean;
     withButton?: boolean;
+    debounce?: number;
   }) {
     this.key = options.key || '';
     this.value = options.value;
@@ -69,5 +71,6 @@ export abstract class QuestionBase {
     this.multi = options.multi;
     this.panelWidth = options.panelWidth;
     this.withButton = options.withButton;
+    this.debounce = options.debounce;
   }
 }

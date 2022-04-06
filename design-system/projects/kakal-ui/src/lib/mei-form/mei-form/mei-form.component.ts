@@ -124,7 +124,7 @@ export class MeiFormComponent implements OnInit {
 
   putOptions() {
     this.myOptions.forEach(b => {
-      (this.localObservables.get(b.key)).next(b.val);
+      (this.localObservables.get(b.key))?.next(b.val);
     });
   }
 

@@ -17064,14 +17064,14 @@ export class AppComponent {
 
   myObs = new BehaviorSubject<MeiSelectOption[]>([]);
 options = [
-  {key: 'select', val: [
+  {key: 'autocomplete', val: [
     { label: 'test', value: 0 },
     { label: 'test1', value: 1 },]}
 ]
   ngOnInit() {
     setTimeout(() => {
       this.options = [
-        {key: 'select', val: [
+        {key: 'autocomplete', val: [
           { label: 'test', value: 0 },
           { label: 'test1', value: 1 },
           { label: 'test2', value: 2 },
@@ -17099,7 +17099,11 @@ options = [
     {
       key: 'select',
       controlType: 'select',
-      options: 'select',
+      options: [
+        { label: 'test', value: 0 },
+        { label: 'test1', value: 1 },
+        { label: 'test2', value: 2 },
+        { label: 'test3', value: 3 },],
       multi: true,
       label: 'local select',
       // disabled: true
@@ -17108,12 +17112,8 @@ options = [
     {
       key: 'autocomplete',
       controlType: 'autocomplete',
-      options: [
-        { label: 'test', value: 0 },
-        { label: 'test1', value: 1 },
-        { label: 'test2', value: 2 },
-        { label: 'test3', value: 3 },],
-      // multi: true,
+      options: 'autocomplete',
+      multi: true,
       label: 'local autocomplete',
       // disabled: true
       //,
