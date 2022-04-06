@@ -1,1 +1,17 @@
-<kkl-layout [cards]="cards"></kkl-layout>
+<!-- <kkl-layout [cards]="cards"></kkl-layout> -->
+
+<div fxFlex="90" fxLayout="row" fxLayoutGap="2rem">
+  <kkl-accordion-steps-layout
+    fxFill
+    [panels]="panels"
+    [steps]="steps"
+    [templates]="{filterForm, groupForm}"
+    (interacted)="onSelectionChanged($event)"
+    (selectionChanged)="onInteractedStream($event)"
+  ></kkl-accordion-steps-layout>
+</div>
+
+<!-- templates for layouts -->
+<ng-template #filterForm> First Content </ng-template>
+
+<ng-template #groupForm> Second Content </ng-template>

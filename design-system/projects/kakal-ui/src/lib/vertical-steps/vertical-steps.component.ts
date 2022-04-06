@@ -1,5 +1,16 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import {
+  Component,
+  Input,
+  OnInit,
+  TemplateRef,
+  EventEmitter,
+  Output,
+} from '@angular/core';
+import {
+  CdkStep,
+  StepperSelectionEvent,
+  STEPPER_GLOBAL_OPTIONS,
+} from '@angular/cdk/stepper';
 import { Step } from './step/step.model';
 @Component({
   selector: 'kkl-vertical-steps',
@@ -13,13 +24,28 @@ import { Step } from './step/step.model';
   ],
 })
 export class VerticalStepsComponent implements OnInit {
-  @Input() isLinear = false;
+  @Input() isLinear = true;
 
   @Input() steps: Step[];
 
   @Input() templates: { [key: string]: TemplateRef<any> };
 
+  @Output() selectionChanged: EventEmitter<StepperSelectionEvent> =
+    new EventEmitter();
+
+  @Output() interacted: EventEmitter<CdkStep> =
+    new EventEmitter();
+
   constructor() {}
 
   ngOnInit(): void {}
+
+  onSelectionChanged(event: StepperSelectionEvent) {
+    this.selectionChanged.emit(event)
+  }
+
+  onInteractedStream(event: CdkStep) {
+    // console.log('step', event);
+    this.interacted.emit(event)
+  }
 }

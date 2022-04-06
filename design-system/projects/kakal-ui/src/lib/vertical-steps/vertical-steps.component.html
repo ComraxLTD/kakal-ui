@@ -1,11 +1,12 @@
 <mat-stepper
-  [class.kkl-vertical-steps]="true"
+  class="kkl-vertical-steps"
   orientation="vertical"
-  [linear]="true"
+  [linear]="isLinear"
   #stepper
+  (selectionChange)="onSelectionChanged($event)"
 >
   <ng-container *ngFor="let step of steps; let i = index">
-    <mat-step [stepControl]="step.control || step.key" completed>
+    <mat-step (interacted)="onInteractedStream($event)" [stepControl]="step.control || step.key" completed>
       <ng-template matStepLabel>
         <kkl-typography [size]="2.4" color="primary" [weight]="600">
           {{ step.label }} .{{ i + 1 }}

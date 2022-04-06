@@ -6,6 +6,11 @@
 </ng-container>
 
 <ng-template #elseTemplate>
-  <kkl-vertical-steps [steps]="steps" [templates]="templates">
+  <kkl-vertical-steps
+    (interacted)="onSelectionChanged($event)"
+    (selectionChanged)="onInteractedStream($event)"
+    [steps]="steps"
+    [templates]="templates"
+  >
   </kkl-vertical-steps
 ></ng-template>
