@@ -7,9 +7,11 @@
 
 <ng-template #elseTemplate>
   <kkl-vertical-steps
+    #verticalStepper
     [steps]="steps"
     [templates]="templates"
     [linear]="options.isLinear"
+    [selectedIndex]="_selectedIndex"
     (interacted)="onSelectionChanged($event)"
     (selectionChanged)="onInteractedStream($event)"
   >

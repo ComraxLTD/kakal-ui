@@ -2,10 +2,11 @@
 <div fxLayout="row" fxLayoutAlign="center">
   <div fxFlex="90" fxLayout="column" fxLayoutGap="2rem">
     <kkl-accordion-steps-layout
+      #accordionSteps
       fxFill
       [panels]="panels"
       [steps]="steps"
-      [options]="{ isLinear: true }"
+      [selectedIndex]="selectedIndex"
       [templates]="{filterForm, groupForm}"
       (interacted)="onSelectionChanged($event)"
       (selectionChanged)="onInteractedStream($event)"
@@ -18,7 +19,16 @@
     </div>
   </div>
   <!-- templates for layouts -->
-  <ng-template #filterForm> First Content </ng-template>
+  <ng-template #filterForm let-stepState>
+    {{ stepState.index }}
+    <app-form-flex [formGroup]="stepState.step.control"></app-form-flex>
+  </ng-template>
 
-  <ng-template #groupForm> Second Content </ng-template>
+  <ng-template #groupForm let-stepState>
+    {{ stepState.index }}
+    <app-form-flex
+      [index]="stepState.index"
+      [formGroup]="stepState.step.control"
+    ></app-form-flex>
+  </ng-template>
 </div>

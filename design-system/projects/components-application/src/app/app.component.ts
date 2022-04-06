@@ -1,6 +1,6 @@
 import { StepperSelectionEvent, CdkStep } from '@angular/cdk/stepper';
-import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
 import {
@@ -8,6 +8,7 @@ import {
   PageHeadlineService,
   FormService,
   MenuCard,
+  AccordionStepsComponent,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -16,20 +17,41 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  @ViewChild('accordionSteps')
+  accordionSteps: AccordionStepsComponent;
+
   show$: Observable<boolean> = of(true);
   constructor(
     private formService: FormService,
     private pageHeadlineService: PageHeadlineService
   ) {}
 
-  private currentStep: number = 0;
+  selectedIndex: number = 1;
+
+  formGroup: FormGroup = new FormGroup({});
 
   // array for vertical steps layout
   public steps: Step[] = [
-    { key: 'filterForm', label: 'First Step Headline' },
-    { key: 'groupForm', label: 'Second Step Headline' },
-    { key: 'filterForm', label: 'Third Step Headline' },
-    { key: 'groupForm', label: 'Forth Step Headline' },
+    {
+      key: 'filterForm',
+      label: 'First Step Headline',
+      control: new FormGroup({}),
+    },
+    {
+      key: 'groupForm',
+      label: 'Second Step Headline',
+      control: new FormGroup({}),
+    },
+    {
+      key: 'filterForm',
+      label: 'Third Step Headline',
+      control: new FormGroup({}),
+    },
+    {
+      key: 'groupForm',
+      label: 'Forth Step Headline',
+      control: new FormGroup({}),
+    },
   ];
 
   // array for panel layout
@@ -61,18 +83,23 @@ export class AppComponent implements OnInit {
 
   onSelectionChanged(event: StepperSelectionEvent) {
     const { selectedIndex } = event;
-    this.currentStep = selectedIndex;
+    console.log(selectedIndex)
+    this.accordionSteps.setSelectedIndex(selectedIndex + 1);
+    // if (selectedIndex === 1) {
+    // } else {
+    //   this.accordionSteps.setSelectedIndex(selectedIndex);
+    // }
   }
 
   onInteractedStream(event: CdkStep) {
     // console.log('step', event);
-    console.log(event);
+    // console.log(event);
   }
 
   next() {
     const steps = [...this.steps];
-    steps[this.currentStep] = {
-      ...steps[this.currentStep],
+    steps[this.selectedIndex] = {
+      ...steps[this.selectedIndex],
       completed: true,
     } as Step;
     this.steps = [...steps];

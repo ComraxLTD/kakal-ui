@@ -1,20 +1,20 @@
 <mat-stepper
   #stepper
-  class="kkl-vertical-steps"
   orientation="vertical"
-  [linear]="linear"
+  class="kkl-vertical-steps"
+  [selectedIndex]="_selectedIndex"
+  [linear]="true"
   [disableRipple]="true"
   (selectionChange)="onSelectionChanged($event)"
 >
-  <ng-container *ngFor="let step of steps; let i = index">
-    <mat-step
-      [completed]="step.completed"
-      (interacted)="onInteractedStream($event)"
-    >
+  <ng-container>
+    <mat-step [completed]="true" *ngFor="let step of steps; let i = index">
       <ng-template matStepLabel>
-        <kkl-typography [size]="2.4" color="primary" [weight]="600">
-          {{ step.label }} .{{ i + 1 }}
-        </kkl-typography>
+        <div (click)="onStepClick(step)">
+          <kkl-typography [size]="2.4" color="primary" [weight]="600">
+            {{ step.label }} .{{ i + 1 }}
+          </kkl-typography>
+        </div>
       </ng-template>
       <div fxLayout="row" fxLayoutAlign="end">
         <div fxFlex="95">

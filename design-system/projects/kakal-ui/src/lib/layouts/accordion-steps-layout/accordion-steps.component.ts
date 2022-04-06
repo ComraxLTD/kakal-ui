@@ -5,11 +5,13 @@ import {
   OnInit,
   Output,
   TemplateRef,
+  ViewChild,
 } from '@angular/core';
 import { Step } from '../../vertical-steps/step/step.model';
 import { Panel } from '../accordion-layout/accordion-types';
 import { Observable, of } from 'rxjs';
 import { StepperSelectionEvent, CdkStep } from '@angular/cdk/stepper';
+import { VerticalStepsComponent } from '../../vertical-steps/vertical-steps.component';
 
 @Component({
   selector: 'kkl-accordion-steps-layout',
@@ -17,15 +19,23 @@ import { StepperSelectionEvent, CdkStep } from '@angular/cdk/stepper';
   styleUrls: ['./accordion-steps.component.scss'],
 })
 export class AccordionStepsComponent implements OnInit {
+  @ViewChild('verticalStepper')
+  verticalStepper: VerticalStepsComponent;
+
   @Input() complete$: Observable<boolean>;
   @Input() steps: Step[];
   @Input() panels: Panel[];
   @Input() templates: { [key: string]: TemplateRef<any> };
 
+  _selectedIndex: number;
+  @Input()
+  set selectedIndex(value: number) {
+    this._selectedIndex = value;
+  }
+
   @Input() options: {
     isLinear?: boolean;
   } = {};
-
 
   @Output() selectionChanged: EventEmitter<StepperSelectionEvent> =
     new EventEmitter();
@@ -35,6 +45,10 @@ export class AccordionStepsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  setSelectedIndex(selected: number) {
+    this.verticalStepper.setSelectedIndex(selected);
+  }
 
   onSelectionChanged(event: StepperSelectionEvent) {
     this.selectionChanged.emit(event);

@@ -35,31 +35,8 @@ export class FormFilterSearchComponent implements OnInit {
     {
       key: 'email',
       label: 'email',
-      controlType: 'checkbox',
+      controlType: 'email',
     },
-    // {
-    //   key: 'birthDay',
-    //   label: 'יום הולדת',
-    //   controlType: 'date',
-    //   gridProps: { cols: 2 },
-    // },
-    // {
-    //   key: 'committee',
-    //   label: 'committee',
-    //   controlType: 'dateRange',
-    //   gridProps: { offset: 'none' },
-    // },
-    // {
-    //   label: 'city',
-    //   key: 'city',
-    //   controlType: 'multiSelect',
-    //   multi: true,
-    // },
-    // {
-    //   key: 'country',
-    //   label: 'country',
-    //   controlType: 'select',
-    // },
   ];
 
   control: FormControl = new FormControl();
