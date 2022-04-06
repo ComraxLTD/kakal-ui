@@ -90,10 +90,12 @@ import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
 import { FacilityCardModule } from './facility-card/facility-card.module';
 
-import {KKLDrawerModule} from './drawers/drawer.module'
+import { KKLDrawerModule } from './drawers/drawer.module'
 
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
+import { CarouselModule } from './carousel/carousel.module';
+
 registerLocaleData(he);
 
 @NgModule({
@@ -185,7 +187,8 @@ registerLocaleData(he);
 
     KKSectionModule,
     KKPageModule,
-    FacilityCardModule
+    FacilityCardModule,
+    CarouselModule
   ],
   exports: [
 
@@ -275,7 +278,8 @@ registerLocaleData(he);
 
 
     KKLAccordionStepsModule,
-    FacilityCardModule
+    FacilityCardModule,
+    CarouselModule
   ],
 })
 export class KakalUiModule { }
