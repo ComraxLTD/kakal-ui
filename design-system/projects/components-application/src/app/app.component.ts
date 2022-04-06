@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
 import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
 import {
+  CardInfoComponent,
   CardStepModel,
   Panel,
   PageHeadlineService,
@@ -34,19 +36,19 @@ export class AppComponent implements OnInit {
     totalBars: 8,
   };
   ngOnInit(): void {
-    this.pageHeadlineService.emitPageHeadlineItems([
-      { value: 'כותרת' },
-      { value: 'כותרת' },
-      { value: 'כותרת' },
-      { value: new Date(), format: 'date' },
-      {
-        value: {
-          label: 'statusBars',
-          authorizedBars: 3,
-          totalBars: 6,
-        },
-        template: true,
-      },
-    ]);
+    // this.pageHeadlineService.emitPageHeadlineItems([
+    //   { value: 'כותרת' },
+    //   { value: 'כותרת' },
+    //   { value: 'כותרת' },
+    //   { value: new Date(), format: 'date' },
+    //   {
+    //     value: {
+    //       label: 'statusBars',
+    //       authorizedBars: 3,
+    //       totalBars: 6,
+    //     },
+    //     template: true,
+    //   },
+    // ]);
   }
 }
