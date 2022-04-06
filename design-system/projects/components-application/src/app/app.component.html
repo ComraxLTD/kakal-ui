@@ -1,3 +1,10 @@
-<kkl-stepper-layout [actions]="actions" [steps]="steps" >
-  <router-outlet content></router-outlet>
-</kkl-stepper-layout>
+<!-- <mat-sidenav-container class="kkl-sidenav-container">
+  <kkl-navbar [show$]="show$" (menuToggle)="menuDrawer.toggle()"></kkl-navbar>
+  <mat-sidenav #menuDrawer class="menu" mode="push" position="end">
+    <div class="menu-container" fxLayout="column" fxLayoutAlign="start end">
+      <kkl-menu-bar [cards]="cards"></kkl-menu-bar>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container> -->
+
+<kkl-layout [cards]="cards"></kkl-layout> 

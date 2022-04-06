@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
   CardStepModel,
+  PageHeadlineModel,
   RouterService,
   StepperLayoutService,
 } from '../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
+import { StatusBarsModel } from '../../../../../kakal-ui/src/lib/status-bars/status-bars.model';
 
 @Component({
   selector: 'app-new-order-layout',
@@ -32,6 +34,20 @@ export class NewOrderLayoutComponent implements OnInit {
       path: 'bid',
     },
   ];
+
+  //page headline items
+  headlineItems: PageHeadlineModel[] = [
+    { value: 'הזמנה חדשה', template: true },
+    { value: 'מפ/1234/22', format: 'date' },
+    { value: 'ה כיבוד' },
+    { value: 'אקליפטוס יער', template: true },
+  ];
+  //status model fot the page headline
+  status: StatusBarsModel = {
+    label: 'חדש',
+    authorizedBars: 1,
+    totalBars: 7,
+  };
 
   constructor(
     private routerService: RouterService,
@@ -62,5 +78,4 @@ export class NewOrderLayoutComponent implements OnInit {
   public onPrevious(): void {
     this.routerService.goBack();
   }
-
 }

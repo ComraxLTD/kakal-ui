@@ -1,11 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import {
   CardStepModel,
+  Panel,
+  PageHeadlineService,
   FormActions,
   FormGrid,
   FormService,
   Question,
   QuestionGroupModel,
+  MenuCard,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -14,86 +18,31 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private formService: FormService) {}
-
-  actions = [
-    { type: 'file', action: FormActions.EDIT },
-    { type: 'form', action: FormActions.EDIT },
-    {
-      type: 'form',
-      action: FormActions.SUBMIT,
-    },
-  ];
-
-  steps: CardStepModel[] = [
-    {
-      label: 'פרטי נכס',
-      svgIcon: 'home',
-      path: 'details',
-    },
-    {
-      label: 'טיוטות והסכמים',
-      svgIcon: 'portfolio',
-      path: 'documents',
-    },
-    {
-      label: 'שליחת מייל',
-      svgIcon: 'mail',
-      path: 'mails',
-    },
-  ];
-  questions: Question[] = [
-    {
-      key: 'name',
-    },
-    {
-      key: 'select',
-      controlType: 'select',
-      label: 'select',
-      options: [{ label: 'test', value: 0 }],
-    },
-    {
-      key: 'email',
-      controlType: 'email',
-      // offset - set to none to remove padding from the end
-      gridProps: { offset: 'none' },
-    },
-    {
-      key: 'phone',
-      controlType: 'checkbox',
-    },
-    {
-      key: 'date',
-      controlType: 'date',
-      // offset - set to none to remove padding from the end
-      // gridProps: { offset: 'none' },
-    },
-    {
-      key: 'upload',
-      controlType: 'upload',
-      // offset - set to none to remove padding from the end
-      gridProps: { offset: 'none' },
-    },
-    {
-      key: 'text',
-      controlType: 'textarea',
-    },
-  ];
-  groupFlex!: QuestionGroupModel;
+  show$: Observable<boolean> = of(true);
+  constructor(
+    private formService: FormService,
+    private pageHeadlineService: PageHeadlineService
+  ) {}
+   cards: MenuCard[]=[{  label: 'string',
+    svgIcon: 'home',
+    active: true,
+    path: 'no',}];
 
   ngOnInit(): void {
-    // flex form ex
-    this.groupFlex = this.setGroup(this.questions, {
-      cols: 3,
-      variant: 'flex',
-    });
-  }
-
-  private setGroup(questions: Question[], grid: FormGrid) {
-    return this.formService.createQuestionGroup({
-      questions,
-      key: 'test',
-      options: { gridProps: grid },
-    });
+    this.pageHeadlineService.emitPageHeadlineItems([
+      {  value: 'כותרת' },
+      {  value: 'כותרת' },
+      {  value: 'כותרת' },
+      {  value: new Date(), format: 'date' },
+      {
+    
+        value: {
+          label: 'statusBars',
+          authorizedBars: 3,
+          totalBars: 6,
+        },
+        template: true,
+      },
+    ]);
   }
 }
