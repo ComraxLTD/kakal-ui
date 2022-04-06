@@ -12,7 +12,16 @@
           ></mei-select>
       </ng-container>
       <ng-container *ngSwitchCase="'autocomplete'">
-        <ng-container *ngIf="question.multi;else simpleAutocomplete"></ng-container>
+        <ng-container *ngIf="question.multi; else simpleAutocomplete">
+          lklk
+          <mei-multi-autocomplete
+            [control]="formGroup.controls[question.key]"
+            [question]="question"
+            (queryChanged)="onQueryChanged($event)"
+            (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChanged($event)">
+          </mei-multi-autocomplete>
+        </ng-container>
         <ng-template #simpleAutocomplete>
           <mei-autocomplete
             [control]="formGroup.controls[question.key]"

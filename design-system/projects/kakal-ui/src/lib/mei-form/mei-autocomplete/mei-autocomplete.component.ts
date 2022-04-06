@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, filter, map, Observable, startWith } from 'rxjs';
+import { BehaviorSubject, map, Observable, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { FormActions, FormChangeEvent } from '../models/form-events';
 import { QuestionBase } from '../models/question.model';
 import { MeiSelectOption } from '../models/select.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
+import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'mei-autocomplete',
@@ -40,10 +41,15 @@ export class MeiAutocompleteComponent implements OnInit {
         map(label => (label ? this._filter(label) : (this.question.options as Array<MeiSelectOption>).slice())),
       );
     } else {
+      (this.question.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
+        this.control.setValue(a.find(b => b.selected));
+      });
       this.control.valueChanges.pipe(
         startWith(''),
+        distinctUntilChanged(),
+        debounceTime(this.question.debounce? this.question.debounce : 500),
         filter( value => (typeof value === 'string'))
-      ).subscribe(a => this.search())
+      ).subscribe(a => this.search());
     }
     this.error$ = new BehaviorSubject<string>('');
   }
@@ -70,7 +76,8 @@ export class MeiAutocompleteComponent implements OnInit {
   }
 
 
-  onSelectionChange(): void {
+  onSelectionChange(event): void {
+    event.option.value.selected = true;
     this.selectChanged.emit({
       key: this.question.key,
       value: this.control.value,
