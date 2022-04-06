@@ -9,7 +9,7 @@ import {
 import { StatusBarsModel } from './status-bars.model';
 
 @Component({
-  selector: 'kkl-status-bars',
+  selector: 'kkl-status-steps',
   templateUrl: './status-bars.component.html',
   styleUrls: ['./status-bars.component.scss'],
 })
@@ -36,12 +36,12 @@ export class StatusBarsComponent implements OnInit {
 
     const approvedBars = Array(this.status.authorizedBars).fill('active');
     this.steps.push(...approvedBars);
-    if (this.status.authorizedBars < this.status.totalBars) {
-      this.steps.push('disable');
-    }
+    // if (this.status.authorizedBars < this.status.totalBars) {
+    //   this.steps.push('disable');
+    // }
 
     const disableBars = new Array(
-      this.status.totalBars - this.status.authorizedBars -1
+      this.status.totalBars - this.status.authorizedBars 
     ).fill('');
 
     this.steps.push(...disableBars);
