@@ -25,6 +25,6 @@ import { MeiMultiAutocompleteComponent } from './mei-multi-autocomplete/mei-mult
     MatInputModule
   ],
   declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent],
-  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent],
+  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent,],
 })
 export class MeiFormModule {}
