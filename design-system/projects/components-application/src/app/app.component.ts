@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import {
+  CardInfoComponent,
   CardStepModel,
   FormActions,
   FormGrid,
@@ -15,7 +17,8 @@ import {
 })
 export class AppComponent implements OnInit {
   constructor(private formService: FormService) {}
-
+  control = new FormControl();
+  component = CardInfoComponent;
   actions = [
     { type: 'file', action: FormActions.EDIT },
     { type: 'form', action: FormActions.EDIT },
