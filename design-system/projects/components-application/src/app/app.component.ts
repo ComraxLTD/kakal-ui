@@ -11,7 +11,7 @@ import {
   FormService,
   Question,
   QuestionGroupModel,
-  MenuCard,
+  IconComponent,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -20,15 +20,61 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  control = new FormControl();
+  component = CardInfoComponent;
+  iconComponent = IconComponent
+  iconsData = [
+    {key:'search',color:'primary',size:5},
+    {key:'edit',size:2},
+    {key:'keyboard_arrow_down',color:'accent'},
+    {key:'calendar'}
+  ]
+  cards = [
+    {
+      svgIcon: 'search',
+      label: '1',
+      subLabel: 'sub label',
+    },
+    {
+      svgIcon: 'search',
+      label: '2',
+      subLabel: 'sub label',
+    }, {
+      svgIcon: 'search',
+      label: '3',
+      subLabel: 'sub label',
+    }, {
+      svgIcon: 'search',
+      label: '4',
+      subLabel: 'sub label',
+    }, {
+      svgIcon: 'search',
+      label: '5',
+      subLabel: 'sub label',
+    },{
+      svgIcon: 'search',
+      label: '6',
+      subLabel: 'sub label',
+    },
+  ]
+
+  actions = [
+    { type: 'file', action: FormActions.EDIT },
+    { type: 'form', action: FormActions.EDIT },
+    {
+      type: 'form',
+      action: FormActions.SUBMIT,
+    },
+  ];
   show$: Observable<boolean> = of(true);
   constructor(
     private formService: FormService,
     private pageHeadlineService: PageHeadlineService
   ) {}
 
-  cards: MenuCard[] = [
-    { label: 'string', svgIcon: 'home', active: true, path: 'no' },
-  ];
+  // cards: MenuCard[] = [
+  //   { label: 'string', svgIcon: 'home', active: true, path: 'no' },
+  // ];
   // status: StatusBarsModel = {
   //   label: 'statusBars',
   //   authorizedBars: 3,
