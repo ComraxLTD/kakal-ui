@@ -13,6 +13,8 @@ export class MenuBarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.cards);
+    
   }
 
 }

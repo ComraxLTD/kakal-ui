@@ -37,10 +37,10 @@ export class NewOrderLayoutComponent implements OnInit {
 
   //page headline items
   headlineItems: PageHeadlineModel[] = [
-    { value: 'הזמנה חדשה', type: 'template', key: 'headline' },
-    { value: 'מפ/1234/22', key: 'x', format: 'date' },
-    { value: 'ה כיבוד', key: 'x' },
-    { value: 'אקליפטוס יער', type: 'template', key: 'statusBar' },
+    { value: 'הזמנה חדשה', template: true },
+    { value: 'מפ/1234/22', format: 'date' },
+    { value: 'ה כיבוד' },
+    { value: 'אקליפטוס יער', template: true },
   ];
   //status model fot the page headline
   status: StatusBarsModel = {
@@ -78,5 +78,4 @@ export class NewOrderLayoutComponent implements OnInit {
   public onPrevious(): void {
     this.routerService.goBack();
   }
-
 }

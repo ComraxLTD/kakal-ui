@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { PageHeadlineModel } from './page-headline.model';
 import { PageHeadlineService } from './page-headline.service';
 
@@ -28,6 +28,14 @@ export class PageHeadlineComponent implements OnInit {
     this.headlineItems$ = this.getHeadlineItems();
   }
   getHeadlineItems(): Observable<PageHeadlineModel[]> {
-    return this.pageHeadlineService.getPageHeadlineItemsAsObs();
+    return this.pageHeadlineService.getPageHeadlineItemsAsObs().pipe(
+      tap((pageHeadlines: PageHeadlineModel[]) =>
+        pageHeadlines.forEach((headline, index) => {
+          index === 0
+            ? (this.sizeIndexMap[index] = 3.2)
+            : (this.sizeIndexMap[index] = 1.8);
+        })
+      )
+    );
   }
 }

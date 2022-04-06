@@ -9,6 +9,7 @@ import {
   FormService,
   Question,
   QuestionGroupModel,
+  MenuCard,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -22,12 +23,19 @@ export class AppComponent implements OnInit {
     private formService: FormService,
     private pageHeadlineService: PageHeadlineService
   ) {}
+   cards: MenuCard[]=[{  label: 'string',
+    svgIcon: 'home',
+    active: true,
+    path: 'no',}];
 
   ngOnInit(): void {
     this.pageHeadlineService.emitPageHeadlineItems([
-      { key: 'as', value: new Date(), format: 'date' },
+      {  value: 'כותרת' },
+      {  value: 'כותרת' },
+      {  value: 'כותרת' },
+      {  value: new Date(), format: 'date' },
       {
-        key: 'as',
+    
         value: {
           label: 'statusBars',
           authorizedBars: 3,

@@ -1,10 +1,7 @@
 export type HeadlineType = 'date' | 'default' | 'custom';
 
-export interface PageHeadlineModel<T = any> {
-  key: keyof T;
+export interface PageHeadlineModel {
   value: any;
-  label?: string;
   format?: string;
-  type?: 'date' | 'template';
   template? : boolean
 }
