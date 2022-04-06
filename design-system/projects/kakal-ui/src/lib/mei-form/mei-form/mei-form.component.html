@@ -6,17 +6,32 @@
       <ng-container *ngSwitchCase="'select'">
           <mei-select
             [control]="formGroup.controls[question.key]"
-            [question]="question"
+            [options]="question.options"
+            [multi]="question.multi"
+            [placeHolder]="question.placeHolder"
+            [key]="question.key"
+            [label]="question.label"
+            [theme]="question.theme"
+            [appearance]="question.appearance"
+            [disabled]="question.disabled"
             (selectChanged)="onSelectChanged($event)"
             (openChanged)="onOpenChanged($event)"
           ></mei-select>
       </ng-container>
       <ng-container *ngSwitchCase="'autocomplete'">
         <ng-container *ngIf="question.multi; else simpleAutocomplete">
-          lklk
           <mei-multi-autocomplete
             [control]="formGroup.controls[question.key]"
-            [question]="question"
+            [options]="question.options"
+            [placeHolder]="question.placeHolder"
+            [key]="question.key"
+            [label]="question.label"
+            [debounce]="question.debounce"
+            [appearance]="question.appearance"
+            [disabled]="question.disabled"
+            [withButton]="question.withButton"
+            [icon]="question.icon"
+            [panelWidth]="question.panelWidth"
             (queryChanged)="onQueryChanged($event)"
             (selectChanged)="onSelectChanged($event)"
             (openChanged)="onOpenChanged($event)">
@@ -25,7 +40,16 @@
         <ng-template #simpleAutocomplete>
           <mei-autocomplete
             [control]="formGroup.controls[question.key]"
-            [question]="question"
+            [options]="question.options"
+            [placeHolder]="question.placeHolder"
+            [key]="question.key"
+            [label]="question.label"
+            [debounce]="question.debounce"
+            [appearance]="question.appearance"
+            [disabled]="question.disabled"
+            [withButton]="question.withButton"
+            [icon]="question.icon"
+            [panelWidth]="question.panelWidth"
             (queryChanged)="onQueryChanged($event)"
             (selectChanged)="onSelectChanged($event)"
             (openChanged)="onOpenChanged($event)"

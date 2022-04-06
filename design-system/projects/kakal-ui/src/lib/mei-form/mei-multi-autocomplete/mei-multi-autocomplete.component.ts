@@ -22,8 +22,18 @@ export class MeiMultiAutocompleteComponent {
   myAutoControl = new FormControl();
 
   @Input() control!: FormControl;
-  @Input() question!: QuestionBase;
 
+  @Input() options!: BehaviorSubject<MeiSelectOption[]> | MeiSelectOption[];
+
+  @Input() placeHolder!: string;
+  @Input() label!: string;
+  @Input() debounce!: number;
+  @Input() key!: string;
+  @Input() withButton!: string;
+  @Input() icon!: string;
+  @Input() panelWidth!: string;
+  @Input() appearance!: string;
+  @Input() disabled!: boolean;
 
   @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
@@ -35,25 +45,25 @@ export class MeiMultiAutocompleteComponent {
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    if(Array.isArray(this.question.options)) {
+    if(Array.isArray(this.options)) {
       this.isArray = true;
       this.filteredOptions = this.myAutoControl.valueChanges.pipe(
         startWith(''),
         map(value => (typeof value === 'string' ? value : value.label)),
-        map(label => (label ? this._filter(label) : (this.question.options as Array<MeiSelectOption>).slice())),
+        map(label => (label ? this._filter(label) : (this.options as Array<MeiSelectOption>).slice())),
       );
     } else {
-      (this.question.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
+      (this.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
         this.control.setValue(a.filter(b => b.selected));
       });
       this.myAutoControl.valueChanges.pipe(
         startWith(''),
         distinctUntilChanged(),
-        debounceTime(this.question.debounce? this.question.debounce : 500),
+        debounceTime(this.debounce? this.debounce : 500),
         filter( value => (typeof value === 'string'))
       ).subscribe(a => this.search());
     }
-    if(this.question.disabled) {
+    if(this.disabled) {
       this.myAutoControl.disable();
     }
     this.error$ = new BehaviorSubject<string>('');
@@ -65,12 +75,12 @@ export class MeiMultiAutocompleteComponent {
 
   private _filter(label: string): MeiSelectOption[] {
     const filterValue = label.toLowerCase();
-    return (this.question.options as Array<MeiSelectOption>).filter(option => option.label.toLowerCase().includes(filterValue));
+    return (this.options as Array<MeiSelectOption>).filter(option => option.label.toLowerCase().includes(filterValue));
   }
 
   // deselectAll() {
   //   this.control.patchValue([]);
-  //   (this.question.options as BehaviorSubject<MeiSelectOption[]>).pipe(take(1)).subscribe((a: MeiSelectOption[]) => {
+  //   (this.options as BehaviorSubject<MeiSelectOption[]>).pipe(take(1)).subscribe((a: MeiSelectOption[]) => {
   //     a.forEach(b => {
   //       b.selected = false;
   //     })
@@ -81,7 +91,7 @@ export class MeiMultiAutocompleteComponent {
   setErrorMessage() {
     const error = this.messageService.getErrorMessage(
       this.control as FormControl,
-      this.question.placeHolder
+      this.placeHolder
     );
 
     this.error$.next(error);
@@ -92,23 +102,20 @@ export class MeiMultiAutocompleteComponent {
 
 
   onMultiSelectionChange(event): void {
-    console.log(event);
+    event.option.value.selected = true;
+    this.control.setValue(this.control.value.concat([event.option.value]));
+    this.myAutoControl.setValue(event.option.value.label)
 
     this.selectChanged.emit({
-      key: this.question.key,
+      key: this.key,
       value: this.control.value,
       action: FormActions.MULTI_OPTION_SELECTED
     });
   }
 
-  buttonSearch() {
-    if(this.question.withButton) {
-      this.search();
-    }
-  }
   search() {
     this.queryChanged.emit({
-      key: this.question.key,
+      key: this.key,
       value: this.control.value,
       action: FormActions.QUERY_CHANGED,
       query: this.myAutoControl.value
@@ -118,7 +125,7 @@ export class MeiMultiAutocompleteComponent {
 
   onOpenChanged() {
     this.openChanged.emit({
-      key: this.question.key,
+      key: this.key,
       value: this.control.value,
       action: FormActions.OPEN_CHANGED,
       query: this.myAutoControl.value
@@ -139,12 +146,20 @@ export class MeiMultiAutocompleteComponent {
     // this.fruitCtrl.setValue(null);
   }
 
-  remove(fruit: string): void {
-    // const index = this.fruits.indexOf(fruit);
+  remove(meiSelect: MeiSelectOption): void {
+    meiSelect.selected = true;
+    const index = this.control.value.indexOf(meiSelect);
+    console.log(index);
 
-    // if (index >= 0) {
-    //   this.fruits.splice(index, 1);
-    // }
+
+    if (index >= 0) {
+      this.control.setValue(this.control.value.splice(index, 1));
+      this.selectChanged.emit({
+        key: this.key,
+        value: this.control.value,
+        action: FormActions.MULTI_OPTION_SELECTED
+      });
+    }
   }
 
 
