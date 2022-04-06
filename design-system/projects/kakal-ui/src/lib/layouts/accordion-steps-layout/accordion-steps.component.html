@@ -7,10 +7,11 @@
 
 <ng-template #elseTemplate>
   <kkl-vertical-steps
-    (interacted)="onSelectionChanged($event)"
-    (selectionChanged)="onInteractedStream($event)"
     [steps]="steps"
     [templates]="templates"
+    [linear]="options.isLinear"
+    (interacted)="onSelectionChanged($event)"
+    (selectionChanged)="onInteractedStream($event)"
   >
   </kkl-vertical-steps
 ></ng-template>

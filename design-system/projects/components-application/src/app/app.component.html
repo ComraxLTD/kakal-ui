@@ -1,17 +1,24 @@
 <!-- <kkl-layout [cards]="cards"></kkl-layout> -->
+<div fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex="90" fxLayout="column" fxLayoutGap="2rem">
+    <kkl-accordion-steps-layout
+      fxFill
+      [panels]="panels"
+      [steps]="steps"
+      [options]="{ isLinear: true }"
+      [templates]="{filterForm, groupForm}"
+      (interacted)="onSelectionChanged($event)"
+      (selectionChanged)="onInteractedStream($event)"
+    ></kkl-accordion-steps-layout>
 
-<div fxFlex="90" fxLayout="row" fxLayoutGap="2rem">
-  <kkl-accordion-steps-layout
-    fxFill
-    [panels]="panels"
-    [steps]="steps"
-    [templates]="{filterForm, groupForm}"
-    (interacted)="onSelectionChanged($event)"
-    (selectionChanged)="onInteractedStream($event)"
-  ></kkl-accordion-steps-layout>
+    <div>
+      <button (click)="next()" mat-raised-button>
+        toggle to able next step
+      </button>
+    </div>
+  </div>
+  <!-- templates for layouts -->
+  <ng-template #filterForm> First Content </ng-template>
+
+  <ng-template #groupForm> Second Content </ng-template>
 </div>
-
-<!-- templates for layouts -->
-<ng-template #filterForm> First Content </ng-template>
-
-<ng-template #groupForm> Second Content </ng-template>

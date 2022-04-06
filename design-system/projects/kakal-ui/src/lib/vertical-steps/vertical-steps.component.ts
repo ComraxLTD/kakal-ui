@@ -24,7 +24,7 @@ import { Step } from './step/step.model';
   ],
 })
 export class VerticalStepsComponent implements OnInit {
-  @Input() isLinear = true;
+  @Input() linear = false;
 
   @Input() steps: Step[];
 

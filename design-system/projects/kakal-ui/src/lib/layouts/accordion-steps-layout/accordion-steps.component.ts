@@ -20,8 +20,12 @@ export class AccordionStepsComponent implements OnInit {
   @Input() complete$: Observable<boolean>;
   @Input() steps: Step[];
   @Input() panels: Panel[];
-
   @Input() templates: { [key: string]: TemplateRef<any> };
+
+  @Input() options: {
+    isLinear?: boolean;
+  } = {};
+
 
   @Output() selectionChanged: EventEmitter<StepperSelectionEvent> =
     new EventEmitter();

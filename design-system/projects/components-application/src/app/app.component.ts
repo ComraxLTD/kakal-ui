@@ -22,10 +22,14 @@ export class AppComponent implements OnInit {
     private pageHeadlineService: PageHeadlineService
   ) {}
 
+  private currentStep: number = 0;
+
   // array for vertical steps layout
   public steps: Step[] = [
     { key: 'filterForm', label: 'First Step Headline' },
     { key: 'groupForm', label: 'Second Step Headline' },
+    { key: 'filterForm', label: 'Third Step Headline' },
+    { key: 'groupForm', label: 'Forth Step Headline' },
   ];
 
   // array for panel layout
@@ -56,11 +60,21 @@ export class AppComponent implements OnInit {
   }
 
   onSelectionChanged(event: StepperSelectionEvent) {
-    console.log(event);
+    const { selectedIndex } = event;
+    this.currentStep = selectedIndex;
   }
 
   onInteractedStream(event: CdkStep) {
     // console.log('step', event);
     console.log(event);
+  }
+
+  next() {
+    const steps = [...this.steps];
+    steps[this.currentStep] = {
+      ...steps[this.currentStep],
+      completed: true,
+    } as Step;
+    this.steps = [...steps];
   }
 }
