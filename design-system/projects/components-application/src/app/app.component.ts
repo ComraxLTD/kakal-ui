@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     private formService: FormService,
     private pageHeadlineService: PageHeadlineService
   ) {}
+
   cards: MenuCard[] = [
     { label: 'string', svgIcon: 'home', active: true, path: 'no' },
   ];
