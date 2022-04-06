@@ -1,0 +1,31 @@
+<form (ngSubmit)="onSubmitEvent()" [formGroup]="formGroup">
+  <ng-container *ngFor="let question of myQuestions; let index = index">
+    <ng-container [ngSwitch]="question.controlType">
+
+      <!-- SELECT INPUT SECTION -->
+      <ng-container *ngSwitchCase="'select'">
+          <mei-select
+            [control]="formGroup.controls[question.key]"
+            [question]="question"
+            (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChanged($event)"
+          ></mei-select>
+      </ng-container>
+      <ng-container *ngSwitchCase="'autocomplete'">
+        <ng-container *ngIf="question.multi;else simpleAutocomplete"></ng-container>
+        <ng-template #simpleAutocomplete>
+          <mei-autocomplete
+            [control]="formGroup.controls[question.key]"
+            [question]="question"
+            (queryChanged)="onQueryChanged($event)"
+            (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChanged($event)"
+          ></mei-autocomplete>
+        </ng-template>
+      </ng-container>
+
+    </ng-container>
+  </ng-container>
+
+
+</form>

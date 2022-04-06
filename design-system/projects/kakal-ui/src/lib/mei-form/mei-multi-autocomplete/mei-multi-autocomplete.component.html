@@ -1,0 +1,28 @@
+<!-- <mat-form-field *ngIf="question.multi; else notMulti" [appearance]="control.disabled ? 'fill' : question.appearance">
+  <mat-label>{{ question.label }}</mat-label> -->
+
+  <!-- <mat-chip-list  #chipList aria-label="Fruit selection">
+    <mat-chip
+      *ngFor="let fruit of control.value"
+      (removed)="remove(fruit)">
+      {{fruit | json}}
+      <button matChipRemove>
+        <mat-icon>cancel</mat-icon>
+      </button>
+    </mat-chip>
+
+
+      <input type="text" [placeholder]="question.placeHolder" matInput [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputFor]="chipList" [matAutocomplete]="auto1" (matChipInputTokenEnd)="add($event)"
+      (input)="search(auto1.value)">
+  </mat-chip-list>
+  <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onMultiSelectionChange($event)" [panelWidth]="question.panelWidth ? 'auto' : null">
+    <mat-option *ngFor="let option of isArray? (filteredOptions | async) : (question.options | async)" [value]="option" class="autocomplete-option" [disabled]="option.disabled">
+      {{option.label}}
+    </mat-option>
+  </mat-autocomplete>
+  <button type="button" matSuffix mat-icon-button (click)="ifButtonSearch(auto.value)">
+    <kkl-icon color="primary" [key]="question.icon || 'search'" [size]="1.8"></kkl-icon>
+  </button>
+  <mat-error>{{ error$ | async }}</mat-error> -->
+<!-- </mat-form-field> -->
