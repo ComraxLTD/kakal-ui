@@ -48,4 +48,9 @@ export class LayoutComponent implements OnInit {
   public onLogoClicked() {
     this.logoClicked.emit();
   }
+
+  menuToggle():void{
+console.log('toggle clicked');
+
+  }
 }

@@ -55,7 +55,7 @@ export class NavbarComponent implements OnInit {
   public toggleMenu() {
     const toggle = this.toggle$.getValue()
     this.toggle$.next(!toggle);
-    // this.menuToggle.emit();
+    this.menuToggle.emit();
   }
 
   public onLogoClick() {

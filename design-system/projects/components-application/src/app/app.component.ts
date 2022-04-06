@@ -36,19 +36,19 @@ export class AppComponent implements OnInit {
     totalBars: 8,
   };
   ngOnInit(): void {
-    // this.pageHeadlineService.emitPageHeadlineItems([
-    //   { value: 'כותרת' },
-    //   { value: 'כותרת' },
-    //   { value: 'כותרת' },
-    //   { value: new Date(), format: 'date' },
-    //   {
-    //     value: {
-    //       label: 'statusBars',
-    //       authorizedBars: 3,
-    //       totalBars: 6,
-    //     },
-    //     template: true,
-    //   },
-    // ]);
+    this.pageHeadlineService.emitPageHeadlineItems([
+      { value: 'כותרת' },
+      { value: 'כותרת' },
+      { value: 'כותרת' },
+      { value: new Date(), format: 'date' },
+      {
+        value: {
+          label: 'statusBars',
+          authorizedBars: 3,
+          totalBars: 6,
+        },
+        template: true,
+      },
+    ]);
   }
 }
