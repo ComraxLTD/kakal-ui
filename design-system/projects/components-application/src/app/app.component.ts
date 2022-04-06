@@ -21,70 +21,14 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private formService: FormService) {}
-  control = new FormControl();
-  component = CardInfoComponent;
-  actions = [
-    { type: 'file', action: FormActions.EDIT },
-    { type: 'form', action: FormActions.EDIT },
-    {
-      type: 'form',
-      action: FormActions.SUBMIT,
-    },
-  ];
+  show$: Observable<boolean> = of(true);
+  constructor(
+    private formService: FormService,
+    private pageHeadlineService: PageHeadlineService
+  ) {}
 
-  steps: CardStepModel[] = [
-    {
-      label: 'פרטי נכס',
-      svgIcon: 'home',
-      path: 'details',
-    },
-    {
-      label: 'טיוטות והסכמים',
-      svgIcon: 'portfolio',
-      path: 'documents',
-    },
-    {
-      label: 'שליחת מייל',
-      svgIcon: 'mail',
-      path: 'mails',
-    },
-  ];
-  questions: Question[] = [
-    {
-      key: 'name',
-    },
-    {
-      key: 'select',
-      controlType: 'select',
-      label: 'select',
-    },
-    {
-      key: 'email',
-      controlType: 'email',
-      // offset - set to none to remove padding from the end
-      gridProps: { offset: 'none' },
-    },
-    {
-      key: 'phone',
-      controlType: 'checkbox',
-    },
-    {
-      key: 'date',
-      controlType: 'date',
-      // offset - set to none to remove padding from the end
-      // gridProps: { offset: 'none' },
-    },
-    {
-      key: 'upload',
-      controlType: 'upload',
-      // offset - set to none to remove padding from the end
-      gridProps: { offset: 'none' },
-    },
-    {
-      key: 'text',
-      controlType: 'textarea',
-    },
+  cards: MenuCard[] = [
+    { label: 'string', svgIcon: 'home', active: true, path: 'no' },
   ];
   status: StatusBarsModel = {
     label: 'statusBars',
