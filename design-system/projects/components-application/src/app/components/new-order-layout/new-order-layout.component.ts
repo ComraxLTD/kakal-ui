@@ -6,7 +6,7 @@ import {
   StepperLayoutService,
 } from '../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
-import { StatusBarsModel } from '../../../../../kakal-ui/src/lib/status-bars/status-bars.model';
+// import { StatusBarsModel } from '../../../../../kakal-ui/src/lib/status-bars/status-bars.model';
 
 @Component({
   selector: 'app-new-order-layout',
@@ -43,7 +43,7 @@ export class NewOrderLayoutComponent implements OnInit {
     { value: 'אקליפטוס יער', template: true },
   ];
   //status model fot the page headline
-  status: StatusBarsModel = {
+  status = {
     label: 'חדש',
     authorizedBars: 1,
     totalBars: 7,
