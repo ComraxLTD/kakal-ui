@@ -17,18 +17,30 @@ export class MeiSelectComponent implements OnInit {
   @Input() control!: FormControl;
   @Input() question!: QuestionBase;
 
+  options$: BehaviorSubject<MeiSelectOption[]>;
+
   @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   // @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   error$: BehaviorSubject<string>;
 
-  isArray: boolean = false;
+
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
+    this.options$ = new BehaviorSubject<MeiSelectOption[]>([]);
     if(Array.isArray(this.question.options)) {
-      this.isArray = true;
+      this.options$.next(this.question.options);
+    } else {
+      (this.question.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
+        if(this.question.multi){
+          this.control.setValue(a.filter(b => b.selected));
+        } else {
+          this.control.setValue(a.find(b => b.selected));
+        }
+        this.options$.next(a);
+      });
     }
     this.error$ = new BehaviorSubject<string>('');
   }
@@ -39,6 +51,12 @@ export class MeiSelectComponent implements OnInit {
 
   deselectAll() {
     this.control.patchValue([]);
+    (this.question.options as BehaviorSubject<MeiSelectOption[]>).pipe(take(1)).subscribe((a: MeiSelectOption[]) => {
+      a.forEach(b => {
+        b.selected = false;
+      })
+      this.options$.next(a);
+    });
   }
 
   setErrorMessage() {
@@ -60,7 +78,13 @@ export class MeiSelectComponent implements OnInit {
   //     action: FormActions.FOCUS_IN
   //   });
   // }
-  onSelectChanged() {
+  onSelectChanged(event) {
+    if(this.question.multi) {
+      event.value.forEach(v => v.selected = true);
+    } else {
+      event.value.selected = true;
+    }
+
     this.selectChanged.emit({
       key: this.question.key,
       value: this.control.value,
