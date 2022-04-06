@@ -1,0 +1,14 @@
+<mat-form-field [appearance]="control.disabled ? 'fill' : question.appearance">
+  <mat-label>{{ question.label }}</mat-label>
+  <input type="text" [matAutocomplete]="auto" [placeholder]="question.placeHolder" matInput [formControl]="control" (focusout)="setErrorMessage()">
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelectionChange()" [panelWidth]="question.panelWidth ? 'auto' : null">
+    <mat-option *ngFor="let option of isArray? (filteredOptions | async) : (question.options | async)" [value]="option" class="autocomplete-option" [disabled]="option.disabled">
+      {{option.label}}
+    </mat-option>
+  </mat-autocomplete>
+  <button type="button" matSuffix mat-icon-button (click)="buttonSearch()">
+    <kkl-icon color="primary" [key]="question.icon || 'search'" [size]="1.8"></kkl-icon>
+  </button>
+  <mat-error>{{ error$ | async }}</mat-error>
+</mat-form-field>
+

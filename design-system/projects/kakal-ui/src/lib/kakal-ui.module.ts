@@ -96,6 +96,7 @@ import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
 import { CarouselModule } from './carousel/carousel.module';
 
+import { MeiFormModule } from './mei-form/mei-form.module';
 registerLocaleData(he);
 
 @NgModule({
@@ -147,6 +148,7 @@ registerLocaleData(he);
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
+    MeiFormModule,
 
     // TABLE MODULES
     KKLTableModule,
@@ -234,6 +236,7 @@ registerLocaleData(he);
 
     // NEW TABLE
     KKLNewTableModule,
+    MeiFormModule,
 
     // TABLE
     KKLTableModule,
