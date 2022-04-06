@@ -1,13 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Observable, of } from 'rxjs';
+import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
 import {
   CardInfoComponent,
   CardStepModel,
+  Panel,
+  PageHeadlineService,
   FormActions,
   FormGrid,
   FormService,
   Question,
   QuestionGroupModel,
+  MenuCard,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -53,7 +58,6 @@ export class AppComponent implements OnInit {
       key: 'select',
       controlType: 'select',
       label: 'select',
-      options: [{ label: 'test', value: 0 }],
     },
     {
       key: 'email',
@@ -82,21 +86,25 @@ export class AppComponent implements OnInit {
       controlType: 'textarea',
     },
   ];
-  groupFlex!: QuestionGroupModel;
-
+  status: StatusBarsModel = {
+    label: 'statusBars',
+    authorizedBars: 3,
+    totalBars: 8,
+  };
   ngOnInit(): void {
-    // flex form ex
-    this.groupFlex = this.setGroup(this.questions, {
-      cols: 3,
-      variant: 'flex',
-    });
-  }
-
-  private setGroup(questions: Question[], grid: FormGrid) {
-    return this.formService.createQuestionGroup({
-      questions,
-      key: 'test',
-      options: { gridProps: grid },
-    });
+    // this.pageHeadlineService.emitPageHeadlineItems([
+    //   { value: 'כותרת' },
+    //   { value: 'כותרת' },
+    //   { value: 'כותרת' },
+    //   { value: new Date(), format: 'date' },
+    //   {
+    //     value: {
+    //       label: 'statusBars',
+    //       authorizedBars: 3,
+    //       totalBars: 6,
+    //     },
+    //     template: true,
+    //   },
+    // ]);
   }
 }

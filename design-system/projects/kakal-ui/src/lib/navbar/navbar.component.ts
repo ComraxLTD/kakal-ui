@@ -11,6 +11,7 @@ import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ListItem } from '../list-item/list-item.model';
+import { PageHeadlineModel } from '../page-headline/page-headline.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
@@ -26,7 +27,7 @@ export class NavbarComponent implements OnInit {
 
   @Input() public show$: Observable<boolean>;
 
-  public title$: Observable<string>;
+  public title$: Observable<PageHeadlineModel[]>;
   public status$: Observable<CardStepModel[]>;
   public mobile$: Observable<boolean>;
   public toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(

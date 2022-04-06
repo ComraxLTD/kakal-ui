@@ -4,6 +4,7 @@ import {
   KakalUiModule,
   KklFormCalendarModule,
   KKLFormDateRangeModule,
+  KKLMenuBarModule,
   ROOT_PREFIX,
   RouterService,
   StepperLayoutService,
@@ -49,6 +50,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     KKLFormDateModule,
     KklFormCalendarModule,
+    
   ],
   providers: [
     StepperLayoutService,
