@@ -10,10 +10,10 @@ import { StatusBarsModel } from '../../status-bars/status-bars.model';
 })
 export class PageHeadlineExampleComponent implements OnInit {
   headlineItems: PageHeadlineModel[] = [
-    { label: 'אקליפטוס יער', key: 'x' },
-    { label: 'אקליפטוס יער', key: 'x' },
-    { label: '', key: 'x' },
-    { label: 'אקליפטוס יער', key: 'thired' },
+    // { label: 'אקליפטוס יער', key: 'x' },
+    // { label: 'אקליפטוס יער', key: 'x' },
+    // { label: '', key: 'x' },
+    // { label: 'אקליפטוס יער', key: 'thired' },
   ];
   status: StatusBarsModel = new StatusBarsModel({
     authorizedBars: 3,

@@ -13,6 +13,7 @@ import {
   Question,
   QuestionGroupModel,
   MenuCard,
+  IconComponent,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -21,9 +22,45 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  constructor(private formService: FormService) {}
+  constructor(private formService: FormService) { }
   control = new FormControl();
   component = CardInfoComponent;
+  iconComponent = IconComponent
+  iconsData = [
+    {key:'search',color:'primary',size:5},
+    {key:'edit',size:2},
+    {key:'keyboard_arrow_down',color:'accent'},
+    {key:'calendar'}
+  ]
+  cards = [
+    {
+      svgIcon: 'search',
+      label: '1',
+      subLabel: 'sub label',
+    },
+    {
+      svgIcon: 'search',
+      label: '2',
+      subLabel: 'sub label',
+    }, {
+      svgIcon: 'search',
+      label: '3',
+      subLabel: 'sub label',
+    }, {
+      svgIcon: 'search',
+      label: '4',
+      subLabel: 'sub label',
+    }, {
+      svgIcon: 'search',
+      label: '5',
+      subLabel: 'sub label',
+    },{
+      svgIcon: 'search',
+      label: '6',
+      subLabel: 'sub label',
+    },
+  ]
+
   actions = [
     { type: 'file', action: FormActions.EDIT },
     { type: 'form', action: FormActions.EDIT },

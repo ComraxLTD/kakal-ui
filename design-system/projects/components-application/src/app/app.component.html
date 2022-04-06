@@ -2,10 +2,12 @@
   <router-outlet content></router-outlet>
 </kkl-stepper-layout> -->
 
-<kkl-carousel>
-  <kkl-card-info></kkl-card-info>
-</kkl-carousel>
+<kkl-carousel [component]="component" [data]="cards" singleProp='card'></kkl-carousel>
+<kkl-carousel [component]="iconComponent" [data]="iconsData"></kkl-carousel>
 
+<!-- <ng-template #component>
+<kkl-card-info ></kkl-card-info>
+</ng-template> -->
 <!-- <div fxLayout="column">
   <kkl-navbar-bottom fxFlex="10"></kkl-navbar-bottom>
 </div> -->
@@ -19,4 +21,4 @@
 </mat-sidenav-container> -->
 
 <!-- <kkl-layout [cards]="cards"></kkl-layout>  -->
-<kkl-status-steps [status]="status"></kkl-status-steps>
+<!-- <kkl-status-steps [status]="status"></kkl-status-steps> -->
