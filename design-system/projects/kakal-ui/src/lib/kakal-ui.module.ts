@@ -44,7 +44,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
-import { KKLStatusBarsModule } from './status-bars/status-bars.module';
+import { KKLStatusStepsModule } from './status-stpes/status-steps.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
@@ -115,7 +115,7 @@ registerLocaleData(he);
     KKLMenuModule,
     KKLMenuBarModule,
 
-    KKLStatusBarsModule,
+    KKLStatusStepsModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
@@ -213,7 +213,7 @@ registerLocaleData(he);
     KklTitleModule,
     KKLStepTitleModule,
     KKLSidenavModule,
-    KKLStatusBarsModule,
+    KKLStatusStepsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
     KKLFiltersModule,

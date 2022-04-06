@@ -1,6 +1,6 @@
 import { Meta, moduleMetadata, Story } from '@storybook/angular';
-import { KKLStatusBarsModule } from '../../projects/kakal-ui/src/lib/status-bars/status-bars.module';
-import { StatusBarsComponent } from '../../projects/kakal-ui/src/lib/status-bars/status-bars.component';
+import { KKLStatusStepsModule } from '../../projects/kakal-ui/src/lib/status-bars/status-bars.module';
+import { StatusStepsComponent } from '../../projects/kakal-ui/src/lib/status-bars/status-bars.component';
 import { EventEmitter } from '@angular/core';
 import { StatusBarsModel } from '../../projects/kakal-ui/src/lib/status-bars/status-bars.model';
 
@@ -8,10 +8,10 @@ export default {
   title: 'Tools/Status-Bars',
   decorators: [
     moduleMetadata({
-      imports: [KKLStatusBarsModule],
+      imports: [KKLStatusStepsModule],
     }),
   ],
-  component: StatusBarsComponent,
+  component: StatusStepsComponent,
   argTypes: {
     status: {
         name: 'status',
@@ -19,7 +19,7 @@ export default {
         description: 'stauts model decides how many steps and thier status',
         table: {
           type: { summary: 'StatusBarsModel - authorizedBars, totalBars, label' , required: true},
-        
+
         },
       },
     hasLabel: {
@@ -30,7 +30,7 @@ export default {
         type: { summary: 'boolean' },
       },
     },
-  
+
 
     click: {
       name: 'click',
@@ -50,14 +50,14 @@ export default {
           type: { summary: 'TemplateRef<any>' },
         },
       },
-   
+
   },
 } as Meta;
 
-const Template: Story<StatusBarsComponent> = (
-  args: StatusBarsComponent
+const Template: Story<StatusStepsComponent> = (
+  args: StatusStepsComponent
 ) => ({
-  component: StatusBarsComponent,
+  component: StatusStepsComponent,
   props: args,
 });
 
