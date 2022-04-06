@@ -95,6 +95,17 @@ export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
 
+
+// mei form
+export * from './lib/mei-form/mei-form.module';
+export * from './lib/mei-form/models/options.model';
+export * from './lib/mei-form/models/question.model';
+export * from './lib/mei-form/models/question.types';
+export * from './lib/mei-form/models/select.model';
+export * from './lib/mei-form/mei-select/mei-select.component';
+export * from './lib/mei-form/mei-form/mei-form.component';
+export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
+
 // FORM QUESTIONS //
 
 export * from './lib/form/models/question-group.model';
@@ -103,8 +114,8 @@ export * from './lib/form/models/question-sum.model';
 export * from './lib/form/models/question-text.model';
 export * from './lib/form/models/question-textarea.model';
 export * from './lib/form/models/question-toggle.model';
-export * from './lib/form/models/question.model';
-export * from './lib/form/models/question.types';
+// export * from './lib/form/models/question.model';
+// export * from './lib/form/models/question.types';
 
 // ------------------------------------------------------------------------------------------
 // TABLE EXPORTS

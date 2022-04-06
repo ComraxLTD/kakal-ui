@@ -2,6 +2,7 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import {
   BreakpointService,
   KakalUiModule,
+  MeiFormModule,
   RouterService,
   StepperLayoutService,
 } from '../../../kakal-ui/src/public-api';
