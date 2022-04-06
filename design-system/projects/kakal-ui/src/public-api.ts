@@ -232,8 +232,8 @@ export * from './lib/page-headline/page-headline.module';
 export * from './lib/page-headline/page-headline.service';
 
 // status-bars
-export * from './lib/status-bars/status-bars.module';
-export * from './lib/status-bars/status-bars.component';
+export * from './lib/status-stpes/status-steps.module';
+export * from './lib/status-stpes/status-steps.component';
 
 // step title
 export * from './lib/step-title/step-title.module';
@@ -397,6 +397,6 @@ export * from './lib/directives/directives.module';
 export * from './lib/tabs/tabs.component';
 export * from './lib/tabs/tabs.module';
 
-// carousel 
+// carousel
 export * from './lib/carousel/carousel.component';
 export * from './lib/carousel/carousel.module';
