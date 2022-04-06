@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
-import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import {
+  CardStepModel,
+  FormActions,
+  FormGrid,
+  FormService,
+  Question,
+  QuestionGroupModel,
+} from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -611,37 +616,32 @@ export class AppComponent implements OnInit {
 
     },
   ];
+  constructor(private formService: FormService) {}
 
-  columns: TableBase[] = [
+  actions = [
+    { type: 'file', action: FormActions.EDIT },
+    { type: 'form', action: FormActions.EDIT },
     {
-      controlType: 'text',
-      key: 'poCodes',
-        label: `PO#`,
-        group: 'poCodes',
+      type: 'form',
+      action: FormActions.SUBMIT,
+    },
+  ];
+
+  steps: CardStepModel[] = [
+    {
+      label: 'פרטי נכס',
+      svgIcon: 'home',
+      path: 'details',
     },
     {
-      controlType: 'text',
-      key: 'suppliers',
-        label: `Supplier`,
-        group: 'poCodes',
+      label: 'טיוטות והסכמים',
+      svgIcon: 'portfolio',
+      path: 'documents',
     },
     {
-      controlType: 'date',
-      key: 'recordedTime',
-        label: `Recorded time`,
-        filter: false,
-        editable: false,
-        button:
-          {
-            type: 'inlineExpand',
-            icon: 'expand',
-          }
-    },
-    {
-      controlType: 'text',
-      key: 'status',
-        label: `Status`,
-        colIcon: 'add'
+      label: 'שליחת מייל',
+      svgIcon: 'mail',
+      path: 'mails',
     },
   ];
 
@@ -665,19 +665,19 @@ export class AppComponent implements OnInit {
 
   key: string = 'myDatePicker';
 
-  status:StatusBarsModel = {
-    label : "statusBars",
-    authorizedBars : 3,
-    totalBars : 6
-    }
+  // status:StatusBarsModel = {
+  //   label : "statusBars",
+  //   authorizedBars : 3,
+  //   totalBars : 6
+  //   }
 
   description: string = ''
 
 
 
-  control: FormControl = new FormControl();
+  // control: FormControl = new FormControl();
 
-  constructor() { }
+  // constructor() { }
 
   // ngOnInit(): void {
   //   // this.ComraxFormService.getMultiTypeSampleObject().subscribe(res => this.control.setValue(res.email))
@@ -690,21 +690,59 @@ export class AppComponent implements OnInit {
   }
 
 
-  rowActions: RowActionModel[] = [
-    {
-      type: 'inlineEdit',
-      icon: 'edit',
-      // label: 'Edit'
-    },
-    {
-      type: 'inlineDelete',
-      icon: 'cancel',
-      // label: 'Delete'
-    },
-    {
-      type: 'visibility',
-      icon: 'visibility',
-      // label: 'Show'
-    },
-  ]
+  // rowActions: RowActionModel[] = [
+  // questions: Question[] = [
+  //   {
+  //     key: 'name',
+  //   },
+  //   {
+  //     key: 'select',
+  //     controlType: 'select',
+  //     label: 'select',
+  //     options: [{ label: 'test', value: 0 }],
+  //   },
+  //   {
+  //     key: 'email',
+  //     controlType: 'email',
+  //     // offset - set to none to remove padding from the end
+  //     gridProps: { offset: 'none' },
+  //   },
+  //   {
+  //     key: 'phone',
+  //     controlType: 'checkbox',
+  //   },
+  //   {
+  //     key: 'date',
+  //     controlType: 'date',
+  //     // offset - set to none to remove padding from the end
+  //     // gridProps: { offset: 'none' },
+  //   },
+  //   {
+  //     key: 'upload',
+  //     controlType: 'upload',
+  //     // offset - set to none to remove padding from the end
+  //     gridProps: { offset: 'none' },
+  //   },
+  //   {
+  //     key: 'text',
+  //     controlType: 'textarea',
+  //   },
+  // ];
+  // groupFlex!: QuestionGroupModel;
+
+  // ngOnInit(): void {
+  //   // flex form ex
+  //   this.groupFlex = this.setGroup(this.questions, {
+  //     cols: 3,
+  //     variant: 'flex',
+  //   });
+  // }
+
+  // private setGroup(questions: Question[], grid: FormGrid) {
+  //   return this.formService.createQuestionGroup({
+  //     questions,
+  //     key: 'test',
+  //     options: { gridProps: grid },
+  //   });
+  // }
 }

@@ -7,13 +7,13 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 })
 export class StepperLayoutService {
   private stepperSubject: BehaviorSubject<CardStepModel[]>;
-  private showDrawer: BehaviorSubject<boolean>;
+  private showDrawer: Subject<boolean>;
 
   private changedStep: Subject<CardStepModel>;
 
   constructor() {
     this.stepperSubject = new BehaviorSubject<CardStepModel[]>([]);
-    this.showDrawer = new BehaviorSubject<boolean>(false);
+    this.showDrawer = new Subject<boolean>();
     this.changedStep = new Subject<CardStepModel>();
   }
 
@@ -36,7 +36,7 @@ export class StepperLayoutService {
   public emitChangeStep(step?: CardStepModel) {
     this.changedStep.next(step);
   }
-  
+
   public getChangeStepObs(): Observable<CardStepModel> {
     return this.changedStep.asObservable();
   }

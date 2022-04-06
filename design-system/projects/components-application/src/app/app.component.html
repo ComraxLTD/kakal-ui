@@ -6,3 +6,6 @@
   (editRow)="editRow($event)"
   dragable="true"
 ></kkl-local-table>
+<kkl-stepper-layout [actions]="actions" [steps]="steps" >
+  <router-outlet content></router-outlet>
+</kkl-stepper-layout>

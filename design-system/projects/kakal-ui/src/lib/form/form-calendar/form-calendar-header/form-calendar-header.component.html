@@ -1,0 +1,22 @@
+<div fxLayout="row" fxLayoutAlign="center center">
+    <kkl-form-radio
+      [control]="customDateRange"
+      [key]="key"
+      [options]="options"
+    ></kkl-form-radio>
+  </div>
+  <div class="header" dir="rtl">
+    <div class="header__main" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="center center">
+      <kkl-icon
+        (click)="previousClicked('month')"
+        key="keyboard_arrow_right"
+      ></kkl-icon>
+      <span class="header__label">{{ periodLabel }}</span>
+      <kkl-icon
+        (click)="nextClicked('month')"
+        key="keyboard_arrow_left"
+      ></kkl-icon>
+    </div>
+    <div class="header__secondary"></div>
+  </div>
+  

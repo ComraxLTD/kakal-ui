@@ -1,6 +1,6 @@
 <ng-container *ngIf="portion$ | async as portion">
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav-drawer" mode="side" position="start">
+    <mat-sidenav #drawer class="sidenav-drawer" mode="side" position="end">
       <!-- DRAWER CONTENT -->
       <div fxLayout="row" fxLayoutAlign="center center" fxFill>
         <div fxFlex="85" fxLayout="column" fxLayoutAlign="center center" fxFill>
@@ -12,12 +12,11 @@
     </mat-sidenav>
 
     <mat-sidenav
-      *ngIf="hasEndDrawer"
+      *ngIf="showEndDrawer"
       #endDrawer
       class="sidenav-drawer"
       mode="side"
-      position="end"
-      [opened]="true"
+      position="start"
       [ngStyle]="{ width: (endDrawerSize$ | async) + '%' }"
     >
       <!-- end drawer content -->
@@ -47,8 +46,8 @@
     </mat-sidenav>
 
     <mat-sidenav-content [fxFlex]="portion" fxLayout="column">
-      <div class="stepper-container" fxLayout="column">
-        <mat-toolbar fxLayout="column" class="title" *ngIf="hasTitle">
+      <!-- <div class="stepper-container" fxLayout="column"> -->
+      <!-- <mat-toolbar fxLayout="column" class="title" *ngIf="hasTitle">
           <div
             dir="rtl"
             fxLayout="row"
@@ -65,81 +64,70 @@
               <ng-content select="[actions]"></ng-content>
             </div>
           </div>
-        </mat-toolbar>
+        </mat-toolbar> -->
 
-        <mat-toolbar class="stepper-toolbar">
-          <div fxLayout="row" fxFill>
-            <!-- end drawer Button -->
+      <mat-toolbar class="stepper-toolbar" dir="rtl">
+        <!-- end drawer Button -->
 
-            <kkl-icon
-              [size]="10"
-              [key]="'drawer_toggle_icon'"
-              (click)="emitEndDrawer()"
-              *ngIf="portion === 1 || portion === 99"
-              class="end-drawer-btn"
-            ></kkl-icon>
+        <kkl-icon
+          *ngIf="portion === 1 || portion === 99"
+          [size]="10"
+          [key]="'drawer_toggle_icon'"
+          (click)="emitEndDrawer()"
+          class="end-drawer-btn"
+        ></kkl-icon>
 
-            <!-- DRAWER BUTTON  -->
+        <!-- DRAWER BUTTON  -->
 
-            <div fxLayout="column">
-              <div
-                fxFlex="80"
-                fxLayout="column"
-                fxLayoutAlign="center center"
-                *ngIf="showStartDrawer$ | async"
-              >
-                <button
-                  [ngStyle]="{
-                    position: drawer.opened ? 'fixed' : 'relative'
-                  }"
-                  (click)="drawer.toggle()"
-                  mat-fab
-                  drawerButton
-                  appBorder
-                  [thick]="2"
-                  color="accent"
-                  [ngClass]="{ open: drawer.opened }"
-                  [matBadge]="drawer.opened ? 'x' : '+'"
-                  [matBadgeColor]="drawer.opened ? 'text' : 'accent'"
-                >
-                  <div fxLayout="column" fxLayoutAlign="space-between center">
-                    <kkl-icon
-                      color="accent"
-                      [key]="drawerBtn?.icon"
-                      [size]="1.8"
-                    >
-                    </kkl-icon>
-                    <kkl-typography [bold]="600" [size]="1">
-                      <ng-container *ngIf="drawerBtn?.label; else labelBlock">{{
-                        drawerBtn.label
-                      }}</ng-container>
-                    </kkl-typography>
-                  </div>
-                </button>
-              </div>
-              <div fxFlex></div>
-            </div>
+        <div *ngIf="showStartDrawer$ | async">
+          <button
+            mat-fab
+            (click)="drawer.toggle()"
+            [ngClass]="{ open: drawer.opened }"
+            [matBadge]="drawer.opened ? 'x' : '+'"
+            [matBadgeColor]="drawer.opened ? 'text' : 'accent'"
+          >
+            <kkl-icon color="accent" [key]="drawerAction?.svgIcon" [size]="1.8">
+            </kkl-icon>
+            <kkl-typography [weight]="600" [size]="1">
+              {{ drawerAction.label }}
+            </kkl-typography>
+          </button>
+        </div>
 
-            <!-- STEPPER  -->
-            <div class="stepper">
-              <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
-                <kkl-stepper
-                  [steps$]="steps$"
-                  direction="row"
-                  (changeStep)="onChangeStep($event)"
-                ></kkl-stepper>
-              </ng-container>
+        <!-- STEPPER  -->
+        <div class="stepper">
+          <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
+            <kkl-stepper
+              [steps$]="steps$"
+              direction="row"
+              (changeStep)="onChangeStep($event)"
+            ></kkl-stepper>
+          </ng-container>
 
-              <ng-template #mobileBlock>
-                <kkl-stepper-mobile
-                  [steps$]="steps$"
-                  (changeStep)="onChangeStep($event)"
-                ></kkl-stepper-mobile>
-              </ng-template>
-            </div>
-          </div>
-        </mat-toolbar>
-      </div>
+          <ng-template #mobileBlock>
+            <kkl-stepper-mobile
+              [steps$]="steps$"
+              (changeStep)="onChangeStep($event)"
+            ></kkl-stepper-mobile>
+          </ng-template>
+        </div>
+
+        <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">
+          <ng-container *ngFor="let action of rowActions">
+            <button
+              [matTooltip]="action.label"
+              mat-icon-button
+              kkl-action-button
+              color="primary"
+              (click)="onAction(action)"
+            >
+              <mat-icon>{{ action.svgIcon }}</mat-icon>
+            </button>
+          </ng-container>
+        </div>
+      </mat-toolbar>
+      <!-- </div> -->
 
       <!-- CONTENT - ROUTER-OUTLET -->
       <div class="content" fxLayout="row" fxFlex fxLayoutAlign="center start">

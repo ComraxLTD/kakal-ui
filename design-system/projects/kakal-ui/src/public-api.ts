@@ -9,9 +9,12 @@ export * from './lib/button/button.module';
 export * from './lib/button/components/button/button.component';
 export * from './lib/button/components/add-button/add-button.component';
 export * from './lib/button/components/stroke-button/stroke-button.component';
+
 export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
 export * from './lib/button/directives/form-button.directive';
+
+export * from './lib/button/models/button.types';
 
 export * from './lib/typography/typography.module';
 export * from './lib/typography/typography.component';
@@ -75,6 +78,10 @@ export * from './lib/form/form-select/question-select.model';
 export * from './lib/form/form-range/form-range.module';
 export * from './lib/form/form-range/form-range.component';
 export * from './lib/form/form-range/question-range.model';
+
+export * from './lib/form/form-calendar/form-calendar.module';
+export * from './lib/form/form-calendar/form-calendar.component';
+export * from './lib/form/form-calendar/form-calendar.service';
 
 export * from './lib/form/form-radio/form-radio.module';
 export * from './lib/form/form-radio/form-radio.component';
@@ -179,9 +186,9 @@ export * from './lib/menu/menu.component';
 
 // menu-bar
 
-// export * from './lib/menu-bar/menu-bar.module';
-// export * from './lib/menu-bar/menu-bar/menu-bar.component';
-// export * from './lib/menu-bar/menu-card/menu-card.component';
+export * from './lib/menu-bar/menu-bar.module';
+export * from './lib/menu-bar/menu-bar/menu-bar.component';
+export * from './lib/menu-bar/menu-card/menu-card.component';
 
 // title
 export * from './lib/kkl-title/kkl-title.module';
@@ -350,9 +357,19 @@ export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
 
-// display-data
+// drawer
 export * from './lib/display-data/display-data.component';
 export * from './lib/display-data/display-data.module';
+
+
+// display-data
+export * from './lib/drawers/drawer.module';
+export * from './lib/drawers/drawer-document/drawer-document.component';
+export * from './lib/drawers/drawer-document-item/drawer-document-item.component';
+
+
+
+
 // pipes
 export * from './lib/pipes/area.pipe';
 export * from './lib/pipes/format.pipe';
@@ -362,6 +379,7 @@ export * from './lib/pipes/range.pipe';
 export * from './lib/pipes/pluck.pipe';
 export * from './lib/pipes/numberToTime.pipe';
 export * from './lib/pipes/pipes.module';
+
 //directives
 export * from './lib/directives/hover.directive';
 export * from './lib/directives/variant.directive';

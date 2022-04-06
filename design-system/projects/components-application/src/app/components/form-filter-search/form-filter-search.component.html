@@ -1,18 +1,5 @@
 <div fxLayout="row" dir="rtl" fxLayoutAlign="center">
   <div fxLayout="column" fxFlex="90">
-    <!-- <div fxLayout="row" fxLayoutAlign="center center">
-      <kkl-advanced-search-layout
-        fxFlex="65"
-        [expended]="true"
-        [advanced]="true"
-        [searchKey]="'search'"
-        [questions]="questions"
-        [optionsMap]="optionsMap"
-        (formChanged)="onFormChanged($event)"
-        (searchChanged)="onSearchChanged($event)"
-        (filterLookupChanged)="onFilterLookUpChanged($event)"
-      ></kkl-advanced-search-layout>
-    </div> -->
 
     <div fxLayout="column" xLayoutGap="30px">
       <ng-container *ngIf="optionsMap$ | async as optionsMap">

@@ -30,14 +30,6 @@ export class FormatPipe implements PipeTransform {
     return formatCurrency(value, this.locale, args(), '', '1.0');
   }
 
-  // private plunk(value: any, args: any) {
-  //   if (typeof args === 'string') {
-  //     return value[args];
-  //   } else {
-  //     return args(value);
-  //   }
-  // }
-
   private format(value: any, format: string, args?: string): string {
     const formats = {
       location: (value) => this.location.transform(value),

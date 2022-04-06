@@ -5,7 +5,12 @@
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
-    <kkl-navbar (menuToggle)="menuDrawer.toggle()" [show$]="show$"></kkl-navbar>
+    <kkl-navbar
+      [show$]="show$"
+      [openIcon]="'tree_gradient_' + (rootPrefix || 'tac')"
+      (menuToggle)="menuDrawer.toggle()"
+      (logoClicked)="onLogoClicked()"
+    ></kkl-navbar>
 
     <ng-content></ng-content>
   </mat-sidenav-content>

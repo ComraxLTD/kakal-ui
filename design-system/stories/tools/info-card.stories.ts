@@ -2,18 +2,18 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { KKLInfoCardModule } from '../../projects/kakal-ui/src/lib/cards/info-card/info-card.module';
-import { InfoCardComponent } from '../../projects/kakal-ui/src/lib/cards/info-card/info-card.component';
-import { InfoCardModel } from '../../projects/kakal-ui/src/lib/cards/info-card/info-card.model';
+import { KKLCardInfoModule } from '../../projects/kakal-ui/src/lib/cards/card-info/card-info.module';
+import { CardInfoComponent } from '../../projects/kakal-ui/src/lib/cards/card-info/card-info.component';
+import { CardInfoModel } from '../../projects/kakal-ui/src/lib/cards/card-info/card-info.model';
 
 export default {
   title: 'Tools',
   decorators: [
     moduleMetadata({
-      imports: [KKLInfoCardModule],
+      imports: [KKLCardInfoModule],
     }),
   ],
-  component: InfoCardComponent,
+  component: CardInfoComponent,
   argTypes: {
     card: {
       name: 'card',
@@ -27,17 +27,17 @@ export default {
   },
 } as Meta;
 
-const Template: Story<InfoCardComponent> = (args: InfoCardComponent) => ({
-  component: InfoCardComponent,
+const Template: Story<CardInfoComponent> = (args: CardInfoComponent) => ({
+  component: CardInfoComponent,
   props: args,
 });
 
 export const infoCard = Template.bind({});
 
 infoCard.args = {
-  card: new InfoCardModel({
-    icon: 'search',
-    headline: 'כותרת ראשית',
-    subHeadline: 'כותרת משנית שנחתכת לאחר 18 תווים',
+  card: new CardInfoModel({
+    svgIcon: 'search',
+    label: 'כותרת ראשית',
+    subLabel: 'כותרת משנית שנחתכת לאחר 18 תווים',
   }),
 };

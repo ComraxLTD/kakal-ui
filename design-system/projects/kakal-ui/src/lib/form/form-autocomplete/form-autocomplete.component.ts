@@ -31,7 +31,7 @@ export class FormAutocompleteComponent implements OnInit {
   @Input() multi!: boolean;
   @Input() asButton!: boolean;
 
-  @Input() optionSlot: TemplateRef<any>;
+  @Input() optionTemplate: TemplateRef<any>;
 
   @Input() selector: (config: {
     selector: string;

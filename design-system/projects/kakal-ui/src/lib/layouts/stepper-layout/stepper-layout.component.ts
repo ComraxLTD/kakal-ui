@@ -6,7 +6,9 @@ import { RouterService, BreakpointService } from '../../../services/services';
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { Observable, of } from 'rxjs';
+import { merge, Observable, of } from 'rxjs';
+import { ButtonModel } from '../../button/models/button.types';
+import { FormActions } from '../../form/models/form.actions';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -21,9 +23,8 @@ export class StepperLayoutComponent {
     open: 0,
     close: 100,
   };
-  @Input() drawerType: 'file' | 'notes';
 
-  @Input() hasEndDrawer: boolean;
+  @Input() actions: ButtonModel[];
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -35,19 +36,19 @@ export class StepperLayoutComponent {
 
   //end drawer opened/closed
   _endDrawerOpen: boolean = false;
+  showEndDrawer!: boolean;
 
   //drawer sizes
   _openDrawer!: number;
   _closedDrawer!: number;
 
-  // drawer btn
-  drawerBtn: {
-    icon: string;
-    label: string;
-  };
+  //
+  drawerAction: ButtonModel;
+  rowActions!: ButtonModel[];
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
@@ -63,9 +64,18 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
-    this.drawerBtn = this.setDrawerBtn();
+    this.rowActions = this.setRowActions();
 
-    this.showStartDrawer$ = this.stepperLayoutService.getDisplayDrawerObs();
+    this.drawerAction = this.setDrawerAction();
+
+    this.showEndDrawer = this.actions.some(
+      (action) => action.type === 'portion'
+    );
+
+    this.showStartDrawer$ = merge(
+      of(!!this.drawerAction),
+      this.stepperLayoutService.getDisplayDrawerObs()
+    );
 
     this.portion$ = this.getBreakPoints();
   }
@@ -103,14 +113,34 @@ export class StepperLayoutComponent {
     );
   }
 
-  private setDrawerBtn() {
-    if (this.drawerType === 'file') {
-      return { icon: 'portfolio', label: 'מסמכים' };
-    }
+  // ACTIONS SECTION
+  private setDrawerAction(): ButtonModel {
+    const iconMap = {
+      file: 'portfolio',
+      notes: 'bell',
+    };
 
-    if (this.drawerType === 'notes') {
-      return { icon: 'bell', label: 'תזכורת' };
-    }
+    const action = this.actions.find(
+      (action: ButtonModel) => action.type === 'file' || action.type === 'notes'
+    );
+
+    return action ? { ...action, svgIcon: iconMap[action.type] } : null;
+  }
+
+  private setRowActions() {
+    const iconLabelMap = {
+      [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
+      [FormActions.SUBMIT]: { svgIcon: 'save', label: 'שמירה' },
+    };
+
+    return this.actions
+      .filter((action: ButtonModel) => action.type === 'form')
+      .map((action: ButtonModel) => {
+        return {
+          ...action,
+          ...iconLabelMap[action.action],
+        };
+      });
   }
 
   // PORTION LOGIC SECTION
@@ -162,11 +192,16 @@ export class StepperLayoutComponent {
   }
 
   // DOM EVENTS
-  public onChangeStep(step: CardStepModel): void {
+
+  onChangeStep(step: CardStepModel): void {
     this.stepChanged.emit(step);
   }
 
-  public emitEndDrawer(): void {
+  emitEndDrawer(): void {
     this.onEndDrawerEmitted();
+  }
+
+  onAction(event: ButtonModel): void {
+    this.actionChanged.emit(event);
   }
 }

@@ -23,7 +23,7 @@ export class MenuService {
   private activeStep(items: MenuItemModel[], key: ListItemKeys, value: any) {
     items.find((item) => {
       if (item[key] === value) {
-        item.active();
+        // item.active();
       }
     });
   }
@@ -31,7 +31,7 @@ export class MenuService {
   private unactiveStep(items: MenuItemModel[]) {
     items.find((item) => {
       if (item.isActive) {
-        item.unactive();
+        // item.unactive();
       }
     });
   }
@@ -41,7 +41,7 @@ export class MenuService {
     key: ListItemKeys,
     value: string
   ): MenuItemModel[] {
-    this.unactiveStep(items);
+    // this.unactiveStep(items);
     this.activeStep(items, key, value);
     return [...items];
   }
