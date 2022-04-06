@@ -16946,6 +16946,7 @@ import { MeiSelectOption } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+
   // dataSource = [];
 
   // columns: TableBase[] = [
@@ -17062,20 +17063,20 @@ export class AppComponent {
 
 
   myObs = new BehaviorSubject<MeiSelectOption[]>([]);
-// options = [
-//   {key: 'autocomplete', val: [
-//     { label: 'test', value: 0 },
-//     { label: 'test1', value: 1 },]}
-// ]
+options = [
+  {key: 'select', val: [
+    { label: 'test', value: 0 },
+    { label: 'test1', value: 1 },]}
+]
   ngOnInit() {
     setTimeout(() => {
-      // this.options = [
-      //   {key: 'autocomplete', val: [
-      //     { label: 'test', value: 0 },
-      //     { label: 'test1', value: 1 },
-      //     { label: 'test2', value: 2 },
-      //     { label: 'test3', value: 3 },]}
-      // ]
+      this.options = [
+        {key: 'select', val: [
+          { label: 'test', value: 0 },
+          { label: 'test1', value: 1 },
+          { label: 'test2', value: 2 },
+          { label: 'test3', value: 3 },]}
+      ]
       // this.myObs.next( [
       //     { label: 'test', value: 0 },
       //     { label: 'test1', value: 1 },
