@@ -396,3 +396,7 @@ export * from './lib/directives/directives.module';
 //
 export * from './lib/tabs/tabs.component';
 export * from './lib/tabs/tabs.module';
+
+// carousel 
+export * from './lib/carousel/carousel.component';
+export * from './lib/carousel/carousel.module';
