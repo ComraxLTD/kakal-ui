@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, of } from 'rxjs';
-import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
+// import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
 import {
   CardInfoComponent,
   CardStepModel,
@@ -30,11 +30,11 @@ export class AppComponent implements OnInit {
   cards: MenuCard[] = [
     { label: 'string', svgIcon: 'home', active: true, path: 'no' },
   ];
-  status: StatusBarsModel = {
-    label: 'statusBars',
-    authorizedBars: 3,
-    totalBars: 8,
-  };
+  // status: StatusBarsModel = {
+  //   label: 'statusBars',
+  //   authorizedBars: 3,
+  //   totalBars: 8,
+  // };
   ngOnInit(): void {
     this.pageHeadlineService.emitPageHeadlineItems([
       { value: 'כותרת' },
