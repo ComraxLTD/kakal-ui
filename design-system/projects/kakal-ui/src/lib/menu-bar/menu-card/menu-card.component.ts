@@ -19,8 +19,6 @@ export class MenuCardComponent implements OnInit {
   constructor(private iconService: IconsService) {}
 
   ngOnInit(): void {
-    console.log(this.card);
-    
     this.iconService.setIcon(this.card.svgIcon);
   }
 }

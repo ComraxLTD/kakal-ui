@@ -20,9 +20,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  @Input() public icons: IconModel[] = [];
-
-  @Input() public show$: Observable<boolean>;
+  @Input() icons: IconModel[] = [];
+  @Input() isOpen: boolean = false;
+  @Input() showStatus$: Observable<boolean>;
 
   openIcon: string = 'tree_gradient_';
   title$: Observable<PageHeadlineModel[]>;
@@ -30,7 +30,6 @@ export class NavbarComponent implements OnInit {
   mobile$: Observable<boolean>;
   toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  isOpen: boolean = false;
   openLabel: string = 'תפריט';
   closeLabel: string = 'סגור תפריט';
 
@@ -47,7 +46,7 @@ export class NavbarComponent implements OnInit {
     this.title$ = this.navbarService.getHeadersObs();
     this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
-    this.openIcon = this.setMenuIcon()
+    this.openIcon = this.setMenuIcon();
   }
 
   private setMenuIcon() {
@@ -55,8 +54,6 @@ export class NavbarComponent implements OnInit {
   }
 
   public toggleMenu() {
-    const toggle = this.toggle$.getValue();
-    this.toggle$.next(!toggle);
     this.menuToggle.emit();
   }
 
