@@ -1,3 +1,11 @@
+<div fxLayout="column" fxLayoutGap="2rem">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <kkl-carousel fxFlex="50" [component]="component" [data]="cards"></kkl-carousel>
+    <!-- <kkl-card-add fxFlex="10" title="test" content="test"></kkl-card-add> -->
+  </div>
+
+  <div>
+    <kkl-card-filter [card]="card"></kkl-card-filter>
 <!-- <kkl-layout [cards]="cards"></kkl-layout> -->
 <div fxLayout="row" fxLayoutAlign="center">
   <div fxFlex="90" fxLayout="column" fxLayoutGap="2rem">
