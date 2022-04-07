@@ -5,7 +5,6 @@ import {
   TemplateRef,
   EventEmitter,
   Output,
-  ViewChild,
 } from '@angular/core';
 import {
   CdkStep,
@@ -13,11 +12,16 @@ import {
   STEPPER_GLOBAL_OPTIONS,
 } from '@angular/cdk/stepper';
 import { Step } from './step/step.model';
-import { MatStepper } from '@angular/material/stepper';
 @Component({
   selector: 'kkl-vertical-steps',
   templateUrl: './vertical-steps.component.html',
   styleUrls: ['./vertical-steps.component.scss'],
+  providers: [
+    {
+      provide: STEPPER_GLOBAL_OPTIONS,
+      useValue: { displayDefaultIndicatorType: false }
+    }
+  ]
 })
 export class VerticalStepsComponent implements OnInit {
   @Input() linear = false;
@@ -50,7 +54,7 @@ export class VerticalStepsComponent implements OnInit {
   }
 
   onSelectionChanged(event: StepperSelectionEvent) {
-    // this.selectionChanged.emit(event);
+    this.selectionChanged.emit(event);
   }
 
   onInteractedStream(event: CdkStep) {
@@ -58,9 +62,8 @@ export class VerticalStepsComponent implements OnInit {
     this.interacted.emit(event);
   }
 
-  onStepClick(step: Step, i: number) {
-    this.stepChanged.emit({ ...step, index: i });
-    console.log(i)
-    this._selectedIndex = 1;
+  onStepClick(step: Step) {
+    console.log(step);
+    this.stepChanged.emit(step);
   }
 }
