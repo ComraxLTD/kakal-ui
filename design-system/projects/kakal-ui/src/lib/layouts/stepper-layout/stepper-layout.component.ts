@@ -5,12 +5,12 @@ import { RouterService, BreakpointService } from '../../../services/services';
 
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { merge, Observable, of } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
+
+import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',
