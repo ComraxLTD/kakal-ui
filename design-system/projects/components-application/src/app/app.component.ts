@@ -65,20 +65,7 @@ export class AppComponent implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.pageHeadlineService.emitPageHeadlineItems([
-      { value: 'כותרת' },
-      { value: 'כותרת' },
-      { value: 'כותרת' },
-      { value: new Date(), format: 'date' },
-      {
-        value: {
-          label: 'statusBars',
-          authorizedBars: 3,
-          totalBars: 6,
-        },
-        template: true,
-      },
-    ]);
+
   }
 
   onSelectionChanged(event: StepperSelectionEvent) {

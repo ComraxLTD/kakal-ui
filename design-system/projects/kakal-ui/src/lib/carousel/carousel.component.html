@@ -1,15 +1,11 @@
-<div fxLayout="row" fxLayoutAlign="space-between center" >
-    <div >
-        <kkl-icon key="arrow_back_ios"></kkl-icon>
-    </div>
-    <div #container fxFlex="10">
-        <!-- <ng-container [ngComponentOutlet]="component"></ng-container> -->
-    </div> 
-    <div>
+<div fxLayout="row" fxLayoutAlign="space-between center" dir="rtl">
+    <div class="hover" (click)="onPrevious()">
         <kkl-icon key="arrow_forward_ios"></kkl-icon>
+    </div>
+    <div #container>
+    </div> 
+    <div class="hover" (click)="onNext()">
+        <kkl-icon key="arrow_back_ios"></kkl-icon>
     </div>
 </div>
 
-<ng-container>
-    <ng-content #content></ng-content>
-</ng-container>

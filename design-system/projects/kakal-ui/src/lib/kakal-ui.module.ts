@@ -96,6 +96,9 @@ import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
 import { CarouselModule } from './carousel/carousel.module';
 
+import { MeiFormModule } from './mei-form/mei-form.module';
+import {CardAddModule} from './cards/card-add/card-add.module';
+
 registerLocaleData(he);
 
 @NgModule({
@@ -147,6 +150,7 @@ registerLocaleData(he);
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
+    MeiFormModule,
 
     // TABLE MODULES
     KKLTableModule,
@@ -188,7 +192,8 @@ registerLocaleData(he);
     KKSectionModule,
     KKPageModule,
     FacilityCardModule,
-    CarouselModule
+    CarouselModule,
+    CardAddModule
   ],
   exports: [
 
@@ -234,6 +239,7 @@ registerLocaleData(he);
 
     // NEW TABLE
     KKLNewTableModule,
+    MeiFormModule,
 
     // TABLE
     KKLTableModule,
@@ -279,7 +285,8 @@ registerLocaleData(he);
 
     KKLAccordionStepsModule,
     FacilityCardModule,
-    CarouselModule
+    CarouselModule,
+    CardAddModule
   ],
 })
 export class KakalUiModule { }
