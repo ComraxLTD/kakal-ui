@@ -6,6 +6,13 @@
 </ng-container>
 
 <ng-template #elseTemplate>
-  <kkl-vertical-steps [steps]="steps" [templates]="templates">
+  <kkl-vertical-steps
+    [manuel]="manuel"
+    [steps]="steps"
+    [templates]="templates"
+    [linear]="options.isLinear"
+    [selectedIndex]="_selectedIndex"
+    (stepChanged)="onStepChanged($event)"
+  >
   </kkl-vertical-steps
 ></ng-template>

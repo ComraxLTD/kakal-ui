@@ -1,4 +1,4 @@
-::ng-deep mat-stepper.kkl-vertical-steps {
+::ng-deep mat-vertical-stepper.kkl-vertical-steps {
   mat-step-header {
     display: flex;
     justify-content: space-between !important;
@@ -14,3 +14,7 @@
   justify-content: flex-end;
   width: 50%;
 }
+
+// ::ng-deep .mat-step-header{
+//   pointer-events: none !important;
+// }
