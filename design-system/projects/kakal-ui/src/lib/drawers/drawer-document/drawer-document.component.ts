@@ -1,7 +1,15 @@
-import { Component, Input, OnInit, Type } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  Type,
+} from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { QuestionSelectModel } from '../../form/form-select/question-select.model';
+import { SelectOption } from '../../form/form-select/question-select.model';
+import { DocumentItem } from '../drawer-document-item/drawer-document-item.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,27 +18,36 @@ import { Observable } from 'rxjs';
   styleUrls: ['./drawer-document.component.scss'],
 })
 export class DrawerDocumentComponent<T> implements OnInit {
-
+  @Input() title: string;
   @Input() documents$: Observable<T[]>;
+  @Input() categories: SelectOption[];
 
-  @Input() dialogComp! : Type<any>
-
+  @Input() dialogComp!: Type<any>;
 
   control: FormControl;
-  question: QuestionSelectModel;
 
-  constructor(
-    private dialog: MatDialog,
-  ) {}
+  item = {
+    label: 'test',
+    dateCreated: new Date(),
+    userCreated: 'abi',
+  } as DocumentItem;
+
+  @Output() addDocument: EventEmitter<void> = new EventEmitter();
+
+  constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
-
+    this.control = new FormControl();
   }
 
-  onOpenPopUp() {
-    this.dialog.open(this.dialogComp, {
-      panelClass: ['kkl-outside-close', 'kkl-dialog-table'],
-    });
+  onAddDocument() {
+    this.addDocument.emit();
+
+    if (this.dialogComp) {
+      this.dialog.open(this.dialogComp, {
+        panelClass: ['kkl-outside-close', 'kkl-dialog-table'],
+      });
+    }
   }
 
   onOpenPopupSign() {
@@ -39,11 +56,9 @@ export class DrawerDocumentComponent<T> implements OnInit {
     });
   }
 
-  onDelete(item: T) {
-  }
+  onDelete(item: T) {}
 
-  onDownloadFile(id: number) {
-  }
+  onDownloadFile(id: number) {}
 
   onSelected(event: any) {
     // const value = event.option.value;
