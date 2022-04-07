@@ -3,70 +3,65 @@ import {
   FiltersService,
   FilterState,
   FilterType,
-  FormChangeEvent,
   FormDataSource,
   SelectOption,
   OptionMap,
   Question,
+  FormService,
+  FormChangeEvent,
+  FormActions,
+  FilterLookups,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
 import { forkJoin, map, Observable, of } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
-  providers: [FiltersService, FormDataSource],
+  providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
   questions: Question[] = [
     // key must be search for general search!
     {
       key: 'search',
+      label : 'חיפוש',
       controlType: 'autocomplete',
+      asButton : true
     },
 
     {
       key: 'email',
       label: 'email',
-      filterType: FilterType.SELECT,
-      controlType: 'autocomplete',
-    },
-    {
-      key: 'birthDay',
-      label: 'יום הולדת',
-      controlType: 'date',
-      filterType: FilterType.SELECT,
-    },
-    {
-      key: 'committee',
-      label: 'committee',
-      controlType: 'dateRange',
-      filterType: FilterType.DATE_RANGE,
-    },
-    {
-      label: 'city',
-      key: 'city',
-      filterType: FilterType.MULTI_SELECT,
-      controlType: 'multiSelect',
-      multi : true
-    },
-    {
-      key: 'country',
-      label: 'country',
-      filterType: FilterType.SELECT,
-      controlType: 'select',
+      controlType: 'email',
     },
   ];
 
+  control: FormControl = new FormControl();
+  controlMulti: FormControl = new FormControl();
+  key: string = 'select input';
+  options$!: Observable<SelectOption[]>;
+
+
   public optionsMap$: Observable<OptionMap>;
+  public optionsMap: OptionMap;
 
   public filtersState$: Observable<FilterState>;
 
-  constructor(private formDataSource: FormDataSource) {}
+  public hasFilters: boolean;
+
+  constructor() {}
 
   ngOnInit(): void {
+    this.hasFilters = true;
+
     this.optionsMap$ = this.getOptionsMap$();
+
+    this.getOptionsMap$().subscribe((options: OptionMap) => {
+      this.optionsMap = options;
+    });
   }
 
   private getCurrencyOptions() {
@@ -92,5 +87,33 @@ export class FormFilterSearchComponent implements OnInit {
 
   // DOM EVENTS SECTION
 
-  public onFilterChanged(state: FilterState) {}
+  public onFormChanged(state: FormChangeEvent) {
+    const { action } = state;
+
+    if (action === FormActions.OPTION_SELECTED) {
+      const { key } = state;
+      const optionsMap = { ...this.optionsMap };
+      const options = [...optionsMap[key].slice(0, 4)];
+      optionsMap[key] = [...options];
+      this.optionsMap = { ...optionsMap };
+    }
+  }
+  public onSearchChanged(state: FilterState) {
+    console.log('searchChanged', state);
+  }
+
+  public onFilterLookUpChanged(state: FilterLookups) {
+    console.log(state);
+  }
+
+  selectedOption(event: FormChangeEvent) {
+    const { value } = event;
+    console.log(value)
+    this.controlMulti.setValue([value]);
+  }
+  selectedMultiOption(event: FormChangeEvent) {
+    const { value } = event;
+    const option = value[0];
+    this.control.setValue(option);
+  }
 }

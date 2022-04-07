@@ -7,7 +7,8 @@ import { ControlType } from '../models/question.types';
   providedIn: 'root',
 })
 export class FormInputService {
-  constructor() {}
+  constructor() { }
+
   getInputProps(type: string): {
     icon?: string;
     validation?: ValidatorFn;
@@ -26,9 +27,8 @@ export class FormInputService {
         return {
           icon: 'phone',
           cleave: {
-            blocks: [3, 3, 4],
             placeHolder: 'טלפון',
-            delimiter: '-',
+            blocks: [15],
             numericOnly: true,
           },
           controlType: 'cleave',
@@ -46,4 +46,5 @@ export class FormInputService {
         };
     }
   }
+  
 }

@@ -8,6 +8,10 @@ import { SelectOption } from './question-select.model';
 import { MessageService } from '../services/message.service';
 import { Appearance } from '../models/question.types';
 
+function compare(o1: Object, o2: Object) {
+  return JSON.stringify(o1) === JSON.stringify(o2);
+}
+
 @Component({
   selector: 'kkl-form-select',
   templateUrl: './form-select.component.html',
@@ -26,8 +30,10 @@ export class FormSelectComponent implements OnInit {
 
   @Output() public selectChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
+
   @Output() public openChanged: EventEmitter<FormChangeEvent> =
     new EventEmitter();
+
   @Output() public focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   public error$: BehaviorSubject<string>;
@@ -91,6 +97,8 @@ export class FormSelectComponent implements OnInit {
   }
 
   public compareFunction(o1: SelectOption, o2: SelectOption) {
-    return o1?.label === o2?.label && o1.value === o2.value;
+    return typeof o1.value !== 'object' && typeof o1.value !== null
+      ? compare(o1, o2)
+      : compare(o1.value, o2.value);
   }
 }

@@ -1,10 +1,8 @@
 import { ValidatorFn } from '@angular/forms';
 import { QuestionBase } from '../models/question.model';
-import { Observable } from 'rxjs';
-import { Appearance, ControlType, GridProps } from '../models/question.types';
+import { Appearance, ControlType, InputGrid } from '../models/question.types';
 
 export interface SelectOption {
-  id: number | string;
   label: string;
   value: any;
   selected?: boolean;
@@ -14,8 +12,6 @@ export interface SelectOption {
 export class QuestionSelectModel extends QuestionBase {
   public options?: SelectOption[];
   public multi?: boolean;
-  public onSelectChange?: (value: any) => void;
-  public getOptionsAsync?: () => Observable<SelectOption[]>;
 
   constructor(options?: {
     key: string;
@@ -23,13 +19,11 @@ export class QuestionSelectModel extends QuestionBase {
     appearance?: Appearance;
     validations?: ValidatorFn[];
     controlType?: ControlType;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     options?: SelectOption[];
     icon?: string;
     multi?: boolean;
     value?: any;
-    onSelectChange?: (value: any) => void;
-    getOptionsAsync?: () => Observable<SelectOption[]>;
   }) {
     super(options);
     this.controlType = 'select';
@@ -37,7 +31,5 @@ export class QuestionSelectModel extends QuestionBase {
     this.icon = options.icon || 'keyboard_arrow_down';
     this.multi = options.multi || options.controlType === 'multiSelect';
     this.value = options.value;
-    this.onSelectChange = options.onSelectChange || null;
-    this.getOptionsAsync = options.getOptionsAsync || null;
   }
 }

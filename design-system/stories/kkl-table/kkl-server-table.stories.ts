@@ -85,7 +85,7 @@ export default {
         },
       },
     },
-    optionsSlot: {
+    optionsTemplates: {
       name: 'optionSlot',
       description:
         'An angular template element. use to render custom option template',

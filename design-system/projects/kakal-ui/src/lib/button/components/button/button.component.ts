@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Palette } from '../../../../styles/theme';
 
 @Component({
@@ -13,9 +13,15 @@ export class ButtonComponent implements OnInit {
   @Input() textColor: Palette = 'paper';
   @Input() direction: 'rtl' | 'ltr' = 'rtl';
   @Input() type: 'primary' | 'secondary' = 'primary';
+  @Output() clickEvent: EventEmitter<void> = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  onClick(): void {
+    this.clickEvent.emit();
   }
 
 }

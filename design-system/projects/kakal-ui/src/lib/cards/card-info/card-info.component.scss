@@ -1,7 +1,21 @@
 @use "../../../styles/variables" as main;
 
+$card-min-width: 10rem;
+
+:host {
+  max-width: $card-min-width;
+}
+
 mat-card {
-  background: linear-gradient(0deg, #EEEEEE 0%, #FFFFFF 100%);
+  min-height: 8rem;
+  width: 80%;
+  background: linear-gradient(0deg, #eeeeee 0%, #ffffff 100%) !important;
+}
+
+mat-card-content {
+  height: 48px;
+  display: flex;
+  justify-content: center;
 }
 
 kkl-typography {

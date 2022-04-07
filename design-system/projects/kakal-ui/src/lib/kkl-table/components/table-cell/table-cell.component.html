@@ -1,6 +1,6 @@
 <ng-container *ngIf="question.templateName; else noTemplate">
   <div [ngSwitch]="question.templateName">
-    <!-- <div *ngSwitchCase="statusBar"><kkl-status-bars [status]="{}"></kkl-status-bars></div> -->
+    <!-- <div *ngSwitchCase="statusBar"><kkl-status-steps [status]="{}"></kkl-status-steps></div> -->
     <div *ngSwitchDefault><ng-container *ngTemplateOutlet="colsTemplate[question.templateName]; context: {$implicit:data}"></ng-container></div>
   </div>
 </ng-container>

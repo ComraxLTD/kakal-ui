@@ -17,7 +17,18 @@
     border-bottom: 3px solid main.color(primary);
   }
   .no-warp {
-    margin-top:0.5rem;
+    // margin-top: 0.5rem;
     white-space: nowrap;
+  }
+
+  mat-icon {
+    &.active {
+      color: main.color(paper);
+    }
+
+    &:not(.active) {
+      color: main.color(default);
+
+    }
   }
 }

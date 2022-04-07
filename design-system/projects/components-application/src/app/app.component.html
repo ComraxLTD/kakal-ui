@@ -1,4 +1,4 @@
-<ng-container content>
+<!-- <ng-container content>
   <ng-container>
     <mei-form
       [questions]="questions"
@@ -10,3 +10,14 @@
   </ng-container>
 </ng-container>
 <kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  (actionClicked)="editRow($event)"
+  (editRow)="editRow($event)"
+  dragable="true"
+></kkl-local-table>
+
+<kkl-button (clickEvent)="onClick('sadasdasd')"></kkl-button>
+<kkl-add-button (clickEvent)="onClick('sdfsdfsdf')"></kkl-add-button> -->

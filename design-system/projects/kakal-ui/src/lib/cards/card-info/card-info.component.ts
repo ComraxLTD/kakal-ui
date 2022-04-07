@@ -4,17 +4,13 @@ import { CardInfoModel } from './card-info.model';
 @Component({
   selector: 'kkl-card-info',
   templateUrl: './card-info.component.html',
-  styleUrls: ['./card-info.component.scss']
+  styleUrls: ['./card-info.component.scss'],
 })
 export class CardInfoComponent implements OnInit {
+  
+  @Input() public card: CardInfoModel;
 
-  @Input() public card : CardInfoModel
+  constructor() {}
 
-  public tooltip : CardInfoComponent
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

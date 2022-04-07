@@ -24,13 +24,13 @@
         *ngFor="let option of options"
         [value]="option"
       >
-        <ng-container *ngIf="!optionsSlot; else slotBlock">
+        <ng-container *ngIf="!optionsTemplates; else slotBlock">
           {{ option.label }}
         </ng-container>
         <ng-template #slotBlock>
           <ng-container
             *ngTemplateOutlet="
-              optionsSlot[key];
+              optionsTemplates[key];
               context: { $implicit: this.option }
             "
           ></ng-container>
@@ -50,10 +50,10 @@
           *ngFor="let option of options"
           [value]="option"
         >
-          <ng-container *ngIf="!optionsSlot">
+          <ng-container *ngIf="!optionsTemplates">
             {{ option.label }}
           </ng-container>
-          <ng-container *ngIf="optionsSlot">
+          <ng-container *ngIf="optionsTemplates">
             <ng-container
               *ngTemplateOutlet="
                 optionsSlot[question.key];

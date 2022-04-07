@@ -24,7 +24,7 @@
                   <ng-container
                     *ngTemplateOutlet="
                       panel.headers ? headerTemplate : defaultTemplate;
-                      context: { $implicit: panel }
+                      context: { $implicit: panel, i }
                     "
                   ></ng-container>
 
@@ -52,9 +52,9 @@
   </main>
 </div>
 
-<ng-template #defaultTemplate let-panel>
-  <kkl-typography color="primary">
-    {{ panel | pluck: "label" }}
+<ng-template #defaultTemplate let-panel let-i="i">
+  <kkl-typography [size]="2.4" [weight]="600" color="primary">
+    {{ panel | pluck: "label" }} .{{ i + 1 }}
   </kkl-typography>
 </ng-template>
 
