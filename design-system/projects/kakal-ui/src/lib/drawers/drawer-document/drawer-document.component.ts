@@ -21,32 +21,43 @@ export class DrawerDocumentComponent<T> implements OnInit {
   @Input() documents$: Observable<T[]>;
   @Input() categories: SelectOption[];
 
-  @Input() dialogComp!: Type<any>;
+  @Input() addDocumentDialog!: Type<any>;
+  @Input() signDocumentDialog!: Type<any>;
 
   control: FormControl;
 
   @Output() addDocument: EventEmitter<void> = new EventEmitter();
+  @Output() signDocument: EventEmitter<void> = new EventEmitter();
 
   constructor(private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.control = new FormControl();
+    console.log(this.addDocumentDialog)
+
   }
 
   onAddDocument() {
-    this.addDocument.emit();
 
-    if (this.dialogComp) {
-      this.dialog.open(this.dialogComp, {
+
+    if (this.addDocumentDialog) {
+      this.dialog.open(this.addDocumentDialog, {
         panelClass: ['kkl-outside-close', 'kkl-dialog-table'],
       });
+    } else {
+      this.addDocument.emit();
     }
   }
 
-  onOpenPopupSign() {
-    this.dialog.open(this.dialogComp, {
-      panelClass: ['kkl-outside-close', 'kkl-dialog-table'],
-    });
+  onSignDialog() {
+    if (this.signDocumentDialog) {
+      this.dialog.open(this.signDocumentDialog, {
+        panelClass: ['kkl-outside-close', 'kkl-dialog-table'],
+      });
+    }else {
+      this.signDocument.emit();
+
+    }
   }
 
   onDelete(item: T) {}

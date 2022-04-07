@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {
   ButtonModel,
   CardStepModel,
+  DialogComponent,
   FormActions,
-  PageHeadlineModel,
   RouterService,
-  StepperLayoutService,
 } from '../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
 
@@ -42,12 +41,11 @@ export class NewOrderLayoutComponent implements OnInit {
   ];
   constructor(
     private routerService: RouterService,
-    private stepperLayoutService: StepperLayoutService
   ) {}
+
 
   ngOnInit(): void {
     //decide if drawer is open or closed on init
-    this.stepperLayoutService.emitDisplayDrawer(false);
   }
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
@@ -68,5 +66,6 @@ export class NewOrderLayoutComponent implements OnInit {
   }
 
   onAddDocument() {
+    console.log('works')
   }
 }
