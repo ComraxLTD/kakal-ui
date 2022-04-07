@@ -1,12 +1,8 @@
-<kkl-stepper-layout
-  dir="rtl"
-  [steps]="steps"
-  [contentPortion]="{ open: 10, close: 50 }"
-  (stepChanged)="onChangeStep($event)"
->
-  <!-- the changing content of the stepper layout -->
-  <div content>
-    <router-outlet></router-outlet>
+<kkl-stepper-layout [actions]="actions" [steps]="steps">
+  <router-outlet content></router-outlet>
+
+  <div drawer>
+    works
   </div>
 
   <!-- the footer of the stepper layout -->

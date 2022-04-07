@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  ButtonModel,
   CardStepModel,
+  FormActions,
   PageHeadlineModel,
   RouterService,
   StepperLayoutService,
@@ -16,39 +18,29 @@ import { Observable } from 'rxjs';
 export class NewOrderLayoutComponent implements OnInit {
   public disableNext!: Observable<boolean>;
 
-  //stepper steps
-  public steps: CardStepModel[] = [
+  steps: CardStepModel[] = [
     {
-      label: 'פרטי הזמנה',
-      svgIcon: 'contact',
+      label: 'פרטי נכס',
+      svgIcon: 'home',
       path: 'details',
     },
     {
-      label: 'בחירת ספק',
-      svgIcon: 'reports',
-      path: 'select-supplier',
+      label: 'טיוטות והסכמים',
+      svgIcon: 'portfolio',
+      path: 'documents',
     },
     {
-      label: 'ספק זוכה',
-      svgIcon: 'medal',
-      path: 'bid',
+      label: 'שליחת מייל',
+      svgIcon: 'mail',
+      path: 'mails',
     },
   ];
 
-  //page headline items
-  headlineItems: PageHeadlineModel[] = [
-    { value: 'הזמנה חדשה', template: true },
-    { value: 'מפ/1234/22', format: 'date' },
-    { value: 'ה כיבוד' },
-    { value: 'אקליפטוס יער', template: true },
+  actions: ButtonModel[] = [
+    { label: 'מסמכי תיק', type: 'file', action: FormActions.VALUE_CHANGED },
+    { type: 'form', action: FormActions.EDIT },
+    { type: 'form', action: FormActions.SUBMIT },
   ];
-  //status model fot the page headline
-  status = {
-    label: 'חדש',
-    authorizedBars: 1,
-    totalBars: 7,
-  };
-
   constructor(
     private routerService: RouterService,
     private stepperLayoutService: StepperLayoutService
@@ -60,9 +52,6 @@ export class NewOrderLayoutComponent implements OnInit {
   }
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    console.log(path);
-
-    path = `/new-order/create-new-order/${path}`;
     this.routerService.navigate(path);
   }
 
