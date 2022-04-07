@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { StepperLayoutService } from './stepper-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
@@ -8,6 +15,8 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
+import { NavbarBottomDirective } from '../../navbar-bottom/navbar-bottom.directive';
+import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.component';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
@@ -28,6 +37,7 @@ export class StepperLayoutComponent {
 
   @Input() actions: ButtonModel[];
 
+  // when set to true disable default navigation
   @Input() manuel: boolean;
 
   // steps props
@@ -213,11 +223,10 @@ export class StepperLayoutComponent {
   // DOM EVENTS
 
   onSelectStep(event: StepperSelectEvent): void {
+    if (!this.manuel) {
+      this.navigate(event.selectedStep.path);
+    }
     this.stepSelect.emit(event);
-    // if (this.manuel) {
-    // } else {
-    //   this.navigate(event.selectedStep.path);
-    // }
   }
 
   emitEndDrawer(): void {

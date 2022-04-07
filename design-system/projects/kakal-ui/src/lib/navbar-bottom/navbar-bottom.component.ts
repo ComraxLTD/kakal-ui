@@ -6,6 +6,7 @@ import {
   EventEmitter,
   TemplateRef,
   Inject,
+  ViewContainerRef,
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
@@ -21,9 +22,11 @@ import { ROOT_PREFIX } from '../../public-api';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-  @Input() bottomIcon: string = 'bottom_tree_';
-  @Input() nextText: string;
-  @Input() hasNext: boolean;
+
+
+
+  @Input() nextLabel: string;
+  @Input() hasNext: boolean = true;
   @Input() disableNext$: Observable<boolean>;
 
   @Input() hasSave: boolean;
@@ -37,13 +40,15 @@ export class NavbarBottomComponent implements OnInit {
   private nextStep$: Observable<void>;
   private changeStep$: Observable<CardStepModel>;
 
-  public buttonState$: Observable<{ [x: string]: boolean }>;
+  bottomIcon: string = 'bottom_tree_';
+  buttonState$: Observable<{ [x: string]: boolean }>;
 
   @Output() previous = new EventEmitter();
   @Output() next = new EventEmitter<CardStepModel>();
   @Output() save = new EventEmitter();
 
   constructor(
+    private vcr : ViewContainerRef,
     private navbarBottomService: NavbarBottomService,
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
@@ -51,15 +56,19 @@ export class NavbarBottomComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    
-    this.bottomIcon = this.bottomIcon + this.rootPrefix;
-
     if (this.stepper) {
       this.steps$ = this.stepperLayoutService.getStepsObs();
       this.nextStep$ = this.navbarBottomService.getNextStepObs();
       this.changeStep$ = this.stepperLayoutService.getChangeStepObs();
     }
+
     this.buttonState$ = this.setShowButtons();
+    this.bottomIcon = this.setBottomIcon();
+
+  }
+
+  private setBottomIcon() {
+    return this.bottomIcon + this.rootPrefix;
   }
 
   private setShowButtons() {

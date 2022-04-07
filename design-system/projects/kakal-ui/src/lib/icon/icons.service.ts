@@ -18,10 +18,18 @@ export class IconsService {
   ) {}
 
   public icons = {
+
     tree: AppIcons.TREE_ICON,
     kkl: AppIcons.KKL_ICON,
     tree_gradient_tac: AppIcons.TREE_GRADIENT_TAC_ICON,
+    tree_gradient_lands: AppIcons.TREE_GRADIENT_LANDS_ICON,
+    tree_gradient_education: AppIcons.TREE_GRADIENT_EDUCATION_ICON,
+    tree_gradient_forestry: AppIcons.TREE_GRADIENT_FORESTRY_ICON,
+
     bottom_tree_tac: AppIcons.BOTTOM_TREE_LOGO_TAC_ICON,
+    bottom_tree_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
+    // bottom_tree_education: AppIcons.BOTTOM_TREE_LOGO__EDUCATION_ICON,
+    // bottom_tree_forestry: AppIcons.BOTTOM_TREE_LOGO__FORESTRY_ICON,
 
     // TABLE ICONS
     drag_n_drop: AppIcons.DRAG_N_DROP,
@@ -106,8 +114,6 @@ export class IconsService {
     expense: AppIcons.EXPENSE_ICON,
     committee: AppIcons.COMMITTEE_ICON,
     transactions: AppIcons.TRANSACTION_ICON,
-    tree_gradient_lands: AppIcons.TREE_GRADIENT_LANDS_ICON,
-    tree_bottom_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
     estate: AppIcons.ESTATE_ICON,
     mail: AppIcons.MAIL_ICON,
     meetings: AppIcons.MEETINGS,

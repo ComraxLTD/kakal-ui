@@ -5,6 +5,7 @@ import {
   DialogComponent,
   DocumentItem,
   FormActions,
+  NavbarBottomComponent,
   RouterService,
 } from '../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
@@ -15,6 +16,9 @@ import { Observable } from 'rxjs';
   styleUrls: ['./new-order-layout.component.scss'],
 })
 export class NewOrderLayoutComponent implements OnInit {
+
+  bottomNavbarComp = NavbarBottomComponent
+
   public disableNext!: Observable<boolean>;
 
   steps: CardStepModel[] = [

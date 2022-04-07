@@ -57,7 +57,7 @@ import { FormFlexComponent } from './components/form-flex/form.component';
     StepperLayoutService,
     BreakpointService,
     RouterService,
-    { provide: ROOT_PREFIX, useValue: '' },
+    { provide: ROOT_PREFIX, useValue: 'lands' },
   ],
   bootstrap: [AppComponent],
 })

@@ -13,6 +13,7 @@ import { BreakpointService } from '../../services/breakpoint.service';
 import { ListItem } from '../list-item/list-item.model';
 import { PageHeadlineModel } from '../page-headline/page-headline.model';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { ROOT_PREFIX } from '../../public-api';
 
 @Component({
   selector: 'kkl-navbar',
@@ -20,40 +21,42 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  
-  @Input() public openIcon: string = 'tree_gradient_tac';
-
   @Input() public icons: IconModel[] = [];
 
   @Input() public show$: Observable<boolean>;
 
-  public title$: Observable<PageHeadlineModel[]>;
-  public status$: Observable<CardStepModel[]>;
-  public mobile$: Observable<boolean>;
-  public toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
+  openIcon: string = 'tree_gradient_';
+  title$: Observable<PageHeadlineModel[]>;
+  status$: Observable<CardStepModel[]>;
+  mobile$: Observable<boolean>;
+  toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  public isOpen: boolean = false;
-  public openLabel: string = 'תפריט';
-  public closeLabel: string = 'סגור תפריט';
+  isOpen: boolean = false;
+  openLabel: string = 'תפריט';
+  closeLabel: string = 'סגור תפריט';
 
   @Output() menuToggle = new EventEmitter();
   @Output() logoClicked = new EventEmitter();
 
   constructor(
     private navbarService: NavbarService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
     this.title$ = this.navbarService.getHeadersObs();
     this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
+    this.openIcon = this.setMenuIcon()
+  }
+
+  private setMenuIcon() {
+    return this.openIcon + this.rootPrefix;
   }
 
   public toggleMenu() {
-    const toggle = this.toggle$.getValue()
+    const toggle = this.toggle$.getValue();
     this.toggle$.next(!toggle);
     this.menuToggle.emit();
   }

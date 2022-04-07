@@ -1,9 +1,12 @@
-<kkl-stepper-layout [actions]="actions" [steps]="steps">
+<kkl-stepper-layout
+  [actions]="actions"
+  [steps]="steps"
+>
   <router-outlet content></router-outlet>
 
   <kkl-drawer-document
     [documents]="documents"
-    [categories]="[{label : 'coty', value : 'miki'}]"
+    [categories]="[{ label: 'coty', value: 'miki' }]"
     (addDocument)="onAddDocument()"
     title="מסמכי תיק"
     drawer
@@ -13,10 +16,7 @@
   <!-- the footer of the stepper layout -->
   <kkl-navbar-bottom
     bottom-navbar
-    [bottomIcon]="'bottom_tree_tac'"
-    [hasNext]="true"
     (previous)="onPrevious()"
     (next)="onNext($event)"
-    [stepper]="true"
   ></kkl-navbar-bottom>
 </kkl-stepper-layout>

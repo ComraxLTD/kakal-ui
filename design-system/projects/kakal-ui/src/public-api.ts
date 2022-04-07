@@ -301,23 +301,24 @@ export * from './lib/cards/card-filter/card-filter.component';
 export * from './lib/cards/card.model';
 
 // navbar
-export * from './lib/navbar/navbar.component';
 export * from './lib/navbar/navbar.module';
+export * from './lib/navbar/navbar.component';
 export * from './lib/navbar/navbar.service';
 
 // navbar - bottom
-export * from './lib/navbar-bottom/navbar-bottom.component';
 export * from './lib/navbar-bottom/navbar-bottom.module';
+export * from './lib/navbar-bottom/navbar-bottom.component';
+export * from './lib/navbar-bottom/navbar-bottom.directive';
 export * from './lib/navbar-bottom/navbar-bottom.service';
 
 // stepper
-export * from './lib/stepper/stepper.component';
 export * from './lib/stepper/stepper.module';
+export * from './lib/stepper/stepper.component';
 export * from './lib/stepper/stepper.service';
 
 // stepper mobile
-export * from './lib/stepper-mobile/stepper-mobile.component';
 export * from './lib/stepper-mobile/stepper-mobile.module';
+export * from './lib/stepper-mobile/stepper-mobile.component';
 
 // stepper layout
 export * from './lib/layouts/stepper-layout/stepper-layout.component';
