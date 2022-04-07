@@ -5,7 +5,8 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Obser
 import { MessageService } from '../mei-services/message.service';
 import { FormInputService } from '../mei-services/form-input.service';
 import { FormActions, FormChangeEvent } from '../models/form-events';
-import { Appearance, ControlType, GridProps } from '../models/question.types';
+// changed GrigProps to InputGrid *** needs verifying ***
+import { Appearance, ControlType, InputGrid } from '../models/question.types';
 
 @Component({
   selector: 'mei-input',
@@ -22,7 +23,8 @@ export class MeiInputComponent implements OnInit {
   @Input() theme!: Palette;
   @Input() index!: number;
   @Input() cleave!: {};
-  @Input() gridProps!: GridProps;
+  // changed GrigProps to InputGrid *** needs verifying ***
+  @Input() gridProps!: InputGrid;
   @Input() icon!: string;
   @Input() debounce!: number;
 
