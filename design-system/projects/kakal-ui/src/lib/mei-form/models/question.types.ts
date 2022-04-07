@@ -28,28 +28,26 @@ export type ControlType =
   | 'password'
   | 'number'
   | 'textarea'
+  | 'time'
+
   | 'calendar'
   | 'radio'
   | 'date'
   | 'dateRange'
-  | 'time'
-  | 'range'
   | 'counter'
-  | 'group'
-  | 'custom'
   | 'sum'
   | 'upload'
   | 'currency'
   | 'toggle'
   | 'email'
   | 'phone'
-  | 'group'
   | 'texteditor'
-  | 'cleave'
 
   | 'checkbox'
   | 'autocomplete'
-  | 'select';
+  | 'select'
+
+  | 'cleave';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 

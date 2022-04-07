@@ -16938,7 +16938,7 @@ import { FormControl } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { QuestionBase } from '../../../kakal-ui/src/lib/mei-form/models/question.model';
 import { StatusBarsModel } from '../../../kakal-ui/src/lib/status-bars/status-bars.model';
-import { MeiSelectOption } from '../../../kakal-ui/src/public-api';
+import { MeiSelectOption, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -16947,46 +16947,46 @@ import { MeiSelectOption } from '../../../kakal-ui/src/public-api';
 })
 export class AppComponent {
 
-  // dataSource = [];
+  dataSource = [];
 
-  // columns: TableBase[] = [
-  //   {
-  //     controlType: 'text',
-  //     key: 'poCodes',
-  //       label: `PO#`,
-  //       group: 'poCodes',
-  //   },
-  //   {
-  //     controlType: 'text',
-  //     key: 'suppliers',
-  //       label: `Supplier`,
-  //       group: 'poCodes',
-  //   },
-  //   {
-  //     controlType: 'date',
-  //     key: 'recordedTime',
-  //       label: `Recorded time`,
-  //       filter: false,
-  //       editable: false,
-  //       button:
-  //         {
-  //           type: 'inlineExpand',
-  //           icon: 'expand',
-  //         }
-  //   },
-  //   {
-  //     controlType: 'text',
-  //     key: 'status',
-  //       label: `Status`,
-  //       colIcon: 'add'
-  //   },
-  // ];
+  columns: TableBase[] = [
+    {
+      controlType: 'text',
+      key: 'poCodes',
+        label: `PO#`,
+        group: 'poCodes',
+    },
+    {
+      controlType: 'text',
+      key: 'suppliers',
+        label: `Supplier`,
+        group: 'poCodes',
+    },
+    {
+      controlType: 'date',
+      key: 'recordedTime',
+        label: `Recorded time`,
+        filter: false,
+        editable: false,
+        button:
+          {
+            type: 'inlineExpand',
+            icon: 'expand',
+          }
+    },
+    {
+      controlType: 'text',
+      key: 'status',
+        label: `Status`,
+        colIcon: 'add'
+    },
+  ];
 
   // // constructor() {}
 
-  // ngOnInit(): void {
+  ngOnInit(): void {
   //   // setTimeout(() => {
-  //     this.dataSource = ELEMENT_DATA;
+      this.dataSource = ELEMENT_DATA;
   //   // }, 5000);
   //   // this.dataSource = [
   //   //   {
@@ -16998,7 +16998,7 @@ export class AppComponent {
   //   //     yearsOfExperience: 32,
   //   //   },
   //   // ];
-  // }
+  }
 
   // key: string = 'myDatePicker';
 
@@ -17041,23 +17041,23 @@ export class AppComponent {
 
   // }
 
-  // rowActions: RowActionModel[] = [
-  //   {
-  //     type: 'inlineEdit',
-  //     icon: 'edit',
-  //     // label: 'Edit'
-  //   },
-  //   {
-  //     type: 'inlineDelete',
-  //     icon: 'cancel',
-  //     // label: 'Delete'
-  //   },
-  //   {
-  //     type: 'visibility',
-  //     icon: 'visibility',
-  //     // label: 'Show'
-  //   },
-  // ]
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      // label: 'Edit'
+    },
+    {
+      type: 'inlineDelete',
+      icon: 'cancel',
+      // label: 'Delete'
+    },
+    {
+      type: 'visibility',
+      icon: 'visibility',
+      // label: 'Show'
+    },
+  ]
 
   editData = {select: { label: 'test1', value: 1 }}
 
@@ -17074,22 +17074,22 @@ options = [
         { label: 'test77', value: 0 },
         { label: 'test177', value: 1 },]}
 ]
-  ngOnInit() {
-    setTimeout(() => {
-      this.options = [
-        {key: 'autocomplete', val: [
-          { label: 'test', value: 0 },
-          { label: 'test1', value: 1 },
-          { label: 'test2', value: 2 },
-          { label: 'test3', value: 3 },]}
-      ]
-      // this.myObs.next( [
-      //     { label: 'test', value: 0 },
-      //     { label: 'test1', value: 1 },
-      //     { label: 'test2', value: 2 },
-      //     { label: 'test3', value: 3 },
-      //   ]);
-    }, 8000);
+  // ngOnInit() {
+  //   setTimeout(() => {
+  //     this.options = [
+  //       {key: 'autocomplete', val: [
+  //         { label: 'test', value: 0 },
+  //         { label: 'test1', value: 1 },
+  //         { label: 'test2', value: 2 },
+  //         { label: 'test3', value: 3 },]}
+  //     ]
+  //     // this.myObs.next( [
+  //     //     { label: 'test', value: 0 },
+  //     //     { label: 'test1', value: 1 },
+  //     //     { label: 'test2', value: 2 },
+  //     //     { label: 'test3', value: 3 },
+  //     //   ]);
+  //   }, 8000);
 
     // setTimeout(() => {
     //   // this.myObs.next([
@@ -17099,7 +17099,7 @@ options = [
     //   //     { label: 'test3gg', value: 3 },
     //   //   ]);
     // }, 8000);
-  }
+  // }
 
   questions: QuestionBase[] = [
     {

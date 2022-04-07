@@ -53,13 +53,13 @@ export class MeiAutocompleteComponent implements OnInit {
       (this.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
         this.control.setValue(a.find(b => b.selected));
       });
-      this.control.valueChanges.pipe(
-        startWith(''),
-        distinctUntilChanged(),
-        debounceTime(this.debounce? this.debounce : 500),
-        filter( value => (typeof value === 'string'))
-      ).subscribe(a => this.search());
     }
+    this.control.valueChanges.pipe(
+      startWith(''),
+      distinctUntilChanged(),
+      debounceTime(this.debounce? this.debounce : 500),
+      filter( value => (typeof value === 'string'))
+    ).subscribe(a => this.search());
     this.error$ = new BehaviorSubject<string>('');
   }
 
