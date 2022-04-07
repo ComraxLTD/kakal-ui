@@ -5,7 +5,8 @@ import { OptionsModel } from '../models/options.model'
 import { BehaviorSubject } from 'rxjs';
 import { MeiSelectOption } from '../models/select.model';
 import { FormChangeEvent } from '../models/form-events';
-import { GridProps } from '../models/question.types';
+// changed GrigProps to FormGrid *** needs verifying ***
+import { FormGrid } from '../models/question.types';
 @Component({
   selector: 'mei-form',
   templateUrl: './mei-form.component.html',
@@ -18,7 +19,8 @@ export class MeiFormComponent implements OnInit {
   @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
-  @Input() grid: GridProps;
+  // changed GrigProps to FormGrid *** needs verifying ***
+  @Input() grid: FormGrid;
   variant: 'flex' | 'grid' = 'grid';
 
   @Input() buttonTemp: TemplateRef<any>;
@@ -74,7 +76,7 @@ export class MeiFormComponent implements OnInit {
   ngOnInit(): void {
     this.variant = this.grid.variant || this.variant;
     this.cols = this.grid?.cols || 1;
-    this.hasButton = !!this.grid?.buttonCols || false;
+    this.hasButton = !!this.grid?.button.cols || false;
     this.gutter = this.grid.gutter || 1;
     this.flex = 100 / (this.grid?.cols || this.cols);
     this.layout = this.grid.layout;

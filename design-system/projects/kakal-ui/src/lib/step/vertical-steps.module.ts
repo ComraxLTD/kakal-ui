@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatStepperModule } from '@angular/material/stepper';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { KKLDirectivesModule } from '../../directives/directives.module';
-import { KKLIconModule } from '../../icon/icon.module';
-import { VerticalStepsComponent } from './vertical-steps.component';
+import { KKLDirectivesModule } from '../../lib/directives/directives.module';
+import { KKLIconModule } from '../../lib/icon/icon.module';
+import { VerticalStepsComponent } from '../vertical-steps/vertical-steps.component';
 
 @NgModule({
   declarations: [VerticalStepsComponent],

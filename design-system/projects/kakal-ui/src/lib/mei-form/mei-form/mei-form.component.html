@@ -66,7 +66,7 @@
           </ng-container>
         </ng-container>
 
-        <mat-grid-tile *ngIf="hasButton" [colspan]="group?.gridProps.buttonCols || 1">
+        <mat-grid-tile *ngIf="hasButton" [colspan]="group?.gridProps.button.cols || 1">
           <div class="btn-form" fxFlex="100">
             <ng-container *ngTemplateOutlet=" buttonTemp || defaultTemplate; context: {$implicit: formGroup}">
             </ng-container>

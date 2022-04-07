@@ -50,7 +50,8 @@ export class LocalTableComponent implements OnInit {
   dragDisabled = true;
 
   oneColumns: TableBase[] = [];
-  @Input() set columns(value: TableBase[]) {
+  @Input()
+  set columns(value: TableBase[]) {
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
     if(this.localButtons?.length) {
@@ -68,6 +69,7 @@ export class LocalTableComponent implements OnInit {
 
 
   dataTable: MatTableDataSource<any[]> = new MatTableDataSource();
+
   @Input() set dataSource(value: any[]) {
     if(value) {
       this.dataTable.data = value;

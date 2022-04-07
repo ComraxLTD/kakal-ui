@@ -1,3 +1,3 @@
 import { InjectionToken } from "@angular/core";
 
-export const PROJECT_PREFIX = new InjectionToken<string>('PROJECT_PREFIX');
+export const ROOT_PREFIX = new InjectionToken<string>('ROOT_PREFIX');

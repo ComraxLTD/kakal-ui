@@ -14,13 +14,16 @@ export declare type Palette =
   | 'success'
   | 'graylight'
   | 'tableActionsGray'
-  | 'darkGray';
+  | 'darkGray'
+  | 'greyFirst'
+  | 'greySecond'
+  | 'greyThired';
 
 export type Color = { [key in Palette]: string };
 
 export const palette: Color = {
-  primary: '#d83020',
-  accent: '#37c56b',
+  primary: 'var(--p-500)',
+  accent: 'var(--a-500)',
   warn: '#d83020',
   paper: '#fff',
   default: '#bababa',
@@ -33,6 +36,9 @@ export const palette: Color = {
   graylight: '#e2e1e1',
   tableActionsGray: '#a0a0a0',
   darkGray: '#747474',
+  greyFirst: '#E4E4E4',
+  greySecond: '#F5F5F5',
+  greyThired: '#707070',
 };
 
 export const palletteClassesMap = {

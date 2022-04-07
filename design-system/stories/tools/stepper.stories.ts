@@ -1,13 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { StepperComponent } from '../../projects/kakal-ui/src/lib/stepper/stepper.component';
-import {StepperModule} from '../../projects/kakal-ui/src/lib/stepper/stepper.module';
+import {KKLStepperModule} from '../../projects/kakal-ui/src/lib/stepper/stepper.module';
 
 export default {
   title: 'Tools/Stepper',
   decorators: [
     moduleMetadata({
-      imports: [StepperModule],
+      imports: [KKLStepperModule],
     }),
   ],
   component: StepperComponent,

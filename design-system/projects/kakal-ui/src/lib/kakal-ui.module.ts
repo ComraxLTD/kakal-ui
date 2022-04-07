@@ -11,8 +11,6 @@ import { KKLNavigationModule } from './navigation/navigation.module';
 import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
-import { KKLInfoCardModule } from './cards/info-card/info-card.module';
-import { KKLFilterCardModule } from './cards/filter-card/filter-card.module';
 
 import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { KKLMenuModule } from './menu/menu.module';
@@ -21,6 +19,7 @@ import { KKLStepTitleModule } from './step-title/step-title.module';
 import { KKLFormModule } from './form/form/form.module';
 
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
+import { KklFormCalendarModule } from './form/form-calendar/form-calendar.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
@@ -39,21 +38,25 @@ import { KKLHeaderCellModule } from './table/components/header-cells/header-cell
 
 import { KKLDialogModule } from './dialog/dialog.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
+import { KKLSidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
-import { KKLStatusBarsModule } from './status-bars/status-bars.module';
+import { KKLStatusStepsModule } from './status-stpes/status-steps.module';
+import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
+
+// CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
+import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
 
 import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
@@ -66,8 +69,8 @@ import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
-import { StepperModule } from './stepper/stepper.module';
-import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
+import { KKLStepperModule } from './stepper/stepper.module';
+import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { KKLListMenuModule } from './list-menu/list-menu.module';
 import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
@@ -84,11 +87,18 @@ import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 
-import { KKLVerticalStepsModule} from './vertical-steps/vertical-steps.module'
+import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
+import { FacilityCardModule } from './facility-card/facility-card.module';
+
+import { KKLDrawerModule } from './drawers/drawer.module'
 
 import he from '@angular/common/locales/he';
 import { registerLocaleData } from '@angular/common';
+import { CarouselModule } from './carousel/carousel.module';
+
 import { MeiFormModule } from './mei-form/mei-form.module';
+import {CardAddModule} from './cards/card-add/card-add.module';
+
 registerLocaleData(he);
 
 @NgModule({
@@ -102,19 +112,23 @@ registerLocaleData(he);
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
+
     KKLNavigationModule,
-    KKLStatusBarsModule,
     KKLMenuModule,
+    KKLMenuBarModule,
+
+    KKLStatusStepsModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLPageHeadlineModule,
-    KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
+
+    KKLDrawerModule,
 
     KKLFiltersModule,
 
@@ -132,6 +146,7 @@ registerLocaleData(he);
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    KklFormCalendarModule,
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
@@ -159,8 +174,8 @@ registerLocaleData(he);
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
 
     KKLVerticalStepsModule,
@@ -176,24 +191,34 @@ registerLocaleData(he);
 
     KKSectionModule,
     KKPageModule,
+    FacilityCardModule,
+    CarouselModule,
+    CardAddModule
   ],
   exports: [
+
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
-    MaterialModule,
+
+    KKLDrawerModule,
+
     KKLMenuItemModule,
+
+    KKLMenuBarModule,
+
     KKLButtonModule,
+
     KKLIconModule,
     KKLTypographyModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
-    KKLStatusBarsModule,
+    KKLSidenavModule,
+    KKLStatusStepsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
     KKLFiltersModule,
@@ -210,6 +235,7 @@ registerLocaleData(he);
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    KklFormCalendarModule,
 
     // NEW TABLE
     KKLNewTableModule,
@@ -221,7 +247,6 @@ registerLocaleData(he);
     KKLTableCellModule,
 
     KKLDialogModule,
-    KKLInfoCardModule,
 
     KKLPipesModule,
     KKLDirectivesModule,
@@ -239,8 +264,8 @@ registerLocaleData(he);
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
 
     // LAYOUT
@@ -256,7 +281,12 @@ registerLocaleData(he);
     KKSectionModule,
     KKPageModule,
 
+
+
     KKLAccordionStepsModule,
+    FacilityCardModule,
+    CarouselModule,
+    CardAddModule
   ],
 })
-export class KakalUiModule {}
+export class KakalUiModule { }
