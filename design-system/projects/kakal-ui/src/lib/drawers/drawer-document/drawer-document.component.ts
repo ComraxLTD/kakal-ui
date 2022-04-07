@@ -9,8 +9,8 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectOption } from '../../form/form-select/question-select.model';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { DocumentItem } from './drawer-document-item/drawer-document-item.component';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'kkl-drawer-document',
@@ -23,7 +23,7 @@ export class DrawerDocumentComponent<T> implements OnInit {
 
 
   documents$: BehaviorSubject<DocumentItem[]> = new BehaviorSubject<DocumentItem[]>([]);
-  
+
   @Input()
   set documents(value: DocumentItem[]) {
     this.documents$.next(value);
