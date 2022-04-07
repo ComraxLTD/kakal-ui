@@ -24,12 +24,7 @@
 
   <main>
     <div fxLayout="column">
-      <kkl-drawer-document-item
-        [item]="{}"
-        (delete)="onDelete($event)"
-        (showFile)="onShowFile()"
-      ></kkl-drawer-document-item>
-      <!-- <ng-container *ngFor="let item of documents$ | async; let i = index">
+      <ng-container *ngFor="let item of documents$ | async; let i = index">
         <kkl-drawer-document-item
           [item]="item"
           (delete)="onDelete($event)"
@@ -37,7 +32,7 @@
           (download)="onDownloadFile(item.id)"
           (showFile)="onShowFile()"
         ></kkl-drawer-document-item>
-      </ng-container> -->
+      </ng-container>
     </div>
   </main>
 </div>

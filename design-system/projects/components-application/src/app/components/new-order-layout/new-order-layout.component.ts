@@ -3,6 +3,7 @@ import {
   ButtonModel,
   CardStepModel,
   DialogComponent,
+  DocumentItem,
   FormActions,
   RouterService,
 } from '../../../../../kakal-ui/src/public-api';
@@ -39,6 +40,15 @@ export class NewOrderLayoutComponent implements OnInit {
     { type: 'form', action: FormActions.EDIT },
     { type: 'form', action: FormActions.SUBMIT },
   ];
+
+
+  documents : DocumentItem[] = [
+    { label : 'test', dateCreated : new Date(), userCreated : 'tommy'},
+    { label : 'test2', dateCreated : new Date(), userCreated : 'tommy2'},
+    { label : 'test3', dateCreated : new Date(), userCreated : 'tommy3'},
+    { label : 'test4', dateCreated : new Date(), userCreated : 'tommy4'}
+  ]
+
   constructor(
     private routerService: RouterService,
   ) {}

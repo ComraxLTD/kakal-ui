@@ -9,7 +9,8 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectOption } from '../../form/form-select/question-select.model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { DocumentItem } from './drawer-document-item/drawer-document-item.component';
 
 @Component({
   selector: 'kkl-drawer-document',
@@ -18,8 +19,15 @@ import { Observable } from 'rxjs';
 })
 export class DrawerDocumentComponent<T> implements OnInit {
   @Input() title: string;
-  @Input() documents$: Observable<T[]>;
   @Input() categories: SelectOption[];
+
+
+  documents$: BehaviorSubject<DocumentItem[]> = new BehaviorSubject<DocumentItem[]>([]);
+  
+  @Input()
+  set documents(value: DocumentItem[]) {
+    this.documents$.next(value);
+  }
 
   @Input() addDocumentDialog!: Type<any>;
   @Input() signDocumentDialog!: Type<any>;
@@ -33,13 +41,10 @@ export class DrawerDocumentComponent<T> implements OnInit {
 
   ngOnInit(): void {
     this.control = new FormControl();
-    console.log(this.addDocumentDialog)
-
+    // this.documents$ = new BehaviorSubject<DocumentItem[]>([]);
   }
 
   onAddDocument() {
-
-
     if (this.addDocumentDialog) {
       this.dialog.open(this.addDocumentDialog, {
         panelClass: ['kkl-outside-close', 'kkl-dialog-table'],
@@ -54,9 +59,8 @@ export class DrawerDocumentComponent<T> implements OnInit {
       this.dialog.open(this.signDocumentDialog, {
         panelClass: ['kkl-outside-close', 'kkl-dialog-table'],
       });
-    }else {
+    } else {
       this.signDocument.emit();
-
     }
   }
 
