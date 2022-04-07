@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   TemplateRef,
+  Inject,
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
@@ -12,6 +13,7 @@ import { RouterService } from '../../services/route.service';
 import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
 import { combineLatest, merge, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
+import { ROOT_PREFIX } from '../../public-api';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -19,8 +21,8 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-  @Input() bottomIcon: string = 'bottom_tree_tac';
-  @Input() nextText: string
+  @Input() bottomIcon: string = 'bottom_tree_';
+  @Input() nextText: string;
   @Input() hasNext: boolean;
   @Input() disableNext$: Observable<boolean>;
 
@@ -44,10 +46,14 @@ export class NavbarBottomComponent implements OnInit {
   constructor(
     private navbarBottomService: NavbarBottomService,
     private stepperLayoutService: StepperLayoutService,
-    private routerService: RouterService
+    private routerService: RouterService,
+    @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
+    
+    this.bottomIcon = this.bottomIcon + this.rootPrefix;
+
     if (this.stepper) {
       this.steps$ = this.stepperLayoutService.getStepsObs();
       this.nextStep$ = this.navbarBottomService.getNextStepObs();
@@ -78,7 +84,11 @@ export class NavbarBottomComponent implements OnInit {
 
   private setShowNext(): Observable<boolean> {
     return this.hasNext && this.stepper
-      ? merge(this.handleOnNext(), this.onChangedStep(), this.setShowNextStep$())
+      ? merge(
+          this.handleOnNext(),
+          this.onChangedStep(),
+          this.setShowNextStep$()
+        )
       : of(this.hasNext);
   }
 

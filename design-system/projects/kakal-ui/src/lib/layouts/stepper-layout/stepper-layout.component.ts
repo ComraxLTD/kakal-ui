@@ -9,6 +9,8 @@ import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { StepperSelectEvent } from '../../stepper/stepper.component';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -25,6 +27,8 @@ export class StepperLayoutComponent {
   };
 
   @Input() actions: ButtonModel[];
+
+  @Input() manuel: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -47,7 +51,7 @@ export class StepperLayoutComponent {
   rowActions!: ButtonModel[];
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
-  @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() stepSelect: EventEmitter<StepperSelectEvent> = new EventEmitter();
   @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
@@ -191,10 +195,29 @@ export class StepperLayoutComponent {
     this.openChanged.emit(this._endDrawerOpen);
   }
 
+  // NAVIGATE HELPER METHODS
+  private getUrl(path: string) {
+    const routes = this.routerService.currentRoute.split('/');
+    routes.unshift();
+    routes.pop();
+    routes.push(path);
+    return routes.join('/');
+  }
+
+  // NAVIGATION EVENTS SECTION
+  private navigate(path: string) {
+    const url = this.getUrl(path);
+    this.routerService.navigate(url);
+  }
+
   // DOM EVENTS
 
-  onChangeStep(step: CardStepModel): void {
-    this.stepChanged.emit(step);
+  onSelectStep(event: StepperSelectEvent): void {
+    this.stepSelect.emit(event);
+    // if (this.manuel) {
+    // } else {
+    //   this.navigate(event.selectedStep.path);
+    // }
   }
 
   emitEndDrawer(): void {

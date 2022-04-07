@@ -1,13 +1,14 @@
-<kkl-stepper-layout
-  dir="rtl"
-  [steps]="steps"
-  [contentPortion]="{ open: 10, close: 50 }"
-  (stepChanged)="onChangeStep($event)"
->
-  <!-- the changing content of the stepper layout -->
-  <div content>
-    <router-outlet></router-outlet>
-  </div>
+<kkl-stepper-layout [actions]="actions" [steps]="steps">
+  <router-outlet content></router-outlet>
+
+  <kkl-drawer-document
+    [documents]="documents"
+    [categories]="[{label : 'coty', value : 'miki'}]"
+    (addDocument)="onAddDocument()"
+    title="מסמכי תיק"
+    drawer
+  >
+  </kkl-drawer-document>
 
   <!-- the footer of the stepper layout -->
   <kkl-navbar-bottom

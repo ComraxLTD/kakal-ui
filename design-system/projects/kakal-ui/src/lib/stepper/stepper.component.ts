@@ -10,11 +10,15 @@ import {
   CardStepModel,
   StepperDirection,
 } from '../cards/card-step/card-step.model';
-import { QuestionSelectModel } from '../form/form-select/question-select.model';
-import { FormService, Question } from '../form/services/form.service';
-import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { CardStatusModel } from '../../public-api';
+
+export interface StepperSelectEvent {
+  selectedStep: CardStepModel;
+  selectedIndex: number;
+  previousSelectedStep?: CardStepModel;
+  previousSelectedIndex?: number;
+}
 
 @Component({
   selector: 'kkl-stepper',
@@ -22,15 +26,13 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
-  @Input() question$: Observable<Question>;
   @Input() steps$: Observable<CardStepModel[]>;
   @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
 
   public mobile$: Observable<boolean>;
-  public selectQuestion$: Observable<Question>;
 
-  @Output() changeStep = new EventEmitter<CardStepModel>();
+  @Output() selectStep = new EventEmitter<StepperSelectEvent>();
 
   constructor(private breakpointService: BreakpointService) {}
 
@@ -38,7 +40,11 @@ export class StepperComponent {
     this.mobile$ = this.breakpointService.isMobile();
   }
 
-  public onChangeStep(step: CardStepModel) {
-    this.changeStep.emit(step);
+  public onStepSelect(step: CardStepModel | CardStatusModel, index: number) {
+    const event: StepperSelectEvent = {
+      selectedStep: step,
+      selectedIndex: index,
+    };
+    this.selectStep.emit(event);
   }
 }

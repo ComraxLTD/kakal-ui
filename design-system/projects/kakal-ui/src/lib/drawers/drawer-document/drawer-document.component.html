@@ -1,13 +1,12 @@
 <div fxLayout="column" fxLayoutGap="1rem" dir="rtl" fxFlex>
   <header fxLayout="column" fxLayoutGap="2rem" fxFlexOffset="1rem">
     <div>
-      <kkl-typography [size]="1.8" [weight]="600">{{
-        question.label
-      }}</kkl-typography>
+      <kkl-typography [size]="2.4">{{ title }}</kkl-typography>
     </div>
     <div>
-      <button mat-raised-button color="primary" (click)="onOpenPopUp()">
-        <kkl-typography color="paper"> הוספת מסמך חדש </kkl-typography>
+      <button mat-raised-button color="primary" (click)="onAddDocument()">
+        <mat-icon>add</mat-icon>
+        <span> הוספת מסמך חדש </span>
       </button>
     </div>
     <div fxLayout="row">
@@ -15,6 +14,7 @@
         fxFlex="70"
         (selectChanged)="onSelected($event)"
         [control]="control"
+        [options]="categories"
       >
       </kkl-form-select>
     </div>
@@ -25,13 +25,13 @@
   <main>
     <div fxLayout="column">
       <ng-container *ngFor="let item of documents$ | async; let i = index">
-        <app-contract-document-item
+        <kkl-drawer-document-item
           [item]="item"
           (delete)="onDelete($event)"
           (openPopup)="onOpenPopupSign($event)"
           (download)="onDownloadFile(item.id)"
           (showFile)="onShowFile()"
-        ></app-contract-document-item>
+        ></kkl-drawer-document-item>
       </ng-container>
     </div>
   </main>
