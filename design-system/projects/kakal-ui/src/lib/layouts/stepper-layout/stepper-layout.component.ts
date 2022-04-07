@@ -27,11 +27,6 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./stepper-layout.component.scss'],
 })
 export class StepperLayoutComponent {
-
-  @ContentChild(NavbarBottomDirective) bottomNavbarDirective: NavbarBottomDirective | undefined;
-  @ContentChild(NavbarBottomComponent) bottomNavbar: QueryList<NavbarBottomComponent>
-  // @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
-
   @Input() steps: CardStepModel[];
 
   // control content width when end drawer is open and close in %
@@ -42,6 +37,7 @@ export class StepperLayoutComponent {
 
   @Input() actions: ButtonModel[];
 
+  // when set to true disable default navigation
   @Input() manuel: boolean;
 
   // steps props
@@ -96,11 +92,6 @@ export class StepperLayoutComponent {
     );
 
     this.portion$ = this.getBreakPoints();
-  }
-
-  ngAfterViewInit() {
-    // console.log(this.bottomNavbar)
-    // console.log(this.bottomNavbarComp)
   }
 
   private setSteps(): CardStepModel[] {
@@ -232,11 +223,10 @@ export class StepperLayoutComponent {
   // DOM EVENTS
 
   onSelectStep(event: StepperSelectEvent): void {
+    if (!this.manuel) {
+      this.navigate(event.selectedStep.path);
+    }
     this.stepSelect.emit(event);
-    // if (this.manuel) {
-    // } else {
-    //   this.navigate(event.selectedStep.path);
-    // }
   }
 
   emitEndDrawer(): void {
