@@ -13,7 +13,6 @@ export class CardAddComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
   }
 
 }
