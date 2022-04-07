@@ -1,6 +1,6 @@
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { Palette } from '../../../styles/theme';
-import { Appearance, ControlType, InputGrid } from './question.types';
+import { Appearance, ControlType, GridProps } from './question.types';
 import { MeiSelectOption } from './select.model';
 import { BehaviorSubject } from 'rxjs';
 
@@ -14,7 +14,7 @@ export abstract class QuestionBase {
   public format?: { type: string; args?: any };
   public selector?: string;
   public controlType?: ControlType;
-  public gridProps?: InputGrid;
+  public gridProps?: GridProps;
   public icon?: string;
   public validations?: ValidatorFn[];
   public disabled?: boolean;
@@ -36,7 +36,7 @@ export abstract class QuestionBase {
     selector?: string;
     controlType?: ControlType;
     disabled?: boolean;
-    gridProps?: InputGrid;
+    gridProps?: GridProps;
     icon?: string;
     options?: MeiSelectOption[] |  BehaviorSubject<MeiSelectOption[]> | string;
     validations?: ValidatorFn[];

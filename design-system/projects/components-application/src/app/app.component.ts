@@ -21,10 +21,10 @@ export class AppComponent {
     //   key: 'email',
     //   controlType: 'email',
     // },
-    {
-      key: 'phone',
-      controlType: 'phone',
-    },
+    // {
+    //   key: 'phone',
+    //   controlType: 'phone',
+    // },
     // {
     //   key: 'tel',
     //   controlType: 'tel',
@@ -33,10 +33,22 @@ export class AppComponent {
     //   key: 'time',
     //   controlType: 'time',
     // },
-    // {
-    //   key: 'text',
-    //   controlType: 'textarea',
-    // },
+    {
+      key: 'textarea',
+      controlType: 'textarea',
+    },
+    {
+      key: 'number',
+      controlType: 'number',
+    },
+    {
+      key: 'password',
+      controlType: 'password',
+    },
+    {
+      key: 'text',
+      controlType: 'text',
+    },
   ];
 
   onQueryChanged(event){
