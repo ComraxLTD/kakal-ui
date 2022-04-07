@@ -1,13 +1,18 @@
+<!-- (selectionChange)="onSelectionChanged($event)" -->
 <mat-vertical-stepper
   #stepper
   class="kkl-vertical-steps"
   [selectedIndex]="_selectedIndex"
   [linear]="linear"
   [disableRipple]="true"
-  (click)="$event.stopPropagation()"
+  (selectionChange)="onSelectionChanged($event)"
 >
   <ng-container>
-    <mat-step [completed]="step.completed" *ngFor="let step of steps; let i = index">
+    <mat-step
+
+      [completed]="step.completed"
+      *ngFor="let step of steps; let i = index"
+    >
       <ng-template matStepLabel>
         <div (click)="onStepClick(step, i)">
           <kkl-typography [size]="2.4" color="primary" [weight]="600">

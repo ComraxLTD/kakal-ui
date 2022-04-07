@@ -12,8 +12,7 @@
     [templates]="templates"
     [linear]="options.isLinear"
     [selectedIndex]="_selectedIndex"
-    (interacted)="onSelectionChanged($event)"
-    (selectionChanged)="onInteractedStream($event)"
+    (stepChanged)="onStepChanged($event)"
   >
   </kkl-vertical-steps
 ></ng-template>

@@ -8,8 +8,7 @@
       [steps]="steps"
       [selectedIndex]="selectedIndex"
       [templates]="{filterForm, groupForm}"
-      (interacted)="onSelectionChanged($event)"
-      (selectionChanged)="onInteractedStream($event)"
+      (stepSelect)="onSelectionChanged($event)"
     ></kkl-accordion-steps-layout>
 
     <div>

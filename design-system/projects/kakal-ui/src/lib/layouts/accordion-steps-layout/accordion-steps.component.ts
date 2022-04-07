@@ -11,7 +11,10 @@ import { Step } from '../../vertical-steps/step/step.model';
 import { Panel } from '../accordion-layout/accordion-types';
 import { Observable, of } from 'rxjs';
 import { StepperSelectionEvent, CdkStep } from '@angular/cdk/stepper';
-import { VerticalStepsComponent } from '../../vertical-steps/vertical-steps.component';
+import {
+  StepSelectEvent,
+  VerticalStepsComponent,
+} from '../../vertical-steps/vertical-steps.component';
 
 @Component({
   selector: 'kkl-accordion-steps-layout',
@@ -36,26 +39,14 @@ export class AccordionStepsComponent implements OnInit {
   @Input() options: {
     isLinear?: boolean;
   } = {};
-
-  @Output() selectionChanged: EventEmitter<StepperSelectionEvent> =
-    new EventEmitter();
-
-  @Output() interacted: EventEmitter<CdkStep> = new EventEmitter();
+  
+  @Output() stepSelect: EventEmitter<StepSelectEvent> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  setSelectedIndex(selected: number) {
-    this.verticalStepper.setSelectedIndex(selected);
-  }
-
-  onSelectionChanged(event: StepperSelectionEvent) {
-    this.selectionChanged.emit(event);
-  }
-
-  onInteractedStream(event: CdkStep) {
-    // console.log('step', event);
-    this.interacted.emit(event);
+  onStepChanged(event: StepSelectEvent) {
+    this.stepSelect.emit(event);
   }
 }

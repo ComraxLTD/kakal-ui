@@ -1,3 +1,4 @@
+import { I } from '@angular/cdk/keycodes';
 import { StepperSelectionEvent, CdkStep } from '@angular/cdk/stepper';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
@@ -9,6 +10,7 @@ import {
   FormService,
   MenuCard,
   AccordionStepsComponent,
+  StepSelectEvent,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -64,23 +66,13 @@ export class AppComponent implements OnInit {
     { label: 'string', svgIcon: 'home', active: true, path: 'no' },
   ];
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
-
-  onSelectionChanged(event: StepperSelectionEvent) {
-    const { selectedIndex } = event;
-    console.log(selectedIndex)
-    this.accordionSteps.setSelectedIndex(selectedIndex + 1);
-    // if (selectedIndex === 1) {
-    // } else {
-    //   this.accordionSteps.setSelectedIndex(selectedIndex);
-    // }
-  }
-
-  onInteractedStream(event: CdkStep) {
-    // console.log('step', event);
-    // console.log(event);
+  onSelectionChanged(event: StepSelectEvent) {
+    const { selectedIndex, selectedStep } = event;
+    if (selectedStep.key === 'groupForm') {
+      this.selectedIndex = selectedIndex;
+    }
   }
 
   next() {
