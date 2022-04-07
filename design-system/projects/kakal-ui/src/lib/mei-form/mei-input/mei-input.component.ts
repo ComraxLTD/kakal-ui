@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormControlStatus } from '@angular/forms';
-import { Palette } from 'projects/kakal-ui/src/public-api';
+import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { FormInputService } from '../mei-services/form-input.service';

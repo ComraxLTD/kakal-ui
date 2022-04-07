@@ -72,12 +72,12 @@ export class MeiFormComponent implements OnInit {
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.variant = this.grid.variant || this.variant;
+    this.variant = this.grid?.variant || this.variant;
     this.cols = this.grid?.cols || 1;
     this.hasButton = !!this.grid?.buttonCols || false;
-    this.gutter = this.grid.gutter || 1;
+    this.gutter = this.grid?.gutter || 1;
     this.flex = 100 / (this.grid?.cols || this.cols);
-    this.layout = this.grid.layout;
+    this.layout = this.grid?.layout;
   }
 
   ngAfterViewInit() {

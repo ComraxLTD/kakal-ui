@@ -100,11 +100,11 @@ export class MeiSelectComponent implements OnInit {
       action: this.multi? FormActions.MULTI_SELECT_CHANGED : FormActions.SELECT_CHANGED
     });
   }
-  onOpenChanged() {
+  onOpenChanged(event) {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.OPEN_CHANGED
+      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT
     });
   }
 
