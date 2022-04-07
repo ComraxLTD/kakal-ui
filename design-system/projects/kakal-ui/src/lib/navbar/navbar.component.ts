@@ -10,10 +10,9 @@ import {
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
-import { ListItem } from '../list-item/list-item.model';
 import { PageHeadlineModel } from '../page-headline/page-headline.model';
+import { ROOT_PREFIX } from '../../constants/project-prefix';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { ROOT_PREFIX } from '../../public-api';
 
 @Component({
   selector: 'kkl-navbar',
