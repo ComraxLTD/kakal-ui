@@ -2,21 +2,22 @@
   <header fxLayout="column" fxLayoutGap="2rem" fxFlexOffset="1rem">
     <div>
       <kkl-typography [size]="1.8" [weight]="600">{{
-        question.label
+        question?.label
       }}</kkl-typography>
     </div>
     <div>
       <button mat-raised-button color="primary" (click)="onOpenPopUp()">
-        <kkl-typography color="paper"> הוספת מסמך חדש </kkl-typography>
+        <mat-icon>add</mat-icon>
+        <span> הוספת מסמך חדש </span>
       </button>
     </div>
     <div fxLayout="row">
-      <kkl-form-select
+      <!-- <kkl-form-select
         fxFlex="70"
         (selectChanged)="onSelected($event)"
         [control]="control"
       >
-      </kkl-form-select>
+      </kkl-form-select> -->
     </div>
   </header>
 
