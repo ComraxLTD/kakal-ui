@@ -97,7 +97,8 @@ import { registerLocaleData } from '@angular/common';
 import { CarouselModule } from './carousel/carousel.module';
 
 import { MeiFormModule } from './mei-form/mei-form.module';
-import {CardAddModule} from './cards/card-add/card-add.module';
+import { CardAddModule } from './cards/card-add/card-add.module';
+import { KKLFullCalendarModule } from './full-calendar/full-calendar.module';
 
 registerLocaleData(he);
 
@@ -193,7 +194,8 @@ registerLocaleData(he);
     KKPageModule,
     FacilityCardModule,
     CarouselModule,
-    CardAddModule
+    CardAddModule,
+    KKLFullCalendarModule
   ],
   exports: [
 
@@ -286,7 +288,8 @@ registerLocaleData(he);
     KKLAccordionStepsModule,
     FacilityCardModule,
     CarouselModule,
-    CardAddModule
+    CardAddModule,
+    KKLFullCalendarModule
   ],
 })
 export class KakalUiModule { }

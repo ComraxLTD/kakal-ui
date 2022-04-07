@@ -20,16 +20,32 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+
+  //calendar 
+  arr = [
+    {
+      backgroundColor: "#F0F6FE",
+      start: "2022-04-07T08:00",
+      end: "2022-04-07T09:00",
+      editable: true,
+      svg: "football",
+      textColor: "black",
+      title: "מגרש ספורט",
+      type: "facility"
+    }
+  ]
+
+  //
   component = CardAddComponent;
   cards = [
-    {title:'1',content:'test'},
-    {title:'2',content:'test'},
-    {title:'3',content:'test'},
-    {title:'4',content:'test'},
-    {title:'5',content:'test'},
-    {title:'6',content:'test'},
-    {title:'7',content:'test'},
-    {title:'8',content:'test'},
+    { title: '1', content: 'test' },
+    { title: '2', content: 'test' },
+    { title: '3', content: 'test' },
+    { title: '4', content: 'test' },
+    { title: '5', content: 'test' },
+    { title: '6', content: 'test' },
+    { title: '7', content: 'test' },
+    { title: '8', content: 'test' },
 
   ]
   public card = {
@@ -42,7 +58,7 @@ export class AppComponent implements OnInit {
   constructor(
     private formService: FormService,
     private pageHeadlineService: PageHeadlineService
-  ) {}
+  ) { }
 
   selectedIndex: number = 1;
 
@@ -79,7 +95,7 @@ export class AppComponent implements OnInit {
   ];
 
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSelectionChanged(event: StepSelectEvent) {
     const { selectedIndex, selectedStep } = event;
