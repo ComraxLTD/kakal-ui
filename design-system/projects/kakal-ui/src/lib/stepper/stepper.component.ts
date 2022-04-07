@@ -10,8 +10,8 @@ import {
   CardStepModel,
   StepperDirection,
 } from '../cards/card-step/card-step.model';
+import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
-import { CardStatusModel } from '../../public-api';
 
 export interface StepperSelectEvent {
   selectedStep: CardStepModel;

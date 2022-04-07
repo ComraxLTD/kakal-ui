@@ -20,6 +20,9 @@ import { merge, Observable, of } from 'rxjs';
 import { NavbarBottomDirective } from '../../navbar-bottom/navbar-bottom.directive';
 import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.component';
 
+import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { merge, Observable, of } from 'rxjs';
+
 @Component({
   selector: 'kkl-stepper-layout',
   templateUrl: './stepper-layout.component.html',
