@@ -1,27 +1,13 @@
 import { MatFormFieldAppearance } from '@angular/material/form-field';
 
-export interface FormGrid {
+export interface GridProps {
   variant?: 'flex' | 'grid';
   layout?: 'column' | 'row';
   cols?: number;
   rows?: number;
-  rowHeight?: number;
+  offset?: number;
   gutter?: number;
-  button?: ButtonGrid;
-}
-
-export interface ButtonGrid {
-  label?: string;
-  cols?: number;
-  skip?: number;
-  align?: 'start' | 'center' | 'end';
-}
-
-export interface InputGrid {
-  cols?: number;
-  rows?: number;
-  offset?: number | 'none';
-  skip?: number;
+  buttonCols?: number;
   fullWidth?: boolean;
   flex?: {
     width?: number;
@@ -42,30 +28,27 @@ export type ControlType =
   | 'password'
   | 'number'
   | 'textarea'
-  | 'select'
-  | 'multiSelect'
+  | 'time'
+
   | 'calendar'
-  | 'checkbox'
-  | 'checkboxGroup'
   | 'radio'
   | 'date'
   | 'dateRange'
-  | 'time'
-  | 'range'
   | 'counter'
-  | 'group'
-  | 'custom'
   | 'sum'
   | 'upload'
   | 'currency'
-  | 'autocomplete'
   | 'toggle'
   | 'email'
   | 'phone'
-  | 'group'
   | 'texteditor'
+
+  | 'checkbox'
+  | 'autocomplete'
+  | 'select'
+
   | 'cleave';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 
-// export type InputTypes = { Appearance; ControlType; Cleave; InputGrid };
+// export type InputTypes = { Appearance; ControlType; Cleave; GridProps };

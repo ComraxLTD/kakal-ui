@@ -53,13 +53,13 @@ export class MeiAutocompleteComponent implements OnInit {
       (this.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
         this.control.setValue(a.find(b => b.selected));
       });
-      this.control.valueChanges.pipe(
-        startWith(''),
-        distinctUntilChanged(),
-        debounceTime(this.debounce? this.debounce : 500),
-        filter( value => (typeof value === 'string'))
-      ).subscribe(a => this.search());
     }
+    this.control.valueChanges.pipe(
+      startWith(''),
+      distinctUntilChanged(),
+      debounceTime(this.debounce? this.debounce : 500),
+      filter( value => (typeof value === 'string'))
+    ).subscribe(a => this.search());
     this.error$ = new BehaviorSubject<string>('');
   }
 
@@ -103,11 +103,11 @@ export class MeiAutocompleteComponent implements OnInit {
     });
   }
 
-  onOpenChanged() {
+  onOpenChanged(event) {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value !== 'string'? this.control.value : null,
-      action: FormActions.OPEN_CHANGED,
+      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT,
       query: this.control.value === 'string'? this.control.value : null
     });
   }

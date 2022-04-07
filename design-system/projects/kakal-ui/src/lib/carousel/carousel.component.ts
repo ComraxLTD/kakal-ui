@@ -15,6 +15,9 @@ export class CarouselComponent implements OnInit {
 
   indexs: number[];
 
+  previous: boolean = false;
+  next: boolean = true;
+
   constructor(private injector: Injector) { }
 
   public createDynamicComponent(index: number) {
@@ -35,22 +38,20 @@ export class CarouselComponent implements OnInit {
   }
 
   onPrevious() {
-    this.indexs = this.indexs.map(val => {
-      if (val == 0) return this.data.length - 1;
-      else return val - 1;
-    });
+    if (!this.previous) return;
+    this.indexs = this.indexs.map(val => val - 1);
     this.clearNbuild();
   }
 
   onNext() {
-    this.indexs = this.indexs.map(val => {
-      if (val == this.data.length - 1) return 0;
-      else return val + 1;
-    });
+    if (!this.next) return;
+    this.indexs = this.indexs.map(val => val + 1);
     this.clearNbuild();
   }
 
   clearNbuild() {
+    this.indexs[0] == 0 ? this.previous = false : this.previous = true;
+    this.indexs[this.displayNum - 1] == this.data.length - 1 ? this.next = false : this.next = true;
     this.clearDynamicComponent();
     this.createComponents();
   }

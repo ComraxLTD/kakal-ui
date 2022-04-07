@@ -18,16 +18,13 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 
-
-
 .center-butt {
   text-align: center;
 }
 
 td.mat-cell {
-  border-bottom: 0.5px solid lightgray;
+  border-bottom: 0.5px solid main.color(table-background);
 }
-
 
 table {
   width: 100%;
@@ -44,10 +41,30 @@ table {
 //   // overflow: auto;
 // }
 
-
-
-
 // mat-paginator {
 //   direction: ltr;
 // }
 
+tr.mat-header-row{
+  th.mat-header-cell.cdk-header-cell{
+    border-bottom: 2px solid main.color(accent);
+  }
+}
+
+.arrow-down{
+  color: main.color(primary);
+  font-size: 3rem;
+}
+
+th>h3 {
+  font-weight: 600;
+  color: main.color(text);
+}
+
+.dragCursor:hover{
+  cursor: grab;
+}
+
+.dragCursor:active{
+  cursor: grabbing;
+}

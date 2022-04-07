@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { QuestionBase } from '../models/question.model';
 import { OptionsModel } from '../models/options.model'
 import { BehaviorSubject } from 'rxjs';
 import { MeiSelectOption } from '../models/select.model';
 import { FormChangeEvent } from '../models/form-events';
+import { GridProps } from '../models/question.types';
 @Component({
   selector: 'mei-form',
   templateUrl: './mei-form.component.html',
@@ -12,11 +13,31 @@ import { FormChangeEvent } from '../models/form-events';
 })
 export class MeiFormComponent implements OnInit {
 
-
   @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
+
+  @Input() grid: GridProps;
+  variant: 'flex' | 'grid' = 'grid';
+
+  @Input() buttonTemp: TemplateRef<any>;
+
+  @Input() rowHeight: number;
+
+  @Input() templates: {
+    [key: string]: TemplateRef<any>;
+  } = {};
+
+  @Input() optionsSlot: { [key: string]: ElementRef };
+  @Input() buttonLabel: string = 'שמור';
+
+  gutter: number;
+  hasButton: boolean;
+  cols: string | number;
+  layout: 'row' | 'column' = 'row';
+  flex: number;
+
 
   myQuestions!: QuestionBase[];
   @Input() set questions(val: QuestionBase[]) {
@@ -43,13 +64,21 @@ export class MeiFormComponent implements OnInit {
   }
 
 
+
   formGroup!: FormGroup;
 
   localObservables: Map<string, BehaviorSubject<MeiSelectOption[]>> = new Map<string, BehaviorSubject<MeiSelectOption[]>>();
 
   constructor(private fb: FormBuilder) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.variant = this.grid?.variant || this.variant;
+    this.cols = this.grid?.cols || 1;
+    this.hasButton = !!this.grid?.buttonCols || false;
+    this.gutter = this.grid?.gutter || 1;
+    this.flex = 100 / (this.grid?.cols || this.cols);
+    this.layout = this.grid?.layout;
+  }
 
   ngAfterViewInit() {
     this.putOptions();

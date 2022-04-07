@@ -5,7 +5,6 @@ import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { FormActions, FormChangeEvent } from '../models/form-events';
-import { QuestionBase } from '../models/question.model';
 import { MeiSelectOption } from '../models/select.model';
 
 @Component({
@@ -56,13 +55,13 @@ export class MeiMultiAutocompleteComponent {
       (this.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
         this.control.setValue(a.filter(b => b.selected));
       });
-      this.myAutoControl.valueChanges.pipe(
-        startWith(''),
-        distinctUntilChanged(),
-        debounceTime(this.debounce? this.debounce : 500),
-        filter( value => (typeof value === 'string'))
-      ).subscribe(a => this.search());
     }
+    this.myAutoControl.valueChanges.pipe(
+      startWith(''),
+      distinctUntilChanged(),
+      debounceTime(this.debounce? this.debounce : 500),
+      filter( value => (typeof value === 'string'))
+    ).subscribe(a => this.search());
     if(this.disabled) {
       this.myAutoControl.disable();
     }
@@ -123,11 +122,11 @@ export class MeiMultiAutocompleteComponent {
   }
 
 
-  onOpenChanged() {
+  onOpenChanged(event) {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.OPEN_CHANGED,
+      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT,
       query: this.myAutoControl.value
     });
   }
@@ -149,11 +148,8 @@ export class MeiMultiAutocompleteComponent {
   remove(meiSelect: MeiSelectOption): void {
     meiSelect.selected = true;
     const index = this.control.value.indexOf(meiSelect);
-    console.log(index);
-
-
     if (index >= 0) {
-      this.control.setValue(this.control.value.splice(index, 1));
+      this.control.value.splice(index, 1);
       this.selectChanged.emit({
         key: this.key,
         value: this.control.value,

@@ -12,6 +12,7 @@ import { KKLIconModule } from '../icon/icon.module';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MeiMultiAutocompleteComponent } from './mei-multi-autocomplete/mei-multi-autocomplete.component';
+import { MeiInputComponent } from './mei-input/mei-input.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { MeiMultiAutocompleteComponent } from './mei-multi-autocomplete/mei-mult
     KKLIconModule,
     MatInputModule
   ],
-  declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent],
-  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent,],
+  declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent],
+  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent],
 })
 export class MeiFormModule {}

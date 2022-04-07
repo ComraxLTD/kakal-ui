@@ -1,4 +1,3 @@
-import { FormControl } from "@angular/forms";
 
 export interface FormChangeEvent {
   key: string;
@@ -16,7 +15,8 @@ export enum FormActions {
   SEARCH_EVENT = 'focusIn',
 
   // Event emitted when the select panel has been toggled.
-  OPEN_CHANGED = 'openChanged',
+  OPENED_SELECT = 'openChanged',
+  CLOSED_SELECT = 'closeChanged',
 
   // Event emitted when the user is typing in simple input.
   VALUE_CHANGED = 'valueChanged',
