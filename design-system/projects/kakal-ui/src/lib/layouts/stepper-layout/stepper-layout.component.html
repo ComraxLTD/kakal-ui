@@ -1,6 +1,12 @@
 <ng-container *ngIf="portion$ | async as portion">
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav-drawer" mode="side" position="end" [opened]="true">
+    <mat-sidenav
+      #drawer
+      class="sidenav-drawer"
+      mode="side"
+      position="end"
+      [opened]="true"
+    >
       <!-- DRAWER CONTENT -->
       <div fxLayout="row" fxLayoutAlign="center center" fxFill>
         <div fxFlex="85" fxLayout="column" fxLayoutAlign="center center" fxFill>
@@ -46,7 +52,6 @@
     </mat-sidenav>
 
     <mat-sidenav-content [fxFlex]="portion" fxLayout="column">
-
       <mat-toolbar class="stepper-toolbar" dir="rtl">
         <!-- end drawer Button -->
 
