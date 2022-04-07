@@ -1,7 +1,9 @@
 <div fxLayout="column" fxLayoutGap="1rem">
   <section fxLayout="row" fxLayoutAlign="space-between center ">
-    <div>
-      <kkl-typography>{{ itemLabel }}</kkl-typography>
+    <div kkl-button (click)="onShowFile()">
+      <kkl-typography [underline]="true" color="primary">{{
+        item.label
+      }}</kkl-typography>
     </div>
     <div>
       <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -19,10 +21,6 @@
         </button>
       </mat-menu>
     </div>
-  </section>
-
-  <section appButton>
-    <kkl-typography (click)="onShowFile()" color="primary">{{item.name }}</kkl-typography>
   </section>
 
   <section fxLayout="row" fxLayoutAlign="space-between start">

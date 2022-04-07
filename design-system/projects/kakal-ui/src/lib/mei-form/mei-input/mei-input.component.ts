@@ -22,10 +22,10 @@ export class MeiInputComponent implements OnInit {
   @Input() theme!: Palette;
   @Input() index!: number;
   @Input() gridProps!: GridProps;
+  @Input() cleave!: {};
   @Input() icon!: string;
   @Input() debounce!: number;
 
-  cleave!: {};
   error$: BehaviorSubject<string>;
   color$: Observable<Palette>;
 

@@ -12,6 +12,7 @@ import { ButtonComponent } from './components/button/button.component';
 import { StrokeButtonComponent } from './components/stroke-button/stroke-button.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
 
+import { KKLButtonDirective } from './directives/button.directive';
 import { KKLStrokedButtonDirective } from './directives/stroked-button.directive';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLActionButtonDirective } from './directives/action-button.directive';
@@ -31,20 +32,22 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
   ],
   declarations: [
     ButtonComponent,
+    AddButtonComponent,
     StrokeButtonComponent,
+    KKLButtonDirective,
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
     KKLActionButtonDirective,
-    AddButtonComponent,
   ],
   exports: [
     MatButtonModule,
     ButtonComponent,
+    AddButtonComponent,
     StrokeButtonComponent,
+    KKLButtonDirective,
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
     KKLActionButtonDirective,
-    AddButtonComponent,
   ],
 })
 export class KKLButtonModule {}

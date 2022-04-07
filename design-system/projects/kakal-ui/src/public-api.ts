@@ -10,9 +10,11 @@ export * from './lib/button/components/button/button.component';
 export * from './lib/button/components/add-button/add-button.component';
 export * from './lib/button/components/stroke-button/stroke-button.component';
 
+export * from './lib/button/directives/button.directive';
 export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
 export * from './lib/button/directives/form-button.directive';
+
 
 export * from './lib/button/models/button.types';
 
@@ -101,7 +103,6 @@ export * from './lib/form/form-search/form-search.component';
 export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
-
 
 // mei form
 export * from './lib/mei-form/mei-form.module';
@@ -301,23 +302,24 @@ export * from './lib/cards/card-filter/card-filter.component';
 export * from './lib/cards/card.model';
 
 // navbar
-export * from './lib/navbar/navbar.component';
 export * from './lib/navbar/navbar.module';
+export * from './lib/navbar/navbar.component';
 export * from './lib/navbar/navbar.service';
 
 // navbar - bottom
-export * from './lib/navbar-bottom/navbar-bottom.component';
 export * from './lib/navbar-bottom/navbar-bottom.module';
+export * from './lib/navbar-bottom/navbar-bottom.component';
+export * from './lib/navbar-bottom/navbar-bottom.directive';
 export * from './lib/navbar-bottom/navbar-bottom.service';
 
 // stepper
-export * from './lib/stepper/stepper.component';
 export * from './lib/stepper/stepper.module';
+export * from './lib/stepper/stepper.component';
 export * from './lib/stepper/stepper.service';
 
 // stepper mobile
-export * from './lib/stepper-mobile/stepper-mobile.component';
 export * from './lib/stepper-mobile/stepper-mobile.module';
+export * from './lib/stepper-mobile/stepper-mobile.component';
 
 // stepper layout
 export * from './lib/layouts/stepper-layout/stepper-layout.component';
@@ -375,18 +377,15 @@ export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
 
-// drawer
+// display-data
 export * from './lib/display-data/display-data.component';
 export * from './lib/display-data/display-data.module';
 
-
-// display-data
+// drawer
 export * from './lib/drawers/drawer.module';
+export * from './lib/drawers/drawer-document/drawer-document.module';
 export * from './lib/drawers/drawer-document/drawer-document.component';
-export * from './lib/drawers/drawer-document-item/drawer-document-item.component';
-
-
-
+export * from './lib/drawers/drawer-document/drawer-document-item/drawer-document-item.component';
 
 // pipes
 export * from './lib/pipes/area.pipe';
@@ -402,7 +401,6 @@ export * from './lib/pipes/pipes.module';
 export * from './lib/directives/hover.directive';
 export * from './lib/directives/variant.directive';
 export * from './lib/directives/size.directive';
-export * from './lib/directives/button.directive';
 export * from './lib/directives/underline.directive';
 export * from './lib/directives/border.directive';
 export * from './lib/directives/outside.directive';

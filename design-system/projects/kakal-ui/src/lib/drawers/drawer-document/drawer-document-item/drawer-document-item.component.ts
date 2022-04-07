@@ -1,16 +1,20 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+export interface DocumentItem {
+  label : string;
+  dateCreated : Date
+  userCreated : string
+}
+
 @Component({
   selector: 'kkl-drawer-document-item',
   templateUrl: './drawer-document-item.component.html',
   styleUrls: ['./drawer-document-item.component.scss'],
 })
-export class DrawerDocumentItemComponent<T> implements OnInit {
-  @Input() item: T;
+export class DrawerDocumentItemComponent implements OnInit {
+  @Input() item: DocumentItem;
 
-  itemLabel: string;
-
-  @Output() delete: EventEmitter<T> = new EventEmitter();
+  @Output() delete: EventEmitter<DocumentItem> = new EventEmitter();
   @Output() openPopup: EventEmitter<void> = new EventEmitter();
   @Output() download: EventEmitter<void> = new EventEmitter();
   @Output() showFile: EventEmitter<void> = new EventEmitter();
@@ -19,7 +23,7 @@ export class DrawerDocumentItemComponent<T> implements OnInit {
 
   ngOnInit(): void {}
 
-  onDelete(item: T) {
+  onDelete(item: DocumentItem) {
     this.delete.emit(item);
   }
 

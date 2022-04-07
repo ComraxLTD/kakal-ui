@@ -1,6 +1,11 @@
 <ng-container *ngIf="portion$ | async as portion">
   <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav #drawer class="sidenav-drawer" mode="side" position="end">
+    <mat-sidenav
+      #drawer
+      class="sidenav-drawer"
+      mode="side"
+      position="end"
+    >
       <!-- DRAWER CONTENT -->
       <div fxLayout="row" fxLayoutAlign="center center" fxFill>
         <div fxFlex="85" fxLayout="column" fxLayoutAlign="center center" fxFill>
@@ -46,26 +51,6 @@
     </mat-sidenav>
 
     <mat-sidenav-content [fxFlex]="portion" fxLayout="column">
-      <!-- <div class="stepper-container" fxLayout="column"> -->
-      <!-- <mat-toolbar fxLayout="column" class="title" *ngIf="hasTitle">
-          <div
-            dir="rtl"
-            fxLayout="row"
-            fxFlex="10rem"
-            fxFill
-            fxLayoutAlign="center center"
-          >
-            <div
-              fxFlex="90"
-              fxLayout="row wrap"
-              fxLayoutAlign="space-between center"
-            >
-              <ng-content select="[title]"></ng-content>
-              <ng-content select="[actions]"></ng-content>
-            </div>
-          </div>
-        </mat-toolbar> -->
-
       <mat-toolbar class="stepper-toolbar" dir="rtl">
         <!-- end drawer Button -->
 
@@ -101,14 +86,14 @@
             <kkl-stepper
               [steps$]="steps$"
               direction="row"
-              (changeStep)="onChangeStep($event)"
+              (selectStep)="onSelectStep($event)"
             ></kkl-stepper>
           </ng-container>
 
           <ng-template #mobileBlock>
             <kkl-stepper-mobile
               [steps$]="steps$"
-              (changeStep)="onChangeStep($event)"
+              (selectStep)="onSelectStep($event)"
             ></kkl-stepper-mobile>
           </ng-template>
         </div>

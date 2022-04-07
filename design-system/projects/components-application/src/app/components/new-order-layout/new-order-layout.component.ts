@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {
+  ButtonModel,
   CardStepModel,
-  PageHeadlineModel,
+  DialogComponent,
+  DocumentItem,
+  FormActions,
+  NavbarBottomComponent,
   RouterService,
-  StepperLayoutService,
 } from '../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
 
@@ -13,50 +16,53 @@ import { Observable } from 'rxjs';
   styleUrls: ['./new-order-layout.component.scss'],
 })
 export class NewOrderLayoutComponent implements OnInit {
+
+  bottomNavbarComp = NavbarBottomComponent
+
   public disableNext!: Observable<boolean>;
 
-  //stepper steps
-  public steps: CardStepModel[] = [
+  steps: CardStepModel[] = [
     {
-      label: 'פרטי הזמנה',
-      svgIcon: 'contact',
+      label: 'פרטי נכס',
+      svgIcon: 'home',
       path: 'details',
     },
     {
-      label: 'בחירת ספק',
-      svgIcon: 'reports',
-      path: 'select-supplier',
+      label: 'טיוטות והסכמים',
+      svgIcon: 'portfolio',
+      path: 'documents',
     },
     {
-      label: 'ספק זוכה',
-      svgIcon: 'medal',
-      path: 'bid',
+      label: 'שליחת מייל',
+      svgIcon: 'mail',
+      path: 'mails',
     },
   ];
 
-  //page headline items
-  headlineItems: PageHeadlineModel[] = [
-    { value: 'הזמנה חדשה', template: true },
-    { value: 'מפ/1234/22', format: 'date' },
-    { value: 'ה כיבוד' },
-    { value: 'אקליפטוס יער', template: true },
+  actions: ButtonModel[] = [
+    { label: 'מסמכי תיק', type: 'file', action: FormActions.VALUE_CHANGED },
+    { type: 'form', action: FormActions.EDIT },
+    { type: 'form', action: FormActions.SUBMIT },
   ];
-  //status model fot the page headline
+
+
+  documents : DocumentItem[] = [
+    { label : 'test', dateCreated : new Date(), userCreated : 'tommy'},
+    { label : 'test2', dateCreated : new Date(), userCreated : 'tommy2'},
+    { label : 'test3', dateCreated : new Date(), userCreated : 'tommy3'},
+    { label : 'test4', dateCreated : new Date(), userCreated : 'tommy4'}
+  ]
 
   constructor(
     private routerService: RouterService,
-    private stepperLayoutService: StepperLayoutService
   ) {}
+
 
   ngOnInit(): void {
     //decide if drawer is open or closed on init
-    this.stepperLayoutService.emitDisplayDrawer(false);
   }
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    console.log(path);
-
-    path = `/new-order/create-new-order/${path}`;
     this.routerService.navigate(path);
   }
 
@@ -71,5 +77,9 @@ export class NewOrderLayoutComponent implements OnInit {
 
   public onPrevious(): void {
     this.routerService.goBack();
+  }
+
+  onAddDocument() {
+    console.log('works')
   }
 }

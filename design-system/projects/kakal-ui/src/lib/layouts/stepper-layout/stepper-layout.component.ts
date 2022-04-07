@@ -1,14 +1,25 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { StepperLayoutService } from './stepper-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { merge, Observable, of } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
+import { StepperSelectEvent } from '../../stepper/stepper.component';
+import { NavbarBottomDirective } from '../../navbar-bottom/navbar-bottom.directive';
+import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.component';
+
+import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -25,6 +36,9 @@ export class StepperLayoutComponent {
   };
 
   @Input() actions: ButtonModel[];
+
+  // when set to true disable default navigation
+  @Input() manuel: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -47,7 +61,7 @@ export class StepperLayoutComponent {
   rowActions!: ButtonModel[];
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
-  @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() stepSelect: EventEmitter<StepperSelectEvent> = new EventEmitter();
   @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
@@ -191,10 +205,28 @@ export class StepperLayoutComponent {
     this.openChanged.emit(this._endDrawerOpen);
   }
 
+  // NAVIGATE HELPER METHODS
+  private getUrl(path: string) {
+    const routes = this.routerService.currentRoute.split('/');
+    routes.unshift();
+    routes.pop();
+    routes.push(path);
+    return routes.join('/');
+  }
+
+  // NAVIGATION EVENTS SECTION
+  private navigate(path: string) {
+    const url = this.getUrl(path);
+    this.routerService.navigate(url);
+  }
+
   // DOM EVENTS
 
-  onChangeStep(step: CardStepModel): void {
-    this.stepChanged.emit(step);
+  onSelectStep(event: StepperSelectEvent): void {
+    if (!this.manuel) {
+      this.navigate(event.selectedStep.path);
+    }
+    this.stepSelect.emit(event);
   }
 
   emitEndDrawer(): void {
