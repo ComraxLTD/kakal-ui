@@ -42,19 +42,15 @@ export type ControlType =
   | 'password'
   | 'number'
   | 'textarea'
-  | 'select'
-  | 'multiSelect'
+  | 'time'
+
   | 'calendar'
   | 'checkbox'
   | 'checkboxGroup'
   | 'radio'
   | 'date'
   | 'dateRange'
-  | 'time'
-  | 'range'
   | 'counter'
-  | 'group'
-  | 'custom'
   | 'sum'
   | 'upload'
   | 'currency'
@@ -62,8 +58,12 @@ export type ControlType =
   | 'toggle'
   | 'email'
   | 'phone'
-  | 'group'
   | 'texteditor'
+
+  | 'checkbox'
+  | 'autocomplete'
+  | 'select'
+
   | 'cleave';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
