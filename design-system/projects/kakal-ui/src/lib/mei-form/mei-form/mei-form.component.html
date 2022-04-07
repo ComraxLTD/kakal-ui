@@ -5,7 +5,7 @@
         <ng-container *ngFor="let question of myQuestions; let index = index">
           <ng-container [ngSwitch]="question.controlType">
 
-            <!-- SELECT INPUT SECTION -->
+
             <ng-container *ngSwitchCase="'select'">
               <mat-grid-tile [colspan]=" question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
                 <mei-select
@@ -63,6 +63,31 @@
               </ng-template>
             </ng-container>
 
+
+            <ng-container *ngSwitchDefault>
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <div fxFill [fxLayoutAlign]="question?.gridProps?.flex?.align || 'center' + ' center'">
+                  <div [fxFlex]="question?.gridProps?.flex?.width || 100">
+                    <mei-input
+                      [control]="formGroup.controls[question.key]"
+                      [label]="question.label"
+                      [key]="question.key"
+                      [placeHolder]="question.placeHolder"
+                      [theme]="question.theme"
+                      [appearance]="question.appearance"
+                      [gridProps]="question.gridProps"
+                      [icon]="question.icon"
+                      [controlType]="question?.controlType"
+                      (focusChanged)="onFocusChanged($event)"
+                      (valueChanged)="onValueChanged($event)"
+                    >
+                    </mei-input>
+                  </div>
+                </div>
+              </mat-grid-tile>
+
+              <mat-grid-tile *ngIf="question?.gridProps?.offset"> </mat-grid-tile>
+            </ng-container>
           </ng-container>
         </ng-container>
 
@@ -137,6 +162,22 @@
                 ></mei-autocomplete>
               </ng-template>
             </ng-container>
+
+            <ng-container *ngSwitchDefault>
+              <mei-input
+                [control]="formGroup.controls[question.key]"
+                [label]="question.label"
+                [key]="question.key"
+                [placeHolder]="question.placeHolder"
+                [theme]="question.theme"
+                [appearance]="question.appearance"
+                [icon]="question.icon"
+                [controlType]="question.controlType"
+                (focusChanged)="onFocusChanged($event)"
+                (valueChanged)="onValueChanged($event)"
+              ></mei-input>
+            </ng-container>
+
           </div>
 
         </ng-container>

@@ -1,3 +1,23 @@
-<kkl-layout [cards]="cards">
-  <app-new-order-layout></app-new-order-layout>
-</kkl-layout>
+<ng-container content>
+  <ng-container>
+    <mei-form
+      [questions]="questions"
+      (queryChanged)="onQueryChanged($event)"
+      (selectChanged)="onSelectChanged($event)"
+      (openChanged)="onOpenChanged($event)"
+      (valueChanged)="onValueChanged($event)"
+    ></mei-form>
+  </ng-container>
+</ng-container>
+<!--<kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  (actionClicked)="editRow($event)"
+  (editRow)="editRow($event)"
+  dragable="true"
+></kkl-local-table>
+
+<kkl-button (clickEvent)="onClick('sadasdasd')"></kkl-button>
+<kkl-add-button (clickEvent)="onClick('sdfsdfsdf')"></kkl-add-button> -->

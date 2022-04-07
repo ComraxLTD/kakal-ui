@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { FormGrid } from '../../../../../kakal-ui/src/lib/form/models/question.types';
 import {
   FormService,
   Question,
   QuestionGroupModel,
-  FormGrid,
+
 } from '../../../../../kakal-ui/src/public-api';
 
 @Component({

@@ -5,7 +5,7 @@ import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Obser
 import { MessageService } from '../mei-services/message.service';
 import { FormInputService } from '../mei-services/form-input.service';
 import { FormActions, FormChangeEvent } from '../models/form-events';
-import { Appearance, ControlType, InputGrid } from '../models/question.types';
+import { Appearance, ControlType, GridProps } from '../models/question.types';
 
 @Component({
   selector: 'mei-input',
@@ -21,8 +21,8 @@ export class MeiInputComponent implements OnInit {
   @Input() appearance!: Appearance;
   @Input() theme!: Palette;
   @Input() index!: number;
+  @Input() gridProps!: GridProps;
   @Input() cleave!: {};
-  @Input() gridProps!: InputGrid;
   @Input() icon!: string;
   @Input() debounce!: number;
 
@@ -46,7 +46,7 @@ export class MeiInputComponent implements OnInit {
       startWith(''),
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 500),
-      filter( value => (typeof value === 'string'))
+      filter( value => (typeof value === 'string' && value !== ''))
     ).subscribe(a => this.onValueChanged());
 
     this.setProps();
@@ -138,6 +138,37 @@ export class MeiInputComponent implements OnInit {
       value: this.control.value,
       action: FormActions.VALUE_CHANGED,
     });
+  }
+
+  onValueChangedInput(event) {
+    this.checkDigits(event);
+  }
+
+  private checkDigits(val: string) {
+    const twoDigits: string[] = ['02', '03', '04', '08', '09'];
+    const threeDigits: string[] = ['05', '07'];
+    if (val.length > 1) {
+      const str = val.charAt(0) !== '+' ? val.substring(0, 2) : val.substring(1,3);
+      delete this.cleave['delimiter'];
+      const [two, three] = [twoDigits.includes(str), threeDigits.includes(str)];
+      if (!two && !three) {
+        this.cleave = {
+          ...this.cleave,
+          blocks: [0, 14],
+          // delimiter: '+',
+        }
+      }
+      if (three) this.cleave = {
+        ...this.cleave,
+        blocks: [3, 3, 4],
+        delimiter: '-',
+      }
+      if (two) this.cleave = {
+        ...this.cleave,
+        blocks: [2, 3, 4],
+        delimiter: '-',
+      }
+    }
   }
 
 }

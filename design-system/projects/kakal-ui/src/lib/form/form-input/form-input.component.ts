@@ -54,7 +54,7 @@ export class FormInputComponent implements OnInit {
       const str = val.charAt(0) !== '+' ? val.substring(0, 2) : val.substring(1,3);
       delete this.cleave['delimiter'];
       const [two, three] = [twoDigits.includes(str), threeDigits.includes(str)];
-      
+
       if (!two && !three) {
         this.cleave = {
           ...this.cleave,
