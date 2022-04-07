@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  Component,
+  ContentChild,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+} from '@angular/core';
 import { StepperLayoutService } from './stepper-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
@@ -8,6 +15,10 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
+import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { merge, Observable, of } from 'rxjs';
+import { NavbarBottomDirective } from '../../navbar-bottom/navbar-bottom.directive';
+import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.component';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
@@ -18,6 +29,11 @@ import { merge, Observable, of } from 'rxjs';
   styleUrls: ['./stepper-layout.component.scss'],
 })
 export class StepperLayoutComponent {
+
+  @ContentChild(NavbarBottomDirective) bottomNavbarDirective: NavbarBottomDirective | undefined;
+  @ContentChild(NavbarBottomComponent) bottomNavbar: QueryList<NavbarBottomComponent>
+  // @ContentChildren(TabComponent) tabs: QueryList<TabComponent>;
+
   @Input() steps: CardStepModel[];
 
   // control content width when end drawer is open and close in %
@@ -82,6 +98,11 @@ export class StepperLayoutComponent {
     );
 
     this.portion$ = this.getBreakPoints();
+  }
+
+  ngAfterViewInit() {
+    // console.log(this.bottomNavbar)
+    // console.log(this.bottomNavbarComp)
   }
 
   private setSteps(): CardStepModel[] {
