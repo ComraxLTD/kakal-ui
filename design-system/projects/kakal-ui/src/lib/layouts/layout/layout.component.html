@@ -6,7 +6,8 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <kkl-navbar
-      [show$]="show$"
+      [showStatus$]="showStatus$"
+      [isOpen]="menuDrawer.opened"
       (menuToggle)="menuDrawer.toggle()"
       (logoClicked)="onLogoClicked()"
     ></kkl-navbar>
