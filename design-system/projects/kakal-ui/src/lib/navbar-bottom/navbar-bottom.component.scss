@@ -3,12 +3,15 @@
 mat-toolbar {
   padding-left: main.spacing(5);
   padding-right: main.spacing(5);
+  background-color: white!important;
 }
 
 div {
   height: 100%;
 }
-
+mat-icon {
+  color: main.color(primary);
+}
 button.mat-mini-fab {
   background-color: main.color(paper) !important;
 }

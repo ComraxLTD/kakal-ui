@@ -55,12 +55,12 @@ const Template: Story<NavigationComponent> = (args: NavigationComponent) => ({
 export const navigation = Template.bind({});
 
 navigation.args = {
-  steps$: of([
-    new CardStatusModel({key:'s'}),
-    new CardStatusModel({key:'s'}),
-    new CardStatusModel({key:'s'}),
-    new CardStatusModel({key:'s'}),
-  ]),
-  activeStepIndex:0,
+  // steps$: of([
+  //   new CardStatusModel({key:'s'}),
+  //   new CardStatusModel({key:'s'}),
+  //   new CardStatusModel({key:'s'}),
+  //   new CardStatusModel({key:'s'}),
+  // ]),
+  // activeStepIndex:0,
 
 };

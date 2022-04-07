@@ -102,6 +102,18 @@ export * from './lib/form/services/form.service';
 export * from './lib/form/services/message.service';
 export * from './lib/form/services/validations.service';
 
+
+// mei form
+export * from './lib/mei-form/mei-form.module';
+export * from './lib/mei-form/models/options.model';
+export * from './lib/mei-form/models/question.model';
+export * from './lib/mei-form/models/question.types';
+export * from './lib/mei-form/models/select.model';
+export * from './lib/mei-form/mei-select/mei-select.component';
+export * from './lib/mei-form/mei-form/mei-form.component';
+export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
+export * from './lib/mei-form/mei-multi-autocomplete/mei-multi-autocomplete.component';
+
 // FORM QUESTIONS //
 
 export * from './lib/form/models/question-group.model';
@@ -110,8 +122,8 @@ export * from './lib/form/models/question-sum.model';
 export * from './lib/form/models/question-text.model';
 export * from './lib/form/models/question-textarea.model';
 export * from './lib/form/models/question-toggle.model';
-export * from './lib/form/models/question.model';
-export * from './lib/form/models/question.types';
+// export * from './lib/form/models/question.model';
+// export * from './lib/form/models/question.types';
 
 // ------------------------------------------------------------------------------------------
 // TABLE EXPORTS
@@ -232,8 +244,8 @@ export * from './lib/page-headline/page-headline.module';
 export * from './lib/page-headline/page-headline.service';
 
 // status-bars
-export * from './lib/status-bars/status-bars.module';
-export * from './lib/status-bars/status-bars.component';
+export * from './lib/status-stpes/status-steps.module';
+export * from './lib/status-stpes/status-steps.component';
 
 // step title
 export * from './lib/step-title/step-title.module';
@@ -256,6 +268,9 @@ export * from './lib/kkl-hover/kkl-hover.component';
 export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards
+
+export * from './lib/cards/card-add/card-add.component';
+export * from './lib/cards/card-add/card-add.module';
 
 export * from './lib/cards/card-lobby/card-lobby.module';
 export * from './lib/cards/card-lobby/card-lobby.component';
@@ -346,8 +361,10 @@ export * from './lib/facility-card/facility-card.component';
 export * from './lib/facility-card/facility-card.module';
 
 // vertical-steps
-export * from './lib/vertical-steps/vertical-steps.component';
 export * from './lib/vertical-steps/vertical-steps.module';
+export * from './lib/vertical-steps/vertical-steps.component';
+export * from './lib/vertical-steps/vertical-steps.directive';
+
 export * from './lib/vertical-steps/step/step.module';
 export * from './lib/vertical-steps/step/step.component';
 export * from './lib/vertical-steps/step/step.directive';
@@ -396,3 +413,7 @@ export * from './lib/directives/directives.module';
 //
 export * from './lib/tabs/tabs.component';
 export * from './lib/tabs/tabs.module';
+
+// carousel
+export * from './lib/carousel/carousel.component';
+export * from './lib/carousel/carousel.module';

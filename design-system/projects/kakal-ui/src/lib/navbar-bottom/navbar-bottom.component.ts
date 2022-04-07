@@ -19,7 +19,7 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-  @Input() bottomIcon: string
+  @Input() bottomIcon: string = 'bottom_tree_tac';
   @Input() nextText: string
   @Input() hasNext: boolean;
   @Input() disableNext$: Observable<boolean>;

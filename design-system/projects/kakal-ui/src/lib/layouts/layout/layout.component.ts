@@ -48,4 +48,5 @@ export class LayoutComponent implements OnInit {
   public onLogoClicked() {
     this.logoClicked.emit();
   }
+
 }

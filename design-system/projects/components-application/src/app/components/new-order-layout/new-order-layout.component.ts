@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   CardStepModel,
+  PageHeadlineModel,
   RouterService,
   StepperLayoutService,
 } from '../../../../../kakal-ui/src/public-api';
@@ -33,6 +34,15 @@ export class NewOrderLayoutComponent implements OnInit {
     },
   ];
 
+  //page headline items
+  headlineItems: PageHeadlineModel[] = [
+    { value: 'הזמנה חדשה', template: true },
+    { value: 'מפ/1234/22', format: 'date' },
+    { value: 'ה כיבוד' },
+    { value: 'אקליפטוס יער', template: true },
+  ];
+  //status model fot the page headline
+
   constructor(
     private routerService: RouterService,
     private stepperLayoutService: StepperLayoutService
@@ -62,5 +72,4 @@ export class NewOrderLayoutComponent implements OnInit {
   public onPrevious(): void {
     this.routerService.goBack();
   }
-
 }
