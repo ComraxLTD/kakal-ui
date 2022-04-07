@@ -22,10 +22,9 @@ import {
   styleUrls: ['./accordion-steps.component.scss'],
 })
 export class AccordionStepsComponent implements OnInit {
-  @ViewChild('verticalStepper')
-  verticalStepper: VerticalStepsComponent;
-
+  
   @Input() complete$: Observable<boolean>;
+  @Input() manuel: boolean;
   @Input() steps: Step[];
   @Input() panels: Panel[];
   @Input() templates: { [key: string]: TemplateRef<any> };
@@ -39,7 +38,7 @@ export class AccordionStepsComponent implements OnInit {
   @Input() options: {
     isLinear?: boolean;
   } = {};
-  
+
   @Output() stepSelect: EventEmitter<StepSelectEvent> = new EventEmitter();
 
   constructor() {}

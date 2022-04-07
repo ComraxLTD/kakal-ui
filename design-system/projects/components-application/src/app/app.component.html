@@ -2,8 +2,8 @@
 <div fxLayout="row" fxLayoutAlign="center">
   <div fxFlex="90" fxLayout="column" fxLayoutGap="2rem">
     <kkl-accordion-steps-layout
-      #accordionSteps
       fxFill
+      [manuel]="true"
       [panels]="panels"
       [steps]="steps"
       [selectedIndex]="selectedIndex"
@@ -12,9 +12,10 @@
     ></kkl-accordion-steps-layout>
 
     <div>
-      <button (click)="next()" mat-raised-button>
+      <mat-checkbox #checked>manuel</mat-checkbox>
+      <!-- <button (click)="next()" mat-raised-button>
         toggle to able next step
-      </button>
+      </button> -->
     </div>
   </div>
   <!-- templates for layouts -->

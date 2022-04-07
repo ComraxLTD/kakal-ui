@@ -19,8 +19,6 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  @ViewChild('accordionSteps')
-  accordionSteps: AccordionStepsComponent;
 
   show$: Observable<boolean> = of(true);
   constructor(

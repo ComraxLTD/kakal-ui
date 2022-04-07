@@ -36,7 +36,8 @@ export interface StepSelectEvent {
 export class VerticalStepsComponent implements OnInit {
   @ViewChild('stepper', { static: false }) stepper: MatStepper;
 
-  @Input() linear;
+  @Input() manuel = false;
+  @Input() linear: boolean;
 
   @Input() steps: Step[];
 
@@ -59,10 +60,12 @@ export class VerticalStepsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.disableStepperSelect();
+    // if (this.manuel) {
+    //   this.disableStepperSelect();
+    // }
   }
 
-  private disableStepperSelect() {
+  disableStepperSelect() {
     setTimeout(() => {
       this.stepper.steps.forEach((step, idx) => {
         step.select = () => {
