@@ -10,11 +10,11 @@ import { CardStepModel } from './card-step.model';
   styleUrls: ['./card-step.component.scss'],
 })
 export class CardStepComponent implements OnInit {
-  @Input() public step: CardStepModel;
+  @Input() step: CardStepModel;
 
-  public mobile$: Observable<boolean>;
+  mobile$: Observable<boolean>;
 
-  @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() stepSelect: EventEmitter<void> = new EventEmitter();
 
   constructor(
     private iconsService: IconsService,
@@ -26,9 +26,9 @@ export class CardStepComponent implements OnInit {
     this.iconsService.setIcon(this.step.svgIcon);
   }
 
-  public onStepClick(): void {
+  onStepSelect(): void {
     if (!this.step.isActive && !this.step.disabled) {
-      this.changeStep.emit(this.step);
+      this.stepSelect.emit();
     }
   }
 }

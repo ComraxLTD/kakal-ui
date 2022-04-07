@@ -1,5 +1,5 @@
 <div
-  [class.kkl-step-card]="true"
+  class="kkl-step-card"
   fxLayout="column"
   fxLayoutAlign="center center"
   fxLayoutGap=".5rem"
@@ -7,9 +7,10 @@
 >
   <!-- icon section -->
   <div
+    kkl-button
     appSize
     [size]="6"
-    (click)="onStepClick()"
+    (click)="onStepSelect()"
     [matBadge]="step.value"
     matBadgeColor="accent"
     matBadgeSize="medium"

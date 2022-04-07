@@ -82,14 +82,14 @@
             <kkl-stepper
               [steps$]="steps$"
               direction="row"
-              (changeStep)="onChangeStep($event)"
+              (selectStep)="onSelectStep($event)"
             ></kkl-stepper>
           </ng-container>
 
           <ng-template #mobileBlock>
             <kkl-stepper-mobile
               [steps$]="steps$"
-              (changeStep)="onChangeStep($event)"
+              (selectStep)="onSelectStep($event)"
             ></kkl-stepper-mobile>
           </ng-template>
         </div>

@@ -66,4 +66,7 @@ export class NewOrderLayoutComponent implements OnInit {
   public onPrevious(): void {
     this.routerService.goBack();
   }
+
+  onAddDocument() {
+  }
 }
