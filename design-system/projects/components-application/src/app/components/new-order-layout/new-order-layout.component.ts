@@ -8,7 +8,6 @@ import {
   StepperLayoutService,
 } from '../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
-// import { StatusBarsModel } from '../../../../../kakal-ui/src/lib/status-bars/status-bars.model';
 
 @Component({
   selector: 'app-new-order-layout',

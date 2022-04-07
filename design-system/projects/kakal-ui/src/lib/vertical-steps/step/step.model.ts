@@ -4,4 +4,5 @@ export interface Step<T = any> {
   key: keyof T;
   label: string;
   control?: FormGroup;
+  completed?: boolean;
 }

@@ -362,8 +362,10 @@ export * from './lib/facility-card/facility-card.component';
 export * from './lib/facility-card/facility-card.module';
 
 // vertical-steps
-export * from './lib/vertical-steps/vertical-steps.component';
 export * from './lib/vertical-steps/vertical-steps.module';
+export * from './lib/vertical-steps/vertical-steps.component';
+export * from './lib/vertical-steps/vertical-steps.directive';
+
 export * from './lib/vertical-steps/step/step.module';
 export * from './lib/vertical-steps/step/step.component';
 export * from './lib/vertical-steps/step/step.directive';

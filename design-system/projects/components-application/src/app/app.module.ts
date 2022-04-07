@@ -23,10 +23,10 @@ import { DetailsComponent } from './components/details/details.component';
 import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewOrderLayoutComponent } from './components/new-order-layout/new-order-layout.component';
-import { ButtonComponent } from './components/button/button.component';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
 import { LayoutComponent } from './layout/layout.component';
 import { CommonModule } from '@angular/common';
+import { FormFlexComponent } from './components/form-flex/form.component';
 
 @NgModule({
   declarations: [
@@ -34,10 +34,10 @@ import { CommonModule } from '@angular/common';
     TableComponent,
     DetailsComponent,
     OrderDetailsBidComponent,
-    ButtonComponent,
     NewOrderLayoutComponent,
     FormFilterSearchComponent,
     LayoutComponent,
+    FormFlexComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +51,7 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     KKLFormDateModule,
     KklFormCalendarModule,
-    
+
   ],
   providers: [
     StepperLayoutService,
