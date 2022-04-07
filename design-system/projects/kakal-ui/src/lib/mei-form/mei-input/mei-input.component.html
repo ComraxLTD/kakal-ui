@@ -9,8 +9,8 @@
 
     <!-- CLEAVE FORMAT -->
     <ng-container *ngSwitchCase="'cleave'">
-      <input matInput #cleaveInput autocomplete="off" [formControl]="control" [cleave]="cleave" [name]="key" [type]="'text'"
-        (focusout)="validate()" (focus)="onFocus()"/>
+      <input matInput autocomplete="off" [formControl]="control" [cleave]="cleave" [name]="key" [type]="'text'"
+        (focusout)="validate()" (focus)="onFocus()" #cleaveInput (input)="onValueChangedInput(cleaveInput.value)"/>
     </ng-container>
 
     <!-- TEXT/NUMBER -->

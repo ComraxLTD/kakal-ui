@@ -1,15 +1,15 @@
-<!-- <ng-container content>
+<ng-container content>
   <ng-container>
     <mei-form
       [questions]="questions"
-      [options]="options"
       (queryChanged)="onQueryChanged($event)"
       (selectChanged)="onSelectChanged($event)"
       (openChanged)="onOpenChanged($event)"
+      (valueChanged)="onValueChanged($event)"
     ></mei-form>
   </ng-container>
 </ng-container>
-<kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
+<!--<kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
 <kkl-local-table
   [dataSource]="dataSource"
   [columns]="columns"

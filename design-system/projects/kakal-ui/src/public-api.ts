@@ -113,6 +113,7 @@ export * from './lib/mei-form/mei-select/mei-select.component';
 export * from './lib/mei-form/mei-form/mei-form.component';
 export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
 export * from './lib/mei-form/mei-multi-autocomplete/mei-multi-autocomplete.component';
+export * from './lib/mei-form/mei-input/mei-input.component';
 
 // FORM QUESTIONS //
 

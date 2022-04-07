@@ -16,6 +16,8 @@ export class MeiFormComponent implements OnInit {
   @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
   @Input() grid: GridProps;
@@ -145,6 +147,8 @@ export class MeiFormComponent implements OnInit {
         // case 'currency':
           // return new CurrencyPipe().transform(element['sum'], element['currency'], 'symbol', '1.0-3');
         default:
+          row.addControl(a.key, this.fb.control(a.value));
+          break;
             // return element;
       }
     });
@@ -176,5 +180,10 @@ export class MeiFormComponent implements OnInit {
   onOpenChanged(event) {
     this.openChanged.emit(event);
   }
-
+  onValueChanged(event) {
+    this.valueChanged.emit(event);
+  }
+  onFocusChanged(event) {
+    this.focusChanged.emit(event);
+  }
 }

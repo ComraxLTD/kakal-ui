@@ -29,23 +29,24 @@ export type ControlType =
   | 'number'
   | 'textarea'
   | 'time'
+  | 'email'
+  | 'phone'
+  | 'sum'
 
   | 'calendar'
   | 'radio'
   | 'date'
   | 'dateRange'
   | 'counter'
-  | 'sum'
   | 'upload'
   | 'currency'
   | 'toggle'
-  | 'email'
-  | 'phone'
   | 'texteditor'
 
   | 'checkbox'
   | 'autocomplete'
   | 'select'
+  | 'tel'
 
   | 'cleave';
 

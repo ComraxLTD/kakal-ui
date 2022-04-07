@@ -41,7 +41,6 @@ export abstract class QuestionBase {
     options?: MeiSelectOption[] |  BehaviorSubject<MeiSelectOption[]> | string;
     validations?: ValidatorFn[];
     control?: AbstractControl | FormControl;
-    cleave?: {};
     multi?: boolean;
     panelWidth?: boolean;
     withButton?: boolean;
@@ -66,7 +65,6 @@ export abstract class QuestionBase {
     };
     this.icon = options.icon || '';
     this.control = options.control || null;
-    this.cleave = options.cleave || {};
     this.multi = options.multi;
     this.panelWidth = options.panelWidth;
     this.withButton = options.withButton;
