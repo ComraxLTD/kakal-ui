@@ -83,4 +83,5 @@ export class AppComponent implements OnInit {
     } as Step;
     this.steps = [...steps];
   }
+
 }
