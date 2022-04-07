@@ -9,7 +9,6 @@ import {
 import { FormControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SelectOption } from '../../form/form-select/question-select.model';
-import { DocumentItem } from '../drawer-document-item/drawer-document-item.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -25,12 +24,6 @@ export class DrawerDocumentComponent<T> implements OnInit {
   @Input() dialogComp!: Type<any>;
 
   control: FormControl;
-
-  item = {
-    label: 'test',
-    dateCreated: new Date(),
-    userCreated: 'abi',
-  } as DocumentItem;
 
   @Output() addDocument: EventEmitter<void> = new EventEmitter();
 
