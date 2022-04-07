@@ -6,8 +6,9 @@
   >
     <kkl-form-autocomplete
       fxFlex="90"
-      [asButton]="asButton"
-      [control]="searchControl"
+      [key]="searchKey"
+      [asButton]="autocomplete.asButton"
+      [control]="searchGroup.formGroup.controls[searchKey]"
       (queryChanged)="onSearchChanged($event)"
       (multiOptionsSelected)="onSearchChanged($event)"
       (optionSelected)="onSearchChanged($event)"
@@ -57,18 +58,21 @@
 
   <!-- FILTER CHIPS SECTION -->
 
-  <ng-container *ngIf="hasFilters">
-    <kkl-filters [formGroup]="searchGroup.formGroup"></kkl-filters>
+  <ng-container *ngIf="advanced">
+    <kkl-filters
+      (filterChanged)="onFilterChanged($event)"
+      (filterLookupChanged)="onFilterLookUpChanged($event)"
+      [formGroup]="searchGroup.formGroup"
+    ></kkl-filters>
   </ng-container>
 </div>
 
 <ng-template #defaultTemplate let-context>
-  <!-- <ng-container *ngIf="optionsMap$ | async as optionsMap"> -->
-    <kkl-form
-      [questions]="context.questions"
-      [formGroup]="context.formGroup"
-      [grid]="context.grid"
-      (formChanged)="onFormChanged($event)"
-    ></kkl-form>
-  <!-- </ng-container> -->
+  <kkl-form-flex
+    [questions]="context.questions"
+    [formGroup]="context.formGroup"
+    [grid]="context.grid"
+    [optionsMap]="optionsMap"
+    (formChangeEvent)="onFormChanged($event)"
+  ></kkl-form-flex>
 </ng-template>

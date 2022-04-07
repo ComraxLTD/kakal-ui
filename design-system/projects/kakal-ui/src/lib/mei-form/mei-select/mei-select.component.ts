@@ -1,11 +1,10 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, take } from 'rxjs';
-import { QuestionBase } from '../models/question.model';
 import { MeiSelectOption } from '../models/select.model';
 import { FormActions } from '../models/form-events';
 import { FormChangeEvent } from '../models/form-events';
 import { MessageService } from '../mei-services/message.service';
+import { BehaviorSubject, take } from 'rxjs';
 
 @Component({
   selector: 'mei-select',

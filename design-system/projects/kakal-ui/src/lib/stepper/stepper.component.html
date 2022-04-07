@@ -22,7 +22,7 @@
         </ng-container>
       </div>
 
-      <div *ngIf="!last && step.spacer" [ngClass]="{
+      <div *ngIf="!last" [ngClass]="{
           'divider-step': step.type === 'step',
           'divider-status': step.type === 'status'
         }"></div>

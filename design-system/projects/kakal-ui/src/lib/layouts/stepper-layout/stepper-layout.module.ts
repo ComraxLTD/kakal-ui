@@ -6,20 +6,24 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { MatBadgeModule } from '@angular/material/badge';
 import { KKLIconModule } from '../../icon/icon.module';
-import { StepperMobileModule } from '../../stepper-mobile/stepper-mobile.module';
-import { StepperModule } from '../../stepper/stepper.module';
+import { KKLStepperMobileModule } from '../../stepper-mobile/stepper-mobile.module';
+import { KKLStepperModule } from '../../stepper/stepper.module';
 import { KKLTypographyModule } from '../../typography/typography.module';
+import { KKLButtonModule } from '../../button/button.module';
+import { MatTooltipModule } from '@angular/material/tooltip';
 @NgModule({
   imports: [
-    MatSidenavModule,
-    FlexLayoutModule,
-    MatToolbarModule,
     CommonModule,
-    StepperModule,
-    StepperMobileModule,
-    KKLIconModule,
+    FlexLayoutModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatTooltipModule,
     MatBadgeModule,
+    KKLButtonModule,
+    KKLIconModule,
     KKLTypographyModule,
+    KKLStepperMobileModule,
+    KKLStepperModule,
   ],
   declarations: [StepperLayoutComponent],
   exports: [StepperLayoutComponent],

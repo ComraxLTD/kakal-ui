@@ -13,6 +13,7 @@ import { KKLIconModule } from '../../icon/icon.module';
 import { FormService } from '../services/form.service';
 import { MessageService } from '../services/message.service';
 import { MatButtonModule } from '@angular/material/button';
+import { KKLPipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { MatButtonModule } from '@angular/material/button';
     MatInputModule,
     MatAutocompleteModule,
     KKLIconModule,
+    KKLPipesModule
   ],
   providers: [FormService, MessageService],
   declarations: [FormAutocompleteComponent],

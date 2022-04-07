@@ -3,7 +3,7 @@ import {
   QuestionSelectModel,
   SelectOption,
 } from '../form-select/question-select.model';
-import { GridProps } from '../models/question.types';
+import { InputGrid } from '../models/question.types';
 
 export interface Currency {
   currency?: SelectOption;
@@ -12,13 +12,13 @@ export interface Currency {
 
 export class QuestionCurrencyModel extends QuestionSelectModel {
   // symbol of currency
-  public default: SelectOption;
+  public default?: SelectOption;
 
   constructor(options: {
     key: string;
     label?: string;
     default?: SelectOption;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     value?: Currency;
     disabled?: boolean;
     options?: SelectOption[];

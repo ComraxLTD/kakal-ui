@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { CardLobbyModel } from '../cards/card-lobby/card-lobby.component';
 import { BreakpointService } from '../../services/breakpoint.service';
-import { CardLobbyModel } from '../cards/card-lobby/card-lobby.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-lobby',
@@ -9,7 +9,6 @@ import { CardLobbyModel } from '../cards/card-lobby/card-lobby.model';
   styleUrls: ['./lobby.component.scss'],
 })
 export class LobbyComponent implements OnInit {
-
   @Input() public cols: number;
   @Input() public rows: number;
   @Input() public moduleTitle: string;
@@ -19,17 +18,15 @@ export class LobbyComponent implements OnInit {
 
   @Output() cardClick: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(
-    private breakpointService: BreakpointService,
-  ) { }
+  constructor(private breakpointService: BreakpointService) {}
 
   ngOnInit(): void {
     this.md$ = this.breakpointService.isMobile();
-    this.cols = this.cols || this.cards.length / 2
-    this.rows = this.rows || 2
+    this.cols = this.cols || this.cards.length / 2;
+    this.rows = this.rows || 2;
   }
 
   public onCardClick(card) {
-    this.cardClick.emit(card.path)
+    this.cardClick.emit(card.path);
   }
 }

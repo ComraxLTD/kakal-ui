@@ -24,7 +24,7 @@ export default {
               icon?: string;
               type?: QuestionType;
               formGroup?: FormGroup;
-              gridProps?: GridProps;
+              gridProps?: InputGrid;
               hasButton?: boolean;
               group?: Object;
               validations?: ValidatorFn[];

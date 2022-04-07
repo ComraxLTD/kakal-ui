@@ -1,12 +1,12 @@
 import { ValidatorFn } from '@angular/forms';
 import { QuestionTextModel } from './question-text.model';
-import { GridProps } from './question.types';
+import { InputGrid } from './question.types';
 
 export class QuestionSumModel extends QuestionTextModel {
   constructor(options: {
     key: string;
     label?: string;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     value?: any;
     validations?: ValidatorFn[];

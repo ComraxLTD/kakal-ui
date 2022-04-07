@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
     label: 'יציאה',
     isActive: false,
     path: '',
-    svgUrl: 'logout',
+    svgIcon: 'logout',
   });
   @Output() changePath: EventEmitter<string> = new EventEmitter();
 

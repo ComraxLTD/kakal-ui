@@ -1,12 +1,11 @@
 <ng-container [ngSwitch]="variant">
   <ng-container *ngSwitchCase="'grid'">
     <kkl-form-grid
-      [questions]="group.questions"
-      [formGroup]="group.formGroup"
-      [grid]="group.gridProps"
-      [rowHeight]="rowHeight"
+      [questions]="questions"
+      [formGroup]="formGroup"
+      [grid]="grid"
+      [rowHeight]="grid.rowHeight || 9"
       [buttonTemp]="buttonTemp"
-      [buttonLabel]="buttonLabel"
       [optionsMap]="optionsMap"
       (submitEvent)="onSubmitEvent()"
       (formChangeEvent)="onFormChanged($event)"
@@ -18,7 +17,6 @@
       [formGroup]="formGroup"
       [grid]="grid"
       [buttonTemp]="buttonTemp"
-      [buttonLabel]="buttonLabel"
       [optionsMap]="optionsMap"
       (submitEvent)="onSubmitEvent()"
       (formChangeEvent)="onFormChanged($event)"

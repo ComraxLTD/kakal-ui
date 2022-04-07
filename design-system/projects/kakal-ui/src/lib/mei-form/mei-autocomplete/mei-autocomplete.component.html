@@ -7,10 +7,20 @@
       {{option.label}}
     </mat-option>
   </mat-autocomplete>
-  <button *ngIf="withButton" type="button" matSuffix mat-icon-button (click)="search()">
+  <button
+    *ngIf="withButton"
+    type="button"
+    matSuffix
+    mat-icon-button
+    (click)="search()"
+  >
     <kkl-icon color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   </button>
-  <kkl-icon *ngIf="!withButton" color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
+  <kkl-icon
+    *ngIf="!withButton"
+    color="primary"
+    [key]="icon || 'search'"
+    [size]="1.8"
+  ></kkl-icon>
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>
-

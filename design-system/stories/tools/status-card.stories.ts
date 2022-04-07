@@ -15,7 +15,7 @@ export default {
   ],
   component: CardStatusComponent,
   argTypes: {
-    card: { 
+    card: {
       name: 'card',
       description: 'An object containes all the card info',
       table: {
@@ -35,12 +35,11 @@ const Template: Story<CardStatusComponent> = (args: CardStatusComponent) => ({
 export const StatusCard = Template.bind({});
 
 StatusCard.args = {
-  card:new CardStatusModel({
-    key: '51000003', // every card should have a uniqe key
-    label: 'ממתין להצעת מחיר', // the label the floats next to the card
-    svgUrl: 'send_mail', // the icon in the card
-    value: 2,// the value in the badge
-    path: 'existing-procedures', // the link it should redirect to
-  })
+  // card:new CardStatusModel({
+  //   key: '51000003', // every card should have a uniqe key
+  //   label: 'ממתין להצעת מחיר', // the label the floats next to the card
+  //   svgIcon: 'send_mail', // the icon in the card
+  //   value: 2,// the value in the badge
+  //   path: 'existing-procedures', // the link it should redirect to
+  // })
 };
- 

@@ -6,13 +6,17 @@
 >
   <!-- [class.input-space]="(index + 1) % cols !== 0" -->
   <ng-container *ngFor="let question of questions; let index = index">
+    <ng-container *ngIf="question.gridProps?.skip">
+      <div flex-form-input [fxFlex]="flex * question.gridProps.skip"></div>
+    </ng-container>
+
     <ng-container [ngSwitch]="question.controlType">
       <div
         flex-form-input
-        [index]="index"
+        [index]="index * (question.gridProps?.cols || 1)"
         [cols]="cols"
-        [offset]="16"
-        [fxFlex]="flex"
+        [offset]="question.gridProps?.offset"
+        [fxFlex]="flex * (question.gridProps?.cols || 1)"
       >
         <!-- SELECT INPUT SECTION -->
         <ng-container *ngSwitchCase="'select'">
@@ -26,7 +30,7 @@
             [placeHolder]="question?.placeHolder"
             [theme]="question?.theme"
             [appearance]="question?.appearance"
-            [optionsSlot]="optionsSlot"
+            [optionsTemplates]="optionsTemplates"
             (focus)="onFocusChanged($event)"
             (selectChanged)="onFormChanged($event)"
             (openChanged)="onOpenChanged($event)"
@@ -75,6 +79,7 @@
             [key]="question.key"
           ></kkl-form-range>
         </ng-container>
+
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'autocomplete'">
           <kkl-form-autocomplete
@@ -82,7 +87,9 @@
             [label]="question?.label"
             [icon]="question?.icon"
             [multi]="question.multi"
+            [asButton]="question.asButton"
             [options]="optionsMap[question?.key] || question.options"
+            [optionTemplate]="formTemplate[question.key]"
             [control]="formGroup.controls[question.key]"
             (queryChanged)="onFormChanged($event)"
             (multiOptionsSelected)="onFormChanged($event)"
@@ -99,6 +106,13 @@
             [index]="index"
             (fileChanged)="onFormChanged($event)"
           ></kkl-form-upload>
+        </ng-container>
+
+        <!-- CHECKBOX SECTION -->
+        <ng-container *ngSwitchCase="'checkbox'">
+          <mat-checkbox [formControl]="formGroup.controls[question.key]">{{
+            question?.label
+          }}</mat-checkbox>
         </ng-container>
 
         <!-- CURRENCY INPUT SECTION -->
@@ -145,8 +159,17 @@
     </ng-container>
   </ng-container>
 
-  <ng-container *ngIf="hasButton">
-    <div [class.button-container]="true" fxFlex kkl-form-button>
+  <ng-container *ngIf="buttonCols">
+    <!-- <ng-container *ngFor="let item of buttonSkip; let i = index">
+      <div flex-form-input [fxFlex]="flex"></div>
+    </ng-container> -->
+
+    <div
+      [class.button-container]="true"
+      [fxFlex]="flex * buttonCols"
+      fxLayoutAlign="end center"
+      kkl-form-button
+    >
       <ng-container
         *ngTemplateOutlet="
           buttonTemp || defaultTemplate;

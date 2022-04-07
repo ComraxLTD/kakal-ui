@@ -1,7 +1,7 @@
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Palette } from '../../../styles/theme';
-import { Appearance, GridProps, ControlType } from './question.types';
+import { Appearance, ControlType, GridProps } from './question.types';
 import { MeiSelectOption } from './select.model';
 
 export abstract class QuestionBase {
@@ -61,7 +61,6 @@ export abstract class QuestionBase {
     this.gridProps = options.gridProps || {
       cols: 1,
       rows: 1,
-      gutter: 0,
       offset: 0,
       fullWidth: false,
     };

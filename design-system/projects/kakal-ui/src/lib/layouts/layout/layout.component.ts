@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { MenuComponent } from '../../menu/menu.component';
-import { RouterService, BreakpointService } from '../../../services/services';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import { RouterService, BreakpointService } from '../../../services/services';
+import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
 import { map, startWith } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -11,13 +11,15 @@ import { Observable } from 'rxjs';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  @Input() public showStatusPath: string[];
-
-  @Input() public menu: MenuComponent;
+  @Input() showStatusPath: string[];
+  @Input() cards: MenuCard[];
+  @Input() rootPrefix: string;
 
   public currentPath$: Observable<string>;
   public show$: Observable<boolean>;
   public mobile$: Observable<boolean>;
+
+  @Output() logoClicked: EventEmitter<void> = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
@@ -42,4 +44,9 @@ export class LayoutComponent implements OnInit {
   private findPath(list: any[], value: string): boolean {
     return !!list?.find((path: string) => path == value);
   }
+
+  public onLogoClicked() {
+    this.logoClicked.emit();
+  }
+
 }

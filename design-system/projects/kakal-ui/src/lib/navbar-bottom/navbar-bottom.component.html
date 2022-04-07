@@ -12,7 +12,7 @@
     </div>
   </div>
   <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
-    <kkl-icon type="svg" [size]="20" [key]="bottomIcon"></kkl-icon>
+    <kkl-icon type="svg" [size]="20" [key]="bottomIcon" color="primary"></kkl-icon>
   </div>
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <ng-container *ngIf="buttonState$ | async as buttonState">
@@ -36,6 +36,7 @@
       <!--next button -->
       <ng-container *ngIf="buttonState.next">
         <button
+          [class.kkl-next-button]="true"
           mat-raised-button
           [disabled]="buttonState.disableNext"
           color="primary"

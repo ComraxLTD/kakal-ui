@@ -9,4 +9,4 @@ import { KKLDirectivesModule } from '../directives/directives.module';
   declarations: [SidenavComponent],
   exports: [SidenavComponent],
 })
-export class SidenavModule {}
+export class KKLSidenavModule {}
