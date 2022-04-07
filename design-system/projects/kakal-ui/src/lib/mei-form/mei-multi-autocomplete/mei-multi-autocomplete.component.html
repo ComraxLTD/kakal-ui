@@ -15,7 +15,8 @@
       <input type="text" [placeholder]="placeHolder" matInput [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [matChipInputFor]="chipList" [matAutocomplete]="auto1" [formControl]="myAutoControl" (focusout)="setErrorMessage()">
   </mat-chip-list>
-  <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onMultiSelectionChange($event)" [panelWidth]="panelWidth ? 'auto' : null">
+  <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onMultiSelectionChange($event)" [panelWidth]="panelWidth ? 'auto' : null"
+    (open)="onOpenChanged(true)" (closed)="onOpenChanged(false)">
     <mat-option *ngFor="let option of isArray? (filteredOptions | async) : (options | async)" [value]="option" class="autocomplete-option" [disabled]="disabled">
       {{option.label}}
     </mat-option>

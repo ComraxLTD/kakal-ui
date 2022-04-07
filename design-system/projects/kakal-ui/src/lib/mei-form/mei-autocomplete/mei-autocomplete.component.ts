@@ -103,11 +103,11 @@ export class MeiAutocompleteComponent implements OnInit {
     });
   }
 
-  onOpenChanged() {
+  onOpenChanged(event) {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value !== 'string'? this.control.value : null,
-      action: FormActions.OPEN_CHANGED,
+      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT,
       query: this.control.value === 'string'? this.control.value : null
     });
   }
