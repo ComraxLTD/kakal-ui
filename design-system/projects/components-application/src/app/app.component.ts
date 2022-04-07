@@ -8,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   constructor() { }
 
-  ngOnInit(): void {
-    
+  public card = {
+    label: 'שם הכרטיס', // label inside card
+    value: 2, // number inside card
+    svgIcon: 'search', // svg key
+  };
+
+  ngOnInit(): void { 
   }
+
 }

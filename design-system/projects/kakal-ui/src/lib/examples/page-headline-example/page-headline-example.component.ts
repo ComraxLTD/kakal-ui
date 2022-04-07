@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageHeadlineModel } from '../../page-headline/page-headline.model';
 import { PageHeadlineService } from '../../page-headline/page-headline.service';
-import { StatusBarsModel } from '../../status-bars/status-bars.model';
 
 @Component({
   selector: 'kkl-page-headline-example',
@@ -15,12 +14,12 @@ export class PageHeadlineExampleComponent implements OnInit {
     // { label: '', key: 'x' },
     // { label: 'אקליפטוס יער', key: 'thired' },
   ];
-  status: StatusBarsModel = new StatusBarsModel({
-    authorizedBars: 3,
-    totalBars: 5,
-    label: 'ברים',
-  });
-
+  // status: StatusBarsModel = new StatusBarsModel({
+  //   authorizedBars: 3,
+  //   totalBars: 5,
+  //   label: 'ברים',
+  // });
+  status = {}
   constructor(private pageHeadlineService: PageHeadlineService) {}
 
   ngOnInit(): void {
