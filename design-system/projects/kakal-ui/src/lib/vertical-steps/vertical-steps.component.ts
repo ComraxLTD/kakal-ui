@@ -50,7 +50,7 @@ export class VerticalStepsComponent implements OnInit {
   }
 
   onSelectionChanged(event: StepperSelectionEvent) {
-    this.selectionChanged.emit(event);
+    // this.selectionChanged.emit(event);
   }
 
   onInteractedStream(event: CdkStep) {
@@ -58,8 +58,9 @@ export class VerticalStepsComponent implements OnInit {
     this.interacted.emit(event);
   }
 
-  onStepClick(step: Step) {
-    console.log(step);
-    this.stepChanged.emit(step);
+  onStepClick(step: Step, i: number) {
+    this.stepChanged.emit({ ...step, index: i });
+    console.log(i)
+    this._selectedIndex = 1;
   }
 }
