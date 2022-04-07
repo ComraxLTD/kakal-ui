@@ -1,17 +1,13 @@
-import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-add.component';
-import { I } from '@angular/cdk/keycodes';
-import { StepperSelectionEvent, CdkStep } from '@angular/cdk/stepper';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { Observable, of } from 'rxjs';
-import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
+import { Component, OnInit } from '@angular/core';
 import {
-  Panel,
-  PageHeadlineService,
+  CardStepModel,
+  FormActions,
+  FormGrid,
   FormService,
-  MenuCard,
-  AccordionStepsComponent,
-  StepSelectEvent,
+  Question,
+  QuestionGroupModel,
+  RowActionModel,
+  TableBase,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -20,81 +16,57 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  component = CardAddComponent;
-  cards = [
-    {title:'1',content:'test'},
-    {title:'2',content:'test'},
-    {title:'3',content:'test'},
-    {title:'4',content:'test'},
-    {title:'5',content:'test'},
-    {title:'6',content:'test'},
-    {title:'7',content:'test'},
-    {title:'8',content:'test'},
-
-  ]
-  public card = {
-    label: 'שם הכרטיס', // label inside card
-    value: 2, // number inside card
-    svgIcon: 'search', // svg key
-  };
-
-  show$: Observable<boolean> = of(true);
-  constructor(
-    private formService: FormService,
-    private pageHeadlineService: PageHeadlineService
-  ) {}
-
-  selectedIndex: number = 1;
-
-  formGroup: FormGroup = new FormGroup({});
-
-  // array for vertical steps layout
-  public steps: Step[] = [
+  dataSource = [
     {
-      key: 'filterForm',
-      label: 'First Step Headline',
-      control: new FormGroup({}),
-    },
-    {
-      key: 'groupForm',
-      label: 'Second Step Headline',
-      control: new FormGroup({}),
-    },
-    {
-      key: 'filterForm',
-      label: 'Third Step Headline',
-      control: new FormGroup({}),
-    },
-    {
-      key: 'groupForm',
-      label: 'Forth Step Headline',
-      control: new FormGroup({}),
-    },
-  ];
-
-  // array for panel layout
-  public panels: Panel[] = [
-    { key: 'filterForm', label: 'First Expand Panel Headline' },
-    { key: 'groupForm', label: 'Second Expand Panel Headline' },
-  ];
-
-
-  ngOnInit(): void {}
-
-  onSelectionChanged(event: StepSelectEvent) {
-    const { selectedIndex, selectedStep } = event;
-    if (selectedStep.key === 'groupForm') {
-      this.selectedIndex = selectedIndex;
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
     }
+  ];
+
+  columns: TableBase[] = [
+    { key: 'id', label: 'Id', controlType: 'number', button: {type: 'visibility', icon: ''} },
+    { key: 'name', label: 'Name', controlType: 'text', },
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', },
+    { key: 'occupation', label: 'Occupation', controlType: 'text', },
+    { key: 'city', label: 'עיר', controlType: 'select'},
+    { key: 'dob', label: 'תאריך', controlType: 'date', colIcon:'tree'},
+  ];
+
+
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      label: 'Edit'
+    },
+    {
+      type: 'inlineDelete',
+      icon: 'cancel',
+      label: 'Delete'
+    },
+    {
+      type: 'visibility',
+      icon: 'visibility',
+      label: 'Show'
+    },
+  ]
+
+  constructor(private formService: FormService) {}
+
+  ngOnInit(): void {
   }
 
-  next() {
-    const steps = [...this.steps];
-    steps[this.selectedIndex] = {
-      ...steps[this.selectedIndex],
-      completed: true,
-    } as Step;
-    this.steps = [...steps];
+  key: string = 'myDatePicker';
+
+  description: string = ''
+
+  editRow(event:any) {
+    console.log(event);
+  }
+
+  onClick(event: string){
+    console.log(event)
   }
 
 }

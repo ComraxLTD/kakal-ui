@@ -23,6 +23,9 @@ export class IconsService {
     tree_gradient_tac: AppIcons.TREE_GRADIENT_TAC_ICON,
     bottom_tree_tac: AppIcons.BOTTOM_TREE_LOGO_TAC_ICON,
 
+    // TABLE ICONS
+    drag_n_drop: AppIcons.DRAG_N_DROP,
+
     // ACTIONS ICONS
     two_arrows: AppIcons.TWO_ARROWS_UP,
     two_arrows_down: AppIcons.TWO_ARROWS_DOWN,
