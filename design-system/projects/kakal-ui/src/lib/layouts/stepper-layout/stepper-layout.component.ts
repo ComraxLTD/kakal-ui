@@ -15,8 +15,6 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { merge, Observable, of } from 'rxjs';
 import { NavbarBottomDirective } from '../../navbar-bottom/navbar-bottom.directive';
 import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.component';
 
