@@ -112,7 +112,7 @@ export class MeiInputComponent implements OnInit {
 
   private setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control as FormControl,
+      this.control,
       this.placeHolder
     );
 

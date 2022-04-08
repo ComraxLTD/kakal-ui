@@ -15,6 +15,10 @@ export abstract class QuestionBase {
   public validations?: ValidatorFn[];
   public disabled?: boolean;
 
+  // only for datepicker
+  public maxDate?: Date;
+  public minDate?: Date;
+
   //for select and autocomplete
   public options?: MeiSelectOption[] |  BehaviorSubject<MeiSelectOption[]> | string;
   //for input and autocomplete
@@ -57,6 +61,8 @@ export abstract class QuestionBase {
     panelWidth?: boolean;
     withButton?: boolean;
     debounce?: number;
+    maxDate?: Date;
+    minDate?: Date;
   }) {
     this.key = options.key || '';
     this.value = options.value;
@@ -79,5 +85,7 @@ export abstract class QuestionBase {
     this.panelWidth = options.panelWidth;
     this.withButton = options.withButton;
     this.debounce = options.debounce;
+    this.minDate = options.minDate;
+    this.maxDate = options.maxDate;
   }
 }

@@ -27,10 +27,17 @@ export type ControlType =
   | 'sum'
   | 'format'
 
-  | 'calendar'
-  | 'radio'
   | 'date'
   | 'dateRange'
+
+  | 'autocomplete'
+  | 'select'
+
+
+
+
+  | 'calendar'
+  | 'radio'
   | 'counter'
   | 'upload'
   | 'toggle'
@@ -38,10 +45,7 @@ export type ControlType =
 
   | 'checkbox'
 
-  | 'currency'
-
-  | 'autocomplete'
-  | 'select';
+  | 'currency';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 
