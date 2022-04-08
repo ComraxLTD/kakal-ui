@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, startWith, Subject } from 'rxjs';
-import { MessageService } from '../mei-services/message.service';
-import { FormActions, FormChangeEvent } from '../models/form-events';
+import { MeiMessageService } from '../mei-services/message.service';
+import { MeiFormActions, MeiFormChangeEvent } from '../models/form-events';
 import { Appearance } from '../models/question.types';
 
 @Component({
@@ -24,10 +24,10 @@ export class MeiDatepickerComponent implements OnInit {
   // MatFormFieldAppearance
   error$: BehaviorSubject<string>;
 
-  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
 
-  constructor(private messageService: MessageService) {}
+  constructor(private meiMessageService: MeiMessageService) {}
 
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
@@ -38,7 +38,7 @@ export class MeiDatepickerComponent implements OnInit {
   }
 
   private setErrorMessage() {
-    const error = this.messageService.getErrorMessage(this.control, this.placeHolder);
+    const error = this.meiMessageService.getErrorMessage(this.control, this.placeHolder);
 
     this.error$.next(error);
     if (error && this.control.touched) {
@@ -54,7 +54,7 @@ export class MeiDatepickerComponent implements OnInit {
     this.valueChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.VALUE_CHANGED,
+      action: MeiFormActions.VALUE_CHANGED,
     });
   }
 
@@ -62,7 +62,7 @@ export class MeiDatepickerComponent implements OnInit {
     this.focusChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.FOCUS_IN,
+      action: MeiFormActions.FOCUS_IN,
     });
   }
 

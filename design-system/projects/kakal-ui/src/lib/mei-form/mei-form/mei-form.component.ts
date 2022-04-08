@@ -4,7 +4,7 @@ import { QuestionBase } from '../models/question.model';
 import { OptionsModel } from '../models/options.model'
 import { BehaviorSubject } from 'rxjs';
 import { MeiSelectOption } from '../models/select.model';
-import { FormChangeEvent } from '../models/form-events';
+import { MeiFormChangeEvent } from '../models/form-events';
 import { GridProps } from '../models/question.types';
 @Component({
   selector: 'mei-form',
@@ -13,11 +13,11 @@ import { GridProps } from '../models/question.types';
 })
 export class MeiFormComponent implements OnInit {
 
-  @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() openChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() queryChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() selectChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
   @Input() grid: GridProps;

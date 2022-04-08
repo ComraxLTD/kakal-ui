@@ -3,8 +3,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
-import { MessageService } from '../mei-services/message.service';
-import { FormActions, FormChangeEvent } from '../models/form-events';
+import { MeiMessageService } from '../mei-services/message.service';
+import { MeiFormActions, MeiFormChangeEvent } from '../models/form-events';
 import { MeiSelectOption } from '../models/select.model';
 
 @Component({
@@ -33,14 +33,14 @@ export class MeiMultiAutocompleteComponent {
   @Input() panelWidth!: string;
   @Input() appearance!: string;
 
-  @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() openChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() queryChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() selectChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
 
   error$: BehaviorSubject<string>;
 
   isArray: boolean = false;
-  constructor(private messageService: MessageService) { }
+  constructor(private meiMessageService: MeiMessageService) { }
 
   ngOnInit(): void {
     if(Array.isArray(this.options)) {
@@ -87,7 +87,7 @@ export class MeiMultiAutocompleteComponent {
   // }
 
   setErrorMessage() {
-    const error = this.messageService.getErrorMessage(
+    const error = this.meiMessageService.getErrorMessage(
       this.control as FormControl,
       this.placeHolder
     );
@@ -107,7 +107,7 @@ export class MeiMultiAutocompleteComponent {
     this.selectChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.MULTI_OPTION_SELECTED
+      action: MeiFormActions.MULTI_OPTION_SELECTED
     });
   }
 
@@ -115,7 +115,7 @@ export class MeiMultiAutocompleteComponent {
     this.queryChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.QUERY_CHANGED,
+      action: MeiFormActions.QUERY_CHANGED,
       query: this.myAutoControl.value
     });
   }
@@ -125,7 +125,7 @@ export class MeiMultiAutocompleteComponent {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT,
+      action: event ? MeiFormActions.OPENED_SELECT : MeiFormActions.CLOSED_SELECT,
       query: this.myAutoControl.value
     });
   }
@@ -152,7 +152,7 @@ export class MeiMultiAutocompleteComponent {
       this.selectChanged.emit({
         key: this.key,
         value: this.control.value,
-        action: FormActions.MULTI_OPTION_SELECTED
+        action: MeiFormActions.MULTI_OPTION_SELECTED
       });
     }
   }
