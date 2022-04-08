@@ -30,7 +30,6 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() icon!: string;
   @Input() panelWidth!: string;
   @Input() appearance!: string;
-  @Input() disabled!: boolean;
 
   @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();

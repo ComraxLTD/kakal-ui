@@ -115,6 +115,10 @@ export * from './lib/mei-form/mei-form/mei-form.component';
 export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
 export * from './lib/mei-form/mei-multi-autocomplete/mei-multi-autocomplete.component';
 export * from './lib/mei-form/mei-input/mei-input.component';
+export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
+export * from './lib/mei-form/mei-checkbox/mei-checkbox.component';
+export * from './lib/mei-form/mei-directivs/phone.directive';
+export * from './lib/mei-form/mei-directivs/sum.directive';
 
 // FORM QUESTIONS //
 

@@ -15,13 +15,6 @@ export interface GridProps {
   };
 }
 
-export interface Cleave {
-  numeral: boolean;
-  creditCard: boolean;
-  phone: boolean;
-  prefix: boolean;
-  time: boolean;
-}
 
 export type ControlType =
   | 'text'
@@ -32,6 +25,7 @@ export type ControlType =
   | 'email'
   | 'phone'
   | 'sum'
+  | 'format'
 
   | 'calendar'
   | 'radio'
@@ -39,16 +33,15 @@ export type ControlType =
   | 'dateRange'
   | 'counter'
   | 'upload'
-  | 'currency'
   | 'toggle'
   | 'texteditor'
 
   | 'checkbox'
-  | 'autocomplete'
-  | 'select'
-  | 'tel'
 
-  | 'cleave';
+  | 'currency'
+
+  | 'autocomplete'
+  | 'select';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 

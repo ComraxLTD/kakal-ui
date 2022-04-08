@@ -28,7 +28,6 @@ import { KKLFormUploadModule } from '../form/form-upload/form-upload.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { KKLButtonModule } from '../button/button.module';
 import { HttpClientModule } from '@angular/common/http';
-import { StylePaginatorDirective } from './directives/kkl-paginator.directive';
 
 @NgModule({
   declarations: [

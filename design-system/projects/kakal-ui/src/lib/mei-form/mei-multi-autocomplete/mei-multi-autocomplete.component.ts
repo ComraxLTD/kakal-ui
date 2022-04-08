@@ -32,7 +32,6 @@ export class MeiMultiAutocompleteComponent {
   @Input() icon!: string;
   @Input() panelWidth!: string;
   @Input() appearance!: string;
-  @Input() disabled!: boolean;
 
   @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
@@ -62,7 +61,7 @@ export class MeiMultiAutocompleteComponent {
       debounceTime(this.debounce? this.debounce : 500),
       filter( value => (typeof value === 'string'))
     ).subscribe(a => this.search());
-    if(this.disabled) {
+    if(this.control.disabled) {
       this.myAutoControl.disable();
     }
     this.error$ = new BehaviorSubject<string>('');

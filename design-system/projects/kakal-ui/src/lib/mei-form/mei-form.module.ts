@@ -13,6 +13,9 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MeiMultiAutocompleteComponent } from './mei-multi-autocomplete/mei-multi-autocomplete.component';
 import { MeiInputComponent } from './mei-input/mei-input.component';
+import { SumInputDirective } from  './mei-directivs/sum.directive';
+import { PhoneInputDirective } from  './mei-directivs/phone.directive';
+import { MeiDatepickerComponent } from './mei-datepicker/mei-datepicker.component';
 
 @NgModule({
   imports: [
@@ -25,7 +28,9 @@ import { MeiInputComponent } from './mei-input/mei-input.component';
     KKLIconModule,
     MatInputModule
   ],
-  declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent],
-  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent],
+  declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
+     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent],
+  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent, MeiCheckboxComponent,
+    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent]
 })
 export class MeiFormModule {}
