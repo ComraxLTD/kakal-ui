@@ -23,7 +23,6 @@ export class MeiSelectComponent implements OnInit {
   @Input() theme!: string;
   @Input() key!: string;
   @Input() appearance!: string;
-  @Input() disabled!: boolean;
 
   options$: BehaviorSubject<MeiSelectOption[]>;
 

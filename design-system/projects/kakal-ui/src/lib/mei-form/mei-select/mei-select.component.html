@@ -15,8 +15,8 @@
     </mat-option>
   </mat-select>
   <ng-container matSuffix>
-    <kkl-icon [disabled]="disabled" color="primary" key="keyboard_arrow_down"></kkl-icon>
-    <button *ngIf="control.value?.length > 1" [disabled]="disabled" mat-raised-button class="mat-primary fill text-sm eta-margin-all" (click)="deselectAll()">
+    <kkl-icon color="primary" key="keyboard_arrow_down"></kkl-icon>
+    <button *ngIf="control.value?.length > 1" [disabled]="control.disabled" mat-raised-button class="mat-primary fill text-sm eta-margin-all" (click)="deselectAll()">
       Deselect All
     </button>
   </ng-container>
