@@ -1,9 +1,9 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MeiSelectOption } from '../models/select.model';
-import { FormActions } from '../models/form-events';
-import { FormChangeEvent } from '../models/form-events';
-import { MessageService } from '../mei-services/message.service';
+import { MeiFormActions } from '../models/form-events';
+import { MeiFormChangeEvent } from '../models/form-events';
+import { MeiMessageService } from '../mei-services/message.service';
 import { BehaviorSubject, take } from 'rxjs';
 
 @Component({
@@ -26,14 +26,14 @@ export class MeiSelectComponent implements OnInit {
 
   options$: BehaviorSubject<MeiSelectOption[]>;
 
-  @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  // @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() selectChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() openChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  // @Output() focus: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
 
   error$: BehaviorSubject<string>;
 
 
-  constructor(private messageService: MessageService) { }
+  constructor(private meiMessageService: MeiMessageService) { }
 
   ngOnInit(): void {
     this.options$ = new BehaviorSubject<MeiSelectOption[]>([]);
@@ -67,7 +67,7 @@ export class MeiSelectComponent implements OnInit {
   }
 
   setErrorMessage() {
-    const error = this.messageService.getErrorMessage(
+    const error = this.meiMessageService.getErrorMessage(
       this.control as FormControl,
       this.placeHolder
     );
@@ -95,14 +95,14 @@ export class MeiSelectComponent implements OnInit {
     this.selectChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: this.multi? FormActions.MULTI_SELECT_CHANGED : FormActions.SELECT_CHANGED
+      action: this.multi ? MeiFormActions.MULTI_SELECT_CHANGED : MeiFormActions.SELECT_CHANGED
     });
   }
   onOpenChanged(event) {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT
+      action: event ? MeiFormActions.OPENED_SELECT : MeiFormActions.CLOSED_SELECT
     });
   }
 

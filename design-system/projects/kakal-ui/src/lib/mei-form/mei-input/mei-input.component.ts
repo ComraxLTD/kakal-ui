@@ -2,8 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormControlStatus, Validators } from '@angular/forms';
 import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
-import { MessageService } from '../mei-services/message.service';
-import { FormActions, FormChangeEvent } from '../models/form-events';
+import { MeiMessageService } from '../mei-services/message.service';
+import { MeiFormActions, MeiFormChangeEvent } from '../models/form-events';
 import { Appearance, ControlType, GridProps } from '../models/question.types';
 
 @Component({
@@ -29,11 +29,11 @@ export class MeiInputComponent implements OnInit {
   error$: BehaviorSubject<string>;
   color$: Observable<Palette>;
 
-  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
 
   constructor(
-    private messageService: MessageService
+    private meiMessageService: MeiMessageService
   ) {}
 
   ngOnInit(): void {
@@ -111,8 +111,8 @@ export class MeiInputComponent implements OnInit {
   }
 
   private setErrorMessage() {
-    const error = this.messageService.getErrorMessage(
-      this.control as FormControl,
+    const error = this.meiMessageService.getErrorMessage(
+      this.control,
       this.placeHolder
     );
 
@@ -132,7 +132,7 @@ export class MeiInputComponent implements OnInit {
     this.focusChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.FOCUS_IN,
+      action: MeiFormActions.FOCUS_IN,
     });
   }
 
@@ -140,7 +140,7 @@ export class MeiInputComponent implements OnInit {
     this.valueChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.VALUE_CHANGED,
+      action: MeiFormActions.VALUE_CHANGED,
     });
   }
 

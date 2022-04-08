@@ -2,6 +2,8 @@
   <ng-container>
     <mei-form
       [questions]="questions"
+      [formGroup]="formgroup"
+      [editData]="editData"
       (queryChanged)="onQueryChanged($event)"
       (selectChanged)="onSelectChanged($event)"
       (openChanged)="onOpenChanged($event)"

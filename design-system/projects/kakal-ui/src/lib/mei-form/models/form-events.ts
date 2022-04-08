@@ -1,12 +1,12 @@
 
-export interface FormChangeEvent {
+export interface MeiFormChangeEvent {
   key: string;
   value?: any;
-  action : FormActions;
+  action: MeiFormActions;
   query?: string;
 }
 
-export enum FormActions {
+export enum MeiFormActions {
 
   FOCUS_IN = 'focusIn',
 

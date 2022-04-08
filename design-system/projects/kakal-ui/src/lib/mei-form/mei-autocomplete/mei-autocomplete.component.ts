@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, map, Observable, startWith } from 'rxjs';
-import { MessageService } from '../mei-services/message.service';
-import { FormActions, FormChangeEvent } from '../models/form-events';
+import { MeiMessageService } from '../mei-services/message.service';
+import { MeiFormActions, MeiFormChangeEvent } from '../models/form-events';
 import { QuestionBase } from '../models/question.model';
 import { MeiSelectOption } from '../models/select.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
@@ -31,14 +31,14 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() panelWidth!: string;
   @Input() appearance!: string;
 
-  @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() openChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() queryChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() selectChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
 
   error$: BehaviorSubject<string>;
 
   isArray: boolean = false;
-  constructor(private messageService: MessageService) { }
+  constructor(private meiMessageService: MeiMessageService) { }
 
   ngOnInit(): void {
     if(Array.isArray(this.options)) {
@@ -72,7 +72,7 @@ export class MeiAutocompleteComponent implements OnInit {
   }
 
   setErrorMessage() {
-    const error = this.messageService.getErrorMessage(
+    const error = this.meiMessageService.getErrorMessage(
       this.control as FormControl,
       this.placeHolder
     );
@@ -89,7 +89,7 @@ export class MeiAutocompleteComponent implements OnInit {
     this.selectChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.OPTION_SELECTED
+      action: MeiFormActions.OPTION_SELECTED
     });
   }
 
@@ -97,7 +97,7 @@ export class MeiAutocompleteComponent implements OnInit {
     this.queryChanged.emit({
       key: this.key,
       value: this.control.value !== 'string'? this.control.value : null,
-      action: FormActions.QUERY_CHANGED,
+      action: MeiFormActions.QUERY_CHANGED,
       query: this.control.value === 'string'? this.control.value : null
     });
   }
@@ -106,7 +106,7 @@ export class MeiAutocompleteComponent implements OnInit {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value !== 'string'? this.control.value : null,
-      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT,
+      action: event ? MeiFormActions.OPENED_SELECT : MeiFormActions.CLOSED_SELECT,
       query: this.control.value === 'string'? this.control.value : null
     });
   }

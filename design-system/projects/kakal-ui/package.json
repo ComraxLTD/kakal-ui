@@ -1,12 +1,13 @@
 {
   "name": "@ComraxLTD/kakal-ui",
-  "version": "0.2.69",
+  "version": "0.2.70",
   "repository": "git@github.com:ComraxLTD/kakal-ui.git",
   "publishConfig": {
     "registry":"https://npm.pkg.github.com"
   },
   "peerDependencies": {
     "@angular/material": "13.3",
+    "@angular/material-date-fns-adapter": "^13.3.2",
     "@angular/material-moment-adapter": "13.3",
     "@angular/common": "13.3",
     "@angular/core": "13.3",

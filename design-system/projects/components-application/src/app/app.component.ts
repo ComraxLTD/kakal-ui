@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { FormGroup, Validators } from '@angular/forms';
 import { QuestionBase } from '../../../kakal-ui/src/public-api';
 
 
@@ -10,6 +10,8 @@ import { QuestionBase } from '../../../kakal-ui/src/public-api';
 })
 export class AppComponent {
 
+  formgroup = new FormGroup({});
+editData;
   questions: QuestionBase[] = [
     // {
     //   key: 'select',
@@ -33,23 +35,31 @@ export class AppComponent {
     //   key: 'time',
     //   controlType: 'time',
     // },
-    {
-      key: 'textarea',
-      controlType: 'textarea',
-    },
+    // {
+    //   key: 'gggg',
+    //   controlType: 'format',
+    //   format: '\D'
+    // },
     {
       key: 'number',
       controlType: 'number',
     },
+    // {
+    //   key: 'password',
+    //   controlType: 'password',
+    // },
     {
-      key: 'password',
-      controlType: 'password',
-    },
-    {
-      key: 'text',
-      controlType: 'text',
+      key: 'dateRange',
+      controlType: 'dateRange',
     },
   ];
+
+  ngOnInit(){
+    setTimeout(() => {
+      console.log(this.formgroup);
+      this.editData = {number: 65657};
+    }, 4000);
+  }
 
   onQueryChanged(event){
     console.log(event);

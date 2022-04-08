@@ -106,19 +106,22 @@ export * from './lib/form/services/validations.service';
 
 // mei form
 export * from './lib/mei-form/mei-form.module';
+export * from './lib/mei-form/models/form-events';
 export * from './lib/mei-form/models/options.model';
 export * from './lib/mei-form/models/question.model';
 export * from './lib/mei-form/models/question.types';
 export * from './lib/mei-form/models/select.model';
+export * from './lib/mei-form/mei-services/message.service';
 export * from './lib/mei-form/mei-select/mei-select.component';
-export * from './lib/mei-form/mei-form/mei-form.component';
-export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
+export * from './lib/mei-form/mei-range-datepicker/mei-range-datepicker.component';
 export * from './lib/mei-form/mei-multi-autocomplete/mei-multi-autocomplete.component';
 export * from './lib/mei-form/mei-input/mei-input.component';
+export * from './lib/mei-form/mei-form/mei-form.component';
+export * from './lib/mei-form/mei-directives/phone.directive';
+export * from './lib/mei-form/mei-directives/sum.directive';
 export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
 export * from './lib/mei-form/mei-checkbox/mei-checkbox.component';
-export * from './lib/mei-form/mei-directivs/phone.directive';
-export * from './lib/mei-form/mei-directivs/sum.directive';
+export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
 
 // FORM QUESTIONS //
 

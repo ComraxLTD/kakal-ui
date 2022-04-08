@@ -13,10 +13,14 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MeiMultiAutocompleteComponent } from './mei-multi-autocomplete/mei-multi-autocomplete.component';
 import { MeiInputComponent } from './mei-input/mei-input.component';
-import { SumInputDirective } from  './mei-directivs/sum.directive';
-import { PhoneInputDirective } from  './mei-directivs/phone.directive';
+import { SumInputDirective } from  './mei-directives/sum.directive';
+import { PhoneInputDirective } from  './mei-directives/phone.directive';
 import { MeiDatepickerComponent } from './mei-datepicker/mei-datepicker.component';
-
+import { DateFnsAdapter, MatDateFnsModule, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { he } from 'date-fns/locale';
+import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-datepicker.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -26,11 +30,25 @@ import { MeiDatepickerComponent } from './mei-datepicker/mei-datepicker.componen
     MatAutocompleteModule,
     MatChipsModule,
     KKLIconModule,
-    MatInputModule
+    MatInputModule,
+    MatDateFnsModule,
+    MatDatepickerModule
   ],
   declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
-     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent],
+     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent],
   exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent, MeiCheckboxComponent,
-    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent]
+    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent],
+    providers: [
+      { provide: DateAdapter, useClass: DateFnsAdapter },
+      { provide: MAT_DATE_LOCALE, useValue: he },
+      { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+    //   {
+    //   provide: DateAdapter,
+    //   useClass: DateFnsAdapter,
+    //   deps: [MAT_DATE_LOCALE, MAT_DATE_FN],
+    // },
+
+    // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ]
 })
 export class MeiFormModule {}

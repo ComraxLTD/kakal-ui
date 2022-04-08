@@ -4,7 +4,7 @@ import { QuestionBase } from '../models/question.model';
 import { OptionsModel } from '../models/options.model'
 import { BehaviorSubject } from 'rxjs';
 import { MeiSelectOption } from '../models/select.model';
-import { FormChangeEvent } from '../models/form-events';
+import { MeiFormChangeEvent } from '../models/form-events';
 import { GridProps } from '../models/question.types';
 @Component({
   selector: 'mei-form',
@@ -13,11 +13,11 @@ import { GridProps } from '../models/question.types';
 })
 export class MeiFormComponent implements OnInit {
 
-  @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() queryChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() openChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() queryChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() selectChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
   @Input() grid: GridProps;
@@ -31,6 +31,8 @@ export class MeiFormComponent implements OnInit {
     [key: string]: TemplateRef<any>;
   } = {};
 
+  @Input() formGroup!: FormGroup;
+
   @Input() optionsSlot: { [key: string]: ElementRef };
   @Input() buttonLabel: string = 'שמור';
 
@@ -43,8 +45,26 @@ export class MeiFormComponent implements OnInit {
 
   myQuestions!: QuestionBase[];
   @Input() set questions(val: QuestionBase[]) {
-    this.myQuestions = val;
-    this.setForm();
+    console.log(this.formGroup);
+
+    if(this.formGroup && this.myQuestions) {
+      const newVals: QuestionBase[] = [];
+      const sameVals: QuestionBase[] = [];
+      val.forEach(a => {
+        if(this.myQuestions.find( vendor => Object.assign(vendor) === Object.assign(a) )) {
+          sameVals.push(this.myQuestions.find( vendor => Object.assign(vendor) === Object.assign(a) ));
+        } else {
+          newVals.push(a);
+        }
+      });
+      const removed = this.myQuestions.filter(b => !sameVals.includes(b));
+      removed.forEach(c => this.formGroup.removeControl(c.key));
+      this.myQuestions = val;
+      this.setControls(newVals);
+    } else {
+      this.myQuestions = val;
+    }
+
   }
 
   myOptions: OptionsModel[] = [];
@@ -67,8 +87,6 @@ export class MeiFormComponent implements OnInit {
 
 
 
-  formGroup!: FormGroup;
-
   localObservables: Map<string, BehaviorSubject<MeiSelectOption[]>> = new Map<string, BehaviorSubject<MeiSelectOption[]>>();
 
   constructor(private fb: FormBuilder) { }
@@ -80,6 +98,10 @@ export class MeiFormComponent implements OnInit {
     this.gutter = this.grid?.gutter || 1;
     this.flex = 100 / (this.grid?.cols || this.cols);
     this.layout = this.grid?.layout;
+    if(!this.formGroup) {
+      this.formGroup = this.fb.group({});
+    }
+    this.setControls(this.myQuestions);
   }
 
   ngAfterViewInit() {
@@ -87,10 +109,10 @@ export class MeiFormComponent implements OnInit {
     this.putEditData();
   }
 
+  setControls(controles: QuestionBase[]) {
+    console.log('jhjh');
 
-  setForm() {
-    const row = this.fb.group({});
-    this.myQuestions.forEach(a => {
+    controles.forEach(a => {
       switch (a.controlType) {
         // case 'text':
         // case 'password':
@@ -103,21 +125,21 @@ export class MeiFormComponent implements OnInit {
         // case 'cleave':
         // case 'time':
         // case 'range':
-        case 'checkbox':
-          // if(a.multi) {
-          //   row.addControl(a.key, this.fb.array(a.value));
-          //   if(typeof a.options === 'string') {
-          //     const subj = new BehaviorSubject(null);
-          //     this.localObservables.set(a.options, subj);
-          //     a.options = subj;
-          //   }
-          // } else {
-          //   row.addControl(a.key, this.fb.control(a.value));
-          // }
-          // if(a.disabled) {
-          //   row.get(a.key).disable();
-          // }
-          break;
+        // case 'checkbox':
+        //   // if(a.multi) {
+        //   //   row.addControl(a.key, this.fb.array(a.value));
+        //   //   if(typeof a.options === 'string') {
+        //   //     const subj = new BehaviorSubject(null);
+        //   //     this.localObservables.set(a.options, subj);
+        //   //     a.options = subj;
+        //   //   }
+        //   // } else {
+        //   //   row.addControl(a.key, this.fb.control(a.value));
+        //   // }
+        //   // if(a.disabled) {
+        //   //   row.get(a.key).disable();
+        //   // }
+        //   break;
         // case 'radio':
         // case 'upload':
         // case 'toggle':
@@ -125,14 +147,11 @@ export class MeiFormComponent implements OnInit {
         //   return element;
         case 'select':
         case 'autocomplete':
-          row.addControl(a.key, this.fb.control(a.value));
+          this.formGroup.addControl(a.key, this.fb.control(a.value));
           if(typeof a.options === 'string') {
             const subj = new BehaviorSubject(null);
             this.localObservables.set(a.options, subj);
             a.options = subj;
-          }
-          if(a.disabled) {
-            row.get(a.key).disable();
           }
           break;
         // case 'autocomplete':
@@ -140,19 +159,20 @@ export class MeiFormComponent implements OnInit {
         //     return element.map((a: any) => a.label);
         //   }
         //   return element.label;
-        // case 'date':
-        //   return new DatePipe('he-HE').transform(element);
-        // case 'dateRange':
-        //   return new DatePipe('he-HE').transform(element.start) +' - '+ new DatePipe('he-HE').transform(element.end);
+        case 'dateRange':
+          this.formGroup.addControl(a.key, this.fb.group({start: this.fb.control(a.value?.start), end: this.fb.control(a.value?.end)}));
+          break;
         // case 'currency':
           // return new CurrencyPipe().transform(element['sum'], element['currency'], 'symbol', '1.0-3');
         default:
-          row.addControl(a.key, this.fb.control(a.value));
+          this.formGroup.addControl(a.key, this.fb.control(a.value));
           break;
             // return element;
       }
+      if(a.disabled) {
+        this.formGroup.get(a.key).disable();
+      }
     });
-    this.formGroup = row;
   }
 
   putOptions() {

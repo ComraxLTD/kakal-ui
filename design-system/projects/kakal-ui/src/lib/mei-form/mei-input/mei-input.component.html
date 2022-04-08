@@ -9,18 +9,18 @@
 
 
     <ng-container *ngSwitchCase="'phone'">
-      <input matInput autocomplete="off" [formControl]="control" [name]="key" [type]="'text'" phoneInput
+      <input matInput [formControl]="control" [name]="key" [type]="'text'" phoneInput
         (focusout)="validate()" (focus)="onFocus()" />
     </ng-container>
 
     <ng-container *ngSwitchCase="'sum'">
-      <input matInput autocomplete="off" [formControl]="control" [name]="key" [type]="'text'" sumInput
+      <input matInput [formControl]="control" [name]="key" [type]="'text'" sumInput
         (focusout)="validate()" (focus)="onFocus()" />
     </ng-container>
 
     <!-- TEXT/NUMBER -->
     <ng-container *ngSwitchDefault>
-      <input matInput autocomplete="off" [formControl]="control" [name]="key" [type]="controlType"
+      <input matInput [formControl]="control" [name]="key" [type]="controlType"
         (focusout)="validate()" (focus)="onFocus()"/>
     </ng-container>
   </ng-container>
