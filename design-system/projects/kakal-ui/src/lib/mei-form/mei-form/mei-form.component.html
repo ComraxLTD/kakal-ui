@@ -20,7 +20,7 @@
                   [appearance]="question.appearance"
                   [disabled]="question.disabled"
                   (selectChanged)="onSelectChanged($event, question)"
-                  (openChanged)="onOpenChanged($event)"
+                  (openChanged)="onOpenChanged($event, question)"
                 ></kkl-select>
               </mat-grid-tile>
             </ng-container>
@@ -38,9 +38,9 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)">
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)">
                 </kkl-multi-autocomplete>
               </ng-container>
               <ng-template #simpleAutocomplete>
@@ -56,9 +56,9 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)"
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)"
                 ></kkl-autocomplete>
               </ng-template>
             </ng-container>
@@ -73,8 +73,8 @@
                   [maxDate]="question.maxDate"
                   [minDate]="question.minDate"
                   [appearance]="question.appearance"
-                  (focusChanged)="onFocusChanged($event)"
-                  (valueChanged)="onValueChanged($event)"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
                 >
                 </kkl-datepicker>
               </mat-grid-tile>
@@ -87,8 +87,8 @@
                   [key]="question?.key"
                   [label]="question?.label"
                   [appearance]="question?.appearance"
-                  (focusChanged)="onFocusChanged($event)"
-                  (valueChanged)="onValueChanged($event)"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
                 >
                 </kkl-range-datepicker>
               </mat-grid-tile>
@@ -107,8 +107,8 @@
                       [gridProps]="question.gridProps"
                       [icon]="question.icon"
                       [controlType]="question?.controlType"
-                      (focusChanged)="onFocusChanged($event)"
-                      (valueChanged)="onValueChanged($event)"
+                      (focusChanged)="onFocusChanged($event, question)"
+                      (valueChanged)="onValueChanged($event, question)"
                     >
                     </kkl-input>
                   </div>
@@ -150,7 +150,7 @@
                   [appearance]="question.appearance"
                   [disabled]="question.disabled"
                   (selectChanged)="onSelectChanged($event, question)"
-                  (openChanged)="onOpenChanged($event)"
+                  (openChanged)="onOpenChanged($event, question)"
                 ></kkl-select>
             </ng-container>
             <ng-container *ngSwitchCase="'autocomplete'">
@@ -167,9 +167,9 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)">
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)">
                 </kkl-multi-autocomplete>
               </ng-container>
               <ng-template #simpleAutocomplete>
@@ -185,9 +185,9 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)"
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)"
                 ></kkl-autocomplete>
               </ng-template>
             </ng-container>
@@ -200,8 +200,8 @@
                 [maxDate]="question.maxDate"
                 [minDate]="question.minDate"
                 [appearance]="question.appearance"
-                (focusChanged)="onFocusChanged($event)"
-                (valueChanged)="onValueChanged($event)"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
               ></kkl-datepicker>
             </ng-container>
             <ng-container *ngSwitchCase="'range'">
@@ -210,8 +210,8 @@
                 [key]="question?.key"
                 [label]="question?.label"
                 [appearance]="question?.appearance"
-                (focusChanged)="onFocusChanged($event)"
-                (valueChanged)="onValueChanged($event)"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
               ></kkl-range-datepicker>
             </ng-container>
             <ng-container *ngSwitchDefault>
@@ -224,8 +224,8 @@
                 [appearance]="question.appearance"
                 [icon]="question.icon"
                 [controlType]="question.controlType"
-                (focusChanged)="onFocusChanged($event)"
-                (valueChanged)="onValueChanged($event)"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
               ></kkl-input>
             </ng-container>
 
