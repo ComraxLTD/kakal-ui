@@ -10,7 +10,7 @@
         (+{{ control.value.length - 1 }} {{control.value?.length === 2 ? 'other' : 'others'}})
       </span>
     </mat-select-trigger>
-    <mat-option *ngIf="!multi && control.value" [value]="">
+    <mat-option *ngIf="!multi && control.value" [value]="">--select all--
     </mat-option>
     <mat-option *ngFor="let option of options$ | async" [value]="option" [disabled]="option.disabled">
       {{ option.label }}

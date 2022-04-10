@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ControlBase } from '../../../kakal-ui/src/public-api';
 
 
@@ -10,13 +10,16 @@ import { ControlBase } from '../../../kakal-ui/src/public-api';
 })
 export class AppComponent {
 
-  formgroup = new FormGroup({});
+  options = [{ label: 'test', value: 0 },
+  { label: 'test1', value: 1 }]
+  // control = new FormControl(null);
 editData;
   questions: ControlBase[] = [
     {
-      key: 'select',
-      controlType: 'select',
+      key: 'autocomplete',
+      controlType: 'autocomplete',
       label: 'select',
+      multi: true,
       options: [{ label: 'test', value: 0 }],
       valueChanged: (eve) => {console.log(this.editData);}
     },
@@ -30,13 +33,14 @@ editData;
     //   options: [{ label: 'test', value: 0 }],
     // },
     // {
-    //   key: 'tel',
-    //   controlType: 'tel',
+    //   key: 'phone',
+    //   controlType: 'phone',
     // },
-    {
-      key: 'sum',
-      controlType: 'sum',
-    },
+    // {
+    //   key: 'counter',
+    //   controlType: 'counter',
+    //   // disabled: true
+    // },
     // {
     //   key: 'gggg',
     //   controlType: 'format',
@@ -50,10 +54,10 @@ editData;
     //   key: 'password',
     //   controlType: 'password',
     // },
-    {
-      key: 'dateRange',
-      controlType: 'dateRange',
-    },
+    // {
+    //   key: 'dateRange',
+    //   controlType: 'dateRange',
+    // },
   ];
 
   ngOnInit(){

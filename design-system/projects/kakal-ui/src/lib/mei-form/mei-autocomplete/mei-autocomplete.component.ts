@@ -21,24 +21,30 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() control!: FormControl;
 
   _options!: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
+  tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
-    if(Array.isArray(val)) {
-      this.isArray = true;
-      this.control.setValue(val.find(b => b.selected));
-      if(!this.filteredOptions) {
-        this.filteredOptions = this.control.valueChanges.pipe(
-          startWith(''),
-          map(value => (typeof value === 'string' ? value : value.label)),
-          map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
-        );
+    if(this.control){
+      this._options = val;
+      if(Array.isArray(val)) {
+        this.isArray = true;
+        this.control.setValue(val.find(b => b.selected));
+        if(!this.filteredOptions) {
+          this.filteredOptions = this.control.valueChanges.pipe(
+            startWith(''),
+            map(value => (typeof value === 'string' ? value : value.label)),
+            map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
+          );
+        }
+      } else {
+        this.isArray = false;
+        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+          this.control.setValue(a.find(b => b.selected));
+        });
       }
     } else {
-      this.isArray = false;
-      (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
-        this.control.setValue(a.find(b => b.selected));
-      });
+      this.tempOptions = val;
     }
-    this._options = val;
+
   }
   @Input() placeHolder!: string;
   @Input() label!: string;
@@ -66,6 +72,24 @@ export class MeiAutocompleteComponent implements OnInit {
       filter( value => (typeof value === 'string'))
     ).subscribe(a => this.search());
     this.error$ = new BehaviorSubject<string>('');
+    if(Array.isArray(this.tempOptions)) {
+      this._options = this.tempOptions;
+      this.isArray = true;
+      this.control.setValue(this.tempOptions.find(b => b.selected));
+      if(!this.filteredOptions) {
+        this.filteredOptions = this.control.valueChanges.pipe(
+          startWith(''),
+          map(value => (typeof value === 'string' ? value : value.label)),
+          map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
+        );
+      }
+    } else if(this.tempOptions) {
+      this.isArray = false;
+      this._options = this.tempOptions;
+      (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        this.control.setValue(a.find(b => b.selected));
+      });
+    }
   }
 
   displayFn(mei: KklSelectOption): string {

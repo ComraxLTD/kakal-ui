@@ -17,29 +17,29 @@ export class MeiSelectComponent implements OnInit {
 
 
   options$: BehaviorSubject<KklSelectOption[]> = new BehaviorSubject<KklSelectOption[]>([]);
+  tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
     if(!val) return;
-    if(Array.isArray(val)) {
-      if(this.multi){
-        this.control.setValue((val as KklSelectOption[]).filter(b => b.selected));
-      } else {
-        this.control.setValue((val as KklSelectOption[]).find(b => b.selected));
-      }
-      this.options$.next(val);
-      // if(this.multi){
-      //   this.control.setValue(this.options.filter(b => b.selected));
-      // } else {
-      //   this.control.setValue(this.options.find(b => b.selected));
-      // }
-    } else {
-      (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+    if(this.control) {
+      if(Array.isArray(val)) {
         if(this.multi){
-          this.control.setValue(a.filter(b => b.selected));
+          this.control.setValue((val as KklSelectOption[]).filter(b => b.selected));
         } else {
-          this.control.setValue(a.find(b => b.selected));
+          this.control.setValue((val as KklSelectOption[]).find(b => b.selected));
         }
-        this.options$.next(a);
-      });
+        this.options$.next(val);
+      } else {
+        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+          if(this.multi){
+            this.control.setValue(a.filter(b => b.selected));
+          } else {
+            this.control.setValue(a.find(b => b.selected));
+          }
+          this.options$.next(a);
+        });
+      }
+    } else {
+      this.tempOptions = val;
     }
   }
   @Input() multi!: boolean;
@@ -60,6 +60,22 @@ export class MeiSelectComponent implements OnInit {
 
   ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
+    if(Array.isArray(this.tempOptions)) {
+      if(this.multi){
+        this.control.setValue((this.tempOptions as KklSelectOption[]).filter(b => b.selected));
+      } else {
+        this.control.setValue((this.tempOptions as KklSelectOption[]).find(b => b.selected));
+      }
+    } else if(this.tempOptions) {
+      (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        if(this.multi){
+          this.control.setValue(a.filter(b => b.selected));
+        } else {
+          this.control.setValue(a.find(b => b.selected));
+        }
+        this.options$.next(a);
+      });
+    }
   }
 
   compareFunction(o1: KklSelectOption, o2: KklSelectOption) {
