@@ -20,7 +20,7 @@ export class MeiSelectComponent implements OnInit {
   tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
     if(!val) return;
-    if(this.control) {
+    if(this.control && this.multi) {
       if(Array.isArray(val)) {
         if(this.multi){
           this.control.setValue((val as KklSelectOption[]).filter(b => b.selected));
