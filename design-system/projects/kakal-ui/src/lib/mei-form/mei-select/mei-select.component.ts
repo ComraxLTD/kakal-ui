@@ -1,13 +1,13 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MeiSelectOption } from '../models/select.model';
-import { FormActions } from '../models/form-events';
-import { FormChangeEvent } from '../models/form-events';
+import { KklSelectOption } from '../models/kkl-select.model';
+import { KklFormActions } from '../models/kkl-form-events';
+import { KklFormChangeEvent } from '../models/kkl-form-events';
 import { MessageService } from '../mei-services/message.service';
 import { BehaviorSubject, take } from 'rxjs';
 
 @Component({
-  selector: 'mei-select',
+  selector: 'kkl-select',
   templateUrl: './mei-select.component.html',
   styleUrls: ['./mei-select.component.scss']
 })
@@ -16,31 +16,23 @@ export class MeiSelectComponent implements OnInit {
   @Input() control!: FormControl;
 
 
-  @Input() options!: BehaviorSubject<MeiSelectOption[]> | MeiSelectOption[];
-  @Input() multi!: boolean;
-  @Input() placeHolder!: string;
-  @Input() label!: string;
-  @Input() theme!: string;
-  @Input() key!: string;
-  @Input() appearance!: string;
-
-  options$: BehaviorSubject<MeiSelectOption[]>;
-
-  @Output() selectChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  // @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
-
-  error$: BehaviorSubject<string>;
-
-
-  constructor(private messageService: MessageService) { }
-
-  ngOnInit(): void {
-    this.options$ = new BehaviorSubject<MeiSelectOption[]>([]);
-    if(Array.isArray(this.options)) {
-      this.options$.next(this.options);
+  options$: BehaviorSubject<KklSelectOption[]> = new BehaviorSubject<KklSelectOption[]>([]);
+  @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
+    if(!val) return;
+    if(Array.isArray(val)) {
+      if(this.multi){
+        this.control.setValue((val as KklSelectOption[]).filter(b => b.selected));
+      } else {
+        this.control.setValue((val as KklSelectOption[]).find(b => b.selected));
+      }
+      this.options$.next(val);
+      // if(this.multi){
+      //   this.control.setValue(this.options.filter(b => b.selected));
+      // } else {
+      //   this.control.setValue(this.options.find(b => b.selected));
+      // }
     } else {
-      (this.options as BehaviorSubject<MeiSelectOption[]>).subscribe((a: MeiSelectOption[]) => {
+      (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
         if(this.multi){
           this.control.setValue(a.filter(b => b.selected));
         } else {
@@ -49,16 +41,34 @@ export class MeiSelectComponent implements OnInit {
         this.options$.next(a);
       });
     }
+  }
+  @Input() multi!: boolean;
+  @Input() placeHolder!: string;
+  @Input() label!: string;
+  @Input() theme!: string;
+  @Input() key!: string;
+  @Input() appearance!: string;
+
+  @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() openChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  // @Output() focus: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+
+  error$: BehaviorSubject<string>;
+
+
+  constructor(private messageService: MessageService) { }
+
+  ngOnInit(): void {
     this.error$ = new BehaviorSubject<string>('');
   }
 
-  compareFunction(o1: MeiSelectOption, o2: MeiSelectOption) {
+  compareFunction(o1: KklSelectOption, o2: KklSelectOption) {
     return JSON.stringify(o1) === JSON.stringify(o2);
   }
 
   deselectAll() {
     this.control.patchValue([]);
-    (this.options as BehaviorSubject<MeiSelectOption[]>).pipe(take(1)).subscribe((a: MeiSelectOption[]) => {
+    (this.options as BehaviorSubject<KklSelectOption[]>).pipe(take(1)).subscribe((a: KklSelectOption[]) => {
       a.forEach(b => {
         b.selected = false;
       })
@@ -82,7 +92,7 @@ export class MeiSelectComponent implements OnInit {
   //   this.focus.emit({
   //     key: this.question.key,
   //     value: this.control.value,
-  //     action: FormActions.FOCUS_IN
+  //     action: KklFormActions.FOCUS_IN
   //   });
   // }
   onSelectChanged(event) {
@@ -95,14 +105,14 @@ export class MeiSelectComponent implements OnInit {
     this.selectChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: this.multi? FormActions.MULTI_SELECT_CHANGED : FormActions.SELECT_CHANGED
+      action: this.multi? KklFormActions.MULTI_SELECT_CHANGED : KklFormActions.SELECT_CHANGED
     });
   }
   onOpenChanged(event) {
     this.openChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: event? FormActions.OPENED_SELECT : FormActions.CLOSED_SELECT
+      action: event? KklFormActions.OPENED_SELECT : KklFormActions.CLOSED_SELECT
     });
   }
 

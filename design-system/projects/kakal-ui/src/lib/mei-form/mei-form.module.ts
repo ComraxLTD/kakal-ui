@@ -16,11 +16,24 @@ import { MeiInputComponent } from './mei-input/mei-input.component';
 import { SumInputDirective } from  './mei-directivs/sum.directive';
 import { PhoneInputDirective } from  './mei-directivs/phone.directive';
 import { MeiDatepickerComponent } from './mei-datepicker/mei-datepicker.component';
-import { DateFnsAdapter, MatDateFnsModule, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
+import { DateFnsAdapter, DateFnsModule, MatDateFnsModule, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { he } from 'date-fns/locale';
 import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-datepicker.component';
+
+export const MY_MY_FORMATS = {
+  parse: {
+    dateInput: 'P',
+  },
+  display: {
+    dateInput: 'P',
+    monthYearLabel: 'MMM yyyy',
+    dateA11yLabel: 'PP',
+    monthYearA11yLabel: 'MMMM yyyy',
+  },
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -41,7 +54,9 @@ import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-da
     providers: [
       { provide: DateAdapter, useClass: DateFnsAdapter },
       { provide: MAT_DATE_LOCALE, useValue: he },
-      { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+      // {provide: MAT_DATE_FORMATS, useValue: MY_MY_FORMATS},
+      // { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+      // { provide: MAT_DATE_FNS_FORMATS, useValue: frenchConfig }
     //   {
     //   provide: DateAdapter,
     //   useClass: DateFnsAdapter,

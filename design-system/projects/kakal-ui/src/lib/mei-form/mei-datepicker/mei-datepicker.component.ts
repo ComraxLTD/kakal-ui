@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, startWith, Subject } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
-import { FormActions, FormChangeEvent } from '../models/form-events';
-import { Appearance } from '../models/question.types';
+import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
+import { Appearance } from '../models/control.types';
 
 @Component({
-  selector: 'mei-datepicker',
+  selector: 'kkl-datepicker',
   templateUrl: './mei-datepicker.component.html',
   styleUrls: ['./mei-datepicker.component.scss']
 })
@@ -24,8 +24,8 @@ export class MeiDatepickerComponent implements OnInit {
   // MatFormFieldAppearance
   error$: BehaviorSubject<string>;
 
-  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
 
   constructor(private messageService: MessageService) {}
 
@@ -54,7 +54,7 @@ export class MeiDatepickerComponent implements OnInit {
     this.valueChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.VALUE_CHANGED,
+      action: KklFormActions.VALUE_CHANGED,
     });
   }
 
@@ -62,7 +62,7 @@ export class MeiDatepickerComponent implements OnInit {
     this.focusChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.FOCUS_IN,
+      action: KklFormActions.FOCUS_IN,
     });
   }
 

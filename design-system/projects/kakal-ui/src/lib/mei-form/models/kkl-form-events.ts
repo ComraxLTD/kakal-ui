@@ -1,12 +1,12 @@
 
-export interface FormChangeEvent {
+export interface KklFormChangeEvent {
   key: string;
   value?: any;
-  action : FormActions;
+  action : KklFormActions;
   query?: string;
 }
 
-export enum FormActions {
+export enum KklFormActions {
 
   FOCUS_IN = 'focusIn',
 

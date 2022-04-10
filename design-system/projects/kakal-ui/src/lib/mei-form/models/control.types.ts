@@ -42,10 +42,9 @@ export type ControlType =
   | 'upload'
   | 'toggle'
   | 'texteditor'
-
   | 'checkbox'
-
-  | 'currency';
+  | 'currency'
+  | 'range';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 

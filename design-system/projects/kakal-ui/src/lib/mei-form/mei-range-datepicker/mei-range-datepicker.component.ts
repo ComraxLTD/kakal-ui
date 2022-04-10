@@ -2,11 +2,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { distinctUntilChanged, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
-import { FormActions, FormChangeEvent } from '../models/form-events';
-import { Appearance } from '../models/question.types';
+import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
+import { Appearance } from '../models/control.types';
 
 @Component({
-  selector: 'mei-range-datepicker',
+  selector: 'kkl-range-datepicker',
   templateUrl: './mei-range-datepicker.component.html',
   styleUrls: ['./mei-range-datepicker.component.scss']
 })
@@ -19,8 +19,8 @@ export class MeiRangeDatepickerComponent implements OnInit {
 
 
 
-  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -48,7 +48,7 @@ export class MeiRangeDatepickerComponent implements OnInit {
     this.valueChanged.emit({
       key: this.key,
       value: this.groupControl.value,
-      action: FormActions.VALUE_CHANGED,
+      action: KklFormActions.VALUE_CHANGED,
     });
   }
 
@@ -56,7 +56,7 @@ export class MeiRangeDatepickerComponent implements OnInit {
     this.focusChanged.emit({
       key: this.key,
       value: this.groupControl.value,
-      action: FormActions.FOCUS_IN,
+      action: KklFormActions.FOCUS_IN,
     });
   }
 

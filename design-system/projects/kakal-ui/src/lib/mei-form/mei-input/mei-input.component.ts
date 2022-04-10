@@ -3,11 +3,11 @@ import { AbstractControl, FormControl, FormControlStatus, Validators } from '@an
 import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
-import { FormActions, FormChangeEvent } from '../models/form-events';
-import { Appearance, ControlType, GridProps } from '../models/question.types';
+import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
+import { Appearance, ControlType, GridProps } from '../models/control.types';
 
 @Component({
-  selector: 'mei-input',
+  selector: 'kkl-input',
   templateUrl: './mei-input.component.html',
   styleUrls: ['./mei-input.component.scss']
 })
@@ -29,8 +29,8 @@ export class MeiInputComponent implements OnInit {
   error$: BehaviorSubject<string>;
   color$: Observable<Palette>;
 
-  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
 
   constructor(
     private messageService: MessageService
@@ -42,7 +42,7 @@ export class MeiInputComponent implements OnInit {
     this.control.valueChanges.pipe(
       startWith(''),
       distinctUntilChanged(),
-      debounceTime(this.debounce? this.debounce : 500),
+      debounceTime(this.debounce? this.debounce : 300),
     ).subscribe(a => this.onValueChanged());
 
     this.setValidationsAndIcons();
@@ -132,7 +132,7 @@ export class MeiInputComponent implements OnInit {
     this.focusChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.FOCUS_IN,
+      action: KklFormActions.FOCUS_IN,
     });
   }
 
@@ -140,7 +140,7 @@ export class MeiInputComponent implements OnInit {
     this.valueChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: FormActions.VALUE_CHANGED,
+      action: KklFormActions.VALUE_CHANGED,
     });
   }
 
