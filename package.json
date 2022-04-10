@@ -19,10 +19,6 @@
   },
   "homepage": "https://github.com/ComraxLTD/kakal-ui#readme",
   "dependencies": {
-    "@fullcalendar/angular": "^5.10.2",
-    "@fullcalendar/daygrid": "^5.10.1",
-    "@fullcalendar/interaction": "^5.10.1",
-    "@fullcalendar/timegrid": "^5.10.1",
     "express": "^4.17.3"
   }
 }

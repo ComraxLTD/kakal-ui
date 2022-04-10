@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'kkl-calendar-card',
   templateUrl: './calendar-card.component.html',
