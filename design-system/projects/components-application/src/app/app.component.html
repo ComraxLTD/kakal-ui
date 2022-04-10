@@ -1,6 +1,48 @@
+<div fxLayout="column" fxLayoutGap="2rem">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <kkl-carousel fxFlex="50" [component]="component" [data]="cards"></kkl-carousel>
+    <!-- <kkl-card-add fxFlex="10" title="test" content="test"></kkl-card-add> -->
+  </div>
+  <kkl-full-calendar [data]="arr" (eventClicked)="eventClicked($event)"></kkl-full-calendar>
+  <div>
+    <!-- <kkl-card-filter [card]="card"></kkl-card-filter> -->
+    <!-- <kkl-layout [cards]="cards"></kkl-layout> -->
+    <!-- <div fxLayout="row" fxLayoutAlign="center">
+  <div fxFlex="90" fxLayout="column" fxLayoutGap="2rem">
+    <kkl-accordion-steps-layout
+      fxFill
+      [manuel]="true"
+      [panels]="panels"
+      [steps]="steps"
+      [selectedIndex]="selectedIndex"
+      [templates]="{filterForm, groupForm}"
+      (stepSelect)="onSelectionChanged($event)"
+    ></kkl-accordion-steps-layout> -->
+
+    <!-- <div> -->
+    <!-- <mat-checkbox #checked>manuel</mat-checkbox> -->
+    <!-- <button (click)="next()" mat-raised-button>
+        toggle to able next step
+      </button> -->
+    <!-- </div> -->
+    <!-- </div> -->
+    <!-- templates for layouts -->
+    <!-- <ng-template #filterForm let-stepState>
+    {{ stepState.index }}
+    <app-form-flex [formGroup]="stepState.step.control"></app-form-flex>
+  </ng-template>
+
+  <ng-template #groupForm let-stepState>
+    {{ stepState.index }}
+    <app-form-flex
+      [index]="stepState.index"
+      [formGroup]="stepState.step.control"
+    ></app-form-flex>
+  </ng-template>
+</div> -->
 
 <!-- <app-new-order-layout></app-new-order-layout> -->
-
+<!-- 
 <ng-container content>
   <ng-container>
     <kkl-form
@@ -10,7 +52,7 @@
       (openChanged)="onOpenChanged($event)"
     ></kkl-form>
   </ng-container>
-</ng-container>
+</ng-container> -->
 <!--<kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
 <kkl-local-table
   [dataSource]="dataSource"
