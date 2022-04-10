@@ -66,6 +66,7 @@ export class MeiSelectComponent implements OnInit {
       } else {
         this.control.setValue((this.tempOptions as KklSelectOption[]).find(b => b.selected));
       }
+      this.options$.next(this.tempOptions);
     } else if(this.tempOptions) {
       (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
         if(this.multi){
