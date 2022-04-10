@@ -267,7 +267,7 @@ export * from './services/template.service';
 
 // constants
 export * from './constants/module-prefix';
-export * from './constants/project-prefix';
+export * from './constants/root-prefix';
 export * from './constants/step-prefix';
 
 // styles

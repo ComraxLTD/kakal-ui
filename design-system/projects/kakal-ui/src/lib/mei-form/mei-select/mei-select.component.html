@@ -1,22 +1,47 @@
-<mat-form-field class="kkl-form-select" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance">
+<mat-form-field
+  class="kkl-form-select"
+  [color]="theme"
+  [appearance]="control.disabled ? 'fill' : appearance"
+>
   <mat-label>{{ label }}</mat-label>
 
-  <mat-select [multiple]="multi" [placeholder]="placeHolder" [disableOptionCentering]="true" [formControl]="control" [compareWith]="compareFunction"
-    panelClass="select-panel-form" overlayPanelClass="overlay-panel" [disableOptionCentering]="true"
-    (selectionChange)="onSelectChanged($event)" (openedChange)="onOpenChanged($event)" (focusout)="setErrorMessage()">
+  <mat-select
+    [multiple]="multi"
+    [placeholder]="placeHolder"
+    [disableOptionCentering]="true"
+    [formControl]="control"
+    [compareWith]="compareFunction"
+    panelClass="select-panel-form"
+    overlayPanelClass="overlay-panel"
+    [disableOptionCentering]="true"
+    (selectionChange)="onSelectChanged($event)"
+    (openedChange)="onOpenChanged($event)"
+    (focusout)="setErrorMessage()"
+  >
     <mat-select-trigger *ngIf="multi">
       {{ control.value ? control.value[0]?.label : "" }}
       <span *ngIf="control.value?.length > 1">
-        (+{{ control.value.length - 1 }} {{control.value?.length === 2 ? 'other' : 'others'}})
+        (+{{ control.value.length - 1 }}
+        {{ control.value?.length === 2 ? "other" : "others" }})
       </span>
     </mat-select-trigger>
-    <mat-option *ngFor="let option of options$ | async" [value]="option" [disabled]="option.disabled">
+    <mat-option
+      *ngFor="let option of options$ | async"
+      [value]="option"
+      [disabled]="option.disabled"
+    >
       {{ option.label }}
     </mat-option>
   </mat-select>
   <ng-container matSuffix>
     <kkl-icon color="primary" key="keyboard_arrow_down"></kkl-icon>
-    <button *ngIf="control.value?.length > 1" [disabled]="control.disabled" mat-raised-button class="mat-primary fill text-sm eta-margin-all" (click)="deselectAll()">
+    <button
+      *ngIf="control.value?.length > 1"
+      [disabled]="control.disabled"
+      mat-raised-button
+      class="mat-primary fill text-sm eta-margin-all"
+      (click)="deselectAll()"
+    >
       Deselect All
     </button>
   </ng-container>

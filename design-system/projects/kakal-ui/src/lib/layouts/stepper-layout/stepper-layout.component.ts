@@ -20,6 +20,7 @@ import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.compone
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
+import { IconsService } from '../../icon/icons.service';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -67,7 +68,8 @@ export class StepperLayoutComponent {
   constructor(
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private iconService: IconsService
   ) {}
 
   ngOnInit(): void {
@@ -130,7 +132,7 @@ export class StepperLayoutComponent {
   // ACTIONS SECTION
   private setDrawerAction(): ButtonModel {
     const iconMap = {
-      file: 'portfolio',
+      file: 'file',
       notes: 'bell',
     };
 
