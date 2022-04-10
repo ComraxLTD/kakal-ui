@@ -15,18 +15,19 @@ export class AppComponent {
   // control = new FormControl(null);
 editData;
   questions: ControlBase[] = [
-    {
-      key: 'autocomplete',
-      controlType: 'autocomplete',
-      label: 'select',
-      multi: true,
-      options: [{ label: 'test', value: 0 }],
-      valueChanged: (eve) => {console.log(this.editData);}
-    },
     // {
-    //   key: 'email',
-    //   controlType: 'email',
+    //   key: 'autocomplete',
+    //   controlType: 'autocomplete',
+    //   label: 'select',
+    //   multi: true,
+    //   options: [{ label: 'test', value: 0 }],
+    //   valueChanged: (eve) => {console.log(this.editData);}
     // },
+    {
+      key: 'email',
+      controlType: 'format',
+      format: '\d'
+    },
     // {
     //   key: 'autocomplete',
     //   controlType: 'autocomplete',

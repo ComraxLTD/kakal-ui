@@ -39,7 +39,7 @@ export class MeiMultiAutocompleteComponent {
       } else {
         this.isArray = false;
         (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
-          this.control.setValue(a.filter(b => b.selected));
+          this.control.setValue(a?.filter(b => b.selected));
         });
       }
       this._options = val;
@@ -91,7 +91,7 @@ export class MeiMultiAutocompleteComponent {
       this._options = this.tempOptions;
       this.isArray = false;
       (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
-        this.control.setValue(a.filter(b => b.selected));
+        this.control.setValue(a?.filter(b => b.selected));
       });
     }
     this.error$ = new BehaviorSubject<string>('');

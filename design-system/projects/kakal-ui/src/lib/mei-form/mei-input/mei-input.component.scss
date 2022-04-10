@@ -59,7 +59,7 @@ input[type="number"] {
 }
 
 
-mat-form-field  {
+mat-form-field.center  {
   text-align: center !important;
 }
 
@@ -74,7 +74,7 @@ hr {
   width: 90%;
   border-top: 1px dashed main.color(default);
 }
-input {
+input.small {
   width: 5rem;
   height: 2rem;
   border: none;

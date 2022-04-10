@@ -38,7 +38,7 @@ export class MeiAutocompleteComponent implements OnInit {
       } else {
         this.isArray = false;
         (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
-          this.control.setValue(a.find(b => b.selected));
+          this.control.setValue(a?.find(b => b.selected));
         });
       }
     } else {
@@ -87,7 +87,7 @@ export class MeiAutocompleteComponent implements OnInit {
       this.isArray = false;
       this._options = this.tempOptions;
       (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
-        this.control.setValue(a.find(b => b.selected));
+        this.control.setValue(a?.find(b => b.selected));
       });
     }
   }
