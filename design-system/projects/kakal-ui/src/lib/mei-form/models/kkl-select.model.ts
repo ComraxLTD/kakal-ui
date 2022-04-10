@@ -1,4 +1,4 @@
-export interface MeiSelectOption {
+export interface KklSelectOption {
   label: string;
   value: any;
   disabled?: boolean;

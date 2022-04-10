@@ -1,10 +1,10 @@
-import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { ValidatorFn } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Palette } from '../../../styles/theme';
-import { Appearance, ControlType, GridProps } from './question.types';
-import { MeiSelectOption } from './select.model';
+import { Appearance, ControlType, GridProps } from './control.types';
+import { KklSelectOption } from './kkl-select.model';
 
-export abstract class QuestionBase {
+export abstract class ControlBase {
   public key: string;
   public label?: string;
   public placeHolder?: string;
@@ -20,7 +20,7 @@ export abstract class QuestionBase {
   public minDate?: Date;
 
   //for select and autocomplete
-  public options?: MeiSelectOption[] |  BehaviorSubject<MeiSelectOption[]> | string;
+  public options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
   //for input and autocomplete
   public debounce?: number;
   //for input
@@ -38,7 +38,11 @@ export abstract class QuestionBase {
   //for autocomplete
   public panelWidth?: boolean;
 
-
+  public queryChanged?: Function;
+  public selectChanged?: Function;
+  public openChanged?: Function;
+  public valueChanged?: Function;
+  public focusChanged?: Function;
 
 
 
@@ -55,7 +59,7 @@ export abstract class QuestionBase {
     disabled?: boolean;
     gridProps?: GridProps;
     icon?: string;
-    options?: MeiSelectOption[] |  BehaviorSubject<MeiSelectOption[]> | string;
+    options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
     validations?: ValidatorFn[];
     multi?: boolean;
     panelWidth?: boolean;
@@ -87,5 +91,6 @@ export abstract class QuestionBase {
     this.debounce = options.debounce;
     this.minDate = options.minDate;
     this.maxDate = options.maxDate;
+
   }
 }

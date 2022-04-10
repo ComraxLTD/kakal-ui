@@ -13,22 +13,27 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatInputModule } from '@angular/material/input';
 import { MeiMultiAutocompleteComponent } from './mei-multi-autocomplete/mei-multi-autocomplete.component';
 import { MeiInputComponent } from './mei-input/mei-input.component';
-import { SumInputDirective } from './mei-directives/sum.directive';
-import { PhoneInputDirective } from './mei-directives/phone.directive';
+import { SumInputDirective } from  './mei-directives/sum.directive';
+import { PhoneInputDirective } from  './mei-directives/phone.directive';
 import { MeiDatepickerComponent } from './mei-datepicker/mei-datepicker.component';
-import {
-  DateFnsAdapter,
-  MatDateFnsModule,
-  MAT_DATE_FNS_FORMATS,
-} from '@angular/material-date-fns-adapter';
-import {
-  DateAdapter,
-  MAT_DATE_FORMATS,
-  MAT_DATE_LOCALE,
-} from '@angular/material/core';
+import { DateFnsAdapter, DateFnsModule, MatDateFnsModule, MAT_DATE_FNS_FORMATS } from '@angular/material-date-fns-adapter';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { he } from 'date-fns/locale';
 import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-datepicker.component';
+
+export const MY_MY_FORMATS = {
+  parse: {
+    dateInput: 'P',
+  },
+  display: {
+    dateInput: 'P',
+    monthYearLabel: 'MMM yyyy',
+    dateA11yLabel: 'PP',
+    monthYearA11yLabel: 'MMMM yyyy',
+  },
+};
+
 @NgModule({
   imports: [
     CommonModule,
@@ -40,36 +45,18 @@ import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-da
     KKLIconModule,
     MatInputModule,
     MatDateFnsModule,
-    MatDatepickerModule,
+    MatDatepickerModule
   ],
-  declarations: [
-    MeiFormComponent,
-    MeiSelectComponent,
-    MeiAutocompleteComponent,
-    MeiCheckboxComponent,
-    MeiMultiAutocompleteComponent,
-    MeiInputComponent,
-    SumInputDirective,
-    PhoneInputDirective,
-    MeiDatepickerComponent,
-    MeiRangeDatepickerComponent,
-  ],
-  exports: [
-    MeiFormComponent,
-    MeiSelectComponent,
-    MeiMultiAutocompleteComponent,
-    MeiAutocompleteComponent,
-    MeiInputComponent,
-    MeiCheckboxComponent,
-    SumInputDirective,
-    PhoneInputDirective,
-    MeiDatepickerComponent,
-    MeiRangeDatepickerComponent,
-  ],
-  providers: [
-    { provide: DateAdapter, useClass: DateFnsAdapter },
-    { provide: MAT_DATE_LOCALE, useValue: he },
-    { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+  declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
+     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent],
+  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent, MeiCheckboxComponent,
+    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent],
+    providers: [
+      { provide: DateAdapter, useClass: DateFnsAdapter },
+      { provide: MAT_DATE_LOCALE, useValue: he },
+      // {provide: MAT_DATE_FORMATS, useValue: MY_MY_FORMATS},
+      // { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
+      // { provide: MAT_DATE_FNS_FORMATS, useValue: frenchConfig }
     //   {
     //   provide: DateAdapter,
     //   useClass: DateFnsAdapter,
@@ -77,6 +64,6 @@ import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-da
     // },
 
     // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-  ],
+  ]
 })
 export class MeiFormModule {}
