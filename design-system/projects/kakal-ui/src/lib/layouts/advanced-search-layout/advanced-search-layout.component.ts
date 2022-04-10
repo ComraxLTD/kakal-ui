@@ -19,7 +19,6 @@ import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 import { FormGrid } from '../../form/models/question.types';
 import { QuestionAutocompleteModel } from '../../form/form-autocomplete/question-autocomplete';
 import { Observable } from 'rxjs';
-import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
