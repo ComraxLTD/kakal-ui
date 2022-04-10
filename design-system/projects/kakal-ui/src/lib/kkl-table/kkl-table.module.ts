@@ -40,7 +40,7 @@ import { StylePaginatorDirective } from './directives/kkl-paginator.directive';
     ArrIndexPipe,
     TableFormComponent,
     TableCellComponent,
-    // StylePaginatorDirective
+    StylePaginatorDirective
  ],
   imports: [
     CommonModule,

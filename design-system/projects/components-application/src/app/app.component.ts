@@ -1,11 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {
-  CardStepModel,
-  FormActions,
-  FormGrid,
-  FormService,
-  Question,
-  QuestionGroupModel,
   RowActionModel,
   TableBase,
 } from '../../../kakal-ui/src/public-api';
@@ -21,7 +15,192 @@ export class AppComponent implements OnInit {
       poCodes: 'asdasdas',
       suppliers: 'suppliers',
       status: 'status',
-    }
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
+    {
+      poCodes: 'asdasdas',
+      suppliers: 'suppliers',
+      status: 'status',
+    },
   ];
 
   columns: TableBase[] = [
@@ -52,7 +231,7 @@ export class AppComponent implements OnInit {
     },
   ]
 
-  constructor(private formService: FormService) {}
+  constructor( ) {}
 
   ngOnInit(): void {
   }
