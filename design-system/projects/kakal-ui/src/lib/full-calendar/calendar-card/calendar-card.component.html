@@ -2,20 +2,20 @@
     <div class="right">
         <div [class]="checkHour ? 'same-hour-svg' : null">
             <img *ngIf='props.event.extendedProps.img' [src]='props.event.extendedProps.img' />
-            <kkl-icon *ngIf='props.event.extendedProps.svg' [key]='props.event.extendedProps.svg'></kkl-icon>
+            <kkl-icon *ngIf='props.event.extendedProps.svg' color="primary" [key]='props.event.extendedProps.svg'></kkl-icon>
         </div>
         <div [class]="checkHour ? 'same-hour' : null">
-            <p class="title">{{props.event.title}}</p>
+            <p class="title" [ngClass]="props.event.extendedProps.type">{{props.event.title}}</p>
             <p class='timeText'>{{props.timeText}}</p>
         </div>
     </div>
-    <div class="left">
+    <!-- <div class="left">
         <div class="event-icons" *ngFor='let item of props.event.extendedProps.additions'>
-            <kkl-icon type="svg" [size]="checkHour? '25' : '3'" key="white_circle"></kkl-icon>
+            <kkl-icon color="primary" [size]="checkHour? '25' : '3'" key="white_circle"></kkl-icon>
             <div class="main-icon">
-                <kkl-icon type="svg" [size]="checkHour? '15' : '1.3'"  [key]="item.svg"></kkl-icon>
+                <kkl-icon color="primary" [size]="checkHour? '15' : '1.3'" [key]="item.svg"></kkl-icon>
             </div>
         
         </div>
-    </div>
+    </div> -->
 </div>

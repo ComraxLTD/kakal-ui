@@ -1,3 +1,12 @@
+@use "../../../styles/variables" as main;
+
+.facility {
+    color: main.color(primary);
+}
+.activity {
+    color: main.color(accent);
+}
+
 .calendar-card {
     max-height: 100%;
     display: flex;

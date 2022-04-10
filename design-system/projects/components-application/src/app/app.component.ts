@@ -21,17 +21,40 @@ import {
 })
 export class AppComponent implements OnInit {
 
+  eventClicked(event) {
+    console.log(event);
+  }
   //calendar 
   arr = [
     {
       backgroundColor: "#F0F6FE",
-      start: "2022-04-07T08:00",
-      end: "2022-04-07T09:00",
+      start: "2022-04-10",
+      // end: "2022-04-10T09:00",
       editable: true,
-      svg: "football",
+      svg: "tree",
+      textColor: "black",
+      title: "מגרש ספורט",
+      type: "facility",
+    },
+    {
+      backgroundColor: "#F0F6FE",
+      start: "2022-04-10T08:00",
+      end: "2022-04-10T09:00",
+      editable: true,
+      svg: "tree",
       textColor: "black",
       title: "מגרש ספורט",
       type: "facility"
+    },
+    {
+      backgroundColor: "#F0F6FE",
+      start: "2022-04-10T09:00",
+      end: "2022-04-10T10:00",
+      editable: true,
+      svg: "tree",
+      textColor: "black",
+      title: "מגרש ספורט",
+      type: "activity"
     }
   ]
 

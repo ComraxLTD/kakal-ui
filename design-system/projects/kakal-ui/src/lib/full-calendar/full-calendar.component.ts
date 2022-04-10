@@ -2,31 +2,36 @@ import { Component, EmbeddedViewRef, OnInit, ViewChild } from '@angular/core';
 import { CalendarOptions, FullCalendarComponent } from '@fullcalendar/angular';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { EventInput } from '@fullcalendar/angular';
-import { Observable, Subscription } from 'rxjs';
-
 import heLocale from '@fullcalendar/core/locales/he';
 import interactionPlugin from '@fullcalendar/interaction';
 import { CalendarCardComponent } from './calendar-card/calendar-card.component';
 import { DynamicComponent } from './dynamic/dynamic.component';
 import { Input } from '@angular/core';
+import { Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
+import { AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'kkl-full-calendar',
   templateUrl: './full-calendar.component.html',
   styleUrls: ['./full-calendar.component.scss']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, AfterViewInit {
 
   @Input() data: EventInput[];
   @Input() validRange!: { start: string, end: string };
+  @Input() scrollTime: string = "07:00";
+  @Input() allDayEvent: boolean = true;
 
-  public calendarEventsArr$!: Observable<EventInput[]>;
-  public value!: EventInput[];
-  public valueSub: Subscription;
+
   public hideComponent: boolean = false;
 
   @ViewChild('calendar', { static: true }) myCalendarComponent: FullCalendarComponent;
   @ViewChild('dynamic', { read: DynamicComponent }) myDynamicComponent: DynamicComponent;
+
+  @Output() eventClicked: EventEmitter<any> = new EventEmitter();
+  @Output() eventDrop: EventEmitter<any> = new EventEmitter();
+  @Output() eventResize: EventEmitter<any> = new EventEmitter();
 
   constructor() { }
 
@@ -34,9 +39,9 @@ export class CalendarComponent implements OnInit {
     plugins: [timeGridPlugin, interactionPlugin],
     initialView: 'timeGridDay',
     validRange: this.validRange,
-    scrollTime: '07:00',
+    scrollTime: this.scrollTime,
     slotEventOverlap: false,
-    allDaySlot: false,
+    allDaySlot: this.allDayEvent,
     locales: [heLocale],
     selectable: true,
     titleFormat: { year: 'numeric', month: 'long', day: 'numeric' },
@@ -56,14 +61,21 @@ export class CalendarComponent implements OnInit {
       right: 'timeGridDay,timeGridWeek,dayGridMonth'
       // right: ''
     },
-    initialEvents: [],
+    events: [],
+    // initialEvents: [
+    //   { title: 'event 1', date: '2022-04-10' },
+    //   { title: 'event 2', date: '2022-04-11' }
+    // ],
     eventClick: (info) => {
+      this.eventClicked.emit(info);
       // this.facilitiesService.findObjectInCalendarArray(info.event.id);
     },
     eventDrop: (info) => {
+      this.eventDrop.emit(info);
       // this.facilitiesService.updateTimesInArray(info.event.id, [this.arrangeDate(info.event.start), this.arrangeDate(info.event.end)]);
     },
     eventResize: (info) => {
+      this.eventResize.emit(info);
       // this.facilitiesService.updateTimesInArray(info.event.id, [this.arrangeDate(info.event.start), this.arrangeDate(info.event.end)]);
     },
     eventContent: (props) => {
@@ -72,7 +84,6 @@ export class CalendarComponent implements OnInit {
       componentRef.instance.props = props;
       componentRef.changeDetectorRef.detectChanges();
       const html = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
-
       return { html: html.innerHTML };
     },
   }
@@ -81,41 +92,18 @@ export class CalendarComponent implements OnInit {
     // 2021-10-15T08:00
     const hours = date.getHours();
     const minutes = date.getMinutes();
-    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}T${hours <= 9 ? '0' + hours : hours}:${minutes <= 9 ? '0' + minutes : minutes}`
+    return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}T${hours <= 9 ? '0' + hours : hours}:${minutes <= 9 ? '0' + minutes : minutes}`;
   }
 
   ngOnInit(): void {
-    console.log(this.data);
-    console.log(this.myCalendarComponent);
-    console.log(this.myCalendarComponent.options);
-
-    this.myCalendarComponent.options.events = this.data;
-    // if (this.myCalendarComponent) {
+    // setTimeout(() => {
     //   this.myCalendarComponent.options.events = this.data;
-    // } else {
-    //       setTimeout(() => {
-    //         this.myCalendarComponent.options.events = this.data;
-    //       }, 500);
-    //     }
-    // if (this.myCalendarComponent) {
-    //       this.myCalendarComponent.options.events = this.data;
-    //     } else {
-    //       setTimeout(() => {
-    //         this.myCalendarComponent.options.events = this.data;
-    //       }, 500);
-    //     }
-    // this.valueSub = this.facilitiesService.getCalendarEventsArr().subscribe(value => {
-    //   if (this.myCalendarComponent) {
-    //     this.myCalendarComponent.options.events = value;
-    //   } else {
-    //     setTimeout(() => {
-    //       this.myCalendarComponent.options.events = value;
-    //     }, 500);
-    //   }
+    // }, 100);
 
-    // });
+  }
 
-
+  ngAfterViewInit(): void {
+    this.myCalendarComponent.options.events = this.data;
   }
 
 }
