@@ -64,14 +64,14 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(){
-    setTimeout(() => {
+    // setTimeout(() => {
     //   console.log(this.formgroup);
-      this.editData = {number: 65657};
+      // this.editData = {number: 65657};
     //   this.questions = this.questions.concat([{
     //       key: 'password',
     //       controlType: 'password',
     //     }]);
-    }, 4000);
+    // }, 4000);
   }
 
 
