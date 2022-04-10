@@ -11,7 +11,7 @@ import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { PageHeadlineModel } from '../page-headline/page-headline.model';
-import { ROOT_PREFIX } from '../../constants/project-prefix';
+import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({

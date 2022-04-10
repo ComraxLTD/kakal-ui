@@ -2,6 +2,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { AppIcons } from './icons';
+import { FILE_ICON } from './icons.list';
 
 export interface IconItem {
   key: string;
@@ -52,6 +53,7 @@ export class IconsService {
     nike: AppIcons.NIKE_ICON,
     helper: AppIcons.HELPER_ICON,
     phone: AppIcons.PHONE_ICON,
+    file : FILE_ICON,
     time: AppIcons.TIME_ICON,
     closepopup: AppIcons.CLOSE_POPUP_ICON,
     send: AppIcons.SEND_ICON,
