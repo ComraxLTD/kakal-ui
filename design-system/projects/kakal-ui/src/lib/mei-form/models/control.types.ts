@@ -33,18 +33,18 @@ export type ControlType =
   | 'autocomplete'
   | 'select'
 
+
+
+
   | 'calendar'
   | 'radio'
   | 'counter'
   | 'upload'
   | 'toggle'
   | 'texteditor'
-
-  |'range'
-
   | 'checkbox'
-
-  | 'currency';
+  | 'currency'
+  | 'range';
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 

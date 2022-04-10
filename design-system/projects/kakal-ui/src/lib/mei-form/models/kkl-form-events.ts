@@ -1,12 +1,12 @@
 
-export interface MeiFormChangeEvent {
+export interface KklFormChangeEvent {
   key: string;
   value?: any;
-  action: MeiFormActions;
+  action : KklFormActions;
   query?: string;
 }
 
-export enum MeiFormActions {
+export enum KklFormActions {
 
   FOCUS_IN = 'focusIn',
 
