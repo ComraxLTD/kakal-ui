@@ -17,8 +17,9 @@ import { FormService } from '../../form/services/form.service';
 import { FormDataSource } from '../../form/models/form-datasource';
 import { KKLAdvancedSearchContentDirective } from './advanced-search.directive';
 import { FormGrid } from '../../form/models/question.types';
-import { Observable } from 'rxjs';
 import { QuestionAutocompleteModel } from '../../form/form-autocomplete/question-autocomplete';
+import { Observable } from 'rxjs';
+import { threadId } from 'worker_threads';
 
 @Component({
   selector: 'kkl-advanced-search-layout',
@@ -33,7 +34,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   @Input() grid!: FormGrid;
   @Input() expended: boolean;
   @Input() advanced: boolean;
-  @Input() searchKey : string
+  @Input() searchKey: string;
 
   private _optionsMap: OptionMap = {};
 
@@ -63,7 +64,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.searchGroup = this.setGroup();
-    this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
+    if (this.advanced) {
+      this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
+    }
   }
 
   private setGroup(): QuestionGroupModel {
@@ -76,7 +79,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   private setAdvancedQuestions(group: QuestionGroupModel) {
     const advancedQuestions = [...group.questions];
-    const autoIndex = advancedQuestions.findIndex((q) => q.key === this.searchKey);
+    const autoIndex = advancedQuestions.findIndex(
+      (q) => q.key === this.searchKey
+    );
     this.autocomplete = advancedQuestions.splice(
       autoIndex,
       1
@@ -89,7 +94,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   }
 
   public onSearchChanged(event: FormChangeEvent) {
-    console.log(event)
+    console.log(event);
     this.searchChanged.emit(event);
   }
 

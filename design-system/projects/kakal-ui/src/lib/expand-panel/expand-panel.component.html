@@ -5,7 +5,7 @@
     <mat-panel-title [ngClass]="[variant, 'default']">
       <div class="title" fxLayout="row" fxLayoutGap="1rem">
         <ng-content select="[title]"></ng-content>
-        <kkl-icon [color]="'accent'" [key]="expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"></kkl-icon>
+        <kkl-icon [color]="'accent'" [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"></kkl-icon>
       </div>
     </mat-panel-title>
     <mat-panel-description>
