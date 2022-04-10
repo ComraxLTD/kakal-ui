@@ -14,7 +14,7 @@ import { RouterService } from '../../services/route.service';
 import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
 import { combineLatest, merge, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ROOT_PREFIX } from '../../constants/project-prefix';
+import { ROOT_PREFIX } from '../../constants/root-prefix';
 
 @Component({
   selector: 'kkl-navbar-bottom',

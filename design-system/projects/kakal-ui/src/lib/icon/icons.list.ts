@@ -1,5 +1,19 @@
 // SHARED ICONS
 
+export const FILE_ICON = `
+
+<svg id="documents-folder" xmlns="http://www.w3.org/2000/svg" width="22.593" height="22.777" viewBox="0 0 22.593 22.777">
+  <g id="Group_1413" data-name="Group 1413">
+    <path id="Path_970" data-name="Path 970" d="M19.111,13.834A.987.987,0,0,0,18.128,13H10.161L8.714,11.283a1.635,1.635,0,0,0-1.23-.587H2.306a1.264,1.264,0,0,0-.958.455,1.29,1.29,0,0,0-.277,1.035l.138.81H1.118a.98.98,0,0,0-.98,1.131L1.745,24.555a1.287,1.287,0,0,0,1.272,1.089H19.7a.994.994,0,0,0,.752-.345.984.984,0,0,0,.23-.79Z" transform="translate(-0.126 -2.867)" fill="'none'"/>
+    <path id="Path_971" data-name="Path 971" d="M18.077,4.351H11.845a.819.819,0,0,0,0,1.637h6.232a.819.819,0,0,0,0-1.637Z" transform="translate(-3.059 -1.166)" fill="'none'"/>
+    <path id="Path_972" data-name="Path 972" d="M29.766,12.062a.958.958,0,0,0-.718-.34H27.28l.4,3.729.961,6.515,1.345-9.143A.966.966,0,0,0,29.766,12.062Z" transform="translate(-7.405 -3.142)" fill="'none'"/>
+    <path id="Path_973" data-name="Path 973" d="M8.425,1.5H19.3V8.89h1.5V.957A.968.968,0,0,0,19.846,0H7.815A1.035,1.035,0,0,0,6.789,1.049V6.767H8.425Z" transform="translate(-1.912)" fill="'none'"/>
+    <path id="Path_974" data-name="Path 974" d="M18.083,8.46H11.851a.807.807,0,0,0-.761.658,2.681,2.681,0,0,1,1.384.855l.113.123h5.5a.819.819,0,0,0,0-1.636Z" transform="translate(-3.065 -2.268)" fill="'none'"/>
+  </g>
+</svg>
+
+`
+
 export const DRAG_N_DROP = `
   <svg width="24px" viewBox="0 0 24 24">
     <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
