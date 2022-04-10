@@ -1,10 +1,10 @@
 <kkl-stepper-layout [actions]="actions" [steps]="steps">
   <ng-container content>
-    <mat-accordion dir="rtl" multi="multi">
-      <kkl-expand-panel variant="table">
-        <kkl-typography title>תיק</kkl-typography>
-      </kkl-expand-panel>
-    </mat-accordion>
+    <kkl-form
+      fxFlex="66"
+      [formGroup]="formGroup"
+      [controls]="controls"
+    ></kkl-form>
   </ng-container>
 
   <kkl-drawer-document
