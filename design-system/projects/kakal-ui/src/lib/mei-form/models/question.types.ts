@@ -33,9 +33,6 @@ export type ControlType =
   | 'autocomplete'
   | 'select'
 
-
-
-
   | 'calendar'
   | 'radio'
   | 'counter'

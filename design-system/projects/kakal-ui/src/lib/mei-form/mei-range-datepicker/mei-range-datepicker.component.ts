@@ -17,8 +17,6 @@ export class MeiRangeDatepickerComponent implements OnInit {
   @Input() label: string;
   @Input() appearance: Appearance;
 
-
-
   @Output() valueChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
   @Output() focusChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
   constructor(private meiMessageService: MeiMessageService) { }

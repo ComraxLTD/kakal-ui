@@ -41,7 +41,6 @@ export class DrawerDocumentComponent<T> implements OnInit {
 
   ngOnInit(): void {
     this.control = new FormControl();
-    // this.documents$ = new BehaviorSubject<DocumentItem[]>([]);
   }
 
   onAddDocument() {
