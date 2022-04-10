@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable, map } from 'rxjs';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { ListItem } from '../list-item/list-item.model';
+import { Observable, map } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-mobile',
@@ -12,15 +11,16 @@ import { ListItem } from '../list-item/list-item.model';
 export class StepperMobileComponent implements OnInit {
   @Input() public activeStepIndex: number;
   @Input() public steps$: Observable<CardStepModel[]>;
-  @Output() changeStep = new EventEmitter<CardStepModel>();
 
-  public end: number;
-  public index: number = 0;
-  public mapStep: any;
-  public stepMap$: Observable<{ [key: string]: CardStepModel }>;
-  public activeStep$: Observable<ListItem<number>>;
-  public end$: Observable<boolean>;
-  public width$: Observable<number>;
+  end: number;
+  index: number = 0;
+  mapStep: any;
+  stepMap$: Observable<{ [key: string]: CardStepModel }>;
+  activeStep$: Observable<ListItem<number>>;
+  end$: Observable<boolean>;
+  width$: Observable<number>;
+
+  @Output() selectStep = new EventEmitter<CardStepModel>();
 
   constructor() {}
 
@@ -38,7 +38,10 @@ export class StepperMobileComponent implements OnInit {
 
   private setActiveStep$(): Observable<ListItem<number>> {
     return this.steps$.pipe(
-      map((steps : CardStepModel[]) => steps.findIndex((step: CardStepModel) => step.isActive) as number),
+      map(
+        (steps: CardStepModel[]) =>
+          steps.findIndex((step: CardStepModel) => step.isActive) as number
+      ),
       map((index: number) => {
         const item: ListItem<number> = {
           value: index,
@@ -66,17 +69,17 @@ export class StepperMobileComponent implements OnInit {
     this.mapStep.map((s, i) => {
       if (s.path === step['path']) this.index = i + 1;
     });
-    this.changeStep.emit(this.mapStep[this.index]);
+    this.selectStep.emit(this.mapStep[this.index]);
   }
 
   public onPrev(step: CardStepModel) {
     this.mapStep.map((s, i) => {
       if (s.path === step['path']) this.index = i - 1;
     });
-    this.changeStep.emit(this.mapStep[this.index]);
+    this.selectStep.emit(this.mapStep[this.index]);
   }
 
   public selectStepper(step: any) {
-    this.changeStep.emit(step.value);
+    this.selectStep.emit(step.value);
   }
 }

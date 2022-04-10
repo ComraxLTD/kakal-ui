@@ -14,14 +14,16 @@
     [displayWith]="displayFn"
     (optionSelected)="onSelectionChange($event)"
     [panelWidth]="panelWidth ? 'auto' : null"
+    (open)="onOpenChanged(true)"
+    (closed)="onOpenChanged(false)"
   >
     <mat-option
       *ngFor="
-        let option of isArray ? (filteredOptions | async) : (options | async)
+        let option of isArray ? (filteredOptions | async) : (_options | async)
       "
       [value]="option"
       class="autocomplete-option"
-      [disabled]="disabled"
+      [disabled]="option.disabled"
     >
       {{ option.label }}
     </mat-option>

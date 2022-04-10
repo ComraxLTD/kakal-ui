@@ -23,6 +23,7 @@ export class ExpandPanelComponent implements OnInit {
 
   ngOnInit(): void {
     this.variant = this.variant || '';
+    console.log(this.variant)
     this.expanded = this.expanded || false;
     this.hideToggle = this.hideToggle || false;
     this.showHeader = this.showHeader || false;

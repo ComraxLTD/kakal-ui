@@ -6,8 +6,8 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <kkl-navbar
-      [show$]="show$"
-      [openIcon]="'tree_gradient_' + (rootPrefix || 'tac')"
+      [showStatus$]="showStatus$"
+      [isOpen]="menuDrawer.opened"
       (menuToggle)="menuDrawer.toggle()"
       (logoClicked)="onLogoClicked()"
     ></kkl-navbar>

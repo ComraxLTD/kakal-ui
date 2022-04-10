@@ -1,4 +1,5 @@
 <mat-toolbar
+  class="kkl-navbar-bottom"
   fxLayout="row"
   fxLayoutAlign="space-between center"
   fxFill
@@ -12,7 +13,12 @@
     </div>
   </div>
   <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
-    <kkl-icon type="svg" [size]="20" [key]="bottomIcon" color="primary"></kkl-icon>
+    <kkl-icon
+      type="svg"
+      [size]="20"
+      [key]="bottomIcon"
+      color="primary"
+    ></kkl-icon>
   </div>
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <ng-container *ngIf="buttonState$ | async as buttonState">
@@ -42,7 +48,7 @@
           color="primary"
           (click)="onNext()"
         >
-          {{ nextText || "המשך" }}
+          {{ nextLabel || "המשך" }}
         </button>
       </ng-container>
     </ng-container>

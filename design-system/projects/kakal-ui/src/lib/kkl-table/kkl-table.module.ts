@@ -1,26 +1,24 @@
 import { NgModule } from '@angular/core';
 import { TableFormComponent } from './components/table-form/table-form.component';
 import { LocalTableComponent } from './components/local-table/local-table.component';
-// import { ServerTableComponent } from './components/server-table/server-table.component';
 import { EventTableComponent } from './components/event-table/event-table.component';
 import { TableCellComponent } from './components/table-cell/table-cell.component';
 import { TableCellPipe } from './pipes/table-cell-pipe.pipe';
 import { TableGroupCellPipe } from './pipes/table-group-cell.pipe';
 import { ArrIncludesPipe } from './pipes/arr-includes.pipe';
 import { ArrIndexPipe } from './pipes/arr-index.pipe';
+import { KklPaginatorService } from './services/kkl-paginator.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import {MatMenuModule} from '@angular/material/menu';
-
-
 import { KKLFormSelectModule } from '../form/form-select/form-select.module';
 import { KKLFormCheckboxModule } from '../form/form-checkbox/form-checkbox.module';
 import { KKLFormCurrencyModule } from '../form/form-currency/form-currency.module';
@@ -35,14 +33,14 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     TableCellPipe,
     LocalTableComponent,
-    // ServerTableComponent,
     EventTableComponent,
     TableGroupCellPipe,
     ArrIncludesPipe,
     ArrIndexPipe,
     TableFormComponent,
     TableCellComponent,
-  ],
+    // StylePaginatorDirective
+ ],
   imports: [
     CommonModule,
     MatTableModule,
@@ -68,13 +66,13 @@ import { HttpClientModule } from '@angular/common/http';
   exports: [
     TableCellPipe,
     LocalTableComponent,
-    // ServerTableComponent,
     EventTableComponent,
     TableGroupCellPipe,
     ArrIncludesPipe,
     ArrIndexPipe,
     TableFormComponent,
     TableCellComponent,
-  ]
+  ],
+  providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
 export class KKLNewTableModule { }

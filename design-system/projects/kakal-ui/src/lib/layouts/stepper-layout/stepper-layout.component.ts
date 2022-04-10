@@ -5,10 +5,13 @@ import { RouterService, BreakpointService } from '../../../services/services';
 
 import { CardStepModel } from '../../cards/card-step/card-step.model';
 
-import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { merge, Observable, of } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
+import { StepperSelectEvent } from '../../stepper/stepper.component';
+import { IconsService } from '../../icon/icons.service';
+
+import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -25,6 +28,9 @@ export class StepperLayoutComponent {
   };
 
   @Input() actions: ButtonModel[];
+
+  // when set to true disable default navigation
+  @Input() manuel: boolean;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -47,13 +53,14 @@ export class StepperLayoutComponent {
   rowActions!: ButtonModel[];
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
-  @Output() stepChanged: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() stepSelect: EventEmitter<StepperSelectEvent> = new EventEmitter();
   @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private iconService: IconsService
   ) {}
 
   ngOnInit(): void {
@@ -64,18 +71,21 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
-    this.rowActions = this.setRowActions();
+    // init actions if array exist
+    if (this.actions.length) {
+      this.rowActions = this.setRowActions();
 
-    this.drawerAction = this.setDrawerAction();
+      this.drawerAction = this.setDrawerAction();
 
-    this.showEndDrawer = this.actions.some(
-      (action) => action.type === 'portion'
-    );
+      this.showEndDrawer = this.actions.some(
+        (action) => action.type === 'portion'
+      );
 
-    this.showStartDrawer$ = merge(
-      of(!!this.drawerAction),
-      this.stepperLayoutService.getDisplayDrawerObs()
-    );
+      this.showStartDrawer$ = merge(
+        of(!!this.drawerAction),
+        this.stepperLayoutService.getDisplayDrawerObs()
+      );
+    }
 
     this.portion$ = this.getBreakPoints();
   }
@@ -116,7 +126,7 @@ export class StepperLayoutComponent {
   // ACTIONS SECTION
   private setDrawerAction(): ButtonModel {
     const iconMap = {
-      file: 'portfolio',
+      file: 'file',
       notes: 'bell',
     };
 
@@ -191,10 +201,28 @@ export class StepperLayoutComponent {
     this.openChanged.emit(this._endDrawerOpen);
   }
 
+  // NAVIGATE HELPER METHODS
+  private getUrl(path: string) {
+    const routes = this.routerService.currentRoute.split('/');
+    routes.unshift();
+    routes.pop();
+    routes.push(path);
+    return routes.join('/');
+  }
+
+  // NAVIGATION EVENTS SECTION
+  private navigate(path: string) {
+    const url = this.getUrl(path);
+    this.routerService.navigate(url);
+  }
+
   // DOM EVENTS
 
-  onChangeStep(step: CardStepModel): void {
-    this.stepChanged.emit(step);
+  onSelectStep(event: StepperSelectEvent): void {
+    if (!this.manuel) {
+      this.navigate(event.selectedStep.path);
+    }
+    this.stepSelect.emit(event);
   }
 
   emitEndDrawer(): void {

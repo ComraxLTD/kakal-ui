@@ -16,9 +16,13 @@ import { Step } from './step/step.model';
 import { MatStepper } from '@angular/material/stepper';
 
 export interface StepSelectEvent {
+  /** Index of the step now selected. */
   selectedIndex: number;
+  /** Index of the step previously selected. */
   previouslySelectedIndex: number;
+  /** The step instance now selected. */
   selectedStep: Step;
+  /** The step instance previously selected. */
   previouslySelectedStep: Step;
 }
 

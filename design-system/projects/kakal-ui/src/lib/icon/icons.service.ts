@@ -2,6 +2,7 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { AppIcons } from './icons';
+import { FILE_ICON } from './icons.list';
 
 export interface IconItem {
   key: string;
@@ -18,10 +19,21 @@ export class IconsService {
   ) {}
 
   public icons = {
+
     tree: AppIcons.TREE_ICON,
     kkl: AppIcons.KKL_ICON,
     tree_gradient_tac: AppIcons.TREE_GRADIENT_TAC_ICON,
+    tree_gradient_lands: AppIcons.TREE_GRADIENT_LANDS_ICON,
+    tree_gradient_education: AppIcons.TREE_GRADIENT_EDUCATION_ICON,
+    tree_gradient_forestry: AppIcons.TREE_GRADIENT_FORESTRY_ICON,
+
     bottom_tree_tac: AppIcons.BOTTOM_TREE_LOGO_TAC_ICON,
+    bottom_tree_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
+    // bottom_tree_education: AppIcons.BOTTOM_TREE_LOGO__EDUCATION_ICON,
+    // bottom_tree_forestry: AppIcons.BOTTOM_TREE_LOGO__FORESTRY_ICON,
+
+    // TABLE ICONS
+    drag_n_drop: AppIcons.DRAG_N_DROP,
 
     // ACTIONS ICONS
     two_arrows: AppIcons.TWO_ARROWS_UP,
@@ -41,6 +53,7 @@ export class IconsService {
     nike: AppIcons.NIKE_ICON,
     helper: AppIcons.HELPER_ICON,
     phone: AppIcons.PHONE_ICON,
+    file : FILE_ICON,
     time: AppIcons.TIME_ICON,
     closepopup: AppIcons.CLOSE_POPUP_ICON,
     send: AppIcons.SEND_ICON,
@@ -103,8 +116,6 @@ export class IconsService {
     expense: AppIcons.EXPENSE_ICON,
     committee: AppIcons.COMMITTEE_ICON,
     transactions: AppIcons.TRANSACTION_ICON,
-    tree_gradient_lands: AppIcons.TREE_GRADIENT_LANDS_ICON,
-    tree_bottom_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
     estate: AppIcons.ESTATE_ICON,
     mail: AppIcons.MAIL_ICON,
     meetings: AppIcons.MEETINGS,

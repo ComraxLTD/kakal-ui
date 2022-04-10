@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'pl-mei-checkbox',
+  selector: 'kkl-checkbox',
   templateUrl: './mei-checkbox.component.html',
   styleUrls: ['./mei-checkbox.component.scss']
 })

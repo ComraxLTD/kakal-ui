@@ -2,12 +2,12 @@
   <section fxLayout="column" fxFlex fxLayoutGap="1rem" fxFlex>
     <section fxLayout="column" fxFlex fxLayoutGap="1rem">
       <kkl-typography [weight]="600">שדות למילוי הצעות מחיר</kkl-typography>
-      <kkl-form
+      <kkl-form-temp
         variant="flex"
         [formGroup]="bidGroup.formGroup"
         [questions]="bidGroup.questions.slice(0, 4)"
         [grid]="bidGroup.gridProps!"
-      ></kkl-form>
+      ></kkl-form-temp>
     </section>
     <section fxLayout="row" fxLayoutGap="3rem" fxFlex fxFlex.lt-lg="65">
       <div fxLayout="column" fxLayoutGap="1rem" fxFlex="24">

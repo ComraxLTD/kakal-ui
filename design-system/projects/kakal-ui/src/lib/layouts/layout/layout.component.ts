@@ -15,9 +15,9 @@ export class LayoutComponent implements OnInit {
   @Input() cards: MenuCard[];
   @Input() rootPrefix: string;
 
-  public currentPath$: Observable<string>;
-  public show$: Observable<boolean>;
-  public mobile$: Observable<boolean>;
+  currentPath$: Observable<string>;
+  showStatus$: Observable<boolean>;
+  mobile$: Observable<boolean>;
 
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
 
@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentPath$ = this.routerService.getLastPathObs();
-    this.show$ = this.handleShowState(this.showStatusPath);
+    this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.mobile$ = this.breakpointService.isMobile();
   }
 
@@ -48,5 +48,4 @@ export class LayoutComponent implements OnInit {
   public onLogoClicked() {
     this.logoClicked.emit();
   }
-
 }

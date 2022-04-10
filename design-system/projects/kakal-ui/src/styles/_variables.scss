@@ -33,6 +33,7 @@ $disableText: var(--f-disabled-text);
 $disableButtonText: var(--f-disabled-button);
 
 $table: #f8f8f8;
+$table-background: #f5f5f5;
 
 $text: #000000;
 $text-light: #a2a2a2;
@@ -59,6 +60,7 @@ $colors: (
   warn: $warn,
   success: $success,
   success-light: $success-light,
+  table-background: $table-background
 );
 @function color($color-name) {
   @return map-get($colors, $color-name);

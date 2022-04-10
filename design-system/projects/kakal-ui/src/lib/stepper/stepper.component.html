@@ -6,13 +6,10 @@
         <ng-container *ngIf="!stepRef">
           <ng-container [ngSwitch]="step.type">
             <ng-container *ngSwitchCase="'step'">
-              <kkl-card-step (changeStep)="onChangeStep(step)" [step]="step"></kkl-card-step>
-            </ng-container>
-            <ng-container *ngSwitchCase="'wizard'">
-              <kkl-card-wizard (changeStep)="onChangeStep(step)" [step]="step"></kkl-card-wizard>
+              <kkl-card-step (stepSelect)="onStepSelect(step)" [index]="i" [step]="step"></kkl-card-step>
             </ng-container>
             <ng-container *ngSwitchCase="'status'">
-              <kkl-card-status [status]="step"></kkl-card-status>
+              <kkl-card-status (stepSelect)="onStepSelect(step)" [i]="index" [status]="step"></kkl-card-status>
             </ng-container>
           </ng-container>
           <ng-content></ng-content>
