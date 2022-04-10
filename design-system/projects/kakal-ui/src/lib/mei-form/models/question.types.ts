@@ -40,6 +40,8 @@ export type ControlType =
   | 'toggle'
   | 'texteditor'
 
+  |'range'
+
   | 'checkbox'
 
   | 'currency';
