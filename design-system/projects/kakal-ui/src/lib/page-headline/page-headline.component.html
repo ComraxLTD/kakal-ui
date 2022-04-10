@@ -11,11 +11,7 @@
       fxLayoutAlign="space-between center"
       fxLayoutGap=".5rem"
       >
-      <!-- 
-      <kkl-typography [size]="sizeIndexMap[i]" [weight]="weightIndexMap[i]">
-        {{ item | pluck: "label" }}
-      </kkl-typography>
-       -->
+
       <ng-container
         *ngTemplateOutlet="
           item.template ? statusTemplate : defaultTemplate;
@@ -28,15 +24,14 @@
       >
     </div>
     </ng-container>
-    
+
     <ng-template #defaultTemplate let-item let-i="i">
       <kkl-typography [size]="sizeIndexMap[i]" [weight]="weightIndexMap[i]">
         {{ item?.value | format: item?.format }}</kkl-typography
         >
       </ng-template>
-      
+
       <ng-template #statusTemplate let-item>
       <kkl-status-steps dir="ltr" [status]="item.value"></kkl-status-steps>
     </ng-template>
   </div>
-  

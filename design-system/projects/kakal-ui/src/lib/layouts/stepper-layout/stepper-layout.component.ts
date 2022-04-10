@@ -1,11 +1,4 @@
-import {
-  Component,
-  ContentChild,
-  EventEmitter,
-  Input,
-  Output,
-  QueryList,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StepperLayoutService } from './stepper-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
@@ -15,12 +8,10 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
-import { NavbarBottomDirective } from '../../navbar-bottom/navbar-bottom.directive';
-import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.component';
+import { IconsService } from '../../icon/icons.service';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
-import { IconsService } from '../../icon/icons.service';
 
 @Component({
   selector: 'kkl-stepper-layout',
