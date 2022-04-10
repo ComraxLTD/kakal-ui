@@ -106,7 +106,7 @@ export * from './lib/form/services/validations.service';
 
 // mei form
 export * from './lib/mei-form/mei-form.module';
-export * from './lib/mei-form/models/form-events';
+export * from './lib/mei-form/models/kkl-form-events';
 export * from './lib/mei-form/models/options.model';
 export * from './lib/mei-form/models/control.model';
 export * from './lib/mei-form/models/control.types';

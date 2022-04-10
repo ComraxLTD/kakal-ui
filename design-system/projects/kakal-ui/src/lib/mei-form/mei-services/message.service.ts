@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class MeiMessageService {
+export class MessageService {
   constructor() {}
 
   // handle input error messages

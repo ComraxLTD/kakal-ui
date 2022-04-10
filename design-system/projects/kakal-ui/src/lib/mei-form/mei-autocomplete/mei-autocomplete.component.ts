@@ -56,7 +56,7 @@ export class MeiAutocompleteComponent implements OnInit {
   error$: BehaviorSubject<string>;
 
   isArray: boolean = false;
-  constructor(private meiMessageService: MeiMessageService) { }
+  constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
     this.control.valueChanges.pipe(
@@ -78,7 +78,7 @@ export class MeiAutocompleteComponent implements OnInit {
   }
 
   setErrorMessage() {
-    const error = this.meiMessageService.getErrorMessage(
+    const error = this.messageService.getErrorMessage(
       this.control as FormControl,
       this.placeHolder
     );
