@@ -75,6 +75,8 @@ export class MeiInputComponent implements OnInit {
         break;
     }
     if(this.format) {
+      console.log('hrree');
+
       if(!this.control.hasValidator(Validators.pattern(this.format))) {
         this.control.addValidators(Validators.pattern(this.format));
       }
