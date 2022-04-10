@@ -15,13 +15,14 @@ export class AppComponent {
   // control = new FormControl(null);
 editData;
   questions: ControlBase[] = [
-    // {
-    //   key: 'select',
-    //   controlType: 'select',
-    //   label: 'select',
-    //   options: [{ label: 'test', value: 0 }],
-    //   valueChanged: (eve) => {console.log(this.editData);}
-    // },
+    {
+      key: 'autocomplete',
+      controlType: 'autocomplete',
+      label: 'select',
+      multi: true,
+      options: [{ label: 'test', value: 0 }],
+      valueChanged: (eve) => {console.log(this.editData);}
+    },
     // {
     //   key: 'email',
     //   controlType: 'email',
@@ -31,10 +32,10 @@ editData;
     //   controlType: 'autocomplete',
     //   options: [{ label: 'test', value: 0 }],
     // },
-    {
-      key: 'phone',
-      controlType: 'phone',
-    },
+    // {
+    //   key: 'phone',
+    //   controlType: 'phone',
+    // },
     // {
     //   key: 'counter',
     //   controlType: 'counter',

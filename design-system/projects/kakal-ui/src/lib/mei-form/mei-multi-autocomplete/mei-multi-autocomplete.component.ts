@@ -77,6 +77,7 @@ export class MeiMultiAutocompleteComponent {
       this.myAutoControl.disable();
     }
     if(Array.isArray(this.tempOptions)) {
+      this._options = this.tempOptions;
       this.isArray = true;
       this.control.setValue(this.tempOptions.filter(b => b.selected));
       if(!this.filteredOptions) {
@@ -86,13 +87,13 @@ export class MeiMultiAutocompleteComponent {
           map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
         );
       }
-    } else {
+    } else if(this.tempOptions) {
+      this._options = this.tempOptions;
       this.isArray = false;
       (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
         this.control.setValue(a.filter(b => b.selected));
       });
     }
-    this._options = this.tempOptions;
     this.error$ = new BehaviorSubject<string>('');
   }
 

@@ -24,6 +24,7 @@ export class MeiAutocompleteComponent implements OnInit {
   tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
     if(this.control){
+      this._options = val;
       if(Array.isArray(val)) {
         this.isArray = true;
         this.control.setValue(val.find(b => b.selected));
@@ -40,7 +41,6 @@ export class MeiAutocompleteComponent implements OnInit {
           this.control.setValue(a.find(b => b.selected));
         });
       }
-      this._options = val;
     } else {
       this.tempOptions = val;
     }
@@ -73,6 +73,7 @@ export class MeiAutocompleteComponent implements OnInit {
     ).subscribe(a => this.search());
     this.error$ = new BehaviorSubject<string>('');
     if(Array.isArray(this.tempOptions)) {
+      this._options = this.tempOptions;
       this.isArray = true;
       this.control.setValue(this.tempOptions.find(b => b.selected));
       if(!this.filteredOptions) {
@@ -82,13 +83,13 @@ export class MeiAutocompleteComponent implements OnInit {
           map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
         );
       }
-    } else {
+    } else if(this.tempOptions) {
       this.isArray = false;
+      this._options = this.tempOptions;
       (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
         this.control.setValue(a.find(b => b.selected));
       });
     }
-    this._options = this.tempOptions;
   }
 
   displayFn(mei: KklSelectOption): string {
