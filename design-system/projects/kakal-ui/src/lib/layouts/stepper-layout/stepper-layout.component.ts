@@ -71,18 +71,21 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
-    this.rowActions = this.setRowActions();
+    // init actions if array exist
+    if (this.actions.length) {
+      this.rowActions = this.setRowActions();
 
-    this.drawerAction = this.setDrawerAction();
+      this.drawerAction = this.setDrawerAction();
 
-    this.showEndDrawer = this.actions.some(
-      (action) => action.type === 'portion'
-    );
+      this.showEndDrawer = this.actions.some(
+        (action) => action.type === 'portion'
+      );
 
-    this.showStartDrawer$ = merge(
-      of(!!this.drawerAction),
-      this.stepperLayoutService.getDisplayDrawerObs()
-    );
+      this.showStartDrawer$ = merge(
+        of(!!this.drawerAction),
+        this.stepperLayoutService.getDisplayDrawerObs()
+      );
+    }
 
     this.portion$ = this.getBreakPoints();
   }
