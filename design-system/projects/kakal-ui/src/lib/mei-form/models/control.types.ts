@@ -34,11 +34,11 @@ export type ControlType =
   | 'select'
 
 
+  | 'counter'
 
 
   | 'calendar'
   | 'radio'
-  | 'counter'
   | 'upload'
   | 'toggle'
   | 'texteditor'

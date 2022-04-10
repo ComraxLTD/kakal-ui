@@ -127,6 +127,14 @@ export class MeiInputComponent implements OnInit {
   }
 
 
+  updateNum(val: string) {
+    if(val === '+') {
+      this.control.setValue(this.control.value+1);
+    } else {
+      this.control.setValue(this.control.value-1);
+    }
+  }
+
   // EVENTS SECTION
   onFocus() {
     this.focusChanged.emit({

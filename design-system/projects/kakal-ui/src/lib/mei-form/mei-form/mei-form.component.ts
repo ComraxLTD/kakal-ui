@@ -105,8 +105,6 @@ export class MeiFormComponent implements OnInit {
   ngAfterViewInit() {
     this.putOptions();
     this.putEditData();
-    console.log(this.formGroup);
-
   }
 
   setControls(controles: ControlBase[]) {
@@ -184,23 +182,33 @@ export class MeiFormComponent implements OnInit {
 
 
   onQueryChanged(event, control: ControlBase) {
-    control.queryChanged({value: event.value, query: event.query});
+    if(control.queryChanged) {
+      control.queryChanged({value: event.value, query: event.query});
+    }
     this.queryChanged.emit(event);
   }
   onSelectChanged(event, control: ControlBase) {
-    control.selectChanged(event.value);
+    if(control.selectChanged) {
+      control.selectChanged(event.value);
+    }
     this.selectChanged.emit(event);
   }
   onOpenChanged(event, control: ControlBase) {
-    control.openChanged({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
+    if(control.openChanged) {
+      control.openChanged({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
+    }
     this.openChanged.emit(event);
   }
   onValueChanged(event, control: ControlBase) {
-    control.valueChanged(event.value);
+    if(control.valueChanged) {
+      control.valueChanged(event.value);
+    }
     this.valueChanged.emit(event);
   }
   onFocusChanged(event, control: ControlBase) {
-    control.focusChanged(event.value);
+    if(control.focusChanged) {
+      control.focusChanged(event.value);
+    }
     this.focusChanged.emit(event);
   }
 

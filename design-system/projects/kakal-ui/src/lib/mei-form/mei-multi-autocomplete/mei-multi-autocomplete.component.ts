@@ -23,24 +23,30 @@ export class MeiMultiAutocompleteComponent {
   @Input() control!: FormControl;
 
   _options!: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
+  tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
-    if(Array.isArray(val)) {
-      this.isArray = true;
-      this.control.setValue(val.filter(b => b.selected));
-      if(!this.filteredOptions) {
-        this.filteredOptions = this.myAutoControl.valueChanges.pipe(
-          startWith(''),
-          map(value => (typeof value === 'string' ? value : value.label)),
-          map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
-        );
+    if(this.control) {
+      if(Array.isArray(val)) {
+        this.isArray = true;
+        this.control.setValue(val.filter(b => b.selected));
+        if(!this.filteredOptions) {
+          this.filteredOptions = this.myAutoControl.valueChanges.pipe(
+            startWith(''),
+            map(value => (typeof value === 'string' ? value : value.label)),
+            map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
+          );
+        }
+      } else {
+        this.isArray = false;
+        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+          this.control.setValue(a.filter(b => b.selected));
+        });
       }
+      this._options = val;
     } else {
-      this.isArray = false;
-      (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
-        this.control.setValue(a.filter(b => b.selected));
-      });
+      this.tempOptions = val;
     }
-    this._options = val;
+
   }
   @Input() placeHolder!: string;
   @Input() label!: string;
@@ -70,6 +76,23 @@ export class MeiMultiAutocompleteComponent {
     if(this.control.disabled) {
       this.myAutoControl.disable();
     }
+    if(Array.isArray(this.tempOptions)) {
+      this.isArray = true;
+      this.control.setValue(this.tempOptions.filter(b => b.selected));
+      if(!this.filteredOptions) {
+        this.filteredOptions = this.myAutoControl.valueChanges.pipe(
+          startWith(''),
+          map(value => (typeof value === 'string' ? value : value.label)),
+          map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
+        );
+      }
+    } else {
+      this.isArray = false;
+      (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        this.control.setValue(a.filter(b => b.selected));
+      });
+    }
+    this._options = this.tempOptions;
     this.error$ = new BehaviorSubject<string>('');
   }
 
