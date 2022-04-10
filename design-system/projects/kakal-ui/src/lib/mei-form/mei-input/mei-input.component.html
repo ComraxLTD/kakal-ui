@@ -30,8 +30,8 @@
               <button class="decrease" [disabled]="control.disabled" mat-icon-button (click)="updateNum('-')">
                 -
               </button>
-              <mat-form-field fxFlex="4rem">
-                <input matInput type="number" [formControl]="control"/>
+              <mat-form-field class="center" fxFlex="4rem">
+                <input class="small" matInput type="number" [formControl]="control"/>
               </mat-form-field>
               <button class="increase" [disabled]="control.disabled" mat-icon-button (click)="updateNum('+')">
                 +
@@ -43,7 +43,6 @@
           <kkl-typography>{{ label }}</kkl-typography>
         </div>
       </div>
-jjhjhjh
     </ng-container>
 
     <!-- TEXT/NUMBER -->

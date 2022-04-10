@@ -31,9 +31,9 @@ export class MeiSelectComponent implements OnInit {
       } else {
         (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
           if(this.multi){
-            this.control.setValue(a.filter(b => b.selected));
+            this.control.setValue(a?.filter(b => b.selected));
           } else {
-            this.control.setValue(a.find(b => b.selected));
+            this.control.setValue(a?.find(b => b.selected));
           }
           this.options$.next(a);
         });
@@ -69,9 +69,9 @@ export class MeiSelectComponent implements OnInit {
     } else if(this.tempOptions) {
       (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
         if(this.multi){
-          this.control.setValue(a.filter(b => b.selected));
+          this.control.setValue(a?.filter(b => b.selected));
         } else {
-          this.control.setValue(a.find(b => b.selected));
+          this.control.setValue(a?.find(b => b.selected));
         }
         this.options$.next(a);
       });
@@ -113,9 +113,11 @@ export class MeiSelectComponent implements OnInit {
   // }
   onSelectChanged(event) {
     if(this.multi) {
-      event.value.forEach(v => v.selected = true);
+      event.value?.forEach(v => v.selected = true);
     } else {
-      event.value.selected = true;
+      if(event.value){
+        event.value.selected = true;
+      }
     }
 
     this.selectChanged.emit({
