@@ -1,17 +1,20 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { BehaviorSubject, map, Observable, pluck } from 'rxjs';
 import { DocumentItem } from '../../drawers/drawer-document/drawer-document-item/drawer-document-item.component';
 import { IconService } from '../../icon/icons.service';
 export interface CardDocument {
   id: number;
   svgIcon: string;
   category: string;
+  value?: string;
   active?: boolean;
+  disable?: boolean;
   documents?: DocumentItem[];
 }
 
 export interface CardSelectEvent {
   card: CardDocument;
-  action: 'select' | 'remove';
+  action: 'select' | 'disable';
 }
 
 @Component({
@@ -20,21 +23,40 @@ export interface CardSelectEvent {
   styleUrls: ['./card-document.component.scss'],
 })
 export class CardDocumentComponent implements OnInit {
-  @Input() card!: CardDocument;
+
+  private card$: BehaviorSubject<CardDocument> = new BehaviorSubject(null);
+  _card$: Observable<CardDocument>;
+
+  @Input()
+  set card(value: CardDocument) {
+    this.iconService.setIcon(value.svgIcon);
+    this.card$.next(value);
+  }
+
+  icon$: Observable<string>;
 
   @Output() cardSelect: EventEmitter<CardSelectEvent> = new EventEmitter();
   constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
-    this.iconService.setIcon(this.card.svgIcon);
+    this._card$ = this.card$.asObservable();
+    this.icon$ = this.setActionIcon()
   }
 
-  onCardSelect() {
-    this.cardSelect.emit({ card: this.card, action: 'select' });
+  private setActionIcon(): Observable<string> {
+    return this.card$.asObservable().pipe(
+      pluck('disable'),
+      map((disable: boolean) => (disable ? 'add' : 'clear'))
+    );
   }
 
-  onRemove() {
-    console.log('remove');
-    this.cardSelect.emit({ card: this.card, action: 'remove' });
+  onSelect(card : CardDocument) {
+    this.cardSelect.emit({ card, action: 'select' });
+  }
+
+  onDisable(card : CardDocument) {
+    this.cardSelect.emit({ card, action: 'disable' });
+    // const disable = this.disable$.getValue();
+    // this.disable$.next(!disable);
   }
 }
