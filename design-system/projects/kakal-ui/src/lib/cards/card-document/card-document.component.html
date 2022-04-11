@@ -1,29 +1,56 @@
-<div dir="rtl" fxLayout="column" fxLayoutGap="1rem">
+<ng-container *ngIf="_card$ | async as card">
   <div
-    class="kkl-card-document-wrapper mat-elevation-z4"
+    class="kkl-card-document-wrapper"
+    dir="rtl"
     fxLayout="column"
-    fxLayoutAlign="center center"
+    fxLayoutGap="1rem"
   >
     <div
-      class="kkl-card-document-actions"
-      fxFill
-      fxLayout="row"
-      fxLayoutAlign="space-between center"
+      kkl-button
+      (click)="onSelect(card)"
+      class="kkl-card-document mat-elevation-z4"
+      [class.active]="card.active"
+      [class.disable]="card.disable"
+      fxLayout="column"
+      fxLayoutAlign="center center"
     >
-      <button mat-icon-button>
-        <mat-icon>clear</mat-icon>
-      </button>
-      <button mat-icon-button>
-        <mat-icon>fiber_manual_record</mat-icon>
-      </button>
+      <div
+        kkl-button
+        class="kkl-card-document-actions"
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+      >
+        <button
+          mat-icon-button
+          (click)="onDisable(card); $event.stopPropagation()"
+        >
+          <mat-icon [color]="card.disable && 'primary'">
+            {{ icon$ | async }}</mat-icon
+          >
+        </button>
+        <button
+          *ngIf="card.active"
+          mat-icon-button
+          (click)="$event.stopPropagation()"
+        >
+          <mat-icon color="primary">fiber_manual_record</mat-icon>
+        </button>
+      </div>
+      <div
+        class="kkl-card-document-content"
+        fxFlex="66"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="1.5rem"
+      >
+        <mat-icon [svgIcon]="card.svgIcon"></mat-icon>
+        <kkl-typography>{{ card.category }}</kkl-typography>
+      </div>
     </div>
-    <div class="kkl-card-document" fxLayout="column" fxLayoutGap="1rem">
-      <!-- <mat-icon [svgIcon]="card.svgIcon"></mat-icon> -->
-      <kkl-icon [size]="4" [key]="card.svgIcon"></kkl-icon>
-      <kkl-typography>{{ card.category }}</kkl-typography>
-    </div>
+    <ng-container *ngIf="card.active">
+      <div fxLayout="row" fxLayoutAlign="center">
+        <kkl-typography color="primary">{{ card.value }}</kkl-typography>
+      </div>
+    </ng-container>
   </div>
-  <div fxLayout="row" fxLayoutAlign="center">
-    <kkl-typography color="primary">text</kkl-typography>
-  </div>
-</div>
+</ng-container>
