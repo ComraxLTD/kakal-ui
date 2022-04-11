@@ -5,6 +5,7 @@ export interface CardDocument {
   id: number;
   svgIcon: string;
   category: string;
+  value? : string
   active?: boolean;
   documents?: DocumentItem[];
 }
