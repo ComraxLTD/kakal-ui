@@ -51,6 +51,7 @@ import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-exam
 
 // CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
+import { CardDocumentModule } from './cards/card-document/card-document.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
@@ -164,6 +165,7 @@ registerLocaleData(he);
 
     // CARDS
     KKLCardLobbyModule,
+    CardDocumentModule,
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
@@ -254,8 +256,10 @@ registerLocaleData(he);
     KKLDirectivesModule,
     SpinnerModule,
     KKLPageHeadlineModule,
+
     // CARDS
     KKLCardLobbyModule,
+    CardDocumentModule,
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
