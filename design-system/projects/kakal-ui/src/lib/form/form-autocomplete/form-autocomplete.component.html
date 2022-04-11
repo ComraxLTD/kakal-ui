@@ -1,57 +1,30 @@
 <mat-form-field [appearance]="control.disabled ? 'fill' : 'outline'">
   <mat-label>{{ label }}</mat-label>
 
-  <input
-    type="text"
-    matInput
-    [formControl]="control"
-    [matAutocomplete]="auto"
-    #autoCompleteInput
-    (input)="search(autoCompleteInput.value)"
-  />
+  <input type="text" matInput [formControl]="control" [matAutocomplete]="auto" #autoCompleteInput
+    (input)="search(autoCompleteInput.value)" />
 
-  <mat-autocomplete
-    autoActiveFirstOption
-    #auto="matAutocomplete"
-    [displayWith]="displayFn"
-    (optionSelected)="onOptionSelected($event)"
-    [panelWidth]="panelWidth ? 'auto' : null"
-  >
+  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn"
+    (optionSelected)="onOptionSelected($event)" [panelWidth]="panelWidth ? 'auto' : null">
     <ng-container *ngIf="!multi">
-      <mat-option
-        class="autocomplete-option"
-        [disabled]="option.disabled"
-        *ngFor="let option of options"
-        [value]="option"
-      >
+      <mat-option class="autocomplete-option" [disabled]="option.disabled" *ngFor="let option of options"
+        [value]="option">
 
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngTemplateOutlet="
             optionTemplate || defaultTemplate;
             context: { $implicit: option }
-          "
-        ></ng-container>
+          "></ng-container>
       </mat-option>
     </ng-container>
 
     <ng-container *ngIf="multi">
-      <mat-selection-list
-        [multiple]="true"
-        #selectionList
-        (selectionChange)="onSelectionChange(selectionList)"
-      >
-        <mat-list-option
-          class="kkl-autocomplete-option"
-          [disabled]="option.disabled"
-          *ngFor="let option of options"
-          [value]="option"
-        >
-          <ng-container
-            *ngTemplateOutlet="
+      <mat-selection-list [multiple]="true" #selectionList (selectionChange)="onSelectionChange(selectionList)">
+        <mat-list-option class="kkl-autocomplete-option" [disabled]="option.disabled" *ngFor="let option of options"
+          [value]="option">
+          <ng-container *ngTemplateOutlet="
               optionTemplate || defaultTemplate;
               context: { $implicit: option }
-            "
-          ></ng-container>
+            "></ng-container>
         </mat-list-option>
       </mat-selection-list>
       <!-- empty mat-option for display mat-list -->
@@ -59,23 +32,11 @@
     </ng-container>
   </mat-autocomplete>
 
-  <button
-    type="button"
-    *ngIf="asButton"
-    matSuffix
-    mat-icon-button
-    (click)="onSearchEvent()"
-  >
+  <button type="button" *ngIf="asButton" matSuffix mat-icon-button (click)="onSearchEvent()">
     <kkl-icon color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   </button>
-  
-  <kkl-icon
-    matSuffix
-    *ngIf="!asButton"
-    color="primary"
-    [key]="icon || 'search'"
-    [size]="3"
-  ></kkl-icon>
+
+  <kkl-icon matSuffix *ngIf="!asButton" color="primary" [key]="icon || 'search'" [size]="3"></kkl-icon>
 </mat-form-field>
 
 <ng-template #defaultTemplate let-option>

@@ -6,6 +6,7 @@ import {
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-add.component';
+import { ControlBase, OptionsModel } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -71,4 +72,79 @@ export class AppComponent implements OnInit {
   onDelete(event:any){
     this.description = `Delete Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
   }
+
+  options:OptionsModel[] = [
+    {
+      //this key should be the same
+      key: 'firstQuestion',
+      val: [
+        { label: 'test', value: 0 },
+        { label: 'test1', value: 1, disabled: true },
+        { label: 'test3', value: 2,  },
+        { label: 'test2', value: 3, },
+      ],
+    },
+    {
+      //this key should be the same
+      key: 'secondQuestion',
+      val: [
+        { label: 'test1', value: 1, disabled: true },
+        { label: 'test3', value: 2, selected: true },
+        { label: 'test2', value: 3, disabled: true },
+      ],
+    },
+    {
+      //this key should be the same
+      key: 'autocomplete',
+      val: [
+        { label: 'test1', value: 1, disabled: true },
+        { label: 'test3', value: 2, selected: true },
+        { label: 'test2', value: 3, disabled: true },
+      ],
+    },
+  ];
+  
+  questions: ControlBase[] = [
+    {
+      key: 'autocomplete',
+      controlType: 'autocomplete',
+      options: [
+        { label: 'test', value: 0 },
+        { label: 'test1', value: 1 },
+        { label: 'test2', value: 2 },
+        { label: 'test3', value: 3 },],
+      // multi: true,
+      label: 'local autocomplete',
+      // disabled: true
+      //,
+    },
+    {
+      key: 'email',
+      controlType: 'email'
+    },
+    {
+      controlType:'calendar',
+      key:'calendar'
+    },
+    {
+      controlType:'counter',
+      key:'counter',
+      icon:'tree'
+    },
+    // {
+    //   controlType:'currency',
+    //   key:'currency'
+    // },
+    // {controlType:'date',key:'date'},
+    // {controlType:'dateRange',key:'dateRange'},
+    // {controlType:'phone',key:'phone'},
+    // {controlType:'range',key:'range'},
+    // {controlType:'sum',key:'sum'},
+    // {controlType:'texteditor',key:'texteditor'},
+    // {controlType:'time',key:'time'},
+    // {controlType:'upload',key:'upload'},
+    // {controlType:'toggle',key:'toggle'},
+    // {controlType:'checkbox',key:'checbox'},
+    // {controlType:'radio',key:'radio'}
+  ]
 }

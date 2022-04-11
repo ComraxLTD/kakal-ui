@@ -59,7 +59,7 @@ export class MeiFormComponent implements OnInit {
       removed.forEach(c => this.formGroup.removeControl(c.key));
       this.myQuestions = val;
       this.setControls(newVals);
-    } else {
+    } else {      
       this.myQuestions = val;
     }
 
@@ -110,6 +110,7 @@ export class MeiFormComponent implements OnInit {
   setControls(controles: ControlBase[]) {
     controles.forEach(a => {
       switch (a.controlType) {
+        
         // case 'text':
         // case 'password':
         // case 'number':
