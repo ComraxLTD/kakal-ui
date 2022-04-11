@@ -283,6 +283,9 @@ export * from './lib/kkl-hover/kkl-hover.module';
 export * from './lib/cards/card-add/card-add.component';
 export * from './lib/cards/card-add/card-add.module';
 
+export * from './lib/cards/card-document/card-document.component';
+export * from './lib/cards/card-document/card-document.module';
+
 export * from './lib/cards/card-lobby/card-lobby.module';
 export * from './lib/cards/card-lobby/card-lobby.component';
 

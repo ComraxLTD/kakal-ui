@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ButtonModel } from '../../public-api';
 
 @Component({
   selector: 'kkl-expand-panel',
@@ -8,13 +9,14 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class ExpandPanelComponent implements OnInit {
   // prop for custom class
 
-  @Input() public variant: string;
-  @Input() public hideToggle: boolean = true;
-  @Input() public showHeader: boolean;
-  @Input() public disabled: boolean;
-  @Input() public expanded: boolean;
+  @Input() variant: string;
+  @Input() hideToggle: boolean = true;
+  @Input() showHeader: boolean;
+  @Input() disabled: boolean;
+  @Input() expanded: boolean;
+  @Input() panelActions: ButtonModel[];
 
-  public panelOpenState = false;
+  panelOpenState = false;
 
   @Output() closed: EventEmitter<void> = new EventEmitter();
   @Output() opened: EventEmitter<void> = new EventEmitter();
@@ -29,12 +31,12 @@ export class ExpandPanelComponent implements OnInit {
   }
 
   public onPanelClosed() {
-    this.panelOpenState = false
+    this.panelOpenState = false;
     this.closed.emit();
   }
 
   public onPanelOpen() {
-    this.panelOpenState = true
+    this.panelOpenState = true;
     this.opened.emit();
   }
 }

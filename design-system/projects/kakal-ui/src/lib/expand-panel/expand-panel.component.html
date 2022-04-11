@@ -25,7 +25,11 @@
         </div>
       </mat-panel-title>
       <mat-panel-description>
-        <ng-content select="[description]"></ng-content>
+        <ng-container
+          *ngTemplateOutlet="
+            panelActions?.length ? actionTemplate : defaultTemplate
+          "
+        ></ng-container>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
@@ -34,3 +38,17 @@
     </div>
   </mat-expansion-panel>
 </div>
+
+<ng-template #defaultTemplate>
+  <ng-content select="[description]"></ng-content>
+</ng-template>
+
+<ng-template #actionTemplate>
+  <div fxLayout="row" fxLayoutGap="0.5rem" dir="rtl">
+    <ng-container *ngFor="let action of panelActions">
+      <button mat-icon-button (click)="onAction(action)">
+        <mat-icon>{{ action.svgIcon }}</mat-icon>
+      </button>
+    </ng-container>
+  </div>
+</ng-template>

@@ -1,0 +1,16 @@
+:host {
+  .kkl-card-document-wrapper {
+    min-height: 11rem;
+    min-width: 12rem;
+    border-radius: 0.5rem;
+  }
+
+  .kkl-card-document-actions {
+
+    height: 0px !important;
+  }
+
+  mat-icon {
+    font-size: 14px;
+  }
+}

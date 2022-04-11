@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import he from '@angular/common/locales/he';
+import { registerLocaleData } from '@angular/common';
+
 import { MaterialModule } from './angular-material/material.module';
 import { CoreModule } from './core-module/core.module';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -35,7 +38,6 @@ import { KKLTableModule } from './table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 
-
 import { KKLDialogModule } from './dialog/dialog.module';
 
 import { KKLSidenavModule } from './sidenav/sidenav.module';
@@ -57,6 +59,7 @@ import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
+import { KKLCardAddModule } from './cards/card-add/card-add.module';
 
 import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
@@ -87,19 +90,16 @@ import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
 
-import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module'
+import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module';
 import { FacilityCardModule } from './facility-card/facility-card.module';
 
-import { KKLDrawerModule } from './drawers/drawer.module'
+import { KKLDrawerModule } from './drawers/drawer.module';
 
-import he from '@angular/common/locales/he';
-import { registerLocaleData } from '@angular/common';
 import { CarouselModule } from './carousel/carousel.module';
 
-import { MeiFormModule } from './mei-form/mei-form.module';
-import { CardAddModule } from './cards/card-add/card-add.module';
 import { KKLFullCalendarModule } from './full-calendar/full-calendar.module';
 
+import { MeiFormModule } from './mei-form/mei-form.module';
 registerLocaleData(he);
 
 @NgModule({
@@ -164,6 +164,7 @@ registerLocaleData(he);
 
     // CARDS
     KKLCardLobbyModule,
+    KKLCardAddModule,
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
@@ -194,11 +195,9 @@ registerLocaleData(he);
     KKPageModule,
     FacilityCardModule,
     CarouselModule,
-    CardAddModule,
-    KKLFullCalendarModule
+    KKLFullCalendarModule,
   ],
   exports: [
-
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
@@ -254,6 +253,7 @@ registerLocaleData(he);
     KKLDirectivesModule,
     SpinnerModule,
     KKLPageHeadlineModule,
+
     // CARDS
     KKLCardLobbyModule,
     KKLCardInfoModule,
@@ -261,6 +261,7 @@ registerLocaleData(he);
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+    
     // NAVBAR
     KKLNavbarModule,
     NavbarBottomModule,
@@ -283,13 +284,10 @@ registerLocaleData(he);
     KKSectionModule,
     KKPageModule,
 
-
-
     KKLAccordionStepsModule,
     FacilityCardModule,
     CarouselModule,
-    CardAddModule,
-    KKLFullCalendarModule
+    KKLFullCalendarModule,
   ],
 })
-export class KakalUiModule { }
+export class KakalUiModule {}

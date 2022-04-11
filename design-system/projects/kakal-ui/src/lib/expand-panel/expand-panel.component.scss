@@ -5,7 +5,8 @@
     padding: 0 !important;
   }
 }
-mat-expansion-panel {
+
+::ng-deep mat-expansion-panel {
   margin-bottom: main.spacing(2) !important;
 
   &.table {
@@ -15,33 +16,48 @@ mat-expansion-panel {
   &.form {
     background-color: main.color(paper);
     border-radius: 0px !important;
-  }
 
-  & mat-expansion-panel-header {
-    border-bottom: 1px solid main.colorWithOpacity(accent, 0.2);
-    align-items: flex-end;
-    padding: 0 !important;
-  }
-
-  & .title {
-    border-bottom: 2px solid main.colorWithOpacity(accent, 1);
+    mat-icon {
+      font-size: 18px;
+    }
   }
 }
 
-:ng-deep mat-expansion-panel-header {
-  &:hover {
+::ng-deep .mat-expansion-panel-header {
+  // align-items: flex-end;
+  padding: 0px !important;
+
+  &:not(.form) {
+  }
+  &.form {
+    display: flex;
+    align-items: flex-end;
+    height: 40px !important;
+    border-bottom: 1px solid main.colorWithOpacity(accent, 0.2) !important;
+    border-radius: 0px !important;
+    padding-left: main.spacing(1) !important;
+
+    .title {
+      border-bottom: 2px solid main.color(accent) !important;
+    }
+  }
+
+  &.table {
+    background-color: main.color(table) !important;
+  }
+
+  &:hover:not(.table) {
     background-color: main.color(paper) !important;
   }
 
-  background-color: inherit !important;
 }
 
-// .content {
-//   font-size: 16px !important;
-//   padding-top: 16px;
-// }
+::ng-deep mat-panel-description {
+  justify-content: flex-end;
+}
 
 // override indicator color
 ::ng-deep span.mat-expansion-indicator::after {
   color: main.color(accent) !important;
+  margin-bottom: main.spacing(1) !important;
 }
