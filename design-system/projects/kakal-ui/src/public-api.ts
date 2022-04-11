@@ -425,3 +425,11 @@ export * from './lib/tabs/tabs.module';
 // carousel
 export * from './lib/carousel/carousel.component';
 export * from './lib/carousel/carousel.module';
+
+// full calendar
+export * from './lib/full-calendar/full-calendar.module';
+export * from './lib/full-calendar/full-calendar.component';
+export * from './lib/full-calendar/dynamic/dynamic.component';
+export * from './lib/full-calendar/calendar-card/calendar-card.component';
+
+
