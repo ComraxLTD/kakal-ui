@@ -21,6 +21,9 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { he } from 'date-fns/locale';
 import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-datepicker.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button';
+import { KKLDirectivesModule } from '../directives/directives.module';
 
 export const MY_MY_FORMATS = {
   parse: {
@@ -45,7 +48,10 @@ export const MY_MY_FORMATS = {
     KKLIconModule,
     MatInputModule,
     MatDateFnsModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    KKLDirectivesModule
   ],
   declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
      SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent],

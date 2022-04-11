@@ -9,53 +9,22 @@
       </button>
     </mat-chip>
 
-    <input
-      type="text"
-      [placeholder]="placeHolder"
-      matInput
-      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-      [disabled]="control.disabled"
-      [matChipInputFor]="chipList"
-      [matAutocomplete]="auto1"
-      [formControl]="myAutoControl"
-      (focusout)="setErrorMessage()"
-    />
+    <input type="text" [placeholder]="placeHolder" matInput [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [disabled]="control.disabled" [matChipInputFor]="chipList" [matAutocomplete]="auto1" [formControl]="myAutoControl"
+      (focusout)="setErrorMessage()" />
   </mat-chip-list>
-  <mat-autocomplete
-    autoActiveFirstOption
-    #auto1="matAutocomplete"
-    [displayWith]="displayFn"
-    (optionSelected)="onMultiSelectionChange($event)"
-    [panelWidth]="panelWidth ? 'auto' : null"
-    (open)="onOpenChanged(true)"
-    (closed)="onOpenChanged(false)"
-  >
-    <mat-option
-      *ngFor="
+  <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn"
+    (optionSelected)="onMultiSelectionChange($event)" [panelWidth]="panelWidth ? 'auto' : null"
+    (open)="onOpenChanged(true)" (closed)="onOpenChanged(false)">
+    <mat-option *ngFor="
         let option of isArray ? (filteredOptions | async) : (_options | async)
-      "
-      [value]="option"
-      class="autocomplete-option"
-      [disabled]="option.disabled"
-    >
+      " [value]="option" class="autocomplete-option" [disabled]="option.disabled">
       {{ option.label }}
     </mat-option>
   </mat-autocomplete>
-  <button
-    *ngIf="withButton"
-    type="button"
-    matSuffix
-    mat-icon-button
-    (click)="search()"
-    [disabled]="control.disabled"
-  >
+  <button *ngIf="withButton" matSuffix type="button" matSuffix mat-icon-button (click)="search()" [disabled]="control.disabled">
     <kkl-icon color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   </button>
-  <kkl-icon
-    *ngIf="!withButton"
-    color="primary"
-    [key]="icon || 'search'"
-    [size]="1.8"
-  ></kkl-icon>
+  <kkl-icon matSuffix *ngIf="!withButton" color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>
