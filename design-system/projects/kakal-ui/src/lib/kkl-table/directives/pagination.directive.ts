@@ -39,7 +39,8 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       const endIndex = startIndex < length ?
         Math.min(startIndex + pageSize, length) :
         startIndex + pageSize;
-      return length > 0 ? 'Showing ' + (startIndex + 1) + ' – ' + endIndex + ' of ' + length + ' records' : 'Showing 0 – 0 of 0 records';
+      // return length > 0 ? 'Showing ' + (startIndex + 1) + ' – ' + endIndex + ' of ' + length + ' records' : 'Showing 0 – 0 of 0 records';
+      return ''
     };
     // Subscribe to rerender buttons when next page and last page button is used
     this.matPag.page.subscribe((paginator: PageEvent) => {
@@ -47,6 +48,7 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       this.matPag.pageIndex = paginator.pageIndex;
       this.initPageRange();
     });
+    console.log('kklNewPagination');
   }
 
   ngDoCheck(): void {
