@@ -153,7 +153,7 @@ export * from './lib/kkl-table/pipes/table-group-cell.pipe';
 export * from './lib/kkl-table/table-actions.model';
 export * from './lib/kkl-table/table.model';
 export * from './lib/kkl-table/table-server.model';
-export * from './lib/kkl-table/directives/pagination-directive.directive';
+export * from './lib/kkl-table/directives/pagination.directive';
 export * from './lib/kkl-table/services/kkl-paginator.service';
 export * from './lib/kkl-table/kkl-table.module';
 
