@@ -4,11 +4,15 @@
 <ng-container content>
   <ng-container>
     <kkl-form
-      [controls]="questions"
-      (queryChanged)="onQueryChanged($event)"
-      (selectChanged)="onSelectChanged($event)"
-      (openChanged)="onOpenChanged($event)"
-    ></kkl-form>
+            [controls]="questions"
+            (queryChanged)="onQueryChanged($event)"
+
+            [options]="options"
+            [formGroup]="formGroup"
+            [editData]="editData"
+            (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChanged($event)"
+          ></kkl-form>
   </ng-container>
 </ng-container>
 <!--<kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>

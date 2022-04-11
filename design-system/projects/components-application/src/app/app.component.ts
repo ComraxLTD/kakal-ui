@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlBase } from '../../../kakal-ui/src/public-api';
+import { ControlBase, OptionsModel } from '../../../kakal-ui/src/public-api';
 
 
 @Component({
@@ -9,79 +9,112 @@ import { ControlBase } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
-  options = [{ label: 'test', value: 0 },
-  { label: 'test1', value: 1 }]
-  // control = new FormControl(null);
-editData;
-  questions: ControlBase[] = [
+  options:OptionsModel[] = [
     {
-      key: 'select',
-      controlType: 'select',
-      label: 'select',
-      multi: true,
-      options: [{ label: 'test', value: 0, selected: true}],
-      valueChanged: (eve) => {console.log(this.editData);}
+      //this key should be the same
+      key: 'firstQuestion',
+      val: [
+        { label: 'initial option1', value: 0 },
+        { label: 'initial option2', value: 1, },
+        { label: 'initial option3', value: 2,  },
+        { label: 'initial option4', value: 3,selected:true},
+      ],
     },
+    {
+      //this key should be the same
+      key: 'secondQuestion',
+      val: [
+        { label: 'test1', value: 1,  },
+        { label: 'test2', value: 3, disabled: true },
+        { label: 'test3', value: 2, selected: true },
+      ],
+    },
+  ]
+
+  formGroup = new FormGroup({});
+
+  questions: ControlBase[] = [
     // {
-    //   key: 'email',
-    //   controlType: 'format',
-    //   format: '\d'
+    //   key: 'first',
+    //   controlType: 'select',
+    //   options: 'firstQuestion',
+    //   multi: false,
+    //   label: 'בחירה ראשונה',
+    // },
+    // {
+    //   key: 'second',
+    //   controlType: 'select',
+    //   options: 'secondQuestion',
+    //   multi: false,
+    //   label: ' בחירה שניה',
+    //   // disabled: true
+    //   //,
     // },
     // {
     //   key: 'autocomplete',
     //   controlType: 'autocomplete',
-    //   options: [{ label: 'test', value: 0 }],
-    // },
-    // {
-    //   key: 'phone',
-    //   controlType: 'phone',
-    // },
-    // {
-    //   key: 'counter',
-    //   controlType: 'counter',
+    //   options: 'firstQuestion',
+    //   multi: true,
+    //   label: 'local autocomplete',
     //   // disabled: true
+    //   //,
     // },
-    // {
-    //   key: 'gggg',
-    //   controlType: 'format',
-    //   format: '\D'
-    // },
-    // {
-    //   key: 'number',
-    //   controlType: 'number',
-    // },
-    // {
-    //   key: 'password',
-    //   controlType: 'password',
-    // },
-    // {
-    //   key: 'dateRange',
-    //   controlType: 'dateRange',
-    // },
+    {
+      key: 'currency',
+      controlType: 'currency'
+    }
   ];
 
-  ngOnInit(){
+  editData =  'ert'
+  //{
+    //select: { label: 'editData', value: 88 }
+  //}
+
+  constructor() { }
+
+  ngOnInit() {
     setTimeout(() => {
-    //   console.log(this.formgroup);
-      this.editData = {number: 65657};
-    //   this.questions = this.questions.concat([{
-    //       key: 'password',
-    //       controlType: 'password',
-    //     }]);
+      console.log(this.formGroup);
+      this.questions = this.questions.concat([{
+        key: 'time',
+        controlType: 'time'
+      }])
+      // this.editData = { number: 65657 };
     }, 4000);
   }
 
-  onQueryChanged(event){
+  onQueryChanged(event:any) {
     console.log(event);
   }
-  onSelectChanged(event){
+
+  onSelectChanged(event:any) {
     console.log(event);
+
+    if (event.key === 'first') {
+      this.options = [
+        {
+          //this key should be the same
+          key: 'firstQuestion',
+          val: [
+            { label: 'server option1', value: 0 },
+            { label: 'server option2', value: 2,  selected: true},
+            { label: 'server option3', value: 3, },
+          ],
+        },
+        {
+          //this key should be the same
+          key: 'secondQuestion',
+          val: [
+            { label: 'test1', value: 1 },
+            { label: 'test2', value: 3, selected: true },
+            { label: 'test3', value: 2},
+          ],
+        },
+      ];
+    }
   }
-  onOpenChanged(event){
-    console.log(event);
-  }
-  onValueChanged(event){
+
+  onOpenChanged(event:any) {
     console.log(event);
 
   }
