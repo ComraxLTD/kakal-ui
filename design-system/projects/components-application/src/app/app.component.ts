@@ -13,198 +13,25 @@ import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  dataSource = [
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-    {
-      poCodes: 'asdasdas',
-      suppliers: 'suppliers',
-      status: 'status',
-    },
-  ];
+  dataSource!: any[]
+
+  description: string = ''
+
+  constructor(
+    // private comraxTablesService: ComraxTablesService,
+  ) { }
+
+  ngOnInit(): void {
+    // this.comraxTablesService.getTableObjects().subscribe(res => { this.dataSource = res })
+    this.description = 'Actions Table'
+    this.dataSource = [
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      }
+    ]
+  }
 
   columns: TableBase[] = [
     { key: 'id', label: 'Id', controlType: 'number', button: {type: 'visibility', icon: ''} },
@@ -215,76 +42,33 @@ export class AppComponent implements OnInit {
     { key: 'dob', label: 'תאריך', controlType: 'date', colIcon:'tree'},
   ];
 
-  actions = [{ svgIcon: 'edit' }, { svgIcon: 'delete' }];
-
-  eventClicked(event) {
-    console.log(event);
-  }
-  //calendar
-  arr = [
+  rowActions: RowActionModel[] = [
     {
-      backgroundColor: '#F0F6FE',
-      start: '2022-04-10',
-      // end: "2022-04-10T09:00",
-      editable: true,
-      svg: 'tree',
-      textColor: 'black',
-      title: 'מגרש ספורט',
-      type: 'facility',
+      type: 'inlineEdit',
+      icon: 'edit',
+      label: 'Edit'
     },
     {
-      backgroundColor: '#F0F6FE',
-      start: '2022-04-10T08:00',
-      end: '2022-04-10T09:00',
-      editable: true,
-      svg: 'tree',
-      textColor: 'black',
-      title: 'מגרש ספורט',
-      type: 'facility',
+      type: 'inlineDelete',
+      icon: 'cancel',
+      label: 'Delete'
     },
     {
-      backgroundColor: '#F0F6FE',
-      start: '2022-04-10T09:00',
-      end: '2022-04-10T10:00',
-      editable: true,
-      svg: 'tree',
-      textColor: 'black',
-      title: 'מגרש ספורט',
-      type: 'activity',
+      type: 'visibility',
+      icon: 'visibility',
+      label: 'Show'
     },
   ]
 
-  constructor( ) {}
-
-  ngOnInit(): void {
+  onClicked(event: any) {
+    this.description = `Actions Table: (ID: ${event.row.id}, ActionName: ${event.action}, City: ${event.row.city.label}, Date: ${event.row.dob}, Occupation: ${event.row.occupation}, YearsOfExperience: ${event.row.yearsOfExperience})`
   }
 
-  key: string = 'myDatePicker';
+  onEdit(event:any){
+    this.description = `Edit Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
+  }
 
-  description: string = ''
-
-
-  //
-  component = CardAddComponent;
-  cards = [
-    { title: '1', content: 'test' },
-    { title: '2', content: 'test' },
-    { title: '3', content: 'test' },
-    { title: '4', content: 'test' },
-    { title: '5', content: 'test' },
-    { title: '6', content: 'test' },
-    { title: '7', content: 'test' },
-    { title: '8', content: 'test' },
-  ];
-
-  // ngOnInit() {
-    // setTimeout(() => {
-    //   console.log(this.formgroup);
-    // this.editData = {number: 65657};
-    //   this.questions = this.questions.concat([{
-    //       key: 'password',
-    //       controlType: 'password',
-    //     }]);
-    // }, 4000);
-  // }
+  onDelete(event:any){
+    this.description = `Delete Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
+  }
 }
