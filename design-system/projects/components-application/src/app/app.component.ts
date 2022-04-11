@@ -11,6 +11,24 @@ import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-
 export class AppComponent implements OnInit {
   actions = [{ svgIcon: 'edit' }, { svgIcon: 'delete' }];
 
+  cards = {
+    1: {
+      id: 1,
+      svgIcon: 'home',
+      category: 'הסכם חליפין',
+    },
+    2: {
+      id: 2,
+      svgIcon: 'home',
+      category: 'הסכם רכישה',
+    },
+    3: {
+      id: 3,
+      svgIcon: 'home',
+      category: 'הסכם מכר',
+    },
+  };
+
   eventClicked(event) {
     console.log(event);
   }
@@ -50,16 +68,7 @@ export class AppComponent implements OnInit {
 
   //
   component = CardAddComponent;
-  cards = [
-    { title: '1', content: 'test' },
-    { title: '2', content: 'test' },
-    { title: '3', content: 'test' },
-    { title: '4', content: 'test' },
-    { title: '5', content: 'test' },
-    { title: '6', content: 'test' },
-    { title: '7', content: 'test' },
-    { title: '8', content: 'test' },
-  ];
+
 
   ngOnInit() {
     // setTimeout(() => {

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { IconsService } from '../../icon/icons.service';
+import { IconService } from '../../icon/icons.service';
 
 export interface MenuCard {
   label: string;
@@ -16,7 +16,7 @@ export interface MenuCard {
 export class MenuCardComponent implements OnInit {
   @Input() card!: MenuCard;
 
-  constructor(private iconService: IconsService) {}
+  constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
     this.iconService.setIcon(this.card.svgIcon);

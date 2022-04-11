@@ -1,13 +1,25 @@
+@use "../../../styles/variables" as main;
+@use '@angular/material' as mat;
 :host {
   .kkl-card-document-wrapper {
+    height: 14rem;
+  }
+
+  .kkl-card-document {
     min-height: 11rem;
     min-width: 12rem;
     border-radius: 0.5rem;
   }
 
-  .kkl-card-document-actions {
+  .active {
+    @include mat.elevation(4, --var-p, 0.8);
 
+    // box-shadow: 0px 6px 15px 0px main.colorWithOpacity(primary, 0.35);
+  }
+
+  .kkl-card-document-actions {
     height: 0px !important;
+    width: 100%;
   }
 
   mat-icon {
