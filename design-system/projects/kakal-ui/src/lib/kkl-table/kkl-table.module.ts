@@ -75,6 +75,7 @@ import { PaginatorDirective } from './directives/pagination-directive.directive'
     ArrIndexPipe,
     TableFormComponent,
     TableCellComponent,
+    PaginatorDirective,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
