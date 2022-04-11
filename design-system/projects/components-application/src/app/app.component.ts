@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  RowActionModel,
+  TableBase,
+} from '../../../kakal-ui/src/public-api';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-add.component';
@@ -9,66 +13,62 @@ import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  actions = [{ svgIcon: 'edit' }, { svgIcon: 'delete' }];
+  dataSource!: any[]
 
-  eventClicked(event) {
-    console.log(event);
+  description: string = ''
+
+  constructor(
+    // private comraxTablesService: ComraxTablesService,
+  ) { }
+
+  ngOnInit(): void {
+    // this.comraxTablesService.getTableObjects().subscribe(res => { this.dataSource = res })
+    this.description = 'Actions Table'
+    this.dataSource = [
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      }
+    ]
   }
-  //calendar
-  arr = [
-    {
-      backgroundColor: '#F0F6FE',
-      start: '2022-04-10',
-      // end: "2022-04-10T09:00",
-      editable: true,
-      svg: 'tree',
-      textColor: 'black',
-      title: 'מגרש ספורט',
-      type: 'facility',
-    },
-    {
-      backgroundColor: '#F0F6FE',
-      start: '2022-04-10T08:00',
-      end: '2022-04-10T09:00',
-      editable: true,
-      svg: 'tree',
-      textColor: 'black',
-      title: 'מגרש ספורט',
-      type: 'facility',
-    },
-    {
-      backgroundColor: '#F0F6FE',
-      start: '2022-04-10T09:00',
-      end: '2022-04-10T10:00',
-      editable: true,
-      svg: 'tree',
-      textColor: 'black',
-      title: 'מגרש ספורט',
-      type: 'activity',
-    },
+
+  columns: TableBase[] = [
+    { key: 'id', label: 'Id', controlType: 'number', button: {type: 'visibility', icon: ''} },
+    { key: 'name', label: 'Name', controlType: 'text', },
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', },
+    { key: 'occupation', label: 'Occupation', controlType: 'text', },
+    { key: 'city', label: 'עיר', controlType: 'select'},
+    { key: 'dob', label: 'תאריך', controlType: 'date', colIcon:'tree'},
   ];
 
-  //
-  component = CardAddComponent;
-  cards = [
-    { title: '1', content: 'test' },
-    { title: '2', content: 'test' },
-    { title: '3', content: 'test' },
-    { title: '4', content: 'test' },
-    { title: '5', content: 'test' },
-    { title: '6', content: 'test' },
-    { title: '7', content: 'test' },
-    { title: '8', content: 'test' },
-  ];
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      label: 'Edit'
+    },
+    {
+      type: 'inlineDelete',
+      icon: 'cancel',
+      label: 'Delete'
+    },
+    {
+      type: 'visibility',
+      icon: 'visibility',
+      label: 'Show'
+    },
+  ]
 
-  ngOnInit() {
-    // setTimeout(() => {
-    //   console.log(this.formgroup);
-    // this.editData = {number: 65657};
-    //   this.questions = this.questions.concat([{
-    //       key: 'password',
-    //       controlType: 'password',
-    //     }]);
-    // }, 4000);
+  onClicked(event: any) {
+    this.description = `Actions Table: (ID: ${event.row.id}, ActionName: ${event.action}, City: ${event.row.city.label}, Date: ${event.row.dob}, Occupation: ${event.row.occupation}, YearsOfExperience: ${event.row.yearsOfExperience})`
+  }
+
+  onEdit(event:any){
+    this.description = `Edit Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
+  }
+
+  onDelete(event:any){
+    this.description = `Delete Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
   }
 }

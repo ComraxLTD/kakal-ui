@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutGap="2rem">
+<!-- <div fxLayout="column" fxLayoutGap="2rem">
   <div fxLayout="row" fxLayoutAlign="center center">
     <mat-accordion dir="rtl" fxFlex="25">
       <kkl-expand-panel [hideToggle]="false" variant="form">
@@ -29,4 +29,13 @@
       </kkl-expand-panel>
     </mat-accordion>
   </div>
-</div>
+</div> -->
+
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  (actionClicked)="onClicked($event)"
+  (editRow)="onEdit($event)"
+  (deleteRow)="onDelete($event)"
+></kkl-local-table>

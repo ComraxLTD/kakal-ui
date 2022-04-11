@@ -12,7 +12,7 @@
         </th>
         <td class="dragCursor" mat-cell *matCellDef="let element">
           <div class="example-handle" cdkDragHandle>
-            <kkl-icon class="dragCursor" (mousedown)="dragDisabled = false;" color="text" key="drag_n_drop"></kkl-icon>
+            <kkl-icon class="dragCursor" (mousedown)="dragDisabled = false;" color="text" key="all_directions"></kkl-icon>
           </div>
         </td>
       </ng-container>
@@ -69,6 +69,8 @@
             <ng-container *ngFor="let butt of localButtons">
               <button mat-button color="primary" aria-label="Example icon button with a menu icon" (click)="buttonClick(butt, element)">
                 <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                <!-- label should appear as a tooltip and not as text -->
+                <!--  kkl-hover hoverColor="white" text="{{butt.label}}" -->
                 {{butt.label}}
               </button>
             </ng-container>
@@ -102,6 +104,6 @@
 
   </div>
   <div [hidden]="!paging">
-    <mat-paginator dir="ltr" [showFirstLastButtons]="true" [pageSizeOptions]="[10, 25, 100]" (page)="pageChanged($event)" aria-label="Select page"></mat-paginator>
+    <mat-paginator dir="ltr" kklPagination [pageSizeOptions]="[10, 25, 100]" (page)="pageChanged($event)" aria-label="Select page"></mat-paginator>
   </div>
 </form>
