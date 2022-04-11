@@ -12,9 +12,9 @@ export interface CardDocument {
   documents?: DocumentItem[];
 }
 
-export interface CardSelectEvent {
+export interface CardDocumentEvent {
   card: CardDocument;
-  action: 'select' | 'disable';
+  action: 'select' | 'remove';
 }
 
 @Component({
@@ -35,7 +35,8 @@ export class CardDocumentComponent implements OnInit {
 
   icon$: Observable<string>;
 
-  @Output() cardSelect: EventEmitter<CardSelectEvent> = new EventEmitter();
+  @Output() cardSelectChanged: EventEmitter<CardDocumentEvent> = new EventEmitter();
+  @Output() cardRemoveChanges: EventEmitter<CardDocumentEvent> = new EventEmitter();
   constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
@@ -51,12 +52,10 @@ export class CardDocumentComponent implements OnInit {
   }
 
   onSelect(card : CardDocument) {
-    this.cardSelect.emit({ card, action: 'select' });
+    this.cardSelectChanged.emit({ card, action: 'select' });
   }
 
-  onDisable(card : CardDocument) {
-    this.cardSelect.emit({ card, action: 'disable' });
-    // const disable = this.disable$.getValue();
-    // this.disable$.next(!disable);
+  onRemove(card : CardDocument) {
+    this.cardRemoveChanges.emit({ card, action: 'remove' });
   }
 }

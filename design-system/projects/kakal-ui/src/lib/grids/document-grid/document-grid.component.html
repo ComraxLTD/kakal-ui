@@ -13,7 +13,8 @@
     <ng-container *ngFor="let item of cards | keyvalue; let i = index">
       <mat-grid-tile>
         <kkl-card-document
-          (cardSelect)="onCardSelect($event)"
+          (cardSelectChanged)="onCardSelect($event)"
+          (cardRemovedChanged)="onCardRemove($event)"
           [card]="item.value"
         ></kkl-card-document>
       </mat-grid-tile>

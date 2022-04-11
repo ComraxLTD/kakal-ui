@@ -1,8 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   CardDocument,
-  CardSelectEvent,
+  CardDocumentEvent,
 } from '../../cards/card-document/card-document.component';
+
+export interface GridChangedEvent {
+  selectedCard: CardDocument;
+  disableCard: CardDocument;
+}
 
 @Component({
   selector: 'kkl-grid-documents',
@@ -12,32 +17,50 @@ import {
 export class DocumentGridComponent implements OnInit {
   @Input() cards!: { [key: number]: CardDocument };
 
+  private gridChanged: GridChangedEvent;
+
   constructor() {}
+
+  @Output() change: EventEmitter<GridChangedEvent> = new EventEmitter();
 
   ngOnInit(): void {}
 
-  onCardSelect(event: CardSelectEvent) {
+  onCardSelect(event: CardDocumentEvent) {
     const { card } = event;
-    switch (event.action) {
-      case 'select':
-        this.cards = {
-          ...this.cards,
-          [card.id]: {
-            ...this.cards[card.id],
-            active: !card.active,
-          },
-        };
-        break;
-      case 'disable':
-        this.cards = {
-          ...this.cards,
-          [card.id]: {
-            ...this.cards[card.id],
-            disable: !card.disable,
-          },
-        };
+    this.cards = {
+      ...this.cards,
+      [card.id]: {
+        ...this.cards[card.id],
+        active: !card.active,
+      },
+    };
 
-        break;
-    }
+    this.gridChanged = {
+      ...this.gridChanged,
+      selectedCard: this.cards[card.id],
+    };
+    this._emitChanged();
+  }
+
+  onCardRemove(event: CardDocumentEvent) {
+    const { card } = event;
+    this.cards = {
+      ...this.cards,
+      [card.id]: {
+        ...this.cards[card.id],
+        disable: !card.disable,
+      },
+    };
+
+    this.gridChanged = {
+      ...this.gridChanged,
+      disableCard: this.cards[card.id],
+    };
+    this._emitChanged();
+  }
+
+  private _emitChanged() {
+    const event: GridChangedEvent = this.gridChanged;
+    this.change.emit(event);
   }
 }
