@@ -12,7 +12,7 @@
   }
 
   .active {
-    @include mat.elevation(4, --var-p, 0.8);
+    @include mat.elevation(4, var(--p-500), 0.8);
 
     // box-shadow: 0px 6px 15px 0px main.colorWithOpacity(primary, 0.35);
   }

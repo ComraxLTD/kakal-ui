@@ -5,7 +5,7 @@ import {
 } from '../../cards/card-document/card-document.component';
 
 @Component({
-  selector: 'kkl-document-grid',
+  selector: 'kkl-grid-document',
   templateUrl: './document-grid.component.html',
   styleUrls: ['./document-grid.component.scss'],
 })
