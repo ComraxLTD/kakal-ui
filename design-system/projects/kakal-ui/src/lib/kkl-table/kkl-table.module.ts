@@ -29,6 +29,7 @@ import { KKLIconModule } from '../icon/icon.module';
 import { KKLButtonModule } from '../button/button.module';
 import { HttpClientModule } from '@angular/common/http';
 import { KKLNewPaginatorDirective } from './directives/pagination.directive';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { KKLNewPaginatorDirective } from './directives/pagination.directive';
     KKLFormCurrencyModule,
     KKLFormCheckboxModule,
     KKLIconModule,
-    KKLButtonModule
+    KKLButtonModule,
+    FlexLayoutModule,
   ],
   exports: [
     LocalTableComponent,

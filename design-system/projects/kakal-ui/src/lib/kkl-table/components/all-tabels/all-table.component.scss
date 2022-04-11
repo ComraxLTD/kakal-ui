@@ -15,8 +15,16 @@ tr.example-element-row:not(.example-expanded-row):active {
 .example-element-detail {
   display: flex;
   padding: 16px;
+  background-color: main.color(table);
+  // background-color: red;
+  width: 100%;
+  margin-right: -16px;
 }
 
+// .mat-table{
+//   border-collapse: separate !important;
+//   border-spacing: 0 4px !important;
+// }
 
 .center-butt {
   text-align: center;
@@ -31,9 +39,10 @@ table {
   overflow-y: auto;
 }
 
-// td {
-//   min-width: 400px;
-// }
+.row-padding {
+  // background-color: red;
+  // margin-top: 1000px !important;
+}
 
 // .table-wrapper {
 
@@ -86,3 +95,9 @@ th>h3 {
   background-color: transparent !important;
   color: main.color(primary) !important;
 }
+// ::ng-deep .mat-progress-bar-fill::after{
+//   // color: main.color(primary) !important;
+//   color: red !important;
+// }
+
+
