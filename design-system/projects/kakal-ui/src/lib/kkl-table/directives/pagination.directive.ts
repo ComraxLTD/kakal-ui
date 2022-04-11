@@ -15,7 +15,7 @@ import { MatButton } from '@angular/material/button';
   selector: '[kklNewPagination]'
 })
 
-export class PaginatorDirective implements DoCheck, AfterViewInit {
+export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
   private currentPage: number;
   private pageGapTxt: string[];
   private rangeStart: number;
@@ -111,12 +111,12 @@ export class PaginatorDirective implements DoCheck, AfterViewInit {
           if (node.nodeName === 'BUTTON') {
             // Next Button styles
             if (node.innerHTML.length > 100 && node.disabled) {
-              node.innerHTML = 'הקודם'
+              // node.innerHTML = 'הקודם'
               this.renderer.addClass(node, 'custom-paginator-arrow-disabled');
               this.renderer.removeClass(node, 'paginator-button');
             }
             else if ( node.innerHTML.length > 100 && !node.disabled ) {
-              node.innerHTML = 'הבא'
+              // node.innerHTML = 'הבא'
               this.renderer.addClass(node, 'paginator-button');
               this.renderer.removeClass(node, 'custom-paginator-arrow-disabled');
             }
@@ -132,14 +132,17 @@ export class PaginatorDirective implements DoCheck, AfterViewInit {
         actionContainer,
         this.createButton('0', this.matPag.pageIndex),
         nextPageNode
-      );
-    }
+        );
+      }
 
-    page = this.showTotalPages + 2;
-    pageDifference = totalPages - page;
-    startIndex = Math.max(this.currentPage - this.showTotalPages - 2, 1);
+      page = this.showTotalPages + 2;
+      pageDifference = totalPages - page;
+      startIndex = Math.max(this.currentPage - this.showTotalPages - 2, 1);
+      actionContainer.childNodes[2].innerText = 'הקודם'
+      actionContainer.childNodes[actionContainer.childNodes.length - 3].innerText = 'הבא'
 
-    for (let index = startIndex; index < totalPages - 1; index = index + 1) {
+      for (let index = startIndex; index < totalPages - 1; index = index + 1) {
+
       if (
         (index < page && this.currentPage <= this.showTotalPages)
         ||
@@ -164,22 +167,13 @@ export class PaginatorDirective implements DoCheck, AfterViewInit {
           this.renderer.removeClass(nextPageNode, 'custom-paginator-arrow-disabled');
         }
         if(this.matPag.pageIndex > 0) {
-          actionContainer.childNodes.forEach(node => {
-            if (node.innerText === 'הקודם') {
-              this.renderer.addClass(node, 'paginator-button');
-              this.renderer.removeClass(node, 'custom-paginator-arrow-disabled');
-            }
-          });
+          this.renderer.addClass(actionContainer.childNodes[2], 'paginator-button');
+          this.renderer.removeClass(actionContainer.childNodes[2], 'custom-paginator-arrow-disabled');
         }
         else{
-          actionContainer.childNodes.forEach(node => {
-            if (node.innerText === 'הקודם') {
-              this.renderer.addClass(node, 'custom-paginator-arrow-disabled');
-              this.renderer.removeClass(node, 'paginator-button');
-            }
-          });
+          this.renderer.addClass(actionContainer.childNodes[2], 'custom-paginator-arrow-disabled');
+          this.renderer.removeClass(actionContainer.childNodes[2], 'paginator-button');
         }
-
         if (index > this.rangeEnd && !dots[0]) {
           this.renderer.insertBefore(
             actionContainer,

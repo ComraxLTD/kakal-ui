@@ -26,7 +26,572 @@ export class AppComponent implements OnInit {
         label: 'label',
         controlType: 'text',
       },
-    ];
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+    ]
   }
 
   columns: TableBase[] = [

@@ -4,9 +4,9 @@ import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { Subject, take, takeUntil } from 'rxjs';
-import { RowActionEvent, RowActionModel } from '../../table-actions.model'
-import { TableBase } from '../../table.model';
-import { TableServerModel } from '../../table-server.model';
+import { RowActionEvent, RowActionModel } from '../../models/table-actions.model'
+import { TableBase } from '../../models/table.model';
+import { TableServerModel } from '../../models/table-server.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatTable } from '@angular/material/table';
 import { HttpClient, HttpParams } from '@angular/common/http';
