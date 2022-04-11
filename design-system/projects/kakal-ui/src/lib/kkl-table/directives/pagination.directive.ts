@@ -12,7 +12,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatButton } from '@angular/material/button';
 
 @Directive({
-  selector: '[kklPagination]'
+  selector: '[kklNewPagination]'
 })
 
 export class PaginatorDirective implements DoCheck, AfterViewInit {

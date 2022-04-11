@@ -104,6 +104,6 @@
 
   </div>
   <div [hidden]="!paging">
-    <mat-paginator dir="ltr" kklPagination [pageSizeOptions]="[10, 25, 100]" (page)="pageChanged($event)" aria-label="Select page"></mat-paginator>
+    <mat-paginator dir="ltr" kklNewPagination [pageSizeOptions]="[10, 25, 100]" (page)="pageChanged($event)" aria-label="Select page"></mat-paginator>
   </div>
 </form>
