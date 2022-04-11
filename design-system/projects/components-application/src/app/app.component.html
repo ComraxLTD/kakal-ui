@@ -1,50 +1,18 @@
-<!-- <div fxFlex="50" fxLayoutAlign="center">
-  <kkl-form
-[controls]="questions"
-[options]="options"
-></kkl-form>
-</div> -->
-<!-- <div fxLayout="column" fxLayoutGap="2rem">
-  <div fxLayout="row" fxLayoutAlign="center center">
-    <mat-accordion dir="rtl" fxFlex="25">
-      <kkl-expand-panel [hideToggle]="false" variant="form" [expanded]="true">
-        <div fxFill title>
-          <kkl-typography>הסכמים</kkl-typography>
-        </div>
-        <ng-container content>
-          <kkl-document-grid [cards]="cards"></kkl-document-grid>
-        </ng-container>
-        <ng-container content>
-          <app-form-filter-search></app-form-filter-search>
-        </ng-container>
-      </kkl-expand-panel>
-      <kkl-expand-panel [hideToggle]="false" variant="form">
-        <kkl-typography title>הסכמים</kkl-typography>
-        <ng-container content>
-          <app-form-filter-search></app-form-filter-search>
-        </ng-container>
-      </kkl-expand-panel>
-      <kkl-expand-panel [hideToggle]="false" variant="form">
-        <kkl-typography title>הסכמים</kkl-typography>
-        <ng-container content>
-          <app-form-filter-search></app-form-filter-search>
-        </ng-container>
-      </kkl-expand-panel>
-      <kkl-expand-panel variant="table">
-        <kkl-typography title>נספחים</kkl-typography>
-        <ng-container content>
-          <app-form-filter-search></app-form-filter-search>
-        </ng-container>
-      </kkl-expand-panel>
-    </mat-accordion>
-  </div>
-</div> -->
+<div dir="rtl" fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxFlex="90">
+    <div>
+      <kkl-local-table
+        [dataSource]="dataSource"
+        [columns]="columns"
+        [rowActions]="rowActions"
+        (actionClicked)="onClicked($event)"
+        (editRow)="onEdit($event)"
+        (deleteRow)="onDelete($event)"
+      ></kkl-local-table>
+    </div>
 
-<kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions"
-  (actionClicked)="onClicked($event)"
-  (editRow)="onEdit($event)"
-  (deleteRow)="onDelete($event)"
-></kkl-local-table>
+    <div fxLayout="row">
+      <kkl-grid-documents fxFlex="20" [cards]="cards"></kkl-grid-documents>
+    </div>
+  </div>
+</div>

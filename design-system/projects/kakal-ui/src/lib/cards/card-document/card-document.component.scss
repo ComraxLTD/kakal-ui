@@ -5,16 +5,18 @@
     height: 14rem;
   }
 
+
   .kkl-card-document {
     min-height: 11rem;
     min-width: 12rem;
     border-radius: 0.5rem;
-  }
 
-  .active {
-    @include mat.elevation(4, var(--p-500), 0.8);
-
-    // box-shadow: 0px 6px 15px 0px main.colorWithOpacity(primary, 0.35);
+    &.active {
+      @include mat.elevation(4, var(--p-500), 0.8);
+    }
+    &.disable {
+      opacity: 0.3;
+    }
   }
 
   .kkl-card-document-actions {

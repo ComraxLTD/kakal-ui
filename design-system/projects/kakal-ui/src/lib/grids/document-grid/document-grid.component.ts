@@ -5,7 +5,7 @@ import {
 } from '../../cards/card-document/card-document.component';
 
 @Component({
-  selector: 'kkl-grid-document',
+  selector: 'kkl-grid-documents',
   templateUrl: './document-grid.component.html',
   styleUrls: ['./document-grid.component.scss'],
 })
@@ -17,14 +17,23 @@ export class DocumentGridComponent implements OnInit {
   ngOnInit(): void {}
 
   onCardSelect(event: CardSelectEvent) {
+    const { card } = event;
     switch (event.action) {
       case 'select':
-        const { card } = event;
         this.cards = {
           ...this.cards,
           [card.id]: {
             ...this.cards[card.id],
             active: !card.active,
+          },
+        };
+        break;
+      case 'disable':
+        this.cards = {
+          ...this.cards,
+          [card.id]: {
+            ...this.cards[card.id],
+            disable: !card.disable,
           },
         };
 
