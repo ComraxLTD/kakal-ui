@@ -10,8 +10,8 @@ import {
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
-import { ListItem } from '../list-item/list-item.model';
 import { PageHeadlineModel } from '../page-headline/page-headline.model';
+import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
@@ -20,41 +20,40 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  
-  @Input() public openIcon: string = 'tree_gradient_tac';
+  @Input() icons: IconModel[] = [];
+  @Input() isOpen: boolean = false;
+  @Input() showStatus$: Observable<boolean>;
 
-  @Input() public icons: IconModel[] = [];
+  openIcon: string = 'tree_gradient_';
+  title$: Observable<PageHeadlineModel[]>;
+  status$: Observable<CardStepModel[]>;
+  mobile$: Observable<boolean>;
+  toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  @Input() public show$: Observable<boolean>;
-
-  public title$: Observable<PageHeadlineModel[]>;
-  public status$: Observable<CardStepModel[]>;
-  public mobile$: Observable<boolean>;
-  public toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(
-    false
-  );
-
-  public isOpen: boolean = false;
-  public openLabel: string = 'תפריט';
-  public closeLabel: string = 'סגור תפריט';
+  openLabel: string = 'תפריט';
+  closeLabel: string = 'סגור תפריט';
 
   @Output() menuToggle = new EventEmitter();
   @Output() logoClicked = new EventEmitter();
 
   constructor(
     private navbarService: NavbarService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
     this.title$ = this.navbarService.getHeadersObs();
     this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
+    this.openIcon = this.setMenuIcon();
+  }
+
+  private setMenuIcon() {
+    return this.openIcon + this.rootPrefix;
   }
 
   public toggleMenu() {
-    const toggle = this.toggle$.getValue()
-    this.toggle$.next(!toggle);
     this.menuToggle.emit();
   }
 

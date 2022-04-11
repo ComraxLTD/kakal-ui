@@ -58,7 +58,7 @@ export class RouterService {
 
   public async navigate(path: string) {
     try {
-      await this.router.navigateByUrl(path);
+       await this.router.navigateByUrl(path);
     } catch (err) {
       console.log(err);
     }

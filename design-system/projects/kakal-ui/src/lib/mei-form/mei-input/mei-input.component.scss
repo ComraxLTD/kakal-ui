@@ -1,0 +1,93 @@
+@use ".././../../styles/variables" as main;
+
+.kkl-form-input {
+  // ::ng-deep svg * {
+  //   fill: main.color(primary);
+  // }
+}
+
+::ng-deep mat-form-field {
+  width: 100%;
+  font-size: 14px !important;
+}
+
+::ng-deep .mat-select-arrow {
+  opacity: 0;
+}
+
+.input-slot {
+  ::ng-deep .mat-form-field-appearance-legacy,
+  ::ng-deep .mat-form-field-underline {
+    height: 0 !important;
+  }
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+  background: none !important;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background: none !important;
+}
+
+// hide number input arrows
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+::ng-deep .autocomplete-option {
+  font-size: 1.5rem !important;
+}
+
+::ng-deep .autocomplete-option > div {
+  flex-direction: row !important;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  ::ng-deep mat-form-field {
+    font-size: 9px !important;
+  }
+}
+
+
+mat-form-field.center  {
+  text-align: center !important;
+}
+
+.kkl-form-counter {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+hr {
+  width: 90%;
+  border-top: 1px dashed main.color(default);
+}
+input.small {
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  &:focus {
+    border: none;
+  }
+}
+
+.form-counter {
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+}

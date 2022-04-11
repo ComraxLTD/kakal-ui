@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NavbarService } from '../../navbar/navbar.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardStatusModel } from './card-status.model';
 
 @Component({
@@ -9,13 +8,13 @@ import { CardStatusModel } from './card-status.model';
 })
 export class CardStatusComponent implements OnInit {
   @Input() public status: CardStatusModel;
+  @Output() stepSelect: EventEmitter<void> = new EventEmitter();
 
-  constructor(private navbarService: NavbarService) {}
+  constructor() {}
 
   ngOnInit(): void {}
 
-  // method to fire option value when select
-  public onStatusCLick(): void {
-    this.navbarService.emitSelectStatus(this.status);
+  onStepSelect(): void {
+    this.stepSelect.emit();
   }
 }

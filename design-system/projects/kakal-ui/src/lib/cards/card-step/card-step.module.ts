@@ -7,16 +7,18 @@ import { KKLDirectivesModule } from '../../directives/directives.module';
 import { MatBadgeModule } from '@angular/material/badge';
 import { KKLIconModule } from '../../icon/icon.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { KKLButtonModule } from '../../button/button.module';
 
 @NgModule({
   imports: [
-    MatCardModule,
-    KKLTypographyModule,
     CommonModule,
-    KKLDirectivesModule,
-    MatBadgeModule,
-    KKLIconModule,
     FlexLayoutModule,
+    MatCardModule,
+    MatBadgeModule,
+    KKLTypographyModule,
+    KKLDirectivesModule,
+    KKLButtonModule,
+    KKLIconModule,
   ],
   declarations: [CardStepComponent],
   exports: [CardStepComponent],

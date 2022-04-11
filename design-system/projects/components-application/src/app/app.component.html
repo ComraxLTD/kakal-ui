@@ -1,11 +1,32 @@
-<kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions"
-  (actionClicked)="editRow($event)"
-  (editRow)="editRow($event)"
-  dragable="true"
-></kkl-local-table>
-
-<kkl-button (clickEvent)="onClick('sadasdasd')"></kkl-button>
-<kkl-add-button (clickEvent)="onClick('sdfsdfsdf')"></kkl-add-button>
+<div fxLayout="column" fxLayoutGap="2rem">
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-accordion dir="rtl" fxFlex="25">
+      <kkl-expand-panel [hideToggle]="false" variant="form">
+        <div fxFill title>
+          <kkl-typography>הסכמים</kkl-typography>
+        </div>
+        <ng-container content>
+          <app-form-filter-search></app-form-filter-search>
+        </ng-container>
+      </kkl-expand-panel>
+      <kkl-expand-panel [hideToggle]="false" variant="form">
+        <kkl-typography title>הסכמים</kkl-typography>
+        <ng-container content>
+          <app-form-filter-search></app-form-filter-search>
+        </ng-container>
+      </kkl-expand-panel>
+      <kkl-expand-panel [hideToggle]="false" variant="form">
+        <kkl-typography title>הסכמים</kkl-typography>
+        <ng-container content>
+          <app-form-filter-search></app-form-filter-search>
+        </ng-container>
+      </kkl-expand-panel>
+      <kkl-expand-panel variant="table">
+        <kkl-typography title>נספחים</kkl-typography>
+        <ng-container content>
+          <app-form-filter-search></app-form-filter-search>
+        </ng-container>
+      </kkl-expand-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,30 +1,51 @@
-import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { ValidatorFn } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Palette } from '../../../styles/theme';
-import { Appearance, InputGrid, ControlType } from './question.types';
-import { MeiSelectOption } from './select.model';
+import { Appearance, ControlType, GridProps } from './control.types';
+import { KklSelectOption } from './kkl-select.model';
 
-export abstract class QuestionBase {
+export abstract class ControlBase {
   public key: string;
-  public theme?: Palette;
   public label?: string;
   public placeHolder?: string;
   public value?: any | undefined;
-  public appearance?: Appearance;
-  public format?: { type: string; args?: any };
-  public selector?: string;
   public controlType?: ControlType;
-  public gridProps?: InputGrid;
-  public icon?: string;
+
+  //for use in form creation
   public validations?: ValidatorFn[];
   public disabled?: boolean;
-  public control?: AbstractControl | FormControl;
-  public cleave?: {};
-  public options?: MeiSelectOption[] |  BehaviorSubject<MeiSelectOption[]> | string;
-  public multi?: boolean;
-  public panelWidth?: boolean;
-  public withButton?: boolean;
+
+  // only for datepicker
+  public maxDate?: Date;
+  public minDate?: Date;
+
+  //for select and autocomplete
+  public options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
+  //for input and autocomplete
   public debounce?: number;
+  //for input
+  public format?: string;
+  //for input and autocomplete
+  public icon?: string;
+  //for select and autocomplete
+  public multi?: boolean;
+  //for autocomplete
+  public withButton?: boolean;
+
+  public theme?: Palette;
+  public appearance?: Appearance;
+  public gridProps?: GridProps;
+  //for autocomplete
+  public panelWidth?: boolean;
+
+  public queryChanged?: Function;
+  public selectChanged?: Function;
+  public openChanged?: Function;
+  public valueChanged?: Function;
+  public focusChanged?: Function;
+
+
+
 
   constructor(options: {
     key: string;
@@ -32,20 +53,20 @@ export abstract class QuestionBase {
     label?: string;
     placeHolder?: string;
     appearance?: Appearance;
-    format?: { type: string; args?: any };
+    format?: string;
     selector?: string;
     controlType?: ControlType;
     disabled?: boolean;
-    gridProps?: InputGrid;
+    gridProps?: GridProps;
     icon?: string;
-    options?: MeiSelectOption[] |  BehaviorSubject<MeiSelectOption[]> | string;
+    options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
     validations?: ValidatorFn[];
-    control?: AbstractControl | FormControl;
-    cleave?: {};
     multi?: boolean;
     panelWidth?: boolean;
     withButton?: boolean;
     debounce?: number;
+    maxDate?: Date;
+    minDate?: Date;
   }) {
     this.key = options.key || '';
     this.value = options.value;
@@ -53,7 +74,6 @@ export abstract class QuestionBase {
     this.placeHolder = options.placeHolder || '';
     this.appearance = options.appearance || 'outline';
     this.format = options.format;
-    this.selector = options.selector;
     this.controlType = options.controlType || 'text';
     this.disabled = this.disabled || false;
     this.validations = options.validations || [];
@@ -65,11 +85,12 @@ export abstract class QuestionBase {
       fullWidth: false,
     };
     this.icon = options.icon || '';
-    this.control = options.control || null;
-    this.cleave = options.cleave || {};
     this.multi = options.multi;
     this.panelWidth = options.panelWidth;
     this.withButton = options.withButton;
     this.debounce = options.debounce;
+    this.minDate = options.minDate;
+    this.maxDate = options.maxDate;
+
   }
 }

@@ -1,13 +1,12 @@
-import { FormControl } from "@angular/forms";
 
-export interface FormChangeEvent {
+export interface KklFormChangeEvent {
   key: string;
   value?: any;
-  action : FormActions;
+  action : KklFormActions;
   query?: string;
 }
 
-export enum FormActions {
+export enum KklFormActions {
 
   FOCUS_IN = 'focusIn',
 
@@ -16,7 +15,8 @@ export enum FormActions {
   SEARCH_EVENT = 'focusIn',
 
   // Event emitted when the select panel has been toggled.
-  OPEN_CHANGED = 'openChanged',
+  OPENED_SELECT = 'openChanged',
+  CLOSED_SELECT = 'closeChanged',
 
   // Event emitted when the user is typing in simple input.
   VALUE_CHANGED = 'valueChanged',
