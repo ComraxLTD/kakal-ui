@@ -8,7 +8,7 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
-import { IconsService } from '../../icon/icons.service';
+import { IconService } from '../../icon/icons.service';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
@@ -60,7 +60,7 @@ export class StepperLayoutComponent {
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private iconService: IconsService
+    private iconService: IconService
   ) {}
 
   ngOnInit(): void {

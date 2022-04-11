@@ -12,7 +12,7 @@ export interface IconItem {
 @Injectable({
   providedIn: 'root',
 })
-export class IconsService {
+export class IconService {
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer

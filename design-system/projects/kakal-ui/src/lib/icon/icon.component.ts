@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Color, palette, Palette } from '../../styles/theme';
-import { IconsService } from './icons.service';
+import { IconService } from './icons.service';
 
 @Component({
   selector: 'kkl-icon',
@@ -18,7 +18,7 @@ export class IconComponent implements OnInit {
   }
   set key(value: string) {
     this._key = value;
-    this.iconsService.setIcon(this._key);
+    this.IconService.setIcon(this._key);
   }
 
   private _color: string = 'default';
@@ -44,7 +44,7 @@ export class IconComponent implements OnInit {
 
   public scale: string;
 
-  constructor(private iconsService: IconsService) {}
+  constructor(private IconService: IconService) {}
 
   ngOnInit(): void {
     this.setIcon();
@@ -53,7 +53,7 @@ export class IconComponent implements OnInit {
   }
 
   private setIcon() {
-    const isSvg = this.iconsService.setIcon(this.key);
+    const isSvg = this.IconService.setIcon(this.key);
     if (this.type) {
       this.type = this.type;
     } else {

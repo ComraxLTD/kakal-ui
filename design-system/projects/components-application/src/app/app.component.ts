@@ -103,7 +103,7 @@ export class AppComponent implements OnInit {
       ],
     },
   ];
-  
+
   questions: ControlBase[] = [
     {
       key: 'autocomplete',

@@ -60,6 +60,7 @@ import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
 import { KKLCardAddModule } from './cards/card-add/card-add.module';
+import { KKLCardDocumentModule } from './cards/card-document/card-document.module';
 
 import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
@@ -100,6 +101,11 @@ import { CarouselModule } from './carousel/carousel.module';
 import { KKLFullCalendarModule } from './full-calendar/full-calendar.module';
 
 import { MeiFormModule } from './mei-form/mei-form.module';
+
+// GRIDS
+
+import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
+
 registerLocaleData(he);
 
 @NgModule({
@@ -170,6 +176,7 @@ registerLocaleData(he);
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+    KKLCardDocumentModule,
 
     // NAVBAR
     KKLNavbarModule,
@@ -190,6 +197,10 @@ registerLocaleData(he);
     KKLAccordionStepsModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
+
+    // GRIDS
+
+    KKLDocumentGridModule,
 
     KKSectionModule,
     KKPageModule,
@@ -261,7 +272,8 @@ registerLocaleData(he);
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
-    
+    KKLCardDocumentModule,
+
     // NAVBAR
     KKLNavbarModule,
     NavbarBottomModule,
@@ -270,6 +282,10 @@ registerLocaleData(he);
     KKLStepperModule,
     KKLStepperMobileModule,
     StepperLayoutModule,
+
+    // GRIDS
+
+    KKLDocumentGridModule,
 
     // LAYOUT
     KKLLayoutModule,
