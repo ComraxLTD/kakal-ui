@@ -12,7 +12,7 @@
     </div>
 
     <div fxLayout="row">
-      <kkl-grid-documents fxFlex="20" [cards]="cards"></kkl-grid-documents>
+      <kkl-grid-documents (change)="onGrigChanged($event)" fxFlex="20" [cards]="cards"></kkl-grid-documents>
     </div>
   </div>
 </div>

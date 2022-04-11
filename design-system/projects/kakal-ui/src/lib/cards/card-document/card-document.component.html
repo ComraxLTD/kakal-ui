@@ -9,8 +9,8 @@
       kkl-button
       (click)="onSelect(card)"
       class="kkl-card-document mat-elevation-z4"
-      [class.active]="card.active"
-      [class.disable]="card.disable"
+      [class.selected]="card.selected && !card.disabled"
+      [class.disabled]="card.disabled"
       fxLayout="column"
       fxLayoutAlign="center center"
     >

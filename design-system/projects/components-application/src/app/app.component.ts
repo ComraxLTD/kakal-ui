@@ -155,4 +155,8 @@ export class AppComponent implements OnInit {
       category: 'הסכם מכר',
     },
   };
+
+  onGrigChanged(event) {
+    console.log(event)
+  }
 }

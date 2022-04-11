@@ -31,13 +31,13 @@ export class DocumentGridComponent implements OnInit {
       ...this.cards,
       [card.id]: {
         ...this.cards[card.id],
-        active: !card.active,
+        selected: !card.selected,
       },
     };
 
     this.gridChanged = {
       ...this.gridChanged,
-      selectedCard: this.cards[card.id],
+      selectedCard: this.cards[card.id].selected ? this.cards[card.id] : null,
     };
     this._emitChanged();
   }
@@ -48,15 +48,23 @@ export class DocumentGridComponent implements OnInit {
       ...this.cards,
       [card.id]: {
         ...this.cards[card.id],
-        disable: !card.disable,
+        disabled: !card.disabled,
+        selected: false,
       },
     };
 
     this.gridChanged = {
       ...this.gridChanged,
-      disableCard: this.cards[card.id],
+      selectedCard: this.compare(this.gridChanged.selectedCard, card)
+        ? null
+        : { ...this.gridChanged.selectedCard },
+      disableCard: this.cards[card.id].disabled ? this.cards[card.id] : null,
     };
     this._emitChanged();
+  }
+
+  private compare(o1: CardDocument, o2: CardDocument): boolean {
+    return Object.is(o1.id, o2.id);
   }
 
   private _emitChanged() {
