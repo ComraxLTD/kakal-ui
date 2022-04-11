@@ -72,7 +72,7 @@ export class StepperLayoutComponent {
     this._closedDrawer = this.contentPortion.close;
 
     // init actions if array exist
-    if (this.actions.length) {
+    if (this.actions && this.actions.length) {
       this.rowActions = this.setRowActions();
 
       this.drawerAction = this.setDrawerAction();
