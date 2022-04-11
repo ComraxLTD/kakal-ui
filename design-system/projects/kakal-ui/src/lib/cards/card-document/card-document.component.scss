@@ -20,9 +20,12 @@
   .kkl-card-document-actions {
     height: 0px !important;
     width: 100%;
-  }
 
-  mat-icon {
-    font-size: 14px;
+    mat-icon {
+      font-size: 14px;
+    }
+  }
+  .kkl-card-document-content > mat-icon {
+    transform: scale(1.5) !important;
   }
 }
