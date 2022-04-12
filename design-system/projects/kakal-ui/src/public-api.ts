@@ -88,6 +88,7 @@ export * from './lib/form/form-calendar/form-calendar.service';
 
 export * from './lib/form/form-radio/form-radio.module';
 export * from './lib/form/form-radio/form-radio.component';
+export * from './lib/form/form-radio/question-radio.model';
 
 export * from './lib/form/form-currency/form-currency.module';
 export * from './lib/form/form-currency/form-currency.component';

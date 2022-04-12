@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-add.component';
-import { ControlBase, OptionsModel } from '../../../kakal-ui/src/public-api';
+import {
+  RadioOption,
+  ControlBase,
+  OptionsModel,
+  RowActionModel,
+  TableBase,
+  Question,
+  FormService,
+  QuestionGroupModel,
+} from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -11,81 +16,44 @@ import { ControlBase, OptionsModel } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-
   dataSource!: any[];
 
-  dataSource2! : any[]
+  dataSource2!: any[];
 
   description: string = '';
 
-  constructor() {} // private comraxTablesService: ComraxTablesService,
+  group: QuestionGroupModel;
+
+  constructor(private formService: FormService) {} // private comraxTablesService: ComraxTablesService,
 
   ngOnInit(): void {
-    // this.comraxTablesService.getTableObjects().subscribe(res => { this.dataSource = res })
-    this.description = 'Actions Table';
-    this.dataSource = [
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      },
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      },
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      },
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      },
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      }
-    ]
+    this.group = this.formService.createQuestionGroup({
+      questions: this.questions,
+      options: { gridProps: { variant: 'flex', cols: 1 } },
+    });
 
-    this.dataSource2 = [
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      },
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      },
-      {
-        key: 'key',
-        label: 'label',
-        controlType: 'text',
-      },
-    ]
+    // this.group.formGroup.disable()
 
   }
 
   columns: TableBase[] = [
-    { key: 'committeeId', label: 'Id', controlType: 'number',},
-    { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
-    { key: 'committeeDate', label: 'תאריך', controlType: 'date', },
+    { key: 'committeeId', label: 'Id', controlType: 'number' },
+    {
+      key: 'remiTikimCount',
+      label: 'remiTikimCount',
+      controlType: 'number',
+      button: { type: 'inlineExpand', icon: 'expand' },
+    },
+    { key: 'committeeDate', label: 'תאריך', controlType: 'date' },
   ];
 
   columns2: TableBase[] = [
-    { key: 'key', label: 'label', controlType: 'text',},
-    { key: 'monetaryValue', label: 'MonetaryValue', controlType: 'number',},
-    { key: 'nechasimCount', label: 'NechasimCount', controlType: 'number',},
-  ]
+    { key: 'key', label: 'label', controlType: 'text' },
+    { key: 'monetaryValue', label: 'MonetaryValue', controlType: 'number' },
+    { key: 'nechasimCount', label: 'NechasimCount', controlType: 'number' },
+  ];
 
-  rowActions: RowActionModel[] = [
-    { type: 'inlineExpand', icon: 'expand' }
-  ]
+  rowActions: RowActionModel[] = [{ type: 'inlineExpand', icon: 'expand' }];
 
   onExpand(event: any) {
     console.log(event);
@@ -123,34 +91,31 @@ export class AppComponent implements OnInit {
     },
   ];
 
-  questions: ControlBase[] = [
+  questions: Question[] = [
     {
-      key: 'autocomplete',
-      controlType: 'autocomplete',
+      key: 'contact',
+      controlType: 'radio',
       options: [
-        { label: 'test', value: 0 },
-        { label: 'test1', value: 1 },
-        { label: 'test2', value: 2 },
-        { label: 'test3', value: 3 },
+        {
+          label: 'מייל לעו"ד בא כוחו',
+          checked: true,
+          value: 'attorney',
+        } as RadioOption,
+        {
+          label: 'מייל למנהלת ספר נכסים',
+          value: 'administrator',
+        } as RadioOption,
       ],
-      // multi: true,
-      label: 'local autocomplete',
-      // disabled: true
-      //,
     },
+    { key: 'topic', label: 'נושא' },
     {
-      key: 'email',
-      controlType: 'email',
+      key: 'content',
+      controlType: 'texteditor',
+      label: 'תוכן הפנייה לעורך דין',
+      value: '',
+      gridProps: { rows: 4 },
     },
-    {
-      controlType: 'calendar',
-      key: 'calendar',
-    },
-    {
-      controlType: 'counter',
-      key: 'counter',
-      icon: 'tree',
-    },
+    { key: 'file', label: 'לחץ להוספץת מסמך', controlType: 'upload' },
   ];
 
   cards = {
@@ -170,4 +135,8 @@ export class AppComponent implements OnInit {
       category: 'הסכם מכר',
     },
   };
+
+  onGrigChanged(event) {
+    console.log(event);
+  }
 }

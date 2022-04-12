@@ -13,7 +13,9 @@ import { KKLFormUploadModule } from '../form-upload/form-upload.module';
 import { KKLFormCurrencyModule } from '../form-currency/form-currency.module';
 import { KKLButtonModule } from '../../button/button.module';
 import { KKLFormCounterModule } from '../form-counter/form-counter.module';
+import { KKLFormRadioModule } from '../form-radio/form-radio.module';
 import { FlexFormInputDirective } from './flex-form-input.directive';
+import { KKLFormTextEditorModule } from '../form-texteditor/form-texteditor.module';
 
 @NgModule({
   declarations: [FormFlexComponent, FlexFormInputDirective],
@@ -32,6 +34,8 @@ import { FlexFormInputDirective } from './flex-form-input.directive';
     KKLFormCurrencyModule,
     KKLFormRangeModule,
     KKLFormAutoCompleteModule,
+    KKLFormRadioModule,
+    KKLFormTextEditorModule
   ],
   exports: [FormFlexComponent],
 })

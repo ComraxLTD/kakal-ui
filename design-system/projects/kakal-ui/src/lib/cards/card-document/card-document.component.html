@@ -9,8 +9,8 @@
       kkl-button
       (click)="onSelect(card)"
       class="kkl-card-document mat-elevation-z4"
-      [class.active]="card.active"
-      [class.disable]="card.disable"
+      [class.selected]="card.selected && !card.disabled"
+      [class.disabled]="card.disabled"
       fxLayout="column"
       fxLayoutAlign="center center"
     >
@@ -22,7 +22,7 @@
       >
         <button
           mat-icon-button
-          (click)="onDisable(card); $event.stopPropagation()"
+          (click)="onRemove(card); $event.stopPropagation()"
         >
           <mat-icon [color]="card.disable && 'primary'">
             {{ icon$ | async }}</mat-icon

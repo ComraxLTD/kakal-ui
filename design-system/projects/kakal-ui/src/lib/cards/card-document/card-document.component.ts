@@ -7,14 +7,14 @@ export interface CardDocument {
   svgIcon: string;
   category: string;
   value?: string;
-  active?: boolean;
-  disable?: boolean;
+  selected?: boolean;
+  disabled?: boolean;
   documents?: DocumentItem[];
 }
 
-export interface CardSelectEvent {
+export interface CardDocumentEvent {
   card: CardDocument;
-  action: 'select' | 'disable';
+  action: 'selected' | 'remove';
 }
 
 @Component({
@@ -23,7 +23,6 @@ export interface CardSelectEvent {
   styleUrls: ['./card-document.component.scss'],
 })
 export class CardDocumentComponent implements OnInit {
-
   private card$: BehaviorSubject<CardDocument> = new BehaviorSubject(null);
   _card$: Observable<CardDocument>;
 
@@ -35,28 +34,31 @@ export class CardDocumentComponent implements OnInit {
 
   icon$: Observable<string>;
 
-  @Output() cardSelect: EventEmitter<CardSelectEvent> = new EventEmitter();
+  @Output() cardSelectChanged: EventEmitter<CardDocumentEvent> =
+    new EventEmitter();
+  @Output() cardRemovedChanged: EventEmitter<CardDocumentEvent> =
+    new EventEmitter();
   constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
     this._card$ = this.card$.asObservable();
-    this.icon$ = this.setActionIcon()
+    this.icon$ = this.setActionIcon();
   }
 
   private setActionIcon(): Observable<string> {
     return this.card$.asObservable().pipe(
-      pluck('disable'),
-      map((disable: boolean) => (disable ? 'add' : 'clear'))
+      pluck('disabled'),
+      map((disabled: boolean) => (disabled ? 'add' : 'clear'))
     );
   }
 
-  onSelect(card : CardDocument) {
-    this.cardSelect.emit({ card, action: 'select' });
+  onSelect(card: CardDocument) {
+    if (!card.disabled) {
+      this.cardSelectChanged.emit({ card, action: 'selected' });
+    }
   }
 
-  onDisable(card : CardDocument) {
-    this.cardSelect.emit({ card, action: 'disable' });
-    // const disable = this.disable$.getValue();
-    // this.disable$.next(!disable);
+  onRemove(card: CardDocument) {
+    this.cardRemovedChanged.emit({ card, action: 'remove' });
   }
 }

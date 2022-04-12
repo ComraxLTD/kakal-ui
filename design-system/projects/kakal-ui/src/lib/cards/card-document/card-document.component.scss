@@ -11,10 +11,11 @@
     min-width: 12rem;
     border-radius: 0.5rem;
 
-    &.active {
-      @include mat.elevation(4, var(--p-500), 0.8);
+    &.selected {
+      // @include mat.elevation(4, var(--p-500), 0.35);
+      @include mat.elevation(4, red, 0.35);
     }
-    &.disable {
+    &.disabled {
       opacity: 0.3;
     }
   }

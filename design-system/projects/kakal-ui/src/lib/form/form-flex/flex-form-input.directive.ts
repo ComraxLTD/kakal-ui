@@ -21,6 +21,9 @@ export class FlexFormInputDirective {
 
   @Input()
   index: number;
+  @Input()
+  
+  rows: number;
 
   private _cols: number;
 
