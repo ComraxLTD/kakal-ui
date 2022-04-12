@@ -27,7 +27,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 // }
 
 .center-butt {
-  text-align: center;
+  text-align: center !important;
 }
 
 td.mat-cell {
@@ -39,10 +39,10 @@ table {
   overflow-y: auto;
 }
 
-.row-padding {
+// .row-padding {
   // background-color: red;
   // margin-top: 1000px !important;
-}
+// }
 
 // .table-wrapper {
 

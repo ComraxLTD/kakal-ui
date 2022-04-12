@@ -30,12 +30,12 @@ export type ControlType =
   | 'dateRange'
   | 'autocomplete'
   | 'select'
-
   | 'counter'
   | 'radio'
   | 'toggle'
   | 'checkbox'
   | 'currency'
+
 
   | 'upload'
   | 'texteditor'
