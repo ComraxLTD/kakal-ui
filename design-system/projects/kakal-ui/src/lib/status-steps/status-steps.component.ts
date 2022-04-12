@@ -7,7 +7,7 @@ import {
   Output,
 } from '@angular/core';
 
-export interface StatusStepsModel {
+export interface StatusSteps {
   label: string;
   authorizedBars: number;
   totalBars: number;
@@ -24,7 +24,7 @@ export class StatusStepsComponent implements OnInit {
   @Input() public gutter: number;
   @Input() public color: string;
   @Input() public hasLabel: boolean;
-  @Input() public status: StatusStepsModel;
+  @Input() public status: StatusSteps;
 
   @Input() labelRef: ElementRef;
 
