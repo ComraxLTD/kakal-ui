@@ -3,7 +3,7 @@
 
   <input matInput formControlName="sum" [name]="key" [type]="'text'" sumInput
         (focusout)="setErrorMessage()" (focus)="onFocus()" />
-  <mat-select style="width:50%;" formControlName="currency" [compareWith]="compareFunction"
+  <mat-select matSuffix formControlName="currency" [compareWith]="compareFunction"
     (selectionChange)="onSelectChanged($event)" (focusout)="setErrorMessage()">
     <mat-option *ngFor="let option of options$ | async" [value]="option" [disabled]="option.disabled">
       {{ option.label }}

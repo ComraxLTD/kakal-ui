@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
-import { toDoc } from 'ngx-editor';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { Editor, Toolbar } from 'ngx-editor';
 
 @Component({
