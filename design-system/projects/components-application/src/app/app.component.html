@@ -1,5 +1,5 @@
-<div dir="rtl" fxLayout="row" fxLayoutAlign="center center">
-  <div fxLayout="column" fxFlex="90">
+<!-- <div dir="rtl" fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxFlex="90"> -->
     <!-- <div>
       <kkl-local-table
       [dataSource]="dataSource"
@@ -9,22 +9,38 @@
       (expandRow)="onExpand($event)"
       ></kkl-local-table>
     </div> -->
-
+<!--
     <div fxLayout="row">
       <kkl-grid-documents
         (change)="onGrigChanged($event)"
         fxFlex="20"
         [cards]="cards"
       ></kkl-grid-documents>
-    </div>
+    </div> -->
+<!--
+<ng-container content>
+  <ng-container>
+    <kkl-form
+            [controls]="questions"
+            (queryChanged)="onQueryChanged($event)"
 
-    <kkl-form-temp
-      [formGroup]="group.formGroup"
-      [questions]="group.questions"
-      [grid]="group.gridProps"
-    ></kkl-form-temp>
-  </div>
-</div>
+            [options]="options"
+            [formGroup]="formGroup"
+            [editData]="editData"
+            (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChanged($event)"
+          ></kkl-form>
+  </ng-container>
+</ng-container> -->
+<kkl-local-table newRowAction="sdgsdf" [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
+<!-- <kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  (actionClicked)="editRow($event)"
+  (editRow)="editRow($event)"
+  dragable="true"
+></kkl-local-table>
 
 <ng-template #expand>
   <kkl-local-table
@@ -32,4 +48,6 @@
     [dataSource]="dataSource2"
     [columns]="columns2"
   ></kkl-local-table>
-</ng-template>
+</ng-template> -->
+
+<h1>sdfsdf</h1>

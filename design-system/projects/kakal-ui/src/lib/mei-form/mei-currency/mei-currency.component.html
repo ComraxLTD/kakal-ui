@@ -1,0 +1,13 @@
+<mat-form-field [formGroup]="groupControl" class="kkl-form-select" [color]="theme" [appearance]="groupControl.disabled ? 'fill' : appearance">
+  <mat-label>{{ label }}</mat-label>
+
+  <input matInput formControlName="sum" [name]="key" [type]="'text'" sumInput
+        (focusout)="setErrorMessage()" (focus)="onFocus()" />
+  <mat-select matSuffix formControlName="currency" [compareWith]="compareFunction"
+    (selectionChange)="onSelectChanged($event)" (focusout)="setErrorMessage()">
+    <mat-option *ngFor="let option of options$ | async" [value]="option" [disabled]="option.disabled">
+      {{ option.label }}
+    </mat-option>
+  </mat-select>
+  <mat-error>{{ error$ | async }}</mat-error>
+</mat-form-field>

@@ -1,0 +1,28 @@
+<!-- <ng-container *ngIf="label; else elseTemplate">
+  <div class="kkl-form-checkbox-group" dir="rtl">
+    <div fxLayout="column" fxLayoutGap="1rem" fxLayoutAlign="start start">
+      <ng-container>
+        <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
+          <label>{{ label }}</label>
+        </div>
+      </ng-container>
+      <section>
+        <div fxLayout="row" fxFlex="20" fxLayoutGap="1.5rem" fxLayoutAlign="space-between center">
+          <mat-checkbox *ngFor="let option of options" color="primary" [labelPosition]="labelPosition"
+            [disabled]="option.disabled" [value]="option" (change)="onChange($event)">
+            {{ option.label }}
+          </mat-checkbox>
+        </div>
+      </section>
+    </div>
+  </div>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <ng-container *ngFor="let item of control.value; let i = index">
+    <mat-checkbox fxFlexOffset="1rem" color="primary" [disabled]="control.disabled" [checked]="item.checked"
+      [labelPosition]="labelPosition" (change)="onChange($event, i)">
+      {{ item | pluck: "label" }}
+    </mat-checkbox>
+  </ng-container>
+</ng-template> -->

@@ -96,8 +96,17 @@ export class EventTableComponent implements OnInit {
 
   localButtons: RowActionModel[];
   @Input() set rowActions(val: RowActionModel[]) {
-    if(val.length && !this.displayedColumns.includes('actions')) {
-      this.displayedColumns.push('actions');
+    if(val.length) {
+      if(!this.displayedColumns.includes('actions')){
+        this.displayedColumns.push('actions');
+      }
+    } else {
+      if(this.displayedColumns.includes('actions')) {
+        const index = this.displayedColumns.indexOf('actions');
+        if (index > -1) {
+          this.displayedColumns.splice(index, 1);
+        }
+      }
     }
     this.localButtons = val;
   }

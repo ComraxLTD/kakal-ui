@@ -30,6 +30,7 @@ import { KKLButtonModule } from '../button/button.module';
 import { HttpClientModule } from '@angular/common/http';
 import { KKLNewPaginatorDirective } from './directives/pagination.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     KKLIconModule,
     KKLButtonModule,
     FlexLayoutModule,
+    MatTooltipModule
   ],
   exports: [
     LocalTableComponent,

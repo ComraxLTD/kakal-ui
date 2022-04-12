@@ -21,10 +21,8 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() control!: FormControl;
 
   _options!: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
-  tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
-    if(this.control){
-      this._options = val;
+    if(this._options){
       if(Array.isArray(val)) {
         this.isArray = true;
         this.control.setValue(val.find(b => b.selected));
@@ -41,10 +39,8 @@ export class MeiAutocompleteComponent implements OnInit {
           this.control.setValue(a?.find(b => b.selected));
         });
       }
-    } else {
-      this.tempOptions = val;
     }
-
+    this._options = val;
   }
   @Input() placeHolder!: string;
   @Input() label!: string;
@@ -55,7 +51,7 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() panelWidth!: string;
   @Input() appearance!: string;
 
-  @Output() openChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
 
@@ -65,31 +61,29 @@ export class MeiAutocompleteComponent implements OnInit {
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    this.control.valueChanges.pipe(
-      startWith(''),
-      distinctUntilChanged(),
-      debounceTime(this.debounce? this.debounce : 300),
-      filter( value => (typeof value === 'string'))
-    ).subscribe(a => this.search());
-    this.error$ = new BehaviorSubject<string>('');
-    if(Array.isArray(this.tempOptions)) {
-      this._options = this.tempOptions;
-      this.isArray = true;
-      this.control.setValue(this.tempOptions.find(b => b.selected));
-      if(!this.filteredOptions) {
+    setTimeout(() => {
+      this.control.valueChanges.pipe(
+        startWith(''),
+        distinctUntilChanged(),
+        debounceTime(this.debounce? this.debounce : 300),
+        filter( value => (typeof value === 'string'))
+      ).subscribe(a => this.search());
+      this.error$ = new BehaviorSubject<string>('');
+      if(Array.isArray(this._options)) {
+        this.isArray = true;
+        this.control.setValue(this._options.find(b => b.selected));
         this.filteredOptions = this.control.valueChanges.pipe(
           startWith(''),
           map(value => (typeof value === 'string' ? value : value.label)),
           map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
         );
+      } else if(this._options) {
+        this.isArray = false;
+        (this._options as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+          this.control.setValue(a?.find(b => b.selected));
+        });
       }
-    } else if(this.tempOptions) {
-      this.isArray = false;
-      this._options = this.tempOptions;
-      (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
-        this.control.setValue(a?.find(b => b.selected));
-      });
-    }
+    }, 0);
   }
 
   displayFn(mei: KklSelectOption): string {
@@ -133,7 +127,7 @@ export class MeiAutocompleteComponent implements OnInit {
   }
 
   onOpenChanged(event) {
-    this.openChanged.emit({
+    this.openedChange.emit({
       key: this.key,
       value: this.control.value !== 'string'? this.control.value : null,
       action: event? KklFormActions.OPENED_SELECT : KklFormActions.CLOSED_SELECT,
