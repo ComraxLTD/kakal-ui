@@ -19,7 +19,7 @@
           <ng-content select="[title]"></ng-content>
           <kkl-icon
             *ngIf="hideToggle"
-            [color]="'accent'"
+            [color]="variant === 'title' ? 'primary' : 'accent'"
             [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
           ></kkl-icon>
         </div>
