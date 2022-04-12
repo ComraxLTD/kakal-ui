@@ -11,12 +11,14 @@ import { Editor, Toolbar } from 'ngx-editor';
 export class FormTextEditorComponent implements OnInit, OnDestroy {
   @Input() public control!: FormControl | AbstractControl;
   @Input() public key!: string;
+  @Input() public index!: number;
   @Input() public placeHolder: string = '';
 
   constructor() {}
+
   editor: Editor;
 
-  public toolbar: Toolbar = [
+  toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline'],
     ['ordered_list'],
@@ -31,7 +33,6 @@ export class FormTextEditorComponent implements OnInit, OnDestroy {
       this.editor.setContent(this.control.value);
     }
     this.editor.valueChanges.subscribe((res) => this.control?.setValue(res));
-    this.editor.valueChanges.subscribe((res) => console.log(res));
   }
 
   ngOnDestroy(): void {

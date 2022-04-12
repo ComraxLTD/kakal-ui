@@ -29,7 +29,6 @@ export class NavbarBottomComponent implements OnInit {
 
   @Input()
   set hideNext(value: boolean) {
-    console.log(value);
     this.showNext = value === false ? false : true;
   }
   @Input() disableNext: boolean;

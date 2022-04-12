@@ -37,13 +37,23 @@
           ></kkl-form-select>
         </ng-container>
 
-        <!-- SELECT INPUT RADIO -->
+        <!--   RADIO INPUT -->
         <ng-container *ngSwitchCase="'radio'">
           <kkl-form-radio
             [key]="question?.key"
+            [control]="formGroup.controls[question.key]"
             [options]="question?.options"
             [index]="index"
           ></kkl-form-radio>
+        </ng-container>
+
+        <!-- NGX-EDITOR INPUT -->
+        <ng-container *ngSwitchCase="'texteditor'">
+          <kkl-form-texteditor
+            [key]="question?.key"
+            [control]="formGroup.controls[question.key]"
+            [index]="index"
+          ></kkl-form-texteditor>
         </ng-container>
 
         <!-- DATE INPUT SECTION -->
