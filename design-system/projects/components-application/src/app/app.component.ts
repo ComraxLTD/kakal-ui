@@ -113,7 +113,6 @@ export class AppComponent implements OnInit {
       controlType: 'texteditor',
       label: 'תוכן הפנייה לעורך דין',
       value: '',
-      gridProps: { rows: 4 },
     },
     { key: 'file', label: 'לחץ להוספץת מסמך', controlType: 'upload' },
   ];
