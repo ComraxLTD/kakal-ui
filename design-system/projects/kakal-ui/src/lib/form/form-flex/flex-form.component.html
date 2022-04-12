@@ -51,7 +51,7 @@
         <!-- NGX-EDITOR INPUT -->
         <ng-container *ngSwitchCase="'texteditor'">
           <div fxLayout="column">
-            <div [fxFlex]="((question?.gridProps?.rows * 10) || 40) + 'rem'">
+            <div [fxFlex]="(question?.gridProps?.rows * 10 || 40) + 'rem'">
               <kkl-form-texteditor
                 fxFill
                 [key]="question?.key"
