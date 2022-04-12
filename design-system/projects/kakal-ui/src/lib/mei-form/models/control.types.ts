@@ -26,24 +26,19 @@ export type ControlType =
   | 'phone'
   | 'sum'
   | 'format'
-
   | 'date'
   | 'dateRange'
-
   | 'autocomplete'
   | 'select'
 
-
   | 'counter'
-
-
-  | 'calendar'
   | 'radio'
-  | 'upload'
   | 'toggle'
-  | 'texteditor'
   | 'checkbox'
   | 'currency'
+
+  | 'upload'
+  | 'texteditor'
   | 'range';
 
 export type Appearance = 'none' | MatFormFieldAppearance;

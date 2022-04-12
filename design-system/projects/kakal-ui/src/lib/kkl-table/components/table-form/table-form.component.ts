@@ -18,20 +18,32 @@ export class TableFormComponent implements OnInit  {
   }
 
 
+
   onQueryChanged(event, control: ControlBase) {
-    control.queryChanged({value: event.value, query: event.query});
+    if(control.queryChanged) {
+      control.queryChanged({value: event.value, query: event.query});
+    }
   }
   onSelectChanged(event, control: ControlBase) {
-    control.selectChanged(event.value);
+    if(control.selectChanged) {
+      control.selectChanged(event.value);
+    }
   }
-  onOpenChanged(event, control: ControlBase) {
-    control.openChanged({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
+  onOpenedChange(event, control: ControlBase) {
+    if(control.openedChange) {
+      control.openedChange({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
+    }
   }
   onValueChanged(event, control: ControlBase) {
-    control.valueChanged(event.value);
+    if(control.valueChanged) {
+      control.valueChanged(event.value);
+    }
   }
   onFocusChanged(event, control: ControlBase) {
-    control.focusChanged(event.value);
+    if(control.focusChanged) {
+      control.focusChanged(event.value);
+    }
   }
+
 
 }

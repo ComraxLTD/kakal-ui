@@ -21,6 +21,11 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/materia
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { he } from 'date-fns/locale';
 import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-datepicker.component';
+import { MeiRadiogroupComponent } from './mei-radiogroup/mei-radiogroup.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MeiCurrencyComponent } from './mei-currency/mei-currency.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import { KKLDirectivesModule } from '../directives/directives.module';
@@ -49,14 +54,17 @@ export const MY_MY_FORMATS = {
     MatInputModule,
     MatDateFnsModule,
     MatDatepickerModule,
+    MatSlideToggleModule,
+    MatRadioModule,
+    MatCheckboxModule,
     FlexLayoutModule,
     MatButtonModule,
     KKLDirectivesModule
   ],
   declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
-     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent],
+     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent],
   exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent, MeiCheckboxComponent,
-    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent],
+    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent],
     providers: [
       { provide: DateAdapter, useClass: DateFnsAdapter },
       { provide: MAT_DATE_LOCALE, useValue: he },
