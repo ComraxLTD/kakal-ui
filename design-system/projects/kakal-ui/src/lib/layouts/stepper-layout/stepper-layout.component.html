@@ -70,9 +70,9 @@
             (click)="drawer.toggle()"
             [ngClass]="{ open: drawer.opened }"
             [matBadge]="drawer.opened ? 'x' : '+'"
-            [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
+            [matBadgeColor]="drawer.opened ? 'text' : 'accent'"
           >
-            <kkl-icon color="primary" [key]="drawerAction?.svgIcon" [size]="1.8">
+            <kkl-icon color="accent" [key]="drawerAction?.svgIcon" [size]="1.8">
             </kkl-icon>
             <kkl-typography [weight]="600" [size]="1">
               {{ drawerAction.label }}

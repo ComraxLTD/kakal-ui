@@ -35,13 +35,13 @@
 </mat-form-field>
 
 <mat-menu #menu="matMenu">
-  <mat-list dir="rtl">
+  <mat-list dir="ltr">
     <ng-container *ngFor="let file of files; let i = index">
       <mat-list-item>
         <kkl-typography mat-line>{{ file.name }} </kkl-typography>
         <mat-icon
-          kkl-button
           class="mat-icon-rtl-mirror"
+          mat-list-icon
           (click)="onRemoveFile(file, $event)"
           color="primary"
         >
