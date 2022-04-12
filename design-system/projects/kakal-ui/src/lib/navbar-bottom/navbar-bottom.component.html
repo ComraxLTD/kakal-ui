@@ -21,36 +21,33 @@
     ></kkl-icon>
   </div>
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
-    <ng-container *ngIf="buttonState$ | async as buttonState">
-      <!-- template button -->
-      <ng-container>
-        <ng-template
-          *ngTemplateOutlet="
-            buttonSlots;
-            context: { $implicit: buttonState.disableNext }
-          "
-        ></ng-template>
-      </ng-container>
-
-      <!--save button -->
-      <ng-container *ngIf="buttonState.save">
-        <button mat-raised-button kkl-border [thick]="2" (click)="onSave()">
-          שמור
-        </button>
-      </ng-container>
-
-      <!--next button -->
-      <ng-container *ngIf="buttonState.next">
-        <button
-          [class.kkl-next-button]="true"
-          mat-raised-button
-          [disabled]="buttonState.disableNext"
-          color="primary"
-          (click)="onNext()"
-        >
-          {{ nextLabel || "המשך" }}
-        </button>
-      </ng-container>
+    <!-- <ng-container *ngIf="buttonState$ | async as buttonState"> -->
+    <!-- template button -->
+    <ng-container>
+      <ng-template
+        *ngTemplateOutlet="buttonTemplate; context: { $implicit: disableNext }"
+      ></ng-template>
     </ng-container>
+
+    <!--save button -->
+    <ng-container *ngIf="hasSave">
+      <button mat-raised-button kkl-border [thick]="2" (click)="onSave()">
+        שמור
+      </button>
+    </ng-container>
+
+    <!--next button -->
+    <ng-container *ngIf="showNext">
+      <button
+        class="kkl-next-button"
+        mat-raised-button
+        [disabled]="disableNext"
+        color="primary"
+        (click)="onNext()"
+      >
+        {{ nextLabel || "המשך" }}
+      </button>
+    </ng-container>
+    <!-- </ng-container> -->
   </div>
 </mat-toolbar>

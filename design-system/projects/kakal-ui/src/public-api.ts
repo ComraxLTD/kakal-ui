@@ -26,6 +26,7 @@ export * from './lib/icon/icon.module';
 export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.directive';
 export * from './lib/icon/icon.model';
+export * from './lib/icon/icons.service';
 
 export * from './lib/open-motions/open-motions.module';
 export * from './lib/open-motions/open-motions.component';
@@ -87,6 +88,7 @@ export * from './lib/form/form-calendar/form-calendar.service';
 
 export * from './lib/form/form-radio/form-radio.module';
 export * from './lib/form/form-radio/form-radio.component';
+export * from './lib/form/form-radio/question-radio.model';
 
 export * from './lib/form/form-currency/form-currency.module';
 export * from './lib/form/form-currency/form-currency.component';
@@ -150,10 +152,12 @@ export * from './lib/kkl-table/pipes/arr-includes.pipe';
 export * from './lib/kkl-table/pipes/arr-index.pipe';
 export * from './lib/kkl-table/pipes/table-cell-pipe.pipe';
 export * from './lib/kkl-table/pipes/table-group-cell.pipe';
-export * from './lib/kkl-table/table-actions.model';
-export * from './lib/kkl-table/table.model';
+export * from './lib/kkl-table/models/table-actions.model';
+export * from './lib/kkl-table/models/table.model';
+export * from './lib/kkl-table/models/table-server.model';
+export * from './lib/kkl-table/directives/pagination.directive';
+export * from './lib/kkl-table/services/kkl-paginator.service';
 export * from './lib/kkl-table/kkl-table.module';
-export * from './lib/kkl-table/table-server.model';
 
 // TABLE
 export * from './lib/table/table.module';
@@ -282,6 +286,9 @@ export * from './lib/kkl-hover/kkl-hover.module';
 
 export * from './lib/cards/card-add/card-add.component';
 export * from './lib/cards/card-add/card-add.module';
+
+export * from './lib/cards/card-document/card-document.component';
+export * from './lib/cards/card-document/card-document.module';
 
 export * from './lib/cards/card-lobby/card-lobby.module';
 export * from './lib/cards/card-lobby/card-lobby.component';
@@ -425,3 +432,14 @@ export * from './lib/tabs/tabs.module';
 // carousel
 export * from './lib/carousel/carousel.component';
 export * from './lib/carousel/carousel.module';
+
+// full calendar
+export * from './lib/full-calendar/full-calendar.module';
+export * from './lib/full-calendar/full-calendar.component';
+export * from './lib/full-calendar/dynamic/dynamic.component';
+export * from './lib/full-calendar/calendar-card/calendar-card.component';
+
+// grids
+
+export * from './lib/grids/document-grid/document-grid.module'
+export * from './lib/grids/document-grid/document-grid.component'

@@ -12,9 +12,10 @@ import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { RouterService } from '../../services/route.service';
 import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
+import { StepperSelectEvent } from '../stepper/stepper.component';
+import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { combineLatest, merge, Observable, of } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { ROOT_PREFIX } from '../../constants/root-prefix';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -22,33 +23,38 @@ import { ROOT_PREFIX } from '../../constants/root-prefix';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-
-
-
   @Input() nextLabel: string;
-  @Input() hasNext: boolean = true;
+
+  showNext: boolean = true;
+
+  @Input()
+  set hideNext(value: boolean) {
+    this.showNext = value === false ? false : true;
+  }
+  @Input() disableNext: boolean;
+
   @Input() disableNext$: Observable<boolean>;
 
   @Input() hasSave: boolean;
   @Input() showSave$: Observable<boolean>;
 
-  @Input() buttonSlots: TemplateRef<any>;
+  @Input() buttonTemplate: TemplateRef<any>;
 
-  @Input() stepper: boolean;
+  // when set to true bottom navbar is consider part of stepper-layout for steps navigation logic
+  @Input() stepper: boolean = true;
 
   private steps$: Observable<CardStepModel[]>;
   private nextStep$: Observable<void>;
-  private changeStep$: Observable<CardStepModel>;
+  private selectStep$: Observable<CardStepModel>;
 
   bottomIcon: string = 'bottom_tree_';
   buttonState$: Observable<{ [x: string]: boolean }>;
 
   @Output() previous = new EventEmitter();
-  @Output() next = new EventEmitter<CardStepModel>();
+  @Output() next = new EventEmitter<StepperSelectEvent>();
   @Output() save = new EventEmitter();
 
   constructor(
-    private vcr : ViewContainerRef,
     private navbarBottomService: NavbarBottomService,
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
@@ -59,12 +65,11 @@ export class NavbarBottomComponent implements OnInit {
     if (this.stepper) {
       this.steps$ = this.stepperLayoutService.getStepsObs();
       this.nextStep$ = this.navbarBottomService.getNextStepObs();
-      this.changeStep$ = this.stepperLayoutService.getChangeStepObs();
+      this.selectStep$ = this.stepperLayoutService.getChangeStepObs();
     }
 
     this.buttonState$ = this.setShowButtons();
     this.bottomIcon = this.setBottomIcon();
-
   }
 
   private setBottomIcon() {
@@ -92,13 +97,13 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   private setShowNext(): Observable<boolean> {
-    return this.hasNext && this.stepper
+    return this.showNext && this.stepper
       ? merge(
           this.handleOnNext(),
           this.onChangedStep(),
           this.setShowNextStep$()
         )
-      : of(this.hasNext);
+      : of(this.showNext);
   }
 
   // Event emitter section
@@ -111,11 +116,11 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   private onNextStep(step: CardStepModel) {
-    this.next.emit(step);
+    this.next.emit({ selectedStep: step } as StepperSelectEvent);
   }
 
   public onNext(): void {
-    if (this.hasNext && this.stepper) {
+    if (this.showNext && this.stepper) {
       this.navbarBottomService.emitNextStep();
     } else {
       this.next.emit();
@@ -135,7 +140,7 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   private onChangedStep() {
-    return this.changeStep$.pipe(
+    return this.selectStep$.pipe(
       switchMap((step) => {
         return this.steps$.pipe(
           map((steps) => {

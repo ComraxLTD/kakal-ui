@@ -2,14 +2,14 @@
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { moduleMetadata } from '@storybook/angular';
 
-import { CardAddModule } from '../../projects/kakal-ui/src/lib/cards/card-add/card-add.module';
+import { KKLCardAddModule } from '../../projects/kakal-ui/src/lib/cards/card-add/card-add.module';
 import { CardAddComponent } from '../../projects/kakal-ui/src/lib/cards/card-add/card-add.component';
 
 export default {
     title: 'Tools',
     decorators: [
         moduleMetadata({
-            imports: [CardAddModule],
+            imports: [KKLCardAddModule],
         }),
     ],
     component: CardAddComponent,

@@ -1,8 +1,11 @@
-<kkl-stepper-layout
-  [actions]="actions"
-  [steps]="steps"
->
-  <router-outlet content></router-outlet>
+<kkl-stepper-layout [actions]="actions" [steps]="steps">
+  <ng-container content>
+    <kkl-form
+      fxFlex="66"
+      [formGroup]="formGroup"
+      [controls]="controls"
+    ></kkl-form>
+  </ng-container>
 
   <kkl-drawer-document
     [documents]="documents"

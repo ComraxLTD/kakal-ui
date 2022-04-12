@@ -26,6 +26,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MeiCurrencyComponent } from './mei-currency/mei-currency.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatButtonModule} from '@angular/material/button';
+import { KKLDirectivesModule } from '../directives/directives.module';
 
 export const MY_MY_FORMATS = {
   parse: {
@@ -53,7 +56,10 @@ export const MY_MY_FORMATS = {
     MatDatepickerModule,
     MatSlideToggleModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    KKLDirectivesModule
   ],
   declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
      SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent],

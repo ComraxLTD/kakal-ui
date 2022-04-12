@@ -11,9 +11,10 @@ import { FormActions } from '../models/form.actions';
   styleUrls: ['./form-radio.component.scss'],
 })
 export class FormRadioComponent implements OnInit {
-  @Input() public control!: FormControl | AbstractControl;
+  @Input() control!: FormControl | AbstractControl;
   @Input() key!: string;
   @Input() label!: string;
+  @Input() index!: number;
   @Input() options!: RadioOption[];
 
   @Output() public change = new EventEmitter<FormChangeEvent<RadioOption>>();

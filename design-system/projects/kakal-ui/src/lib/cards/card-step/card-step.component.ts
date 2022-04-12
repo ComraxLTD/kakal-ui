@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointService } from '../../../services/breakpoint.service';
-import { IconsService } from '../../icon/icons.service';
+import { IconService } from '../../icon/icons.service';
 import { CardStepModel } from './card-step.model';
 
 @Component({
@@ -17,13 +17,13 @@ export class CardStepComponent implements OnInit {
   @Output() stepSelect: EventEmitter<void> = new EventEmitter();
 
   constructor(
-    private iconsService: IconsService,
+    private iconService: IconService,
     private breakpointService: BreakpointService
   ) {}
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.iconsService.setIcon(this.step.svgIcon);
+    this.iconService.setIcon(this.step.svgIcon);
   }
 
   onStepSelect(): void {

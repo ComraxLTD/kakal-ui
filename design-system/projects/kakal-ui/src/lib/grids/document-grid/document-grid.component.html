@@ -1,0 +1,23 @@
+<div fxFill class="kkl-grid-documents">
+  <!-- <div fxLayout="row wrap" fxLayout="space-between">
+    <ng-container *ngFor="let item of cards | keyvalue; let i = index">
+      <div fxFlex>
+        <kkl-card-document
+          (cardSelect)="onCardSelect($event)"
+          [card]="item.value"
+        ></kkl-card-document>
+      </div>
+    </ng-container>
+  </div> -->
+  <mat-grid-list cols="2" rowHeight="16rem" dir="rtl">
+    <ng-container *ngFor="let item of cards | keyvalue; let i = index">
+      <mat-grid-tile>
+        <kkl-card-document
+          (cardSelectChanged)="onCardSelect($event)"
+          (cardRemovedChanged)="onCardRemove($event)"
+          [card]="item.value"
+        ></kkl-card-document>
+      </mat-grid-tile>
+    </ng-container>
+  </mat-grid-list>
+</div>

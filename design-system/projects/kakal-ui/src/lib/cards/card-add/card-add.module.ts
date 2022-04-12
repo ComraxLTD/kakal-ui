@@ -11,4 +11,4 @@ import { CardAddComponent } from "./card-add.component";
     exports: [CardAddComponent]
 })
 
-export class CardAddModule { }
+export class KKLCardAddModule { }
