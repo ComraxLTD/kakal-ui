@@ -13,7 +13,7 @@ import { GridProps } from '../models/control.types';
 })
 export class MeiFormComponent implements OnInit {
 
-  @Output() openChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -109,49 +109,54 @@ export class MeiFormComponent implements OnInit {
 
   setControls(controles: ControlBase[]) {
     controles.forEach(a => {
-      switch (a.controlType) {
-        // case 'text':
-        // case 'password':
-        // case 'number':
-        // case 'textarea':
-        // case 'currency':
-        // case 'sum':
-        // case 'email':
-        // case 'phone':
-        // case 'cleave':
-        // case 'time':
-        // case 'range':
-        // case 'checkbox':
-        //   this.formGroup.addControl(a.key, this.fb.group({}));
-        //   if(typeof a.options === 'string') {
-        //     const subj = new BehaviorSubject(null);
-        //     this.localObservables.set(a.options, subj);
-        //     a.options = subj;
-        //   }
-        //   break;
-        // case 'radio':
-        // case 'upload':
-        // case 'toggle':
-        // case 'texteditor':
-        //   return element;
-        case 'select':
-        case 'autocomplete':
-          this.formGroup.addControl(a.key, this.fb.control(null));
-          if(typeof a.options === 'string') {
-            const subj = new BehaviorSubject(null);
-            this.localObservables.set(a.options, subj);
-            a.options = subj;
-          }
-          break;
-        case 'dateRange':
-          this.formGroup.addControl(a.key, this.fb.group({start: this.fb.control(a.value?.start), end: this.fb.control(a.value?.end)}));
-          break;
-        // case 'currency':
-          // return new CurrencyPipe().transform(element['sum'], element['currency'], 'symbol', '1.0-3');
-        default:
-          this.formGroup.addControl(a.key, this.fb.control(a.value));
-          break;
-            // return element;
+      if(!this.formGroup.contains(a.key)) {
+        switch (a.controlType) {
+          // case 'text':
+          // case 'password':
+          // case 'number':
+          // case 'textarea':
+          // case 'currency':
+          // case 'sum':
+          // case 'email':
+          // case 'phone':
+          // case 'cleave':
+          // case 'time':
+          // case 'range':
+          // case 'checkbox':
+          //   this.formGroup.addControl(a.key, this.fb.group({}));
+          //   if(typeof a.options === 'string') {
+          //     const subj = new BehaviorSubject(null);
+          //     this.localObservables.set(a.options, subj);
+          //     a.options = subj;
+          //   }
+          //   break;
+          case 'checkbox':
+          case 'radio':
+          case 'select':
+          case 'autocomplete':
+            this.formGroup.addControl(a.key, this.fb.control(null));
+            if(typeof a.options === 'string') {
+              const subj = new BehaviorSubject(null);
+              this.localObservables.set(a.options, subj);
+              a.options = subj;
+            }
+            break;
+          case 'dateRange':
+            this.formGroup.addControl(a.key, this.fb.group({start: this.fb.control(a.value?.start), end: this.fb.control(a.value?.end)}));
+            break;
+          case 'currency':
+            this.formGroup.addControl(a.key, this.fb.group({sum: this.fb.control(a.value?.sum), currency: this.fb.control(null)}));
+            if(typeof a.options === 'string') {
+              const subj = new BehaviorSubject(null);
+              this.localObservables.set(a.options, subj);
+              a.options = subj;
+            }
+            break;
+          default:
+            this.formGroup.addControl(a.key, this.fb.control(a.value));
+            break;
+              // return element;
+        }
       }
       if(a.disabled) {
         this.formGroup.get(a.key).disable();
@@ -181,6 +186,16 @@ export class MeiFormComponent implements OnInit {
   }
 
 
+  onToggleChange(event, control: ControlBase) {
+    if(control.selectChanged) {
+      control.selectChanged(event.checked);
+    }
+    this.selectChanged.emit({
+      key: control.key,
+      value: event.checked,
+      action: KklFormActions.TOGGLE_CHANGED
+    });
+  }
   onQueryChanged(event, control: ControlBase) {
     if(control.queryChanged) {
       control.queryChanged({value: event.value, query: event.query});
@@ -193,11 +208,11 @@ export class MeiFormComponent implements OnInit {
     }
     this.selectChanged.emit(event);
   }
-  onOpenChanged(event, control: ControlBase) {
-    if(control.openChanged) {
-      control.openChanged({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
+  onOpenedChange(event, control: ControlBase) {
+    if(control.openedChange) {
+      control.openedChange({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
     }
-    this.openChanged.emit(event);
+    this.openedChange.emit(event);
   }
   onValueChanged(event, control: ControlBase) {
     if(control.valueChanged) {

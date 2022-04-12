@@ -45,4 +45,6 @@ export enum KklFormActions {
 
   // Emits a change event whenever the selected state of an option changes.
   MULTI_SELECT_CHANGED = 'multiChangedSelected',
+
+  TOGGLE_CHANGED = 'toggleChanged',
 }

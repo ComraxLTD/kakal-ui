@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/ComraxLTD/kakal-ui#readme",
   "dependencies": {
+    "@angular/material-date-fns-adapter": "^13.3.2",
     "express": "^4.17.3"
   }
 }

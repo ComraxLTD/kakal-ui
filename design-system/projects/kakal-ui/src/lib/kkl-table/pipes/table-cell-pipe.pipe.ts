@@ -1,4 +1,4 @@
-import { DatePipe, formatDate } from '@angular/common';
+import { CurrencyPipe, DatePipe, formatDate } from '@angular/common';
 import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 @Pipe({
   name: 'tableCellPipe'
@@ -28,22 +28,19 @@ export class TableCellPipe implements PipeTransform {
             case 'texteditor':
               return element;
             case 'select':
-              return element.label;
             case 'autocomplete':
               if(Array.isArray(element)) {
                 return element.map((a: any) => a.label);
               }
               return element.label;
-            case 'multiSelect':
-              return element.map((a: any) => a.label);
             case 'date':
               return new DatePipe('he-HE').transform(element);
             case 'dateRange':
               return new DatePipe('he-HE').transform(element.start) +' - '+ new DatePipe('he-HE').transform(element.end);
-            // case 'currency':
-              // return new CurrencyPipe().transform(element['sum'], element['currency'], 'symbol', '1.0-3');
+            case 'currency':
+              return new CurrencyPipe('he-HE').transform(element.sum, element.currency, 'symbol', '1.0-3');
             default:
-                return element;
+              return element;
         }
     }
 

@@ -40,7 +40,7 @@ export abstract class ControlBase {
 
   public queryChanged?: Function;
   public selectChanged?: Function;
-  public openChanged?: Function;
+  public openedChange?: Function;
   public valueChanged?: Function;
   public focusChanged?: Function;
 

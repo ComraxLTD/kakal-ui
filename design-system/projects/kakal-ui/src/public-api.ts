@@ -122,6 +122,7 @@ export * from './lib/mei-form/mei-directives/phone.directive';
 export * from './lib/mei-form/mei-directives/sum.directive';
 export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
 export * from './lib/mei-form/mei-checkbox/mei-checkbox.component';
+export * from './lib/mei-form/mei-radiogroup/mei-radiogroup.component';
 export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
 
 // FORM QUESTIONS //
