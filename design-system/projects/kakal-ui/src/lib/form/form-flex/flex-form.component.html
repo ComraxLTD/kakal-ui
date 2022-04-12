@@ -15,6 +15,7 @@
         flex-form-input
         [index]="index * (question.gridProps?.cols || 1)"
         [cols]="cols"
+        [rows]="question.gridProps?.rows"
         [offset]="question.gridProps?.offset"
         [fxFlex]="flex * (question.gridProps?.cols || 1)"
       >
@@ -49,11 +50,16 @@
 
         <!-- NGX-EDITOR INPUT -->
         <ng-container *ngSwitchCase="'texteditor'">
-          <kkl-form-texteditor
-            [key]="question?.key"
-            [control]="formGroup.controls[question.key]"
-            [index]="index"
-          ></kkl-form-texteditor>
+          <div fxLayout="column">
+            <div fxFlex="15rem">
+              <kkl-form-texteditor
+                fxFill
+                [key]="question?.key"
+                [control]="formGroup.controls[question.key]"
+                [index]="index"
+              ></kkl-form-texteditor>
+            </div>
+          </div>
         </ng-container>
 
         <!-- DATE INPUT SECTION -->

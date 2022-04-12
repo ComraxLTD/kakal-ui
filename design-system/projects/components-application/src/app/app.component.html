@@ -1,6 +1,6 @@
 <div dir="rtl" fxLayout="row" fxLayoutAlign="center center">
   <div fxLayout="column" fxFlex="90">
-    <div>
+    <!-- <div>
       <kkl-local-table
       [dataSource]="dataSource"
       [columns]="columns"
@@ -8,14 +8,23 @@
       [expandTemplate]="expand"
       (expandRow)="onExpand($event)"
       ></kkl-local-table>
-    </div>
+    </div> -->
 
     <div fxLayout="row">
-      <kkl-grid-documents (change)="onGrigChanged($event)" fxFlex="20" [cards]="cards"></kkl-grid-documents>
+      <kkl-grid-documents
+        (change)="onGrigChanged($event)"
+        fxFlex="20"
+        [cards]="cards"
+      ></kkl-grid-documents>
     </div>
+
+    <kkl-form-temp
+      [formGroup]="group.formGroup"
+      [questions]="group.questions"
+      [grid]="group.gridProps"
+    ></kkl-form-temp>
   </div>
 </div>
-
 
 <ng-template #expand>
   <kkl-local-table
