@@ -6,7 +6,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 )
 export class KklPaginatorService extends MatPaginatorIntl  {
 
-  itemsPerPageLabel = 'כותרת בצד';
+  itemsPerPageLabel = '';
   nextPageLabel = 'הבא';
   previousPageLabel = 'הקודם';
   lastPageLabel = 'אחרון';

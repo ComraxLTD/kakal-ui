@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { TableBase } from '../../table.model';
+import { TableBase } from '../../models/table.model';
 
 @Component({
   selector: 'kkl-table-cell',

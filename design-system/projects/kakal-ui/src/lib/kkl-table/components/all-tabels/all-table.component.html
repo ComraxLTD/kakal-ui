@@ -90,8 +90,9 @@
       <tr mat-row *matRowDef="let element; columns: displayedColumns;"
           class="example-element-row"
           [class.example-expanded-row]="expandedElement === element"
-          cdkDrag [cdkDragData]="element">
-          <!-- [ngClass]="paging? 'mat-elevation-z8': ''"> -->
+          cdkDrag [cdkDragData]="element"
+          [ngClass]="{'row-padding' : expandTemplate}">
+          <!-- [ngClass]="expandedElement ? 'mat-elevation-z8': ''"  -->
 
       </tr>
       <tr mat-row *matRowDef="let row; columns: expandTemplate? ['expandedDetail'] : []" class="example-detail-row"></tr>
@@ -104,6 +105,6 @@
 
   </div>
   <div [hidden]="!paging">
-    <mat-paginator dir="ltr" kklNewPagination [pageSizeOptions]="[10, 25, 100]" (page)="pageChanged($event)" aria-label="Select page"></mat-paginator>
+    <mat-paginator dir="ltr" fxLayout="row" fxLayoutAlign="center center" kklNewPagination [pageSizeOptions]="[10, 25, 100]" (page)="pageChanged($event)" aria-label="Select page"></mat-paginator>
   </div>
 </form>

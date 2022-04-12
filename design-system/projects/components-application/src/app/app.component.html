@@ -2,12 +2,11 @@
   <div fxLayout="column" fxFlex="90">
     <div>
       <kkl-local-table
-        [dataSource]="dataSource"
-        [columns]="columns"
-        [rowActions]="rowActions"
-        (actionClicked)="onClicked($event)"
-        (editRow)="onEdit($event)"
-        (deleteRow)="onDelete($event)"
+      [dataSource]="dataSource"
+      [columns]="columns"
+      [rowActions]="rowActions"
+      [expandTemplate]="expand"
+      (expandRow)="onExpand($event)"
       ></kkl-local-table>
     </div>
 
@@ -16,3 +15,12 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #expand>
+  <kkl-local-table
+    fxFill
+    [dataSource]="dataSource2"
+    [columns]="columns2"
+  ></kkl-local-table>
+</ng-template>

@@ -1,6 +1,6 @@
 import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
-import { Palette } from '../../styles/theme'
-import { Appearance, ControlType } from '../form/models/question.types'
+import { Palette } from '../../../styles/theme'
+import { Appearance, ControlType } from '../../form/models/question.types'
 
 import { RowActionModel } from './table-actions.model';
 
