@@ -37,6 +37,15 @@
           ></kkl-form-select>
         </ng-container>
 
+        <!-- SELECT INPUT RADIO -->
+        <ng-container *ngSwitchCase="'radio'">
+          <kkl-form-radio
+            [key]="question?.key"
+            [options]="question?.options"
+            [index]="index"
+          ></kkl-form-radio>
+        </ng-container>
+
         <!-- DATE INPUT SECTION -->
         <ng-container *ngSwitchCase="'dateRange'">
           <kkl-form-date-range

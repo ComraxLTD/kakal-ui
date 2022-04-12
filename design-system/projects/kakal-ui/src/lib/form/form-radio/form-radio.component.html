@@ -6,11 +6,13 @@
   (change)="handleChange($event)"
 >
   <div fxLayout="column" fxLayoutGap="1rem" fxLayoutAlign="start start">
-    <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
-      <label>
-        {{ label }}
-      </label>
-    </div>
+    <ng-container *ngIf="label">
+      <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
+        <label>
+          {{ label }}
+        </label>
+      </div>
+    </ng-container>
     <div
       fxLayout="row"
       fxFlex="20"
