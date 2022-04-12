@@ -17,8 +17,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
-import {DragDropModule} from '@angular/cdk/drag-drop';
-import {MatMenuModule} from '@angular/material/menu';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { MatMenuModule } from '@angular/material/menu';
 import { KKLFormSelectModule } from '../form/form-select/form-select.module';
 import { KKLFormCheckboxModule } from '../form/form-checkbox/form-checkbox.module';
 import { KKLFormCurrencyModule } from '../form/form-currency/form-currency.module';
@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { KKLNewPaginatorDirective } from './directives/pagination.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MeiFormModule } from '../mei-form/mei-form.module';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     KKLIconModule,
     KKLButtonModule,
     FlexLayoutModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MeiFormModule
   ],
   exports: [
     LocalTableComponent,
