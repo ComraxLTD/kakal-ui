@@ -1,53 +1,39 @@
-<!-- <div dir="rtl" fxLayout="row" fxLayoutAlign="center center">
-  <div fxLayout="column" fxFlex="90"> -->
-    <!-- <div>
-      <kkl-local-table
-      [dataSource]="dataSource"
-      [columns]="columns"
-      [rowActions]="rowActions"
-      [expandTemplate]="expand"
-      (expandRow)="onExpand($event)"
-      ></kkl-local-table>
-    </div> -->
-<!--
-    <div fxLayout="row">
-      <kkl-grid-documents
-        (change)="onGrigChanged($event)"
-        fxFlex="20"
-        [cards]="cards"
-      ></kkl-grid-documents>
-    </div> -->
-<!--
-<ng-container content>
-  <ng-container>
-    <kkl-form
-            [controls]="questions"
-            (queryChanged)="onQueryChanged($event)"
 
-            [options]="options"
-            [formGroup]="formGroup"
-            [editData]="editData"
-            (selectChanged)="onSelectChanged($event)"
-            (openChanged)="onOpenChanged($event)"
-          ></kkl-form>
-  </ng-container>
-</ng-container> -->
-<kkl-local-table newRowAction="sdgsdf" [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
-<!-- <kkl-local-table
+<kkl-local-table
+  newRowAction="הוסף"
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
-  (actionClicked)="editRow($event)"
-  (editRow)="editRow($event)"
-  dragable="true"
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
 ></kkl-local-table>
 
-<ng-template #expand>
-  <kkl-local-table
-    fxFill
-    [dataSource]="dataSource2"
-    [columns]="columns2"
-  ></kkl-local-table>
-</ng-template> -->
 
-<h1>sdfsdf</h1>
+<ng-template #expand>
+  <kkl-tabs kkl-border [data]='data' [templates]="{First,Second,Third}"></kkl-tabs>
+</ng-template>
+
+<ng-template #First>
+  <div fxLayout="row" fxLayoutGap="1rem">
+    <div>
+      <kkl-form-date-range></kkl-form-date-range>
+      <kkl-form-date-range></kkl-form-date-range>
+    </div>
+    <div>
+      <kkl-form-date-range></kkl-form-date-range>
+      <kkl-form-date-range></kkl-form-date-range>
+    </div>
+    <div>
+      <kkl-form-date-range></kkl-form-date-range>
+      <kkl-form-date-range></kkl-form-date-range>
+    </div>
+  </div>
+</ng-template>
+<ng-template #Second>
+  <div kkl-border>
+    21312213
+  </div>
+</ng-template>
+<ng-template #Third>
+  <kkl-icon key="tree"></kkl-icon>
+</ng-template>
