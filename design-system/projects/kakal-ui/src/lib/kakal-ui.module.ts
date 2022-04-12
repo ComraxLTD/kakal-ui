@@ -46,7 +46,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
-import { KKLStatusStepsModule } from './status-steps/status-steps.module';
+import { KKLStatusStepsModule } from './status-stpes/status-steps.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';

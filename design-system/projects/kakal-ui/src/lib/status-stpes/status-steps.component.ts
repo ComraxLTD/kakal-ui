@@ -6,12 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-
-export interface StatusSteps {
-  label: string;
-  authorizedBars: number;
-  totalBars: number;
-}
+import { StatusBarsModel } from './status-steps.model';
 
 @Component({
   selector: 'kkl-status-steps',
@@ -24,7 +19,7 @@ export class StatusStepsComponent implements OnInit {
   @Input() public gutter: number;
   @Input() public color: string;
   @Input() public hasLabel: boolean;
-  @Input() public status: StatusSteps;
+  @Input() public status: StatusBarsModel;
 
   @Input() labelRef: ElementRef;
 

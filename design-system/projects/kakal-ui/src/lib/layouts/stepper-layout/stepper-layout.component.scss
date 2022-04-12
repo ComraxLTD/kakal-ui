@@ -19,8 +19,11 @@ div.content {
 }
 
 .sidenav-drawer {
+  // width: 50%;
   z-index: -1;
 }
+
+// div.stepper-container {
 
 mat-toolbar {
   height: 15rem !important;
@@ -29,6 +32,8 @@ mat-toolbar {
 
 .stepper {
   flex: 1;
+  // margin-top: 2rem;
+  // padding-top: main.spacing(2);
   box-sizing: border-box;
 }
 // }
@@ -39,7 +44,7 @@ button.mat-fab {
   width: 7rem;
   height: 7rem;
   z-index: 1000;
-  border: 1px solid main.color(primary) !important;
+  border: 1px solid main.color(accent) !important;
 
   span.mat-button-wrapper {
     display: flex !important;
