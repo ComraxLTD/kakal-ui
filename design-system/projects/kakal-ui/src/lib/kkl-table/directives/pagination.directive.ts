@@ -6,15 +6,14 @@ import {
   Optional,
   Renderer2,
   Self,
-  ViewContainerRef
+  ViewContainerRef,
 } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatButton } from '@angular/material/button';
 
 @Directive({
-  selector: '[kklNewPagination]'
+  selector: '[kklNewPagination]',
 })
-
 export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
   private currentPage: number;
   private pageGapTxt: string[];
@@ -34,13 +33,18 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
     this.showTotalPages = 4;
     this.checkPage = [0, 0, 0];
     // Display custom range label text
-    this.matPag._intl.getRangeLabel = (page: number, pageSize: number, length: number): string => {
+    this.matPag._intl.getRangeLabel = (
+      page: number,
+      pageSize: number,
+      length: number
+    ): string => {
       const startIndex = page * pageSize;
-      const endIndex = startIndex < length ?
-        Math.min(startIndex + pageSize, length) :
-        startIndex + pageSize;
+      const endIndex =
+        startIndex < length
+          ? Math.min(startIndex + pageSize, length)
+          : startIndex + pageSize;
       // return length > 0 ? 'Showing ' + (startIndex + 1) + ' – ' + endIndex + ' of ' + length + ' records' : 'Showing 0 – 0 of 0 records';
-      return ''
+      return '';
     };
     // Subscribe to rerender buttons when next page and last page button is used
     this.matPag.page.subscribe((paginator: PageEvent) => {
@@ -48,15 +52,13 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       this.matPag.pageIndex = paginator.pageIndex;
       this.initPageRange();
     });
-    console.log('kklNewPagination');
   }
 
   ngDoCheck(): void {
     // Reset paginator if the pageSize, pageIndex, length changes
-    if (this.matPag?.length !== this.checkPage[0]
-      ||
-      this.matPag?.pageSize !== this.checkPage[1]
-      ||
+    if (
+      this.matPag?.length !== this.checkPage[0] ||
+      this.matPag?.pageSize !== this.checkPage[1] ||
       this.matPag?.pageIndex !== this.checkPage[2]
     ) {
       const pageCount = this.matPag.getNumberOfPages();
@@ -66,7 +68,11 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       }
       this.currentPage = this.matPag.pageIndex;
       this.initPageRange();
-      this.checkPage = [this.matPag.length, this.matPag.pageSize, this.matPag.pageIndex];
+      this.checkPage = [
+        this.matPag.length,
+        this.matPag.pageSize,
+        this.matPag.pageIndex,
+      ];
     }
   }
 
@@ -78,9 +84,10 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
     let totalPages: number;
     totalPages = this.matPag.getNumberOfPages();
     // Container div with paginator elements
-    const actionContainer = this.ViewContainer.element.nativeElement.querySelector(
-      'div.mat-paginator-range-actions'
-    );
+    const actionContainer =
+      this.ViewContainer.element.nativeElement.querySelector(
+        'div.mat-paginator-range-actions'
+      );
     // Button that triggers the next page action
     const nextPageNode = this.ViewContainer.element.nativeElement.querySelector(
       'button.mat-paginator-navigation-next'
@@ -94,7 +101,7 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
 
     // Remove buttons before creating new ones
     if (prevButtonCount > 0) {
-      this.buttons.forEach(button => {
+      this.buttons.forEach((button) => {
         this.renderer.removeChild(actionContainer, button);
       });
       // Empty state array
@@ -108,7 +115,6 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
     if (prevButtonCount === 0) {
       const nodeArray = actionContainer.childNodes;
       setTimeout(() => {
-
         for (const node of nodeArray) {
           if (node.nodeName === 'BUTTON') {
             // Next Button styles
@@ -116,11 +122,13 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
               // node.innerHTML = 'הקודם'
               this.renderer.addClass(node, 'custom-paginator-arrow-disabled');
               this.renderer.removeClass(node, 'paginator-button');
-            }
-            else if ( node.innerHTML.length > 100 && !node.disabled ) {
+            } else if (node.innerHTML.length > 100 && !node.disabled) {
               // node.innerHTML = 'הבא'
               this.renderer.addClass(node, 'paginator-button');
-              this.renderer.removeClass(node, 'custom-paginator-arrow-disabled');
+              this.renderer.removeClass(
+                node,
+                'custom-paginator-arrow-disabled'
+              );
             }
           }
         }
@@ -134,47 +142,61 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
         actionContainer,
         this.createButton('0', this.matPag.pageIndex),
         nextPageNode
-        );
-      }
+      );
+    }
 
-      page = this.showTotalPages + 2;
-      pageDifference = totalPages - page;
-      startIndex = Math.max(this.currentPage - this.showTotalPages - 2, 1);
-      actionContainer.childNodes[2].innerText = 'הקודם'
-      actionContainer.childNodes[actionContainer.childNodes.length - 3].innerText = 'הבא'
+    page = this.showTotalPages + 2;
+    pageDifference = totalPages - page;
+    startIndex = Math.max(this.currentPage - this.showTotalPages - 2, 1);
+    actionContainer.childNodes[2].innerText = 'הקודם';
+    actionContainer.childNodes[
+      actionContainer.childNodes.length - 3
+    ].innerText = 'הבא';
 
-      for (let index = startIndex; index < totalPages - 1; index = index + 1) {
-
+    for (let index = startIndex; index < totalPages - 1; index = index + 1) {
       if (
-        (index < page && this.currentPage <= this.showTotalPages)
-        ||
-        (index >= this.rangeStart && index <= this.rangeEnd)
-        ||
-        (this.currentPage > pageDifference && index >= pageDifference)
-        ||
-        (totalPages < this.showTotalPages + page)
-        ) {
-          this.renderer.insertBefore(
+        (index < page && this.currentPage <= this.showTotalPages) ||
+        (index >= this.rangeStart && index <= this.rangeEnd) ||
+        (this.currentPage > pageDifference && index >= pageDifference) ||
+        totalPages < this.showTotalPages + page
+      ) {
+        this.renderer.insertBefore(
           actionContainer,
           this.createButton(`${index}`, this.matPag.pageIndex),
           nextPageNode
         );
       } else {
-        if(this.matPag.pageIndex === totalPages - 1) {
-          this.renderer.addClass(nextPageNode, 'custom-paginator-arrow-disabled');
+        if (this.matPag.pageIndex === totalPages - 1) {
+          this.renderer.addClass(
+            nextPageNode,
+            'custom-paginator-arrow-disabled'
+          );
           this.renderer.removeClass(nextPageNode, 'paginator-button');
-        }
-        else{
+        } else {
           this.renderer.addClass(nextPageNode, 'paginator-button');
-          this.renderer.removeClass(nextPageNode, 'custom-paginator-arrow-disabled');
+          this.renderer.removeClass(
+            nextPageNode,
+            'custom-paginator-arrow-disabled'
+          );
         }
-        if(this.matPag.pageIndex > 0) {
-          this.renderer.addClass(actionContainer.childNodes[2], 'paginator-button');
-          this.renderer.removeClass(actionContainer.childNodes[2], 'custom-paginator-arrow-disabled');
-        }
-        else{
-          this.renderer.addClass(actionContainer.childNodes[2], 'custom-paginator-arrow-disabled');
-          this.renderer.removeClass(actionContainer.childNodes[2], 'paginator-button');
+        if (this.matPag.pageIndex > 0) {
+          this.renderer.addClass(
+            actionContainer.childNodes[2],
+            'paginator-button'
+          );
+          this.renderer.removeClass(
+            actionContainer.childNodes[2],
+            'custom-paginator-arrow-disabled'
+          );
+        } else {
+          this.renderer.addClass(
+            actionContainer.childNodes[2],
+            'custom-paginator-arrow-disabled'
+          );
+          this.renderer.removeClass(
+            actionContainer.childNodes[2],
+            'paginator-button'
+          );
         }
         if (index > this.rangeEnd && !dots[0]) {
           this.renderer.insertBefore(
@@ -203,7 +225,7 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
         nextPageNode
       );
     }
-  }
+  };
 
   private createButton(index: string, pageIndex: number): MatButton {
     const linkBtn: MatButton = this.renderer.createElement('button');
@@ -211,7 +233,7 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
     // if (index === this.pageGapTxt[0] || index === this.pageGapTxt[1]) {
     //   // this.renderer.addClass(linkBtn, 'paginator-button');
     // }
-    const pagingTxt = isNaN(+ index) ? this.pageGapTxt[0] : (+ index + 1);
+    const pagingTxt = isNaN(+index) ? this.pageGapTxt[0] : +index + 1;
     const text = this.renderer.createText(pagingTxt + '');
     // this.renderer.addClass(linkBtn, 'mat-custom-page');
     switch (index) {
@@ -221,23 +243,26 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
         break;
       case this.pageGapTxt[0]:
         this.renderer.listen(linkBtn, 'click', () => {
-          this.switchPage(this.currentPage < this.showTotalPages + 1
-             ? this.showTotalPages + 2
-            : this.currentPage + this.showTotalPages - 1
+          this.switchPage(
+            this.currentPage < this.showTotalPages + 1
+              ? this.showTotalPages + 2
+              : this.currentPage + this.showTotalPages - 1
           );
         });
         break;
       case this.pageGapTxt[1]:
         this.renderer.listen(linkBtn, 'click', () => {
-          this.switchPage(this.currentPage > this.matPag.getNumberOfPages() - this.showTotalPages - 2
-            ? this.matPag.getNumberOfPages() - this.showTotalPages - 3
-            : this.currentPage - this.showTotalPages + 1
+          this.switchPage(
+            this.currentPage >
+              this.matPag.getNumberOfPages() - this.showTotalPages - 2
+              ? this.matPag.getNumberOfPages() - this.showTotalPages - 3
+              : this.currentPage - this.showTotalPages + 1
           );
         });
         break;
       default:
         this.renderer.listen(linkBtn, 'click', () => {
-          this.switchPage(+ index);
+          this.switchPage(+index);
         });
         break;
     }
@@ -262,7 +287,7 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       previousPageIndex: this.currentPage,
       pageIndex: index,
       pageSize: this.matPag.pageSize,
-      length: this.matPag.length
+      length: this.matPag.length,
     });
     this.currentPage = index;
     this.initPageRange();
