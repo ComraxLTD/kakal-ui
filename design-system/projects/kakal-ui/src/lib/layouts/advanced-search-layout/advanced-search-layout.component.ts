@@ -62,10 +62,14 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
+
     this.searchGroup = this.setGroup();
     if (this.advanced) {
       this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
     }
+    console.log(this.searchGroup)
+    console.log(this.advancedQuestions)
   }
 
   private setGroup(): QuestionGroupModel {
