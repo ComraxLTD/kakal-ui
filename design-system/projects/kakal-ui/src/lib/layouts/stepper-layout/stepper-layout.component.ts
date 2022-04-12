@@ -1,11 +1,4 @@
-import {
-  Component,
-  ContentChild,
-  EventEmitter,
-  Input,
-  Output,
-  QueryList,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { StepperLayoutService } from './stepper-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
@@ -15,12 +8,10 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
-import { NavbarBottomDirective } from '../../navbar-bottom/navbar-bottom.directive';
-import { NavbarBottomComponent } from '../../navbar-bottom/navbar-bottom.component';
+import { IconService } from '../../icon/icons.service';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
 import { merge, Observable, of } from 'rxjs';
-import { IconsService } from '../../icon/icons.service';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -69,7 +60,7 @@ export class StepperLayoutComponent {
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private iconService: IconsService
+    private iconService: IconService
   ) {}
 
   ngOnInit(): void {
@@ -80,18 +71,21 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
-    this.rowActions = this.setRowActions();
+    // init actions if array exist
+    if (this.actions && this.actions.length) {
+      this.rowActions = this.setRowActions();
 
-    this.drawerAction = this.setDrawerAction();
+      this.drawerAction = this.setDrawerAction();
 
-    this.showEndDrawer = this.actions.some(
-      (action) => action.type === 'portion'
-    );
+      this.showEndDrawer = this.actions.some(
+        (action) => action.type === 'portion'
+      );
 
-    this.showStartDrawer$ = merge(
-      of(!!this.drawerAction),
-      this.stepperLayoutService.getDisplayDrawerObs()
-    );
+      this.showStartDrawer$ = merge(
+        of(!!this.drawerAction),
+        this.stepperLayoutService.getDisplayDrawerObs()
+      );
+    }
 
     this.portion$ = this.getBreakPoints();
   }

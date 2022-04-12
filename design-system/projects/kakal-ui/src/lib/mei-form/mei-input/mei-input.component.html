@@ -18,6 +18,33 @@
         (focusout)="validate()" (focus)="onFocus()" />
     </ng-container>
 
+    <ng-container *ngSwitchCase="'counter'">
+      <div [class.kkl-form-counter]="true" kkl-border fxLayout="column">
+        <div class="form-counter" fxFlex="90" fxLayoutGap="1rem" fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <kkl-icon [key]="icon" color="primary"></kkl-icon>
+          </div>
+          <hr />
+          <div fxFlex="35" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <button class="decrease" [disabled]="control.disabled" mat-icon-button (click)="updateNum('-')">
+                -
+              </button>
+              <mat-form-field class="center" fxFlex="4rem">
+                <input class="small" matInput type="number" [formControl]="control"/>
+              </mat-form-field>
+              <button class="increase" [disabled]="control.disabled" mat-icon-button (click)="updateNum('+')">
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div fxLayoutAlign="center center">
+          <kkl-typography>{{ label }}</kkl-typography>
+        </div>
+      </div>
+    </ng-container>
+
     <!-- TEXT/NUMBER -->
     <ng-container *ngSwitchDefault>
       <input matInput [formControl]="control" [name]="key" [type]="controlType"

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   ButtonModel,
   CardStepModel,
+  ControlBase,
   DialogComponent,
   DocumentItem,
   FormActions,
@@ -9,6 +10,7 @@ import {
   RouterService,
 } from '../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-new-order-layout',
@@ -53,12 +55,52 @@ export class NewOrderLayoutComponent implements OnInit {
     { label : 'test4', dateCreated : new Date(), userCreated : 'tommy4'}
   ]
 
+  controls: ControlBase[] = [
+    {
+      key: 'name',
+    },
+    {
+      key: 'select',
+      controlType: 'select',
+      label: 'select',
+      options: [{ label: 'test', value: 0 }],
+    },
+    {
+      key: 'email',
+      controlType: 'email',
+      // offset - set to none to remove padding from the end
+    },
+    {
+      key: 'phone',
+      controlType: 'phone',
+    },
+    {
+      key: 'date',
+      controlType: 'dateRange',
+      // offset - set to none to remove padding from the end
+      // gridProps: { offset: 'none' },
+    },
+    {
+      key: 'upload',
+      controlType: 'upload',
+      // offset - set to none to remove padding from the end
+    },
+    {
+      key: 'text',
+      controlType: 'textarea',
+    },
+  ];
+
+  formGroup!: FormGroup;
+
   constructor(
     private routerService: RouterService,
   ) {}
 
 
   ngOnInit(): void {
+    this.formGroup = new FormGroup({});
+
     //decide if drawer is open or closed on init
   }
   // NAVIGATION EVENTS SECTION

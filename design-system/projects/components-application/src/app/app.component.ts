@@ -1,78 +1,173 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, Validators } from '@angular/forms';
-import { QuestionBase } from '../../../kakal-ui/src/public-api';
-
+import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { CardAddComponent } from '../../../kakal-ui/src/lib/cards/card-add/card-add.component';
+import { ControlBase, OptionsModel } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  formgroup = new FormGroup({});
-editData;
-  questions: QuestionBase[] = [
-    // {
-    //   key: 'select',
-    //   controlType: 'select',
-    //   label: 'select',
-    //   options: [{ label: 'test', value: 0 }],
-    // },
-    // {
-    //   key: 'email',
-    //   controlType: 'email',
-    // },
-    // {
-    //   key: 'phone',
-    //   controlType: 'phone',
-    // },
-    // {
-    //   key: 'tel',
-    //   controlType: 'tel',
-    // },
-    // {
-    //   key: 'time',
-    //   controlType: 'time',
-    // },
-    // {
-    //   key: 'gggg',
-    //   controlType: 'format',
-    //   format: '\D'
-    // },
+  dataSource!: any[];
+
+  dataSource2! : any[]
+
+  description: string = '';
+
+  constructor() {} // private comraxTablesService: ComraxTablesService,
+
+  ngOnInit(): void {
+    // this.comraxTablesService.getTableObjects().subscribe(res => { this.dataSource = res })
+    this.description = 'Actions Table';
+    this.dataSource = [
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      }
+    ]
+
+    this.dataSource2 = [
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+      {
+        key: 'key',
+        label: 'label',
+        controlType: 'text',
+      },
+    ]
+
+  }
+
+  columns: TableBase[] = [
+    { key: 'committeeId', label: 'Id', controlType: 'number',},
+    { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
+    { key: 'committeeDate', label: 'תאריך', controlType: 'date', },
+  ];
+
+  columns2: TableBase[] = [
+    { key: 'key', label: 'label', controlType: 'text',},
+    { key: 'monetaryValue', label: 'MonetaryValue', controlType: 'number',},
+    { key: 'nechasimCount', label: 'NechasimCount', controlType: 'number',},
+  ]
+
+  rowActions: RowActionModel[] = [
+    { type: 'inlineExpand', icon: 'expand' }
+  ]
+
+  onExpand(event: any) {
+    console.log(event);
+    // this.dataSource2 = event.remiTikim
+  }
+
+  options: OptionsModel[] = [
     {
-      key: 'number',
-      controlType: 'number',
+      //this key should be the same
+      key: 'firstQuestion',
+      val: [
+        { label: 'test', value: 0 },
+        { label: 'test1', value: 1, disabled: true },
+        { label: 'test3', value: 2 },
+        { label: 'test2', value: 3 },
+      ],
     },
-    // {
-    //   key: 'password',
-    //   controlType: 'password',
-    // },
     {
-      key: 'dateRange',
-      controlType: 'dateRange',
+      //this key should be the same
+      key: 'secondQuestion',
+      val: [
+        { label: 'test1', value: 1, disabled: true },
+        { label: 'test3', value: 2, selected: true },
+        { label: 'test2', value: 3, disabled: true },
+      ],
+    },
+    {
+      //this key should be the same
+      key: 'autocomplete',
+      val: [
+        { label: 'test1', value: 1, disabled: true },
+        { label: 'test3', value: 2, selected: true },
+        { label: 'test2', value: 3, disabled: true },
+      ],
     },
   ];
 
-  ngOnInit(){
-    setTimeout(() => {
-      console.log(this.formgroup);
-      this.editData = {number: 65657};
-    }, 4000);
-  }
+  questions: ControlBase[] = [
+    {
+      key: 'autocomplete',
+      controlType: 'autocomplete',
+      options: [
+        { label: 'test', value: 0 },
+        { label: 'test1', value: 1 },
+        { label: 'test2', value: 2 },
+        { label: 'test3', value: 3 },
+      ],
+      // multi: true,
+      label: 'local autocomplete',
+      // disabled: true
+      //,
+    },
+    {
+      key: 'email',
+      controlType: 'email',
+    },
+    {
+      controlType: 'calendar',
+      key: 'calendar',
+    },
+    {
+      controlType: 'counter',
+      key: 'counter',
+      icon: 'tree',
+    },
+  ];
 
-  onQueryChanged(event){
-    console.log(event);
-  }
-  onSelectChanged(event){
-    console.log(event);
-  }
-  onOpenChanged(event){
-    console.log(event);
-  }
-  onValueChanged(event){
-    console.log(event);
-
-  }
-
+  cards = {
+    1: {
+      id: 1,
+      svgIcon: 'home',
+      category: 'הסכם חליפין',
+    },
+    2: {
+      id: 2,
+      svgIcon: 'home',
+      category: 'הסכם רכישה',
+    },
+    3: {
+      id: 3,
+      svgIcon: 'home',
+      category: 'הסכם מכר',
+    },
+  };
 }

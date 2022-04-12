@@ -57,3 +57,37 @@ input[type="number"] {
     font-size: 9px !important;
   }
 }
+
+
+mat-form-field.center  {
+  text-align: center !important;
+}
+
+.kkl-form-counter {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+hr {
+  width: 90%;
+  border-top: 1px dashed main.color(default);
+}
+input.small {
+  width: 5rem;
+  height: 2rem;
+  border: none;
+  &:focus {
+    border: none;
+  }
+}
+
+.form-counter {
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+}

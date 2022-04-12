@@ -14,7 +14,7 @@ import { FormGrid } from '../models/question.types';
 import { FormService } from '../services/form.service';
 
 @Component({
-  selector: 'kkl-form',
+  selector: 'kkl-form-temp',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
   providers: [FormDataSource],

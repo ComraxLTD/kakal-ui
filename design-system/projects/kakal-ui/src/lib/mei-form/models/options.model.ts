@@ -1,6 +1,6 @@
-import { MeiSelectOption } from './select.model';
+import { KklSelectOption } from './kkl-select.model';
 
 export interface OptionsModel {
   key: string;
-  val: MeiSelectOption[];
+  val: KklSelectOption[];
 }

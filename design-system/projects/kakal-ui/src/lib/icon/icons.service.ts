@@ -12,7 +12,7 @@ export interface IconItem {
 @Injectable({
   providedIn: 'root',
 })
-export class IconsService {
+export class IconService {
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
@@ -34,6 +34,7 @@ export class IconsService {
 
     // TABLE ICONS
     drag_n_drop: AppIcons.DRAG_N_DROP,
+    all_directions: AppIcons.AAL_DIRECTIONS,
 
     // ACTIONS ICONS
     two_arrows: AppIcons.TWO_ARROWS_UP,

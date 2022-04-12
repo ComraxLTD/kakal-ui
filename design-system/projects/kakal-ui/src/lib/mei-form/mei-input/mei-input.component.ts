@@ -2,12 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormControlStatus, Validators } from '@angular/forms';
 import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
-import { MeiMessageService } from '../mei-services/message.service';
-import { MeiFormActions, MeiFormChangeEvent } from '../models/form-events';
-import { Appearance, ControlType, GridProps } from '../models/question.types';
+import { MessageService } from '../mei-services/message.service';
+import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
+import { Appearance, ControlType, GridProps } from '../models/control.types';
 
 @Component({
-  selector: 'mei-input',
+  selector: 'kkl-input',
   templateUrl: './mei-input.component.html',
   styleUrls: ['./mei-input.component.scss']
 })
@@ -29,11 +29,11 @@ export class MeiInputComponent implements OnInit {
   error$: BehaviorSubject<string>;
   color$: Observable<Palette>;
 
-  @Output() focusChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
 
   constructor(
-    private meiMessageService: MeiMessageService
+    private messageService: MessageService
   ) {}
 
   ngOnInit(): void {
@@ -42,7 +42,7 @@ export class MeiInputComponent implements OnInit {
     this.control.valueChanges.pipe(
       startWith(''),
       distinctUntilChanged(),
-      debounceTime(this.debounce? this.debounce : 500),
+      debounceTime(this.debounce? this.debounce : 300),
     ).subscribe(a => this.onValueChanged());
 
     this.setValidationsAndIcons();
@@ -75,6 +75,8 @@ export class MeiInputComponent implements OnInit {
         break;
     }
     if(this.format) {
+      console.log('hrree');
+
       if(!this.control.hasValidator(Validators.pattern(this.format))) {
         this.control.addValidators(Validators.pattern(this.format));
       }
@@ -111,7 +113,7 @@ export class MeiInputComponent implements OnInit {
   }
 
   private setErrorMessage() {
-    const error = this.meiMessageService.getErrorMessage(
+    const error = this.messageService.getErrorMessage(
       this.control,
       this.placeHolder
     );
@@ -127,12 +129,20 @@ export class MeiInputComponent implements OnInit {
   }
 
 
+  updateNum(val: string) {
+    if(val === '+') {
+      this.control.setValue(this.control.value+1);
+    } else {
+      this.control.setValue(this.control.value-1);
+    }
+  }
+
   // EVENTS SECTION
   onFocus() {
     this.focusChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: MeiFormActions.FOCUS_IN,
+      action: KklFormActions.FOCUS_IN,
     });
   }
 
@@ -140,7 +150,7 @@ export class MeiInputComponent implements OnInit {
     this.valueChanged.emit({
       key: this.key,
       value: this.control.value,
-      action: MeiFormActions.VALUE_CHANGED,
+      action: KklFormActions.VALUE_CHANGED,
     });
   }
 

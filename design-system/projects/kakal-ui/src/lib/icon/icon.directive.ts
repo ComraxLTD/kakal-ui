@@ -1,6 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 import { palletteClassesMap, palette, Palette } from '../../styles/theme';
-import { IconsService } from './icons.service';
 
 @Directive({
   selector: '[kkl-icon]',
@@ -42,7 +41,7 @@ export class KKLIconDirective {
     this.invalidate();
   }
 
-  constructor(private iconsService: IconsService) {}
+  constructor() {}
 
   ngOnInit(): void {
     this.invalidate();

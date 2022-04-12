@@ -8,7 +8,7 @@
 
             <ng-container *ngSwitchCase="'select'">
               <mat-grid-tile [colspan]=" question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
-                <mei-select
+                <kkl-select
                   fxFlex="100"
                   [control]="formGroup.controls[question.key]"
                   [options]="question.options"
@@ -19,14 +19,14 @@
                   [theme]="question.theme"
                   [appearance]="question.appearance"
                   [disabled]="question.disabled"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)"
-                ></mei-select>
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)"
+                ></kkl-select>
               </mat-grid-tile>
             </ng-container>
             <ng-container *ngSwitchCase="'autocomplete'">
               <ng-container *ngIf="question.multi; else simpleAutocomplete">
-                <mei-multi-autocomplete
+                <kkl-multi-autocomplete
                   [control]="formGroup.controls[question.key]"
                   [options]="question.options"
                   [placeHolder]="question.placeHolder"
@@ -38,13 +38,13 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)">
-                </mei-multi-autocomplete>
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)">
+                </kkl-multi-autocomplete>
               </ng-container>
               <ng-template #simpleAutocomplete>
-                <mei-autocomplete
+                <kkl-autocomplete
                   [control]="formGroup.controls[question.key]"
                   [options]="question.options"
                   [placeHolder]="question.placeHolder"
@@ -56,15 +56,15 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)"
-                ></mei-autocomplete>
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)"
+                ></kkl-autocomplete>
               </ng-template>
             </ng-container>
             <ng-container *ngSwitchCase="'date'">
               <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
-                <mei-datepicker
+                <kkl-datepicker
                   fxFlex="100"
                   [label]="question.label"
                   [control]="formGroup.controls[question.key]"
@@ -73,31 +73,31 @@
                   [maxDate]="question.maxDate"
                   [minDate]="question.minDate"
                   [appearance]="question.appearance"
-                  (focusChanged)="onFocusChanged($event)"
-                  (valueChanged)="onValueChanged($event)"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
                 >
-                </mei-datepicker>
+                </kkl-datepicker>
               </mat-grid-tile>
             </ng-container>
             <ng-container *ngSwitchCase="'dateRange'">
               <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
-                <mei-range-datepicker
+                <kkl-range-datepicker
                   fxFlex="100"
                   [groupControl]="formGroup.controls[question.key]"
                   [key]="question?.key"
                   [label]="question?.label"
                   [appearance]="question?.appearance"
-                  (focusChanged)="onFocusChanged($event)"
-                  (valueChanged)="onValueChanged($event)"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
                 >
-                </mei-range-datepicker>
+                </kkl-range-datepicker>
               </mat-grid-tile>
             </ng-container>
             <ng-container *ngSwitchDefault>
               <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
                 <div fxFill [fxLayoutAlign]="question?.gridProps?.flex?.align || 'center' + ' center'">
                   <div [fxFlex]="question?.gridProps?.flex?.width || 100">
-                    <mei-input
+                    <kkl-input
                       [control]="formGroup.controls[question.key]"
                       [label]="question.label"
                       [key]="question.key"
@@ -106,11 +106,12 @@
                       [appearance]="question.appearance"
                       [gridProps]="question.gridProps"
                       [icon]="question.icon"
+                      [format]="question.format"
                       [controlType]="question?.controlType"
-                      (focusChanged)="onFocusChanged($event)"
-                      (valueChanged)="onValueChanged($event)"
+                      (focusChanged)="onFocusChanged($event, question)"
+                      (valueChanged)="onValueChanged($event, question)"
                     >
-                    </mei-input>
+                    </kkl-input>
                   </div>
                 </div>
               </mat-grid-tile>
@@ -139,7 +140,7 @@
           <div flex-form-input [index]="index" [cols]="cols" [offset]="16" [fxFlex]="flex">
           <!-- SELECT INPUT SECTION -->
             <ng-container *ngSwitchCase="'select'">
-                <mei-select
+                <kkl-select
                   [control]="formGroup.controls[question.key]"
                   [options]="question.options"
                   [multi]="question.multi"
@@ -149,13 +150,13 @@
                   [theme]="question.theme"
                   [appearance]="question.appearance"
                   [disabled]="question.disabled"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)"
-                ></mei-select>
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)"
+                ></kkl-select>
             </ng-container>
             <ng-container *ngSwitchCase="'autocomplete'">
               <ng-container *ngIf="question.multi; else simpleAutocomplete">
-                <mei-multi-autocomplete
+                <kkl-multi-autocomplete
                   [control]="formGroup.controls[question.key]"
                   [options]="question.options"
                   [placeHolder]="question.placeHolder"
@@ -167,13 +168,13 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)">
-                </mei-multi-autocomplete>
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)">
+                </kkl-multi-autocomplete>
               </ng-container>
               <ng-template #simpleAutocomplete>
-                <mei-autocomplete
+                <kkl-autocomplete
                   [control]="formGroup.controls[question.key]"
                   [options]="question.options"
                   [placeHolder]="question.placeHolder"
@@ -185,14 +186,14 @@
                   [withButton]="question.withButton"
                   [icon]="question.icon"
                   [panelWidth]="question.panelWidth"
-                  (queryChanged)="onQueryChanged($event)"
-                  (selectChanged)="onSelectChanged($event)"
-                  (openChanged)="onOpenChanged($event)"
-                ></mei-autocomplete>
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openChanged)="onOpenChanged($event, question)"
+                ></kkl-autocomplete>
               </ng-template>
             </ng-container>
             <ng-container *ngSwitchCase="'date'">
-              <mei-datepicker
+              <kkl-datepicker
                 [control]="formGroup.controls[question.key]"
                 [key]="question.key"
                 [label]="question.label"
@@ -200,22 +201,22 @@
                 [maxDate]="question.maxDate"
                 [minDate]="question.minDate"
                 [appearance]="question.appearance"
-                (focusChanged)="onFocusChanged($event)"
-                (valueChanged)="onValueChanged($event)"
-              ></mei-datepicker>
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+              ></kkl-datepicker>
             </ng-container>
             <ng-container *ngSwitchCase="'range'">
-              <mei-range-datepicker
+              <kkl-range-datepicker
                 [groupControl]="formGroup.controls[question.key]"
                 [key]="question?.key"
                 [label]="question?.label"
                 [appearance]="question?.appearance"
-                (focusChanged)="onFocusChanged($event)"
-                (valueChanged)="onValueChanged($event)"
-              ></mei-range-datepicker>
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+              ></kkl-range-datepicker>
             </ng-container>
             <ng-container *ngSwitchDefault>
-              <mei-input
+              <kkl-input
                 [control]="formGroup.controls[question.key]"
                 [label]="question.label"
                 [key]="question.key"
@@ -223,10 +224,11 @@
                 [theme]="question.theme"
                 [appearance]="question.appearance"
                 [icon]="question.icon"
+                [format]="question.format"
                 [controlType]="question.controlType"
-                (focusChanged)="onFocusChanged($event)"
-                (valueChanged)="onValueChanged($event)"
-              ></mei-input>
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+              ></kkl-input>
             </ng-container>
 
           </div>

@@ -1,23 +1,23 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { QuestionBase } from '../models/question.model';
+import { ControlBase } from '../models/control.model';
 import { OptionsModel } from '../models/options.model'
 import { BehaviorSubject } from 'rxjs';
-import { MeiSelectOption } from '../models/select.model';
-import { MeiFormChangeEvent } from '../models/form-events';
-import { GridProps } from '../models/question.types';
+import { KklSelectOption } from '../models/kkl-select.model';
+import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
+import { GridProps } from '../models/control.types';
 @Component({
-  selector: 'mei-form',
+  selector: 'kkl-form',
   templateUrl: './mei-form.component.html',
   styleUrls: ['./mei-form.component.scss']
 })
 export class MeiFormComponent implements OnInit {
 
-  @Output() openChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
-  @Output() queryChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
-  @Output() selectChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
-  @Output() focusChanged: EventEmitter<MeiFormChangeEvent> = new EventEmitter();
+  @Output() openChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
+  @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
   @Input() grid: GridProps;
@@ -43,13 +43,11 @@ export class MeiFormComponent implements OnInit {
   flex: number;
 
 
-  myQuestions!: QuestionBase[];
-  @Input() set questions(val: QuestionBase[]) {
-    console.log(this.formGroup);
-
+  myQuestions!: ControlBase[];
+  @Input() set controls(val: ControlBase[]) {
     if(this.formGroup && this.myQuestions) {
-      const newVals: QuestionBase[] = [];
-      const sameVals: QuestionBase[] = [];
+      const newVals: ControlBase[] = [];
+      const sameVals: ControlBase[] = [];
       val.forEach(a => {
         if(this.myQuestions.find( vendor => Object.assign(vendor) === Object.assign(a) )) {
           sameVals.push(this.myQuestions.find( vendor => Object.assign(vendor) === Object.assign(a) ));
@@ -61,7 +59,7 @@ export class MeiFormComponent implements OnInit {
       removed.forEach(c => this.formGroup.removeControl(c.key));
       this.myQuestions = val;
       this.setControls(newVals);
-    } else {
+    } else {      
       this.myQuestions = val;
     }
 
@@ -87,7 +85,7 @@ export class MeiFormComponent implements OnInit {
 
 
 
-  localObservables: Map<string, BehaviorSubject<MeiSelectOption[]>> = new Map<string, BehaviorSubject<MeiSelectOption[]>>();
+  localObservables: Map<string, BehaviorSubject<KklSelectOption[]>> = new Map<string, BehaviorSubject<KklSelectOption[]>>();
 
   constructor(private fb: FormBuilder) { }
 
@@ -109,11 +107,10 @@ export class MeiFormComponent implements OnInit {
     this.putEditData();
   }
 
-  setControls(controles: QuestionBase[]) {
-    console.log('jhjh');
-
+  setControls(controles: ControlBase[]) {
     controles.forEach(a => {
       switch (a.controlType) {
+        
         // case 'text':
         // case 'password':
         // case 'number':
@@ -126,19 +123,12 @@ export class MeiFormComponent implements OnInit {
         // case 'time':
         // case 'range':
         // case 'checkbox':
-        //   // if(a.multi) {
-        //   //   row.addControl(a.key, this.fb.array(a.value));
-        //   //   if(typeof a.options === 'string') {
-        //   //     const subj = new BehaviorSubject(null);
-        //   //     this.localObservables.set(a.options, subj);
-        //   //     a.options = subj;
-        //   //   }
-        //   // } else {
-        //   //   row.addControl(a.key, this.fb.control(a.value));
-        //   // }
-        //   // if(a.disabled) {
-        //   //   row.get(a.key).disable();
-        //   // }
+        //   this.formGroup.addControl(a.key, this.fb.group({}));
+        //   if(typeof a.options === 'string') {
+        //     const subj = new BehaviorSubject(null);
+        //     this.localObservables.set(a.options, subj);
+        //     a.options = subj;
+        //   }
         //   break;
         // case 'radio':
         // case 'upload':
@@ -147,18 +137,13 @@ export class MeiFormComponent implements OnInit {
         //   return element;
         case 'select':
         case 'autocomplete':
-          this.formGroup.addControl(a.key, this.fb.control(a.value));
+          this.formGroup.addControl(a.key, this.fb.control(null));
           if(typeof a.options === 'string') {
             const subj = new BehaviorSubject(null);
             this.localObservables.set(a.options, subj);
             a.options = subj;
           }
           break;
-        // case 'autocomplete':
-        //   if(Array.isArray(element)) {
-        //     return element.map((a: any) => a.label);
-        //   }
-        //   return element.label;
         case 'dateRange':
           this.formGroup.addControl(a.key, this.fb.group({start: this.fb.control(a.value?.start), end: this.fb.control(a.value?.end)}));
           break;
@@ -187,23 +172,45 @@ export class MeiFormComponent implements OnInit {
   }
 
   onSubmitEvent() {
-    this.submitEvent.emit(this.formGroup);
+    if (this.formGroup.valid) {
+      this.submitEvent.emit(this.formGroup.value);
+    } else {
+      // confirm(`please fill in all required fields`);
+      alert('please fill in all required fields '+this.formGroup.errors);
+    }
+    this.formGroup.markAllAsTouched();
   }
 
 
-  onQueryChanged(event) {
+  onQueryChanged(event, control: ControlBase) {
+    if(control.queryChanged) {
+      control.queryChanged({value: event.value, query: event.query});
+    }
     this.queryChanged.emit(event);
   }
-  onSelectChanged(event) {
+  onSelectChanged(event, control: ControlBase) {
+    if(control.selectChanged) {
+      control.selectChanged(event.value);
+    }
     this.selectChanged.emit(event);
   }
-  onOpenChanged(event) {
+  onOpenChanged(event, control: ControlBase) {
+    if(control.openChanged) {
+      control.openChanged({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
+    }
     this.openChanged.emit(event);
   }
-  onValueChanged(event) {
+  onValueChanged(event, control: ControlBase) {
+    if(control.valueChanged) {
+      control.valueChanged(event.value);
+    }
     this.valueChanged.emit(event);
   }
-  onFocusChanged(event) {
+  onFocusChanged(event, control: ControlBase) {
+    if(control.focusChanged) {
+      control.focusChanged(event.value);
+    }
     this.focusChanged.emit(event);
   }
+
 }

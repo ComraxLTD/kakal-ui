@@ -28,18 +28,20 @@ import { KKLFormUploadModule } from '../form/form-upload/form-upload.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { KKLButtonModule } from '../button/button.module';
 import { HttpClientModule } from '@angular/common/http';
+import { KKLNewPaginatorDirective } from './directives/pagination.directive';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
-    TableCellPipe,
     LocalTableComponent,
     EventTableComponent,
+    TableFormComponent,
+    TableCellComponent,
+    TableCellPipe,
     TableGroupCellPipe,
     ArrIncludesPipe,
     ArrIndexPipe,
-    TableFormComponent,
-    TableCellComponent,
-    // StylePaginatorDirective
+    KKLNewPaginatorDirective,
  ],
   imports: [
     CommonModule,
@@ -61,17 +63,19 @@ import { HttpClientModule } from '@angular/common/http';
     KKLFormCurrencyModule,
     KKLFormCheckboxModule,
     KKLIconModule,
-    KKLButtonModule
+    KKLButtonModule,
+    FlexLayoutModule,
   ],
   exports: [
-    TableCellPipe,
     LocalTableComponent,
     EventTableComponent,
+    TableFormComponent,
+    TableCellComponent,
+    TableCellPipe,
     TableGroupCellPipe,
     ArrIncludesPipe,
     ArrIndexPipe,
-    TableFormComponent,
-    TableCellComponent,
+    KKLNewPaginatorDirective,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
