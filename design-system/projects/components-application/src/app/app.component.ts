@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+// import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
 
 @Component({
@@ -39,29 +39,29 @@ export class AppComponent {
     },
   ]
 
-    columns: TableBase[] = [
-      { key: 'committeeId', label: 'Id', controlType: 'number',},
-      { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'text', button: {type: 'inlineExpand', icon: 'expand'}},
-      { key: 'committeeDate', label: 'תאריך', controlType: 'text', },
-    ];
+  //   columns: TableBase[] = [
+  //     { key: 'committeeId', label: 'Id', controlType: 'number',},
+  //     { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'text', button: {type: 'inlineExpand', icon: 'expand'}},
+  //     { key: 'committeeDate', label: 'תאריך', controlType: 'text', },
+  //   ];
 
-  rowActions: RowActionModel[] = [
-    {
-      type: 'inlineEdit',
-      icon: 'edit',
-      label: 'Edit'
-    },
-    {
-      type: 'inlineDelete',
-      icon: 'cancel',
-      label: 'Delete'
-    },
-    {
-      type: 'visibility',
-      icon: 'visibility',
-      label: 'Show'
-    },
-  ]
+  // rowActions: RowActionModel[] = [
+  //   {
+  //     type: 'inlineEdit',
+  //     icon: 'edit',
+  //     label: 'Edit'
+  //   },
+  //   {
+  //     type: 'inlineDelete',
+  //     icon: 'cancel',
+  //     label: 'Delete'
+  //   },
+  //   {
+  //     type: 'visibility',
+  //     icon: 'visibility',
+  //     label: 'Show'
+  //   },
+  // ]
 
   data!: { key: string, label: string }[];
 
