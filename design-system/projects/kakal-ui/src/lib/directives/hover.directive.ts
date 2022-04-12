@@ -14,7 +14,7 @@ export class KKLHoverDirective {
     @Input() hoverColor: 'white' | 'black' = 'white';
 
     @HostListener('mouseover') onMouseOver() {
-        console.log('over');
+        // console.log('over');   
         const hoverRef: ComponentRef<KKLHoverComponent>
             = this.overlayRef.attach(new ComponentPortal(KKLHoverComponent));
         if (this.hoverColor) hoverRef.instance.hoverColor = this.hoverColor;
@@ -23,7 +23,7 @@ export class KKLHoverDirective {
     }
 
     @HostListener('mouseout') onMouseOut() {
-        console.log('out');
+        // console.log('out');
         this.overlayRef.detach();
     }
     constructor(private overlay: Overlay,

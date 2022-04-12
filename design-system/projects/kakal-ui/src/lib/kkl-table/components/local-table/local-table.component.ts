@@ -6,8 +6,8 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Subject, takeUntil } from 'rxjs';
-import { RowActionEvent, RowActionModel } from '../../table-actions.model';
-import { TableBase } from '../../table.model';
+import { RowActionEvent, RowActionModel } from '../../models/table-actions.model';
+import { TableBase } from '../../models/table.model';
 import { customFilterPredicate } from './local-filter';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];

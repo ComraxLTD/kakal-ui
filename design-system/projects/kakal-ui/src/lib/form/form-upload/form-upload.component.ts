@@ -10,7 +10,7 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { IconsService } from '../../icon/icons.service';
+import { IconService } from '../../icon/icons.service';
 import { FormActions } from '../models/form.actions';
 import { FormChangeEvent } from '../models/form.options';
 import { map, merge, Observable, of, pluck } from 'rxjs';
@@ -46,7 +46,7 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor {
   // emit the file
   @Output() fileChanged = new EventEmitter<FormChangeEvent>();
 
-  constructor(private iconService: IconsService) {}
+  constructor(private iconService: IconService) {}
 
   private _onChange: (v: File[]) => void = (value: File[]) => {};
 

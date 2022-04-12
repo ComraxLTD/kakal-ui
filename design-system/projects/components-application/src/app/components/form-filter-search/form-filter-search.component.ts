@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {
   FiltersService,
   FilterState,
-  FilterType,
-  FormDataSource,
   SelectOption,
   OptionMap,
   Question,
-  FormService,
   FormChangeEvent,
   FormActions,
   FilterLookups,

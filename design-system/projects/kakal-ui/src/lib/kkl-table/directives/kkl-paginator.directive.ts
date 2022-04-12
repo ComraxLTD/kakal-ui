@@ -34,15 +34,14 @@ export class StylePaginatorDirective {
     previousPageIndex: 0
   };
 
-  private _showTotalPages = 5;
   @Input()
   get showTotalPages(): number {
     return this._showTotalPages;
   }
-
   set showTotalPages(value: number) {
     this._showTotalPages = value % 2 == 0 ? value + 1 : value;
   }
+  private _showTotalPages = 2;
 
   get inc(): number {
     return this._showTotalPages % 2 == 0
@@ -99,7 +98,37 @@ export class StylePaginatorDirective {
 
     //initialize next page and last page buttons
     if (this._buttons.length == 0) {
-      let nodeArray = this.vr.element.nativeElement.childNodes[0].childNodes[0].childNodes[2].childNodes;
+      let nodeArray = this.vr.element.nativeElement.childNodes[0].childNodes[0]
+        .childNodes[2].childNodes;
+      setTimeout(() => {
+        for (let i = 0; i < nodeArray.length; i++) {
+          if (nodeArray[i].nodeName === "BUTTON") {
+            if (nodeArray[i].innerHTML.length > 100 && nodeArray[i].disabled) {
+              nodeArray[i].innerHTML = 'הקודם'
+              // this.ren.setStyle(
+              //   nodeArray[i],
+              //   "background-color",
+              //   "transparent"
+              // );
+              // this.ren.setStyle(nodeArray[i], "color", "black");
+              // this.ren.setStyle(nodeArray[i], "margin", ".5%");
+            } else if (
+              nodeArray[i].innerHTML.length > 100
+            ) {
+              nodeArray[i].innerHTML = 'הבא'
+              // this.ren.setStyle(
+              //   nodeArray[i],
+              //   "background-color",
+              //   "rgba(255, 0, 0, 1)"
+              // );
+              // this.ren.setStyle(nodeArray[i], "color", "black");
+              // this.ren.setStyle(nodeArray[i], "margin", ".5%");
+            } else if (nodeArray[i].disabled) {
+              // this.ren.setStyle(nodeArray[i], "color", "lightgray");
+            }
+          }
+        }
+      });
     }
 
     for (let i = 0; i < this.numOfPages; i++) {
@@ -111,23 +140,21 @@ export class StylePaginatorDirective {
         );
       }
 
-      // if (i == this._rangeEnd) {
-      //   this.ren.insertBefore(
-      //     actionContainer,
-      //     this.createButton(this._pageGapTxt, this._rangeEnd),
-      //     nextPageNode
-      //   );
-      // }
+      if (i == this._rangeEnd) {
+        this.ren.insertBefore(
+          actionContainer,
+          this.createButton(this._pageGapTxt, this._rangeEnd),
+          nextPageNode
+        );
+      }
     }
   }
 
   private createButton(i: any, pageIndex: number): any {
-    const linkBtn: MatButton = this.ren.createElement("mat-button");
-
-    if (i === pageIndex) {
-      this.ren.addClass(linkBtn, "mat-mini-fab");
-      this.ren.addClass(linkBtn, "elavation-z0");
-    } else this.ren.addClass(linkBtn, "mat-button");
+    const linkBtn: MatButton = this.ren.createElement("button");
+    this.ren.addClass(linkBtn, "mat-flat-button");
+    // this.ren.setStyle(linkBtn, "margin", "1%");
+    // this.ren.setStyle(linkBtn, "background-color", "white");
 
     const pagingTxt = isNaN(i) ? this._pageGapTxt : +(i + 1);
     const text = this.ren.createText(pagingTxt + "");

@@ -1,29 +1,30 @@
 <mat-form-field [appearance]="control.disabled ? 'fill' : appearance">
   <mat-label>{{ label }}</mat-label>
 
-  <mat-chip-list  #chipList aria-label="Fruit selection">
-    <mat-chip
-      *ngFor="let fruit of control.value"
-      (removed)="remove(fruit)">
-      {{fruit.label}}
+  <mat-chip-list #chipList aria-label="Fruit selection">
+    <mat-chip *ngFor="let fruit of control.value" (removed)="remove(fruit)">
+      {{ fruit.label }}
       <button matChipRemove [disabled]="control.disabled">
         <mat-icon>cancel</mat-icon>
       </button>
     </mat-chip>
 
-
-      <input type="text" [placeholder]="placeHolder" matInput [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [disabled]="control.disabled"
-      [matChipInputFor]="chipList" [matAutocomplete]="auto1" [formControl]="myAutoControl" (focusout)="setErrorMessage()">
+    <input type="text" [placeholder]="placeHolder" matInput [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [disabled]="control.disabled" [matChipInputFor]="chipList" [matAutocomplete]="auto1" [formControl]="myAutoControl"
+      (focusout)="setErrorMessage()" />
   </mat-chip-list>
-  <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onMultiSelectionChange($event)" [panelWidth]="panelWidth ? 'auto' : null"
+  <mat-autocomplete autoActiveFirstOption #auto1="matAutocomplete" [displayWith]="displayFn"
+    (optionSelected)="onMultiSelectionChange($event)" [panelWidth]="panelWidth ? 'auto' : null"
     (open)="onOpenChanged(true)" (closed)="onOpenChanged(false)">
-    <mat-option *ngFor="let option of isArray? (filteredOptions | async) : (_options | async)" [value]="option" class="autocomplete-option" [disabled]="option.disabled">
-      {{option.label}}
+    <mat-option *ngFor="
+        let option of isArray ? (filteredOptions | async) : (_options | async)
+      " [value]="option" class="autocomplete-option" [disabled]="option.disabled">
+      {{ option.label }}
     </mat-option>
   </mat-autocomplete>
-  <button *ngIf="withButton" type="button" matSuffix mat-icon-button (click)="search()" [disabled]="control.disabled">
+  <button *ngIf="withButton" matSuffix type="button" matSuffix mat-icon-button (click)="search()" [disabled]="control.disabled">
     <kkl-icon color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   </button>
-  <kkl-icon *ngIf="!withButton" color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
+  <kkl-icon matSuffix *ngIf="!withButton" color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>

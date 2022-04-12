@@ -1,6 +1,23 @@
-
-<!-- <app-new-order-layout></app-new-order-layout> -->
-
+<!-- <div dir="rtl" fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxFlex="90"> -->
+    <!-- <div>
+      <kkl-local-table
+      [dataSource]="dataSource"
+      [columns]="columns"
+      [rowActions]="rowActions"
+      [expandTemplate]="expand"
+      (expandRow)="onExpand($event)"
+      ></kkl-local-table>
+    </div> -->
+<!--
+    <div fxLayout="row">
+      <kkl-grid-documents
+        (change)="onGrigChanged($event)"
+        fxFlex="20"
+        [cards]="cards"
+      ></kkl-grid-documents>
+    </div> -->
+<!--
 <ng-container content>
   <ng-container>
     <kkl-form
@@ -14,9 +31,9 @@
             (openChanged)="onOpenChanged($event)"
           ></kkl-form>
   </ng-container>
-</ng-container>
-<!--<kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
-<kkl-local-table
+</ng-container> -->
+<!-- <kkl-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table> -->
+<!-- <kkl-local-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
@@ -25,5 +42,12 @@
   dragable="true"
 ></kkl-local-table>
 
-<kkl-button (clickEvent)="onClick('sadasdasd')"></kkl-button>
-<kkl-add-button (clickEvent)="onClick('sdfsdfsdf')"></kkl-add-button> -->
+<ng-template #expand>
+  <kkl-local-table
+    fxFill
+    [dataSource]="dataSource2"
+    [columns]="columns2"
+  ></kkl-local-table>
+</ng-template> -->
+
+<h1>sdfsdf</h1>

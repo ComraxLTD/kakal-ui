@@ -114,9 +114,86 @@ export class AppComponent {
     }
   }
 
-  onOpenChanged(event:any) {
-    console.log(event);
+  // onOpenChanged(event:any) {
+  //   console.log(event);
 
-  }
+  // options: OptionsModel[] = [
+  //   {
+  //     //this key should be the same
+  //     key: 'firstQuestion',
+  //     val: [
+  //       { label: 'test', value: 0 },
+  //       { label: 'test1', value: 1, disabled: true },
+  //       { label: 'test3', value: 2 },
+  //       { label: 'test2', value: 3 },
+  //     ],
+  //   },
+  //   {
+  //     //this key should be the same
+  //     key: 'secondQuestion',
+  //     val: [
+  //       { label: 'test1', value: 1, disabled: true },
+  //       { label: 'test3', value: 2, selected: true },
+  //       { label: 'test2', value: 3, disabled: true },
+  //     ],
+  //   },
+  //   {
+  //     //this key should be the same
+  //     key: 'autocomplete',
+  //     val: [
+  //       { label: 'test1', value: 1, disabled: true },
+  //       { label: 'test3', value: 2, selected: true },
+  //       { label: 'test2', value: 3, disabled: true },
+  //     ],
+  //   },
+  // ];
 
+  // questions: Question[] = [
+  //   {
+  //     key: 'contact',
+  //     controlType: 'radio',
+  //     options: [
+  //       {
+  //         label: 'מייל לעו"ד בא כוחו',
+  //         checked: true,
+  //         value: 'attorney',
+  //       } as RadioOption,
+  //       {
+  //         label: 'מייל למנהלת ספר נכסים',
+  //         value: 'administrator',
+  //       } as RadioOption,
+  //     ],
+  //   },
+  //   { key: 'topic', label: 'נושא' },
+  //   {
+  //     key: 'content',
+  //     controlType: 'texteditor',
+  //     label: 'תוכן הפנייה לעורך דין',
+  //     value: '',
+  //     gridProps: { rows: 4 },
+  //   },
+  //   { key: 'file', label: 'לחץ להוספץת מסמך', controlType: 'upload' },
+  // ];
+
+  // cards = {
+  //   1: {
+  //     id: 1,
+  //     svgIcon: 'home',
+  //     category: 'הסכם חליפין',
+  //   },
+  //   2: {
+  //     id: 2,
+  //     svgIcon: 'home',
+  //     category: 'הסכם רכישה',
+  //   },
+  //   3: {
+  //     id: 3,
+  //     svgIcon: 'home',
+  //     category: 'הסכם מכר',
+  //   },
+  // };
+
+  // onGrigChanged(event) {
+  //   console.log(event);
+  // }
 }
