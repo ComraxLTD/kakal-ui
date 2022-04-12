@@ -75,9 +75,10 @@ export class AppComponent {
 
   rowActions: RowActionModel[] = [
     {
-      type: 'inlineEdit',
-      icon: 'edit',
-      label: 'Edit'
+      key: 'content',
+      controlType: 'texteditor',
+      label: 'תוכן הפנייה לעורך דין',
+      value: '',
     },
     {
       type: 'inlineDelete',

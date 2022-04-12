@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Color } from '../../../../styles/theme';
+import { Palette } from '../../../../styles/theme';
 
 @Component({
   selector: 'kkl-stroke-button',
@@ -7,7 +7,7 @@ import { Color } from '../../../../styles/theme';
   styleUrls: ['./stroke-button.component.scss'],
 })
 export class StrokeButtonComponent implements OnInit {
-  @Input() color: Color;
+  @Input() color: Palette;
   @Input() type: 'button' | 'submit' =  'button';
   @Input() disabled: boolean;
 

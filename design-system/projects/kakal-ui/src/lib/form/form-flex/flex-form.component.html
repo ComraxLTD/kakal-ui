@@ -51,7 +51,7 @@
         <!-- NGX-EDITOR INPUT -->
         <ng-container *ngSwitchCase="'texteditor'">
           <div fxLayout="column">
-            <div fxFlex="15rem">
+            <div [fxFlex]="(question?.gridProps?.rows * 10 || 40) + 'rem'">
               <kkl-form-texteditor
                 fxFill
                 [key]="question?.key"
@@ -185,10 +185,6 @@
   </ng-container>
 
   <ng-container *ngIf="buttonCols">
-    <!-- <ng-container *ngFor="let item of buttonSkip; let i = index">
-      <div flex-form-input [fxFlex]="flex"></div>
-    </ng-container> -->
-
     <div
       [class.button-container]="true"
       [fxFlex]="flex * buttonCols"

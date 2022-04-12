@@ -1,7 +1,7 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { map, Observable, tap } from 'rxjs';
 import { PageHeadlineModel } from './page-headline.model';
 import { PageHeadlineService } from './page-headline.service';
+import { Observable, tap } from 'rxjs';
 
 @Component({
   selector: 'kkl-page-headline',
