@@ -15,7 +15,7 @@
 //         defaultValue: '',
 //         description: 'stauts model decides how many steps and thier status',
 //         table: {
-//           type: { summary: 'StatusBarsModel - authorizedBars, totalBars, label' , required: true},
+//           type: { summary: 'StatusStepsModel - authorizedBars, totalBars, label' , required: true},
 
 //         },
 //       },
@@ -63,7 +63,7 @@
 
 
 // statusBar.args = {
-//     status:new StatusBarsModel({
+//     status:new StatusStepsModel({
 //     label: 'statusBars',
 //     authorizedBars:3,
 //     totalBars:5
