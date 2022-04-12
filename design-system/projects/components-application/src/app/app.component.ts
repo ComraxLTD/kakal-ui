@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlBase, OptionsModel } from '../../../kakal-ui/src/public-api';
+import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
 
 @Component({
@@ -65,6 +65,39 @@ export class AppComponent {
     }
   ];
 
+  dataSource: any[] = [
+    {
+      committeeId: 'wtwrt',
+      remiTikimCount: 'werwsfwe',
+
+    }
+  ]
+
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      label: 'Edit'
+    },
+    {
+      type: 'inlineDelete',
+      icon: 'cancel',
+      label: 'Delete'
+    },
+    {
+      type: 'visibility',
+      icon: 'visibility',
+      label: 'Show'
+    },
+  ]
+
+
+  columns: TableBase[] = [
+    { key: 'committeeId', label: 'Id', controlType: 'number',},
+    { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
+    { key: 'committeeDate', label: 'תאריך', controlType: 'date', },
+  ];
+
   editData =  'ert'
   //{
     //select: { label: 'editData', value: 88 }
@@ -114,86 +147,9 @@ export class AppComponent {
     }
   }
 
-  // onOpenChanged(event:any) {
-  //   console.log(event);
+  onOpenChanged(event:any) {
+    console.log(event);
 
-  // options: OptionsModel[] = [
-  //   {
-  //     //this key should be the same
-  //     key: 'firstQuestion',
-  //     val: [
-  //       { label: 'test', value: 0 },
-  //       { label: 'test1', value: 1, disabled: true },
-  //       { label: 'test3', value: 2 },
-  //       { label: 'test2', value: 3 },
-  //     ],
-  //   },
-  //   {
-  //     //this key should be the same
-  //     key: 'secondQuestion',
-  //     val: [
-  //       { label: 'test1', value: 1, disabled: true },
-  //       { label: 'test3', value: 2, selected: true },
-  //       { label: 'test2', value: 3, disabled: true },
-  //     ],
-  //   },
-  //   {
-  //     //this key should be the same
-  //     key: 'autocomplete',
-  //     val: [
-  //       { label: 'test1', value: 1, disabled: true },
-  //       { label: 'test3', value: 2, selected: true },
-  //       { label: 'test2', value: 3, disabled: true },
-  //     ],
-  //   },
-  // ];
+  }
 
-  // questions: Question[] = [
-  //   {
-  //     key: 'contact',
-  //     controlType: 'radio',
-  //     options: [
-  //       {
-  //         label: 'מייל לעו"ד בא כוחו',
-  //         checked: true,
-  //         value: 'attorney',
-  //       } as RadioOption,
-  //       {
-  //         label: 'מייל למנהלת ספר נכסים',
-  //         value: 'administrator',
-  //       } as RadioOption,
-  //     ],
-  //   },
-  //   { key: 'topic', label: 'נושא' },
-  //   {
-  //     key: 'content',
-  //     controlType: 'texteditor',
-  //     label: 'תוכן הפנייה לעורך דין',
-  //     value: '',
-  //     gridProps: { rows: 4 },
-  //   },
-  //   { key: 'file', label: 'לחץ להוספץת מסמך', controlType: 'upload' },
-  // ];
-
-  // cards = {
-  //   1: {
-  //     id: 1,
-  //     svgIcon: 'home',
-  //     category: 'הסכם חליפין',
-  //   },
-  //   2: {
-  //     id: 2,
-  //     svgIcon: 'home',
-  //     category: 'הסכם רכישה',
-  //   },
-  //   3: {
-  //     id: 3,
-  //     svgIcon: 'home',
-  //     category: 'הסכם מכר',
-  //   },
-  // };
-
-  // onGrigChanged(event) {
-  //   console.log(event);
-  // }
 }
