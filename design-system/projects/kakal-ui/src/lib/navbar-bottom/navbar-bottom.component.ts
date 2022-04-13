@@ -35,7 +35,12 @@ export class NavbarBottomComponent implements OnInit {
 
   @Input() disableNext$: Observable<boolean>;
 
-  @Input() hasSave: boolean;
+  showSave: boolean = true;
+  @Input()
+  set hasSave(value: boolean) {
+    this.showSave = value;
+  }
+  
   @Input() showSave$: Observable<boolean>;
 
   @Input() buttonTemplate: TemplateRef<any>;
@@ -93,7 +98,8 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   private setShowSave() {
-    return this.hasSave ? this.showSave$ : of(false);
+    return of(this.hasSave);
+    // return this.hasSave ? this.showSave$ : of(false);
   }
 
   private setShowNext(): Observable<boolean> {
