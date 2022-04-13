@@ -5,7 +5,7 @@ import { KKLTypographyModule } from '../typography/typography.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { PageHeadlineComponent } from './page-headline.component';
 import { KKLPipesModule } from '../pipes/pipes.module';
-import { KKLStatusStepsModule } from '../status-stpes/status-steps.module';
+import { KKLStatusStepsModule } from '../status-steps/status-steps.module';
 @NgModule({
   declarations: [PageHeadlineComponent],
   imports: [

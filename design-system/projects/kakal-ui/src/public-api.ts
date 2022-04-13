@@ -143,7 +143,7 @@ export * from './lib/form/models/question.model';
 // ------------------------------------------------------------------------------------------
 
 // NEW TABLE
-// export * from './lib/kkl-table/components/server-table/server-table.component';
+export * from './lib/kkl-table/kkl-table.module';
 export * from './lib/kkl-table/components/local-table/local-table.component';
 export * from './lib/kkl-table/components/event-table/event-table.component';
 export * from './lib/kkl-table/components/table-cell/table-cell.component';
@@ -152,12 +152,13 @@ export * from './lib/kkl-table/pipes/arr-includes.pipe';
 export * from './lib/kkl-table/pipes/arr-index.pipe';
 export * from './lib/kkl-table/pipes/table-cell-pipe.pipe';
 export * from './lib/kkl-table/pipes/table-group-cell.pipe';
+
+export * from './lib/kkl-table/models/table-server.model';
 export * from './lib/kkl-table/models/table-actions.model';
 export * from './lib/kkl-table/models/table.model';
-export * from './lib/kkl-table/models/table-server.model';
+
 export * from './lib/kkl-table/directives/pagination.directive';
 export * from './lib/kkl-table/services/kkl-paginator.service';
-export * from './lib/kkl-table/kkl-table.module';
 
 // TABLE
 export * from './lib/table/table.module';
@@ -259,8 +260,8 @@ export * from './lib/page-headline/page-headline.module';
 export * from './lib/page-headline/page-headline.service';
 
 // status-bars
-export * from './lib/status-stpes/status-steps.module';
-export * from './lib/status-stpes/status-steps.component';
+export * from './lib/status-steps/status-steps.module';
+export * from './lib/status-steps/status-steps.component';
 
 // step title
 export * from './lib/step-title/step-title.module';

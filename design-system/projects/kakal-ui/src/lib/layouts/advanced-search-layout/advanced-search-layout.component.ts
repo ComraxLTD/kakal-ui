@@ -62,7 +62,9 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+
     this.searchGroup = this.setGroup();
+
     if (this.advanced) {
       this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
     }
@@ -93,7 +95,6 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   }
 
   public onSearchChanged(event: FormChangeEvent) {
-    console.log(event);
     this.searchChanged.emit(event);
   }
 

@@ -37,12 +37,8 @@ td.mat-cell {
 table {
   width: 100%;
   overflow-y: auto;
+  // border-spacing: 0 10px !important;
 }
-
-// .row-padding {
-  // background-color: red;
-  // margin-top: 1000px !important;
-// }
 
 // .table-wrapper {
 
@@ -53,6 +49,15 @@ table {
 // mat-paginator {
 //   direction: ltr;
 // }
+
+.expand{
+  background-color: main.color(table);
+}
+
+.hide{
+  display: none;
+  border-spacing: 0 !important;
+}
 
 tr.mat-header-row{
   th.mat-header-cell.cdk-header-cell{

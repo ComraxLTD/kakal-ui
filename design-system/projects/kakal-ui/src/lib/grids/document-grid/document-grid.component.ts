@@ -19,39 +19,63 @@ export class DocumentGridComponent implements OnInit {
 
   private gridChanged: GridChangedEvent;
 
+  private previousIndex: number;
+
   constructor() {}
 
   @Output() change: EventEmitter<GridChangedEvent> = new EventEmitter();
 
   ngOnInit(): void {}
 
-  onCardSelect(event: CardDocumentEvent) {
-    const { card } = event;
-    this.cards = {
+  private setPrevious() {
+    if (this.previousIndex) {
+    } else {
+      this.previousIndex;
+    }
+  }
+
+  private setCards(card: CardDocument, key: keyof CardDocument) {
+    return {
       ...this.cards,
       [card.id]: {
         ...this.cards[card.id],
-        selected: !card.selected,
+        [key]: !card[key],
       },
     };
+  }
+
+  onCardSelect(event: CardDocumentEvent) {
+    const { card } = event;
+
+    const cards = this.setCards(card, 'selected');
+
+    if (this.previousIndex) {
+      this.cards = {
+        ...cards,
+        [this.previousIndex]: {
+          ...cards[this.previousIndex],
+          selected: false,
+        },
+      };
+    } else {
+      this.cards = { ...cards };
+    }
 
     this.gridChanged = {
       ...this.gridChanged,
       selectedCard: this.cards[card.id].selected ? this.cards[card.id] : null,
     };
+
+    this.previousIndex = card.id;
+
     this._emitChanged();
   }
 
   onCardRemove(event: CardDocumentEvent) {
     const { card } = event;
-    this.cards = {
-      ...this.cards,
-      [card.id]: {
-        ...this.cards[card.id],
-        disabled: !card.disabled,
-        selected: false,
-      },
-    };
+
+    const cards = this.setCards(card, 'disabled');
+    this.cards = { ...cards };
 
     this.gridChanged = {
       ...this.gridChanged,
