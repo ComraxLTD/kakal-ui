@@ -24,12 +24,12 @@
           mat-icon-button
           (click)="onRemove(card); $event.stopPropagation()"
         >
-          <mat-icon [color]="card.disable && 'primary'">
+          <mat-icon [color]="card.disabled && 'primary'">
             {{ icon$ | async }}</mat-icon
           >
         </button>
         <button
-          *ngIf="card.active"
+          *ngIf="card.selected"
           mat-icon-button
           (click)="$event.stopPropagation()"
         >
@@ -47,7 +47,7 @@
         <kkl-typography>{{ card.category }}</kkl-typography>
       </div>
     </div>
-    <ng-container *ngIf="card.active">
+    <ng-container *ngIf="card.selected">
       <div fxLayout="row" fxLayoutAlign="center">
         <kkl-typography color="primary">{{ card.value }}</kkl-typography>
       </div>
