@@ -1,13 +1,12 @@
-<div fxFill [class.kkl-card-menu-wrapper]="true">
+<div fxFill class="kkl-card-menu-wrapper">
   <button
-    [class.kkl-card-menu]="true"
+    class="kkl-card-menu"
     mat-stroked-button
     [disableRipple]="true"
     [color]="card.active ? 'primary' : ''"
+    (click)="onSelect()"
   >
-  <mat-icon [svgIcon]="card.svgIcon"></mat-icon>
-  <span>{{ card.label }}</span>
-    <!-- <kkl-icon [color]="'warn'" [key]="card.svgIcon"></kkl-icon>
-    <kkl-typography [color]="'warn'">{{ card.label }}</kkl-typography> -->
+    <mat-icon [svgIcon]="card.svgIcon"></mat-icon>
+    <span>{{ card.label }}</span>
   </button>
 </div>
