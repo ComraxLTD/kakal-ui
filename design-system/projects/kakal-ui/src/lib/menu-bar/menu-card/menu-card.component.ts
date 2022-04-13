@@ -4,12 +4,15 @@ import { IconService } from '../../icon/icons.service';
 export interface MenuCard {
   label: string;
   svgIcon: string;
-  active?: boolean;
+  selected?: boolean;
   path?: string;
 }
 
 export interface MenuSelectEvent {
+  /** The card instance now selected. */
   selectCard: MenuCard;
+
+  /** Index of the step now selected. */
   selectedIndex: number;
 }
 

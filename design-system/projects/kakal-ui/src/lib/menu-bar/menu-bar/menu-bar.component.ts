@@ -1,8 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MenuCard, MenuSelectEvent } from '../menu-card/menu-card.component';
 
+
 export interface MenuChangedEvent {
+
+  // current state of cards
   source: MenuCard[];
+
+  // current selected interface
   event: MenuSelectEvent;
 }
 

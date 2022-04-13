@@ -3,7 +3,7 @@
     class="kkl-card-menu"
     mat-stroked-button
     [disableRipple]="true"
-    [color]="card.active ? 'primary' : ''"
+    [color]="card.selected ? 'primary' : ''"
     (click)="onSelect()"
   >
     <mat-icon [svgIcon]="card.svgIcon"></mat-icon>
