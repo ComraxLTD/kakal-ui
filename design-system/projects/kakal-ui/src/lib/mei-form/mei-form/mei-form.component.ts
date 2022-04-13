@@ -6,12 +6,13 @@ import { BehaviorSubject } from 'rxjs';
 import { KklSelectOption } from '../models/kkl-select.model';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { GridProps } from '../models/control.types';
+import { setControls } from './mei-form-class';
 @Component({
   selector: 'kkl-form',
   templateUrl: './mei-form.component.html',
   styleUrls: ['./mei-form.component.scss']
 })
-export class MeiFormComponent implements OnInit {
+export class MeiFormComponent {
 
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -58,7 +59,7 @@ export class MeiFormComponent implements OnInit {
       const removed = this.myQuestions.filter(b => !sameVals.includes(b));
       removed.forEach(c => this.formGroup.removeControl(c.key));
       this.myQuestions = val;
-      this.setControls(newVals);
+      setControls(newVals, this.formGroup, this.fb, this.localObservables);
     } else {
       this.myQuestions = val;
     }
@@ -99,7 +100,7 @@ export class MeiFormComponent implements OnInit {
     if(!this.formGroup) {
       this.formGroup = this.fb.group({});
     }
-    this.setControls(this.myQuestions);
+    setControls(this.myQuestions, this.formGroup, this.fb, this.localObservables);
   }
 
   ngAfterViewInit() {
@@ -107,62 +108,62 @@ export class MeiFormComponent implements OnInit {
     this.putEditData();
   }
 
-  setControls(controles: ControlBase[]) {
-    controles.forEach(a => {
-      if(!this.formGroup.contains(a.key)) {
-        switch (a.controlType) {
-          // case 'text':
-          // case 'password':
-          // case 'number':
-          // case 'textarea':
-          // case 'currency':
-          // case 'sum':
-          // case 'email':
-          // case 'phone':
-          // case 'cleave':
-          // case 'time':
-          // case 'range':
-          // case 'checkbox':
-          //   this.formGroup.addControl(a.key, this.fb.group({}));
-          //   if(typeof a.options === 'string') {
-          //     const subj = new BehaviorSubject(null);
-          //     this.localObservables.set(a.options, subj);
-          //     a.options = subj;
-          //   }
-          //   break;
-          case 'checkbox':
-          case 'radio':
-          case 'select':
-          case 'autocomplete':
-            this.formGroup.addControl(a.key, this.fb.control(null));
-            if(typeof a.options === 'string') {
-              const subj = new BehaviorSubject(null);
-              this.localObservables.set(a.options, subj);
-              a.options = subj;
-            }
-            break;
-          case 'dateRange':
-            this.formGroup.addControl(a.key, this.fb.group({start: this.fb.control(a.value?.start), end: this.fb.control(a.value?.end)}));
-            break;
-          case 'currency':
-            this.formGroup.addControl(a.key, this.fb.group({sum: this.fb.control(a.value?.sum), currency: this.fb.control(null)}));
-            if(typeof a.options === 'string') {
-              const subj = new BehaviorSubject(null);
-              this.localObservables.set(a.options, subj);
-              a.options = subj;
-            }
-            break;
-          default:
-            this.formGroup.addControl(a.key, this.fb.control(a.value));
-            break;
-              // return element;
-        }
-      }
-      if(a.disabled) {
-        this.formGroup.get(a.key).disable();
-      }
-    });
-  }
+  // setControls(controles: ControlBase[]) {
+  //   controles.forEach(a => {
+  //     if(!this.formGroup.contains(a.key)) {
+  //       switch (a.controlType) {
+  //         // case 'text':
+  //         // case 'password':
+  //         // case 'number':
+  //         // case 'textarea':
+  //         // case 'currency':
+  //         // case 'sum':
+  //         // case 'email':
+  //         // case 'phone':
+  //         // case 'cleave':
+  //         // case 'time':
+  //         // case 'range':
+  //         // case 'checkbox':
+  //         //   this.formGroup.addControl(a.key, this.fb.group({}));
+  //         //   if(typeof a.options === 'string') {
+  //         //     const subj = new BehaviorSubject(null);
+  //         //     this.localObservables.set(a.options, subj);
+  //         //     a.options = subj;
+  //         //   }
+  //         //   break;
+  //         case 'checkbox':
+  //         case 'radio':
+  //         case 'select':
+  //         case 'autocomplete':
+  //           this.formGroup.addControl(a.key, this.fb.control(null));
+  //           if(typeof a.options === 'string') {
+  //             const subj = new BehaviorSubject(null);
+  //             this.localObservables.set(a.options, subj);
+  //             a.options = subj;
+  //           }
+  //           break;
+  //         case 'dateRange':
+  //           this.formGroup.addControl(a.key, this.fb.group({start: this.fb.control(a.value?.start), end: this.fb.control(a.value?.end)}));
+  //           break;
+  //         case 'currency':
+  //           this.formGroup.addControl(a.key, this.fb.group({sum: this.fb.control(a.value?.sum), currency: this.fb.control(null)}));
+  //           if(typeof a.options === 'string') {
+  //             const subj = new BehaviorSubject(null);
+  //             this.localObservables.set(a.options, subj);
+  //             a.options = subj;
+  //           }
+  //           break;
+  //         default:
+  //           this.formGroup.addControl(a.key, this.fb.control(a.value));
+  //           break;
+  //             // return element;
+  //       }
+  //     }
+  //     if(a.disabled) {
+  //       this.formGroup.get(a.key).disable();
+  //     }
+  //   });
+  // }
 
   putOptions() {
     this.myOptions.forEach(b => {
@@ -172,14 +173,13 @@ export class MeiFormComponent implements OnInit {
 
   putEditData(){
     this.formGroup.patchValue(this.firstData);
-    // this.formGroup.updateValueAndValidity();
+    this.formGroup.updateValueAndValidity();
   }
 
   onSubmitEvent() {
     if (this.formGroup.valid) {
       this.submitEvent.emit(this.formGroup.value);
     } else {
-      // confirm(`please fill in all required fields`);
       alert('please fill in all required fields '+this.formGroup.errors);
     }
     this.formGroup.markAllAsTouched();

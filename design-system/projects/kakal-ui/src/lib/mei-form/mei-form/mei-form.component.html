@@ -127,6 +127,8 @@
                   [theme]="question.theme"
                   [appearance]="question.appearance"
                   [debounce]="question.debounce"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
                 >
                 </kkl-currency>
               </mat-grid-tile>
@@ -150,6 +152,7 @@
                       [debounce]="question.debounce"
                       (focusChanged)="onFocusChanged($event, question)"
                       (valueChanged)="onValueChanged($event, question)"
+                      (selectChanged)="onSelectChanged($event, question)"
                     >
                     </kkl-input>
                   </div>
@@ -280,6 +283,9 @@
                 [theme]="question.theme"
                 [appearance]="question.appearance"
                 [debounce]="question.debounce"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+                (selectChanged)="onSelectChanged($event, question)"
               >
               </kkl-currency>
             </ng-container>

@@ -42,7 +42,9 @@ export class MeiMultiAutocompleteComponent {
         });
       }
     }
-    this._options = val;
+    setTimeout(() => {
+      this._options = val;
+    }, 0);
   }
   @Input() placeHolder!: string;
   @Input() label!: string;
@@ -89,8 +91,8 @@ export class MeiMultiAutocompleteComponent {
           this.control.setValue(a?.filter(b => b.selected));
         });
       }
+      this.error$ = new BehaviorSubject<string>('');
     }, 0);
-    this.error$ = new BehaviorSubject<string>('');
   }
 
   displayFn(mei: KklSelectOption): string {
