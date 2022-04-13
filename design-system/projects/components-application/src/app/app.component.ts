@@ -38,7 +38,7 @@ export class AppComponent {
     //   key: 'first',
     //   controlType: 'select',
     //   options: 'firstQuestion',
-    //   multi: false,
+    //   multi: true,
     //   label: 'בחירה ראשונה',
     // },
     // {
@@ -50,19 +50,19 @@ export class AppComponent {
     //   // disabled: true
     //   //,
     // },
-    // {
-    //   key: 'autocomplete',
-    //   controlType: 'autocomplete',
-    //   options: 'firstQuestion',
-    //   multi: true,
-    //   label: 'local autocomplete',
-    //   // disabled: true
-    //   //,
-    // },
     {
-      key: 'currency',
-      controlType: 'currency'
-    }
+      key: 'autocomplete',
+      controlType: 'autocomplete',
+      options: 'firstQuestion',
+      multi: true,
+      label: 'local autocomplete',
+      // disabled: true
+      //,
+    },
+    // {
+    //   key: 'currency',
+    //   controlType: 'currency'
+    // }
   ];
 
   dataSource: any[] = [
@@ -107,6 +107,11 @@ export class AppComponent {
 
   ngOnInit() {
     setTimeout(() => {
+      this.columns = [
+        { key: 'committeeId', label: 'Id mm', controlType: 'number',},
+        { key: 'remiTikimCount', label: 'remiTikimCount mm', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
+        { key: 'committeeDate', label: 'תאריך  mm', controlType: 'date', },
+      ];
       console.log(this.formGroup);
       this.questions = this.questions.concat([{
         key: 'time',

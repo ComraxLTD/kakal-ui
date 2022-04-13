@@ -31,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { KKLNewPaginatorDirective } from './directives/pagination.directive';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MeiFormModule } from '../mei-form/mei-form.module';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     KKLIconModule,
     KKLButtonModule,
     FlexLayoutModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MeiFormModule
   ],
   exports: [
     LocalTableComponent,
