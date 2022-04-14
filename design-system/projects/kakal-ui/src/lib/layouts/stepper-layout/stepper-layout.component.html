@@ -35,16 +35,15 @@
           <div
             class="end-drawer-button"
             (click)="emitEndDrawer()"
-            *ngIf="portion != 1 && portion != 99"
-          >
+            >
+            <!-- *ngIf="portion != 1 && portion != 99" -->
             <!-- end drawer button -->
             <kkl-icon
-              [key]="'chevron_left'"
+              [key]="'seacrch'"
               color="success"
               [size]="4"
             ></kkl-icon>
           </div>
-
           <ng-content select="[endDrawerContent]"></ng-content>
         </div>
       </div>

@@ -72,6 +72,7 @@ export class StepperLayoutComponent {
     this._closedDrawer = this.contentPortion.close;
 
     // init actions if array exist
+    console.log(this.actions);
     if (this.actions && this.actions.length) {
       this.rowActions = this.setRowActions();
 
@@ -80,6 +81,7 @@ export class StepperLayoutComponent {
       this.showEndDrawer = this.actions.some(
         (action) => action.type === 'portion'
       );
+      console.log(this.showEndDrawer);
 
       this.showStartDrawer$ = merge(
         of(!!this.drawerAction),
