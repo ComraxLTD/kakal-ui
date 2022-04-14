@@ -11,8 +11,8 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./records-control/records-control.module').then(
-            (m) => m.RecordsControlModule
+          import('./committee/committee.module').then(
+            (m) => m.CommitteeModule
           ),
       },
     ],

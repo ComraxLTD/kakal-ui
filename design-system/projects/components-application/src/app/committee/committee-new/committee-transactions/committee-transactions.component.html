@@ -1,0 +1,27 @@
+<kkl-page [title]="title" dir="rtl">
+  <div fxLayout="column" fxLayoutGap="3rem" fxFlex="90">
+    <!-- KKL-FORM-ADVANCED SEARCH -->
+
+    <!-- <section fxLayout="row" fxLayoutAlign="end center">
+      <kkl-add-button (clickEvent)="onCreateNewSummery()"
+        >הוסף סיכום</kkl-add-button
+      >
+    </section> -->
+
+    <!-- KKL-TABLE-NEW -->
+
+    <main>
+      <kkl-local-table
+        [dataSource]="dataSource"
+        [columns]="columns"
+        [rowActions]="rowActions"
+        [colsTemplate]="{ rami: ramiTemplate }"
+        [newRowAction]="'הוסף סיכום'"
+      ></kkl-local-table>
+    </main>
+  </div>
+</kkl-page>
+
+<ng-template #ramiTemplate let-data>
+  <mat-slide-toggle></mat-slide-toggle>
+></ng-template>

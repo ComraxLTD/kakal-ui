@@ -127,8 +127,6 @@ export class NavbarBottomComponent implements OnInit {
   public onNext(): void {
     const event = this.stepperLayoutService.getStepperSelectEvent();
 
-    console.log(event)
-
     if (this.stepper) {
       this.nextStep.emit(event);
     } else {
