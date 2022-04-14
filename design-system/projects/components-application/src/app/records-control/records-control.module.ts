@@ -10,6 +10,7 @@ import {
   MaterialModule,
   KakalUiModule,
   MODULE_PREFIX,
+  ROOT_PREFIX,
 } from '../../../../kakal-ui/src/public-api';
 
 @NgModule({
@@ -21,6 +22,9 @@ import {
     MaterialModule,
     KakalUiModule,
   ],
-  providers: [{ provide: MODULE_PREFIX, useValue: 'records' }],
+  providers: [
+    { provide: ROOT_PREFIX, useValue: 'lands' },
+    { provide: MODULE_PREFIX, useValue: 'records' },
+  ],
 })
 export class RecordsControlModule {}

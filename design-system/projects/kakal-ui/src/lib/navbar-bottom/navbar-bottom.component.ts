@@ -108,7 +108,7 @@ export class NavbarBottomComponent implements OnInit {
   private setShowNext(): Observable<boolean> {
     return this.showNext && this.stepper
       ? merge(
-          this.handleOnNext(),
+          // this.handleOnNext(),
           // this.onChangedStep(),
           this.setShowNextStep$()
         )
