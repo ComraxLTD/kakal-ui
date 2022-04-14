@@ -146,18 +146,21 @@ export class StepperLayoutComponent {
           previousSelectedStep,
         };
 
-        console.log(event);
+        this.stepperLayoutService.emitStepperSelectEvent(event)
 
-        // steps.map((step) => {
-        //   if (step.selected) {
-        //     console.log(step);
-        //     step.selected = false;
-        //   }
-        //   if (step.path === url) {
-        //     console.log(step);
-        //     step.selected = true;
-        //   }
-        // });
+        // steps[selectedIndex] = selectedStep
+        // steps[previousSelectedIndex] = previousSelectedStep
+
+        steps.map((step) => {
+          if (step.selected) {
+            console.log(step);
+            step.selected = false;
+          }
+          if (step.path === url) {
+            console.log(step);
+            step.selected = true;
+          }
+        });
 
         return steps;
       })
