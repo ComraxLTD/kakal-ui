@@ -20,14 +20,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  
+
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
   @Input() showStatus$: Observable<boolean>;
   @Input() pageHeadline$: Observable<PageHeadlineModel[]>;
 
   openIcon: string = 'tree_gradient_';
-  title$: Observable<PageHeadlineModel[]>;
   status$: Observable<CardStepModel[]>;
   mobile$: Observable<boolean>;
   toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
@@ -45,7 +44,7 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title$ = this.navbarService.getHeadersObs();
+    // this.title$ = this.navbarService.getHeadersObs();
     this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
     this.openIcon = this.setMenuIcon();
