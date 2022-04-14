@@ -30,7 +30,11 @@ export class StepperLayoutComponent {
   @Input() actions: ButtonModel[];
 
   // when set to true disable default navigation
-  @Input() manuel: boolean;
+  @Input() manuel: boolean = true;
+
+  // stepperSelectEvent
+
+  stepperSelectEvent: StepperSelectEvent;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -64,8 +68,6 @@ export class StepperLayoutComponent {
   ) {}
 
   ngOnInit(): void {
-    this.stepperLayoutService.setSteps(this.setSteps());
-
     this.steps$ = this.setSteps$();
 
     this._openDrawer = this.contentPortion.open;
@@ -83,7 +85,7 @@ export class StepperLayoutComponent {
 
       this.showStartDrawer$ = merge(
         of(!!this.drawerAction),
-        this.stepperLayoutService.getDisplayDrawerObs()
+        this.stepperLayoutService.listenToDisplayDrawer()
       );
     }
 
@@ -101,26 +103,36 @@ export class StepperLayoutComponent {
     });
   }
 
-  private setSteps$(): Observable<CardStepModel[]> {
-    return this.stepperLayoutService.getStepsObs().pipe(
-      switchMap((steps) => {
-        return this.routerService.getLastPathObs(steps).pipe(
-          map((url: string) => {
-            steps.map((step) => {
-              if (step.selected) {
-                step.selected = false;
-              }
-              if (step.path === url) {
-                this.stepperLayoutService.emitChangeStep(step);
-                step.selected = true;
-              }
-            });
+  private setSteps$() {
+    return merge(this.initSteps$(), this.changesStepOnRoute$());
+  }
 
-            return steps;
-          })
-        );
+  private initSteps$() {
+    this.stepperLayoutService.emitSteps(this.setSteps());
+    return this.stepperLayoutService.listenToSteps();
+  }
+
+  private changesStepOnRoute$(): Observable<CardStepModel[]> {
+    // return this.stepperLayoutService.listenToSteps().pipe(
+    //   switchMap((steps) => {
+    const steps = this.stepperLayoutService.getSteps();
+
+    return this.routerService.getLastPathObs(steps).pipe(
+      map((url: string) => {
+        steps.map((step) => {
+          if (step.selected) {
+            step.selected = false;
+          }
+          if (step.path === url) {
+            step.selected = true;
+          }
+        });
+
+        return steps;
       })
     );
+    //   })
+    // );
   }
 
   // ACTIONS SECTION
@@ -219,10 +231,13 @@ export class StepperLayoutComponent {
   // DOM EVENTS
 
   onSelectStep(event: StepperSelectEvent): void {
-    if (!this.manuel) {
+    if (this.manuel) {
+      this.stepSelect.emit(event);
+    } else {
       this.navigate(event.selectedStep.path);
     }
-    this.stepSelect.emit(event);
+
+    this.stepperLayoutService.emitStepperSelectEvent(event)
   }
 
   emitEndDrawer(): void {
