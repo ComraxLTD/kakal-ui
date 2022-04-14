@@ -24,7 +24,7 @@ export class FormFlexComponent implements OnInit {
   @Input() public optionsMap: OptionMap = {};
   @Input() public buttonTemp: TemplateRef<any>;
 
-  @Input() formTemplate: { [key: string]: TemplateRef<any> };
+  @Input() formTemplate: { [key: string]: TemplateRef<any> } = {};
 
   buttonLabel: string;
   layout: 'row' | 'column' = 'row';
