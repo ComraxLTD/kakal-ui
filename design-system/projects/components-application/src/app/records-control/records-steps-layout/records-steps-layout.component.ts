@@ -14,6 +14,9 @@ export class RecordsStepsLayoutComponent implements OnInit {
 
    actions!: ButtonModel[]
 
+     contentPortion = { open: 10, close: 50 };
+
+
   constructor(
     private recordStepsLayoutService: RecordStepsLayoutService,
     private routerService: RouterService,

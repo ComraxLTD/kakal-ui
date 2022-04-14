@@ -11,7 +11,8 @@ import { StepperSelectEvent } from '../../stepper/stepper.component';
 import { IconService } from '../../icon/icons.service';
 
 import { map, mergeMap, switchMap } from 'rxjs/operators';
-import { merge, Observable, of } from 'rxjs';
+import { BehaviorSubject, merge, Observable, of } from 'rxjs';
+import { F } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -42,7 +43,9 @@ export class StepperLayoutComponent {
   // drawer props
   portion$: Observable<number> = of(100);
   showStartDrawer$: Observable<boolean>;
-  endDrawerSize$: Observable<number>;
+
+  endDrawerSizeSource$: BehaviorSubject<number>
+  endDrawerSize$: Observable<number> = of(0);
 
   //end drawer opened/closed
   _endDrawerOpen: boolean = false;
@@ -72,6 +75,8 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
+    this.endDrawerSizeSource$ = new BehaviorSubject(0)
+
     // init actions if array exist
     if (this.actions && this.actions.length) {
       this.rowActions = this.setRowActions();
@@ -89,6 +94,9 @@ export class StepperLayoutComponent {
     }
 
     this.portion$ = this.getBreakPoints();
+
+    this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable()
+
   }
 
   private setSteps(): CardStepModel[] {
@@ -185,7 +193,7 @@ export class StepperLayoutComponent {
           this._openDrawer = this.contentPortion.open;
           this._closedDrawer = this.contentPortion.close;
         }
-        this.endDrawerSize$ = of(this._openDrawer);
+        this.endDrawerSizeSource$.next(this._openDrawer)
         return 100 - this._openDrawer;
       })
     );
@@ -199,11 +207,12 @@ export class StepperLayoutComponent {
     if (!this._endDrawerOpen) {
       portion = 100 - this._openDrawer;
       this.portion$ = of(portion);
-      this.endDrawerSize$ = of(this._openDrawer);
+      this.endDrawerSizeSource$.next(this._openDrawer)
     } else {
       portion = 100 - this._closedDrawer;
       this.portion$ = of(portion);
-      this.endDrawerSize$ = of(this._closedDrawer);
+      this.endDrawerSizeSource$.next(this._closedDrawer)
+
     }
     this.openChanged.emit(this._endDrawerOpen);
   }

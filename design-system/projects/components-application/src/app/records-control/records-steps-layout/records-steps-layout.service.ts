@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { CardStepModel, ButtonModel, FormActions } from '../../../../../kakal-ui/src/public-api';
+import {
+  CardStepModel,
+  ButtonModel,
+  FormActions,
+} from '../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +30,7 @@ export class RecordStepsLayoutService {
   private actions: ButtonModel[] = [
     { label: 'מסמכי תיק', type: 'file', action: FormActions.VALUE_CHANGED },
   ];
+
 
   constructor() {}
 
