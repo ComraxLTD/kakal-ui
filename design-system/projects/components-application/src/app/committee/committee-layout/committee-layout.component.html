@@ -11,6 +11,7 @@
   <!-- the footer of the stepper layout -->
   <kkl-navbar-bottom
     bottom-navbar
+    [manual]="false"
     (previous)="onPrevious()"
     (save)="onSave()"
     (nextStep)="onNextStep($event)"

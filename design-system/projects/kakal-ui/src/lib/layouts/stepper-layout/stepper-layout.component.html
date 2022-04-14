@@ -80,7 +80,7 @@
         <div class="stepper">
           <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
             <kkl-stepper
-              variant="step"
+              stepType="step"
               direction="row"
               [steps$]="steps$"
               (selectStep)="onSelectStep($event)"

@@ -10,6 +10,7 @@ import { Step } from '../../vertical-steps/step/step.model';
 import { Panel } from '../accordion-layout/accordion-types';
 import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 import { Observable } from 'rxjs';
+import { StepsAccordionLayoutService } from './steps-accordion-layout.service';
 
 @Component({
   selector: 'kkl-accordion-steps-layout',
@@ -36,6 +37,8 @@ export class AccordionStepsComponent implements OnInit {
   // ** When given add a button to the accordion UI **
   @Input() buttonLabel: string;
 
+  selectedIndex$: Observable<number>;
+
   _selectedIndex: number;
   @Input()
   set selectedIndex(value: number) {
@@ -48,9 +51,13 @@ export class AccordionStepsComponent implements OnInit {
 
   @Output() stepSelect: EventEmitter<StepSelectEvent> = new EventEmitter();
 
-  constructor() {}
+  constructor(
+    private stepsAccordionLayoutService: StepsAccordionLayoutService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.selectedIndex$ = this.stepsAccordionLayoutService.listenSelectIndex()
+  }
 
   onStepChanged(event: StepSelectEvent) {
     this.stepSelect.emit(event);

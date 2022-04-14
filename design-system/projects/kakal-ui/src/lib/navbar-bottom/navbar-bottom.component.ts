@@ -12,9 +12,10 @@ import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { RouterService } from '../../services/route.service';
 import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
+import { StepsAccordionLayoutService } from '../layouts/accordion-steps-layout/steps-accordion-layout.service';
 import { StepperSelectEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { combineLatest, merge, Observable, of } from 'rxjs';
+import { combineLatest, iif, merge, Observable, of } from 'rxjs';
 import { map, pluck, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -23,6 +24,8 @@ import { map, pluck, switchMap } from 'rxjs/operators';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
+  @Input() manual = true;
+
   showNext: boolean = true;
 
   @Input()
@@ -63,6 +66,7 @@ export class NavbarBottomComponent implements OnInit {
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
+    private stepsAccordionLayoutService: StepsAccordionLayoutService,
     private routerService: RouterService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
@@ -115,20 +119,63 @@ export class NavbarBottomComponent implements OnInit {
       : of(this.showNext);
   }
 
-  // Event emitter section
-  public onPrevious(): void {
-    this.previous.emit();
-  }
-
-  public onSave(): void {
+  onSave(): void {
     this.save.emit();
   }
 
-  public onNext(): void {
+  // onPrevious(): void {
+  //   const currentPath = this.getLastPath();
+  //   const isStartStep = this.committeeLayoutService.isStartStep();
+  //   const isComplete = this.committeeLayoutService.isComplete();
+  //   if (currentPath === 'remi-portfolio' && !isStartStep && !isComplete) {
+  //     this.committeeLayoutService.previous();
+  //   } else {
+  //     this.routerService.goBack();
+  //   }
+  // }
+
+  private onPreviousStep() {
+    const event = this.stepperLayoutService.getStepperSelectEvent();
+    const isComplete = this.stepsAccordionLayoutService.isComplete();
+
+    const { selectedStep, first } = event;
+
+    console.log(first)
+
+    if (selectedStep.hasSteps && !first && !isComplete) {
+      this.stepsAccordionLayoutService.previous();
+    } else {
+      this.routerService.goBack();
+    }
+  }
+
+  // Event emitter section
+  onPrevious(): void {
+    this.manual ? this.previous.emit() : this.onPreviousStep();
+  }
+
+  private onStepNext() {
+    const event = this.stepperLayoutService.getStepperSelectEvent();
+    const isComplete = this.stepsAccordionLayoutService.isComplete();
+    const { selectedStep, last } = event;
+    if (selectedStep.hasSteps) {
+      if (!last) {
+        this.stepsAccordionLayoutService.next();
+      } else if (isComplete) {
+        this.stepsAccordionLayoutService.complete();
+      } else {
+        this.nextStep.emit(event);
+      }
+    } else {
+      this.nextStep.emit(event);
+    }
+  }
+
+  onNext(): void {
     const event = this.stepperLayoutService.getStepperSelectEvent();
 
     if (this.stepper) {
-      this.nextStep.emit(event);
+      this.manual ? this.nextStep.emit(event) : this.onStepNext();
     } else {
       this.next.emit();
     }

@@ -18,7 +18,7 @@ export class CardWizardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.type = this.step.type;
+    // this.type = this.step.type;
   }
 
   public onStepClick(): void {

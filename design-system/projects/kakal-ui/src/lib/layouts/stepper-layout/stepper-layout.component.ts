@@ -3,7 +3,7 @@ import { StepperLayoutService } from './stepper-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 
-import {  CardStepModel } from '../../cards/card-step/card-step.model';
+import { CardStepModel } from '../../cards/card-step/card-step.model';
 
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
@@ -98,22 +98,44 @@ export class StepperLayoutComponent {
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
   }
 
-  private setSteps(): CardStepModel[] {
-    return this.steps.map((step: CardStepModel) => {
-      return {
-        ...step,
-     
-      };
-    });
-  }
-
   private setSteps$() {
     return merge(this.initSteps$(), this.changesStepOnRoute$());
   }
 
   private initSteps$() {
-    this.stepperLayoutService.emitSteps(this.setSteps());
+    this.stepperLayoutService.emitSteps(this.steps);
     return this.stepperLayoutService.listenToSteps();
+  }
+
+  private setStepperSelectEvent(steps: CardStepModel[], url: string) {
+    const selectedIndex = steps.findIndex((step) => step.path === url);
+    const previousSelectedIndex = steps.findIndex((step) => step.selected);
+
+    const selectedStep = {
+      ...steps[selectedIndex],
+      selected: true,
+    } as CardStepModel;
+
+    const previousSelectedStep =
+      previousSelectedIndex !== -1
+        ? {
+            ...steps[previousSelectedIndex],
+            selected: false,
+          }
+        : null;
+
+    console.log(selectedIndex);
+
+    const event: StepperSelectEvent = {
+      selectedIndex,
+      previousSelectedIndex,
+      selectedStep,
+      previousSelectedStep,
+      first: selectedIndex === 0 || previousSelectedIndex === 0,
+      last: selectedIndex === steps.length - 1,
+    };
+
+    return event;
   }
 
   private changesStepOnRoute$(): Observable<CardStepModel[]> {
@@ -121,28 +143,10 @@ export class StepperLayoutComponent {
 
     return this.routerService.getLastPathObs(steps).pipe(
       map((url: string) => {
-        const selectedIndex = steps.findIndex((step) => step.path === url);
-        const previousSelectedIndex = steps.findIndex((step) => step.selected);
-
-        const selectedStep = {
-          ...steps[selectedIndex],
-          selected: true,
-        } as CardStepModel;
-
-        const previousSelectedStep =
-          previousSelectedIndex !== -1
-            ? {
-                ...steps[previousSelectedIndex],
-                selected: false,
-              }
-            : null;
-
-        const event: StepperSelectEvent = {
-          selectedIndex,
-          previousSelectedIndex,
-          selectedStep,
-          previousSelectedStep,
-        };
+        const event: StepperSelectEvent = this.setStepperSelectEvent(
+          steps,
+          url
+        );
 
         this.stepperLayoutService.emitStepperSelectEvent(event);
 
@@ -265,7 +269,7 @@ export class StepperLayoutComponent {
       this.navigate(event.selectedStep.path);
     }
 
-    this.stepperLayoutService.emitStepperSelectEvent(event);
+    // this.stepperLayoutService.emitStepperSelectEvent(event);
   }
 
   emitEndDrawer(): void {

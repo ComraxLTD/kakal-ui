@@ -8,14 +8,14 @@
     class="steps-container"
   >
     <ng-container
-      *ngFor="let step of steps$ | async; let i = index; let last = last"
+      *ngFor="let step of steps$ | async; let i = index; let last = last, let first = first"
     >
-      <div appSize [type]="variant" [size]="6" [step]="step">
+      <div appSize [type]="stepType" [size]="6" [step]="step">
         <ng-container *ngIf="!stepRef">
-          <ng-container [ngSwitch]="variant">
+          <ng-container [ngSwitch]="stepType">
             <ng-container *ngSwitchCase="'step'">
               <kkl-card-step
-                (stepSelect)="onStepSelect(step)"
+                (stepSelect)="onStepSelect(step, last, first)"
                 [index]="i"
                 [step]="step"
                 [options]="options"
@@ -40,8 +40,8 @@
       <div
         *ngIf="!last"
         [ngClass]="{
-          'divider-step': variant === 'step',
-          'divider-status': variant === 'status'
+          'divider-step': stepType === 'step',
+          'divider-status': stepType === 'status'
         }"
       ></div>
     </ng-container>

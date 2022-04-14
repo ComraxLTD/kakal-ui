@@ -12,7 +12,7 @@
     [steps]="steps"
     [templates]="templates"
     [linear]="options.isLinear"
-    [selectedIndex]="_selectedIndex"
+    [selectedIndex]="selectedIndex$ | async"
     (stepChanged)="onStepChanged($event)"
   >
   </kkl-vertical-steps
