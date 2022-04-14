@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PageHeadlineModel } from '../../../kakal-ui/src/lib/page-headline/page-headline.model';
 // import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
-
+import {PageHeadlineService} from '../../../kakal-ui/src/lib/page-headline/page-headline.service';
+import {IconComponent} from '../../../kakal-ui/src/lib/icon/icon.component';
 
 @Component({
   selector: 'app-root',
@@ -9,11 +11,16 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  constructor(private pageHeadlineService: PageHeadlineService) { }
+  iconComponent = IconComponent;
 
-  constructor() { }
-
+  iconsData = [
+    {key:'search',color:'primary',size:5},
+    {key:'edit',size:2},
+    {key:'keyboard_arrow_down',color:'accent'},
+    {key:'calendar'}
+  ]
   ngOnInit() {
-    this.data = [{ key: 'First', label: 'בדיקה' }, { key: 'Second', label: 'test' }, { key: 'Third', label: 'עמוד 3' }];
   }
 
   dataSource: any[] = [
