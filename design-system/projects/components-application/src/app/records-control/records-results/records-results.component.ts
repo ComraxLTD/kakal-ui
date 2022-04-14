@@ -63,7 +63,7 @@ export class RecordsResultsComponent implements OnInit {
   onOptionSelected(event: FormChangeEvent<SelectOption>) {}
 
   onActionSelected(path: string) {
-    const url = `${this.rootPrefix}/${this.modulePrefix}/details/${path}`;
+    const url = `details/${path}`;
     this.routerService.navigate(url);
   }
 }

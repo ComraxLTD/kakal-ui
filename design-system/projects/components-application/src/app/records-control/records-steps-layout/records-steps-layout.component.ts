@@ -46,7 +46,7 @@ export class RecordsStepsLayoutComponent implements OnInit {
   // navigate from bottom-navbar - next
   onNext(event: StepperSelectEvent) {
     console.log(event);
-    this.navigate(event.selectedStep.path);
+    // this.navigate(event.selectedStep.path);
   }
 
   onPrevious(): void {

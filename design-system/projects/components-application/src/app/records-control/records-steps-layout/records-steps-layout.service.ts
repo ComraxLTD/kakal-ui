@@ -8,17 +8,17 @@ export class RecordStepsLayoutService {
   private steps: CardStepModel[] = [
     {
       label: 'פרטי התיק',
-      svgIcon: 'case_details',
+      svgIcon: 'home',
       path: 'case',
     },
     {
       label: 'תשלומים',
-      svgIcon: 'payments',
+      svgIcon: 'home',
       path: 'payments',
     },
     {
       label: 'רישום לרשויות',
-      svgIcon: 'register',
+      svgIcon: 'home',
       path: 'register',
     },
   ];

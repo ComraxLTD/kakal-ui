@@ -64,7 +64,6 @@ export class StepperLayoutComponent {
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private iconService: IconService
   ) {}
 
   ngOnInit(): void {
@@ -113,8 +112,6 @@ export class StepperLayoutComponent {
   }
 
   private changesStepOnRoute$(): Observable<CardStepModel[]> {
-    // return this.stepperLayoutService.listenToSteps().pipe(
-    //   switchMap((steps) => {
     const steps = this.stepperLayoutService.getSteps();
 
     return this.routerService.getLastPathObs(steps).pipe(
@@ -131,8 +128,6 @@ export class StepperLayoutComponent {
         return steps;
       })
     );
-    //   })
-    // );
   }
 
   // ACTIONS SECTION

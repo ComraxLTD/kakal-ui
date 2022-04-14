@@ -5,7 +5,7 @@ import { RecordsStepsLayoutComponent } from './records-steps-layout/records-step
 
 const routes: Routes = [
   {
-    path: 'results',
+    path: '',
     component: RecordsResultsComponent,
   },
   {

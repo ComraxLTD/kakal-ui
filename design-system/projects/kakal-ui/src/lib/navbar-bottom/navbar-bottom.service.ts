@@ -11,10 +11,10 @@ export class NavbarBottomService {
     this.nextStep = new Subject<void>();
   }
 
-  public emitNextStep() {
-    this.nextStep.next();
-  }
-  public getNextStepObs() {
-    return this.nextStep.asObservable();
-  }
+  // public emitNextStep() {
+  //   this.nextStep.next();
+  // }
+  // public getNextStepObs() {
+  //   return this.nextStep.asObservable();
+  // }
 }

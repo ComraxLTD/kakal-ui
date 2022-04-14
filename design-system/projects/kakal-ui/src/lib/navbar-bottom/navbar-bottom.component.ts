@@ -57,11 +57,11 @@ export class NavbarBottomComponent implements OnInit {
   buttonState$: Observable<{ [x: string]: boolean }>;
 
   @Output() previous = new EventEmitter();
-  @Output() next = new EventEmitter<StepperSelectEvent>();
+  @Output() next = new EventEmitter<void>();
+  @Output() nextStep = new EventEmitter<StepperSelectEvent>();
   @Output() save = new EventEmitter();
 
   constructor(
-    private navbarBottomService: NavbarBottomService,
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
     @Inject(ROOT_PREFIX) private rootPrefix
@@ -70,7 +70,7 @@ export class NavbarBottomComponent implements OnInit {
   ngOnInit(): void {
     if (this.stepper) {
       this.steps$ = this.stepperLayoutService.listenToSteps();
-      this.nextStep$ = this.navbarBottomService.getNextStepObs();
+      // this.nextStep$ = this.navbarBottomService.getNextStepObs();
       this.stepperSelectEvent$ =
         this.stepperLayoutService.listenToStepperSelect();
       // this.selectStep$ = this.stepperLayoutService.getChangeStepObs();
@@ -109,7 +109,7 @@ export class NavbarBottomComponent implements OnInit {
     return this.showNext && this.stepper
       ? merge(
           this.handleOnNext(),
-          this.onChangedStep(),
+          // this.onChangedStep(),
           this.setShowNextStep$()
         )
       : of(this.showNext);
@@ -124,13 +124,11 @@ export class NavbarBottomComponent implements OnInit {
     this.save.emit();
   }
 
-  private onNextStep(step: CardStepModel) {
-    this.next.emit({ selectedStep: step } as StepperSelectEvent);
-  }
-
   public onNext(): void {
-    if (this.showNext && this.stepper) {
-      this.navbarBottomService.emitNextStep();
+    const event = this.stepperLayoutService.getStepperSelectEvent();
+
+    if (this.stepper) {
+      this.nextStep.emit(event);
     } else {
       this.next.emit();
     }
@@ -151,7 +149,7 @@ export class NavbarBottomComponent implements OnInit {
   private onChangedStep() {
     return this.stepperSelectEvent$.pipe(
       pluck('selectedStep'),
-      switchMap((step : CardStepModel) => {
+      switchMap((step: CardStepModel) => {
         return this.steps$.pipe(
           map((steps) => {
             const nextIndex = this.findNextStepIndex(steps, step);
@@ -160,6 +158,10 @@ export class NavbarBottomComponent implements OnInit {
         );
       })
     );
+  }
+
+  private onNextStep(step: CardStepModel) {
+    // this.next.emit({ selectedStep: step } as StepperSelectEvent);
   }
 
   private handleOnNext() {
