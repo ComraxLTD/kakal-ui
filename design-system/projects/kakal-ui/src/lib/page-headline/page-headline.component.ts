@@ -28,7 +28,7 @@ export class PageHeadlineComponent implements OnInit {
     this.headlineItems$ = this.getHeadlineItems();
   }
   getHeadlineItems(): Observable<PageHeadlineModel[]> {
-    return this.pageHeadlineService.getPageHeadlineItemsAsObs().pipe(
+    return this.pageHeadlineService.listenToPageHeadline().pipe(
       tap((pageHeadlines: PageHeadlineModel[]) =>
         pageHeadlines.forEach((headline, index) => {
           index === 0

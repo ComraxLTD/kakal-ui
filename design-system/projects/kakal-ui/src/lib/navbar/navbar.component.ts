@@ -20,9 +20,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+  
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
   @Input() showStatus$: Observable<boolean>;
+  @Input() pageHeadline$: Observable<PageHeadlineModel[]>;
 
   openIcon: string = 'tree_gradient_';
   title$: Observable<PageHeadlineModel[]>;
