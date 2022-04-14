@@ -44,7 +44,7 @@ export class StepperLayoutComponent {
   portion$: Observable<number> = of(100);
   showStartDrawer$: Observable<boolean>;
 
-  endDrawerSizeSource$: BehaviorSubject<number>
+  endDrawerSizeSource$: BehaviorSubject<number>;
   endDrawerSize$: Observable<number> = of(0);
 
   //end drawer opened/closed
@@ -66,7 +66,7 @@ export class StepperLayoutComponent {
   constructor(
     private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
-    private breakpointService: BreakpointService,
+    private breakpointService: BreakpointService
   ) {}
 
   ngOnInit(): void {
@@ -75,7 +75,7 @@ export class StepperLayoutComponent {
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
-    this.endDrawerSizeSource$ = new BehaviorSubject(0)
+    this.endDrawerSizeSource$ = new BehaviorSubject(0);
 
     // init actions if array exist
     if (this.actions && this.actions.length) {
@@ -95,8 +95,7 @@ export class StepperLayoutComponent {
 
     this.portion$ = this.getBreakPoints();
 
-    this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable()
-
+    this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
   }
 
   private setSteps(): CardStepModel[] {
@@ -124,14 +123,41 @@ export class StepperLayoutComponent {
 
     return this.routerService.getLastPathObs(steps).pipe(
       map((url: string) => {
-        steps.map((step) => {
-          if (step.selected) {
-            step.selected = false;
-          }
-          if (step.path === url) {
-            step.selected = true;
-          }
-        });
+        const selectedIndex = steps.findIndex((step) => step.path === url);
+        const previousSelectedIndex = steps.findIndex((step) => step.selected);
+
+        const selectedStep = {
+          ...steps[selectedIndex],
+          selected: true,
+        } as CardStepModel;
+
+        const previousSelectedStep =
+          previousSelectedIndex !== -1
+            ? {
+                ...steps[previousSelectedIndex],
+                selected: false,
+              }
+            : null;
+
+        const event: StepperSelectEvent = {
+          selectedIndex,
+          previousSelectedIndex,
+          selectedStep,
+          previousSelectedStep,
+        };
+
+        console.log(event);
+
+        // steps.map((step) => {
+        //   if (step.selected) {
+        //     console.log(step);
+        //     step.selected = false;
+        //   }
+        //   if (step.path === url) {
+        //     console.log(step);
+        //     step.selected = true;
+        //   }
+        // });
 
         return steps;
       })
@@ -193,7 +219,7 @@ export class StepperLayoutComponent {
           this._openDrawer = this.contentPortion.open;
           this._closedDrawer = this.contentPortion.close;
         }
-        this.endDrawerSizeSource$.next(this._openDrawer)
+        this.endDrawerSizeSource$.next(this._openDrawer);
         return 100 - this._openDrawer;
       })
     );
@@ -207,12 +233,11 @@ export class StepperLayoutComponent {
     if (!this._endDrawerOpen) {
       portion = 100 - this._openDrawer;
       this.portion$ = of(portion);
-      this.endDrawerSizeSource$.next(this._openDrawer)
+      this.endDrawerSizeSource$.next(this._openDrawer);
     } else {
       portion = 100 - this._closedDrawer;
       this.portion$ = of(portion);
-      this.endDrawerSizeSource$.next(this._closedDrawer)
-
+      this.endDrawerSizeSource$.next(this._closedDrawer);
     }
     this.openChanged.emit(this._endDrawerOpen);
   }
@@ -241,7 +266,7 @@ export class StepperLayoutComponent {
       this.navigate(event.selectedStep.path);
     }
 
-    this.stepperLayoutService.emitStepperSelectEvent(event)
+    this.stepperLayoutService.emitStepperSelectEvent(event);
   }
 
   emitEndDrawer(): void {

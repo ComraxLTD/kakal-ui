@@ -112,7 +112,6 @@ export class AppComponent {
         { key: 'remiTikimCount', label: 'remiTikimCount mm', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
         { key: 'committeeDate', label: 'תאריך  mm', controlType: 'date', },
       ];
-      console.log(this.formGroup);
       this.questions = this.questions.concat([{
         key: 'time',
         controlType: 'time'
@@ -122,12 +121,9 @@ export class AppComponent {
   }
 
   onQueryChanged(event:any) {
-    console.log(event);
   }
 
   onSelectChanged(event:any) {
-    console.log(event);
-
     if (event.key === 'first') {
       this.options = [
         {
@@ -153,7 +149,6 @@ export class AppComponent {
   }
 
   onOpenChanged(event:any) {
-    console.log(event);
 
   }
 
