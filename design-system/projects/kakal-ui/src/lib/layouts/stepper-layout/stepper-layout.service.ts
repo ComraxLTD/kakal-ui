@@ -1,43 +1,47 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { CardStepModel } from '../../cards/card-step/card-step.model';
+import { StepperSelectEvent } from '../../stepper/stepper.component';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StepperLayoutService {
-  private stepperSubject: BehaviorSubject<CardStepModel[]>;
-  private showDrawer: Subject<boolean>;
-
-  private changedStep: Subject<CardStepModel>;
+  private steps$: BehaviorSubject<CardStepModel[]>;
+  private displayDrawer$: Subject<boolean>;
+  private stepperSelectEvent$: Subject<StepperSelectEvent>;
 
   constructor() {
-    this.stepperSubject = new BehaviorSubject<CardStepModel[]>([]);
-    this.showDrawer = new Subject<boolean>();
-    this.changedStep = new Subject<CardStepModel>();
+    this.steps$ = new BehaviorSubject<CardStepModel[]>([]);
+    this.displayDrawer$ = new Subject<boolean>();
+    this.stepperSelectEvent$ = new Subject<StepperSelectEvent>();
   }
 
-  public setSteps(steps: CardStepModel[]): void {
-    this.stepperSubject.next(steps);
+  getSteps(): CardStepModel[] {
+    return this.steps$.getValue();
   }
 
-  public getStepsObs(): Observable<CardStepModel[]> {
-    return this.stepperSubject.asObservable();
+  emitSteps(steps: CardStepModel[]): void {
+    this.steps$.next(steps);
   }
 
-  public emitDisplayDrawer(value: boolean): void {
-    this.showDrawer.next(value);
+  listenToSteps(): Observable<CardStepModel[]> {
+    return this.steps$.asObservable();
   }
 
-  public getDisplayDrawerObs(): Observable<boolean> {
-    return this.showDrawer.asObservable();
+  emitDisplayDrawer(value: boolean): void {
+    this.displayDrawer$.next(value);
   }
 
-  public emitChangeStep(step?: CardStepModel) {
-    this.changedStep.next(step);
+  listenToDisplayDrawer(): Observable<boolean> {
+    return this.displayDrawer$.asObservable();
   }
 
-  public getChangeStepObs(): Observable<CardStepModel> {
-    return this.changedStep.asObservable();
+  listenToStepperSelect(): Observable<StepperSelectEvent> {
+    return this.stepperSelectEvent$.asObservable();
+  }
+  
+  emitStepperSelectEvent  (value: StepperSelectEvent): void {
+    this.stepperSelectEvent$.next(value);
   }
 }
