@@ -3,6 +3,7 @@ import {
   BreakpointService,
   KakalUiModule,
   KklFormCalendarModule,
+  KKLStepperModule,
   ROOT_PREFIX,
   RouterService,
   StepperLayoutService,
@@ -48,6 +49,7 @@ import { FormFlexComponent } from './components/form-flex/form.component';
     ReactiveFormsModule,
     KKLFormDateModule,
     KklFormCalendarModule,
+    KKLStepperModule
   ],
   providers: [
     StepperLayoutService,

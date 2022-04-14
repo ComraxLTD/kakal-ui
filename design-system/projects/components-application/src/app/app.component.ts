@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import { map, mergeMap } from 'rxjs';
+import { BreakpointService, ButtonModel, ControlBase, FormChangeEvent, FormService, OptionsModel, Question, QuestionGroupModel, RouterService, RowActionModel, SelectOption, StepperLayoutService, TableBase } from '../../../kakal-ui/src/public-api';
 
 
 @Component({
@@ -9,147 +10,132 @@ import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../k
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  options:OptionsModel[] = [
+  contentPortion = { open: 10, close: 50 };
+  actions: ButtonModel[] = [{ type: 'portion' } as ButtonModel];
+
+  formValues = { select: '', date: ''}
+
+  isFormFull(){
+    if(this.formValues.date && this.formValues.select) this.navigate('search/results')
+  }
+
+  // form variables
+  group!: QuestionGroupModel<any>;
+
+  options:SelectOption[] = [
     {
-      //this key should be the same
-      key: 'firstQuestion',
-      val: [
-        { label: 'initial option1', value: 0 },
-        { label: 'initial option2', value: 1, },
-        { label: 'initial option3', value: 2,  },
-        { label: 'initial option4', value: 3,selected:true},
-      ],
+      label: 'ציפורי',
+      value: 'any',
     },
     {
-      //this key should be the same
-      key: 'secondQuestion',
-      val: [
-        { label: 'test1', value: 1,  },
-        { label: 'test2', value: 3, disabled: true },
-        { label: 'test3', value: 2, selected: true },
-      ],
+      label: 'לביא',
+      value: 'any',
     },
-  ]
-
-  formGroup = new FormGroup({});
-
-  questions: ControlBase[] = [
-    // {
-    //   key: 'first',
-    //   controlType: 'select',
-    //   options: 'firstQuestion',
-    //   multi: false,
-    //   label: 'בחירה ראשונה',
-    // },
-    // {
-    //   key: 'second',
-    //   controlType: 'select',
-    //   options: 'secondQuestion',
-    //   multi: false,
-    //   label: ' בחירה שניה',
-    //   // disabled: true
-    //   //,
-    // },
-    // {
-    //   key: 'autocomplete',
-    //   controlType: 'autocomplete',
-    //   options: 'firstQuestion',
-    //   multi: true,
-    //   label: 'local autocomplete',
-    //   // disabled: true
-    //   //,
-    // },
     {
-      key: 'currency',
-      controlType: 'currency'
-    }
+      label: 'נס הרים',
+      value: 'any',
+    },
+    {
+      label: 'יתיר',
+      value: 'any',
+    },
+    {
+      label: 'שוני',
+      value: 'any',
+    },
   ];
 
-  dataSource: any[] = [
+  questions: Question[] = [
     {
-      committeeId: 'wtwrt',
-      remiTikimCount: 'werwsfwe',
-
+      key: 'select',
+      controlType: 'select',
+      options: this.options,
+      label: 'מרכז שדה',
+    },
+    {
+      key: 'range',
+      controlType: 'dateRange',
+      label: 'תאריך הזמנה'
     }
   ]
-
-  rowActions: RowActionModel[] = [
-    {
-      type: 'inlineEdit',
-      icon: 'edit',
-      label: 'Edit'
-    },
-    {
-      type: 'inlineDelete',
-      icon: 'cancel',
-      label: 'Delete'
-    },
-    {
-      type: 'visibility',
-      icon: 'visibility',
-      label: 'Show'
-    },
-  ]
+  groupGrid!: QuestionGroupModel;
+  groupFlex!: QuestionGroupModel;
 
 
-  columns: TableBase[] = [
-    { key: 'committeeId', label: 'Id', controlType: 'number',},
-    { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
-    { key: 'committeeDate', label: 'תאריך', controlType: 'date', },
-  ];
+  constructor(
+    private breakpointsService: BreakpointService,
+    private routerService: RouterService,
+    private stepperLayoutService: StepperLayoutService,
+    private formService: FormService
+  ) { }
 
-  editData =  'ert'
-  //{
-    //select: { label: 'editData', value: 88 }
-  //}
+  ngOnInit(): void {
+    //decide if drawer is open or closed on init
+    this.stepperLayoutService.emitDisplayDrawer(false);
 
-  constructor() { }
+    // form group
 
-  ngOnInit() {
-    setTimeout(() => {
-      console.log(this.formGroup);
-      this.questions = this.questions.concat([{
-        key: 'time',
-        controlType: 'time'
-      }])
-      // this.editData = { number: 65657 };
-    }, 4000);
+    this.groupFlex = this.setGroup(this.questions, {
+      cols: 2,
+      variant: 'flex',
+    });
   }
 
-  onQueryChanged(event:any) {
-    console.log(event);
+  // breakpoints
+  private mergeBreakPoints() {
+    return this.breakpointsService.isSmall().pipe(
+      mergeMap(isSmall => this.breakpointsService.isMobile().pipe(
+        map(isMobile => [isSmall, isMobile])
+      ))
+    );
   }
 
-  onSelectChanged(event:any) {
-    console.log(event);
+ 
 
-    if (event.key === 'first') {
-      this.options = [
-        {
-          //this key should be the same
-          key: 'firstQuestion',
-          val: [
-            { label: 'server option1', value: 0 },
-            { label: 'server option2', value: 2,  selected: true},
-            { label: 'server option3', value: 3, },
-          ],
-        },
-        {
-          //this key should be the same
-          key: 'secondQuestion',
-          val: [
-            { label: 'test1', value: 1 },
-            { label: 'test2', value: 3, selected: true },
-            { label: 'test3', value: 2},
-          ],
-        },
-      ];
+
+  // NAVIGATION EVENTS SECTION
+  private navigate(path: string) {
+    console.log(this.routerService.getCurrentPath(), path)
+    path = `/${this.routerService.getCurrentPath()}/${path}`;
+    this.routerService.navigate(path);
+  }
+//create form objects
+  private setGroup(questions: Question[],gridProps:any) {
+    return this.formService.createQuestionGroup({
+      questions,
+      key: 'test',
+      options: { gridProps: gridProps },
+    });
+  }
+
+  onFormChange(formEvent: FormChangeEvent) {
+    console.log(formEvent);
+    this.groupFlex = this.setGroup(this.questions,{
+      cols: 2,
+      variant: 'flex',
+    });
+  }
+
+  // navigate from bottom-navbar - next
+  public onNext() {
+    console.log('הזמן');
+  }
+
+  public onPrevious(): void {
+    this.routerService.goBack();
+  }
+
+  public onChangedForm(event: FormChangeEvent){
+    if(event.key === 'select'){
+      this.formValues.select = event.value.label
     }
+    if(event.key === 'range' && event.value.end){
+      this.formValues.date = event.action
+    }
+    this.isFormFull()
   }
 
-  onOpenChanged(event:any) {
-    console.log(event);
-
+  public onDrawerOpenChanged(openState: boolean) {
+    console.log(openState);
   }
-
 }
