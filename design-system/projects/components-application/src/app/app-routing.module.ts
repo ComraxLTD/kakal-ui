@@ -6,20 +6,27 @@ import { LayoutComponent } from './layout/layout.component';
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
-    data: { breadcrumb: 'דף הבית', homepage: true },
-    children: [
-      {
-        path: 'test',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('./test/test.module').then((m) => m.TestModule),
-          },
-        ],
-      },
-    ],
+    loadChildren: () =>
+      import('./records-control/records-control.module').then(
+        (m) => m.RecordsControlModule
+      ),
+  },
+  {
+    // path: '',
+    // component: LayoutComponent,
+    // data: { breadcrumb: 'דף הבית', homepage: true },
+    // children: [
+    //   {
+    //     path: 'test',
+    //     children: [
+    //       {
+    //         path: '',
+    //         loadChildren: () =>
+    //           import('./test/test.module').then((m) => m.TestModule),
+    //       },
+    //     ],
+    //   },
+    // ],
   },
   { path: 'details', component: DetailsComponent },
   { path: 'details/:id', component: DetailsComponent },

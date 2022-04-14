@@ -1,0 +1,13 @@
+<div fxFill fxLayout="row" fxLayoutAlign="space-between center">
+  <ng-container *ngFor="let table of tables">
+    <kkl-section [label]="table.label" [fxFlex]="100 / tables.length - 5">
+      <kkl-local-table
+        [dataSource]="table.data"
+        [columns]="columns"
+        [rowActions]="rowActions"
+        [paging]="false"
+        (actionClicked)="onActionClicked($event)"
+      ></kkl-local-table>
+    </kkl-section>
+  </ng-container>
+</div>

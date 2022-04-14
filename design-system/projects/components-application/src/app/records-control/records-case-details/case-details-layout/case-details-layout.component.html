@@ -1,0 +1,26 @@
+<kkl-page dir="rtl" title="פרטי התיק">
+  <div fxLayout="column" fxLayoutGap="3rem">
+    <header>
+      <app-case-details-data></app-case-details-data>
+    </header>
+    <main>
+      <mat-accordion>
+        <kkl-expand-panel variant="data">
+          <kkl-typography title color="primary" [weight]="600" [size]="2">
+            רשימת נכסים</kkl-typography
+          >
+          <app-case-details-list content></app-case-details-list>
+        </kkl-expand-panel>
+        <kkl-expand-panel variant="data" [expanded]="true">
+          <kkl-typography title color="primary" [weight]="600" [size]="2">
+            העלאת קבצי תיק</kkl-typography
+          >
+          <app-case-details-documents
+            [tables]="tables"
+            content
+          ></app-case-details-documents>
+        </kkl-expand-panel>
+      </mat-accordion>
+    </main>
+  </div>
+</kkl-page>
