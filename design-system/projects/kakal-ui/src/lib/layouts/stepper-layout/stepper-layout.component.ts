@@ -107,12 +107,12 @@ export class StepperLayoutComponent {
         return this.routerService.getLastPathObs(steps).pipe(
           map((url: string) => {
             steps.map((step) => {
-              if (step.isActive) {
-                step.isActive = false;
+              if (step.selected) {
+                step.selected = false;
               }
               if (step.path === url) {
                 this.stepperLayoutService.emitChangeStep(step);
-                step.isActive = true;
+                step.selected = true;
               }
             });
 

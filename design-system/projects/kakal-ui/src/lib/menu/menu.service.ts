@@ -30,7 +30,7 @@ export class MenuService {
 
   private unactiveStep(items: MenuItemModel[]) {
     items.find((item) => {
-      if (item.isActive) {
+      if (step.selected) {
         // item.unactive();
       }
     });

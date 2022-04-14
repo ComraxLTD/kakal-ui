@@ -40,7 +40,7 @@ export class NavbarBottomComponent implements OnInit {
   set hasSave(value: boolean) {
     this.showSave = value;
   }
-  
+
   @Input() showSave$: Observable<boolean>;
 
   @Input() buttonTemplate: TemplateRef<any>;
@@ -140,7 +140,7 @@ export class NavbarBottomComponent implements OnInit {
     const currentStepIndex = currentStep
       ? steps.findIndex((item) => item.path === currentStep.path)
       : steps.findIndex((step) => {
-          return step.isActive;
+          return step.selected;
         });
     return currentStepIndex + 1;
   }
