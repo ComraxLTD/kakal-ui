@@ -16,7 +16,7 @@
     (click)="toggleMenu()"
   >
     <kkl-icon
-    color="primary"
+      color="primary"
       kkl-button
       [key]="isOpen ? openIcon : 'tree'"
       [size]="4"
@@ -38,7 +38,7 @@
       <kkl-bread-crumbs></kkl-bread-crumbs>
     </div>
     <div>
-      <kkl-page-headline></kkl-page-headline>
+      <kkl-page-headline [pageHeadline$]="pageHeadline$"></kkl-page-headline>
     </div>
   </div>
 
