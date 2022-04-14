@@ -25,6 +25,7 @@ export class CommitteeLayoutComponent implements OnInit {
       label: 'תיקי רמ"י',
       svgIcon: 'portfolio',
       path: 'remi-portfolio',
+      hasSteps : true
     },
     {
       label: 'סיכום עסקאות',
@@ -94,6 +95,10 @@ export class CommitteeLayoutComponent implements OnInit {
     } else {
       this.navigateFormNext(currentPath);
     }
+  }
+
+  onNextStep(event : StepperSelectEvent) {
+    console.log(event)
   }
 
   onSave() {

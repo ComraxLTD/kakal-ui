@@ -8,6 +8,7 @@ import {
 import { BreakpointService } from '../../services/breakpoint.service';
 import {
   CardStepModel,
+  StepOptions,
   StepperDirection,
 } from '../cards/card-step/card-step.model';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
@@ -26,11 +27,13 @@ export interface StepperSelectEvent {
   styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
+  @Input() variant : 'step' | 'status'
   @Input() steps$: Observable<CardStepModel[]>;
   @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
+  @Input() options : StepOptions;
 
-  public mobile$: Observable<boolean>;
+   mobile$: Observable<boolean>;
 
   @Output() selectStep = new EventEmitter<StepperSelectEvent>();
 

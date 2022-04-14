@@ -3,7 +3,7 @@ import { StepperLayoutService } from './stepper-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 
-import { CardStepModel } from '../../cards/card-step/card-step.model';
+import {  CardStepModel } from '../../cards/card-step/card-step.model';
 
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
@@ -102,9 +102,7 @@ export class StepperLayoutComponent {
     return this.steps.map((step: CardStepModel) => {
       return {
         ...step,
-        size: 3,
-        variant: 'circle',
-        type: 'step',
+     
       };
     });
   }
