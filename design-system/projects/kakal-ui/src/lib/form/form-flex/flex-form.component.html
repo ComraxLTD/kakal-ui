@@ -6,6 +6,9 @@
 >
   <!-- [class.input-space]="(index + 1) % cols !== 0" -->
   <ng-container *ngFor="let question of questions; let index = index">
+
+
+
     <ng-container *ngIf="question.gridProps?.skip">
       <div flex-form-input [fxFlex]="flex * question.gridProps.skip"></div>
     </ng-container>
@@ -51,7 +54,7 @@
         <!-- NGX-EDITOR INPUT -->
         <ng-container *ngSwitchCase="'texteditor'">
           <div fxLayout="column">
-            <div [fxFlex]="((question?.gridProps?.rows * 10) || 40) + 'rem'">
+            <div [fxFlex]="(question?.gridProps?.rows * 10 || 40) + 'rem'">
               <kkl-form-texteditor
                 fxFill
                 [key]="question?.key"
@@ -109,13 +112,13 @@
         <ng-container *ngSwitchCase="'autocomplete'">
           <kkl-form-autocomplete
             [key]="question?.key"
+            [control]="formGroup.controls[question.key]"
             [label]="question?.label"
             [icon]="question?.icon"
             [multi]="question.multi"
             [asButton]="question.asButton"
             [options]="optionsMap[question?.key] || question.options"
             [optionTemplate]="formTemplate[question.key]"
-            [control]="formGroup.controls[question.key]"
             (queryChanged)="onFormChanged($event)"
             (multiOptionsSelected)="onFormChanged($event)"
             (optionSelected)="onFormChanged($event)"
@@ -185,7 +188,6 @@
   </ng-container>
 
   <ng-container *ngIf="buttonCols">
-
     <div
       [class.button-container]="true"
       [fxFlex]="flex * buttonCols"
