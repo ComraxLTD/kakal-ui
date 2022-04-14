@@ -33,7 +33,7 @@ export abstract class ControlBase {
   public withButton?: boolean;
 
   public theme?: Palette;
-  public appearance?: Appearance;
+  public appearance?: Appearance = 'outline';
   public gridProps?: GridProps;
   //for autocomplete
   public panelWidth?: boolean;
@@ -47,50 +47,50 @@ export abstract class ControlBase {
 
 
 
-  constructor(options: {
-    key: string;
-    value?: any;
-    label?: string;
-    placeHolder?: string;
-    appearance?: Appearance;
-    format?: string;
-    selector?: string;
-    controlType?: ControlType;
-    disabled?: boolean;
-    gridProps?: GridProps;
-    icon?: string;
-    options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
-    validations?: ValidatorFn[];
-    multi?: boolean;
-    panelWidth?: boolean;
-    withButton?: boolean;
-    debounce?: number;
-    maxDate?: Date;
-    minDate?: Date;
-  }) {
-    this.key = options.key || '';
-    this.value = options.value;
-    this.label = options.label || '';
-    this.placeHolder = options.placeHolder || '';
-    this.appearance = options.appearance || 'outline';
-    this.format = options.format;
-    this.controlType = options.controlType || 'text';
-    this.disabled = this.disabled || false;
-    this.validations = options.validations || [];
-    this.options = options.options || [];
-    this.gridProps = options.gridProps || {
-      cols: 1,
-      rows: 1,
-      offset: 0,
-      fullWidth: false,
-    };
-    this.icon = options.icon || '';
-    this.multi = options.multi;
-    this.panelWidth = options.panelWidth;
-    this.withButton = options.withButton;
-    this.debounce = options.debounce;
-    this.minDate = options.minDate;
-    this.maxDate = options.maxDate;
+  // constructor(options: {
+  //   key: string;
+  //   value?: any;
+  //   label?: string;
+  //   placeHolder?: string;
+  //   appearance?: Appearance;
+  //   format?: string;
+  //   selector?: string;
+  //   controlType?: ControlType;
+  //   disabled?: boolean;
+  //   gridProps?: GridProps;
+  //   icon?: string;
+  //   options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
+  //   validations?: ValidatorFn[];
+  //   multi?: boolean;
+  //   panelWidth?: boolean;
+  //   withButton?: boolean;
+  //   debounce?: number;
+  //   maxDate?: Date;
+  //   minDate?: Date;
+  // }) {
+  //   this.key = options.key || '';
+  //   this.value = options.value;
+  //   this.label = options.label || '';
+  //   this.placeHolder = options.placeHolder || '';
+  //   this.appearance = options.appearance || 'outline';
+  //   this.format = options.format;
+  //   this.controlType = options.controlType || 'text';
+  //   this.disabled = this.disabled || false;
+  //   this.validations = options.validations || [];
+  //   this.options = options.options || [];
+  //   this.gridProps = options.gridProps || {
+  //     cols: 1,
+  //     rows: 1,
+  //     offset: 0,
+  //     fullWidth: false,
+  //   };
+  //   this.icon = options.icon || '';
+  //   this.multi = options.multi;
+  //   this.panelWidth = options.panelWidth;
+  //   this.withButton = options.withButton;
+  //   this.debounce = options.debounce;
+  //   this.minDate = options.minDate;
+  //   this.maxDate = options.maxDate;
 
-  }
+  // }
 }

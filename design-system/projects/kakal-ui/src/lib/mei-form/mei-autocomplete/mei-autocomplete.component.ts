@@ -40,7 +40,9 @@ export class MeiAutocompleteComponent implements OnInit {
         });
       }
     }
-    this._options = val;
+    setTimeout(() => {
+      this._options = val;
+    }, 0);
   }
   @Input() placeHolder!: string;
   @Input() label!: string;

@@ -12,28 +12,28 @@
       [variant]="step.variant"
       [ngClass]="{
         'mat-elevation-z0': true,
-        active: step.isActive
+        active: step.selected
       }"
     >
       <mat-card-content kkl-button>
         <div fxLayout="column" fxLayoutGap=".5rem">
           <div fxLayout="column" fxLayoutAlign="end center">
             <kkl-icon
-              [color]="step.isActive ? 'paper' : 'primary'"
+              [color]="step.selected ? 'paper' : 'primary'"
               [key]="step.svgIcon"
               [size]="step.size"
             >
             </kkl-icon>
           </div>
           <div
-            [ngClass]="{ active: step.isActive }"
+            [ngClass]="{ active: step.selected }"
             fxLayout="column"
             fxLayoutAlign="center center"
           >
             <kkl-typography
-              [color]="step.isActive ? 'paper' : 'text'"
+              [color]="step.selected ? 'paper' : 'text'"
               [size]="1.2"
-              [weight]="step.isActive ? 600 : 500"
+              [weight]="step.selected ? 600 : 500"
             >
               {{ step.label }}
             </kkl-typography>

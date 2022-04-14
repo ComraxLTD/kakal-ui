@@ -31,7 +31,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   @Input() questions!: Question[];
   @Input() grid!: FormGrid;
-  @Input() expended: boolean;
+  @Input() expanded: boolean;
   @Input() advanced: boolean;
   @Input() searchKey: string;
 
@@ -63,13 +63,11 @@ export class AdvancedSearchLayoutComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.searchGroup = this.setGroup();
+
     if (this.advanced) {
-      this.advancedQuestions = this.setAdvancedQuestions(this.searchGroup);
+      this.advancedQuestions = this.getAdvancedQuestions(this.searchGroup);
     }
-    console.log(this.searchGroup)
-    console.log(this.advancedQuestions)
   }
 
   private setGroup(): QuestionGroupModel {
@@ -80,7 +78,7 @@ export class AdvancedSearchLayoutComponent implements OnInit {
     return group;
   }
 
-  private setAdvancedQuestions(group: QuestionGroupModel) {
+  private getAdvancedQuestions(group: QuestionGroupModel) {
     const advancedQuestions = [...group.questions];
     const autoIndex = advancedQuestions.findIndex(
       (q) => q.key === this.searchKey
@@ -93,11 +91,10 @@ export class AdvancedSearchLayoutComponent implements OnInit {
   }
 
   public onClick() {
-    this.expended = !this.expended;
+    this.expanded = !this.expanded;
   }
 
   public onSearchChanged(event: FormChangeEvent) {
-    console.log(event);
     this.searchChanged.emit(event);
   }
 

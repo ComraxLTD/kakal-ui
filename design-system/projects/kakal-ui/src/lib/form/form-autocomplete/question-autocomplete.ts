@@ -28,6 +28,7 @@ export class QuestionAutocompleteModel extends QuestionSelectModel {
     super(options);
     this.controlType = options.controlType || 'autocomplete';
     this.options = options.options;
+    this.icon = options.icon || 'search'
     this.multi = options.multi || false;
     this.asButton = options.asButton || false;
     this.panelWidth = options.panelWidth || false;

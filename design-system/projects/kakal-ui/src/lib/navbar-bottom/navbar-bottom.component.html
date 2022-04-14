@@ -25,12 +25,12 @@
     <!-- template button -->
     <ng-container>
       <ng-template
-        *ngTemplateOutlet="buttonTemplate; context: { $implicit: disableNext }"
+        *ngTemplateOutlet="buttonTemplate; context: { $implicit: disableNext$ }"
       ></ng-template>
     </ng-container>
 
     <!--save button -->
-    <ng-container *ngIf="hasSave">
+    <ng-container *ngIf="showSave">
       <button mat-raised-button kkl-border [thick]="2" (click)="onSave()">
         שמור
       </button>
