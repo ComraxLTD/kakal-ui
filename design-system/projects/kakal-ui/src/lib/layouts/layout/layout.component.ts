@@ -50,7 +50,7 @@ export class LayoutComponent implements OnInit {
       map((path: string) => {
         const pageHeadline: PageHeadlineModel = { value: path };
         return [pageHeadline];
-      })
+      }),
     );
   }
 
