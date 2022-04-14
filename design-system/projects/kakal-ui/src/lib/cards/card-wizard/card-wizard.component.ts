@@ -22,7 +22,7 @@ export class CardWizardComponent implements OnInit {
   }
 
   public onStepClick(): void {
-    if (!this.step.isActive) {
+    if (!this.step.selected) {
       this.changeStep.emit(this.step);
     }
   }

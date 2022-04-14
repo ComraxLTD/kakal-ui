@@ -1,5 +1,5 @@
 <div dir="rtl" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="1rem">
-  <ng-container *ngIf="headlineItems$ | async as headlineItems">
+  <ng-container *ngIf="pageHeadline$ | async as headlineItems">
     <div
       *ngFor="
         let item of headlineItems;

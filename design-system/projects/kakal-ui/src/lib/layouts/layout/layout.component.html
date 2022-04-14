@@ -7,6 +7,7 @@
   <mat-sidenav-content>
     <kkl-navbar
       [showStatus$]="showStatus$"
+      [pageHeadline$]="pageHeadline$"
       [isOpen]="menuDrawer.opened"
       (menuToggle)="menuDrawer.toggle()"
       (logoClicked)="onLogoClicked()"

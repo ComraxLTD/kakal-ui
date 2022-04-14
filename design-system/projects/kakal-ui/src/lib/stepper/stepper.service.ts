@@ -9,19 +9,19 @@ export class StepperService {
   constructor() {}
 
   private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {
-    items.find((item) => {
-      if (item[key] === value) {
-        item.isActive = true;
-        return item;
+    items.find((step) => {
+      if (step[key] === value) {
+        step.selected = true;
+        return step;
       }
     });
   }
 
   private unactiveStep(items: CardStepModel[]) {
-    items.find((item) => {
-      if (item.isActive) {
-        item.isActive = false;
-        return item;
+    items.find((step) => {
+      if (step.selected) {
+        step.selected = false;
+        return step;
       }
     });
   }

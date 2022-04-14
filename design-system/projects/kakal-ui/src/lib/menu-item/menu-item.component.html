@@ -1,17 +1,17 @@
 <mat-list-item
   kkl-button
-  [ngClass]="{ active: item.isActive }"
+  [ngClass]="{ active: item.selected }"
   (click)="onLinkClick()"
 >
   <kkl-icon
-    [color]="item.isActive ? 'paper' : color || 'primary'"
+    [color]="item.selected ? 'paper' : color || 'primary'"
     [key]="item.svgIcon"
     class="mat-icon-rtl-mirror"
     mat-list-icon
   ></kkl-icon>
   <kkl-typography
     [weight]="weight ? 600 : 500"
-    [color]="item.isActive ? 'paper' : color || 'primary'"
+    [color]="item.selected ? 'paper' : color || 'primary'"
     mat-line
   >
     {{ item.label }}

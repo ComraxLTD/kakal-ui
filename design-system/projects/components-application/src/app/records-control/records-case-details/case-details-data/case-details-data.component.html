@@ -1,0 +1,17 @@
+<div fxFill>
+  <ng-container *ngIf="recordCaseDetails$ | async as data">
+    <kkl-display-grid
+      [displayData]="displayData"
+      [data]="data"
+      [templates]="{signStatus}"
+    ></kkl-display-grid>
+  </ng-container>
+</div>
+
+<ng-template #signStatus let-item>
+  <div kkl-button>
+    <kkl-typography [underline]="true" color="primary">{{
+      item | json
+    }}</kkl-typography>
+  </div>
+</ng-template>
