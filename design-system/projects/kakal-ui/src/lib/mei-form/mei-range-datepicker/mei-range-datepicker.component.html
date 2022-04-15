@@ -8,6 +8,7 @@
     [formGroup]="groupControl"
     [rangePicker]="picker"
     (click)="picker.open()"
+    [max]="maxDate" [min]="minDate"
   >
     <input matStartDate formControlName="start" placeholder="מתאריך" />
     <input matEndDate formControlName="end" placeholder="עד תאריך" />

@@ -11,10 +11,6 @@
   font-size: 14px !important;
 }
 
-::ng-deep .mat-select-arrow {
-  opacity: 0;
-}
-
 .input-slot {
   ::ng-deep .mat-form-field-appearance-legacy,
   ::ng-deep .mat-form-field-underline {
@@ -23,9 +19,6 @@
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
-  background: none !important;
-}
-input[type="date"]::-webkit-calendar-picker-indicator {
   background: none !important;
 }
 

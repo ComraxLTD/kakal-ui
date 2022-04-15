@@ -1,0 +1,10 @@
+<ng-container [formGroup]="groupControl">
+  <mat-label>{{ label }}</mat-label>
+  <mat-form-field class="kkl-form-input" [color]="theme" [appearance]="groupControl.disabled ? 'fill' : appearance">
+    <input matInput placeholder="Start" formControlName="start" [name]="key" [type]="'text'" sumInput (focus)="onFocus()" />
+  </mat-form-field>
+  <mat-form-field class="kkl-form-input" [color]="theme" [appearance]="groupControl.disabled ? 'fill' : appearance">
+    <input matInput placeholder="End" formControlName="end" [name]="key" [type]="'text'" sumInput />
+  </mat-form-field>
+  <!-- <mat-error>{{ error$ | async }}</mat-error> -->
+</ng-container>

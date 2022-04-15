@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import { ControlBase, FormChangeEvent, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
 
 @Component({
@@ -9,6 +9,20 @@ import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../k
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+
+  iles!: any[];
+
+
+  public control: FormControl = new FormControl();
+
+
+
+
+  updateFiles(formEvent: FormChangeEvent) {
+    const { value } = formEvent;
+    console.log(value);
+  }
+
   options:OptionsModel[] = [
     {
       //this key should be the same
@@ -113,6 +127,8 @@ export class AppComponent {
         { key: 'committeeDate', label: 'תאריך  mm', controlType: 'date', },
       ];
       console.log(this.formGroup);
+      console.log(this.control.value);
+
       this.questions = this.questions.concat([{
         key: 'time',
         controlType: 'time'
@@ -153,6 +169,11 @@ export class AppComponent {
   }
 
   onOpenChanged(event:any) {
+    console.log(event);
+
+  }
+
+  onValueChanged(event:any) {
     console.log(event);
 
   }

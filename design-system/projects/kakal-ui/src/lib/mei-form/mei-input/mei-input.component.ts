@@ -25,7 +25,6 @@ export class MeiInputComponent implements OnInit {
   @Input() format!: string;
   @Input() debounce!: number;
 
-  cleave!: {};
   error$: BehaviorSubject<string>;
   color$: Observable<Palette>;
 
