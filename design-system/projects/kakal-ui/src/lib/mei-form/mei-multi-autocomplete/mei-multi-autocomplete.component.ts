@@ -174,7 +174,7 @@ export class MeiMultiAutocompleteComponent {
   }
 
   remove(meiSelect: KklSelectOption): void {
-    meiSelect.selected = true;
+    meiSelect.selected = false;
     const index = this.control.value.indexOf(meiSelect);
     if (index >= 0) {
       this.control.value.splice(index, 1);
