@@ -22,6 +22,8 @@ export interface StepperSelectEvent {
   source?: CardStatusModel[];
   previousSelectedStep?: CardStepModel;
   previousSelectedIndex?: number;
+  first? : boolean
+  last? : boolean
 }
 
 @Component({

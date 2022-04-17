@@ -8,11 +8,9 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
 import { StepperSelectEvent } from '../../stepper/stepper.component';
-import { IconService } from '../../icon/icons.service';
 
-import { map, mergeMap, switchMap } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { BehaviorSubject, merge, Observable, of } from 'rxjs';
-import { F } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'kkl-stepper-layout',
@@ -124,8 +122,6 @@ export class StepperLayoutComponent {
           }
         : null;
 
-    console.log(selectedIndex);
-
     const event: StepperSelectEvent = {
       selectedIndex,
       previousSelectedIndex,
@@ -149,9 +145,6 @@ export class StepperLayoutComponent {
         );
 
         this.stepperLayoutService.emitStepperSelectEvent(event);
-
-        // steps[selectedIndex] = selectedStep
-        // steps[previousSelectedIndex] = previousSelectedStep
 
         steps.map((step) => {
           if (step.selected) {
