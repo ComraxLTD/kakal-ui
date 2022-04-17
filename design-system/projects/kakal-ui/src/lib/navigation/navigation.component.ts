@@ -40,7 +40,7 @@ export class NavigationComponent implements OnInit {
 
   private setActiveStep$(): Observable<{ value: number }> {
     return this.steps$.pipe(
-      map((steps) => steps.findIndex((step: CardStepModel) => step.isActive)),
+      map((steps) => steps.findIndex((step: CardStepModel) => step.selected)),
       map((index: number) => {
         return {
           value: index,

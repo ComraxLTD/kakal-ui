@@ -40,7 +40,7 @@ export class StepperMobileComponent implements OnInit {
     return this.steps$.pipe(
       map(
         (steps: CardStepModel[]) =>
-          steps.findIndex((step: CardStepModel) => step) as number
+          steps.findIndex((step: CardStepModel) => step.selected) as number
       ),
       map((index: number) => {
         const item: ListItem<number> = {

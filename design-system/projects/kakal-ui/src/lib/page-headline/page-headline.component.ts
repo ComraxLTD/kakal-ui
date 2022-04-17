@@ -9,9 +9,9 @@ import { Observable, tap } from 'rxjs';
   styleUrls: ['./page-headline.component.scss'],
 })
 export class PageHeadlineComponent implements OnInit {
-  @Input() templates!: { [key: string]: TemplateRef<any> };
+  // @Input() templates!: { [key: string]: TemplateRef<any> };
 
-  public headlineItems$!: Observable<PageHeadlineModel[]>;
+  @Input() pageHeadline$!: Observable<PageHeadlineModel[]>;
 
   sizeIndexMap: { [key: number]: number } = {
     0: 3.2,
@@ -25,10 +25,10 @@ export class PageHeadlineComponent implements OnInit {
   constructor(private pageHeadlineService: PageHeadlineService) {}
 
   ngOnInit(): void {
-    this.headlineItems$ = this.getHeadlineItems();
+    this.pageHeadline$ = this.getHeadlineItems();
   }
   getHeadlineItems(): Observable<PageHeadlineModel[]> {
-    return this.pageHeadlineService.getPageHeadlineItemsAsObs().pipe(
+    return this.pageHeadline$.pipe(
       tap((pageHeadlines: PageHeadlineModel[]) =>
         pageHeadlines.forEach((headline, index) => {
           index === 0

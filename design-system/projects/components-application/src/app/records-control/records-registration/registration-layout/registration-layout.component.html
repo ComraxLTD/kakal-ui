@@ -1,0 +1,35 @@
+<kkl-page title="רישום לרשויות" dir="rtl">
+  <div fxLayout="column" fxLayoutGap="3rem">
+    <kkl-page title="הוספת מסמכים">
+      <ng-container *ngIf="optionsMap$ | async as optionsMap">
+        <kkl-form-temp
+          [formGroup]="group.formGroup"
+          [questions]="group.questions | slice: 0:slice"
+          [grid]="grid"
+          [optionsMap]="optionsMap"
+          (formChanged)="onFormChanged($event)"
+        ></kkl-form-temp>
+      </ng-container>
+    </kkl-page>
+    <kkl-page title="עדכון מנהל נכסים">
+      <div fxLayout="row" fxLayoutGap="3rem">
+        <kkl-section label="נושא" fxFlex="20">
+          <kkl-form-temp
+            fxFlex
+            [formGroup]="group.formGroup"
+            [questions]="group.questions | slice: -2:-1"
+            [grid]="{ variant: 'flex', cols: 1 }"
+          ></kkl-form-temp>
+        </kkl-section>
+        <kkl-section label="תוכן פנייה למנהל נכסים" fxFlex>
+          <kkl-form-temp
+            class="text-editor"
+            [formGroup]="group.formGroup"
+            [questions]="group.questions | slice: -1"
+            [grid]="{ variant: 'flex', cols: 1 }"
+          ></kkl-form-temp>
+        </kkl-section>
+      </div>
+    </kkl-page>
+  </div>
+</kkl-page>

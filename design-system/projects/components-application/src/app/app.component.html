@@ -34,14 +34,15 @@
 </ng-container> -->
 <kkl-local-table newRowAction="sdgsdf" [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
 <!-- <kkl-local-table
+  newRowAction="הוסף"
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
-  (actionClicked)="editRow($event)"
-  (editRow)="editRow($event)"
-  dragable="true"
-></kkl-local-table>
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
+></kkl-local-table> -->
 
+<!--
 <ng-template #expand>
   <kkl-local-table
     fxFill
