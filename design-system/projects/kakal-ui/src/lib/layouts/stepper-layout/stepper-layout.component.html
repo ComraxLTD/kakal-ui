@@ -1,11 +1,6 @@
 <ng-container *ngIf="portion$ | async as portion">
-  <mat-sidenav-container class="sidenav-container">
-    <mat-sidenav
-      #drawer
-      class="sidenav-drawer"
-      mode="side"
-      position="end"
-    >
+  <mat-sidenav-container class="sidenav-container" dir="rtl">
+    <mat-sidenav #drawer class="sidenav-drawer" mode="side" position="start">
       <!-- DRAWER CONTENT -->
       <div fxLayout="row" fxLayoutAlign="center center" fxFill>
         <div fxFlex="85" fxLayout="column" fxLayoutAlign="center center" fxFill>
@@ -20,18 +15,15 @@
       *ngIf="showEndDrawer"
       #endDrawer
       class="sidenav-drawer"
+      [opened]="true"
+      fxLayoutAlign="stretch stretch"
       mode="side"
-      position="start"
+      position="end"
       [ngStyle]="{ width: (endDrawerSize$ | async) + '%' }"
     >
       <!-- end drawer content -->
-      <div fxLayout="row" fxLayoutAlign="stretch stretch" fxFill>
-        <div
-          fxFlex="100"
-          fxLayout="column"
-          fxLayoutAlign="stretch stretch"
-          fxFill
-        >
+      <div fxLayout="row" fxFill fxLayoutAlign="stretch stretch">
+        <div fxFlex="100" fxLayout="column" fxFill>
           <div
             class="end-drawer-button"
             (click)="emitEndDrawer()"
@@ -44,7 +36,7 @@
               [size]="4"
             ></kkl-icon>
           </div>
-
+          workinh
           <ng-content select="[endDrawerContent]"></ng-content>
         </div>
       </div>
@@ -72,7 +64,11 @@
             [matBadge]="drawer.opened ? 'x' : '+'"
             [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
           >
-            <kkl-icon color="primary" [key]="drawerAction?.svgIcon" [size]="1.8">
+            <kkl-icon
+              color="primary"
+              [key]="drawerAction?.svgIcon"
+              [size]="1.8"
+            >
             </kkl-icon>
             <kkl-typography [weight]="600" [size]="1">
               {{ drawerAction.label }}
@@ -84,8 +80,9 @@
         <div class="stepper">
           <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
             <kkl-stepper
-              [steps$]="steps$"
+              stepType="step"
               direction="row"
+              [steps$]="steps$"
               (selectStep)="onSelectStep($event)"
             ></kkl-stepper>
           </ng-container>
