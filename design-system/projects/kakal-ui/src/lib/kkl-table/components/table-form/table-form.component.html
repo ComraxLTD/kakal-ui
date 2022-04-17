@@ -72,6 +72,8 @@
             [key]="question?.key"
             [label]="question?.label"
             [appearance]="question?.appearance"
+            [maxDate]="question.maxDate"
+            [minDate]="question.minDate"
             (focusChanged)="onFocusChanged($event, question)"
             (valueChanged)="onValueChanged($event, question)">
           </kkl-range-datepicker>
@@ -104,6 +106,27 @@
             (focusChanged)="onFocusChanged($event, question)"
             (valueChanged)="onValueChanged($event, question)">
           </kkl-currency>
+        </ng-container>
+        <ng-container *ngSwitchCase="'texteditor'">
+          <kkl-text-editor
+            [key]="question?.key"
+            [control]="formGroup.controls[question.key]"
+            [placeHolder]="question.placeHolder"
+            [debounce]="question.debounce"
+            (valueChanged)="onValueChanged($event, question)"
+          ></kkl-text-editor>
+        </ng-container>
+        <ng-container *ngSwitchCase="'range'">
+          <kkl-range
+            [groupControl]="formGroup.controls[question.key]"
+            [label]="question.label"
+            [key]="question.key"
+            [theme]="question.theme"
+            [appearance]="question.appearance"
+            [debounce]="question.debounce"
+            (focusChanged)="onFocusChanged($event, question)"
+            (valueChanged)="onValueChanged($event, question)"
+          ></kkl-range>
         </ng-container>
         <ng-container *ngSwitchDefault>
           <kkl-input

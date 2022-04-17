@@ -8,26 +8,7 @@ export function setControls(controles: ControlBase[] | TableBase[], form: FormGr
     controles.forEach(a => {
       if(!form.contains(a.key)) {
         switch (a.controlType) {
-          // case 'text':
-          // case 'password':
-          // case 'number':
-          // case 'textarea':
-          // case 'currency':
-          // case 'sum':
-          // case 'email':
-          // case 'phone':
-          // case 'cleave':
-          // case 'time':
-          // case 'range':
           // case 'checkbox':
-          //   this.formGroup.addControl(a.key, this.fb.group({}));
-          //   if(typeof a.options === 'string') {
-          //     const subj = new BehaviorSubject(null);
-          //     this.localObservables.set(a.options, subj);
-          //     a.options = subj;
-          //   }
-          //   break;
-          case 'checkbox':
           case 'radio':
           case 'select':
           case 'autocomplete':
@@ -39,6 +20,7 @@ export function setControls(controles: ControlBase[] | TableBase[], form: FormGr
             }
             break;
           case 'dateRange':
+          case 'range':
             form.addControl(a.key, fb.group({start: fb.control(a.value?.start), end: fb.control(a.value?.end)}));
             break;
           case 'currency':

@@ -1,4 +1,4 @@
-<mat-form-field [appearance]="control.disabled ? 'fill' : appearance">
+<mat-form-field [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
   <mat-label>{{ label }}</mat-label>
   <input type="text" [matAutocomplete]="auto" [placeholder]="placeHolder" matInput [formControl]="control"
     (focusout)="setErrorMessage()" />

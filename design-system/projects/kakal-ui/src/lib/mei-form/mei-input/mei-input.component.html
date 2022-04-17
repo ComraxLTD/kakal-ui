@@ -1,20 +1,20 @@
-<mat-form-field class="kkl-form-input" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance">
+<mat-form-field class="kkl-form-input" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
   <mat-label>{{ label }}</mat-label>
 
   <ng-container [ngSwitch]="controlType">
     <!-- TEXTAREA -->
     <ng-container *ngSwitchCase="'textarea'">
-      <textarea matInput [rows]="gridProps?.rows * 2" [formControl]="control" [name]="key" (focusout)="validate()" (focus)="onFocus()"></textarea>
+      <textarea matInput [rows]="gridProps?.rows * 2" [formControl]="control" (focusout)="validate()" (focus)="onFocus()"></textarea>
     </ng-container>
 
 
     <ng-container *ngSwitchCase="'phone'">
-      <input matInput [formControl]="control" [name]="key" [type]="'text'" phoneInput
+      <input matInput [formControl]="control" [type]="'text'" phoneInput
         (focusout)="validate()" (focus)="onFocus()" />
     </ng-container>
 
     <ng-container *ngSwitchCase="'sum'">
-      <input matInput [formControl]="control" [name]="key" [type]="'text'" sumInput
+      <input matInput [formControl]="control" [type]="'text'" sumInput
         (focusout)="validate()" (focus)="onFocus()" />
     </ng-container>
 
@@ -47,7 +47,7 @@
 
     <!-- TEXT/NUMBER -->
     <ng-container *ngSwitchDefault>
-      <input matInput [formControl]="control" [name]="key" [type]="controlType"
+      <input matInput [formControl]="control" [type]="controlType"
         (focusout)="validate()" (focus)="onFocus()"/>
     </ng-container>
   </ng-container>

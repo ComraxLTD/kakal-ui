@@ -123,9 +123,14 @@ export * from './lib/mei-form/mei-form/mei-form.component';
 export * from './lib/mei-form/mei-directives/phone.directive';
 export * from './lib/mei-form/mei-directives/sum.directive';
 export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
-export * from './lib/mei-form/mei-checkbox/mei-checkbox.component';
 export * from './lib/mei-form/mei-radiogroup/mei-radiogroup.component';
 export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
+export * from './lib/mei-form/mei-text-editor/mei-text-editor.component';
+export * from './lib/mei-form/mei-range/mei-range.component';
+export * from './lib/mei-form/mei-currency/mei-currency.component';
+export * from './lib/mei-form/mei-advanced-search/mei-advanced-search.component';
+export * from './lib/mei-form/mei-filters/mei-filters.component';
+
 
 // FORM QUESTIONS //
 

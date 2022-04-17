@@ -6,6 +6,7 @@ import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Appearance } from '../models/control.types';
 
 @Component({
   selector: 'kkl-autocomplete',
@@ -51,7 +52,7 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() withButton!: string;
   @Input() icon!: string;
   @Input() panelWidth!: string;
-  @Input() appearance!: string;
+  @Input() appearance: Appearance;
 
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();

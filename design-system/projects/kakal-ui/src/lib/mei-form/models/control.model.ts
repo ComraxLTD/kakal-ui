@@ -4,45 +4,45 @@ import { Palette } from '../../../styles/theme';
 import { Appearance, ControlType, GridProps } from './control.types';
 import { KklSelectOption } from './kkl-select.model';
 
-export abstract class ControlBase {
-  public key: string;
-  public label?: string;
-  public placeHolder?: string;
-  public value?: any | undefined;
-  public controlType?: ControlType;
+export interface ControlBase {
+  key: string;
+  label?: string;
+  placeHolder?: string;
+  value?: any | undefined;
+  controlType?: ControlType;
 
   //for use in form creation
-  public validations?: ValidatorFn[];
-  public disabled?: boolean;
+  validations?: ValidatorFn[];
+  disabled?: boolean;
 
   // only for datepicker
-  public maxDate?: Date;
-  public minDate?: Date;
+  maxDate?: Date;
+  minDate?: Date;
 
   //for select and autocomplete
-  public options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
+  options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
   //for input and autocomplete
-  public debounce?: number;
+  debounce?: number;
   //for input
-  public format?: string;
+  format?: string;
   //for input and autocomplete
-  public icon?: string;
+  icon?: string;
   //for select and autocomplete
-  public multi?: boolean;
+  multi?: boolean;
   //for autocomplete
-  public withButton?: boolean;
+  withButton?: boolean;
 
-  public theme?: Palette;
-  public appearance?: Appearance = 'outline';
-  public gridProps?: GridProps;
+  theme?: Palette;
+  appearance?: Appearance;
+  gridProps?: GridProps;
   //for autocomplete
-  public panelWidth?: boolean;
+  panelWidth?: boolean;
 
-  public queryChanged?: Function;
-  public selectChanged?: Function;
-  public openedChange?: Function;
-  public valueChanged?: Function;
-  public focusChanged?: Function;
+  queryChanged?: Function;
+  selectChanged?: Function;
+  openedChange?: Function;
+  valueChanged?: Function;
+  focusChanged?: Function;
 
 
 
