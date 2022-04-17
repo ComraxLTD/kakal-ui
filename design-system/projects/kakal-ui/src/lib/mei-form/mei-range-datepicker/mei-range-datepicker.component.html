@@ -1,7 +1,4 @@
-<mat-form-field
-  [appearance]="groupControl.disabled ? 'fill' : appearance"
-  class="kkl-datepicker"
->
+<mat-form-field [appearance]="groupControl.disabled ? 'fill' : appearance || 'outline'" class="kkl-datepicker">
   <mat-label>{{ label }}</mat-label>
 
   <mat-date-range-input

@@ -5,6 +5,7 @@ import { KklFormActions } from '../models/kkl-form-events';
 import { KklFormChangeEvent } from '../models/kkl-form-events';
 import { MessageService } from '../mei-services/message.service';
 import { BehaviorSubject, take } from 'rxjs';
+import { Appearance } from '../models/control.types';
 
 @Component({
   selector: 'kkl-select',
@@ -47,7 +48,7 @@ export class MeiSelectComponent implements OnInit {
   @Input() label!: string;
   @Input() theme!: string;
   @Input() key!: string;
-  @Input() appearance!: string;
+  @Input() appearance: Appearance;
 
   @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();

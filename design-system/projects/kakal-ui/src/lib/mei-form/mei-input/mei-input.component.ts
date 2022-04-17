@@ -17,7 +17,7 @@ export class MeiInputComponent implements OnInit {
   @Input() controlType!: ControlType;
   @Input() label!: string;
   @Input() placeHolder!: string;
-  @Input() appearance!: Appearance;
+  @Input() appearance: Appearance;
   @Input() theme!: Palette;
   @Input() index!: number;
   @Input() gridProps!: GridProps;

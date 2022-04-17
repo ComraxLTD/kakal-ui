@@ -180,7 +180,6 @@
                       [debounce]="question.debounce"
                       (focusChanged)="onFocusChanged($event, question)"
                       (valueChanged)="onValueChanged($event, question)"
-                      (selectChanged)="onSelectChanged($event, question)"
                     >
                     </kkl-input>
                   </div>
@@ -194,8 +193,7 @@
 
         <mat-grid-tile *ngIf="hasButton" [colspan]="group?.gridProps.buttonCols || 1">
           <div class="btn-form" fxFlex="100">
-            <ng-container *ngTemplateOutlet=" buttonTemp || defaultTemplate; context: {$implicit: formGroup}">
-            </ng-container>
+            <kkl-stroke-button type="submit" color="primary" [disabled]="!formGroup.valid">{{ buttonLabel }}</kkl-stroke-button>
           </div>
         </mat-grid-tile>
       </mat-grid-list>
@@ -368,8 +366,7 @@
 
       <ng-container *ngIf="hasButton">
         <div [class.button-container]="true" fxFlex kkl-form-button>
-          <ng-container *ngTemplateOutlet=" buttonTemp || defaultTemplate; context: { $implicit: formGroup }"
-          ></ng-container>
+          <kkl-stroke-button type="submit" color="primary" [disabled]="!formGroup.valid">{{ buttonLabel }}</kkl-stroke-button>
         </div>
       </ng-container>
 
@@ -378,12 +375,3 @@
   </ng-container>
 </ng-container>
 
-
-<ng-template #defaultTemplate let-formGroup>
-  <kkl-stroke-button
-    type="submit"
-    color="primary"
-    [disabled]="!formGroup.valid"
-    >{{ buttonLabel }}</kkl-stroke-button
-  >
-</ng-template>

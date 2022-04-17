@@ -1,4 +1,4 @@
-<mat-form-field color="primary" [appearance]="control.disabled ? 'fill' : appearance" class="kkl-form-date">
+<mat-form-field color="primary" [appearance]="control.disabled ? 'fill' : appearance || 'outline'" class="kkl-form-date">
   <mat-label>{{ label }}</mat-label>
 
   <input matInput [matDatepicker]="dp" [formControl]="control" [max]="maxDate" [min]="minDate"

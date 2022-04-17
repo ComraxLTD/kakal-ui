@@ -33,6 +33,9 @@ import { NgxEditorModule } from 'ngx-editor';
 import { MeiRangeComponent } from './mei-range/mei-range.component';
 import {MatSliderModule} from '@angular/material/slider';
 import { MatDividerModule } from '@angular/material/divider';
+import { MeiAdvancedSearchComponent } from './mei-advanced-search/mei-advanced-search.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MeiFiltersComponent } from './mei-filters/mei-filters.component';
 
 export const MY_MY_FORMATS = {
   parse: {
@@ -66,11 +69,12 @@ export const MY_MY_FORMATS = {
     KKLDirectivesModule,
     NgxEditorModule,
     MatSliderModule,
-    MatDividerModule
+    MatDividerModule,
+    MatExpansionModule
   ],
-  declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
-     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent],
-  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent,
+  declarations: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
+     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent, MeiFiltersComponent],
+  exports: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent,
     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiTextEditorComponent, MeiCurrencyComponent, MeiRangeComponent],
     providers: [
       { provide: DateAdapter, useClass: DateFnsAdapter },

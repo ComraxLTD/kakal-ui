@@ -1,4 +1,4 @@
-<mat-form-field class="kkl-form-input" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance">
+<mat-form-field class="kkl-form-input" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
   <mat-label>{{ label }}</mat-label>
 
   <ng-container [ngSwitch]="controlType">

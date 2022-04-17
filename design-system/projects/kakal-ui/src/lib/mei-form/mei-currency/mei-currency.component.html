@@ -1,4 +1,4 @@
-<mat-form-field [formGroup]="groupControl" class="kkl-form-select" [color]="theme" [appearance]="groupControl.disabled ? 'fill' : appearance">
+<mat-form-field [formGroup]="groupControl" class="kkl-form-select" [color]="theme" [appearance]="groupControl.disabled ? 'fill' : appearance || 'outline'">
   <mat-label>{{ label }}</mat-label>
 
   <input matInput formControlName="sum" [name]="key" [type]="'text'" sumInput
