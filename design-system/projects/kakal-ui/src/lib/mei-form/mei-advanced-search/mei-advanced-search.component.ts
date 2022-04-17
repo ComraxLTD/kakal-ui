@@ -34,6 +34,8 @@ export class MeiAdvancedSearchComponent implements OnInit {
   expended: boolean;
 
 
+  @Input() tableFilters!: ControlBase[];
+
   myQuestions!: ControlBase[];
   firstQuestions!: ControlBase;
   @Input() set controls(val: ControlBase[]) {
@@ -47,7 +49,7 @@ export class MeiAdvancedSearchComponent implements OnInit {
   }
 
   firstData: any;
-  @Input() set editData(data: any) {
+  @Input() set patchData(data: any) {
     this.firstData = data;
     if(this.formGroup) {
       this.putEditData();

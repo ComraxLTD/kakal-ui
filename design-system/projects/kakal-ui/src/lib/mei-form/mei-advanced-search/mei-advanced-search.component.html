@@ -50,10 +50,11 @@
   <!-- FILTER CHIPS SECTION -->
 
   <ng-container *ngIf="myQuestions.length > 0">
-    <!-- <kkl-filters
-      (filterChanged)="onFilterChanged($event)"
-      (filterLookupChanged)="onFilterLookUpChanged($event)"
-      [formGroup]="searchGroup.formGroup"
-    ></kkl-filters> -->
+    <kkl-filters
+      [controls]="myQuestions.concat(tableFilters)"
+      [formGroup]="formGroup"
+      (selectChanged)="onSelectChanged($event)"
+      (valueChanged)="onValueChanged($event)"
+    ></kkl-filters>
   </ng-container>
 </div>

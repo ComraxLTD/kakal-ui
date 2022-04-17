@@ -135,8 +135,8 @@ export class LocalTableComponent implements OnInit {
 
   editItems: any[] = [];
   rows: FormArray = this.fb.array([]);
-  searchRow: FormGroup = this.fb.group({});
-  form: FormGroup = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
+  @Input() searchRow: FormGroup;
+  form: FormGroup;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -168,6 +168,10 @@ export class LocalTableComponent implements OnInit {
 
 
   ngOnInit(): void {
+    if(!this.searchRow) {
+      this.searchRow = this.fb.group({});
+    }
+    this.form = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
     setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
   }
 

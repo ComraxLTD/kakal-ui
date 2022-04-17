@@ -75,7 +75,7 @@ export const MY_MY_FORMATS = {
   declarations: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
      SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent, MeiFiltersComponent],
   exports: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent,
-    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiTextEditorComponent, MeiCurrencyComponent, MeiRangeComponent],
+    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiTextEditorComponent, MeiCurrencyComponent, MeiRangeComponent, MeiFiltersComponent],
     providers: [
       { provide: DateAdapter, useClass: DateFnsAdapter },
       { provide: MAT_DATE_LOCALE, useValue: he },
