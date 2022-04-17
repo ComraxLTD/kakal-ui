@@ -9,12 +9,12 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class StepperLayoutService {
   private steps$: BehaviorSubject<CardStepModel[]>;
   private displayDrawer$: Subject<boolean>;
-  private stepperSelectEvent$: Subject<StepperSelectEvent>;
+  private stepperSelectEvent$: BehaviorSubject<StepperSelectEvent>;
 
   constructor() {
     this.steps$ = new BehaviorSubject<CardStepModel[]>([]);
     this.displayDrawer$ = new Subject<boolean>();
-    this.stepperSelectEvent$ = new Subject<StepperSelectEvent>();
+    this.stepperSelectEvent$ = new BehaviorSubject<StepperSelectEvent>(null);
   }
 
   getSteps(): CardStepModel[] {
@@ -37,11 +37,15 @@ export class StepperLayoutService {
     return this.displayDrawer$.asObservable();
   }
 
+  getStepperSelectEvent(): StepperSelectEvent {
+    return this.stepperSelectEvent$.getValue();
+  }
+
   listenToStepperSelect(): Observable<StepperSelectEvent> {
     return this.stepperSelectEvent$.asObservable();
   }
-  
-  emitStepperSelectEvent  (value: StepperSelectEvent): void {
+
+  emitStepperSelectEvent(value: StepperSelectEvent): void {
     this.stepperSelectEvent$.next(value);
   }
 }

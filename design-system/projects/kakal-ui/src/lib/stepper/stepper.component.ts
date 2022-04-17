@@ -18,6 +18,8 @@ export interface StepperSelectEvent {
   selectedIndex: number;
   previousSelectedStep?: CardStepModel;
   previousSelectedIndex?: number;
+  first? : boolean
+  last? : boolean
 }
 
 @Component({
