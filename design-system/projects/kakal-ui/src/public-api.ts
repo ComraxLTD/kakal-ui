@@ -127,6 +127,9 @@ export * from './lib/mei-form/mei-radiogroup/mei-radiogroup.component';
 export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
 export * from './lib/mei-form/mei-text-editor/mei-text-editor.component';
 export * from './lib/mei-form/mei-range/mei-range.component';
+export * from './lib/mei-form/mei-currency/mei-currency.component';
+export * from './lib/mei-form/mei-advanced-search/mei-advanced-search.component';
+export * from './lib/mei-form/mei-filters/mei-filters.component';
 
 
 // FORM QUESTIONS //
