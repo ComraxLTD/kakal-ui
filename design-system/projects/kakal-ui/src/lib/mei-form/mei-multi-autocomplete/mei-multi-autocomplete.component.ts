@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
+import { Appearance } from '../models/control.types';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
 
@@ -53,7 +54,7 @@ export class MeiMultiAutocompleteComponent {
   @Input() withButton!: string;
   @Input() icon!: string;
   @Input() panelWidth!: string;
-  @Input() appearance!: string;
+  @Input() appearance: Appearance;
 
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();

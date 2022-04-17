@@ -1,39 +1,52 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { distinctUntilChanged, startWith } from 'rxjs';
+import { startWith, distinctUntilChanged, debounceTime } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
-import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { Appearance } from '../models/control.types';
+import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
+import { Palette } from '../../../styles/theme';
 
 @Component({
-  selector: 'kkl-range-datepicker',
-  templateUrl: './mei-range-datepicker.component.html',
-  styleUrls: ['./mei-range-datepicker.component.scss']
+  selector: 'kkl-range',
+  templateUrl: './mei-range.component.html',
+  styleUrls: ['./mei-range.component.scss']
 })
-export class MeiRangeDatepickerComponent implements OnInit {
+export class MeiRangeComponent implements OnInit {
 
   @Input() groupControl!: FormGroup;
   @Input() key: string;
   @Input() label: string;
   @Input() appearance: Appearance;
-
-  @Input() maxDate: Date;
-  @Input() minDate: Date;
+  @Input() theme!: Palette;
+  @Input() debounce!: number;
 
   @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
-  constructor(private messageService: MessageService) { }
+
+  // error$: BehaviorSubject<string>;
+
+
+  constructor(
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
-
+    // this.error$ = new BehaviorSubject<string>('');
     this.groupControl.valueChanges.pipe(
       startWith(''),
       distinctUntilChanged(),
+      debounceTime(this.debounce? this.debounce : 300),
     ).subscribe(a => this.onValueChanged());
   }
 
+
+
+
   // private setErrorMessage() {
-  //   const error = this.messageService.getErrorMessage(this.groupControl, this.placeHolder);
+  //   const error = this.messageService.getErrorMessage(
+  //     this.control,
+  //     ''
+  //   );
 
   //   this.error$.next(error);
   //   if (error && this.control.touched) {
@@ -45,15 +58,9 @@ export class MeiRangeDatepickerComponent implements OnInit {
   //   this.setErrorMessage();
   // }
 
-  onValueChanged() {
-    this.valueChanged.emit({
-      key: this.key,
-      value: this.groupControl.value,
-      action: KklFormActions.VALUE_CHANGED,
-    });
-  }
 
-  onFocus(): void {
+  // EVENTS SECTION
+  onFocus() {
     this.focusChanged.emit({
       key: this.key,
       value: this.groupControl.value,
@@ -61,6 +68,13 @@ export class MeiRangeDatepickerComponent implements OnInit {
     });
   }
 
+  onValueChanged() {
+    this.valueChanged.emit({
+      key: this.key,
+      value: this.groupControl.value,
+      action: KklFormActions.VALUE_CHANGED,
+    });
+  }
 
 
 }

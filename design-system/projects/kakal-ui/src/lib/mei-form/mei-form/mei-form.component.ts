@@ -24,8 +24,6 @@ export class MeiFormComponent {
   @Input() grid: GridProps;
   variant: 'flex' | 'grid' = 'grid';
 
-  @Input() buttonTemp: TemplateRef<any>;
-
   @Input() rowHeight: number;
 
   @Input() templates: {
@@ -34,7 +32,6 @@ export class MeiFormComponent {
 
   @Input() formGroup!: FormGroup;
 
-  @Input() optionsSlot: { [key: string]: ElementRef };
   @Input() buttonLabel: string = 'שמור';
 
   gutter: number;
@@ -77,7 +74,7 @@ export class MeiFormComponent {
   }
 
   firstData: any;
-  @Input() set editData(data: any) {
+  @Input() set patchData(data: any) {
     this.firstData = data;
     if(this.formGroup) {
       this.putEditData();

@@ -11,6 +11,7 @@ export class CardModel {
   public type?: CardType;
   public path?: string;
   public size?: number;
+  
 
   constructor(options: {
     key?: string;

@@ -1,4 +1,4 @@
-<mat-form-field class="kkl-form-select" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance">
+<mat-form-field class="kkl-form-select" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
   <mat-label>{{ label }}</mat-label>
 
   <mat-select [multiple]="multi" [placeholder]="placeHolder" [formControl]="control" [compareWith]="compareFunction"

@@ -15,7 +15,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { he } from 'date-fns/locale';
 import { KKLIconModule } from '../icon/icon.module';
 import { MeiAutocompleteComponent } from './mei-autocomplete/mei-autocomplete.component';
-import { MeiCheckboxComponent } from './mei-checkbox/mei-checkbox.component';
 import { MeiCurrencyComponent } from './mei-currency/mei-currency.component';
 import { MeiDatepickerComponent } from './mei-datepicker/mei-datepicker.component';
 import { PhoneInputDirective } from './mei-directives/phone.directive';
@@ -29,6 +28,14 @@ import { MeiSelectComponent } from './mei-select/mei-select.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatButtonModule} from '@angular/material/button';
 import { KKLDirectivesModule } from '../directives/directives.module';
+import { MeiTextEditorComponent } from './mei-text-editor/mei-text-editor.component';
+import { NgxEditorModule } from 'ngx-editor';
+import { MeiRangeComponent } from './mei-range/mei-range.component';
+import {MatSliderModule} from '@angular/material/slider';
+import { MatDividerModule } from '@angular/material/divider';
+import { MeiAdvancedSearchComponent } from './mei-advanced-search/mei-advanced-search.component';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MeiFiltersComponent } from './mei-filters/mei-filters.component';
 
 export const MY_MY_FORMATS = {
   parse: {
@@ -59,12 +66,16 @@ export const MY_MY_FORMATS = {
     MatCheckboxModule,
     FlexLayoutModule,
     MatButtonModule,
-    KKLDirectivesModule
+    KKLDirectivesModule,
+    NgxEditorModule,
+    MatSliderModule,
+    MatDividerModule,
+    MatExpansionModule
   ],
-  declarations: [MeiFormComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiCheckboxComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
-     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent],
-  exports: [MeiFormComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent, MeiCheckboxComponent,
-    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent],
+  declarations: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
+     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent, MeiFiltersComponent],
+  exports: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent,
+    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiTextEditorComponent, MeiCurrencyComponent, MeiRangeComponent],
     providers: [
       { provide: DateAdapter, useClass: DateFnsAdapter },
       { provide: MAT_DATE_LOCALE, useValue: he },
