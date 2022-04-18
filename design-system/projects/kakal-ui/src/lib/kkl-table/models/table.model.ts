@@ -1,9 +1,9 @@
-import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
-import { BehaviorSubject } from 'rxjs';
+import { ValidatorFn } from '@angular/forms';
 import { Palette } from '../../../styles/theme'
 import { Appearance, ControlType } from '../../form/models/question.types'
 import { KklSelectOption } from '../../mei-form/models/kkl-select.model';
 
+import { BehaviorSubject } from 'rxjs';
 import { RowActionModel } from './table-actions.model';
 
 export interface TableBase {
@@ -53,35 +53,5 @@ export interface TableBase {
   templateName?: string;
   notEditable?: boolean;
 
-  // constructor(options: {
-  //   key: string;
-  //   value?: any;
-  //   label?: string;
-  //   placeHolder?: string;
-  //   appearance?: Appearance;
-  //   format?: string;
-  //   selector?: string;
-  //   controlType?: ControlType;
-  //   disabled?: boolean;
-  //   icon?: string;
-  //   validations?: ValidatorFn[];
-  //   filter?: boolean;
-  //   editable?: boolean;
-  // }) {
-  //   this.key = options.key || '';
-  //   this.value = options.value;
-  //   this.label = options.label || '';
-  //   this.placeHolder = options.placeHolder || '';
-  //   this.appearance = options.appearance || 'outline';
-  //   this.format = options.format;
-  //   this.selector = options.selector;
-  //   this.controlType = options.controlType || 'text';
-  //   this.disabled = this.disabled || false;
-  //   this.validations = options.validations || [];
-  //   this.icon = options.icon || '';
-  //   this.control = options.control || null;
-  //   this.cleave = options.cleave || {};
-  //   this.filter = options.filter === false? false : true;
-  //   this.editable = options.editable === false? false : true;
-  // }
+
 }
