@@ -9,9 +9,13 @@
 >
   <ng-container>
     <mat-step
-
       [completed]="step.completed"
-      *ngFor="let step of steps; let i = index"
+      *ngFor="
+        let step of steps;
+        let i = index;
+        let first = first;
+        let last = last
+      "
     >
       <ng-template matStepLabel>
         <div (click)="onStepClick(step, i)">
@@ -23,7 +27,7 @@
       <div fxLayout="row" fxLayoutAlign="end">
         <div fxFlex="95">
           <ng-container
-            *ngTemplateOutlet="templates[step.key]; context :{ $implicit :{step, index : i}}"
+            *ngTemplateOutlet="templates[step.key]; context :{ $implicit :{step, index : i, first, last}}"
           ></ng-container>
         </div>
       </div>

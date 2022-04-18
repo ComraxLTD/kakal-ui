@@ -261,7 +261,7 @@ export class StepperLayoutComponent {
     } else {
       this.navigate(event.selectedStep.path);
     }
-
+    console.log(event)
     // this.stepperLayoutService.emitStepperSelectEvent(event);
   }
 

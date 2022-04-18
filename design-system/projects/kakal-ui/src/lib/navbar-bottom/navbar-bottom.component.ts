@@ -66,7 +66,6 @@ export class NavbarBottomComponent implements OnInit {
 
   constructor(
     private stepperLayoutService: StepperLayoutService,
-    private stepsAccordionLayoutService: StepsAccordionLayoutService,
     private navbarBottomService: NavbarBottomService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}

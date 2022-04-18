@@ -47,10 +47,11 @@ export class NavbarBottomService {
     const event = this.stepperLayoutService.getStepperSelectEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
     const { selectedStep, last, selectedIndex } = event as StepperSelectEvent;
+    console.log(last);
     if (selectedStep.hasSteps) {
       if (!last) {
         this.stepsAccordionLayoutService.next();
-      } else if (isComplete) {
+      } else if (!isComplete) {
         this.stepsAccordionLayoutService.complete();
       } else {
         this.onNextStepNavigation(selectedIndex);
