@@ -32,7 +32,6 @@ export class AccordionStepsComponent implements OnInit {
   // ** Template map for panel and step content **
   @Input() templates: { [key: string]: TemplateRef<any> };
 
-
   // optional
 
   // ** When set to true disable self navigation of vertical steps **
@@ -65,19 +64,25 @@ export class AccordionStepsComponent implements OnInit {
 
   ngOnInit(): void {
     this.selectedIndex$ = this.stepsAccordionLayoutService.listenSelectIndex();
-    this.complete$ = this.stepsAccordionLayoutService.listenComplete()
+    this.complete$ = this.stepsAccordionLayoutService.listenComplete();
     this.stepsChangedEvent = this.initStepChangedEvent();
     this._emitChanged();
+  }
+
+  private initSelectEvent(): StepSelectEvent {
+    const complete: boolean = this.stepsAccordionLayoutService.isComplete();
+
+    return {
+      selectedIndex: this._selectedIndex,
+      last: complete ? complete : this._selectedIndex === this.steps.length - 1,
+      first: this._selectedIndex === 0,
+    } as StepSelectEvent;
   }
 
   private initStepChangedEvent() {
     const stepsChangedEvent = {
       source: this.steps,
-      event: {
-        selectedIndex: this._selectedIndex,
-        last: this._selectedIndex === this.steps.length - 1,
-        first: this._selectedIndex === 0,
-      } as StepSelectEvent,
+      event: this.initSelectEvent(),
     };
 
     return stepsChangedEvent;
@@ -85,7 +90,7 @@ export class AccordionStepsComponent implements OnInit {
 
   onStepChanged(event: StepSelectEvent) {
     this.stepsChangedEvent = { source: this.steps, event };
-    this._emitChanged()
+    this._emitChanged();
   }
 
   private _emitChanged() {

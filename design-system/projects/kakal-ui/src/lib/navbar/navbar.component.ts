@@ -10,9 +10,9 @@ import {
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
-import { PageHeadlineModel } from '../page-headline/page-headline.model';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PageHeadline } from '../page-headline/page-headline.component';
 
 @Component({
   selector: 'kkl-navbar',
@@ -24,7 +24,7 @@ export class NavbarComponent implements OnInit {
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
   @Input() showStatus$: Observable<boolean>;
-  @Input() pageHeadline$: Observable<PageHeadlineModel[]>;
+  @Input() pageHeadline$: Observable<PageHeadline[]>;
 
   openIcon: string = 'tree_gradient_';
   status$: Observable<CardStepModel[]>;

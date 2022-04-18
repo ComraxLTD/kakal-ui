@@ -260,9 +260,8 @@ export * from './lib/sidenav/sidenav.module';
 export * from './lib/sidenav/sidenav.component';
 
 // page-headline
-export * from './lib/page-headline/page-headline.component';
-export * from './lib/page-headline/page-headline.model';
 export * from './lib/page-headline/page-headline.module';
+export * from './lib/page-headline/page-headline.component';
 export * from './lib/page-headline/page-headline.service';
 
 // status-bars

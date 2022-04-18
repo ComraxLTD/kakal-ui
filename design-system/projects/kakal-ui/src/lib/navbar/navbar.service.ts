@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
-import { PageHeadlineModel } from '../page-headline/page-headline.model';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
+import { PageHeadline } from '../page-headline/page-headline.component';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class NavbarService {
   private headers: { [key: string]: string };
 
   private titleSubject: BehaviorSubject<string>;
-  private headersSubject: BehaviorSubject<Observable<PageHeadlineModel[]>>;
+  private headersSubject: BehaviorSubject<Observable<PageHeadline[]>>;
   private statusSubject: BehaviorSubject<CardStatusModel[]>;
   private selectStatusSubject: BehaviorSubject<CardStatusModel>;
 
@@ -25,12 +25,14 @@ export class NavbarService {
   public setHeaders(headers: { [key: string]: string }): void {
     this.headers = headers;
   }
-  
-  public setHeadersObs(headers: Observable<PageHeadlineModel[]>): void {
-    this.headersSubject = new BehaviorSubject<Observable<PageHeadlineModel[]>>(headers);
+
+  public setHeadersObs(headers: Observable<PageHeadline[]>): void {
+    this.headersSubject = new BehaviorSubject<Observable<PageHeadline[]>>(
+      headers
+    );
   }
 
-  public getHeadersObs(): Observable<PageHeadlineModel[]> {
+  public getHeadersObs(): Observable<PageHeadline[]> {
     return this.headersSubject?.asObservable().pipe(mergeAll());
   }
 

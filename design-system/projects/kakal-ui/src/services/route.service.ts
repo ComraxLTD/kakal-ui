@@ -12,9 +12,6 @@ export class RouterService {
   private modulePrefix$: BehaviorSubject<string> = new BehaviorSubject(
     'small-contract'
   );
-  public currentPath$: BehaviorSubject<string> = new BehaviorSubject('');
-
-  public currentRoute: string;
   public history: string[] = [];
 
   constructor(
@@ -22,7 +19,7 @@ export class RouterService {
     private location: Location,
     private activatedRoute: ActivatedRoute
   ) {
-    this.listenToRoute();
+    // this.listenToRoute$();
   }
 
   public getUrl(path: string) {
@@ -46,19 +43,19 @@ export class RouterService {
     return this.setLastPath(this.router.url);
   }
 
-  public listenToRoute(): Observable<string> {
+  public listenToRoute$(): Observable<string> {
     return this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map((event: any) => {
         this.history.push(event.urlAfterRedirects);
-        this.currentRoute = (event as NavigationEnd).url;
+        // this.currentRoute = (event as NavigationEnd).url;
         return event.url;
       })
     );
   }
 
-  public getLastPathObs(steps?: CardStepModel[]): Observable<string> {
-    return this.listenToRoute().pipe(
+  public getLastPath$(steps?: CardStepModel[]): Observable<string> {
+    return this.listenToRoute$().pipe(
       startWith(this.getCurrentPath()),
       map((path: string) =>
         steps

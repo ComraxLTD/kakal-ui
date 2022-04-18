@@ -50,15 +50,19 @@ export class NavbarBottomService {
     const stepsChangedEvent =
       this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
+
     const { selectedStep, selectedIndex } =
       stepperSelectEvent as StepperSelectEvent;
-    const { event } = stepsChangedEvent as StepsChangedEvent;
     if (selectedStep.hasSteps) {
+      const { event } = stepsChangedEvent as StepsChangedEvent;
+      console.log(event);
+      console.log(isComplete, 'complete');
       if (!event.last) {
         this.stepsAccordionLayoutService.next();
       } else if (!isComplete) {
         this.stepsAccordionLayoutService.complete();
       } else {
+        console.log('navigation');
         this.onNextStepNavigation(selectedIndex);
       }
     } else {
@@ -67,15 +71,21 @@ export class NavbarBottomService {
   }
 
   onPreviousStep() {
-    const event = this.stepperLayoutService.getStepperSelectEvent();
+    const stepperSelectEvent =
+      this.stepperLayoutService.getStepperSelectEvent();
+    const stepsChangedEvent =
+      this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
 
-    const { selectedStep, first } = event;
+    const { selectedStep } = stepperSelectEvent as StepperSelectEvent;
 
-    console.log(first);
-
-    if (selectedStep.hasSteps && !first && !isComplete) {
-      this.stepsAccordionLayoutService.previous();
+    if (stepsChangedEvent) {
+      const { event } = stepsChangedEvent as StepsChangedEvent;
+      if (selectedStep.hasSteps && !event.first && !isComplete) {
+        this.stepsAccordionLayoutService.previous();
+      } else {
+        this.routerService.goBack();
+      }
     } else {
       this.routerService.goBack();
     }
@@ -84,7 +94,7 @@ export class NavbarBottomService {
   setShowNextStep$(): Observable<boolean> {
     return this.stepperLayoutService.listenToSteps().pipe(
       switchMap((steps: CardStepModel[]) => {
-        return this.routerService.getLastPathObs().pipe(
+        return this.routerService.getLastPath$().pipe(
           map((url: string) => {
             const index = steps.findIndex((item) => item.path === url);
             return !(steps.length === index + 1);

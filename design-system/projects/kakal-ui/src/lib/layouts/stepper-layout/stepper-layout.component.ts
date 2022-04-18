@@ -137,12 +137,14 @@ export class StepperLayoutComponent {
   private changesStepOnRoute$(): Observable<CardStepModel[]> {
     const steps = this.stepperLayoutService.getSteps();
 
-    return this.routerService.getLastPathObs(steps).pipe(
+    return this.routerService.getLastPath$(steps).pipe(
       map((url: string) => {
         const event: StepperSelectEvent = this.setStepperSelectEvent(
           steps,
           url
         );
+
+        console.log(event)
 
         this.stepperLayoutService.emitStepperSelectEvent(event);
 
@@ -238,18 +240,9 @@ export class StepperLayoutComponent {
     this.openChanged.emit(this._endDrawerOpen);
   }
 
-  // NAVIGATE HELPER METHODS
-  private getUrl(path: string) {
-    const routes = this.routerService.currentRoute.split('/');
-    routes.unshift();
-    routes.pop();
-    routes.push(path);
-    return routes.join('/');
-  }
-
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    const url = this.getUrl(path);
+    const url = this.routerService.getUrl(path);
     this.routerService.navigate(url);
   }
 
@@ -261,8 +254,6 @@ export class StepperLayoutComponent {
     } else {
       this.navigate(event.selectedStep.path);
     }
-    console.log(event)
-    // this.stepperLayoutService.emitStepperSelectEvent(event);
   }
 
   emitEndDrawer(): void {
