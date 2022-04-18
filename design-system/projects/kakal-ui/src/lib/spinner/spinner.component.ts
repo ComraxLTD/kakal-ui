@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { SpinnerService } from './spinner.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-spinner',
@@ -15,7 +15,7 @@ export class SpinnerComponent implements OnInit {
   @Input() value: number;
   @Input() diameter: number;
 
-  public isLoading$: Observable<boolean>;
+   isLoading$: Observable<boolean>;
 
   constructor(private spinnerService: SpinnerService) {
     this.isLoading$ = this.spinnerService.getListen();

@@ -1,22 +1,33 @@
 @use "../../styles/variables" as main;
 
-.kkl-tabs {
-    ::ng-deep {
-        .mat-tab-labels {
-            flex-direction: column;
-        }
-        mat-ink-bar {
-            display: none;
-        }
-        .mat-tab-header {
-            border-bottom: none;
-        }
-        .mat-tab-label-active {
-            color: main.color(primary);
-            background-color: rgba($color: lightgrey, $alpha: 0.2);
-        }
-        .mat-tab-body-wrapper {
-            padding: 1rem;
-        }
+::ng-deep mat-tab-group.kkl-tabs {
+  .default {
+    .mat-tab-header {
+      margin-bottom: 16px !important;
     }
+
+    .mat-tab-label-content {
+      font-weight: 600;
+      color: black !important;
+    }
+  }
+
+  .table {
+    .mat-tab-labels {
+      flex-direction: column;
+    }
+    mat-ink-bar {
+      display: none;
+    }
+    .mat-tab-header {
+      border-bottom: none;
+    }
+    .mat-tab-label-active {
+      color: main.color(primary);
+      background-color: rgba($color: lightgrey, $alpha: 0.2);
+    }
+    .mat-tab-body-wrapper {
+      padding: 1rem;
+    }
+  }
 }

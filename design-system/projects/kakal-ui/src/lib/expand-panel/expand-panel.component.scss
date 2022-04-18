@@ -11,6 +11,7 @@
 
   &.table {
     background: main.color(table) !important;
+    padding: initial !important;
   }
 
   &.form {
@@ -57,6 +58,7 @@
 
   &.table {
     background-color: main.color(table) !important;
+    padding: initial !important;
   }
 
   &:hover:not(.table) {
