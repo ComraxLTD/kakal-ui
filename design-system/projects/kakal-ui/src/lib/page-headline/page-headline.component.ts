@@ -11,31 +11,31 @@ import { Observable, tap } from 'rxjs';
 export class PageHeadlineComponent implements OnInit {
   // @Input() templates!: { [key: string]: TemplateRef<any> };
 
-  @Input() pageHeadline$!: Observable<PageHeadlineModel[]>;
+  pageHeadline$!: Observable<PageHeadlineModel[]>;
 
-  sizeIndexMap: { [key: number]: number } = {
-    0: 3.2,
-    1: 1.8,
-  };
+  // sizeIndexMap: { [key: number]: number } = {
+  //   0: 3.2,
+  //   1: 1.8,
+  // };
 
-  weightIndexMap: { [key: number]: number } = {
-    0: 600,
-  };
+  // weightIndexMap: { [key: number]: number } = {
+  //   0: 600,
+  // };
 
   constructor(private pageHeadlineService: PageHeadlineService) {}
 
   ngOnInit(): void {
-    this.pageHeadline$ = this.getHeadlineItems();
+    this.pageHeadline$ = this.pageHeadlineService.listenToPageHeadline();
   }
-  getHeadlineItems(): Observable<PageHeadlineModel[]> {
-    return this.pageHeadline$.pipe(
-      tap((pageHeadlines: PageHeadlineModel[]) =>
-        pageHeadlines.forEach((headline, index) => {
-          index === 0
-            ? (this.sizeIndexMap[index] = 3.2)
-            : (this.sizeIndexMap[index] = 1.8);
-        })
-      )
-    );
-  }
+  // getHeadlineItems(): Observable<PageHeadlineModel[]> {
+  //   return this.pageHeadline$.pipe(
+  //     tap((pageHeadlines: PageHeadlineModel[]) =>
+  //       pageHeadlines.forEach((headline, index) => {
+  //         index === 0
+  //           ? (this.sizeIndexMap[index] = 3.2)
+  //           : (this.sizeIndexMap[index] = 1.8);
+  //       })
+  //     )
+  //   );
+  // }
 }

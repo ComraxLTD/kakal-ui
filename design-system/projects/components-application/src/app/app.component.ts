@@ -1,8 +1,7 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineModel, PageHeadlineService, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineModel, PageHeadlineService, RowActionModel, TableBase, StatusBars } from '../../../kakal-ui/src/public-api';
 
-import { StatusBarsModel } from '@ComraxLTD/kakal-ui/lib/status-stpes/status-steps.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -79,38 +78,38 @@ export class AppComponent {
   //   // }
   // ];
 
-  // dataSource: any[] = [
-  //   {
-  //     committeeId: 'wtwrt',
-  //     remiTikimCount: 'werwsfwe',
+  dataSource: any[] = [
+    {
+      committeeId: 'wtwrt',
+      remiTikimCount: 'werwsfwe',
 
-  //   }
-  // ]
+    }
+  ]
 
-  // rowActions: RowActionModel[] = [
-  //   {
-  //     type: 'inlineEdit',
-  //     icon: 'edit',
-  //     label: 'Edit'
-  //   },
-  //   {
-  //     type: 'inlineDelete',
-  //     icon: 'cancel',
-  //     label: 'Delete'
-  //   },
-  //   {
-  //     type: 'visibility',
-  //     icon: 'visibility',
-  //     label: 'Show'
-  //   },
-  // ]
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      label: 'Edit'
+    },
+    {
+      type: 'inlineDelete',
+      icon: 'cancel',
+      label: 'Delete'
+    },
+    {
+      type: 'visibility',
+      icon: 'visibility',
+      label: 'Show'
+    },
+  ]
 
 
-  // columns: TableBase[] = [
-  //   { key: 'committeeId', label: 'Id', controlType: 'number',},
-  //   { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
-  //   { key: 'committeeDate', label: 'תאריך', controlType: 'date', },
-  // ];
+  columns: TableBase[] = [
+    { key: 'committeeId', label: 'Id', controlType: 'number',},
+    { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
+    { key: 'committeeDate', label: 'תאריך', controlType: 'date', },
+  ];
 
   // editData =  'ert'
   // //{
@@ -247,25 +246,42 @@ export class AppComponent {
   //   this.motionService.createDynamicSideNav(this.container, 'test', template);
   // }
 
-  status: StatusBarsModel = {
-    label: 'statusBars',
-    authorizedBars: 3,
-    totalBars: 6,
-  };
-  headlineItems: PageHeadlineModel[] = [
-    { value: 'אקליפטוס יער', },
-    { value: 'אקליפטוס ', },
-    { value:this.status, template:true },
-    { value: new Date(), format:'date'},
-  ];
+  // status: StatusBars = {
+  //   label: 'statusBars',
+  //   authorizedBars: 3,
+  //   totalBars: 6,
+  // };
+  // headlineItems: PageHeadlineModel[] = [
+  //   { value: 'אקליפטוס יער', },
+  //   { value: 'אקליפטוס ', },
+  //   { value:this.status, status:true },
+  //   { value: new Date(), format:'date'},
+  // ];
 
-  constructor(private pageHeadlineService: PageHeadlineService) {}
-  ngOnInit(): void {
-    this.headlineItems = this.headlineItems.map((item, index) => ({
-      ...item,
-      size: index != 0 ? 1.8 : 2.9,
-    }));
-    this.pageHeadlineService.emitPageHeadlineItems(this.headlineItems);
-  }
+  // headlineItems2: PageHeadlineModel[] = [
+  //   { value: 'אקליפטוס יgggער', },
+  //   { value: 'אקליפטgggוס ', },
+  //   { value:this.status, status:true },
+  //   { value: new Date(), format:'date'},
+  // ];
+  // expression = true;
+
+  // constructor(private pageHeadlineService: PageHeadlineService) {}
+  // ngOnInit(): void {
+  //   // this.headlineItems = this.headlineItems.map((item, index) => ({
+  //   //   ...item,
+  //   //   size: index != 0 ? 1.8 : 2.9,
+  //   // }));
+  //   this.pageHeadlineService.emitPageHeadlineItems(this.headlineItems);
+  //   setTimeout(() => {
+  //     this.pageHeadlineService.addPageHeadlineItems(this.headlineItems2);
+  //     this.expression = false;
+  //   }, 1000);
+
+  //   setTimeout(() => {
+  //     this.expression = true;
+  //   }, 5000);
+
+  // }
 
 }

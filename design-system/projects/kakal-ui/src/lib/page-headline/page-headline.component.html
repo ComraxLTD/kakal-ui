@@ -1,37 +1,18 @@
 <div dir="rtl" fxLayout="row" fxLayoutAlign="start end" fxLayoutGap="1rem">
   <ng-container *ngIf="pageHeadline$ | async as headlineItems">
-    <div
-      *ngFor="
-        let item of headlineItems;
-        let first = first;
-        let last = last;
-        let i = index
-      "
-      fxLayout="row"
-      fxLayoutAlign="space-between center"
-      fxLayoutGap=".5rem"
-      >
+    <div *ngFor="let item of pageHeadline$ | async; let first = first; let last = last; let i = index"
+      fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap=".5rem">
 
-      <ng-container
-        *ngTemplateOutlet="
-          item.template ? statusTemplate : defaultTemplate;
-          context: { $implicit: item,i }
-        "
-      ></ng-container>
-
-      <kkl-typography *ngIf="!last" [size]="2" [color]="'primary'"
-        >&#8226;</kkl-typography
-      >
-    </div>
-    </ng-container>
-
-    <ng-template #defaultTemplate let-item let-i="i">
-      <kkl-typography [size]="sizeIndexMap[i]" [weight]="weightIndexMap[i]">
-        {{ item?.value | format: item?.format }}</kkl-typography
-        >
+      <ng-container *ngIf="item.status; else normalTemp">
+        <kkl-status-steps dir="ltr" [status]="item.value"></kkl-status-steps>
+      </ng-container>
+      <ng-template #normalTemp>
+        <kkl-typography [size]="first? 3.2 : 1.8" weight="600">
+          {{ item?.value | format: item?.format }}
+        </kkl-typography>
       </ng-template>
 
-      <ng-template #statusTemplate let-item>
-      <kkl-status-steps dir="ltr" [status]="item.value"></kkl-status-steps>
-    </ng-template>
-  </div>
+      <kkl-typography *ngIf="!last" [size]="2" [color]="'primary'">&#8226;</kkl-typography>
+    </div>
+  </ng-container>
+</div>

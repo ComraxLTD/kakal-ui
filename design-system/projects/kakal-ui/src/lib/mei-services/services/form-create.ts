@@ -1,12 +1,12 @@
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { BehaviorSubject } from "rxjs";
 import { TableBase } from "../../kkl-table/models/table.model";
-import { ControlBase } from "../models/control.model";
-import { KklSelectOption } from "../models/kkl-select.model";
+import { ControlBase } from '../../mei-form/models/control.model';
+import { KklSelectOption } from "../../mei-form/models/kkl-select.model";
 
 export function setControls(controles: ControlBase[] | TableBase[], form: FormGroup, fb: FormBuilder, localObservables: Map<string, BehaviorSubject<KklSelectOption[]>>) {
     controles.forEach(a => {
-      if(!form.contains(a.key)) {
+      if(!form?.contains(a.key)) {
         switch (a.controlType) {
           // case 'checkbox':
           case 'radio':
