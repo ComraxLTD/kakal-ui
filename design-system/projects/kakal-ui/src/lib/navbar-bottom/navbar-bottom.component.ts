@@ -67,7 +67,7 @@ export class NavbarBottomComponent implements OnInit {
   constructor(
     private stepperLayoutService: StepperLayoutService,
     private stepsAccordionLayoutService: StepsAccordionLayoutService,
-    private routerService: RouterService,
+    private navbarBottomService: NavbarBottomService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
@@ -111,7 +111,7 @@ export class NavbarBottomComponent implements OnInit {
       ? merge(
           // this.handleOnNext(),
           // this.onChangedStep(),
-          this.setShowNextStep$()
+          this.navbarBottomService.setShowNextStep$()
         )
       : of(this.showNext);
   }
@@ -131,65 +131,20 @@ export class NavbarBottomComponent implements OnInit {
   //   }
   // }
 
-  private onPreviousStep() {
-    const event = this.stepperLayoutService.getStepperSelectEvent();
-    const isComplete = this.stepsAccordionLayoutService.isComplete();
-
-    const { selectedStep, first } = event;
-
-    console.log(first);
-
-    if (selectedStep.hasSteps && !first && !isComplete) {
-      this.stepsAccordionLayoutService.previous();
-    } else {
-      this.routerService.goBack();
-    }
-  }
-
   // Event emitter section
   onPrevious(): void {
-    this.manual ? this.previous.emit() : this.onPreviousStep();
-  }
-
-  private navigate(path: string) {
-    const url = this.routerService.getUrl(path);
-    this.routerService.navigate(url);
-  }
-
-  private onNextStepNavigation(selectedIndex: number) {
-    const steps = this.stepperLayoutService.getSteps();
-    const nextIndex = selectedIndex + 1;
-    if (steps[nextIndex]) {
-      const nextPath = steps[nextIndex].path;
-      this.navigate(nextPath);
-    }
-  }
-
-  private onNextStep() {
-    const event = this.stepperLayoutService.getStepperSelectEvent();
-    const isComplete = this.stepsAccordionLayoutService.isComplete();
-    const { selectedStep, last, selectedIndex } = event as StepperSelectEvent;
-    if (selectedStep.hasSteps) {
-      if (!last) {
-        this.stepsAccordionLayoutService.next();
-      } else if (isComplete) {
-        this.stepsAccordionLayoutService.complete();
-      } else {
-        this.onNextStepNavigation(selectedIndex);
-        // this.nextStep.emit(event);
-      }
-    } else {
-      console.log('working')
-      this.onNextStepNavigation(selectedIndex);
-      // this.nextStep.emit(event);
-    }
+    this.manual
+      ? this.previous.emit()
+      : this.navbarBottomService.onPreviousStep();
   }
 
   onNext(): void {
     const event = this.stepperLayoutService.getStepperSelectEvent();
 
     if (this.stepper) {
-      this.manual ? this.nextStep.emit(event) : this.onNextStep();
+      this.manual
+        ? this.nextStep.emit(event)
+        : this.navbarBottomService.onNextStep();
     } else {
       this.next.emit();
     }
@@ -233,19 +188,6 @@ export class NavbarBottomComponent implements OnInit {
             const nextIndex = this.findNextStepIndex(steps);
             this.onStepNext(steps[nextIndex]);
             return nextIndex + 1 === steps.length ? false : true;
-          })
-        );
-      })
-    );
-  }
-
-  private setShowNextStep$(): Observable<boolean> {
-    return this.stepperLayoutService.listenToSteps().pipe(
-      switchMap((steps: CardStepModel[]) => {
-        return this.routerService.getLastPathObs().pipe(
-          map((url: string) => {
-            const index = steps.findIndex((item) => item.path === url);
-            return !(steps.length === index + 1);
           })
         );
       })
