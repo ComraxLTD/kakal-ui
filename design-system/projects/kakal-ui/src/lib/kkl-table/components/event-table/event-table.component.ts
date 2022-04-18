@@ -10,7 +10,7 @@ import { TableServerModel } from '../../models/table-server.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatTable } from '@angular/material/table';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { setControls } from '../../../mei-form/mei-form/mei-form-class';
+import { setControls } from '../../../mei-services/services/form-create';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
 
@@ -54,9 +54,9 @@ export class EventTableComponent implements OnInit {
   @Input() dragable: boolean;
 
 
-  oneColumns: TableBase[] = [];
+  oneColumns: TableBase[];
   @Input() set columns(value: TableBase[]) {
-    if(this.oneColumns) {
+    if(this.oneColumns && this.searchRow) {
       const newVals: TableBase[] = [];
       const sameVals: TableBase[] = [];
       value.forEach(a => {
@@ -86,11 +86,11 @@ export class EventTableComponent implements OnInit {
     if(this.dragable) {
       this.displayedColumns.unshift('dragHandeler')
     }
-    const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
-    this.searchRow = row;
+    // const row = this.fb.group({});
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    // this.searchRow = row;
   }
 
 

@@ -37,6 +37,7 @@ export type ControlType =
   | 'currency'
   | 'texteditor'
   | 'range'
+  | 'costum'
 
 
   | 'upload';

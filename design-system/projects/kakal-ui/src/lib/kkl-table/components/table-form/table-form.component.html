@@ -128,6 +128,9 @@
             (valueChanged)="onValueChanged($event, question)"
           ></kkl-range>
         </ng-container>
+        <!-- <ng-container *ngSwitchCase="'costum'">
+          <ng-container *ngTemplateOutlet="templates[question.key]"></ng-container>
+        </ng-container> -->
         <ng-container *ngSwitchDefault>
           <kkl-input
             [control]="controlContainer.control.controls[question.key]"

@@ -108,28 +108,29 @@ export * from './lib/form/services/validations.service';
 
 // mei form
 export * from './lib/mei-form/mei-form.module';
-export * from './lib/mei-form/models/kkl-form-events';
 export * from './lib/mei-form/models/options.model';
-export * from './lib/mei-form/models/control.model';
-export * from './lib/mei-form/models/control.types';
-export * from './lib/mei-form/models/kkl-form-events';
 export * from './lib/mei-form/models/kkl-select.model';
+export * from './lib/mei-form/models/kkl-form-events';
+export * from './lib/mei-form/models/control.types';
+export * from './lib/mei-form/models/control.model';
+export * from './lib/mei-form/mei-text-editor/mei-text-editor.component';
 export * from './lib/mei-form/mei-services/message.service';
 export * from './lib/mei-form/mei-select/mei-select.component';
 export * from './lib/mei-form/mei-range-datepicker/mei-range-datepicker.component';
+export * from './lib/mei-form/mei-range/mei-range.component';
+export * from './lib/mei-form/mei-radiogroup/mei-radiogroup.component';
 export * from './lib/mei-form/mei-multi-autocomplete/mei-multi-autocomplete.component';
 export * from './lib/mei-form/mei-input/mei-input.component';
 export * from './lib/mei-form/mei-form/mei-form.component';
-export * from './lib/mei-form/mei-directives/phone.directive';
-export * from './lib/mei-form/mei-directives/sum.directive';
-export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
-export * from './lib/mei-form/mei-radiogroup/mei-radiogroup.component';
-export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
-export * from './lib/mei-form/mei-text-editor/mei-text-editor.component';
-export * from './lib/mei-form/mei-range/mei-range.component';
-export * from './lib/mei-form/mei-currency/mei-currency.component';
-export * from './lib/mei-form/mei-advanced-search/mei-advanced-search.component';
 export * from './lib/mei-form/mei-filters/mei-filters.component';
+export * from './lib/mei-form/mei-directives/sum.directive';
+export * from './lib/mei-form/mei-directives/phone.directive';
+export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
+export * from './lib/mei-form/mei-currency/mei-currency.component';
+export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
+export * from './lib/mei-form/mei-advanced-search/mei-advanced-search.component';
+
+
 
 
 // FORM QUESTIONS //
@@ -149,22 +150,24 @@ export * from './lib/form/models/question.model';
 
 // NEW TABLE
 export * from './lib/kkl-table/kkl-table.module';
-export * from './lib/kkl-table/components/local-table/local-table.component';
-export * from './lib/kkl-table/components/event-table/event-table.component';
-export * from './lib/kkl-table/components/table-cell/table-cell.component';
-export * from './lib/kkl-table/components/table-form/table-form.component';
-export * from './lib/kkl-table/pipes/arr-includes.pipe';
-export * from './lib/kkl-table/pipes/arr-index.pipe';
-export * from './lib/kkl-table/pipes/table-cell-pipe.pipe';
-export * from './lib/kkl-table/pipes/table-group-cell.pipe';
-
+export * from './lib/kkl-table/services/kkl-paginator.service';
 export * from './lib/kkl-table/models/table-server.model';
 export * from './lib/kkl-table/models/table-actions.model';
 export * from './lib/kkl-table/models/table.model';
 export * from './lib/kkl-table/models/table.types';
-
 export * from './lib/kkl-table/directives/pagination.directive';
-export * from './lib/kkl-table/services/kkl-paginator.service';
+export * from './lib/kkl-table/components/local-table/local-table.component';
+export * from './lib/kkl-table/components/event-table/event-table.component';
+export * from './lib/kkl-table/components/table-cell/table-cell.component';
+export * from './lib/kkl-table/components/table-form/table-form.component';
+
+// NEW SERVICES
+export * from './lib/mei-services/mei-services.module';
+export * from './lib/mei-services/pipes/arr-includes.pipe';
+export * from './lib/mei-services/pipes/arr-index.pipe';
+export * from './lib/mei-services/pipes/table-cell-pipe.pipe';
+export * from './lib/mei-services/pipes/table-group-cell.pipe';
+export * from './lib/mei-services/services/form-create';
 
 // TABLE
 export * from './lib/table/table.module';
@@ -253,7 +256,6 @@ export * from './lib/dialog/dialog.service';
 // spinner
 export * from './lib/spinner/spinner.component';
 export * from './lib/spinner/spinner.module';
-export * from './lib/spinner/spinner.service';
 
 // sidenav
 export * from './lib/sidenav/sidenav.module';

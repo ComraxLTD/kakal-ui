@@ -38,8 +38,8 @@ export class RecordsResultsComponent implements OnInit {
       label: 'זמן לביצוע',
     },
 
-    { key: 'status', label: 'סטטוס', templateName: 'status' },
-    { key: 'action', label: '', templateName: 'action', filter: false },
+    { key: 'status', label: 'סטטוס', cellTemplate: 'status' },
+    { key: 'action', label: '', cellTemplate: 'action', filter: false },
   ];
 
   //  FORM PROPS
