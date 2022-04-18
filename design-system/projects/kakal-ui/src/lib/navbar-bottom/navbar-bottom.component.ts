@@ -73,11 +73,8 @@ export class NavbarBottomComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.stepper) {
-      this.steps$ = this.stepperLayoutService.listenToSteps();
-      // this.nextStep$ = this.navbarBottomService.getNextStepObs();
       this.stepperSelectEvent$ =
         this.stepperLayoutService.listenToStepperSelect();
-      // this.selectStep$ = this.stepperLayoutService.getChangeStepObs();
     }
 
     this.buttonState$ = this.setShowButtons();
@@ -140,7 +137,7 @@ export class NavbarBottomComponent implements OnInit {
 
     const { selectedStep, first } = event;
 
-    console.log(first)
+    console.log(first);
 
     if (selectedStep.hasSteps && !first && !isComplete) {
       this.stepsAccordionLayoutService.previous();
@@ -154,20 +151,37 @@ export class NavbarBottomComponent implements OnInit {
     this.manual ? this.previous.emit() : this.onPreviousStep();
   }
 
-  private onStepNext() {
+  private navigate(path: string) {
+    const url = this.routerService.getUrl(path);
+    this.routerService.navigate(url);
+  }
+
+  private onNextStepNavigation(selectedIndex: number) {
+    const steps = this.stepperLayoutService.getSteps();
+    const nextIndex = selectedIndex + 1;
+    if (steps[nextIndex]) {
+      const nextPath = steps[nextIndex].path;
+      this.navigate(nextPath);
+    }
+  }
+
+  private onNextStep() {
     const event = this.stepperLayoutService.getStepperSelectEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
-    const { selectedStep, last } = event;
+    const { selectedStep, last, selectedIndex } = event as StepperSelectEvent;
     if (selectedStep.hasSteps) {
       if (!last) {
         this.stepsAccordionLayoutService.next();
       } else if (isComplete) {
         this.stepsAccordionLayoutService.complete();
       } else {
-        this.nextStep.emit(event);
+        this.onNextStepNavigation(selectedIndex);
+        // this.nextStep.emit(event);
       }
     } else {
-      this.nextStep.emit(event);
+      console.log('working')
+      this.onNextStepNavigation(selectedIndex);
+      // this.nextStep.emit(event);
     }
   }
 
@@ -175,7 +189,7 @@ export class NavbarBottomComponent implements OnInit {
     const event = this.stepperLayoutService.getStepperSelectEvent();
 
     if (this.stepper) {
-      this.manual ? this.nextStep.emit(event) : this.onStepNext();
+      this.manual ? this.nextStep.emit(event) : this.onNextStep();
     } else {
       this.next.emit();
     }
@@ -207,7 +221,7 @@ export class NavbarBottomComponent implements OnInit {
     );
   }
 
-  private onNextStep(step: CardStepModel) {
+  private onStepNext(step: CardStepModel) {
     // this.next.emit({ selectedStep: step } as StepperSelectEvent);
   }
 
@@ -217,7 +231,7 @@ export class NavbarBottomComponent implements OnInit {
         return this.steps$.pipe(
           map((steps) => {
             const nextIndex = this.findNextStepIndex(steps);
-            this.onNextStep(steps[nextIndex]);
+            this.onStepNext(steps[nextIndex]);
             return nextIndex + 1 === steps.length ? false : true;
           })
         );

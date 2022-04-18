@@ -25,6 +25,14 @@ export class RouterService {
     this.listenToRoute();
   }
 
+  public getUrl(path: string) {
+    const routes = this.router.url.split('/');
+    routes.unshift();
+    routes.pop();
+    routes.push(path);
+    return routes.join('/');
+  }
+
   public goBack() {
     this.history.pop();
     if (this.history.length > 0) {

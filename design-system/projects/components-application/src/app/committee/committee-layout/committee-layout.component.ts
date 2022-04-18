@@ -3,7 +3,9 @@ import { Router } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
 import {
+  ButtonModel,
   CardStepModel,
+  FormActions,
   RouterService,
   StepperSelectEvent,
 } from '../../../../../kakal-ui/src/public-api';
@@ -19,7 +21,7 @@ export class CommitteeLayoutComponent implements OnInit {
   showSave$!: Observable<boolean>;
 
   //stepper steps
-  public steps: CardStepModel[] = [
+  steps: CardStepModel[] = [
     {
       label: 'פרטי ועידה',
       svgIcon: 'contact',
@@ -38,15 +40,15 @@ export class CommitteeLayoutComponent implements OnInit {
     },
   ];
 
+  actions: ButtonModel[] = [{ type: 'form', action: FormActions.EDIT }];
+
   constructor(
     private committeeLayoutService: CommitteeLayoutService,
     private routerService: RouterService,
     private router: Router
   ) {}
 
-  ngOnInit(): void {
-    this.showSave$ = of(true);
-  }
+  ngOnInit(): void {}
 
   // UTILITY METHODS SECTION
 
@@ -81,25 +83,8 @@ export class CommitteeLayoutComponent implements OnInit {
     this.navigate(event.selectedStep.path);
   }
 
-  // navigate from bottom-navbar - next
-  onNext(event: CardStepModel) {
-    const currentPath = this.getLastPath();
-    const isLastStep = this.committeeLayoutService.isLastStep();
-    const isComplete = this.committeeLayoutService.isComplete();
-    if (currentPath === 'remi-portfolio') {
-      if (!isLastStep) {
-        this.committeeLayoutService.next();
-      } else if (!isComplete) {
-        this.committeeLayoutService.complete();
-      } else {
-        // this.navigateFormNext(currentPath);
-      }
-    } else {
-      // this.navigateFormNext(currentPath);
-    }
-  }
-
   onNextStep(event: StepperSelectEvent) {
+    console.log(event)
     const { selectedIndex } = event;
     this.navigateFormNext(selectedIndex);
   }

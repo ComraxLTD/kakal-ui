@@ -19,7 +19,6 @@ export class StepsAccordionLayoutService {
 
   next(): void {
     const currentIndex = this.selectedIndex$.getValue();
-    console.log(currentIndex)
     this.dispatchSelectIndex(currentIndex + 1);
   }
 
