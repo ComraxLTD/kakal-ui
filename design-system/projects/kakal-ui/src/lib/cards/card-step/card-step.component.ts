@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
 import { BreakpointService } from '../../../services/breakpoint.service';
+import { IconService } from '../../icon/icons.service';
 import { CardStepModel } from './card-step.model';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-card-step',
@@ -9,24 +10,25 @@ import { CardStepModel } from './card-step.model';
   styleUrls: ['./card-step.component.scss'],
 })
 export class CardStepComponent implements OnInit {
-  @Input() public step: CardStepModel;
+  @Input() step: CardStepModel;
 
-  public active$: Observable<boolean>;
+  mobile$: Observable<boolean>;
 
-  public mobile$: Observable<boolean>;
+  @Output() stepSelect: EventEmitter<void> = new EventEmitter();
 
-  @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
-
-  constructor(private breakpointService: BreakpointService) {}
+  constructor(
+    private iconService: IconService,
+    private breakpointService: BreakpointService
+  ) {}
 
   ngOnInit(): void {
-    this.active$ = this.step.getActiveObs();
-    this.mobile$ = this.breakpointService.isMobile()
+    this.mobile$ = this.breakpointService.isMobile();
+    this.iconService.setIcon(this.step.svgIcon);
   }
 
-  public onStepClick(): void {
-    if (!this.step.isActive && !this.step.disabled) {
-      this.changeStep.emit(this.step);
+  onStepSelect(): void {
+    if (!this.step.selected && !this.step.disabled) {
+      this.stepSelect.emit();
     }
   }
 }

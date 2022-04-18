@@ -17,11 +17,30 @@
       fxLayoutGap="1rem"
     >
       <div fxLayout="row" fxLayoutAlign="center center">
-        <button class="decrease" mat-icon-button (click)="decrease()">-</button>
+        <button
+          class="decrease"
+          [disabled]="control.disabled"
+          mat-icon-button
+          (click)="decrease()"
+        >
+          -
+        </button>
         <mat-form-field fxFlex="4rem">
-          <input matInput type="number" [formControl]="control" />
+          <input
+            [disabled]="control.disabled"
+            matInput
+            type="number"
+            [formControl]="control"
+          />
         </mat-form-field>
-        <button class="increase" mat-icon-button (click)="increase()">+</button>
+        <button
+          class="increase"
+          [disabled]="control.disabled"
+          mat-icon-button
+          (click)="increase()"
+        >
+          +
+        </button>
       </div>
     </div>
   </div>

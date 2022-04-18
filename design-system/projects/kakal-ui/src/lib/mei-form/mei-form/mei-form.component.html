@@ -1,0 +1,377 @@
+<ng-container [ngSwitch]="variant">
+  <ng-container *ngSwitchCase="'grid'">
+    <form (ngSubmit)="onSubmitEvent()" [formGroup]="formGroup" autocomplete="off">
+      <mat-grid-list [cols]="cols" [rowHeight]="(rowHeight || 9) + 'rem'" [gutterSize]="(gutter) + 'rem'"[dir]="'rtl'">
+        <ng-container *ngFor="let question of myQuestions; let index = index">
+          <ng-container [ngSwitch]="question.controlType">
+
+
+            <ng-container *ngSwitchCase="'select'">
+              <mat-grid-tile [colspan]=" question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <kkl-select
+                  fxFlex="100"
+                  [control]="formGroup.controls[question.key]"
+                  [options]="question.options"
+                  [multi]="question.multi"
+                  [placeHolder]="question.placeHolder"
+                  [key]="question.key"
+                  [label]="question.label"
+                  [theme]="question.theme"
+                  [appearance]="question.appearance"
+                  [disabled]="question.disabled"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openedChange)="onOpenedChange($event, question)"
+                ></kkl-select>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'autocomplete'">
+              <ng-container *ngIf="question.multi; else simpleAutocomplete">
+                <kkl-multi-autocomplete
+                  [control]="formGroup.controls[question.key]"
+                  [options]="question.options"
+                  [placeHolder]="question.placeHolder"
+                  [key]="question.key"
+                  [label]="question.label"
+                  [debounce]="question.debounce"
+                  [appearance]="question.appearance"
+                  [disabled]="question.disabled"
+                  [withButton]="question.withButton"
+                  [icon]="question.icon"
+                  [panelWidth]="question.panelWidth"
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openedChange)="onOpenedChange($event, question)">
+                </kkl-multi-autocomplete>
+              </ng-container>
+              <ng-template #simpleAutocomplete>
+                <kkl-autocomplete
+                  [control]="formGroup.controls[question.key]"
+                  [options]="question.options"
+                  [placeHolder]="question.placeHolder"
+                  [key]="question.key"
+                  [label]="question.label"
+                  [debounce]="question.debounce"
+                  [appearance]="question.appearance"
+                  [disabled]="question.disabled"
+                  [withButton]="question.withButton"
+                  [icon]="question.icon"
+                  [panelWidth]="question.panelWidth"
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openedChange)="onOpenedChange($event, question)"
+                ></kkl-autocomplete>
+              </ng-template>
+            </ng-container>
+            <ng-container *ngSwitchCase="'date'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <kkl-datepicker
+                  fxFlex="100"
+                  [label]="question.label"
+                  [control]="formGroup.controls[question.key]"
+                  [key]="question.key"
+                  [placeHolder]="question.placeHolder"
+                  [maxDate]="question.maxDate"
+                  [minDate]="question.minDate"
+                  [appearance]="question.appearance"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
+                >
+                </kkl-datepicker>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'dateRange'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <kkl-range-datepicker
+                  fxFlex="100"
+                  [groupControl]="formGroup.controls[question.key]"
+                  [key]="question?.key"
+                  [label]="question?.label"
+                  [maxDate]="question.maxDate"
+                  [minDate]="question.minDate"
+                  [appearance]="question?.appearance"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
+                >
+                </kkl-range-datepicker>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'radio'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <kkl-radio-group
+                  fxFlex="100"
+                  [control]="formGroup.controls[question.key]"
+                  [label]="question.label"
+                  [key]="question.key"
+                  [placeHolder]="question.placeHolder"
+                  [options]="question.options"
+                  (selectChanged)="onSelectChanged($event, question)"
+                ></kkl-radio-group>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'toggle'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <mat-slide-toggle [formControl]="formGroup.controls[question.key]" (change)="onToggleChange($event, question)">{{question.label}}</mat-slide-toggle>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'checkbox'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <mat-checkbox [formControl]="formGroup.controls[question.key]" (change)="onToggleChange($event, question)">{{question.label}}</mat-checkbox>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'currency'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <kkl-currency
+                  fxFlex="100"
+                  [groupControl]="formGroup.controls[question.key]"
+                  [label]="question.label"
+                  [key]="question.key"
+                  [placeHolder]="question.placeHolder"
+                  [theme]="question.theme"
+                  [appearance]="question.appearance"
+                  [debounce]="question.debounce"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
+                >
+                </kkl-currency>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'texteditor'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <kkl-text-editor
+                  fxFlex="100"
+                  [key]="question?.key"
+                  [control]="formGroup.controls[question.key]"
+                  [placeHolder]="question.placeHolder"
+                  [debounce]="question.debounce"
+                  (valueChanged)="onValueChanged($event, question)"
+                ></kkl-text-editor>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchCase="'range'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <kkl-range
+                  fxFlex="100"
+                  [groupControl]="formGroup.controls[question.key]"
+                  [label]="question.label"
+                  [key]="question.key"
+                  [theme]="question.theme"
+                  [appearance]="question.appearance"
+                  [debounce]="question.debounce"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
+                ></kkl-range>
+              </mat-grid-tile>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <div fxFill [fxLayoutAlign]="question?.gridProps?.flex?.align || 'center' + ' center'">
+                  <div [fxFlex]="question?.gridProps?.flex?.width || 100">
+                    <kkl-input
+                      [control]="formGroup.controls[question.key]"
+                      [label]="question.label"
+                      [key]="question.key"
+                      [placeHolder]="question.placeHolder"
+                      [theme]="question.theme"
+                      [appearance]="question.appearance"
+                      [gridProps]="question.gridProps"
+                      [icon]="question.icon"
+                      [format]="question.format"
+                      [controlType]="question?.controlType"
+                      [debounce]="question.debounce"
+                      (focusChanged)="onFocusChanged($event, question)"
+                      (valueChanged)="onValueChanged($event, question)"
+                    >
+                    </kkl-input>
+                  </div>
+                </div>
+              </mat-grid-tile>
+
+              <mat-grid-tile *ngIf="question?.gridProps?.offset"> </mat-grid-tile>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+
+        <mat-grid-tile *ngIf="hasButton" [colspan]="group?.gridProps.buttonCols || 1">
+          <div class="btn-form" fxFlex="100">
+            <kkl-stroke-button type="submit" color="primary" [disabled]="!formGroup.valid">{{ buttonLabel }}</kkl-stroke-button>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+
+  </ng-container>
+
+
+  <ng-container *ngSwitchCase="'flex'">
+    <form (ngSubmit)="onSubmitEvent()" [formGroup]="formGroup" [fxLayout]="layout + ' wrap'" fxLayoutAlign="start center" autocomplete="off">
+      <ng-container *ngFor="let question of myQuestions; let index = index">
+        <ng-container [ngSwitch]="question.controlType">
+          <div flex-form-input [index]="index" [cols]="cols" [offset]="16" [fxFlex]="flex">
+          <!-- SELECT INPUT SECTION -->
+            <ng-container *ngSwitchCase="'select'">
+                <kkl-select
+                  [control]="formGroup.controls[question.key]"
+                  [options]="question.options"
+                  [multi]="question.multi"
+                  [placeHolder]="question.placeHolder"
+                  [key]="question.key"
+                  [label]="question.label"
+                  [theme]="question.theme"
+                  [appearance]="question.appearance"
+                  [disabled]="question.disabled"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openedChange)="onOpenedChange($event, question)"
+                ></kkl-select>
+            </ng-container>
+            <ng-container *ngSwitchCase="'autocomplete'">
+              <ng-container *ngIf="question.multi; else simpleAutocomplete">
+                <kkl-multi-autocomplete
+                  [control]="formGroup.controls[question.key]"
+                  [options]="question.options"
+                  [placeHolder]="question.placeHolder"
+                  [key]="question.key"
+                  [label]="question.label"
+                  [debounce]="question.debounce"
+                  [appearance]="question.appearance"
+                  [disabled]="question.disabled"
+                  [withButton]="question.withButton"
+                  [icon]="question.icon"
+                  [panelWidth]="question.panelWidth"
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openedChange)="onOpenedChange($event, question)">
+                </kkl-multi-autocomplete>
+              </ng-container>
+              <ng-template #simpleAutocomplete>
+                <kkl-autocomplete
+                  [control]="formGroup.controls[question.key]"
+                  [options]="question.options"
+                  [placeHolder]="question.placeHolder"
+                  [key]="question.key"
+                  [label]="question.label"
+                  [debounce]="question.debounce"
+                  [appearance]="question.appearance"
+                  [disabled]="question.disabled"
+                  [withButton]="question.withButton"
+                  [icon]="question.icon"
+                  [panelWidth]="question.panelWidth"
+                  (queryChanged)="onQueryChanged($event, question)"
+                  (selectChanged)="onSelectChanged($event, question)"
+                  (openedChange)="onOpenedChange($event, question)"
+                ></kkl-autocomplete>
+              </ng-template>
+            </ng-container>
+            <ng-container *ngSwitchCase="'date'">
+              <kkl-datepicker
+                [control]="formGroup.controls[question.key]"
+                [key]="question.key"
+                [label]="question.label"
+                [placeHolder]="question.placeHolder"
+                [maxDate]="question.maxDate"
+                [minDate]="question.minDate"
+                [appearance]="question.appearance"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+              ></kkl-datepicker>
+            </ng-container>
+            <ng-container *ngSwitchCase="'dateRange'">
+              <kkl-range-datepicker
+                [groupControl]="formGroup.controls[question.key]"
+                [key]="question?.key"
+                [label]="question?.label"
+                [appearance]="question?.appearance"
+                [maxDate]="question.maxDate"
+                [minDate]="question.minDate"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+              ></kkl-range-datepicker>
+            </ng-container>
+            <ng-container *ngSwitchCase="'radio'">
+              <kkl-radio-group
+                [control]="formGroup.controls[question.key]"
+                [label]="question.label"
+                [key]="question.key"
+                [placeHolder]="question.placeHolder"
+                [options]="question.options"
+                (selectChanged)="onSelectChanged($event, question)"
+              ></kkl-radio-group>
+            </ng-container>
+            <ng-container *ngSwitchCase="'toggle'">
+              <mat-slide-toggle [formControlName]="question.key" (change)="onToggleChange($event, question)">{{question.label}}</mat-slide-toggle>
+            </ng-container>
+            <ng-container *ngSwitchCase="'checkbox'">
+              <mat-checkbox [formControlName]="checkbox" (change)="onToggleChange($event, question)">{{question.label}}</mat-checkbox>
+            </ng-container>
+            <ng-container *ngSwitchCase="'currency'">
+              <kkl-currency
+                [groupControl]="formGroup.controls[question.key]"
+                [label]="question.label"
+                [key]="question.key"
+                [placeHolder]="question.placeHolder"
+                [theme]="question.theme"
+                [appearance]="question.appearance"
+                [debounce]="question.debounce"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+                (selectChanged)="onSelectChanged($event, question)"
+              >
+              </kkl-currency>
+            </ng-container>
+            <ng-container *ngSwitchCase="'texteditor'">
+              <div fxLayout="column">
+                <div [fxFlex]="((question?.gridProps?.rows * 10) || 40) + 'rem'">
+                  <kkl-text-editor
+                    [key]="question?.key"
+                    [control]="formGroup.controls[question.key]"
+                    [placeHolder]="question.placeHolder"
+                    [debounce]="question.debounce"
+                    (valueChanged)="onValueChanged($event, question)"
+                  ></kkl-text-editor>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchCase="'range'">
+              <kkl-range
+                [groupControl]="formGroup.controls[question.key]"
+                [label]="question.label"
+                [key]="question.key"
+                [theme]="question.theme"
+                [appearance]="question.appearance"
+                [debounce]="question.debounce"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+              ></kkl-range>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              <kkl-input
+                [control]="formGroup.controls[question.key]"
+                [label]="question.label"
+                [key]="question.key"
+                [placeHolder]="question.placeHolder"
+                [theme]="question.theme"
+                [appearance]="question.appearance"
+                [icon]="question.icon"
+                [format]="question.format"
+                [controlType]="question.controlType"
+                [debounce]="question.debounce"
+                (focusChanged)="onFocusChanged($event, question)"
+                (valueChanged)="onValueChanged($event, question)"
+              ></kkl-input>
+            </ng-container>
+
+          </div>
+
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf="hasButton">
+        <div [class.button-container]="true" fxFlex kkl-form-button>
+          <kkl-stroke-button type="submit" color="primary" [disabled]="!formGroup.valid">{{ buttonLabel }}</kkl-stroke-button>
+        </div>
+      </ng-container>
+
+    </form>
+
+  </ng-container>
+</ng-container>
+

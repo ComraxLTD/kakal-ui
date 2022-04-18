@@ -1,4 +1,5 @@
-import { KKLSelectOption } from '../../../../../kakal-ui/src/public-api';
+import { SelectOption } from '../../../../../kakal-ui/src/public-api';
+import { ObserversCommittee } from '../../model/observersCommittee';
 
 export interface RootObject {
   id: number;
@@ -282,55 +283,93 @@ export const DEMO_OPTIONS: OptionObject[] = [
   },
 ];
 
-export const MOCK_OPTIONS: KKLSelectOption[] = [
+export const MOCK_OPTIONS: SelectOption[] = [
   {
-    id: 1,
+    
     label: 'Argentina',
-    value: 1,
+    value: { key: 1, value: 'Argentina' },
   },
   {
-    id: 2,
+    
     label: 'Afghanistan',
-    value: 2,
+    value: { key: 2, value: 'Afghanistan' },
   },
   {
-    id: 3,
+    
     label: 'Russia',
-    value: 3,
+    value: { key: 3, value: 'Russia' },
   },
   {
-    id: 4,
+    
     label: 'Indonesia',
-    value: 4,
+    value: { key: 4, value: 'Indonesia' },
   },
   {
-    id: 5,
+    
     label: 'Tupsan',
-    value: 5,
+    value: { key: 5, value: 'Tupsan' },
   },
   {
-    id: 6,
+    
     label: 'Nigeria',
     value: 6,
   },
   {
-    id: 7,
+    
     label: 'United States',
     value: 7,
   },
   {
-    id: 8,
+    
     label: 'Poland',
     value: 8,
   },
   {
-    id: 9,
+    
     label: 'Indonesia',
     value: 9,
   },
   {
-    id: 10,
+    
     label: 'China',
     value: 10,
+  },
+];
+
+export interface OptionObject {
+  id?: number;
+  city: string;
+}
+
+export const ROOT_DATA: ObserversCommittee[] = [
+  {
+    committeeDate: '03/10/2021',
+    committeeId: 1,
+    observer: [
+      {
+        email: null,
+        phone: null,
+        userData: 'מערכות מידע',
+        userId: 'RafiN',
+        userName: 'רפאל נוימן',
+      },
+    ],
+    region: { regionId: 1, regionName: 'ירושלים' },
+    remiTikim: [
+      {
+        monetaryValue: 230000,
+        nechasim: [],
+        nechasimCount: 2,
+        tikId: 12,
+        tikStatus: { statusId: 1, statusName: '????' },
+      },
+      {
+        monetaryValue: 5670000,
+        nechasim: [],
+        nechasimCount: 1,
+        tikId: 331,
+        tikStatus: { statusId: 1, statusName: '????' },
+      },
+    ],
   },
 ];

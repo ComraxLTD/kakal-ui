@@ -1,0 +1,32 @@
+<div fxLayout="column" fxLayoutGap="1rem">
+  <section fxLayout="row" fxLayoutAlign="space-between center ">
+    <div kkl-button (click)="onShowFile()">
+      <kkl-typography [underline]="true" color="primary">{{
+        item.label
+      }}</kkl-typography>
+    </div>
+    <div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <kkl-icon size="1.5" key="three_points"></kkl-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button (click)="onDelete(item)" mat-menu-item>
+          <span>מחק קובץ</span>
+        </button>
+        <button mat-menu-item (click)="onDownloadFile()">
+          <span>הורדת קובץ</span>
+        </button>
+        <button (click)="openPopupSign()" mat-menu-item>
+          <span>שלח לחתימה</span>
+        </button>
+      </mat-menu>
+    </div>
+  </section>
+
+  <section fxLayout="row" fxLayoutAlign="space-between start">
+    <kkl-typography>הועלה ע"י : {{ item.userCreated }}</kkl-typography>
+    <kkl-typography>{{ item.dateCreated | format: "fullDate" }}</kkl-typography>
+  </section>
+
+  <mat-divider></mat-divider>
+</div>

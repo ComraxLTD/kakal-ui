@@ -1,0 +1,18 @@
+<mat-sidenav-container class="kkl-sidenav-container">
+  <mat-sidenav #menuDrawer class="menu" mode="push" position="end">
+    <div class="menu-container" fxLayout="column" fxLayoutAlign="start end">
+      <kkl-menu-bar [cards]="cards"></kkl-menu-bar>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <kkl-navbar
+      [showStatus$]="showStatus$"
+      [pageHeadline$]="pageHeadline$"
+      [isOpen]="menuDrawer.opened"
+      (menuToggle)="menuDrawer.toggle()"
+      (logoClicked)="onLogoClicked()"
+    ></kkl-navbar>
+
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

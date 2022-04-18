@@ -1,5 +1,3 @@
-import { GridProps } from '../models/question.model';
-import { QuestionGroupModel } from '../models/question-group.model';
 import { FormGroup } from '@angular/forms';
 import {
   Component,
@@ -10,33 +8,36 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { FormDataSource } from '../models/form-datasource';
 import { FormChangeEvent } from '../models/form.options';
+import { Question, OptionMap } from '../models/form.types';
+import { FormGrid } from '../models/question.types';
 
 @Component({
-  selector: 'kkl-form-gird',
+  selector: 'kkl-form-grid',
   templateUrl: './form-grid.component.html',
   styleUrls: ['./form-grid.component.scss'],
 })
 export class FormGridComponent implements OnInit {
-  @Input() public group: QuestionGroupModel;
-  @Input() public formDataSource: FormDataSource;
+  @Input() public questions!: Question[];
+  @Input() public formGroup!: FormGroup;
+  @Input() public grid: FormGrid = {};
+  @Input() public optionsMap: OptionMap = {};
+
+  @Input() public buttonTemp: TemplateRef<any>;
 
   @Input() public rowHeight: number;
-  @Input() public gutter: number;
 
-  @Input() public slots: {
-    button?: TemplateRef<any>;
-    group?: ElementRef;
-  };
+  @Input() public templates: {
+    [key: string]: TemplateRef<any>;
+  } = {};
 
-  @Input() optionsSlot: { [key: string]: ElementRef };
+  @Input() optionsTemplates: { [key: string]: ElementRef };
 
-  public formGroup: FormGroup;
-  public grid: GridProps;
-  public hasButton: boolean = false;
-  public cols: string | number;
+  buttonLabel: string = 'שמור';
+  gutter: number;
+  hasButton: boolean;
+  cols: string | number;
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
@@ -52,10 +53,10 @@ export class FormGridComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.formGroup = this.group.formGroup;
-    this.grid = this.group.gridProps;
-    this.cols = this.group.gridProps?.cols || 1;
-    this.hasButton = this.group.hasButton || false;
+    this.gutter = this.grid.gutter || 1;
+    this.cols = this.grid?.cols || 1;
+    this.hasButton = !!this.grid?.button?.cols || false;
+    this.buttonLabel = this.grid?.button?.label;
   }
 
   public onSubmit() {

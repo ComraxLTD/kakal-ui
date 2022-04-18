@@ -1,7 +1,7 @@
 import { TableDataSource } from '../../../../models/table-datasource';
 import { TableState } from '../../../../models/table.state';
 import { TableActions, FetchActions } from '../../../../models/table-actions';
-import { KKLSelectOption } from '../../../../../form/models/form.types';
+import { SelectOption } from '../../../../../form/models/form.types';
 import {
   Observable,
   map,
@@ -58,7 +58,7 @@ function getState(tableDataSource: TableDataSource) {
 export function setSelectState(
   tableDataSource: TableDataSource,
   key: string
-): Observable<KKLSelectOption[]> {
+): Observable<SelectOption[]> {
   const { initState$, updateState$, removeState$ } = getState(tableDataSource);
   const initSelectState$ = getHeaderFilterState(initState$, key);
   const updateSelectState$ = getHeaderFilterState(updateState$, key);
@@ -67,19 +67,19 @@ export function setSelectState(
 }
 
 export function setFilterOptionState(
-  options$: Observable<KKLSelectOption[]>,
-  selectedOptions$: Observable<KKLSelectOption[]>
+  options$: Observable<SelectOption[]>,
+  selectedOptions$: Observable<SelectOption[]>
 ) {
   return options$.pipe(
-    switchMap((options: KKLSelectOption[]) => {
+    switchMap((options: SelectOption[]) => {
       return selectedOptions$.pipe(
-        map((options: KKLSelectOption[]) => options.map((option) => option.id)),
+        map((options: SelectOption[]) => options.map((option) => option.value)),
         map((selectedOptions: (string | number)[]) => {
-          return options.map((option: KKLSelectOption) => {
+          return options.map((option: SelectOption) => {
             return {
               ...option,
-              selected: selectedOptions.indexOf(option.id) !== -1,
-            } as KKLSelectOption;
+              selected: selectedOptions.indexOf(option.value) !== -1,
+            } as SelectOption;
           });
         })
       );

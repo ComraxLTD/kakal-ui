@@ -10,9 +10,10 @@ import {
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { MatMenuTrigger } from '@angular/material/menu';
-import { map, merge, Observable, of, pluck } from 'rxjs';
+import { IconService } from '../../icon/icons.service';
 import { FormActions } from '../models/form.actions';
 import { FormChangeEvent } from '../models/form.options';
+import { map, merge, Observable, of, pluck } from 'rxjs';
 
 @Component({
   selector: 'kkl-form-upload',
@@ -33,10 +34,9 @@ import { FormChangeEvent } from '../models/form.options';
 })
 export class FormUploadComponent implements OnInit, ControlValueAccessor {
   @ViewChild('input') _inputElement: ElementRef<HTMLInputElement>;
-
-  @Input() public key: string;
+  @Input() public key!: string;
   @Input() public label: string = 'העלה מסמך';
-  @Input() public index: number;
+  @Input() public index!: number;
   @Input() public multi: boolean = true;
 
   public disabled: boolean;
@@ -46,12 +46,13 @@ export class FormUploadComponent implements OnInit, ControlValueAccessor {
   // emit the file
   @Output() fileChanged = new EventEmitter<FormChangeEvent>();
 
-  constructor() {}
+  constructor(private iconService: IconService) {}
 
   private _onChange: (v: File[]) => void = (value: File[]) => {};
 
   ngOnInit(): void {
     this.label$ = merge(of(this.label), this.setLabelFormFileLength$());
+    this.iconService.setIcon('open_border')
   }
 
   // ControlValueAccessor interface methods

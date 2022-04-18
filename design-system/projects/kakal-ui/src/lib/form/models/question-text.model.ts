@@ -1,9 +1,8 @@
 import { ValidatorFn } from '@angular/forms';
 import {
-  ControlType,
-  GridProps,
   QuestionBase,
 } from './question.model';
+import { ControlType, InputGrid } from './question.types';
 
 export class QuestionTextModel extends QuestionBase {
 
@@ -12,7 +11,7 @@ export class QuestionTextModel extends QuestionBase {
     label?: string;
     value?: any;
     controlType?: ControlType;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     validations?: ValidatorFn[];
     disabled?: boolean;

@@ -1,0 +1,11 @@
+<mat-step [stepControl]="key" completed>
+  <ng-template matStepLabel>
+    <div [class.kkl-vertical-stepper-label]="true">{{ label }}</div>
+  </ng-template>
+  <div fxLayout="row" fxLayoutAlign="end">
+    <div fxFlex="95" [matTooltip]="label">
+      <ng-content></ng-content>
+      djskdjksjdks
+    </div>
+  </div>
+</mat-step>

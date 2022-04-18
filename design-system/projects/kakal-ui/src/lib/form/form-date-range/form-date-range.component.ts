@@ -6,7 +6,7 @@ import {
   FormGroup,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatCalendarCellClassFunction, MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {
   MomentDateAdapter,
   MAT_MOMENT_DATE_ADAPTER_OPTIONS,
@@ -19,11 +19,11 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { Appearance } from '../models/question.model';
 import { FormChangeEvent, FormActions } from '../models/form.types';
 import { Range } from '../form-range/question-range.model';
 import { map, Observable, startWith, Subject } from 'rxjs';
 import { MY_FORMATS } from '../form-date/form-date.component';
+import { Appearance } from '../models/question.types';
 
 @Component({
   selector: 'kkl-form-date-range',
@@ -52,6 +52,8 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
   @Input() public minDate: Date;
   @Input() public index: number;
   @Input() public appearance: Appearance;
+  @Input() public dates: any[];
+  month: number;
 
   // MatFormFieldAppearance
   public message$: Observable<string>;
@@ -67,11 +69,12 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
 
   @Output() readonly dateRangeChanged: EventEmitter<FormChangeEvent<Range<Date>>> =
     new EventEmitter();
+
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
+  @Output() monthChanged: EventEmitter<number> = new EventEmitter();
+  constructor(private messageService: MessageService) { }
 
-  constructor(private messageService: MessageService) {}
-
-  private _onChange: (v: Range | null) => void = (value: Range | null) => {};
+  private _onChange: (v: Range | null) => void = (value: Range | null) => { };
 
   ngOnInit(): void {
     this.destroy = new Subject();
@@ -108,16 +111,7 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
     }
   }
 
-  // private getFormOption(): FormChangeEvent {
-  //   const FormChangeEvent: FormChangeEvent = {
-  //     key: this?.key,
-  //     index: this?.index,
-  //     action
 
-  //   };
-
-  //   return FormChangeEvent;
-  // }
 
   private setErrorMessage$() {
     return this.dateRange.statusChanges.pipe(
@@ -148,13 +142,68 @@ export class FormDateRangeComponent implements OnInit, ControlValueAccessor {
       key: this.key,
       value: { ...this.range, type: 'date' },
       index: this.index,
-      action: FormActions.VALUE_CHANGED,
+      action: FormActions.DATE_RANGE_CHANGED,
     } as FormChangeEvent<Range<Date>>;
   }
 
   private _emitChangeEvent() {
     this._onChange(this.range);
     this.dateRangeChanged.emit(this.setChangeEvent());
+  }
+
+  // DATES DATA LOGIC
+
+  dateClass(): MatCalendarCellClassFunction<Date> {
+    return (date: any) => {
+
+      if (!this.month) {
+        this.month = date._i.month + 1;
+        this.monthChanged.emit(this.month);
+      }
+      if (this.month !== date._i.month + 1) {
+        this.month = date._i.month + 1;
+        this.monthChanged.emit(this.month);
+      }
+      return this.changeMonth(date);
+    };
+  };
+  changeMonth(date: any) {
+    const [filtered] = this.dates.filter(item => this.compareDates(item.date, date._d));
+    if (filtered) {
+      // if (filtered?.disabled) return 'disabled';
+      this.changeInnerContent(filtered);
+      return 'primary';
+    }
+  }
+  compareDates(first: Date, second: any) {
+    if (first.getFullYear() !== second.getFullYear()) return false;
+    if (first.getMonth() !== second.getMonth()) return false;
+    if (first.getDate() !== second.getDate()) return false;
+    return true;
+  }
+
+  changeInnerContent(object: any) {
+    setTimeout(() => {
+      const cells = Array.from(document.querySelectorAll<HTMLDivElement>('.mat-calendar .mat-calendar-body-cell-content'));
+      const [cell] = cells.filter(cell => +cell.outerText == object.date.getDate()) as HTMLDivElement[];
+      if (object.occupancy) cell.innerHTML =
+        `
+      <div fxLayout='column'>
+      <div>
+      ${cell.innerText}
+      </div>
+      <div fxLayout='row' class='occupancy'>
+      ${object.occupancy} פנוי
+      </div>
+
+      </div>
+      `;
+    });
+  }
+
+  myFilter = (date: any): boolean => {
+    const [filter] = this.dates.filter(item => this.compareDates(item.date, date._d));
+    return filter?.occupancy ? true : false;
   }
 
 }

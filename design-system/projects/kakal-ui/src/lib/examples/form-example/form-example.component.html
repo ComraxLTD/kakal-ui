@@ -1,3 +1,7 @@
 <div class="container">
-    <kkl-form [group]="formGroup"></kkl-form>
+  <kkl-form-temp
+    [questions]="group.questions"
+    [grid]="group.gridProps"
+    [formGroup]="group.formGroup"
+  ></kkl-form-temp>
 </div>

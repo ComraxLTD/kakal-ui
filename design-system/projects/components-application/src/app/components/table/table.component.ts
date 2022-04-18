@@ -9,30 +9,25 @@ import {
   OptionMap,
   QuestionSelectModel,
   TableState,
-  KKLSelectOption,
+  SelectOption,
   FetchState,
-  HeaderState,
-  ColumnActions,
   HeaderCellModel,
   TableActions,
-  FormChangeEvent,
   PageState,
   FormActions,
   TableService,
 } from '../../../../../kakal-ui/src/public-api';
-import { DEMO_DATA, DEMO_OPTIONS, OptionObject, RootObject } from './mock_data';
+import { DEMO_DATA, DEMO_OPTIONS, OptionObject, ROOT_DATA } from './mock_data';
 import {
   BehaviorSubject,
-  debounceTime,
-  distinctUntilChanged,
   firstValueFrom,
   map,
   merge,
   Observable,
   of,
   switchMap,
-  take,
 } from 'rxjs';
+import { ObserversCommittee } from '../../model/observersCommittee';
 
 @Component({
   selector: 'app-table',
@@ -43,32 +38,31 @@ import {
 export class TableComponent implements OnInit {
   @Input()
   totalItems: number; // demo data from server
-  private demoStore$: BehaviorSubject<RootObject[]>;
+  private demoStore$: BehaviorSubject<ObserversCommittee[]>;
 
   public itemKey: string = 'id';
 
-  public columns: HeaderCellModel<RootObject>[] = [
+  public columns: HeaderCellModel<ObserversCommittee>[] = [
+    { columnDef: 'committeeId', label: 'מס ועדה', flex: 0.2 },
     {
-      columnDef: 'first_name',
-      label: 'first_name',
+      columnDef: 'remiTikim',
+      label: 'תיק רמ"י',
+      format: 'pluck',
+      selector: (item) => {
+        return item[0].nechasimCount;
+      },
+    },
+    { columnDef: 'remiTikimCount', label: 'מס תיק רמ"י' },
+    {
+      columnDef: 'region',
+      label: 'מרחב',
+      format: 'pluck',
+      selector: 'regionName',
     },
     {
-      columnDef: 'last_name',
-      label: 'last_name',
-    },
-    { columnDef: 'phone', label: 'phone' },
-    { columnDef: 'email', label: 'email' },
-    { columnDef: 'gender', label: 'gender' },
-    { columnDef: 'city', label: 'city' },
-    {
-      columnDef: 'date',
-      label: 'date',
+      columnDef: 'committeeDate',
       format: 'date',
-    },
-    {
-      columnDef: 'currency',
-      label: 'currency',
-      flex: 0.5,
+      label: 'תאריך ועדה',
     },
   ];
 
@@ -82,8 +76,8 @@ export class TableComponent implements OnInit {
     { key: 'date', controlType: 'date', validations: [Validators.required] },
   ];
 
-  public data$: Observable<RootObject[]>;
-  public columns$: Observable<HeaderCellModel<RootObject>[]>;
+  public data$: Observable<ObserversCommittee[]>;
+  public columns$: Observable<HeaderCellModel<ObserversCommittee>[]>;
   public tableState$: Observable<TableState>;
   public initTableState$: Observable<TableState>;
   public fetchState$: Observable<FetchState>;
@@ -98,13 +92,13 @@ export class TableComponent implements OnInit {
   };
 
   constructor(
-    public tableDataSource: TableDataSource<RootObject>,
+    public tableDataSource: TableDataSource<ObserversCommittee>,
     private tableService: TableService,
     private formService: FormService
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.demoStore$ = new BehaviorSubject<RootObject[]>([]);
+    this.demoStore$ = new BehaviorSubject<ObserversCommittee[]>([]);
     // call first!
     this.initTableState$ = this.initTableState();
     this.data$ = this.setData();
@@ -143,12 +137,11 @@ export class TableComponent implements OnInit {
     );
   }
 
-  private demoServerData(): Observable<RootObject[]> {
-    const initData$ = of(DEMO_DATA);
-    const fetchData$ = this.listenToFetchState();
+  private demoServerData(): Observable<ObserversCommittee[]> {
+    const initData$ = of(ROOT_DATA);
 
-    return merge(initData$, fetchData$).pipe(
-      switchMap((data: RootObject[]) => {
+    return merge(initData$).pipe(
+      switchMap((data: ObserversCommittee[]) => {
         this.demoStore$.next(data);
 
         return this.demoStore$.asObservable();
@@ -190,7 +183,7 @@ export class TableComponent implements OnInit {
 
   private setQuestions(
     questions: Question[],
-    item: RootObject,
+    item: ObserversCommittee,
     optionsMap?: OptionMap
   ): Question[] {
     return questions.map((question) => {
@@ -202,8 +195,8 @@ export class TableComponent implements OnInit {
       if (question.controlType === 'select') {
         const options = [
           ...optionsMap[question.key.toString()],
-        ] as KKLSelectOption[];
-        const value: KKLSelectOption = options.find(
+        ] as SelectOption[];
+        const value: SelectOption = options.find(
           (option) => option.label === item[question.key]
         );
 
@@ -250,110 +243,5 @@ export class TableComponent implements OnInit {
       data.splice(0, 1);
       this.demoStore$.next(data);
     }
-  }
-
-  public onSubmitEvent(state: RowState) {
-    const { item, group } = state;
-
-    const formItem: RootObject = { ...group.getValue() };
-
-    const updateItem = {
-      ...item,
-      ...formItem,
-      city: formItem.city,
-    } as RootObject;
-    // imitate http response
-    of(updateItem)
-      .pipe(
-        switchMap((res: RootObject) => {
-          return this.demoStore$.pipe(
-            take(1),
-
-            map((data) => {
-              const city = group.getControl('city').value as KKLSelectOption;
-
-              const indexToUpdate = data.findIndex(
-                (cell: RootObject) =>
-                  cell[this.itemKey].toString() === res[this.itemKey].toString()
-              );
-              const updateData = [...data];
-              updateData[indexToUpdate] = {
-                ...data[indexToUpdate],
-                ...res,
-                city: city?.label,
-              };
-              return updateData;
-            })
-          );
-        })
-      )
-      .subscribe((updateData) => {
-        this.demoStore$.next(updateData);
-
-        this.tableService.dispatch({
-          rowState: { ...state },
-          action: FormActions.CANCEL,
-        });
-      });
-  }
-
-  public onCreateEvent(state: RowState) {
-    const item: RootObject = {
-      id: 0,
-    };
-
-    of(item)
-      .pipe(
-        switchMap((item) => {
-          return this.demoStore$.pipe(
-            take(1),
-            map((data) => {
-              const updateData = [...data];
-              updateData.unshift(item);
-              return updateData;
-            })
-          );
-        })
-      )
-      .subscribe((updateData) => {
-        this.demoStore$.next(updateData);
-        const group = this.setGroup(
-          this.setQuestions(this.questions, item, this.optionsMap)
-        );
-
-        this.tableService.dispatch({
-          rowState: { ...state, item, group },
-          action: FormActions.CREATE,
-        });
-      });
-  }
-
-  public onFetchOptions(columnDef: string) {
-    const headerState: HeaderState = {
-      key: columnDef,
-      action: ColumnActions.INIT_OPTIONS,
-      options: this.optionsMap[columnDef],
-    };
-
-    this.tableDataSource.loadHeaderState({ headerState });
-  }
-
-  public onQueryOptions(formChangeEvent: FormChangeEvent) {
-    const { key, value } = formChangeEvent;
-
-    of(value)
-      .pipe(
-        debounceTime(400),
-        distinctUntilChanged()
-        // some filter logic - server or local - for filtered options
-      )
-      .subscribe(() => {
-        const headerState: HeaderState = {
-          key,
-          action: ColumnActions.INIT_OPTIONS,
-          options: [],
-        };
-        this.tableDataSource.loadHeaderState({ headerState });
-      });
   }
 }

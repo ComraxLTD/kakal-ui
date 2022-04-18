@@ -2,8 +2,8 @@ import { ValidatorFn } from '@angular/forms';
 import {
   QuestionSelectModel,
   SelectOption,
-} from '../models/question-select.model';
-import { GridProps } from '../models/question.model';
+} from '../form-select/question-select.model';
+import { InputGrid } from '../models/question.types';
 
 export interface Currency {
   currency?: SelectOption;
@@ -12,13 +12,13 @@ export interface Currency {
 
 export class QuestionCurrencyModel extends QuestionSelectModel {
   // symbol of currency
-  public default: SelectOption;
+  public default?: SelectOption;
 
   constructor(options: {
     key: string;
     label?: string;
     default?: SelectOption;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     value?: Currency;
     disabled?: boolean;
     options?: SelectOption[];

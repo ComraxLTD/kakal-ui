@@ -1,0 +1,108 @@
+@use "../../../../styles/variables" as main;
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-detail {
+  display: flex;
+  padding: 16px;
+  background-color: main.color(table);
+  // background-color: red;
+  width: 100%;
+  margin-right: -16px;
+}
+
+// .mat-table{
+//   border-collapse: separate !important;
+//   border-spacing: 0 4px !important;
+// }
+
+.center-butt {
+  text-align: center !important;
+}
+
+td.mat-cell {
+  border-bottom: 0.5px solid main.color(table-background);
+}
+
+table {
+  width: 100%;
+  overflow-y: auto;
+  // border-spacing: 0 10px !important;
+}
+
+// .table-wrapper {
+
+//   margin: auto;
+//   // overflow: auto;
+// }
+
+// mat-paginator {
+//   direction: ltr;
+// }
+
+.expand{
+  background-color: main.color(table);
+}
+
+.hide{
+  display: none;
+  border-spacing: 0 !important;
+}
+
+tr.mat-header-row{
+  th.mat-header-cell.cdk-header-cell{
+    border-bottom: 2px solid main.color(accent);
+  }
+}
+
+.arrow-down{
+  color: main.color(primary);
+  font-size: 3rem;
+}
+
+th>h3 {
+  font-weight: 600;
+  color: main.color(text);
+}
+
+.dragCursor:hover{
+  cursor: grab;
+}
+
+.dragCursor:active{
+  cursor: grabbing;
+}
+
+::ng-deep.paginator-button{
+  border: none !important;
+  background-color: transparent !important;
+  color: main.color(primary) !important;
+  cursor: pointer;
+}
+
+// ::ng-deep.paginator-button-disabled{
+//   color: main.color(disable);
+// }
+
+::ng-deep.paginator-button-active{
+  border: solid 2px main.color(primary) !important;
+  border-radius: 5px !important;
+  background-color: transparent !important;
+  color: main.color(primary) !important;
+}
+// ::ng-deep .mat-progress-bar-fill::after{
+//   // color: main.color(primary) !important;
+//   color: red !important;
+// }
+
+

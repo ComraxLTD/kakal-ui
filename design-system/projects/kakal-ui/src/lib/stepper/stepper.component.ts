@@ -10,11 +10,17 @@ import {
   CardStepModel,
   StepperDirection,
 } from '../cards/card-step/card-step.model';
-import { QuestionSelectModel } from '../form/models/question-select.model';
-import { FormService, Question } from '../form/services/form.service';
-import { FormControl } from '@angular/forms';
+import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+
+export interface StepperSelectEvent {
+  selectedStep: CardStepModel;
+  selectedIndex: number;
+  previousSelectedStep?: CardStepModel;
+  previousSelectedIndex?: number;
+  first? : boolean
+  last? : boolean
+}
 
 @Component({
   selector: 'kkl-stepper',
@@ -22,46 +28,25 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
-  @Input() question$: Observable<Question>;
   @Input() steps$: Observable<CardStepModel[]>;
   @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
 
   public mobile$: Observable<boolean>;
-  public selectQuestion$: Observable<Question>;
 
-  @Output() changeStep = new EventEmitter<CardStepModel>();
-  @Output() selectStep = new EventEmitter<FormControl>();
+  @Output() selectStep = new EventEmitter<StepperSelectEvent>();
 
-  constructor(
-    private breakpointService: BreakpointService,
-    private formService: FormService
-  ) { }
+  constructor(private breakpointService: BreakpointService) {}
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    if (this.question$) {
-      this.selectQuestion$ = this.setInputSelect();
-    }
-
   }
 
-  private setInputSelect(): Observable<Question> {
-    return this.question$.pipe(
-      map((question) => {
-        const select = this.formService.setQuestion(question);
-        const control = this.formService.getFieldControl(question);
-
-        if (select instanceof QuestionSelectModel) {
-          select.control = control;
-        }
-        return select;
-      })
-    );
+  public onStepSelect(step: CardStepModel | CardStatusModel, index: number) {
+    const event: StepperSelectEvent = {
+      selectedStep: step,
+      selectedIndex: index,
+    };
+    this.selectStep.emit(event);
   }
-
-  public onChangeStep(step: CardStepModel) {
-    this.changeStep.emit(step);
-  }
-
 }

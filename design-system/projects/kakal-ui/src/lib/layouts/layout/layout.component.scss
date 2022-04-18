@@ -1,0 +1,26 @@
+@use "../../../styles/variables" as main;
+
+:host {
+  .kkl-sidenav-container {
+    height: 100%;
+
+    mat-sidenav {
+      &.menu {
+        top: main.$toolbar-height;
+        height: main.$content-height;
+
+        div.menu-container {
+          height: inherit;
+          // padding-right: main.spacing(1);
+        }
+      }
+
+    }
+  }
+
+  mat-sidenav-content {
+    background-color: main.color(paper);
+    margin: 0px !important;
+    overflow-x: hidden;
+  }
+}

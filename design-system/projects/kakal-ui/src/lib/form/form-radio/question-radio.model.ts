@@ -1,10 +1,11 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBase } from '../models/question.model';
+import {  QuestionBase } from '../models/question.model';
+import { InputGrid } from '../models/question.types';
 
 export interface RadioOption {
   label: string;
-  value: any;
   checked?: boolean;
+  value? : any
 }
 
 export class QuestionRadioModel extends QuestionBase {
@@ -13,7 +14,7 @@ export class QuestionRadioModel extends QuestionBase {
   constructor(options?: {
     key: string;
     label?: string;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     validations?: ValidatorFn[];
     options?: RadioOption[];

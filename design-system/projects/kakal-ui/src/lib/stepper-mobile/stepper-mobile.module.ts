@@ -11,4 +11,4 @@ import { StepperMobileComponent } from './stepper-mobile.component';
     exports: [StepperMobileComponent]
 })
 
-export class StepperMobileModule { }
+export class KKLStepperMobileModule { }

@@ -1,0 +1,131 @@
+<ng-container *ngIf="portion$ | async as portion">
+  <mat-sidenav-container class="sidenav-container" dir="rtl">
+    <mat-sidenav #drawer class="sidenav-drawer" mode="side" position="start">
+      <!-- DRAWER CONTENT -->
+      <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+        <div fxFlex="85" fxLayout="column" fxLayoutAlign="center center" fxFill>
+          <div fxFlex="95" fxFill>
+            <ng-content select="[drawer]"></ng-content>
+          </div>
+        </div>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav
+      *ngIf="showEndDrawer"
+      #endDrawer
+      class="sidenav-drawer"
+      [opened]="true"
+      fxLayoutAlign="stretch stretch"
+      mode="side"
+      position="end"
+      [ngStyle]="{ width: (endDrawerSize$ | async) + '%' }"
+    >
+      <!-- end drawer content -->
+      <div fxLayout="row" fxFill fxLayoutAlign="stretch stretch">
+        <div fxFlex="100" fxLayout="column" fxFill>
+          <div
+            class="end-drawer-button"
+            (click)="emitEndDrawer()"
+            *ngIf="portion != 1 && portion != 99"
+          >
+            <!-- end drawer button -->
+            <kkl-icon
+              [key]="'chevron_left'"
+              color="success"
+              [size]="4"
+            ></kkl-icon>
+          </div>
+          workinh
+          <ng-content select="[endDrawerContent]"></ng-content>
+        </div>
+      </div>
+    </mat-sidenav>
+
+    <mat-sidenav-content [fxFlex]="portion" fxLayout="column">
+      <mat-toolbar class="stepper-toolbar" dir="rtl">
+        <!-- end drawer Button -->
+
+        <kkl-icon
+          *ngIf="portion === 1 || portion === 99"
+          [size]="10"
+          [key]="'drawer_toggle_icon'"
+          (click)="emitEndDrawer()"
+          class="end-drawer-btn"
+        ></kkl-icon>
+
+        <!-- DRAWER BUTTON  -->
+
+        <div *ngIf="showStartDrawer$ | async">
+          <button
+            mat-fab
+            (click)="drawer.toggle()"
+            [ngClass]="{ open: drawer.opened }"
+            [matBadge]="drawer.opened ? 'x' : '+'"
+            [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
+          >
+            <kkl-icon
+              color="primary"
+              [key]="drawerAction?.svgIcon"
+              [size]="1.8"
+            >
+            </kkl-icon>
+            <kkl-typography [weight]="600" [size]="1">
+              {{ drawerAction.label }}
+            </kkl-typography>
+          </button>
+        </div>
+
+        <!-- STEPPER  -->
+        <div class="stepper">
+          <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
+            <kkl-stepper
+              stepType="step"
+              direction="row"
+              [steps$]="steps$"
+              (selectStep)="onSelectStep($event)"
+            ></kkl-stepper>
+          </ng-container>
+
+          <ng-template #mobileBlock>
+            <kkl-stepper-mobile
+              [steps$]="steps$"
+              (selectStep)="onSelectStep($event)"
+            ></kkl-stepper-mobile>
+          </ng-template>
+        </div>
+
+        <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">
+          <ng-container *ngFor="let action of rowActions">
+            <button
+              [matTooltip]="action.label"
+              mat-icon-button
+              kkl-action-button
+              color="primary"
+              (click)="onAction(action)"
+            >
+              <mat-icon>{{ action.svgIcon }}</mat-icon>
+            </button>
+          </ng-container>
+        </div>
+      </mat-toolbar>
+      <!-- </div> -->
+
+      <!-- CONTENT - ROUTER-OUTLET -->
+      <div class="content" fxLayout="row" fxFlex fxLayoutAlign="center start">
+        <div fxFlex="90" fxFill>
+          <ng-content select="[content]"></ng-content>
+        </div>
+      </div>
+
+      <!-- BOTTOM-NAVBAR CONTENT -->
+      <div class="bottom-navbar">
+        <div [fxFlex]="portion">
+          <ng-content select="[bottom-navbar]"></ng-content>
+        </div>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</ng-container>
+
+<ng-template #defaultTemplate> </ng-template>

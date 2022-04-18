@@ -1,27 +1,54 @@
-<mat-expansion-panel
-  [hideToggle]="true"
-  [expanded]="expanded"
-  [disabled]="disabled"
-  [ngClass]="[variant, 'default', 'mat-elevation-z0']"
-  (closed)="onPanelClosed()"
-  (opened)="onPanelOpen()"
->
-  <mat-expansion-panel-header
-    *ngIf="!showHeader"
+<div class="kkl-expansion-panel">
+  <mat-expansion-panel
     [ngClass]="[variant]"
+    [hideToggle]="hideToggle"
+    [expanded]="expanded"
+    [disabled]="disabled"
+    [ngClass]="[variant, 'default', 'mat-elevation-z0']"
+    (closed)="onPanelClosed()"
+    (opened)="onPanelOpen()"
   >
-    <mat-panel-title [ngClass]="[variant, 'default']">
-      <div class="title" fxLayout="row" fxLayoutGap="1rem">
-        <ng-content select="[title]"></ng-content>
-        <kkl-icon [color]="'accent'" [key]="expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"></kkl-icon>
-      </div>
-    </mat-panel-title>
-    <mat-panel-description>
-      <ng-content select="[description]"></ng-content>
-    </mat-panel-description>
-  </mat-expansion-panel-header>
+    <mat-expansion-panel-header [ngClass]="[variant]" *ngIf="!showHeader">
+      <mat-panel-title [ngClass]="[variant, 'default']">
+        <div
+          class="title"
+          fxLayout="row"
+          fxLayoutAlign="center center"
+          fxLayoutGap="1rem"
+        >
+          <ng-content select="[title]"></ng-content>
+          <kkl-icon
+            *ngIf="hideToggle"
+            [color]="variant === 'data' ? 'primary' : 'accent'"
+            [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
+          ></kkl-icon>
+        </div>
+      </mat-panel-title>
+      <mat-panel-description>
+        <ng-container
+          *ngTemplateOutlet="
+            panelActions?.length ? actionTemplate : defaultTemplate
+          "
+        ></ng-container>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
 
-  <div class="content">
-    <ng-content select="[content]"></ng-content>
+    <div class="content">
+      <ng-content select="[content]"></ng-content>
+    </div>
+  </mat-expansion-panel>
+</div>
+
+<ng-template #defaultTemplate>
+  <ng-content select="[description]"></ng-content>
+</ng-template>
+
+<ng-template #actionTemplate>
+  <div fxLayout="row" fxLayoutGap="0.5rem" dir="rtl">
+    <ng-container *ngFor="let action of panelActions">
+      <button mat-icon-button (click)="onAction(action)">
+        <mat-icon>{{ action.svgIcon }}</mat-icon>
+      </button>
+    </ng-container>
   </div>
-</mat-expansion-panel>
+</ng-template>

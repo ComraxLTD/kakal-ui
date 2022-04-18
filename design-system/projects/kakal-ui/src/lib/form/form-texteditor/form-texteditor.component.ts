@@ -1,21 +1,23 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { toDoc } from 'ngx-editor';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { Editor, Toolbar } from 'ngx-editor';
 
 @Component({
   selector: 'kkl-form-texteditor',
   templateUrl: './form-texteditor.component.html',
-  styleUrls: ['./form-texteditor.component.scss']
+  styleUrls: ['./form-texteditor.component.scss'],
 })
-export class FormTexteditorComponent implements OnInit , OnDestroy{
-  @Input() public control: FormControl;
-  @Input() public placeHolder:string = '';
-  
-  constructor() { }
+export class FormTextEditorComponent implements OnInit, OnDestroy {
+  @Input() public control!: FormControl | AbstractControl;
+  @Input() public key!: string;
+  @Input() public index!: number;
+  @Input() public placeHolder: string = '';
+
+  constructor() {}
+
   editor: Editor;
 
-  public toolbar: Toolbar = [
+  toolbar: Toolbar = [
     ['bold', 'italic'],
     ['underline'],
     ['ordered_list'],
@@ -25,17 +27,14 @@ export class FormTexteditorComponent implements OnInit , OnDestroy{
   ];
 
   ngOnInit(): void {
-    this.editor = new Editor();    
-    if(this.control.value){
-      this.editor.setContent(this.control.value) 
+    this.editor = new Editor();
+    if (this.control.value) {
+      this.editor.setContent(this.control.value);
     }
-    this.editor.valueChanges.subscribe(res => this.control?.setValue(res));
-    this.editor.valueChanges.subscribe(res => console.log(res));
-
+    this.editor.valueChanges.subscribe((res) => this.control?.setValue(res));
   }
 
   ngOnDestroy(): void {
-      this.editor.destroy();
+    this.editor.destroy();
   }
-
 }

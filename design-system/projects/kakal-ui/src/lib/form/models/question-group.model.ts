@@ -5,18 +5,15 @@ import {
   ValidatorFn,
 } from '@angular/forms';
 import { Question } from '../services/form.service';
-import {
-  ControlType,
-  GridProps,
-  QuestionBase,
-} from './question.model';
+import { QuestionBase } from './question.model';
+import { ControlType, FormGrid } from './question.types';
 import { Observable, of } from 'rxjs';
 
 export interface GroupOptions {
   label?: string;
   controlType?: ControlType;
   formGroup?: FormGroup;
-  gridProps?: GridProps;
+  gridProps?: FormGrid;
   hasButton?: boolean;
   validations?: any;
 }
@@ -34,7 +31,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     questions: Question[];
     label?: string;
     icon?: string;
-    gridProps?: GridProps;
+    gridProps?: FormGrid;
     hasButton?: boolean;
     validations?: ValidatorFn[];
   }) {
@@ -45,7 +42,7 @@ export class QuestionGroupModel<T = any> extends QuestionBase {
     this.icon = '';
     this.questions = options.questions || [];
     this.formGroup = options.formGroup;
-    this.gridProps = options.gridProps || { cols: 1 };
+    this.gridProps = options.gridProps || { cols: 1, variant: 'grid' };
     this.hasButton = options.hasButton || false;
     this.controls = options.controls || null;
     this.validations = options.validations || [];

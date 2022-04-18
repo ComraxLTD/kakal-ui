@@ -1,19 +1,40 @@
-<div dir="rtl" [ngClass]="step.type" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5rem" fxFill>
+<div
+  class="kkl-step-card"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+  fxLayoutGap=".5rem"
+  fxFill
+>
   <!-- icon section -->
-  <div appSize [size]="6" (click)="onStepClick()" [matBadge]="step.value" matBadgeColor="accent" matBadgeSize="medium">
-    <mat-card fxFill kkl-button appVariant [type]="step.type" [variant]="step.variant" [ngClass]="{
+  <div
+    kkl-button
+    appSize
+    [size]="6"
+    (click)="onStepSelect()"
+    [matBadge]="step.value"
+    matBadgeColor="accent"
+    matBadgeSize="medium"
+  >
+    <mat-card
+      fxFill
+      kkl-button
+      appVariant
+      [type]="step.type"
+      [variant]="step.variant"
+      [ngClass]="{
         'mat-elevation-z0': true,
-        active: step.isActive,
-        disabled: step.disabled }">
-      <mat-card-content fxFill>
-        <div fxLayout="column" fxLayoutAlign="center center" fxFill>
-          <kkl-icon *ngIf="!step.stroke" [color]="step.isActive ? 'paper' : 'default'" [key]="step.svgUrl"
-            [size]="step.size">
-          </kkl-icon>
-          <kkl-icon *ngIf="step.stroke" [stroke]="step.isActive ? 'paper' : 'default'" [key]="step.svgUrl"
-            [size]="step.size">
-          </kkl-icon>
-        </div>
+        active: step.selected,
+        disabled: step.disabled
+      }"
+    >
+      <mat-card-content fxFill fxLayout="column" fxLayoutAlign="center center">
+        <mat-icon
+          appSize
+          [class.active]="step.selected"
+          [size]="step.size"
+          [svgIcon]="step.svgIcon"
+        >
+        </mat-icon>
       </mat-card-content>
     </mat-card>
   </div>
@@ -21,7 +42,11 @@
   <!-- label section -->
   <div fxLayout="row" fxFlex>
     <div fxFill fxLayout="column" fxLayoutAlign="center center" class="no-warp">
-      <kkl-typography [ngClass]="{ active: step.isActive }" [weight]="step.isActive ? 600 : 500" [size]="1.2">
+      <kkl-typography
+        [ngClass]="{ active: step.selected }"
+        [weight]="step.selected ? 600 : 500"
+        [size]="1.2"
+      >
         {{ step.label }}
       </kkl-typography>
     </div>

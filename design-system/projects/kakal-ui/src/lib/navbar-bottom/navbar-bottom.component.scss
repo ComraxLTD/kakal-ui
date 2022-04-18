@@ -3,17 +3,19 @@
 mat-toolbar {
   padding-left: main.spacing(5);
   padding-right: main.spacing(5);
+  background-color: white!important;
 }
 
 div {
   height: 100%;
 }
-
-kkl-icon {
-  width: 100%;
-  height: 100%;
+mat-icon {
+  color: main.color(primary);
+}
+button.mat-mini-fab {
+  background-color: main.color(paper) !important;
 }
 
-button.prev {
-  background-color: main.color(paper) !important;
+button.kkl-next-button:not(.mat-button-disabled) {
+  color: main.color(paper) !important;
 }

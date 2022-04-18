@@ -1,5 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
-import { QuestionBase, GridProps } from '../models/question.model';
+import { QuestionBase } from '../models/question.model';
+import { InputGrid } from '../models/question.types';
 
 export class QuestionDateModel extends QuestionBase {
   public maxDate?: Date;
@@ -8,7 +9,7 @@ export class QuestionDateModel extends QuestionBase {
   constructor(options: {
     key: string;
     label?: string;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     value?: Date;
     disabled?: boolean;

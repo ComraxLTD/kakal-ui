@@ -1,5 +1,6 @@
 import { ValidatorFn } from '@angular/forms';
-import { GridProps, QuestionBase } from './question.model';
+import { QuestionBase } from './question.model';
+import { InputGrid } from './question.types';
 
 
 export class QuestionToggleModel extends QuestionBase {
@@ -8,7 +9,7 @@ export class QuestionToggleModel extends QuestionBase {
   constructor(options?: {
     key: string;
     label?: string;
-    gridProps?: GridProps;
+    gridProps?: InputGrid;
     icon?: string;
     validations?: ValidatorFn[];
   }) {

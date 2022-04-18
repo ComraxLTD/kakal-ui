@@ -2,26 +2,39 @@ import { MatIconRegistry } from '@angular/material/icon';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { AppIcons } from './icons';
+import { FILE_ICON } from './icons.list';
 
 export interface IconItem {
   key: string;
-  svgUrl: string;
+  svgIcon: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
-export class IconsService {
+export class IconService {
   constructor(
     private iconRegistry: MatIconRegistry,
     private sanitizer: DomSanitizer
   ) {}
 
   public icons = {
+
     tree: AppIcons.TREE_ICON,
     kkl: AppIcons.KKL_ICON,
     tree_gradient_tac: AppIcons.TREE_GRADIENT_TAC_ICON,
+    tree_gradient_lands: AppIcons.TREE_GRADIENT_LANDS_ICON,
+    tree_gradient_education: AppIcons.TREE_GRADIENT_EDUCATION_ICON,
+    tree_gradient_forestry: AppIcons.TREE_GRADIENT_FORESTRY_ICON,
+
     bottom_tree_tac: AppIcons.BOTTOM_TREE_LOGO_TAC_ICON,
+    bottom_tree_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
+    // bottom_tree_education: AppIcons.BOTTOM_TREE_LOGO__EDUCATION_ICON,
+    // bottom_tree_forestry: AppIcons.BOTTOM_TREE_LOGO__FORESTRY_ICON,
+
+    // TABLE ICONS
+    drag_n_drop: AppIcons.DRAG_N_DROP,
+    all_directions: AppIcons.AAL_DIRECTIONS,
 
     // ACTIONS ICONS
     two_arrows: AppIcons.TWO_ARROWS_UP,
@@ -41,6 +54,7 @@ export class IconsService {
     nike: AppIcons.NIKE_ICON,
     helper: AppIcons.HELPER_ICON,
     phone: AppIcons.PHONE_ICON,
+    file : FILE_ICON,
     time: AppIcons.TIME_ICON,
     closepopup: AppIcons.CLOSE_POPUP_ICON,
     send: AppIcons.SEND_ICON,
@@ -86,13 +100,12 @@ export class IconsService {
     driver_license: AppIcons.DRIVER_LICENSE,
     car_parking: AppIcons.CAR_PARKING,
 
-
     //-------LANDS ICONS--------------------------------------------------------------
 
     select: AppIcons.SELECT_ICON,
     home: AppIcons.HOME_ICON,
     building: AppIcons.BUILDING_ICON,
-    portfolio : AppIcons.PORTFOLIO_ICON,
+    portfolio: AppIcons.PORTFOLIO_ICON,
     measurements: AppIcons.MEASUREMENTS_ICON,
     list: AppIcons.LIST_ICON,
 
@@ -100,13 +113,14 @@ export class IconsService {
     supervision: AppIcons.SUPERVISION_ICON,
     planing: AppIcons.PLANING_ICON,
     incoming: AppIcons.INCOMING_ICON,
+    survey: AppIcons.SURVEY_ICON,
     expense: AppIcons.EXPENSE_ICON,
     committee: AppIcons.COMMITTEE_ICON,
     transactions: AppIcons.TRANSACTION_ICON,
-    tree_gradient_lands: AppIcons.TREE_GRADIENT_LANDS_ICON,
-    tree_bottom_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
     estate: AppIcons.ESTATE_ICON,
     mail: AppIcons.MAIL_ICON,
+    meetings: AppIcons.MEETINGS,
+    union: AppIcons.UNION,
   };
 
   private findIcon(key: string): string {
@@ -132,9 +146,8 @@ export class IconsService {
     return false;
   }
 
-  public setIconsList(items: any[]) {
-    items.map((item) => {
-      this.setIcon(item.svgUrl);
-    });
+  public addIconsToList(iconsMap: { [key: string]: string }) {
+    this.icons = { ...this.icons, ...iconsMap };
   }
+
 }

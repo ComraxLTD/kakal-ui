@@ -6,21 +6,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class StepperService {
-
-  constructor() { }
+  constructor() {}
 
   private activeStep(items: CardStepModel[], key: ListItemKeys, value: any) {
-    items.find((item) => {
-      if (item[key] === value) {
-        item.active();
+    items.find((step) => {
+      if (step[key] === value) {
+        step.selected = true;
+        return step;
       }
     });
   }
 
   private unactiveStep(items: CardStepModel[]) {
-    items.find((item) => {
-      if (item.isActive) {
-        item.unactive();
+    items.find((step) => {
+      if (step.selected) {
+        step.selected = false;
+        return step;
       }
     });
   }

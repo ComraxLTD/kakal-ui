@@ -1,0 +1,58 @@
+<mat-form-field class="kkl-form-input" [color]="theme" [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
+  <mat-label>{{ label }}</mat-label>
+
+  <ng-container [ngSwitch]="controlType">
+    <!-- TEXTAREA -->
+    <ng-container *ngSwitchCase="'textarea'">
+      <textarea matInput [rows]="gridProps?.rows * 2" [formControl]="control" (focusout)="validate()" (focus)="onFocus()"></textarea>
+    </ng-container>
+
+
+    <ng-container *ngSwitchCase="'phone'">
+      <input matInput [formControl]="control" [type]="'text'" phoneInput
+        (focusout)="validate()" (focus)="onFocus()" />
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'sum'">
+      <input matInput [formControl]="control" [type]="'text'" sumInput
+        (focusout)="validate()" (focus)="onFocus()" />
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'counter'">
+      <div [class.kkl-form-counter]="true" kkl-border fxLayout="column">
+        <div class="form-counter" fxFlex="90" fxLayoutGap="1rem" fxLayout="column" fxLayoutAlign="center center">
+          <div>
+            <kkl-icon [key]="icon" color="primary"></kkl-icon>
+          </div>
+          <hr />
+          <div fxFlex="35" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
+            <div fxLayout="row" fxLayoutAlign="center center">
+              <button class="decrease" [disabled]="control.disabled" mat-icon-button (click)="updateNum('-')">
+                -
+              </button>
+              <mat-form-field class="center" fxFlex="4rem">
+                <input class="small" matInput type="number" [formControl]="control"/>
+              </mat-form-field>
+              <button class="increase" [disabled]="control.disabled" mat-icon-button (click)="updateNum('+')">
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+        <div fxLayoutAlign="center center">
+          <kkl-typography>{{ label }}</kkl-typography>
+        </div>
+      </div>
+    </ng-container>
+
+    <!-- TEXT/NUMBER -->
+    <ng-container *ngSwitchDefault>
+      <input matInput [formControl]="control" [type]="controlType"
+        (focusout)="validate()" (focus)="onFocus()"/>
+    </ng-container>
+  </ng-container>
+
+  <kkl-icon *ngIf="icon" matSuffix [color]="color$ | async" [size]="1.8" [key]="icon"></kkl-icon>
+
+  <mat-error>{{ error$ | async }}</mat-error>
+</mat-form-field>

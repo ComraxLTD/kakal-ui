@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { VariantDirective } from './variant.directive';
 import { SizeDirective } from './size.directive';
-import { KKLButtonDirective } from './button.directive';
 import { UnderlineDirective } from './underline.directive';
 import { KKLBorderDirective } from './border.directive';
 import { OutsideDirective } from './outside.directive';
@@ -14,7 +13,6 @@ import { KKLHoverDirective } from './hover.directive';
   declarations: [
     KKLHoverDirective,
     KKLBorderDirective,
-    KKLButtonDirective,
     OutsideDirective,
     SizeDirective,
     UnderlineDirective,
@@ -23,11 +21,9 @@ import { KKLHoverDirective } from './hover.directive';
     KKLOutsideButtonDirective,
 
   ],
-  imports: [],
   exports: [
     KKLHoverDirective,
     KKLBorderDirective,
-    KKLButtonDirective,
     OutsideDirective,
     SizeDirective,
     UnderlineDirective,

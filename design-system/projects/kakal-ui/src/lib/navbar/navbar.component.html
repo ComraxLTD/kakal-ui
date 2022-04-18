@@ -1,29 +1,50 @@
-<mat-toolbar dir="rtl" class="navbar" fxLayout="row" fxLayoutAlign="start center">
+<mat-toolbar
+  dir="rtl"
+  class="navbar"
+  fxLayout="row"
+  fxLayoutAlign="start center"
+>
   <!-- toggle menu button -->
-  <ng-container *ngIf="toggle$ | async as toggle">
-    <div fxFill fxLayout="column" fxLayoutAlign="center center" fxFlex="5rem" fxLayoutGap='0.5rem' kkl-underline
-      kkl-button (click)="toggleMenu(toggle.value)">
-      <div>
-        <kkl-icon *ngIf="toggle.value" key="tree" color="primary" [size]="4"></kkl-icon>
-        <kkl-icon *ngIf="!toggle.value" [key]="openIcon" color="primary" fill="primary" [size]="4"></kkl-icon>
-      </div>
-      <div fxFlex="10" fxLayoutAlign="start center">
-        <kkl-typography [size]="1" color="primary">
-          {{ isOpen ? closeLabel : openLabel }}
-        </kkl-typography>
-      </div>
+  <div
+    fxFill
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    fxFlex="5rem"
+    fxLayoutGap="0.5rem"
+    kkl-underline
+    kkl-button
+    (click)="toggleMenu()"
+  >
+    <kkl-icon
+      color="primary"
+      kkl-button
+      [key]="isOpen ? openIcon : 'tree'"
+      [size]="4"
+    ></kkl-icon>
+    <div fxFlex="10" fxLayoutAlign="start center">
+      <kkl-typography [size]="1" color="primary">
+        {{ isOpen ? closeLabel : openLabel }}
+      </kkl-typography>
     </div>
-  </ng-container>
+  </div>
 
-  <div fxLayout="column" fxLayoutAlign="center start" fxFlex fxFlexOffset="1rem">
-    <kkl-typography [weight]="600" [size]="2">
-      {{ title$ | async }}
-    </kkl-typography>
+  <div
+    fxLayout="column"
+    fxLayoutAlign="center start"
+    fxFlex
+    fxFlexOffset="1rem"
+  >
+    <div>
+      <kkl-bread-crumbs></kkl-bread-crumbs>
+    </div>
+    <div>
+      <kkl-page-headline [pageHeadline$]="pageHeadline$"></kkl-page-headline>
+    </div>
   </div>
 
   <!-- main navbar links -->
   <div fxFlex="grow" *ngIf="!(mobile$ | async)">
-    <div fxLayoutAlign="center center" *ngIf="show$ | async">
+    <div fxLayoutAlign="center center" *ngIf="showStatus$ | async">
       <kkl-stepper direction="row" [steps$]="status$"></kkl-stepper>
     </div>
   </div>
@@ -32,8 +53,11 @@
 
   <!-- left side logo -->
   <div fxFlex fxLayout="row" fxLayoutAlign="end center" fxLayoutGap="1rem">
-    <div *ngFor="let logo of logos" kkl-button>
-      <kkl-icon [routerLink]="['/' + logo.path]" [key]="logo.key" [size]="6"></kkl-icon>
+    <div kkl-button (click)="onLogoClick()">
+      <kkl-icon [key]="'logo'" [size]="6"></kkl-icon>
+    </div>
+    <div *ngFor="let logo of icons" kkl-button>
+      <kkl-icon [key]="logo.key" [size]="6"></kkl-icon>
     </div>
   </div>
 </mat-toolbar>

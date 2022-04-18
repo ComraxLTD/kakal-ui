@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Color } from '../../styles/theme';
+import { Palette } from '../../styles/theme';
 import { MenuItemModel } from './menu-item.model';
 
 @Component({
@@ -10,21 +9,16 @@ import { MenuItemModel } from './menu-item.model';
 })
 export class MenuItemComponent implements OnInit {
   @Input() public item: MenuItemModel;
-  @Input() public color : Color
-  @Input() public bold :boolean
-
-  public active$: Observable<boolean>;
+  @Input() public color: Palette;
+  @Input() public weight: boolean;
 
   @Output() changeLink: EventEmitter<void> = new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {
-    this.active$ = this.item.getActiveObs();
-  }
+  ngOnInit(): void {}
 
   public onLinkClick() {
     this.changeLink.emit();
   }
-
 }

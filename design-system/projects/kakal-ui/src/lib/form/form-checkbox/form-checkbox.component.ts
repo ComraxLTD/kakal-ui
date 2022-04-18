@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { AbstractControl, FormControl } from '@angular/forms';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+import { FormActions } from '../models/form.actions';
+import { FormChangeEvent } from '../models/form.options';
 
 @Component({
   selector: 'kkl-form-checkbox',
@@ -8,17 +10,25 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./form-checkbox.component.scss'],
 })
 export class FormCheckboxComponent implements OnInit {
-  @Input() control: FormControl;
-  @Input() label: string;
+  @Input() control!: FormControl | AbstractControl;
+  @Input() key!: string;
+  @Input() index!: number;
+  @Input() label!: string;
   @Input() labelPosition: 'after' | 'before' = 'after';
 
-  @Output() valueChanged: EventEmitter<MatCheckboxChange> = new EventEmitter();
+  @Output() changed: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   onChange(event: MatCheckboxChange) {
-    this.valueChanged.emit(event);
+    const formChangeEvent: FormChangeEvent = {
+      key: this.key,
+      value: event.checked,
+      index: this.index,
+      action: FormActions.VALUE_CHANGED,
+    };
+    this.changed.emit(formChangeEvent);
   }
 }

@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+
+
+export class CardUserModel {
+  name: string;
+  imgUrl: string;
+}
 
 @Component({
   selector: 'kkl-card-user',
@@ -6,15 +13,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./card-user.component.scss'],
 })
 export class CardUserComponent implements OnInit {
-  public userInfo = {
-    imgSrc: 'assets/images/userImage.jpg',
-    name: '',
-  };
 
-  public action: string = '';
+  @Input() public user : CardUserModel;
+
+  public action: string = 'החלף משתמש';
+
+  @Output() changeUser: EventEmitter<void> = new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  public onChangeUser() {
+    this.changeUser.emit();
   }
 }

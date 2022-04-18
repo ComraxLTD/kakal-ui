@@ -1,26 +1,19 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SelectOption } from '../models/question-select.model';
-import { FormService, QuestionGroup } from '../services/form.service';
+import { SelectOption } from '../form-select/question-select.model';
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class CurrencyService {
-  private currencies$: BehaviorSubject<SelectOption[]> = new BehaviorSubject(
-    []
-  );
-  constructor(private formService: FormService) {}
+  private currencies: SelectOption[];
+  constructor() { }
 
-
-  public setCurrencyGroup(config: QuestionGroup) {
-    return this.formService.createQuestionGroup(config);
+  public setCurrencies(currencies: SelectOption[]): void {
+    this.currencies = currencies;
   }
-
-  public setCurrencies$(currencies: SelectOption[]) {
-    this.currencies$.next(currencies);
-  }
-  public getCurrencies$(): Observable<SelectOption[]> {
-    return this.currencies$.asObservable();
+  public getCurrencies(): SelectOption[] {
+    return this.currencies;
   }
 }

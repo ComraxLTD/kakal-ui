@@ -1,12 +1,13 @@
 @use ".././../../styles/variables" as main;
 
 .kkl-form-radio {
-  padding: 0 .75em 0 .75em;
+  padding: 0 0.75em 0 0.75em;
+  font-size: 1.4rem;
+  
   ::ng-deep .mat-radio-outer-circle {
-    border-color: #CECECE!important;
+    border-color: #cecece !important;
   }
 }
 ::ng-deep span.mat-radio-label-content {
   padding-right: main.spacing(2) !important;
 }
- 

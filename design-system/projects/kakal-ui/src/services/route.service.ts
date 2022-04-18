@@ -22,7 +22,7 @@ export class RouterService {
     private location: Location,
     private activatedRoute: ActivatedRoute
   ) {
-    this.ListenToRoute();
+    this.listenToRoute();
   }
 
   public goBack() {
@@ -38,7 +38,7 @@ export class RouterService {
     return this.setLastPath(this.router.url);
   }
 
-  public ListenToRoute(): Observable<string> {
+  public listenToRoute(): Observable<string> {
     return this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
       map((event: any) => {
@@ -50,7 +50,7 @@ export class RouterService {
   }
 
   public getLastPathObs(steps?: CardStepModel[]): Observable<string> {
-    return this.ListenToRoute().pipe(
+    return this.listenToRoute().pipe(
       startWith(this.getCurrentPath()),
       map((path: string) => steps ? this.setLastPathWithSteps(this.router.url, steps) : this.setLastPath(path))
     );
@@ -58,7 +58,7 @@ export class RouterService {
 
   public async navigate(path: string) {
     try {
-      await this.router.navigateByUrl(path);
+       await this.router.navigateByUrl(path);
     } catch (err) {
       console.log(err);
     }
@@ -70,7 +70,7 @@ export class RouterService {
       return steps.map(step => {
         if (step.path === path) currentStep = step;
       })
-    });    
+    });
     return currentStep?.path;
   }
 

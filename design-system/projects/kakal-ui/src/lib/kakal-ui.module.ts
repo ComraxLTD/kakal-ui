@@ -1,17 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import he from '@angular/common/locales/he';
+import { registerLocaleData } from '@angular/common';
+
 import { MaterialModule } from './angular-material/material.module';
 import { CoreModule } from './core-module/core.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { KKLButtonModule } from './button/button.module';
 import { KKLIconModule } from './icon/icon.module';
 import { KKLNavigationModule } from './navigation/navigation.module';
-import { KKLBreadCrumbsModule } from './bread-crumbes/bread-crumbs.module';
+import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
-import { KKLInfoCardModule } from './cards/info-card/info-card.module';
-import { KKLFilterCardModule } from './cards/filter-card/filter-card.module';
 
 import { KKLMenuItemModule } from './menu-item/menu-item.module';
 import { KKLMenuModule } from './menu/menu.module';
@@ -20,6 +22,7 @@ import { KKLStepTitleModule } from './step-title/step-title.module';
 import { KKLFormModule } from './form/form/form.module';
 
 import { KKLFormAutoCompleteModule } from './form/form-autocomplete/form-autocomplete.module';
+import { KklFormCalendarModule } from './form/form-calendar/form-calendar.module';
 import { KKLFormCurrencyModule } from './form/form-currency/form-currency.module';
 import { KKLFormDateModule } from './form/form-date/form-date.module';
 import { KKLFormRadioModule } from './form/form-radio/form-radio.module';
@@ -31,47 +34,80 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
 import { KKLFormSearchModule } from '../lib/form/form-search/form-search.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 
-import { KKLTableModule } from './table/components/table/table.module';
+import { KKLTableModule } from './table/table.module';
 import { KKLTableCellModule } from './table/components/cells/table-cell.module';
 import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 
-import { SidenavModule } from './sidenav/sidenav.module';
-
 import { KKLDialogModule } from './dialog/dialog.module';
+
+import { KKLSidenavModule } from './sidenav/sidenav.module';
 import { SpinnerModule } from './spinner/spinner.module';
 
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
-import { KKLStatusBarsModule } from './status-bars/status-bars.module';
+import { KKLStatusStepsModule } from './status-steps/status-steps.module';
+import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
+
+// CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
 import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
+import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
+import { KKLCardAddModule } from './cards/card-add/card-add.module';
+import { KKLCardDocumentModule } from './cards/card-document/card-document.module';
+
+import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
+import { KKLLayoutModule } from './layouts/layout/layout.module';
+
+import { KKSectionModule } from './layouts/section/section.module';
+import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
+import { KKPageModule } from './layouts/page/page.module';
+import { KKLAccordionStepsModule } from './layouts/accordion-steps-layout/accordion-steps.module';
+import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
-import { StepperModule } from './stepper/stepper.module';
-import { StepperMobileModule } from './stepper-mobile/stepper-mobile.module';
-import { StepperLayoutModule } from '../screens/stepper-layout/stepper-layout.module';
-import { KKLListMenuModule } from '../lib/list-menu/list-menu.module';
-import { KKLHoverModule } from '../lib/kkl-hover/kkl-hover.module';
+import { KKLStepperModule } from './stepper/stepper.module';
+import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
+import { KKLListMenuModule } from './list-menu/list-menu.module';
+import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
-import { KKLLayoutModule } from '../screens/layout/layout.module';
-import { KKLLobbyModule } from '../lib/lobby/lobby.module';
-import { KKLDisplayDataModule } from '../lib/display-data/display-data.module';
-import { KKLFiltersModule } from '../lib/filters/filters.module';
+
+import { KKLLobbyModule } from './lobby/lobby.module';
+import { KKLDisplayDataModule } from './display-data/display-data.module';
+import { KKLFiltersModule } from './filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
-import { OpenMotionsModule } from '../lib/open-motions/open-motions.module';
-import { KKSectionModule } from '../lib/section/section.module';
-import { ReactiveFormsModule } from '@angular/forms';
-import {FormDateCalendarModule} from '../lib/form/form-date-calendar/form-date-calendar.module';
+import { OpenMotionsModule } from './open-motions/open-motions.module';
+
+import { KKLTabsModule } from './tabs/tabs.module';
+
+import { KKLNewTableModule } from './kkl-table/kkl-table.module';
+
+import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module';
+import { FacilityCardModule } from './facility-card/facility-card.module';
+
+import { KKLDrawerModule } from './drawers/drawer.module';
+
+import { CarouselModule } from './carousel/carousel.module';
+
+import { KKLFullCalendarModule } from './full-calendar/full-calendar.module';
+
+import { MeiFormModule } from './mei-form/mei-form.module';
+
+// GRIDS
+
+import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
+
+registerLocaleData(he);
+
 @NgModule({
   declarations: [FormExampleComponent, SidenavExampleComponent],
   imports: [
@@ -79,24 +115,27 @@ import {FormDateCalendarModule} from '../lib/form/form-date-calendar/form-date-c
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    FormDateCalendarModule,
     //TOOLS
+    KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
+
     KKLNavigationModule,
-    KKLStatusBarsModule,
     KKLMenuModule,
+    KKLMenuBarModule,
+
+    KKLStatusStepsModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
+    KKLSidenavModule,
     KKLPageHeadlineModule,
-    KKLInfoCardModule,
     KKLBreadCrumbsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
+
+    KKLDrawerModule,
 
     KKLFiltersModule,
 
@@ -114,6 +153,11 @@ import {FormDateCalendarModule} from '../lib/form/form-date-calendar/form-date-c
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    KklFormCalendarModule,
+
+    //KKL NEW TABLE MODULES
+    KKLNewTableModule,
+    MeiFormModule,
 
     // TABLE MODULES
     KKLTableModule,
@@ -126,44 +170,67 @@ import {FormDateCalendarModule} from '../lib/form/form-date-calendar/form-date-c
 
     // CARDS
     KKLCardLobbyModule,
+    KKLCardAddModule,
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+    KKLCardDocumentModule,
 
     // NAVBAR
     KKLNavbarModule,
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
+
+    KKLVerticalStepsModule,
+
     // LAYOUT
     KKLLayoutModule,
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+    KKLAccordionStepsModule,
+    KKLAccordionLayoutModule,
+    KKLAdvancedSearchLayoutModule,
+
+    // GRIDS
+
+    KKLDocumentGridModule,
+
+    KKSectionModule,
+    KKPageModule,
+    FacilityCardModule,
+    CarouselModule,
+    KKLFullCalendarModule,
   ],
   exports: [
-    FormDateCalendarModule,
     //TOOLS
+    KKLTabsModule,
     OpenMotionsModule,
-    KKSectionModule,
     KKLHoverModule,
-    KKLFilterCardModule,
+    KKLCardFilterModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
-    MaterialModule,
+
+    KKLDrawerModule,
+
     KKLMenuItemModule,
+
+    KKLMenuBarModule,
+
     KKLButtonModule,
+
     KKLIconModule,
     KKLTypographyModule,
     KklTitleModule,
     KKLStepTitleModule,
-    SidenavModule,
-    KKLStatusBarsModule,
+    KKLSidenavModule,
+    KKLStatusStepsModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
     KKLFiltersModule,
@@ -180,18 +247,24 @@ import {FormDateCalendarModule} from '../lib/form/form-date-calendar/form-date-c
     KKLFormCheckboxGroupModule,
     KKLFormCounterModule,
     KKLFormSearchModule,
+    KklFormCalendarModule,
 
+    // NEW TABLE
+    KKLNewTableModule,
+    MeiFormModule,
+
+    // TABLE
     KKLTableModule,
     KKLHeaderCellModule,
     KKLTableCellModule,
 
     KKLDialogModule,
-    KKLInfoCardModule,
 
     KKLPipesModule,
     KKLDirectivesModule,
     SpinnerModule,
     KKLPageHeadlineModule,
+
     // CARDS
     KKLCardLobbyModule,
     KKLCardInfoModule,
@@ -199,20 +272,38 @@ import {FormDateCalendarModule} from '../lib/form/form-date-calendar/form-date-c
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardWizardModule,
+    KKLCardDocumentModule,
+
     // NAVBAR
     KKLNavbarModule,
     NavbarBottomModule,
 
     // STEPPER
-    StepperModule,
-    StepperMobileModule,
+    KKLStepperModule,
+    KKLStepperMobileModule,
     StepperLayoutModule,
+
+    // GRIDS
+
+    KKLDocumentGridModule,
 
     // LAYOUT
     KKLLayoutModule,
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
+    KKLAccordionLayoutModule,
+    KKLAdvancedSearchLayoutModule,
+
+    KKLVerticalStepsModule,
+
+    KKSectionModule,
+    KKPageModule,
+
+    KKLAccordionStepsModule,
+    FacilityCardModule,
+    CarouselModule,
+    KKLFullCalendarModule,
   ],
 })
 export class KakalUiModule {}

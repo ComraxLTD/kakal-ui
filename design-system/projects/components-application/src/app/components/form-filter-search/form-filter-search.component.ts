@@ -1,192 +1,135 @@
-import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
 import {
-  Currency,
-  FilterChangeEvent,
   FiltersService,
   FilterState,
-  FilterType,
-  FormChangeEvent,
-  FormService,
-  GridProps,
-  KKLSelectOption,
+  SelectOption,
   OptionMap,
   Question,
+  FormChangeEvent,
+  FormActions,
+  FilterLookups,
+  MODULE_PREFIX,
   QuestionGroupModel,
-  SelectOption,
+  ROOT_PREFIX,
+  RouterService,
+  RowActionModel,
+  TableBase,
 } from '../../../../../kakal-ui/src/public-api';
 import { MOCK_OPTIONS } from '../table/mock_data';
-import { firstValueFrom, forkJoin, map, Observable, of } from 'rxjs';
+import { forkJoin, map, Observable, of } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-filter-search',
   templateUrl: './form-filter-search.component.html',
   styleUrls: ['./form-filter-search.component.scss'],
-  providers: [FiltersService],
 })
 export class FormFilterSearchComponent implements OnInit {
-  private questions: Question[] = [
-    // first for the general search
-    // key must be search!
-    {
-      key: 'search',
-      controlType: 'autocomplete',
-    },
-    // {
-    //   key: 'currency',
-    //   controlType: 'currency',
-    //   value: { sum: 100 } as Currency,
-    // },
+  dataSource: any[] = [];
 
-    { key: 'last_name' },
-    // { key: 'part', controlType: 'counter' },
-    { key: 'last_name', controlType: 'select' },
+  // set questions array for the advanced form
+  columns: TableBase[] = [
     {
-      key: 'email',
-      label: 'email',
-      filterType: FilterType.SELECT,
-      controlType: 'autocomplete',
-    },
-    // { key: 'phone', controlType: 'phone', value: '83928329' },
-    // {
-    //   key: 'area',
-    //   filterType: FilterType.RANGE,
-    //   controlType: 'range',
-    //   format: { type: 'area' },
-    //   questions: [
-    //     {
-    //       key: 'start',
-    //       label: 'משטח',
-    //       controlType: 'sum',
-    //     },
-    //     {
-    //       key: 'end',
-    //       label: 'עד שטח',
-    //       controlType: 'sum',
-    //     },
-    //   ],
-    // },
-    // {
-    //   key: 'currency',
-    //   filterType: FilterType.RANGE,
-    //   controlType: 'range',
-    //   questions: [
-    //     {
-    //       key: 'start',
-    //       label: 'מסכום',
-    //       controlType: 'sum',
-    //     },
-    //     {
-    //       key: 'end',
-    //       label: 'עד סכום',
-    //       controlType: 'sum',
-    //     },
-    //   ],
-    //   format: { type: 'currency', args: (item) => '$' },
-    // },
-    {
-      key: 'city',
-      filterType: FilterType.MULTI_SELECT,
-      label: 'city',
-      controlType: 'multiSelect',
+      key: 'committeeId',
+      label: 'מספר ועדה',
+      controlType: 'number',
+      button: { type: '', icon: '' },
     },
     {
-      key: 'country',
-      label: 'country',
-      filterType: FilterType.SELECT,
-      controlType: 'select',
+      key: 'remiTikim',
+      label: 'תיקי רמ"י',
+      controlType: 'number',
+      button: { type: 'inlineExpand', icon: 'keyboard_arrow_down' },
     },
-    // {
-    //   key: 'date',
-    //   filterType: FilterType.DATE_RANGE,
-    //   controlType: 'dateRange',
-    //   value: { start: new Date(), end: new Date() },
-    // },
+    { key: 'date', label: 'תאריך', controlType: 'date' },
+    { key: 'observer', label: 'שם משקיף', controlType: 'number' },
+    { key: 'amount', label: 'ערך כספי', controlType: 'number' },
+    { key: 'status', label: 'סטטוס' },
   ];
 
-  public optionsMap$: Observable<OptionMap>;
+  portfolioDataSource: any[] = [];
 
-  public searchGroup: QuestionGroupModel;
+  portfolioColumns: TableBase[] = [
+    { key: 'portfolioId', label: 'מס תיק', button: { type: 'inlineDelete' } },
+    { key: 'estates', label: 'נכסים' },
+    { key: 'observer', label: 'עמדת משקיף' },
+  ];
 
-  public filtersState$: Observable<FilterState>;
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+    },
+    {
+      type: 'deleteEdit',
+      icon: 'delete',
+    },
+  ];
 
-  constructor(
-    private filterService: FiltersService,
-    private formService: FormService
-  ) {}
+  //  FORM PROPS
+
+  questions!: Question[];
+
+  public searchGroup!: QuestionGroupModel<any>;
+
+  public optionsMap$!: Observable<OptionMap>;
+
+  public filtersState$!: Observable<FilterState>;
+
+  constructor(private routerService: RouterService) {}
 
   ngOnInit(): void {
-    this.searchGroup = this.setGroup(this.questions);
-
-    this.filtersState$ = this.filterService.getFilterMap({
-      formGroup: this.searchGroup.formGroup,
-      questions: this.questions,
-    });
-
-    this.optionsMap$ = this.getOptionsMap$();
-  }
-
-  private getCurrencyOptions() {
-    return of([
-      { label: '$', value: 1 },
-      { label: '₪', value: 2 },
-      { label: '@', value: 3 },
-    ] as KKLSelectOption[]);
-  }
-
-  public getOptionsMap$(): Observable<OptionMap> {
-    const city$ = of(MOCK_OPTIONS);
-    const email$ = of(MOCK_OPTIONS);
-    const country$ = of(MOCK_OPTIONS);
-    const currency$ = this.getCurrencyOptions();
-
-    return forkJoin([city$, email$, country$, currency$]).pipe(
-      map(([city, email, country, currency]) => {
-        return { city, email, country, currency };
-      })
-    );
-  }
-
-  private async setQuestionsWithOptions(
-    questions: Question[]
-  ): Promise<Question[]> {
-    const optionsMap = await firstValueFrom(this.getOptionsMap$());
-    return this.formService.setQuestionsWithOptions(questions, optionsMap);
-  }
-
-  private setGroup(initQuestions: Question[]): QuestionGroupModel {
-    const group = this.formService.createQuestionGroup({
-      questions: initQuestions,
-    });
-
-    const advancedQuestions = [...group.questions];
-    advancedQuestions.splice(0, 1);
-
-    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
-  }
-
-  private async setGroupAsync(
-    initQuestions: Question[]
-  ): Promise<QuestionGroupModel> {
-    const questions = await this.setQuestionsWithOptions(initQuestions);
-    const group = this.formService.createQuestionGroup({
-      questions,
-    });
-
-    const advancedQuestions = [...group.questions];
-    advancedQuestions.splice(0, 1);
-
-    return { ...group, questions: advancedQuestions } as QuestionGroupModel;
+    this.questions = [
+      {
+        key: 'search',
+        controlType: 'autocomplete',
+      },
+      {
+        key: 'committeeId',
+        label: 'מס ועדה',
+      },
+      {
+        key: 'remiTikOptions',
+        label: 'מס תיק רמ"י',
+        controlType: 'autocomplete',
+      },
+      {
+        key: 'gushOptions',
+        label: 'גוש',
+        controlType: 'autocomplete',
+      },
+      {
+        key: 'chelkaOptions',
+        label: 'חלקה',
+        controlType: 'autocomplete',
+        gridProps: { offset: 'none' },
+      },
+      {
+        key: 'observerOptions',
+        label: 'שם משקיף',
+        controlType: 'select',
+      },
+      {
+        key: 'migrashOptions',
+        label: 'מגרש',
+        controlType: 'autocomplete',
+      },
+      {
+        key: 'tabaNumOptions',
+        label: 'מס תב"ע',
+        controlType: 'autocomplete',
+      },
+      {
+        key: 'regionOptions',
+        label: 'מרחב',
+        controlType: 'select',
+        gridProps: { offset: 'none' },
+      },
+    ];
   }
 
   // DOM EVENTS SECTION
 
-  public onFilterChanged(state : FilterState) {
-    console.log(state)
+  onCreateNewCommittee() {
   }
-  public onFormChanged(event : FormChangeEvent) {
-    console.log(event)
-  }
-
-
 }

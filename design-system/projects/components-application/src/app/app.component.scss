@@ -1,4 +1,13 @@
-::ng-deep .example-custom-date-class {
-    background: orange!important;
-    border-radius: 100%;
-  }
+@use "../../../kakal-ui/src/styles/variables" as main;
+
+:host {
+  margin: 16px;
+}
+::ng-deep div.status-bar.active{
+color: blue;
+background-color: blue !important;
+}
+
+.kkl-expand-panel {
+  margin-bottom: 10px;
+}

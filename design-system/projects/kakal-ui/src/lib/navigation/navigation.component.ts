@@ -7,7 +7,6 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
 
@@ -17,17 +16,18 @@ import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  @Input() public steps$: Observable<CardStatusModel[]>;
+  @Input() public steps$: Observable<CardStepModel[]>;
   @Input() public activeStepIndex: number;
 
-  @Input() slots: { content:TemplateRef<any>; step: TemplateRef<any> };
+  @Input() slots: { content: TemplateRef<any>; step: TemplateRef<any> };
 
   public currentIndexSubject: BehaviorSubject<number>;
   public stepMap$: Observable<{ [key: string]: CardStepModel }>;
   public activeStep$: Observable<{ value: number }>;
   public end$: Observable<boolean>;
 
-  @Output() changeStep: EventEmitter<{step:CardStepModel,index:number}> = new EventEmitter();
+  @Output() changeStep: EventEmitter<{ step: CardStepModel; index: number }> =
+    new EventEmitter();
 
   constructor() {}
 
@@ -40,7 +40,7 @@ export class NavigationComponent implements OnInit {
 
   private setActiveStep$(): Observable<{ value: number }> {
     return this.steps$.pipe(
-      map((steps) => steps.findIndex((step: CardStepModel) => step.isActive)),
+      map((steps) => steps.findIndex((step: CardStepModel) => step.selected)),
       map((index: number) => {
         return {
           value: index,
@@ -51,13 +51,13 @@ export class NavigationComponent implements OnInit {
 
   private setStepsMap() {
     return this.steps$.pipe(
-      map((steps: CardStatusModel[]) => {
+      map((steps: CardStepModel[]) => {
         const map = steps.reduce((acc, step) => {
           return {
             ...acc,
             [steps.indexOf(step)]: step,
           };
-        }, {});
+        }, {} as { [key: string]: CardStepModel });
 
         return map;
       })
@@ -78,10 +78,10 @@ export class NavigationComponent implements OnInit {
 
   public onNext(index: number, step: CardStepModel) {
     this.currentIndexSubject.next(index + 1);
-    this.changeStep.emit({step:step,index:(index+1)});
+    this.changeStep.emit({ step: step, index: index + 1 });
   }
   public onPrev(index: number, step: CardStepModel) {
     this.currentIndexSubject.next(index - 1);
-    this.changeStep.emit({step:step,index:(index-1)});
+    this.changeStep.emit({ step: step, index: index - 1 });
   }
 }

@@ -1,0 +1,12 @@
+<kkl-form-temp
+  dir="rtl"
+  [formGroup]="formGroup"
+  [questions]="groupFlex.questions"
+  [grid]="groupFlex.gridProps!"
+></kkl-form-temp>
+
+<pre>
+  {{groupFlex.formGroup.value | json}}
+  {{formGroup.value | json}}
+  {{formGroup.valid | json}}
+</pre>

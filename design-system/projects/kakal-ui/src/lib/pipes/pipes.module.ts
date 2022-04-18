@@ -5,7 +5,7 @@ import { LocationPipe } from './location.pipe';
 import { PrefixPipe } from './prefix.pipe';
 import { RangePipe } from './range.pipe';
 import { PluckPipe } from './pluck.pipe';
-
+import { NumberToTimePipe } from './numberToTime.pipe';
 @NgModule({
   declarations: [
     AreaPipe,
@@ -14,6 +14,7 @@ import { PluckPipe } from './pluck.pipe';
     PrefixPipe,
     RangePipe,
     PluckPipe,
+    NumberToTimePipe,
   ],
   imports: [],
   providers: [
@@ -23,6 +24,7 @@ import { PluckPipe } from './pluck.pipe';
     PrefixPipe,
     RangePipe,
     PluckPipe,
+    NumberToTimePipe
   ],
   exports: [
     AreaPipe,
@@ -31,6 +33,7 @@ import { PluckPipe } from './pluck.pipe';
     PrefixPipe,
     RangePipe,
     PluckPipe,
+    NumberToTimePipe
   ],
 })
-export class KKLPipesModule {}
+export class KKLPipesModule { }

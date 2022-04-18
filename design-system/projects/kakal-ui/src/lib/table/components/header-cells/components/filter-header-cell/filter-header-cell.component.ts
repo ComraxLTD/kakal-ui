@@ -9,7 +9,7 @@ import {
 import { SortDirection } from '@angular/material/sort';
 import { MatListOption } from '@angular/material/list';
 
-import { KKLSelectOption } from '../../../../../form/models/form.types';
+import { SelectOption } from '../../../../../form/models/form.types';
 import { TableDataSource } from '../../../../models/table-datasource';
 import { HeaderState, SortState } from '../../../../models/table.state';
 import { ColumnActions } from '../../../../models/table-actions';
@@ -42,7 +42,7 @@ export class FilterHeaderCellComponent implements OnInit {
 
   @Input() public filterTemplate: TemplateRef<any>;
 
-  public options$: Observable<KKLSelectOption[]>;
+  public options$: Observable<SelectOption[]>;
   public value$: Observable<FilterRange>;
   public active$: Observable<boolean> = of(true);
 
@@ -141,7 +141,7 @@ export class FilterHeaderCellComponent implements OnInit {
   }
 
   public onSelectionChange(optionsList: MatListOption[]) {
-    const options: KKLSelectOption[] = optionsList.map(
+    const options: SelectOption[] = optionsList.map(
       (option: MatListOption) => {
         return option.value;
       }
@@ -151,7 +151,7 @@ export class FilterHeaderCellComponent implements OnInit {
     // this.tableDataSource.dispatchFilter({ filterState });
   }
 
-  public compareWith(o1: KKLSelectOption, o2: KKLSelectOption) {
+  public compareWith(o1: SelectOption, o2: SelectOption) {
     return o1?.label === o2?.label && o1.value === o2.value;
   }
 }

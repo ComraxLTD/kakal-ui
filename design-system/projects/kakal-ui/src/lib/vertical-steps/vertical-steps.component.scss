@@ -1,0 +1,20 @@
+::ng-deep mat-vertical-stepper.kkl-vertical-steps {
+  mat-step-header {
+    display: flex;
+    justify-content: space-between !important;
+  }
+}
+
+// .kkl-vertical-stepper-label {
+//   width: 100px;
+// }
+
+::ng-deep mat-vertical-content-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 50%;
+}
+
+// ::ng-deep .mat-step-header{
+//   pointer-events: none !important;
+// }

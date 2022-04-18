@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormControlStatus, FormGroup } from '@angular/forms';
+import { FormControl, FormControlStatus } from '@angular/forms';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import {
   MomentDateAdapter,
@@ -13,17 +13,17 @@ import {
 
 import { MessageService } from '../services/message.service';
 
-import { map, Observable, startWith, Subject, takeUntil } from 'rxjs';
-import { Appearance } from '../models/question.model';
 import { FormChangeEvent } from '../models/form.options';
 import { FormActions } from '../models/form.actions';
+import { map, Observable, startWith, Subject, } from 'rxjs';
+import { Appearance } from '../models/question.types';
 
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'DD/MM/YY',
+    dateInput: 'DD/MM/YYYY',
   },
   display: {
-    dateInput: 'DD/MM/YY',
+    dateInput: 'DD/MM/YYYY',
     monthYearLabel: 'YYYY',
     dateA11yLabel: 'LL',
     monthYearA11yLabel: 'YYYY',
@@ -63,10 +63,8 @@ export class FormDateComponent implements OnInit {
   @Output() public dateEvent: EventEmitter<MatDatepickerInputEvent<Date>> =
     new EventEmitter();
 
-  rangeForm = new FormGroup({
-    start: new FormControl(),
-    end: new FormControl(),
-  });
+  @Output() readonly dateChanged: EventEmitter<FormChangeEvent<Date>> =
+    new EventEmitter();
 
   @Output() focus: EventEmitter<FormChangeEvent> = new EventEmitter();
 
@@ -75,42 +73,27 @@ export class FormDateComponent implements OnInit {
   ngOnInit(): void {
     this.destroy = new Subject();
 
-    if (this.control.value) {
-      if (this.control.value.start || this.control.value.end)
-        this.rangeForm.setValue(this.control.value);
-    }
     this.message$ = this.setErrorMessage$();
-
-    this.listenToControlReset();
   }
 
   ngOnDestroy() {
     this.destroy.next();
   }
 
-  private listenToControlReset() {
-    return this.control.valueChanges
-      .pipe(takeUntil(this.destroy))
-      .subscribe((value) => {
-        if (!value) {
-          this.rangeForm.reset();
-        }
-      });
-  }
-
-  private getFormOption(props: {
+  private setFormChangeEvent(props: {
     value: any;
     action: FormActions;
   }): FormChangeEvent {
     const { value, action } = props;
-    const FormChangeEvent: FormChangeEvent = {
+    const formChangeEvent: FormChangeEvent = {
       key: this?.key,
       control: this?.control,
       index: this?.index,
+      value,
       action,
     };
 
-    return FormChangeEvent;
+    return formChangeEvent;
   }
 
   private setErrorMessage$() {
@@ -128,26 +111,28 @@ export class FormDateComponent implements OnInit {
   }
 
   public onDateChange(event: MatDatepickerInputEvent<Date>): void {
-    this.control.setValue(event.value['_d']);
-    this.dateEvent.emit(event.value['_d']);
+    const formChangeEvent = this.setFormChangeEvent({
+      value: event.value['_d'],
+      action: FormActions.DATE_CHANGED,
+    });
+
+    this.dateChanged.emit(formChangeEvent);
+  }
+  public onDateInput(event: MatDatepickerInputEvent<Date>): void {
+    const formChangeEvent = this.setFormChangeEvent({
+      value: event.value['_d'],
+      action: FormActions.DATE_CHANGED,
+    });
+
+    console.log(formChangeEvent)
+    // this.dateChanged.emit(formChangeEvent);
   }
 
-  public rangeDateChange(event: MatDatepickerInputEvent<Date>, type: string) {
-    if (event.value) {
-      if (type === 'start') {
-        this.rangeForm.controls['start'].setValue(event.value['_d']);
-      } else {
-        this.rangeForm.controls['end'].setValue(event.value['_d']);
-      }
-      if (this.control) this.control.setValue(this.rangeForm.value);
-
-      this.dateEvent.emit(this.rangeForm.value);
-    }
-  }
-
-  public onFocus() {
-    this.focus.emit(
-      this.getFormOption({ value: true, action: FormActions.FOCUS_CHANGED })
-    );
+  public onFocus(): void {
+    const formChangeEvent = this.setFormChangeEvent({
+      value: true,
+      action: FormActions.FOCUS_CHANGED,
+    });
+    this.focus.emit(formChangeEvent);
   }
 }
