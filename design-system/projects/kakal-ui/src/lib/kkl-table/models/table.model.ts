@@ -1,9 +1,9 @@
-import { ValidatorFn } from '@angular/forms';
-import { Palette } from '../../../styles/theme'
-import { Appearance, ControlType } from '../../form/models/question.types'
+import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { BehaviorSubject } from 'rxjs';
+import { Palette } from '../../../styles/theme';
+import { Appearance, ControlType } from '../../mei-form/models/control.types';
 import { KklSelectOption } from '../../mei-form/models/kkl-select.model';
 
-import { BehaviorSubject } from 'rxjs';
 import { RowActionModel } from './table-actions.model';
 
 export interface TableBase {
@@ -50,7 +50,7 @@ export interface TableBase {
   group?: string;
   button?: RowActionModel;
   noFilter?: boolean;
-  templateName?: string;
+  cellTemplate?: string;
   notEditable?: boolean;
 
 

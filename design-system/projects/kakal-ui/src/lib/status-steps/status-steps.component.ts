@@ -21,8 +21,6 @@ export interface StatusBars {
 })
 export class StatusStepsComponent implements OnInit {
   @Input() public cols: number;
-  @Input() public height: number;
-  @Input() public gutter: number;
   @Input() public color: string;
   @Input() public hasLabel: boolean;
   @Input() public status: StatusBars;

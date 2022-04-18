@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   ControlBase,
@@ -19,9 +19,17 @@ export class AppComponent {
 
   cards = [
     {
-      svgIcon: 'search',
-      label: '1',
-      subLabel: 'sub label',
+      committeeId: 'wtwrt',
+      remiTikimCount: 'werwsfwe',
+
+    }
+  ]
+
+  rowActions: RowActionModel[] = [
+    {
+      type: 'inlineEdit',
+      icon: 'edit',
+      label: 'Edit'
     },
     {
       svgIcon: 'search',

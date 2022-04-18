@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { PageHeadline } from './page-headline.component';
 
 @Injectable({
@@ -7,9 +7,9 @@ import { PageHeadline } from './page-headline.component';
 })
 export class PageHeadlineService {
 
-  private pageHeadlineSource$: Subject<PageHeadline[]> = new Subject<
+  private pageHeadlineSource$: BehaviorSubject<PageHeadline[]> = new BehaviorSubject<
     PageHeadline[]
-  >();
+  >([]);
 
   constructor() {}
 
@@ -17,7 +17,11 @@ export class PageHeadlineService {
     return this.pageHeadlineSource$.asObservable();
   }
 
-  public emitPageHeadlineItems(pageHeadline: PageHeadline[]): void {
-    this.pageHeadlineSource$.next(pageHeadline);
+  public emitPageHeadlineItems(pageHeadlines: PageHeadline[]): void {
+    this.pageHeadlineSource$.next(pageHeadlines);
+  }
+
+  public addPageHeadlineItems(pageHeadlines: PageHeadline[]): void {
+    this.pageHeadlineSource$.next(this.pageHeadlineSource$.getValue().concat(pageHeadlines));
   }
 }

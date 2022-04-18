@@ -106,6 +106,7 @@ import { MeiFormModule } from './mei-form/mei-form.module';
 
 import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
 import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
+import { MeiServiceModule } from './mei-services/mei-services.module';
 
 registerLocaleData(he);
 
@@ -254,6 +255,7 @@ registerLocaleData(he);
     // NEW TABLE
     KKLNewTableModule,
     MeiFormModule,
+    MeiServiceModule,
 
     // TABLE
     KKLTableModule,

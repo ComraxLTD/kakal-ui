@@ -6,7 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { KklSelectOption } from '../models/kkl-select.model';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { GridProps } from '../models/control.types';
-import { setControls } from './mei-form-class';
+import { setControls } from '../../mei-services/services/form-create';
+
 @Component({
   selector: 'kkl-form',
   templateUrl: './mei-form.component.html',

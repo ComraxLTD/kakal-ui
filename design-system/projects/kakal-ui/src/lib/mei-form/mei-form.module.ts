@@ -36,6 +36,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MeiAdvancedSearchComponent } from './mei-advanced-search/mei-advanced-search.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MeiFiltersComponent } from './mei-filters/mei-filters.component';
+// import { TableCellPipe } from '../../public-api';
+// import { TableCellPipe } from '../mei-services/pipes/table-cell-pipe.pipe';
+import { MeiServiceModule } from '../mei-services/mei-services.module';
 
 export const MY_MY_FORMATS = {
   parse: {
@@ -70,7 +73,8 @@ export const MY_MY_FORMATS = {
     NgxEditorModule,
     MatSliderModule,
     MatDividerModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MeiServiceModule
   ],
   declarations: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
      SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent, MeiFiltersComponent],
