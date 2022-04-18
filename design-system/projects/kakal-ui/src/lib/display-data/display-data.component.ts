@@ -1,24 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export interface DisplayData<T = any> {
-  key: keyof T;
-  label: string;
-  value?: any;
-  format?: { type: string; args: any };
-  icon?: string;
-  template?: string;
-}
+
 
 @Component({
   selector: 'kkl-display-data',
   templateUrl: './display-data.component.html',
   styleUrls: ['./display-data.component.scss'],
 })
-export class DisplayDataComponent<T = any> implements OnInit {
+export class DisplayDataComponent implements OnInit {
 
-  @Input() data: T;
-  @Input() template: DisplayData<T>[];
+  @Input() data: any;
+  @Input() template: any[];
   @Input() type: 'table' | 'default' | 'input' = 'default';
 
   constructor() {}

@@ -15,8 +15,6 @@ import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
 
 export interface StepperSelectEvent {
-  last: boolean;
-  first: boolean;
   selectedStep: CardStepModel;
   selectedIndex: number;
   source?: CardStatusModel[];

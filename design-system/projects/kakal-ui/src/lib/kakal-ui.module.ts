@@ -105,6 +105,7 @@ import { MeiFormModule } from './mei-form/mei-form.module';
 // GRIDS
 
 import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
+import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
 
 registerLocaleData(he);
 
@@ -201,6 +202,7 @@ registerLocaleData(he);
     // GRIDS
 
     KKLDocumentGridModule,
+    KKLDisplayGridModule,
 
     KKSectionModule,
     KKPageModule,
@@ -286,6 +288,7 @@ registerLocaleData(he);
     // GRIDS
 
     KKLDocumentGridModule,
+    KKLDisplayGridModule,
 
     // LAYOUT
     KKLLayoutModule,
