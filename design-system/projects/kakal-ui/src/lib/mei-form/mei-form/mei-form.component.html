@@ -162,6 +162,11 @@
                 ></kkl-range>
               </mat-grid-tile>
             </ng-container>
+            <ng-container *ngSwitchCase="'costum'">
+              <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
+                <ng-container *ngTemplateOutlet="templates[question.key]"></ng-container>
+              </mat-grid-tile>
+            </ng-container>
             <ng-container *ngSwitchDefault>
               <mat-grid-tile [colspan]="question?.gridProps?.fullWidth? cols : question?.gridProps?.cols || 1" [rowspan]="question?.gridProps?.rows || 1">
                 <div fxFill [fxLayoutAlign]="question?.gridProps?.flex?.align || 'center' + ' center'">
@@ -341,6 +346,9 @@
                 (focusChanged)="onFocusChanged($event, question)"
                 (valueChanged)="onValueChanged($event, question)"
               ></kkl-range>
+            </ng-container>
+            <ng-container *ngSwitchCase="'costum'">
+              <ng-container *ngTemplateOutlet="templates[question.key]"></ng-container>
             </ng-container>
             <ng-container *ngSwitchDefault>
               <kkl-input

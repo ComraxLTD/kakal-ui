@@ -68,7 +68,7 @@ export default {
 
       description: 'Specify the columns templates ',
       table: {
-        type: { summary: {templateName: 'template'} },
+        type: { summary: {cellTemplate: 'template'} },
       },
     },
     expandTemplate: {

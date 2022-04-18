@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ControlBase, FormChangeEvent, OptionsModel, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineModel, PageHeadlineService, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
-
+import { StatusBarsModel } from '@ComraxLTD/kakal-ui/lib/status-stpes/status-steps.model';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -178,46 +178,94 @@ export class AppComponent {
 
   // }
 
-  constructor() { }
+  // data  = [{label:'בדיקה',value:5},{label:'test',value:'test' , icon:'tree'}]
+
+  // constructor() { }
 
   // iconComponent = IconComponent;
   // iconsData = [
   //   {key:'search',color:'primary',size:5},
   //   {key:'edit',size:2},
-  //   {key:'keyboard_arrow_down',color:'accent'},
-  //   {key:'calendar'}
+  //   // {key:'keyboard_arrow_down',color:'accent'},
+  //   // {key:'calendar'},
   // ]
   // component = CardInfoComponent;
-  cards = [
-    {
-      svgIcon: 'search',
-      label: '1',
-      subLabel: 'sub label',
-    },
-    {
-      svgIcon: 'search',
-      label: '2',
-      subLabel: 'sub label',
-    }, {
-      svgIcon: 'search',
-      label: '3',
-      subLabel: 'sub label',
-    }, {
-      svgIcon: 'search',
-      label: '4',
-      subLabel: 'sub label',
-    }, {
-      svgIcon: 'search',
-      label: '5',
-      subLabel: 'sub label',
-    },{
-      svgIcon: 'search',
-      label: '6',
-      subLabel: 'sub label',
-    },
-  ]
+  // cards = [
+  //   {
+  //     svgIcon: 'search',
+  //     label: '1',
+  //     subLabel: 'sub label',
+  //   },
+  //   {
+  //     svgIcon: 'search',
+  //     label: '2',
+  //     subLabel: 'sub label',
+  //   }, {
+  //     svgIcon: 'search',
+  //     label: '3',
+  //     subLabel: 'sub label',
+  //   }, {
+  //     svgIcon: 'search',
+  //     label: '4',
+  //     subLabel: 'sub label',
+  //   }, {
+  //     svgIcon: 'search',
+  //     label: '5',
+  //     subLabel: 'sub label',
+  //   },{
+  //     svgIcon: 'search',
+  //     label: '6',
+  //     subLabel: 'sub label',
+  //   },
+  // ]
 
+  // ngOnInit(): void {
+  // }
+  // testArr: any[] = ['test', 'test2', 'test3'];
+  // selected!: string;
+  // customSelected!: string;
+  // constructor() { }
+
+  // ngOnInit(): void {
+  // }
+  // updateOption(option: any) {
+  //   this.selected = option;
+  // }
+  // updateCustomOption(option: any) {
+  //   this.customSelected = option;
+  // }
+
+  // @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
+  // // @ViewChild('testTemplate', { read: TemplateRef, static: true }) testTemplate!: TemplateRef<any>;
+
+  // constructor(private motionService: OpenMotionService) { }
+
+  // ngOnInit(): void {
+  // }
+
+  // onClick(template:TemplateRef<any>) {
+  //   this.motionService.createDynamicSideNav(this.container, 'test', template);
+  // }
+
+  status: StatusBarsModel = {
+    label: 'statusBars',
+    authorizedBars: 3,
+    totalBars: 6,
+  };
+  headlineItems: PageHeadlineModel[] = [
+    { value: 'אקליפטוס יער', },
+    { value: 'אקליפטוס ', },
+    { value:this.status, template:true },
+    { value: new Date(), format:'date'},
+  ];
+
+  constructor(private pageHeadlineService: PageHeadlineService) {}
   ngOnInit(): void {
+    this.headlineItems = this.headlineItems.map((item, index) => ({
+      ...item,
+      size: index != 0 ? 1.8 : 2.9,
+    }));
+    this.pageHeadlineService.emitPageHeadlineItems(this.headlineItems);
   }
 
 }

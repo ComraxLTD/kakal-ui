@@ -31,6 +31,8 @@ export function setControls(controles: ControlBase[] | TableBase[], form: FormGr
               a.options = subj;
             }
             break;
+          case 'costum':
+            break;
           default:
             form.addControl(a.key, fb.control(a.value));
             break;
