@@ -35,4 +35,7 @@ export class DialogComponent implements OnInit {
       // this.componentRef.destroy();
     }
   }
+  onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
 }

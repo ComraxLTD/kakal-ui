@@ -31,5 +31,5 @@ export class DialogService {
          data: { component: data.component, closeBtnLabel:data.closeBtnLabel,saveBtnLabel:data.saveBtnLabel }
        })
      }
-    get
+    
 }
