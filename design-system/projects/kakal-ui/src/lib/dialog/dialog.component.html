@@ -1,1 +1,10 @@
-<p>dialog works!</p>
+<h2 mat-dialog-title>Title goes here...</h2>
+<!-- component inserted here... -->
+<mat-dialog-content>
+    <ng-template #renderComponentHere></ng-template>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <!-- buttons here -->
+    <button mat-button [mat-dialog-close]="false">{{saveBtnLabel}}</button>
+    <button mat-button [mat-dialog-close]="true">{{closeBtnLabel}}</button>
+</mat-dialog-actions>
