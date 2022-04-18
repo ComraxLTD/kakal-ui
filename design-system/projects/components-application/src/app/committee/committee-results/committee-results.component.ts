@@ -10,8 +10,6 @@ import {
   OptionMap,
   FilterState,
   RouterService,
-  ROOT_PREFIX,
-  MODULE_PREFIX,
 } from '../../../../../kakal-ui/src/public-api';
 
 @Component({
