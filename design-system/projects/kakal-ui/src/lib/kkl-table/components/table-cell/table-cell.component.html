@@ -1,7 +1,7 @@
-<ng-container *ngIf="question.templateName; else noTemplate">
-  <div [ngSwitch]="question.templateName">
+<ng-container *ngIf="question.cellTemplate; else noTemplate">
+  <div [ngSwitch]="question.cellTemplate">
     <!-- <div *ngSwitchCase="statusBar"><kkl-status-steps [status]="{}"></kkl-status-steps></div> -->
-    <div *ngSwitchDefault><ng-container *ngTemplateOutlet="colsTemplate[question.templateName]; context: {$implicit:data}"></ng-container></div>
+    <div *ngSwitchDefault><ng-container *ngTemplateOutlet="colsTemplate[question.cellTemplate]; context: {$implicit:data}"></ng-container></div>
   </div>
 </ng-container>
 <ng-template #noTemplate>

@@ -6,7 +6,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
-import { setControls } from '../../../mei-form/mei-form/mei-form-class';
+import { setControls } from '../../../mei-services/services/form-create';
 import { ControlBase } from '../../../mei-form/models/control.model';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
@@ -53,10 +53,10 @@ export class LocalTableComponent implements OnInit {
 
   dragDisabled = true;
 
-  oneColumns: TableBase[] = [];
+  oneColumns: TableBase[];
   @Input()
   set columns(value: TableBase[]) {
-    if(this.oneColumns) {
+    if(this.oneColumns && this.searchRow) {
       const newVals: TableBase[] = [];
       const sameVals: TableBase[] = [];
       value.forEach(a => {
@@ -86,11 +86,11 @@ export class LocalTableComponent implements OnInit {
     if(this.dragable) {
       this.displayedColumns.unshift('dragHandeler')
     }
-    const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
-    this.searchRow = row;
+    // const row = this.fb.group({});
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    // this.searchRow = row;
   }
 
 

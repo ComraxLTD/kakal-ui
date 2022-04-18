@@ -153,10 +153,10 @@ export * from './lib/kkl-table/components/local-table/local-table.component';
 export * from './lib/kkl-table/components/event-table/event-table.component';
 export * from './lib/kkl-table/components/table-cell/table-cell.component';
 export * from './lib/kkl-table/components/table-form/table-form.component';
-export * from './lib/kkl-table/pipes/arr-includes.pipe';
-export * from './lib/kkl-table/pipes/arr-index.pipe';
-export * from './lib/kkl-table/pipes/table-cell-pipe.pipe';
-export * from './lib/kkl-table/pipes/table-group-cell.pipe';
+export * from './lib/mei-services/pipes/arr-includes.pipe';
+export * from './lib/mei-services/pipes/arr-index.pipe';
+export * from './lib/mei-services/pipes/table-cell-pipe.pipe';
+export * from './lib/mei-services/pipes/table-group-cell.pipe';
 
 export * from './lib/kkl-table/models/table-server.model';
 export * from './lib/kkl-table/models/table-actions.model';
@@ -253,7 +253,6 @@ export * from './lib/dialog/dialog.service';
 // spinner
 export * from './lib/spinner/spinner.component';
 export * from './lib/spinner/spinner.module';
-export * from './lib/spinner/spinner.service';
 
 // sidenav
 export * from './lib/sidenav/sidenav.module';

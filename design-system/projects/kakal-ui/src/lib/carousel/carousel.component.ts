@@ -20,7 +20,7 @@ export class CarouselComponent implements OnInit {
 
   constructor(private injector: Injector) { }
 
-  public createDynamicComponent(index: number) {
+  createDynamicComponent(index: number) {
     const componentRef = this.container.createComponent(this.component, { injector: this.injector });
     if (this.singleProp) componentRef.instance[this.singleProp] = this.data[index];
     else for (const prop in this.data[index]) componentRef.instance[prop] = this.data[index][prop];
@@ -49,15 +49,15 @@ export class CarouselComponent implements OnInit {
   }
 
   clearNbuild() {
-    this.indexs[0] == 0 ? this.previous = false : this.previous = true;
-    this.indexs[this.displayNum - 1] == this.data.length - 1 ? this.next = false : this.next = true;
+    this.previous = this.indexs[0] == 0 ? false : true;
+    this.next = this.indexs[this.displayNum - 1] == this.data.length - 1 ? false : true;
     this.clearDynamicComponent();
     this.createComponents();
   }
 
   ngOnInit(): void {
-    if(this.displayNum == this.data.length) this.next = false;
-    this.indexs = [...Array(this.displayNum).keys()];
+    if(this.displayNum >= this.data.length) this.next = false;
+    this.indexs = [...Array(Math.min(this.displayNum, this.data.length)).keys()];
     this.createComponents();
   }
 
