@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, Subject, switchMap } from 'rxjs';
+import { last, map, Observable, Subject, switchMap } from 'rxjs';
 import {
   CardStepModel,
   RouterService,
   StepperLayoutService,
   StepperSelectEvent,
+  StepsChangedEvent,
 } from '../../public-api';
 import { StepsAccordionLayoutService } from '../layouts/accordion-steps-layout/steps-accordion-layout.service';
 
@@ -44,12 +45,16 @@ export class NavbarBottomService {
   }
 
   onNextStep() {
-    const event = this.stepperLayoutService.getStepperSelectEvent();
+    const stepperSelectEvent =
+      this.stepperLayoutService.getStepperSelectEvent();
+    const stepsChangedEvent =
+      this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
-    const { selectedStep, last, selectedIndex } = event as StepperSelectEvent;
-    console.log(last);
+    const { selectedStep, selectedIndex } =
+      stepperSelectEvent as StepperSelectEvent;
+    const { event } = stepsChangedEvent as StepsChangedEvent;
     if (selectedStep.hasSteps) {
-      if (!last) {
+      if (!event.last) {
         this.stepsAccordionLayoutService.next();
       } else if (!isComplete) {
         this.stepsAccordionLayoutService.complete();
@@ -57,7 +62,6 @@ export class NavbarBottomService {
         this.onNextStepNavigation(selectedIndex);
       }
     } else {
-      console.log('working');
       this.onNextStepNavigation(selectedIndex);
     }
   }

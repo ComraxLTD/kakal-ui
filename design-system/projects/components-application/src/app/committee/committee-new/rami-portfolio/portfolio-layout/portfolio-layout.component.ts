@@ -52,7 +52,6 @@ export class PortfolioLayoutComponent implements OnInit {
   constructor(private committeeLayoutService: CommitteeLayoutService) {}
 
   ngOnInit(): void {
-    this.complete$ = this.committeeLayoutService.listenComplete();
     this.selectedIndex$ = this.committeeLayoutService.listenSelectIndex();
     this.committeeLayoutService.setInnerStepsLength(this.steps.length);
   }

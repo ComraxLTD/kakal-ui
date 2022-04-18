@@ -87,18 +87,20 @@ export class VerticalStepsComponent implements OnInit {
 
   onSelectionChanged(event: StepperSelectionEvent) {
     const { selectedIndex, previouslySelectedIndex } = event;
-    // this._selectedIndex = previouslySelectedIndex;
+
+    const stepSelectEvent: StepSelectEvent = {
+      selectedStep: this.steps[selectedIndex],
+      previouslySelectedStep: this.steps[this.previouslySelectedIndex],
+      selectedIndex,
+      previouslySelectedIndex,
+      first: selectedIndex === 0,
+      last: selectedIndex === this.steps.length - 1,
+    };
+
+    this.stepChanged.emit(stepSelectEvent);
   }
 
   onStepClick(step: Step, index: number, first: boolean, last: boolean) {
     this.previouslySelectedIndex = this._selectedIndex;
-    this.stepChanged.emit({
-      selectedStep: step,
-      previouslySelectedStep: this.steps[this.previouslySelectedIndex],
-      selectedIndex: index,
-      previouslySelectedIndex: this.previouslySelectedIndex,
-      first,
-      last,
-    });
   }
 }

@@ -12,6 +12,11 @@ import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 import { Observable } from 'rxjs';
 import { StepsAccordionLayoutService } from './steps-accordion-layout.service';
 
+export interface StepsChangedEvent {
+  source: Step[];
+  event: StepSelectEvent;
+}
+
 @Component({
   selector: 'kkl-accordion-steps-layout',
   templateUrl: './accordion-steps.component.html',
@@ -27,7 +32,6 @@ export class AccordionStepsComponent implements OnInit {
   // ** Template map for panel and step content **
   @Input() templates: { [key: string]: TemplateRef<any> };
 
-  @Input() complete$: Observable<boolean>;
 
   // optional
 
@@ -42,24 +46,52 @@ export class AccordionStepsComponent implements OnInit {
   _selectedIndex: number;
   @Input()
   set selectedIndex(value: number) {
-    this._selectedIndex = value;
+    this._selectedIndex = value || 0;
   }
 
   @Input() options: {
     isLinear?: boolean;
   } = {};
 
-  @Output() stepSelect: EventEmitter<StepSelectEvent> = new EventEmitter();
+  @Output() stepsChanged: EventEmitter<StepsChangedEvent> = new EventEmitter();
+
+  complete$: Observable<boolean>;
+
+  private stepsChangedEvent: StepsChangedEvent;
 
   constructor(
     private stepsAccordionLayoutService: StepsAccordionLayoutService
   ) {}
 
   ngOnInit(): void {
-    this.selectedIndex$ = this.stepsAccordionLayoutService.listenSelectIndex()
+    this.selectedIndex$ = this.stepsAccordionLayoutService.listenSelectIndex();
+    this.complete$ = this.stepsAccordionLayoutService.listenComplete()
+    this.stepsChangedEvent = this.initStepChangedEvent();
+    this._emitChanged();
+  }
+
+  private initStepChangedEvent() {
+    const stepsChangedEvent = {
+      source: this.steps,
+      event: {
+        selectedIndex: this._selectedIndex,
+        last: this._selectedIndex === this.steps.length - 1,
+        first: this._selectedIndex === 0,
+      } as StepSelectEvent,
+    };
+
+    return stepsChangedEvent;
   }
 
   onStepChanged(event: StepSelectEvent) {
-    this.stepSelect.emit(event);
+    this.stepsChangedEvent = { source: this.steps, event };
+    this._emitChanged()
+  }
+
+  private _emitChanged() {
+    this.stepsChanged.emit(this.stepsChangedEvent);
+    this.stepsAccordionLayoutService.setStepsChangedEvent(
+      this.stepsChangedEvent
+    );
   }
 }

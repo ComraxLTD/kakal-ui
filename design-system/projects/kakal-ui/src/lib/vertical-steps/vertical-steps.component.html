@@ -18,11 +18,7 @@
       "
     >
       <ng-template matStepLabel>
-        <div (click)="onStepClick(step, i)">
-          <kkl-typography [size]="2.4" color="primary" [weight]="600">
-            {{ step.label }} .{{ i + 1 }}
-          </kkl-typography>
-        </div>
+        <div (click)="onStepClick(step, i)"></div>
       </ng-template>
       <div fxLayout="row" fxLayoutAlign="end">
         <div fxFlex="95">
