@@ -20,16 +20,16 @@ import { BehaviorSubject, merge, Observable, of } from 'rxjs';
 export class StepperLayoutComponent {
   @Input() steps: CardStepModel[];
 
+  @Input() actions: ButtonModel[];
+
+  // when set to true disable default navigation
+  @Input() manuel: boolean = true;
+
   // control content width when end drawer is open and close in %
   @Input() contentPortion: { open: number; close: number } = {
     open: 0,
     close: 100,
   };
-
-  @Input() actions: ButtonModel[];
-
-  // when set to true disable default navigation
-  @Input() manuel: boolean = true;
 
   // stepperSelectEvent
 
