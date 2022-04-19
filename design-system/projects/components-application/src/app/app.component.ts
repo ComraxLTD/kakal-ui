@@ -1,13 +1,5 @@
-import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  ControlBase,
-  FormChangeEvent,
-  OptionsModel,
-  RouterService,
-  RowActionModel,
-  TableBase,
-} from '../../../kakal-ui/src/public-api';
+import { Component } from '@angular/core';
+import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -15,50 +7,41 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  constructor(private routerService: RouterService) {}
+  constructor() {}
 
-  cards = [
+  dataSource: any[] = [
     {
       committeeId: 'wtwrt',
       remiTikimCount: 'werwsfwe',
-
-    }
-  ]
+    },
+  ];
 
   rowActions: RowActionModel[] = [
     {
       type: 'inlineEdit',
       icon: 'edit',
-      label: 'Edit'
+      label: 'Edit',
     },
     {
-      svgIcon: 'search',
-      label: '2',
-      subLabel: 'sub label',
+      type: 'inlineDelete',
+      icon: 'cancel',
+      label: 'Delete',
     },
     {
-      svgIcon: 'search',
-      label: '3',
-      subLabel: 'sub label',
-    },
-    {
-      svgIcon: 'search',
-      label: '4',
-      subLabel: 'sub label',
-    },
-    {
-      svgIcon: 'search',
-      label: '5',
-      subLabel: 'sub label',
-    },
-    {
-      svgIcon: 'search',
-      label: '6',
-      subLabel: 'sub label',
+      type: 'visibility',
+      icon: 'visibility',
+      label: 'Show',
     },
   ];
 
-  ngOnInit(): void {
-    this.routerService.listenToRoute$().subscribe()
-  }
+  columns: TableBase[] = [
+    { key: 'committeeId', label: 'Id', controlType: 'number' },
+    {
+      key: 'remiTikimCount',
+      label: 'remiTikimCount',
+      controlType: 'number',
+      button: { type: 'inlineExpand', icon: 'expand' },
+    },
+    { key: 'committeeDate', label: 'תאריך', controlType: 'date' },
+  ];
 }

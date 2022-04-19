@@ -117,6 +117,7 @@ registerLocaleData(he);
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+    
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,

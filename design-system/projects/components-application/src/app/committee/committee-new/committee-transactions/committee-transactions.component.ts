@@ -32,7 +32,6 @@ export class CommitteeTransactionsComponent implements OnInit {
       key: 'rami',
       label: 'עמדת רמ"י',
       controlType: undefined,
-      templateName: 'remi',
     },
     { key: 'status', label: 'סטטוס', controlType: 'select' },
   ];

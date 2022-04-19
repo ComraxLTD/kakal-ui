@@ -1,23 +1,14 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {
-  FiltersService,
   FilterState,
-  SelectOption,
   OptionMap,
   Question,
-  FormChangeEvent,
-  FormActions,
-  FilterLookups,
-  MODULE_PREFIX,
   QuestionGroupModel,
-  ROOT_PREFIX,
   RouterService,
   RowActionModel,
   TableBase,
 } from '../../../../../kakal-ui/src/public-api';
-import { MOCK_OPTIONS } from '../table/mock_data';
-import { forkJoin, map, Observable, of } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-form-filter-search',
@@ -130,6 +121,5 @@ export class FormFilterSearchComponent implements OnInit {
 
   // DOM EVENTS SECTION
 
-  onCreateNewCommittee() {
-  }
+  onCreateNewCommittee() {}
 }
