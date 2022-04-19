@@ -31,7 +31,7 @@ export class StepsLayoutComponent {
     close: 100,
   };
 
-  stepperSelectEvent: StepsSelectionEvent;
+  stepsSelectionEvent: StepsSelectionEvent;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -95,7 +95,7 @@ export class StepsLayoutComponent {
 
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
 
-    this.mobile$ = this.breakpointService.isMobile()
+    this.mobile$ = this.breakpointService.isMobile();
   }
 
   private setSteps$() {
@@ -141,12 +141,12 @@ export class StepsLayoutComponent {
 
     return this.routerService.getLastPath$(steps).pipe(
       map((url: string) => {
-        const event: StepsSelectionEvent = this.setStepperSelectEvent(
-          steps,
-          url
-        );
+        
+        this.stepsSelectionEvent = this.setStepperSelectEvent(steps, url);
 
-        this.stepsLayoutService.emitStepperSelectEvent(event);
+        this.stepsLayoutService.emitStepperSelectEvent(
+          this.stepsSelectionEvent
+        );
 
         steps.map((step) => {
           if (step.selected) {
