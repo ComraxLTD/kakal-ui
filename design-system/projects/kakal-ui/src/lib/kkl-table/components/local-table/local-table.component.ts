@@ -209,9 +209,15 @@ export class LocalTableComponent implements OnInit {
   }
 
   searchChanged() {
+    this.connectFilters(this.oneColumns);
+  }
+  searchFiltersChanged(arr: TableBase[]) {
+    this.connectFilters(this.oneColumns.concat(arr));
+  }
+  connectFilters(arr: TableBase[]) {
     const searchVal = this.searchRow.value;
     let filters = [];
-    this.oneColumns.forEach(a => {
+    arr.forEach(a => {
       if(searchVal[a.key]){
         filters.push({key: a.key, controlType: a.controlType, val: searchVal[a.key]});
       }

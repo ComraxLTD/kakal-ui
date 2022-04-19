@@ -1,10 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ControlBase } from '../models/control.model';
-import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
-import { KklSelectOption } from '../models/kkl-select.model';
-
-const selectTypes = ['autocomplete', 'select', 'checkbox', 'radio', 'toggle'];
+import { KklFormActions, KklFormChangeEvent } from '../../../mei-form/models/kkl-form-events';
+import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
+import { TableBase } from '../../models/table.model';
 @Component({
   selector: 'kkl-filters',
   templateUrl: './mei-filters.component.html',
@@ -14,7 +12,7 @@ export class MeiFiltersComponent implements OnInit {
 
   @Input() formGroup!: FormGroup;
 
-  @Input() controls: ControlBase[];
+  @Input() controls: TableBase[];
 
   @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -24,25 +22,17 @@ export class MeiFiltersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  remove(control: ControlBase): void {
+  remove(control: TableBase): void {
     this.formGroup.get(control.key).reset();
-    if(selectTypes.includes(control.controlType)) {
+    if(['checkbox', 'toggle'].includes(control.controlType)) {
       if(control.selectChanged) {
         control.selectChanged(undefined);
       }
-      if(['autocomplete', 'select'].includes(control.controlType)) {
-        this.selectChanged.emit({
-          key: control.key,
-          value: undefined,
-          action: KklFormActions.SELECT_CHANGED
-        });
-      } else {
-        this.selectChanged.emit({
-          key: control.key,
-          value: false,
-          action: KklFormActions.TOGGLE_CHANGED
-        });
-      }
+      this.selectChanged.emit({
+        key: control.key,
+        value: false,
+        action: KklFormActions.TOGGLE_CHANGED
+      });
     } else {
       this.valueChanged.emit({
         key: control.key,
@@ -52,9 +42,22 @@ export class MeiFiltersComponent implements OnInit {
     }
   }
 
+  removeSelect(control: TableBase, item: KklSelectOption): void {
+      this.formGroup.get(control.key).reset();
+      item.selected = false;
+      if(control.selectChanged) {
+        control.selectChanged(undefined);
+      }
+      this.selectChanged.emit({
+        key: control.key,
+        value: undefined,
+        action: KklFormActions.SELECT_CHANGED
+      });
+  }
 
-  removeMulti(control: ControlBase, item: KklSelectOption): void {
-    item.selected = true;
+
+  removeMulti(control: TableBase, item: KklSelectOption): void {
+    item.selected = false;
     const index = this.formGroup.get(control.key).value.indexOf(item);
     if (index >= 0) {
       this.formGroup.get(control.key).value.splice(index, 1);

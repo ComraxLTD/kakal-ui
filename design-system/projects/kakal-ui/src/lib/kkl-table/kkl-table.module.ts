@@ -23,12 +23,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MeiFormModule } from '../mei-form/mei-form.module';
 import { MeiServiceModule } from '../mei-services/mei-services.module';
+import { MeiFiltersComponent } from './components/mei-filters/mei-filters.component';
+import { LocalAdvancedSearchComponent } from './components/local-table/local-advanced-search.component';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatExpansionModule } from '@angular/material/expansion';
 @NgModule({
   declarations: [
     LocalTableComponent,
     EventTableComponent,
     TableFormComponent,
     TableCellComponent,
+    LocalAdvancedSearchComponent,
+    MeiFiltersComponent,
     KKLNewPaginatorDirective,
  ],
   imports: [
@@ -49,7 +55,9 @@ import { MeiServiceModule } from '../mei-services/mei-services.module';
     FlexLayoutModule,
     MatTooltipModule,
     MeiFormModule,
-    MeiServiceModule
+    MeiServiceModule,
+    MatChipsModule,
+    MatExpansionModule
   ],
   exports: [
     LocalTableComponent,
@@ -57,6 +65,8 @@ import { MeiServiceModule } from '../mei-services/mei-services.module';
     TableFormComponent,
     TableCellComponent,
     KKLNewPaginatorDirective,
+    MeiFiltersComponent,
+    LocalAdvancedSearchComponent
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })

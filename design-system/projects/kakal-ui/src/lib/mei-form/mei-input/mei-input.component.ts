@@ -19,7 +19,6 @@ export class MeiInputComponent implements OnInit {
   @Input() placeHolder!: string;
   @Input() appearance: Appearance;
   @Input() theme!: Palette;
-  @Input() index!: number;
   @Input() gridProps!: GridProps;
   @Input() icon!: string;
   @Input() format!: string;
@@ -43,6 +42,7 @@ export class MeiInputComponent implements OnInit {
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
     ).subscribe(a => this.onValueChanged());
+console.log(this.placeHolder);
 
     this.setValidationsAndIcons();
   }

@@ -128,6 +128,19 @@
             (valueChanged)="onValueChanged($event, question)"
           ></kkl-range>
         </ng-container>
+        <ng-container *ngSwitchCase="'counter'">
+          <kkl-counter
+            [control]="controlContainer.control.controls[question.key]"
+            [label]="question.label"
+            [key]="question.key"
+            [placeHolder]="question.placeHolder"
+            [icon]="question.icon"
+            [debounce]="question.debounce"
+            (focusChanged)="onFocusChanged($event, question)"
+            (valueChanged)="onValueChanged($event, question)"
+          >
+          </kkl-counter>
+        </ng-container>
         <!-- <ng-container *ngSwitchCase="'costum'">
           <ng-container *ngTemplateOutlet="templates[question.key]"></ng-container>
         </ng-container> -->
