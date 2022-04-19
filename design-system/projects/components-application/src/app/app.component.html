@@ -32,7 +32,7 @@
           ></kkl-form>
   </ng-container>
 </ng-container> -->
-<kkl-local-table newRowAction="sdgsdf" [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
+<!-- <kkl-local-table newRowAction="sdgsdf" [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table> -->
 <!-- <kkl-local-table
   newRowAction="הוסף"
   [dataSource]="dataSource"
@@ -150,3 +150,34 @@
 <!-- <kkl-page-headline></kkl-page-headline> -->
 <!-- <kkl-spinner *ngIf="expression"></kkl-spinner> -->
 
+
+  <!-- <ng-container content>
+
+      <div class="container" fxLayout="column" fxLayoutGap="30px">
+        <kkl-full-calendar
+          #calendar
+          [data]="arr"
+          (eventClicked)="eventClicked($event)"
+          (eventDrop)="eventClicked($event)"
+          (eventResize)="eventClicked($event)"
+        ></kkl-full-calendar>
+      </div>
+
+  </ng-container> -->
+
+  <!-- <kkl-carousel [template]="yearsOfExperienceTemp" [data]="cards" ></kkl-carousel>
+
+  <ng-template #yearsOfExperienceTemp let-data>
+    <kkl-card-info [card]="data"></kkl-card-info>
+  </ng-template> -->
+
+  <kkl-form
+            [controls]="questions"
+            (queryChanged)="onQueryChanged($event)"
+
+            [options]="options"
+            [formGroup]="formGroup"
+            [patchData]="editData"
+            (selectChanged)="onSelectChanged($event)"
+            (openedChanged)="onOpenChanged($event)"
+          ></kkl-form>

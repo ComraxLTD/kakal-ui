@@ -7,7 +7,7 @@
         <ng-container *ngIf="!cont.multi;else multiSelect">
           <mat-chip
             *ngIf="formGroup.value[cont.key]"
-            (removed)="remove(cont)">
+            (removed)="removeSelect(cont, formGroup.value[cont.key])">
             {{formGroup.value[cont.key].label }}
             <button matChipRemove>
               <mat-icon>cancel</mat-icon>
@@ -26,11 +26,21 @@
           </ng-container>
         </ng-template>
       </ng-container>
+      <ng-container *ngSwitchCase="'select'">
+        <mat-chip
+          *ngIf="formGroup.value[cont.key]"
+          (removed)="removeSelect(cont, formGroup.value[cont.key])">
+          {{formGroup.value[cont.key].label }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </ng-container>
       <ng-container *ngSwitchCase="'autocomplete'">
         <ng-container *ngIf="!cont.multi;else multiAutocomplete">
           <mat-chip
             *ngIf="formGroup.value[cont.key] && formGroup.value[cont.key].label"
-            (removed)="remove(cont)">
+            (removed)="removeSelect(cont, formGroup.value[cont.key])">
             {{formGroup.value[cont.key].label}}
             <button matChipRemove>
               <mat-icon>cancel</mat-icon>

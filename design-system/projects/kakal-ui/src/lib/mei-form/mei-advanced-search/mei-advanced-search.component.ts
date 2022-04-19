@@ -34,7 +34,7 @@ export class MeiAdvancedSearchComponent implements OnInit {
   expended: boolean;
 
 
-  @Input() tableFilters!: ControlBase[];
+  @Input() tableFilters: ControlBase[] = [];
 
   myQuestions!: ControlBase[];
   firstQuestions!: ControlBase;

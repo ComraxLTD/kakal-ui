@@ -88,12 +88,12 @@ export class MeiSelectComponent implements OnInit {
 
   deselectAll() {
     this.control.patchValue([]);
-    (this.options as BehaviorSubject<KklSelectOption[]>).pipe(take(1)).subscribe((a: KklSelectOption[]) => {
-      a.forEach(b => {
-        b.selected = false;
-      })
-      this.options$.next(a);
-    });
+  //   (this.options as BehaviorSubject<KklSelectOption[]>).pipe(take(1)).subscribe((a: KklSelectOption[]) => {
+  //     a.forEach(b => {
+  //       b.selected = false;
+  //     })
+  //     this.options$.next(a);
+  //   });
   }
 
   setErrorMessage() {
@@ -116,6 +116,11 @@ export class MeiSelectComponent implements OnInit {
   //   });
   // }
   onSelectChanged(event) {
+    this.options$.pipe(take(1)).subscribe((a: KklSelectOption[]) => {
+      a.forEach(b => {
+        b.selected = false;
+      });
+    });
     if(this.multi) {
       event.value?.forEach(v => v.selected = true);
     } else {
