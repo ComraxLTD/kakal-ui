@@ -1,9 +1,13 @@
-<div class="kkl-tabs">
-    <mat-tab-group animationDuration="0ms" fxLayout="row" [backgroundColor]="backgroundColor">
-        <ng-container *ngFor="let item of data">
-            <mat-tab [label]="item.label">
-                <ng-container *ngTemplateOutlet="templates[item.key]"></ng-container>
-            </mat-tab>
-        </ng-container>
-    </mat-tab-group>
+<div [ngClass]="['kkl-tabs', variant]">
+  <mat-tab-group
+    animationDuration="0ms"
+    fxLayout="row"
+    [backgroundColor]="backgroundColor"
+  >
+    <ng-container *ngFor="let tab of tabs">
+      <mat-tab [label]="tab.label">
+        <ng-container *ngTemplateOutlet="templates[tab.key]"></ng-container>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
 </div>

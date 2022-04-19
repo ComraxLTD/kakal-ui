@@ -1,0 +1,30 @@
+<kkl-page [title]="title">
+
+  <kkl-steps-accordion-layout
+    [manuel]="true"
+    [panels]="panels"
+    [steps]="steps"
+    [templates]="{details, evaluation, estates,
+      documents
+      }"
+    [selectedIndex]="(selectedIndex$ | async)!"
+  ></kkl-steps-accordion-layout>
+</kkl-page>
+
+<!-- templates for layouts -->
+<ng-template #details>
+  <app-portfolio-details></app-portfolio-details>
+</ng-template>
+
+<ng-template #evaluation>
+  <app-portfolio-evaluation></app-portfolio-evaluation>
+</ng-template>
+
+<!-- templates for layouts -->
+<ng-template #estates>
+  <app-portfolio-estates></app-portfolio-estates>
+</ng-template>
+
+<ng-template #documents>
+  <app-portfolio-documents></app-portfolio-documents>
+</ng-template>

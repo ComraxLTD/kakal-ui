@@ -20,6 +20,11 @@ export class IconService {
 
   public icons = {
 
+    download_new: AppIcons.DOWNLOAD_NEW,
+    printed_new: AppIcons.PRINTER_NEW,
+    calendar_new: AppIcons.CALENDAR_NEW,
+    list_new: AppIcons.LIST_MEW,
+
     tree: AppIcons.TREE_ICON,
     kkl: AppIcons.KKL_ICON,
     tree_gradient_tac: AppIcons.TREE_GRADIENT_TAC_ICON,

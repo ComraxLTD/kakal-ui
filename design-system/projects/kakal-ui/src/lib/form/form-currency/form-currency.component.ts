@@ -12,7 +12,7 @@ import {
 } from '../form-select/question-select.model';
 
 import { FormService, Question } from '../services/form.service';
-import { Currency, QuestionCurrencyModel } from './question-currency.model';
+import { Currency } from './question-currency.model';
 import { FormChangeEvent } from '../models/form.options';
 import { BehaviorSubject } from 'rxjs';
 import { FormActions } from '../models/form.actions';
@@ -43,8 +43,7 @@ export class FormCurrencyComponent implements OnInit, ControlValueAccessor {
   public questions: Question[] = [
     {
       key: 'sum',
-      cleave: { numeral: true },
-      controlType: 'cleave',
+      controlType: 'sum',
       label: '',
     },
     {

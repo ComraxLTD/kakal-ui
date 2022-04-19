@@ -1,0 +1,19 @@
+<ng-container *ngIf="complete$ | async; else elseTemplate">
+  <kkl-accordion-layout
+    [panels]="panels"
+    [templates]="templates"
+    [buttonLabel]="options.buttonLabel"
+  ></kkl-accordion-layout>
+</ng-container>
+
+<ng-template #elseTemplate>
+  <kkl-vertical-steps
+    [manuel]="manuel"
+    [steps]="steps"
+    [templates]="templates"
+    [linear]="options.isLinear"
+    [selectedIndex]="selectedIndex$ | async"
+    (stepChanged)="onStepChanged($event)"
+  >
+  </kkl-vertical-steps
+></ng-template>

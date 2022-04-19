@@ -7,7 +7,7 @@
         <kkl-status-steps dir="ltr" [status]="item.value"></kkl-status-steps>
       </ng-container>
       <ng-template #normalTemp>
-        <kkl-typography [size]="first? 3.2 : 1.8" weight="600">
+        <kkl-typography [size]="first? 3.2 : 1.8" [weight]="600">
           {{ item?.value | format: item?.format }}
         </kkl-typography>
       </ng-template>

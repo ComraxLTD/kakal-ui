@@ -1,4 +1,11 @@
 <section fxLayout="column" fxLayoutGap="1rem" fxFill>
-  <kkl-typography [weight]="600" [size]="1.4">{{ label }}</kkl-typography>
+  <ng-container *ngIf="title; else defaultBlock">
+    <kkl-title></kkl-title>
+  </ng-container>
+  <ng-template #defaultBlock>
+    <kkl-typography [weight]="600" [size]="1.4 || size">{{
+      label
+    }}</kkl-typography>
+  </ng-template>
   <ng-content></ng-content>
 </section>

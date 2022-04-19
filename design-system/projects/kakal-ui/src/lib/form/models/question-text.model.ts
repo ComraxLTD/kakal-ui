@@ -25,6 +25,5 @@ export class QuestionTextModel extends QuestionBase {
     this.icon = options.icon = '';
     this.validations = options.validations || [];
     this.disabled = options.disabled;
-    this.cleave = options.cleave || {};
   }
 }

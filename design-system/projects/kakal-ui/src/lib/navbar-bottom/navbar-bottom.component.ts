@@ -10,11 +10,10 @@ import {
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
-import { RouterService } from '../../services/route.service';
-import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
-import { StepperSelectEvent } from '../stepper/stepper.component';
+import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
+import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { combineLatest, merge, Observable, of } from 'rxjs';
+import { combineLatest, iif, merge, Observable, of } from 'rxjs';
 import { map, pluck, switchMap } from 'rxjs/operators';
 
 @Component({
@@ -23,6 +22,8 @@ import { map, pluck, switchMap } from 'rxjs/operators';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
+  @Input() manual = true;
+
   showNext: boolean = true;
 
   @Input()
@@ -38,11 +39,11 @@ export class NavbarBottomComponent implements OnInit {
     this.showSave = value === false ? false : true;
   }
 
-  @Input() stepperSelectEvent: StepperSelectEvent;
+  @Input() stepperSelectEvent: StepsSelectionEvent;
 
   // @Input() showSave$: Observable<boolean>;
 
-  // when set to true bottom navbar is consider part of stepper-layout for steps navigation logic
+  // when set to true bottom navbar is consider part of steps-layout for steps navigation logic
   @Input() stepper: boolean = true;
 
   @Input() nextLabel: string;
@@ -51,29 +52,26 @@ export class NavbarBottomComponent implements OnInit {
   private steps$: Observable<CardStepModel[]>;
   private nextStep$: Observable<void>;
   // private selectStep$: Observable<CardStepModel>;
-  private stepperSelectEvent$: Observable<StepperSelectEvent>;
+  private stepperSelectEvent$: Observable<StepsSelectionEvent>;
 
   bottomIcon: string = 'bottom_tree_';
   buttonState$: Observable<{ [x: string]: boolean }>;
 
   @Output() previous = new EventEmitter();
-  @Output() next = new EventEmitter<StepperSelectEvent>();
+  @Output() next = new EventEmitter<void>();
+  @Output() nextStep = new EventEmitter<StepsSelectionEvent>();
   @Output() save = new EventEmitter();
 
   constructor(
+    private stepsLayoutService: StepsLayoutService,
     private navbarBottomService: NavbarBottomService,
-    private stepperLayoutService: StepperLayoutService,
-    private routerService: RouterService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
     if (this.stepper) {
-      this.steps$ = this.stepperLayoutService.listenToSteps();
-      this.nextStep$ = this.navbarBottomService.getNextStepObs();
       this.stepperSelectEvent$ =
-        this.stepperLayoutService.listenToStepperSelect();
-      // this.selectStep$ = this.stepperLayoutService.getChangeStepObs();
+        this.stepsLayoutService.listenToStepperSelect();
     }
 
     this.buttonState$ = this.setShowButtons();
@@ -108,29 +106,32 @@ export class NavbarBottomComponent implements OnInit {
   private setShowNext(): Observable<boolean> {
     return this.showNext && this.stepper
       ? merge(
-          this.handleOnNext(),
-          this.onChangedStep(),
-          this.setShowNextStep$()
+          // this.handleOnNext(),
+          // this.onChangedStep(),
+          this.navbarBottomService.setShowNextStep$()
         )
       : of(this.showNext);
   }
 
-  // Event emitter section
-  public onPrevious(): void {
-    this.previous.emit();
-  }
-
-  public onSave(): void {
+  onSave(): void {
     this.save.emit();
   }
 
-  private onNextStep(step: CardStepModel) {
-    this.next.emit({ selectedStep: step } as StepperSelectEvent);
+
+  // Event emitter section
+  onPrevious(): void {
+    this.manual
+      ? this.previous.emit()
+      : this.navbarBottomService.onPreviousStep();
   }
 
-  public onNext(): void {
-    if (this.showNext && this.stepper) {
-      this.navbarBottomService.emitNextStep();
+  onNext(): void {
+    const event = this.stepsLayoutService.getStepperSelectEvent();
+
+    if (this.stepper) {
+      this.manual
+        ? this.nextStep.emit(event)
+        : this.navbarBottomService.onNextStep();
     } else {
       this.next.emit();
     }
@@ -151,7 +152,7 @@ export class NavbarBottomComponent implements OnInit {
   private onChangedStep() {
     return this.stepperSelectEvent$.pipe(
       pluck('selectedStep'),
-      switchMap((step : CardStepModel) => {
+      switchMap((step: CardStepModel) => {
         return this.steps$.pipe(
           map((steps) => {
             const nextIndex = this.findNextStepIndex(steps, step);
@@ -162,27 +163,18 @@ export class NavbarBottomComponent implements OnInit {
     );
   }
 
+  private onStepNext(step: CardStepModel) {
+    // this.next.emit({ selectedStep: step } as StepsSelectionEvent);
+  }
+
   private handleOnNext() {
     return this.nextStep$.pipe(
       switchMap(() => {
         return this.steps$.pipe(
           map((steps) => {
             const nextIndex = this.findNextStepIndex(steps);
-            this.onNextStep(steps[nextIndex]);
+            this.onStepNext(steps[nextIndex]);
             return nextIndex + 1 === steps.length ? false : true;
-          })
-        );
-      })
-    );
-  }
-
-  private setShowNextStep$(): Observable<boolean> {
-    return this.stepperLayoutService.listenToSteps().pipe(
-      switchMap((steps: CardStepModel[]) => {
-        return this.routerService.getLastPathObs().pipe(
-          map((url: string) => {
-            const index = steps.findIndex((item) => item.path === url);
-            return !(steps.length === index + 1);
           })
         );
       })
