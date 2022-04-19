@@ -78,8 +78,8 @@
 
         <!-- STEPPER  -->
         <div class="stepper">
-          <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
-            <ng-container *ngIf="steps$ | async as steps">
+          <ng-container *ngIf="steps$ | async as steps">
+            <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
               <kkl-stepper
                 variant="step"
                 direction="row"
@@ -87,14 +87,15 @@
                 (selectStep)="onSelectStep($event)"
               ></kkl-stepper>
             </ng-container>
-          </ng-container>
 
-          <ng-template #mobileBlock>
-            <kkl-stepper-mobile
-              [steps$]="steps$"
-              (selectStep)="onSelectStep($event)"
-            ></kkl-stepper-mobile>
-          </ng-template>
+            <ng-template #mobileBlock>
+              <kkl-stepper-mobile
+                [stepsSelectionEvent]="stepsSelectionEvent"
+                [steps]="steps"
+                (selectStep)="onSelectStep($event)"
+              ></kkl-stepper-mobile>
+            </ng-template>
+          </ng-container>
         </div>
 
         <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">

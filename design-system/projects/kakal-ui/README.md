@@ -79,3 +79,17 @@ KKL-Section
 
 1. add size input to for title size
 2. add title boolean input - when set to true label ui is kkl-title 
+
+## Dvir Changed v2.991
+
+kkl-steps
+
+1. change steps$ input to steps
+
+kkl-stepper-mobile
+
+1. improve logic without input as obs
+2. working with next button from bottom-navbar
+
+
+
