@@ -6,7 +6,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class StepperLayoutService {
+export class StepsLayoutService {
   private steps$: BehaviorSubject<CardStepModel[]>;
   private displayDrawer$: Subject<boolean>;
   private stepperSelectEvent$: BehaviorSubject<StepperSelectEvent>;

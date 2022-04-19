@@ -3,7 +3,7 @@ import { last, map, Observable, Subject, switchMap } from 'rxjs';
 import {
   CardStepModel,
   RouterService,
-  StepperLayoutService,
+  StepsLayoutService,
   StepperSelectEvent,
   StepsChangedEvent,
 } from '../../public-api';
@@ -16,19 +16,12 @@ export class NavbarBottomService {
   private nextStep: Subject<void>;
 
   constructor(
-    private stepperLayoutService: StepperLayoutService,
+    private stepsLayoutService: StepsLayoutService,
     private stepsAccordionLayoutService: StepsAccordionLayoutService,
     private routerService: RouterService
   ) {
     this.nextStep = new Subject<void>();
   }
-
-  // public emitNextStep() {
-  //   this.nextStep.next();
-  // }
-  // public getNextStepObs() {
-  //   return this.nextStep.asObservable();
-  // }
 
   private navigate(path: string) {
     const url = this.routerService.getUrl(path);
@@ -36,7 +29,7 @@ export class NavbarBottomService {
   }
 
   private onNextStepNavigation(selectedIndex: number) {
-    const steps = this.stepperLayoutService.getSteps();
+    const steps = this.stepsLayoutService.getSteps();
     const nextIndex = selectedIndex + 1;
     if (steps[nextIndex]) {
       const nextPath = steps[nextIndex].path;
@@ -46,7 +39,7 @@ export class NavbarBottomService {
 
   onNextStep() {
     const stepperSelectEvent =
-      this.stepperLayoutService.getStepperSelectEvent();
+      this.stepsLayoutService.getStepperSelectEvent();
     const stepsChangedEvent =
       this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
@@ -72,7 +65,7 @@ export class NavbarBottomService {
 
   onPreviousStep() {
     const stepperSelectEvent =
-      this.stepperLayoutService.getStepperSelectEvent();
+      this.stepsLayoutService.getStepperSelectEvent();
     const stepsChangedEvent =
       this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
@@ -92,7 +85,7 @@ export class NavbarBottomService {
   }
 
   setShowNextStep$(): Observable<boolean> {
-    return this.stepperLayoutService.listenToSteps().pipe(
+    return this.stepsLayoutService.listenToSteps().pipe(
       switchMap((steps: CardStepModel[]) => {
         return this.routerService.getLastPath$().pipe(
           map((url: string) => {

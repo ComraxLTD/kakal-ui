@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import {
   CardStepModel,
   RouterService,
-  StepperLayoutService,
+  StepsLayoutService,
 } from '../../../../../../kakal-ui/src/public-api';
 
 @Component({

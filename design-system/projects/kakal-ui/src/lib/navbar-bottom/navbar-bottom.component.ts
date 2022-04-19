@@ -10,9 +10,7 @@ import {
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
-import { RouterService } from '../../services/route.service';
-import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
-import { StepsAccordionLayoutService } from '../layouts/accordion-steps-layout/steps-accordion-layout.service';
+import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
 import { StepperSelectEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { combineLatest, iif, merge, Observable, of } from 'rxjs';
@@ -45,7 +43,7 @@ export class NavbarBottomComponent implements OnInit {
 
   // @Input() showSave$: Observable<boolean>;
 
-  // when set to true bottom navbar is consider part of stepper-layout for steps navigation logic
+  // when set to true bottom navbar is consider part of steps-layout for steps navigation logic
   @Input() stepper: boolean = true;
 
   @Input() nextLabel: string;
@@ -65,7 +63,7 @@ export class NavbarBottomComponent implements OnInit {
   @Output() save = new EventEmitter();
 
   constructor(
-    private stepperLayoutService: StepperLayoutService,
+    private stepsLayoutService: StepsLayoutService,
     private navbarBottomService: NavbarBottomService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
@@ -73,7 +71,7 @@ export class NavbarBottomComponent implements OnInit {
   ngOnInit(): void {
     if (this.stepper) {
       this.stepperSelectEvent$ =
-        this.stepperLayoutService.listenToStepperSelect();
+        this.stepsLayoutService.listenToStepperSelect();
     }
 
     this.buttonState$ = this.setShowButtons();
@@ -119,16 +117,6 @@ export class NavbarBottomComponent implements OnInit {
     this.save.emit();
   }
 
-  // onPrevious(): void {
-  //   const currentPath = this.getLastPath();
-  //   const isStartStep = this.committeeLayoutService.isStartStep();
-  //   const isComplete = this.committeeLayoutService.isComplete();
-  //   if (currentPath === 'remi-portfolio' && !isStartStep && !isComplete) {
-  //     this.committeeLayoutService.previous();
-  //   } else {
-  //     this.routerService.goBack();
-  //   }
-  // }
 
   // Event emitter section
   onPrevious(): void {
@@ -138,7 +126,7 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   onNext(): void {
-    const event = this.stepperLayoutService.getStepperSelectEvent();
+    const event = this.stepsLayoutService.getStepperSelectEvent();
 
     if (this.stepper) {
       this.manual

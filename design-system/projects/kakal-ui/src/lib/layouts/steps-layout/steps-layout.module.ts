@@ -1,16 +1,20 @@
 import { NgModule } from '@angular/core';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { StepperLayoutComponent } from './stepper-layout.component';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
+
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLStepperMobileModule } from '../../stepper-mobile/stepper-mobile.module';
 import { KKLStepperModule } from '../../stepper/stepper.module';
 import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLButtonModule } from '../../button/button.module';
-import { MatTooltipModule } from '@angular/material/tooltip';
+
+import { StepsLayoutComponent } from './steps-layout.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,7 +29,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     KKLStepperMobileModule,
     KKLStepperModule,
   ],
-  declarations: [StepperLayoutComponent],
-  exports: [StepperLayoutComponent],
+  declarations: [StepsLayoutComponent],
+  exports: [StepsLayoutComponent],
 })
-export class StepperLayoutModule {}
+export class KKLStepsLayoutModule {}

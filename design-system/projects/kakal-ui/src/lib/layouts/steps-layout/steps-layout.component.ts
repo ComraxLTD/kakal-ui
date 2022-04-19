@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { StepperLayoutService } from './stepper-layout.service';
+import { StepsLayoutService } from './steps-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 
@@ -13,11 +13,11 @@ import { map, mergeMap } from 'rxjs/operators';
 import { BehaviorSubject, merge, Observable, of } from 'rxjs';
 
 @Component({
-  selector: 'kkl-stepper-layout',
-  templateUrl: './stepper-layout.component.html',
-  styleUrls: ['./stepper-layout.component.scss'],
+  selector: 'kkl-steps-layout',
+  templateUrl: './steps-layout.component.html',
+  styleUrls: ['./steps-layout.component.scss'],
 })
-export class StepperLayoutComponent {
+export class StepsLayoutComponent {
   @Input() steps: CardStepModel[];
 
   @Input() actions: ButtonModel[];
@@ -62,7 +62,7 @@ export class StepperLayoutComponent {
   @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
-    private stepperLayoutService: StepperLayoutService,
+    private stepsLayoutService: StepsLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService
   ) {}
@@ -87,7 +87,7 @@ export class StepperLayoutComponent {
 
       this.showStartDrawer$ = merge(
         of(!!this.drawerAction),
-        this.stepperLayoutService.listenToDisplayDrawer()
+        this.stepsLayoutService.listenToDisplayDrawer()
       );
     }
 
@@ -101,8 +101,8 @@ export class StepperLayoutComponent {
   }
 
   private initSteps$() {
-    this.stepperLayoutService.emitSteps(this.steps);
-    return this.stepperLayoutService.listenToSteps();
+    this.stepsLayoutService.emitSteps(this.steps);
+    return this.stepsLayoutService.listenToSteps();
   }
 
   private setStepperSelectEvent(steps: CardStepModel[], url: string) {
@@ -135,7 +135,7 @@ export class StepperLayoutComponent {
   }
 
   private changesStepOnRoute$(): Observable<CardStepModel[]> {
-    const steps = this.stepperLayoutService.getSteps();
+    const steps = this.stepsLayoutService.getSteps();
 
     return this.routerService.getLastPath$(steps).pipe(
       map((url: string) => {
@@ -146,7 +146,7 @@ export class StepperLayoutComponent {
 
         console.log(event)
 
-        this.stepperLayoutService.emitStepperSelectEvent(event);
+        this.stepsLayoutService.emitStepperSelectEvent(event);
 
         steps.map((step) => {
           if (step.selected) {

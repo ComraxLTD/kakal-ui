@@ -345,10 +345,10 @@ export * from './lib/stepper/stepper.service';
 export * from './lib/stepper-mobile/stepper-mobile.module';
 export * from './lib/stepper-mobile/stepper-mobile.component';
 
-// stepper layout
-export * from './lib/layouts/stepper-layout/stepper-layout.component';
-export * from './lib/layouts/stepper-layout/stepper-layout.module';
-export * from './lib/layouts/stepper-layout/stepper-layout.service';
+// steps layout
+export * from './lib/layouts/steps-layout/steps-layout.component';
+export * from './lib/layouts/steps-layout/steps-layout.module';
+export * from './lib/layouts/steps-layout/steps-layout.service';
 
 // layout
 export * from './lib/layouts/layout/layout.component';

@@ -62,7 +62,7 @@ import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
 import { KKLCardAddModule } from './cards/card-add/card-add.module';
 import { KKLCardDocumentModule } from './cards/card-document/card-document.module';
 
-import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
+import { KKLStepsLayoutModule } from './layouts/steps-layout/steps-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
 
 import { KKSectionModule } from './layouts/section/section.module';
@@ -117,7 +117,7 @@ registerLocaleData(he);
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
-    
+
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
@@ -188,7 +188,7 @@ registerLocaleData(he);
     // STEPPER
     KKLStepperModule,
     KKLStepperMobileModule,
-    StepperLayoutModule,
+    KKLStepsLayoutModule,
 
     KKLVerticalStepsModule,
 
@@ -283,10 +283,6 @@ registerLocaleData(he);
     KKLNavbarModule,
     NavbarBottomModule,
 
-    // STEPPER
-    KKLStepperModule,
-    KKLStepperMobileModule,
-    StepperLayoutModule,
 
     // GRIDS
 
@@ -300,6 +296,11 @@ registerLocaleData(he);
     KKLDisplayDataModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
+    
+    // STEPPER
+    KKLStepperModule,
+    KKLStepperMobileModule,
+    KKLStepsLayoutModule,
 
     KKLVerticalStepsModule,
 

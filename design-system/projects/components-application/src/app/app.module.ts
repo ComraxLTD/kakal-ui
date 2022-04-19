@@ -5,7 +5,7 @@ import {
   KklFormCalendarModule,
   ROOT_PREFIX,
   RouterService,
-  StepperLayoutService,
+  StepsLayoutService,
 } from '../../../kakal-ui/src/public-api';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -54,7 +54,7 @@ import { MatDialogModule } from '@angular/material/dialog';
   MatDialogModule
   ],
   providers: [
-    StepperLayoutService,
+    StepsLayoutService,
     BreakpointService,
     RouterService,
     { provide: ROOT_PREFIX, useValue: 'lands' },

@@ -1,5 +1,5 @@
 <div class="demo-layout" fxFill>
-  <kkl-stepper-layout [steps]="steps" (changeStep)="onChangeStep($event)">
+  <kkl-steps-layout [steps]="steps" (changeStep)="onChangeStep($event)">
     <router-outlet content></router-outlet>
 
     <kkl-navbar-bottom
@@ -8,5 +8,5 @@
       (next)="onNext($event)"
     >
     </kkl-navbar-bottom>
-  </kkl-stepper-layout>
+  </kkl-steps-layout>
 </div>
