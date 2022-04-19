@@ -1,2 +1,16 @@
-<!-- <<button mat-raised-button (click)="openLogin()">Login</button> -->
-<router-outlet></router-outlet>
+<kkl-advanced-search dir="rtl"
+  [grid]="gridProps"
+  [buttonLabel]="buttonLabel"
+  [formGroup]="formGroup"
+  [controls]="controls"
+  [options]="options"
+  [tableFilters]="tableFilters"
+
+  (openedChange)="onOpenChanged($event)"
+  (queryChanged)="onQueryChanged($event)"
+  (selectChanged)="onSelectChanged($event)"
+  (valueChanged)="onValueChanged($event)"
+  (focusChanged)="onFocusChanged($event)"
+  (submitEvent)="onSubmitEvent($event)"
+  >
+</kkl-advanced-search>
