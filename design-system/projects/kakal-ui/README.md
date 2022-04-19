@@ -56,3 +56,7 @@ KKL-Grids
 
 KKL-Lobby
 3. update name to kkl-lobby-grid
+
+KKL-tabs
+
+1. add variant input - table and default, set to default by default 

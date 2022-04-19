@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardLobbyModel } from '../cards/card-lobby/card-lobby.component';
-import { BreakpointService } from '../../services/breakpoint.service';
+import { BreakpointService } from '../../../services/breakpoint.service';
+import { CardLobbyModel } from '../../cards/card-lobby/card-lobby.component';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'kkl-lobby',
+  selector: 'kkl-lobby-grid',
   templateUrl: './lobby.component.html',
   styleUrls: ['./lobby.component.scss'],
 })

@@ -80,7 +80,6 @@ import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 
-import { KKLLobbyModule } from './lobby/lobby.module';
 import { KKLDisplayDataModule } from './display-data/display-data.module';
 import { KKLFiltersModule } from './filters/filters.module';
 
@@ -106,6 +105,8 @@ import { MeiFormModule } from './mei-form/mei-form.module';
 
 import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
 import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
+import { KKLLobbyGridModule } from './grids/lobby-grid/lobby.module';
+
 import { MeiServiceModule } from './mei-services/mei-services.module';
 
 registerLocaleData(he);
@@ -194,7 +195,7 @@ registerLocaleData(he);
 
     // LAYOUT
     KKLLayoutModule,
-    KKLLobbyModule,
+    KKLLobbyGridModule,
     KKLChipsModule,
     KKLDisplayDataModule,
     KKLStepsAccordionModule,
@@ -292,7 +293,7 @@ registerLocaleData(he);
 
     // LAYOUT
     KKLLayoutModule,
-    KKLLobbyModule,
+    KKLLobbyGridModule,
     KKLChipsModule,
     KKLAccordionLayoutModule,
     KKLStepsAccordionModule,
