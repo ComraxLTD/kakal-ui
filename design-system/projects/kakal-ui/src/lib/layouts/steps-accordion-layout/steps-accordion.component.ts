@@ -39,14 +39,13 @@ export class StepsAccordionComponent implements OnInit {
 
   // ** an interface for ui **
   @Input() options: {
-    
     // ** for accordion button **
     buttonLabel: string;
 
     // ** for accordion checked **
     hasCheckbox: boolean;
     isLinear?: boolean;
-  };
+  } = { buttonLabel: '', hasCheckbox: false, isLinear: false };
 
   selectedIndex$: Observable<number>;
 
