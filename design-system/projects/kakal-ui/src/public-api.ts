@@ -262,9 +262,8 @@ export * from './lib/sidenav/sidenav.module';
 export * from './lib/sidenav/sidenav.component';
 
 // page-headline
-export * from './lib/page-headline/page-headline.component';
-export * from './lib/page-headline/page-headline.model';
 export * from './lib/page-headline/page-headline.module';
+export * from './lib/page-headline/page-headline.component';
 export * from './lib/page-headline/page-headline.service';
 
 // status-bars
@@ -346,10 +345,10 @@ export * from './lib/stepper/stepper.service';
 export * from './lib/stepper-mobile/stepper-mobile.module';
 export * from './lib/stepper-mobile/stepper-mobile.component';
 
-// stepper layout
-export * from './lib/layouts/stepper-layout/stepper-layout.component';
-export * from './lib/layouts/stepper-layout/stepper-layout.module';
-export * from './lib/layouts/stepper-layout/stepper-layout.service';
+// steps layout
+export * from './lib/layouts/steps-layout/steps-layout.component';
+export * from './lib/layouts/steps-layout/steps-layout.module';
+export * from './lib/layouts/steps-layout/steps-layout.service';
 
 // layout
 export * from './lib/layouts/layout/layout.component';
@@ -368,8 +367,8 @@ export * from './lib/layouts/advanced-search-layout/advanced-search-layout.compo
 export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
 
 // vertical steps-layout
-export * from './lib/layouts/accordion-steps-layout/accordion-steps.module';
-export * from './lib/layouts/accordion-steps-layout/accordion-steps.component';
+export * from './lib/layouts/steps-accordion-layout/steps-accordion.module';
+export * from './lib/layouts/steps-accordion-layout/steps-accordion.component';
 
 // page
 export * from './lib/layouts/page/page.module';
@@ -379,9 +378,6 @@ export * from './lib/layouts/page/page.component';
 export * from './lib/layouts/section/section.module';
 export * from './lib/layouts/section/section.component';
 
-// dashboard
-export * from './lib/lobby/lobby.component';
-export * from './lib/lobby/lobby.module';
 
 // facility card
 export * from './lib/facility-card/facility-card.model';
@@ -452,3 +448,11 @@ export * from './lib/full-calendar/calendar-card/calendar-card.component';
 
 export * from './lib/grids/document-grid/document-grid.module'
 export * from './lib/grids/document-grid/document-grid.component'
+
+export * from './lib/grids/display-grid/display-grid.module'
+export * from './lib/grids/display-grid/display-grid.component'
+
+// dashboard
+export * from './lib/grids/lobby-grid/lobby.module';
+export * from './lib/grids/lobby-grid/lobby.component';
+

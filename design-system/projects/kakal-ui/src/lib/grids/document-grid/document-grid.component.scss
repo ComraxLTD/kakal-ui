@@ -1,9 +1,9 @@
-
+@use "../../../styles/variables" as main;
 
 
 :host {
   div.kkl-grid-documents {
-    padding-top: 8px;
+    padding-top: main.spacing(1);
     box-sizing: border-box;
   }
 }

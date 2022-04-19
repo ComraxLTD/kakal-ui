@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
-import { Color } from '../../styles/theme';
+import { Palette} from '../../styles/theme'
 
 @Component({
   selector: 'kkl-title',
@@ -7,12 +7,12 @@ import { Color } from '../../styles/theme';
   styleUrls: ['./kkl-title.component.scss'],
 })
 export class TitleComponent implements OnInit {
-  @Input() text: string;
+  @Input() label: string;
+  @Input() color: Palette;
   @Input() alignment: string;
   @Input() gap: number;
-  @Input() size: number;
-  @Input() color: Color;
-  @Input() outlet: ElementRef;
+  @Input() template: ElementRef;
+
   constructor() {}
 
   ngOnInit(): void {}

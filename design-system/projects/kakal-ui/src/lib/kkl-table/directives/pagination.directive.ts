@@ -48,7 +48,6 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       this.matPag.pageIndex = paginator.pageIndex;
       this.initPageRange();
     });
-    console.log('kklNewPagination');
   }
 
   ngDoCheck(): void {

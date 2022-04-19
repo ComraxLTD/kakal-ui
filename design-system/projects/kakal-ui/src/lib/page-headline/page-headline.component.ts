@@ -1,7 +1,12 @@
-import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { PageHeadlineModel } from './page-headline.model';
+import { Component, Input, OnInit } from '@angular/core';
 import { PageHeadlineService } from './page-headline.service';
 import { Observable, tap } from 'rxjs';
+
+export interface PageHeadline {
+  value: any;
+  format?: string;
+  template? : boolean
+}
 
 @Component({
   selector: 'kkl-page-headline',
@@ -11,7 +16,8 @@ import { Observable, tap } from 'rxjs';
 export class PageHeadlineComponent implements OnInit {
   // @Input() templates!: { [key: string]: TemplateRef<any> };
 
-  pageHeadline$!: Observable<PageHeadlineModel[]>;
+  // @Input() pageHeadline$!: Observable<PageHeadline[]>;
+  pageHeadline$!: Observable<PageHeadline[]>;
 
   // sizeIndexMap: { [key: number]: number } = {
   //   0: 3.2,
