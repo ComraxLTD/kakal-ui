@@ -10,7 +10,9 @@
         (+{{ control.value.length - 1 }} {{control.value?.length === 2 ? 'other' : 'others'}})
       </span>
     </mat-select-trigger>
-    <mat-option *ngIf="!multi && control.value" [value]="">--בחר--
+    <mat-option *ngIf="multi && control.value?.length > 1" [value]="" (click)="deselectAll()">--מחק הכל--
+    </mat-option>
+    <mat-option *ngIf="!multi && control.value" [value]="">--מחק--
     </mat-option>
     <mat-option *ngFor="let option of options$ | async" [value]="option" [disabled]="option.disabled">
       {{ option.label }}
@@ -18,9 +20,6 @@
   </mat-select>
   <ng-container matSuffix>
     <kkl-icon color="primary" key="keyboard_arrow_down"></kkl-icon>
-    <button *ngIf="control.value?.length > 1" [disabled]="control.disabled" mat-raised-button class="mat-primary fill text-sm eta-margin-all" (click)="deselectAll()">
-      Deselect All
-    </button>
   </ng-container>
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>

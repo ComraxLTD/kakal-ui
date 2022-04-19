@@ -1,2 +1,183 @@
-<!-- <<button mat-raised-button (click)="openLogin()">Login</button> -->
-<router-outlet></router-outlet>
+<!-- <div dir="rtl" fxLayout="row" fxLayoutAlign="center center">
+  <div fxLayout="column" fxFlex="90"> -->
+    <!-- <div>
+      <kkl-local-table
+      [dataSource]="dataSource"
+      [columns]="columns"
+      [rowActions]="rowActions"
+      [expandTemplate]="expand"
+      (expandRow)="onExpand($event)"
+      ></kkl-local-table>
+    </div> -->
+<!--
+    <div fxLayout="row">
+      <kkl-grid-documents
+        (change)="onGrigChanged($event)"
+        fxFlex="20"
+        [cards]="cards"
+      ></kkl-grid-documents>
+    </div> -->
+
+<!-- <ng-container content>
+  <ng-container>
+    <kkl-form
+            [controls]="questions"
+            (queryChanged)="onQueryChanged($event)"
+
+            [options]="options"
+            [formGroup]="formGroup"
+            [editData]="editData"
+            (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChanged($event)"
+          ></kkl-form>
+  </ng-container>
+</ng-container> -->
+<!-- <kkl-local-table newRowAction="sdgsdf" [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions"></kkl-local-table> -->
+<!-- <kkl-local-table
+  newRowAction="הוסף"
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
+></kkl-local-table> -->
+
+<!--
+<ng-template #expand>
+  <kkl-local-table
+    fxFill
+    [dataSource]="dataSource2"
+    [columns]="columns2"
+  ></kkl-local-table>
+</ng-template> -->
+<!-- <kkl-form-upload
+          [formControl]="control"
+          (fileChanged)="updateFiles($event)"
+        ></kkl-form-upload> -->
+        <!-- <kkl-text-editor (valueChanged)="onValueChanged($event)" [control]="control"></kkl-text-editor> -->
+<!-- <kkl-range></kkl-range> -->
+<!-- <div class="container" fxLayout="column" fxLayoutGap="30px" #container>
+  <h3>Regular :</h3>
+  <div fxLayout="row" fxFill>
+      <kkl-carousel fxFlex="100" displayNum="1" [component]="iconComponent" [data]="iconsData"></kkl-carousel>
+  </div>
+</div> -->
+<!-- <div class="container" fxLayout="column" fxLayoutGap="30px" #container>
+  <h3>One prop component :</h3>
+  <div fxLayout="row" fxFill>
+      <kkl-carousel [component]="component" [data]="cards" singleProp='card'></kkl-carousel>
+  </div>
+</div> -->
+<!-- <div class="container" fxLayout="column" fxLayoutGap="30px" #container>
+  <h3>Basic :</h3>
+  <div fxLayout="row" fxFill>
+      <kkl-display-data [data]="data[0]"></kkl-display-data>
+  </div>
+</div>
+<div class="container" fxLayout="column" fxLayoutGap="30px" #container>
+  <h3>Table :</h3>
+  <div fxLayout="row" fxFill>
+      <kkl-display-data [data]="data" type="table"></kkl-display-data>
+  </div>
+</div>
+<div class="container" fxLayout="column" fxLayoutGap="30px" #container>
+  <h3>Input :</h3>
+  <div fxLayout="row" fxFill>
+      <kkl-display-data [data]="data" type="input"></kkl-display-data>
+  </div>
+</div> -->
+<!-- <div class="container" fxLayout="column" fxLayoutGap="30px">
+  <h3>Basic :</h3>
+  <div fxLayout="row" fxLayoutGap="5rem">
+      <kkl-list-menu [options]="testArr" (emitOption)="updateOption($event)">Click me !</kkl-list-menu>
+      <kkl-typography>Selected: {{selected}}</kkl-typography>
+  </div>
+</div>
+
+<div class="container" fxLayout="column" fxLayoutGap="30px">
+  <h3>Custom :</h3>
+  <div fxLayout="row" fxLayoutGap="5rem">
+      <kkl-list-menu [options]="testArr" [optionTemplate]="custom" (emitOption)="updateCustomOption($event)">
+         <kkl-icon key="tree" color="primary"></kkl-icon> Click me !</kkl-list-menu>
+      <kkl-typography>Selected: {{customSelected}}</kkl-typography>
+  </div>
+
+  <!-- TEMPLATE -->
+  <!-- <ng-template #custom let-option="option">
+      <div fxLayout="row" fxLayoutAlign="space-between" dir="rtl">
+          <div>
+              {{option}}
+          </div>
+          <div>
+              <kkl-icon key="tree" color="primary"></kkl-icon>
+          </div>
+      </div>
+  </ng-template>
+</div> -->
+
+
+  <!-- <ng-container content>
+
+      <div class="container" fxLayout="column" fxLayoutGap="30px" #container>
+          <h3>Basic :</h3>
+          <div fxLayout="row" fxFill>
+              <button mat-button (click)="onClick(testTemplate)">Click me !</button>
+          </div>
+      </div>
+  </ng-container>
+
+
+<ng-template #testTemplate>
+  <p>test test test test test test test test test test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+  <p>test test test test test test test test test</p>
+</ng-template> -->
+
+<!-- <kkl-page-headline></kkl-page-headline> -->
+<!-- <kkl-spinner *ngIf="expression"></kkl-spinner> -->
+
+
+  <!-- <ng-container content>
+
+      <div class="container" fxLayout="column" fxLayoutGap="30px">
+        <kkl-full-calendar
+          #calendar
+          [data]="arr"
+          (eventClicked)="eventClicked($event)"
+          (eventDrop)="eventClicked($event)"
+          (eventResize)="eventClicked($event)"
+        ></kkl-full-calendar>
+      </div>
+
+  </ng-container> -->
+
+  <!-- <kkl-carousel [template]="yearsOfExperienceTemp" [data]="cards" ></kkl-carousel>
+
+  <ng-template #yearsOfExperienceTemp let-data>
+    <kkl-card-info [card]="data"></kkl-card-info>
+  </ng-template> -->
+
+  <kkl-form
+            [controls]="questions"
+            (queryChanged)="onQueryChanged($event)"
+
+            [options]="options"
+            [formGroup]="formGroup"
+            [patchData]="editData"
+            (selectChanged)="onSelectChanged($event)"
+            (openedChanged)="onOpenChanged($event)"
+          ></kkl-form>

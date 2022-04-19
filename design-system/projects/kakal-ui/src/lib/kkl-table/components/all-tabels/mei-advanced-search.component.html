@@ -1,7 +1,7 @@
 <div fxLayout="column" class="kkl-form-search">
   <header class="kkl-form-search" fxLayout="row" fxLayoutAlign="space-between center">
     <kkl-form
-      [controls]="[firstQuestions]"
+      [controls]="[allSearch[0]]"
       [options]="myOptions"
       [formGroup]="formGroup"
 
@@ -50,11 +50,30 @@
   <!-- FILTER CHIPS SECTION -->
 
   <ng-container *ngIf="myQuestions.length > 0">
-    <!-- <kkl-filters
-      [controls]="myQuestions.concat(tableFilters)"
+    <kkl-filters
+      [controls]="myQuestions.concat(allSearch)"
       [formGroup]="formGroup"
-      (selectChanged)="onSelectChanged($event)"
-      (valueChanged)="onValueChanged($event)"
-    ></kkl-filters> -->
+      (selectChanged)="onSelectChangedFilter($event)"
+      (valueChanged)="onValueChangedFilter($event)"
+    ></kkl-filters>
   </ng-container>
 </div>
+
+
+<kkl-local-table
+  #localTable
+  [expandTemplate]="expandTemplate"
+  [searchRow]="formGroup"
+  [options]="myOptions"
+  [colsTemplate]="colsTemplate"
+  [newRowAction]="newRowAction"
+  [paging]="paging"
+  [dragable]="dragable"
+  [columns]="columns"
+  [dataSource]="dataSource"
+  [rowActions]="rowActions"
+  (actionClicked)="onActionClicked($event)"
+  (deleteRow)="onDeleteRow($event)"
+  (editRow)="onEditRow($event)"
+  (expandRow)="onExpandRow($event)"
+></kkl-local-table>
