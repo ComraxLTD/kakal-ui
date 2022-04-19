@@ -6,9 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./section.component.scss'],
 })
 export class SectionComponent implements OnInit {
-  
+
   @Input() label: string;
   @Input() subLabel: string;
+  @Input() size: number;
+  @Input() title: boolean;
 
   constructor() {}
 

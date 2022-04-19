@@ -6,9 +6,11 @@ import { Component, Input, OnInit, TemplateRef } from '@angular/core';
   styleUrls: ['./tabs.component.scss']
 })
 export class TabsComponent implements OnInit {
-  @Input() data: { key: string, label: string }[];
+  @Input() tabs: { key: string, label: string }[];
   @Input() templates: { [key: string]: TemplateRef<any> };
   @Input() backgroundColor: string;
+
+  @Input() variant: 'table' | 'default' = 'default';
 
   constructor() { }
 

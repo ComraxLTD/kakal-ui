@@ -16,7 +16,6 @@ import { Step } from './step/step.model';
 import { MatStepper } from '@angular/material/stepper';
 
 export interface StepSelectEvent {
-  /** Index of the step now selected. */
   selectedIndex: number;
   /** Index of the step previously selected. */
   previouslySelectedIndex: number;
@@ -24,6 +23,12 @@ export interface StepSelectEvent {
   selectedStep: Step;
   /** The step instance previously selected. */
   previouslySelectedStep: Step;
+
+  /** If this step is the last */
+  last: boolean;
+
+  /** If this step is the first */
+  first: boolean;
 }
 
 @Component({
@@ -82,16 +87,20 @@ export class VerticalStepsComponent implements OnInit {
 
   onSelectionChanged(event: StepperSelectionEvent) {
     const { selectedIndex, previouslySelectedIndex } = event;
-    // this._selectedIndex = previouslySelectedIndex;
+
+    const stepSelectEvent: StepSelectEvent = {
+      selectedStep: this.steps[selectedIndex],
+      previouslySelectedStep: this.steps[this.previouslySelectedIndex],
+      selectedIndex,
+      previouslySelectedIndex,
+      first: selectedIndex === 0,
+      last: selectedIndex === this.steps.length - 1,
+    };
+
+    this.stepChanged.emit(stepSelectEvent);
   }
 
-  onStepClick(step: Step, index: number) {
+  onStepClick(step: Step, index: number, first: boolean, last: boolean) {
     this.previouslySelectedIndex = this._selectedIndex;
-    this.stepChanged.emit({
-      selectedStep: step,
-      previouslySelectedStep: this.steps[this.previouslySelectedIndex],
-      selectedIndex: index,
-      previouslySelectedIndex: this.previouslySelectedIndex,
-    });
   }
 }

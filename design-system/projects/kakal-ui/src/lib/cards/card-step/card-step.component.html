@@ -19,8 +19,8 @@
       fxFill
       kkl-button
       appVariant
-      [type]="step.type"
-      [variant]="step.variant"
+      [type]="options.type"
+      [variant]="options.variant"
       [ngClass]="{
         'mat-elevation-z0': true,
         active: step.selected,
@@ -31,7 +31,7 @@
         <mat-icon
           appSize
           [class.active]="step.selected"
-          [size]="step.size"
+          [size]="options.size"
           [svgIcon]="step.svgIcon"
         >
         </mat-icon>

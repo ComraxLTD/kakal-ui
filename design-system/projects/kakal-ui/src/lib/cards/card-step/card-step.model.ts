@@ -8,11 +8,12 @@ export interface CardStepModel {
   svgIcon: string;
   value?: number;
   selected?: boolean;
+  disabled?: boolean;
+  hasSteps?: boolean;
+}
+export interface StepOptions {
   variant?: CardVariant;
   type?: CardType;
   size?: number;
   divider?: number;
-  disabled?: boolean;
-  hasSteps? : boolean;
-  isActive?: boolean;
 }

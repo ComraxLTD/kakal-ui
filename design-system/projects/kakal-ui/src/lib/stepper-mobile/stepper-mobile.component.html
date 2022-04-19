@@ -1,7 +1,7 @@
 <div fxFill fxLayout="column" dir="rtl">
   <ng-container *ngIf="stepMap$ | async as stepMap">
     <nav fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem">
-      <ng-container *ngIf="activeStep$ | async as activeStep">
+      <ng-container *ngIf="selectedStep$ | async as selectedStep">
         <!-- forward button -->
         <div
           fxLayout="row"
@@ -10,10 +10,10 @@
           fxLayoutGap="1.5rem"
           fxFlex
         >
-        
+
           <button
             mat-icon-button
-            (click)="onPrev(stepMap[activeStep.value])"
+            (click)="onPrev(stepMap[selectedStep.value])"
             [disabled]="index === 0"
           >
             <kkl-icon
@@ -29,7 +29,7 @@
             fxLayoutGap="1.5rem"
           >
             <kkl-typography [size]="1.8" [bold]="600">{{
-              stepMap[activeStep.value].label
+              stepMap[selectedStep.value].label
             }}</kkl-typography>
           </div>
 
@@ -37,7 +37,7 @@
 
           <button
             mat-icon-button
-            (click)="onNext(stepMap[activeStep.value])"
+            (click)="onNext(stepMap[selectedStep.value])"
             [disabled]="index+1 > end"
           >
             <kkl-icon

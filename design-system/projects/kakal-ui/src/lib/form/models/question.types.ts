@@ -68,4 +68,8 @@ export type ControlType =
 
 export type Appearance = 'none' | MatFormFieldAppearance;
 
+export declare type ValidationMessage = {
+  [key: string]: (errors?, placeHolder?) => string;
+};
+
 // export type InputTypes = { Appearance; ControlType; Cleave; InputGrid };
