@@ -50,6 +50,9 @@ KKL-accordion-steps
 3. add SelectionChangedEvent interface for stepsChanged event
 4. add options interface for ui configs
 
+kkl-steps 
+
+1. remove steps$ input and steps array input
 
 KKL-Grids
 
