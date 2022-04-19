@@ -1,47 +1,23 @@
-import { Component } from '@angular/core';
-import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
-
+import { Component, OnInit } from '@angular/core';
+import { DialogExampleComponent } from './components/dialog-example/dialog-example.component';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogService } from '../../../kakal-ui/src/lib/dialog/dialog.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  constructor() {}
-
-  dataSource: any[] = [
-    {
-      committeeId: 'wtwrt',
-      remiTikimCount: 'werwsfwe',
-    },
-  ];
-
-  rowActions: RowActionModel[] = [
-    {
-      type: 'inlineEdit',
-      icon: 'edit',
-      label: 'Edit',
-    },
-    {
-      type: 'inlineDelete',
-      icon: 'cancel',
-      label: 'Delete',
-    },
-    {
-      type: 'visibility',
-      icon: 'visibility',
-      label: 'Show',
-    },
-  ];
-
-  columns: TableBase[] = [
-    { key: 'committeeId', label: 'Id', controlType: 'number' },
-    {
-      key: 'remiTikimCount',
-      label: 'remiTikimCount',
-      controlType: 'number',
-      button: { type: 'inlineExpand', icon: 'expand' },
-    },
-    { key: 'committeeDate', label: 'תאריך', controlType: 'date' },
-  ];
+export class AppComponent implements OnInit {
+  constructor(
+    private dialog: MatDialog,
+    private dialogService: DialogService
+  ) {}
+  openLogin(): void {
+    this.dialogService
+      .openDialogGetAfterClosedObs({ component: DialogExampleComponent })
+      .subscribe((result) => {
+        console.log('The dialog was closed');
+      });
+  }
+  ngOnInit(): void {}
 }
