@@ -17,13 +17,11 @@ export class DialogComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    private resolver: ComponentFactoryResolver,
     private injector: Injector,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {}
 
   ngOnInit() {
-    // const comp = this.resolver.resolveComponentFactory(this.data.component);
     this.componentRef = this.vcRef.createComponent(this.data.component, { injector: this.injector });
     this.saveBtnLabel=this.data.saveBtnLabel ||'שמור'
     this.closeBtnLabel=this.data.closeBtnLabel||'סגור'
@@ -31,7 +29,7 @@ export class DialogComponent implements OnInit {
 
   ngOnDestroy() {
     if (this.componentRef) {
-      // 
+      //
       // this.componentRef.destroy();
     }
   }
