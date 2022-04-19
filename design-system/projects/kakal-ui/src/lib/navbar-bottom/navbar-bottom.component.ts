@@ -11,7 +11,7 @@ import {
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
-import { StepperSelectEvent } from '../stepper/stepper.component';
+import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { combineLatest, iif, merge, Observable, of } from 'rxjs';
 import { map, pluck, switchMap } from 'rxjs/operators';
@@ -39,7 +39,7 @@ export class NavbarBottomComponent implements OnInit {
     this.showSave = value === false ? false : true;
   }
 
-  @Input() stepperSelectEvent: StepperSelectEvent;
+  @Input() stepperSelectEvent: StepsSelectionEvent;
 
   // @Input() showSave$: Observable<boolean>;
 
@@ -52,14 +52,14 @@ export class NavbarBottomComponent implements OnInit {
   private steps$: Observable<CardStepModel[]>;
   private nextStep$: Observable<void>;
   // private selectStep$: Observable<CardStepModel>;
-  private stepperSelectEvent$: Observable<StepperSelectEvent>;
+  private stepperSelectEvent$: Observable<StepsSelectionEvent>;
 
   bottomIcon: string = 'bottom_tree_';
   buttonState$: Observable<{ [x: string]: boolean }>;
 
   @Output() previous = new EventEmitter();
   @Output() next = new EventEmitter<void>();
-  @Output() nextStep = new EventEmitter<StepperSelectEvent>();
+  @Output() nextStep = new EventEmitter<StepsSelectionEvent>();
   @Output() save = new EventEmitter();
 
   constructor(
@@ -164,7 +164,7 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   private onStepNext(step: CardStepModel) {
-    // this.next.emit({ selectedStep: step } as StepperSelectEvent);
+    // this.next.emit({ selectedStep: step } as StepsSelectionEvent);
   }
 
   private handleOnNext() {

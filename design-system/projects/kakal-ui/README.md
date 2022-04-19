@@ -31,7 +31,22 @@ KKL-steps-layout
 2. changed service tp steps-layout service
 3. add Input() steps - for steps ui
 4. add Input() actions[] - ButtonModel[] for all layout actions - form, portion and drawer (file and notes)
-5. 
+5. add self navigation logic
+5. add Input() manuel : boolean - when set to false disable self navigation and emit selectStep event
+6. add StepsSelectionEvent interface for selectStep event
+
+KKL-bottom-navbar
+
+1. add Input() manuel : boolean - when set to false disable self navigation and emit nextStep event
+2. save and next buttons are show by default
+3. ass hideNext and hideSave Inputs - when set to true hide buttons
+4. need work on update show and disable of buttons
+
+KKL-accordion-steps
+
+1. changed name to kkl-steps-accordion
+2. add steps-accordion-service - use to handle manuel navigation
+
 
 KKL-Grids
 

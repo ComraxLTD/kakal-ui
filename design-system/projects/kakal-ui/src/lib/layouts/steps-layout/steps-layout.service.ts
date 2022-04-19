@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CardStepModel } from '../../cards/card-step/card-step.model';
-import { StepperSelectEvent } from '../../stepper/stepper.component';
+import { StepsSelectionEvent } from '../../stepper/stepper.component';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
@@ -9,12 +9,12 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 export class StepsLayoutService {
   private steps$: BehaviorSubject<CardStepModel[]>;
   private displayDrawer$: Subject<boolean>;
-  private stepperSelectEvent$: BehaviorSubject<StepperSelectEvent>;
+  private stepperSelectEvent$: BehaviorSubject<StepsSelectionEvent>;
 
   constructor() {
     this.steps$ = new BehaviorSubject<CardStepModel[]>([]);
     this.displayDrawer$ = new Subject<boolean>();
-    this.stepperSelectEvent$ = new BehaviorSubject<StepperSelectEvent>(null);
+    this.stepperSelectEvent$ = new BehaviorSubject<StepsSelectionEvent>(null);
   }
 
   getSteps(): CardStepModel[] {
@@ -37,15 +37,15 @@ export class StepsLayoutService {
     return this.displayDrawer$.asObservable();
   }
 
-  getStepperSelectEvent(): StepperSelectEvent {
+  getStepperSelectEvent(): StepsSelectionEvent {
     return this.stepperSelectEvent$.getValue();
   }
 
-  listenToStepperSelect(): Observable<StepperSelectEvent> {
+  listenToStepperSelect(): Observable<StepsSelectionEvent> {
     return this.stepperSelectEvent$.asObservable();
   }
 
-  emitStepperSelectEvent(value: StepperSelectEvent): void {
+  emitStepperSelectEvent(value: StepsSelectionEvent): void {
     this.stepperSelectEvent$.next(value);
   }
 }

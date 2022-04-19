@@ -367,8 +367,8 @@ export * from './lib/layouts/advanced-search-layout/advanced-search-layout.compo
 export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
 
 // vertical steps-layout
-export * from './lib/layouts/accordion-steps-layout/accordion-steps.module';
-export * from './lib/layouts/accordion-steps-layout/accordion-steps.component';
+export * from './lib/layouts/steps-accordion-layout/steps-accordion.module';
+export * from './lib/layouts/steps-accordion-layout/steps-accordion.component';
 
 // page
 export * from './lib/layouts/page/page.module';

@@ -14,7 +14,7 @@ import {
 import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
 
-export interface StepperSelectEvent {
+export interface StepsSelectionEvent {
   selectedStep: CardStepModel;
   selectedIndex: number;
   source?: CardStatusModel[];
@@ -38,7 +38,7 @@ export class StepperComponent {
 
   mobile$: Observable<boolean>;
 
-  @Output() selectStep = new EventEmitter<StepperSelectEvent>();
+  @Output() selectStep = new EventEmitter<StepsSelectionEvent>();
 
   constructor(private breakpointService: BreakpointService) {}
 
@@ -52,7 +52,7 @@ export class StepperComponent {
     last: boolean,
     first: boolean
   ) {
-    const event: StepperSelectEvent = {
+    const event: StepsSelectionEvent = {
       selectedStep: step,
       selectedIndex: index,
       last,

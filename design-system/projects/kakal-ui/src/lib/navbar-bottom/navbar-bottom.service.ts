@@ -4,10 +4,10 @@ import {
   CardStepModel,
   RouterService,
   StepsLayoutService,
-  StepperSelectEvent,
+  StepsSelectionEvent,
   StepsChangedEvent,
 } from '../../public-api';
-import { StepsAccordionLayoutService } from '../layouts/accordion-steps-layout/steps-accordion-layout.service';
+import { StepsAccordionLayoutService } from '../layouts/steps-accordion-layout/steps-accordion-layout.service';
 
 @Injectable({
   providedIn: 'root',
@@ -45,7 +45,7 @@ export class NavbarBottomService {
     const isComplete = this.stepsAccordionLayoutService.isComplete();
 
     const { selectedStep, selectedIndex } =
-      stepperSelectEvent as StepperSelectEvent;
+      stepperSelectEvent as StepsSelectionEvent;
     if (selectedStep.hasSteps) {
       const { event } = stepsChangedEvent as StepsChangedEvent;
       console.log(event);
@@ -70,7 +70,7 @@ export class NavbarBottomService {
       this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
 
-    const { selectedStep } = stepperSelectEvent as StepperSelectEvent;
+    const { selectedStep } = stepperSelectEvent as StepsSelectionEvent;
 
     if (stepsChangedEvent) {
       const { event } = stepsChangedEvent as StepsChangedEvent;

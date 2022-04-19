@@ -7,7 +7,7 @@ import { CardStepModel } from '../../cards/card-step/card-step.model';
 
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
-import { StepperSelectEvent } from '../../stepper/stepper.component';
+import { StepsSelectionEvent } from '../../stepper/stepper.component';
 
 import { map, mergeMap } from 'rxjs/operators';
 import { BehaviorSubject, merge, Observable, of } from 'rxjs';
@@ -23,7 +23,7 @@ export class StepsLayoutComponent {
   @Input() actions: ButtonModel[];
 
   // when set to true disable default navigation
-  @Input() manuel: boolean = true;
+  @Input() manual: boolean = true;
 
   // control content width when end drawer is open and close in %
   @Input() contentPortion: { open: number; close: number } = {
@@ -31,9 +31,7 @@ export class StepsLayoutComponent {
     close: 100,
   };
 
-  // stepperSelectEvent
-
-  stepperSelectEvent: StepperSelectEvent;
+  stepperSelectEvent: StepsSelectionEvent;
 
   // steps props
   steps$: Observable<CardStepModel[]>;
@@ -58,7 +56,7 @@ export class StepsLayoutComponent {
   rowActions!: ButtonModel[];
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
-  @Output() stepSelect: EventEmitter<StepperSelectEvent> = new EventEmitter();
+  @Output() stepSelect: EventEmitter<StepsSelectionEvent> = new EventEmitter();
   @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
@@ -122,7 +120,7 @@ export class StepsLayoutComponent {
           }
         : null;
 
-    const event: StepperSelectEvent = {
+    const event: StepsSelectionEvent = {
       selectedIndex,
       previousSelectedIndex,
       selectedStep,
@@ -139,7 +137,7 @@ export class StepsLayoutComponent {
 
     return this.routerService.getLastPath$(steps).pipe(
       map((url: string) => {
-        const event: StepperSelectEvent = this.setStepperSelectEvent(
+        const event: StepsSelectionEvent = this.setStepperSelectEvent(
           steps,
           url
         );
@@ -248,8 +246,8 @@ export class StepsLayoutComponent {
 
   // DOM EVENTS
 
-  onSelectStep(event: StepperSelectEvent): void {
-    if (this.manuel) {
+  onSelectStep(event: StepsSelectionEvent): void {
+    if (this.manual) {
       this.stepSelect.emit(event);
     } else {
       this.navigate(event.selectedStep.path);

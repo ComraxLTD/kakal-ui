@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AccordionStepsComponent } from './accordion-steps.component';
+import { StepsAccordionComponent } from './steps-accordion.component';
 import { KKLVerticalStepsModule } from '../../vertical-steps/vertical-steps.module';
 import { KKLAccordionLayoutModule } from '../accordion-layout/accordion-layout.module';
 
 @NgModule({
-  declarations: [AccordionStepsComponent],
+  declarations: [StepsAccordionComponent],
   imports: [CommonModule, KKLVerticalStepsModule, KKLAccordionLayoutModule],
-  exports: [AccordionStepsComponent],
+  exports: [StepsAccordionComponent],
 })
-export class KKLAccordionStepsModule {}
+export class KKLStepsAccordionModule {}

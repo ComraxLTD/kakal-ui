@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { StepsChangedEvent } from './accordion-steps.component';
+import { StepsChangedEvent } from './steps-accordion.component';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +53,7 @@ export class StepsAccordionLayoutService {
   getStepsChangedEvent(): StepsChangedEvent {
     return this.stepsChangedEvent$.value;
   }
-  
+
   listenStepsChangedEvent(): Observable<StepsChangedEvent> {
     return this.stepsChangedEvent$.asObservable();
   }

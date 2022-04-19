@@ -1,8 +1,4 @@
-<kkl-steps-layout
-  [actions]="actions"
-  [steps]="steps"
-  (stepSelect)="onStepSelect($event)"
->
+<kkl-steps-layout [manual]="false" [actions]="actions" [steps]="steps">
   <!-- the changing content of the stepper layout -->
   <div content>
     <router-outlet></router-outlet>
@@ -12,7 +8,6 @@
   <kkl-navbar-bottom
     bottom-navbar
     [manual]="false"
-    (previous)="onPrevious()"
     (save)="onSave()"
   ></kkl-navbar-bottom>
-</kkl-stepper-layout>
+</kkl-steps-layout>

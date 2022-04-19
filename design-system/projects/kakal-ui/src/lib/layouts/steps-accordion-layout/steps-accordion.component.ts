@@ -18,11 +18,11 @@ export interface StepsChangedEvent {
 }
 
 @Component({
-  selector: 'kkl-accordion-steps-layout',
-  templateUrl: './accordion-steps.component.html',
-  styleUrls: ['./accordion-steps.component.scss'],
+  selector: 'kkl-steps-accordion-layout',
+  templateUrl: './steps-accordion.component.html',
+  styleUrls: ['./steps-accordion.component.scss'],
 })
-export class AccordionStepsComponent implements OnInit {
+export class StepsAccordionComponent implements OnInit {
   // ** Panels instance array for accordion UI **
   @Input() panels: Panel[];
 

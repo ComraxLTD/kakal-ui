@@ -68,7 +68,7 @@ import { KKLLayoutModule } from './layouts/layout/layout.module';
 import { KKSectionModule } from './layouts/section/section.module';
 import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
 import { KKPageModule } from './layouts/page/page.module';
-import { KKLAccordionStepsModule } from './layouts/accordion-steps-layout/accordion-steps.module';
+import { KKLStepsAccordionModule } from './layouts/steps-accordion-layout/steps-accordion.module';
 import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
@@ -197,7 +197,7 @@ registerLocaleData(he);
     KKLLobbyModule,
     KKLChipsModule,
     KKLDisplayDataModule,
-    KKLAccordionStepsModule,
+    KKLStepsAccordionModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
 
@@ -285,6 +285,7 @@ registerLocaleData(he);
 
 
     // GRIDS
+    KKLDisplayDataModule,
 
     KKLDocumentGridModule,
     KKLDisplayGridModule,
@@ -293,10 +294,10 @@ registerLocaleData(he);
     KKLLayoutModule,
     KKLLobbyModule,
     KKLChipsModule,
-    KKLDisplayDataModule,
     KKLAccordionLayoutModule,
+    KKLStepsAccordionModule,
     KKLAdvancedSearchLayoutModule,
-    
+
     // STEPPER
     KKLStepperModule,
     KKLStepperMobileModule,
@@ -307,7 +308,6 @@ registerLocaleData(he);
     KKSectionModule,
     KKPageModule,
 
-    KKLAccordionStepsModule,
     FacilityCardModule,
     CarouselModule,
     KKLFullCalendarModule,
