@@ -105,27 +105,27 @@ export class StepsLayoutComponent {
 
   private setStepperSelectEvent(steps: CardStepModel[], url: string) {
     const selectedIndex = steps.findIndex((step) => step.path === url);
-    const previousSelectedIndex = steps.findIndex((step) => step.selected);
+    const previouslySelectedIndex = steps.findIndex((step) => step.selected);
 
     const selectedStep = {
       ...steps[selectedIndex],
       selected: true,
     } as CardStepModel;
 
-    const previousSelectedStep =
-      previousSelectedIndex !== -1
+    const previouslySelectedStep =
+      previouslySelectedIndex !== -1
         ? {
-            ...steps[previousSelectedIndex],
+            ...steps[previouslySelectedIndex],
             selected: false,
           }
         : null;
 
     const event: StepsSelectionEvent = {
       selectedIndex,
-      previousSelectedIndex,
+      previouslySelectedIndex,
       selectedStep,
-      previousSelectedStep,
-      first: selectedIndex === 0 || previousSelectedIndex === 0,
+      previouslySelectedStep,
+      first: selectedIndex === 0 || previouslySelectedIndex === 0,
       last: selectedIndex === steps.length - 1,
     };
 
@@ -142,7 +142,7 @@ export class StepsLayoutComponent {
           url
         );
 
-        console.log(event)
+        console.log(event);
 
         this.stepsLayoutService.emitStepperSelectEvent(event);
 

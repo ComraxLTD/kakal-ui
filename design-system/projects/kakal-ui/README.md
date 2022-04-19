@@ -32,6 +32,7 @@ KKL-steps-layout
 3. add Input() steps - for steps ui
 4. add Input() actions[] - ButtonModel[] for all layout actions - form, portion and drawer (file and notes)
 5. add self navigation logic
+6. update selectStep event to selectionSteps
 5. add Input() manuel : boolean - when set to false disable self navigation and emit selectStep event
 6. add StepsSelectionEvent interface for selectStep event
 
@@ -46,6 +47,7 @@ KKL-accordion-steps
 
 1. changed name to kkl-steps-accordion
 2. add steps-accordion-service - use to handle manuel navigation
+3, add SelectionChangedEvent interface for stepsChanged event
 
 
 KKL-Grids
@@ -59,4 +61,17 @@ KKL-Lobby
 
 KKL-tabs
 
-1. add variant input - table and default, set to default by default 
+1. add variant input - table and default, set to default by default
+
+KKL-title
+
+1. changed title input to label
+
+KKL-Page
+
+1. add size input to for title size
+
+KKL-Section
+
+1. add size input to for title size
+2. add title boolean input - when set to true label ui is kkl-title 

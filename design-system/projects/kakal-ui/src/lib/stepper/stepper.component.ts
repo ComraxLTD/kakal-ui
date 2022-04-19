@@ -14,14 +14,32 @@ import {
 import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
 
+// export interface StepsSelectionEvent {
+//   selectedStep: CardStepModel;
+//   selectedIndex: number;
+//   previousSelectedStep?: CardStepModel;
+//   previousSelectedIndex?: number;
+//   first? : boolean
+//   last? : boolean
+// }
+
 export interface StepsSelectionEvent {
-  selectedStep: CardStepModel;
   selectedIndex: number;
-  source?: CardStatusModel[];
-  previousSelectedStep?: CardStepModel;
-  previousSelectedIndex?: number;
-  first? : boolean
-  last? : boolean
+  /** Index of the step previously selected. */
+  previouslySelectedIndex?: number;
+  /** The step instance now selected. */
+  selectedStep: CardStatusModel | CardStepModel;
+
+  /** The step instance previously selected. */
+  previouslySelectedStep?: CardStatusModel | CardStepModel;
+
+  /** If this step is the last */
+  last: boolean;
+
+  /** If this step is the first */
+  first: boolean;
+
+  source?: CardStatusModel[] | CardStepModel[];
 }
 
 @Component({
@@ -30,7 +48,8 @@ export interface StepsSelectionEvent {
   styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
-  @Input() stepType: 'step' | 'status';
+  @Input() variant: 'step' | 'status';
+  @Input() steps: CardStepModel[] | CardStatusModel[];
   @Input() steps$: Observable<CardStepModel[]>;
   @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
@@ -57,6 +76,7 @@ export class StepperComponent {
       selectedIndex: index,
       last,
       first,
+      source : this.steps
     };
     this.selectStep.emit(event);
   }

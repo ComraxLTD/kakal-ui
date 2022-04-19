@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { StepsChangedEvent } from './steps-accordion.component';
+import { SelectionChangedEvent } from './steps-accordion.component';
 
 @Injectable({
   providedIn: 'root',
@@ -8,12 +8,12 @@ import { StepsChangedEvent } from './steps-accordion.component';
 export class StepsAccordionLayoutService {
   private selectedIndex$: BehaviorSubject<number>;
   private complete$: BehaviorSubject<boolean>;
-  private stepsChangedEvent$: BehaviorSubject<StepsChangedEvent>;
+  private stepsChangedEvent$: BehaviorSubject<SelectionChangedEvent>;
 
   constructor() {
     this.selectedIndex$ = new BehaviorSubject<number>(0);
     this.complete$ = new BehaviorSubject<boolean>(false);
-    this.stepsChangedEvent$ = new BehaviorSubject<StepsChangedEvent>(null);
+    this.stepsChangedEvent$ = new BehaviorSubject<SelectionChangedEvent>(null);
   }
 
   private dispatchSelectIndex(value: number): void {
@@ -46,15 +46,15 @@ export class StepsAccordionLayoutService {
     return this.complete$.asObservable();
   }
 
-  setStepsChangedEvent(value: StepsChangedEvent): void {
+  setStepsChangedEvent(value: SelectionChangedEvent): void {
     this.stepsChangedEvent$.next(value);
   }
 
-  getStepsChangedEvent(): StepsChangedEvent {
+  getStepsChangedEvent(): SelectionChangedEvent {
     return this.stepsChangedEvent$.value;
   }
 
-  listenStepsChangedEvent(): Observable<StepsChangedEvent> {
+  listenStepsChangedEvent(): Observable<SelectionChangedEvent> {
     return this.stepsChangedEvent$.asObservable();
   }
 }

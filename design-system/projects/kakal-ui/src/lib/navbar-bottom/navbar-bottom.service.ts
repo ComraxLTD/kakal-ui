@@ -5,7 +5,7 @@ import {
   RouterService,
   StepsLayoutService,
   StepsSelectionEvent,
-  StepsChangedEvent,
+  SelectionChangedEvent,
 } from '../../public-api';
 import { StepsAccordionLayoutService } from '../layouts/steps-accordion-layout/steps-accordion-layout.service';
 
@@ -38,18 +38,18 @@ export class NavbarBottomService {
   }
 
   onNextStep() {
-    const stepperSelectEvent =
-      this.stepsLayoutService.getStepperSelectEvent();
+    const stepperSelectEvent = this.stepsLayoutService.getStepperSelectEvent();
     const stepsChangedEvent =
       this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
 
     const { selectedStep, selectedIndex } =
       stepperSelectEvent as StepsSelectionEvent;
-    if (selectedStep.hasSteps) {
-      const { event } = stepsChangedEvent as StepsChangedEvent;
-      console.log(event);
-      console.log(isComplete, 'complete');
+
+    const step = selectedStep as CardStepModel;
+
+    if (step.hasSteps) {
+      const { event } = stepsChangedEvent as SelectionChangedEvent;
       if (!event.last) {
         this.stepsAccordionLayoutService.next();
       } else if (!isComplete) {
@@ -64,17 +64,17 @@ export class NavbarBottomService {
   }
 
   onPreviousStep() {
-    const stepperSelectEvent =
-      this.stepsLayoutService.getStepperSelectEvent();
+    const stepperSelectEvent = this.stepsLayoutService.getStepperSelectEvent();
     const stepsChangedEvent =
       this.stepsAccordionLayoutService.getStepsChangedEvent();
     const isComplete = this.stepsAccordionLayoutService.isComplete();
 
     const { selectedStep } = stepperSelectEvent as StepsSelectionEvent;
+    const step = selectedStep as CardStepModel;
 
     if (stepsChangedEvent) {
-      const { event } = stepsChangedEvent as StepsChangedEvent;
-      if (selectedStep.hasSteps && !event.first && !isComplete) {
+      const { event } = stepsChangedEvent as SelectionChangedEvent;
+      if (step.hasSteps && !event.first && !isComplete) {
         this.stepsAccordionLayoutService.previous();
       } else {
         this.routerService.goBack();

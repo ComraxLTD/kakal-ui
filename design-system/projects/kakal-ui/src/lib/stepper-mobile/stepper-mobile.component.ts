@@ -9,14 +9,14 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./stepper-mobile.component.scss'],
 })
 export class StepperMobileComponent implements OnInit {
-  @Input() public activeStepIndex: number;
-  @Input() public steps$: Observable<CardStepModel[]>;
+  @Input() selectedStepIndex: number;
+  @Input() steps$: Observable<CardStepModel[]>;
 
   end: number;
   index: number = 0;
   mapStep: any;
   stepMap$: Observable<{ [key: string]: CardStepModel }>;
-  activeStep$: Observable<ListItem<number>>;
+  selectedStep$: Observable<ListItem<number>>;
   end$: Observable<boolean>;
   width$: Observable<number>;
 
@@ -25,18 +25,18 @@ export class StepperMobileComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.activeStep$ = this.setActiveStep$();
+    this.selectedStep$ = this.setSelectedStep$();
     this.stepMap$ = this.setStepsMap();
 
-    this.steps$.subscribe((step) => {
-      this.mapStep = step.map((s) => {
+    this.steps$.subscribe((steps: CardStepModel[]) => {
+      this.mapStep = steps.map((s : CardStepModel) => {
         return s;
       });
     });
     this.end = this.mapStep.length - 1;
   }
 
-  private setActiveStep$(): Observable<ListItem<number>> {
+  private setSelectedStep$(): Observable<ListItem<number>> {
     return this.steps$.pipe(
       map(
         (steps: CardStepModel[]) =>

@@ -9,10 +9,10 @@ import {
 import { Step } from '../../vertical-steps/step/step.model';
 import { Panel } from '../accordion-layout/accordion-types';
 import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
-import { Observable } from 'rxjs';
 import { StepsAccordionLayoutService } from './steps-accordion-layout.service';
+import { Observable } from 'rxjs';
 
-export interface StepsChangedEvent {
+export interface SelectionChangedEvent {
   source: Step[];
   event: StepSelectEvent;
 }
@@ -52,11 +52,11 @@ export class StepsAccordionComponent implements OnInit {
     isLinear?: boolean;
   } = {};
 
-  @Output() stepsChanged: EventEmitter<StepsChangedEvent> = new EventEmitter();
+  @Output() selectionSteps: EventEmitter<SelectionChangedEvent> = new EventEmitter();
 
   complete$: Observable<boolean>;
 
-  private stepsChangedEvent: StepsChangedEvent;
+  private stepsChangedEvent: SelectionChangedEvent;
 
   constructor(
     private stepsAccordionLayoutService: StepsAccordionLayoutService
@@ -94,7 +94,7 @@ export class StepsAccordionComponent implements OnInit {
   }
 
   private _emitChanged() {
-    this.stepsChanged.emit(this.stepsChangedEvent);
+    this.selectionSteps.emit(this.stepsChangedEvent);
     this.stepsAccordionLayoutService.setStepsChangedEvent(
       this.stepsChangedEvent
     );
