@@ -55,6 +55,8 @@ export class StepsLayoutComponent {
   drawerAction: ButtonModel;
   rowActions!: ButtonModel[];
 
+  mobile$: Observable<boolean>;
+
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() stepSelect: EventEmitter<StepsSelectionEvent> = new EventEmitter();
   @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
@@ -92,6 +94,8 @@ export class StepsLayoutComponent {
     this.portion$ = this.getBreakPoints();
 
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
+
+    this.mobile$ = this.breakpointService.isMobile()
   }
 
   private setSteps$() {
@@ -141,8 +145,6 @@ export class StepsLayoutComponent {
           steps,
           url
         );
-
-        console.log(event);
 
         this.stepsLayoutService.emitStepperSelectEvent(event);
 

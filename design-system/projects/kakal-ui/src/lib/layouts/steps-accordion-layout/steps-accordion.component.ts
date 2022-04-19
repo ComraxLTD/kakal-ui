@@ -37,8 +37,16 @@ export class StepsAccordionComponent implements OnInit {
   // ** When set to true disable self navigation of vertical steps **
   @Input() manuel: boolean;
 
-  // ** When given add a button to the accordion UI **
-  @Input() buttonLabel: string;
+  // ** an interface for ui **
+  @Input() options: {
+    
+    // ** for accordion button **
+    buttonLabel: string;
+
+    // ** for accordion checked **
+    hasCheckbox: boolean;
+    isLinear?: boolean;
+  };
 
   selectedIndex$: Observable<number>;
 
@@ -48,11 +56,8 @@ export class StepsAccordionComponent implements OnInit {
     this._selectedIndex = value || 0;
   }
 
-  @Input() options: {
-    isLinear?: boolean;
-  } = {};
-
-  @Output() selectionSteps: EventEmitter<SelectionChangedEvent> = new EventEmitter();
+  @Output() selectionSteps: EventEmitter<SelectionChangedEvent> =
+    new EventEmitter();
 
   complete$: Observable<boolean>;
 

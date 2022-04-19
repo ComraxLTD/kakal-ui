@@ -47,7 +47,8 @@ KKL-accordion-steps
 
 1. changed name to kkl-steps-accordion
 2. add steps-accordion-service - use to handle manuel navigation
-3, add SelectionChangedEvent interface for stepsChanged event
+3. add SelectionChangedEvent interface for stepsChanged event
+4. add options interface for ui configs
 
 
 KKL-Grids

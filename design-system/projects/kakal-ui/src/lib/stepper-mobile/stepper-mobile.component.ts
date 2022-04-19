@@ -9,6 +9,7 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./stepper-mobile.component.scss'],
 })
 export class StepperMobileComponent implements OnInit {
+
   @Input() selectedStepIndex: number;
   @Input() steps$: Observable<CardStepModel[]>;
 

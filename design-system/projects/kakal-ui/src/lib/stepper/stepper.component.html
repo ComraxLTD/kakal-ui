@@ -8,7 +8,12 @@
     class="steps-container"
   >
     <ng-container
-      *ngFor="let step of steps$ | async; let i = index; let last = last, let first = first"
+      *ngFor="
+        let step of steps;
+        let i = index;
+        let last = last;
+        let first = first
+      "
     >
       <div appSize [type]="variant" [size]="6" [step]="step">
         <ng-container *ngIf="!stepRef">

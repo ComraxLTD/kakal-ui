@@ -50,7 +50,6 @@ export interface StepsSelectionEvent {
 export class StepperComponent {
   @Input() variant: 'step' | 'status';
   @Input() steps: CardStepModel[] | CardStatusModel[];
-  @Input() steps$: Observable<CardStepModel[]>;
   @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
   @Input() options: StepOptions;
@@ -76,7 +75,7 @@ export class StepperComponent {
       selectedIndex: index,
       last,
       first,
-      source : this.steps
+      source: this.steps,
     };
     this.selectStep.emit(event);
   }
