@@ -3,7 +3,7 @@
 </button>
 <mat-menu #menu="matMenu">
     <ng-container *ngFor="let option of options">
-        <button *ngIf="optionTemplate" mat-menu-item>
+        <button *ngIf="optionTemplate" mat-menu-item (click)="emitClick(option)">
             <ng-container *ngTemplateOutlet="optionTemplate;context:{option}"></ng-container>
         </button>
         <button *ngIf="!optionTemplate" mat-menu-item (click)="emitClick(option)">

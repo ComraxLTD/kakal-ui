@@ -1,13 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
 import { LobbyComponent } from '../../projects/kakal-ui/src/lib/lobby/lobby.component'
-import { KKLLobbyModule } from '../../projects/kakal-ui/src/lib/lobby/lobby.module';
+import { KKLLobbyGridModule } from '../../projects/kakal-ui/src/lib/lobby/lobby.module';
 
 export default {
     title: 'Tools',
     decorators: [
         moduleMetadata({
-            imports: [KKLLobbyModule],
+            imports: [KKLLobbyGridModule],
         }),
     ],
     component: LobbyComponent,
@@ -64,4 +64,3 @@ const Template: Story<LobbyComponent> = (args: LobbyComponent) => ({
 export const dashboard = Template.bind({});
 dashboard.args = {
 }
-

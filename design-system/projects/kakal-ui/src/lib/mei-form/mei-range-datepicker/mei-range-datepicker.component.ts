@@ -17,7 +17,8 @@ export class MeiRangeDatepickerComponent implements OnInit {
   @Input() label: string;
   @Input() appearance: Appearance;
 
-
+  @Input() maxDate: Date;
+  @Input() minDate: Date;
 
   @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();

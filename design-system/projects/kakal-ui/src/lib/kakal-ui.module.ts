@@ -62,13 +62,13 @@ import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
 import { KKLCardAddModule } from './cards/card-add/card-add.module';
 import { KKLCardDocumentModule } from './cards/card-document/card-document.module';
 
-import { StepperLayoutModule } from './layouts/stepper-layout/stepper-layout.module';
+import { KKLStepsLayoutModule } from './layouts/steps-layout/steps-layout.module';
 import { KKLLayoutModule } from './layouts/layout/layout.module';
 
 import { KKSectionModule } from './layouts/section/section.module';
 import { KKLAccordionLayoutModule } from './layouts/accordion-layout/accordion-layout.module';
 import { KKPageModule } from './layouts/page/page.module';
-import { KKLAccordionStepsModule } from './layouts/accordion-steps-layout/accordion-steps.module';
+import { KKLStepsAccordionModule } from './layouts/steps-accordion-layout/steps-accordion.module';
 import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
@@ -80,7 +80,6 @@ import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 
-import { KKLLobbyModule } from './lobby/lobby.module';
 import { KKLDisplayDataModule } from './display-data/display-data.module';
 import { KKLFiltersModule } from './filters/filters.module';
 
@@ -105,6 +104,10 @@ import { MeiFormModule } from './mei-form/mei-form.module';
 // GRIDS
 
 import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
+import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
+import { KKLLobbyGridModule } from './grids/lobby-grid/lobby.module';
+
+import { MeiServiceModule } from './mei-services/mei-services.module';
 
 registerLocaleData(he);
 
@@ -115,6 +118,7 @@ registerLocaleData(he);
     CommonModule,
     MaterialModule,
     ReactiveFormsModule,
+
     //TOOLS
     KKLTabsModule,
     OpenMotionsModule,
@@ -185,22 +189,23 @@ registerLocaleData(he);
     // STEPPER
     KKLStepperModule,
     KKLStepperMobileModule,
-    StepperLayoutModule,
+    KKLStepsLayoutModule,
 
     KKLVerticalStepsModule,
 
     // LAYOUT
     KKLLayoutModule,
-    KKLLobbyModule,
+    KKLLobbyGridModule,
     KKLChipsModule,
     KKLDisplayDataModule,
-    KKLAccordionStepsModule,
+    KKLStepsAccordionModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
 
     // GRIDS
 
     KKLDocumentGridModule,
+    KKLDisplayGridModule,
 
     KKSectionModule,
     KKPageModule,
@@ -252,6 +257,7 @@ registerLocaleData(he);
     // NEW TABLE
     KKLNewTableModule,
     MeiFormModule,
+    MeiServiceModule,
 
     // TABLE
     KKLTableModule,
@@ -278,29 +284,31 @@ registerLocaleData(he);
     KKLNavbarModule,
     NavbarBottomModule,
 
-    // STEPPER
-    KKLStepperModule,
-    KKLStepperMobileModule,
-    StepperLayoutModule,
 
     // GRIDS
+    KKLDisplayDataModule,
 
     KKLDocumentGridModule,
+    KKLDisplayGridModule,
 
     // LAYOUT
     KKLLayoutModule,
-    KKLLobbyModule,
+    KKLLobbyGridModule,
     KKLChipsModule,
-    KKLDisplayDataModule,
     KKLAccordionLayoutModule,
+    KKLStepsAccordionModule,
     KKLAdvancedSearchLayoutModule,
+
+    // STEPPER
+    KKLStepperModule,
+    KKLStepperMobileModule,
+    KKLStepsLayoutModule,
 
     KKLVerticalStepsModule,
 
     KKSectionModule,
     KKPageModule,
 
-    KKLAccordionStepsModule,
     FacilityCardModule,
     CarouselModule,
     KKLFullCalendarModule,

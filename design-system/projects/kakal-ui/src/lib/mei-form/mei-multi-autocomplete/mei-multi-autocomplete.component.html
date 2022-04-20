@@ -1,4 +1,4 @@
-<mat-form-field [appearance]="control.disabled ? 'fill' : appearance">
+<mat-form-field [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
   <mat-label>{{ label }}</mat-label>
 
   <mat-chip-list #chipList aria-label="Fruit selection">

@@ -1,11 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, map, Observable, startWith } from 'rxjs';
+import { BehaviorSubject, map, Observable, startWith, take } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
 import { filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Appearance } from '../models/control.types';
 
 @Component({
   selector: 'kkl-autocomplete',
@@ -21,8 +22,10 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() control!: FormControl;
 
   _options!: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
+  tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
-    if(this._options){
+    if(this.tempOptions){
+      this._options = val;
       if(Array.isArray(val)) {
         this.isArray = true;
         this.control.setValue(val.find(b => b.selected));
@@ -40,9 +43,9 @@ export class MeiAutocompleteComponent implements OnInit {
         });
       }
     }
-    setTimeout(() => {
-      this._options = val;
-    }, 0);
+    // setTimeout(() => {
+      this.tempOptions = val;
+    // }, 0);
   }
   @Input() placeHolder!: string;
   @Input() label!: string;
@@ -51,7 +54,7 @@ export class MeiAutocompleteComponent implements OnInit {
   @Input() withButton!: string;
   @Input() icon!: string;
   @Input() panelWidth!: string;
-  @Input() appearance!: string;
+  @Input() appearance: Appearance;
 
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -63,7 +66,7 @@ export class MeiAutocompleteComponent implements OnInit {
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.control.valueChanges.pipe(
         startWith(''),
         distinctUntilChanged(),
@@ -71,21 +74,22 @@ export class MeiAutocompleteComponent implements OnInit {
         filter( value => (typeof value === 'string'))
       ).subscribe(a => this.search());
       this.error$ = new BehaviorSubject<string>('');
-      if(Array.isArray(this._options)) {
+      this._options = this.tempOptions;
+      if(Array.isArray(this.tempOptions)) {
         this.isArray = true;
-        this.control.setValue(this._options.find(b => b.selected));
+        this.control.setValue(this.tempOptions.find(b => b.selected));
         this.filteredOptions = this.control.valueChanges.pipe(
           startWith(''),
           map(value => (typeof value === 'string' ? value : value.label)),
           map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
         );
-      } else if(this._options) {
+      } else if(this.tempOptions) {
         this.isArray = false;
         (this._options as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.find(b => b.selected));
         });
       }
-    }, 0);
+    // }, 0);
   }
 
   displayFn(mei: KklSelectOption): string {
@@ -111,6 +115,17 @@ export class MeiAutocompleteComponent implements OnInit {
 
 
   onSelectionChange(event): void {
+    if(Array.isArray(this._options)) {
+      this._options.forEach(b => {
+        b.selected = false;
+      });
+    } else {
+      this._options.pipe(take(1)).subscribe((a: KklSelectOption[]) => {
+        a.forEach(b => {
+          b.selected = false;
+        });
+      });
+    }
     event.option.value.selected = true;
     this.selectChanged.emit({
       key: this.key,
@@ -122,18 +137,18 @@ export class MeiAutocompleteComponent implements OnInit {
   search() {
     this.queryChanged.emit({
       key: this.key,
-      value: this.control.value !== 'string'? this.control.value : null,
+      value: typeof this.control.value !== 'string'? this.control.value : null,
       action: KklFormActions.QUERY_CHANGED,
-      query: this.control.value === 'string'? this.control.value : null
+      query: typeof this.control.value === 'string'? this.control.value : null
     });
   }
 
   onOpenChanged(event) {
     this.openedChange.emit({
       key: this.key,
-      value: this.control.value !== 'string'? this.control.value : null,
+      value: typeof this.control.value !== 'string'? this.control.value : null,
       action: event? KklFormActions.OPENED_SELECT : KklFormActions.CLOSED_SELECT,
-      query: this.control.value === 'string'? this.control.value : null
+      query: typeof this.control.value === 'string'? this.control.value : null
     });
   }
 

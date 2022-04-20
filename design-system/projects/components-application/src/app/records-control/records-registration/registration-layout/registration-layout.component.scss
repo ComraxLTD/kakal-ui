@@ -1,7 +1,0 @@
-@use "../../../kakal-ui/src/styles/variables" as main;
-
-:host {
-  .text-editor {
-    margin-top: main.spacing(1) !important;
-  }
-}

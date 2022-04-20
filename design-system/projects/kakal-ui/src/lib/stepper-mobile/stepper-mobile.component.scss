@@ -6,7 +6,7 @@ div.button {
   height: 1.5rem;
   width: 1.5rem;
 
-  &.active {
+  &.selected {
     background-color: main.color(primary);
   }
 }

@@ -1,7 +1,5 @@
-export type HeadlineType = 'date' | 'default' | 'custom';
-
-export interface PageHeadlineModel {
+export interface PageHeadline {
   value: any;
   format?: string;
-  template? : boolean
+  status? : boolean;
 }

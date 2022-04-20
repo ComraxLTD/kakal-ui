@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, startWith, take } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
+import { Appearance } from '../models/control.types';
 import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
 
@@ -37,7 +38,7 @@ export class MeiCurrencyComponent implements OnInit {
   @Input() label!: string;
   @Input() theme!: string;
   @Input() key!: string;
-  @Input() appearance!: string;
+  @Input() appearance: Appearance;
   @Input() debounce!: number;
 
   @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();

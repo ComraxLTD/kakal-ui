@@ -1,0 +1,74 @@
+<mat-chip-list >
+  <ng-container *ngFor="let cont of controls">
+    <ng-container [ngSwitch]="cont.controlType">
+
+
+      <ng-container *ngSwitchCase="'select'">
+        <ng-container *ngIf="!cont.multi;else multiSelect">
+          <mat-chip
+            *ngIf="formGroup.value[cont.key]"
+            (removed)="removeSelect(cont, formGroup.value[cont.key])">
+            {{formGroup.value[cont.key].label }}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </ng-container>
+        <ng-template #multiSelect>
+          <ng-container *ngFor="let item of formGroup.value[cont.key]">
+            <mat-chip
+              (removed)="removeMulti(cont, item)">
+              {{item.label }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngSwitchCase="'select'">
+        <mat-chip
+          *ngIf="formGroup.value[cont.key]"
+          (removed)="removeSelect(cont, formGroup.value[cont.key])">
+          {{formGroup.value[cont.key].label }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </ng-container>
+      <ng-container *ngSwitchCase="'autocomplete'">
+        <ng-container *ngIf="!cont.multi;else multiAutocomplete">
+          <mat-chip
+            *ngIf="formGroup.value[cont.key] && formGroup.value[cont.key].label"
+            (removed)="removeSelect(cont, formGroup.value[cont.key])">
+            {{formGroup.value[cont.key].label}}
+            <button matChipRemove>
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip>
+        </ng-container>
+        <ng-template #multiAutocomplete>
+          <ng-container *ngFor="let auto of formGroup.value[cont.key]">
+            <mat-chip
+              (removed)="removeMulti(cont, auto)">
+              {{auto.label }}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+          </ng-container>
+        </ng-template>
+      </ng-container>
+      <ng-container *ngSwitchDefault>
+        <mat-chip
+          *ngIf="formGroup.value[cont.key]"
+          (removed)="remove(cont)">
+          {{formGroup.value[cont.key] | tableCellPipe: cont.controlType }}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+</mat-chip-list>

@@ -1,23 +1,18 @@
 <div
+  dir="rtl"
   fxLayout="row"
   fxFill
   kkl-underline
-  dir="rtl"
   [fxLayoutAlign]="alignment || 'space-between'"
   [fxLayoutGap]="gap + 'rem'"
 >
-  <div
-    kkl-underline
-    [color]="color || 'accent'"
-    [thick]="3"
-    fxLayoutAlign="end end"
-  >
-    <kkl-typography [weight]="600" [size]="size" [color]="color">
-      {{ text }}
+  <div kkl-underline [color]="'accent'" [thick]="3" fxLayoutAlign="end end">
+    <kkl-typography [weight]="600" [color]="color">
+      {{ label }}
     </kkl-typography>
   </div>
 
-  <div fxLayout="column" class="outlet">
-    <ng-template *ngTemplateOutlet="outlet"></ng-template>
+  <div fxLayout="column" class="template">
+    <ng-template *ngTemplateOutlet="template"></ng-template>
   </div>
 </div>

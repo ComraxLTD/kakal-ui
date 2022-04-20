@@ -2,7 +2,13 @@ import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
 import { Palette } from '../../../styles/theme';
 import { FilterType } from '../../filters/filters.types';
 
-import { Appearance, InputGrid, ControlType, FormGrid } from './question.types';
+import {
+  Appearance,
+  InputGrid,
+  ControlType,
+  FormGrid,
+  ValidationMessage,
+} from './question.types';
 
 export abstract class QuestionBase {
   public key: string;
@@ -18,10 +24,7 @@ export abstract class QuestionBase {
   public icon?: string;
   public validations?: ValidatorFn[];
   public disabled?: boolean;
-  public control?: AbstractControl | FormControl;
-  public cleave?: {};
-  public localFilter?: boolean;
-  public filterType?: FilterType;
+  public errors?: ValidationMessage | null;
 
   constructor(options: {
     key: string;
@@ -37,9 +40,7 @@ export abstract class QuestionBase {
     icon?: string;
     validations?: ValidatorFn[];
     control?: AbstractControl | FormControl;
-    cleave?: {};
-    localFilter?: boolean;
-    filterType?: FilterType;
+    errors?: ValidationMessage | null;
   }) {
     this.key = options.key || '';
     this.value = options.value;
@@ -58,9 +59,6 @@ export abstract class QuestionBase {
       fullWidth: false,
     };
     this.icon = options.icon || '';
-    this.control = options.control || null;
-    this.cleave = options.cleave || {};
-    this.localFilter = options.localFilter;
-    this.filterType = options.filterType || FilterType.SEARCH;
+    this.errors = options.errors || null;
   }
 }

@@ -1,0 +1,39 @@
+<div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
+  <div fxLayout="column" fxLayoutGap="3rem" fxFlex="90">
+    <!-- KKL-FORM-ADVANCED SEARCH -->
+
+    <header fxLayout="row" fxLayoutAlign="center center">
+      <kkl-advanced-search-layout
+        fxFlex="50"
+        [advanced]="true"
+        [searchKey]="'search'"
+        [questions]="questions"
+      ></kkl-advanced-search-layout>
+    </header>
+
+    <section fxLayout="row" fxLayoutAlign="end center">
+      <kkl-add-button (clickEvent)="onCreateNewCommittee()"
+        >הוספת ועדה חדשה</kkl-add-button
+      >
+    </section>
+
+    <!-- KKL-TABLE-NEW -->
+
+    <main>
+      <!-- <kkl-local-table
+        [dataSource]="dataSource"
+        [columns]="columns"
+        [rowActions]="rowActions"
+        [expandTemplate]="expandTemplate"
+      ></kkl-local-table> -->
+    </main>
+  </div>
+</div>
+
+<ng-template #expandTemplate>
+  <kkl-local-table
+    fxFill
+    [dataSource]="portfolioDataSource"
+    [columns]="portfolioColumns"
+  ></kkl-local-table
+></ng-template>

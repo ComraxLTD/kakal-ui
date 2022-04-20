@@ -4,7 +4,8 @@
         "target": "es2020",
         "jsx": "preserve",
         "strictFunctionTypes": true,
-        "experimentalDecorators":true
+        "experimentalDecorators": true, 
+        "emitDecoratorMetadata": true, 
     },
     "exclude": [
         "node_modules",

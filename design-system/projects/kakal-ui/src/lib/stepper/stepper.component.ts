@@ -8,16 +8,38 @@ import {
 import { BreakpointService } from '../../services/breakpoint.service';
 import {
   CardStepModel,
+  StepOptions,
   StepperDirection,
 } from '../cards/card-step/card-step.model';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
 
-export interface StepperSelectEvent {
-  selectedStep: CardStepModel;
+// export interface StepsSelectionEvent {
+//   selectedStep: CardStepModel;
+//   selectedIndex: number;
+//   previousSelectedStep?: CardStepModel;
+//   previousSelectedIndex?: number;
+//   first? : boolean
+//   last? : boolean
+// }
+
+export interface StepsSelectionEvent {
   selectedIndex: number;
-  previousSelectedStep?: CardStepModel;
-  previousSelectedIndex?: number;
+  /** Index of the step previously selected. */
+  previouslySelectedIndex?: number;
+  /** The step instance now selected. */
+  selectedStep: CardStatusModel | CardStepModel;
+
+  /** The step instance previously selected. */
+  previouslySelectedStep?: CardStatusModel | CardStepModel;
+
+  /** If this step is the last */
+  last: boolean;
+
+  /** If this step is the first */
+  first: boolean;
+
+  source?: CardStatusModel[] | CardStepModel[];
 }
 
 @Component({
@@ -26,13 +48,15 @@ export interface StepperSelectEvent {
   styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
-  @Input() steps$: Observable<CardStepModel[]>;
+  @Input() variant: 'step' | 'status';
+  @Input() steps: CardStepModel[] | CardStatusModel[];
   @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
+  @Input() options: StepOptions;
 
-  public mobile$: Observable<boolean>;
+  mobile$: Observable<boolean>;
 
-  @Output() selectStep = new EventEmitter<StepperSelectEvent>();
+  @Output() selectStep = new EventEmitter<StepsSelectionEvent>();
 
   constructor(private breakpointService: BreakpointService) {}
 
@@ -40,10 +64,18 @@ export class StepperComponent {
     this.mobile$ = this.breakpointService.isMobile();
   }
 
-  public onStepSelect(step: CardStepModel | CardStatusModel, index: number) {
-    const event: StepperSelectEvent = {
+  public onStepSelect(
+    step: CardStepModel | CardStatusModel,
+    index: number,
+    last: boolean,
+    first: boolean
+  ) {
+    const event: StepsSelectionEvent = {
       selectedStep: step,
       selectedIndex: index,
+      last,
+      first,
+      source: this.steps,
     };
     this.selectStep.emit(event);
   }
