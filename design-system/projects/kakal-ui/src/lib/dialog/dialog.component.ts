@@ -1,6 +1,6 @@
 import { Component, ComponentFactoryResolver, Inject, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ComponentRef } from 'react';
+import { ComponentRef } from '@angular/core';
 
 @Component({
   selector: 'pl-dialog',
