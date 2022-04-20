@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineModel, PageHeadlineService, RowActionModel, TableBase, StatusBars } from '../../../kakal-ui/src/public-api';
+import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineService, RowActionModel, TableBase, StatusBars, CardLobbyModel, CardStepModel, CardStatusModel, CardFilter } from '../../../kakal-ui/src/public-api';
 import heLocale from '@fullcalendar/core/locales/he';
 @Component({
   selector: 'app-root',
@@ -451,6 +451,46 @@ export class AppComponent {
   ngOnInit() {
     setTimeout(() => {
       console.log(this.formGroup);
+      // this.steps = [
+      //   {
+      //     label: 'פרטי ההתקשרות',
+      //     svgIcon: 'contact',
+      //     path: 'details',
+      //     // size: 3,
+      //     // variant: 'circle',
+      //     // type: 'step',
+
+      //     // isActive: true,
+      //     disabled: true
+      //   },
+      //   {
+      //     label: 'בניית הצעת מחיר',
+      //     svgIcon: 'offer',
+      //     path: 'bid',
+      //     // size: 3,
+      //     // variant: 'circle',
+      //     // type: 'step',
+      //     selected: true
+      //   },
+      //   {
+      //     label: 'בחירת ספקים',
+      //     svgIcon: 'send_mail',
+      //     path: 'supplier',
+      //     // size: 3,
+      //     // variant: 'circle',
+      //     // type: 'step',
+      //     selected: true
+      //   },
+      //   {
+      //     label: 'ספק זוכה',
+      //     svgIcon: 'medal',
+      //     path: 'winning',
+      //     // size: 3,
+      //     // variant: 'circle',
+      //     // type: 'step',
+      //     selected: true
+      //   },
+      // ];
       // this.questions = this.questions.concat([
       //   {
       //     key: 'time',
@@ -492,5 +532,58 @@ export class AppComponent {
 
   onOpenChanged(event: any) {
     console.log(event);
+  }
+
+
+
+
+
+  steps: CardStepModel[] = [
+    {
+      label: 'פרטי ההתקשרות',
+      svgIcon: 'contact',
+      path: 'details',
+      // size: 3,
+      // variant: 'circle',
+      // type: 'step',
+
+      // isActive: true,
+      disabled: true
+    },
+    {
+      label: 'בניית הצעת מחיר',
+      svgIcon: 'offer',
+      path: 'bid',
+      // size: 3,
+      // variant: 'circle',
+      // type: 'step',
+      selected: true
+    },
+    {
+      label: 'בחירת ספקים',
+      svgIcon: 'send_mail',
+      path: 'supplier',
+      // size: 3,
+      // variant: 'circle',
+      // type: 'step',
+    },
+    {
+      label: 'ספק זוכה',
+      svgIcon: 'medal',
+      path: 'winning',
+      // size: 3,
+      // variant: 'circle',
+      // type: 'step',
+    },
+  ];
+
+  card: CardFilter = {
+    label: 'שם הכרטיס', // label inside card
+    value: 2, // number inside card
+    svgIcon: 'search', // svg key
+  };
+  onCardClick() {
+    console.log('kgjjfh');
+
   }
 }

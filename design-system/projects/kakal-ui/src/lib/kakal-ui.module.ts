@@ -279,6 +279,7 @@ registerLocaleData(he);
     KKLCardUserModule,
     KKLCardWizardModule,
     KKLCardDocumentModule,
+    KKLCardAddModule,
 
     // NAVBAR
     KKLNavbarModule,
