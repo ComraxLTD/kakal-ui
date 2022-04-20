@@ -26,8 +26,6 @@ export class CardLobbyComponent implements OnInit {
 
   public card$: Observable<CardLobbyModel>;
 
-  @Output() click = new EventEmitter<CardLobbyModel>();
-
   constructor(
     private iconService: IconService,
     private breakpointService: BreakpointService
@@ -37,8 +35,7 @@ export class CardLobbyComponent implements OnInit {
     this.card$ = this.setSizeInMobile$();
     this.iconService.setIcon(this.card.svgIcon);
   }
-  public onCardClick() {}
-
+  
   private setSizeInMobile$(): Observable<CardLobby> {
     return this.breakpointService.isMobile().pipe(
       map((md: boolean) => {

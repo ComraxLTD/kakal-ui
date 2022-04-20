@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
-import { PageHeadline } from '../page-headline/page-headline.component';
+import { PageHeadline } from '../page-headline/page-headline.model';
 
 @Injectable({
   providedIn: 'root',

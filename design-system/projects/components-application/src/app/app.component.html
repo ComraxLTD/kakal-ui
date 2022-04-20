@@ -171,7 +171,7 @@
     <kkl-card-info [card]="data"></kkl-card-info>
   </ng-template> -->
 
-  <kkl-form
+  <!-- <kkl-form
             [controls]="questions"
             (queryChanged)="onQueryChanged($event)"
 
@@ -180,4 +180,6 @@
             [patchData]="editData"
             (selectChanged)="onSelectChanged($event)"
             (openedChanged)="onOpenChanged($event)"
-          ></kkl-form>
+          ></kkl-form> -->
+
+          <kkl-card-filter [card]="card" chosen="true" (emitCard)="onCardClick()"></kkl-card-filter>

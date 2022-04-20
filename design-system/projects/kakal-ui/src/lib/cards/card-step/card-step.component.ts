@@ -29,7 +29,7 @@ export class CardStepComponent implements OnInit {
   }
 
   onStepSelect(): void {
-    if (!this.step.selected && !this.step.disabled) {
+    if (!this.step.disabled) {
       this.stepSelect.emit();
     }
   }
