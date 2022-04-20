@@ -12,7 +12,7 @@ import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { PageHeadline } from '../page-headline/page-headline.model';
+import { PageHeadline } from '../page-headline/page-headline.component';
 
 @Component({
   selector: 'kkl-navbar',

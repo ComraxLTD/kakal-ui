@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { PageHeadline } from './page-headline.model';
+import { PageHeadline } from './page-headline.component';
 
 @Injectable({
   providedIn: 'root',
