@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterService, BreakpointService } from '../../../services/services';
 import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
 import { PageHeadlineService } from '../../page-headline/page-headline.service';
-import { PageHeadline } from '../../page-headline/page-headline.component';
+import { PageHeadline } from '../../page-headline/page-headline.model';
 
 import { map, startWith } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
