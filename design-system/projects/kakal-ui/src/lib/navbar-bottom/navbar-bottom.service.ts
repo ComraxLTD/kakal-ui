@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { last, map, Observable, Subject, switchMap } from 'rxjs';
-import {
-  CardStepModel,
-  RouterService,
-  StepsLayoutService,
-  StepsSelectionEvent,
-  SelectionChangedEvent,
-} from '../../public-api';
+import { CardStepModel} from '../cards/card-step/card-step.model'
+import { RouterService } from '../../services/route.service'
+import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service'
+import { StepsSelectionEvent } from '../stepper/stepper.component'
+import { SelectionChangedEvent } from '../layouts/steps-accordion-layout/steps-accordion.component'
 import { StepsAccordionLayoutService } from '../layouts/steps-accordion-layout/steps-accordion-layout.service';
 
 @Injectable({
