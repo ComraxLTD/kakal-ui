@@ -8,7 +8,6 @@ import { PageHeadline } from '../../page-headline/page-headline.component';
 import { map, startWith } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
 import { CardStatusModel } from '../../cards/card-status/card-status.model';
-import { NavbarService } from '../../navbar/navbar.service';
 
 @Component({
   selector: 'kkl-layout',
@@ -67,7 +66,6 @@ export class LayoutComponent implements OnInit {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
-        console.log(path);
         return this.findPath(list, path);
       })
     );

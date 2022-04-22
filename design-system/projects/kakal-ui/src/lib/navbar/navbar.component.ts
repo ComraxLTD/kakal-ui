@@ -7,13 +7,11 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { CardStepModel } from '../cards/card-step/card-step.model';
-import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { PageHeadline } from '../page-headline/page-headline.component';
 import { CardStatusModel } from '../../public-api';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar',
