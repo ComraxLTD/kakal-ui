@@ -1,5 +1,4 @@
 import { Directive, Input, HostBinding } from '@angular/core';
-// import { CardType, CardVariant } from '../components/cards/card.model';
 
 @Directive({
   selector: '[appVariant]',

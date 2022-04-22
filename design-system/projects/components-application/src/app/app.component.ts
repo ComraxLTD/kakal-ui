@@ -1,15 +1,28 @@
-import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineService, RowActionModel, TableBase, StatusBars } from '../../../kakal-ui/src/public-api';
-import heLocale from '@fullcalendar/core/locales/he';
+import {
+  ControlBase,
+  OptionsModel,
+  CardStatusModel,
+  NavbarService,
+} from '../../../kakal-ui/src/public-api';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-
-
+  status: CardStatusModel[] = [
+    {
+      key: 'first',
+      label: 'תהליכי רישום',
+      svgIcon: 'home',
+      value: 4,
+      path: 'records',
+      options: [],
+    },
+  ];
   options: OptionsModel[] = [
     {
       //this key should be the same
@@ -71,60 +84,22 @@ export class AppComponent {
       controlType: 'text',
       label: 'coungdh',
       icon: 'add',
-      placeHolder: 'jfhdhdfh'
+      placeHolder: 'jfhdhdfh',
     },
   ];
 
-  editData =  'ert'
+  editData = 'ert';
   //{
-    //select: { label: 'editData', value: 88 }
+  //select: { label: 'editData', value: 88 }
   //}
 
-  constructor() {}
+  constructor(private navbarService: NavbarService) {}
 
   ngOnInit() {
-    setTimeout(() => {
-      console.log(this.formGroup);
-      // this.questions = this.questions.concat([
-      //   {
-      //     key: 'time',
-      //     controlType: 'time',
-      //   },
-      // ]);
-      // this.editData = { number: 65657 };
-    }, 4000);
+    this.navbarService.emitStatus(this.status);
   }
 
   onQueryChanged(event: any) {
-    console.log(event);
-  }
-
-  onSelectChanged(event: any) {
-    // if (event.key === 'first') {
-    //   this.options = [
-    //     {
-    //       //this key should be the same
-    //       key: 'firstQuestion',
-    //       val: [
-    //         { label: 'server option1', value: 0 },
-    //         { label: 'server option2', value: 2, selected: true },
-    //         { label: 'server option3', value: 3 },
-    //       ],
-    //     },
-    //     {
-    //       //this key should be the same
-    //       key: 'secondQuestion',
-    //       val: [
-    //         { label: 'test1', value: 1 },
-    //         { label: 'test2', value: 3, selected: true },
-    //         { label: 'test3', value: 2 },
-    //       ],
-    //     },
-    //   ];
-    // }
-  }
-
-  onOpenChanged(event: any) {
     console.log(event);
   }
 }

@@ -20,9 +20,8 @@ export class CardStatusComponent implements OnInit {
     this.options = {
       ...this.options,
       color: 'primary',
-      size: 3.5,
-      variant: 'square',
-      type: 'info',
+      variant: 'circle',
+      type: 'status',
     };
   }
 
