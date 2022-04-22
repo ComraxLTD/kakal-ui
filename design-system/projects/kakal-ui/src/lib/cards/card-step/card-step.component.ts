@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { IconService } from '../../icon/icons.service';
+import { CardOptions } from '../card.model';
 import { CardStepModel } from './card-step.model';
 import { Observable } from 'rxjs';
-import { CardOptions } from '../card.model';
+
 
 @Component({
   selector: 'kkl-card-step',

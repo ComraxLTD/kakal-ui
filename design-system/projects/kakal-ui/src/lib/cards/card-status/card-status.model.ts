@@ -6,6 +6,6 @@ export interface CardStatusModel {
   path: string;
   svgIcon: string;
   value?: number;
-  options: SelectOption[];
   disabled?: boolean;
+  options: SelectOption[];
 }

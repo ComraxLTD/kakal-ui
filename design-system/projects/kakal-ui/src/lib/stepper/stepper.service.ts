@@ -1,5 +1,5 @@
-import { CardStepModel } from './../cards/card-step/card-step.model';
 import { ListItemKeys } from '../list-item/list-item.model';
+import { CardStepModel } from '../cards/card-step/card-step.model';
 import { Injectable } from '@angular/core';
 
 @Injectable({

@@ -1,6 +1,3 @@
-import { CardType, CardVariant } from '../card.model';
-
-export type StepperDirection = 'column' | 'row';
 
 export interface CardStepModel {
   label: string;
