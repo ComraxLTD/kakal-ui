@@ -7,6 +7,8 @@ import { PageHeadline } from '../../page-headline/page-headline.component';
 
 import { map, startWith } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
+import { CardStatusModel } from '../../cards/card-status/card-status.model';
+import { NavbarService } from '../../navbar/navbar.service';
 
 @Component({
   selector: 'kkl-layout',
@@ -15,9 +17,10 @@ import { merge, Observable } from 'rxjs';
 })
 export class LayoutComponent implements OnInit {
 
-  @Input() showStatusPath: string[];
   @Input() cards: MenuCard[];
+  @Input() status: CardStatusModel[];
   @Input() pageHeadlineRouteMap: { [ket: string]: string };
+  @Input() showStatusPath: string[];
 
   showStatus$: Observable<boolean>;
   pageHeadline$: Observable<PageHeadline[]>;
@@ -28,13 +31,16 @@ export class LayoutComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private pageHeadlineService: PageHeadlineService,
-    private breakpointService: BreakpointService
+    private navbarService  :NavbarService,
+    private breakpointService: BreakpointService,
   ) {}
 
   ngOnInit(): void {
     this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.pageHeadline$ = this.setPageHeadline();
     this.mobile$ = this.breakpointService.isMobile();
+    this.navbarService.emitStatus(this.status);
+
   }
 
   private setPageHeadline() {
