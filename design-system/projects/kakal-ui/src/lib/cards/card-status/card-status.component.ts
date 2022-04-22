@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IconService } from '../../icon/icons.service';
+import { CardOptions } from '../card.model';
 import { CardStatusModel } from './card-status.model';
 
 @Component({
@@ -10,11 +11,19 @@ import { CardStatusModel } from './card-status.model';
 export class CardStatusComponent implements OnInit {
   @Input() public status: CardStatusModel;
   @Output() stepSelect: EventEmitter<void> = new EventEmitter();
+  @Input() options: CardOptions;
 
   constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
     this.iconService.setIcon(this.status.svgIcon);
+    this.options = {
+      ...this.options,
+      color: 'primary',
+      size: 3.5,
+      variant: 'square',
+      type: 'info',
+    };
   }
 
   onStepSelect(): void {

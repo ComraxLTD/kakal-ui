@@ -11,9 +11,3 @@ export interface CardStepModel {
   disabled?: boolean;
   hasSteps?: boolean;
 }
-export interface StepOptions {
-  variant?: CardVariant;
-  type?: CardType;
-  size?: number;
-  divider?: number;
-}

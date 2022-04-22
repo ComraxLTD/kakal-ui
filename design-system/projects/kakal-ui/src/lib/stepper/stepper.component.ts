@@ -8,20 +8,13 @@ import {
 import { BreakpointService } from '../../services/breakpoint.service';
 import {
   CardStepModel,
-  StepOptions,
   StepperDirection,
 } from '../cards/card-step/card-step.model';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
+import { CardOptions } from '../cards/card.model';
 
-// export interface StepsSelectionEvent {
-//   selectedStep: CardStepModel;
-//   selectedIndex: number;
-//   previousSelectedStep?: CardStepModel;
-//   previousSelectedIndex?: number;
-//   first? : boolean
-//   last? : boolean
-// }
+
 
 export interface StepsSelectionEvent {
   selectedIndex: number;
@@ -52,7 +45,7 @@ export class StepperComponent {
   @Input() steps: CardStepModel[] | CardStatusModel[];
   @Input() direction: StepperDirection;
   @Input() stepRef: ElementRef;
-  @Input() options: StepOptions;
+  @Input() options: CardOptions;
 
   mobile$: Observable<boolean>;
 
