@@ -31,7 +31,6 @@ export class LayoutComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private pageHeadlineService: PageHeadlineService,
-    private navbarService  :NavbarService,
     private breakpointService: BreakpointService,
   ) {}
 
@@ -39,7 +38,6 @@ export class LayoutComponent implements OnInit {
     this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.pageHeadline$ = this.setPageHeadline();
     this.mobile$ = this.breakpointService.isMobile();
-    this.navbarService.emitStatus(this.status);
 
   }
 
@@ -69,6 +67,7 @@ export class LayoutComponent implements OnInit {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
+        console.log(path);
         return this.findPath(list, path);
       })
     );

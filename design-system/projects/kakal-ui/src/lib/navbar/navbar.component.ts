@@ -13,6 +13,7 @@ import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { PageHeadline } from '../page-headline/page-headline.component';
+import { CardStatusModel } from '../../public-api';
 
 @Component({
   selector: 'kkl-navbar',
@@ -20,14 +21,13 @@ import { PageHeadline } from '../page-headline/page-headline.component';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
+  @Input() status: CardStatusModel[];
   @Input() showStatus$: Observable<boolean>;
   @Input() pageHeadline$: Observable<PageHeadline[]>;
 
   openIcon: string = 'tree_gradient_';
-  status$: Observable<CardStepModel[]>;
   mobile$: Observable<boolean>;
   toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -38,13 +38,11 @@ export class NavbarComponent implements OnInit {
   @Output() logoClicked = new EventEmitter();
 
   constructor(
-    private navbarService: NavbarService,
     private breakpointService: BreakpointService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
-    this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
     this.openIcon = this.setMenuIcon();
   }

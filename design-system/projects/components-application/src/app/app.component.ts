@@ -95,9 +95,7 @@ export class AppComponent {
 
   constructor(private navbarService: NavbarService) {}
 
-  ngOnInit() {
-    this.navbarService.emitStatus(this.status);
-  }
+  ngOnInit() {}
 
   onQueryChanged(event: any) {
     console.log(event);
