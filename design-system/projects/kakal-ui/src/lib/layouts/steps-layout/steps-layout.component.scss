@@ -19,26 +19,22 @@ div.content {
 }
 
 .sidenav-drawer {
-  // width: 50%;
   z-index: -1;
 }
 
-// div.stepper-container {
-
+// main toolbar style
 mat-toolbar {
   height: 15rem !important;
   background: linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%) 0% 0% !important ;
 }
 
-.stepper {
+// steps-group
+.steps-group {
   flex: 1;
-  // margin-top: 2rem;
-  // padding-top: main.spacing(2);
   box-sizing: border-box;
 }
-// }
 
-// style button of side menu
+// button of side menu
 button.mat-fab {
   background-color: main.color(paper) !important;
   width: 7rem;

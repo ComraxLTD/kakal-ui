@@ -77,15 +77,19 @@
         </div>
 
         <!-- STEPPER  -->
-        <div class="stepper">
+        <div class="steps-group">
           <ng-container *ngIf="steps$ | async as steps">
             <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
-              <kkl-stepper
+              <!-- <kkl-stepper
                 variant="step"
                 direction="row"
                 [steps]="steps"
                 (selectStep)="onSelectStep($event)"
-              ></kkl-stepper>
+              ></kkl-stepper> -->
+              <kkl-step-group
+                [steps]="steps"
+                (stepSelection)="onSelectStep($event)"
+              ></kkl-step-group>
             </ng-container>
 
             <ng-template #mobileBlock>
