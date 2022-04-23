@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { KKLDirectivesModule } from '../../directives/directives.module';
+import { KKLCardStatusModule } from '../../cards/card-status/card-status.module';
 
-
+import { StatusGroupComponent } from './status-group.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    StatusGroupComponent
+  ],
   imports: [
-    CommonModule
+    CommonModule,
+    KKLDirectivesModule,
+    FlexLayoutModule,
+    KKLCardStatusModule
   ]
 })
-export class StatusGroupModule { }
+export class KKLStatusGroupModule { }
