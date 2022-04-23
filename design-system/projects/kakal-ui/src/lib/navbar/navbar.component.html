@@ -45,13 +45,7 @@
   <!-- main navbar links -->
   <div fxFlex="grow" *ngIf="!(mobile$ | async)">
     <div fxLayoutAlign="center center" *ngIf="showStatus$ | async">
-      <!-- <ng-container *ngIf="status$ | async as steps"> -->
-      <kkl-stepper
-        [variant]="'status'"
-        direction="row"
-        [steps]="status"
-      ></kkl-stepper>
-      <!-- </ng-container> -->
+      <kkl-status-group [steps]="status"></kkl-status-group>
     </div>
   </div>
 

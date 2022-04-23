@@ -14,7 +14,7 @@ import { KKLPageHeadlineModule } from '../page-headline/page-headline.module';
 import { KKLTypographyModule } from '../typography/typography.module';
 
 import { NavbarComponent } from './navbar.component';
-import { KKLStepperModule } from '../stepper/stepper.module';
+import { KKLStatusGroupModule } from '../groups/status-group/status-group.module';
 
 @NgModule({
   imports: [
@@ -22,7 +22,7 @@ import { KKLStepperModule } from '../stepper/stepper.module';
     FlexLayoutModule,
     MatToolbarModule,
     MatIconModule,
-    KKLStepperModule,
+    KKLStatusGroupModule,
     KKLTypographyModule,
     KKLIconModule,
     KKLButtonModule,
