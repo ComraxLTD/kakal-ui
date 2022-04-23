@@ -5,7 +5,7 @@ import { Observable, tap } from 'rxjs';
 export interface PageHeadline {
   value: any;
   format?: string;
-  template? : boolean
+  status?: boolean;
 }
 
 @Component({

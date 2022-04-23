@@ -9,9 +9,12 @@ import { CardStatusModel } from './card-status.model';
   styleUrls: ['./card-status.component.scss'],
 })
 export class CardStatusComponent implements OnInit {
-  @Input() public status: CardStatusModel;
-  @Output() stepSelect: EventEmitter<void> = new EventEmitter();
+
+  @Input() status: CardStatusModel;
+
   @Input() options: CardOptions;
+
+  @Output() statusSelect: EventEmitter<void> = new EventEmitter();
 
   constructor(private iconService: IconService) {}
 
@@ -25,7 +28,9 @@ export class CardStatusComponent implements OnInit {
     };
   }
 
-  onStepSelect(): void {
-    this.stepSelect.emit();
+  onStatusSelect(): void {
+    if (!this.status.disabled) {
+      this.statusSelect.emit();
+    }
   }
 }

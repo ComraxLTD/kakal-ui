@@ -35,7 +35,6 @@ export class CardLobbyComponent implements OnInit {
     this.card$ = this.setSizeInMobile$();
     this.iconService.setIcon(this.card.svgIcon);
   }
-
   private setSizeInMobile$(): Observable<CardLobby> {
     return this.breakpointService.isMobile().pipe(
       map((md: boolean) => {

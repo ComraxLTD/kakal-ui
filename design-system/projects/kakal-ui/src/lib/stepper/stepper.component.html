@@ -9,7 +9,7 @@
   >
     <ng-container
       *ngFor="
-        let step of steps;
+        let step of _steps;
         let i = index;
         let last = last;
         let first = first
@@ -17,24 +17,22 @@
     >
       <div appSize [type]="variant" [size]="6" [step]="step">
         <ng-container *ngIf="!stepRef">
-          <ng-container [ngSwitch]="variant">
-            <ng-container *ngSwitchCase="'step'">
-              <kkl-card-step
-                (stepSelect)="onStepSelect(step, last, first)"
-                [index]="i"
-                [step]="step"
-                [options]="options"
-              ></kkl-card-step>
-            </ng-container>
-            <ng-container *ngSwitchCase="'status'">
-              <kkl-card-status
-                (stepSelect)="onStepSelect(step)"
-                [i]="index"
-                [status]="step"
-                [options]="options"
-              ></kkl-card-status>
-            </ng-container>
+          <ng-container *ngIf="variant == 'step';else statusTemp">
+            <kkl-card-step
+              (stepSelect)="onStepSelect(step, last, first)"
+              [index]="i"
+              [step]="step"
+              [options]="options"
+            ></kkl-card-step>
           </ng-container>
+          <ng-template #statusTemp>
+            <kkl-card-status
+              (statusSelect)="onStepStatusSelect(step, last, first)"
+              [index]="i"
+              [status]="step"
+              [options]="options"
+            ></kkl-card-status>
+          </ng-template>
           <ng-content></ng-content>
         </ng-container>
 
