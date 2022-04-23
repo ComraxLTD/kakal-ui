@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
-import { CardStepModel } from '../public-api';
+import { CardStep } from '../public-api';
 
 @Injectable({
   providedIn: 'root',
@@ -54,7 +54,7 @@ export class RouterService {
     );
   }
 
-  public getLastPath$(steps?: CardStepModel[]): Observable<string> {
+  public getLastPath$(steps?: CardStep[]): Observable<string> {
     return this.listenToRoute$().pipe(
       startWith(this.getCurrentPath()),
       map((path: string) =>
@@ -72,8 +72,8 @@ export class RouterService {
       console.log(err);
     }
   }
-  public setLastPathWithSteps(path: string, steps: CardStepModel[]): string {
-    let currentStep: CardStepModel;
+  public setLastPathWithSteps(path: string, steps: CardStep[]): string {
+    let currentStep: CardStep;
     const pathArr = path.split('/');
     pathArr.filter((path) => {
       return steps.map((step) => {

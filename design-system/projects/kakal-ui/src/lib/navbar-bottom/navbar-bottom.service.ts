@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { last, map, Observable, Subject, switchMap } from 'rxjs';
-import { CardStepModel} from '../cards/card-step/card-step.model'
+import { CardStep} from '../cards/card-step/card-step.model'
 import { RouterService } from '../../services/route.service'
 import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service'
 import { StepsSelectionEvent } from '../stepper/stepper.component'
@@ -44,7 +44,7 @@ export class NavbarBottomService {
     const { selectedStep, selectedIndex } =
       stepperSelectEvent as StepsSelectionEvent;
 
-    const step = selectedStep as CardStepModel;
+    const step = selectedStep as CardStep;
 
     if (step.hasSteps) {
       const { event } = stepsChangedEvent as SelectionChangedEvent;
@@ -68,7 +68,7 @@ export class NavbarBottomService {
     const isComplete = this.stepsAccordionLayoutService.isComplete();
 
     const { selectedStep } = stepperSelectEvent as StepsSelectionEvent;
-    const step = selectedStep as CardStepModel;
+    const step = selectedStep as CardStep;
 
     if (stepsChangedEvent) {
       const { event } = stepsChangedEvent as SelectionChangedEvent;
@@ -84,7 +84,7 @@ export class NavbarBottomService {
 
   setShowNextStep$(): Observable<boolean> {
     return this.stepsLayoutService.listenToSteps().pipe(
-      switchMap((steps: CardStepModel[]) => {
+      switchMap((steps: CardStep[]) => {
         return this.routerService.getLastPath$().pipe(
           map((url: string) => {
             const index = steps.findIndex((item) => item.path === url);

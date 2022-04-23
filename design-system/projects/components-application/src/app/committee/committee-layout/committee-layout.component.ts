@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import {
   ButtonModel,
-  CardStepModel,
+  CardStep,
   FormActions,
   RouterService,
   StepsSelectionEvent,

@@ -3,7 +3,7 @@ import { StepsLayoutService } from './steps-layout.service';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 
-import { CardStepModel } from '../../cards/card-step/card-step.model';
+import { CardStep } from '../../cards/card-step/card-step.model';
 
 import { ButtonModel } from '../../button/models/button.types';
 import { FormActions } from '../../form/models/form.actions';
@@ -18,7 +18,7 @@ import { BehaviorSubject, merge, Observable, of } from 'rxjs';
   styleUrls: ['./steps-layout.component.scss'],
 })
 export class StepsLayoutComponent {
-  @Input() steps: CardStepModel[];
+  @Input() steps: CardStep[];
 
   @Input() actions: ButtonModel[];
 
@@ -34,7 +34,7 @@ export class StepsLayoutComponent {
   stepsSelectionEvent: StepsSelectionEvent;
 
   // steps props
-  steps$: Observable<CardStepModel[]>;
+  steps$: Observable<CardStep[]>;
 
   // drawer props
   portion$: Observable<number> = of(100);
@@ -107,14 +107,14 @@ export class StepsLayoutComponent {
     return this.stepsLayoutService.listenToSteps();
   }
 
-  private setStepperSelectEvent(steps: CardStepModel[], url: string) {
+  private setStepperSelectEvent(steps: CardStep[], url: string) {
     const selectedIndex = steps.findIndex((step) => step.path === url);
     const previouslySelectedIndex = steps.findIndex((step) => step.selected);
 
     const selectedStep = {
       ...steps[selectedIndex],
       selected: true,
-    } as CardStepModel;
+    } as CardStep;
 
     const previouslySelectedStep =
       previouslySelectedIndex !== -1
@@ -136,12 +136,12 @@ export class StepsLayoutComponent {
     return event;
   }
 
-  private changesStepOnRoute$(): Observable<CardStepModel[]> {
+  private changesStepOnRoute$(): Observable<CardStep[]> {
     const steps = this.stepsLayoutService.getSteps();
 
     return this.routerService.getLastPath$(steps).pipe(
       map((url: string) => {
-        
+
         this.stepsSelectionEvent = this.setStepperSelectEvent(steps, url);
 
         this.stepsLayoutService.emitStepperSelectEvent(

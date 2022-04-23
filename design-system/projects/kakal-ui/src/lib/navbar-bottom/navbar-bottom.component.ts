@@ -9,7 +9,7 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
-import { CardStepModel } from '../cards/card-step/card-step.model';
+import { CardStep } from '../cards/card-step/card-step.model';
 import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
 import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
@@ -49,9 +49,9 @@ export class NavbarBottomComponent implements OnInit {
   @Input() nextLabel: string;
   @Input() buttonTemplate: TemplateRef<any>;
 
-  private steps$: Observable<CardStepModel[]>;
+  private steps$: Observable<CardStep[]>;
   private nextStep$: Observable<void>;
-  // private selectStep$: Observable<CardStepModel>;
+  // private selectStep$: Observable<CardStep>;
   private stepperSelectEvent$: Observable<StepsSelectionEvent>;
 
   bottomIcon: string = 'bottom_tree_';
@@ -138,8 +138,8 @@ export class NavbarBottomComponent implements OnInit {
   }
 
   private findNextStepIndex(
-    steps: CardStepModel[],
-    currentStep?: CardStepModel
+    steps: CardStep[],
+    currentStep?: CardStep
   ): number {
     const currentStepIndex = currentStep
       ? steps.findIndex((item) => item.path === currentStep.path)
@@ -152,7 +152,7 @@ export class NavbarBottomComponent implements OnInit {
   private onChangedStep() {
     return this.stepperSelectEvent$.pipe(
       pluck('selectedStep'),
-      switchMap((step: CardStepModel) => {
+      switchMap((step: CardStep) => {
         return this.steps$.pipe(
           map((steps) => {
             const nextIndex = this.findNextStepIndex(steps, step);
@@ -163,7 +163,7 @@ export class NavbarBottomComponent implements OnInit {
     );
   }
 
-  private onStepNext(step: CardStepModel) {
+  private onStepNext(step: CardStep) {
     // this.next.emit({ selectedStep: step } as StepsSelectionEvent);
   }
 

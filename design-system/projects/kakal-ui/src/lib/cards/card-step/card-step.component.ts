@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { IconService } from '../../icon/icons.service';
 import { CardOptions } from '../card.model';
-import { CardStepModel } from './card-step.model';
+import { CardStep } from './card-step.model';
 import { Observable } from 'rxjs';
 
 
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./card-step.component.scss'],
 })
 export class CardStepComponent implements OnInit {
-  @Input() step: CardStepModel;
+  @Input() step: CardStep;
   @Input() options: CardOptions;
 
   mobile$: Observable<boolean>;

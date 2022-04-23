@@ -106,7 +106,7 @@ export default {
             name: '@Output() next',
             description: '',
             table: {
-                type: { summary: 'EventEmitter<CardStepModel>' },
+                type: { summary: 'EventEmitter<CardStep>' },
             },
             control: {
                 type: 'EventEmitter'

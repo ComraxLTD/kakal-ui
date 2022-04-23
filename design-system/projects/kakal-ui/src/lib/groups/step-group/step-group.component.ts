@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { Observable } from 'rxjs';
 import {
-  CardStepModel,
+  CardStep,
   CardStatusModel,
   BreakpointService,
 } from '../../../public-api';
@@ -18,10 +18,10 @@ export interface StepsSelectionEvent {
   /** Index of the step previously selected. */
   previouslySelectedIndex?: number;
   /** The step instance now selected. */
-  selectedStep: CardStepModel;
+  selectedStep: CardStep;
 
   /** The step instance previously selected. */
-  previouslySelectedStep?: CardStepModel;
+  previouslySelectedStep?: CardStep;
 
   /** If this step is the last */
   last: boolean;
@@ -29,7 +29,7 @@ export interface StepsSelectionEvent {
   /** If this step is the first */
   first: boolean;
 
-  source?: CardStepModel[];
+  source?: CardStep[];
 }
 @Component({
   selector: 'kkl-step-group',
@@ -37,8 +37,8 @@ export interface StepsSelectionEvent {
   styleUrls: ['./step-group.component.scss'],
 })
 export class StepGroupComponent implements OnInit {
-  _steps: CardStepModel[] | CardStatusModel[];
-  @Input() set steps(val: CardStepModel[] | CardStatusModel[]) {
+  _steps: CardStep[] | CardStatusModel[];
+  @Input() set steps(val: CardStep[] | CardStatusModel[]) {
     this._steps = val;
   }
   @Input() direction: 'row' | 'column';
@@ -55,7 +55,7 @@ export class StepGroupComponent implements OnInit {
   }
 
   onStepSelect(
-    step: CardStepModel,
+    step: CardStep,
     index: number,
     last: boolean,
     first: boolean

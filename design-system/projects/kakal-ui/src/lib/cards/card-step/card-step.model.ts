@@ -1,5 +1,5 @@
 
-export interface CardStepModel {
+export interface CardStep {
   label: string;
   path: string;
   svgIcon: string;
