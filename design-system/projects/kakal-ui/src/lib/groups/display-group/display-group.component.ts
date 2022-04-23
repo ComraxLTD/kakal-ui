@@ -11,16 +11,16 @@ export interface DisplayData<T = any> {
 }
 
 @Component({
-  selector: 'kkl-display-grid',
-  templateUrl: './display-grid.component.html',
-  styleUrls: ['./display-grid.component.scss'],
+  selector: 'kkl-display-group',
+  templateUrl: './display-group.component.html',
+  styleUrls: ['./display-group.component.scss'],
 })
-export class DisplayGridComponent<T> {
+export class DisplayGroupComponent<T> {
   @Input() displayData!: DisplayData<T>[];
   @Input() data!: T;
   @Input() templates: { [key: string]: TemplateRef<any> } = {};
 
   data$!: Observable<T>;
 
-  constructor() {}
+  constructor(){}
 }
