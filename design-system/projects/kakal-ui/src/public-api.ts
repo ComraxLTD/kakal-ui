@@ -447,6 +447,9 @@ export * from './lib/grids/document-grid/document-grid.component'
 export * from './lib/grids/lobby-grid/lobby.module';
 export * from './lib/grids/lobby-grid/lobby.component';
 
+export * from './lib/grids/data-grid/data-grid.module'
+export * from './lib/grids/data-grid/data-grid.component'
+
 // groups
 export * from './lib/groups/display-group/display-group.module'
 export * from './lib/groups/display-group/display-group.component'
