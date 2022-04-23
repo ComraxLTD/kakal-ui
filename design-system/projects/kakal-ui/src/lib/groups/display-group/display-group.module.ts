@@ -7,6 +7,7 @@ import { KKLPipesModule } from '../../pipes/pipes.module';
 import { KKLIconModule } from '../../icon/icon.module';
 
 import { DisplayGroupComponent } from './display-group.component';
+import { KKLStatusStepsModule } from '../../status-steps/status-steps.module';
 
 @NgModule({
   declarations: [DisplayGroupComponent],
@@ -15,6 +16,7 @@ import { DisplayGroupComponent } from './display-group.component';
     MatDividerModule,
     KKLTypographyModule,
     KKLPipesModule,
+    KKLStatusStepsModule,
     KKLIconModule,
   ],
   exports: [DisplayGroupComponent],
