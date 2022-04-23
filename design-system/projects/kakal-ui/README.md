@@ -109,6 +109,11 @@ kkl-groups
 2. add kkl-steps-group. will be use instead of kkl-stepper
 3. add kkl-display-group. will be use instead of kkl-display-grid
 
+kkl-display-grid
+
+1. add type prop to DataDisplay interface - get status or action
+2. change ui to switch case to handle status and action ui 
+
 kkl-grids
 
 1. add kkl-data-grid

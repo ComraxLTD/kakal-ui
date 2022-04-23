@@ -1,4 +1,10 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  TemplateRef,
+} from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface DisplayData<T = any> {
@@ -8,6 +14,7 @@ export interface DisplayData<T = any> {
   format?: { type: string; args: any };
   icon?: string;
   template?: string;
+  type?: 'action' | 'type';
 }
 
 @Component({
@@ -22,5 +29,11 @@ export class DisplayGroupComponent<T> {
 
   data$!: Observable<T>;
 
-  constructor(){}
+  @Output() action: EventEmitter<DisplayData<T>> = new EventEmitter();
+
+  constructor() {}
+
+  onAction(item: DisplayData<T>) {
+    this.action.emit(item);
+  }
 }
