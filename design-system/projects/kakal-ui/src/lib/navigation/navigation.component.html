@@ -1,62 +1,64 @@
 <div fxFill fxLayout="column" dir="rtl">
-  <ng-container *ngIf="stepMap$ | async as stepMap">
+  <ng-container *ngIf="stepsSelection$ | async as stepsSelection">
     <nav fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem">
-      <ng-container *ngIf="activeStep$ | async as activeStep">
-        <!-- previous button -->
-        <div
-          fxLayout="row"
-          fxLayoutAlign="space-between center"
-          fxFill
-          fxLayoutGap="1.5rem"
-          fxFlex
+      <!-- forward button -->
+      <div
+        fxLayout="row"
+        fxLayoutAlign="space-between center"
+        fxFill
+        fxLayoutGap="1.5rem"
+        fxFlex
+      >
+        <button
+          mat-icon-button
+          (click)="onPrevious(stepsSelection.selectedIndex)"
+          [disabled]="stepsSelection.first"
         >
-          <button
-            mat-icon-button
-            (click)="onPrev(activeStep.value, stepMap[activeStep.value - 1])"
-            [disabled]="activeStep.value === 0"
-          >
-            <kkl-icon
-              [disabled]="activeStep.value === 0"
-              key="arrow_forward_ios"
-              color="primary"
-            ></kkl-icon>
-          </button>
+          <kkl-icon key="arrow_forward_ios" color="primary"></kkl-icon>
+        </button>
 
-          <!-- show current step label -->
+        <!-- show current ui -->
 
-          <ng-template
-            *ngTemplateOutlet="
-              slots?.content;
-              context: { $implicit: stepMap[activeStep.value] }
-            "
-          ></ng-template>
+        <ng-container
+          *ngTemplateOutlet="
+            template || defaultTemplate;
+            context: { $implicit: stepsSelection }
+          "
+        ></ng-container>
 
-          <!-- forward button -->
-          <button
-            mat-icon-button
-            (click)="onNext(activeStep.value, stepMap[activeStep.value + 1])"
-            [disabled]="end$ | async"
-          >
-            <kkl-icon
-              [disabled]="end$ | async"
-              key="arrow_back_ios"
-              color="primary"
-            ></kkl-icon>
-          </button>
-        </div>
+        <!-- previous button -->
 
-        <!-- steps items -->
-        <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
-          <ng-container
-            *ngFor="let item of stepMap | keyvalue; let index = index"
-          >
-            <ng-template
-              *ngTemplateOutlet="slots?.step; context: { $implicit: this.item }"
-            ></ng-template>
-          </ng-container>
-        </div>
-      </ng-container>
+        <button
+          mat-icon-button
+          (click)="onNext(stepsSelection.selectedIndex)"
+          [disabled]="stepsSelection.last"
+        >
+          <kkl-icon key="arrow_back_ios" color="primary"></kkl-icon>
+        </button>
+      </div>
+
+      <!-- steps items -->
+      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
+        <ng-container *ngFor="let item of stepsSelection.source; let i = index">
+          <div
+            kkl-border
+            kkl-button
+            (click)="onStepSelect(item)"
+            [ngClass]="{
+              selected: stepsSelection.selectedIndex === i,
+              button: true
+            }"
+          ></div>
+        </ng-container>
+      </div>
     </nav>
   </ng-container>
-  <main></main>
 </div>
+
+<ng-template #defaultTemplate let-stepsSelection>
+  <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1.5rem">
+    <kkl-typography [size]="1.8" [bold]="600">{{
+      stepsSelection.selectedStep | pluck: "label"
+    }}</kkl-typography>
+  </div>
+</ng-template>

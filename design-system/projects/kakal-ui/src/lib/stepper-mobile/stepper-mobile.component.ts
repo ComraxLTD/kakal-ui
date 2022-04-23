@@ -9,6 +9,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./stepper-mobile.component.scss'],
 })
 export class StepperMobileComponent implements OnInit {
+
   @Input() steps: CardStep[];
 
   private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
