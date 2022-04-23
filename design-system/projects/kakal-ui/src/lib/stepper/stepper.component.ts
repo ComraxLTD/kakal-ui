@@ -36,6 +36,7 @@ export interface StepsSelectionEvent {
   styleUrls: ['./stepper.component.scss'],
 })
 export class StepperComponent {
+
   @Input() variant: 'step' | 'status' = 'step';
 
   _steps: CardStepModel[] | CardStatusModel[];
