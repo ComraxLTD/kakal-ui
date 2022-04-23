@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {
   ButtonModel,
-  CardStepModel,
+  CardStep,
   ControlBase,
   DialogComponent,
   DocumentItem,
@@ -23,7 +23,7 @@ export class NewOrderLayoutComponent implements OnInit {
 
   public disableNext!: Observable<boolean>;
 
-  steps: CardStepModel[] = [
+  steps: CardStep[] = [
     {
       label: 'פרטי נכס',
       svgIcon: 'home',
@@ -109,11 +109,11 @@ export class NewOrderLayoutComponent implements OnInit {
   }
 
   // navigate from stepper
-  public onChangeStep(step: CardStepModel) {
+  public onChangeStep(step: CardStep) {
     this.navigate(step.path!);
   }
   // navigate from bottom-navbar - next
-  public onNext(step: CardStepModel) {
+  public onNext(step: CardStep) {
     this.navigate(step.path!);
   }
 

@@ -4,7 +4,7 @@ import { moduleMetadata } from '@storybook/angular';
 
 import { KKLCardStatusModule } from '../../projects/kakal-ui/src/lib/cards/card-status/card-status.module';
 import {CardStatusComponent } from '../../projects/kakal-ui/src/lib/cards/card-status/card-status.component';
-import { CardStatusModel} from '../../projects/kakal-ui/src/lib/cards/card-status/card-status.model';
+import { CardStatus} from '../../projects/kakal-ui/src/lib/cards/card-status/card-status.model';
 
 export default {
   title: 'Tools',
@@ -20,7 +20,7 @@ export default {
       description: 'An object containes all the card info',
       table: {
         type: {
-          summary: 'CardStatusModel',
+          summary: 'CardStatus',
         },
       },
     },
@@ -35,7 +35,7 @@ const Template: Story<CardStatusComponent> = (args: CardStatusComponent) => ({
 export const StatusCard = Template.bind({});
 
 StatusCard.args = {
-  // card:new CardStatusModel({
+  // card:new CardStatus({
   //   key: '51000003', // every card should have a uniqe key
   //   label: 'ממתין להצעת מחיר', // the label the floats next to the card
   //   svgIcon: 'send_mail', // the icon in the card

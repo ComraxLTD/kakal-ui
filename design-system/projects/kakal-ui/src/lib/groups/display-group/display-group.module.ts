@@ -6,10 +6,10 @@ import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLPipesModule } from '../../pipes/pipes.module';
 import { KKLIconModule } from '../../icon/icon.module';
 
-import { DisplayGridComponent } from './display-grid.component';
+import { DisplayGroupComponent } from './display-group.component';
 
 @NgModule({
-  declarations: [DisplayGridComponent],
+  declarations: [DisplayGroupComponent],
   imports: [
     CommonModule,
     MatDividerModule,
@@ -17,6 +17,6 @@ import { DisplayGridComponent } from './display-grid.component';
     KKLPipesModule,
     KKLIconModule,
   ],
-  exports: [DisplayGridComponent],
+  exports: [DisplayGroupComponent],
 })
-export class KKLDisplayGridModule {}
+export class KKLDisplayGroupModule {}

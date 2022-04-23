@@ -6,10 +6,16 @@
     [matBadge]="status.value"
     matBadgeColor="accent"
     matBadgeSize="medium"
-    (click)="onStepSelect()"
+    (click)="onStatusSelect()"
   >
-    <div class="status" appVariant [type]="status.type">
-      <kkl-icon [key]="status.svgIcon" [size]="3.5"></kkl-icon>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      appVariant
+      [type]="'status'"
+      [variant]="'circle'"
+    >
+      <mat-icon [svgIcon]="status.svgIcon"></mat-icon>
     </div>
   </div>
 

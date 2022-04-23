@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { IconService } from '../../icon/icons.service';
-import { CardStepModel, StepOptions } from './card-step.model';
+import { CardOptions } from '../card.model';
+import { CardStep } from './card-step.model';
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'kkl-card-step',
@@ -10,8 +12,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./card-step.component.scss'],
 })
 export class CardStepComponent implements OnInit {
-  @Input() step: CardStepModel;
-  @Input() options: StepOptions;
+  @Input() step: CardStep;
+  @Input() options: CardOptions;
 
   mobile$: Observable<boolean>;
 
@@ -29,7 +31,7 @@ export class CardStepComponent implements OnInit {
   }
 
   onStepSelect(): void {
-    if (!this.step.selected && !this.step.disabled) {
+    if (!this.step.disabled) {
       this.stepSelect.emit();
     }
   }

@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { IconService } from '../../icon/icons.service';
+import { CardOptions } from '../card.model';
 import { CardInfoModel } from './card-info.model';
 
 @Component({
@@ -7,10 +9,24 @@ import { CardInfoModel } from './card-info.model';
   styleUrls: ['./card-info.component.scss'],
 })
 export class CardInfoComponent implements OnInit {
-  
-  @Input() public card: CardInfoModel;
+  @Input() card: CardInfoModel;
+  @Input() options: CardOptions;
 
-  constructor() {}
+  constructor(private iconService: IconService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.iconService.setIcon(this.card.svgIcon);
+
+    this.options = this.setOptions();
+  }
+
+  private setOptions(): CardOptions {
+    return {
+      ...this.options,
+      color: 'primary',
+      size: 3.5,
+      variant: 'square',
+      type: 'info',
+    };
+  }
 }

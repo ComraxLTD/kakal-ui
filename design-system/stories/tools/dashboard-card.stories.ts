@@ -4,7 +4,7 @@ import { moduleMetadata } from '@storybook/angular';
 
 import { KKLCardLobbyModule } from '../../projects/kakal-ui/src/lib/cards/card-lobby/card-lobby.module';
 import {CardLobbyComponent } from '../../projects/kakal-ui/src/lib/cards/card-lobby/card-lobby.component';
-import { CardStepModel} from '../../projects/kakal-ui/src/lib/cards/card-step/card-step.model';
+import { CardStep} from '../../projects/kakal-ui/src/lib/cards/card-step/card-step.model';
 
 export default {
   title: 'Tools',
@@ -35,7 +35,7 @@ const Template: Story<CardLobbyComponent> = (args: CardLobbyComponent) => ({
 export const dashboardCard = Template.bind({});
 
 dashboardCard.args = {
-  // card:new CardStepModel({
+  // card:new CardStep({
   //   label: 'התקשרות חדשה',
   //   svgIcon: 'group',
   //   path: 'create-new-contract',
