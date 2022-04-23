@@ -7,7 +7,6 @@ import {
   CardStep,
   FormActions,
   RouterService,
-  StepsSelectionEvent,
 } from '../../../../../kakal-ui/src/public-api';
 import { CommitteeLayoutService } from './committee-layout.service';
 
@@ -21,7 +20,7 @@ export class CommitteeLayoutComponent implements OnInit {
   showSave$!: Observable<boolean>;
 
   //stepper steps
-  steps: CardStepModel[] = [
+  steps: CardStep[] = [
     {
       label: 'פרטי ועידה',
       svgIcon: 'contact',

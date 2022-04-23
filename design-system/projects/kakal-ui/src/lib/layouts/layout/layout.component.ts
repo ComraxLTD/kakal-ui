@@ -1,13 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { RouterService, BreakpointService } from '../../../services/services';
-import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
 import { PageHeadlineService } from '../../page-headline/page-headline.service';
 import { PageHeadline } from '../../page-headline/page-headline.component';
+import { MenuItem } from '../../menu-bar/menu-item/menu-item.component';
 
+import { CardStatus } from '../../cards/card-status/card-status.model';
 import { map, startWith } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
-import { CardStatusModel } from '../../cards/card-status/card-status.model';
 
 @Component({
   selector: 'kkl-layout',
@@ -16,8 +16,8 @@ import { CardStatusModel } from '../../cards/card-status/card-status.model';
 })
 export class LayoutComponent implements OnInit {
 
-  @Input() cards: MenuCard[];
-  @Input() status: CardStatusModel[];
+  @Input() items: MenuItem[];
+  @Input() status: CardStatus[];
   @Input() pageHeadlineRouteMap: { [ket: string]: string };
   @Input() showStatusPath: string[];
 

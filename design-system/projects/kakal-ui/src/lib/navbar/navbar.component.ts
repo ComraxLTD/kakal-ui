@@ -10,8 +10,8 @@ import {
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { PageHeadline } from '../page-headline/page-headline.component';
-import { CardStatusModel } from '../../public-api';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { CardStatus } from '../cards/card-status/card-status.model';
 
 @Component({
   selector: 'kkl-navbar',
@@ -21,7 +21,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class NavbarComponent implements OnInit {
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
-  @Input() status: CardStatusModel[];
+  @Input() status: CardStatus[];
   @Input() showStatus$: Observable<boolean>;
   @Input() pageHeadline$: Observable<PageHeadline[]>;
 

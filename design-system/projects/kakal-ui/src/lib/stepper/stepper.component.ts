@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { CardStep } from '../cards/card-step/card-step.model';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
+import { CardStatus } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
 import { CardOptions } from '../cards/card.model';
 
@@ -16,10 +16,10 @@ export interface StepsSelectionEvent {
   /** Index of the step previously selected. */
   previouslySelectedIndex?: number;
   /** The step instance now selected. */
-  selectedStep: CardStatusModel | CardStep;
+  selectedStep: CardStatus | CardStep;
 
   /** The step instance previously selected. */
-  previouslySelectedStep?: CardStatusModel | CardStep;
+  previouslySelectedStep?: CardStatus | CardStep;
 
   /** If this step is the last */
   last: boolean;
@@ -27,7 +27,7 @@ export interface StepsSelectionEvent {
   /** If this step is the first */
   first: boolean;
 
-  source?: CardStatusModel[] | CardStep[];
+  source?: CardStatus[] | CardStep[];
 }
 
 @Component({
@@ -39,8 +39,8 @@ export class StepperComponent {
 
   @Input() variant: 'step' | 'status' = 'step';
 
-  _steps: CardStep[] | CardStatusModel[];
-  @Input() set steps(val: CardStep[] | CardStatusModel[]) {
+  _steps: CardStep[] | CardStatus[];
+  @Input() set steps(val: CardStep[] | CardStatus[]) {
     this._steps = val;
   }
   @Input() direction: 'row' | 'column';
@@ -76,7 +76,7 @@ export class StepperComponent {
   }
 
   onStepStatusSelect(
-    step: CardStatusModel,
+    step: CardStatus,
     index: number,
     last: boolean,
     first: boolean

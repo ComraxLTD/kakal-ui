@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IconService } from '../../icon/icons.service';
 import { CardOptions } from '../card.model';
-import { CardStatusModel } from './card-status.model';
+import { CardStatus } from './card-status.model';
 
 @Component({
   selector: 'kkl-card-status',
@@ -10,7 +10,7 @@ import { CardStatusModel } from './card-status.model';
 })
 export class CardStatusComponent implements OnInit {
 
-  @Input() status: CardStatusModel;
+  @Input() status: CardStatus;
 
   @Input() options: CardOptions;
 

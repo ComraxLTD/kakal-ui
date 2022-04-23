@@ -1,6 +1,6 @@
 import { SelectOption } from '../../form/form-select/question-select.model';
 
-export interface CardStatusModel {
+export interface CardStatus {
   key: string;
   label: string;
   path: string;

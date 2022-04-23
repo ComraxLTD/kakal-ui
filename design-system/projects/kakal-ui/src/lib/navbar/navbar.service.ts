@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CardStep } from '../cards/card-step/card-step.model';
-import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
-import { PageHeadline } from '../page-headline/page-headline.component';
+import { CardStatus } from '../cards/card-status/card-status.model';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavbarService {
-
-  private selectedStatus$: BehaviorSubject<CardStatusModel>;
+  private selectedStatus$: BehaviorSubject<CardStatus>;
 
   constructor() {
-    this.selectedStatus$ = new BehaviorSubject<CardStatusModel>(null);
+    this.selectedStatus$ = new BehaviorSubject<CardStatus>(null);
   }
 
   // status section
@@ -20,7 +18,7 @@ export class NavbarService {
     return this.selectedStatus$.asObservable();
   }
 
-  public emitSelectStatus(value: CardStatusModel): void {
+  public emitSelectStatus(value: CardStatus): void {
     this.selectedStatus$.next(value);
   }
 }

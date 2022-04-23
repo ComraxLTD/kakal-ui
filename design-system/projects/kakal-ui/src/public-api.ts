@@ -227,7 +227,7 @@ export * from './lib/menu/menu.component';
 
 export * from './lib/menu-bar/menu-bar.module';
 export * from './lib/menu-bar/menu-bar/menu-bar.component';
-export * from './lib/menu-bar/menu-card/menu-card.component';
+export * from './lib/menu-bar/menu-item/menu-item.component';
 
 // title
 export * from './lib/kkl-title/kkl-title.module';

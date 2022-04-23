@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import {
   ControlBase,
   OptionsModel,
-  CardStatusModel,
+  CardStatus,
   NavbarService,
 } from '../../../kakal-ui/src/public-api';
 
@@ -13,7 +13,7 @@ import {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  status: CardStatusModel[] = [
+  status: CardStatus[] = [
     {
       key: 'first',
       label: 'תהליכי רישום',
