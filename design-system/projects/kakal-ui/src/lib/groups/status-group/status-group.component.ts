@@ -21,7 +21,7 @@ export class StatusGroupComponent implements OnInit {
   @Input() set steps(val: CardStatus[]) {
     this._steps = val;
   }
-  @Input() direction: 'row' | 'column';
+  @Input() direction: 'row' | 'column' = 'row';
   @Input() options: CardOptions;
 
   @Output() statusSelection = new EventEmitter<StepsSelectionEvent>();

@@ -37,7 +37,7 @@ export interface StepsSelectionEvent {
 export class StepGroupComponent implements OnInit {
 
   @Input() steps: CardStep[];
-  @Input() direction: 'row' | 'column';
+  @Input() direction: 'row' | 'column' = 'row';
 
   @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
