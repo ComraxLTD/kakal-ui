@@ -1,7 +1,7 @@
 @use "../../../styles/variables" as main;
 
 
-.divider-step {
+.divider {
   height: 0.6rem;
   background-color: #ececec;
   flex: 0.1;
@@ -15,7 +15,7 @@
 
 /* Mobile  ----------- */
 @media screen and (max-width: 600px) {
-  .divider-step {
+  .divider {
     background-color: #A8A8A8;
     transform: translateY(0);
     flex: 1;

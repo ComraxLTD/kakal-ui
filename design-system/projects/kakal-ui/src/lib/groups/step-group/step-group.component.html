@@ -9,7 +9,7 @@
   >
     <ng-container
       *ngFor="
-        let step of _steps;
+        let step of steps;
         let i = index;
         let last = last;
         let first = first
@@ -24,7 +24,7 @@
         ></kkl-card-step>
       </div>
 
-      <div *ngIf="!last" class="divider-step"></div>
+      <div *ngIf="!last" class="divider"></div>
     </ng-container>
   </div>
 </div>

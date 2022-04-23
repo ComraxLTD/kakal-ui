@@ -7,14 +7,14 @@ import {
   Output,
 } from '@angular/core';
 import { CardStep } from '../../cards/card-step/card-step.model';
-import { BreakpointService } from '../../../services/breakpoint.service';
-import { Observable } from 'rxjs';
-
 
 export interface StepsSelectionEvent {
+  /** Index of the step selected. */
   selectedIndex: number;
+
   /** Index of the step previously selected. */
   previouslySelectedIndex?: number;
+
   /** The step instance now selected. */
   selectedStep: CardStep;
 
@@ -35,26 +35,17 @@ export interface StepsSelectionEvent {
   styleUrls: ['./step-group.component.scss'],
 })
 export class StepGroupComponent implements OnInit {
-  _steps: CardStep[];
-  @Input() set steps(value: CardStep[]) {
-    this._steps = value;
-  }
+
+  @Input() steps: CardStep[];
   @Input() direction: 'row' | 'column';
-  @Input() stepRef: ElementRef;
 
-  mobile$: Observable<boolean>;
+  @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
-  @Output() selectStep = new EventEmitter<StepsSelectionEvent>();
+  constructor() {}
 
-  constructor(private breakpointService: BreakpointService) {}
-
-  ngOnInit(): void {
-    this.mobile$ = this.breakpointService.isMobile();
-  }
+  ngOnInit(): void {}
 
   onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
-    this._steps.forEach((a) => (a.selected = false));
-    step.selected = true;
     const event: StepsSelectionEvent = {
       selectedStep: step,
       selectedIndex: index,
@@ -62,6 +53,6 @@ export class StepGroupComponent implements OnInit {
       first,
       source: this.steps,
     };
-    this.selectStep.emit(event);
+    this.stepSelection.emit(event);
   }
 }
