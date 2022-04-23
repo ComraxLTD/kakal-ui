@@ -73,7 +73,6 @@ import { KKLNavbarModule } from './navbar/navbar.module';
 import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { KKLStepperModule } from './stepper/stepper.module';
 import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
-import { KKLListMenuModule } from './list-menu/list-menu.module';
 import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
@@ -137,7 +136,6 @@ registerLocaleData(he);
     KKLSidenavModule,
     KKLPageHeadlineModule,
     KKLBreadCrumbsModule,
-    KKLListMenuModule,
     KKLExpandPanelModule,
 
     KKLDrawerModule,
@@ -239,7 +237,6 @@ registerLocaleData(he);
     KKLStepTitleModule,
     KKLSidenavModule,
     KKLStatusStepsModule,
-    KKLListMenuModule,
     KKLExpandPanelModule,
     KKLFiltersModule,
 

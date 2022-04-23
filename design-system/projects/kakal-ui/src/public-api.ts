@@ -236,8 +236,6 @@ export * from './lib/bread-crumbs/bread-crumbs.model';
 export * from './lib/expand-panel/expand-panel.component';
 export * from './lib/expand-panel/expand-panel.module';
 
-export * from './lib/list-menu/list-menu.component';
-export * from './lib/list-menu/list-menu.module';
 
 // title
 export * from './lib/navigation/navigation.module';
