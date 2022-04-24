@@ -1,0 +1,27 @@
+@use "../../../styles/variables" as main;
+
+div.kkl-step {
+  background: main.color(default);
+  width: main.spacing(3);
+  height: main.spacing(3);
+  border-radius: 50%;
+
+  &.selected {
+    background: red;
+    // background: main.color(primary);
+  }
+  span {
+    width: main.spacing(2);
+    height: main.spacing(2);
+    color: main.color(paper);
+    border: 2px solid main.color(paper);
+    border-radius: 50%;
+    background: main.color(default);
+    text-align: center;
+
+    &.selected {
+      background: red;
+      // background: main.color(primary);
+    }
+  }
+}

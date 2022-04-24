@@ -107,6 +107,7 @@ import { KKLLobbyGridModule } from './grids/lobby-grid/lobby.module';
 // GROUPS
 
 import { KKLDisplayGroupModule } from './groups/display-group/display-group.module';
+import {KKLCircleGroupModule} from './groups/circle-group/circle-group.module'
 
 import { MeiServiceModule } from './mei-services/mei-services.module';
 
@@ -184,6 +185,7 @@ registerLocaleData(he);
     // GROUPS
 
     KKLDisplayGroupModule,
+    KKLCircleGroupModule,
 
     // NAVBAR
     KKLNavbarModule,
@@ -291,6 +293,7 @@ registerLocaleData(he);
 
     // GROUPS
     KKLDisplayGroupModule,
+    KKLCircleGroupModule,
 
     // LAYOUT
     KKLLayoutModule,

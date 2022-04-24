@@ -1,0 +1,13 @@
+<div fxLayout="column" fxLayoutGap="5rem">
+  <ng-container *ngFor="let step of steps; let i = index">
+    <div
+      kkl-button
+      class="kkl-step"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+    >
+      <span>{{ i + 1 }}</span>
+    </div>
+    <mat-divider></mat-divider>
+  </ng-container>
+</div>
