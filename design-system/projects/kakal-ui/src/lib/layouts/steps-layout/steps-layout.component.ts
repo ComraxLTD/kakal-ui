@@ -76,6 +76,7 @@ export class StepsLayoutComponent {
     this.endDrawerSizeSource$ = new BehaviorSubject(0);
 
     // init actions if array exist
+    console.log(this.actions);
     if (this.actions && this.actions.length) {
       this.rowActions = this.setRowActions();
 
@@ -84,6 +85,7 @@ export class StepsLayoutComponent {
       this.showEndDrawer = this.actions.some(
         (action) => action.type === 'portion'
       );
+      console.log(this.showEndDrawer);
 
       this.showStartDrawer$ = merge(
         of(!!this.drawerAction),
