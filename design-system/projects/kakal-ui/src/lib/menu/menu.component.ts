@@ -17,12 +17,13 @@ export class MenuComponent implements OnInit {
   @Input() menu: MatDrawer;
 
   public accordion: boolean;
-  public logoutItem: MenuItemModel = new MenuItemModel({
+  public logoutItem: MenuItemModel = {
     label: 'יציאה',
-    isActive: false,
+    selected: false,
     path: '',
     svgIcon: 'logout',
-  });
+  };
+
   @Output() changePath: EventEmitter<string> = new EventEmitter();
 
   ngOnInit() {
@@ -31,7 +32,7 @@ export class MenuComponent implements OnInit {
 
   // UPDATE METHOD WHEN CLICK ON STEP
   public onLinkClick(item: MenuItemModel, modulePrefix: string) {
-    if (!item.isActive) {
+    if (!item.selected) {
       const path =
         item.path === modulePrefix ? item.path : `${modulePrefix}/${item.path}`;
       this.changePath.emit(path);
@@ -45,6 +46,4 @@ export class MenuComponent implements OnInit {
     this.changePath.emit(path);
     this.menu.close();
   }
-
-
 }

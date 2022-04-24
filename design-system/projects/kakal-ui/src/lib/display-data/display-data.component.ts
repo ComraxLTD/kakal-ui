@@ -7,6 +7,7 @@ export interface DisplayData<T = any> {
   value?: any;
   format?: { type: string; args: any };
   icon?: string;
+  template?: string;
 }
 
 @Component({

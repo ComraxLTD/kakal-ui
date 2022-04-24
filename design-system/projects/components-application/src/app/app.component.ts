@@ -31,6 +31,46 @@ export class AppComponent {
       label: 'לביא',
       value: 'any',
     },
+<<<<<<< HEAD
+=======
+  ]
+
+  formGroup = new FormGroup({});
+
+  questions: ControlBase[] = [
+    // {
+    //   key: 'first',
+    //   controlType: 'select',
+    //   options: 'firstQuestion',
+    //   multi: true,
+    //   label: 'בחירה ראשונה',
+    // },
+    // {
+    //   key: 'second',
+    //   controlType: 'select',
+    //   options: 'secondQuestion',
+    //   multi: false,
+    //   label: ' בחירה שניה',
+    //   // disabled: true
+    //   //,
+    // },
+    {
+      key: 'autocomplete',
+      controlType: 'autocomplete',
+      options: 'firstQuestion',
+      multi: true,
+      label: 'local autocomplete',
+      // disabled: true
+      //,
+    },
+    // {
+    //   key: 'currency',
+    //   controlType: 'currency'
+    // }
+  ];
+
+  dataSource: any[] = [
+>>>>>>> f830f792cea14298749d399b83eef819610055f0
     {
       label: 'נס הרים',
       value: 'any',
@@ -75,10 +115,34 @@ export class AppComponent {
 
     // form group
 
+<<<<<<< HEAD
     this.groupFlex = this.setGroup(this.questions, {
       cols: 2,
       variant: 'flex',
     });
+=======
+  editData =  'ert'
+  //{
+    //select: { label: 'editData', value: 88 }
+  //}
+
+  constructor() { }
+
+  ngOnInit() {
+    setTimeout(() => {
+      this.columns = [
+        { key: 'committeeId', label: 'Id mm', controlType: 'number',},
+        { key: 'remiTikimCount', label: 'remiTikimCount mm', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
+        { key: 'committeeDate', label: 'תאריך  mm', controlType: 'date', },
+      ];
+      console.log(this.formGroup);
+      this.questions = this.questions.concat([{
+        key: 'time',
+        controlType: 'time'
+      }])
+      // this.editData = { number: 65657 };
+    }, 4000);
+>>>>>>> f830f792cea14298749d399b83eef819610055f0
   }
 
   // breakpoints

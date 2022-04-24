@@ -1,0 +1,5 @@
+@use "../../../kakal-ui/src/styles/variables" as main;
+
+div {
+  margin-top: main.spacing(3);
+}
