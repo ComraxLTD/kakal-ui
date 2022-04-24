@@ -1,13 +1,13 @@
-<div fxLayout="column" fxLayoutGap="5rem">
+<div fxLayout="column">
   <ng-container *ngFor="let step of steps; let i = index">
     <div
       kkl-button
-      class="kkl-step"
+      [ngClass]="{ 'kkl-step': true, selected: step.selected }"
       fxLayout="column"
       fxLayoutAlign="center center"
     >
       <span>{{ i + 1 }}</span>
     </div>
-    <mat-divider></mat-divider>
+    <div class="divider"></div>
   </ng-container>
 </div>
