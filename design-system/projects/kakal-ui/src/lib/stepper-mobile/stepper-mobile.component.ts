@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardStepModel } from '../cards/card-step/card-step.model';
-import { ListItem } from '../list-item/list-item.model';
-import { Observable, map } from 'rxjs';
+import { CardStep } from '../cards/card-step/card-step.model';
+import { StepsSelectionEvent } from '../stepper/stepper.component';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'kkl-stepper-mobile',
@@ -9,77 +9,67 @@ import { Observable, map } from 'rxjs';
   styleUrls: ['./stepper-mobile.component.scss'],
 })
 export class StepperMobileComponent implements OnInit {
-  @Input() public activeStepIndex: number;
-  @Input() public steps$: Observable<CardStepModel[]>;
 
-  end: number;
-  index: number = 0;
-  mapStep: any;
-  stepMap$: Observable<{ [key: string]: CardStepModel }>;
-  activeStep$: Observable<ListItem<number>>;
-  end$: Observable<boolean>;
-  width$: Observable<number>;
+  @Input() steps: CardStep[];
 
-  @Output() selectStep = new EventEmitter<CardStepModel>();
+  private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
+    new BehaviorSubject(null);
+  stepsSelection$: Observable<StepsSelectionEvent>;
+
+  @Input() set stepsSelectionEvent(value: StepsSelectionEvent) {
+    this.stepsSelectionSource$.next(value);
+  }
+
+  @Output() selectStep = new EventEmitter<StepsSelectionEvent>();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.activeStep$ = this.setActiveStep$();
-    this.stepMap$ = this.setStepsMap();
-
-    this.steps$.subscribe((step) => {
-      this.mapStep = step.map((s) => {
-        return s;
-      });
-    });
-    this.end = this.mapStep.length - 1;
+    this.stepsSelection$ = this.stepsSelectionSource$.asObservable();
   }
 
-  private setActiveStep$(): Observable<ListItem<number>> {
-    return this.steps$.pipe(
-      map(
-        (steps: CardStepModel[]) =>
-          steps.findIndex((step: CardStepModel) => step.selected) as number
-      ),
-      map((index: number) => {
-        const item: ListItem<number> = {
-          value: index,
-        };
-        return item;
-      })
-    );
+  private setStepsSelectionEvent(index: number) {
+    const event: StepsSelectionEvent = {
+      selectedStep: this.steps[index],
+      selectedIndex: index,
+      last: index === this.steps.length - 1,
+      first: index === 0,
+      source: this.steps,
+    };
+    return event;
   }
 
-  private setStepsMap() {
-    return this.steps$.pipe(
-      map((steps: CardStepModel[]) => {
-        const map = steps.reduce((acc, step) => {
-          return {
-            ...acc,
-            [steps.indexOf(step)]: step,
-          };
-        }, {} as { [key: string]: CardStepModel });
-        return map;
-      })
-    );
+  private dispatchSelectionState(index: number) {
+    const event = this.setStepsSelectionEvent(index);
+    this.stepsSelectionSource$.next(event);
+    this._emitChangeEvent();
   }
 
-  public onNext(step: CardStepModel) {
-    this.mapStep.map((s, i) => {
-      if (s.path === step['path']) this.index = i + 1;
-    });
-    this.selectStep.emit(this.mapStep[this.index]);
+  private _emitChangeEvent() {
+    const event = this.stepsSelectionSource$.getValue();
+    this.selectStep.emit(event);
   }
 
-  public onPrev(step: CardStepModel) {
-    this.mapStep.map((s, i) => {
-      if (s.path === step['path']) this.index = i - 1;
-    });
-    this.selectStep.emit(this.mapStep[this.index]);
+  onNext(selectedIndex: number) {
+    const nextIndex = ++selectedIndex;
+
+    if (nextIndex > this.steps.length) {
+      return;
+    }
+    this.dispatchSelectionState(nextIndex);
   }
 
-  public selectStepper(step: any) {
-    this.selectStep.emit(step.value);
+  onPrevious(selectedIndex: number) {
+    const nextIndex = --selectedIndex;
+
+    if (nextIndex < 0) {
+      return;
+    }
+
+    this.dispatchSelectionState(nextIndex);
+  }
+
+  onStepSelect(step: any) {
+    this._emitChangeEvent();
   }
 }

@@ -1,0 +1,8 @@
+@use "../../../styles/variables" as main;
+
+:host {
+  .mat-divider {
+    border-top: 1px dotted var(--a-500)
+
+  }
+}

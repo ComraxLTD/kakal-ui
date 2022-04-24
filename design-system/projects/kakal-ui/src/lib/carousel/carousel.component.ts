@@ -1,4 +1,4 @@
-import { Component, Injector, Input, OnInit, Type, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 @Component({
   selector: 'kkl-carousel',
   templateUrl: './carousel.component.html',
@@ -6,59 +6,39 @@ import { Component, Injector, Input, OnInit, Type, ViewChild, ViewContainerRef }
 })
 
 export class CarouselComponent implements OnInit {
-  @Input() component: Type<any>;
   @Input() data: any[];
-  @Input() singleProp: string;
   @Input() displayNum: number = 4;
+  @Input() template: TemplateRef<any>;
 
-  @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
-
-  indexs: number[];
-
+  start: number = 0;
+  roundSize: number;
   previous: boolean = false;
   next: boolean = true;
 
-  constructor(private injector: Injector) { }
+  constructor() { }
 
-  public createDynamicComponent(index: number) {
-    const componentRef = this.container.createComponent(this.component, { injector: this.injector });
-    if (this.singleProp) componentRef.instance[this.singleProp] = this.data[index];
-    else for (const prop in this.data[index]) componentRef.instance[prop] = this.data[index][prop];
-  }
-
-  private clearDynamicComponent(): void {
-    this.container.clear();
-  }
-
-  createComponents() {
-    this.indexs.forEach((val, index) => {
-      this.createDynamicComponent(val);
-    });
-  }
 
   onPrevious() {
     if (!this.previous) return;
-    this.indexs = this.indexs.map(val => val - 1);
-    this.clearNbuild();
+    this.start--;
+    if(!this.start){
+      this.previous = false;
+    }
+    this.next = true;
   }
 
   onNext() {
     if (!this.next) return;
-    this.indexs = this.indexs.map(val => val + 1);
-    this.clearNbuild();
-  }
-
-  clearNbuild() {
-    this.indexs[0] == 0 ? this.previous = false : this.previous = true;
-    this.indexs[this.displayNum - 1] == this.data.length - 1 ? this.next = false : this.next = true;
-    this.clearDynamicComponent();
-    this.createComponents();
+    this.start++;
+    if(this.start + this.roundSize == this.data.length){
+      this.next = false;
+    }
+    this.previous = true;
   }
 
   ngOnInit(): void {
-    if(this.displayNum == this.data.length) this.next = false;
-    this.indexs = [...Array(this.displayNum).keys()];
-    this.createComponents();
+    if(this.displayNum >= this.data.length) this.next = false;
+    this.roundSize = Math.min(this.displayNum, this.data.length);
   }
 
 }

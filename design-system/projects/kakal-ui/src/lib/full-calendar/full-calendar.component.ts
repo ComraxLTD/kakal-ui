@@ -18,6 +18,13 @@ import { AfterViewInit } from '@angular/core';
 })
 export class CalendarComponent implements OnInit, AfterViewInit {
 
+  // _data: EventInput[];
+  // @Input() set data(val: EventInput[]) {
+  //   if(this._data) {
+  //     this._data = val;
+  //     this.myCalendarComponent.options.events = val;
+  //   }
+  // }
   @Input() data: EventInput[];
   @Input() validRange!: { start: string, end: string };
   @Input() scrollTime: string = "07:00";
@@ -58,7 +65,7 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     headerToolbar: {
       left: 'prev,next',
       center: 'title',
-      right: 'timeGridDay,timeGridWeek,dayGridMonth'
+      right: 'timeGridDay,timeGridWeek,dayGridMonth',
       // right: ''
     },
     events: [],
@@ -66,6 +73,16 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     //   { title: 'event 1', date: '2022-04-10' },
     //   { title: 'event 2', date: '2022-04-11' }
     // ],
+
+
+    select: (info) => {
+      this.eventClicked.emit(info);
+      // this.facilitiesService.findObjectInCalendarArray(info.event.id);
+    },
+    eventChange: (info) => {
+      this.eventClicked.emit(info);
+      // this.facilitiesService.findObjectInCalendarArray(info.event.id);
+    },
     eventClick: (info) => {
       this.eventClicked.emit(info);
       // this.facilitiesService.findObjectInCalendarArray(info.event.id);

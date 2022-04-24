@@ -1,0 +1,30 @@
+  <div fxFill dir="rtl" class="kkl-data-grid">
+    <div fxLayout="row wrap">
+      <ng-container *ngFor="let item of displayData">
+        <div
+          class="kkl-data-cell"
+          fxLayout="row"
+          fxLayoutGap="1rem"
+          fxLayoutAlign="start center"
+          fxFlex="25"
+        >
+          <ng-container
+            *ngTemplateOutlet="
+              templates[item.template!] || defaultTemplate;
+              context: { $implicit: data, item: this.item }
+            "
+          ></ng-container>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+
+<ng-template #defaultTemplate let-data let-item="item">
+  <kkl-typography [weight]="500" [color]="data[item.key] ? 'text' : 'disable'">
+    {{ item | pluck: "label" }}:
+  </kkl-typography>
+
+  <kkl-typography [weight]="600">
+    {{ data[item.key] | format: item?.format?.type }}
+  </kkl-typography>
+</ng-template>

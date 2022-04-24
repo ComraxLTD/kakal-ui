@@ -20,7 +20,7 @@
       <ng-container *ngFor="let column of oneColumns" [matColumnDef]="column.key">
         <th mat-header-cell *matHeaderCellDef>
           <h3 mat-sort-header style="display: inline-block;">{{column.label}}</h3>
-          <button *ngIf="column.filter !== false" mat-icon-button [matMenuTriggerFor]="menu">
+          <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
             <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
             <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
           </button>
@@ -30,15 +30,15 @@
         </th>
         <td mat-cell *matCellDef="let element; let i = dataIndex" [style.display]="(i | tableGroupCell : column.group : spans) ? '' : 'none'"
             [attr.rowspan]="(element == expandedElement)? (i | tableGroupCell : column.group : spans) : (i | tableGroupCell : column.group : spans)*2">
-          <ng-container *ngIf="!(element | arrInclueds : editItems); else editBlock">
+          <ng-container *ngIf="!(element | arrIncludes : editItems); else editBlock">
             <kkl-table-cell [data]="element[column.key]" [question]="column" (buttClick)="buttonClick(column.button, element)" [colsTemplate]="colsTemplate"></kkl-table-cell>
           </ng-container>
           <ng-template #editBlock>
-            <ng-container *ngIf="column.editable !== false; else disableBlock">
-              <kkl-table-form [formGroupName]="(element | arrIndex : editItems)" [question]="column"></kkl-table-form>
-            </ng-container>
-            <ng-template #disableBlock>
+            <ng-container *ngIf="column.notEditable; else innerEditBlock">
               <kkl-table-cell [data]="element[column.key]" [question]="column" (buttClick)="buttonClick(column.button, element)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+            </ng-container>
+            <ng-template #innerEditBlock>
+              <kkl-table-form [formGroupName]="(element | arrIndex : editItems)" [question]="column"></kkl-table-form>
             </ng-template>
           </ng-template>
         </td>

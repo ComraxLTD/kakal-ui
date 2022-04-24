@@ -4,6 +4,7 @@ import { FormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
+import { Appearance } from '../models/control.types';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
 
@@ -23,9 +24,11 @@ export class MeiMultiAutocompleteComponent {
   @Input() control!: FormControl;
 
   _options!: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
+  tempOptions: BehaviorSubject<KklSelectOption[]> | KklSelectOption[];
   @Input() set options(val: BehaviorSubject<KklSelectOption[]> | KklSelectOption[]) {
-    if(this._options) {
+    if(this.tempOptions) {
       if(Array.isArray(val)) {
+        this._options = val;
         this.isArray = true;
         this.control.setValue(val.filter(b => b.selected));
         if(!this.filteredOptions) {
@@ -42,9 +45,9 @@ export class MeiMultiAutocompleteComponent {
         });
       }
     }
-    setTimeout(() => {
-      this._options = val;
-    }, 0);
+    // setTimeout(() => {
+      this.tempOptions = val;
+    // }, 0);
   }
   @Input() placeHolder!: string;
   @Input() label!: string;
@@ -53,7 +56,7 @@ export class MeiMultiAutocompleteComponent {
   @Input() withButton!: string;
   @Input() icon!: string;
   @Input() panelWidth!: string;
-  @Input() appearance!: string;
+  @Input() appearance: Appearance;
 
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -65,7 +68,7 @@ export class MeiMultiAutocompleteComponent {
   constructor(private messageService: MessageService) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
+    // setTimeout(() => {
       this.myAutoControl.valueChanges.pipe(
         startWith(''),
         distinctUntilChanged(),
@@ -75,9 +78,10 @@ export class MeiMultiAutocompleteComponent {
       if(this.control.disabled) {
         this.myAutoControl.disable();
       }
-      if(Array.isArray(this._options)) {
+      this._options = this.tempOptions;
+      if(Array.isArray(this.tempOptions)) {
         this.isArray = true;
-        this.control.setValue(this._options.filter(b => b.selected));
+        this.control.setValue(this.tempOptions.filter(b => b.selected));
         if(!this.filteredOptions) {
           this.filteredOptions = this.myAutoControl.valueChanges.pipe(
             startWith(''),
@@ -85,14 +89,14 @@ export class MeiMultiAutocompleteComponent {
             map(label => (label ? this._filter(label) : (this._options as Array<KklSelectOption>).slice())),
           );
         }
-      } else if(this._options) {
+      } else if(this.tempOptions) {
         this.isArray = false;
         (this._options as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.filter(b => b.selected));
         });
       }
       this.error$ = new BehaviorSubject<string>('');
-    }, 0);
+    // }, 0);
   }
 
   displayFn(mei: KklSelectOption): string {
@@ -130,7 +134,7 @@ export class MeiMultiAutocompleteComponent {
   onMultiSelectionChange(event): void {
     event.option.value.selected = true;
     this.control.setValue(this.control.value.concat([event.option.value]));
-    this.myAutoControl.setValue(event.option.value.label)
+    this.myAutoControl.setValue('');
 
     this.selectChanged.emit({
       key: this.key,
@@ -173,7 +177,7 @@ export class MeiMultiAutocompleteComponent {
   }
 
   remove(meiSelect: KklSelectOption): void {
-    meiSelect.selected = true;
+    meiSelect.selected = false;
     const index = this.control.value.indexOf(meiSelect);
     if (index >= 0) {
       this.control.value.splice(index, 1);

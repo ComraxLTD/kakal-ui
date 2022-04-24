@@ -1,23 +1,27 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { PageHeadlineModel } from './page-headline.model';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { PageHeadline } from './page-headline.component';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PageHeadlineService {
 
-  private pageHeadlineSource$: Subject<PageHeadlineModel[]> = new Subject<
-    PageHeadlineModel[]
-  >();
+  private pageHeadlineSource$: BehaviorSubject<PageHeadline[]> = new BehaviorSubject<
+    PageHeadline[]
+  >([]);
 
   constructor() {}
 
-  public listenToPageHeadline(): Observable<PageHeadlineModel[]> {
+  public listenToPageHeadline(): Observable<PageHeadline[]> {
     return this.pageHeadlineSource$.asObservable();
   }
 
-  public emitPageHeadlineItems(pageHeadline: PageHeadlineModel[]): void {
-    this.pageHeadlineSource$.next(pageHeadline);
+  public emitPageHeadlineItems(pageHeadlines: PageHeadline[]): void {
+    this.pageHeadlineSource$.next(pageHeadlines);
+  }
+
+  public addPageHeadlineItems(pageHeadlines: PageHeadline[]): void {
+    this.pageHeadlineSource$.next(this.pageHeadlineSource$.getValue().concat(pageHeadlines));
   }
 }

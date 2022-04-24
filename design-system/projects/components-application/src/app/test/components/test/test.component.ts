@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {
-  CardStepModel,
+  CardStep,
   RouterService,
-  StepperLayoutService,
+  StepsLayoutService,
 } from '../../../../../../kakal-ui/src/public-api';
 
 @Component({
@@ -14,7 +14,7 @@ import {
 export class TestComponent implements OnInit {
   portion$!: Observable<number>;
 
-  public steps: CardStepModel[] = [
+  public steps: CardStep[] = [
     {
       label: 'פרטי ההתקשרות',
       svgIcon: 'contact',
@@ -45,11 +45,11 @@ export class TestComponent implements OnInit {
   }
 
   // navigate from stepper
-  public onChangeStep(step: CardStepModel) {
+  public onChangeStep(step: CardStep) {
     this.navigate(step.path!);
   }
   // navigate from bottom-navbar - next
-  public onNext(step: CardStepModel) {
+  public onNext(step: CardStep) {
     this.navigate(step.path!);
   }
 

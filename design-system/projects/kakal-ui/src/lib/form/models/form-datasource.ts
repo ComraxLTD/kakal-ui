@@ -67,7 +67,6 @@ export class FormDataSource {
   // method  which return only form events
   public getEvents(actions?: FormActions[]): Observable<FormActions> {
     return this.getFormState$().pipe(
-      // map((formChangeEvent: FormChangeEvent) => formChangeEvent.action),
       pluck('action'),
       filter((action) => (actions ? actions.indexOf(action) !== -1 : true))
     );

@@ -1,11 +1,11 @@
-<div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1rem">
+<div class="kkl-card-info" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1rem">
   <mat-card kkl-button fxLayout="column" >
     <mat-card-content>
       <ng-container *ngIf="card.value; else iconBlock">
         {{ card.value }}
       </ng-container>
       <ng-template #iconBlock>
-        <kkl-icon [color]="card.color" [key]="card.svgIcon" [size]="3.5">
+        <kkl-icon [color]="options.color" [key]="card.svgIcon" [size]="3.5">
         </kkl-icon>
       </ng-template>
     </mat-card-content>

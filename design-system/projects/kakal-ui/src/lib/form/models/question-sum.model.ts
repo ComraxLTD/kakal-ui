@@ -3,6 +3,9 @@ import { QuestionTextModel } from './question-text.model';
 import { InputGrid } from './question.types';
 
 export class QuestionSumModel extends QuestionTextModel {
+
+  cleave: any;
+
   constructor(options: {
     key: string;
     label?: string;

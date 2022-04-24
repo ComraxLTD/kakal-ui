@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardStepModel } from '../card-step/card-step.model';
+import { CardStep } from '../card-step/card-step.model';
 import { CardType } from '../card.model';
 import { Observable } from 'rxjs';
 
@@ -9,16 +9,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./card-wizard.component.scss'],
 })
 export class CardWizardComponent implements OnInit {
-  @Input() public step: CardStepModel;
+  @Input() public step: CardStep;
 
   public type: CardType;
 
-  @Output() changeStep: EventEmitter<CardStepModel> = new EventEmitter();
+  @Output() changeStep: EventEmitter<CardStep> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.type = this.step.type;
+    // this.type = this.step.type;
   }
 
   public onStepClick(): void {

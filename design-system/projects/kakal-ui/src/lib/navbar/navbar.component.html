@@ -38,14 +38,14 @@
       <kkl-bread-crumbs></kkl-bread-crumbs>
     </div>
     <div>
-      <kkl-page-headline [pageHeadline$]="pageHeadline$"></kkl-page-headline>
+      <kkl-page-headline></kkl-page-headline>
     </div>
   </div>
 
   <!-- main navbar links -->
   <div fxFlex="grow" *ngIf="!(mobile$ | async)">
     <div fxLayoutAlign="center center" *ngIf="showStatus$ | async">
-      <kkl-stepper direction="row" [steps$]="status$"></kkl-stepper>
+      <kkl-status-group [steps]="status"></kkl-status-group>
     </div>
   </div>
 

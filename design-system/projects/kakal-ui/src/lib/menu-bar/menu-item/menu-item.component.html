@@ -1,0 +1,12 @@
+<div fxFill class="kkl-menu-item-wrapper">
+  <button
+    class="kkl-menu-item"
+    mat-stroked-button
+    [disableRipple]="true"
+    [color]="item.selected ? 'primary' : ''"
+    (click)="onSelect()"
+  >
+    <mat-icon [svgIcon]="item.svgIcon"></mat-icon>
+    <span>{{ item.label }}</span>
+  </button>
+</div>

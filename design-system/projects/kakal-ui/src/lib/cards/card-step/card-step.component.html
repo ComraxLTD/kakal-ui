@@ -1,5 +1,5 @@
 <div
-  class="kkl-step-card"
+  [class.kkl-step-card]="step.disabled"
   fxLayout="column"
   fxLayoutAlign="center center"
   fxLayoutGap=".5rem"
@@ -10,28 +10,27 @@
     kkl-button
     appSize
     [size]="6"
-    (click)="onStepSelect()"
     [matBadge]="step.value"
     matBadgeColor="accent"
     matBadgeSize="medium"
+    (click)="onStepSelect()"
   >
     <mat-card
       fxFill
       kkl-button
       appVariant
-      [type]="step.type"
-      [variant]="step.variant"
-      [ngClass]="{
-        'mat-elevation-z0': true,
-        active: step.selected,
-        disabled: step.disabled
-      }"
+      [type]="options.type"
+      [variant]="options.variant"
+      class="mat-elevation-z0"
     >
       <mat-card-content fxFill fxLayout="column" fxLayoutAlign="center center">
         <mat-icon
           appSize
-          [class.active]="step.selected"
-          [size]="step.size"
+          [ngClass]="{
+            active: step.selected,
+            disabled: step.disabled
+          }"
+          [size]="options.size"
           [svgIcon]="step.svgIcon"
         >
         </mat-icon>
@@ -43,7 +42,6 @@
   <div fxLayout="row" fxFlex>
     <div fxFill fxLayout="column" fxLayoutAlign="center center" class="no-warp">
       <kkl-typography
-        [ngClass]="{ active: step.selected }"
         [weight]="step.selected ? 600 : 500"
         [size]="1.2"
       >

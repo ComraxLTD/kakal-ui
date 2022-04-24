@@ -6,7 +6,8 @@ import { BehaviorSubject } from 'rxjs';
 import { KklSelectOption } from '../models/kkl-select.model';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { GridProps } from '../models/control.types';
-import { setControls } from './mei-form-class';
+import { setControls } from '../../mei-services/services/form-create';
+
 @Component({
   selector: 'kkl-form',
   templateUrl: './mei-form.component.html',
@@ -24,8 +25,6 @@ export class MeiFormComponent {
   @Input() grid: GridProps;
   variant: 'flex' | 'grid' = 'grid';
 
-  @Input() buttonTemp: TemplateRef<any>;
-
   @Input() rowHeight: number;
 
   @Input() templates: {
@@ -34,7 +33,6 @@ export class MeiFormComponent {
 
   @Input() formGroup!: FormGroup;
 
-  @Input() optionsSlot: { [key: string]: ElementRef };
   @Input() buttonLabel: string = 'שמור';
 
   gutter: number;
@@ -77,7 +75,7 @@ export class MeiFormComponent {
   }
 
   firstData: any;
-  @Input() set editData(data: any) {
+  @Input() set patchData(data: any) {
     this.firstData = data;
     if(this.formGroup) {
       this.putEditData();

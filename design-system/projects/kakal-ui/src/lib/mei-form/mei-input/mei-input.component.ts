@@ -17,15 +17,13 @@ export class MeiInputComponent implements OnInit {
   @Input() controlType!: ControlType;
   @Input() label!: string;
   @Input() placeHolder!: string;
-  @Input() appearance!: Appearance;
+  @Input() appearance: Appearance;
   @Input() theme!: Palette;
-  @Input() index!: number;
   @Input() gridProps!: GridProps;
   @Input() icon!: string;
   @Input() format!: string;
   @Input() debounce!: number;
 
-  cleave!: {};
   error$: BehaviorSubject<string>;
   color$: Observable<Palette>;
 
@@ -44,6 +42,7 @@ export class MeiInputComponent implements OnInit {
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
     ).subscribe(a => this.onValueChanged());
+console.log(this.placeHolder);
 
     this.setValidationsAndIcons();
   }

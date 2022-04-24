@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MenuCard, MenuSelectEvent } from '../menu-card/menu-card.component';
+import { MenuItem, MenuSelectEvent } from '../menu-item/menu-item.component';
 
 
 export interface MenuChangedEvent {
 
   // current state of cards
-  source: MenuCard[];
+  source: MenuItem[];
 
   // current selected interface
   event: MenuSelectEvent;
@@ -17,7 +17,7 @@ export interface MenuChangedEvent {
   styleUrls: ['./menu-bar.component.scss'],
 })
 export class MenuBarComponent implements OnInit {
-  @Input() cards: MenuCard[];
+  @Input() items: MenuItem[];
 
   @Output() menuChanged: EventEmitter<MenuChangedEvent> = new EventEmitter();
 
@@ -26,7 +26,7 @@ export class MenuBarComponent implements OnInit {
   ngOnInit(): void {}
 
   onCardSelect(selectEvent: MenuSelectEvent): void {
-    const event: MenuChangedEvent = { source: this.cards, event: selectEvent };
+    const event: MenuChangedEvent = { source: this.items, event: selectEvent };
     this.menuChanged.emit(event);
   }
 }

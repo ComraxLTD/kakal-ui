@@ -1,9 +1,9 @@
-<mat-form-field [appearance]="control.disabled ? 'fill' : appearance">
+<mat-form-field [appearance]="control.disabled ? 'fill' : appearance || 'outline'">
   <mat-label>{{ label }}</mat-label>
   <input type="text" [matAutocomplete]="auto" [placeholder]="placeHolder" matInput [formControl]="control"
     (focusout)="setErrorMessage()" />
   <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete" [displayWith]="displayFn"
-    (optionSelected)="onSelectionChange($event)" [panelWidth]="panelWidth ? 'auto' : null" (open)="onOpenChanged(true)"
+    (optionSelected)="onSelectionChange($event)" [panelWidth]="panelWidth ? 'auto' : null" (opened)="onOpenChanged(true)"
     (closed)="onOpenChanged(false)">
     <mat-option *ngFor="
         let option of isArray ? (filteredOptions | async) : (_options | async)

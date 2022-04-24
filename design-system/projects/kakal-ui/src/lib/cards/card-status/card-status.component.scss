@@ -9,6 +9,15 @@ div {
   box-sizing: border-box;
 }
 
+.status {
+  text-align: center;
+}
+
+mat-icon {
+  transform: scale(1.2);
+  color: main.color(default);
+}
+
 .mat-badge-content {
   color: main.color(paper) !important;
 }
