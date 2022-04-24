@@ -25,8 +25,12 @@ div.kkl-step {
     }
   }
 }
-.divider {
+.divider-wrapper {
   height: 5rem;
-  background-color: #ececec;
-  width: 0.2rem;
+  .divider {
+    height: 5rem;
+    margin : auto;
+    background-color: #ececec;
+    width: 0.2rem;
+  }
 }
