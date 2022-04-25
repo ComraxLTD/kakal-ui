@@ -12,7 +12,7 @@ export class VerticalStepsDirective {
 
   ngOnInit(): void {
     if (this.manuel) {
-      this.hostStepper.disableStepperSelect();
+      // this.hostStepper.disableStepperSelect();
     }
   }
 }

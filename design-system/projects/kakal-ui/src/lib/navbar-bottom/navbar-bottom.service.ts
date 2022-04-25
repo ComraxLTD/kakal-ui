@@ -1,97 +1,107 @@
 import { Injectable } from '@angular/core';
-import { last, map, Observable, Subject, switchMap } from 'rxjs';
-import { CardStep} from '../cards/card-step/card-step.model'
-import { RouterService } from '../../services/route.service'
-import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service'
-import { StepsSelectionEvent } from '../stepper/stepper.component'
-import { SelectionChangedEvent } from '../layouts/steps-accordion-layout/steps-accordion.component'
-import { StepsAccordionLayoutService } from '../layouts/steps-accordion-layout/steps-accordion-layout.service';
+import { FormGroup } from '@angular/forms';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavbarBottomService {
-  private nextStep: Subject<void>;
+  showNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  showSave$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  showBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}> = new BehaviorSubject({show: false, next: true});
 
-  constructor(
-    private stepsLayoutService: StepsLayoutService,
-    private stepsAccordionLayoutService: StepsAccordionLayoutService,
-    private routerService: RouterService
-  ) {
-    this.nextStep = new Subject<void>();
+  next$: Subject<void> = new Subject();
+  save$: Subject<void> = new Subject();
+  back$: Subject<void> = new Subject();
+  nextMiddle$: Subject<void> = new Subject();
+  formGroup$: Subject<FormGroup> = new Subject();
+
+  disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+
+  constructor() {
   }
 
-  private navigate(path: string) {
-    const url = this.routerService.getUrl(path);
-    this.routerService.navigate(url);
+  getShowNext(): BehaviorSubject<boolean> {
+    return this.showNext$;
+  }
+  setShowNext(val: boolean) {
+    this.showNext$.next(val);
   }
 
-  private onNextStepNavigation(selectedIndex: number) {
-    const steps = this.stepsLayoutService.getSteps();
-    const nextIndex = selectedIndex + 1;
-    if (steps[nextIndex]) {
-      const nextPath = steps[nextIndex].path;
-      this.navigate(nextPath);
-    }
+  getShowSave(): BehaviorSubject<boolean> {
+    return this.showSave$;
+  }
+  setShowSave(val: boolean) {
+    this.showSave$.next(val);
   }
 
-  onNextStep() {
-    const stepperSelectEvent = this.stepsLayoutService.getStepperSelectEvent();
-    const stepsChangedEvent =
-      this.stepsAccordionLayoutService.getStepsChangedEvent();
-    const isComplete = this.stepsAccordionLayoutService.isComplete();
-
-    const { selectedStep, selectedIndex } =
-      stepperSelectEvent as StepsSelectionEvent;
-
-    const step = selectedStep as CardStep;
-
-    if (step.hasSteps) {
-      const { event } = stepsChangedEvent as SelectionChangedEvent;
-      if (!event.last) {
-        this.stepsAccordionLayoutService.next();
-      } else if (!isComplete) {
-        this.stepsAccordionLayoutService.complete();
-      } else {
-        console.log('navigation');
-        this.onNextStepNavigation(selectedIndex);
-      }
-    } else {
-      this.onNextStepNavigation(selectedIndex);
-    }
+  getShowBack(): BehaviorSubject<boolean> {
+    return this.showBack$;
+  }
+  setShowBack(val: boolean) {
+    this.showBack$.next(val);
   }
 
-  onPreviousStep() {
-    const stepperSelectEvent = this.stepsLayoutService.getStepperSelectEvent();
-    const stepsChangedEvent =
-      this.stepsAccordionLayoutService.getStepsChangedEvent();
-    const isComplete = this.stepsAccordionLayoutService.isComplete();
-
-    const { selectedStep } = stepperSelectEvent as StepsSelectionEvent;
-    const step = selectedStep as CardStep;
-
-    if (stepsChangedEvent) {
-      const { event } = stepsChangedEvent as SelectionChangedEvent;
-      if (step.hasSteps && !event.first && !isComplete) {
-        this.stepsAccordionLayoutService.previous();
-      } else {
-        this.routerService.goBack();
-      }
-    } else {
-      this.routerService.goBack();
-    }
+  getShowNextMiddle(): BehaviorSubject<{show: boolean, next: boolean}> {
+    return this.showNextMiddle$;
+  }
+  setShowNextMiddle(val: {show: boolean, next: boolean}) {
+    this.showNextMiddle$.next(val);
   }
 
-  setShowNextStep$(): Observable<boolean> {
-    return this.stepsLayoutService.listenToSteps().pipe(
-      switchMap((steps: CardStep[]) => {
-        return this.routerService.getLastPath$().pipe(
-          map((url: string) => {
-            const index = steps.findIndex((item) => item.path === url);
-            return !(steps.length === index + 1);
-          })
-        );
-      })
-    );
+  getDisableNext(): BehaviorSubject<boolean> {
+    return this.disableNext$;
   }
+  setDisableNext(val: boolean) {
+    this.disableNext$.next(val);
+  }
+
+  getAutoBack(): BehaviorSubject<boolean> {
+    return this.autoBack$;
+  }
+  setAutoBack(val: boolean) {
+    this.autoBack$.next(val);
+  }
+
+
+  getFormGroup(): Subject<FormGroup> {
+    return this.formGroup$;
+  }
+  setFormGroup(val: FormGroup) {
+    this.formGroup$.next(val);
+  }
+
+
+
+  getSave(): Subject<void> {
+    return this.save$;
+  }
+  setSave() {
+    this.save$.next();
+  }
+
+  getBack(): Subject<void> {
+    return this.back$;
+  }
+  setBack() {
+    this.back$.next();
+  }
+
+
+  getNext(): Subject<void> {
+    return this.next$;
+  }
+  setNext() {
+    this.next$.next();
+  }
+
+  getNextMiddle(): Subject<void> {
+    return this.nextMiddle$;
+  }
+  setNextMiddle() {
+    this.nextMiddle$.next();
+  }
+
 }

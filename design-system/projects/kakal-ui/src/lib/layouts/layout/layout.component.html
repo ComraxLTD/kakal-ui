@@ -2,18 +2,26 @@
   <mat-sidenav #menuDrawer class="menu" mode="push" position="end">
     <div class="menu-container" fxLayout="column" fxLayoutAlign="start end">
       <kkl-menu-bar [items]="items"></kkl-menu-bar>
+      <!-- <kkl-menu-bar
+        [cards]="cards"
+        (menuSelected)="onMenuSelected($event)"
+      ></kkl-menu-bar> -->
     </div>
   </mat-sidenav>
   <mat-sidenav-content>
     <kkl-navbar
       [status]="status"
       [showStatus$]="showStatus$"
-      [pageHeadline$]="pageHeadline$"
       [isOpen]="menuDrawer.opened"
       (menuToggle)="menuDrawer.toggle()"
       (logoClicked)="onLogoClicked()"
     ></kkl-navbar>
 
     <ng-content></ng-content>
+
+    <div class="navbar-bottom">
+      <kkl-navbar-bottom></kkl-navbar-bottom>
+    </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+

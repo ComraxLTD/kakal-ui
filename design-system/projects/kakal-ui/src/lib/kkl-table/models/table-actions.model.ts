@@ -6,4 +6,5 @@ export interface RowActionModel {
 export interface RowActionEvent {
   action: string;
   row: any;
+  key: string;
 }

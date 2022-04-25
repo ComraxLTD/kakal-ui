@@ -4,13 +4,12 @@
     <mat-checkbox [color]="'primary'" (change)="expandAll($event)">
       פתח הכול</mat-checkbox
     >
-    <kkl-add-button *ngIf="buttonLabel">{{ buttonLabel }}</kkl-add-button>
+    <kkl-add-button *ngIf="buttonLabel" (click)="onClick()">{{ buttonLabel }}</kkl-add-button>
   </header>
 
   <!-- the "multi" attribute determines weather the mat-accordion will allow multiple panels to open at the same time or not -->
   <main>
     <mat-accordion #accordion multi hideToggle>
-      <ng-container *ngIf="accordionState$ | async as accordionState">
         <ng-container *ngFor="let panel of panels; let i = index">
           <mat-expansion-panel #expandPanel [expanded]="i === 0">
             <mat-expansion-panel-header>
@@ -47,7 +46,6 @@
             </div>
           </mat-expansion-panel>
         </ng-container>
-      </ng-container>
     </mat-accordion>
   </main>
 </div>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 import { PageHeadlineService } from '../../page-headline/page-headline.service';
@@ -8,6 +8,7 @@ import { MenuItem } from '../../menu-bar/menu-item/menu-item.component';
 import { CardStatus } from '../../cards/card-status/card-status.model';
 import { map, startWith } from 'rxjs/operators';
 import { merge, Observable } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'kkl-layout',
@@ -20,47 +21,26 @@ export class LayoutComponent implements OnInit {
   @Input() status: CardStatus[];
   @Input() pageHeadlineRouteMap: { [ket: string]: string };
   @Input() showStatusPath: string[];
+  @ViewChild(MatSidenav) sidenav: MatSidenav;
 
   showStatus$: Observable<boolean>;
-  pageHeadline$: Observable<PageHeadline[]>;
+
   mobile$: Observable<boolean>;
 
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
+  @Output() menuSelected: EventEmitter<MenuItem> = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
-    private pageHeadlineService: PageHeadlineService,
     private breakpointService: BreakpointService,
   ) {}
 
   ngOnInit(): void {
     this.showStatus$ = this.handleShowState(this.showStatusPath);
-    this.pageHeadline$ = this.setPageHeadline();
     this.mobile$ = this.breakpointService.isMobile();
 
   }
 
-  private setPageHeadline() {
-    return merge(
-      this.setPageHeadlineFromRoute(),
-      this.pageHeadlineService.listenToPageHeadline()
-    );
-  }
-
-  private setPageHeadlineFromRoute() {
-    return this.routerService.listenToRoute$().pipe(
-      map((url: string) => url.split('/').reverse()),
-      map(
-        (url: string[]) =>
-          url.find((item) => this.pageHeadlineRouteMap[item]) || ''
-      ),
-      map((path: string) => this.pageHeadlineRouteMap[path]),
-      map((path: string) => {
-        const pageHeadline: PageHeadline = { value: path };
-        return [pageHeadline];
-      })
-    );
-  }
 
   private handleShowState(list: string[]) {
     return this.routerService.getLastPath$().pipe(
@@ -75,7 +55,12 @@ export class LayoutComponent implements OnInit {
     return !!list?.find((path: string) => path == value);
   }
 
-  public onLogoClicked() {
+  onLogoClicked() {
     this.logoClicked.emit();
+  }
+
+  onMenuSelected(event : MenuItem) {
+    this.sidenav.close();
+    this.menuSelected.emit(event);
   }
 }

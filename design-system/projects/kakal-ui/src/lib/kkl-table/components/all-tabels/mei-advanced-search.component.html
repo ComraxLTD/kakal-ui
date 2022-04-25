@@ -1,6 +1,7 @@
 <div fxLayout="column" class="kkl-form-search">
-  <header class="kkl-form-search" fxLayout="row" fxLayoutAlign="space-between center">
+  <header class="kkl-form-search" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="allSearch?.length > 0">
     <kkl-form
+      fxFlex="90"
       [controls]="[allSearch[0]]"
       [options]="myOptions"
       [formGroup]="formGroup"
@@ -15,7 +16,7 @@
       (submitEvent)="onSubmitEvent($event)"
     ></kkl-form>
 
-    <div kkl-form-button *ngIf="myQuestions.length > 0">
+    <div kkl-form-button *ngIf="myQuestions?.length > 0">
       <button [disableRipple]="true" mat-icon-button kkl-action-button (click)="onClick()">
         <kkl-icon [color]="'primary'" [key]="expended ? 'keyboard_double_arrow_up' : 'keyboard_double_arrow_down'"></kkl-icon>
       </button>
@@ -23,7 +24,7 @@
   </header>
 
   <!-- expand panel section -->
-  <main>
+  <main *ngIf="myQuestions?.length > 0">
     <mat-accordion class="kkl-form-search">
       <mat-expansion-panel class="kkl-form-search" class="mat-elevation-z0" [expanded]="expended">
         <kkl-form
@@ -49,9 +50,9 @@
 
   <!-- FILTER CHIPS SECTION -->
 
-  <ng-container *ngIf="myQuestions.length > 0">
+  <ng-container *ngIf="allSearch?.length > 0 || columns?.length > 0">
     <kkl-filters
-      [controls]="myQuestions.concat(allSearch)"
+      [controls]="allSearch?.concat(columns)"
       [formGroup]="formGroup"
       (selectChanged)="onSelectChangedFilter($event)"
       (valueChanged)="onValueChangedFilter($event)"
