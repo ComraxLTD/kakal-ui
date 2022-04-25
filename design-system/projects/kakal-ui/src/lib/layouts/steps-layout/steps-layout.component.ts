@@ -141,7 +141,7 @@ export class StepsLayoutComponent {
 
     return this.routerService.getLastPath$(steps).pipe(
       map((url: string) => {
-        
+
         this.stepsSelectionEvent = this.setStepperSelectEvent(steps, url);
 
         this.stepsLayoutService.emitStepperSelectEvent(

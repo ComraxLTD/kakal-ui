@@ -8,13 +8,7 @@ export interface MenuCard {
   path?: string;
 }
 
-export interface MenuSelectEvent {
-  /** The card instance now selected. */
-  selectCard: MenuCard;
 
-  /** Index of the step now selected. */
-  selectedIndex: number;
-}
 
 @Component({
   selector: 'kkl-menu-card',
@@ -23,9 +17,8 @@ export interface MenuSelectEvent {
 })
 export class MenuCardComponent implements OnInit {
   @Input() card!: MenuCard;
-  @Input() index!: number;
 
-  @Output() cardSelect: EventEmitter<MenuSelectEvent> = new EventEmitter();
+  @Output() cardSelect: EventEmitter<MenuCard> = new EventEmitter();
 
   constructor(private iconService: IconService) {}
 
@@ -34,10 +27,6 @@ export class MenuCardComponent implements OnInit {
   }
 
   onSelect() {
-    const event: MenuSelectEvent = {
-      selectCard: this.card,
-      selectedIndex: this.index,
-    };
-    this.cardSelect.emit(event);
+    this.cardSelect.emit();
   }
 }

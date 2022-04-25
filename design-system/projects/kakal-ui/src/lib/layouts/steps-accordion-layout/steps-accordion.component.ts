@@ -11,6 +11,8 @@ import { Panel } from '../accordion-layout/accordion-types';
 import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 import { StepsAccordionLayoutService } from './steps-accordion-layout.service';
 import { Observable } from 'rxjs';
+import { NavbarBottomService } from '../../navbar-bottom/navbar-bottom.service';
+import { RouterService } from '../../../services/route.service';
 
 export interface SelectionChangedEvent {
   source: Step[];
@@ -34,73 +36,85 @@ export class StepsAccordionComponent implements OnInit {
 
   // optional
 
-  // ** When set to true disable self navigation of vertical steps **
-  @Input() manuel: boolean;
-
+  @Input() isLinear?: boolean = false;
   // ** an interface for ui **
-  @Input() options: {
-    // ** for accordion button **
-    buttonLabel: string;
+  @Input() buttonLabel: string;
 
     // ** for accordion checked **
-    hasCheckbox: boolean;
-    isLinear?: boolean;
-  } = { buttonLabel: '', hasCheckbox: false, isLinear: false };
+  currentStep: StepSelectEvent;
 
-  selectedIndex$: Observable<number>;
+  @Input() completed: boolean = false;
 
-  _selectedIndex: number;
-  @Input()
-  set selectedIndex(value: number) {
-    this._selectedIndex = value || 0;
-  }
+  @Input() selectedIndex: number = 0;
 
-  @Output() selectionSteps: EventEmitter<SelectionChangedEvent> =
-    new EventEmitter();
+  @Output() stepChanged: EventEmitter<StepSelectEvent> = new EventEmitter();
+  @Output() actionClicked: EventEmitter<void> = new EventEmitter();
+  @Output() save: EventEmitter<void> = new EventEmitter();
 
-  complete$: Observable<boolean>;
 
-  private stepsChangedEvent: SelectionChangedEvent;
+
 
   constructor(
-    private stepsAccordionLayoutService: StepsAccordionLayoutService
+    private navbarBottomService: NavbarBottomService,
+    private routerService: RouterService,
   ) {}
 
   ngOnInit(): void {
-    this.selectedIndex$ = this.stepsAccordionLayoutService.listenSelectIndex();
-    this.complete$ = this.stepsAccordionLayoutService.listenComplete();
-    this.stepsChangedEvent = this.initStepChangedEvent();
-    this._emitChanged();
+    this.navbarBottomService.setAutoBack(false);
+    this.navbarBottomService.setDisableNext(true);
+    this.navbarBottomService.getBack().subscribe(a => {
+      if(this.completed) {
+        this.completed = false;
+        this.selectedIndex = this.steps.length-1;
+        this.navbarBottomService.setFormGroup(this.steps[this.selectedIndex].control);
+      } else {
+        if(this.currentStep && this.currentStep.previouslySelectedIndex) {
+          if(this.currentStep.last) {
+            this.navbarBottomService.setShowNextMiddle({show: true, next: false});
+          }
+          this.selectedIndex = this.currentStep.previouslySelectedIndex;
+          this.navbarBottomService.setFormGroup(this.steps[this.selectedIndex].control);
+        } else {
+          this.routerService.goBack();
+        }
+      }
+    });
+    this.navbarBottomService.getNextMiddle().subscribe(a => {
+      if(this.currentStep.selectedIndex === this.steps.length-1) {
+        this.completed = true;
+        this.navbarBottomService.setDisableNext(false);
+        this.navbarBottomService.setShowSave(true);
+        this.save.emit();
+        this.navbarBottomService.setShowNextMiddle({show: false, next: false});
+      } else {
+        if(this.currentStep) {
+          this.selectedIndex = this.currentStep.selectedIndex + 1;
+        } else {
+          this.selectedIndex = this.selectedIndex + 1;
+        }
+        this.navbarBottomService.setFormGroup(this.steps[this.selectedIndex].control);
+      }
+    });
   }
 
-  private initSelectEvent(): StepSelectEvent {
-    const complete: boolean = this.stepsAccordionLayoutService.isComplete();
-
-    return {
-      selectedIndex: this._selectedIndex,
-      last: complete ? complete : this._selectedIndex === this.steps.length - 1,
-      first: this._selectedIndex === 0,
-    } as StepSelectEvent;
-  }
-
-  private initStepChangedEvent() {
-    const stepsChangedEvent = {
-      source: this.steps,
-      event: this.initSelectEvent(),
-    };
-
-    return stepsChangedEvent;
-  }
 
   onStepChanged(event: StepSelectEvent) {
-    this.stepsChangedEvent = { source: this.steps, event };
-    this._emitChanged();
+    this.currentStep = event;
+    if(this.currentStep.last) {
+      this.navbarBottomService.setShowNextMiddle({show: true, next: false});
+    }
+    this.navbarBottomService.setFormGroup(this.steps[this.currentStep.selectedIndex].control);
+    this.stepChanged.emit(event);
   }
 
-  private _emitChanged() {
-    this.selectionSteps.emit(this.stepsChangedEvent);
-    this.stepsAccordionLayoutService.setStepsChangedEvent(
-      this.stepsChangedEvent
-    );
+  onClick() {
+    this.actionClicked.emit();
   }
+
+  ngOnDestroy(){
+    this.navbarBottomService.setAutoBack(true);
+    this.navbarBottomService.setFormGroup(null);
+    this.navbarBottomService.setShowNextMiddle({show: false, next: true});
+  }
+
 }
