@@ -34,7 +34,7 @@ export class NavbarBottomComponent implements OnInit {
 
   autoBack: boolean = true;
 
-  formGroup: FormGroup;
+  formGroup: FormGroup = new FormGroup({});
 
   @Input() nextLabel: string;
 
@@ -61,7 +61,12 @@ export class NavbarBottomComponent implements OnInit {
     this.disableNext$ = this.navbarBottomService.getDisableNext();
 
     this.navbarBottomService.getFormGroup().subscribe(b => {
-      this.formGroup = b;
+      if(b) {
+        this.formGroup = b;
+      } else {
+        this.formGroup = new FormGroup({});
+      }
+
     });
     this.navbarBottomService.getAutoBack().subscribe(a =>{
       this.autoBack = a;

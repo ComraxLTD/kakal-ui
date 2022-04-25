@@ -60,6 +60,7 @@ export class StepsAccordionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.navbarBottomService.setShowNextMiddle({show: true, next: true});
     this.navbarBottomService.setAutoBack(false);
     this.navbarBottomService.setDisableNext(true);
     this.navbarBottomService.getBack().subscribe(a => {
@@ -80,7 +81,7 @@ export class StepsAccordionComponent implements OnInit {
       }
     });
     this.navbarBottomService.getNextMiddle().subscribe(a => {
-      if(this.currentStep.selectedIndex === this.steps.length-1) {
+      if(this.currentStep?.selectedIndex === this.steps.length-1) {
         this.completed = true;
         this.navbarBottomService.setDisableNext(false);
         this.navbarBottomService.setShowSave(true);
