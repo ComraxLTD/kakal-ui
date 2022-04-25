@@ -451,3 +451,6 @@ export * from './lib/grids/data-grid/data-grid.component'
 // groups
 export * from './lib/groups/display-group/display-group.module'
 export * from './lib/groups/display-group/display-group.component'
+
+export * from './lib/groups/circle-group/circle-group.module'
+export * from './lib/groups/circle-group/circle-group.component'
