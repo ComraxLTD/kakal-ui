@@ -1,9 +1,14 @@
 @use "../../styles/variables" as main;
 
+:host {
+  overflow: visible !important;
+}
+
 mat-toolbar {
+  overflow: visible !important;
   padding-left: main.spacing(5);
   padding-right: main.spacing(5);
-  background-color: white!important;
+  background-color: white !important;
 }
 
 div {
@@ -18,4 +23,13 @@ button.mat-mini-fab {
 
 button.kkl-next-button:not(.mat-button-disabled) {
   color: main.color(paper) !important;
+}
+
+::ng-deep button.mat-fab.next-middle-btn {
+  position: absolute;
+  transform: translateY(-3.5rem);
+
+  .mat-button-wrapper {
+    line-height: main.spacing(2) !important;
+  }
 }

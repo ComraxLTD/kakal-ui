@@ -2,11 +2,8 @@ import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@an
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineService, RowActionModel, TableBase, StatusBars, CardLobbyModel, CardStepModel, CardStatusModel, CardFilter, MenuCard, Panel, GridProps, NavbarBottomService, StepsSelectionEvent, RouterService, ButtonModel } from '../../../kakal-ui/src/public-api';
 import heLocale from '@fullcalendar/core/locales/he';
-import { PageHeadline } from '../../../kakal-ui/src/lib/page-headline/page-headline.model';
 import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-root',
@@ -70,7 +67,7 @@ export class AppComponent {
 
   ngOnInit(): void {
     // inserting the data from the server into the table
-    
+
     // initializing the form
     this.formGroup = new FormGroup({})
   }

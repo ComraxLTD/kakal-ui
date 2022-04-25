@@ -24,3 +24,17 @@
     overflow-x: hidden;
   }
 }
+
+// style bottom navbar
+.navbar-bottom {
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  height: main.$bottomBar-height;
+  z-index: 100;
+  // overflow: hidden;
+  // & * {
+  //   overflow: hidden;
+  // }
+}
+
