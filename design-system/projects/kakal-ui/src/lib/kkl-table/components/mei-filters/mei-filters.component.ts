@@ -12,7 +12,10 @@ export class MeiFiltersComponent implements OnInit {
 
   @Input() formGroup!: FormGroup;
 
-  @Input() controls: TableBase[];
+  _controls: TableBase[];
+  @Input() set controls(val: TableBase[]) {
+    this._controls = val.filter((value, index, self) => self.findIndex(b => b.key === value.key) === index);
+  }
 
   @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
