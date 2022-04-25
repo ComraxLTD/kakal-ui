@@ -20,4 +20,4 @@ import { NavbarBottomDirective } from './navbar-bottom.directive';
   declarations: [NavbarBottomComponent, NavbarBottomDirective],
   exports: [NavbarBottomComponent, NavbarBottomDirective],
 })
-export class NavbarBottomModule {}
+export class KKLNavbarBottomModule {}

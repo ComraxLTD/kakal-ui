@@ -70,7 +70,7 @@ import { KKLStepsAccordionModule } from './layouts/steps-accordion-layout/steps-
 import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/advanced-search-layout.module';
 
 import { KKLNavbarModule } from './navbar/navbar.module';
-import { NavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
+import { KKLNavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { KKLStepperModule } from './stepper/stepper.module';
 import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
@@ -189,7 +189,7 @@ registerLocaleData(he);
 
     // NAVBAR
     KKLNavbarModule,
-    NavbarBottomModule,
+    KKLNavbarBottomModule,
 
     // STEPPER
     KKLStepperModule,
@@ -285,7 +285,7 @@ registerLocaleData(he);
 
     // NAVBAR
     KKLNavbarModule,
-    NavbarBottomModule,
+    KKLNavbarBottomModule,
 
     // GRIDS
     KKLDocumentGridModule,

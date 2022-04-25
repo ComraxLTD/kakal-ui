@@ -28,29 +28,27 @@ export class SumInputDirective {
 
     transform(value: string): string {
       if (!value) return "";
-      return Number(value).toLocaleString();
-      // if(value.startsWith('-')) {
-      //   let trimLocation = value.indexOf('.'); // Remove non-digits and trim
-      //   return '-' + value.substring(1, trimLocation) + value.substring(trimLocation);
-      // } else {
-      //   let trimLocation = value.indexOf('.'); // Remove non-digits and trim
-      //   return value.substring(0, trimLocation) + value.substring(trimLocation)
-      // }
+      // return Number(value).toLocaleString();
+      if(value.startsWith('-')) {
+        const last = value.lastIndexOf('.') == -1? value.length : value.lastIndexOf('.');
+        return '-' + Number(value.substring(1, last)).toLocaleString() + value.substring(last);
+      } else {
+        const last = value.lastIndexOf('.') == -1? value.length : value.lastIndexOf('.');
+        return Number(value.substring(0, last)).toLocaleString() + value.substring(last);
+      }
     }
 
     private run(oldValue) {
         setTimeout(() => {
-            let currentValue: string = this.el.nativeElement.value;
+            let currentValue: string = this.el.nativeElement.value.replace(/\,/g, '');
             if (currentValue !== '' && !this.check(currentValue)) {
                 this.el.nativeElement.value = oldValue;
                 this.control.control.setValue(oldValue);
             }
-            // else {
-            //   console.log('kjkj');
-
-            //   this.el.nativeElement.value = this.transform(currentValue);
-            //   this.control.control.setValue(this.el.nativeElement.value);
-            // }
+            else {
+              this.el.nativeElement.value = this.transform(currentValue);
+              this.control.control.setValue(this.el.nativeElement.value);
+            }
         });
     }
 

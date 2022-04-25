@@ -1,4 +1,4 @@
-<kkl-steps-layout [manual]="false" [actions]="actions" [steps]="steps">
+<kkl-steps-layout [actions]="actions" [steps]="steps">
   <!-- the changing content of the stepper layout -->
   <div content>
     <router-outlet></router-outlet>
@@ -7,7 +7,5 @@
   <!-- the footer of the stepper layout -->
   <kkl-navbar-bottom
     bottom-navbar
-    [manual]="false"
-    (save)="onSave()"
   ></kkl-navbar-bottom>
 </kkl-steps-layout>

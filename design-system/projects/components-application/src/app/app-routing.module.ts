@@ -8,13 +8,13 @@ const routes: Routes = [
     // component: AppComponent,
     // data: { breadcrumb: 'דף הבית', homepage: true },
     children: [
-      {
-        path: '',
-        loadChildren: () =>
-          import('./committee/committee.module').then(
-            (m) => m.CommitteeModule
-          ),
-      },
+      // {
+      //   path: '',
+      //   loadChildren: () =>
+      //     import('./committee/committee.module').then(
+      //       (m) => m.CommitteeModule
+      //     ),
+      // },
     ],
   },
   // { path: 'details', component: DetailsComponent },

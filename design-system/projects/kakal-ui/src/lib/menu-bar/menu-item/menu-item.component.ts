@@ -12,8 +12,8 @@ export interface MenuSelectEvent {
   /** The card instance now selected. */
   selectCard: MenuItem;
 
-  /** Index of the step now selected. */
-  selectedIndex: number;
+  /** The card index now selected. */
+  selectedIndex :number
 }
 
 @Component({

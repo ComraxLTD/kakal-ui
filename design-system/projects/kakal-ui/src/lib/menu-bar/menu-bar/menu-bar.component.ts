@@ -19,7 +19,7 @@ export interface MenuChangedEvent {
 export class MenuBarComponent implements OnInit {
   @Input() items: MenuItem[];
 
-  @Output() menuChanged: EventEmitter<MenuChangedEvent> = new EventEmitter();
+  @Output() selectionChanged: EventEmitter<MenuChangedEvent> = new EventEmitter();
 
   constructor() {}
 
@@ -27,6 +27,10 @@ export class MenuBarComponent implements OnInit {
 
   onCardSelect(selectEvent: MenuSelectEvent): void {
     const event: MenuChangedEvent = { source: this.items, event: selectEvent };
-    this.menuChanged.emit(event);
-  }
+    this.selectionChanged.emit(event);
+
+  // onCardSelect(card: MenuCard): void {
+  //   this.menuSelected.emit(card);
+  // }
+}
 }
