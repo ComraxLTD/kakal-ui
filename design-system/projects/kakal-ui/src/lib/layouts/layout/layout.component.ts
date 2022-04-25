@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { RouterService, BreakpointService } from '../../../services/services';
 import { PageHeadlineService } from '../../page-headline/page-headline.service';
 import { PageHeadline } from '../../page-headline/page-headline.component';
-import { MenuItem } from '../../menu-bar/menu-item/menu-item.component';
+import { MenuItem, MenuSelectEvent } from '../../menu-bar/menu-item/menu-item.component';
 
 import { CardStatus } from '../../cards/card-status/card-status.model';
 import { map, startWith } from 'rxjs/operators';
@@ -28,7 +28,7 @@ export class LayoutComponent implements OnInit {
   mobile$: Observable<boolean>;
 
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
-  @Output() menuSelected: EventEmitter<MenuItem> = new EventEmitter();
+  @Output() menuSelected: EventEmitter<MenuSelectEvent> = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
@@ -59,7 +59,7 @@ export class LayoutComponent implements OnInit {
     this.logoClicked.emit();
   }
 
-  onMenuSelected(event : MenuItem) {
+  onMenuSelected(event : MenuSelectEvent) {
     this.sidenav.close();
     this.menuSelected.emit(event);
   }

@@ -139,7 +139,7 @@ kkl-navigation
 
 - remove kkl-menu and kkl-menu-items
 
-kkl-menu-card
+kkl-menu-item
 
 1. change to kkl-menu-item 
 2. change interface to MenuItem
