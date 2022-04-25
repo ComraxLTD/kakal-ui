@@ -251,7 +251,7 @@ export class LocalTableComponent implements OnInit {
     }
   }
 
-  buttonClick(butt: RowActionModel, obj:any) {
+  buttonClick(butt: RowActionModel, obj:any, key: string) {
     if(normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
@@ -273,7 +273,7 @@ export class LocalTableComponent implements OnInit {
       }
       this.groupDataReload();
     } else {
-      this.actionClicked.emit({action: butt.type, row: obj});
+      this.actionClicked.emit({action: butt.type, row: obj, key: key});
     }
   }
 

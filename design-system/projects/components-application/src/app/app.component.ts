@@ -1,7 +1,13 @@
 import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineService, RowActionModel, TableBase, StatusBars, CardLobbyModel, CardStepModel, CardStatusModel, CardFilter } from '../../../kakal-ui/src/public-api';
+import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineService, RowActionModel, TableBase, StatusBars, CardLobbyModel, CardStepModel, CardStatusModel, CardFilter, MenuCard, Panel, GridProps, NavbarBottomService, StepsSelectionEvent, RouterService, ButtonModel } from '../../../kakal-ui/src/public-api';
 import heLocale from '@fullcalendar/core/locales/he';
+import { PageHeadline } from '../../../kakal-ui/src/lib/page-headline/page-headline.model';
+import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -9,581 +15,165 @@ import heLocale from '@fullcalendar/core/locales/he';
 })
 export class AppComponent {
 
-  // iles!: any[];
+  // array for vertical steps layout
+  public steps: Step[] = [
+    { key: 'filterForm', label: 'First Step Headline' },
+    { key: 'groupForm', label: 'Second Step Headline' },
+    { key: 'filterForm', label: 'Third Step Headline' },
+    { key: 'groupForm', label: 'Forth Step Headline' },
+  ];
 
+  // array for panel layout
+  public panels: Panel[] = [
+    { key: 'filterForm', label: 'First Expand Panel Headline' },
+    { key: 'groupForm', label: 'Second Expand Panel Headline' },
+  ];
 
-  // public control: FormControl = new FormControl();
+  // whet set to false present steps ui, when set to true present accordion ui
+  complete$!: BehaviorSubject<boolean>;
 
+  // set manuel to true to disable vertical-steps self navigation
+  manuel: boolean = true;
 
+  // use selectIndex to navigate to desired step index
+  selectedIndex!: number;
 
-
-  // updateFiles(formEvent: FormChangeEvent) {
-  //   const { value } = formEvent;
-  //   console.log(value);
-  // }
-
-  // options:OptionsModel[] = [
-  //   {
-  //     //this key should be the same
-  //     key: 'firstQuestion',
-  //     val: [
-  //       { label: 'initial option1', value: 0 },
-  //       { label: 'initial option2', value: 1, },
-  //       { label: 'initial option3', value: 2,  },
-  //       { label: 'initial option4', value: 3,selected:true},
-  //     ],
-  //   },
-  //   {
-  //     //this key should be the same
-  //     key: 'secondQuestion',
-  //     val: [
-  //       { label: 'test1', value: 1,  },
-  //       { label: 'test2', value: 3, disabled: true },
-  //       { label: 'test3', value: 2, selected: true },
-  //     ],
-  //   },
-  // ]
-
-  // formGroup = new FormGroup({});
-
-  // questions: ControlBase[] = [
-  //   // {
-  //   //   key: 'first',
-  //   //   controlType: 'select',
-  //   //   options: 'firstQuestion',
-  //   //   multi: true,
-  //   //   label: 'בחירה ראשונה',
-  //   // },
-  //   // {
-  //   //   key: 'second',
-  //   //   controlType: 'select',
-  //   //   options: 'secondQuestion',
-  //   //   multi: false,
-  //   //   label: ' בחירה שניה',
-  //   //   // disabled: true
-  //   //   //,
-  //   // },
-  //   {
-  //     key: 'autocomplete',
-  //     controlType: 'autocomplete',
-  //     options: 'firstQuestion',
-  //     multi: true,
-  //     label: 'local autocomplete',
-  //     // disabled: true
-  //     //,
-  //   },
-  //   // {
-  //   //   key: 'currency',
-  //   //   controlType: 'currency'
-  //   // }
-  // ];
-
-  // dataSource: any[] = [
-  //   {
-  //     committeeId: 'wtwrt',
-  //     remiTikimCount: 'werwsfwe',
-
-  //   }
-  // ]
-
-  // rowActions: RowActionModel[] = [
-  //   {
-  //     type: 'inlineEdit',
-  //     icon: 'edit',
-  //     label: 'Edit'
-  //   },
-  //   {
-  //     type: 'inlineDelete',
-  //     icon: 'cancel',
-  //     label: 'Delete'
-  //   },
-  //   {
-  //     type: 'visibility',
-  //     icon: 'visibility',
-  //     label: 'Show'
-  //   },
-  // ]
-
-
-  // columns: TableBase[] = [
-  //   { key: 'committeeId', label: 'Id', controlType: 'number',},
-  //   { key: 'remiTikimCount', label: 'remiTikimCount', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
-  //   { key: 'committeeDate', label: 'תאריך', controlType: 'date', },
-  // ];
-
-  // editData =  'ert'
-  // //{
-  //   //select: { label: 'editData', value: 88 }
-  // //}
-
-  // constructor() { }
-
-  // ngOnInit() {
-  //   setTimeout(() => {
-  //     this.columns = [
-  //       { key: 'committeeId', label: 'Id mm', controlType: 'number',},
-  //       { key: 'remiTikimCount', label: 'remiTikimCount mm', controlType: 'number', button: {type: 'inlineExpand', icon: 'expand'}},
-  //       { key: 'committeeDate', label: 'תאריך  mm', controlType: 'date', },
-  //     ];
-  //     console.log(this.formGroup);
-  //     console.log(this.control.value);
-
-  //     this.questions = this.questions.concat([{
-  //       key: 'time',
-  //       controlType: 'time'
-  //     }])
-  //     // this.editData = { number: 65657 };
-  //   }, 4000);
-  // }
-
-  // onQueryChanged(event:any) {
-  //   console.log(event);
-  // }
-
-  // onSelectChanged(event:any) {
-  //   console.log(event);
-
-  //   if (event.key === 'first') {
-  //     this.options = [
-  //       {
-  //         //this key should be the same
-  //         key: 'firstQuestion',
-  //         val: [
-  //           { label: 'server option1', value: 0 },
-  //           { label: 'server option2', value: 2,  selected: true},
-  //           { label: 'server option3', value: 3, },
-  //         ],
-  //       },
-  //       {
-  //         //this key should be the same
-  //         key: 'secondQuestion',
-  //         val: [
-  //           { label: 'test1', value: 1 },
-  //           { label: 'test2', value: 3, selected: true },
-  //           { label: 'test3', value: 2},
-  //         ],
-  //       },
-  //     ];
-  //   }
-  // }
-
-  // onOpenChanged(event:any) {
-  //   console.log(event);
-
-  // }
-
-  // onValueChanged(event:any) {
-  //   console.log(event);
-
-  // }
-
-  // data  = [{label:'בדיקה',value:5},{label:'test',value:'test' , icon:'tree'}]
-
-  // constructor() { }
-
-  // iconComponent = IconComponent;
-  // iconsData = [
-  //   {key:'search',color:'primary',size:5},
-  //   {key:'edit',size:2},
-  //   // {key:'keyboard_arrow_down',color:'accent'},
-  //   // {key:'calendar'},
-  // ]
-  // component = CardInfoComponent;
-  // cards = [
-  //   {
-  //     svgIcon: 'search',
-  //     label: '1',
-  //     subLabel: 'sub label',
-  //   },
-  //   {
-  //     svgIcon: 'search',
-  //     label: '2',
-  //     subLabel: 'sub label',
-  //   }, {
-  //     svgIcon: 'search',
-  //     label: '3',
-  //     subLabel: 'sub label',
-  //   }, {
-  //     svgIcon: 'search',
-  //     label: '4',
-  //     subLabel: 'sub label',
-  //   }, {
-  //     svgIcon: 'search',
-  //     label: '5',
-  //     subLabel: 'sub label',
-  //   },{
-  //     svgIcon: 'search',
-  //     label: '6',
-  //     subLabel: 'sub label',
-  //   },
-  // ]
+  // constructor() {}
 
   // ngOnInit(): void {
-  // }
-  // testArr: any[] = ['test', 'test2', 'test3'];
-  // selected!: string;
-  // customSelected!: string;
-  // constructor() { }
-
-  // ngOnInit(): void {
-  // }
-  // updateOption(option: any) {
-  //   this.selected = option;
-  // }
-  // updateCustomOption(option: any) {
-  //   this.customSelected = option;
+  //   this.complete$ = new BehaviorSubject<boolean>(false);
   // }
 
-  // @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
-  // // @ViewChild('testTemplate', { read: TemplateRef, static: true }) testTemplate!: TemplateRef<any>;
+  toggleComplete() {
+    const complete = this.complete$.getValue();
+    this.complete$.next(!complete);
+  }
 
-  // constructor(private motionService: OpenMotionService) { }
+  // fire when clicked on stepper-header
+  onStepSelect(event: any) {
+    const { selectedIndex } = event;
 
-  // ngOnInit(): void {
-  // }
-
-  // onClick(template:TemplateRef<any>) {
-  //   this.motionService.createDynamicSideNav(this.container, 'test', template);
-  // }
-
-  // status: StatusBars = {
-  //   label: 'statusBars',
-  //   authorizedBars: 3,
-  //   totalBars: 6,
-  // };
-  // headlineItems: PageHeadlineModel[] = [
-  //   { value: 'אקליפטוס יער', },
-  //   { value: 'אקליפטוס ', },
-  //   { value:this.status, status:true },
-  //   { value: new Date(), format:'date'},
-  // ];
-
-  // headlineItems2: PageHeadlineModel[] = [
-  //   { value: 'אקליפטוס יgggער', },
-  //   { value: 'אקליפטgggוס ', },
-  //   { value:this.status, status:true },
-  //   { value: new Date(), format:'date'},
-  // ];
-  // expression = true;
-
-  // constructor(private pageHeadlineService: PageHeadlineService) {}
-  // ngOnInit(): void {
-  //   // this.headlineItems = this.headlineItems.map((item, index) => ({
-  //   //   ...item,
-  //   //   size: index != 0 ? 1.8 : 2.9,
-  //   // }));
-  //   this.pageHeadlineService.emitPageHeadlineItems(this.headlineItems);
-  //   setTimeout(() => {
-  //     this.pageHeadlineService.addPageHeadlineItems(this.headlineItems2);
-  //     this.expression = false;
-  //   }, 1000);
-
-  //   setTimeout(() => {
-  //     this.expression = true;
-  //   }, 5000);
-
-  // }
+    // optional - write logic to validate navigation
+    if ((selectedIndex + 1) % 2 === 0) {
+      // set selectedIndex with the index of the step you want to navigate to
+      this.selectedIndex = selectedIndex;
+    }
+  }
 
 
+  dataSource!: any[];
 
+  // the form group which interacts with both the advanced search and the table
+  formGroup!: FormGroup;
 
-  // iconComponent = IconComponent;
-  // iconsData = [
-  //   {key:'search',color:'primary',size:5},
-  //   {key:'edit',size:2},
-  //   {key:'keyboard_arrow_down',color:'accent'},
-  //   {key:'calendar'}
-  // ]
-  // component = CardInfoComponent;
-  // cards = [
-  //   {
-  //     svgIcon: 'search',
-  //     label: '1',
-  //     subLabel: 'sub label',
-  //   },
-  //   {
-  //     svgIcon: 'search',
-  //     label: '2',
-  //     subLabel: 'sub label',
-  //   }, {
-  //     svgIcon: 'search',
-  //     label: '3',
-  //     subLabel: 'sub label',
-  //   }, {
-  //     svgIcon: 'search',
-  //     label: '4',
-  //     subLabel: 'sub label',
-  //   }, {
-  //     svgIcon: 'search',
-  //     label: '5',
-  //     subLabel: 'sub label',
-  //   },{
-  //     svgIcon: 'search',
-  //     label: '6',
-  //     subLabel: 'sub label',
-  //   },
-  // ]
+  constructor() { }
 
-  // @ViewChild('calendar', { static: true }) myCalendarComponent:any;
+  ngOnInit(): void {
+    // inserting the data from the server into the table
+    
+    // initializing the form
+    this.formGroup = new FormGroup({})
+  }
 
+  // the columns of the table
+  columns: TableBase[] = [
+    { key: 'id', label: 'Id', controlType: 'number'},
+    { key: 'name', label: 'Name', controlType: 'text'},
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number'},
+    { key: 'occupation', label: 'Occupation', controlType: 'text'},
+    { key: 'city', label: 'עיר', controlType: 'select'},
+    { key: 'dob', label: 'תאריך', controlType: 'date'}
+  ];
 
-  // eventClicked(event:any) {
-  //   console.log(event);
-  // }
+  // much like the kkl-form, gridProps are an optional input for adjusting the layout of the advanced search
+  gridProps: GridProps = {
+    // make sure you add buttonCols, to add a place for the button within the advanced search
+    buttonCols: 1
+  }
 
-  // arr = [
-  //   {
-  //     backgroundColor: "#F0F6FE",
-  //     start: this.todayDate(),
-  //     // end: "2022-04-10T09:00",
-  //     editable: true,
-  //     svg: "tree",
-  //     textColor: "black",
-  //     title: "מגרש ספורט",
-  //     type: "facility",
-  //   },
-  //   {
-  //     backgroundColor: "#F0F6FE",
-  //     start: this.todayDate() + "T08:00",
-  //     end: this.todayDate() + "T09:00",
-  //     editable: true,
-  //     svg: "tree",
-  //     textColor: "black",
-  //     title: "מגרש ספורט",
-  //     type: "facility"
-  //   },
-  //   {
-  //     backgroundColor: "#F0F6FE",
-  //     start: this.todayDate() + "T09:00",
-  //     end: this.todayDate() + "T10:00",
-  //     editable: true,
-  //     // svg: "tree",
-  //     textColor: "black",
-  //     title: "מגרש ספורט",
-  //     type: "activity"
-  //   }
-  // ]
+  // the text of the button within the advanced search
+  buttonLabel: string = 'שמור'
 
-  // constructor() { }
+  // to be deleted next version
+  tableFilters: ControlBase[] = [];
 
-  // ngOnInit(): void {
-  // }
-
-  // todayDate():string {
-  //   const date = new Date();
-  //   let day:string | number = date.getMonth() +1;
-  //   if(day.toString().length == 1) day = `0${day}`;
-  //   return `${date.getFullYear()}-${day}-${date.getDate()}`;
-  // }
+  controls: ControlBase[] = [
+    // the first input of the advanced search is always visible, so it does not add a chip, but it is still interacting with the table
+    { key: 'occupation', label: 'Occupation', controlType: 'text'},
+    { key: 'id', label: 'Id', controlType: 'number'},
+    { key: 'name', label: 'Name', controlType: 'text'},
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number'},
+    { key: 'city', label: 'עיר', controlType: 'select'},
+    { key: 'dob', label: 'תאריך', controlType: 'date'}
+  ];
 
   options: OptionsModel[] = [
     {
       //this key should be the same
       key: 'firstQuestion',
       val: [
-        { label: 'initial option1', value: 0 },
-        { label: 'initial option2', value: 1 },
-        { label: 'initial option3', value: 2 },
-        { label: 'initial option4', value: 3, selected: true },
+        { label: 'first select option1', value: 0, },
+        { label: 'first select option2', value: 1, disabled: true },
+        { label: 'first select option3', value: 2, },
+        { label: 'first select option4', value: 3, },
       ],
     },
     {
       //this key should be the same
       key: 'secondQuestion',
       val: [
-        { label: 'test1', value: 1 },
-        { label: 'test2', value: 3, disabled: true },
-        { label: 'test3', value: 2, selected: true },
+        { label: 'second select option1', value: 1 },
+        { label: 'second select option2', value: 2 },
+        { label: 'second select option3', value: 3 },
+      ],
+    },
+    {
+      //this key should be the same
+      key: 'firstAutocomplete',
+      val: [
+        { label: 'A first autocomplete option1', value: 1 },
+        { label: 'B first autocomplete option2', value: 2 },
+        { label: 'C first autocomplete option3', value: 3 },
+      ],
+    },
+    {
+      //this key should be the same
+      key: 'secondAutocomplete',
+      val: [
+        { label: 'A second autocomplete option1', value: 1 },
+        { label: 'B second autocomplete option2', value: 2 },
+        { label: 'C second autocomplete option3', value: 3 },
       ],
     },
   ];
 
-  formGroup = new FormGroup({});
-
-  questions: ControlBase[] = [
-    // {
-    //   key: 'first',
-    //   controlType: 'select',
-    //   options: 'firstQuestion',
-    //   multi: true,
-    //   label: 'בחירה ראשונה',
-    //   // disabled: true
-    // },
-    // {
-    //   key: 'second',
-    //   controlType: 'select',
-    //   options: 'secondQuestion',
-    //   multi: false,
-    //   label: ' בחירה שניה',
-    //   // disabled: true
-    //   //,
-    // },
-    {
-      key: 'autocomplete',
-      controlType: 'autocomplete',
-      options: [
-        { label: 'test', value: 0 },
-        { label: 'test1', value: 1 },
-        { label: 'test2', value: 2 },
-        { label: 'test3', value: 3 },
-      ],
-      // multi: true,
-      label: 'local autocomplete',
-      // disabled: true
-      //,
-    },
-    {
-      key: 'date',
-      controlType: 'text',
-      label: 'coungdh',
-      icon: 'add',
-      placeHolder: 'jfhdhdfh'
-    },
-  ];
-
-  editData =  'ert'
-  //{
-    //select: { label: 'editData', value: 88 }
-  //}
-
-  constructor() {}
-
-  ngOnInit() {
-    setTimeout(() => {
-      console.log(this.formGroup);
-      // this.steps = [
-      //   {
-      //     label: 'פרטי ההתקשרות',
-      //     svgIcon: 'contact',
-      //     path: 'details',
-      //     // size: 3,
-      //     // variant: 'circle',
-      //     // type: 'step',
-
-      //     // isActive: true,
-      //     disabled: true
-      //   },
-      //   {
-      //     label: 'בניית הצעת מחיר',
-      //     svgIcon: 'offer',
-      //     path: 'bid',
-      //     // size: 3,
-      //     // variant: 'circle',
-      //     // type: 'step',
-      //     selected: true
-      //   },
-      //   {
-      //     label: 'בחירת ספקים',
-      //     svgIcon: 'send_mail',
-      //     path: 'supplier',
-      //     // size: 3,
-      //     // variant: 'circle',
-      //     // type: 'step',
-      //     selected: true
-      //   },
-      //   {
-      //     label: 'ספק זוכה',
-      //     svgIcon: 'medal',
-      //     path: 'winning',
-      //     // size: 3,
-      //     // variant: 'circle',
-      //     // type: 'step',
-      //     selected: true
-      //   },
-      // ];
-      // this.questions = this.questions.concat([
-      //   {
-      //     key: 'time',
-      //     controlType: 'time',
-      //   },
-      // ]);
-      // this.editData = { number: 65657 };
-    }, 4000);
-  }
-
-  onQueryChanged(event: any) {
+  onOpenChanged(event: any){
+    console.log('onOpenChanged');
     console.log(event);
   }
 
-  onSelectChanged(event: any) {
-    // if (event.key === 'first') {
-    //   this.options = [
-    //     {
-    //       //this key should be the same
-    //       key: 'firstQuestion',
-    //       val: [
-    //         { label: 'server option1', value: 0 },
-    //         { label: 'server option2', value: 2, selected: true },
-    //         { label: 'server option3', value: 3 },
-    //       ],
-    //     },
-    //     {
-    //       //this key should be the same
-    //       key: 'secondQuestion',
-    //       val: [
-    //         { label: 'test1', value: 1 },
-    //         { label: 'test2', value: 3, selected: true },
-    //         { label: 'test3', value: 2 },
-    //       ],
-    //     },
-    //   ];
-    // }
-  }
-
-  onOpenChanged(event: any) {
+  onQueryChanged(event: any){
+    console.log("onQueryChanged");
     console.log(event);
   }
 
+  onSelectChanged(event: any){
+    console.log("onSelectChanged");
+    console.log(event);
+  }
 
+  onValueChanged(event: any){
+    console.log("onValueChanged");
+    console.log(event);
+  }
 
+  onFocusChanged(event: any){
+    console.log("onFocusChanged");
+    console.log(event);
+  }
 
-
-  steps: CardStepModel[] = [
-    {
-      label: 'פרטי ההתקשרות',
-      svgIcon: 'contact',
-      path: 'details',
-      // size: 3,
-      // variant: 'circle',
-      // type: 'step',
-
-      // isActive: true,
-      disabled: true
-    },
-    {
-      label: 'בניית הצעת מחיר',
-      svgIcon: 'offer',
-      path: 'bid',
-      // size: 3,
-      // variant: 'circle',
-      // type: 'step',
-      selected: true
-    },
-    {
-      label: 'בחירת ספקים',
-      svgIcon: 'send_mail',
-      path: 'supplier',
-      // size: 3,
-      // variant: 'circle',
-      // type: 'step',
-    },
-    {
-      label: 'ספק זוכה',
-      svgIcon: 'medal',
-      path: 'winning',
-      // size: 3,
-      // variant: 'circle',
-      // type: 'step',
-    },
-  ];
-
-  card: CardFilter = {
-    label: 'שם הכרטיס', // label inside card
-    value: 2, // number inside card
-    svgIcon: 'search', // svg key
-  };
-  onCardClick() {
-    console.log('kgjjfh');
-
+  onSubmitEvent(event: any){
+    console.log("onSubmitEvent");
+    console.log(event);
   }
 }

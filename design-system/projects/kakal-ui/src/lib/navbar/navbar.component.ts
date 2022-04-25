@@ -24,13 +24,11 @@ export class NavbarComponent implements OnInit {
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
   @Input() showStatus$: Observable<boolean>;
-  @Input() pageHeadline$: Observable<PageHeadline[]>;
 
   openIcon: string = 'tree_gradient_';
   status$: Observable<CardStepModel[]>;
   mobile$: Observable<boolean>;
-  toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  
   openLabel: string = 'תפריט';
   closeLabel: string = 'סגור תפריט';
 
@@ -53,11 +51,11 @@ export class NavbarComponent implements OnInit {
     return this.openIcon + this.rootPrefix;
   }
 
-  public toggleMenu() {
+  toggleMenu() {
     this.menuToggle.emit();
   }
 
-  public onLogoClick() {
+  onLogoClick() {
     this.logoClicked.emit();
   }
 }

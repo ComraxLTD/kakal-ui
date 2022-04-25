@@ -23,14 +23,10 @@ export class AccordionLayoutComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   @Input() panels: Panel[];
-  @Input() accordionState: AccordionState;
-  @Input() buttonLabel: string;
+  @Input() buttonLabel: string ="jhj";
   @Input() templates: { [key: string]: TemplateRef<any> };
 
-  accordionState$: Observable<AccordionState>;
-
-  @Output() closed: EventEmitter<void> = new EventEmitter();
-  @Output() opened: EventEmitter<void> = new EventEmitter();
+  @Output() actionClicked: EventEmitter<void> = new EventEmitter();
 
   sizeIndexMap: { [key: number]: number } = {
     0: 2,
@@ -41,22 +37,17 @@ export class AccordionLayoutComponent implements OnInit {
     0: 600,
   };
 
-  constructor(private accordionDataSource: AccordionDataSource) {}
+  constructor() {}
 
   ngOnInit(): void {
-    console.log(this.templates)
-    this.accordionState$ = this.accordionDataSource.listen();
   }
 
-  public onPanelClosed() {
-    this.closed.emit();
-  }
-
-  public onPanelOpen() {
-    this.opened.emit();
-  }
 
   public expandAll(changeEvent: MatCheckboxChange) {
     changeEvent.checked ? this.accordion.openAll() : this.accordion.closeAll();
+  }
+
+  onClick() {
+    this.actionClicked.emit();
   }
 }
