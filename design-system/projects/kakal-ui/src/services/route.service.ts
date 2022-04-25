@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
-import { CardStepModel } from '../public-api';
+import { CardStepModel } from '../lib/cards/card-step/card-step.model'
 
 @Injectable({
   providedIn: 'root',
