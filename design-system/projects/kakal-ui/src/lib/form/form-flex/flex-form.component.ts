@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormChangeEvent } from '../models/form.options';
-import { OptionMap } from '../models/form.types';
+import { FormActions, OptionMap } from '../models/form.types';
 import { FormGrid } from '../models/question.types';
 import { Question } from '../services/form.service';
 
@@ -35,16 +35,13 @@ export class FormFlexComponent implements OnInit {
 
   // default inputs in row
 
-  @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();
+  @Output() submitEvent: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  @Output() public formChangeEvent: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
+  @Output() formChangeEvent: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  @Output() public openChanged: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
+  @Output() openChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
-  @Output() public focusChanged: EventEmitter<FormChangeEvent> =
-    new EventEmitter();
+  @Output() focusChanged: EventEmitter<FormChangeEvent> = new EventEmitter();
 
   constructor() {}
 
@@ -57,8 +54,11 @@ export class FormFlexComponent implements OnInit {
     this.buttonLabel = this.grid?.button?.label || 'שמור';
   }
 
-  public onSubmit() {
-    this.submitEvent.emit(this.formGroup);
+  onSubmit() {
+    this.submitEvent.emit({
+      value: this.formGroup,
+      action: FormActions.SUBMIT,
+    } as FormChangeEvent);
   }
 
   public onFormChanged(event: FormChangeEvent) {
