@@ -1,40 +1,13 @@
 <kkl-layout>
-  <ng-container content>
-    <div fxLayout="column" fxLayoutGap="5rem">
-      <!-- SIMPLE STEPPER -->
-      <kkl-page title="Steps Accordion Layout">
-        <div fxLayout="column" fxLayoutGap="3rem">
-          <kkl-steps-accordion-layout
-            fxFill
-            [panels]="panels"
-            [steps]="steps"
-            [templates]="{filterForm, groupForm}"
-          ></kkl-steps-accordion-layout>
-          <!-- [complete$]="complete$" -->
-          <div>
-            <button (click)="toggleComplete()" mat-raised-button>
-              toggle complete
-            </button>
-          </div>
-        </div>
-      </kkl-page>
 
-      <!-- MANUEL STEPPER -->
-    </div>
-  </ng-container>
-
-  <!-- templates for layouts -->
-  <ng-template #filterForm> First Content </ng-template>
-
-  <ng-template #groupForm> Second Content </ng-template>
-
-  <kkl-advanced-search
+  <kkl-local-advanced-search
     [grid]="gridProps"
     [buttonLabel]="buttonLabel"
     [formGroup]="formGroup"
-    [controls]="controls"
+    [columns]="controls"
     [options]="options"
-    [tableFilters]="tableFilters"
+    [dataSource]="dataSource"
+    [searchControls]="tableFilters"
     (openedChange)="onOpenChanged($event)"
     (queryChanged)="onQueryChanged($event)"
     (selectChanged)="onSelectChanged($event)"
@@ -42,6 +15,6 @@
     (focusChanged)="onFocusChanged($event)"
     (submitEvent)="onSubmitEvent($event)"
   >
-  </kkl-advanced-search>
+  </kkl-local-advanced-search>
 
 </kkl-layout>

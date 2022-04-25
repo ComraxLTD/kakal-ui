@@ -41,8 +41,13 @@ export class LocalAdvancedSearchComponent implements OnInit {
   myQuestions!: TableBase[];
   allSearch!: TableBase[];
   @Input() set searchControls(val: TableBase[]) {
-    this.myQuestions = val.slice(1);
-    this.allSearch = val;
+    if(val?.length) {
+      this.myQuestions = val.slice(1);
+      this.allSearch = val;
+    } else {
+      this.myQuestions = null;
+      this.allSearch = null;
+    }
   }
 
   myOptions: OptionsModel[] = [];
@@ -113,18 +118,21 @@ export class LocalAdvancedSearchComponent implements OnInit {
   }
 
   onToggleChange(event) {
+    this.localTable.searchFiltersChanged(this.allSearch);
     this.selectChanged.emit(event);
   }
   onQueryChanged(event) {
     this.queryChanged.emit(event);
   }
   onSelectChanged(event) {
+    this.localTable.searchFiltersChanged(this.allSearch);
     this.selectChanged.emit(event);
   }
   onOpenedChange(event) {
     this.openedChange.emit(event);
   }
   onValueChanged(event) {
+    this.localTable.searchFiltersChanged(this.allSearch);
     this.valueChanged.emit(event);
   }
   onFocusChanged(event) {

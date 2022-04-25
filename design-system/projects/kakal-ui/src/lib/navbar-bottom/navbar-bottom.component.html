@@ -17,23 +17,25 @@
     </div>
   </div>
   <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
-    <ng-container *ngIf="(showNextMiddle$ | async).show">
-      <button
-        class="next-middle-btn"
-        mat-fab
-        [disabled]="!formGroup.valid"
-        color="primary"
-        (click)="onNextMiddle()"
-      >
-        <span>
-          <ng-container *ngIf="(showNextMiddle$ | async).next; else saveTemp">{{
-            nextLabel || "המשך"
-          }}</ng-container>
-          <ng-template #saveTemp>{{ "שמור" }}</ng-template>
-        </span>
-        <br />
-        <mat-icon>expand_more</mat-icon>
-      </button>
+    <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
+      <ng-container *ngIf="nextMiddle.show">
+        <button
+          class="next-middle-btn"
+          mat-fab
+          [disabled]="!formGroup.valid"
+          color="primary"
+          (click)="onNextMiddle()"
+        >
+          <span>
+            <ng-container *ngIf="nextMiddle.next; else saveTemp">{{
+              nextLabel || "המשך"
+            }}</ng-container>
+            <ng-template #saveTemp>{{ "שמור" }}</ng-template>
+          </span>
+          <br />
+          <mat-icon>expand_more</mat-icon>
+        </button>
+      </ng-container>
     </ng-container>
 
     <kkl-icon
@@ -56,7 +58,7 @@
       <button
         class="kkl-next-button"
         mat-raised-button
-        [disabled]="(disableNext$ | async) || !formGroup.valid"
+        [disabled]="disableNext$ | async"
         color="primary"
         (click)="onNext()"
       >
@@ -67,7 +69,7 @@
   </div>
 </mat-toolbar>
 
-<ng-container *ngIf="(showNextMiddle$ | async).show">
+<!-- <ng-container *ngIf="(showNextMiddle$ | async).show">
   <button
     class="kkl-next-button"
     mat-raised-button
@@ -80,4 +82,4 @@
     }}</ng-container>
     <ng-template #saveTemp>{{ "שמור" }}</ng-template>
   </button>
-</ng-container>
+</ng-container> -->
