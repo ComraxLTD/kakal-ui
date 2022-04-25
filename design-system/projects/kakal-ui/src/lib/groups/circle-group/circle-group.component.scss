@@ -26,11 +26,14 @@ div.kkl-step {
   }
 }
 .divider-wrapper {
-  height: 5rem;
+  height: 6rem;
+
+  padding: main.spacing(1);
+  // padding-bottom: main.spacing(1);
   .divider {
-    height: 5rem;
-    margin : auto;
-    background-color: #ececec;
+    height: inherit;
+    margin: auto;
+    background-color: main.color(default);
     width: 0.2rem;
   }
 }
