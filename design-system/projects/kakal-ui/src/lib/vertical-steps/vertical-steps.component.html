@@ -2,30 +2,19 @@
 <mat-vertical-stepper
   #stepper
   class="kkl-vertical-steps"
-  [selectedIndex]="_selectedIndex"
+  [(selectedIndex)]="_selectedIndex"
   [disableRipple]="true"
   (selectionChange)="onSelectionChanged($event)"
 >
   <ng-container>
     <mat-step
       [completed]="step.completed"
+      [stepControl]="step.control"
       *ngFor="
         let step of steps;
         let i = index;
-        let first = first;
-        let last = last
       "
     >
-      <ng-template matStepLabel>
-        <div (click)="onStepClick(step, i)"></div>
-      </ng-template>
-      <div fxLayout="row" fxLayoutAlign="end">
-        <div fxFlex="95">
-          <ng-container
-            *ngTemplateOutlet="templates[step.key]; context :{ $implicit :{step, index : i, first, last}}"
-          ></ng-container>
-        </div>
-      </div>
     </mat-step>
   </ng-container>
 
@@ -34,3 +23,8 @@
     <mat-icon>done</mat-icon>
   </ng-template>
 </mat-vertical-stepper>
+<div fxFlex="80">
+  <ng-container
+    *ngTemplateOutlet="templates[templateName];"
+  ></ng-container>
+</div>

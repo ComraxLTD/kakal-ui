@@ -244,7 +244,7 @@ export class EventTableComponent implements OnInit {
     this.dataTable = undefined;
   }
 
-  buttonClick(butt: RowActionModel, obj:any) {
+  buttonClick(butt: RowActionModel, obj:any, key: string) {
     if(normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
@@ -265,7 +265,7 @@ export class EventTableComponent implements OnInit {
           break;
       }
     } else {
-      this.actionClicked.emit({action: butt.type, row: obj});
+      this.actionClicked.emit({action: butt.type, row: obj, key: key});
     }
   }
 

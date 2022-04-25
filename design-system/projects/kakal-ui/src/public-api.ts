@@ -354,7 +354,6 @@ export * from './lib/layouts/steps-layout/steps-layout.service';
 // layout
 export * from './lib/layouts/layout/layout.component';
 export * from './lib/layouts/layout/layout.module';
-export * from './lib/layouts/layout/layout.service';
 
 // accordion layout
 export * from './lib/layouts/accordion-layout/accordion-layout.module';
