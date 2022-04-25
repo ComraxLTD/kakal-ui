@@ -1,4 +1,4 @@
-
+<kkl-layout>
   <ng-container content>
     <div fxLayout="column" fxLayoutGap="5rem">
       <!-- SIMPLE STEPPER -->
@@ -20,29 +20,28 @@
       </kkl-page>
 
       <!-- MANUEL STEPPER -->
-
     </div>
   </ng-container>
 
-<!-- templates for layouts -->
-<ng-template #filterForm> First Content </ng-template>
+  <!-- templates for layouts -->
+  <ng-template #filterForm> First Content </ng-template>
 
-<ng-template #groupForm> Second Content </ng-template>
+  <ng-template #groupForm> Second Content </ng-template>
 
+  <kkl-advanced-search
+    [grid]="gridProps"
+    [buttonLabel]="buttonLabel"
+    [formGroup]="formGroup"
+    [controls]="controls"
+    [options]="options"
+    [tableFilters]="tableFilters"
+    (openedChange)="onOpenChanged($event)"
+    (queryChanged)="onQueryChanged($event)"
+    (selectChanged)="onSelectChanged($event)"
+    (valueChanged)="onValueChanged($event)"
+    (focusChanged)="onFocusChanged($event)"
+    (submitEvent)="onSubmitEvent($event)"
+  >
+  </kkl-advanced-search>
 
-<kkl-advanced-search
-              [grid]="gridProps"
-              [buttonLabel]="buttonLabel"
-              [formGroup]="formGroup"
-              [controls]="controls"
-              [options]="options"
-              [tableFilters]="tableFilters"
-
-              (openedChange)="onOpenChanged($event)"
-              (queryChanged)="onQueryChanged($event)"
-              (selectChanged)="onSelectChanged($event)"
-              (valueChanged)="onValueChanged($event)"
-              (focusChanged)="onFocusChanged($event)"
-              (submitEvent)="onSubmitEvent($event)"
-              >
-            </kkl-advanced-search>
+</kkl-layout>
