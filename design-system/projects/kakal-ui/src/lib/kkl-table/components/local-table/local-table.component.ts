@@ -29,6 +29,7 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
   ],
 })
 export class LocalTableComponent implements OnInit {
+  
   @ViewChild(MatTable) table: MatTable<any>;
 
   destroySubject$: Subject<void> = new Subject();

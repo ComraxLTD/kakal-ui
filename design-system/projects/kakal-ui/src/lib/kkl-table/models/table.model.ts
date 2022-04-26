@@ -1,4 +1,4 @@
-import { AbstractControl, FormControl, ValidatorFn } from '@angular/forms';
+import { ValidatorFn } from '@angular/forms';
 import { BehaviorSubject } from 'rxjs';
 import { Palette } from '../../../styles/theme';
 import { Appearance, ControlType } from '../../mei-form/models/control.types';
@@ -47,10 +47,16 @@ export interface TableBase {
 
 
   colIcon?: string;
+
+  // key of column to be group
   group?: string;
+
   button?: RowActionModel;
+
   noFilter?: boolean;
+
   cellTemplate?: string;
+
   notEditable?: boolean;
 
 
