@@ -11,6 +11,7 @@ import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { CardStatus } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
 import { IconModel } from '../icon/icon.component';
+import { PageHeadline } from '../page-headline/page-headline.component';
 
 @Component({
   selector: 'kkl-navbar',
@@ -22,6 +23,7 @@ export class NavbarComponent implements OnInit {
   @Input() isOpen: boolean = false;
   @Input() status: CardStatus[];
   @Input() showStatus$: Observable<boolean>;
+  @Input() pageHeadline$: Observable<PageHeadline>;
 
   openIcon: string = 'tree_gradient_';
   mobile$: Observable<boolean>;
