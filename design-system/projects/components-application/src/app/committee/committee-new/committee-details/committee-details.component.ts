@@ -49,6 +49,7 @@ export class CommitteeDetailsComponent implements OnInit {
     {
       key: 'gush',
       label: 'גוש',
+      button: { type: 'navigation' },
     },
     {
       key: 'division',
@@ -57,7 +58,7 @@ export class CommitteeDetailsComponent implements OnInit {
     {
       key: 'divisionArea',
       label: 'שטח החלקה',
-      button: { type: 'inlineExpand', icon: 'keyboard_arrow_down' },
+      button: { type: 'inlineExpand', icon: 'keyboard_arrow_down', label : 'פריטים' },
     },
     {
       key: 'sum',
@@ -95,7 +96,7 @@ export class CommitteeDetailsComponent implements OnInit {
   rowActions: RowActionModel[] = [
     { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
     { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
-    { type: 'visibility', icon: 'visibility', label: 'Show' },
+    { type: 'visibility', icon: '', label: 'Show' },
   ];
 
   committeeGroup!: QuestionGroupModel<CommitteeDetails>;

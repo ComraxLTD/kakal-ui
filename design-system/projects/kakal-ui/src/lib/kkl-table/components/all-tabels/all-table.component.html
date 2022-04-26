@@ -67,7 +67,7 @@
           "
         >
           <ng-container
-            *ngIf="!(element | arrInclueds: editItems); else editBlock"
+            *ngIf="!(element | arrIncludes: editItems); else editBlock"
           >
             <kkl-table-cell
               [data]="element[column.key]"
@@ -134,7 +134,7 @@
         </th>
         <td mat-cell *matCellDef="let element" class="center-butt">
           <ng-container
-            *ngIf="!(element | arrInclueds: editItems); else addButton"
+            *ngIf="!(element | arrIncludes: editItems); else addButton"
           >
             <ng-container *ngFor="let butt of localButtons">
               <button
