@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PageHeadlineService } from './page-headline.service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 export interface PageHeadline {
   value: any;
