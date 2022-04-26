@@ -1,4 +1,3 @@
-import { IconModel } from '../icon/icon.model';
 import {
   Component,
   EventEmitter,
@@ -9,9 +8,9 @@ import {
 } from '@angular/core';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { PageHeadline } from '../page-headline/page-headline.component';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { CardStatus } from '../cards/card-status/card-status.model';
+import { Observable } from 'rxjs';
+import { IconModel } from '../icon/icon.component';
 
 @Component({
   selector: 'kkl-navbar',
@@ -26,7 +25,7 @@ export class NavbarComponent implements OnInit {
 
   openIcon: string = 'tree_gradient_';
   mobile$: Observable<boolean>;
-  
+
   openLabel: string = 'תפריט';
   closeLabel: string = 'סגור תפריט';
 
