@@ -51,7 +51,7 @@ export class EventTableComponent implements OnInit {
   @Input() paging: boolean = true;
   @Input() pageSize: number = 10;
 
-  @Input() dragable: boolean;
+  @Input() draggable: boolean;
 
 
   oneColumns: TableBase[];
@@ -83,7 +83,7 @@ export class EventTableComponent implements OnInit {
     if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
-    if(this.dragable) {
+    if(this.draggable) {
       this.displayedColumns.unshift('dragHandeler')
     }
     // const row = this.fb.group({});
