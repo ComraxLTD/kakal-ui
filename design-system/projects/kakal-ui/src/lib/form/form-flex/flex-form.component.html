@@ -137,6 +137,13 @@
         </ng-container>
 
         <!-- CHECKBOX SECTION -->
+        <ng-container *ngSwitchCase="'toggle'">
+          <mat-slide-toggle [formControl]="formGroup.controls[question.key]">{{
+            question?.label
+          }}</mat-slide-toggle>
+        </ng-container>
+
+        <!-- TOGGLE SECTION -->
         <ng-container *ngSwitchCase="'checkbox'">
           <mat-checkbox [formControl]="formGroup.controls[question.key]">{{
             question?.label
