@@ -7,14 +7,15 @@ const routes: Routes = [
     path: '',
     component: AppComponent,
     // data: { breadcrumb: 'דף הבית', homepage: true },
+    pathMatch: 'full',
     children: [
-      // {
-      //   path: '',
-      //   loadChildren: () =>
-      //     import('./committee/committee.module').then(
-      //       (m) => m.CommitteeModule
-      //     ),
-      // },
+      {
+        path: 'bid',
+        loadChildren: () =>
+          import('./committee/committee.module').then(
+            (m) => m.CommitteeModule
+          ),
+      },
     ],
   },
   // { path: 'details', component: DetailsComponent },

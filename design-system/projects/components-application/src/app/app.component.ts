@@ -4,6 +4,7 @@ import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMot
 import heLocale from '@fullcalendar/core/locales/he';
 import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-root',
@@ -13,12 +14,12 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 export class AppComponent {
 
   // array for vertical steps layout
-  public steps: Step[] = [
-    { key: 'filterForm', label: 'First Step Headline' },
-    { key: 'groupForm', label: 'Second Step Headline' },
-    { key: 'filterForm', label: 'Third Step Headline' },
-    { key: 'groupForm', label: 'Forth Step Headline' },
-  ];
+  // public steps: Step[] = [
+  //   { key: 'filterForm', label: 'First Step Headline' },
+  //   { key: 'groupForm', label: 'Second Step Headline' },
+  //   { key: 'filterForm', label: 'Third Step Headline' },
+  //   { key: 'groupForm', label: 'Forth Step Headline' },
+  // ];
 
   // array for panel layout
   public panels: Panel[] = [
@@ -1463,9 +1464,10 @@ export class AppComponent {
   // the form group which interacts with both the advanced search and the table
   formGroup!: FormGroup;
 
-  constructor() { }
+  constructor(private routerService: RouterService) { }
 
   ngOnInit(): void {
+    this.showSave$ = of(true);
     // inserting the data from the server into the table
 
     // initializing the form
@@ -1576,5 +1578,51 @@ export class AppComponent {
   onSubmitEvent(event: any){
     console.log("onSubmitEvent");
     console.log(event);
+  }
+
+
+
+  public steps: CardStepModel[] = [
+    {
+      label: 'פרטי ההתקשרות',
+      svgIcon: 'contact',
+      path: 'details',
+    },
+    { label: 'בניית הצעת מחיר', svgIcon: 'offer', path: 'bid' },
+  ];
+
+  actions: ButtonModel[] = []
+
+  //navbar bottom
+  public showSave$!: Observable<boolean>;
+
+
+
+  // NAVIGATION EVENTS SECTION
+  private navigate(path: string) {
+    path = `/${path}`;
+    this.routerService.navigate(path);
+  }
+
+  // navigate from stepper
+  public onSelectStep(event: StepperSelectionEvent) {
+    // this.navigate(step.path!);
+  }
+  // navigate from bottom-navbar - next
+  public onNext(step: StepsSelectionEvent) {
+    this.navigate(step.selectedStep.path!);
+  }
+
+  public onPrevious(): void {
+    this.routerService.goBack();
+  }
+
+  cards: MenuCard[] = [{ svgIcon: 'home', label: 'בית' }];
+
+
+
+  // event that fires when the logo is clicked
+  onLogoClicked() {
+    console.log('logo clicked!')
   }
 }

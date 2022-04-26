@@ -1,6 +1,6 @@
-<kkl-layout>
+<kkl-layout [cards]="cards" (logoClicked)="onLogoClicked()" [drawerAction]="{type: 'file', label: 'מדנד'}">
 
-  <kkl-local-advanced-search
+  <!-- <kkl-local-advanced-search
     [grid]="gridProps"
     [buttonLabel]="buttonLabel"
     [formGroup]="formGroup"
@@ -15,6 +15,15 @@
     (focusChanged)="onFocusChanged($event)"
     (submitEvent)="onSubmitEvent($event)"
   >
-  </kkl-local-advanced-search>
+  </kkl-local-advanced-search> -->
 
+  <kkl-steps-layout
+    [actions]="actions"
+    [steps]="steps">
+      <router-outlet content></router-outlet>
+      <div endDrawerContent>replace this content with your own feature</div>
+      <!-- [hasSave]="true" -->
+    </kkl-steps-layout>
 </kkl-layout>
+
+
