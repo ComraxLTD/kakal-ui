@@ -1,44 +1,95 @@
 <form [formGroup]="form">
-  <div *ngIf="displayedColumns.length" class="table-wrapper"
+  <div
+    *ngIf="displayedColumns.length"
+    class="table-wrapper"
     cdkDropList
-    (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled">
+    (cdkDropListDropped)="dropTable($event)"
+    [cdkDropListDisabled]="dragDisabled"
+  >
     <!-- [cdkDropListData]="dataTable" -->
     <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
-    <table #table dir="rtl" mat-table [dataSource]="dataTable" matSort multiTemplateDataRows formArrayName="myRows">
-
-
+    <table
+      #table
+      dir="rtl"
+      mat-table
+      [dataSource]="dataTable"
+      matSort
+      multiTemplateDataRows
+      formArrayName="myRows"
+    >
       <ng-container matColumnDef="dragHandeler">
-        <th mat-header-cell *matHeaderCellDef>
-        </th>
+        <th mat-header-cell *matHeaderCellDef></th>
         <td class="dragCursor" mat-cell *matCellDef="let element">
           <div class="example-handle" cdkDragHandle>
-            <kkl-icon class="dragCursor" (mousedown)="dragDisabled = false;" color="text" key="all_directions"></kkl-icon>
+            <kkl-icon
+              class="dragCursor"
+              (mousedown)="dragDisabled = false"
+              color="text"
+              key="all_directions"
+            ></kkl-icon>
           </div>
         </td>
       </ng-container>
 
-      <ng-container *ngFor="let column of oneColumns" [matColumnDef]="column.key">
+      <ng-container
+        *ngFor="let column of oneColumns"
+        [matColumnDef]="column.key"
+      >
         <th mat-header-cell *matHeaderCellDef>
-          <h3 mat-sort-header style="display: inline-block;">{{column.label}}</h3>
-          <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
+          <h3 mat-sort-header style="display: inline-block">
+            {{ column.label }}
+          </h3>
+          <button
+            *ngIf="!column.noFilter"
+            mat-icon-button
+            [matMenuTriggerFor]="menu"
+          >
             <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
             <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
           </button>
           <mat-menu #menu="matMenu" (closed)="searchChanged()">
-            <kkl-table-form [formGroup]="searchRow" [question]="column"></kkl-table-form>
+            <kkl-table-form
+              [formGroup]="searchRow"
+              [question]="column"
+            ></kkl-table-form>
           </mat-menu>
         </th>
-        <td mat-cell *matCellDef="let element; let i = dataIndex" [style.display]="(i | tableGroupCell : column.group : spans) ? '' : 'none'"
-            [attr.rowspan]="(element == expandedElement)? (i | tableGroupCell : column.group : spans) : (i | tableGroupCell : column.group : spans)*2">
-          <ng-container *ngIf="!(element | arrInclueds : editItems); else editBlock">
-            <kkl-table-cell [data]="element[column.key]" [question]="column" (buttClick)="buttonClick(column.button, element, column.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+        <td
+          mat-cell
+          *matCellDef="let element; let i = dataIndex"
+          [style.display]="
+            (i | tableGroupCell: column.group:spans) ? '' : 'none'
+          "
+          [attr.rowspan]="
+            element == expandedElement
+              ? (i | tableGroupCell: column.group:spans)
+              : (i | tableGroupCell: column.group:spans) * 2
+          "
+        >
+          <ng-container
+            *ngIf="!(element | arrInclueds: editItems); else editBlock"
+          >
+            <kkl-table-cell
+              [data]="element[column.key]"
+              [question]="column"
+              (buttClick)="buttonClick(column.button, element, column.key)"
+              [colsTemplate]="colsTemplate"
+            ></kkl-table-cell>
           </ng-container>
           <ng-template #editBlock>
             <ng-container *ngIf="column.notEditable; else innerEditBlock">
-              <kkl-table-cell [data]="element[column.key]" [question]="column" (buttClick)="buttonClick(column.button, element, column.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+              <kkl-table-cell
+                [data]="element[column.key]"
+                [question]="column"
+                (buttClick)="buttonClick(column.button, element, column.key)"
+                [colsTemplate]="colsTemplate"
+              ></kkl-table-cell>
             </ng-container>
             <ng-template #innerEditBlock>
-              <kkl-table-form [formGroupName]="(element | arrIndex : editItems)" [question]="column"></kkl-table-form>
+              <kkl-table-form
+                [formGroupName]="element | arrIndex: editItems"
+                [question]="column"
+              ></kkl-table-form>
             </ng-template>
           </ng-template>
         </td>
@@ -46,9 +97,21 @@
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
-        <td [ngClass]="element == expandedElement ? 'expand' : 'hide'" mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-          <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-            <div *ngIf="element == expandedElement" class="example-element-detail">
+        <td
+          [ngClass]="element == expandedElement ? 'expand' : 'hide'"
+          mat-cell
+          *matCellDef="let element"
+          [attr.colspan]="displayedColumns.length"
+        >
+          <div
+            [@detailExpand]="
+              element == expandedElement ? 'expanded' : 'collapsed'
+            "
+          >
+            <div
+              *ngIf="element == expandedElement"
+              class="example-element-detail"
+            >
               <ng-container *ngIf="expandTemplate">
                 <ng-template *ngTemplateOutlet="expandTemplate"></ng-template>
               </ng-container>
@@ -57,27 +120,51 @@
         </td>
       </ng-container>
 
-
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef class="center-butt">
-          <button *ngIf="newRowAction" mat-button color="primary" (click)="addNewRowGroup()">
-            {{newRowAction}}
+          <button
+            *ngIf="newRowAction"
+            mat-button
+            color="primary"
+            (click)="addNewRowGroup()"
+          >
+            {{ newRowAction }}
             <mat-icon>add</mat-icon>
           </button>
         </th>
         <td mat-cell *matCellDef="let element" class="center-butt">
-          <ng-container *ngIf="!(element | arrInclueds : editItems); else addButton">
+          <ng-container
+            *ngIf="!(element | arrInclueds: editItems); else addButton"
+          >
             <ng-container *ngFor="let butt of localButtons">
-              <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, element, 'actions')">
+              <button
+                [matTooltip]="butt.icon && butt.label"
+                [class.mat-icon-button]="butt.icon"
+                [class.mat-stroked-button]="!butt.icon"
+                type="button"
+                color="primary"
+                (click)="buttonClick(butt, element, 'actions')"
+              >
                 <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                <span *ngIf="!butt.icon">{{ butt.label }}</span>
               </button>
             </ng-container>
           </ng-container>
           <ng-template #addButton>
-            <button matTooltip="save" mat-button color="primary" (click)="saveRowClick(element)">
+            <button
+              matTooltip="save"
+              mat-button
+              color="primary"
+              (click)="saveRowClick(element)"
+            >
               <kkl-icon key="save"></kkl-icon>
             </button>
-            <button matTooltip="cancel" mat-button color="primary" (click)="cancelRowClick(element)">
+            <button
+              matTooltip="cancel"
+              mat-button
+              color="primary"
+              (click)="cancelRowClick(element)"
+            >
               <kkl-icon key="cancel"></kkl-icon>
             </button>
           </ng-template>
@@ -85,25 +172,40 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-          class="example-element-row"
-          [class.example-expanded-row]="expandedElement === element"
-          cdkDrag [cdkDragData]="element"
-          >
-          <!-- [ngClass]="expandedElement ? '': ''" -->
-          <!-- [ngClass]="{'' : expandTemplate}" -->
-
+      <tr
+        mat-row
+        *matRowDef="let element; columns: displayedColumns"
+        class="example-element-row"
+        [class.example-expanded-row]="expandedElement === element"
+        cdkDrag
+        [cdkDragData]="element"
+      >
+        <!-- [ngClass]="expandedElement ? '': ''" -->
+        <!-- [ngClass]="{'' : expandTemplate}" -->
       </tr>
-      <tr mat-row *matRowDef="let row; columns: expandTemplate? ['expandedDetail'] : []" class="example-detail-row"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: expandTemplate ? ['expandedDetail'] : []"
+        class="example-detail-row"
+      ></tr>
 
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" [attr.colspan]="displayedColumns.length"><h3 style="text-align: center;">No data</h3></td>
+        <td class="mat-cell" [attr.colspan]="displayedColumns.length">
+          <h3 style="text-align: center">No data</h3>
+        </td>
       </tr>
     </table>
-
   </div>
   <div [hidden]="!paging">
-    <mat-paginator dir="ltr" fxLayout="row" fxLayoutAlign="center center" kklNewPagination [pageSizeOptions]="[10, 25, 100]" (page)="pageChanged($event)" aria-label="Select page"></mat-paginator>
+    <mat-paginator
+      dir="ltr"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      kklNewPagination
+      [pageSizeOptions]="[10, 25, 100]"
+      (page)="pageChanged($event)"
+      aria-label="Select page"
+    ></mat-paginator>
   </div>
 </form>

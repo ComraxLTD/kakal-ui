@@ -22,7 +22,7 @@ export interface TableBase {
   minDate?: Date;
 
   //for select and autocomplete
-  options?: KklSelectOption[] |  BehaviorSubject<KklSelectOption[]> | string;
+  options?: KklSelectOption[] | BehaviorSubject<KklSelectOption[]> | string;
   //for input and autocomplete
   debounce?: number;
   //for input
@@ -45,7 +45,7 @@ export interface TableBase {
   valueChanged?: Function;
   focusChanged?: Function;
 
-
+  // when applied add icon to the column ui
   colIcon?: string;
 
   // key of column to be group
@@ -58,6 +58,4 @@ export interface TableBase {
   cellTemplate?: string;
 
   notEditable?: boolean;
-
-
 }
