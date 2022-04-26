@@ -37,9 +37,9 @@ export class LocalTableComponent implements OnInit {
   isLoading: boolean = true;
 
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
-  @Output() deleteRow = new EventEmitter<any>();
-  @Output() editRow = new EventEmitter<any>();
-  @Output() expandRow = new EventEmitter<any>();
+  @Output() deleteRow = new EventEmitter<RowActionEvent>();
+  @Output() saveRow = new EventEmitter<RowActionEvent>();
+  @Output() expandRow = new EventEmitter<RowActionEvent>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
 
@@ -287,7 +287,7 @@ export class LocalTableComponent implements OnInit {
       this.editItems = [...this.editItems];
       this.groupDataReload();
       // Object.assign(ele, this.rows.at(index).value);
-      this.editRow.emit(ele);
+      this.saveRow.emit(ele);
       this.rows.removeAt(index);
     }
   }
