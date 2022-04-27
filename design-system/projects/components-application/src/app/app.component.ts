@@ -16,7 +16,7 @@ export class AppComponent {
   control = new FormControl({})
 
 
-
+  tabs: { key: string, label: string }[] = [{ key: 'First', label: 'בדיקה' }, { key: 'Second', label: 'test' }, { key: 'Third', label: 'עמוד 3' }];
   onValueChanged(event: KklFormChangeEvent) {
     console.log(event);
   }
