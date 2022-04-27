@@ -6,19 +6,19 @@ import { BehaviorSubject, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class NavbarBottomService {
-  showNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  showSave$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  showBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}> = new BehaviorSubject({show: false, next: true});
+  private showNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private showSave$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private showBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  private showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}> = new BehaviorSubject({show: false, next: true});
 
-  next$: Subject<void> = new Subject();
-  save$: Subject<void> = new Subject();
-  back$: Subject<void> = new Subject();
-  nextMiddle$: Subject<void> = new Subject();
-  formGroup$: Subject<FormGroup> = new Subject();
+  private next$: Subject<void> = new Subject();
+  private save$: Subject<void> = new Subject();
+  private back$: Subject<void> = new Subject();
+  private nextMiddle$: Subject<void> = new Subject();
+  private formGroup$: Subject<FormGroup> = new Subject();
 
-  disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  private disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor() {
   }

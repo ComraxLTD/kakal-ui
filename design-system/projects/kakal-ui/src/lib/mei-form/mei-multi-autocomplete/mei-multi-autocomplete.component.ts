@@ -120,8 +120,7 @@ export class MeiMultiAutocompleteComponent {
 
   setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control as FormControl,
-      this.placeHolder
+      this.control as FormControl
     );
 
     this.error$.next(error);

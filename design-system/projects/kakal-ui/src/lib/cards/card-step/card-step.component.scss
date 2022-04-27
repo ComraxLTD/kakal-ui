@@ -10,7 +10,7 @@
     padding: 0px !important;
 
     // &.active {
-    //   background: main.color(primary) !important;
+    //   color: main.color(red) !important;
     // }
     // &.disabled {
     //   cursor:pointer !important;
@@ -29,7 +29,7 @@
 
   mat-icon {
     // &.active {
-    //   color: main.color(paper);
+    //   color: main.color(red) !important;
     // }
 
     &:not(.active) {
