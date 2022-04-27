@@ -1,4 +1,4 @@
-<kkl-stepper fxFlex="100" [steps]="steps" direction="row" (selectStep)="onSelectStep($event)"></kkl-stepper>
+<!-- <kkl-stepper fxFlex="100" [steps]="steps" direction="row" (selectStep)="onSelectStep($event)"></kkl-stepper>
 
 <kkl-counter
                 [control]="control"
@@ -6,4 +6,26 @@
                 [key]="'counter'"
                 [icon]="'logo'"
                 (valueChanged)="onValueChanged($event)"
-            ></kkl-counter>
+            ></kkl-counter> -->
+            <kkl-tabs fxFlex="100" dir="rtl" variant="table" [tabs]="tabs" [templates]="{First,Second,Third}"></kkl-tabs>
+
+
+            <ng-template #First>
+              <div fxLayout="column" fxLayoutGap="1rem">
+                <kkl-typography [weight]="600">תוכן של טאב עם כתפורים</kkl-typography>
+                <kkl-button></kkl-button>
+                <kkl-stroke-button>Button</kkl-stroke-button>
+              </div>
+            </ng-template>
+
+            <ng-template #Second>
+              simple text
+              21312213
+            </ng-template>
+
+            <ng-template #Third>
+              <kkl-typography [weight]="600">content of third tab</kkl-typography>
+              <kkl-icon key="logo"></kkl-icon>
+              <kkl-icon key="tree"></kkl-icon>
+            </ng-template>
+
