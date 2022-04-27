@@ -5,6 +5,7 @@ export interface CardStep {
   svgIcon: string;
   value?: number;
   selected?: boolean;
+  complete?: boolean;
   disabled?: boolean;
   hasSteps?: boolean;
 }

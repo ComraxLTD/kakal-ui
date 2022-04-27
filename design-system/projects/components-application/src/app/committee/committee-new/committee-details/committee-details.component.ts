@@ -118,7 +118,7 @@ export class CommitteeDetailsComponent implements OnInit {
     const questions = this.committeeDetailsService.getFormQuestions();
     return this.formService.createQuestionGroup({
       questions,
-      options: { gridProps: { cols: 4, gutter: 2 } },
+      options: {  gridProps: { cols: 4, gutter: 2 } },
     });
   }
 

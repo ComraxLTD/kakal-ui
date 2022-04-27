@@ -5,6 +5,10 @@
 kkl-form-input {
   width: 100%;
 }
+mat-checkbox,
+mat-slide-toggle {
+  font-size: 1.4rem;
+}
 
 div {
   &.input-container {
@@ -21,4 +25,3 @@ div {
     padding-left: main.spacing(1);
   }
 }
-

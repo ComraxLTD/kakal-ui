@@ -19,6 +19,7 @@ export class CommitteeDetailsService {
     {
       key: 'committeeId',
       label: 'מס סידורי',
+      controlType : 'toggle'
     },
     {
       key: 'date',

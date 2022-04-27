@@ -30,6 +30,7 @@ import { QuestionCounterModel } from '../form-counter/question-counter.model';
 import { QuestionRangeModel } from '../form-range/question-range.model';
 
 import { OptionMap } from '../models/form.types';
+import { QuestionToggleModel } from '../models/question-toggle.model';
 
 export type ControlTemplate = [
   state: any,
@@ -46,6 +47,7 @@ export type Question =
   | QuestionRadioModel
   | QuestionUploadModel
   | QuestionDateModel
+  | QuestionToggleModel
   | QuestionCurrencyModel
   | QuestionSumModel
   | QuestionTextareaModel
@@ -221,7 +223,6 @@ export class FormService<T = any> {
       case 'radio':
         return new QuestionRadioModel(question);
       case 'checkbox':
-        console.log()
         return new QuestionCheckboxModel(question as QuestionCheckboxModel);
       case 'checkboxGroup':
         return new QuestionCheckboxGroup(question as QuestionCheckboxGroup);
@@ -234,6 +235,8 @@ export class FormService<T = any> {
         return new QuestionAutocompleteModel(
           question as QuestionAutocompleteModel
         );
+      case 'toggle':
+        return new QuestionToggleModel(question as QuestionToggleModel);
       default:
         return new QuestionTextModel(question);
     }
