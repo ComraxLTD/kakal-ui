@@ -27,11 +27,11 @@
           <div
             class="end-drawer-button"
             (click)="emitEndDrawer()"
-            *ngIf="portion != 1 && portion != 99"
-          >
+            >
+            <!-- *ngIf="portion != 1 && portion != 99" -->
             <!-- end drawer button -->
             <kkl-icon
-              [key]="'chevron_left'"
+              [key]="'seacrch'"
               color="success"
               [size]="4"
             ></kkl-icon>
@@ -76,15 +76,19 @@
         </div>
 
         <!-- STEPPER  -->
-        <div class="stepper">
+        <div class="steps-group">
           <ng-container *ngIf="steps$ | async as steps">
             <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
-              <kkl-stepper
+              <!-- <kkl-stepper
                 variant="step"
                 direction="row"
                 [steps]="steps"
                 (selectStep)="onSelectStep($event)"
-              ></kkl-stepper>
+              ></kkl-stepper> -->
+              <kkl-step-group
+                [steps]="steps"
+                (stepSelection)="onSelectStep($event)"
+              ></kkl-step-group>
             </ng-container>
 
             <ng-template #mobileBlock>

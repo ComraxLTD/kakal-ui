@@ -217,17 +217,11 @@ export * from './lib/filters/filters.component';
 export * from './lib/filters/filters.types';
 export * from './lib/filters/filters.service';
 
-//menu
-export * from './lib/menu-item/menu-item.module';
-export * from './lib/menu-item/menu-item.component';
-export * from './lib/menu/menu.module';
-export * from './lib/menu/menu.component';
-
 // menu-bar
 
 export * from './lib/menu-bar/menu-bar.module';
 export * from './lib/menu-bar/menu-bar/menu-bar.component';
-export * from './lib/menu-bar/menu-card/menu-card.component';
+export * from './lib/menu-bar/menu-item/menu-item.component';
 
 // title
 export * from './lib/kkl-title/kkl-title.module';
@@ -242,8 +236,6 @@ export * from './lib/bread-crumbs/bread-crumbs.model';
 export * from './lib/expand-panel/expand-panel.component';
 export * from './lib/expand-panel/expand-panel.module';
 
-export * from './lib/list-menu/list-menu.component';
-export * from './lib/list-menu/list-menu.module';
 
 // title
 export * from './lib/navigation/navigation.module';
@@ -449,10 +441,15 @@ export * from './lib/full-calendar/calendar-card/calendar-card.component';
 export * from './lib/grids/document-grid/document-grid.module'
 export * from './lib/grids/document-grid/document-grid.component'
 
-export * from './lib/grids/display-grid/display-grid.module'
-export * from './lib/grids/display-grid/display-grid.component';
-
-// dashboard
 export * from './lib/grids/lobby-grid/lobby.module';
 export * from './lib/grids/lobby-grid/lobby.component';
 
+export * from './lib/grids/data-grid/data-grid.module'
+export * from './lib/grids/data-grid/data-grid.component'
+
+// groups
+export * from './lib/groups/display-group/display-group.module'
+export * from './lib/groups/display-group/display-group.component'
+
+export * from './lib/groups/circle-group/circle-group.module'
+export * from './lib/groups/circle-group/circle-group.component'

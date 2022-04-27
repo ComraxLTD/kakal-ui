@@ -15,8 +15,6 @@ import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 
-import { KKLMenuItemModule } from './menu-item/menu-item.module';
-import { KKLMenuModule } from './menu/menu.module';
 import { KKLStepTitleModule } from './step-title/step-title.module';
 
 import { KKLFormModule } from './form/form/form.module';
@@ -75,7 +73,6 @@ import { KKLNavbarModule } from './navbar/navbar.module';
 import { KKLNavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
 import { KKLStepperModule } from './stepper/stepper.module';
 import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
-import { KKLListMenuModule } from './list-menu/list-menu.module';
 import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
@@ -104,8 +101,13 @@ import { MeiFormModule } from './mei-form/mei-form.module';
 // GRIDS
 
 import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
-import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
+import { KKLDataGridModule } from './grids/data-grid/data-grid.module';
 import { KKLLobbyGridModule } from './grids/lobby-grid/lobby.module';
+
+// GROUPS
+
+import { KKLDisplayGroupModule } from './groups/display-group/display-group.module';
+import {KKLCircleGroupModule} from './groups/circle-group/circle-group.module'
 
 import { MeiServiceModule } from './mei-services/mei-services.module';
 
@@ -126,7 +128,6 @@ registerLocaleData(he);
     KKLCardFilterModule,
 
     KKLNavigationModule,
-    KKLMenuModule,
     KKLMenuBarModule,
 
     KKLStatusStepsModule,
@@ -136,7 +137,6 @@ registerLocaleData(he);
     KKLSidenavModule,
     KKLPageHeadlineModule,
     KKLBreadCrumbsModule,
-    KKLListMenuModule,
     KKLExpandPanelModule,
 
     KKLDrawerModule,
@@ -182,6 +182,11 @@ registerLocaleData(he);
     KKLCardWizardModule,
     KKLCardDocumentModule,
 
+    // GROUPS
+
+    KKLDisplayGroupModule,
+    KKLCircleGroupModule,
+
     // NAVBAR
     KKLNavbarModule,
     KKLNavbarBottomModule,
@@ -205,7 +210,7 @@ registerLocaleData(he);
     // GRIDS
 
     KKLDocumentGridModule,
-    KKLDisplayGridModule,
+    KKLDataGridModule,
 
     KKSectionModule,
     KKPageModule,
@@ -224,8 +229,6 @@ registerLocaleData(he);
 
     KKLDrawerModule,
 
-    KKLMenuItemModule,
-
     KKLMenuBarModule,
 
     KKLButtonModule,
@@ -236,7 +239,6 @@ registerLocaleData(he);
     KKLStepTitleModule,
     KKLSidenavModule,
     KKLStatusStepsModule,
-    KKLListMenuModule,
     KKLExpandPanelModule,
     KKLFiltersModule,
 
@@ -285,12 +287,13 @@ registerLocaleData(he);
     KKLNavbarModule,
     KKLNavbarBottomModule,
 
-
     // GRIDS
-    KKLDisplayDataModule,
-
     KKLDocumentGridModule,
-    KKLDisplayGridModule,
+    KKLDataGridModule,
+
+    // GROUPS
+    KKLDisplayGroupModule,
+    KKLCircleGroupModule,
 
     // LAYOUT
     KKLLayoutModule,

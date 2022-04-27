@@ -91,5 +91,55 @@ kkl-stepper-mobile
 1. improve logic without input as obs
 2. working with next button from bottom-navbar
 
+## Dvir Changed v2.995
+
+kkl-card-status
+
+1. change CardStatusModel to interface
+1. change CardStatusModel to CardStatus
+2. add default options to status ui
 
 
+kkl-card-step
+1. change CardStepModel to CardStep
+
+kkl-groups
+
+1. add kkl-stats-group. will be use instead of kkl-stepper
+2. add kkl-steps-group. will be use instead of kkl-stepper
+3. add kkl-display-group. will be use instead of kkl-display-grid
+
+kkl-display-grid
+
+1. add type prop to DataDisplay interface - get status or action
+2. change ui to switch case to handle status and action ui 
+
+kkl-grids
+
+1. add kkl-data-grid
+2. remove kkl-display-grid
+3. add kkl-lobby-grid
+
+kkl-steps-layout
+
+1. replace kkl-stepper with kkl-step-group
+
+kkl-navbar
+
+1. replace kkl-stepper with kkl-status-group
+2. get status as Input instead of obs from service
+
+kkl-tabs
+
+1. add Tab interface
+
+kkl-navigation
+
+1. update logic from kkl-stepper-mobile
+
+- remove kkl-menu and kkl-menu-items
+
+kkl-menu-item
+
+1. change to kkl-menu-item 
+2. change interface to MenuItem

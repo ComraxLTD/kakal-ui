@@ -1,19 +1,11 @@
-import { CardType, CardVariant } from '../card.model';
 
-export type StepperDirection = 'column' | 'row';
-
-export interface CardStepModel {
+export interface CardStep {
   label: string;
   path: string;
   svgIcon: string;
   value?: number;
   selected?: boolean;
+  complete?: boolean;
   disabled?: boolean;
   hasSteps?: boolean;
-}
-export interface StepOptions {
-  variant?: CardVariant;
-  type?: CardType;
-  size?: number;
-  divider?: number;
 }

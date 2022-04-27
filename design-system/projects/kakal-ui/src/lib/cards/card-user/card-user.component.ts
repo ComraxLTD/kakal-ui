@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-
-
-export class CardUserModel {
+export interface CardUserModel {
   name: string;
   imgUrl: string;
 }

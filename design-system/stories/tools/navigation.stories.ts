@@ -5,7 +5,7 @@ import { moduleMetadata } from '@storybook/angular';
 import { KKLNavigationModule } from '../../projects/kakal-ui/src/lib/navigation/navigation.module';
 import { NavigationComponent } from '../../projects/kakal-ui/src/lib/navigation/navigation.component';
 import { of } from 'rxjs';
-import { CardStatusModel } from '../../projects/kakal-ui/src/lib/cards/card-status/card-status.model';
+import { CardStatus } from '../../projects/kakal-ui/src/lib/cards/card-status/card-status.model';
 
 export default {
   title: 'Tools',
@@ -56,10 +56,10 @@ export const navigation = Template.bind({});
 
 navigation.args = {
   // steps$: of([
-  //   new CardStatusModel({key:'s'}),
-  //   new CardStatusModel({key:'s'}),
-  //   new CardStatusModel({key:'s'}),
-  //   new CardStatusModel({key:'s'}),
+  //   new CardStatus({key:'s'}),
+  //   new CardStatus({key:'s'}),
+  //   new CardStatus({key:'s'}),
+  //   new CardStatus({key:'s'}),
   // ]),
   // activeStepIndex:0,
 

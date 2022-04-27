@@ -13,28 +13,27 @@ export interface StatusBars {
   totalBars: number;
 }
 
-
 @Component({
   selector: 'kkl-status-steps',
   templateUrl: './status-steps.component.html',
   styleUrls: ['./status-steps.component.scss'],
 })
 export class StatusStepsComponent implements OnInit {
-  @Input() public cols: number;
-  @Input() public color: string;
-  @Input() public hasLabel: boolean;
-  @Input() public status: StatusBars;
+
+  @Input() status: StatusBars;
+  @Input() cols: number;
+  @Input() color: string;
+  @Input() hasLabel: boolean;
 
   @Input() labelRef: ElementRef;
 
   @Output() click: EventEmitter<void> = new EventEmitter();
 
-  public steps: string[] = [];
+  steps: string[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-
     this.cols = this.cols || 8;
     this.color = this.color || 'accent';
 
@@ -49,6 +48,6 @@ export class StatusStepsComponent implements OnInit {
     ).fill('');
 
     this.steps.push(...disableBars);
-    this.steps=this.steps.reverse()
+    this.steps = this.steps.reverse();
   }
 }

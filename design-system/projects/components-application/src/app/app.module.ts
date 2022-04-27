@@ -3,6 +3,7 @@ import {
   BreakpointService,
   KakalUiModule,
   KklFormCalendarModule,
+  KKLStepperModule,
   ROOT_PREFIX,
   RouterService,
   StepsLayoutService,

@@ -1,7 +1,7 @@
 @use "../../styles/variables" as main;
 
 ::ng-deep mat-tab-group.kkl-tabs {
-  .default {
+  &.default {
     .mat-tab-header {
       margin-bottom: 16px !important;
     }
@@ -12,7 +12,7 @@
     }
   }
 
-  .table {
+  &.table {
     .mat-tab-labels {
       flex-direction: column;
     }
