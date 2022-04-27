@@ -1,6 +1,9 @@
 <div fxLayout="row" dir="rtl" fxLayoutGap=".5rem">
     <ng-container *ngFor="let item of breadcrumbs; let last = last;let first=first">
-        <kkl-typography kkl-button color='primary' [routerLink]="[item.url]">
+        <kkl-typography *ngIf="!last" kkl-button color='primary' [routerLink]="[item.url]">
+            {{first?'':'-'}} {{ item.label }}
+        </kkl-typography>
+        <kkl-typography *ngIf="last" color='primary'>
             {{first?'':'-'}} {{ item.label }}
         </kkl-typography>
     </ng-container>
