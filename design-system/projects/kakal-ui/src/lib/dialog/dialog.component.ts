@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ComponentRef } from '@angular/core';
 
 @Component({
-  selector: 'pl-dialog',
+  selector: 'kkl-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
