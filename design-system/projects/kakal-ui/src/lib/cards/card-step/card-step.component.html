@@ -21,13 +21,13 @@
       appVariant
       [type]="options.type"
       [variant]="options.variant"
-      class="mat-elevation-z0"
+      [ngClass]="{ 'mat-elevation-z0': true, selected: step.selected }"
     >
       <mat-card-content fxFill fxLayout="column" fxLayoutAlign="center center">
         <mat-icon
           appSize
           [ngClass]="{
-            active: step.selected,
+            selected: step.selected,
             disabled: step.disabled
           }"
           [size]="options.size"
@@ -41,10 +41,7 @@
   <!-- label section -->
   <div fxLayout="row" fxFlex>
     <div fxFill fxLayout="column" fxLayoutAlign="center center" class="no-warp">
-      <kkl-typography
-        [weight]="step.selected ? 600 : 500"
-        [size]="1.2"
-      >
+      <kkl-typography [underline]="step.selected" [weight]="step.selected ? 600 : 500" [size]="1.2">
         {{ step.label }}
       </kkl-typography>
     </div>
