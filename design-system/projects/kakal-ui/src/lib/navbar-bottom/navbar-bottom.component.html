@@ -48,9 +48,13 @@
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
-      <kkl-stroked-button (clickEvent)="onSave()" class="kkl-save-button">
+      <kkl-stroke-button
+        color="primary"
+        (clickEvent)="onSave()"
+        class="kkl-save-button"
+      >
         שמור
-      </kkl-stroked-button>
+      </kkl-stroke-button>
     </ng-container>
 
     <!--next button -->
@@ -68,4 +72,3 @@
     <!-- </ng-container> -->
   </div>
 </mat-toolbar>
-

@@ -6,6 +6,7 @@ import {
   ButtonModel,
   CardStep,
   FormActions,
+  NavbarBottomService,
   RouterService,
 } from '../../../../../kakal-ui/src/public-api';
 import { CommitteeLayoutService } from './committee-layout.service';
@@ -42,12 +43,13 @@ export class CommitteeLayoutComponent implements OnInit {
   actions: ButtonModel[] = [{ type: 'form', action: FormActions.EDIT }];
 
   constructor(
-    private committeeLayoutService: CommitteeLayoutService,
-    private routerService: RouterService,
-    private router: Router
+    private navbarBottomService: NavbarBottomService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.navbarBottomService.setShowNext(true)
+    this.navbarBottomService.setShowSave(true)
+  }
 
   onSave() {
     console.log('save');

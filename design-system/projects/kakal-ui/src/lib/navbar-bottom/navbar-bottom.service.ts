@@ -1,107 +1,104 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NavbarBottomService {
-  showNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  showSave$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  showBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}> = new BehaviorSubject({show: false, next: true});
+  private showNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private showSave$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private showBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  private showNextMiddle$: BehaviorSubject<{ show: boolean; next: boolean }> =
+    new BehaviorSubject({ show: false, next: true });
+  private formGroup$: BehaviorSubject<FormGroup> = new BehaviorSubject(
+    new FormGroup({})
+  );
 
-  next$: Subject<void> = new Subject();
-  save$: Subject<void> = new Subject();
-  back$: Subject<void> = new Subject();
-  nextMiddle$: Subject<void> = new Subject();
-  formGroup$: Subject<FormGroup> = new Subject();
+  private next$: Subject<void> = new Subject();
+  private save$: Subject<void> = new Subject();
+  private back$: Subject<void> = new Subject();
+  private nextMiddle$: Subject<void> = new Subject();
 
-  disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
+  private disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-  constructor() {
-  }
+  constructor() {}
 
-  getShowNext(): BehaviorSubject<boolean> {
-    return this.showNext$;
+  getShowNext(): Observable<boolean> {
+    return this.showNext$.asObservable();
   }
   setShowNext(val: boolean) {
     this.showNext$.next(val);
   }
 
-  getShowSave(): BehaviorSubject<boolean> {
-    return this.showSave$;
+  getShowSave(): Observable<boolean> {
+    return this.showSave$.asObservable();
   }
   setShowSave(val: boolean) {
     this.showSave$.next(val);
   }
 
-  getShowBack(): BehaviorSubject<boolean> {
-    return this.showBack$;
+  getShowBack(): Observable<boolean> {
+    return this.showBack$.asObservable();
   }
   setShowBack(val: boolean) {
     this.showBack$.next(val);
   }
 
-  getShowNextMiddle(): BehaviorSubject<{show: boolean, next: boolean}> {
-    return this.showNextMiddle$;
+  getShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
+    return this.showNextMiddle$.asObservable();
   }
-  setShowNextMiddle(val: {show: boolean, next: boolean}) {
+  setShowNextMiddle(val: { show: boolean; next: boolean }) {
     this.showNextMiddle$.next(val);
   }
 
-  getDisableNext(): BehaviorSubject<boolean> {
-    return this.disableNext$;
+  getDisableNext(): Observable<boolean> {
+    return this.disableNext$.asObservable();
   }
   setDisableNext(val: boolean) {
     this.disableNext$.next(val);
   }
 
-  getAutoBack(): BehaviorSubject<boolean> {
-    return this.autoBack$;
+  getAutoBack(): Observable<boolean> {
+    return this.autoBack$.asObservable();
   }
   setAutoBack(val: boolean) {
     this.autoBack$.next(val);
   }
 
-
-  getFormGroup(): Subject<FormGroup> {
-    return this.formGroup$;
+  getFormGroup(): FormGroup {
+    return this.formGroup$.getValue();
   }
   setFormGroup(val: FormGroup) {
     this.formGroup$.next(val);
   }
 
-
-
-  getSave(): Subject<void> {
-    return this.save$;
+  getSave(): Observable<void> {
+    return this.save$.asObservable();
   }
   setSave() {
     this.save$.next();
   }
 
-  getBack(): Subject<void> {
-    return this.back$;
+  getBack(): Observable<void> {
+    return this.back$.asObservable();
   }
   setBack() {
     this.back$.next();
   }
 
-
-  getNext(): Subject<void> {
-    return this.next$;
+  getNext(): Observable<void> {
+    return this.next$.asObservable();
   }
   setNext() {
     this.next$.next();
   }
 
-  getNextMiddle(): Subject<void> {
-    return this.nextMiddle$;
+  getNextMiddle(): Observable<void> {
+    return this.nextMiddle$.asObservable();
   }
   setNextMiddle() {
     this.nextMiddle$.next();
   }
-
 }
