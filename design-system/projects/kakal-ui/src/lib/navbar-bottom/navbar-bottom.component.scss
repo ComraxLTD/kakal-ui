@@ -25,9 +25,10 @@ button.kkl-next-button:not(.mat-button-disabled) {
   color: main.color(paper) !important;
 }
 
-::ng-deep button.mat-fab.next-middle-btn {
+::ng-deep button.mat-fab.kkl-middle-button {
   position: absolute;
   transform: translateY(-3.5rem);
+
 
   .mat-button-wrapper {
     line-height: main.spacing(2) !important;

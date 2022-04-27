@@ -25,6 +25,11 @@ export class NavbarBottomService {
 
   constructor() {}
 
+  hideButtons() {
+    this.setShowNext(false)
+    this.setShowSave(false)
+  }
+
   getShowNext(): Observable<boolean> {
     return this.showNext$.asObservable();
   }
@@ -35,6 +40,7 @@ export class NavbarBottomService {
   getShowSave(): Observable<boolean> {
     return this.showSave$.asObservable();
   }
+
   setShowSave(val: boolean) {
     this.showSave$.next(val);
   }

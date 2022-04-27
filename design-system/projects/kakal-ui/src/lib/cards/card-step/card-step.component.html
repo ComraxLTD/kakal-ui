@@ -41,7 +41,11 @@
   <!-- label section -->
   <div fxLayout="row" fxFlex>
     <div fxFill fxLayout="column" fxLayoutAlign="center center" class="no-warp">
-      <kkl-typography [underline]="step.selected" [weight]="step.selected ? 600 : 500" [size]="1.2">
+      <kkl-typography
+        [class.selected]="step.selected"
+        [weight]="step.selected ? 600 : 500"
+        [size]="1.2"
+      >
         {{ step.label }}
       </kkl-typography>
     </div>

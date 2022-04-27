@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { DialogService } from '../../../kakal-ui/src/lib/dialog/dialog.service';
-import { CardStatus } from '../../../kakal-ui/src/public-api';
+import { CardStatus, RouterService } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -21,8 +21,15 @@ export class AppComponent {
     },
   ];
 
-  constructor(private dialogService: DialogService) {}
+  constructor(
+    private dialogService: DialogService,
+    private routerService: RouterService
+  ) {}
   open() {
     this.dialogService.openConfirm({ message: 'asd' });
+  }
+
+  onLogoClicked() {
+    this.routerService.navigate('lobby');
   }
 }

@@ -10,6 +10,7 @@ import {
   OptionMap,
   FilterState,
   RouterService,
+  NavbarBottomService,
 } from '../../../../../kakal-ui/src/public-api';
 
 @Component({
@@ -73,11 +74,12 @@ export class CommitteeResultsComponent implements OnInit {
 
   constructor(
     private committeeResultService: CommitteeResultsService,
-
+    private navbarBottomService: NavbarBottomService,
     private routerService: RouterService
   ) {}
 
   ngOnInit(): void {
+    this.navbarBottomService.hideButtons();
     this.questions = this.committeeResultService.getFormQuestions();
   }
 

@@ -20,7 +20,7 @@
     <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
       <ng-container *ngIf="nextMiddle.show">
         <button
-          class="next-middle-btn"
+          class="kkl-middle-button"
           mat-fab
           [disabled]="!formGroup.valid"
           color="primary"
@@ -33,7 +33,7 @@
             <ng-template #saveTemp>{{ "שמור" }}</ng-template>
           </span>
           <br />
-          <mat-icon>expand_more</mat-icon>
+          <kkl-icon [color]="'paper'" key="expand_more"></kkl-icon>
         </button>
       </ng-container>
     </ng-container>

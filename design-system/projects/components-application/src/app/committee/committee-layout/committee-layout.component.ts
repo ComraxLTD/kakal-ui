@@ -8,6 +8,8 @@ import {
   FormActions,
   NavbarBottomService,
   RouterService,
+  StepsLayoutService,
+  StepsSelectionEvent,
 } from '../../../../../kakal-ui/src/public-api';
 import { CommitteeLayoutService } from './committee-layout.service';
 
@@ -43,16 +45,42 @@ export class CommitteeLayoutComponent implements OnInit {
   actions: ButtonModel[] = [{ type: 'form', action: FormActions.EDIT }];
 
   constructor(
-    private navbarBottomService: NavbarBottomService
+    private navbarBottomService: NavbarBottomService,
+    private stepsLayoutService: StepsLayoutService,
+    private routerService: RouterService,
+    private router  : Router
   ) {}
 
   ngOnInit(): void {
-    this.navbarBottomService.setShowNext(true)
-    this.navbarBottomService.setShowSave(true)
+    this.navbarBottomService.setShowNext(true);
+    this.navbarBottomService.setShowSave(true);
+
+    this.navbarBottomService.getNext().subscribe(() => {
+      const event = this.stepsLayoutService.getStepperSelectEvent();
+      console.log(event);
+    });
+  }
+
+  private getUrl(path: string) {
+    const routes = this.router.url.split('/');
+    routes.unshift();
+    routes.pop();
+    routes.push(path);
+    return routes.join('/');
+  }
+
+  // NAVIGATION EVENTS SECTION
+  private navigate(path: string) {
+    const url = this.getUrl(path);
+    this.routerService.navigate(url);
+  }
+
+  // navigate from stepper
+  onStepSelect(event: StepsSelectionEvent) {
+    this.navigate(event.selectedStep.path);
   }
 
   onSave() {
     console.log('save');
   }
-
 }

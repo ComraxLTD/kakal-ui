@@ -36,7 +36,7 @@ export class LayoutComponent implements OnInit {
 
   mobile$: Observable<boolean>;
 
-  isLobby: boolean;
+  isLobby$: Observable<boolean>;
 
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuSelectEvent> = new EventEmitter();
@@ -49,6 +49,17 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.mobile$ = this.breakpointService.isMobile();
+
+    this.isLobby$ = this.setsIsLobby$()
+  }
+
+  private setsIsLobby$() {
+    return this.routerService.getLastPath$().pipe(
+      startWith(this.routerService.getCurrentPath()),
+      map((path: string) => {
+        return this.findPath(['lobby'], path);
+      })
+    );
   }
 
   private handleShowState(list: string[]) {
