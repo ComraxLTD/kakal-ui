@@ -73,7 +73,7 @@ export class LocalAdvancedSearchComponent implements OnInit {
   @Input() colsTemplate: any;
   @Input() newRowAction: string;
   @Input() paging: boolean = true;
-  @Input() dragable: boolean;
+  @Input() draggable: boolean;
   @Input() columns: TableBase[];
   @Input() dataSource: any[];
   @Input() rowActions: RowActionModel[];
