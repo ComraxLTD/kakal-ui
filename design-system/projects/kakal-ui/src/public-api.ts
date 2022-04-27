@@ -25,8 +25,8 @@ export * from './lib/typography/typography.directive';
 export * from './lib/icon/icon.module';
 export * from './lib/icon/icon.component';
 export * from './lib/icon/icon.directive';
-export * from './lib/icon/icon.model';
 export * from './lib/icon/icons.service';
+export * from './lib/icon/icons';
 
 export * from './lib/open-motions/open-motions.module';
 export * from './lib/open-motions/open-motions.component';

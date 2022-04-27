@@ -17,7 +17,7 @@ import {
 
 import { CardStatus } from '../../cards/card-status/card-status.model';
 import { map, startWith } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { merge, Observable } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
@@ -32,8 +32,8 @@ export class LayoutComponent implements OnInit {
   @Input() showStatusPath: string[];
   @ViewChild(MatSidenav) sidenav: MatSidenav;
 
+  pageHeadline$: Observable<PageHeadline[]>;
   showStatus$: Observable<boolean>;
-
   mobile$: Observable<boolean>;
 
   isLobby$: Observable<boolean>;
@@ -43,14 +43,17 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private routerService: RouterService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private pageHeadlineService: PageHeadlineService
   ) {}
 
   ngOnInit(): void {
+    this.pageHeadline$ = this.setPageHeadline();
+
     this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.mobile$ = this.breakpointService.isMobile();
 
-    this.isLobby$ = this.setsIsLobby$()
+    this.isLobby$ = this.setsIsLobby$();
   }
 
   private setsIsLobby$() {
@@ -58,6 +61,28 @@ export class LayoutComponent implements OnInit {
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
         return this.findPath(['lobby'], path);
+      })
+    );
+  }
+
+  private setPageHeadline() {
+    return merge(
+      this.setPageHeadlineFromRoute(),
+      this.pageHeadlineService.listenToPageHeadline()
+    );
+  }
+
+  private setPageHeadlineFromRoute() {
+    return this.routerService.listenToRoute$().pipe(
+      map((url: string) => url.split('/').reverse()),
+      map(
+        (url: string[]) =>
+          url.find((item) => this.pageHeadlineRouteMap[item]) || ''
+      ),
+      map((path: string) => this.pageHeadlineRouteMap[path]),
+      map((path: string) => {
+        const pageHeadline: PageHeadline = { value: path };
+        return [pageHeadline];
       })
     );
   }

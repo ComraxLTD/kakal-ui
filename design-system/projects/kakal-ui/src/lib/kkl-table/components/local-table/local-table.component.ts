@@ -29,6 +29,7 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
   ],
 })
 export class LocalTableComponent implements OnInit {
+
   @ViewChild(MatTable) table: MatTable<any>;
 
   destroySubject$: Subject<void> = new Subject();
@@ -36,9 +37,9 @@ export class LocalTableComponent implements OnInit {
   isLoading: boolean = true;
 
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
-  @Output() deleteRow = new EventEmitter<any>();
-  @Output() editRow = new EventEmitter<any>();
-  @Output() expandRow = new EventEmitter<any>();
+  @Output() deleteRow = new EventEmitter<RowActionEvent>();
+  @Output() saveRow = new EventEmitter<RowActionEvent>();
+  @Output() expandRow = new EventEmitter<RowActionEvent>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
 
@@ -48,7 +49,7 @@ export class LocalTableComponent implements OnInit {
 
   @Input() paging: boolean = true;
 
-  @Input() dragable: boolean;
+  @Input() draggable: boolean;
 
 
   dragDisabled = true;
@@ -83,7 +84,7 @@ export class LocalTableComponent implements OnInit {
     if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
-    if(this.dragable) {
+    if(this.draggable) {
       this.displayedColumns.unshift('dragHandeler')
     }
     // const row = this.fb.group({});
@@ -286,7 +287,7 @@ export class LocalTableComponent implements OnInit {
       this.editItems = [...this.editItems];
       this.groupDataReload();
       // Object.assign(ele, this.rows.at(index).value);
-      this.editRow.emit(ele);
+      this.saveRow.emit(ele);
       this.rows.removeAt(index);
     }
   }

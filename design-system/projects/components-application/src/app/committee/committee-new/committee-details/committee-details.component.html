@@ -1,4 +1,4 @@
-<kkl-page title="פרטי וועידה" dir="rtl">
+<!-- <kkl-page title="פרטי וועידה" dir="rtl">
   <div fxLayout="column" fxLayoutGap="1rem">
     <div fxLayout="row">
       <kkl-form-temp
@@ -13,5 +13,13 @@
       <kkl-typography>בתאריך : {{ date | format: "date" }}</kkl-typography>
     </div>
   </div>
+</kkl-page> -->
 
-</kkl-page>
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  (actionClicked)="onClicked($event)"
+  (editRow)="onEdit($event)"
+  (deleteRow)="onDelete($event)"
+></kkl-local-table>

@@ -57,7 +57,7 @@ export class FormComponent implements OnInit {
   }
 
   set optionsMap(value: OptionMap) {
-    this._optionsMap = { ...value };
+    this._optionsMap = value || {};
   }
 
   // private _data
