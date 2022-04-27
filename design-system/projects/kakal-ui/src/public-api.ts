@@ -129,7 +129,10 @@ export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
 export * from './lib/mei-form/mei-currency/mei-currency.component';
 export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
 export * from './lib/mei-form/mei-advanced-search/mei-advanced-search.component';
+export * from './lib/mei-form/mei-checkbox/mei-checkbox.component';
+export * from './lib/mei-form/mei-toggle/mei-toggle.component';
 export * from './lib/kkl-table/components/local-table/local-advanced-search.component';
+
 
 
 

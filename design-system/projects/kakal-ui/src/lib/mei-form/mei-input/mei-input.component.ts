@@ -111,8 +111,7 @@ console.log(this.placeHolder);
 
   private setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control,
-      this.placeHolder
+      this.control
     );
 
     this.error$.next(error);

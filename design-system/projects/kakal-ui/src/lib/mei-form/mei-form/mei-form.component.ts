@@ -188,11 +188,6 @@ export class MeiFormComponent {
     if(control.selectChanged) {
       control.selectChanged(event.checked);
     }
-    this.selectChanged.emit({
-      key: control.key,
-      value: event.checked,
-      action: KklFormActions.TOGGLE_CHANGED
-    });
   }
   onQueryChanged(event, control: ControlBase) {
     if(control.queryChanged) {

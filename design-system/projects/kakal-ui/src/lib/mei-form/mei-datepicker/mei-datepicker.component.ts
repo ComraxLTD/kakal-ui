@@ -38,7 +38,7 @@ export class MeiDatepickerComponent implements OnInit {
   }
 
   private setErrorMessage() {
-    const error = this.messageService.getErrorMessage(this.control, this.placeHolder);
+    const error = this.messageService.getErrorMessage(this.control);
 
     this.error$.next(error);
     if (error && this.control.touched) {

@@ -1,29 +1,9 @@
-<kkl-layout [cards]="cards" (logoClicked)="onLogoClicked()" [drawerAction]="{type: 'file', label: 'מדנד'}">
+<kkl-stepper fxFlex="100" [steps]="steps" direction="row" (selectStep)="onSelectStep($event)"></kkl-stepper>
 
-  <!-- <kkl-local-advanced-search
-    [grid]="gridProps"
-    [buttonLabel]="buttonLabel"
-    [formGroup]="formGroup"
-    [columns]="controls"
-    [options]="options"
-    [dataSource]="dataSource"
-    [searchControls]="tableFilters"
-    (openedChange)="onOpenChanged($event)"
-    (queryChanged)="onQueryChanged($event)"
-    (selectChanged)="onSelectChanged($event)"
-    (valueChanged)="onValueChanged($event)"
-    (focusChanged)="onFocusChanged($event)"
-    (submitEvent)="onSubmitEvent($event)"
-  >
-  </kkl-local-advanced-search> -->
-
-  <kkl-steps-layout
-    [actions]="actions"
-    [steps]="steps">
-      <router-outlet content></router-outlet>
-      <div endDrawerContent>replace this content with your own feature</div>
-      <!-- [hasSave]="true" -->
-    </kkl-steps-layout>
-</kkl-layout>
-
-
+<kkl-counter
+                [control]="control"
+                [label]="'counter'"
+                [key]="'counter'"
+                [icon]="'logo'"
+                (valueChanged)="onValueChanged($event)"
+            ></kkl-counter>

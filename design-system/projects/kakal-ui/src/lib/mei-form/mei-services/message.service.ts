@@ -8,19 +8,19 @@ export class MessageService {
   constructor() {}
 
   // handle input error messages
-  public getErrorMessage(control: FormControl, placeHolder: string): string {
+  public getErrorMessage(control: FormControl): string {
     const errors = control.errors;
     const key = errors ? Object.keys(errors) : null;
 
     const messageMap: ValidationErrors = {
       required: () => 'שדה חובה',
       minlength: () => 'ערך קצר מידי',
-      pattern: (errors, placeHolder) => `מבנה ${placeHolder} לא תקין`,
+      pattern: () => `מבנה לא תקין`,
       range: (errors) => errors?.range,
       maxCurrency: (errors) => `לא יכול להיות גבוה מ ${errors.maxCurrency.max}`,
       email: () => 'האיימל לא תקין',
     };
 
-    return key ? messageMap[key[0]](errors, placeHolder) : '';
+    return key ? messageMap[key[0]](errors) : '';
   }
 }

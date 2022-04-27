@@ -10,7 +10,7 @@ import { setControls } from '../../../mei-services/services/form-create';
 import { ControlBase } from '../../../mei-form/models/control.model';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
-import { RowActionEvent, RowActionModel } from '../../models/table-actions.model';
+import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model';
 import { TableBase } from '../../models/table.model';
 import { customFilterPredicate } from './local-filter';
 
@@ -37,8 +37,8 @@ export class LocalTableComponent implements OnInit {
 
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
-  @Output() editRow = new EventEmitter<any>();
-  @Output() expandRow = new EventEmitter<any>();
+  @Output() saveRow = new EventEmitter<any>();
+  @Output() expandRow = new EventEmitter<RowExpandEvent>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
 
@@ -264,11 +264,10 @@ export class LocalTableComponent implements OnInit {
           break;
         case 'inlineEdit':
           this.addRowGroup(obj);
-          this.editItems = [...this.editItems, obj];
           break;
         case 'inlineExpand':
-          this.expandRow.emit(obj);
-          this.expandedElement = this.expandedElement == obj? null : obj;
+          this.expandRow.emit({row: obj, key: key});
+          this.addExpandedRow(obj);
           break;
         default:
           break;
@@ -279,6 +278,10 @@ export class LocalTableComponent implements OnInit {
     }
   }
 
+  addExpandedRow(obj: any) {
+    this.expandedElement = this.expandedElement == obj? null : obj;
+  }
+
   saveRowClick(ele: any) {
     const index = this.editItems.indexOf(ele);
     if (index > -1) {
@@ -286,7 +289,7 @@ export class LocalTableComponent implements OnInit {
       this.editItems = [...this.editItems];
       this.groupDataReload();
       // Object.assign(ele, this.rows.at(index).value);
-      this.editRow.emit(ele);
+      this.saveRow.emit(ele);
       this.rows.removeAt(index);
     }
   }
@@ -311,17 +314,21 @@ export class LocalTableComponent implements OnInit {
 
   addRowGroup(obj: any) {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(obj[col.key]));
-    });
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(obj[col.key]));
+    // });
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    row.setValue(obj);
     this.rows.push(row);
+    this.editItems = [...this.editItems, obj];
   }
 
   addNewRowGroup() {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
     this.rows.push(row);
     const rowData: any = row.value;
     this.editItems = [...this.editItems, rowData];
