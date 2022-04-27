@@ -47,10 +47,10 @@ export default {
           name: 'Cards',
           description: 'Array of cards to display',
           table: {
-            type: { summary: 'CardLobbyModel[]' },
+            type: { summary: 'CardLobby[]' },
           },
           control: {
-            type: 'CardLobbyModel[]'
+            type: 'CardLobby[]'
           }
         },
     },

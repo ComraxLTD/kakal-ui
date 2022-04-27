@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
 
   openIcon: string = 'tree_gradient_';
   mobile$: Observable<boolean>;
-  
+
   openLabel: string = 'תפריט';
   closeLabel: string = 'סגור תפריט';
 

@@ -15,6 +15,7 @@ import { StatusGroupComponent } from './status-group.component';
     KKLDirectivesModule,
     FlexLayoutModule,
     KKLCardStatusModule
-  ]
+  ],
+  exports: [StatusGroupComponent]
 })
 export class KKLStatusGroupModule { }

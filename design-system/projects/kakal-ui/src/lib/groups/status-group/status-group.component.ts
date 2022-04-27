@@ -17,10 +17,8 @@ export interface StepsSelectionEvent {
   styleUrls: ['./status-group.component.scss'],
 })
 export class StatusGroupComponent implements OnInit {
-  _steps: CardStatus[];
-  @Input() set steps(val: CardStatus[]) {
-    this._steps = val;
-  }
+
+  @Input() steps: CardStatus[];
   @Input() direction: 'row' | 'column' = 'row';
   @Input() options: CardOptions;
 
@@ -28,12 +26,10 @@ export class StatusGroupComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  onStepStatusSelect(
-    step: CardStatus,
-    index: number,
-  ) {
+  onStepStatusSelect(step: CardStatus, index: number) {
     const event: StepsSelectionEvent = {
       selectedStep: step,
       selectedIndex: index,

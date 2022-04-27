@@ -46,7 +46,6 @@ export class FormFlexComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.formGroup)
     this.cols = this.grid?.cols || 4;
     this.flex = 100 / (this.grid?.cols || this.cols);
     this.layout = this.grid.layout;

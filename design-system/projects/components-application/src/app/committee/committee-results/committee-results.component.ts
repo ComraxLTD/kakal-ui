@@ -74,10 +74,7 @@ export class CommitteeResultsComponent implements OnInit {
   constructor(
     private committeeResultService: CommitteeResultsService,
 
-    private routerService: RouterService,
-
-    // @Inject(ROOT_PREFIX) private projectPrefix: string,
-    // @Inject(MODULE_PREFIX) private modulePrefix: string
+    private routerService: RouterService
   ) {}
 
   ngOnInit(): void {
@@ -87,7 +84,7 @@ export class CommitteeResultsComponent implements OnInit {
   // DOM EVENTS SECTION
 
   onCreateNewCommittee() {
-    const path: string = `new`;
+    const path: string = `estates/new`;
     this.routerService.navigate(path);
   }
 }

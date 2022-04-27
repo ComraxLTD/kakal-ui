@@ -18,7 +18,7 @@
 
     <ng-content></ng-content>
 
-    <div class="navbar-bottom">
+    <div *ngIf="isLobby" class="navbar-bottom">
       <kkl-navbar-bottom></kkl-navbar-bottom>
     </div>
   </mat-sidenav-content>
