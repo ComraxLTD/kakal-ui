@@ -1,12 +1,12 @@
 export const LIST_MEW = `
   <svg xmlns="http://www.w3.org/2000/svg" width="20.791" height="14.475" viewBox="0 0 20.791 14.475">
     <g id="Group_4169" data-name="Group 4169" transform="translate(-633.501 -773.5)">
-      <rect id="Rectangle_2890" data-name="Rectangle 2890" width="2.497" height="2.45" transform="translate(651.295 774)" fill="#efa500" stroke="#efa500" stroke-width="1"/>
-      <rect id="Rectangle_2891" data-name="Rectangle 2891" width="2.497" height="2.45" transform="translate(651.295 779.512)" fill="#efa500" stroke="#efa500" stroke-width="1"/>
-      <rect id="Rectangle_2892" data-name="Rectangle 2892" width="2.497" height="2.45" transform="translate(651.295 785.025)" fill="#efa500" stroke="#efa500" stroke-width="1"/>
-      <line id="Line_716" data-name="Line 716" x1="14.36" transform="translate(633.501 775.531)" fill="#efa500" stroke="#efa500" stroke-width="1"/>
-      <line id="Line_717" data-name="Line 717" x1="14.36" transform="translate(633.501 781.043)" fill="#efa500" stroke="#efa500" stroke-width="1"/>
-      <line id="Line_718" data-name="Line 718" x1="14.36" transform="translate(633.501 786.557)" fill="#efa500" stroke="#efa500" stroke-width="1"/>
+      <rect id="Rectangle_2890" data-name="Rectangle 2890" width="2.497" height="2.45" transform="translate(651.295 774)" fill="none" stroke-width="1"/>
+      <rect id="Rectangle_2891" data-name="Rectangle 2891" width="2.497" height="2.45" transform="translate(651.295 779.512)" fill="none" stroke-width="1"/>
+      <rect id="Rectangle_2892" data-name="Rectangle 2892" width="2.497" height="2.45" transform="translate(651.295 785.025)" stroke-width="1"/>
+      <line id="Line_716" data-name="Line 716" x1="14.36" transform="translate(633.501 775.531)" fill="none" stroke-width="1"/>
+      <line id="Line_717" data-name="Line 717" x1="14.36" transform="translate(633.501 781.043)" fill="none" stroke-width="1"/>
+      <line id="Line_718" data-name="Line 718" x1="14.36" transform="translate(633.501 786.557)" fill="none" stroke-width="1"/>
     </g>
   </svg>
 `
@@ -14,9 +14,9 @@ export const LIST_MEW = `
 export const DOWNLOAD_NEW = `
   <svg xmlns="http://www.w3.org/2000/svg" width="22.819" height="22.819" viewBox="0 0 22.819 22.819">
   <g id="Icon_feather-download" data-name="Icon feather-download" transform="translate(-3.75 -3.75)">
-    <path id="Path_905" data-name="Path 905" d="M25.819,22.5v4.738a2.369,2.369,0,0,1-2.369,2.369H6.869A2.369,2.369,0,0,1,4.5,27.238V22.5" transform="translate(0 -3.787)" fill="none" stroke="#efa500" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-    <path id="Path_906" data-name="Path 906" d="M10.5,15l5.922,5.922L22.344,15" transform="translate(-1.262 -2.209)" fill="none" stroke="#efa500" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-    <path id="Path_907" data-name="Path 907" d="M18,18.713V4.5" transform="translate(-2.841)" fill="none" stroke="#efa500" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_905" data-name="Path 905" d="M25.819,22.5v4.738a2.369,2.369,0,0,1-2.369,2.369H6.869A2.369,2.369,0,0,1,4.5,27.238V22.5" transform="translate(0 -3.787)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_906" data-name="Path 906" d="M10.5,15l5.922,5.922L22.344,15" transform="translate(-1.262 -2.209)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_907" data-name="Path 907" d="M18,18.713V4.5" transform="translate(-2.841)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
   </g>
   </svg>
 `
@@ -24,16 +24,16 @@ export const DOWNLOAD_NEW = `
 export const PRINTER_NEW = `
   <svg xmlns="http://www.w3.org/2000/svg" width="20.924" height="20.924" viewBox="0 0 20.924 20.924">
   <g id="Icon_feather-printer" data-name="Icon feather-printer" transform="translate(-2 -2)">
-    <path id="Path_1676" data-name="Path 1676" d="M9,9.623V3H20.354V9.623" transform="translate(-2.215)" fill="none" stroke="#efa500" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Path_1677" data-name="Path 1677" d="M6.785,22.016H4.892A1.892,1.892,0,0,1,3,20.123V15.392A1.892,1.892,0,0,1,4.892,13.5H20.031a1.892,1.892,0,0,1,1.892,1.892v4.731a1.892,1.892,0,0,1-1.892,1.892H18.139" transform="translate(0 -3.877)" fill="none" stroke="#efa500" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-    <path id="Path_1678" data-name="Path 1678" d="M9,21H20.354v7.57H9Z" transform="translate(-2.215 -6.646)" fill="none" stroke="#efa500" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_1676" data-name="Path 1676" d="M9,9.623V3H20.354V9.623" transform="translate(-2.215)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_1677" data-name="Path 1677" d="M6.785,22.016H4.892A1.892,1.892,0,0,1,3,20.123V15.392A1.892,1.892,0,0,1,4.892,13.5H20.031a1.892,1.892,0,0,1,1.892,1.892v4.731a1.892,1.892,0,0,1-1.892,1.892H18.139" transform="translate(0 -3.877)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_1678" data-name="Path 1678" d="M9,21H20.354v7.57H9Z" transform="translate(-2.215 -6.646)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
   </g>
   </svg>
 `
 
 export const CALENDAR_NEW = `
   <svg xmlns="http://www.w3.org/2000/svg" width="17.741" height="18.924" viewBox="0 0 17.741 18.924">
-  <path id="Icon_metro-calendar" data-name="Icon metro-calendar" d="M8.484,9.024H10.85V11.39H8.484Zm3.548,0H14.4V11.39H12.033Zm3.548,0h2.365V11.39H15.581Zm-10.645,7.1H7.3v2.365H4.936Zm3.548,0H10.85v2.365H8.484Zm3.548,0H14.4v2.365H12.033ZM8.484,12.573H10.85v2.365H8.484Zm3.548,0H14.4v2.365H12.033Zm3.548,0h2.365v2.365H15.581Zm-10.645,0H7.3v2.365H4.936ZM17.946,1.928V3.111H15.581V1.928H7.3V3.111H4.936V1.928H2.571V20.852H20.312V1.928H17.946Zm1.183,17.741H3.753V6.659H19.129Z" transform="translate(-2.571 -1.928)" fill="#efa500"/>
+  <path id="Icon_metro-calendar" data-name="Icon metro-calendar" d="M8.484,9.024H10.85V11.39H8.484Zm3.548,0H14.4V11.39H12.033Zm3.548,0h2.365V11.39H15.581Zm-10.645,7.1H7.3v2.365H4.936Zm3.548,0H10.85v2.365H8.484Zm3.548,0H14.4v2.365H12.033ZM8.484,12.573H10.85v2.365H8.484Zm3.548,0H14.4v2.365H12.033Zm3.548,0h2.365v2.365H15.581Zm-10.645,0H7.3v2.365H4.936ZM17.946,1.928V3.111H15.581V1.928H7.3V3.111H4.936V1.928H2.571V20.852H20.312V1.928H17.946Zm1.183,17.741H3.753V6.659H19.129Z" transform="translate(-2.571 -1.928)" fill="none"/>
   </svg>
 `
 
