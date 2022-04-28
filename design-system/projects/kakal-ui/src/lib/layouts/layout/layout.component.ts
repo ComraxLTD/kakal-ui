@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 
 import { RouterService, BreakpointService } from '../../../services/services';
 import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
@@ -28,6 +35,7 @@ export class LayoutComponent implements OnInit {
   };
 
   @Input() drawerAction: ButtonModel;
+
   // drawer props
   portion$: Observable<number> = of(100);
   showStartDrawer$: Observable<boolean>;
@@ -37,7 +45,7 @@ export class LayoutComponent implements OnInit {
 
   //end drawer opened/closed
   _endDrawerOpen: boolean = false;
-  showEndDrawer: boolean = true;
+  showEndDrawer: boolean = false;
 
   //drawer sizes
   _openDrawer!: number;
@@ -74,9 +82,7 @@ export class LayoutComponent implements OnInit {
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
 
     this.showStartDrawer$ = this.layoutService.listenToStartDrawer();
-    this.layoutService.emitStartDrawer(true);
   }
-
 
   private handleShowState(list: string[]) {
     return this.routerService.getLastPath$().pipe(
@@ -100,18 +106,12 @@ export class LayoutComponent implements OnInit {
     this.menuSelected.emit(event);
   }
 
-
-
-
-
-
   onStartSideNav(val: string) {
     this.selectedOpen = val;
+
     this.sidenav.toggle();
   }
   // control content width when end drawer is open and close in %
-
-
 
   // PORTION LOGIC SECTION
 

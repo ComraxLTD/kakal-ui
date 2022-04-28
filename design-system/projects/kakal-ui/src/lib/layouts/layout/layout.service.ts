@@ -7,18 +7,18 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class LayoutService {
-  private startDrawer$: Subject<boolean>;
+  private startDrawer$: BehaviorSubject<boolean>;
 
   constructor() {
-    this.startDrawer$ = new Subject<boolean>();
+    this.startDrawer$ = new BehaviorSubject<boolean>(false);
   }
 
-  emitStartDrawer(value: boolean): void {
+  showStartDrawer(value: boolean): void {
     this.startDrawer$.next(value);
   }
+
 
   listenToStartDrawer(): Observable<boolean> {
     return this.startDrawer$.asObservable();
   }
-
 }
