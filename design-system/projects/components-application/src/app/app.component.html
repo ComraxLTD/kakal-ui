@@ -1,4 +1,7 @@
-<kkl-layout   [cards]="cards"
-[drawerAction]="{ label: 'העלה מסמך', svgIcon: 'file' }">
+<kkl-layout
+  [cards]="cards"
+  [drawerAction]="{ label: 'העלה מסמך', svgIcon: 'file' }"
+>
   <kkl-drawer-document title="מסמכי תיק" drawer> </kkl-drawer-document>
+  <router-outlet content></router-outlet>
 </kkl-layout>
