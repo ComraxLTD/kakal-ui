@@ -1,0 +1,29 @@
+<div dir="rtl" fxFill fxLayout="column" fxLayoutGap="3rem">
+
+  <div fxLayout="row" fxFill fxLayoutAlign="center center" >
+
+    <!-- kkl-form-temp-ADVANCED SEARCH -->
+    <ng-container *ngIf="questions">
+      <!-- kkl-form-temp-ADVANCED SEARCH -->
+     
+      
+      <section fxLayout="row" fxLayoutAlign="end center">
+    <kkl-add-button >הוסף</kkl-add-button>
+</section>
+
+<!-- KKL-TABLE-NEW -->
+<ng-container *ngIf="columns && rowActions">
+  <kkl-local-table [columns]="columns" [rowActions]="rowActions"></kkl-local-table>
+</ng-container>
+
+<section fxLayout="row" fxLayoutAlign="end center">
+  <kkl-add-button (clickEvent)="onClick()">{{buttonLabel}}</kkl-add-button>
+</section>
+
+<!-- KKL-TABLE-NEW -->
+<ng-container *ngIf="columns && rowActions">
+  <!-- KKL-TABLE-NEW -->
+  <kkl-local-table [columns]="columns" [rowActions]="rowActions" [dataSource]="dataSource"></kkl-local-table>
+  <!-- colsTemplate to add inputs to the table -->
+  
+</ng-container>

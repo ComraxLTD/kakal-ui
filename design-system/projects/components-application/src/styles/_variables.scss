@@ -33,6 +33,11 @@ $female: #d220ba;
 $success: #59a437;
 $success-light: #37c563;
 
+$background-grey:#f5f5f5;
+$background-disabled-grey:#707070;
+$background-stepper-grey:#e4e4e4;
+
+
 $colors: (
   primary: $primary,
   accent: $accent,
@@ -49,6 +54,7 @@ $colors: (
   warn: $warn,
   success: $success,
   success-light: $success-light,
+  background-grey:$background-grey
 );
 
 @function color($color-name) {

@@ -1,22 +1,41 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+import { LobbyComponent } from './components/lobby/lobby.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: AppComponent,
-    // data: { breadcrumb: 'דף הבית', homepage: true },
-    pathMatch: 'full',
-    children: [
-      {
-        path: 'bid',
-        loadChildren: () =>
-          import('./committee/committee.module').then(
-            (m) => m.CommitteeModule
-          ),
-      },
-    ],
+    component: LobbyComponent,
+    data: { breadcrumb: 'דף הבית', homepage: true },
+    children: [],
+  },
+  {
+    path: 'availability-check',
+    loadChildren: () =>
+      import('./modules/availabiilty-check/availability-check.module').then(
+        (m) => m.AvailabilityCheckModule
+      ),
+  },
+  {
+    path: 'reservation',
+    loadChildren: () =>
+      import('./modules/new-reservation/new-reservation.module').then(
+        (m) => m.NewReservationModule
+      ),
+  },
+  {
+    path: 'marketers',
+    loadChildren: () =>
+      import('./modules/marketers/marketers.module').then(
+        (m) => m.MarketersModule
+      ),
+  },
+  {
+    path: 'tours-list',
+    loadChildren: () =>
+      import('./modules/tours-list/tours-list.module').then(
+        (m) => m.ToursListModule
+      ),
   },
 ];
 

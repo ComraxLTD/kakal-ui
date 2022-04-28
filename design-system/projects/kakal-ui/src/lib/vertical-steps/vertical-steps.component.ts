@@ -50,14 +50,14 @@ export class VerticalStepsComponent implements OnInit {
 
   @Input() templates: { [key: string]: TemplateRef<any> };
 
-  templateName: string;
+  cellTemplate: string;
 
   _selectedIndex: number = 0;
   @Input() set selectedIndex(val: number) {
     if(val) {
       this._selectedIndex = val;
       if(this.steps) {
-        this.templateName = this.steps[val].key as string;
+        this.cellTemplate = this.steps[val].key as string;
       }
     }
   }
@@ -71,7 +71,7 @@ export class VerticalStepsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.templateName = this.steps[this._selectedIndex].key as string;
+    this.cellTemplate = this.steps[this._selectedIndex].key as string;
   }
 
 
@@ -86,7 +86,7 @@ export class VerticalStepsComponent implements OnInit {
       first: selectedIndex === 0,
       last: selectedIndex === this.steps.length - 1,
     };
-    this.templateName = this.steps[selectedIndex].key as string;
+    this.cellTemplate = this.steps[selectedIndex].key as string;
     this.stepChanged.emit(stepSelectEvent);
   }
 }
