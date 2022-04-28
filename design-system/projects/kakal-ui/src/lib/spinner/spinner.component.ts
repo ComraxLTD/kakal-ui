@@ -7,8 +7,8 @@ import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
   styleUrls: ['./spinner.component.scss'],
 })
 export class SpinnerComponent implements OnInit {
-  @Input() color: ThemePalette = 'primary';
-  @Input() mode: ProgressSpinnerMode = 'indeterminate';
+  @Input() color: ThemePalette;
+  @Input() mode: ProgressSpinnerMode;
   @Input() value: number;
   @Input() diameter: number;
 
@@ -18,7 +18,7 @@ export class SpinnerComponent implements OnInit {
   ngOnInit(): void {
     this.color = this.color || 'primary';
     this.mode = this.mode || 'indeterminate';
-    this.value = this.value || 50;
+    this.value = this.value;
     this.diameter = this.diameter || 80;
   }
 }

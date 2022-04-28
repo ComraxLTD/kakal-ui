@@ -1,5 +1,7 @@
 @use "../../styles/variables" as main;
 
+
+
 ::ng-deep mat-tab-group.kkl-tabs {
   &.default {
     .mat-tab-header {
@@ -28,6 +30,26 @@
     }
     .mat-tab-body-wrapper {
       padding: 1rem;
+      width: 100%;
     }
+
+    ::ng-deep .mat-tab-list{
+      background-color: #f5f5f5 !important;
+
+  }
+  ::ng-deep .mat-tab-label-active{
+      background-color: white !important;
+      font-weight: bold !important;
+      opacity: 1 !important;
+  }
+
+  ::ng-deep .mat-tab-label{
+      background-color: #f5f5f5;
+      color: black !important;
+  }
+
+  ::ng-deep .mat-tab-body{
+          background-color: white !important;
+  }
   }
 }

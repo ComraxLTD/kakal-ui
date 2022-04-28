@@ -1,21 +1,22 @@
 @use "../../../styles/variables" as main;
 
+::ng-deep mat-sidenav {
+  overflow: visible !important;
+  // visibility: visible !important;
+
+  &.menu {
+    top: main.$toolbar-height;
+    height: main.$content-height;
+
+    div.menu-container {
+      height: inherit;
+    }
+  }
+}
+
 :host {
   .kkl-sidenav-container {
     height: 100%;
-
-    mat-sidenav {
-      &.menu {
-        top: main.$toolbar-height;
-        height: main.$content-height;
-
-        div.menu-container {
-          height: inherit;
-          // padding-right: main.spacing(1);
-        }
-      }
-
-    }
   }
 
   mat-sidenav-content {
@@ -25,6 +26,105 @@
   }
 }
 
+.sidenav-container {
+  background-color: main.color(paper);
+}
+
+mat-sidenav-content {
+  background-color: main.color(paper);
+  margin-left: 0 !important;
+}
+
+div.content {
+  margin-bottom: main.$bottomBar-height;
+}
+
+.sidenav-drawer {
+  width: 32rem !important;
+}
+
+// style button of side menu
+button.mat-fab.kkl-drawer-button {
+  background-color: main.color(paper) !important;
+  width: 7rem;
+  height: 7rem;
+  border: 1px solid main.color(primary) !important;
+
+  span.mat-button-wrapper {
+    display: flex !important;
+    flex-direction: column;
+  }
+
+  kkl-typography {
+    text-align: center;
+    line-height: 1rem;
+  }
+
+  kkl-icon {
+    transform: translateY(-0.4rem);
+  }
+
+  // position css
+  position: fixed;
+  right: 28rem;
+
+  &.outside {
+    margin-top : 1%;
+    right: 8rem;
+  }
+}
+
+::ng-deep span.mat-badge-content.mat-badge-active {
+  color: main.color(paper);
+  transform: translateY(1rem);
+}
+
+::ng-deep .open {
+  span.mat-badge-content.mat-badge-active {
+    background-color: main.color(text);
+  }
+}
+
+// style bottom navbar
+.bottom-navbar {
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  height: main.$bottomBar-height;
+  z-index: 100;
+  overflow: hidden;
+  & * {
+    overflow: hidden;
+  }
+}
+
+.example-container {
+  height: 500px;
+}
+
+.end-drawer-button {
+  height: 100%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 5rem;
+  background-color: #f9f8f6;
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+.mat-sidenav-container {
+  width: 100%;
+}
+
+.end-drawer-btn {
+  // border: 1px solid main.$primary;
+  // border-radius: 100px;
+  position: fixed;
+  bottom: calc(main.$bottomBar-height + 3rem);
+  left: 3rem;
+}
+
 // style bottom navbar
 .navbar-bottom {
   bottom: 0;
@@ -32,9 +132,4 @@
   position: fixed;
   height: main.$bottomBar-height;
   z-index: 100;
-  // overflow: hidden;
-  // & * {
-  //   overflow: hidden;
-  // }
 }
-

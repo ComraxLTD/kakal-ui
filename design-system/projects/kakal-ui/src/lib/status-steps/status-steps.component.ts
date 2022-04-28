@@ -20,28 +20,18 @@ export interface StatusBars {
 })
 export class StatusStepsComponent implements OnInit {
 
-  @Input() status: StatusBars;
-  @Input() cols: number;
-  @Input() color: string;
   @Input() hasLabel: boolean;
+  @Input() status: StatusBars;
 
   @Input() labelRef: ElementRef;
-
-  @Output() click: EventEmitter<void> = new EventEmitter();
 
   steps: string[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-    this.cols = this.cols || 8;
-    this.color = this.color || 'accent';
-
     const approvedBars = Array(this.status.authorizedBars).fill('active');
     this.steps.push(...approvedBars);
-    // if (this.status.authorizedBars < this.status.totalBars) {
-    //   this.steps.push('disable');
-    // }
 
     const disableBars = new Array(
       this.status.totalBars - this.status.authorizedBars

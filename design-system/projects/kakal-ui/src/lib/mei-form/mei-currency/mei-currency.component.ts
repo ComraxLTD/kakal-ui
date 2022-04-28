@@ -76,8 +76,7 @@ export class MeiCurrencyComponent implements OnInit {
 
   setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.groupControl.get('sum') as FormControl,
-      this.placeHolder
+      this.groupControl.get('sum') as FormControl
     );
 
     this.error$.next(error);

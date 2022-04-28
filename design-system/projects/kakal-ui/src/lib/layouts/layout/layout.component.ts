@@ -15,10 +15,12 @@ import {
   MenuSelectEvent,
 } from '../../menu-bar/menu-item/menu-item.component';
 
-import { CardStatus } from '../../cards/card-status/card-status.model';
 import { map, startWith } from 'rxjs/operators';
-import { merge, Observable } from 'rxjs';
+import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
+import { LayoutService } from './layout.service';
+import { ButtonModel } from '../../button/models/button.types';
+import { CardStatusModel } from '../../cards/card-status/card-status.model';
 
 @Component({
   selector: 'kkl-layout',
@@ -26,13 +28,39 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
+  @ViewChild('menuDrawer') sidenav: MatSidenav;
+
   @Input() items: MenuItem[];
-  @Input() status: CardStatus[];
+  @Input() status: CardStatusModel[];
   @Input() pageHeadlineRouteMap: { [ket: string]: string };
   @Input() showStatusPath: string[];
-  @ViewChild(MatSidenav) sidenav: MatSidenav;
+
+  @Input() contentPortion: { open: number; close: number } = {
+    open: 0,
+    close: 100,
+  };
+
+  @Input() drawerAction: ButtonModel;
 
   pageHeadline$: Observable<PageHeadline[]>;
+  selectedOpen: string;
+  // drawer props
+  portion$: Observable<number> = of(100);
+  showStartDrawer$: Observable<boolean>;
+
+  endDrawerSizeSource$: BehaviorSubject<number>;
+  endDrawerSize$: Observable<number> = of(0);
+
+  //end drawer opened/closed
+  _endDrawerOpen: boolean = false;
+  showEndDrawer: boolean = false;
+
+  //drawer sizes
+  _openDrawer!: number;
+  _closedDrawer!: number;
+
+  @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
+
   showStatus$: Observable<boolean>;
   mobile$: Observable<boolean>;
 
@@ -44,7 +72,8 @@ export class LayoutComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private pageHeadlineService: PageHeadlineService
+    private pageHeadlineService: PageHeadlineService,
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
@@ -85,6 +114,19 @@ export class LayoutComponent implements OnInit {
         return [pageHeadline];
       })
     );
+
+    this._openDrawer = this.contentPortion.open;
+    this._closedDrawer = this.contentPortion.close;
+
+    this.endDrawerSizeSource$ = new BehaviorSubject(0);
+
+    // init actions if array exist
+
+    this.portion$ = this.getBreakPoints();
+
+    this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
+
+    this.showStartDrawer$ = this.layoutService.listenToStartDrawer();
   }
 
   private handleShowState(list: string[]) {
@@ -107,5 +149,60 @@ export class LayoutComponent implements OnInit {
   onMenuSelected(event: MenuSelectEvent) {
     this.sidenav.close();
     this.menuSelected.emit(event);
+  }
+
+  onStartSideNav(val: string) {
+    this.selectedOpen = val;
+
+    this.sidenav.toggle();
+  }
+  // control content width when end drawer is open and close in %
+
+  // PORTION LOGIC SECTION
+
+  // breakpoints
+  private mergeBreakPoints() {
+    return this.breakpointService
+      .isSmall()
+      .pipe(
+        mergeMap((isSmall) =>
+          this.breakpointService
+            .isMobile()
+            .pipe(map((isMobile) => [isSmall, isMobile]))
+        )
+      );
+  }
+
+  private getBreakPoints() {
+    return this.mergeBreakPoints().pipe(
+      map((value: boolean[]) => {
+        if (value.includes(true)) {
+          this._openDrawer = 1;
+          this._closedDrawer = 99;
+        } else {
+          this._openDrawer = this.contentPortion.open;
+          this._closedDrawer = this.contentPortion.close;
+        }
+        this.endDrawerSizeSource$.next(this._openDrawer);
+        return 100 - this._openDrawer;
+      })
+    );
+  }
+
+  // function called each time the left(end) drawer is closed/opened
+  emitEndDrawer(): void {
+    let portion: number = 0;
+
+    this._endDrawerOpen = !this._endDrawerOpen;
+    if (!this._endDrawerOpen) {
+      portion = 100 - this._openDrawer;
+      this.portion$ = of(portion);
+      this.endDrawerSizeSource$.next(this._openDrawer);
+    } else {
+      portion = 100 - this._closedDrawer;
+      this.portion$ = of(portion);
+      this.endDrawerSizeSource$.next(this._closedDrawer);
+    }
+    this.openChanged.emit(this._endDrawerOpen);
   }
 }

@@ -1,0 +1,22 @@
+<kkl-steps-layout
+  dir="rtl"
+  [actions]="[]"
+  [steps]="[]"
+  (openChanged)="onDrawerOpenChanged($event)"
+
+>
+
+<div content>
+<div title class="title" > 
+  <kkl-form-temp
+   (formChanged)="onChangedForm($event)"
+   [formGroup]="groupFlex.formGroup"
+   [questions]="groupFlex.questions"
+   [grid]="groupFlex.gridProps!"
+ ></kkl-form-temp> 
+</div> 
+  <router-outlet  ></router-outlet>
+</div>
+<div endDrawerContent>replace this content with your own feature</div>
+
+</kkl-steps-layout>

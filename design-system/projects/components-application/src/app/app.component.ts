@@ -1,35 +1,50 @@
-import { Component } from '@angular/core';
-import { DialogService } from '../../../kakal-ui/src/lib/dialog/dialog.service';
-import { CardStatus, RouterService } from '../../../kakal-ui/src/public-api';
+import { Component, OnInit } from '@angular/core';
+import { LayoutService, MenuCard } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
-  steps: any[] = [{ selected: true }, { selected: false }, { selected: false }];
-
-  status: CardStatus[] = [
+export class AppComponent implements OnInit {
+  cards: MenuCard[] = [
     {
-      key: 'first',
-      label: 'תהליכי רישום',
-      svgIcon: 'home',
-      value: 4,
-      path: 'records',
-      options: [],
+      label: 'ספר נכסים',
+      svgIcon: 'estate',
+      path: 'estates',
+    },
+    {
+      label: 'פיקוח',
+      svgIcon: 'supervision',
+      path: 'supervision',
+    },
+    {
+      label: 'שומה',
+      svgIcon: 'evaluation',
+      path: 'evaluation',
+    },
+    {
+      label: 'עסקאות',
+      svgIcon: 'transactions',
+      path: 'transactions',
+    },
+    {
+      label: 'מדידות',
+      svgIcon: 'measurements',
+      path: 'measurements',
+    },
+    {
+      label: 'תכנון',
+      svgIcon: 'planing',
+      path: 'planing',
     },
   ];
 
-  constructor(
-    private dialogService: DialogService,
-    private routerService: RouterService
-  ) {}
-  open() {
-    this.dialogService.openConfirm({ message: 'asd' });
+  constructor(private layoutService: LayoutService) {}
+
+  ngOnInit(): void {
+    this.layoutService.showStartDrawer(true);
   }
 
-  onLogoClicked() {
-    this.routerService.navigate('lobby');
-  }
+
 }
