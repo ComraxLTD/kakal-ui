@@ -1,23 +1,7 @@
-<kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions"
-  [expandTemplate]="expand"
-  (expandRow)="onExpand($event)"
-></kkl-local-table>
-
-<ng-template #expand let-data>
-  <kkl-tabs
-  fxFill
-  variant="table"
-    class="kkl-tabs"
-    [tabs]="tabsArray"
-    [templates]="{winning,documents,contacts,evaluation}"
-  ></kkl-tabs>
-</ng-template>
-
-<ng-template #winning let-data> asdasdasdasd </ng-template>
-
-<ng-template #documents>asdasdasd </ng-template>
-<ng-template #contacts>asdasdasd </ng-template>
-<ng-template #evaluation> asdasd</ng-template>
+<kkl-layout
+  [cards]="[]"
+  [drawerAction]="{ label: 'העלה מסמך', svgIcon: 'file' }"
+>
+  <kkl-drawer-document title="מסמכי תיק" drawer> </kkl-drawer-document>
+  <router-outlet content></router-outlet>
+</kkl-layout>

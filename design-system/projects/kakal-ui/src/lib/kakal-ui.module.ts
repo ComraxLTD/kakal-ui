@@ -15,8 +15,6 @@ import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 
-import { KKLMenuItemModule } from './menu-item/menu-item.module';
-import { KKLMenuModule } from './menu/menu.module';
 import { KKLStepTitleModule } from './step-title/step-title.module';
 
 import { KKLFormModule } from './form/form/form.module';
@@ -49,8 +47,6 @@ import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusStepsModule } from './status-steps/status-steps.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
-import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
-
 // CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
@@ -80,10 +76,8 @@ import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 
-import { KKLDisplayDataModule } from './display-data/display-data.module';
 import { KKLFiltersModule } from './filters/filters.module';
 
-import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 
 import { KKLTabsModule } from './tabs/tabs.module';
@@ -104,7 +98,7 @@ import { MeiFormModule } from './mei-form/mei-form.module';
 // GRIDS
 
 import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
-import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
+import { KKLDisplayGroupModule } from './grids/display-group/display-group.module';
 import { KKLLobbyGridModule } from './grids/lobby-grid/lobby.module';
 
 import { MeiServiceModule } from './mei-services/mei-services.module';
@@ -112,7 +106,7 @@ import { MeiServiceModule } from './mei-services/mei-services.module';
 registerLocaleData(he);
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent],
+  declarations: [],
   imports: [
     CoreModule,
     CommonModule,
@@ -126,7 +120,6 @@ registerLocaleData(he);
     KKLCardFilterModule,
 
     KKLNavigationModule,
-    KKLMenuModule,
     KKLMenuBarModule,
 
     KKLStatusStepsModule,
@@ -197,7 +190,6 @@ registerLocaleData(he);
     KKLLayoutModule,
     KKLLobbyGridModule,
     KKLChipsModule,
-    KKLDisplayDataModule,
     KKLStepsAccordionModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
@@ -205,7 +197,7 @@ registerLocaleData(he);
     // GRIDS
 
     KKLDocumentGridModule,
-    KKLDisplayGridModule,
+    KKLDisplayGroupModule,
 
     KKSectionModule,
     KKPageModule,
@@ -224,7 +216,6 @@ registerLocaleData(he);
 
     KKLDrawerModule,
 
-    KKLMenuItemModule,
 
     KKLMenuBarModule,
 
@@ -285,12 +276,10 @@ registerLocaleData(he);
     KKLNavbarModule,
     KKLNavbarBottomModule,
 
-
     // GRIDS
-    KKLDisplayDataModule,
 
     KKLDocumentGridModule,
-    KKLDisplayGridModule,
+    KKLDisplayGroupModule,
 
     // LAYOUT
     KKLLayoutModule,

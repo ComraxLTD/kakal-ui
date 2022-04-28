@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CardInfoModel, CardStepModel } from '../../../../../../../kakal-ui/src/public-api';
+import { CardInfoModel, CardStep } from '../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-search-results',
@@ -76,27 +76,27 @@ export class SearchResultsComponent implements OnInit {
   // steps
 
   activeStepIndex: number = 0;
-  activeCard!: CardStepModel;
-  steps$!: Observable<CardStepModel[]>;
+  activeCard!: CardStep;
+  steps$!: Observable<CardStep[]>;
 
-  firstSteps$:CardStepModel[] = [
-    {  label: '15.07.12', path: 'יום ראשון' } as CardStepModel,
-    {  label: '16.07.12', path: 'יום שני' } as CardStepModel,
-    {  label: '17.07.12', path: 'יום שלישי' } as CardStepModel,
-    {  label: '18.07.12', path: 'יום רביעי' } as CardStepModel,
-    {  label: '19.07.12', path: 'יום חמישי' } as CardStepModel,
+  firstSteps$:CardStep[] = [
+    {  label: '15.07.12', path: 'יום ראשון' } as CardStep,
+    {  label: '16.07.12', path: 'יום שני' } as CardStep,
+    {  label: '17.07.12', path: 'יום שלישי' } as CardStep,
+    {  label: '18.07.12', path: 'יום רביעי' } as CardStep,
+    {  label: '19.07.12', path: 'יום חמישי' } as CardStep,
   ]
 
-  onChangeStep(stepDetails: { step: CardStepModel; index: number }): void {
+  onChangeStep(stepDetails: { step: CardStep; index: number }): void {
     // this.activeStepIndex = stepDetails.index;
 
-    // const newSteps: CardStepModel[] = this.firstSteps$.value.map(
+    // const newSteps: CardStep[] = this.firstSteps$.value.map(
     //   (step, index) => {
     //     if (index === stepDetails.index) {
     //       this.activeCard = step;
-    //       return { ...step, isActive: true } as CardStepModel;
+    //       return { ...step, isActive: true } as CardStep;
     //     } else {
-    //       return { ...step, isActive: false } as CardStepModel;
+    //       return { ...step, isActive: false } as CardStep;
     //     }
     //   }
     // );
@@ -111,11 +111,11 @@ export class SearchResultsComponent implements OnInit {
   //   console.log('search component');
   //   this.activeCard =
   //     this.firstSteps$.value.find((value) => value.isActive) ||
-  //     ({ label: 's', path: 'a' } as CardStepModel);
+  //     ({ label: 's', path: 'a' } as CardStep);
   //   this.steps$ = this.firstSteps$.asObservable();
   }
   onCardClick(card:CardInfoModel):void{
     console.log(card);
-    
+
   }
 }

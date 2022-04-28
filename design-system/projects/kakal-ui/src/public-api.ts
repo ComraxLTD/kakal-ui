@@ -220,11 +220,6 @@ export * from './lib/filters/filters.component';
 export * from './lib/filters/filters.types';
 export * from './lib/filters/filters.service';
 
-//menu
-export * from './lib/menu-item/menu-item.module';
-export * from './lib/menu-item/menu-item.component';
-export * from './lib/menu/menu.module';
-export * from './lib/menu/menu.component';
 
 // menu-bar
 
@@ -402,10 +397,6 @@ export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
 
-// display-data
-export * from './lib/display-data/display-data.component';
-export * from './lib/display-data/display-data.module';
-
 // drawer
 export * from './lib/drawers/drawer.module';
 export * from './lib/drawers/drawer-document/drawer-document.module';
@@ -453,8 +444,8 @@ export * from './lib/full-calendar/calendar-card/calendar-card.component';
 export * from './lib/grids/document-grid/document-grid.module'
 export * from './lib/grids/document-grid/document-grid.component'
 
-export * from './lib/grids/display-grid/display-grid.module'
-export * from './lib/grids/display-grid/display-grid.component';
+export * from './lib/grids/display-group/display-group.module'
+export * from './lib/grids/display-group/display-group.component';
 
 // dashboard
 export * from './lib/grids/lobby-grid/lobby.module';

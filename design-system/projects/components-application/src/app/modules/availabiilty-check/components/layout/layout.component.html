@@ -3,20 +3,12 @@
   [actions]="[]"
   [steps]="[]"
   (openChanged)="onDrawerOpenChanged($event)"
-
 >
-
-<div content>
-<div title class="title" > 
-  <kkl-form-temp
-   (formChanged)="onChangedForm($event)"
-   [formGroup]="groupFlex.formGroup"
-   [questions]="groupFlex.questions"
-   [grid]="groupFlex.gridProps!"
- ></kkl-form-temp> 
-</div> 
-  <router-outlet  ></router-outlet>
-</div>
-<div endDrawerContent>replace this content with your own feature</div>
-
+  <div content dir="rtl">
+    <kkl-display-group [displayData]="displayData" [data]="data"></kkl-display-group>
+  </div>
 </kkl-steps-layout>
+
+<ng-template #caseTemplate>
+  <div>working</div>
+</ng-template>

@@ -2,8 +2,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export interface CardFilter {
   label: string;
+  path: string;
   value: number;
   svgIcon: string;
+  disabled?: boolean;
 }
 
 @Component({
@@ -13,8 +15,6 @@ export interface CardFilter {
 })
 export class CardFilterComponent implements OnInit {
   @Input() card!: CardFilter;
-  @Input() disabled: boolean = false;
-
 
   @Input() chosen: boolean;
 
@@ -22,14 +22,9 @@ export class CardFilterComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.disabled);
-
-  }
+  ngOnInit(): void {}
 
   onCardClick(): void {
-    console.log('jhjhj');
-
     this.emitCard.emit(this.card);
   }
 }

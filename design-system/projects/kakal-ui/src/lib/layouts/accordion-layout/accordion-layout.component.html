@@ -4,62 +4,69 @@
     <mat-checkbox [color]="'primary'" (change)="expandAll($event)">
       פתח הכול</mat-checkbox
     >
-    <kkl-add-button *ngIf="buttonLabel" (click)="onClick()">{{ buttonLabel }}</kkl-add-button>
+    <kkl-add-button *ngIf="buttonLabel" (click)="onClick()">{{
+      buttonLabel
+    }}</kkl-add-button>
   </header>
 
   <!-- the "multi" attribute determines weather the mat-accordion will allow multiple panels to open at the same time or not -->
   <main>
     <mat-accordion #accordion multi hideToggle>
-        <ng-container *ngFor="let panel of panels; let i = index">
-          <mat-expansion-panel #expandPanel [expanded]="i === 0">
-            <mat-expansion-panel-header>
-              <mat-panel-title [ngClass]="['default']">
-                <div
-                  class="title"
-                  fxLayout="row"
-                  fxLayoutAlign="start center"
-                  fxLayoutGap="1rem"
-                >
-                  <ng-container
-                    *ngTemplateOutlet="
+      <ng-container *ngFor="let panel of panels; let i = index">
+        <mat-expansion-panel #expandPanel [expanded]="i === 0">
+          <mat-expansion-panel-header>
+            <mat-panel-title [ngClass]="['default']">
+              <div
+                class="title"
+                fxLayout="row"
+                fxLayoutAlign="start center"
+                fxLayoutGap="1rem"
+              >
+                <ng-container
+                  *ngTemplateOutlet="
                       panel.headers ? headerTemplate : defaultTemplate;
                       context: { $implicit: panel, i }
                     "
-                  ></ng-container>
+                ></ng-container>
 
-                  <kkl-icon
-                    color="primary"
-                    [key]="
-                      expandPanel.expanded
-                        ? 'keyboard_arrow_down'
-                        : 'keyboard_arrow_up'
-                    "
-                  ></kkl-icon>
-                </div>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
+                <kkl-icon
+                  color="primary"
+                  [key]="
+                    expandPanel.expanded
+                      ? 'keyboard_arrow_down'
+                      : 'keyboard_arrow_up'
+                  "
+                ></kkl-icon>
+              </div>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
 
-            <div class="content">
-              <ng-container
-                *ngTemplateOutlet="templates[panel.key]"
-              ></ng-container>
-            </div>
-          </mat-expansion-panel>
-        </ng-container>
+          <div class="content">
+            <ng-container
+              *ngTemplateOutlet="templates[panel.key]"
+            ></ng-container>
+          </div>
+        </mat-expansion-panel>
+      </ng-container>
     </mat-accordion>
   </main>
 </div>
 
 <ng-template #defaultTemplate let-panel let-i="i">
-  <kkl-typography [size]="2.4" [weight]="600" color="primary">
-    {{ panel | pluck: "label" }} .{{ i + 1 }}
-  </kkl-typography>
+  <div>
+    <kkl-typography [size]="2.4" [weight]="600" color="text">
+      {{ i + 1 }}.
+    </kkl-typography>
+    <kkl-typography [size]="2.4" [weight]="600" color="text">
+      {{ panel | pluck: "label" }}
+    </kkl-typography>
+  </div>
 </ng-template>
 
 <ng-template #headerTemplate let-panel>
   <ng-container *ngFor="let header of panel.headers; let i = index">
     <kkl-typography
-      color="primary"
+      color="accent"
       [size]="sizeIndexMap[i]"
       [weight]="weightIndexMap[i]"
     >
