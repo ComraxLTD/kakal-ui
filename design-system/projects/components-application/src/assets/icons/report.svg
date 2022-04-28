@@ -1,0 +1,13 @@
+<svg id="report" xmlns="http://www.w3.org/2000/svg" width="54.117" height="70" viewBox="0 0 54.117 70">
+  <g id="Group_128" data-name="Group 128" transform="translate(0)">
+    <g id="Group_127" data-name="Group 127" transform="translate(7.845 56.771)">
+      <path id="Path_167" data-name="Path 167" d="M180.508,422.307h15.486v4.425H180.508Z" transform="translate(-171.659 -422.307)" fill="'none'"/>
+      <path id="Path_168" data-name="Path 168" d="M120.508,422.307h4.425v4.425h-4.425Z" transform="translate(-120.508 -422.307)" fill="'none'"/>
+    </g>
+    <path id="Path_169" data-name="Path 169" d="M115.625,0H61.508V70H99.867l15.758-17.111V0m-4.166,4.134V50.047H96.845V65.941l-31.164.009V4.134Zm-2.616,50.015-7.824,8.513V54.148Z" transform="translate(-61.508)" fill="'none'"/>
+  </g>
+  <g id="Group_129" data-name="Group 129" transform="translate(7.215 10.634)">
+    <path id="Path_170" data-name="Path 170" d="M286.706,98.793a14,14,0,0,0-13.986-13.986h-2.212v16.6h16.116S286.706,98.93,286.706,98.793Zm-11.774-1.811V89.49a9.592,9.592,0,0,1,7.177,7.493Z" transform="translate(-248.384 -84.807)" fill="'none'"/>
+    <path id="Path_171" data-name="Path 171" d="M146.944,163.744a15.38,15.38,0,0,0,4.536-10.951v-2.212H138.207V137.307h-2.212a15.486,15.486,0,1,0,10.95,26.437Zm-22.012-10.951a11.071,11.071,0,0,1,8.849-10.842v13.054h13.054a11.064,11.064,0,0,1-21.9-2.212Z" transform="translate(-120.508 -129.564)" fill="'none'"/>
+  </g>
+</svg>

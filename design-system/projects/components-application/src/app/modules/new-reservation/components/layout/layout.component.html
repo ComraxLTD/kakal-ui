@@ -1,0 +1,11 @@
+<kkl-stepper-layout [actions]="actions" [manuel]="true"  [steps]="firstSteps" (stepSelect)="onChangeStep($event)">
+  <router-outlet content></router-outlet>
+  <div endDrawerContent>replace this content with your own feature</div>
+  <kkl-navbar-bottom *ngIf="showNext$ |async as showNext"
+    bottom-navbar
+    [hasNext]="true" 
+    (previous)="onPrevious()"
+    (next)="onNext($event)"
+  >
+  </kkl-navbar-bottom>
+</kkl-stepper-layout>

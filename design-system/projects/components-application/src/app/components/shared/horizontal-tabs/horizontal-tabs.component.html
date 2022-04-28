@@ -1,0 +1,23 @@
+<div>
+  <kkl-page [title]="headline">
+    <mat-tab-group mat-stretch-tabs dir="rtl">
+      <ng-container *ngFor="let tabHeadline of tabHeadlines">
+        <mat-tab [label]="tabHeadline.label">
+          <ng-template
+            *ngTemplateOutlet="
+              tabTemplates[tabHeadline.value];
+              context: { tab: tabHeadline }
+            "
+          ></ng-template>
+        </mat-tab>
+      </ng-container>
+    </mat-tab-group>
+    <ng-container
+      *ngTemplateOutlet="buttonTemplate || defaultTemplate"
+    ></ng-container>
+  </kkl-page>
+</div>
+
+<ng-template #defaultTemplate>
+  <button mat-raised-button (click)="onDefaultButtonClicked()">המשך</button>
+</ng-template>

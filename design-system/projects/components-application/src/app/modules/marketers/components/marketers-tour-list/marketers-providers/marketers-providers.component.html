@@ -1,0 +1,31 @@
+<div fxFll class="marketers-providers-template">
+  <kkl-local-table
+    fxFill
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [colsTemplate]="{
+      instructors: providersTemplate,
+      instructorsProviders: providersTemplate,
+      drivers: providersTemplate,
+      driverProviders: providersTemplate
+    }"
+  ></kkl-local-table>
+  <div fxLayoutAlign="end">
+    <button
+    kkl-border
+    color="primary"
+    [thick]="2"
+    mat-stroked-button
+    color="primary"
+    >
+    שלח פרטים ללקוח
+  </button>
+</div>
+</div>
+
+<ng-template #providersTemplate let-data>
+  <ng-container *ngIf="data?.content"></ng-container>
+  <app-marketers-providers-template
+    [data]="data"
+  ></app-marketers-providers-template>
+</ng-template>

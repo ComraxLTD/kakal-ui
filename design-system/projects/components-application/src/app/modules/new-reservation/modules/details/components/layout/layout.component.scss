@@ -1,0 +1,6 @@
+@use '../../../../../../../styles/variables' as main;
+.next{
+    background-color: main.color('primary');
+    border-radius:50px ;
+    margin :0 auto;
+}

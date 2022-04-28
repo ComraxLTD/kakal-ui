@@ -1,0 +1,29 @@
+<kkl-stepper-layout
+  dir="rtl"
+  [actions]="actions"
+  [contentPortion]="contentPortion"
+  [steps]="[]"
+  (openChanged)="onDrawerOpenChanged($event)"
+
+>
+
+<div content>
+<div title class="title" > 
+  <kkl-form-temp
+   (formChanged)="onChangedForm($event)"
+   [formGroup]="groupFlex.formGroup"
+   [questions]="groupFlex.questions"
+   [grid]="groupFlex.gridProps!"
+ ></kkl-form-temp> 
+</div> 
+  <router-outlet  ></router-outlet>
+</div>
+<div endDrawerContent>replace this content with your own feature</div>
+  <kkl-navbar-bottom
+    class="navbar-bottom"
+    bottom-navbar
+    [hasNext]="true"
+    (previous)="onPrevious()"
+    (next)="onNext()"
+  ></kkl-navbar-bottom>
+</kkl-stepper-layout>
