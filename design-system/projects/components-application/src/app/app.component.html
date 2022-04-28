@@ -1,4 +1,82 @@
-<kkl-layout   [cards]="cards"
-[drawerAction]="{ label: 'העלה מסמך', svgIcon: 'file' }">
-  <kkl-drawer-document title="מסמכי תיק" drawer> </kkl-drawer-document>
-</kkl-layout>
+
+    <div class="container" fxLayout="column" fxLayoutGap="1rem">
+
+      <div fxLayout="column">
+        <kkl-typography [weight]="600" [size]="2">Tabs For Expand Table</kkl-typography>
+        <kkl-typography [size]="1.75">Example of the tabs by themselves</kkl-typography>
+      </div>
+
+
+      <kkl-tabs fxFlex="100" dir="rtl" [variant]="'table'" [tabs]='tabs' [templates]="{First,Second,Third}"></kkl-tabs>
+
+      <!-- These are the template that are being displayed in the kkl-tabs -->
+      <ng-template #First>
+        <div fxLayout="column" fxLayoutGap="1rem">
+          <kkl-typography [weight]="600">תוכן של טאב עם כתפורים</kkl-typography>
+          <kkl-button></kkl-button>
+          <kkl-stroke-button>Button</kkl-stroke-button>
+        </div>
+      </ng-template>
+
+      <ng-template #Second>
+        simple text
+        21312213
+      </ng-template>
+
+      <ng-template #Third>
+        <kkl-typography [weight]="600">content of third tab</kkl-typography>
+        <kkl-icon key="logo"></kkl-icon>
+        <kkl-icon key="tree"></kkl-icon>
+      </ng-template>
+
+      <mat-divider></mat-divider>
+
+      <div fxLayout="column">
+        <kkl-typography [weight]="600" [size]="2">Example Of Expand Table With The Tabs</kkl-typography>
+        <kkl-typography [size]="1.75">Click on the expand button to see the tabs within</kkl-typography>
+      </div>
+
+      <div>
+        <app-demo-section fxFlex>
+          <ng-container content>
+
+
+
+          </ng-container>
+        </app-demo-section>
+      </div>
+
+    </div>
+
+    <kkl-local-table
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [rowActions]="rowActions"
+    [expandTemplate]="expand"
+    (expandRow)="onExpand($event)"
+  ></kkl-local-table>
+<ng-template #expand>
+  <kkl-tabs fxFlex="100" [variant]="'table'" [tabs]='innerTabs' [templates]="{name, occupation, yearsOfExperience, dob, city }"></kkl-tabs>
+</ng-template>
+
+<!-- These are the template that are being displayed in the kkl-tabs within the expand table -->
+
+<ng-template #name>
+  <kkl-typography>{{nameTab}}</kkl-typography>
+</ng-template>
+
+<ng-template #occupation>
+  <kkl-typography>{{occupationTab}}</kkl-typography>
+</ng-template>
+
+<ng-template #yearsOfExperience>
+  <kkl-typography>{{yearsOfExperienceTab}}</kkl-typography>
+</ng-template>
+
+<ng-template #dob>
+  <kkl-typography>{{dobTab}}</kkl-typography>
+</ng-template>
+
+<ng-template #city>
+  <kkl-typography>{{cityTab}}</kkl-typography>
+</ng-template>
