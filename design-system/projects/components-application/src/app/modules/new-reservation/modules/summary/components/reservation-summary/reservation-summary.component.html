@@ -1,0 +1,30 @@
+<div>
+  <div
+    dir="rtl"
+    class="headline"
+    fxLayout="row"
+    fxLayoutAlign="space-between"
+    fxFill
+  >
+    <kkl-typography [size]="2.5">פעילות</kkl-typography>
+    <div fxLayoutGap="1rem">
+      <kkl-typography (click)='toggleShow()' >{{!showCancel?'הצג ביטולים':'בטל ביטולים'}}</kkl-typography>
+      <kkl-typography>סגור הכול</kkl-typography>
+    </div>
+  </div>
+  <kkl-local-table
+    [dataSource]="datasource"
+    [columns]="columns"
+    [expandTemplate]="expand"
+    (expandRow)="onExpand($event)"
+  ></kkl-local-table>
+</div>
+
+<ng-template #expand>
+  <kkl-local-table
+    fxFill
+    [dataSource]="expandDatasource"
+    [columns]="expandColumns"
+    [rowActions]="rowActions"
+  ></kkl-local-table>
+</ng-template>

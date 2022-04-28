@@ -1,0 +1,36 @@
+::ng-deep mat-sidenav {
+  background-image: url("../../../../../assets/images/education-results-back.png");
+  background-position: left;
+  background-repeat: no-repeat;
+}
+
+.title{
+  width: 60%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  ::ng-deep .mat-grid-list{
+    width: 600px;
+  }
+  ::ng-deep .mat-grid-tile{
+    width: 300px !important;
+  }
+}
+
+::ng-deep .content{
+  width: 100%;
+  display: block !important;
+  place-content: baseline !important;
+  // margin-right: 50px;
+  >div{
+    max-width: 100% !important;
+  }
+
+ 
+}
+
+.navbar-bottom{
+  ::ng-deep .mat-button-wrapper{
+    color: #fff;
+  }
+}

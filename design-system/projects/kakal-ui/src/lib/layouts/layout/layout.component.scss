@@ -1,21 +1,22 @@
 @use "../../../styles/variables" as main;
 
+::ng-deep mat-sidenav {
+  overflow: visible !important;
+  // visibility: visible !important;
+
+  &.menu {
+    top: main.$toolbar-height;
+    height: main.$content-height;
+
+    div.menu-container {
+      height: inherit;
+    }
+  }
+}
+
 :host {
   .kkl-sidenav-container {
     height: 100%;
-
-    mat-sidenav {
-      &.menu {
-        top: main.$toolbar-height;
-        height: main.$content-height;
-
-        div.menu-container {
-          height: inherit;
-          // padding-right: main.spacing(1);
-        }
-      }
-
-    }
   }
 
   mat-sidenav-content {
@@ -24,23 +25,6 @@
     overflow-x: hidden;
   }
 }
-
-// style bottom navbar
-.navbar-bottom {
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-  height: main.$bottomBar-height;
-  z-index: 100;
-  // overflow: hidden;
-  // & * {
-  //   overflow: hidden;
-  // }
-}
-
-
-
-
 
 .sidenav-container {
   background-color: main.color(paper);
@@ -56,36 +40,14 @@ div.content {
 }
 
 .sidenav-drawer {
-  width: 32rem;
-  z-index: -1;
+  width: 32rem !important;
 }
-
-.sidenav-drawer {
-  // width: 50%;
-  z-index: -1;
-}
-
-// div.stepper-container {
-
-mat-toolbar {
-  height: 15rem !important;
-  background: linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%) 0% 0% !important ;
-}
-
-.stepper {
-  flex: 1;
-  // margin-top: 2rem;
-  // padding-top: main.spacing(2);
-  box-sizing: border-box;
-}
-// }
 
 // style button of side menu
-button.mat-fab {
+button.mat-fab.kkl-drawer-button {
   background-color: main.color(paper) !important;
   width: 7rem;
   height: 7rem;
-  z-index: 1000;
   border: 1px solid main.color(primary) !important;
 
   span.mat-button-wrapper {
@@ -100,6 +62,15 @@ button.mat-fab {
 
   kkl-icon {
     transform: translateY(-0.4rem);
+  }
+
+  // position css
+  position: fixed;
+  right: 28rem;
+
+  &.outside {
+    margin-top : 1%;
+    right: 8rem;
   }
 }
 
@@ -127,7 +98,6 @@ button.mat-fab {
   }
 }
 
-
 .example-container {
   height: 500px;
 }
@@ -153,4 +123,13 @@ button.mat-fab {
   position: fixed;
   bottom: calc(main.$bottomBar-height + 3rem);
   left: 3rem;
+}
+
+// style bottom navbar
+.navbar-bottom {
+  bottom: 0;
+  width: 100%;
+  position: fixed;
+  height: main.$bottomBar-height;
+  z-index: 100;
 }

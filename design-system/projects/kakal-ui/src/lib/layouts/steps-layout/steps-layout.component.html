@@ -21,8 +21,6 @@
   <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">
     <ng-container *ngFor="let action of rowActions">
       <button
-        [matTooltip]="action.label"
-        [disabled]="disabled[action.label]"
         mat-icon-button
         kkl-action-button
         color="primary"

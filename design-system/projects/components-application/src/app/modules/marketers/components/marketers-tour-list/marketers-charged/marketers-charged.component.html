@@ -1,0 +1,27 @@
+<div class="markerters-charged">
+  <kkl-local-table
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [colsTemplate]="{
+      customerCharged: customerChargedTemp,
+      prePay: prePayTemp
+    }"
+  ></kkl-local-table>
+  <div fxLayoutAlign="end" fxLayoutGap="2rem" dir="rtl">
+    <button mat-stroked-button kkl-border color="primary" [thick]="2">
+      אשר לחוב
+    </button>
+    <button mat-stroked-button kkl-border color="primary" [thick]="2">
+      צפה בסיכום הזמנה
+    </button>
+  </div>
+</div>
+<ng-template #customerChargedTemp let-data>{{data}}</ng-template>
+<ng-template #prePayTemp let-data>
+
+  <kkl-typography>{{ data.label }} </kkl-typography>
+  <kkl-typography
+    [color]="data.paid ? 'accent' : 'warn'"
+    >{{data.paid?'שולמו':'לא שולמו'}}</kkl-typography
+  >
+</ng-template>
