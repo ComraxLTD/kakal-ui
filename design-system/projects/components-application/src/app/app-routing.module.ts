@@ -18,8 +18,6 @@ const routes: Routes = [
       },
     ],
   },
-  // { path: 'details', component: DetailsComponent },
-  // { path: 'details/:id', component: DetailsComponent },
 ];
 
 @NgModule({
