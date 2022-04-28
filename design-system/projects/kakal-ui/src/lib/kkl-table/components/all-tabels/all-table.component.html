@@ -86,10 +86,10 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
       <tr mat-row *matRowDef="let element; columns: displayedColumns;"
-          class="example-element-row"
           [class.example-expanded-row]="expandedElement === element"
           cdkDrag [cdkDragData]="element"
           >
+          <!-- [ngClass]="{'mat-elevation-z8': expandTemplate}" -->
           <!-- [ngClass]="expandedElement ? '': ''" -->
           <!-- [ngClass]="{'' : expandTemplate}" -->
 
