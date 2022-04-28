@@ -49,8 +49,6 @@ import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusStepsModule } from './status-steps/status-steps.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
-import { SidenavExampleComponent } from './examples/sidenav-example/sidenav-example.component';
-
 // CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
@@ -82,7 +80,6 @@ import { KKLChipsModule } from './chips/chips.module';
 
 import { KKLFiltersModule } from './filters/filters.module';
 
-import { FormExampleComponent } from './examples/form-example/form-example.component';
 import { OpenMotionsModule } from './open-motions/open-motions.module';
 
 import { KKLTabsModule } from './tabs/tabs.module';
@@ -111,7 +108,7 @@ import { MeiServiceModule } from './mei-services/mei-services.module';
 registerLocaleData(he);
 
 @NgModule({
-  declarations: [FormExampleComponent, SidenavExampleComponent],
+  declarations: [],
   imports: [
     CoreModule,
     CommonModule,
@@ -282,7 +279,6 @@ registerLocaleData(he);
     // NAVBAR
     KKLNavbarModule,
     KKLNavbarBottomModule,
-
 
     // GRIDS
 
