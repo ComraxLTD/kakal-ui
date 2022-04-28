@@ -3,20 +3,22 @@
   [actions]="[]"
   [steps]="[]"
   (openChanged)="onDrawerOpenChanged($event)"
-
 >
+  <div content dir="rtl">
+    <mat-accordion>
+      <kkl-expand-panel variant="form">
+        <kkl-typography title>working</kkl-typography>
+      </kkl-expand-panel>
+    </mat-accordion>
 
-<div content>
-<div title class="title" > 
-  <kkl-form-temp
-   (formChanged)="onChangedForm($event)"
-   [formGroup]="groupFlex.formGroup"
-   [questions]="groupFlex.questions"
-   [grid]="groupFlex.gridProps!"
- ></kkl-form-temp> 
-</div> 
-  <router-outlet  ></router-outlet>
-</div>
-<div endDrawerContent>replace this content with your own feature</div>
-
+    <kkl-accordion-layout
+      [panels]="cases"
+      [buttonLabel]="'הוסף תיק חדש'"
+      [templates]="{caseTemplate}"
+    ></kkl-accordion-layout>
+  </div>
 </kkl-steps-layout>
+
+<ng-template #caseTemplate>
+  <div>working</div>
+</ng-template>

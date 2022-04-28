@@ -1,6 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { map, mergeMap, Observable, of} from 'rxjs';
-import { BreakpointService, ButtonModel, FormChangeEvent, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepsLayoutService } from '../../../../../../../kakal-ui/src/public-api';
+import { map, mergeMap, Observable, of } from 'rxjs';
+import {
+  BreakpointService,
+  ButtonModel,
+  FormChangeEvent,
+  FormService,
+  Panel,
+  Question,
+  QuestionGroupModel,
+  RouterService,
+  SelectOption,
+  StepsLayoutService,
+} from '../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-layout',
@@ -11,16 +22,36 @@ export class LayoutComponent implements OnInit {
   contentPortion = { open: 10, close: 50 };
   actions: ButtonModel[] = [{ type: 'portion' } as ButtonModel];
 
-  formValues = { select: '', date: ''}
+  formValues = { select: '', date: '' };
 
-  isFormFull(){
-    if(this.formValues.date && this.formValues.select) this.navigate('search/results')
+  isFormFull() {
+    if (this.formValues.date && this.formValues.select)
+      this.navigate('search/results');
   }
+
+  cases: Panel[] = [
+    {
+      label: 'תיק 4903943',
+      key: 'caseTemplate',
+    },
+    {
+      label: 'תיק 4903943',
+      key: 'caseTemplate',
+    },
+    {
+      label: 'תיק 4903943',
+      key: 'caseTemplate',
+    },
+    {
+      label: 'תיק 4903943',
+      key: 'caseTemplate',
+    },
+  ];
 
   // form variables
   group!: QuestionGroupModel<any>;
 
-  options:SelectOption[] = [
+  options: SelectOption[] = [
     {
       label: 'ציפורי',
       value: 'any',
@@ -53,19 +84,18 @@ export class LayoutComponent implements OnInit {
     {
       key: 'range',
       controlType: 'dateRange',
-      label: 'תאריך הזמנה'
-    }
-  ]
+      label: 'תאריך הזמנה',
+    },
+  ];
   groupGrid!: QuestionGroupModel;
   groupFlex!: QuestionGroupModel;
-
 
   constructor(
     private breakpointsService: BreakpointService,
     private routerService: RouterService,
     private stepperLayoutService: StepsLayoutService,
     private formService: FormService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     //decide if drawer is open or closed on init
@@ -79,24 +109,25 @@ export class LayoutComponent implements OnInit {
 
   // breakpoints
   private mergeBreakPoints() {
-    return this.breakpointsService.isSmall().pipe(
-      mergeMap(isSmall => this.breakpointsService.isMobile().pipe(
-        map(isMobile => [isSmall, isMobile])
-      ))
-    );
+    return this.breakpointsService
+      .isSmall()
+      .pipe(
+        mergeMap((isSmall) =>
+          this.breakpointsService
+            .isMobile()
+            .pipe(map((isMobile) => [isSmall, isMobile]))
+        )
+      );
   }
-
- 
-
 
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    console.log(this.routerService.getCurrentPath(), path)
+    console.log(this.routerService.getCurrentPath(), path);
     path = `/${this.routerService.getCurrentPath()}/${path}`;
     this.routerService.navigate(path);
   }
-//create form objects
-  private setGroup(questions: Question[],gridProps:any) {
+  //create form objects
+  private setGroup(questions: Question[], gridProps: any) {
     return this.formService.createQuestionGroup({
       questions,
       key: 'test',
@@ -106,7 +137,7 @@ export class LayoutComponent implements OnInit {
 
   onFormChange(formEvent: FormChangeEvent) {
     console.log(formEvent);
-    this.groupFlex = this.setGroup(this.questions,{
+    this.groupFlex = this.setGroup(this.questions, {
       cols: 2,
       variant: 'flex',
     });
@@ -121,14 +152,14 @@ export class LayoutComponent implements OnInit {
     this.routerService.goBack();
   }
 
-  public onChangedForm(event: FormChangeEvent){
-    if(event.key === 'select'){
-      this.formValues.select = event.value.label
+  public onChangedForm(event: FormChangeEvent) {
+    if (event.key === 'select') {
+      this.formValues.select = event.value.label;
     }
-    if(event.key === 'range' && event.value.end){
-      this.formValues.date = event.action
+    if (event.key === 'range' && event.value.end) {
+      this.formValues.date = event.action;
     }
-    this.isFormFull()
+    this.isFormFull();
   }
 
   public onDrawerOpenChanged(openState: boolean) {
