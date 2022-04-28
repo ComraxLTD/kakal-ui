@@ -99,8 +99,6 @@
 
       <!-- DRAWER BUTTON  -->
 
-      <ng-content></ng-content>
-
       <ng-container *ngIf="showStartDrawer$ | async">
         <button
           mat-fab
@@ -120,6 +118,8 @@
           </kkl-typography>
         </button>
       </ng-container>
+
+      <ng-content content></ng-content>
 
       <div class="navbar-bottom">
         <kkl-navbar-bottom></kkl-navbar-bottom>

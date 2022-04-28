@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
-import { CardStepModel } from '../../cards/card-step/card-step.model';
+import { CardStep } from '../../cards/card-step/card-step.model';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsSelectionEvent } from '../../stepper/stepper.component';
 import { StepsLayoutService } from './steps-layout.service';
@@ -13,7 +13,7 @@ import { StepsLayoutService } from './steps-layout.service';
   styleUrls: ['./steps-layout.component.scss'],
 })
 export class StepsLayoutComponent {
-  @Input() steps: CardStepModel[];
+  @Input() steps: CardStep[];
 
   rowActions!: ButtonModel[];
   @Input() set actions(val: ButtonModel[]) {

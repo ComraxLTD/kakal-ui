@@ -6,32 +6,19 @@ import {
   ElementRef,
 } from '@angular/core';
 import { BreakpointService } from '../../services/breakpoint.service';
-import {
-  CardStepModel,
-  StepOptions,
-  StepperDirection,
-} from '../cards/card-step/card-step.model';
+import { CardStep, StepOptions } from '../cards/card-step/card-step.model';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { Observable } from 'rxjs';
-
-// export interface StepsSelectionEvent {
-//   selectedStep: CardStepModel;
-//   selectedIndex: number;
-//   previousSelectedStep?: CardStepModel;
-//   previousSelectedIndex?: number;
-//   first? : boolean
-//   last? : boolean
-// }
 
 export interface StepsSelectionEvent {
   selectedIndex: number;
   /** Index of the step previously selected. */
   previouslySelectedIndex?: number;
   /** The step instance now selected. */
-  selectedStep: CardStatusModel | CardStepModel;
+  selectedStep: CardStatusModel | CardStep;
 
   /** The step instance previously selected. */
-  previouslySelectedStep?: CardStatusModel | CardStepModel;
+  previouslySelectedStep?: CardStatusModel | CardStep;
 
   /** If this step is the last */
   last: boolean;
@@ -39,7 +26,7 @@ export interface StepsSelectionEvent {
   /** If this step is the first */
   first: boolean;
 
-  source?: CardStatusModel[] | CardStepModel[];
+  source?: CardStatusModel[] | CardStep[];
 }
 
 @Component({
@@ -49,16 +36,16 @@ export interface StepsSelectionEvent {
 })
 export class StepperComponent {
   @Input() variant: 'step' | 'status' = 'step';
-  _steps: CardStepModel[] | CardStatusModel[];
-  @Input() set steps(val: CardStepModel[] | CardStatusModel[]){
-    // if(((val as CardStepModel[]).filter(b  => b.selected)).length > 1) {
+  _steps: CardStep[] | CardStatusModel[];
+  @Input() set steps(val: CardStep[] | CardStatusModel[]) {
+    // if(((val as CardStep[]).filter(b  => b.selected)).length > 1) {
     //   console.log('khjkg');
 
     //   // this._steps.forEach(a => a.selected = false);
     // }
     this._steps = val;
   }
-  @Input() direction: StepperDirection;
+  @Input() direction: 'row' | 'column' = 'row';
   @Input() stepRef: ElementRef;
   @Input() options: StepOptions;
 
@@ -72,13 +59,8 @@ export class StepperComponent {
     this.mobile$ = this.breakpointService.isMobile();
   }
 
-  onStepSelect(
-    step: CardStepModel,
-    index: number,
-    last: boolean,
-    first: boolean
-  ) {
-    this._steps.forEach(a => a.selected = false);
+  onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
+    this._steps.forEach((a) => (a.selected = false));
     step.selected = true;
     const event: StepsSelectionEvent = {
       selectedStep: step,

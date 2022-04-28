@@ -7,7 +7,7 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { CardStepModel } from '../cards/card-step/card-step.model';
+import { CardStep } from '../cards/card-step/card-step.model';
 import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
 
 @Component({
@@ -16,17 +16,17 @@ import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  @Input() public steps$: Observable<CardStepModel[]>;
+  @Input() public steps$: Observable<CardStep[]>;
   @Input() public activeStepIndex: number;
 
   @Input() slots: { content: TemplateRef<any>; step: TemplateRef<any> };
 
   public currentIndexSubject: BehaviorSubject<number>;
-  public stepMap$: Observable<{ [key: string]: CardStepModel }>;
+  public stepMap$: Observable<{ [key: string]: CardStep }>;
   public activeStep$: Observable<{ value: number }>;
   public end$: Observable<boolean>;
 
-  @Output() changeStep: EventEmitter<{ step: CardStepModel; index: number }> =
+  @Output() changeStep: EventEmitter<{ step: CardStep; index: number }> =
     new EventEmitter();
 
   constructor() {}
@@ -40,7 +40,7 @@ export class NavigationComponent implements OnInit {
 
   private setActiveStep$(): Observable<{ value: number }> {
     return this.steps$.pipe(
-      map((steps) => steps.findIndex((step: CardStepModel) => step.selected)),
+      map((steps) => steps.findIndex((step: CardStep) => step.selected)),
       map((index: number) => {
         return {
           value: index,
@@ -51,13 +51,13 @@ export class NavigationComponent implements OnInit {
 
   private setStepsMap() {
     return this.steps$.pipe(
-      map((steps: CardStepModel[]) => {
+      map((steps: CardStep[]) => {
         const map = steps.reduce((acc, step) => {
           return {
             ...acc,
             [steps.indexOf(step)]: step,
           };
-        }, {} as { [key: string]: CardStepModel });
+        }, {} as { [key: string]: CardStep });
 
         return map;
       })
@@ -66,7 +66,7 @@ export class NavigationComponent implements OnInit {
 
   private setEnd$(): Observable<boolean> {
     return this.steps$.pipe(
-      switchMap((steps: CardStepModel[]) => {
+      switchMap((steps: CardStep[]) => {
         return this.currentIndexSubject.asObservable().pipe(
           map((current: number) => {
             return current === steps.length - 1;
@@ -76,11 +76,11 @@ export class NavigationComponent implements OnInit {
     );
   }
 
-  public onNext(index: number, step: CardStepModel) {
+  public onNext(index: number, step: CardStep) {
     this.currentIndexSubject.next(index + 1);
     this.changeStep.emit({ step: step, index: index + 1 });
   }
-  public onPrev(index: number, step: CardStepModel) {
+  public onPrev(index: number, step: CardStep) {
     this.currentIndexSubject.next(index - 1);
     this.changeStep.emit({ step: step, index: index - 1 });
   }

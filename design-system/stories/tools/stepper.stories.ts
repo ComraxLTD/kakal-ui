@@ -24,9 +24,9 @@ export default {
     },
     steps$: {
       name: 'steps$',
-      description: 'Observable of CardStepModel array .',
+      description: 'Observable of CardStep array .',
       table: {
-        type: { summary: 'Observable<CardStepModel[]>' },
+        type: { summary: 'Observable<CardStep[]>' },
       },
       control: {
         type: 'array'
