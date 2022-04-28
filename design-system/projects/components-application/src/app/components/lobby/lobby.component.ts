@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  BreakpointService,
-  CardLobbyModel,
-  RouterService,
-} from '../../../../../../../../../kakal-ui/src/public-api';
+// import {
+//   BreakpointService,
+//   CardLobbyModel,
+//   RouterService,
+// } from '../../../../../../../../../kakal-ui/src/lib/form/formService/';
 import { Observable } from 'rxjs';
+import { BreakpointService, CardLobbyModel, RouterService } from '../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-lobby',

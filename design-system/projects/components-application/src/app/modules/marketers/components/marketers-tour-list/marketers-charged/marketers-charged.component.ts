@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableBase } from '@ComraxLTD/kakal-ui/lib/kkl-table/table.model';
+import { TableBase } from '../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-marketers-charged',
@@ -23,9 +23,9 @@ export class MarketersChargedComponent implements OnInit {
     {
       key: 'customerCharged',
       label: 'חיוב לקוח',
-      templateName: 'customerCharged',
+      cellTemplate: 'customerCharged',
     },
-    { key: 'prePay', label: 'דמי קדימה', templateName: 'prePay' },
+    { key: 'prePay', label: 'דמי קדימה', cellTemplate: 'prePay' },
     { key: 'payLeft', label: 'סה/"כ לחוב' },
   ];
  

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
+import { TableBase } from '../../../../../../../kakal-ui/src/public-api';
+// import { TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root',
@@ -22,15 +23,15 @@ export class TourListTableService {
 
   columns: TableBase[] = [
     { key: 'tourId' },
-    { key: 'tourName', templateName: 'tourName' },
-    { key: 'date', templateName: 'date' },
-    { key: 'destenation', templateName: 'destenation' },
+    { key: 'tourName', cellTemplate: 'tourName' },
+    { key: 'date', cellTemplate: 'date' },
+    { key: 'destenation', cellTemplate: 'destenation' },
     { key: 'attribute' },
     { key: 'location' },
     { key: 'instructors' },
     { key: 'marketer', button: { type: 'inlineExpand', icon: 'expand' } },
     { key: 'prePay', button: { type: 'inlineExpand', icon: 'expand' } },
-    { key: 'status', templateName: 'status' },
+    { key: 'status', cellTemplate: 'status' },
   ];
 
   providerColumns: TableBase[] = [

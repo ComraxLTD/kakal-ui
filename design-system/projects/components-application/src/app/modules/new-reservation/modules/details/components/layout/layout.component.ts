@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { CardStepModel, Panel, RouterService } from '../../../../../../../../../kakal-ui/src/public-api';
-import { Step } from '@ComraxLTD/kakal-ui/lib/vertical-steps/step/step.model';
+import { CardStepModel, Panel, RouterService, StepsSelectionEvent } from '../../../../../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
-import {
-  CardStep,
-  StepsSelectionEvent,
-} from 'src/app/components/shared/circle-steps/circle-steps.component';
-import { NewReservationService } from 'src/app/modules/new-reservation/new-reservation.service';
+import { NewReservationService } from '../../../../new-reservation.service';
+import { Step } from '../../../../../../../../../kakal-ui/src/lib/vertical-steps/step/step.model';
+
 
 @Component({
   selector: 'app-layout',
@@ -29,7 +26,7 @@ export class LayoutComponent implements OnInit {
 
   complete$!: Observable<boolean>;
 
-  circleSteps: CardStep[] = [
+  circleSteps: CardStepModel[] = [
     { svgIcon: '', label: '1', path: '2', selected: true },
     { svgIcon: '', label: '2', path: '2' },
     { svgIcon: '', label: '3', path: '2' },

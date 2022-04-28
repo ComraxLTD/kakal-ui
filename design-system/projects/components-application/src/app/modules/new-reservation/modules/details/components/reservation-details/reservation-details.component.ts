@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
 import {
   FormDataSource,
   FormService,
@@ -7,8 +8,6 @@ import {
   QuestionGroupModel,
   RouterService,
 } from '../../../../../../../../../kakal-ui/src/public-api';
-import { QuestionCounterModel } from '@ComraxLTD/kakal-ui/lib/form/form-counter/question-counter.model';
-import { FormGrid } from '@ComraxLTD/kakal-ui/lib/form/models/question.types';
 
 interface CounterType {
   key: string;

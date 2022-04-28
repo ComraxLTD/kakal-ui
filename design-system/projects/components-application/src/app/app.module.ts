@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { CoreModule } from './modules/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ROOT_PREFIX } from '../../../../../../../../../kakal-ui/src/public-api';
+import { ROOT_PREFIX } from '../../../kakal-ui/src/public-api';
 
 @NgModule({
   declarations: [

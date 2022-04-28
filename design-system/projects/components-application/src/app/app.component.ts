@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { MenuComponent } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',

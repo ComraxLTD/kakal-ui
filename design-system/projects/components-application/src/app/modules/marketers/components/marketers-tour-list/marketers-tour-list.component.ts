@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlBase, OptionsModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
-import { RowActionModel } from '@ComraxLTD/kakal-ui/lib/kkl-table/table-actions.model';
-import { TableBase } from '@ComraxLTD/kakal-ui/lib/kkl-table/table.model';
+import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../../../../../kakal-ui/src/public-api';
+
 import { MarketersTourListService } from './marketers-tour-list.service';
 
 @Component({

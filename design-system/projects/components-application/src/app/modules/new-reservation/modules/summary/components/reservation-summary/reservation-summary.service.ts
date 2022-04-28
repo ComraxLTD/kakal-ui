@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RowActionModel } from '@ComraxLTD/kakal-ui/lib/kkl-table/table-actions.model';
-import { TableBase } from '@ComraxLTD/kakal-ui/lib/kkl-table/table.model';
+import { RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root',

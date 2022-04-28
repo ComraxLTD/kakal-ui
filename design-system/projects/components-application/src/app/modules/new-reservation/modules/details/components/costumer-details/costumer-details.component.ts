@@ -18,7 +18,7 @@ import {
 } from '../../../../../../../../../kakal-ui/src/public-api';
 import { DetailsService } from './costumer-details.service';
 import { Observable, of, pluck } from 'rxjs';
-import { FormGrid } from '@ComraxLTD/kakal-ui/lib/form/models/question.types';
+import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
 
 @Component({
   selector: 'app-costumer-details',

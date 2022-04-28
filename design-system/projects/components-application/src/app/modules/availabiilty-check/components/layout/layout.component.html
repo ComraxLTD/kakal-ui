@@ -1,7 +1,6 @@
-<kkl-stepper-layout
+<kkl-steps-layout
   dir="rtl"
-  [actions]="actions"
-  [contentPortion]="contentPortion"
+  [actions]="[]"
   [steps]="[]"
   (openChanged)="onDrawerOpenChanged($event)"
 
@@ -19,11 +18,5 @@
   <router-outlet  ></router-outlet>
 </div>
 <div endDrawerContent>replace this content with your own feature</div>
-  <kkl-navbar-bottom
-    class="navbar-bottom"
-    bottom-navbar
-    [hasNext]="true"
-    (previous)="onPrevious()"
-    (next)="onNext()"
-  ></kkl-navbar-bottom>
-</kkl-stepper-layout>
+
+</kkl-steps-layout>

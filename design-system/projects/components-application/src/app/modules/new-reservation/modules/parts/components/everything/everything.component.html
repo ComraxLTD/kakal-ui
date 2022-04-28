@@ -1,8 +1,7 @@
-<kkl-accordion-steps-layout
-  [complete$]="complete$"
+<kkl-steps-accordion-layout
   [panels]="panels"
   [templates]="{appActivity, appSleeping}"
-  ></kkl-accordion-steps-layout>
+  ></kkl-steps-accordion-layout>
 
 <!-- templates for layouts -->
 <ng-template #appActivity> <app-activity [showSearch]="false"></app-activity>  </ng-template>

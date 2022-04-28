@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableBase } from '@ComraxLTD/kakal-ui/lib/kkl-table/table.model';
+import { TableBase } from '../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-marketers-providers',
@@ -41,17 +41,17 @@ export class MarketersProvidersComponent implements OnInit {
     },
   ];
   columns: TableBase[] = [
-    { key: 'instructors', label: 'מדריכים', templateName: 'instructors' },
+    { key: 'instructors', label: 'מדריכים', cellTemplate: 'instructors' },
     {
       key: 'instructorsProviders',
       label: 'ספקי מדריכים',
-      templateName: 'instructorsProviders',
+      cellTemplate: 'instructorsProviders',
     },
-    { key: 'drivers', label: 'נהגים', templateName: 'drivers' },
+    { key: 'drivers', label: 'נהגים', cellTemplate: 'drivers' },
     {
       key: 'driverProviders',
       label: 'ספק הסעים',
-      templateName: 'driverProviders',
+      cellTemplate: 'driverProviders',
     },
   ];
 

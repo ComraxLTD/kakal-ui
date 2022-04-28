@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
 import { FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
-import { FormGrid } from '@ComraxLTD/kakal-ui/lib/form/models/question.types';
 
 @Component({
   selector: 'app-properties',

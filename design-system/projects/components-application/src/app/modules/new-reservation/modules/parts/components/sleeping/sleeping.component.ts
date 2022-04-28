@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService, Question, QuestionGroupModel, RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
-import { FormGrid }  from '../../../../../../../../../kakal-ui/src/public-api';
+import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
 @Component({
   selector: 'app-sleeping',
   templateUrl: './sleeping.component.html',

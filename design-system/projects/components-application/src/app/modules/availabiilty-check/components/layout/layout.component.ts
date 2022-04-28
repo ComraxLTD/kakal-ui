@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointService, ButtonModel, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepperLayoutService } from '../../../../../../../../../kakal-ui/src/public-api';
 import { map, mergeMap, Observable, of} from 'rxjs';
+import { BreakpointService, ButtonModel, FormChangeEvent, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepsLayoutService } from '../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  providers: [FormDataSource]
 })
 export class LayoutComponent implements OnInit {
   contentPortion = { open: 10, close: 50 };
@@ -64,13 +63,13 @@ export class LayoutComponent implements OnInit {
   constructor(
     private breakpointsService: BreakpointService,
     private routerService: RouterService,
-    private stepperLayoutService: StepperLayoutService,
+    private stepperLayoutService: StepsLayoutService,
     private formService: FormService
   ) { }
 
   ngOnInit(): void {
     //decide if drawer is open or closed on init
-    this.stepperLayoutService.emitDisplayDrawer(false);
+    // this.stepperLayoutService.emitDisplayDrawer(false);
     // form group
     this.groupFlex = this.setGroup(this.questions, {
       cols: 2,

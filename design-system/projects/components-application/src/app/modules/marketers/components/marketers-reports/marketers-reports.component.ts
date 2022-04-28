@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlBase, FormChangeEvent, FormService, Question, QuestionGroupModel } from '../../../../../../../../../kakal-ui/src/public-api';
+import { ControlBase, FormChangeEvent, FormService, Question, QuestionGroupModel } from '../../../../../../../kakal-ui/src/public-api';
 import { MarketersReportsService } from './marketers-reports.service';
 
 @Component({

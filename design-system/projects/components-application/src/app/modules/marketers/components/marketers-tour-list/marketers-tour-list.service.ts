@@ -1,12 +1,5 @@
 import { Injectable } from '@angular/core';
-import {
-  ButtonModel,
-  CardStepModel,
-  ControlBase,
-  FormActions,
-  OptionsModel,
-} from '../../../../../../../../../kakal-ui/src/public-api';
-import { TableBase } from '@ComraxLTD/kakal-ui/lib/kkl-table/table.model';
+import { ButtonModel, ControlBase, FormActions, OptionsModel, TableBase } from '../../../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root',
@@ -61,7 +54,7 @@ export class MarketersTourListService {
     { key: 'tourName', label: 'שם הטיול' },
     { key: 'destination', label: 'יעד' },
     { key: 'tourDates', label: 'תאריכי הטיול' },
-    { key: 'status', label: 'סטאטוס', templateName: 'status' },
+    { key: 'status', label: 'סטאטוס', cellTemplate: 'status' },
     { key: 'activities', label: 'פעולות' },
   ];
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
+import { TableBase } from '../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-tour-list-orders',
