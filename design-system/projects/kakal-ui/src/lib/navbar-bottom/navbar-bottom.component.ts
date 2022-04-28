@@ -9,7 +9,6 @@ import {
   ViewContainerRef,
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
-import { CardStep } from '../cards/card-step/card-step.model';
 import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
 import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
