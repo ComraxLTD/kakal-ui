@@ -10,7 +10,7 @@
       </ng-template>
     </mat-card-content>
   </mat-card>
-  <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0.5rem">
+  <div *ngIf="card.label || card.subLabel" fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="0.5rem">
     <kkl-typography [weight]="600">{{ card.label }}</kkl-typography>
     <kkl-typography [size]="1.2">{{ card.subLabel }}</kkl-typography>
   </div>
