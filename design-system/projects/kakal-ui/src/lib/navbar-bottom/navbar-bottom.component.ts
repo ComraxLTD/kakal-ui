@@ -25,25 +25,26 @@ import { FormGroup } from '@angular/forms';
 })
 export class NavbarBottomComponent implements OnInit {
 
-  showNext$: BehaviorSubject<boolean>;
-  showSave$: BehaviorSubject<boolean>;
-  showBack$: BehaviorSubject<boolean>;
-  showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}>;
+  @Input() nextLabel: string;
 
-  disableNext$: BehaviorSubject<boolean>;
+  showNext$: Observable<boolean>;
+  showSave$: Observable<boolean>;
+  showBack$: Observable<boolean>;
+  showNextMiddle$: Observable<{show: boolean, next: boolean}>;
+
+  disableNext$: Observable<boolean>;
 
   autoBack: boolean = true;
 
   formGroup: FormGroup = new FormGroup({});
 
-  @Input() nextLabel: string;
 
   bottomIcon: string = 'bottom_tree_';
 
-  // @Output() previous = new EventEmitter();
+  // @Output() previous = new EventEmitter<void>();
   // @Output() next = new EventEmitter<void>();
   // @Output() nextStep = new EventEmitter<StepsSelectionEvent>();
-  // @Output() save = new EventEmitter();
+  // @Output() save = new EventEmitter<void>();
 
   constructor(
     private routerService: RouterService,
@@ -60,14 +61,16 @@ export class NavbarBottomComponent implements OnInit {
     this.showNextMiddle$ = this.navbarBottomService.getShowNextMiddle();
     this.disableNext$ = this.navbarBottomService.getDisableNext();
 
-    this.navbarBottomService.getFormGroup().subscribe(b => {
-      if(b) {
-        this.formGroup = b;
-      } else {
-        this.formGroup = new FormGroup({});
-      }
+    this.formGroup = this.navbarBottomService.getFormGroup();
 
-    });
+    // this.navbarBottomService.getFormGroup().subscribe(b => {
+    //   if(b) {
+    //     this.formGroup = b;
+    //   } else {
+    //     this.formGroup = new FormGroup({});
+    //   }
+    // });
+
     this.navbarBottomService.getAutoBack().subscribe(a =>{
       this.autoBack = a;
     });

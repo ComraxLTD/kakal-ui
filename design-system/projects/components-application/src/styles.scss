@@ -1,5 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
+@use "./styles/theme" as theme;
+
+@include theme.theme();
+
 html,
 body,
 app-root {

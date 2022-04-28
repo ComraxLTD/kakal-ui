@@ -21,9 +21,8 @@
 
     <ng-content></ng-content>
 
-    <div class="navbar-bottom">
+    <div *ngIf="!(isLobby$ | async)" class="navbar-bottom">
       <kkl-navbar-bottom></kkl-navbar-bottom>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
-

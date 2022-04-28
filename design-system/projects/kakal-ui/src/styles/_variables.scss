@@ -88,12 +88,10 @@ mat-grid-tile {
 button.mat-button-disabled {
   border: none !important;
 }
+button.mat-raised-button:not(.mat-button-disabled ){
+  color: white;
+}
+button.mat-fab:not(.mat-button-disabled ){
+  color: white;
+}
 
-
-//btn variavbles
-$pl-button-shadow-alt:1px 1px 1px 1px #000;
-$primary-col-shadowbase: #000;
-$primary-col-shadow: #000;
-$primary-col:#000;
-$button-radius:3px;
-$primary-col-text:white;

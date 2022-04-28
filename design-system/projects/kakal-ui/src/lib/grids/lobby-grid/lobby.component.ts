@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
-import { CardLobbyModel } from '../../cards/card-lobby/card-lobby.component';
+import { CardLobby } from '../../cards/card-lobby/card-lobby.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ export class LobbyComponent implements OnInit {
   @Input() public cols: number;
   @Input() public rows: number;
   @Input() public moduleTitle: string;
-  @Input() public cards: CardLobbyModel[];
+  @Input() public cards: CardLobby[];
 
   public md$: Observable<boolean>;
 

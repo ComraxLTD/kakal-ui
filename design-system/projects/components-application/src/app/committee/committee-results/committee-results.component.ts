@@ -10,6 +10,7 @@ import {
   OptionMap,
   FilterState,
   RouterService,
+  NavbarBottomService,
 } from '../../../../../kakal-ui/src/public-api';
 
 @Component({
@@ -73,21 +74,19 @@ export class CommitteeResultsComponent implements OnInit {
 
   constructor(
     private committeeResultService: CommitteeResultsService,
-
-    private routerService: RouterService,
-
-    // @Inject(ROOT_PREFIX) private projectPrefix: string,
-    // @Inject(MODULE_PREFIX) private modulePrefix: string
+    private navbarBottomService: NavbarBottomService,
+    private routerService: RouterService
   ) {}
 
   ngOnInit(): void {
+    this.navbarBottomService.hideButtons();
     this.questions = this.committeeResultService.getFormQuestions();
   }
 
   // DOM EVENTS SECTION
 
   onCreateNewCommittee() {
-    const path: string = `new`;
+    const path: string = `estates/new`;
     this.routerService.navigate(path);
   }
 }

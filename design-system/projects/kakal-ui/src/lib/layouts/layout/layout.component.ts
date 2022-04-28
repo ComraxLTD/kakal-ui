@@ -36,14 +36,15 @@ export class LayoutComponent implements OnInit {
   showStatus$: Observable<boolean>;
   mobile$: Observable<boolean>;
 
+  isLobby$: Observable<boolean>;
+
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuSelectEvent> = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private pageHeadlineService: PageHeadlineService,
-
+    private pageHeadlineService: PageHeadlineService
   ) {}
 
   ngOnInit(): void {
@@ -51,6 +52,17 @@ export class LayoutComponent implements OnInit {
 
     this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.mobile$ = this.breakpointService.isMobile();
+
+    this.isLobby$ = this.setsIsLobby$();
+  }
+
+  private setsIsLobby$() {
+    return this.routerService.getLastPath$().pipe(
+      startWith(this.routerService.getCurrentPath()),
+      map((path: string) => {
+        return this.findPath(['lobby'], path);
+      })
+    );
   }
 
   private setPageHeadline() {
@@ -79,7 +91,7 @@ export class LayoutComponent implements OnInit {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
-        return this.findPath(list, path);
+        return this.findPath([...list, 'lobby'], path);
       })
     );
   }

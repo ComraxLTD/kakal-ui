@@ -22,7 +22,6 @@ import { FormFilterSearchComponent } from './components/form-filter-search/form-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NewOrderLayoutComponent } from './components/new-order-layout/new-order-layout.component';
 import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
-import { LayoutComponent } from './layout/layout.component';
 import { CommonModule } from '@angular/common';
 import { FormFlexComponent } from './components/form-flex/form.component';
 import { DialogExampleComponent } from './components/dialog-example/dialog-example.component';
@@ -36,7 +35,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     OrderDetailsBidComponent,
     NewOrderLayoutComponent,
     FormFilterSearchComponent,
-    LayoutComponent,
     FormFlexComponent,
     DialogExampleComponent,
   ],

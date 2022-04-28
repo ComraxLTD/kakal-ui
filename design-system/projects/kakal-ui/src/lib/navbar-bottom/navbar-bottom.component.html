@@ -20,7 +20,7 @@
     <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
       <ng-container *ngIf="nextMiddle.show">
         <button
-          class="next-middle-btn"
+          class="kkl-middle-button"
           mat-fab
           [disabled]="!formGroup.valid"
           color="primary"
@@ -33,7 +33,7 @@
             <ng-template #saveTemp>{{ "שמור" }}</ng-template>
           </span>
           <br />
-          <mat-icon>expand_more</mat-icon>
+          <kkl-icon [color]="'paper'" key="expand_more"></kkl-icon>
         </button>
       </ng-container>
     </ng-container>
@@ -48,9 +48,13 @@
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
-      <button mat-raised-button kkl-border [thick]="2" (click)="onSave()">
+      <kkl-stroke-button
+        color="primary"
+        (clickEvent)="onSave()"
+        class="kkl-save-button"
+      >
         שמור
-      </button>
+      </kkl-stroke-button>
     </ng-container>
 
     <!--next button -->
@@ -68,4 +72,3 @@
     <!-- </ng-container> -->
   </div>
 </mat-toolbar>
-

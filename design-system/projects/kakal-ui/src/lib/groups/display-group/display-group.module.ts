@@ -8,11 +8,13 @@ import { KKLIconModule } from '../../icon/icon.module';
 
 import { DisplayGroupComponent } from './display-group.component';
 import { KKLStatusStepsModule } from '../../status-steps/status-steps.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [DisplayGroupComponent],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     MatDividerModule,
     KKLTypographyModule,
     KKLPipesModule,
