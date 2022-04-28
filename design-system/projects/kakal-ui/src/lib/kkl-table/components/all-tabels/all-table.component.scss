@@ -1,5 +1,7 @@
 @use "../../../../styles/variables" as main;
 
+
+
 tr.example-detail-row {
   height: 0;
 }
@@ -43,9 +45,9 @@ table {
 .table-warpper {
 
 }
-// .mat-header-cell {
-//   min-width: 500px;
-// }
+.mat-header-cell {
+  min-width: 500px;
+}
 
 // table tr {
 //   border-spacing: 0 !important;
@@ -124,3 +126,28 @@ th>h3 {
 // }
 
 
+.all-table-form{
+  overflow: auto;
+}
+//  scroll css
+/* width */
+::-webkit-scrollbar {
+  height: 4px !important;
+  border-radius: 30px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e4e4e4; 
+  width: 20%;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #707070; 
+  width: 20%;
+  border-radius: 210px;
+}
+
+// shorten the track size and add border radius
+//shorter a liitle bit before the pagination
