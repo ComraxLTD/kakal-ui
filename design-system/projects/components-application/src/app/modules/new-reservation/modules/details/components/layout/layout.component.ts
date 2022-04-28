@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardStepModel, Panel, RouterService, StepsSelectionEvent } from '../../../../../../../../../kakal-ui/src/public-api';
+import { CardStep, Panel, RouterService, StepsSelectionEvent } from '../../../../../../../../../kakal-ui/src/public-api';
 import { Observable } from 'rxjs';
 import { NewReservationService } from '../../../../new-reservation.service';
 import { Step } from '../../../../../../../../../kakal-ui/src/lib/vertical-steps/step/step.model';
@@ -26,7 +26,7 @@ export class LayoutComponent implements OnInit {
 
   complete$!: Observable<boolean>;
 
-  circleSteps: CardStepModel[] = [
+  circleSteps: CardStep[] = [
     { svgIcon: '', label: '1', path: '2', selected: true },
     { svgIcon: '', label: '2', path: '2' },
     { svgIcon: '', label: '3', path: '2' },
@@ -48,11 +48,11 @@ export class LayoutComponent implements OnInit {
     path = `/${this.routerService.getCurrentPath()}/${path}`;
     this.routerService.navigate(path);
   }
-  public onNext(step: CardStepModel) {
+  public onNext(step: CardStep) {
     this.navigate(step.path!);
   }
 
-  public onChangeStep(step: CardStepModel) {
+  public onChangeStep(step: CardStep) {
     this.navigate(step.path!);
   }
 
@@ -71,7 +71,7 @@ export class LayoutComponent implements OnInit {
 
   changeStep() {
     console.log(this.currentIndex);
-    
+
     let newIndex = this.circleSteps.findIndex((item) => item.selected);
     this.currentIndex = ++newIndex;
     this.currentIndex =

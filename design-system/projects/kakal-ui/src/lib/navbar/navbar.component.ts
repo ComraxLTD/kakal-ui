@@ -7,7 +7,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { CardStepModel } from '../cards/card-step/card-step.model';
+import { CardStep } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
@@ -26,9 +26,9 @@ export class NavbarComponent implements OnInit {
   @Input() showStatus$: Observable<boolean>;
 
   openIcon: string = 'tree_gradient_';
-  status$: Observable<CardStepModel[]>;
+  status$: Observable<CardStep[]>;
   mobile$: Observable<boolean>;
-  
+
   openLabel: string = 'תפריט';
   closeLabel: string = 'סגור תפריט';
 

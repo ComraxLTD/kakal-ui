@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardStepModel } from '../cards/card-step/card-step.model';
+import { CardStep } from '../cards/card-step/card-step.model';
 import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { Observable, BehaviorSubject } from 'rxjs';
 
@@ -9,7 +9,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./stepper-mobile.component.scss'],
 })
 export class StepperMobileComponent implements OnInit {
-  @Input() steps: CardStepModel[];
+  @Input() steps: CardStep[];
 
   private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
     new BehaviorSubject(null);

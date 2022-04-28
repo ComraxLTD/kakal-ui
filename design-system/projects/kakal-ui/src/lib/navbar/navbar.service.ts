@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CardStepModel } from '../cards/card-step/card-step.model';
+import { CardStep } from '../cards/card-step/card-step.model';
 import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
 import { CardStatusModel } from '../cards/card-status/card-status.model';
 import { PageHeadline } from '../page-headline/page-headline.component';
@@ -63,7 +63,7 @@ export class NavbarService {
   }
 
   // status section
-  public getSelectStatusObs(): Observable<CardStepModel> {
+  public getSelectStatusObs(): Observable<CardStep> {
     return this.selectStatusSubject.asObservable();
   }
 

@@ -1,7 +1,7 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ButtonModel, CardStepModel, RouterService, StepsLayoutService } from '../../../../../../../kakal-ui/src/public-api';
+import { ButtonModel, CardStep, RouterService, StepsLayoutService } from '../../../../../../../kakal-ui/src/public-api';
 import { NewReservationService } from '../../new-reservation.service';
 
 @Component({
@@ -21,27 +21,27 @@ export class LayoutComponent implements OnInit {
     console.log(event);
   }
 
-  firstSteps: CardStepModel[] = [
+  firstSteps: CardStep[] = [
     {
       label: 'פרטי הזמנה',
       svgIcon: 'plant',
       path: 'details',
-    
+
     },
     {
       label: 'מרכיבי הזמנה',
       svgIcon: 'tree',
       path: 'parts',
-   
+
     },
     {
       label: 'סיכום הזמנה',
       svgIcon: 'list',
       path: 'summary',
-     
+
     },
   ];
-  steps$: Observable<CardStepModel[]> = of([]);
+  steps$: Observable<CardStep[]> = of([]);
 
   constructor(
     private routerService: RouterService,
@@ -63,9 +63,9 @@ export class LayoutComponent implements OnInit {
     this.routerService.navigate(path);
   }
 
-  public onNext(step: CardStepModel) {
+  public onNext(step: CardStep) {
     console.log(step);
-    
+
     this.navigate(step.path!);
   }
 

@@ -43,6 +43,5 @@ export class AppComponent implements OnInit {
   constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {
-    this.layoutService.showStartDrawer(true);
   }
 }
