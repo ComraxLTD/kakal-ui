@@ -1,13 +1,5 @@
-@use "../../../kakal-ui/src/styles/variables" as main;
-
-:host {
-  margin: 16px;
-}
-::ng-deep div.status-bar.active{
-color: blue;
-background-color: blue !important;
-}
-
-.kkl-expand-panel {
-  margin-bottom: 10px;
+.container {
+  margin-top: 50px;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
 }

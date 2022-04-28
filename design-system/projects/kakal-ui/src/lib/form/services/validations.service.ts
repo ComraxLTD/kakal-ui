@@ -88,6 +88,30 @@ export class ValidationService {
     };
   }
 
+  public static rangesSum(keys: string[], max: number) {
+    return (group: FormGroup): ValidationErrors | null => {
+      const controls = Object.entries(group.controls)
+        .filter(([key, control]) => keys.indexOf(key) !== -1)
+        .map(([key, control]) => control as FormControl);
+
+      const value = controls.reduce((sum, control) => {
+        return (sum += Number(control.value));
+      }, 0);
+
+      if (value > max) {
+        controls.map((control) => {
+          control.setErrors({
+            rangesSum: { max, actual: value },
+          });
+        });
+
+        return { rangesSum: { max, actual: value } };
+      } else {
+        return null;
+      }
+    };
+  }
+
   public static maxCurrency(max: number): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (
@@ -100,6 +124,24 @@ export class ValidationService {
       return !isNaN(value) && value > max
         ? { maxCurrency: { max, actual: control.value } }
         : null;
+    };
+  }
+
+  public static fileType(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (ValidationService.isEmptyInputValue(control.value)) {
+        return null; // don't validate empty values to allow optional controls
+      }
+
+      const value = control.value;
+
+      const error: ValidationErrors = { file: 'חובה להעלות מסמך' };
+
+      if (control.value.length > 0) {
+        return !!value.find((item) => item instanceof File) ? null : error;
+      } else {
+        return value instanceof File ? null : error;
+      }
     };
   }
 }

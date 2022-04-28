@@ -3,13 +3,16 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild 
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Subject, take, takeUntil } from 'rxjs';
-import { RowActionEvent, RowActionModel } from '../../models/table-actions.model'
+import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
+import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model'
 import { TableBase } from '../../models/table.model';
 import { TableServerModel } from '../../models/table-server.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { MatTable } from '@angular/material/table';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { setControls } from '../../../mei-services/services/form-create';
+import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
+import { OptionsModel } from '../../../mei-form/models/options.model';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
@@ -34,8 +37,8 @@ export class EventTableComponent implements OnInit {
 
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
-  @Output() editRow = new EventEmitter<any>();
-  @Output() expandRow = new EventEmitter<any>();
+  @Output() saveRow = new EventEmitter<any>();
+  @Output() expandRow = new EventEmitter<RowExpandEvent>();
   @Output() requestChanged = new EventEmitter<any>();
 
 
@@ -51,8 +54,30 @@ export class EventTableComponent implements OnInit {
   @Input() dragable: boolean;
 
 
-  oneColumns: TableBase[] = [];
+  oneColumns: TableBase[];
   @Input() set columns(value: TableBase[]) {
+    if(this.oneColumns && this.searchRow) {
+      const newVals: TableBase[] = [];
+      const sameVals: TableBase[] = [];
+      value.forEach(a => {
+        if(this.oneColumns.find( vendor => Object.assign(vendor) === Object.assign(a) )) {
+          sameVals.push(this.oneColumns.find( vendor => Object.assign(vendor) === Object.assign(a) ));
+        } else {
+          newVals.push(a);
+        }
+      });
+      const removed = this.oneColumns.filter(b => !sameVals.includes(b));
+      removed.forEach(c => {
+        this.searchRow.removeControl(c.key);
+        this.rows.controls.forEach(d => {
+          (d as FormGroup).removeControl(c.key);
+        });
+      });
+      setControls(newVals, this.searchRow, this.fb, this.localObservables);
+      this.rows.controls.forEach(h => {
+        setControls(newVals, h as FormGroup, this.fb, this.localObservables);
+      });
+    }
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
     if(this.localButtons?.length) {
@@ -61,11 +86,11 @@ export class EventTableComponent implements OnInit {
     if(this.dragable) {
       this.displayedColumns.unshift('dragHandeler')
     }
-    const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
-    this.searchRow = row;
+    // const row = this.fb.group({});
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    // this.searchRow = row;
   }
 
 
@@ -115,8 +140,8 @@ export class EventTableComponent implements OnInit {
 
   editItems: any[] = [];
   rows: FormArray = this.fb.array([]);
-  searchRow: FormGroup = this.fb.group({});
-  form: FormGroup = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
+  @Input() searchRow: FormGroup;
+  form: FormGroup;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -131,7 +156,27 @@ export class EventTableComponent implements OnInit {
 
   dragDisabled = true;
 
-  ngOnInit() {
+  myOptions: OptionsModel[] = [];
+  @Input() set options(val: OptionsModel[]) {
+    if(val) {
+      this.myOptions = val;
+      if(this.form) {
+        this.putOptions();
+      }
+    }
+  }
+
+
+
+  localObservables: Map<string, BehaviorSubject<KklSelectOption[]>> = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+
+
+  ngOnInit(): void {
+    if(!this.searchRow) {
+      this.searchRow = this.fb.group({});
+    }
+    this.form = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
+    setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
   }
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
@@ -199,7 +244,7 @@ export class EventTableComponent implements OnInit {
     this.dataTable = undefined;
   }
 
-  buttonClick(butt: RowActionModel, obj:any) {
+  buttonClick(butt: RowActionModel, obj:any, key: string) {
     if(normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
@@ -213,15 +258,19 @@ export class EventTableComponent implements OnInit {
           this.editItems = [...this.editItems, obj];
           break;
         case 'inlineExpand':
-          this.expandRow.emit(obj);
-          this.expandedElement = this.expandedElement == obj? null : obj;
+          this.expandRow.emit({row: obj, key: key});
+          this.addExpandedRow(obj);
           break;
         default:
           break;
       }
     } else {
-      this.actionClicked.emit({action: butt.type, row: obj});
+      this.actionClicked.emit({action: butt.type, row: obj, key: key});
     }
+  }
+
+  addExpandedRow(obj: any) {
+    this.expandedElement = this.expandedElement == obj? null : obj;
   }
 
   saveRowClick(ele: any) {
@@ -229,8 +278,8 @@ export class EventTableComponent implements OnInit {
     if (index > -1) {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
-      Object.assign(ele, this.rows.at(index).value);
-      this.editRow.emit(ele);
+      // Object.assign(ele, this.rows.at(index).value);
+      this.saveRow.emit(ele);
       this.rows.removeAt(index);
       this.readySpanData(0, this.dataTable.length);
     }
@@ -248,17 +297,20 @@ export class EventTableComponent implements OnInit {
 
   addRowGroup(obj: any) {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(obj[col.key]));
-    });
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(obj[col.key]));
+    // });
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    row.setValue(obj);
     this.rows.push(row);
   }
 
   addNewRowGroup() {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
     this.rows.push(row);
     const rowData: any = row.value;
     this.editItems = [...this.editItems, rowData];
@@ -315,9 +367,24 @@ export class EventTableComponent implements OnInit {
 
   dropTable(event: CdkDragDrop<any[]>) {
     this.dragDisabled = true;
+
+    // if(this.paging){
+    //   let cutOut = this.dataTable.data.splice(this.paginator.pageIndex*this.paginator.pageSize + event.previousIndex, 1) [0]; // cut the element at index 'from'
+    //   this.dataTable.data.splice(this.paginator.pageIndex*this.paginator.pageSize + event.currentIndex, 0, cutOut);
+    // } else {
+    //   let cutOut = this.dataTable.data.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
+    //   this.dataTable.data.splice(event.currentIndex, 0, cutOut);
+    // }
+    // this.dataTable = this.dataTable.slice();
     moveItemInArray(this.dataTable, event.previousIndex, event.currentIndex);
     this.table.renderRows();
     this.readySpanData(0, this.dataTable.length);
+  }
+
+  putOptions() {
+    this.myOptions.forEach(b => {
+      (this.localObservables.get(b.key))?.next(b.val);
+    });
   }
 
 

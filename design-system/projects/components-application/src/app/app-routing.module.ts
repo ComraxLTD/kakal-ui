@@ -1,28 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DetailsComponent } from './components/details/details.component';
-import { LayoutComponent } from './layout/layout.component';
+import { AppComponent } from './app.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
-    data: { breadcrumb: 'דף הבית', homepage: true },
+    component: AppComponent,
+    // data: { breadcrumb: 'דף הבית', homepage: true },
+    pathMatch: 'full',
     children: [
       {
-        path: 'test',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('./test/test.module').then((m) => m.TestModule),
-          },
-        ],
+        path: 'bid',
+        loadChildren: () =>
+          import('./committee/committee.module').then(
+            (m) => m.CommitteeModule
+          ),
       },
     ],
   },
-  { path: 'details', component: DetailsComponent },
-  { path: 'details/:id', component: DetailsComponent },
+  // { path: 'details', component: DetailsComponent },
+  // { path: 'details/:id', component: DetailsComponent },
 ];
 
 @NgModule({

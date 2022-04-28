@@ -1,15 +1,39 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, Inject, Injector, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ComponentRef } from '@angular/core';
 
 @Component({
-  selector: 'pl-dialog',
+  selector: 'kkl-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
+  @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
+  @ViewChild("renderComponentHere", { read: ViewContainerRef, static: true  }) vcRef!: ViewContainerRef;
+  saveBtnLabel!:string
+  closeBtnLabel!:string
 
-  constructor() { }
+  componentRef: ComponentRef<any>;
 
-  ngOnInit(): void {
+  constructor(
+    public dialogRef: MatDialogRef<DialogComponent>,
+    private injector: Injector,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {}
+
+  ngOnInit() {
+    this.componentRef = this.vcRef.createComponent(this.data.component, { injector: this.injector });
+    this.saveBtnLabel=this.data.saveBtnLabel ||'שמור'
+    this.closeBtnLabel=this.data.closeBtnLabel||'סגור'
   }
 
+  ngOnDestroy() {
+    if (this.componentRef) {
+      //
+      // this.componentRef.destroy();
+    }
+  }
+  onConfirmClick(): void {
+    this.dialogRef.close(true);
+  }
 }

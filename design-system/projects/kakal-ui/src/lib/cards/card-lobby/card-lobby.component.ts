@@ -1,8 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { map, Observable } from 'rxjs';
+import { IconService } from '../../icon/icons.service';
 
 export interface CardLobbyModel {
+  label: string;
+  path: string;
+  svgIcon: string;
+}
+
+interface CardLobby {
   label: string;
   path: string;
   svgIcon: string;
@@ -19,23 +26,24 @@ export class CardLobbyComponent implements OnInit {
 
   public card$: Observable<CardLobbyModel>;
 
-  @Output() click = new EventEmitter<CardLobbyModel>();
-
-  constructor(private breakpointService: BreakpointService) {}
+  constructor(
+    private iconService: IconService,
+    private breakpointService: BreakpointService
+  ) {}
 
   ngOnInit(): void {
     this.card$ = this.setSizeInMobile$();
+    this.iconService.setIcon(this.card.svgIcon);
   }
-  public onCardClick() {}
-
-  private setSizeInMobile$(): Observable<CardLobbyModel> {
+  
+  private setSizeInMobile$(): Observable<CardLobby> {
     return this.breakpointService.isMobile().pipe(
       map((md: boolean) => {
-        const card = { ...this.card };
+        const card: CardLobby = { ...this.card };
         return {
           ...card,
           size: md ? 4 : card.size || 5.5,
-        } as CardLobbyModel;
+        } as CardLobby;
       })
     );
   }

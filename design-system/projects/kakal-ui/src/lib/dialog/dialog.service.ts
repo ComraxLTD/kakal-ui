@@ -1,13 +1,9 @@
-import { Inject, Injectable, TemplateRef } from '@angular/core';
-import {
-  MatDialog,
-  MatDialogConfig,
-  MatDialogRef,
-  MAT_DIALOG_DATA,
-} from '@angular/material/dialog';
+import { Injectable } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 import { DialogComponent } from './dialog.component';
+import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
 
 export interface DialogData {
   type: string;
@@ -17,18 +13,40 @@ export interface DialogData {
   providedIn: 'root',
 })
 export class DialogService {
+  constructor(private dialog: MatDialog) {}
   public readonly DISPLAY_MSG_PREFIX = 'thisMessageIsForDisplay';
   public readonly ERROR_MSG = 'מצטערים, קרתה תקלה ולא ניתן לבצע את הפעולה';
 
-  constructor(private dialog: MatDialog) {}
-
-  public open(
-    dialogRef?: TemplateRef<any>,
-    config?: MatDialogConfig
-  ): MatDialogRef<DialogComponent> {
-    return this.dialog.open(dialogRef || DialogComponent, config);
+  openDialogGetAfterClosedObs(data: {
+    component: ComponentRef<any>;
+    closeBtnLabel?: string;
+    saveBtnLabel?: string;
+  }): Observable<any> {
+    return this.dialog
+      .open(DialogComponent, {
+        data: {
+          component: data.component,
+          closeBtnLabel: data.closeBtnLabel,
+          saveBtnLabel: data.saveBtnLabel,
+        },
+      })
+      .afterClosed();
+  }
+  openDialog(data: {
+    component: ComponentRef<any>;
+    closeBtnLabel?: string;
+    saveBtnLabel?: string;
+  }): void {
+    this.dialog.open(DialogComponent, {
+      data: {
+        component: data.component,
+        closeBtnLabel: data.closeBtnLabel,
+        saveBtnLabel: data.saveBtnLabel,
+      },
+    });
   }
 
+  
   private openDefault(
     config?: MatDialogConfig
   ): MatDialogRef<DialogAlertComponent> {

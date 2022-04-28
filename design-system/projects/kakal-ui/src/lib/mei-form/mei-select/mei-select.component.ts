@@ -5,6 +5,7 @@ import { KklFormActions } from '../models/kkl-form-events';
 import { KklFormChangeEvent } from '../models/kkl-form-events';
 import { MessageService } from '../mei-services/message.service';
 import { BehaviorSubject, take } from 'rxjs';
+import { Appearance } from '../models/control.types';
 
 @Component({
   selector: 'kkl-select',
@@ -47,7 +48,7 @@ export class MeiSelectComponent implements OnInit {
   @Input() label!: string;
   @Input() theme!: string;
   @Input() key!: string;
-  @Input() appearance!: string;
+  @Input() appearance: Appearance;
 
   @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -87,18 +88,17 @@ export class MeiSelectComponent implements OnInit {
 
   deselectAll() {
     this.control.patchValue([]);
-    (this.options as BehaviorSubject<KklSelectOption[]>).pipe(take(1)).subscribe((a: KklSelectOption[]) => {
-      a.forEach(b => {
-        b.selected = false;
-      })
-      this.options$.next(a);
-    });
+  //   (this.options as BehaviorSubject<KklSelectOption[]>).pipe(take(1)).subscribe((a: KklSelectOption[]) => {
+  //     a.forEach(b => {
+  //       b.selected = false;
+  //     })
+  //     this.options$.next(a);
+  //   });
   }
 
   setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control as FormControl,
-      this.placeHolder
+      this.control as FormControl
     );
 
     this.error$.next(error);
@@ -115,6 +115,11 @@ export class MeiSelectComponent implements OnInit {
   //   });
   // }
   onSelectChanged(event) {
+    this.options$.pipe(take(1)).subscribe((a: KklSelectOption[]) => {
+      a.forEach(b => {
+        b.selected = false;
+      });
+    });
     if(this.multi) {
       event.value?.forEach(v => v.selected = true);
     } else {

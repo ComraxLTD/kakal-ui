@@ -1,1 +1,13 @@
-<p>dialog works!</p>
+<div fxLayout="column" dir="rtl" fxFill [class.kkl-alert-dialog]>
+    <button class="close" mat-button [mat-dialog-close]="false">X</button>
+
+    <mat-dialog-content>
+        <ng-template #renderComponentHere></ng-template>
+        <!-- <ng-container *ngComponentOutlet="data.component"></ng-container> -->
+    </mat-dialog-content>
+    <mat-dialog-actions dir="ltr">
+        <button mat-button [mat-dialog-close]="false">{{saveBtnLabel}}</button>
+        <button mat-button [mat-dialog-close]="true">{{closeBtnLabel}}</button>
+    </mat-dialog-actions>
+
+</div>

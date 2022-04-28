@@ -1,12 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { IconService } from '../../icon/icons.service';
 
 export interface MenuCard {
   label: string;
   svgIcon: string;
-  active?: boolean;
+  selected?: boolean;
   path?: string;
 }
+
+
 
 @Component({
   selector: 'kkl-menu-card',
@@ -16,9 +18,15 @@ export interface MenuCard {
 export class MenuCardComponent implements OnInit {
   @Input() card!: MenuCard;
 
+  @Output() cardSelect: EventEmitter<MenuCard> = new EventEmitter();
+
   constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
     this.iconService.setIcon(this.card.svgIcon);
+  }
+
+  onSelect() {
+    this.cardSelect.emit();
   }
 }

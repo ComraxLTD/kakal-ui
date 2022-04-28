@@ -15,20 +15,21 @@ export class CardFilterComponent implements OnInit {
   @Input() card!: CardFilter;
   @Input() disabled: boolean = false;
 
-  public _chosen: boolean;
 
-  @Input()
-  set chosen(value: boolean) {
-    this._chosen = value;
-  }
+  @Input() chosen: boolean;
 
   @Output() emitCard: EventEmitter<CardFilter> = new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.disabled);
+
+  }
 
   onCardClick(): void {
+    console.log('jhjhj');
+
     this.emitCard.emit(this.card);
   }
 }

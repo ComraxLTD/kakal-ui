@@ -1,8 +1,73 @@
+export const LIST_MEW = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20.791" height="14.475" viewBox="0 0 20.791 14.475">
+    <g id="Group_4169" data-name="Group 4169" transform="translate(-633.501 -773.5)">
+      <rect id="Rectangle_2890" data-name="Rectangle 2890" width="2.497" height="2.45" transform="translate(651.295 774)" fill="none" stroke-width="1"/>
+      <rect id="Rectangle_2891" data-name="Rectangle 2891" width="2.497" height="2.45" transform="translate(651.295 779.512)" fill="none" stroke-width="1"/>
+      <rect id="Rectangle_2892" data-name="Rectangle 2892" width="2.497" height="2.45" transform="translate(651.295 785.025)" stroke-width="1"/>
+      <line id="Line_716" data-name="Line 716" x1="14.36" transform="translate(633.501 775.531)" fill="none" stroke-width="1"/>
+      <line id="Line_717" data-name="Line 717" x1="14.36" transform="translate(633.501 781.043)" fill="none" stroke-width="1"/>
+      <line id="Line_718" data-name="Line 718" x1="14.36" transform="translate(633.501 786.557)" fill="none" stroke-width="1"/>
+    </g>
+  </svg>
+`
+
+export const DOWNLOAD_NEW = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="22.819" height="22.819" viewBox="0 0 22.819 22.819">
+  <g id="Icon_feather-download" data-name="Icon feather-download" transform="translate(-3.75 -3.75)">
+    <path id="Path_905" data-name="Path 905" d="M25.819,22.5v4.738a2.369,2.369,0,0,1-2.369,2.369H6.869A2.369,2.369,0,0,1,4.5,27.238V22.5" transform="translate(0 -3.787)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_906" data-name="Path 906" d="M10.5,15l5.922,5.922L22.344,15" transform="translate(-1.262 -2.209)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_907" data-name="Path 907" d="M18,18.713V4.5" transform="translate(-2.841)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+  </svg>
+`
+
+export const PRINTER_NEW = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20.924" height="20.924" viewBox="0 0 20.924 20.924">
+  <g id="Icon_feather-printer" data-name="Icon feather-printer" transform="translate(-2 -2)">
+    <path id="Path_1676" data-name="Path 1676" d="M9,9.623V3H20.354V9.623" transform="translate(-2.215)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_1677" data-name="Path 1677" d="M6.785,22.016H4.892A1.892,1.892,0,0,1,3,20.123V15.392A1.892,1.892,0,0,1,4.892,13.5H20.031a1.892,1.892,0,0,1,1.892,1.892v4.731a1.892,1.892,0,0,1-1.892,1.892H18.139" transform="translate(0 -3.877)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_1678" data-name="Path 1678" d="M9,21H20.354v7.57H9Z" transform="translate(-2.215 -6.646)" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+  </svg>
+`
+
+export const CALENDAR_NEW = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="17.741" height="18.924" viewBox="0 0 17.741 18.924">
+  <path id="Icon_metro-calendar" data-name="Icon metro-calendar" d="M8.484,9.024H10.85V11.39H8.484Zm3.548,0H14.4V11.39H12.033Zm3.548,0h2.365V11.39H15.581Zm-10.645,7.1H7.3v2.365H4.936Zm3.548,0H10.85v2.365H8.484Zm3.548,0H14.4v2.365H12.033ZM8.484,12.573H10.85v2.365H8.484Zm3.548,0H14.4v2.365H12.033Zm3.548,0h2.365v2.365H15.581Zm-10.645,0H7.3v2.365H4.936ZM17.946,1.928V3.111H15.581V1.928H7.3V3.111H4.936V1.928H2.571V20.852H20.312V1.928H17.946Zm1.183,17.741H3.753V6.659H19.129Z" transform="translate(-2.571 -1.928)" fill="none"/>
+  </svg>
+`
+
+export const TREE_GRADIENT_FORESTRY_ICON = `
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+width="31.883" height="40.875"
+viewBox="0 0 31.883 40.875">
+<defs>
+<style>.tree-gradient-forestry{fill:url(#tree-gradient-forestry);}</style>
+<linearGradient id="tree-gradient-forestry" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d6a348"/></linearGradient>
+</defs>
+<path class="tree-gradient-forestry" d="M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z" transform="translate(-557.473 -9.485)"/>
+</svg>
+`;
+
+export const TREE_GRADIENT_EDUCATION_ICON = `
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+width="31.883" height="40.875"
+viewBox="0 0 31.883 40.875">
+<defs>
+<style>.tree-gradient-education{fill:url(#tree-gradient-education);}</style>
+<linearGradient id="tree-gradient-education" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d6a348"/></linearGradient>
+</defs>
+<path class="tree-gradient-education" d="M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z" transform="translate(-557.473 -9.485)"/>
+</svg>
+`;
+
 // SHARED ICONS
 
 export const AAL_DIRECTIONS = `
   <svg id="Line" enable-background="new 0 0 32 32" height="512" viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m29.707 16.707-4 4c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414l2.293-2.293h-9.586v9.586l2.293-2.293c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-4 4c-.378.379-1.013.402-1.415 0l-4-4c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l2.294 2.293v-9.586h-9.586l2.293 2.293c.391.391.391 1.023 0 1.414s-1.023.391-1.414 0l-4-4c-.387-.387-.39-1.025 0-1.415l4-4c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-2.293 2.294h9.586v-9.586l-2.293 2.293c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414l4-4c.387-.387 1.025-.39 1.415 0l4 4c.391.391.391 1.023 0 1.414-.196.195-.452.293-.708.293s-.512-.098-.707-.293l-2.293-2.293v9.586h9.586l-2.293-2.293c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l4 4c.39.389.387 1.028 0 1.414z"/></svg>
-`
+`;
 export const FILE_ICON = `
   <svg id="documents-folder" xmlns="http://www.w3.org/2000/svg" width="22.593" height="22.777" viewBox="0 0 22.593 22.777">
     <g id="Group_1413" data-name="Group 1413">
@@ -13,14 +78,14 @@ export const FILE_ICON = `
       <path id="Path_974" data-name="Path 974" d="M18.083,8.46H11.851a.807.807,0,0,0-.761.658,2.681,2.681,0,0,1,1.384.855l.113.123h5.5a.819.819,0,0,0,0-1.636Z" transform="translate(-3.065 -2.268)" fill="'none'"/>
     </g>
   </svg>
-`
+`;
 
 export const DRAG_N_DROP = `
   <svg width="24px" viewBox="0 0 24 24">
     <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
     <path d="M0 0h24v24H0z" fill="none"></path>
   </svg>
-`
+`;
 
 export const TIME_ICON = `
 <svg xmlns="http://www.w3.org/2000/svg" width="19.098" height="19.262" viewBox="0 0 19.098 19.262">
@@ -515,42 +580,6 @@ viewBox="0 0 31.883 40.875">
 <path class="tree-gradient-land" d="M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z" transform="translate(-557.473 -9.485)"/>
 </svg>
 `;
-export const TREE_GRADIENT_FORESTRY_ICON = `
-<svg xmlns="http://www.w3.org/2000/svg"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-width="31.883" height="40.875"
-viewBox="0 0 31.883 40.875">
-<defs>
-<style>.tree-gradient-forestry{fill:url(#tree-gradient-forestry);}</style>
-<linearGradient id="tree-gradient-forestry" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d6a348"/></linearGradient>
-</defs>
-<path class="tree-gradient-forestry" d="M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z" transform="translate(-557.473 -9.485)"/>
-</svg>
-`;
-export const TREE_GRADIENT_TAC_ICON = `
-<svg xmlns="http://www.w3.org/2000/svg"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-width="31.883" height="40.875"
-viewBox="0 0 31.883 40.875">
-<defs>
-<style>.tree-gradient-tac{fill:url(#tree-gradient-tac);}</style>
-<linearGradient id="tree-gradient-tac" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#01a7b4"/></linearGradient>
-</defs>
-<path class="tree-gradient-tac" d="M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z" transform="translate(-557.473 -9.485)"/>
-</svg>
-`;
-export const TREE_GRADIENT_EDUCATION_ICON = `
-<svg xmlns="http://www.w3.org/2000/svg"
-xmlns:xlink="http://www.w3.org/1999/xlink"
-width="31.883" height="40.875"
-viewBox="0 0 31.883 40.875">
-<defs>
-<style>.tree-gradient-education{fill:url(#tree-gradient-education);}</style>
-<linearGradient id="tree-gradient-education" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d6a348"/></linearGradient>
-</defs>
-<path class="tree-gradient-education" d="M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z" transform="translate(-557.473 -9.485)"/>
-</svg>
-`;
 
 export const BOTTOM_TREE_LOGO_LANDS_ICON = `
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -558,15 +587,6 @@ width="251.827" height="97.18" viewBox="0 0 251.827 97.18"><defs>
 <style> .bottom-tree-lands{opacity:0.2;fill:url(#bottom-tree-lands);}</style><linearGradient id="bottom-tree-lands" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
 <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#d6a348"/></linearGradient></defs>
 <path class="bottom-tree-lands" d="M813.255,106.665V96.41H785.183l16.449-16.428-4.123-8.908-7.52,7.541V57.4L778.348,45.759V90.237l-23.264,7.541H715.391l19.847-19.846h30.12V66.972H745.512l28.05-28.05-9.571-8.908L744.828,49.177v-26l-9.59-9.592V63.534l-17.8,17.8v-34.2L705.82,58.769V91.6l-12.327,12.305V49.861L728.4,14.954H714.024l-20.53,20.53v-26H681.189v26l-20.53-20.53H646.282l34.907,34.907v54.049L668.862,91.6V58.769L657.241,47.126v34.2l-17.8-17.8V13.587l-9.592,9.592v26L610.712,30.015l-9.592,8.908,28.05,28.05H609.344V77.931h30.1L659.29,97.777H619.6l-23.264-7.541V45.759L584.691,57.4V78.615l-7.519-7.541-4.1,8.908L589.5,96.41H561.428v10.255Z" transform="translate(-561.428 -9.485)"/>
-</svg>
-    `;
-
-export const BOTTOM_TREE_LOGO_TAC_ICON = `
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-width="251.827" height="97.18" viewBox="0 0 251.827 97.18"><defs>
-<style> .bottom-tree-tac{opacity:0.2;fill:url(#bottom-tree-tac);}</style><linearGradient id="bottom-tree-tac" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
-<stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#01a7b4"/></linearGradient></defs>
-<path class="bottom-tree-tac" d="M813.255,106.665V96.41H785.183l16.449-16.428-4.123-8.908-7.52,7.541V57.4L778.348,45.759V90.237l-23.264,7.541H715.391l19.847-19.846h30.12V66.972H745.512l28.05-28.05-9.571-8.908L744.828,49.177v-26l-9.59-9.592V63.534l-17.8,17.8v-34.2L705.82,58.769V91.6l-12.327,12.305V49.861L728.4,14.954H714.024l-20.53,20.53v-26H681.189v26l-20.53-20.53H646.282l34.907,34.907v54.049L668.862,91.6V58.769L657.241,47.126v34.2l-17.8-17.8V13.587l-9.592,9.592v26L610.712,30.015l-9.592,8.908,28.05,28.05H609.344V77.931h30.1L659.29,97.777H619.6l-23.264-7.541V45.759L584.691,57.4V78.615l-7.519-7.541-4.1,8.908L589.5,96.41H561.428v10.255Z" transform="translate(-561.428 -9.485)"/>
 </svg>
     `;
 
@@ -641,7 +661,6 @@ export const PORTFOLIO_ICON = `
   </g>
 </svg>
 `;
-
 
 export const SURVEY_ICON = `
 <svg id="survey" xmlns="http://www.w3.org/2000/svg" width="34.523" height="34.494" viewBox="0 0 34.523 34.494">
@@ -752,6 +771,29 @@ export const HOME_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="30.237"
 `;
 
 // TAC ICONS
+
+export const TREE_GRADIENT_TAC_ICON = `
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink"
+width="31.883" height="40.875"
+viewBox="0 0 31.883 40.875">
+<defs>
+<style>.tree-gradient-tac{fill:url(#tree-gradient-tac);}</style>
+<linearGradient id="tree-gradient-tac" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#01a7b4"/></linearGradient>
+</defs>
+<path class="tree-gradient-tac" d="M572.514,50.36h1.8V39.817L577.83,36.3h3.678l1.227-1.225h-4.007l3.025-3.025h5.886l1.473-1.473h-5.885l2.208-2.208h3.351V27.063H586.74l2.616-2.616V22.566l-2.943,2.943V22l-1.391,1.389v3.27L582.9,28.78V25.756l-1.472,1.47v3.19L578.4,33.441v-3.19l-1.473,1.473v3.27l-2.779,2.779c.082-.079,0-6.457,0-6.457l2.943-2.945h2.945V27.144h-2.045l6.049-6.049h4.416V19.87H585.1l1.965-1.963-.493-1.064-.9.9V15.21l-1.391-1.391v5.314l-6.7,6.7V22.484l-1.228,1.228v3.433l-2.29,2.289V23.14l1.8-1.8H580.2l1.307-1.307h-4.742l2.371-2.371h3.6V16.353h-2.371L583.716,13l-1.143-1.064-2.289,2.289V11.121l-1.146-1.146v5.967l-2.126,2.126V13.982l-1.388,1.391V19.3l-1.473,1.47V14.309l4.17-4.17H576.6l-2.453,2.453V9.485h-1.47v3.106l-2.453-2.453h-1.718l4.17,4.17v6.457l-1.473-1.47V15.373l-1.388-1.391v4.086l-2.126-2.126V9.975l-1.146,1.146v3.106l-2.287-2.289L563.114,13l3.351,3.351H564.1v1.309h3.6l2.371,2.371h-4.742l1.307,1.307h4.334l1.8,1.8v6.294l-2.29-2.289V23.712l-1.228-1.228v3.354l-6.7-6.7V13.819l-1.391,1.391v2.534l-.9-.9-.49,1.064,1.963,1.963h-3.354V21.1h4.415l6.049,6.049h-2.045V28.37h2.945l2.943,2.945s-.084,6.378,0,6.457L569.9,34.993v-3.27l-1.473-1.473v3.19L565.4,30.416v-3.19l-1.473-1.47V28.78l-2.124-2.126v-3.27L560.416,22v3.512l-2.943-2.943v1.881l2.616,2.616h-2.044V28.37H561.4l2.208,2.208h-5.888l1.473,1.473h5.888l3.025,3.025h-4l1.225,1.225H569l3.515,3.517V50.36Z" transform="translate(-557.473 -9.485)"/>
+</svg>
+`;
+
+export const BOTTOM_TREE_LOGO_TAC_ICON = `
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+width="251.827" height="97.18" viewBox="0 0 251.827 97.18"><defs>
+<style> .bottom-tree-tac{opacity:0.2;fill:url(#bottom-tree-tac);}</style><linearGradient id="bottom-tree-tac" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+<stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#01a7b4"/></linearGradient></defs>
+<path class="bottom-tree-tac" d="M813.255,106.665V96.41H785.183l16.449-16.428-4.123-8.908-7.52,7.541V57.4L778.348,45.759V90.237l-23.264,7.541H715.391l19.847-19.846h30.12V66.972H745.512l28.05-28.05-9.571-8.908L744.828,49.177v-26l-9.59-9.592V63.534l-17.8,17.8v-34.2L705.82,58.769V91.6l-12.327,12.305V49.861L728.4,14.954H714.024l-20.53,20.53v-26H681.189v26l-20.53-20.53H646.282l34.907,34.907v54.049L668.862,91.6V58.769L657.241,47.126v34.2l-17.8-17.8V13.587l-9.592,9.592v26L610.712,30.015l-9.592,8.908,28.05,28.05H609.344V77.931h30.1L659.29,97.777H619.6l-23.264-7.541V45.759L584.691,57.4V78.615l-7.519-7.541-4.1,8.908L589.5,96.41H561.428v10.255Z" transform="translate(-561.428 -9.485)"/>
+</svg>
+    `;
+
 export const NIS_SIGN_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="11" height="19" viewBox="0 0 11 19">
 <text id="_" data-name="₪" transform="translate(0 15)" fill="#ffa429" font-size="14" font-family="OpenSansHebrew-Regular, Open Sans Hebrew"><tspan x="0" y="0">₪</tspan></text>
 </svg>`;
@@ -1214,5 +1256,4 @@ export const MEETINGS = `
     <rect id="Rectangle_440-3" data-name="Rectangle 440" width="4" height="4" transform="translate(912 376)" fill="'none'"/>
     <rect id="Rectangle_441-3" data-name="Rectangle 441" width="22" height="4" transform="translate(920 376)" fill="'none'"/>
   </g>
-</svg>`
-
+</svg>`;

@@ -18,7 +18,7 @@ import {
 import { map, Observable, switchMap } from 'rxjs';
 
 @Component({
-  selector: 'kkl-filters',
+  selector: 'kkl-filters-temp',
   templateUrl: './filters.component.html',
   styleUrls: ['./filters.component.scss'],
 })
@@ -38,7 +38,6 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.filtersState$ = this.setFilterState();
-    console.log(this.formGroup)
   }
 
   private onFormChanged() {

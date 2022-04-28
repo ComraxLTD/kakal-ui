@@ -3,6 +3,8 @@
 ::ng-deep .kkl-card-menu-wrapper {
   padding: main.spacing(1);
   box-sizing: border-box;
+  justify-content: center;
+  display: flex;
 
   button.mat-stroked-button {
     border: none !important;

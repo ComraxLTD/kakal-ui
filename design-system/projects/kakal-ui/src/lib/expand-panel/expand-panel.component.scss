@@ -11,6 +11,7 @@
 
   &.table {
     background: main.color(table) !important;
+    padding: initial !important;
   }
 
   &.form {
@@ -33,7 +34,7 @@
     display: flex;
     align-items: flex-end;
     height: 40px !important;
-    border-bottom: 1px solid main.colorWithOpacity(accent, 0.2) !important;
+    border-bottom: 1px solid main.color(accent) !important;
     border-radius: 0px !important;
     padding-left: main.spacing(1) !important;
 
@@ -42,14 +43,27 @@
     }
   }
 
+  &.data {
+    display: flex;
+    align-items: flex-end;
+    height: 40px !important;
+    border-bottom: 1px solid main.color(table) !important;
+    border-radius: 0px !important;
+    padding-left: main.spacing(1) !important;
+
+    .title {
+      border-bottom: 2px solid main.color(primary) !important;
+    }
+  }
+
   &.table {
     background-color: main.color(table) !important;
+    padding: initial !important;
   }
 
   &:hover:not(.table) {
     background-color: main.color(paper) !important;
   }
-
 }
 
 ::ng-deep mat-panel-description {

@@ -1,19 +1,19 @@
-<ng-container *ngIf="question.templateName; else noTemplate">
-  <div [ngSwitch]="question.templateName">
+<ng-container *ngIf="question.cellTemplate; else noTemplate">
+  <div [ngSwitch]="question.cellTemplate">
     <!-- <div *ngSwitchCase="statusBar"><kkl-status-steps [status]="{}"></kkl-status-steps></div> -->
-    <div *ngSwitchDefault><ng-container *ngTemplateOutlet="colsTemplate[question.templateName]; context: {$implicit:data}"></ng-container></div>
+    <div *ngSwitchDefault><ng-container *ngTemplateOutlet="colsTemplate[question.cellTemplate]; context: {$implicit:data}"></ng-container></div>
   </div>
 </ng-container>
 <ng-template #noTemplate>
   <kkl-icon *ngIf="question.colIcon" [key]="question.colIcon"></kkl-icon>
   <span *ngIf="question.button; else withoutButton">
     <button mat-button color="primary" (click)="buttonClick()">
-      <ng-container fxLayout="row" fxFlex>
+      <span fxLayout="row" fxFlex>
         <span *ngIf="data" style="white-space: pre-wrap;">
           {{data | tableCellPipe: question.controlType}}
         </span>
         <kkl-icon *ngIf="question.button.icon" [key]="question.button.icon"></kkl-icon>
-      </ng-container>
+      </span>
     </button>
   </span>
   <ng-template #withoutButton>

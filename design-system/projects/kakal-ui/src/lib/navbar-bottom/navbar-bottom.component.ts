@@ -10,12 +10,13 @@ import {
 } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { CardStepModel } from '../cards/card-step/card-step.model';
-import { RouterService } from '../../services/route.service';
-import { StepperLayoutService } from '../layouts/stepper-layout/stepper-layout.service';
-import { StepperSelectEvent } from '../stepper/stepper.component';
+import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
+import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { combineLatest, merge, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, iif, merge, Observable, of } from 'rxjs';
+import { map, pluck, switchMap } from 'rxjs/operators';
+import { RouterService } from '../../services/route.service';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -23,159 +24,79 @@ import { map, switchMap } from 'rxjs/operators';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
+
+  showNext$: BehaviorSubject<boolean>;
+  showSave$: BehaviorSubject<boolean>;
+  showBack$: BehaviorSubject<boolean>;
+  showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}>;
+
+  disableNext$: BehaviorSubject<boolean>;
+
+  autoBack: boolean = true;
+
+  formGroup: FormGroup = new FormGroup({});
+
   @Input() nextLabel: string;
 
-  showNext: boolean = true;
-
-  @Input()
-  set hideNext(value: boolean) {
-    this.showNext = value === false ? false : true;
-  }
-  @Input() disableNext: boolean;
-
-  @Input() disableNext$: Observable<boolean>;
-
-  @Input() hasSave: boolean;
-  @Input() showSave$: Observable<boolean>;
-
-  @Input() buttonTemplate: TemplateRef<any>;
-
-  // when set to true bottom navbar is consider part of stepper-layout for steps navigation logic
-  @Input() stepper: boolean = true;
-
-  private steps$: Observable<CardStepModel[]>;
-  private nextStep$: Observable<void>;
-  private selectStep$: Observable<CardStepModel>;
-
   bottomIcon: string = 'bottom_tree_';
-  buttonState$: Observable<{ [x: string]: boolean }>;
 
-  @Output() previous = new EventEmitter();
-  @Output() next = new EventEmitter<StepperSelectEvent>();
-  @Output() save = new EventEmitter();
+  // @Output() previous = new EventEmitter();
+  // @Output() next = new EventEmitter<void>();
+  // @Output() nextStep = new EventEmitter<StepsSelectionEvent>();
+  // @Output() save = new EventEmitter();
 
   constructor(
-    private navbarBottomService: NavbarBottomService,
-    private stepperLayoutService: StepperLayoutService,
     private routerService: RouterService,
+    private navbarBottomService: NavbarBottomService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
-    if (this.stepper) {
-      this.steps$ = this.stepperLayoutService.getStepsObs();
-      this.nextStep$ = this.navbarBottomService.getNextStepObs();
-      this.selectStep$ = this.stepperLayoutService.getChangeStepObs();
-    }
-
-    this.buttonState$ = this.setShowButtons();
     this.bottomIcon = this.setBottomIcon();
+
+    this.showNext$ = this.navbarBottomService.getShowNext();
+    this.showSave$ = this.navbarBottomService.getShowSave();
+    this.showBack$ = this.navbarBottomService.getShowBack();
+    this.showNextMiddle$ = this.navbarBottomService.getShowNextMiddle();
+    this.disableNext$ = this.navbarBottomService.getDisableNext();
+
+    this.navbarBottomService.getFormGroup().subscribe(b => {
+      if(b) {
+        this.formGroup = b;
+      } else {
+        this.formGroup = new FormGroup({});
+      }
+
+    });
+    this.navbarBottomService.getAutoBack().subscribe(a =>{
+      this.autoBack = a;
+    });
   }
 
   private setBottomIcon() {
     return this.bottomIcon + this.rootPrefix;
   }
 
-  private setShowButtons() {
-    return combineLatest([
-      this.setShowNext(),
-      this.setShowSave(),
-      this.setDisabledNext(),
-    ]).pipe(
-      map(([next, save, disableNext]) => {
-        return { save, next, disableNext };
-      })
-    );
+
+
+  onSave(): void {
+    this.navbarBottomService.setSave();
   }
 
-  private setDisabledNext(): Observable<boolean> {
-    return this.disableNext$ ? this.disableNext$ : of(false);
-  }
-
-  private setShowSave() {
-    return this.hasSave ? this.showSave$ : of(false);
-  }
-
-  private setShowNext(): Observable<boolean> {
-    return this.showNext && this.stepper
-      ? merge(
-          this.handleOnNext(),
-          this.onChangedStep(),
-          this.setShowNextStep$()
-        )
-      : of(this.showNext);
-  }
 
   // Event emitter section
-  public onPrevious(): void {
-    this.previous.emit();
+  onPrevious(): void {
+    this.autoBack
+      ? this.routerService.goBack()
+      : this.navbarBottomService.setBack();
   }
 
-  public onSave(): void {
-    this.save.emit();
+  onNext(): void {
+    this.navbarBottomService.setNext();
   }
 
-  private onNextStep(step: CardStepModel) {
-    this.next.emit({ selectedStep: step } as StepperSelectEvent);
+  onNextMiddle(): void {
+    this.navbarBottomService.setNextMiddle();
   }
 
-  public onNext(): void {
-    if (this.showNext && this.stepper) {
-      this.navbarBottomService.emitNextStep();
-    } else {
-      this.next.emit();
-    }
-  }
-
-  private findNextStepIndex(
-    steps: CardStepModel[],
-    currentStep?: CardStepModel
-  ): number {
-    const currentStepIndex = currentStep
-      ? steps.findIndex((item) => item.path === currentStep.path)
-      : steps.findIndex((step) => {
-          return step.isActive;
-        });
-    return currentStepIndex + 1;
-  }
-
-  private onChangedStep() {
-    return this.selectStep$.pipe(
-      switchMap((step) => {
-        return this.steps$.pipe(
-          map((steps) => {
-            const nextIndex = this.findNextStepIndex(steps, step);
-            return nextIndex === steps.length ? false : true;
-          })
-        );
-      })
-    );
-  }
-
-  private handleOnNext() {
-    return this.nextStep$.pipe(
-      switchMap(() => {
-        return this.steps$.pipe(
-          map((steps) => {
-            const nextIndex = this.findNextStepIndex(steps);
-            this.onNextStep(steps[nextIndex]);
-            return nextIndex + 1 === steps.length ? false : true;
-          })
-        );
-      })
-    );
-  }
-
-  private setShowNextStep$(): Observable<boolean> {
-    return this.stepperLayoutService.getStepsObs().pipe(
-      switchMap((steps: CardStepModel[]) => {
-        return this.routerService.getLastPathObs().pipe(
-          map((url: string) => {
-            const index = steps.findIndex((item) => item.path === url);
-            return !(steps.length === index + 1);
-          })
-        );
-      })
-    );
-  }
 }

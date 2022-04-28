@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { map, mergeMap } from 'rxjs';
-import { BreakpointService, ButtonModel, ControlBase, FormChangeEvent, FormService, OptionsModel, Question, QuestionGroupModel, RouterService, RowActionModel, SelectOption, StepperLayoutService, TableBase } from '../../../kakal-ui/src/public-api';
-
+import { CardInfoComponent, ControlBase, FormChangeEvent, IconComponent, OpenMotionService, OptionsModel, PageHeadlineService, RowActionModel, TableBase, StatusBars, CardLobbyModel, CardStepModel, CardStatusModel, CardFilter, MenuCard, Panel, GridProps, NavbarBottomService, StepsSelectionEvent, RouterService, ButtonModel, SelectOption, KklFormChangeEvent } from '../../../kakal-ui/src/public-api';
+import heLocale from '@fullcalendar/core/locales/he';
+import { Step } from '../../../kakal-ui/src/lib/vertical-steps/step/step.model';
+import { BehaviorSubject, Observable, of } from 'rxjs';
+import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
 @Component({
   selector: 'app-root',
@@ -10,132 +12,44 @@ import { BreakpointService, ButtonModel, ControlBase, FormChangeEvent, FormServi
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  contentPortion = { open: 10, close: 50 };
-  actions: ButtonModel[] = [{ type: 'portion' } as ButtonModel];
 
-  formValues = { select: '', date: ''}
+  control = new FormControl({})
 
-  isFormFull(){
-    if(this.formValues.date && this.formValues.select) this.navigate('search/results')
+  thirdCard: CardFilter = {
+    label: 'disabled', // label inside card
+    value: 0, // number inside card
+    svgIcon: 'cancel', // svg key
+  };
+  tabs: { key: string, label: string }[] = [{ key: 'First', label: 'בדיקה' }, { key: 'Second', label: 'test' }, { key: 'Third', label: 'עמוד 3' }];
+  onValueChanged(event: KklFormChangeEvent) {
+    console.log(event);
   }
 
-  // form variables
-  group!: QuestionGroupModel<any>;
 
-  options:SelectOption[] = [
+  steps: CardStepModel[] = [
     {
-      label: 'ציפורי',
-      value: 'any',
+      label: 'פרטי ההתקשרות',
+      svgIcon: 'contact',
+      // add a 'path' to navigate with
+      path: 'details',
+      // showing the first step as active at first
+      selected: true,
     },
     {
-      label: 'לביא',
-      value: 'any',
-    },
-    {
-      label: 'נס הרים',
-      value: 'any',
-    },
-    {
-      label: 'יתיר',
-      value: 'any',
-    },
-    {
-      label: 'שוני',
-      value: 'any',
+      label: 'בניית הצעת מחיר',
+      svgIcon: 'offer',
+      path: 'bid',
+      disabled: true
     },
   ];
 
-  questions: Question[] = [
-    {
-      key: 'select',
-      controlType: 'select',
-      options: this.options,
-      label: 'מרכז שדה',
-    },
-    {
-      key: 'range',
-      controlType: 'dateRange',
-      label: 'תאריך הזמנה'
-    }
-  ]
-  groupGrid!: QuestionGroupModel;
-  groupFlex!: QuestionGroupModel;
-
-
-  constructor(
-    private breakpointsService: BreakpointService,
-    private routerService: RouterService,
-    private stepperLayoutService: StepperLayoutService,
-    private formService: FormService
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    //decide if drawer is open or closed on init
-    this.stepperLayoutService.emitDisplayDrawer(false);
-
-    // form group
-
-    this.groupFlex = this.setGroup(this.questions, {
-      cols: 2,
-      variant: 'flex',
-    });
   }
 
-  // breakpoints
-  private mergeBreakPoints() {
-    return this.breakpointsService.isSmall().pipe(
-      mergeMap(isSmall => this.breakpointsService.isMobile().pipe(
-        map(isMobile => [isSmall, isMobile])
-      ))
-    );
-  }
-
- 
-
-
-  // NAVIGATION EVENTS SECTION
-  private navigate(path: string) {
-    console.log(this.routerService.getCurrentPath(), path)
-    path = `/${this.routerService.getCurrentPath()}/${path}`;
-    this.routerService.navigate(path);
-  }
-//create form objects
-  private setGroup(questions: Question[],gridProps:any) {
-    return this.formService.createQuestionGroup({
-      questions,
-      key: 'test',
-      options: { gridProps: gridProps },
-    });
-  }
-
-  onFormChange(formEvent: FormChangeEvent) {
-    console.log(formEvent);
-    this.groupFlex = this.setGroup(this.questions,{
-      cols: 2,
-      variant: 'flex',
-    });
-  }
-
-  // navigate from bottom-navbar - next
-  public onNext() {
-    console.log('הזמן');
-  }
-
-  public onPrevious(): void {
-    this.routerService.goBack();
-  }
-
-  public onChangedForm(event: FormChangeEvent){
-    if(event.key === 'select'){
-      this.formValues.select = event.value.label
-    }
-    if(event.key === 'range' && event.value.end){
-      this.formValues.date = event.action
-    }
-    this.isFormFull()
-  }
-
-  public onDrawerOpenChanged(openState: boolean) {
-    console.log(openState);
+  onSelectStep(event: any) {
+    const { selectedStep } = event;
+    console.log(selectedStep);
   }
 }

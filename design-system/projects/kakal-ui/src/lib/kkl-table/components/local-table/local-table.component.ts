@@ -1,12 +1,16 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Subject, takeUntil } from 'rxjs';
-import { RowActionEvent, RowActionModel } from '../../models/table-actions.model';
+import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { setControls } from '../../../mei-services/services/form-create';
+import { ControlBase } from '../../../mei-form/models/control.model';
+import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
+import { OptionsModel } from '../../../mei-form/models/options.model';
+import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model';
 import { TableBase } from '../../models/table.model';
 import { customFilterPredicate } from './local-filter';
 
@@ -33,8 +37,8 @@ export class LocalTableComponent implements OnInit {
 
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
-  @Output() editRow = new EventEmitter<any>();
-  @Output() expandRow = new EventEmitter<any>();
+  @Output() saveRow = new EventEmitter<any>();
+  @Output() expandRow = new EventEmitter<RowExpandEvent>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
 
@@ -49,9 +53,31 @@ export class LocalTableComponent implements OnInit {
 
   dragDisabled = true;
 
-  oneColumns: TableBase[] = [];
+  oneColumns: TableBase[];
   @Input()
   set columns(value: TableBase[]) {
+    if(this.oneColumns && this.searchRow) {
+      const newVals: TableBase[] = [];
+      const sameVals: TableBase[] = [];
+      value.forEach(a => {
+        if(this.oneColumns.find( vendor => Object.assign(vendor) === Object.assign(a) )) {
+          sameVals.push(this.oneColumns.find( vendor => Object.assign(vendor) === Object.assign(a) ));
+        } else {
+          newVals.push(a);
+        }
+      });
+      const removed = this.oneColumns.filter(b => !sameVals.includes(b));
+      removed.forEach(c => {
+        this.searchRow.removeControl(c.key);
+        this.rows.controls.forEach(d => {
+          (d as FormGroup).removeControl(c.key);
+        });
+      });
+      setControls(newVals, this.searchRow, this.fb, this.localObservables);
+      this.rows.controls.forEach(h => {
+        setControls(newVals, h as FormGroup, this.fb, this.localObservables);
+      });
+    }
     this.oneColumns = value;
     this.displayedColumns = value.map(a => a.key);
     if(this.localButtons?.length) {
@@ -60,11 +86,11 @@ export class LocalTableComponent implements OnInit {
     if(this.dragable) {
       this.displayedColumns.unshift('dragHandeler')
     }
-    const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
-    this.searchRow = row;
+    // const row = this.fb.group({});
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    // this.searchRow = row;
   }
 
 
@@ -90,7 +116,7 @@ export class LocalTableComponent implements OnInit {
 
   localButtons: RowActionModel[];
   @Input() set rowActions(val: RowActionModel[]) {
-    if(val.length) {
+    if(val?.length) {
       if(!this.displayedColumns.includes('actions')){
         this.displayedColumns.push('actions');
       }
@@ -109,8 +135,8 @@ export class LocalTableComponent implements OnInit {
 
   editItems: any[] = [];
   rows: FormArray = this.fb.array([]);
-  searchRow: FormGroup = this.fb.group({});
-  form: FormGroup = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
+  @Input() searchRow: FormGroup;
+  form: FormGroup;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
@@ -123,8 +149,38 @@ export class LocalTableComponent implements OnInit {
   spans: any[] = [];
 
 
-  ngOnInit() {
+
+
+
+  myOptions: OptionsModel[] = [];
+  @Input() set options(val: OptionsModel[]) {
+    if(val) {
+      this.myOptions = val;
+      if(this.form) {
+        this.putOptions();
+      }
+    }
   }
+
+
+
+  localObservables: Map<string, BehaviorSubject<KklSelectOption[]>> = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+
+
+  ngOnInit(): void {
+    if(!this.searchRow) {
+      this.searchRow = this.fb.group({});
+    }
+    this.form = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
+    setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
+  }
+
+
+
+
+
+
+
 
   constructor(private fb: FormBuilder) {
   }
@@ -149,16 +205,25 @@ export class LocalTableComponent implements OnInit {
       this.readySpanData(0, this.dataTable.filteredData.length);
     }
     this.dataTable.filterPredicate = customFilterPredicate;
+    this.putOptions();
   }
 
   searchChanged() {
+    this.connectFilters(this.oneColumns);
+  }
+  searchFiltersChanged(arr: TableBase[]) {
+    this.connectFilters(this.oneColumns.concat(arr));
+  }
+  connectFilters(arr: TableBase[]) {
     const searchVal = this.searchRow.value;
     let filters = [];
-    this.oneColumns.forEach(a => {
-      if(searchVal[a.key]){
+    const keys = [];
+    arr.forEach(a => {
+      if(searchVal[a.key] && !keys.includes(a.key)){
+        keys.push(a.key);
         filters.push({key: a.key, controlType: a.controlType, val: searchVal[a.key]});
       }
-    })
+    });
     this.dataTable.filter = JSON.stringify(filters);
   }
 
@@ -188,30 +253,33 @@ export class LocalTableComponent implements OnInit {
     }
   }
 
-  buttonClick(butt: RowActionModel, obj:any) {
+  buttonClick(butt: RowActionModel, obj:any, key: string) {
     if(normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
           if(confirm("Are you sure you want to delete?")) {
-            this.dataTable.data = this.dataTable.data.filter((a:any) => a !== obj);
+            // this.dataTable.data = this.dataTable.data.filter((a:any) => a !== obj);
             this.deleteRow.emit(obj);
           }
           break;
         case 'inlineEdit':
           this.addRowGroup(obj);
-          this.editItems = [...this.editItems, obj];
           break;
         case 'inlineExpand':
-          this.expandRow.emit(obj);
-          this.expandedElement = this.expandedElement == obj? null : obj;
+          this.expandRow.emit({row: obj, key: key});
+          this.addExpandedRow(obj);
           break;
         default:
           break;
       }
       this.groupDataReload();
     } else {
-      this.actionClicked.emit({action: butt.type, row: obj});
+      this.actionClicked.emit({action: butt.type, row: obj, key: key});
     }
+  }
+
+  addExpandedRow(obj: any) {
+    this.expandedElement = this.expandedElement == obj? null : obj;
   }
 
   saveRowClick(ele: any) {
@@ -220,8 +288,8 @@ export class LocalTableComponent implements OnInit {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
       this.groupDataReload();
-      Object.assign(ele, this.rows.at(index).value);
-      this.editRow.emit(ele);
+      // Object.assign(ele, this.rows.at(index).value);
+      this.saveRow.emit(ele);
       this.rows.removeAt(index);
     }
   }
@@ -246,17 +314,21 @@ export class LocalTableComponent implements OnInit {
 
   addRowGroup(obj: any) {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(obj[col.key]));
-    });
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(obj[col.key]));
+    // });
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    row.setValue(obj);
     this.rows.push(row);
+    this.editItems = [...this.editItems, obj];
   }
 
   addNewRowGroup() {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
     this.rows.push(row);
     const rowData: any = row.value;
     this.editItems = [...this.editItems, rowData];
@@ -313,12 +385,24 @@ export class LocalTableComponent implements OnInit {
 
   dropTable(event: CdkDragDrop<MatTableDataSource<any>, any>) {
     this.dragDisabled = true;
-    let cutOut = this.dataTable.data.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
-    this.dataTable.data.splice(event.currentIndex, 0, cutOut);
+
+    if(this.paging){
+      let cutOut = this.dataTable.data.splice(this.paginator.pageIndex*this.paginator.pageSize + event.previousIndex, 1) [0]; // cut the element at index 'from'
+      this.dataTable.data.splice(this.paginator.pageIndex*this.paginator.pageSize + event.currentIndex, 0, cutOut);
+    } else {
+      let cutOut = this.dataTable.data.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
+      this.dataTable.data.splice(event.currentIndex, 0, cutOut);
+    }
     this.dataTable.data = this.dataTable.data.slice();
     // moveItemInArray(this.dataTable.data, event.previousIndex, event.currentIndex);
-    this.table.renderRows();
     this.groupDataReload();
+    this.table.renderRows();
+  }
+
+  putOptions() {
+    this.myOptions.forEach(b => {
+      (this.localObservables.get(b.key))?.next(b.val);
+    });
   }
 
 

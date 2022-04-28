@@ -16,7 +16,6 @@ import { Step } from './step/step.model';
 import { MatStepper } from '@angular/material/stepper';
 
 export interface StepSelectEvent {
-  /** Index of the step now selected. */
   selectedIndex: number;
   /** Index of the step previously selected. */
   previouslySelectedIndex: number;
@@ -24,6 +23,12 @@ export interface StepSelectEvent {
   selectedStep: Step;
   /** The step instance previously selected. */
   previouslySelectedStep: Step;
+
+  /** If this step is the last */
+  last: boolean;
+
+  /** If this step is the first */
+  first: boolean;
 }
 
 @Component({
@@ -38,60 +43,50 @@ export interface StepSelectEvent {
   ],
 })
 export class VerticalStepsComponent implements OnInit {
-  @ViewChild('stepper', { static: false }) stepper: MatStepper;
 
-  @Input() manuel = false;
   @Input() linear: boolean;
 
   @Input() steps: Step[];
 
   @Input() templates: { [key: string]: TemplateRef<any> };
 
-  public _selectedIndex: number;
-  public previouslySelectedIndex: number;
+  templateName: string;
 
-  @Input()
-  set selectedIndex(value: number) {
-    this._selectedIndex = value;
+  _selectedIndex: number = 0;
+  @Input() set selectedIndex(val: number) {
+    if(val) {
+      this._selectedIndex = val;
+      if(this.steps) {
+        this.templateName = this.steps[val].key as string;
+      }
+    }
   }
 
-  @Output() selectionChanged: EventEmitter<StepperSelectionEvent> =
-    new EventEmitter();
+  // @Output() selectionChanged: EventEmitter<StepperSelectionEvent> =
+  //   new EventEmitter();
 
-  @Output() interacted: EventEmitter<CdkStep> = new EventEmitter();
+  // @Output() interacted: EventEmitter<CdkStep> = new EventEmitter();
   @Output() stepChanged: EventEmitter<StepSelectEvent> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
-    // if (this.manuel) {
-    //   this.disableStepperSelect();
-    // }
+    this.templateName = this.steps[this._selectedIndex].key as string;
   }
 
-  disableStepperSelect() {
-    setTimeout(() => {
-      this.stepper.steps.forEach((step, idx) => {
-        step.select = () => {
-          // Your custom code here
-          // if you want to change step do execute code below
-        };
-      });
-    });
-  }
 
   onSelectionChanged(event: StepperSelectionEvent) {
     const { selectedIndex, previouslySelectedIndex } = event;
-    // this._selectedIndex = previouslySelectedIndex;
-  }
 
-  onStepClick(step: Step, index: number) {
-    this.previouslySelectedIndex = this._selectedIndex;
-    this.stepChanged.emit({
-      selectedStep: step,
-      previouslySelectedStep: this.steps[this.previouslySelectedIndex],
-      selectedIndex: index,
-      previouslySelectedIndex: this.previouslySelectedIndex,
-    });
+    const stepSelectEvent: StepSelectEvent = {
+      selectedStep: this.steps[selectedIndex],
+      previouslySelectedStep: this.steps[previouslySelectedIndex],
+      selectedIndex,
+      previouslySelectedIndex,
+      first: selectedIndex === 0,
+      last: selectedIndex === this.steps.length - 1,
+    };
+    this.templateName = this.steps[selectedIndex].key as string;
+    this.stepChanged.emit(stepSelectEvent);
   }
 }

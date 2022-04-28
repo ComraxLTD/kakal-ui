@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IconService } from '../../icon/icons.service';
 import { CardStatusModel } from './card-status.model';
 
 @Component({
@@ -7,14 +8,20 @@ import { CardStatusModel } from './card-status.model';
   styleUrls: ['./card-status.component.scss'],
 })
 export class CardStatusComponent implements OnInit {
-  @Input() public status: CardStatusModel;
-  @Output() stepSelect: EventEmitter<void> = new EventEmitter();
+  @Input() status: CardStatusModel;
 
-  constructor() {}
+  @Output() statusSelect: EventEmitter<void> = new EventEmitter();
 
-  ngOnInit(): void {}
+  constructor(private iconService: IconService) {}
 
-  onStepSelect(): void {
-    this.stepSelect.emit();
+  ngOnInit(): void {
+    this.iconService.setIcon(this.status.svgIcon);
   }
+
+  onStatusSelect(): void {
+    if (!this.status.disabled) {
+      this.statusSelect.emit();
+    }
+  }
+
 }

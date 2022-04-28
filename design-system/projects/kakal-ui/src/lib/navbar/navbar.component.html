@@ -16,7 +16,7 @@
     (click)="toggleMenu()"
   >
     <kkl-icon
-    color="primary"
+      color="primary"
       kkl-button
       [key]="isOpen ? openIcon : 'tree'"
       [size]="4"
@@ -45,7 +45,13 @@
   <!-- main navbar links -->
   <div fxFlex="grow" *ngIf="!(mobile$ | async)">
     <div fxLayoutAlign="center center" *ngIf="showStatus$ | async">
-      <kkl-stepper direction="row" [steps$]="status$"></kkl-stepper>
+      <ng-container *ngIf="status$ | async as steps">
+        <kkl-stepper
+          [variant]="'status'"
+          direction="row"
+          [steps]="steps"
+        ></kkl-stepper>
+      </ng-container>
     </div>
   </div>
 

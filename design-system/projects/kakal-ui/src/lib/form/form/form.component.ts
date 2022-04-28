@@ -60,6 +60,13 @@ export class FormComponent implements OnInit {
     this._optionsMap = { ...value };
   }
 
+  // private _data
+
+  @Input() set patchData(value: any) {
+    // this._data = value;
+    this.formGroup.patchValue({ ...value });
+  }
+
   variant: 'flex' | 'grid';
 
   @Output() public submitEvent: EventEmitter<FormGroup> = new EventEmitter();

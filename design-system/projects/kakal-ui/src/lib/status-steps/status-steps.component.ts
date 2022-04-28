@@ -6,7 +6,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { StatusBarsModel } from './status-steps.model';
+
+export interface StatusBars {
+  label: string;
+  authorizedBars: number;
+  totalBars: number;
+}
+
 
 @Component({
   selector: 'kkl-status-steps',
@@ -14,26 +20,17 @@ import { StatusBarsModel } from './status-steps.model';
   styleUrls: ['./status-steps.component.scss'],
 })
 export class StatusStepsComponent implements OnInit {
-  @Input() public cols: number;
-  @Input() public height: number;
-  @Input() public gutter: number;
-  @Input() public color: string;
-  @Input() public hasLabel: boolean;
-  @Input() public status: StatusBarsModel;
+
+  @Input() hasLabel: boolean;
+  @Input() status: StatusBars;
 
   @Input() labelRef: ElementRef;
 
-  @Output() click: EventEmitter<void> = new EventEmitter();
-
-  public steps: string[] = [];
+  steps: string[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-
-    this.cols = this.cols || 8;
-    this.color = this.color || 'accent';
-
     const approvedBars = Array(this.status.authorizedBars).fill('active');
     this.steps.push(...approvedBars);
     // if (this.status.authorizedBars < this.status.totalBars) {

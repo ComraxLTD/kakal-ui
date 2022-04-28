@@ -18,11 +18,11 @@ export class CardWizardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.type = this.step.type;
+    // this.type = this.step.type;
   }
 
   public onStepClick(): void {
-    if (!this.step.isActive) {
+    if (!this.step.selected) {
       this.changeStep.emit(this.step);
     }
   }

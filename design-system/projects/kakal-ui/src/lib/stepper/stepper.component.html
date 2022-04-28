@@ -1,17 +1,38 @@
 <div fxLayout="column" fxLayoutAlign="center center">
-  <div fxFill dir="rtl" [fxLayout]="direction" fxLayoutAlign.gt-sm="center center"
-    fxLayoutAlign.lt-sm="space-evenly center" class="steps-container">
-    <ng-container *ngFor="let step of steps$ | async; let i = index; let last = last">
-      <div appSize [type]="step.type" [size]="6" [step]="step">
+  <div
+    fxFill
+    dir="rtl"
+    [fxLayout]="direction"
+    fxLayoutAlign.gt-sm="center center"
+    fxLayoutAlign.lt-sm="space-evenly center"
+    class="steps-container"
+  >
+    <ng-container
+      *ngFor="
+        let step of _steps;
+        let i = index;
+        let last = last;
+        let first = first
+      "
+    >
+      <div appSize [type]="variant" [size]="6" [step]="step">
         <ng-container *ngIf="!stepRef">
-          <ng-container [ngSwitch]="step.type">
-            <ng-container *ngSwitchCase="'step'">
-              <kkl-card-step (stepSelect)="onStepSelect(step)" [index]="i" [step]="step"></kkl-card-step>
-            </ng-container>
-            <ng-container *ngSwitchCase="'status'">
-              <kkl-card-status (stepSelect)="onStepSelect(step)" [i]="index" [status]="step"></kkl-card-status>
-            </ng-container>
+          <ng-container *ngIf="variant == 'step';else statusTemp">
+            <kkl-card-step
+              (stepSelect)="onStepSelect(step, last, first)"
+              [index]="i"
+              [step]="step"
+              [options]="options"
+            ></kkl-card-step>
           </ng-container>
+          <ng-template #statusTemp>
+            <kkl-card-status
+              (statusSelect)="onStepStatusSelect(step, last, first)"
+              [index]="i"
+              [status]="step"
+              [options]="options"
+            ></kkl-card-status>
+          </ng-template>
           <ng-content></ng-content>
         </ng-container>
 
@@ -19,10 +40,13 @@
         </ng-container>
       </div>
 
-      <div *ngIf="!last" [ngClass]="{
-          'divider-step': step.type === 'step',
-          'divider-status': step.type === 'status'
-        }"></div>
+      <div
+        *ngIf="!last"
+        [ngClass]="{
+          'divider-step': variant === 'step',
+          'divider-status': variant === 'status'
+        }"
+      ></div>
     </ng-container>
   </div>
 </div>

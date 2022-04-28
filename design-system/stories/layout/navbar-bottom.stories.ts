@@ -1,13 +1,13 @@
 import { moduleMetadata } from '@storybook/angular';
 import { Story, Meta } from '@storybook/angular/types-6-0';
-import {NavbarBottomModule} from '../../projects/kakal-ui/src/lib/navbar-bottom/navbar-bottom.module';
+import {KKLNavbarBottomModule} from '../../projects/kakal-ui/src/lib/navbar-bottom/navbar-bottom.module';
 import {NavbarBottomComponent} from '../../projects/kakal-ui/src/lib/navbar-bottom/navbar-bottom.component';
 
 export default {
     title: 'Layout/Navbar Bottom',
     decorators: [
         moduleMetadata({
-            imports: [NavbarBottomModule],
+            imports: [KKLNavbarBottomModule],
         }),
     ],
     component: NavbarBottomComponent,

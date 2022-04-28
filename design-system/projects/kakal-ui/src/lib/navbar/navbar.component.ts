@@ -10,9 +10,9 @@ import {
 import { CardStepModel } from '../cards/card-step/card-step.model';
 import { NavbarService } from './navbar.service';
 import { BreakpointService } from '../../services/breakpoint.service';
-import { PageHeadlineModel } from '../page-headline/page-headline.model';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { PageHeadline } from '../page-headline/page-headline.component';
 
 @Component({
   selector: 'kkl-navbar',
@@ -20,16 +20,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
+
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
   @Input() showStatus$: Observable<boolean>;
 
   openIcon: string = 'tree_gradient_';
-  title$: Observable<PageHeadlineModel[]>;
   status$: Observable<CardStepModel[]>;
   mobile$: Observable<boolean>;
-  toggle$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+  
   openLabel: string = 'תפריט';
   closeLabel: string = 'סגור תפריט';
 
@@ -43,7 +42,6 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.title$ = this.navbarService.getHeadersObs();
     this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
     this.openIcon = this.setMenuIcon();
@@ -53,11 +51,11 @@ export class NavbarComponent implements OnInit {
     return this.openIcon + this.rootPrefix;
   }
 
-  public toggleMenu() {
+  toggleMenu() {
     this.menuToggle.emit();
   }
 
-  public onLogoClick() {
+  onLogoClick() {
     this.logoClicked.emit();
   }
 }
