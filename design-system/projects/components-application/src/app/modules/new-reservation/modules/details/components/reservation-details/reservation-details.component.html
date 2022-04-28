@@ -1,0 +1,17 @@
+<div dir="rtl" fxLayout="column" fxLayoutGap="3rem">
+
+  <kkl-form-temp
+  [formGroup]="groupFlex.formGroup"
+  [questions]="groupFlex.questions" 
+  [grid]="groupFlex.gridProps!"
+  ></kkl-form-temp>
+
+  <div fxLayout="row" fxLayoutAlign="space-evenly" fxFlexOffset="2">
+
+    <div *ngFor="let counter of counters" fxLayout="column" fxLayoutAlign="center center">
+      <kkl-form-counter [icon]="counter.icon || ''" [control]="counter.control"></kkl-form-counter>
+      <kkl-typography [color]="'text'" [weight]="600" [size]="2">{{counter.label}}</kkl-typography>
+    </div>
+  </div>
+
+</div>

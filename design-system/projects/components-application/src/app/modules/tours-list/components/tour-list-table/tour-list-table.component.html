@@ -1,0 +1,26 @@
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
+  [colsTemplate]="{
+    status: statusTemplate,
+    destenation: destenationTemplate,
+    date: dateTemplate,
+    tourName: tourNameTemplate
+  }"
+></kkl-local-table>
+
+<ng-template #statusTemplate let-data>
+  <kkl-status-steps [status]="data"></kkl-status-steps>
+</ng-template>
+<ng-template #destenationTemplate> asd </ng-template
+><ng-template #tourNameTemplate> asd </ng-template
+><ng-template #dateTemplate> asd </ng-template>
+
+
+<ng-template #expand> <kkl-local-table fxFlex="grow"
+    [dataSource]="[]"
+    [columns]="expandColumns"
+
+  ></kkl-local-table> </ng-template>

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { QuestionAutocompleteModel, FormDataSource, BreakpointService } from '@ComraxLTD/kakal-ui';
+import { QuestionAutocompleteModel, FormDataSource, BreakpointService } from '../../../../../../../../../kakal-ui/src/public-api';
 import { FormService } from '@ComraxLTD/kakal-ui/lib/form/services/form.service';
 
 @Component({

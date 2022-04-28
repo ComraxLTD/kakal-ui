@@ -1,0 +1,61 @@
+<div fxLayout="column" fxLayoutAlign="center" class="marketers-tour-list">
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div
+      fxLayout="row-reverse"
+      fxFlex="80"
+      fxLayoutAlign="space-between center"
+    >
+      <kkl-form
+        fxFlex="20%"
+        [controls]="select"
+        [options]="selectOptions"
+        (queryChanged)="onQueryChanged($event)"
+        (selectChanged)="onSelectChanged($event)"
+        (openChanged)="onOpenChanged($event)"
+      ></kkl-form>
+      <kkl-form
+        fxFlex="40%"
+        [controls]="autoComplete"
+        (queryChanged)="onQueryChanged($event)"
+        (selectChanged)="onSelectChanged($event)"
+        (openChanged)="onOpenChanged($event)"
+      ></kkl-form>
+
+      <button mat-raised-button color="primary">
+        <kkl-typography> טיול חדש</kkl-typography>
+      </button>
+    </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex="80">
+      <kkl-local-table
+        [dataSource]="dataSource"
+        [columns]="columns"
+        [rowActions]="rowActions"
+        [expandTemplate]="expand"
+        (expandRow)="onExpand($event)"
+        [colsTemplate]="{ status: statusTemp }"
+      ></kkl-local-table>
+    </div>
+  </div>
+</div>
+
+<ng-template #expand>
+  <kkl-tabs
+    [data]="data"
+    [templates]="{Providers,Charged,LastTransactions}"
+  ></kkl-tabs>
+</ng-template>
+<ng-template #statusTemp let-data>
+  <kkl-status-steps [status]="data"></kkl-status-steps>
+</ng-template>
+<ng-template #Providers>
+  <app-marketers-providers></app-marketers-providers>
+</ng-template>
+<ng-template #Charged>
+  <app-marketers-charged></app-marketers-charged>
+</ng-template>
+<ng-template #LastTransactions>
+  <app-marketers-last-transactions></app-marketers-last-transactions>
+</ng-template>

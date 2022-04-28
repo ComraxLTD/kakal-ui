@@ -1,0 +1,23 @@
+<div dir="rtl" fxLayout="column" fxLayoutGap="3rem">
+
+  <div fxLayout="row" fxLayoutAlign="center center" >
+
+    <!-- kkl-form-temp-ADVANCED SEARCH -->
+    <div  fxLayoutAlign="center">
+      <kkl-advanced-search-layout
+        fxFlex="80"
+        [advanced]="true"
+        [searchKey]="searchKey"
+        [questions]="questions"
+      ></kkl-advanced-search-layout>
+    </div>
+</div>
+
+  <section fxLayout="row" fxLayoutAlign="end center">
+    <kkl-add-button (clickEvent)="onCreateNewCommittee()">הוסף לקוח חדש</kkl-add-button>
+  </section>
+
+  <!-- KKL-TABLE-NEW -->
+  <kkl-local-table [columns]="columns" [rowActions]="rowActions" [dataSource]="[]"></kkl-local-table>
+
+</div>
