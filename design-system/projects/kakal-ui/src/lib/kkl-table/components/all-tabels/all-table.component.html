@@ -1,4 +1,4 @@
-<form [formGroup]="form">
+<form [formGroup]="form" class="all-table-form">
   <div *ngIf="displayedColumns.length" class="table-wrapper"
     cdkDropList
     (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled">
