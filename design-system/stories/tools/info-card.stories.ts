@@ -4,7 +4,6 @@ import { moduleMetadata } from '@storybook/angular';
 
 import { KKLCardInfoModule } from '../../projects/kakal-ui/src/lib/cards/card-info/card-info.module';
 import { CardInfoComponent } from '../../projects/kakal-ui/src/lib/cards/card-info/card-info.component';
-import { CardInfoModel } from '../../projects/kakal-ui/src/lib/cards/card-info/card-info.model';
 
 export default {
   title: 'Tools',
@@ -35,9 +34,5 @@ const Template: Story<CardInfoComponent> = (args: CardInfoComponent) => ({
 export const infoCard = Template.bind({});
 
 infoCard.args = {
-  card: new CardInfoModel({
-    svgIcon: 'search',
-    label: 'כותרת ראשית',
-    subLabel: 'כותרת משנית שנחתכת לאחר 18 תווים',
-  }),
+
 };
