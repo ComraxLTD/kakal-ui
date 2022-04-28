@@ -22,9 +22,14 @@ export class CardFilterComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.disabled);
+
+  }
 
   onCardClick(): void {
+    console.log('jhjhj');
+
     this.emitCard.emit(this.card);
   }
 }

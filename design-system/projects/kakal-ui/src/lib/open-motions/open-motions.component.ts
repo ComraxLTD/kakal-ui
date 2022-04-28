@@ -6,10 +6,11 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@an
   styleUrls: ['./open-motions.component.scss']
 })
 export class OpenMotionsComponent implements OnInit {
-  @Input() public title: string;
-  @Input() public content: TemplateRef<any>;
-  @Input() public direction: 'right' | 'left' = 'left';
-  @Output() public closeEvent: EventEmitter<void> = new EventEmitter();
+  @Input() title: string;
+  @Input() content: TemplateRef<any>;
+  @Input() direction: 'right' | 'left' = 'left';
+  
+  @Output() closeEvent: EventEmitter<void> = new EventEmitter();
 
   public iconDirection: string;
 
