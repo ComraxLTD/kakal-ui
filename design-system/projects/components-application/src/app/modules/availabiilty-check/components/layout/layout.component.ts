@@ -30,7 +30,7 @@ export class LayoutComponent implements OnInit {
       this.navigate('search/results');
   }
 
-  data: DisplayData[] = [
+  displayData: DisplayData[] = [
     {
       key: 'budget',
       label: 'תקציב',
@@ -45,7 +45,7 @@ export class LayoutComponent implements OnInit {
     },
   ];
 
-  displayData = {
+  data = {
     budget: 125.98,
     type: 'מעוף',
     value: '0 $',
