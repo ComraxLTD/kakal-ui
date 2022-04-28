@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
-import { FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
+import {  FormDataSource, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-properties',
@@ -120,7 +120,7 @@ export class PropertiesComponent implements OnInit {
     private formService: FormService,
   ) { }
 
- 
+
   ngOnInit(): void {
     this.groupFlex = this.setGroup(this.questions, {
       cols: 6,

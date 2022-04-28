@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { IconService } from '../../icon/icons.service';
 import { CardOptions } from '../card.model';
-import { CardInfoModel } from './card-info.model';
+import { CardInfo } from './card-info.model';
 
 @Component({
   selector: 'kkl-card-info',
@@ -9,7 +9,7 @@ import { CardInfoModel } from './card-info.model';
   styleUrls: ['./card-info.component.scss'],
 })
 export class CardInfoComponent implements OnInit {
-  @Input() card: CardInfoModel;
+  @Input() card: CardInfo;
   @Input() options: CardOptions;
 
   constructor(private iconService: IconService) {}

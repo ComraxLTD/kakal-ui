@@ -95,13 +95,13 @@ kkl-stepper-mobile
 
 kkl-card-status
 
-1. change CardStatusModel to interface
-1. change CardStatusModel to CardStatus
+1. change CardStatus to interface
+1. change CardStatus to CardStatus
 2. add default options to status ui
 
 
 kkl-card-step
-1. change CardStepModel to CardStep
+1. change CardStep to CardStep
 
 kkl-groups
 

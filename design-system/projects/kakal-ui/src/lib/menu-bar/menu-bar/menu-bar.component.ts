@@ -29,7 +29,7 @@ export class MenuBarComponent implements OnInit {
     const event: MenuChangedEvent = { source: this.items, event: selectEvent };
     this.selectionChanged.emit(event);
 
-  // onCardSelect(card: MenuCard): void {
+  // onCardSelect(card: MenuItem): void {
   //   this.menuSelected.emit(card);
   // }
 }

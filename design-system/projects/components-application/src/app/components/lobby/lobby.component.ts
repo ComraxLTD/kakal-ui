@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-// import {
-//   BreakpointService,
-//   CardLobbyModel,
-//   RouterService,
-// } from '../../../../../../../../../kakal-ui/src/lib/form/formService/';
+
 import { Observable } from 'rxjs';
-import { BreakpointService, CardLobbyModel, RouterService } from '../../../../../kakal-ui/src/public-api';
+import {
+  BreakpointService,
+  CardLobby,
+  RouterService,
+} from '../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-lobby',
@@ -14,7 +14,7 @@ import { BreakpointService, CardLobbyModel, RouterService } from '../../../../..
 })
 export class LobbyComponent implements OnInit {
   public md$!: Observable<boolean>;
-  public cards: CardLobbyModel[] = [
+  public cards: CardLobby[] = [
     {
       label: 'בדיקת זמינות',
       svgIcon: 'calendar',

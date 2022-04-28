@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService, MenuCard } from '../../../kakal-ui/src/public-api';
+import { LayoutService, MenuItem } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { LayoutService, MenuCard } from '../../../kakal-ui/src/public-api';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  cards: MenuCard[] = [
+  cards: MenuItem[] = [
     {
       label: 'ספר נכסים',
       svgIcon: 'estate',

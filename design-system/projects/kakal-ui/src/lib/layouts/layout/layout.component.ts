@@ -20,7 +20,7 @@ import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 import { LayoutService } from './layout.service';
 import { ButtonModel } from '../../button/models/button.types';
-import { CardStatusModel } from '../../cards/card-status/card-status.model';
+import { CardStatus } from '../../cards/card-status/card-status.model';
 
 @Component({
   selector: 'kkl-layout',
@@ -31,7 +31,7 @@ export class LayoutComponent implements OnInit {
   @ViewChild('menuDrawer') sidenav: MatSidenav;
 
   @Input() items: MenuItem[];
-  @Input() status: CardStatusModel[];
+  @Input() status: CardStatus[];
   @Input() pageHeadlineRouteMap: { [ket: string]: string };
   @Input() showStatusPath: string[];
 

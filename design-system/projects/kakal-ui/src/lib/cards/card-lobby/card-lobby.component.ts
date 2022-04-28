@@ -9,7 +9,7 @@ export interface CardLobby {
   svgIcon: string;
 }
 
-interface CardLobbyModel {
+interface CardLobby {
   label: string;
   path: string;
   svgIcon: string;
@@ -35,14 +35,14 @@ export class CardLobbyComponent implements OnInit {
     this.card$ = this.setSizeInMobile$();
     this.iconService.setIcon(this.card.svgIcon);
   }
-  private setSizeInMobile$(): Observable<CardLobbyModel> {
+  private setSizeInMobile$(): Observable<CardLobby> {
     return this.breakpointService.isMobile().pipe(
       map((md: boolean) => {
-        const card: CardLobbyModel = { ...this.card };
+        const card: CardLobby = { ...this.card };
         return {
           ...card,
           size: md ? 4 : card.size || 5.5,
-        } as CardLobbyModel;
+        } as CardLobby;
       })
     );
   }

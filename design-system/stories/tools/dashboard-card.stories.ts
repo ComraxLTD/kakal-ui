@@ -20,7 +20,7 @@ export default {
       description: 'An object containes all the card info',
       table: {
         type: {
-          summary: 'cardStepModel',
+          summary: 'CardStep',
         },
       },
     },
