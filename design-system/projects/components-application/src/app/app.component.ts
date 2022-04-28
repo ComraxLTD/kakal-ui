@@ -1,20 +1,12 @@
-import {
-  AfterViewInit,
-  Component,
-  OnInit,
-  TemplateRef,
-  ViewChild,
-  ViewContainerRef,
-} from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { LayoutService, MenuCard } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit {
   cards: MenuCard[] = [
     {
       label: 'ספר נכסים',
@@ -51,10 +43,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {
-  }
-
-  ngAfterViewInit(): void {
-
     this.layoutService.showStartDrawer(true);
   }
 }
