@@ -1,7 +1,12 @@
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Component, OnInit } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { ButtonModel, CardStep, RouterService, StepsLayoutService } from '../../../../../../../kakal-ui/src/public-api';
+import {
+  ButtonModel,
+  CardStep,
+  RouterService,
+  StepsLayoutService,
+} from '../../../../../../../kakal-ui/src/public-api';
 import { NewReservationService } from '../../new-reservation.service';
 
 @Component({
@@ -16,9 +21,7 @@ export class LayoutComponent implements OnInit {
   showNext$: Observable<{ value: boolean }> = of({ value: false });
 
   onSave(event: string) {
-    console.log(event);
     this.newReservationService.emitNewIsSaved(true);
-    console.log(event);
   }
 
   firstSteps: CardStep[] = [
@@ -26,19 +29,16 @@ export class LayoutComponent implements OnInit {
       label: 'פרטי הזמנה',
       svgIcon: 'plant',
       path: 'details',
-
     },
     {
       label: 'מרכיבי הזמנה',
       svgIcon: 'tree',
       path: 'parts',
-
     },
     {
       label: 'סיכום הזמנה',
       svgIcon: 'list',
       path: 'summary',
-
     },
   ];
   steps$: Observable<CardStep[]> = of([]);
