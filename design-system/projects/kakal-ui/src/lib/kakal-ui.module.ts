@@ -80,7 +80,6 @@ import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 
-import { KKLDisplayDataModule } from './display-data/display-data.module';
 import { KKLFiltersModule } from './filters/filters.module';
 
 import { FormExampleComponent } from './examples/form-example/form-example.component';
@@ -197,7 +196,6 @@ registerLocaleData(he);
     KKLLayoutModule,
     KKLLobbyGridModule,
     KKLChipsModule,
-    KKLDisplayDataModule,
     KKLStepsAccordionModule,
     KKLAccordionLayoutModule,
     KKLAdvancedSearchLayoutModule,
@@ -287,7 +285,6 @@ registerLocaleData(he);
 
 
     // GRIDS
-    KKLDisplayDataModule,
 
     KKLDocumentGridModule,
     KKLDisplayGridModule,
