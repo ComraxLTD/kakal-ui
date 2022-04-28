@@ -34,6 +34,7 @@ export class LayoutComponent implements OnInit {
       label: 'מרכיבי הזמנה',
       svgIcon: 'tree',
       path: 'parts',
+      disabled  :true
     },
     {
       label: 'סיכום הזמנה',
