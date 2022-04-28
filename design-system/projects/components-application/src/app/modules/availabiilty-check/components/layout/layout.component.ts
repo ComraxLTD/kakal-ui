@@ -3,6 +3,7 @@ import { map, mergeMap, Observable, of } from 'rxjs';
 import {
   BreakpointService,
   ButtonModel,
+  DisplayData,
   FormChangeEvent,
   FormService,
   Panel,
@@ -28,6 +29,27 @@ export class LayoutComponent implements OnInit {
     if (this.formValues.date && this.formValues.select)
       this.navigate('search/results');
   }
+
+  data: DisplayData[] = [
+    {
+      key: 'budget',
+      label: 'תקציב',
+    },
+    {
+      key: 'type',
+      label: 'סוג תקצוב',
+    },
+    {
+      key: 'value',
+      label: 'תקצוב קק"ל',
+    },
+  ];
+
+  displayData = {
+    budget: 125.98,
+    type: 'מעוף',
+    value: '0 $',
+  };
 
   cases: Panel[] = [
     {

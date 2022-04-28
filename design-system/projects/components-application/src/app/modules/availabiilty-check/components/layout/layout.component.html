@@ -5,17 +5,7 @@
   (openChanged)="onDrawerOpenChanged($event)"
 >
   <div content dir="rtl">
-    <mat-accordion>
-      <kkl-expand-panel variant="form">
-        <kkl-typography title>working</kkl-typography>
-      </kkl-expand-panel>
-    </mat-accordion>
-
-    <kkl-accordion-layout
-      [panels]="cases"
-      [buttonLabel]="'הוסף תיק חדש'"
-      [templates]="{caseTemplate}"
-    ></kkl-accordion-layout>
+    <kkl-display-group [displayData]="displayData" [data]="data"></kkl-display-group>
   </div>
 </kkl-steps-layout>
 

@@ -35,6 +35,11 @@ export class DisplayGroupComponent<T> {
 
   constructor() {}
 
+  ngOnInit() {
+    console.log(this.data)
+    console.log(this.displayData)
+  }
+
   onAction(item: DisplayData<T>) {
     this.action.emit(item);
   }
