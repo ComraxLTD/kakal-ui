@@ -15,8 +15,6 @@ import { KKLBreadCrumbsModule } from './bread-crumbs/bread-crumbs.module';
 import { KKLTypographyModule } from './typography/typography.module';
 import { KklTitleModule } from './kkl-title/kkl-title.module';
 
-import { KKLMenuItemModule } from './menu-item/menu-item.module';
-import { KKLMenuModule } from './menu/menu.module';
 import { KKLStepTitleModule } from './step-title/step-title.module';
 
 import { KKLFormModule } from './form/form/form.module';
@@ -122,7 +120,6 @@ registerLocaleData(he);
     KKLCardFilterModule,
 
     KKLNavigationModule,
-    KKLMenuModule,
     KKLMenuBarModule,
 
     KKLStatusStepsModule,
@@ -219,7 +216,6 @@ registerLocaleData(he);
 
     KKLDrawerModule,
 
-    KKLMenuItemModule,
 
     KKLMenuBarModule,
 
