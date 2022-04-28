@@ -98,7 +98,7 @@ import { MeiFormModule } from './mei-form/mei-form.module';
 // GRIDS
 
 import { KKLDocumentGridModule } from './grids/document-grid/document-grid.module';
-import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
+import { KKLDisplayGroupModule } from './grids/display-group/display-group.module';
 import { KKLLobbyGridModule } from './grids/lobby-grid/lobby.module';
 
 import { MeiServiceModule } from './mei-services/mei-services.module';
@@ -197,7 +197,7 @@ registerLocaleData(he);
     // GRIDS
 
     KKLDocumentGridModule,
-    KKLDisplayGridModule,
+    KKLDisplayGroupModule,
 
     KKSectionModule,
     KKPageModule,
@@ -279,7 +279,7 @@ registerLocaleData(he);
     // GRIDS
 
     KKLDocumentGridModule,
-    KKLDisplayGridModule,
+    KKLDisplayGroupModule,
 
     // LAYOUT
     KKLLayoutModule,

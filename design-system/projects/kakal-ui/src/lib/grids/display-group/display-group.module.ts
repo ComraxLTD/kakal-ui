@@ -6,17 +6,21 @@ import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLPipesModule } from '../../pipes/pipes.module';
 import { KKLIconModule } from '../../icon/icon.module';
 
-import { DisplayGridComponent } from './display-grid.component';
+import { DisplayGroupComponent } from './display-group.component';
+import { KKLStatusStepsModule } from '../../status-steps/status-steps.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
-  declarations: [DisplayGridComponent],
+  declarations: [DisplayGroupComponent],
   imports: [
     CommonModule,
+    FlexLayoutModule,
     MatDividerModule,
     KKLTypographyModule,
     KKLPipesModule,
+    KKLStatusStepsModule,
     KKLIconModule,
   ],
-  exports: [DisplayGridComponent],
+  exports: [DisplayGroupComponent],
 })
-export class KKLDisplayGridModule {}
+export class KKLDisplayGroupModule {}

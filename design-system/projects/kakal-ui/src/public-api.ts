@@ -444,8 +444,8 @@ export * from './lib/full-calendar/calendar-card/calendar-card.component';
 export * from './lib/grids/document-grid/document-grid.module'
 export * from './lib/grids/document-grid/document-grid.component'
 
-export * from './lib/grids/display-grid/display-grid.module'
-export * from './lib/grids/display-grid/display-grid.component';
+export * from './lib/grids/display-group/display-group.module'
+export * from './lib/grids/display-group/display-group.component';
 
 // dashboard
 export * from './lib/grids/lobby-grid/lobby.module';
