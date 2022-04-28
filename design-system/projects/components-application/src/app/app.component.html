@@ -7,7 +7,7 @@
                 [icon]="'logo'"
                 (valueChanged)="onValueChanged($event)"
             ></kkl-counter> -->
-            <kkl-tabs fxFlex="100" dir="rtl" variant="table" [tabs]="tabs" [templates]="{First,Second,Third}"></kkl-tabs>
+            <!-- <kkl-tabs fxFlex="100" dir="rtl"  [tabs]="tabs" [templates]="{First,Second,Third}"></kkl-tabs>
 
 
             <ng-template #First>
@@ -27,5 +27,7 @@
               <kkl-typography [weight]="600">content of third tab</kkl-typography>
               <kkl-icon key="logo"></kkl-icon>
               <kkl-icon key="tree"></kkl-icon>
-            </ng-template>
+            </ng-template> -->
 
+            <kkl-card-filter [card]="thirdCard" [disabled]="true" ></kkl-card-filter>
+            <kkl-spinner></kkl-spinner>

@@ -15,7 +15,11 @@ export class AppComponent {
 
   control = new FormControl({})
 
-
+  thirdCard: CardFilter = {
+    label: 'disabled', // label inside card
+    value: 0, // number inside card
+    svgIcon: 'cancel', // svg key
+  };
   tabs: { key: string, label: string }[] = [{ key: 'First', label: 'בדיקה' }, { key: 'Second', label: 'test' }, { key: 'Third', label: 'עמוד 3' }];
   onValueChanged(event: KklFormChangeEvent) {
     console.log(event);

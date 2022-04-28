@@ -20,24 +20,17 @@ export interface StatusBars {
   styleUrls: ['./status-steps.component.scss'],
 })
 export class StatusStepsComponent implements OnInit {
-  @Input() public cols: number;
-  @Input() public color: string;
-  @Input() public hasLabel: boolean;
-  @Input() public status: StatusBars;
+
+  @Input() hasLabel: boolean;
+  @Input() status: StatusBars;
 
   @Input() labelRef: ElementRef;
 
-  @Output() click: EventEmitter<void> = new EventEmitter();
-
-  public steps: string[] = [];
+  steps: string[] = [];
 
   constructor() {}
 
   ngOnInit(): void {
-
-    this.cols = this.cols || 8;
-    this.color = this.color || 'accent';
-
     const approvedBars = Array(this.status.authorizedBars).fill('active');
     this.steps.push(...approvedBars);
     // if (this.status.authorizedBars < this.status.totalBars) {

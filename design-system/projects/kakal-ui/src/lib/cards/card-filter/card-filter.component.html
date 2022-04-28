@@ -20,7 +20,7 @@
   </button>
 </mat-card> -->
 
-<button [class.kkl-card-filter]="true" [class.mat-stroked-button]="!disabled" [class.mat-raised-button]="!disabled"
+<button [class.kkl-card-filter]="true"  mat-stroked-button mat-raised-button
   [disabled]="disabled" (click)="onCardClick()" [ngClass]="{ chosen: chosen }" color="primary" [disableRipple]="true"
   fxLayout="column" fxLayoutAlign="center center">
   <button class="kkl-card-filter-svg" mat-mini-fab>
