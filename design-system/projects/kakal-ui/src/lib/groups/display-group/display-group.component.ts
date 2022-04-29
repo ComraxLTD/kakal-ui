@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 export interface DisplayData<T = any> {
   key: keyof T;
   label: string;
-  value?: any;
   format?: { type: string; args: any };
   icon?: string;
   template?: string;
