@@ -439,6 +439,9 @@ export * from './lib/full-calendar/full-calendar.component';
 export * from './lib/full-calendar/dynamic/dynamic.component';
 export * from './lib/full-calendar/calendar-card/calendar-card.component';
 
+export * from './lib/display-data/display-data.module'
+export * from './lib/display-data/display-data.component'
+
 // grids
 
 export * from './lib/grids/document-grid/document-grid.module'

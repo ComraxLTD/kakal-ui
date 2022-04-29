@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, TemplateRef } from '@angular/core';
-import { DisplayData } from '../../groups/display-group/display-group.component';
+import { DisplayType, DisplayItem } from '../../display-data/display-data.component';
 
 @Component({
   selector: 'kkl-display-grid',
@@ -7,9 +7,9 @@ import { DisplayData } from '../../groups/display-group/display-group.component'
   styleUrls: ['./display-grid.component.scss'],
 })
 export class DisplayGridComponent<T> implements OnInit {
-  @Input() variant : 'form' | 'table' | 'default' = 'default'
+  @Input() variant : DisplayType
   @Input() data: any = {};
-  @Input() displayData!: DisplayData<T>[];
+  @Input() displayData!: DisplayItem<T>[];
   @Input() templates: { [key: string]: TemplateRef<any> } = {};
 
   @Input() cols: number = 4;

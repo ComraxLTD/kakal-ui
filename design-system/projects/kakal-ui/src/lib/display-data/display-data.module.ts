@@ -10,6 +10,7 @@ import { DisplayDataComponent } from './display-data.component';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [DisplayDataComponent]
 })
-export class DisplayDataModule { }
+export class KKLDisplayDataModule { }

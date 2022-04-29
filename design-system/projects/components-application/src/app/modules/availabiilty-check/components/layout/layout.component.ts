@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { map, mergeMap, Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs';
 import {
   BreakpointService,
   ButtonModel,
-  DisplayData,
+  DisplayItem,
   FormChangeEvent,
   FormService,
   Panel,
@@ -30,7 +30,7 @@ export class LayoutComponent implements OnInit {
       this.navigate('search/results');
   }
 
-  displayData: DisplayData[] = [
+  displayData: DisplayItem[] = [
     {
       key: 'budget',
       label: 'תקציב',
