@@ -1,8 +1,12 @@
 @use "../../../styles/variables" as main;
 
 :host {
-  .mat-divider {
-    border-top: 1px dotted var(--a-500)
 
+  kkl-typography.form {
+    background-color: main.color(disableButton);
+  }
+
+  .mat-divider {
+    border-top: 1px dotted var(--a-500);
   }
 }

@@ -22,6 +22,8 @@ export interface DisplayData<T = any> {
   styleUrls: ['./display-group.component.scss'],
 })
 export class DisplayGroupComponent<T> {
+  @Input() variant : 'form' | 'table' | 'default' = 'default'
+
   @Input() displayData!: DisplayData<T>[];
   @Input() data!: T;
   @Input() templates: { [key: string]: TemplateRef<any> } = {};
@@ -35,8 +37,6 @@ export class DisplayGroupComponent<T> {
   constructor() {}
 
   ngOnInit() {
-    console.log(this.data)
-    console.log(this.displayData)
   }
 
   onAction(item: DisplayData<T>) {

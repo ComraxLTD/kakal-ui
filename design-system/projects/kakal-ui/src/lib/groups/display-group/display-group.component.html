@@ -1,7 +1,19 @@
 <div fxLayout="row" fxLayoutGap="5rem">
   <div fxLayout="column" fxLayoutGap=".5rem" *ngFor="let item of displayData">
-    <kkl-typography [weight]="600">{{ item | pluck: "label" }}</kkl-typography>
-    <mat-divider color="primary"></mat-divider>
+    <ng-container [ngSwitch]="variant">
+      <ng-container *ngSwitchCase="'form'">
+        <kkl-typography [class.form]="variant === 'form'" [weight]="600">{{
+          item | pluck: "label"
+        }}</kkl-typography>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <kkl-typography [weight]="600">{{
+          item | pluck: "label"
+        }}</kkl-typography>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </ng-container>
 
     <ng-container [ngSwitch]="item?.type">
       <ng-container *ngSwitchCase="'action'">
