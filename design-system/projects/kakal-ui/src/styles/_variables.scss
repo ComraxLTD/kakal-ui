@@ -71,7 +71,7 @@ $colors: (
   @return rgba(map-get($colors, $color-name), $opacity);
 }
 
-@function spacing($spacing) {
+@function spacing($spacing,) {
   @return $spacing * 8px;
 }
 

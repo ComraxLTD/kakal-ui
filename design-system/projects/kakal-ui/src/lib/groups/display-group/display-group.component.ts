@@ -17,6 +17,7 @@ import {
   styleUrls: ['./display-group.component.scss'],
 })
 export class DisplayGroupComponent<T> {
+
   @Input() variant: DisplayType;
 
   @Input() displayData!: DisplayItem<T>[];
@@ -31,7 +32,8 @@ export class DisplayGroupComponent<T> {
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   onAction(item: DisplayItem<T>) {
     this.action.emit(item);

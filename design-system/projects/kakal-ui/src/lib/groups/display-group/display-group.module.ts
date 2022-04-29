@@ -10,6 +10,7 @@ import { KKLIconModule } from '../../icon/icon.module';
 
 import { DisplayGroupComponent } from './display-group.component';
 import { KKLStatusStepsModule } from '../../status-steps/status-steps.module';
+import { KKLButtonModule } from '../../button/button.module';
 
 @NgModule({
   declarations: [DisplayGroupComponent],
@@ -17,6 +18,8 @@ import { KKLStatusStepsModule } from '../../status-steps/status-steps.module';
     CommonModule,
     FlexLayoutModule,
     MatDividerModule,
+    KKLIconModule,
+    KKLButtonModule,
     KKLTypographyModule,
     KKLPipesModule,
     KKLDisplayDataModule,

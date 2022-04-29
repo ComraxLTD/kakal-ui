@@ -34,6 +34,7 @@ export class LayoutComponent implements OnInit {
     {
       key: 'budget',
       label: 'תקציב',
+      format: { type: 'currency', args : () => '$' },
     },
     {
       key: 'type',
@@ -42,13 +43,14 @@ export class LayoutComponent implements OnInit {
     {
       key: 'value',
       label: 'תקצוב קק"ל',
+      type: 'action',
     },
   ];
 
   data = {
     budget: 125.98,
     type: 'מעוף',
-    value: '0 $',
+    value: '0',
   };
 
   cases: Panel[] = [

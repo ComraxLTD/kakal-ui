@@ -4,15 +4,15 @@ export interface DisplayItem<T = any> {
   key: keyof T;
   label: string;
   format?: { type: string; args: any };
-  icon?: string;
+  svgIcon?: string;
   template?: string;
-  type?: 'action' | 'type';
+  type?: 'action' | 'status' | 'form';
 }
 
 export declare type DisplayType = 'form' | 'table' | 'display';
 
 @Component({
-  selector: 'pl-display-data',
+  selector: 'kkl-display-data',
   templateUrl: './display-data.component.html',
   styleUrls: ['./display-data.component.scss']
 })
