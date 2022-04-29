@@ -41,7 +41,7 @@ export class AppComponent implements OnInit {
       type: 'inlineEdit',
       icon: 'edit',
     },
-  
+
     { type: 'inlineExpand', icon: 'keyboard_arrow_down' },
   ];
 
@@ -53,15 +53,42 @@ export class AppComponent implements OnInit {
   ];
 
 
-  constructor(private layoutService: LayoutService) {}
+  // constructor(private layoutService: LayoutService) {}
 
   ngOnInit(): void {
+    setTimeout(() => {
+      this.columns = [
+        {
+          key: 'provider',
+          label: ' bbvbvbספק',
+          noFilter: true,
+          controlType: 'text',
+          button: { type: 'provider', icon: '' },
+        },
+        { key: 'providerID', label: 'ח"פ', controlType: 'text' },
+        { key: 'wasInTour', label: 'נכח בסיור קבלנים', controlType: 'text' },
+        { key: 'itemPrice', label: 'מחיר פריט', controlType: 'text' },
+        {
+          key: 'price',
+          label: 'מחיר *',
+          controlType: 'text',
+          button: { type: 'price', icon: '' },
+        },
+        { key: 'comment', label: 'הערה', controlType: 'text' },
+        {
+          key: 'winning',
+          label: 'זכיה',
+          controlType: 'text',
+        },
+      ];
+    }, 1500);
   }
 
-  
+
+
   onExpand(event: any) {
     console.log(event);
-   
+
   }
 
 }

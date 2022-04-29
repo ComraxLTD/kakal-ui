@@ -4,7 +4,7 @@ import { Palette } from '../../../styles/theme';
 import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
-import { Appearance, ControlType, GridProps } from '../models/control.types';
+import { Appearance, ControlType } from '../models/control.types';
 
 @Component({
   selector: 'kkl-input',
@@ -19,7 +19,6 @@ export class MeiInputComponent implements OnInit {
   @Input() placeHolder!: string;
   @Input() appearance: Appearance;
   @Input() theme!: Palette;
-  @Input() gridProps!: GridProps;
   @Input() icon!: string;
   @Input() format!: string;
   @Input() debounce!: number;
@@ -42,8 +41,6 @@ export class MeiInputComponent implements OnInit {
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
     ).subscribe(a => this.onValueChanged());
-console.log(this.placeHolder);
-
     this.setValidationsAndIcons();
   }
 
