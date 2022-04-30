@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, map, Observable, startWith, take } from 'rxjs';
+import { BehaviorSubject, map, Observable, startWith, Subject, take, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
@@ -14,6 +14,7 @@ import { Appearance } from '../models/control.types';
   styleUrls: ['./mei-autocomplete.component.scss']
 })
 export class MeiAutocompleteComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
 
   filteredOptions: Observable<KklSelectOption[]>;
 
@@ -38,7 +39,7 @@ export class MeiAutocompleteComponent implements OnInit {
         }
       } else {
         this.isArray = false;
-        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (val as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.find(b => b.selected));
         });
       }
@@ -71,7 +72,8 @@ export class MeiAutocompleteComponent implements OnInit {
         startWith(''),
         distinctUntilChanged(),
         debounceTime(this.debounce? this.debounce : 300),
-        filter( value => (typeof value === 'string'))
+        filter( value => (typeof value === 'string')),
+        takeUntil(this.destroySubject$)
       ).subscribe(a => this.search());
       this.error$ = new BehaviorSubject<string>('');
       this._options = this.tempOptions;
@@ -85,7 +87,7 @@ export class MeiAutocompleteComponent implements OnInit {
         );
       } else if(this.tempOptions) {
         this.isArray = false;
-        (this._options as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (this._options as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.find(b => b.selected));
         });
       }
@@ -149,6 +151,11 @@ export class MeiAutocompleteComponent implements OnInit {
       action: event? KklFormActions.OPENED_SELECT : KklFormActions.CLOSED_SELECT,
       query: typeof this.control.value === 'string'? this.control.value : null
     });
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

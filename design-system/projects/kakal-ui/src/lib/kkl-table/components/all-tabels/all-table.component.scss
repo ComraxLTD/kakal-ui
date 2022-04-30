@@ -35,20 +35,26 @@ tr.example-element-row:not(.example-expanded-row):active {
 td.mat-cell {
   border-bottom: 0.5px solid main.color(table-background);
 }
-
 table {
   width: 100%;
-  overflow-y: auto;
-  // border-spacing: 0 10px !important;
-
 }
-.table-warpper {
-
+.expand-table {
+  border-spacing: 0 10px !important;
 }
-.mat-header-cell {
-  min-width: 500px;
+.all-table-form{
+  // width: 100%;
+  // position: relative;
+  overflow: auto;
 }
 
+table table {
+  tr.mat-header-row{
+    th.mat-header-cell.cdk-header-cell{
+      border-bottom: none;
+      background-color: lightgrey;
+    }
+  }
+}
 // table tr {
 //   border-spacing: 0 !important;
 //   // border-bottom: 10px ;
@@ -126,9 +132,6 @@ th>h3 {
 // }
 
 
-.all-table-form{
-  overflow: auto;
-}
 //  scroll css
 /* width */
 ::-webkit-scrollbar {
@@ -138,13 +141,13 @@ th>h3 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: #e4e4e4; 
+  background: #e4e4e4;
   width: 20%;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: #707070; 
+  background: #707070;
   width: 20%;
   border-radius: 210px;
 }

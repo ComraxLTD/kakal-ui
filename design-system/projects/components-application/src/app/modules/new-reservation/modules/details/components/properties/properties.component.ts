@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
-import { FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
+import { ControlBase, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-properties',
@@ -10,6 +10,10 @@ import { FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupMo
 })
 export class PropertiesComponent implements OnInit {
 
+  grid =  {
+    cols: 6,
+    // variant: 'flex',
+  };
   data = [
     {
       label: 'תקציב',
@@ -62,7 +66,7 @@ export class PropertiesComponent implements OnInit {
     },
   ];
 
-  questions: Question[] = [
+  questions: ControlBase[] = [
      {
        key: 'description',
        controlType: 'text',
@@ -103,14 +107,19 @@ export class PropertiesComponent implements OnInit {
       key: 'revenueBudgetSub-item',
       label: 'תת סעיף תקציבי הכנסות',
       controlType: 'text',
-      gridProps: { cols:2},
+      cols:2,
     },
     {
       key: 'expenditureBudgetSub-item',
       label: 'תת סעיף תקציבי הוצאות',
       controlType: 'text',
-      gridProps: { cols:2},
+      cols:2,
 
+    },
+    {
+      key:'textarea',
+      controlType: 'textarea',
+      label: 'hghghg'
     }
   ];
   groupFlex!: QuestionGroupModel;
@@ -120,21 +129,13 @@ export class PropertiesComponent implements OnInit {
     private formService: FormService,
   ) { }
 
- 
+
   ngOnInit(): void {
-    this.groupFlex = this.setGroup(this.questions, {
-      cols: 6,
-      variant: 'flex',
-    });
+    // this.groupFlex = this.setGroup(this.questions, {
+    //   cols: 6,
+    //   variant: 'flex',
+    // });
 
-  }
-
-  private setGroup(questions: Question[], grid: FormGrid) {
-    return this.formService.createQuestionGroup({
-      questions,
-      key: 'test',
-      options: { gridProps: grid },
-    });
   }
 
 

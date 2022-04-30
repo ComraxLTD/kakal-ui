@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
@@ -11,7 +11,8 @@ import { KklSelectOption } from '../models/kkl-select.model';
   styleUrls: ['./mei-radiogroup.component.scss']
 })
 export class MeiRadiogroupComponent implements OnInit {
-
+  destroySubject$: Subject<void> = new Subject();
+  
   @Input() control!: FormControl;
 
   options$: BehaviorSubject<KklSelectOption[]> = new BehaviorSubject<KklSelectOption[]>([]);
@@ -23,7 +24,7 @@ export class MeiRadiogroupComponent implements OnInit {
         this.control.setValue((val as KklSelectOption[]).find(b => b.selected));
         this.options$.next(val);
       } else {
-        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (val as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.find(b => b.selected));
           this.options$.next(a);
         });
@@ -52,7 +53,7 @@ export class MeiRadiogroupComponent implements OnInit {
         this.control.setValue((this.tempOptions as KklSelectOption[]).find(b => b.selected));
         this.options$.next(this.tempOptions);
       } else if(this.tempOptions) {
-        (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (this.tempOptions as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.find(b => b.selected));
           this.options$.next(a);
         });
@@ -91,5 +92,9 @@ export class MeiRadiogroupComponent implements OnInit {
   }
 
 
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+  }
 
 }

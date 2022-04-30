@@ -4,7 +4,7 @@
   <ng-container [ngSwitch]="controlType">
     <!-- TEXTAREA -->
     <ng-container *ngSwitchCase="'textarea'">
-      <textarea matInput [rows]="gridProps?.rows * 2" [placeholder]="placeHolder" [formControl]="control" (focusout)="validate()" (focus)="onFocus()"></textarea>
+      <textarea matInput [placeholder]="placeHolder" [formControl]="control" (focusout)="validate()" (focus)="onFocus()"></textarea>
     </ng-container>
 
 

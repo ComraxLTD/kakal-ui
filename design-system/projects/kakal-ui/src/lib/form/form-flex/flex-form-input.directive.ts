@@ -1,8 +1,5 @@
 import { Directive, HostBinding, Input } from '@angular/core';
 
-function hasOffset(index: number, cols: number): boolean {
-  return (index + 1) % cols !== 0;
-}
 
 @Directive({
   selector: '[flex-form-input]',
@@ -22,7 +19,6 @@ export class FlexFormInputDirective {
   @Input()
   index: number;
   @Input()
-  
   rows: number;
 
   private _cols: number;
@@ -45,9 +41,4 @@ export class FlexFormInputDirective {
     this.width = '100%';
   }
 
-  private invalidate() {
-    if (hasOffset(this.index, this.cols)) {
-      this.offset = (this.offset || 16) + 'px';
-    }
-  }
 }

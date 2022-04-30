@@ -13,6 +13,7 @@ import { OptionsModel } from '../../../mei-form/models/options.model';
 import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model';
 import { TableBase } from '../../models/table.model';
 import { customFilterPredicate } from './local-filter';
+import { DialogService } from '../../../dialog/dialog.service';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
@@ -182,7 +183,7 @@ export class LocalTableComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private dialogService: DialogService) {
   }
 
   ngAfterViewInit() {
@@ -257,10 +258,11 @@ export class LocalTableComponent implements OnInit {
     if(normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
-          if(confirm("Are you sure you want to delete?")) {
-            // this.dataTable.data = this.dataTable.data.filter((a:any) => a !== obj);
-            this.deleteRow.emit(obj);
-          }
+          this.dialogService.openAlert({message: 'האם אתה בטוח שאתה רוצה למחוק?', isConfirm: true}).afterClosed().subscribe(result => {
+            if(result){
+              this.deleteRow.emit(obj);
+            }
+          });
           break;
         case 'inlineEdit':
           this.addRowGroup(obj);
@@ -282,14 +284,28 @@ export class LocalTableComponent implements OnInit {
     this.expandedElement = this.expandedElement == obj? null : obj;
   }
 
+  onExpandOut(obj: any) {
+    if(this.rowActions?.some(a => a.type == 'inlineExpand')) {
+      this.addExpandedRow(obj);
+    }
+  }
+
   saveRowClick(ele: any) {
     const index = this.editItems.indexOf(ele);
     if (index > -1) {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
+      if(!Object.keys(ele).length) {
+        const dIndex = this.dataTable.data.indexOf(ele);
+        if(dIndex > -1) {
+          this.dataTable.data.splice(dIndex, 1);
+          this.dataTable.data = this.dataTable.data.slice();
+          this.table.renderRows();
+        }
+      }
       this.groupDataReload();
       // Object.assign(ele, this.rows.at(index).value);
-      this.saveRow.emit(ele);
+      this.saveRow.emit(this.rows.at(index));
       this.rows.removeAt(index);
     }
   }
@@ -299,6 +315,14 @@ export class LocalTableComponent implements OnInit {
     if (index > -1) {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
+      if(!Object.keys(ele).length) {
+        const dIndex =this.dataTable.data.indexOf(ele);
+        if(dIndex > -1) {
+          this.dataTable.data.splice(dIndex, 1);
+          this.dataTable.data = this.dataTable.data.slice();
+          this.table.renderRows();
+        }
+      }
       this.groupDataReload();
       this.rows.removeAt(index);
     }
@@ -330,7 +354,7 @@ export class LocalTableComponent implements OnInit {
     // })
     setControls(this.oneColumns, row, this.fb, this.localObservables);
     this.rows.push(row);
-    const rowData: any = row.value;
+    const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
     this.dataTable.data.unshift(rowData);
     this.dataTable.data = [...this.dataTable.data];
@@ -408,6 +432,7 @@ export class LocalTableComponent implements OnInit {
 
   ngOnDestroy() {
     this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

@@ -1,74 +1,60 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardStep } from '../cards/card-step/card-step.model';
 import { StepsSelectionEvent } from '../stepper/stepper.component';
-import { Observable, BehaviorSubject } from 'rxjs';
-
+import { CardStatusModel } from '../cards/card-status/card-status.model';
 @Component({
   selector: 'kkl-stepper-mobile',
   templateUrl: './stepper-mobile.component.html',
   styleUrls: ['./stepper-mobile.component.scss'],
 })
 export class StepperMobileComponent implements OnInit {
-  @Input() steps: CardStep[];
+  @Input() steps: CardStep[] | CardStatusModel[];
 
-  private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
-    new BehaviorSubject(null);
-  stepsSelection$: Observable<StepsSelectionEvent>;
-
-  @Input() set stepsSelectionEvent(value: StepsSelectionEvent) {
-    this.stepsSelectionSource$.next(value);
-  }
+  start: number = 0;
+  previous: boolean = false;
+  next: boolean = true;
 
   @Output() selectStep = new EventEmitter<StepsSelectionEvent>();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.stepsSelection$ = this.stepsSelectionSource$.asObservable();
   }
 
-  private setStepsSelectionEvent(index: number) {
+  onStepSelect(index: number) {
+    if('selected' in this.steps[index]) {
+      this.steps.forEach((a) => (a.selected = false));
+      (this.steps[index] as CardStep).selected = true;
+    }
     const event: StepsSelectionEvent = {
       selectedStep: this.steps[index],
       selectedIndex: index,
-      last: index === this.steps.length - 1,
-      first: index === 0,
+      last: index == this.steps.length,
+      first: !index,
       source: this.steps,
     };
-    return event;
-  }
-
-  private dispatchSelectionState(index: number) {
-    const event = this.setStepsSelectionEvent(index);
-    this.stepsSelectionSource$.next(event);
-    this._emitChangeEvent();
-  }
-
-  private _emitChangeEvent() {
-    const event = this.stepsSelectionSource$.getValue();
     this.selectStep.emit(event);
   }
 
-  onNext(selectedIndex: number) {
-    const nextIndex = ++selectedIndex;
 
-    if (nextIndex > this.steps.length) {
-      return;
+  onPrevious() {
+    if (!this.previous) return;
+    this.start--;
+    this.onStepSelect(this.start);
+    if(!this.start){
+      this.previous = false;
     }
-    this.dispatchSelectionState(nextIndex);
+    this.next = true;
   }
 
-  onPrevious(selectedIndex: number) {
-    const nextIndex = --selectedIndex;
-
-    if (nextIndex < 0) {
-      return;
+  onNext() {
+    if (!this.next) return;
+    this.start++;
+    this.onStepSelect(this.start);
+    if(this.start == this.steps.length){
+      this.next = false;
     }
-
-    this.dispatchSelectionState(nextIndex);
+    this.previous = true;
   }
 
-  onStepSelect(step: any) {
-    this._emitChangeEvent();
-  }
 }

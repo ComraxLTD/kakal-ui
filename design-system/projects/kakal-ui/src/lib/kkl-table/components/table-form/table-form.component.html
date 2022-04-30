@@ -1,4 +1,4 @@
-<div (click)="$event.stopPropagation()">
+<div (click)="$event.stopPropagation()" style="width: 200px;">
       <ng-container [ngSwitch]="question?.controlType">
         <ng-container *ngSwitchCase="'select'">
           <kkl-select

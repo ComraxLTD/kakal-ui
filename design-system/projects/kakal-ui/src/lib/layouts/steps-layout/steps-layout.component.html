@@ -4,7 +4,6 @@
       <div class="stepper">
         <ng-container *ngIf="mobile$ | async; else webBlock">
           <kkl-stepper-mobile
-            [stepsSelectionEvent]="stepsSelectionEvent"
             [steps]="steps"
             (selectStep)="onSelectStep($event)"
           ></kkl-stepper-mobile>

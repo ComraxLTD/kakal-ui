@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl } from '@angular/forms';
 import { Editor, Toolbar } from 'ngx-editor';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, startWith } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, startWith, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 
@@ -11,7 +11,8 @@ import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
   styleUrls: ['./mei-text-editor.component.scss']
 })
 export class MeiTextEditorComponent implements OnInit {
-
+  destroySubject$: Subject<void> = new Subject();
+  
   @Input() control!: FormControl;
   @Input() key!: string;
   @Input() placeHolder: string = '';
@@ -44,6 +45,7 @@ export class MeiTextEditorComponent implements OnInit {
       startWith(''),
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
+      takeUntil(this.destroySubject$)
     ).subscribe(a => this.onValueChanged());
     // this.error$ = new BehaviorSubject<string>('');
   }
@@ -84,6 +86,8 @@ export class MeiTextEditorComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.editor.destroy();
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

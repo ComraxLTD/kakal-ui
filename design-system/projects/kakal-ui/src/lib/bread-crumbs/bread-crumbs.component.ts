@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { IBreadCrumb } from './bread-crumbs.model';
-import { distinctUntilChanged, filter, } from 'rxjs';
+import { distinctUntilChanged, filter, Subject, takeUntil, } from 'rxjs';
 
 @Component({
   selector: 'kkl-bread-crumbs',
@@ -9,7 +9,8 @@ import { distinctUntilChanged, filter, } from 'rxjs';
   styleUrls: ['./bread-crumbs.component.scss'],
 })
 export class BreadCrumbsComponent implements OnInit {
-  public breadcrumbs: IBreadCrumb[]
+  destroySubject$: Subject<void> = new Subject();
+  breadcrumbs: IBreadCrumb[]
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 
@@ -17,6 +18,7 @@ export class BreadCrumbsComponent implements OnInit {
     this.breadcrumbs = this.buildBreadCrumb(this.activatedRoute.root);
 
     this.router.events.pipe(
+      takeUntil(this.destroySubject$),
       filter((event: any) => event instanceof NavigationEnd),
       distinctUntilChanged(),
     ).subscribe(_ => {
@@ -46,11 +48,11 @@ export class BreadCrumbsComponent implements OnInit {
       url: '',
       homepage:homepage
     };
-    
+
     // Only adding route with non-empty label
     const newBreadcrumbs = breadcrumb.label ? [...breadcrumbs, breadcrumb] : [...breadcrumbs];
     const arrangedBreadcrumbs = this.arangeBreadcrumbsPath(newBreadcrumbs, this.router.url);
-    
+
     if (route.firstChild) {
       //If we are not on our current path yet,
       //there will be more children to look after, to build our breadcumb
@@ -66,5 +68,10 @@ export class BreadCrumbsComponent implements OnInit {
       else item.url = filter.slice(0, index).join('/');
       return item;
     });
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 }
