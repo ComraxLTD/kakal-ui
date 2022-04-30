@@ -2,7 +2,7 @@ import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { Appearance } from '../models/control.types';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
@@ -14,6 +14,7 @@ import { KklSelectOption } from '../models/kkl-select.model';
   styleUrls: ['./mei-multi-autocomplete.component.scss']
 })
 export class MeiMultiAutocompleteComponent {
+  destroySubject$: Subject<void> = new Subject();
 
   filteredOptions: Observable<KklSelectOption[]>;
 
@@ -40,7 +41,7 @@ export class MeiMultiAutocompleteComponent {
         }
       } else {
         this.isArray = false;
-        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (val as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.filter(b => b.selected));
         });
       }
@@ -73,7 +74,8 @@ export class MeiMultiAutocompleteComponent {
         startWith(''),
         distinctUntilChanged(),
         debounceTime(this.debounce? this.debounce : 300),
-        filter( value => (typeof value === 'string'))
+        filter( value => (typeof value === 'string')),
+        takeUntil(this.destroySubject$)
       ).subscribe(a => this.search());
       if(this.control.disabled) {
         this.myAutoControl.disable();
@@ -91,7 +93,7 @@ export class MeiMultiAutocompleteComponent {
         }
       } else if(this.tempOptions) {
         this.isArray = false;
-        (this._options as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (this._options as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.control.setValue(a?.filter(b => b.selected));
         });
       }
@@ -186,6 +188,11 @@ export class MeiMultiAutocompleteComponent {
         action: KklFormActions.MULTI_OPTION_SELECTED
       });
     }
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 

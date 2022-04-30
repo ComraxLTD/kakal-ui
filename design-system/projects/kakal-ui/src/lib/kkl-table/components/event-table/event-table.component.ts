@@ -414,6 +414,7 @@ export class EventTableComponent implements OnInit {
 
   ngOnDestroy() {
     this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

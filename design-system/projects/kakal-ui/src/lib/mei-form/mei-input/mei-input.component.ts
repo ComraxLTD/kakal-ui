@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormControlStatus, Validators } from '@angular/forms';
 import { Palette } from '../../../styles/theme';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { Appearance, ControlType } from '../models/control.types';
@@ -12,6 +12,8 @@ import { Appearance, ControlType } from '../models/control.types';
   styleUrls: ['./mei-input.component.scss']
 })
 export class MeiInputComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
+  
   @Input() control!: FormControl;
   @Input() key!: string;
   @Input() controlType!: ControlType;
@@ -40,6 +42,7 @@ export class MeiInputComponent implements OnInit {
       startWith(''),
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
+      takeUntil(this.destroySubject$)
     ).subscribe(a => this.onValueChanged());
     this.setValidationsAndIcons();
   }
@@ -145,6 +148,11 @@ export class MeiInputComponent implements OnInit {
       value: this.control.value,
       action: KklFormActions.VALUE_CHANGED,
     });
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

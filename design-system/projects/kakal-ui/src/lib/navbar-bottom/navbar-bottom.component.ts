@@ -13,7 +13,7 @@ import { CardStep } from '../cards/card-step/card-step.model';
 import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
 import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { BehaviorSubject, combineLatest, iif, merge, Observable, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, iif, merge, Observable, of, Subject, takeUntil } from 'rxjs';
 import { map, pluck, switchMap } from 'rxjs/operators';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
@@ -24,7 +24,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-
+  destroySubject$: Subject<void> = new Subject();
+  
   showNext$: BehaviorSubject<boolean>;
   showSave$: BehaviorSubject<boolean>;
   showBack$: BehaviorSubject<boolean>;
@@ -60,7 +61,7 @@ export class NavbarBottomComponent implements OnInit {
     this.showNextMiddle$ = this.navbarBottomService.getShowNextMiddle();
     this.disableNext$ = this.navbarBottomService.getDisableNext();
 
-    this.navbarBottomService.getFormGroup().subscribe(b => {
+    this.navbarBottomService.getFormGroup().pipe(takeUntil(this.destroySubject$)).subscribe(b => {
       if(b) {
         this.formGroup = b;
       } else {
@@ -68,7 +69,7 @@ export class NavbarBottomComponent implements OnInit {
       }
 
     });
-    this.navbarBottomService.getAutoBack().subscribe(a =>{
+    this.navbarBottomService.getAutoBack().pipe(takeUntil(this.destroySubject$)).subscribe(a =>{
       this.autoBack = a;
     });
   }
@@ -97,6 +98,11 @@ export class NavbarBottomComponent implements OnInit {
 
   onNextMiddle(): void {
     this.navbarBottomService.setNextMiddle();
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

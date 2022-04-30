@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { distinctUntilChanged, startWith } from 'rxjs';
+import { distinctUntilChanged, startWith, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { Appearance } from '../models/control.types';
@@ -11,7 +11,8 @@ import { Appearance } from '../models/control.types';
   styleUrls: ['./mei-range-datepicker.component.scss']
 })
 export class MeiRangeDatepickerComponent implements OnInit {
-
+  destroySubject$: Subject<void> = new Subject();
+  
   @Input() groupControl!: FormGroup;
   @Input() key: string;
   @Input() label: string;
@@ -29,6 +30,7 @@ export class MeiRangeDatepickerComponent implements OnInit {
     this.groupControl.valueChanges.pipe(
       startWith(''),
       distinctUntilChanged(),
+      takeUntil(this.destroySubject$)
     ).subscribe(a => this.onValueChanged());
   }
 
@@ -62,5 +64,9 @@ export class MeiRangeDatepickerComponent implements OnInit {
   }
 
 
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+  }
 
 }

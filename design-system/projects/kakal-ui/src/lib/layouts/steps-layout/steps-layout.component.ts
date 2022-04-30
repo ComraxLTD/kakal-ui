@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.model';
@@ -13,6 +13,9 @@ import { StepsLayoutService } from './steps-layout.service';
   styleUrls: ['./steps-layout.component.scss'],
 })
 export class StepsLayoutComponent {
+  destroySubject$: Subject<void> = new Subject();
+
+
   @Input() steps: CardStep[];
 
   rowActions!: ButtonModel[];
@@ -42,7 +45,7 @@ export class StepsLayoutComponent {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.stepsLayoutService.getButtonAction().subscribe(c => {
+    this.stepsLayoutService.getButtonAction().pipe(takeUntil(this.destroySubject$)).subscribe(c => {
       switch (c.action) {
         case 'disable':
           this.disabled[c.key] = true;
@@ -95,5 +98,10 @@ export class StepsLayoutComponent {
 
   onAction(event: ButtonModel): void {
     this.stepsLayoutService.setButtonClicked(event);
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 }

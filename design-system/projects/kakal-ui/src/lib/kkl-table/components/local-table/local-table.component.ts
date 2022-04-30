@@ -432,6 +432,7 @@ export class LocalTableComponent implements OnInit {
 
   ngOnDestroy() {
     this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }
