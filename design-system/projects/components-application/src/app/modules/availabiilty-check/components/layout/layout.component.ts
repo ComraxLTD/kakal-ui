@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { map, mergeMap, Observable, of } from 'rxjs';
+import { map, mergeMap } from 'rxjs';
 import {
   BreakpointService,
   ButtonModel,
-  DisplayData,
+  DisplayItem,
   FormChangeEvent,
   FormService,
   Panel,
@@ -30,10 +30,11 @@ export class LayoutComponent implements OnInit {
       this.navigate('search/results');
   }
 
-  displayData: DisplayData[] = [
+  displayData: DisplayItem[] = [
     {
       key: 'budget',
       label: 'תקציב',
+      format: { type: 'currency', args : () => '$' },
     },
     {
       key: 'type',
@@ -42,13 +43,14 @@ export class LayoutComponent implements OnInit {
     {
       key: 'value',
       label: 'תקצוב קק"ל',
+      type: 'action',
     },
   ];
 
   data = {
     budget: 125.98,
     type: 'מעוף',
-    value: '0 $',
+    value: '0',
   };
 
   cases: Panel[] = [

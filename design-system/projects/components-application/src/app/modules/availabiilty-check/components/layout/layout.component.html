@@ -4,8 +4,19 @@
   [steps]="[]"
   (openChanged)="onDrawerOpenChanged($event)"
 >
-  <div content dir="rtl">
-    <kkl-display-group [displayData]="displayData" [data]="data"></kkl-display-group>
+  <div content dir="rtl" fxLayout="column" fxLayoutGap="3rem">
+    <kkl-display-grid
+      fxFlex="30"
+      [displayData]="displayData"
+      [data]="data"
+      [cols]="4"
+    ></kkl-display-grid>
+
+    <kkl-display-group
+      variant="form"
+      [displayData]="displayData"
+      [data]="data"
+    ></kkl-display-group>
   </div>
 </kkl-steps-layout>
 
