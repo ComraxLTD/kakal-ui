@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { TableFormComponent } from './components/table-form/table-form.component';
 import { LocalTableComponent } from './components/local-table/local-table.component';
 import { EventTableComponent } from './components/event-table/event-table.component';
-import { EventAdvancedSearchComponent } from './components/event-table/event-advanced-search.componet';
+import { EventAdvancedSearchComponent } from './components/event-table/event-advanced-search.component';
 import { TableCellComponent } from './components/table-cell/table-cell.component';
 import { KklPaginatorService } from './services/kkl-paginator.service';
 import { CommonModule } from '@angular/common';

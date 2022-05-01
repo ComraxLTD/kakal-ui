@@ -21,6 +21,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   // background-color: red;
   width: 100%;
   margin-right: -16px;
+
 }
 
 // .mat-table{
@@ -61,6 +62,9 @@ table table {
 // }
 
 
+// .mat-header-cell {
+//   min-width:min-content;
+// }
 
 // table td tr:nth-child(1) {
 //   border-bottom: none;

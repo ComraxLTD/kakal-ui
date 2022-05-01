@@ -22,9 +22,20 @@ export class StepperMobileComponent implements OnInit {
   }
 
   onStepSelect(index: number) {
-    if('selected' in this.steps[index]) {
+    if('svgIcon' in this.steps[index]) {
       this.steps.forEach((a) => (a.selected = false));
       (this.steps[index] as CardStep).selected = true;
+    }
+    this.start = index;
+    if(!this.start){
+      this.previous = false;
+      this.next = this.steps.length > 1;
+    } else if(this.start == this.steps.length-1) {
+      this.next = false;
+      this.previous = this.steps.length > 1;
+    } else {
+      this.previous = true;
+      this.next = true;
     }
     const event: StepsSelectionEvent = {
       selectedStep: this.steps[index],
@@ -40,6 +51,10 @@ export class StepperMobileComponent implements OnInit {
   onPrevious() {
     if (!this.previous) return;
     this.start--;
+    if('svgIcon' in this.steps[this.start]) {
+      this.steps.forEach((a) => (a.selected = false));
+      (this.steps[this.start] as CardStep).selected = true;
+    }
     this.onStepSelect(this.start);
     if(!this.start){
       this.previous = false;
@@ -50,6 +65,10 @@ export class StepperMobileComponent implements OnInit {
   onNext() {
     if (!this.next) return;
     this.start++;
+    if('svgIcon' in this.steps[this.start]) {
+      this.steps.forEach((a) => (a.selected = false));
+      (this.steps[this.start] as CardStep).selected = true;
+    }
     this.onStepSelect(this.start);
     if(this.start == this.steps.length){
       this.next = false;
