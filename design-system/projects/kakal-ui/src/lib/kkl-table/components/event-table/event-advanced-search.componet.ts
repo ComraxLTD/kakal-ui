@@ -5,23 +5,23 @@ import { KklFormChangeEvent } from '../../../mei-form/models/kkl-form-events';
 import { OptionsModel } from '../../../mei-form/models/options.model';
 import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model';
 import { TableBase } from '../../models/table.model';
-import { LocalTableComponent } from './local-table.component';
+import { EventTableComponent } from './event-table.component';
+import { TableServerModel } from '../../models/table-server.model';
 
 @Component({
-  selector: 'kkl-local-advanced-search',
+  selector: 'kkl-server-advanced-search',
   templateUrl: '../all-tabels/mei-advanced-search.component.html',
   styleUrls: ['../all-tabels/mei-advanced-search.component.scss']
 })
-export class LocalAdvancedSearchComponent implements OnInit {
-  @ViewChild(LocalTableComponent) localTable: LocalTableComponent;
+export class EventAdvancedSearchComponent implements OnInit {
+  @ViewChild(EventTableComponent) eventTable: EventTableComponent;
 
-  typeLocal: boolean = true;
+  typeLocal: boolean = false;
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
-  @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
-  @Output() valueChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() focusChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
+
 
   @Input() grid: GridProps;
 
@@ -68,15 +68,20 @@ export class LocalAdvancedSearchComponent implements OnInit {
   @Output() deleteRow = new EventEmitter<any>();
   @Output() saveRow = new EventEmitter<any>();
   @Output() expandRow = new EventEmitter<RowExpandEvent>();
+  @Output() requestChanged: EventEmitter<any> = new EventEmitter<any>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
   @Input() colsTemplate: any;
   @Input() newRowAction: string;
   @Input() paging: boolean = true;
+  @Input() pageSize: number = 10;
   @Input() dragable: boolean;
   @Input() columns: TableBase[];
-  @Input() dataSource: any[];
+  @Input() dataSourceUrl: string;
+  @Input() dataSourceServer: TableServerModel;
   @Input() rowActions: RowActionModel[];
+
+
 
 
   constructor(private fb: FormBuilder) { }
@@ -112,40 +117,38 @@ export class LocalAdvancedSearchComponent implements OnInit {
   onActionClicked(obj) {
     this.actionClicked.emit(obj);
   }
+  onSearchChanged(obj: any) {
+    this.requestChanged.emit(obj)
+  }
 
   onClick() {
     this.expended = !this.expended;
   }
 
   onToggleChange(event) {
-    this.localTable.searchFiltersChanged(this.allSearch);
-    this.selectChanged.emit(event);
+    this.eventTable.requsetChange(null);
   }
   onQueryChanged(event) {
     this.queryChanged.emit(event);
   }
   onSelectChanged(event) {
-    this.localTable.searchFiltersChanged(this.allSearch);
-    this.selectChanged.emit(event);
+    this.eventTable.requsetChange(null);
   }
   onOpenedChange(event) {
     this.openedChange.emit(event);
   }
   onValueChanged(event) {
-    this.localTable.searchFiltersChanged(this.allSearch);
-    this.valueChanged.emit(event);
+    this.eventTable.requsetChange(null);
   }
   onFocusChanged(event) {
     this.focusChanged.emit(event);
   }
 
   onSelectChangedFilter(event) {
-    this.localTable.searchFiltersChanged(this.allSearch);
-    this.selectChanged.emit(event);
+    this.eventTable.requsetChange(null);
   }
   onValueChangedFilter(event) {
-    this.localTable.searchFiltersChanged(this.allSearch);
-    this.valueChanged.emit(event);
+    this.eventTable.requsetChange(null);
   }
 
 }
