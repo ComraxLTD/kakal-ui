@@ -65,7 +65,8 @@
             <mat-icon>add</mat-icon>
           </button>
         </th>
-        <td mat-cell *matCellDef="let element" class="center-butt">
+        <td mat-cell *matCellDef="let element" class="center-butt" [style.display]="''"
+        [attr.rowspan]="(element == expandedElement)? 1 : 2">
           <ng-container *ngIf="!(element | arrInclueds : editItems); else addButton">
             <ng-container *ngFor="let butt of localButtons">
               <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, element, 'actions')">
