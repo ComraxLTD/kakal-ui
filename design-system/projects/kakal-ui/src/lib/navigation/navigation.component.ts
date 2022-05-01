@@ -6,7 +6,7 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { CardStep } from '../cards/card-step/card-step.model';
+import { CardStep } from '../cards/card-step/card-step.component';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { StepsSelectionEvent } from '../stepper/stepper.component';
 

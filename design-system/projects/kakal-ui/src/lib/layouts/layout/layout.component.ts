@@ -8,19 +8,14 @@ import {
 } from '@angular/core';
 
 import { RouterService, BreakpointService } from '../../../services/services';
-import { PageHeadlineService } from '../../page-headline/page-headline.service';
-import { PageHeadline } from '../../page-headline/page-headline.component';
-import {
-  MenuItem,
-  MenuSelectEvent,
-} from '../../menu-bar/menu-item/menu-item.component';
-
-import { CardStatus } from '../../cards/card-status/card-status.model';
-import { map, startWith } from 'rxjs/operators';
-import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
-import { MatSidenav } from '@angular/material/sidenav';
+import { MenuSelectEvent } from '../../menu-bar/menu-item/menu-item.component';
 import { LayoutService } from './layout.service';
+
+import { MatSidenav } from '@angular/material/sidenav';
 import { ButtonModel } from '../../button/models/button.types';
+
+import { map, startWith } from 'rxjs/operators';
+import { BehaviorSubject, Observable, of, mergeMap } from 'rxjs';
 
 @Component({
   selector: 'kkl-layout',

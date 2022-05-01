@@ -2,9 +2,18 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { IconService } from '../../icon/icons.service';
 import { CardOptions } from '../card.model';
-import { CardStep } from './card-step.model';
 import { Observable } from 'rxjs';
 
+export interface CardStep {
+  label: string;
+  path: string;
+  svgIcon: string;
+  value?: number;
+  selected?: boolean;
+  complete?: boolean;
+  disabled?: boolean;
+  hasSteps?: boolean;
+}
 
 @Component({
   selector: 'kkl-card-step',

@@ -1,7 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { SelectOption } from '../../form/models/form.types';
 import { IconService } from '../../icon/icons.service';
 import { CardOptions } from '../card.model';
-import { CardStatus } from './card-status.model';
+export interface CardStatus {
+  key: string;
+  label: string;
+  path: string;
+  svgIcon: string;
+  value?: number;
+  disabled?: boolean;
+  options: SelectOption[];
+}
 
 @Component({
   selector: 'kkl-card-status',

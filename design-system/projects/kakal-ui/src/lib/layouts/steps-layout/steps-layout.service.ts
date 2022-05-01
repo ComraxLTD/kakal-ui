@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CardStep } from '../../cards/card-step/card-step.model';
-import { StepsSelectionEvent } from '../../stepper/stepper.component';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
+import { Subject } from 'rxjs';
 
-interface buttAction{
+interface buttAction {
   action: 'add' | 'remove' | 'disable' | 'removeAll' | 'enable';
   key?: string;
   butt?: ButtonModel[];
@@ -17,26 +15,25 @@ export class StepsLayoutService {
 
   private buttonClicked$: Subject<ButtonModel> = new Subject();
 
-  constructor() {
-  }
+  constructor() {}
 
   getButtonAction(): Subject<buttAction> {
     return this.buttonAction$;
   }
   addButton(val: ButtonModel[]) {
-    this.buttonAction$.next({action: 'add', butt: val});
+    this.buttonAction$.next({ action: 'add', butt: val });
   }
   removeAllButtons() {
-    this.buttonAction$.next({action: 'removeAll'});
+    this.buttonAction$.next({ action: 'removeAll' });
   }
   removeButton(val: string) {
-    this.buttonAction$.next({action: 'remove', key: val});
+    this.buttonAction$.next({ action: 'remove', key: val });
   }
   disableButton(val: string) {
-    this.buttonAction$.next({action: 'disable', key: val});
+    this.buttonAction$.next({ action: 'disable', key: val });
   }
   enableButton(val: string) {
-    this.buttonAction$.next({action: 'enable', key: val});
+    this.buttonAction$.next({ action: 'enable', key: val });
   }
 
   getButtonClicked(): Subject<ButtonModel> {

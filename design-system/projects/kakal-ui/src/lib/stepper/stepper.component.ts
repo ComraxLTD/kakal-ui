@@ -2,8 +2,8 @@ import {
   Component, ElementRef, EventEmitter, Input,
   Output
 } from '@angular/core';
-import { CardStep } from '../cards/card-step/card-step.model';
-import { CardStatus } from '../cards/card-status/card-status.model';
+import { CardStatus } from '../cards/card-status/card-status.component';
+import { CardStep } from '../cards/card-step/card-step.component';
 import { CardOptions } from '../cards/card.model';
 
 export interface StepsSelectionEvent {

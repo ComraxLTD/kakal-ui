@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CardStep, Panel, RouterService, StepsSelectionEvent } from '../../../../../../../../../kakal-ui/src/public-api';
-import { Observable } from 'rxjs';
 import { NewReservationService } from '../../../../new-reservation.service';
 import { Step } from '../../../../../../../../../kakal-ui/src/lib/vertical-steps/step/step.model';
+import { Observable } from 'rxjs';
 
 
 @Component({

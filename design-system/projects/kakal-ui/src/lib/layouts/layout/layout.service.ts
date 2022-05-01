@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { CardStep } from '../../cards/card-step/card-step.model';
-import { StepsSelectionEvent } from '../../stepper/stepper.component';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({

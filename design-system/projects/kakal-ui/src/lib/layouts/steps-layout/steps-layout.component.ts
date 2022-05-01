@@ -1,10 +1,12 @@
 import { Component, Input } from '@angular/core';
-import { Observable, Subject, takeUntil } from 'rxjs';
 import { BreakpointService, RouterService } from '../../../services/services';
-import { ButtonModel } from '../../button/models/button.types';
-import { CardStep } from '../../cards/card-step/card-step.model';
-import { StepsSelectionEvent } from '../../stepper/stepper.component';
 import { StepsLayoutService } from './steps-layout.service';
+
+import { ButtonModel } from '../../button/models/button.types';
+import { CardStep } from '../../cards/card-step/card-step.component';
+import { StepsSelectionEvent } from '../../stepper/stepper.component';
+
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-steps-layout',
