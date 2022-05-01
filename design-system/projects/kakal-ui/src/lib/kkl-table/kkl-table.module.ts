@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { TableFormComponent } from './components/table-form/table-form.component';
 import { LocalTableComponent } from './components/local-table/local-table.component';
 import { EventTableComponent } from './components/event-table/event-table.component';
+import { EventAdvancedSearchComponent } from './components/event-table/event-advanced-search.componet';
 import { TableCellComponent } from './components/table-cell/table-cell.component';
 import { KklPaginatorService } from './services/kkl-paginator.service';
 import { CommonModule } from '@angular/common';
@@ -31,6 +32,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
   declarations: [
     LocalTableComponent,
     EventTableComponent,
+    EventAdvancedSearchComponent,
     TableFormComponent,
     TableCellComponent,
     LocalAdvancedSearchComponent,
@@ -62,6 +64,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
   exports: [
     LocalTableComponent,
     EventTableComponent,
+    EventAdvancedSearchComponent,
     TableFormComponent,
     TableCellComponent,
     KKLNewPaginatorDirective,
