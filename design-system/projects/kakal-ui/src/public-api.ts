@@ -301,7 +301,6 @@ export * from './lib/cards/card-lobby/card-lobby.component';
 
 export * from './lib/cards/card-info/card-info.module';
 export * from './lib/cards/card-info/card-info.component';
-export * from './lib/cards/card-info/card-info.model';
 
 export * from './lib/cards/card-status/card-status.component';
 export * from './lib/cards/card-status/card-status.model';
