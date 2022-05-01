@@ -24,6 +24,27 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 }
 
+// trying to adjust layout of expand table according XD - unfinished
+// .example-element-detail {
+//   display: flex;
+//   padding: 20px;
+//   // background-color: main.color(table);
+//   background-color: white;
+//   // background-color: red;
+//   // width: 100%;
+//   // margin-right: -20px;
+//   th {
+//     border-top: dotted main.color(primary);
+//     padding-top: 10px !important;
+//     padding: 0;
+//     h3 {
+//       width: 100%;
+//       background-color: lightgray;
+//       // padding-right: 5px;
+//     }
+//   }
+// }
+
 // .mat-table{
 //   border-collapse: separate !important;
 //   border-spacing: 0 4px !important;
