@@ -6,16 +6,10 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { Observable } from 'rxjs';
-
-export interface DisplayData<T = any> {
-  key: keyof T;
-  label: string;
-  value?: any;
-  format?: { type: string; args: any };
-  icon?: string;
-  template?: string;
-  type?: 'action' | 'type';
-}
+import {
+  DisplayType,
+  DisplayItem,
+} from '../../display-data/display-data.component';
 
 @Component({
   selector: 'kkl-display-group',
@@ -23,7 +17,10 @@ export interface DisplayData<T = any> {
   styleUrls: ['./display-group.component.scss'],
 })
 export class DisplayGroupComponent<T> {
-  @Input() displayData!: DisplayData<T>[];
+
+  @Input() variant: DisplayType;
+
+  @Input() displayData!: DisplayItem<T>[];
   @Input() data!: T;
   @Input() templates: { [key: string]: TemplateRef<any> } = {};
 
@@ -31,11 +28,14 @@ export class DisplayGroupComponent<T> {
 
   data$!: Observable<T>;
 
-  @Output() action: EventEmitter<DisplayData<T>> = new EventEmitter();
+  @Output() action: EventEmitter<DisplayItem<T>> = new EventEmitter();
 
   constructor() {}
 
-  onAction(item: DisplayData<T>) {
+  ngOnInit() {
+  }
+
+  onAction(item: DisplayItem<T>) {
     this.action.emit(item);
   }
 }

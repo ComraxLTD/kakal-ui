@@ -4,7 +4,7 @@ import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
-import { RowActionEvent, RowActionModel } from '../../models/table-actions.model'
+import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model'
 import { TableBase } from '../../models/table.model';
 import { TableServerModel } from '../../models/table-server.model';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -13,6 +13,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { setControls } from '../../../mei-services/services/form-create';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
+import { DialogService } from '../../../dialog/dialog.service';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
@@ -37,8 +38,8 @@ export class EventTableComponent implements OnInit {
 
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
-  @Output() editRow = new EventEmitter<any>();
-  @Output() expandRow = new EventEmitter<any>();
+  @Output() saveRow = new EventEmitter<any>();
+  @Output() expandRow = new EventEmitter<RowExpandEvent>();
   @Output() requestChanged = new EventEmitter<any>();
 
 
@@ -179,7 +180,7 @@ export class EventTableComponent implements OnInit {
     setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private dialogService: DialogService) {
   }
 
   ngAfterViewInit() {
@@ -248,18 +249,19 @@ export class EventTableComponent implements OnInit {
     if(normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
-          if(confirm("Are you sure you want to delete?")) {
-            this.dataTable = this.dataTable.filter((a:any) => a !== obj);
-            this.deleteRow.emit(obj);
-          }
+          this.dialogService.openAlert({message: 'האם אתה בטוח שאתה רוצה למחוק?', isConfirm: true}).afterClosed().subscribe(result => {
+            if(result){
+              this.deleteRow.emit(obj);
+            }
+          });
           break;
         case 'inlineEdit':
           this.addRowGroup(obj);
           this.editItems = [...this.editItems, obj];
           break;
         case 'inlineExpand':
-          this.expandRow.emit(obj);
-          this.expandedElement = this.expandedElement == obj? null : obj;
+          this.expandRow.emit({row: obj, key: key});
+          this.addExpandedRow(obj);
           break;
         default:
           break;
@@ -269,13 +271,31 @@ export class EventTableComponent implements OnInit {
     }
   }
 
+  addExpandedRow(obj: any) {
+    this.expandedElement = this.expandedElement == obj? null : obj;
+  }
+
+  onExpandOut(obj: any) {
+    if(this.rowActions?.some(a => a.type == 'inlineExpand')) {
+      this.addExpandedRow(obj);
+    }
+  }
+
   saveRowClick(ele: any) {
     const index = this.editItems.indexOf(ele);
     if (index > -1) {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
       // Object.assign(ele, this.rows.at(index).value);
-      this.editRow.emit(ele);
+      if(!Object.keys(ele).length) {
+        const dIndex =this.dataTable.indexOf(ele);
+        if(dIndex > -1) {
+          this.dataTable.splice(dIndex, 1);
+          this.dataTable = this.dataTable.slice();
+          this.table.renderRows();
+        }
+      }
+      this.saveRow.emit(this.rows.at(index));
       this.rows.removeAt(index);
       this.readySpanData(0, this.dataTable.length);
     }
@@ -286,6 +306,14 @@ export class EventTableComponent implements OnInit {
     if (index > -1) {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
+      if(!Object.keys(ele).length) {
+        const dIndex =this.dataTable.indexOf(ele);
+        if(dIndex > -1) {
+          this.dataTable.splice(dIndex, 1);
+          this.dataTable = this.dataTable.slice();
+          this.table.renderRows();
+        }
+      }
       this.rows.removeAt(index);
       this.readySpanData(0, this.dataTable.length);
     }
@@ -293,19 +321,22 @@ export class EventTableComponent implements OnInit {
 
   addRowGroup(obj: any) {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(obj[col.key]));
-    });
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(obj[col.key]));
+    // });
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    row.setValue(obj);
     this.rows.push(row);
   }
 
   addNewRowGroup() {
     const row = this.fb.group({});
-    this.oneColumns.forEach(col => {
-      row.addControl(col.key, this.fb.control(null));
-    })
+    // this.oneColumns.forEach(col => {
+    //   row.addControl(col.key, this.fb.control(null));
+    // })
+    setControls(this.oneColumns, row, this.fb, this.localObservables);
     this.rows.push(row);
-    const rowData: any = row.value;
+    const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
     this.dataTable.unshift(rowData);
     this.dataTable = [...this.dataTable]
@@ -383,6 +414,7 @@ export class EventTableComponent implements OnInit {
 
   ngOnDestroy() {
     this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

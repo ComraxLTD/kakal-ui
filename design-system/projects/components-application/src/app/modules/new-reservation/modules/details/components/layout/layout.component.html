@@ -1,0 +1,40 @@
+<!-- <kkl-accordion-steps-layout
+  [complete$]="complete$"
+  [panels]="panels"
+  [steps]="steps"
+  [templates]="{costumerDetails, propertiesBudget, reservationDetails}"
+>
+
+</kkl-accordion-steps-layout>
+
+<ng-template #costumerDetails>
+  <app-costumer-details></app-costumer-details>
+</ng-template>
+
+<ng-template #propertiesBudget><app-properties></app-properties></ng-template>
+
+<ng-template #reservationDetails
+  ><app-reservation-details></app-reservation-details
+></ng-template>
+
+ -->
+<div fxLayout="column">
+  <div fxLayout="row" dir="rtl">
+    <section fxFlex="grow">
+      <ng-container [ngSwitch]="currentIndex">
+        <app-costumer-details *ngSwitchCase="0"></app-costumer-details>
+        <app-properties *ngSwitchCase="1"></app-properties>
+        <app-reservation-details *ngSwitchCase="2"></app-reservation-details>
+      </ng-container>
+    </section>
+    <app-circle-steps
+      [steps]="circleSteps"
+      [selectedIndex]="1"
+      (selectStep)="onStepEmit($event)"
+    ></app-circle-steps>
+  </div>
+  <button class="next" (click)="changeStep()">
+    <kkl-typography [color]="'paper'">המשך</kkl-typography>
+    <kkl-icon type="mat" key="keyboard_arrow_down" [color]="'paper'"></kkl-icon>
+  </button>
+</div>

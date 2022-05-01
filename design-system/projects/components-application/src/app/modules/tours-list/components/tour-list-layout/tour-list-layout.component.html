@@ -1,0 +1,44 @@
+<div >
+  <span fxLayout="row" dir="rtl">
+    <div fxFlex="auto" fxLayoutAlign="center">
+      <kkl-form
+        fxFlex="60"
+        [controls]="questions"
+        (queryChanged)="onQueryChanged($event)"
+        (selectChanged)="onSelectChanged($event)"
+        (openChanged)="onOpenChanged($event)"
+      ></kkl-form>
+    </div>
+    <span fxLayoutGap="2rem" fxLayoutAlign="end end"
+  >
+      <button
+      [routerLink]="'table'"
+      matTooltip="טבלה"
+      color="primary"
+      mat-icon-button
+      kkl-action-button
+      >
+      <kkl-icon [size]="2" [key]="'check'" [color]="'primary'"></kkl-icon>
+    </button>
+    <button
+    [routerLink]="'bookings'"
+    matTooltip="יומן"
+    color="primary"
+    mat-icon-button
+    kkl-action-button
+    >
+    <kkl-icon [size]="2" [key]="'home'" [color]="'primary'"></kkl-icon>
+</button>
+<button
+[routerLink]="'orders'"
+        matTooltip="הזמנות"
+        color="primary"
+        mat-icon-button
+        kkl-action-button
+      >
+        <kkl-icon [size]="2" [key]="'home'" [color]="'primary'"></kkl-icon>
+      </button>
+    </span>
+  </span>
+  <router-outlet></router-outlet>
+</div>

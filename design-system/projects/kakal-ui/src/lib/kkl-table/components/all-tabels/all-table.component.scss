@@ -1,5 +1,7 @@
 @use "../../../../styles/variables" as main;
 
+
+
 tr.example-detail-row {
   height: 0;
 }
@@ -33,13 +35,37 @@ tr.example-element-row:not(.example-expanded-row):active {
 td.mat-cell {
   border-bottom: 0.5px solid main.color(table-background);
 }
-
 table {
   width: 100%;
-  overflow-y: auto;
-  // border-spacing: 0 10px !important;
+}
+.expand-table {
+  border-spacing: 0 10px !important;
+}
+.all-table-form{
+  // width: 100%;
+  // position: relative;
+  overflow: auto;
 }
 
+table table {
+  tr.mat-header-row{
+    th.mat-header-cell.cdk-header-cell{
+      border-bottom: none;
+      background-color: lightgrey;
+    }
+  }
+}
+// table tr {
+//   border-spacing: 0 !important;
+//   // border-bottom: 10px ;
+// }
+
+
+
+// table td tr:nth-child(1) {
+//   border-bottom: none;
+//   width: 20px;
+// }
 // .table-wrapper {
 
 //   margin: auto;
@@ -106,3 +132,25 @@ th>h3 {
 // }
 
 
+//  scroll css
+/* width */
+::-webkit-scrollbar {
+  height: 4px !important;
+  border-radius: 30px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e4e4e4;
+  width: 20%;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #707070;
+  width: 20%;
+  border-radius: 210px;
+}
+
+// shorten the track size and add border radius
+//shorter a liitle bit before the pagination

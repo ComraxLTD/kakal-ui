@@ -22,7 +22,7 @@ export class NavigationComponent implements OnInit {
 
   private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
     new BehaviorSubject(null);
-    
+
   stepsSelection$: Observable<StepsSelectionEvent>;
 
   @Input() set stepsSelectionEvent(value: StepsSelectionEvent) {

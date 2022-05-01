@@ -27,8 +27,6 @@ export class StatusStepsComponent implements OnInit {
 
   @Input() labelRef: ElementRef;
 
-  @Output() click: EventEmitter<void> = new EventEmitter();
-
   steps: string[] = [];
 
   constructor() {}
@@ -39,9 +37,6 @@ export class StatusStepsComponent implements OnInit {
 
     const approvedBars = Array(this.status.authorizedBars).fill('active');
     this.steps.push(...approvedBars);
-    // if (this.status.authorizedBars < this.status.totalBars) {
-    //   this.steps.push('disable');
-    // }
 
     const disableBars = new Array(
       this.status.totalBars - this.status.authorizedBars

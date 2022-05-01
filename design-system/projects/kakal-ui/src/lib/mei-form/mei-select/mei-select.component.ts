@@ -4,7 +4,7 @@ import { KklSelectOption } from '../models/kkl-select.model';
 import { KklFormActions } from '../models/kkl-form-events';
 import { KklFormChangeEvent } from '../models/kkl-form-events';
 import { MessageService } from '../mei-services/message.service';
-import { BehaviorSubject, take } from 'rxjs';
+import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
 import { Appearance } from '../models/control.types';
 
 @Component({
@@ -13,7 +13,8 @@ import { Appearance } from '../models/control.types';
   styleUrls: ['./mei-select.component.scss']
 })
 export class MeiSelectComponent implements OnInit {
-
+  destroySubject$: Subject<void> = new Subject();
+  
   @Input() control!: FormControl;
   @Input() multi!: boolean;
 
@@ -30,7 +31,7 @@ export class MeiSelectComponent implements OnInit {
         }
         this.options$.next(val);
       } else {
-        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (val as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           if(this.multi){
             this.control.setValue(a?.filter(b => b.selected));
           } else {
@@ -70,7 +71,7 @@ export class MeiSelectComponent implements OnInit {
         }
         this.options$.next(this.tempOptions);
       } else if(this.tempOptions) {
-        (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (this.tempOptions as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           if(this.multi){
             this.control.setValue(a?.filter(b => b.selected));
           } else {
@@ -98,8 +99,7 @@ export class MeiSelectComponent implements OnInit {
 
   setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control as FormControl,
-      this.placeHolder
+      this.control as FormControl
     );
 
     this.error$.next(error);
@@ -144,5 +144,9 @@ export class MeiSelectComponent implements OnInit {
   }
 
 
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+  }
 
 }

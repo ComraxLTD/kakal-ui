@@ -34,7 +34,8 @@ export interface ControlBase {
 
   theme?: Palette;
   appearance?: Appearance;
-  gridProps?: GridProps;
+  rows?: number;
+  cols?: number;
   //for autocomplete
   panelWidth?: boolean;
 

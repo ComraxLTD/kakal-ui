@@ -45,7 +45,7 @@ $ npm install --save --legacy-peer-deps moment @angular/material-moment-adapter 
 In app.module:
 
 ```
-import { KakalUiModule } from '@ComraxLTD/kakal-ui';
+import { KakalUiModule } from '../../../../../../../../../kakal-ui/src/public-api';
 @NgModule({
   declarations: [
     AppComponent

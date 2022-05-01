@@ -1,4 +1,5 @@
 import { Injectable, Injector, TemplateRef, ViewContainerRef } from "@angular/core";
+import { Subscription } from "rxjs";
 import { OpenMotionsComponent } from './open-motions.component';
 
 @Injectable({
@@ -7,6 +8,7 @@ import { OpenMotionsComponent } from './open-motions.component';
 
 export class OpenMotionService {
 
+  private subscription: Subscription;
     constructor(private injector: Injector) { }
 
     public createDynamicSideNav(container: ViewContainerRef, title: string, template: TemplateRef<any>) {
@@ -14,7 +16,7 @@ export class OpenMotionService {
         componentRef.instance.title = title;
         componentRef.instance.content = template;
 
-        componentRef.instance.closeEvent.subscribe((_) => {
+        this.subscription = componentRef.instance.closeEvent.subscribe((_) => {
             this.clearDynamicSideNav(container)
             componentRef.instance.closeEvent.unsubscribe();
         });
@@ -22,6 +24,10 @@ export class OpenMotionService {
 
     private clearDynamicSideNav(container: ViewContainerRef): void {
         container.clear();
+    }
+
+    ngOnDestroy(): void {
+      this.subscription.unsubscribe();
     }
 
 }

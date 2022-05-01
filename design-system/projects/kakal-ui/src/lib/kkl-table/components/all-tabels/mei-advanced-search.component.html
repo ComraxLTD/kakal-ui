@@ -61,20 +61,43 @@
 </div>
 
 
-<kkl-local-table
-  #localTable
-  [expandTemplate]="expandTemplate"
-  [searchRow]="formGroup"
-  [options]="myOptions"
-  [colsTemplate]="colsTemplate"
-  [newRowAction]="newRowAction"
-  [paging]="paging"
-  [draggable]="draggable"
-  [columns]="columns"
-  [dataSource]="dataSource"
-  [rowActions]="rowActions"
-  (actionClicked)="onActionClicked($event)"
-  (deleteRow)="onDeleteRow($event)"
-  (editRow)="onEditRow($event)"
-  (expandRow)="onExpandRow($event)"
-></kkl-local-table>
+<ng-container *ngIf="typeLocal;else serverTable">
+  <kkl-local-table
+    #localTable
+    [expandTemplate]="expandTemplate"
+    [searchRow]="formGroup"
+    [options]="myOptions"
+    [colsTemplate]="colsTemplate"
+    [newRowAction]="newRowAction"
+    [paging]="paging"
+    [dragable]="dragable"
+    [columns]="columns"
+    [dataSource]="dataSource"
+    [rowActions]="rowActions"
+    (actionClicked)="onActionClicked($event)"
+    (deleteRow)="onDeleteRow($event)"
+    (saveRow)="onSaveRow($event)"
+    (expandRow)="onExpandRow($event)"
+  ></kkl-local-table>
+</ng-container>
+<ng-template #serverTable>
+  <kkl-server-table
+    #eventTable
+    [expandTemplate]="expandTemplate"
+    [searchRow]="formGroup"
+    [options]="myOptions"
+    [colsTemplate]="colsTemplate"
+    [newRowAction]="newRowAction"
+    [paging]="paging"
+    [dragable]="dragable"
+    [columns]="columns"
+    [dataSourceUrl]="dataSourceUrl"
+    [dataSourceServer]="dataSourceServer"
+    [rowActions]="rowActions"
+    (actionClicked)="onActionClicked($event)"
+    (deleteRow)="onDeleteRow($event)"
+    (saveRow)="onSaveRow($event)"
+    (expandRow)="onExpandRow($event)"
+    (requestChanged)="onSearchChanged($event)"
+  ></kkl-server-table>
+</ng-template>

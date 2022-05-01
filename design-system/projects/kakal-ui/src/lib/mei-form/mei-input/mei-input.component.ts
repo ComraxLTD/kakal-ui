@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormControl, FormControlStatus, Validators } from '@angular/forms';
 import { Palette } from '../../../styles/theme';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, map, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
-import { Appearance, ControlType, GridProps } from '../models/control.types';
+import { Appearance, ControlType } from '../models/control.types';
 
 @Component({
   selector: 'kkl-input',
@@ -12,6 +12,8 @@ import { Appearance, ControlType, GridProps } from '../models/control.types';
   styleUrls: ['./mei-input.component.scss']
 })
 export class MeiInputComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
+  
   @Input() control!: FormControl;
   @Input() key!: string;
   @Input() controlType!: ControlType;
@@ -19,7 +21,6 @@ export class MeiInputComponent implements OnInit {
   @Input() placeHolder!: string;
   @Input() appearance: Appearance;
   @Input() theme!: Palette;
-  @Input() gridProps!: GridProps;
   @Input() icon!: string;
   @Input() format!: string;
   @Input() debounce!: number;
@@ -41,9 +42,8 @@ export class MeiInputComponent implements OnInit {
       startWith(''),
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
+      takeUntil(this.destroySubject$)
     ).subscribe(a => this.onValueChanged());
-console.log(this.placeHolder);
-
     this.setValidationsAndIcons();
   }
 
@@ -111,8 +111,7 @@ console.log(this.placeHolder);
 
   private setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.control,
-      this.placeHolder
+      this.control
     );
 
     this.error$.next(error);
@@ -149,6 +148,11 @@ console.log(this.placeHolder);
       value: this.control.value,
       action: KklFormActions.VALUE_CHANGED,
     });
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

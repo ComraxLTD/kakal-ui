@@ -11,14 +11,12 @@ export class NavbarBottomService {
   private showBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
   private showNextMiddle$: BehaviorSubject<{ show: boolean; next: boolean }> =
     new BehaviorSubject({ show: false, next: true });
-  private formGroup$: BehaviorSubject<FormGroup> = new BehaviorSubject(
-    new FormGroup({})
-  );
 
   private next$: Subject<void> = new Subject();
   private save$: Subject<void> = new Subject();
   private back$: Subject<void> = new Subject();
   private nextMiddle$: Subject<void> = new Subject();
+  private formGroup$: Subject<FormGroup> = new Subject();
 
   private disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
@@ -26,8 +24,8 @@ export class NavbarBottomService {
   constructor() {}
 
   hideButtons() {
-    this.setShowNext(false)
-    this.setShowSave(false)
+    this.setShowNext(false);
+    this.setShowSave(false);
   }
 
   getShowNext(): Observable<boolean> {
@@ -73,8 +71,8 @@ export class NavbarBottomService {
     this.autoBack$.next(val);
   }
 
-  getFormGroup(): FormGroup {
-    return this.formGroup$.getValue();
+  getFormGroup(): Observable<FormGroup> {
+    return this.formGroup$.asObservable();
   }
   setFormGroup(val: FormGroup) {
     this.formGroup$.next(val);

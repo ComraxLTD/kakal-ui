@@ -36,6 +36,9 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MeiAdvancedSearchComponent } from './mei-advanced-search/mei-advanced-search.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MeiCounterComponent } from './mei-counter/mei-counter.component';
+import { MeiCheckboxComponent } from './mei-checkbox/mei-checkbox.component';
+import { MeiToggleComponent } from './mei-toggle/mei-toggle.component';
+import { MatGridListModule } from '@angular/material/grid-list';
 // import { MeiFiltersComponent } from '../kkl-table/components/mei-filters/mei-filters.component';
 // import { TableCellPipe } from '../../public-api';
 // import { TableCellPipe } from '../mei-services/pipes/table-cell-pipe.pipe';
@@ -75,12 +78,13 @@ export const MY_MY_FORMATS = {
     MatSliderModule,
     MatDividerModule,
     MatExpansionModule,
-    KKLDirectivesModule
+    KKLDirectivesModule,
+    MatGridListModule
   ],
   declarations: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
-     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent, MeiCounterComponent],
+     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent, MeiCounterComponent, MeiCheckboxComponent, MeiToggleComponent],
   exports: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent,
-    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiTextEditorComponent, MeiCurrencyComponent, MeiRangeComponent, MeiCounterComponent],
+    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiTextEditorComponent, MeiCurrencyComponent, MeiRangeComponent, MeiCounterComponent, MeiCheckboxComponent, MeiToggleComponent],
     providers: [
       { provide: DateAdapter, useClass: DateFnsAdapter },
       { provide: MAT_DATE_LOCALE, useValue: he },

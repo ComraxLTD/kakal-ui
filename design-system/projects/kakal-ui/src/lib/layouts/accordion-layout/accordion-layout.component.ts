@@ -23,7 +23,7 @@ export class AccordionLayoutComponent implements OnInit {
   @ViewChild(MatAccordion) accordion: MatAccordion;
 
   @Input() panels: Panel[];
-  @Input() buttonLabel: string ="jhj";
+  @Input() buttonLabel: string ="";
   @Input() templates: { [key: string]: TemplateRef<any> };
 
   @Output() actionClicked: EventEmitter<void> = new EventEmitter();

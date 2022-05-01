@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, startWith, take } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, startWith, Subject, take, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { Appearance } from '../models/control.types';
 import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
@@ -12,6 +12,7 @@ import { KklSelectOption } from '../models/kkl-select.model';
   styleUrls: ['./mei-currency.component.scss']
 })
 export class MeiCurrencyComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
 
   @Input() groupControl!: FormGroup;
 
@@ -24,7 +25,7 @@ export class MeiCurrencyComponent implements OnInit {
         this.groupControl.get('currency').setValue((val as KklSelectOption[]).find(b => b.selected));
         this.options$.next(val);
       } else {
-        (val as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (val as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.groupControl.get('currency').setValue(a?.find(b => b.selected));
           this.options$.next(a);
         });
@@ -57,7 +58,7 @@ export class MeiCurrencyComponent implements OnInit {
         this.groupControl.get('currency').setValue((this.tempOptions as KklSelectOption[]).find(b => b.selected));
         this.options$.next(this.tempOptions);
       } else if(this.tempOptions) {
-        (this.tempOptions as BehaviorSubject<KklSelectOption[]>).subscribe((a: KklSelectOption[]) => {
+        (this.tempOptions as BehaviorSubject<KklSelectOption[]>).pipe(takeUntil(this.destroySubject$)).subscribe((a: KklSelectOption[]) => {
           this.groupControl.get('currency').setValue(a?.find(b => b.selected));
           this.options$.next(a);
         });
@@ -66,6 +67,7 @@ export class MeiCurrencyComponent implements OnInit {
         startWith(''),
         distinctUntilChanged(),
         debounceTime(this.debounce? this.debounce : 300),
+        takeUntil(this.destroySubject$)
       ).subscribe(a => this.onValueChanged());
     }, 0);
   }
@@ -76,8 +78,7 @@ export class MeiCurrencyComponent implements OnInit {
 
   setErrorMessage() {
     const error = this.messageService.getErrorMessage(
-      this.groupControl.get('sum') as FormControl,
-      this.placeHolder
+      this.groupControl.get('sum') as FormControl
     );
 
     this.error$.next(error);
@@ -114,4 +115,8 @@ export class MeiCurrencyComponent implements OnInit {
   }
 
 
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+  }
 }

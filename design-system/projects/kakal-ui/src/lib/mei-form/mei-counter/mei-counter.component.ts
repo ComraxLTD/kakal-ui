@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { debounceTime, distinctUntilChanged, startWith } from 'rxjs';
+import { debounceTime, distinctUntilChanged, startWith, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 
@@ -10,6 +10,8 @@ import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
   styleUrls: ['./mei-counter.component.scss']
 })
 export class MeiCounterComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
+
 
   @Input() control!: FormControl;
   @Input() key!: string;
@@ -34,6 +36,7 @@ export class MeiCounterComponent implements OnInit {
       startWith(''),
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
+      takeUntil(this.destroySubject$)
     ).subscribe(a => this.onValueChanged());
   }
 
@@ -81,4 +84,8 @@ export class MeiCounterComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+  }
 }

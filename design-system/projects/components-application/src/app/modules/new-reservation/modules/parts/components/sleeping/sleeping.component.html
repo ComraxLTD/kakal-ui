@@ -1,0 +1,32 @@
+<div fxLayout="column" fxLayoutAlign="center" dir="rtl" fxLayoutGap="2rem">
+  <div fxLayout="row" fxLayoutAlign="center">
+      <div fxFlex="95" fxLayoutAlign="space-between center">
+          <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="3rem">
+            <kkl-typography [weight]="600" [size]="2">לינה</kkl-typography>
+            <mat-checkbox color="primary" [(ngModel)]="checked">
+              <kkl-typography color="primary" kkl-underline [weight]="600">בדיקת זמינות</kkl-typography>
+            </mat-checkbox>
+            <kkl-form-temp *ngIf="checked" dir='rtl' [formGroup]="form.formGroup" [questions]="form.questions" [grid]="form.gridProps!">
+            </kkl-form-temp>
+          </div>
+       <div>
+        <button kkl-action-button kkl-border [thick]="2" mat-stroked-button routerLink="/committees/new-committee">
+          <div fxLayout="row" fxLayoutGap="1rem">
+              <kkl-icon type="mat" color="primary" key="add"></kkl-icon>
+              <kkl-typography color="text">הוספת לינה</kkl-typography>
+          </div>
+      </button>
+       </div>
+      </div>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center">
+      <div  fxFlex="95">
+          <kkl-local-table
+            [dataSource]="dataSource"
+            [columns]="columns"
+            [rowActions]="rowActions"
+          ></kkl-local-table>
+      </div>
+  </div>
+</div>

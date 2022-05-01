@@ -1,0 +1,23 @@
+<ng-container *ngIf="marketersProvidersArray && marketersProvidersHeadline">
+  <div fxLayout="column">
+    <div>
+      <kkl-typography [size]="1">{{
+        marketersProvidersHeadline.label
+      }}</kkl-typography>
+    </div>
+    <div fxLayout="row">
+      <ng-container *ngFor="let item of marketersProvidersArray">
+        <kkl-typography [size]="1">
+          <div fxLayout="row-reverse" fxLayoutAlign="start start">
+            <span>
+              {{ item.label }}
+            </span>
+            <span>
+              <kkl-icon [size]="1" [key]="item.svgIcon || ''"> </kkl-icon>
+            </span>
+          </div>
+        </kkl-typography>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>

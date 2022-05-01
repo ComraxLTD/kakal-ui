@@ -1,8 +1,23 @@
 @use "../../../styles/variables" as main;
 
 :host {
-  .mat-divider {
-    border-top: 1px dotted var(--a-500)
+  kkl-typography.display {
+    background-color: rgba(243, 243, 243, 1);
+  }
 
+  div.form-wrapper {
+    background-color: rgba(234, 244, 255, 1);
+    min-height: 4rem;
+    min-width: 16rem;
+
+    div.form-icon {
+      background-color: main.color(paper);
+      padding: 6px 0;
+      border-radius: 0.5rem;
+    }
+
+  }
+  .mat-divider {
+    border-top: 1px dotted var(--a-500);
   }
 }

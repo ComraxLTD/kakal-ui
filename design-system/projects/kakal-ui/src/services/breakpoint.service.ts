@@ -56,7 +56,7 @@ export class BreakpointService implements OnDestroy {
         shareReplay()
       );
     }
-    
+
     public isMobile(): Observable<boolean> {
       return this.breakpointObserver.observe(Breakpoints.Handset)
         .pipe(
@@ -66,5 +66,8 @@ export class BreakpointService implements OnDestroy {
     }
 
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.destroyed.next();
+    this.destroyed.complete();
+  }
 }

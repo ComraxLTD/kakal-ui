@@ -1,0 +1,4 @@
+@use '../../../../../../styles/variables' as variabels; 
+.list-headline{
+    background-color: variabels.$background-grey;
+}

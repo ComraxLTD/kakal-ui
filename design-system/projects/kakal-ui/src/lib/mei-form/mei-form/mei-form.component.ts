@@ -36,10 +36,12 @@ export class MeiFormComponent {
   @Input() buttonLabel: string = 'שמור';
 
   gutter: number;
-  hasButton: boolean;
-  cols: string | number;
-  layout: 'row' | 'column' = 'row';
+  cols: number;
+  layout: 'row' | 'column';
   flex: number;
+  offset: number;
+
+  breakpoint: number;
 
 
   myQuestions!: ControlBase[];
@@ -91,14 +93,21 @@ export class MeiFormComponent {
   ngOnInit(): void {
     this.variant = this.grid?.variant || this.variant;
     this.cols = this.grid?.cols || 1;
-    this.hasButton = !!this.grid?.buttonCols || false;
     this.gutter = this.grid?.gutter || 1;
-    this.flex = 100 / (this.grid?.cols || this.cols);
-    this.layout = this.grid?.layout;
+    this.layout = this.grid?.layout || 'row';
+    this.offset = this.grid?.offset || 30;
     if(!this.formGroup) {
       this.formGroup = this.fb.group({});
     }
     setControls(this.myQuestions, this.formGroup, this.fb, this.localObservables);
+
+    this.breakpoint = (window.innerWidth <= 420) ? 1 : Math.min(this.cols, Math.floor(window.innerWidth/220));
+    this.flex = 85 / this.breakpoint;
+  }
+
+  onResize(event) {
+    this.breakpoint = (window.innerWidth <= 420) ? 1 : Math.min(this.cols, Math.floor(window.innerWidth/220));
+    this.flex = 85 / this.breakpoint;
   }
 
   ngAfterViewInit() {
@@ -188,11 +197,6 @@ export class MeiFormComponent {
     if(control.selectChanged) {
       control.selectChanged(event.checked);
     }
-    this.selectChanged.emit({
-      key: control.key,
-      value: event.checked,
-      action: KklFormActions.TOGGLE_CHANGED
-    });
   }
   onQueryChanged(event, control: ControlBase) {
     if(control.queryChanged) {

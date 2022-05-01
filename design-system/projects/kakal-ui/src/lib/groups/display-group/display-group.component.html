@@ -1,27 +1,81 @@
 <div fxLayout="row" fxLayoutGap="5rem">
   <div fxLayout="column" fxLayoutGap=".5rem" *ngFor="let item of displayData">
-    <kkl-typography [weight]="600">{{ item | pluck: "label" }}</kkl-typography>
-    <mat-divider color="primary"></mat-divider>
-
-    <ng-container *ngSwitchCase="item.type">
-
-      <ng-container *ngSwitchCase="'action'">
-        <div (click)="onAction(item)" kkl-button>
-          <kkl-typography color="primary" [underline]="true">{{
-            data | pluck: item.key
-          }}</kkl-typography>
-        </div>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="'status'">
-        <kkl-status-steps [status]="data | pluck: item.key"></kkl-status-steps>
+    <ng-container [ngSwitch]="variant">
+      <ng-container *ngSwitchCase="'form'">
+        <kkl-typography [size]="1.6"
+          >{{ item | pluck: "label" }}:</kkl-typography
+        >
       </ng-container>
 
       <ng-container *ngSwitchDefault>
-        <kkl-typography>{{
+        <kkl-typography [class.form]="variant === 'display'" [weight]="600">{{
+          item | pluck: "label"
+        }}</kkl-typography>
+        <mat-divider></mat-divider>
+      </ng-container>
+    </ng-container>
+
+    <ng-container
+      *ngTemplateOutlet="
+        variant === 'form' ? formTemplate : defaultTemplate;
+        context: { $implicit: item }
+      "
+    ></ng-container>
+  </div>
+</div>
+
+<ng-template #formTemplate let-item>
+  <div
+    [class.form-wrapper]="variant === 'form'"
+    fxLayout="row"
+    fxLayoutAlign="center center"
+  >
+    <ng-container [ngSwitch]="item?.type">
+      <ng-container *ngSwitchCase="'action'">
+        <div fxFlex="70" fxLayoutAlign="center center">
+          <kkl-typography [size]="1.6" [weight]="600">{{
+            data | pluck: item.key | format: item?.format?.type:item?.format?.args
+          }}</kkl-typography>
+        </div>
+
+        <ng-container *ngIf="item.svgIcon">
+          <div class="form-icon mat-elevation-z3" fxFlex="20">
+            <kkl-icon
+              [size]="1.6"
+              color="primary"
+              [key]="item.svgIcon"
+            ></kkl-icon>
+          </div>
+        </ng-container>
+      </ng-container>
+
+      <ng-container *ngSwitchDefault>
+        <kkl-typography [size]="1.8">{{
           data | pluck: item.key | format: item?.format?.type:item?.format?.args
         }}</kkl-typography>
       </ng-container>
     </ng-container>
   </div>
-</div>
+</ng-template>
+
+<ng-template #defaultTemplate let-item>
+  <ng-container [ngSwitch]="item?.type">
+    <ng-container *ngSwitchCase="'action'">
+      <div (click)="onAction(item)" kkl-button>
+        <kkl-typography color="primary" [underline]="true">{{
+          data | pluck: item.key
+        }}</kkl-typography>
+      </div>
+    </ng-container>
+
+    <ng-container *ngSwitchCase="'status'">
+      <kkl-status-steps [status]="data | pluck: item.key"></kkl-status-steps>
+    </ng-container>
+
+    <ng-container *ngSwitchDefault>
+      <kkl-typography>{{
+        data | pluck: item.key | format: item?.format?.type:item?.format?.args
+      }}</kkl-typography>
+    </ng-container>
+  </ng-container>
+</ng-template>
