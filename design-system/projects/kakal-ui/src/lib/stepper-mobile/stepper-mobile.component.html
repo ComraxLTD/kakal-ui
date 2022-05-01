@@ -19,7 +19,7 @@
         kkl-button
         (click)="onStepSelect(i)"
         [ngClass]="{
-          selected: item.selected,
+          selected: i == start,
           button: true
         }"
       ></div>
