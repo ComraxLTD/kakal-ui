@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Observable } from 'rxjs';
 import { BreakpointService, CardLobby, RouterService } from '../../../../../kakal-ui/src/public-api';
 

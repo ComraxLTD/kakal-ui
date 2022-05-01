@@ -1,5 +1,23 @@
-<kkl-steps-layout [actions]="actions"   [steps]="firstSteps" (stepSelect)="onChangeStep($event)">
-  <router-outlet content></router-outlet>
+<!-- <kkl-stepper-layout   (stepSelect)="onChangeStep($event)">
+  <div content>
+    <router-outlet></router-outlet>
+    <ng-container *ngIf="showMiddleNext$ | async">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <button
+          class="next-middle-btn"
+          mat-fab
+          color="primary"
+          (click)="onMiddleNext()"
+        >
+          <span>
+            {{ label$ | async }}
+          </span>
+          <br />
+          <mat-icon>expand_more</mat-icon>
+        </button>
+      </div>
+    </ng-container>
+  </div>
   <div endDrawerContent>replace this content with your own feature</div>
   <kkl-navbar-bottom *ngIf="showNext$ |async as showNext"
     bottom-navbar
@@ -8,4 +26,4 @@
     (next)="onNext($event)"
   >
   </kkl-navbar-bottom>
-</kkl-steps-layout>
+</kkl-stepper-layout> -->

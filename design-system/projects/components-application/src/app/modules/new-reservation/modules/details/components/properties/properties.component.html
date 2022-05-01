@@ -1,16 +1,86 @@
 <div dir="rtl" fxLayout="column" fxLayoutGap="3rem">
   <!-- kkl-form-temp -->
-  <kkl-form
-    [controls]="questions"
-    [grid]="grid"
-  ></kkl-form>
-
+  <!-- <kkl-form-temp
+    [formGroup]="groupFlex.formGroup"
+    [questions]="groupFlex.questions"
+    [grid]="groupFlex.gridProps!"
+  ></kkl-form-temp> -->
 
   <!-- separator -->
 
-  <div kkl-underline [color]="'text'" [pattern]="'dotted'"></div>
+  <div fxLayout="row wrap" dir="rtl" fxLayoutGap="20px">
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>אפיון</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>  <p>
+      <mat-form-field appearance="outline">
+        <mat-label>תקצוב</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>  <p>
+      <mat-form-field appearance="outline">
+        <mat-label>סוג פעילות</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>  <p>
+      <mat-form-field appearance="outline">
+        <mat-label>מחלקה</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>  <p>
+      <mat-form-field appearance="outline">
+        <mat-label>מדינה</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+    <mat-checkbox class="example-margin" >חיוב לקוח</mat-checkbox>
+    <p>
+      <mat-form-field appearance="outline">
+        <mat-label>ישוב</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p><p>
+      <mat-form-field appearance="outline">
+        <mat-label>תת סעיף תקציבי הכנסות</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p><p>
+      <mat-form-field appearance="outline">
+        <mat-label>תת סעיף תקציבי הוצאות</mat-label>
+        <mat-select>
+          <mat-option value="one">First option</mat-option>
+          <mat-option value="two">Second option</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </p>
+  </div>
 
-  <!-- <kkl-display-data
+  <div kkl-underline [color]="'text'" [pattern]="'dotted'"></div>
+<!-- 
+  <kkl-display-data
     fxLayoutAlign="center"
     fxLayout="row"
     [data]="data"

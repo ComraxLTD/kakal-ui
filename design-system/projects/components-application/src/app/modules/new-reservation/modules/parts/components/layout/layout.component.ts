@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CardFilter, RouterService } from '../../../../../../../../../kakal-ui/src/public-api';
+import { RouterService } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-layout',
@@ -8,7 +8,7 @@ import { CardFilter, RouterService } from '../../../../../../../../../kakal-ui/s
 })
 export class LayoutComponent implements OnInit {
 
-  cards  :CardFilter[] = [
+  cards = [
     {
      label: 'הכל',
       value: 5,
@@ -19,9 +19,7 @@ export class LayoutComponent implements OnInit {
       label: 'פעילות',
       value: 0,
       svgIcon: 'locations',
-      path: 'activity',
-      disabled : true
-
+      path: 'activity'
     },
     {
       label: 'לינה',
@@ -87,7 +85,7 @@ export class LayoutComponent implements OnInit {
   public onCardClick(index  : number) {
     const url: string = `/reservation/parts/${this.cards[index].path}`;
     console.log(this.cards[index]);
-
+    
     this.routerService.navigate(url);
   }
 

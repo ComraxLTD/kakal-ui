@@ -17,6 +17,7 @@ import { StepperMobileComponent } from './stepper-mobile.component';
     KKLTypographyModule,
     KKLPipesModule,
     KKLButtonModule,
+    KKLTypographyModule
   ],
   declarations: [StepperMobileComponent],
   exports: [StepperMobileComponent],

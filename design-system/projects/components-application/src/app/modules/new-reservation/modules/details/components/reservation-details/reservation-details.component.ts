@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
-import {
-  FormDataSource,
-  FormService,
-  Question,
-  QuestionGroupModel,
-  RouterService,
-} from '../../../../../../../../../kakal-ui/src/public-api';
+import { FormService, Question, QuestionGroupModel } from '../../../../../../../../../kakal-ui/src/public-api';
+
 
 interface CounterType {
   key: string;
@@ -19,7 +14,6 @@ interface CounterType {
   selector: 'app-reservation-details',
   templateUrl: './reservation-details.component.html',
   styleUrls: ['./reservation-details.component.scss'],
-  providers: [FormDataSource],
 })
 export class ReservationDetailsComponent implements OnInit {
 
