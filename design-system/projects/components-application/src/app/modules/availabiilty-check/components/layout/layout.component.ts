@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointService, ButtonModel, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepsLayoutService }from '../../../../../../../kakal-ui/src/public-api';
+import { BreakpointService, ButtonModel, ControlBase, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepsLayoutService }from '../../../../../../../kakal-ui/src/public-api';
 import { map, mergeMap, Observable, of} from 'rxjs';
 
 @Component({
@@ -44,7 +44,7 @@ export class LayoutComponent implements OnInit {
     },
   ];
 
-  questions: Question[] = [
+  questions: ControlBase[] = [
     {
       key: 'select',
       controlType: 'select',
@@ -72,10 +72,10 @@ export class LayoutComponent implements OnInit {
     //decide if drawer is open or closed on init
     // this.stepperLayoutService.emitDisplayDrawer(false);
     // form group
-    this.groupFlex = this.setGroup(this.questions, {
-      cols: 2,
-      variant: 'flex',
-    });
+    // this.groupFlex = this.setGroup(this.questions, {
+    //   cols: 2,
+    //   variant: 'flex',
+    // });
   }
 
   // breakpoints
@@ -107,10 +107,10 @@ export class LayoutComponent implements OnInit {
 
   onFormChange(formEvent: FormChangeEvent) {
     console.log(formEvent);
-    this.groupFlex = this.setGroup(this.questions,{
-      cols: 2,
-      variant: 'flex',
-    });
+    // this.groupFlex = this.setGroup(this.questions,{
+    //   cols: 2,
+    //   variant: 'flex',
+    // });
   }
 
   // navigate from bottom-navbar - next
@@ -134,5 +134,17 @@ export class LayoutComponent implements OnInit {
 
   public onDrawerOpenChanged(openState: boolean) {
     console.log(openState);
+  }
+
+  onQueryChanged(event: any) {
+    console.log(event);
+  }
+
+  onSelectChanged(event: any) {
+    console.log(event);
+  }
+
+  onOpenChanged(event: any) {
+    console.log(event);
   }
 }

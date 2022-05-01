@@ -11,7 +11,7 @@ export class MarketersReportsComponent implements OnInit {
   tabs!:{value:string,label:string}[]
   quesions!:ControlBase[]
 
-  questionsTemp:Question[]=[
+  questionsTemp:ControlBase[]=[
     {
       key: 'period',
       label: 'תקופה',
@@ -90,13 +90,7 @@ export class MarketersReportsComponent implements OnInit {
     this.tabs=this.marketersReportsService.getTabs()
     
     this.quesions=this.marketersReportsService.getQuestions()
-
-
-        // form group
-        this.groupFlex = this.setGroup(this.questionsTemp, {
-          cols: 6,
-          variant: 'flex',
-        });
+     
   }
 //create form objects
 private setGroup(questions: Question[],gridProps:any) {
