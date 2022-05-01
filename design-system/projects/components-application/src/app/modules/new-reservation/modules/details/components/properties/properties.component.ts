@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
-import { FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
+import { ControlBase, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-properties',
@@ -66,7 +66,7 @@ export class PropertiesComponent implements OnInit {
 
 
 
-  questions: Question[] = [
+  questions: ControlBase[] = [
      {
        key: 'description',
        controlType: 'text',
@@ -107,13 +107,11 @@ export class PropertiesComponent implements OnInit {
       key: 'revenueBudgetSub-item',
       label: 'תת סעיף תקציבי הכנסות',
       controlType: 'text',
-      gridProps: { cols:2},
     },
     {
       key: 'expenditureBudgetSub-item',
       label: 'תת סעיף תקציבי הוצאות',
       controlType: 'text',
-      gridProps: { cols:2},
 
     }
   ];
@@ -126,10 +124,7 @@ export class PropertiesComponent implements OnInit {
 
  
   ngOnInit(): void {
-    this.groupFlex = this.setGroup(this.questions, {
-      cols: 6,
-      variant: 'flex',
-    });
+   
 
   }
 
@@ -141,5 +136,15 @@ export class PropertiesComponent implements OnInit {
     });
   }
 
+  onQueryChanged(event: any) {
+    console.log(event);
+  }
 
+  onSelectChanged(event: any) {
+    console.log(event);
+  }
+
+  onOpenChanged(event: any) {
+    console.log(event);
+  }
 }

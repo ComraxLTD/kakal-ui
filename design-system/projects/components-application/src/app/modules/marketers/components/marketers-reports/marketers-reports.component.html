@@ -29,11 +29,8 @@
 </ng-template>
 
 <ng-template #general let-tab="tab">
-  <kkl-form-temp
+  <kkl-form
     dir="rtl"
-    (formChanged)="onChangedForm($event)"
-    [formGroup]="groupFlex.formGroup"
-    [questions]="groupFlex.questions"
-    [grid]="groupFlex.gridProps!"
-  ></kkl-form-temp>
+    [controls]="questions"
+  ></kkl-form>
 </ng-template>
