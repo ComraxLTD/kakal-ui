@@ -7,7 +7,7 @@
     <kkl-form-autocomplete
       fxFlex="90"
       [key]="searchKey"
-      [asButton]="autocomplete.asButton"
+      [asButton]="autocomplete?.asButton"
       [control]="searchGroup.formGroup.controls[searchKey]"
       (queryChanged)="onSearchChanged($event)"
       (multiOptionsSelected)="onSearchChanged($event)"
