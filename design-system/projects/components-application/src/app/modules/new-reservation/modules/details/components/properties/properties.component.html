@@ -5,10 +5,11 @@
     (queryChanged)="onQueryChanged($event)"
     (selectChanged)="onSelectChanged($event)"
     (openChanged)="onOpenChanged($event)"
+    [grid]="formGrid"
   ></kkl-form> 
 
   <!-- separator -->
-
+<!-- 
   <div fxLayout="row wrap" dir="rtl" fxLayoutGap="20px">
     <p>
       <mat-form-field appearance="outline">
@@ -77,7 +78,7 @@
         </mat-select>
       </mat-form-field>
     </p>
-  </div>
+  </div> -->
 
   <div kkl-underline [color]="'text'" [pattern]="'dotted'"></div>
 <!-- 

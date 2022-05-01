@@ -42,7 +42,7 @@ export class SleepingComponent implements OnInit {
     { key: 'dates', controlType: 'dateRange', label: 'תאריכים' },
 
   ];
-
+formGrid={cols:2}
   private setGroup(questions: Question[], grid: FormGrid, key: string) {
     return this.formService.createQuestionGroup({
       questions,

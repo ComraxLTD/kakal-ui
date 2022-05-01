@@ -107,16 +107,18 @@ export class PropertiesComponent implements OnInit {
       key: 'revenueBudgetSub-item',
       label: 'תת סעיף תקציבי הכנסות',
       controlType: 'text',
+      cols:2,
     },
     {
       key: 'expenditureBudgetSub-item',
       label: 'תת סעיף תקציבי הוצאות',
+      cols:2,
       controlType: 'text',
 
     }
   ];
   groupFlex!: QuestionGroupModel;
-
+formGrid={cols:6}
 
   constructor(
     private formService: FormService,

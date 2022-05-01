@@ -9,7 +9,8 @@
             <kkl-form *ngIf="checked" dir='rtl' [controls]="questions"
             (queryChanged)="onQueryChanged($event)"
             (selectChanged)="onSelectChanged($event)"
-            (openChanged)="onOpenChanged($event)">
+            (openChanged)="onOpenChanged($event)"
+            [grid]="formGrid">
             </kkl-form>
           </div>
        <div>

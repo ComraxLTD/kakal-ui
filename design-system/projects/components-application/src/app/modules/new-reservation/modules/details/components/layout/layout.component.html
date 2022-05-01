@@ -1,23 +1,22 @@
-<!-- <kkl-accordion-steps-layout
-  [complete$]="complete$"
-  [panels]="panels"
+<kkl-steps-accordion-layout
+  [panels]="cases"
   [steps]="steps"
   [templates]="{costumerDetails, propertiesBudget, reservationDetails}"
+  buttonLabel="המשך"
 >
+  <ng-template #costumerDetails>
+    <app-costumer-details></app-costumer-details>
+  </ng-template>
 
-</kkl-accordion-steps-layout>
+  <ng-template #propertiesBudget><app-properties></app-properties></ng-template>
 
-<ng-template #costumerDetails>
-  <app-costumer-details></app-costumer-details>
-</ng-template>
+  <ng-template #reservationDetails
+    ><app-reservation-details></app-reservation-details
+  ></ng-template>
+</kkl-steps-accordion-layout>
+<!--
 
-<ng-template #propertiesBudget><app-properties></app-properties></ng-template>
-
-<ng-template #reservationDetails
-  ><app-reservation-details></app-reservation-details
-></ng-template>
-
- --><kkl-page [title]="title">
+  <kkl-page [title]="title">
   <ng-container *ngIf="!(complete$ | async) as complete" ;>
     <ng-container
       *ngTemplateOutlet="stepper; context: { $implicit: complete }"
@@ -28,9 +27,9 @@
     <ng-container
       *ngTemplateOutlet="accordion; context: { $implicit: complete }"
     ></ng-container>
-  </ng-container>
+  </ng-container> -->
 
-  <ng-template #stepper>
+<!-- <ng-template #stepper>
     <kkl-circle-group
       [steps]="steps"
       [selectedIndex]="(selectedIndex$ | async)!"
@@ -38,26 +37,26 @@
       costumerDetails, propertiesBudget, reservationDetails
     }"
     ></kkl-circle-group>
-  </ng-template>
+  </ng-template> -->
 
-  <ng-template #accordion let-complete>
+<!-- <ng-template #accordion let-complete>
     <kkl-accordion-layout
       [panels]="cases"
       [buttonLabel]="'הוסף תיק חדש'"
       [templates]="{  costumerDetails, propertiesBudget, reservationDetails}"
     ></kkl-accordion-layout>
   </ng-template>
-</kkl-page>
+</kkl-page> -->
 
 <!-- templates for layouts -->
 
-<ng-template #costumerDetails>
+<!-- <ng-template #costumerDetails>
   <app-costumer-details ></app-costumer-details>
 
-</ng-template>
+</ng-template> -->
 
 <!-- templates for layouts -->
-<ng-template #propertiesBudget>
+<!-- <ng-template #propertiesBudget>
   <app-properties></app-properties>
 
 </ng-template>
@@ -69,10 +68,10 @@
 <ng-template #costumerDetails>
   <app-costumer-details ></app-costumer-details>
 
-</ng-template>
+</ng-template> -->
 
 <!-- templates for layouts -->
-<ng-template #propertiesBudget>
+<!-- <ng-template #propertiesBudget>
   <app-properties></app-properties>
 
 </ng-template>
@@ -80,4 +79,4 @@
 <ng-template #reservationDetails>
   <app-reservation-details></app-reservation-details>
 
-</ng-template>
+</ng-template> -->

@@ -50,19 +50,23 @@ export class ReservationDetailsComponent implements OnInit {
       key: 'revenueBudgetSub-item',
       label: 'קבוצת גיל',
       controlType: 'text',
+      cols:1
     },
     {
       key: 'country',
       label: 'מגדר',
       controlType: 'text',
+      cols:1
     },
     {
       key: 'NotesToReservationCenter',
       label: 'הערות למרכז הזמנות',
       controlType: 'text',
+      cols:1
 
     },
   ];
+  formGrid={cols:5}
 
   // counters
   counters: CounterType[] = [
@@ -88,19 +92,22 @@ export class ReservationDetailsComponent implements OnInit {
       key: 'drivers',
       icon: 'tree',
       label: 'נהגים',
-      control: new FormControl()
+      control: new FormControl(),
+      
     },
     {
       key: 'babies',
       icon: 'tree',
       label: 'מתחת לגיל 2',
-      control: new FormControl()
+      control: new FormControl(),
+      
     },
     {
       key: 'total',
       icon: 'tree',
       label: 'סה"כ משתתפים',
-      control: new FormControl()
+      control: new FormControl(),
+      
     },
   ];
 
