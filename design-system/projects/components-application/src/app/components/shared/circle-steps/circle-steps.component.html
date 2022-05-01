@@ -1,24 +1,48 @@
-<div fxLayout="column">
-    <ng-container
-      *ngFor="
-        let step of steps;
-        let i = index;
-        let last = last;
-        let first = first
-      "
-    >
-      <div
-      kkl-button
-        [ngClass]="{ 'kkl-step': true, selected: step.selected }"
-        fxLayout="column"
-        fxLayoutAlign="center center"
-        (click)="onSelectStep(i)"
+<ng-container *ngIf="event">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div fxLayout="column">
+      <ng-container
+        *ngFor="
+          let step of steps;
+          let i = index;
+          let last = last;
+          let first = first
+        "
       >
-        <span [ngClass]="{ selected: step.selected }">{{ i + 1 }}</span>
-      </div>
-      <div *ngIf="!last" class="divider-wrapper">
-        <div class="divider"></div>
-      </div>
-    </ng-container>
+        <div
+          kkl-button
+          [matTooltip]="step.label"
+          [ngClass]="{
+            'kkl-step': true,
+            selected: event.selectedIndex === i,
+            previous: event.previouslySelectedIndex === i
+          }"
+          fxLayout="column"
+          fxLayoutAlign="center center"
+          (click)="onSelectStep(i)"
+        >
+          <span
+            [ngClass]="{
+              selected: event.selectedIndex === i,
+              previous: event.previouslySelectedIndex === i
+            }"
+            >{{ i + 1 }}</span
+          >
+        </div>
+        <div *ngIf="!last" class="divider-wrapper">
+          <div
+            [ngClass]="{
+              divider: true,
+              previous: event.previouslySelectedIndex === i
+            }"
+          ></div>
+        </div>
+      </ng-container>
+    </div>
+    <div fxFlexFill>
+      <ng-container
+        *ngTemplateOutlet="templates[steps[event.selectedIndex].path]"
+      ></ng-container>
+    </div>
   </div>
-  
+</ng-container>
