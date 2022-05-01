@@ -1,51 +1,45 @@
 import { Injectable } from '@angular/core';
-import { CardStep } from '../../cards/card-step/card-step.model';
-import { StepsSelectionEvent } from '../../stepper/stepper.component';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { ButtonModel } from '../../button/models/button.types';
+import { Subject } from 'rxjs';
 
+interface buttAction {
+  action: 'add' | 'remove' | 'disable' | 'removeAll' | 'enable';
+  key?: string;
+  butt?: ButtonModel[];
+}
 @Injectable({
   providedIn: 'root',
 })
 export class StepsLayoutService {
-  private steps$: BehaviorSubject<CardStep[]>;
-  private displayDrawer$: Subject<boolean>;
-  private stepperSelectEvent$: BehaviorSubject<StepsSelectionEvent>;
+  private buttonAction$: Subject<buttAction> = new Subject();
 
-  constructor() {
-    this.steps$ = new BehaviorSubject<CardStep[]>([]);
-    this.displayDrawer$ = new Subject<boolean>();
-    this.stepperSelectEvent$ = new BehaviorSubject<StepsSelectionEvent>(null);
+  private buttonClicked$: Subject<ButtonModel> = new Subject();
+
+  constructor() {}
+
+  getButtonAction(): Subject<buttAction> {
+    return this.buttonAction$;
+  }
+  addButton(val: ButtonModel[]) {
+    this.buttonAction$.next({ action: 'add', butt: val });
+  }
+  removeAllButtons() {
+    this.buttonAction$.next({ action: 'removeAll' });
+  }
+  removeButton(val: string) {
+    this.buttonAction$.next({ action: 'remove', key: val });
+  }
+  disableButton(val: string) {
+    this.buttonAction$.next({ action: 'disable', key: val });
+  }
+  enableButton(val: string) {
+    this.buttonAction$.next({ action: 'enable', key: val });
   }
 
-  getSteps(): CardStep[] {
-    return this.steps$.getValue();
+  getButtonClicked(): Subject<ButtonModel> {
+    return this.buttonClicked$;
   }
-
-  emitSteps(steps: CardStep[]): void {
-    this.steps$.next(steps);
-  }
-
-  listenToSteps(): Observable<CardStep[]> {
-    return this.steps$.asObservable();
-  }
-
-  emitDisplayDrawer(value: boolean): void {
-    this.displayDrawer$.next(value);
-  }
-
-  listenToDisplayDrawer(): Observable<boolean> {
-    return this.displayDrawer$.asObservable();
-  }
-
-  getStepperSelectEvent(): StepsSelectionEvent {
-    return this.stepperSelectEvent$.getValue();
-  }
-
-  listenToStepperSelect(): Observable<StepsSelectionEvent> {
-    return this.stepperSelectEvent$.asObservable();
-  }
-
-  emitStepperSelectEvent(value: StepsSelectionEvent): void {
-    this.stepperSelectEvent$.next(value);
+  setButtonClicked(butt: ButtonModel) {
+    this.buttonClicked$.next(butt);
   }
 }

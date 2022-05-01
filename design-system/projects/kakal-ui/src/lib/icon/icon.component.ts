@@ -26,7 +26,9 @@ export class IconComponent implements OnInit {
   }
   set key(value: string) {
     this._key = value;
-    this.IconService.setIcon(this._key);
+    if(value) {
+      this.IconService.setIcon(this._key);
+    }
   }
 
   private _color: string = 'default';
@@ -61,11 +63,13 @@ export class IconComponent implements OnInit {
   }
 
   private setIcon() {
-    const isSvg = this.IconService.setIcon(this.key);
-    if (this.type) {
-      this.type = this.type;
-    } else {
-      this.type = isSvg ? 'svg' : 'mat';
+    if(this._key) {
+      const isSvg = this.IconService.setIcon(this.key);
+      if (this.type) {
+        this.type = this.type;
+      } else {
+        this.type = isSvg ? 'svg' : 'mat';
+      }
     }
   }
 

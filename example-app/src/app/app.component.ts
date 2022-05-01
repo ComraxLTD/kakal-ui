@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormChangeEvent, QuestionAutocompleteModel } from '@ComraxLTD/kakal-ui';
+import { FormChangeEvent, QuestionAutocompleteModel } from '../../../../../../../../../kakal-ui/src/public-api';
 import { FormControl } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { FormDataSource } from '@ComraxLTD/kakal-ui';
+import { FormDataSource } from '../../../../../../../../../kakal-ui/src/public-api';
 import { FormService } from '@ComraxLTD/kakal-ui/lib/form/services/form.service';
 import { mapTo } from 'rxjs';
 import { SelectOption } from '@ComraxLTD/kakal-ui/lib/form/models/question-select.model';

@@ -1,4 +1,4 @@
-import { Palette } from "../../public-api";
+import { Palette } from '../../styles/theme';
 
 export type CardVariant = 'circle' | 'square';
 

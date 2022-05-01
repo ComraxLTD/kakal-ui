@@ -1,4 +1,4 @@
-<div (click)="$event.stopPropagation()">
+<div (click)="$event.stopPropagation()" style="width: 200px;">
       <ng-container [ngSwitch]="question?.controlType">
         <ng-container *ngSwitchCase="'select'">
           <kkl-select
@@ -89,10 +89,20 @@
           ></kkl-radio-group>
         </ng-container>
         <ng-container *ngSwitchCase="'toggle'">
-          <mat-slide-toggle [formControl]="controlContainer.control.controls[question.key]" (change)="onSelectChanged($event, question)">{{question.label}}</mat-slide-toggle>
+          <kkl-slide-toggle
+            [control]="formGroup.controls[question.key]"
+            [label]="question.label"
+            [key]="question.key"
+            (selectChanged)="onSelectChanged($event, question)"
+          ></kkl-slide-toggle>
         </ng-container>
         <ng-container *ngSwitchCase="'checkbox'">
-          <mat-checkbox [formControl]="controlContainer.control.controls[question.key]" (change)="onSelectChanged($event, question)">{{question.label}}</mat-checkbox>
+          <kkl-checkbox
+            [control]="formGroup.controls[question.key]"
+            [label]="question.label"
+            [key]="question.key"
+            (selectChanged)="onSelectChanged($event, question)"
+          ></kkl-checkbox>
         </ng-container>
         <ng-container *ngSwitchCase="'currency'">
           <kkl-currency

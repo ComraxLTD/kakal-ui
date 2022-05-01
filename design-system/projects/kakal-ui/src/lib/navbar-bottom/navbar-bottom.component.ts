@@ -1,22 +1,9 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Output,
-  EventEmitter,
-  TemplateRef,
-  Inject,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
-import { CardStep } from '../cards/card-step/card-step.model';
-import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
-import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { BehaviorSubject, combineLatest, iif, merge, Observable, of } from 'rxjs';
-import { map, pluck, switchMap } from 'rxjs/operators';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
+import { BehaviorSubject, Observable, of, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -24,20 +11,18 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
-
-  @Input() nextLabel: string;
+  destroySubject$: Subject<void> = new Subject();
 
   showNext$: Observable<boolean>;
   showSave$: Observable<boolean>;
   showBack$: Observable<boolean>;
-  showNextMiddle$: Observable<{show: boolean, next: boolean}>;
+  showNextMiddle$: Observable<{ show: boolean; next: boolean }>;
 
   disableNext$: Observable<boolean>;
 
   autoBack: boolean = true;
 
   formGroup: FormGroup = new FormGroup({});
-
 
   bottomIcon: string = 'bottom_tree_';
 
@@ -61,31 +46,31 @@ export class NavbarBottomComponent implements OnInit {
     this.showNextMiddle$ = this.navbarBottomService.getShowNextMiddle();
     this.disableNext$ = this.navbarBottomService.getDisableNext();
 
-    this.formGroup = this.navbarBottomService.getFormGroup();
-
-    // this.navbarBottomService.getFormGroup().subscribe(b => {
-    //   if(b) {
-    //     this.formGroup = b;
-    //   } else {
-    //     this.formGroup = new FormGroup({});
-    //   }
-    // });
-
-    this.navbarBottomService.getAutoBack().subscribe(a =>{
-      this.autoBack = a;
-    });
+    this.navbarBottomService
+      .getFormGroup()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe((b) => {
+        if (b) {
+          this.formGroup = b;
+        } else {
+          this.formGroup = new FormGroup({});
+        }
+      });
+    this.navbarBottomService
+      .getAutoBack()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe((a) => {
+        this.autoBack = a;
+      });
   }
 
   private setBottomIcon() {
     return this.bottomIcon + this.rootPrefix;
   }
 
-
-
   onSave(): void {
     this.navbarBottomService.setSave();
   }
-
 
   // Event emitter section
   onPrevious(): void {
@@ -102,4 +87,8 @@ export class NavbarBottomComponent implements OnInit {
     this.navbarBottomService.setNextMiddle();
   }
 
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+  }
 }

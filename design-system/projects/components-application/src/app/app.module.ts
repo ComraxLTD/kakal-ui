@@ -1,63 +1,27 @@
 import { NgModule } from '@angular/core';
-import {
-  BreakpointService,
-  KakalUiModule,
-  KklFormCalendarModule,
-  KKLStepperModule,
-  ROOT_PREFIX,
-  RouterService,
-  StepsLayoutService,
-} from '../../../kakal-ui/src/public-api';
-
+import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
-import { KKLFormDateModule } from '../../../kakal-ui/src/lib/form/form-date/form-date.module';
-import { MaterialModule } from '../../../kakal-ui/src/lib/angular-material/material.module';
-import { FlexLayoutModule } from '@angular/flex-layout';
-import { TableComponent } from './components/table/table.component';
-import { DetailsComponent } from './components/details/details.component';
-import { FormFilterSearchComponent } from './components/form-filter-search/form-filter-search.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NewOrderLayoutComponent } from './components/new-order-layout/new-order-layout.component';
-import { OrderDetailsBidComponent } from './components/order-details-bid/order-details-bid.component';
-import { CommonModule } from '@angular/common';
-import { FormFlexComponent } from './components/form-flex/form.component';
-import { DialogExampleComponent } from './components/dialog-example/dialog-example.component';
-import { MatDialogModule } from '@angular/material/dialog';
+import { LobbyComponent } from './components/lobby/lobby.component';
+import { CoreModule } from './modules/core/core.module';
+import { HttpClientModule } from '@angular/common/http';
+import { ROOT_PREFIX } from '../../../kakal-ui/src/public-api';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableComponent,
-    DetailsComponent,
-    OrderDetailsBidComponent,
-    NewOrderLayoutComponent,
-    FormFilterSearchComponent,
-    FormFlexComponent,
-    DialogExampleComponent,
+    LobbyComponent,
+
   ],
   imports: [
-    CommonModule,
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    FlexLayoutModule,
-    MaterialModule,
-    KakalUiModule,
-    FormsModule,
-    ReactiveFormsModule,
-    KKLFormDateModule,
-    KklFormCalendarModule,
-  MatDialogModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    CoreModule
   ],
-  providers: [
-    StepsLayoutService,
-    BreakpointService,
-    RouterService,
-    { provide: ROOT_PREFIX, useValue: 'lands' },
-  ],
-  bootstrap: [AppComponent],
+  providers: [{ provide: ROOT_PREFIX, useValue: 'tac' }],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { startWith, distinctUntilChanged, debounceTime } from 'rxjs';
+import { startWith, distinctUntilChanged, debounceTime, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { Appearance } from '../models/control.types';
 import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
@@ -12,6 +12,7 @@ import { Palette } from '../../../styles/theme';
   styleUrls: ['./mei-range.component.scss']
 })
 export class MeiRangeComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
 
   @Input() groupControl!: FormGroup;
   @Input() key: string;
@@ -36,6 +37,7 @@ export class MeiRangeComponent implements OnInit {
       startWith(''),
       distinctUntilChanged(),
       debounceTime(this.debounce? this.debounce : 300),
+      takeUntil(this.destroySubject$)
     ).subscribe(a => this.onValueChanged());
   }
 
@@ -76,5 +78,9 @@ export class MeiRangeComponent implements OnInit {
     });
   }
 
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+  }
 
 }

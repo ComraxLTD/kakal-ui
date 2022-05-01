@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { GridProps } from '../../../mei-form/models/control.types';
 import { KklFormChangeEvent } from '../../../mei-form/models/kkl-form-events';
 import { OptionsModel } from '../../../mei-form/models/options.model';
-import { RowActionEvent, RowActionModel } from '../../models/table-actions.model';
+import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model';
 import { TableBase } from '../../models/table.model';
 import { LocalTableComponent } from './local-table.component';
 
@@ -15,7 +15,7 @@ import { LocalTableComponent } from './local-table.component';
 export class LocalAdvancedSearchComponent implements OnInit {
   @ViewChild(LocalTableComponent) localTable: LocalTableComponent;
 
-
+  typeLocal: boolean = true;
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() selectChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -66,8 +66,8 @@ export class LocalAdvancedSearchComponent implements OnInit {
 
   @Output() actionClicked = new EventEmitter<RowActionEvent>();
   @Output() deleteRow = new EventEmitter<any>();
-  @Output() editRow = new EventEmitter<any>();
-  @Output() expandRow = new EventEmitter<any>();
+  @Output() saveRow = new EventEmitter<any>();
+  @Output() expandRow = new EventEmitter<RowExpandEvent>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
   @Input() colsTemplate: any;
@@ -100,8 +100,8 @@ export class LocalAdvancedSearchComponent implements OnInit {
     this.submitEvent.emit(event);
   }
 
-  onEditRow(obj) {
-    this.editRow.emit(obj);
+  onSaveRow(obj) {
+    this.saveRow.emit(obj);
   }
   onDeleteRow(obj) {
     this.deleteRow.emit(obj);

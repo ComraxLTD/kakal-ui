@@ -6,7 +6,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { CardStep } from '../../cards/card-step/card-step.model';
+import { CardStep } from '../../cards/card-step/card-step.component';
 
 export interface StepsSelectionEvent {
   /** Index of the step selected. */

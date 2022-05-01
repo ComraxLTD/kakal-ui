@@ -10,7 +10,7 @@ import { Step } from '../../vertical-steps/step/step.model';
 import { Panel } from '../accordion-layout/accordion-types';
 import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 import { StepsAccordionLayoutService } from './steps-accordion-layout.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { NavbarBottomService } from '../../navbar-bottom/navbar-bottom.service';
 import { RouterService } from '../../../services/route.service';
 
@@ -25,6 +25,8 @@ export interface SelectionChangedEvent {
   styleUrls: ['./steps-accordion.component.scss'],
 })
 export class StepsAccordionComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
+
   // ** Panels instance array for accordion UI **
   @Input() panels: Panel[];
 
@@ -64,8 +66,7 @@ export class StepsAccordionComponent implements OnInit {
     this.navbarBottomService.setShowNextMiddle({show: true, next: true});
     this.navbarBottomService.setAutoBack(false);
     this.navbarBottomService.setDisableNext(true);
-    
-    this.navbarBottomService.getBack().subscribe(a => {
+    this.navbarBottomService.getBack().pipe(takeUntil(this.destroySubject$)).subscribe(a => {
       if(this.completed) {
         this.completed = false;
         this.selectedIndex = this.steps.length-1;
@@ -82,8 +83,7 @@ export class StepsAccordionComponent implements OnInit {
         }
       }
     });
-
-    this.navbarBottomService.getNextMiddle().subscribe(a => {
+    this.navbarBottomService.getNextMiddle().pipe(takeUntil(this.destroySubject$)).subscribe(a => {
       if(this.currentStep?.selectedIndex === this.steps.length-1) {
         this.completed = true;
         this.navbarBottomService.setDisableNext(false);
@@ -119,6 +119,8 @@ export class StepsAccordionComponent implements OnInit {
     this.navbarBottomService.setAutoBack(true);
     this.navbarBottomService.setFormGroup(null);
     this.navbarBottomService.setShowNextMiddle({show: false, next: true});
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

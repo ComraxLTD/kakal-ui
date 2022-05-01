@@ -10,12 +10,14 @@ import {
 } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatButton } from '@angular/material/button';
+import { Subscription } from 'rxjs';
 
 @Directive({
   selector: '[kklNewPagination]'
 })
 
 export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
+  private subscription: Subscription;
   private currentPage: number;
   private pageGapTxt: string[];
   private rangeStart: number;
@@ -43,7 +45,7 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       return ''
     };
     // Subscribe to rerender buttons when next page and last page button is used
-    this.matPag.page.subscribe((paginator: PageEvent) => {
+    this.subscription = this.matPag.page.subscribe((paginator: PageEvent) => {
       this.currentPage = paginator.pageIndex;
       this.matPag.pageIndex = paginator.pageIndex;
       this.initPageRange();
@@ -271,5 +273,9 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
     this.rangeStart = 0;
     this.rangeEnd = this.showTotalPages - 1;
     this.initPageRange();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

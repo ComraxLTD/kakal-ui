@@ -1,33 +1,22 @@
-<!-- <mat-card
+<button
   [class.kkl-card-filter]="true"
-  kkl-button
+  mat-stroked-button
+  [class.mat-raised-button]="card.disabled"
+  [disabled]="card.disabled"
+  (click)="onCardClick()"
+  [ngClass]="{ chosen }"
+  color="primary"
+  [disableRipple]="true"
   fxLayout="column"
   fxLayoutAlign="center center"
-  fxLayoutGap="1rem"
-  (click)="onCardClick()"
-  [ngClass]="{ chosen: true }"
 >
-  <mat-card-title>
-    <kkl-typography [weight]="600">{{ card.label }}</kkl-typography>
-  </mat-card-title>
-  <mat-card-content>
-    <kkl-typography [weight]="600" [size]="1.2">{{
-      card.value
-    }}</kkl-typography>
-  </mat-card-content>
-  <button class="kkl-card-filter-svg" mat-mini-fab>
-    <kkl-icon [key]="card.svgIcon"></kkl-icon>
-  </button>
-</mat-card> -->
-
-<button [class.kkl-card-filter]="true" [class.mat-stroked-button]="!disabled" [class.mat-raised-button]="!disabled"
-  [disabled]="disabled" (click)="onCardClick()" [ngClass]="{ chosen: chosen }" color="primary" [disableRipple]="true"
-  fxLayout="column" fxLayoutAlign="center center">
   <button class="kkl-card-filter-svg" mat-mini-fab>
     <kkl-icon [key]="card.svgIcon"></kkl-icon>
   </button>
   <div fxLayout="column">
     <kkl-typography [weight]="600">{{ card.label }}</kkl-typography>
-    <kkl-typography [weight]="600" [size]="1.2">{{ card.value }}</kkl-typography>
+    <kkl-typography [weight]="600" [size]="1.2">{{
+      card.value
+    }}</kkl-typography>
   </div>
 </button>

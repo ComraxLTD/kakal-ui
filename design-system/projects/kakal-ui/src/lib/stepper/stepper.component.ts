@@ -1,14 +1,9 @@
 import {
-  Component,
-  Input,
-  Output,
-  EventEmitter,
-  ElementRef,
+  Component, ElementRef, EventEmitter, Input,
+  Output
 } from '@angular/core';
-import { BreakpointService } from '../../services/breakpoint.service';
-import { CardStep } from '../cards/card-step/card-step.model';
-import { CardStatus } from '../cards/card-status/card-status.model';
-import { Observable } from 'rxjs';
+import { CardStatus } from '../cards/card-status/card-status.component';
+import { CardStep } from '../cards/card-step/card-step.component';
 import { CardOptions } from '../cards/card.model';
 
 export interface StepsSelectionEvent {
@@ -47,14 +42,11 @@ export class StepperComponent {
   @Input() stepRef: ElementRef;
   @Input() options: CardOptions;
 
-  mobile$: Observable<boolean>;
-
   @Output() selectStep = new EventEmitter<StepsSelectionEvent>();
 
-  constructor(private breakpointService: BreakpointService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.mobile$ = this.breakpointService.isMobile();
   }
 
   onStepSelect(

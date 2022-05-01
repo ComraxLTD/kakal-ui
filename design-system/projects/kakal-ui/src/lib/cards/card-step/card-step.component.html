@@ -21,7 +21,11 @@
       appVariant
       [type]="options.type"
       [variant]="options.variant"
-      [ngClass]="{ 'mat-elevation-z0': true, selected: step.selected }"
+      [ngClass]="{
+        'mat-elevation-z0': true,
+        selected: step.selected,
+        disabled: step.disabled
+      }"
     >
       <mat-card-content fxFill fxLayout="column" fxLayoutAlign="center center">
         <mat-icon

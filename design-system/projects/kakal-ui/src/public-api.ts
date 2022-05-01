@@ -129,7 +129,10 @@ export * from './lib/mei-form/mei-datepicker/mei-datepicker.component';
 export * from './lib/mei-form/mei-currency/mei-currency.component';
 export * from './lib/mei-form/mei-autocomplete/mei-autocomplete.component';
 export * from './lib/mei-form/mei-advanced-search/mei-advanced-search.component';
+export * from './lib/mei-form/mei-checkbox/mei-checkbox.component';
+export * from './lib/mei-form/mei-toggle/mei-toggle.component';
 export * from './lib/kkl-table/components/local-table/local-advanced-search.component';
+
 
 
 
@@ -158,6 +161,7 @@ export * from './lib/kkl-table/models/table.types';
 export * from './lib/kkl-table/directives/pagination.directive';
 export * from './lib/kkl-table/components/local-table/local-table.component';
 export * from './lib/kkl-table/components/event-table/event-table.component';
+export * from './lib/kkl-table/components/event-table/event-advanced-search.componet';
 export * from './lib/kkl-table/components/table-cell/table-cell.component';
 export * from './lib/kkl-table/components/table-form/table-form.component';
 export * from './lib/kkl-table/components/mei-filters/mei-filters.component';
@@ -295,23 +299,18 @@ export * from './lib/cards/card-document/card-document.module';
 export * from './lib/cards/card-lobby/card-lobby.module';
 export * from './lib/cards/card-lobby/card-lobby.component';
 
-export * from './lib/cards/card-info/card-info.module';
 export * from './lib/cards/card-info/card-info.component';
-export * from './lib/cards/card-info/card-info.model';
+export * from './lib/cards/card-info/card-info.module';
 
-export * from './lib/cards/card-status/card-status.component';
-export * from './lib/cards/card-status/card-status.model';
 export * from './lib/cards/card-status/card-status.module';
+export * from './lib/cards/card-status/card-status.component';
 
-export * from './lib/cards/card-step/card-step.component';
 export * from './lib/cards/card-step/card-step.module';
-export * from './lib/cards/card-step/card-step.model';
+export * from './lib/cards/card-step/card-step.component';
 
 export * from './lib/cards/card-user/card-user.module';
 export * from './lib/cards/card-user/card-user.component';
 
-export * from './lib/cards/card-wizard/card-wizard.component';
-export * from './lib/cards/card-wizard/card-wizard.module';
 
 // card-filter
 export * from './lib/cards/card-filter/card-filter.module';
@@ -346,6 +345,7 @@ export * from './lib/layouts/steps-layout/steps-layout.service';
 // layout
 export * from './lib/layouts/layout/layout.component';
 export * from './lib/layouts/layout/layout.module';
+export * from './lib/layouts/layout/layout.service';
 
 // accordion layout
 export * from './lib/layouts/accordion-layout/accordion-layout.module';
@@ -390,10 +390,6 @@ export * from './lib/chips/chip/chip.component';
 export * from './lib/chips/chip-list/chip-list.component';
 export * from './lib/chips/chips.module';
 
-// display-data
-export * from './lib/display-data/display-data.component';
-export * from './lib/display-data/display-data.module';
-
 // drawer
 export * from './lib/drawers/drawer.module';
 export * from './lib/drawers/drawer-document/drawer-document.module';
@@ -436,6 +432,9 @@ export * from './lib/full-calendar/full-calendar.component';
 export * from './lib/full-calendar/dynamic/dynamic.component';
 export * from './lib/full-calendar/calendar-card/calendar-card.component';
 
+export * from './lib/display-data/display-data.module'
+export * from './lib/display-data/display-data.component'
+
 // grids
 
 export * from './lib/grids/document-grid/document-grid.module'
@@ -453,3 +452,9 @@ export * from './lib/groups/display-group/display-group.component'
 
 export * from './lib/groups/circle-group/circle-group.module'
 export * from './lib/groups/circle-group/circle-group.component'
+// export * from './lib/grids/display-grid/display-grid.module';
+// export * from './lib/grids/display-grid/display-grid.component';
+
+// groups
+export * from './lib/groups/display-group/display-group.module'
+export * from './lib/groups/display-group/display-group.component';

@@ -12,9 +12,9 @@
     &.selected {
       background: main.color(primary) !important;
     }
+
     &.disabled {
-      // cursor: pointer !important;
-      color: rgb(235, 235, 228);
+      color: main.color(disableButton);
     }
   }
 
@@ -35,7 +35,7 @@
       color: main.color(default);
     }
     &.disabled {
-      color: rgb(235, 235, 228);
+      color: main.color(disableButton)
     }
   }
 }

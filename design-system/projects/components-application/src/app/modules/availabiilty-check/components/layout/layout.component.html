@@ -1,0 +1,24 @@
+<kkl-steps-layout
+  dir="rtl"
+  [actions]="[]"
+  [steps]="[]"
+  (openChanged)="onDrawerOpenChanged($event)"
+>
+  <div content dir="rtl" fxLayout="column" fxLayoutGap="3rem">
+    <kkl-display-group
+      fxFlex="30"
+      [displayData]="displayData"
+      [data]="data"
+    ></kkl-display-group>
+
+    <kkl-display-group
+      variant="form"
+      [displayData]="displayData"
+      [data]="data"
+    ></kkl-display-group>
+  </div>
+</kkl-steps-layout>
+
+<ng-template #caseTemplate>
+  <div>working</div>
+</ng-template>

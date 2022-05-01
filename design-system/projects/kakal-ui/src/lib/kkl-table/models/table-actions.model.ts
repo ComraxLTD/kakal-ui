@@ -8,3 +8,8 @@ export interface RowActionEvent {
   row: any;
   key: string;
 }
+
+export interface RowExpandEvent {
+  row: any;
+  key: string;
+}

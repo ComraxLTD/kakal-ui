@@ -1,0 +1,39 @@
+  <div fxLayout="row" fxLayoutAlign="center">
+    <div fxFlex="90">
+      <app-horizontal-tabs
+        [tabHeadlines]="tabs"
+        headline="דוחות"
+        [buttonTemplate]="buttonTemplate"
+        [tabTemplates]="{ general }"
+      ></app-horizontal-tabs>
+    </div>
+</div>
+
+<ng-template #buttonTemplate>
+  <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end" dir="rtl">
+    <button mat-raised-button>
+      <kkl-typography color="primary">נקה</kkl-typography>
+    </button>
+    <button
+      class="container-button"
+      kkl-action-button
+      mat-raised-button
+      color="primary"
+    >
+      <div fxLayout="row" fxLayoutGap="0.5rem">
+        <kkl-icon [size]="3" [color]="'paper'" key="chevron_left"></kkl-icon>
+        <kkl-typography [size]="1.75" [color]="'paper'">המשך</kkl-typography>
+      </div>
+    </button>
+  </div>
+</ng-template>
+
+<ng-template #general let-tab="tab">
+  <kkl-form-temp
+    dir="rtl"
+    (formChanged)="onChangedForm($event)"
+    [formGroup]="groupFlex.formGroup"
+    [questions]="groupFlex.questions"
+    [grid]="groupFlex.gridProps!"
+  ></kkl-form-temp>
+</ng-template>

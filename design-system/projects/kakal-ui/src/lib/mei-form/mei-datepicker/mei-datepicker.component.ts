@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, startWith, Subject } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, Observable, startWith, Subject, takeUntil } from 'rxjs';
 import { MessageService } from '../mei-services/message.service';
 import { KklFormActions, KklFormChangeEvent } from '../models/kkl-form-events';
 import { Appearance } from '../models/control.types';
@@ -11,6 +11,7 @@ import { Appearance } from '../models/control.types';
   styleUrls: ['./mei-datepicker.component.scss']
 })
 export class MeiDatepickerComponent implements OnInit {
+  destroySubject$: Subject<void> = new Subject();
 
   @Input() control!: FormControl;
   @Input() key: string;
@@ -34,11 +35,12 @@ export class MeiDatepickerComponent implements OnInit {
     this.control.valueChanges.pipe(
       startWith(''),
       distinctUntilChanged(),
+      takeUntil(this.destroySubject$)
     ).subscribe(a => this.onValueChanged());
   }
 
   private setErrorMessage() {
-    const error = this.messageService.getErrorMessage(this.control, this.placeHolder);
+    const error = this.messageService.getErrorMessage(this.control);
 
     this.error$.next(error);
     if (error && this.control.touched) {
@@ -64,6 +66,11 @@ export class MeiDatepickerComponent implements OnInit {
       value: this.control.value,
       action: KklFormActions.FOCUS_IN,
     });
+  }
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
   }
 
 }

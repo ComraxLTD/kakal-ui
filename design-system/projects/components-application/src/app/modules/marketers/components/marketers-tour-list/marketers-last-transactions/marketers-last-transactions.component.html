@@ -1,0 +1,19 @@
+<div class="marketers-last-transactions">
+  <mat-list role="list" dir="rtl">
+    <mat-list-item class="list-headline"
+      ><kkl-typography>תנועות</kkl-typography></mat-list-item
+    >
+    <ng-container *ngFor="let transaction of transactions">
+      <mat-list-item role="listitem" kkl-underline color="text"
+        ><kkl-typography
+          >{{ transaction.date | date }} {{ transaction.label }}</kkl-typography
+        ></mat-list-item
+      >
+    </ng-container>
+  </mat-list>
+  <div fxLayoutAlign="end">
+    <button kkl-border [thick]="2" mat-stroked-button color="primary">
+      צפה בכל התנועות
+    </button>
+  </div>
+</div>

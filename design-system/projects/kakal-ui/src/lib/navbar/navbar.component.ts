@@ -6,12 +6,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
+import { CardStep } from '../cards/card-step/card-step.component';
+import { CardStatus } from '../cards/card-status/card-status.component';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { CardStatus } from '../cards/card-status/card-status.model';
-import { Observable } from 'rxjs';
 import { IconModel } from '../icon/icon.component';
 import { PageHeadline } from '../page-headline/page-headline.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar',
@@ -26,6 +27,7 @@ export class NavbarComponent implements OnInit {
   @Input() pageHeadline$: Observable<PageHeadline>;
 
   openIcon: string = 'tree_gradient_';
+  status$: Observable<CardStep[]>;
   mobile$: Observable<boolean>;
 
   openLabel: string = 'תפריט';
