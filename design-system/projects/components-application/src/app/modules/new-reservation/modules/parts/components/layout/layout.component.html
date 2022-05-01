@@ -1,18 +1,12 @@
-<div
-  fxLayout="column"
-  class="container"
-  fxLayoutAlign="center center"
-  fxLayoutGap="3rem"
->
-  <div fxLayout="row" fxLayoutGap="1rem" dir="rtl">
-    <div *ngFor="let card of cards; let i = index">
-      <kkl-card-filter
-        (emitCard)="onCardClick(i)"
-        [card]="card"
-      ></kkl-card-filter>
+<div fxLayout="column" class="container" fxLayoutAlign="center center" fxLayoutGap="3rem">
+
+  <div  fxLayout="row" fxLayout="space-between center" dir="rtl">
+
+    <div *ngFor="let card of cards;let i = index" >
+      <kkl-card-filter (emitCard)="onCardClick(i)" [card]="card"></kkl-card-filter>
     </div>
   </div>
-  <div fxFill>
-    <router-outlet></router-outlet>
-  </div>
+<div fxFill>
+  <router-outlet></router-outlet>
+</div>
 </div>

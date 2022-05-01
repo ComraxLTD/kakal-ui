@@ -6,8 +6,12 @@
             <mat-checkbox color="primary" [(ngModel)]="checked">
               <kkl-typography color="primary" kkl-underline [weight]="600">בדיקת זמינות</kkl-typography>
             </mat-checkbox>
-            <kkl-form-temp *ngIf="checked" dir='rtl' [formGroup]="form.formGroup" [questions]="form.questions" [grid]="form.gridProps!">
-            </kkl-form-temp>
+            <kkl-form *ngIf="checked" dir='rtl' [controls]="questions"
+            (queryChanged)="onQueryChanged($event)"
+            (selectChanged)="onSelectChanged($event)"
+            (openChanged)="onOpenChanged($event)"
+            [grid]="formGrid">
+            </kkl-form>
           </div>
        <div>
         <button kkl-action-button kkl-border [thick]="2" mat-stroked-button routerLink="/committees/new-committee">

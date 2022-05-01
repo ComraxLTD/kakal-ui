@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../../../../../kakal-ui/src/public-api';
-
 import { MarketersTourListService } from './marketers-tour-list.service';
 
 @Component({

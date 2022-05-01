@@ -1,12 +1,12 @@
   <div fxLayout="row" fxLayoutAlign="center">
     <div fxFlex="90">
-      <app-horizontal-tabs
+      <!-- <app-horizontal-tabs
         [tabHeadlines]="tabs"
         headline="דוחות"
         [buttonTemplate]="buttonTemplate"
         [tabTemplates]="{ general }"
       ></app-horizontal-tabs>
-    </div>
+    </div> -->
 </div>
 
 <ng-template #buttonTemplate>
@@ -29,11 +29,8 @@
 </ng-template>
 
 <ng-template #general let-tab="tab">
-  <kkl-form-temp
+  <kkl-form
     dir="rtl"
-    (formChanged)="onChangedForm($event)"
-    [formGroup]="groupFlex.formGroup"
-    [questions]="groupFlex.questions"
-    [grid]="groupFlex.gridProps!"
-  ></kkl-form-temp>
+    [controls]="questions"
+  ></kkl-form>
 </ng-template>

@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
-import {
-  FormDataSource,
-  FormService,
-  Question,
-  QuestionGroupModel,
-  RouterService,
-} from '../../../../../../../../../kakal-ui/src/public-api';
+import { ControlBase, FormService, Question, QuestionGroupModel } from '../../../../../../../../../kakal-ui/src/public-api';
+
 
 interface CounterType {
   key: string;
@@ -19,14 +14,13 @@ interface CounterType {
   selector: 'app-reservation-details',
   templateUrl: './reservation-details.component.html',
   styleUrls: ['./reservation-details.component.scss'],
-  providers: [FormDataSource],
 })
 export class ReservationDetailsComponent implements OnInit {
 
   groupFlex!: QuestionGroupModel;
 
   // form questions
-  questions: Question[] = [
+  questions: ControlBase[] = [
     {
       key: 'description',
       controlType: 'text',
@@ -56,22 +50,23 @@ export class ReservationDetailsComponent implements OnInit {
       key: 'revenueBudgetSub-item',
       label: 'קבוצת גיל',
       controlType: 'text',
-      gridProps: { cols:1},
+      cols:1
     },
     {
       key: 'country',
       label: 'מגדר',
       controlType: 'text',
-      gridProps: { cols:1 },
+      cols:1
     },
     {
       key: 'NotesToReservationCenter',
       label: 'הערות למרכז הזמנות',
       controlType: 'text',
-      gridProps: { cols: 3 },
+      cols:1
 
     },
   ];
+  formGrid={cols:5}
 
   // counters
   counters: CounterType[] = [
@@ -97,19 +92,22 @@ export class ReservationDetailsComponent implements OnInit {
       key: 'drivers',
       icon: 'tree',
       label: 'נהגים',
-      control: new FormControl()
+      control: new FormControl(),
+      
     },
     {
       key: 'babies',
       icon: 'tree',
       label: 'מתחת לגיל 2',
-      control: new FormControl()
+      control: new FormControl(),
+      
     },
     {
       key: 'total',
       icon: 'tree',
       label: 'סה"כ משתתפים',
-      control: new FormControl()
+      control: new FormControl(),
+      
     },
   ];
 
@@ -117,17 +115,18 @@ export class ReservationDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.groupFlex = this.setGroup(this.questions, {
-      cols: 5,
-      variant: 'flex',
-    });
+  
+  }
+  onQueryChanged(event: any) {
+    console.log(event);
   }
 
-  private setGroup(questions: Question[], grid: FormGrid) {
-    return this.formService.createQuestionGroup({
-      questions,
-      key: 'test',
-      options: { gridProps: grid },
-    });
+  onSelectChanged(event: any) {
+    console.log(event);
   }
+
+  onOpenChanged(event: any) {
+    console.log(event);
+  }
+
 }

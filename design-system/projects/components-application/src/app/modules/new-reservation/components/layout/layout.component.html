@@ -1,11 +1,12 @@
-<kkl-steps-layout [actions]="actions"   [steps]="firstSteps" (stepSelect)="onChangeStep($event)">
-  <router-outlet content></router-outlet>
+<kkl-steps-layout [steps]="steps"  (stepSelect)="onChangeStep($event)">
+  <div content>
+    <router-outlet></router-outlet>
+    <ng-container *ngIf="showMiddleNext$ | async">
+      <div fxLayout="row" fxLayoutAlign="center center">
+  
+      </div>
+    </ng-container>
+  </div>
   <div endDrawerContent>replace this content with your own feature</div>
-  <kkl-navbar-bottom *ngIf="showNext$ |async as showNext"
-    bottom-navbar
-    [hasNext]="true" 
-    (previous)="onPrevious()"
-    (next)="onNext($event)"
-  >
-  </kkl-navbar-bottom>
+
 </kkl-steps-layout>

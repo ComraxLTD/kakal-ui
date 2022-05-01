@@ -1,25 +1,21 @@
-<kkl-steps-layout
+<kkl-stepper-layout
   dir="rtl"
-  [actions]="[]"
-  [steps]="[]"
   (openChanged)="onDrawerOpenChanged($event)"
+
 >
-  <div content dir="rtl" fxLayout="column" fxLayoutGap="3rem">
-    <kkl-display-grid
-      fxFlex="30"
-      [displayData]="displayData"
-      [data]="data"
-      [cols]="4"
-    ></kkl-display-grid>
 
-    <kkl-display-group
-      variant="form"
-      [displayData]="displayData"
-      [data]="data"
-    ></kkl-display-group>
-  </div>
-</kkl-steps-layout>
+<div content>
+<div title class="title" > 
+  <kkl-form
+  (queryChanged)="onQueryChanged($event)"
+  (selectChanged)="onSelectChanged($event)"
+  (openChanged)="onOpenChanged($event)"
+   [controls]="questions" 
+   [grid]="formGrid" 
 
-<ng-template #caseTemplate>
-  <div>working</div>
-</ng-template>
+ ></kkl-form> 
+</div> 
+  <router-outlet  ></router-outlet>
+</div>
+
+</kkl-stepper-layout>

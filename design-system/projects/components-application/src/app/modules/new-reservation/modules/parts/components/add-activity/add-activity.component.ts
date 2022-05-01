@@ -1,12 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FilterLookups, FormChangeEvent, FormDataSource, Question, RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
 import { BehaviorSubject } from 'rxjs';
+import { FormChangeEvent, FormDataSource, Question, RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-add-activity',
   templateUrl: './add-activity.component.html',
   styleUrls: ['./add-activity.component.scss'],
-  providers:[FormDataSource]
 
 })
 export class AddActivityComponent implements OnInit {

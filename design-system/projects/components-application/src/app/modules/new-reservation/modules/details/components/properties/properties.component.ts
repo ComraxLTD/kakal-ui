@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
-import { ControlBase, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
+import { ControlBase, FormService, Question, QuestionGroupModel, SelectOption } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-properties',
   templateUrl: './properties.component.html',
   styleUrls: ['./properties.component.scss'],
-  providers: [FormDataSource]
 })
 export class PropertiesComponent implements OnInit {
 
-  grid =  {
-    cols: 6,
-    // variant: 'flex',
-  };
   data = [
     {
       label: 'תקציב',
@@ -66,6 +62,10 @@ export class PropertiesComponent implements OnInit {
     },
   ];
 
+  checked:boolean=true
+
+
+
   questions: ControlBase[] = [
      {
        key: 'description',
@@ -112,31 +112,41 @@ export class PropertiesComponent implements OnInit {
     {
       key: 'expenditureBudgetSub-item',
       label: 'תת סעיף תקציבי הוצאות',
-      controlType: 'text',
       cols:2,
+      controlType: 'text',
 
-    },
-    {
-      key:'textarea',
-      controlType: 'textarea',
-      label: 'hghghg'
     }
   ];
   groupFlex!: QuestionGroupModel;
-
+formGrid={cols:6}
 
   constructor(
     private formService: FormService,
   ) { }
 
-
+ 
   ngOnInit(): void {
-    // this.groupFlex = this.setGroup(this.questions, {
-    //   cols: 6,
-    //   variant: 'flex',
-    // });
+   
 
   }
 
+  private setGroup(questions: Question[], grid: FormGrid) {
+    return this.formService.createQuestionGroup({
+      questions,
+      key: 'test',
+      options: { gridProps: grid },
+    });
+  }
 
+  onQueryChanged(event: any) {
+    console.log(event);
+  }
+
+  onSelectChanged(event: any) {
+    console.log(event);
+  }
+
+  onOpenChanged(event: any) {
+    console.log(event);
+  }
 }

@@ -1,4 +1,13 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
+
 export interface CardStep {
   label: string;
   path: string;
@@ -8,6 +17,7 @@ export interface CardStep {
   disabled?: boolean;
   hasSteps?: boolean;
 }
+
 export interface StepsSelectionEvent {
   /** Index of the step selected. */
   selectedIndex: number;
@@ -30,40 +40,51 @@ export interface StepsSelectionEvent {
   source?: CardStep[];
 }
 @Component({
-  selector: 'app-circle-steps',
+  selector: 'kkl-circle-group',
   templateUrl: './circle-steps.component.html',
   styleUrls: ['./circle-steps.component.scss']
 })
 export class CircleStepsComponent implements OnInit {
-
   @Input() steps!: CardStep[];
-  @Input() selectedIndex: number = 0;
+
+  _selectIndex: number = 0;
+
+  event!: StepsSelectionEvent;
+
+  @Input() set selectedIndex(value: number) {
+    this._selectIndex = value;
+    this.event = this.setEvent(this._selectIndex);
+  }
+
+  @Input() templates: { [key: string]: TemplateRef<any> } = {};
 
   private previouslySelectedIndex!: number;
-
-  private event!: StepsSelectionEvent;
 
   constructor() {}
 
   @Output() selectStep: EventEmitter<StepsSelectionEvent> = new EventEmitter();
 
   ngOnInit(): void {
-    this.event = this.setEvent(this.selectedIndex);
-    console.log(this.event);
+    console.log(this._selectIndex);
+    console.log(this.steps);
+    console.log(this.templates);
+
+    
   }
 
   private setEvent(index: number) {
+
     const event = {
       selectedIndex: index,
       selectedStep: this.steps[index],
 
-      previouslySelectedIndex: this.previouslySelectedIndex
+      previouslySelectedIndex: Number.isInteger(this.previouslySelectedIndex)
         ? this.previouslySelectedIndex !== index
           ? this.previouslySelectedIndex
           : this.event.previouslySelectedIndex
         : null,
 
-      previouslySelectedStep: this.previouslySelectedIndex
+      previouslySelectedStep: Number.isInteger(this.previouslySelectedIndex)
         ? this.previouslySelectedIndex !== index
           ? this.steps[this.previouslySelectedIndex]
           : this.event.previouslySelectedStep
@@ -74,12 +95,12 @@ export class CircleStepsComponent implements OnInit {
       first: index === 0,
     } as StepsSelectionEvent;
 
+    this.previouslySelectedIndex = index;
+
     return event;
   }
 
   onSelectStep(index: number) {
-    console.log(index);
-    
     this.event = this.setEvent(index);
     this.previouslySelectedIndex = index;
     this._emitSelectStep();

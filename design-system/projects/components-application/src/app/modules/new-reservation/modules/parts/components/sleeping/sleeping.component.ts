@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormService, Question, QuestionGroupModel, RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
+import { ControlBase, FormService, Question, QuestionGroupModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
 @Component({
   selector: 'app-sleeping',
   templateUrl: './sleeping.component.html',
@@ -37,12 +37,12 @@ export class SleepingComponent implements OnInit {
 
   // form
   form!: QuestionGroupModel;
-  questions: Question[] = [
+  questions: ControlBase[] = [
     { key: 'name', controlType: 'select', label: 'בקתה' },
     { key: 'dates', controlType: 'dateRange', label: 'תאריכים' },
 
   ];
-
+formGrid={cols:2}
   private setGroup(questions: Question[], grid: FormGrid, key: string) {
     return this.formService.createQuestionGroup({
       questions,
@@ -55,7 +55,6 @@ export class SleepingComponent implements OnInit {
   checked!:boolean;
   
   ngOnInit(): void {
-    this.form = this.setGroup(this.questions, { cols: 2, variant: 'flex' }, 'form');
   }
 
 }

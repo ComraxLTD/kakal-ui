@@ -1,40 +1,82 @@
-<!-- <kkl-accordion-steps-layout
-  [complete$]="complete$"
-  [panels]="panels"
+<kkl-steps-accordion-layout
+  [panels]="cases"
   [steps]="steps"
   [templates]="{costumerDetails, propertiesBudget, reservationDetails}"
+  buttonLabel="המשך"
 >
+  <ng-template #costumerDetails>
+    <app-costumer-details></app-costumer-details>
+  </ng-template>
 
-</kkl-accordion-steps-layout>
+  <ng-template #propertiesBudget><app-properties></app-properties></ng-template>
 
-<ng-template #costumerDetails>
-  <app-costumer-details></app-costumer-details>
+  <ng-template #reservationDetails
+    ><app-reservation-details></app-reservation-details
+  ></ng-template>
+</kkl-steps-accordion-layout>
+<!--
+
+  <kkl-page [title]="title">
+  <ng-container *ngIf="!(complete$ | async) as complete" ;>
+    <ng-container
+      *ngTemplateOutlet="stepper; context: { $implicit: complete }"
+    ></ng-container>
+  </ng-container>
+
+  <ng-container *ngIf="complete$ | async as complete" ;>
+    <ng-container
+      *ngTemplateOutlet="accordion; context: { $implicit: complete }"
+    ></ng-container>
+  </ng-container> -->
+
+<!-- <ng-template #stepper>
+    <kkl-circle-group
+      [steps]="steps"
+      [selectedIndex]="(selectedIndex$ | async)!"
+      [templates]="{
+      costumerDetails, propertiesBudget, reservationDetails
+    }"
+    ></kkl-circle-group>
+  </ng-template> -->
+
+<!-- <ng-template #accordion let-complete>
+    <kkl-accordion-layout
+      [panels]="cases"
+      [buttonLabel]="'הוסף תיק חדש'"
+      [templates]="{  costumerDetails, propertiesBudget, reservationDetails}"
+    ></kkl-accordion-layout>
+  </ng-template>
+</kkl-page> -->
+
+<!-- templates for layouts -->
+
+<!-- <ng-template #costumerDetails>
+  <app-costumer-details ></app-costumer-details>
+
+</ng-template> -->
+
+<!-- templates for layouts -->
+<!-- <ng-template #propertiesBudget>
+  <app-properties></app-properties>
+
 </ng-template>
 
-<ng-template #propertiesBudget><app-properties></app-properties></ng-template>
+<ng-template #reservationDetails>
+  <app-reservation-details></app-reservation-details>
 
-<ng-template #reservationDetails
-  ><app-reservation-details></app-reservation-details
-></ng-template>
+</ng-template>
+<ng-template #costumerDetails>
+  <app-costumer-details ></app-costumer-details>
 
- -->
-<div fxLayout="column">
-  <div fxLayout="row" dir="rtl">
-    <section fxFlex="grow">
-      <ng-container [ngSwitch]="currentIndex">
-        <app-costumer-details *ngSwitchCase="0"></app-costumer-details>
-        <app-properties *ngSwitchCase="1"></app-properties>
-        <app-reservation-details *ngSwitchCase="2"></app-reservation-details>
-      </ng-container>
-    </section>
-    <app-circle-steps
-      [steps]="circleSteps"
-      [selectedIndex]="1"
-      (selectStep)="onStepEmit($event)"
-    ></app-circle-steps>
-  </div>
-  <button class="next" (click)="changeStep()">
-    <kkl-typography [color]="'paper'">המשך</kkl-typography>
-    <kkl-icon type="mat" key="keyboard_arrow_down" [color]="'paper'"></kkl-icon>
-  </button>
-</div>
+</ng-template> -->
+
+<!-- templates for layouts -->
+<!-- <ng-template #propertiesBudget>
+  <app-properties></app-properties>
+
+</ng-template>
+
+<ng-template #reservationDetails>
+  <app-reservation-details></app-reservation-details>
+
+</ng-template> -->
