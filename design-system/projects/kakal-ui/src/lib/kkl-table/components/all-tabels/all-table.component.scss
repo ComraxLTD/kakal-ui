@@ -15,12 +15,12 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 .example-element-detail {
-  display: flex;
-  padding: 16px;
+  // display: flex;
+  // padding: 16px;
   background-color: main.color(table);
   // background-color: red;
   width: 100%;
-  margin-right: -16px;
+  // margin-right: -16px;
 
 }
 
@@ -35,6 +35,7 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 td.mat-cell {
   border-bottom: 0.5px solid main.color(table-background);
+  padding: 0 !important;
 }
 table {
   width: 100%;
@@ -81,7 +82,7 @@ table table {
 // }
 
 .expand{
-  background-color: main.color(table);
+  margin-top: -10px !important;
 }
 
 .hide{
