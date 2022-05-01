@@ -1,10 +1,11 @@
 <div dir="rtl" fxLayout="column" fxLayoutGap="3rem">
-  <!-- kkl-form-temp -->
-  <!-- <kkl-form-temp
-    [formGroup]="groupFlex.formGroup"
-    [questions]="groupFlex.questions"
-    [grid]="groupFlex.gridProps!"
-  ></kkl-form-temp> -->
+  <!-- kkl-form -->
+ <kkl-form
+    [controls]="questions"
+    (queryChanged)="onQueryChanged($event)"
+    (selectChanged)="onSelectChanged($event)"
+    (openChanged)="onOpenChanged($event)"
+  ></kkl-form> 
 
   <!-- separator -->
 

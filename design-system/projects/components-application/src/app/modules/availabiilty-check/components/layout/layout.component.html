@@ -6,15 +6,15 @@
 
 <div content>
 <div title class="title" >
-  <kkl-form-temp
-   (formChanged)="onChangedForm($event)"
-   [formGroup]="groupFlex.formGroup"
-   [questions]="groupFlex.questions"
-   [grid]="groupFlex.gridProps!"
- ></kkl-form-temp>
+  <kkl-form
+  (queryChanged)="onQueryChanged($event)"
+  (selectChanged)="onSelectChanged($event)"
+  (openChanged)="onOpenChanged($event)"
+   [controls]="questions"
+
+ ></kkl-form>
 </div>
   <router-outlet  ></router-outlet>
 </div>
-<div endDrawerContent>replace this content with your own feature</div>
 
 </kkl-stepper-layout>
