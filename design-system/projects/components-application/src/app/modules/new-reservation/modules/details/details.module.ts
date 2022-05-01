@@ -7,6 +7,8 @@ import { PropertiesComponent } from './components/properties/properties.componen
 import { ReservationDetailsComponent } from './components/reservation-details/reservation-details.component';
 import { CoreModule } from '../../../core/core.module';
 import { LayoutComponent } from './components/layout/layout.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,7 @@ import { LayoutComponent } from './components/layout/layout.component';
   imports: [
     CommonModule,
     DetailsRoutingModule,
-    CoreModule
+    CoreModule,MatCheckboxModule,MatInputModule
   ]
 })
 export class DetailsModule { }

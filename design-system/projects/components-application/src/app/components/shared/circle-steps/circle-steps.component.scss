@@ -1,4 +1,4 @@
-@use "../../../../styles//variables" as main;
+@use "../../../../styles/variables" as main;
 
 div.kkl-step {
   background: main.color(default);
@@ -7,9 +7,13 @@ div.kkl-step {
   border-radius: 50%;
 
   &.selected {
-    background: red;
-    // background: main.color(primary);
+    background: main.color(primary);
   }
+
+  &.previous {
+    background: main.color(success);
+  }
+
   span {
     width: main.spacing(2);
     height: main.spacing(2);
@@ -20,8 +24,11 @@ div.kkl-step {
     text-align: center;
 
     &.selected {
-      background: red;
-      // background: main.color(primary);
+      background: main.color(primary);
+    }
+
+    &.previous {
+      background: main.color(success);
     }
   }
 }
@@ -35,5 +42,9 @@ div.kkl-step {
     margin: auto;
     background-color: main.color(default);
     width: 0.2rem;
+
+    &.previous {
+      background: main.color(success);
+    }
   }
 }
