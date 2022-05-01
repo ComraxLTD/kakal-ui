@@ -8,6 +8,7 @@ import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/model
   selector: 'app-costumer-details',
   templateUrl: './costumer-details.component.html',
   styleUrls: ['./costumer-details.component.scss'],
+  providers:[FormDataSource]
 })
 export class CostumerDetailsComponent implements OnInit {
   // TABLE PROPS

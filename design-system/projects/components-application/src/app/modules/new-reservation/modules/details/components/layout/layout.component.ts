@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { combineLatest, map, Observable, of } from 'rxjs';
+import { Step } from '../../../../../../../../../kakal-ui/src/lib/vertical-steps/step/step.model';
 import { CardStep, Panel } from '../../../../../../../../../kakal-ui/src/public-api'
 import { CustomerDetailsLayoutService } from '../customer-details-layout.service';
 
@@ -17,9 +18,9 @@ export class LayoutComponent implements OnInit {
   // ];
 
   public cases: Panel[] = [
-    { key: 'costumerDetails', label: 'פרטי לקוח' },
-    { key: 'propertiesBudget', label: 'מאפיינים ותקציב' },
-    { key: 'reservationDetails', label: 'פרטי הזמנה' },
+    { key: 'costumerDetails', label: 'פרטי לקוח' } as Panel,
+    { key: 'propertiesBudget', label: 'מאפיינים ותקציב' } as Panel,
+    { key: 'reservationDetails', label: 'פרטי הזמנה' } as Panel,
   ];  disableNext$!: Observable<boolean>;
     // use to switch between accordion and steps ui
     complete$!: Observable<boolean>;
@@ -30,31 +31,13 @@ export class LayoutComponent implements OnInit {
     // whet set to false present steps ui, when set to true present accordion ui
     title: string = 'תיקי רמ"י חדש';
   
-    steps: CardStep[] = [
-      { svgIcon: 'done', label: 'פרטי לקוח',path:'costumerDetails' },
-      { svgIcon: 'done', label: 'מאפיינים ותקציב',path:'propertiesBudget' },
-      { svgIcon: 'done', label: 'פרטי הזמנה',path:'reservationDetails' },
+    steps: Step[] = [
+      { svgIcon: 'done', label: 'פרטי לקוח',key:'costumerDetails' } as Step,
+      { svgIcon: 'done', label: 'מאפיינים ותקציב',key:'propertiesBudget' } as Step,
+      { svgIcon: 'done', label: 'פרטי הזמנה',key:'reservationDetails' } as Step,
     ];
   
-    // // data of panels
-    // cases :Panel[] = [
-    //   {
-    //     label: 'תיק 4903943',
-    //     key : 'caseTemplate'
-    //   },
-    //   {
-    //     label: 'תיק 4903943',
-    //     key : 'caseTemplate'
-    //   },
-    //   {
-    //     label: 'תיק 4903943',
-    //     key : 'caseTemplate'
-    //   },
-    //   {
-    //     label: 'תיק 4903943',
-    //     key : 'caseTemplate'
-    //   },
-    // ];
+
   
     buttonLabel: string = 'הוסף תיק חדש';
   

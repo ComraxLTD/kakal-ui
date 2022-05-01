@@ -5,11 +5,12 @@
   (queryChanged)="onQueryChanged($event)"
   (selectChanged)="onSelectChanged($event)"
   (openChanged)="onOpenChanged($event)"
+  [grid]="formGrid"
   ></kkl-form>
 
 
 
-  <div fxLayout="row wrap" dir="rtl" fxLayoutGap="20px">
+  <!-- <div fxLayout="row wrap" dir="rtl" fxLayoutGap="20px">
     <p>
       <mat-form-field appearance="outline">
         <mat-label>שם/תיאור הזמנה</mat-label>
@@ -83,7 +84,7 @@
         <textarea matInput></textarea>
       </mat-form-field>
     </p>
-  </div>
+  </div> -->
 
   <div fxLayout="row" fxLayoutAlign="space-evenly" fxFlexOffset="2">
 

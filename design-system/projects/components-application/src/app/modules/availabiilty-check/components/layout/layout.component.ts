@@ -54,7 +54,7 @@ export class LayoutComponent implements OnInit {
     {
       key: 'range',
       controlType: 'dateRange',
-      label: 'תאריך הזמנה'
+      label: 'תאריך הזמנה',
     }
   ]
   groupGrid!: QuestionGroupModel;
@@ -104,6 +104,7 @@ export class LayoutComponent implements OnInit {
       options: { gridProps: gridProps },
     });
   }
+  formGrid= {cols:2}
 
   onFormChange(formEvent: FormChangeEvent) {
     console.log(formEvent);
