@@ -1,47 +1,50 @@
 import { Injectable } from '@angular/core';
-import { CardStep } from '../../cards/card-step/card-step.model';
-import { StepsSelectionEvent } from '../../stepper/stepper.component';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { ButtonModel } from '../../button/models/button.types';
+import { Observable, Subject } from 'rxjs';
 
-interface buttAction{
+export interface ActionButtonState {
   action: 'add' | 'remove' | 'disable' | 'removeAll' | 'enable';
   key?: string;
-  butt?: ButtonModel[];
+  buttons?: ButtonModel[];
+  disabled?: { [key: string]: boolean };
+
 }
 @Injectable({
   providedIn: 'root',
 })
 export class StepsLayoutService {
-  private buttonAction$: Subject<buttAction> = new Subject();
+  private actionState$: Subject<ActionButtonState> = new Subject();
 
   private buttonClicked$: Subject<ButtonModel> = new Subject();
 
-  constructor() {
+  constructor() {}
+
+  getButtonAction(): Observable<ActionButtonState> {
+    return this.actionState$.asObservable();
   }
 
-  getButtonAction(): Subject<buttAction> {
-    return this.buttonAction$;
-  }
   addButton(val: ButtonModel[]) {
-    this.buttonAction$.next({action: 'add', butt: val});
+    this.actionState$.next({ action: 'add', buttons: val });
   }
+
   removeAllButtons() {
-    this.buttonAction$.next({action: 'removeAll'});
+    this.actionState$.next({ action: 'removeAll' });
   }
+
   removeButton(val: string) {
-    this.buttonAction$.next({action: 'remove', key: val});
+    this.actionState$.next({ action: 'remove', key: val });
   }
   disableButton(val: string) {
-    this.buttonAction$.next({action: 'disable', key: val});
+    this.actionState$.next({ action: 'disable', key: val });
   }
   enableButton(val: string) {
-    this.buttonAction$.next({action: 'enable', key: val});
+    this.actionState$.next({ action: 'enable', key: val });
   }
 
-  getButtonClicked(): Subject<ButtonModel> {
-    return this.buttonClicked$;
+  getButtonClicked(): Observable<ButtonModel> {
+    return this.buttonClicked$.asObservable();
   }
+
   setButtonClicked(butt: ButtonModel) {
     this.buttonClicked$.next(butt);
   }

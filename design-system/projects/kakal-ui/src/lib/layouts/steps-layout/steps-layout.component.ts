@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, Subject, takeUntil } from 'rxjs';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.model';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsSelectionEvent } from '../../stepper/stepper.component';
-import { StepsLayoutService } from './steps-layout.service';
+import { ActionButtonState, StepsLayoutService } from './steps-layout.service';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -15,13 +15,16 @@ import { StepsLayoutService } from './steps-layout.service';
 export class StepsLayoutComponent {
   destroySubject$: Subject<void> = new Subject();
 
-
   @Input() steps: CardStep[];
 
+  rowActionSource$: BehaviorSubject<ButtonModel[]> = new BehaviorSubject([]);
+  rowActions$!: Observable<ButtonModel[]>;
   rowActions!: ButtonModel[];
-  @Input() set actions(val: ButtonModel[]) {
-    if (val?.length) {
-      this.rowActions = val;
+
+  @Input() set actions(value: ButtonModel[]) {
+    if (value?.length) {
+      this.rowActions = this.setRowActions(value);
+      this.rowActionSource$.next(this.rowActions);
     } else {
       this.rowActions = [];
     }
@@ -31,7 +34,7 @@ export class StepsLayoutComponent {
 
   mobile$: Observable<boolean>;
 
-  disabled: {[key: string]: boolean};
+  disabled: { [key: string]: boolean };
 
   // @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   // @Output() stepSelect: EventEmitter<StepsSelectionEvent> = new EventEmitter();
@@ -45,46 +48,79 @@ export class StepsLayoutComponent {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.stepsLayoutService.getButtonAction().pipe(takeUntil(this.destroySubject$)).subscribe(c => {
-      switch (c.action) {
-        case 'disable':
-          this.disabled[c.key] = true;
-          break;
-        case 'enable':
-          this.disabled[c.key] = false;
-          break;
-        case 'add':
-          this.rowActions = this.rowActions.concat(c.butt);
-          break;
-        case 'remove':
-          this.rowActions = this.rowActions.filter(v => v.label !== c.key);
-          break;
-        case 'removeAll':
-          this.rowActions = [];
-        default:
-          break;
-      }
-    })
+
+    this.stepsLayoutService
+      .getButtonAction()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe((c) => {
+        switch (c.action) {
+          case 'disable':
+            this.disabled[c.key] = true;
+            break;
+          case 'enable':
+            this.disabled[c.key] = false;
+            break;
+          case 'add':
+            this.rowActions = this.rowActions.concat(c.buttons);
+            break;
+          case 'remove':
+            this.rowActions = this.rowActions.filter((v) => v.label !== c.key);
+            break;
+          case 'removeAll':
+            this.rowActions = [];
+          default:
+            break;
+        }
+      });
   }
 
+  private setRowActionsFromActonState() {
+    this.stepsLayoutService.getButtonAction().pipe(
+      map((actionState: ActionButtonState) => {
+        const { action, disabled, key, buttons } = actionState;
 
+        switch (action) {
+          case 'disable':
+            disabled[key] = true;
+            break;
+          case 'enable':
+            disabled[key] = false;
+            break;
+          case 'add':
+            this.rowActions = this.rowActions.concat(buttons);
+            break;
+          case 'remove':
+            this.rowActions = this.rowActions.filter((v) => v.label !== key);
+            break;
+          case 'removeAll':
+            this.rowActions = [];
+          default:
+            break;
+        }
+      })
+    );
+  }
 
-  // private setRowActions(actions: ButtonModel[]) {
-  //   const iconLabelMap = {
-  //     [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
-  //     [FormActions.SUBMIT]: { svgIcon: 'save', label: 'שמירה' },
-  //   };
+  private setRowActions$() {
+    const setFromInout$ = of(this.rowActions);
+    const setFromState$ = this.setRowActionsFromActonState();
+  }
 
-  //   return actions
-  //     .filter((action: ButtonModel) => action.type === 'form')
-  //     .map((action: ButtonModel) => {
-  //       return {
-  //         ...action,
-  //         ...iconLabelMap[action.action],
-  //       };
-  //     });
-  // }
+  private setRowActions(actions: ButtonModel[]) {
+    const iconLabelMap = {
+      [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
+      [FormActions.SUBMIT]: { svgIcon: 'save', label: 'שמירה' },
+    };
 
+    return actions
+      .filter((action: ButtonModel) => action.type === 'form')
+      .map((action: ButtonModel) => {
+        return {
+          ...action,
+          ...iconLabelMap[action.action],
+        };
+      });
+  }
 
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
