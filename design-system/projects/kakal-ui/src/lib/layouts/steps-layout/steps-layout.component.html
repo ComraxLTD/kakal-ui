@@ -2,22 +2,22 @@
   <header>
     <mat-toolbar class="stepper-toolbar" dir="rtl">
       <div class="steps-group">
-        <ng-container *ngIf="steps$ | async as steps">
-          <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
-            <kkl-step-group
-              [steps]="steps"
-              (stepSelection)="onSelectStep($event)"
-            ></kkl-step-group>
-          </ng-container>
-
-          <ng-template #mobileBlock>
-            <kkl-stepper-mobile
-              [stepsSelectionEvent]="stepsSelectionEvent"
-              [steps]="steps"
-              (selectStep)="onSelectStep($event)"
-            ></kkl-stepper-mobile>
-          </ng-template>
+        <!-- <ng-container *ngIf="steps$ | async as steps"> -->
+        <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
+          <kkl-step-group
+            [steps]="steps"
+            (stepSelection)="onSelectStep($event)"
+          ></kkl-step-group>
         </ng-container>
+
+        <ng-template #mobileBlock>
+          <kkl-stepper-mobile
+            [stepsSelectionEvent]="stepsSelectionEvent"
+            [steps]="steps"
+            (selectStep)="onSelectStep($event)"
+          ></kkl-stepper-mobile>
+        </ng-template>
+        <!-- </ng-container> -->
       </div>
 
       <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">

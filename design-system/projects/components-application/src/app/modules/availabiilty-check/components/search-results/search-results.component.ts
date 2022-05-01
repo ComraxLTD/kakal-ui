@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { CardInfoModel, CardStep } from '../../../../../../../kakal-ui/src/public-api';
+import { Observable } from 'rxjs';
+import {
+  CardInfoModel,
+  CardStep,
+} from '../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-search-results',
@@ -79,17 +82,16 @@ export class SearchResultsComponent implements OnInit {
   activeCard!: CardStep;
   steps$!: Observable<CardStep[]>;
 
-  firstSteps$:CardStep[] = [
-    {  label: '15.07.12', path: 'יום ראשון' } as CardStep,
-    {  label: '16.07.12', path: 'יום שני' } as CardStep,
-    {  label: '17.07.12', path: 'יום שלישי' } as CardStep,
-    {  label: '18.07.12', path: 'יום רביעי' } as CardStep,
-    {  label: '19.07.12', path: 'יום חמישי' } as CardStep,
-  ]
+  firstSteps$: CardStep[] = [
+    { label: '15.07.12', path: 'יום ראשון' } as CardStep,
+    { label: '16.07.12', path: 'יום שני' } as CardStep,
+    { label: '17.07.12', path: 'יום שלישי' } as CardStep,
+    { label: '18.07.12', path: 'יום רביעי' } as CardStep,
+    { label: '19.07.12', path: 'יום חמישי' } as CardStep,
+  ];
 
   onChangeStep(stepDetails: { step: CardStep; index: number }): void {
     // this.activeStepIndex = stepDetails.index;
-
     // const newSteps: CardStep[] = this.firstSteps$.value.map(
     //   (step, index) => {
     //     if (index === stepDetails.index) {
@@ -101,21 +103,19 @@ export class SearchResultsComponent implements OnInit {
     //   }
     // );
     // console.log('as');
-
     // this.firstSteps$.next(newSteps);
   }
 
   constructor() {}
 
   ngOnInit(): void {
-  //   console.log('search component');
-  //   this.activeCard =
-  //     this.firstSteps$.value.find((value) => value.isActive) ||
-  //     ({ label: 's', path: 'a' } as CardStep);
-  //   this.steps$ = this.firstSteps$.asObservable();
+    //   console.log('search component');
+    //   this.activeCard =
+    //     this.firstSteps$.value.find((value) => value.isActive) ||
+    //     ({ label: 's', path: 'a' } as CardStep);
+    //   this.steps$ = this.firstSteps$.asObservable();
   }
-  onCardClick(card:CardInfoModel):void{
+  onCardClick(card: CardInfoModel): void {
     console.log(card);
-
   }
 }

@@ -1,10 +1,12 @@
 <div fxLayout="column" fxLayoutGap="5rem">
-  <kkl-navigation
-    [steps$]="steps$"
-    [slots]="{content, step}"
-    [activeStepIndex]="activeStepIndex"
-    (changeStep)="onChangeStep($event)"
-  ></kkl-navigation>
+  <ng-container *ngIf="steps$ | async as steps">
+    <kkl-navigation
+      [steps]="steps"
+      [templates]="{content, step}"
+      [activeStepIndex]="activeStepIndex"
+      (changeStep)="onChangeStep($event)"
+    ></kkl-navigation>
+  </ng-container>
 
   <ng-template #content let-item>
     <div>

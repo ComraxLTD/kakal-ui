@@ -5,6 +5,7 @@ import { KKLButtonModule } from '../button/button.module';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { KKLPipesModule } from '../pipes/pipes.module';
+import { KKLTypographyModule } from '../typography/typography.module';
 import { StepperMobileComponent } from './stepper-mobile.component';
 
 @NgModule({
@@ -13,6 +14,7 @@ import { StepperMobileComponent } from './stepper-mobile.component';
     FlexLayoutModule,
     KKLDirectivesModule,
     KKLIconModule,
+    KKLTypographyModule,
     KKLPipesModule,
     KKLButtonModule,
   ],

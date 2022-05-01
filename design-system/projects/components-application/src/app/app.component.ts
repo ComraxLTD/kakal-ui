@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutService, MenuCard, RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
+import { RowActionModel, TableBase } from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -7,12 +7,26 @@ import { LayoutService, MenuCard, RowActionModel, TableBase } from '../../../kak
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  dataSource:any[]=[
-    {provider:'שדג', providerID:5131,wasInTour:'כן',itemPrice:561,price:654,comment:'asdasd'  ,winning: { decided: true, won: false }
-    ,},
-    {provider:'שדג', providerID:5131,wasInTour:'כן',itemPrice:561,price:654,comment:'asdasd'  ,winning: { decided: false, won: false }
-    ,}
-  ]
+  dataSource: any[] = [
+    {
+      provider: 'שדג',
+      providerID: 5131,
+      wasInTour: 'כן',
+      itemPrice: 561,
+      price: 654,
+      comment: 'asdasd',
+      winning: { decided: true, won: false },
+    },
+    {
+      provider: 'שדג',
+      providerID: 5131,
+      wasInTour: 'כן',
+      itemPrice: 561,
+      price: 654,
+      comment: 'asdasd',
+      winning: { decided: false, won: false },
+    },
+  ];
   columns: TableBase[] = [
     {
       key: 'provider',
@@ -45,13 +59,12 @@ export class AppComponent implements OnInit {
     { type: 'inlineExpand', icon: 'keyboard_arrow_down' },
   ];
 
-  tabsArray: { key: string, label: string }[]=[
-    {key:'winning',label:'ספק זוכה'},
-    {key:'documents',label:'מסמכים'},
-    {key:'contacts',label:'אנשי קשר'},
-    {key:'evaluation',label:'חוות דעת'},
+  tabsArray: { key: string; label: string }[] = [
+    { key: 'winning', label: 'ספק זוכה' },
+    { key: 'documents', label: 'מסמכים' },
+    { key: 'contacts', label: 'אנשי קשר' },
+    { key: 'evaluation', label: 'חוות דעת' },
   ];
-
 
   // constructor(private layoutService: LayoutService) {}
 
@@ -84,11 +97,7 @@ export class AppComponent implements OnInit {
     }, 1500);
   }
 
-
-
   onExpand(event: any) {
     console.log(event);
-
   }
-
 }
