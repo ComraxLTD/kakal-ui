@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {  Question, RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
+import { Question, RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-activity',

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { TableBase } from '../../../../../../../kakal-ui/src/public-api';
-// import { TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
+import { TableBase }from '../../../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root',

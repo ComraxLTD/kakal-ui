@@ -1,24 +1,20 @@
-<kkl-steps-layout
+<kkl-stepper-layout
   dir="rtl"
-  [actions]="[]"
-  [steps]="[]"
   (openChanged)="onDrawerOpenChanged($event)"
+
 >
-  <div content dir="rtl" fxLayout="column" fxLayoutGap="3rem">
-    <kkl-display-group
-      fxFlex="30"
-      [displayData]="displayData"
-      [data]="data"
-    ></kkl-display-group>
 
-    <kkl-display-group
-      variant="form"
-      [displayData]="displayData"
-      [data]="data"
-    ></kkl-display-group>
-  </div>
-</kkl-steps-layout>
+<div content>
+<div title class="title" >
+  <kkl-form-temp
+   (formChanged)="onChangedForm($event)"
+   [formGroup]="groupFlex.formGroup"
+   [questions]="groupFlex.questions"
+   [grid]="groupFlex.gridProps!"
+ ></kkl-form-temp>
+</div>
+  <router-outlet  ></router-outlet>
+</div>
+<div endDrawerContent>replace this content with your own feature</div>
 
-<ng-template #caseTemplate>
-  <div>working</div>
-</ng-template>
+</kkl-stepper-layout>

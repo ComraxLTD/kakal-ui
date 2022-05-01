@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import {
   CardInfo,
   CardStep,
@@ -82,40 +82,43 @@ export class SearchResultsComponent implements OnInit {
   activeCard!: CardStep;
   steps$!: Observable<CardStep[]>;
 
-  firstSteps$: CardStep[] = [
-    { label: '15.07.12', path: 'יום ראשון' } as CardStep,
-    { label: '16.07.12', path: 'יום שני' } as CardStep,
-    { label: '17.07.12', path: 'יום שלישי' } as CardStep,
-    { label: '18.07.12', path: 'יום רביעי' } as CardStep,
-    { label: '19.07.12', path: 'יום חמישי' } as CardStep,
-  ];
+  firstSteps$: BehaviorSubject<CardStep[]> = new BehaviorSubject([
+    {  label: '15.07.12', path: 'יום ראשון' } as CardStep,
+    {  label: '16.07.12', path: 'יום שני' } as CardStep,
+    {  label: '17.07.12', path: 'יום שלישי' } as CardStep,
+    {  label: '18.07.12', path: 'יום רביעי' } as CardStep,
+    {  label: '19.07.12', path: 'יום חמישי' } as CardStep,
+  ]);
 
   onChangeStep(stepDetails: { step: CardStep; index: number }): void {
-    // this.activeStepIndex = stepDetails.index;
-    // const newSteps: CardStep[] = this.firstSteps$.value.map(
-    //   (step, index) => {
-    //     if (index === stepDetails.index) {
-    //       this.activeCard = step;
-    //       return { ...step, isActive: true } as CardStep;
-    //     } else {
-    //       return { ...step, isActive: false } as CardStep;
-    //     }
-    //   }
-    // );
-    // console.log('as');
-    // this.firstSteps$.next(newSteps);
+    this.activeStepIndex = stepDetails.index;
+
+    const newSteps: CardStep[] = this.firstSteps$.value.map(
+      (step, index) => {
+        if (index === stepDetails.index) {
+          this.activeCard = step;
+          return { ...step, isActive: true } as CardStep;
+        } else {
+          return { ...step, isActive: false } as CardStep;
+        }
+      }
+    );
+    console.log('as');
+
+    this.firstSteps$.next(newSteps);
   }
 
   constructor() {}
 
   ngOnInit(): void {
-    //   console.log('search component');
-    //   this.activeCard =
-    //     this.firstSteps$.value.find((value) => value.isActive) ||
-    //     ({ label: 's', path: 'a' } as CardStep);
-    //   this.steps$ = this.firstSteps$.asObservable();
+    // console.log('search component');
+    // this.activeCard =
+    //   this.firstSteps$.value.find((value) => value.isActive) ||
+    //   ({ label: 's', path: 'a' } as CardStep);
+    // this.steps$ = this.firstSteps$.asObservable();
   }
   onCardClick(card: CardInfo): void {
     console.log(card);
+
   }
 }

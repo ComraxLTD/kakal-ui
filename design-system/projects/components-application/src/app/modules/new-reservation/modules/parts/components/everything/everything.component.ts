@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Panel } from '../../../../../../../../../kakal-ui/src/public-api';
 import { Observable, of } from 'rxjs';
+import { Panel } from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-everything',

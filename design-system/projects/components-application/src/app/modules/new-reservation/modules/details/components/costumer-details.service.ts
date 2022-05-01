@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Question, FilterType } from '../../../../../../../../../kakal-ui/src/public-api';
+import { Question } from '../../../../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root'

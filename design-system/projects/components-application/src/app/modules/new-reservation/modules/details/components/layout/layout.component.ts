@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CardStep, Panel, RouterService, StepsSelectionEvent } from '../../../../../../../../../kakal-ui/src/public-api';
-import { NewReservationService } from '../../../../new-reservation.service';
-import { Step } from '../../../../../../../../../kakal-ui/src/lib/vertical-steps/step/step.model';
-import { Observable } from 'rxjs';
-
+import { Router } from '@angular/router';
+import { combineLatest, map, Observable, of } from 'rxjs';
+import { CardStep, Panel } from '../../../../../../../../../kakal-ui/src/public-api'
+import { CustomerDetailsLayoutService } from '../customer-details-layout.service';
 
 @Component({
   selector: 'app-layout',
@@ -11,78 +10,61 @@ import { Observable } from 'rxjs';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  public steps: Step[] = [
+  // public steps: Step[] = [
+  //   { svgIcon: 'done', label: 'פרטי לקוח',path:'details' },
+  //   { svgIcon: 'done', label: 'מאפיינים ותקציב',path:'budget' },
+  //   { svgIcon: 'done', label: 'פרטי הזמנה',path:'reservation' },
+  // ];
+
+  public cases: Panel[] = [
     { key: 'costumerDetails', label: 'פרטי לקוח' },
     { key: 'propertiesBudget', label: 'מאפיינים ותקציב' },
     { key: 'reservationDetails', label: 'פרטי הזמנה' },
-  ];
+  ];  disableNext$!: Observable<boolean>;
+    // use to switch between accordion and steps ui
+    complete$!: Observable<boolean>;
 
-  public panels: Panel[] = [
-    { key: 'costumerDetails', label: 'פרטי לקוח' },
-    { key: 'propertiesBudget', label: 'מאפיינים ותקציב' },
-    { key: 'reservationDetails', label: 'פרטי הזמנה' },
-  ];
-  currentIndex: number = 0;
+    // use selectIndex to navigate to desired step index
+    selectedIndex$: Observable<number> = of(0);
 
-  complete$!: Observable<boolean>;
+    // whet set to false present steps ui, when set to true present accordion ui
+    title: string = 'תיקי רמ"י חדש';
 
-  circleSteps: CardStep[] = [
-    { svgIcon: '', label: '1', path: '2', selected: true },
-    { svgIcon: '', label: '2', path: '2' },
-    { svgIcon: '', label: '3', path: '2' },
-  ];
-  constructor(
-    private newReservationService: NewReservationService,
-    private routerService: RouterService
-  ) {}
+    steps: CardStep[] = [
+      { svgIcon: 'done', label: 'פרטי לקוח',path:'costumerDetails' },
+      { svgIcon: 'done', label: 'מאפיינים ותקציב',path:'propertiesBudget' },
+      { svgIcon: 'done', label: 'פרטי הזמנה',path:'reservationDetails' },
+    ];
 
-  ngOnInit(): void {
-    this.complete$ = this.newReservationService.getIsSavedAsObs();
+    // // data of panels
+    // cases :Panel[] = [
+    //   {
+    //     label: 'תיק 4903943',
+    //     key : 'caseTemplate'
+    //   },
+    //   {
+    //     label: 'תיק 4903943',
+    //     key : 'caseTemplate'
+    //   },
+    //   {
+    //     label: 'תיק 4903943',
+    //     key : 'caseTemplate'
+    //   },
+    //   {
+    //     label: 'תיק 4903943',
+    //     key : 'caseTemplate'
+    //   },
+    // ];
+
+    buttonLabel: string = 'הוסף תיק חדש';
+
+    constructor(
+      private customerDetailsLayoutService: CustomerDetailsLayoutService
+    ) {}
+
+    ngOnInit(): void {
+      this.complete$ = this.customerDetailsLayoutService.listenComplete();
+      this.selectedIndex$ = this.customerDetailsLayoutService.listenSelectIndex();
+      this.customerDetailsLayoutService.setInnerStepsLength(this.steps.length);
+    }
   }
-
-  onSave(value: any) {
-    this.newReservationService.emitNewIsSaved(true);
-  }
-  private navigate(path: string) {
-    console.log(this.routerService.getCurrentPath());
-    path = `/${this.routerService.getCurrentPath()}/${path}`;
-    this.routerService.navigate(path);
-  }
-  public onNext(step: CardStep) {
-    this.navigate(step.path!);
-  }
-
-  public onChangeStep(step: CardStep) {
-    this.navigate(step.path!);
-  }
-
-  public onPrevious(): void {
-    this.routerService.goBack();
-  }
-
-  onStepEmit(step: StepsSelectionEvent) {
-    this.circleSteps = this.circleSteps.map((item, index) => {
-      return index === step.selectedIndex
-        ? { ...item, selected: true }
-        : { ...item, selected: false };
-    });
-    this.currentIndex = this.circleSteps.findIndex((item) => item.selected);
-  }
-
-  changeStep() {
-    console.log(this.currentIndex);
-
-    let newIndex = this.circleSteps.findIndex((item) => item.selected);
-    this.currentIndex = ++newIndex;
-    this.currentIndex =
-      this.currentIndex >= this.circleSteps.length ? 0 : this.currentIndex;
-    this.circleSteps = this.circleSteps.map((item, index) => {
-      return index === this.currentIndex
-        ? { ...item, selected: true }
-        : { ...item, selected: false };
-    });
-    this.currentIndex === (this.circleSteps.length - 1)
-      ? this.newReservationService.emitNewShowNext(true)
-      : this.newReservationService.emitNewShowNext(false);
-  }
-}

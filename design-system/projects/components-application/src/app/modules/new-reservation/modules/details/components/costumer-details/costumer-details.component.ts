@@ -1,30 +1,13 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import {
-  Question,
-  QuestionGroupModel,
-  OptionMap,
-  FilterState,
-  FormDataSource,
-  FormService,
-  FiltersService,
-  RouterService,
-  // PROJECT_PREFIX,
-  // MODULE_PREFIX,
-  FormChangeEvent,
-  TableBase,
-  RowActionModel,
-  PageHeadlineService,
-  // GridInputs,
-} from '../../../../../../../../../kakal-ui/src/public-api';
-import { DetailsService } from './costumer-details.service';
-import { Observable, of, pluck } from 'rxjs';
-import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
 
+import { DetailsService } from '../costumer-details.service';
+import { Observable, of, pluck } from 'rxjs';
+import {FormChangeEvent, FormDataSource, FormService, PageHeadlineService, Question, RowActionModel, TableBase,} from '../../../../../../../../../kakal-ui/src/public-api'
+import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
 @Component({
   selector: 'app-costumer-details',
   templateUrl: './costumer-details.component.html',
   styleUrls: ['./costumer-details.component.scss'],
-  providers: [FormDataSource, FormService, FiltersService],
 })
 export class CostumerDetailsComponent implements OnInit {
   // TABLE PROPS
