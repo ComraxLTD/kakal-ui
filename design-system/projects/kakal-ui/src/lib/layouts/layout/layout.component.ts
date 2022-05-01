@@ -108,8 +108,9 @@ export class LayoutComponent implements OnInit {
 
   onStartSideNav(val: string) {
     this.selectedOpen = val;
-
-    this.sidenav.toggle();
+    if(this.selectedOpen !== 'menu' || this.cards?.length) {
+      this.sidenav.toggle();
+    }
   }
   // control content width when end drawer is open and close in %
 
