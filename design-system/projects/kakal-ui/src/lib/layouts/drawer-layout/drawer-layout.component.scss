@@ -5,8 +5,8 @@
 }
 
 :host {
-  .kkl-drawer-layout{
-    height: 100%;
+  .kkl-drawer-layout {
+    height: main.$content-height
   }
 
   mat-sidenav-content {
@@ -61,6 +61,11 @@ button.mat-fab.kkl-drawer-button {
   &.outside {
     margin-top: 1%;
     right: 8rem;
+    right: 8rem;
+  }
+
+  &.opened {
+    right: 28rem;
   }
 }
 
