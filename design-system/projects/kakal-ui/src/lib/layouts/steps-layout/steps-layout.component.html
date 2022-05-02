@@ -10,12 +10,10 @@
         </ng-container>
 
         <ng-template #webBlock>
-          <kkl-stepper
-            variant="step"
-            direction="row"
+          <kkl-step-group
             [steps]="steps"
-            (selectStep)="onSelectStep($event)"
-          ></kkl-stepper>
+            (stepSelection)="onSelectStep($event)"
+          ></kkl-step-group>
         </ng-template>
       </div>
 

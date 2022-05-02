@@ -1,7 +1,7 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Params, Router } from '@angular/router';
-import { CardStep } from '../lib/cards/card-step/card-step.component'
+import { CardStep } from '../lib/cards/card-step/card-step.component';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { filter, map, startWith, tap } from 'rxjs/operators';
 
@@ -40,6 +40,8 @@ export class RouterService {
   }
 
   public getCurrentPath(): string {
+    console.log(this.router.url);
+
     return this.setLastPath(this.router.url);
   }
 
@@ -85,7 +87,7 @@ export class RouterService {
 
   public setLastPath(url: string) {
     const path = url.split('/');
-    return path[1];
+    return path[path.length - 1];
   }
 
   public getModulePrefixObs(): Observable<string> {

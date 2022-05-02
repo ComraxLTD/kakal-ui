@@ -9,7 +9,7 @@
   >
     <ng-container
       *ngFor="
-        let step of steps;
+        let step of _steps;
         let i = index;
         let last = last;
         let first = first
@@ -17,7 +17,7 @@
     >
       <div appSize [type]="'step'" [size]="6" [step]="step">
         <kkl-card-step
-          (stepSelect)="onStepSelect(step, last, first)"
+          (stepSelect)="onStepSelect(step, i, last, first)"
           [index]="i"
           [step]="step"
           [options]="options"

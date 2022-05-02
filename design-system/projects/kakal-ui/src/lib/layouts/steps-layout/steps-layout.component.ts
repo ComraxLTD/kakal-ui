@@ -30,7 +30,7 @@ export class StepsLayoutComponent {
     }
   }
 
-  // stepsSelectionEvent: StepsSelectionEvent;
+  stepsSelectionEvent: StepsSelectionEvent;
 
   mobile$: Observable<boolean>;
 
@@ -72,6 +72,27 @@ export class StepsLayoutComponent {
             break;
         }
       });
+
+    this.steps = this.initSteps();
+  }
+
+  private initSteps() {
+    const path = this.routerService.getCurrentPath();
+
+    const steps = [...this.steps];
+
+    const selectedStepIndex = this.steps.findIndex(
+      (step: CardStep) => step.path === path
+    );
+
+    const selectedStep = {
+      ...this.steps[selectedStepIndex],
+      selected: true,
+    } as CardStep;
+
+    steps[selectedStepIndex] = selectedStep;
+
+    return steps;
   }
 
   // private setRowActionsFromActonState() {

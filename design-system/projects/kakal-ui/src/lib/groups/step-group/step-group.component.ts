@@ -35,8 +35,11 @@ export interface StepsSelectionEvent {
   styleUrls: ['./step-group.component.scss'],
 })
 export class StepGroupComponent implements OnInit {
+  _steps: CardStep[];
 
-  @Input() steps: CardStep[];
+  @Input() set steps(value: CardStep[]) {
+    this._steps = value;
+  }
   @Input() direction: 'row' | 'column' = 'row';
 
   @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
@@ -45,7 +48,20 @@ export class StepGroupComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
+  //   const event: StepsSelectionEvent = {
+  //     selectedStep: step,
+  //     selectedIndex: index,
+  //     last,
+  //     first,
+  //     source: this.steps,
+  //   };
+  //   this.stepSelection.emit(event);
+  // }
+
   onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
+    this._steps.forEach((a) => (a.selected = false));
+    step.selected = true;
     const event: StepsSelectionEvent = {
       selectedStep: step,
       selectedIndex: index,
