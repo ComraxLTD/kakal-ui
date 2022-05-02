@@ -3,8 +3,8 @@ import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
-import { StepsSelectionEvent } from '../../stepper/stepper.component';
 import { StepsLayoutService } from './steps-layout.service';
+import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({

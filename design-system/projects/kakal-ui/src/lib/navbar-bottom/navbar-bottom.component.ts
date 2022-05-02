@@ -1,21 +1,9 @@
-import {
-  Component,
-  Input,
-  OnInit,
-  Output,
-  EventEmitter,
-  TemplateRef,
-  Inject,
-  ViewContainerRef,
-} from '@angular/core';
+import { Component, Input, OnInit, Inject } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
-import { StepsLayoutService } from '../layouts/steps-layout/steps-layout.service';
-import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { BehaviorSubject, combineLatest, iif, merge, Observable, of, Subject, takeUntil } from 'rxjs';
-import { map, pluck, switchMap } from 'rxjs/operators';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
+import { Subject, BehaviorSubject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -24,11 +12,11 @@ import { FormGroup } from '@angular/forms';
 })
 export class NavbarBottomComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
-  
+
   showNext$: BehaviorSubject<boolean>;
   showSave$: BehaviorSubject<boolean>;
   showBack$: BehaviorSubject<boolean>;
-  showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}>;
+  showNextMiddle$: BehaviorSubject<{ show: boolean; next: boolean }>;
 
   disableNext$: BehaviorSubject<boolean>;
 
@@ -60,29 +48,31 @@ export class NavbarBottomComponent implements OnInit {
     this.showNextMiddle$ = this.navbarBottomService.getShowNextMiddle();
     this.disableNext$ = this.navbarBottomService.getDisableNext();
 
-    this.navbarBottomService.getFormGroup().pipe(takeUntil(this.destroySubject$)).subscribe(b => {
-      if(b) {
-        this.formGroup = b;
-      } else {
-        this.formGroup = new FormGroup({});
-      }
-
-    });
-    this.navbarBottomService.getAutoBack().pipe(takeUntil(this.destroySubject$)).subscribe(a =>{
-      this.autoBack = a;
-    });
+    this.navbarBottomService
+      .getFormGroup()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe((b) => {
+        if (b) {
+          this.formGroup = b;
+        } else {
+          this.formGroup = new FormGroup({});
+        }
+      });
+    this.navbarBottomService
+      .getAutoBack()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe((a) => {
+        this.autoBack = a;
+      });
   }
 
   private setBottomIcon() {
     return this.bottomIcon + this.rootPrefix;
   }
 
-
-
   onSave(): void {
     this.navbarBottomService.setSave();
   }
-
 
   // Event emitter section
   onPrevious(): void {
@@ -103,5 +93,4 @@ export class NavbarBottomComponent implements OnInit {
     this.destroySubject$.next();
     this.destroySubject$.complete();
   }
-
 }

@@ -9,7 +9,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLStepperMobileModule } from '../../stepper-mobile/stepper-mobile.module';
-import { KKLStepperModule } from '../../stepper/stepper.module';
 import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLButtonModule } from '../../button/button.module';
 import { KKLStepGroupModule } from '../../groups/step-group/step-group.module';
@@ -28,7 +27,6 @@ import { StepsLayoutComponent } from './steps-layout.component';
     KKLIconModule,
     KKLTypographyModule,
     KKLStepperMobileModule,
-    KKLStepperModule,
     KKLStepGroupModule
   ],
   declarations: [StepsLayoutComponent],

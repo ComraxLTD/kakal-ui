@@ -332,10 +332,6 @@ export * from './lib/navbar-bottom/navbar-bottom.component';
 export * from './lib/navbar-bottom/navbar-bottom.directive';
 export * from './lib/navbar-bottom/navbar-bottom.service';
 
-// stepper
-export * from './lib/stepper/stepper.module';
-export * from './lib/stepper/stepper.component';
-
 // stepper mobile
 export * from './lib/stepper-mobile/stepper-mobile.module';
 export * from './lib/stepper-mobile/stepper-mobile.component';

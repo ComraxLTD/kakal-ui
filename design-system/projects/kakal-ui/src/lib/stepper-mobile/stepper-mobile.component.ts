@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { StepsSelectionEvent } from '../stepper/stepper.component';
 import { CardStep } from '../cards/card-step/card-step.component';
 import { CardStatus } from '../cards/card-status/card-status.component';
+import { StepsSelectionEvent } from '../groups/step-group/step-group.component';
 @Component({
   selector: 'kkl-stepper-mobile',
   templateUrl: './stepper-mobile.component.html',
