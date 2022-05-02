@@ -1,4 +1,4 @@
-<div fxLayout="column" fxLayoutAlign="center center">
+<ng-container *ngIf="!(mobile$ | async)">
   <div
     fxFill
     dir="rtl"
@@ -27,4 +27,5 @@
       <div *ngIf="!last" class="divider"></div>
     </ng-container>
   </div>
-</div>
+</ng-container>
+<ng-container *ngIf="mobile$ | async"> </ng-container>

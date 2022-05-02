@@ -1,12 +1,7 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardStep } from '../../cards/card-step/card-step.component';
+import { BreakpointService } from '../../../services/breakpoint.service';
+import { Observable } from 'rxjs';
 
 export interface StepsSelectionEvent {
   /** Index of the step selected. */
@@ -42,11 +37,15 @@ export class StepGroupComponent implements OnInit {
   }
   @Input() direction: 'row' | 'column' = 'row';
 
+  mobile$: Observable<boolean>;
+
   @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
-  constructor() {}
+  constructor(private breakpointService: BreakpointService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.mobile$ = this.breakpointService.isMobile();
+  }
 
   // onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
   //   const event: StepsSelectionEvent = {
