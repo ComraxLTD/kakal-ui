@@ -27,7 +27,6 @@ export class NavbarComponent implements OnInit {
   @Input() pageHeadline$: Observable<PageHeadline>;
 
   openIcon: string = 'tree_gradient_';
-  status$: Observable<CardStep[]>;
   mobile$: Observable<boolean>;
 
   openLabel: string = 'תפריט';

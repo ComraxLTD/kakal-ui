@@ -4,7 +4,7 @@ import { LobbyComponent } from './components/lobby/lobby.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'lobby',
     component: LobbyComponent,
     data: { breadcrumb: 'דף הבית', homepage: true },
     children: [],
@@ -36,6 +36,11 @@ const routes: Routes = [
       import('./modules/tours-list/tours-list.module').then(
         (m) => m.ToursListModule
       ),
+  },
+  {
+    path: '',
+    redirectTo: 'lobby',
+    pathMatch: 'full',
   },
 ];
 
