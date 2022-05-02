@@ -9,11 +9,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLStepperMobileModule } from '../../stepper-mobile/stepper-mobile.module';
-import { KKLStepperModule } from '../../stepper/stepper.module';
 import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLButtonModule } from '../../button/button.module';
+import { KKLStepGroupModule } from '../../groups/step-group/step-group.module';
+import { KKLDrawerLayoutModule } from '../drawer-layout/drawer-layout.module';
 
 import { StepsLayoutComponent } from './steps-layout.component';
+import { KKLNavigationModule } from '../../navigation/navigation.module';
 
 @NgModule({
   imports: [
@@ -23,11 +25,13 @@ import { StepsLayoutComponent } from './steps-layout.component';
     MatToolbarModule,
     MatTooltipModule,
     MatBadgeModule,
+    KKLDrawerLayoutModule,
     KKLButtonModule,
     KKLIconModule,
     KKLTypographyModule,
     KKLStepperMobileModule,
-    KKLStepperModule,
+    KKLStepGroupModule,
+    KKLNavigationModule,
   ],
   declarations: [StepsLayoutComponent],
   exports: [StepsLayoutComponent],

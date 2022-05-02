@@ -8,7 +8,7 @@ mat-toolbar {
   overflow: visible !important;
   padding-left: main.spacing(5);
   padding-right: main.spacing(5);
-  background-color: white !important;
+  color: main.color(paper) !important;
 }
 
 div {
@@ -31,5 +31,6 @@ button.kkl-next-button:not(.mat-button-disabled) {
 
   .mat-button-wrapper {
     line-height: main.spacing(2) !important;
+    color: main.color(paper) !important;
   }
 }

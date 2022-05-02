@@ -83,6 +83,7 @@
 
     <mat-sidenav-content [fxFlex]="portion">
       <kkl-navbar
+        [status]="status"
         [showStatus$]="showStatus$"
         [isOpen]="menuDrawer.opened"
         (menuToggle)="onStartSideNav('menu')"
@@ -119,7 +120,7 @@
         </button>
       </ng-container>
 
-  <ng-content content></ng-content>
+      <ng-content content></ng-content>
 
       <div class="navbar-bottom">
         <kkl-navbar-bottom></kkl-navbar-bottom>

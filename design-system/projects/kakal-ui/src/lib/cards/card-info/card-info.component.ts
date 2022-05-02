@@ -1,5 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { CardInfoModel } from './card-info.model';
+export interface CardInfo {
+  key?: string;
+  label?: string;
+  subLabel?: string;
+  svgIcon?: string;
+  value?: any;
+}
 
 @Component({
   selector: 'kkl-card-info',
@@ -8,7 +14,7 @@ import { CardInfoModel } from './card-info.model';
 })
 export class CardInfoComponent implements OnInit {
 
-  @Input() card: CardInfoModel;
+  @Input() card: CardInfo
 
   constructor() {}
 

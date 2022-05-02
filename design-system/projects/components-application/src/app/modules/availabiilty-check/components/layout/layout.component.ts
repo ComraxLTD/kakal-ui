@@ -1,14 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointService, ButtonModel, ControlBase, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepsLayoutService }from '../../../../../../../kakal-ui/src/public-api';
+import { BreakpointService, ButtonModel, CardStep, ControlBase, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepsLayoutService }from '../../../../../../../kakal-ui/src/public-api';
 import { map, mergeMap, Observable, of} from 'rxjs';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  providers: [FormDataSource]
+  providers: [FormDataSource, StepsLayoutService]
 })
 export class LayoutComponent implements OnInit {
+
+  steps: CardStep[] = [
+    {
+      label: 'פרטי הזמנה',
+      svgIcon: 'plant',
+      path: 'search',
+    },
+    {
+      label: 'מרכיבי הזמנה',
+      svgIcon: 'tree',
+      path: 'parts',
+    },
+    {
+      label: 'סיכום הזמנה',
+      svgIcon: 'list',
+      path: 'summary',
+    },
+  ];
+
   contentPortion = { open: 10, close: 50 };
   actions: ButtonModel[] = [{ type: 'portion' } as ButtonModel];
 
@@ -87,7 +106,7 @@ export class LayoutComponent implements OnInit {
     );
   }
 
- 
+
 
 
   // NAVIGATION EVENTS SECTION

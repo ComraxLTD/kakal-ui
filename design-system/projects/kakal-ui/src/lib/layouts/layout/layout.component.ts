@@ -12,11 +12,13 @@ import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
 import { PageHeadlineService } from '../../page-headline/page-headline.service';
 import { PageHeadline } from '../../page-headline/page-headline.component';
 
-import { map, startWith } from 'rxjs/operators';
-import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
-import { LayoutService } from './layout.service';
 import { ButtonModel } from '../../button/models/button.types';
+import { CardStatus } from '../../cards/card-status/card-status.component';
+
+import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { L } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'kkl-layout',
@@ -25,8 +27,11 @@ import { ButtonModel } from '../../button/models/button.types';
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('menuDrawer') sidenav: MatSidenav;
+  @Input() pageHeadlineRouteMap: { [ket: string]: string };
+
   @Input() showStatusPath: string[];
   @Input() cards: MenuCard[];
+  @Input() status: CardStatus[];
 
   selectedOpen: string;
   @Input() contentPortion: { open: number; close: number } = {
@@ -38,7 +43,6 @@ export class LayoutComponent implements OnInit {
 
   // drawer props
   portion$: Observable<number> = of(100);
-  showStartDrawer$: Observable<boolean>;
 
   endDrawerSizeSource$: BehaviorSubject<number>;
   endDrawerSize$: Observable<number> = of(0);
@@ -51,50 +55,70 @@ export class LayoutComponent implements OnInit {
   _openDrawer!: number;
   _closedDrawer!: number;
 
-  @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
+  pageHeadline$: Observable<PageHeadline[]>;
 
   showStatus$: Observable<boolean>;
 
   mobile$: Observable<boolean>;
 
+  @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private layoutService: LayoutService
+    private pageHeadlineService: PageHeadlineService,
   ) {}
 
   ngOnInit(): void {
-    this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.mobile$ = this.breakpointService.isMobile();
+    this.showStatus$ = this.handleShowState(this.showStatusPath || []);
+    this.pageHeadline$ = this.setPageHeadline();
 
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
     this.endDrawerSizeSource$ = new BehaviorSubject(0);
 
-    // init actions if array exist
-
     this.portion$ = this.getBreakPoints();
 
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
+  }
 
-    this.showStartDrawer$ = this.layoutService.listenToStartDrawer();
+  private setPageHeadline() {
+    return merge(
+      this.setPageHeadlineFromRoute(),
+      this.pageHeadlineService.listenToPageHeadline()
+    );
+  }
+
+  private setPageHeadlineFromRoute() {
+    return this.routerService.listenToRoute$().pipe(
+      map((url: string) => url.split('/').reverse()),
+      map(
+        (url: string[]) =>
+          url.find((item) => this.pageHeadlineRouteMap[item]) || ''
+      ),
+      map((path: string) => this.pageHeadlineRouteMap[path]),
+      map((path: string) => {
+        const pageHeadline: PageHeadline = { value: path };
+        return [pageHeadline];
+      })
+    );
   }
 
   private handleShowState(list: string[]) {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
-        return this.findPath(list, path);
+        return this.findPath([...list, 'lobby'], path);
       })
     );
   }
 
-  private findPath(list: any[], value: string): boolean {
-    return !!list?.find((path: string) => path == value);
+  private findPath(list: string[], value: string): boolean {
+    return list?.some((path: string) => path == value);
   }
 
   onLogoClicked() {
@@ -108,7 +132,7 @@ export class LayoutComponent implements OnInit {
 
   onStartSideNav(val: string) {
     this.selectedOpen = val;
-    if(this.selectedOpen !== 'menu' || this.cards?.length) {
+    if (this.selectedOpen !== 'menu' || this.cards?.length) {
       this.sidenav.toggle();
     }
   }
