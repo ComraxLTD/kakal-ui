@@ -5,6 +5,7 @@ import { BreakpointService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { DrawerLayoutService } from './drawer-layout.service';
 import { map, merge, Observable, of } from 'rxjs';
+import { DrawerDocumentComponent } from '../../drawers/drawer-document/drawer-document.component';
 
 @Component({
   selector: 'kkl-drawer-layout',

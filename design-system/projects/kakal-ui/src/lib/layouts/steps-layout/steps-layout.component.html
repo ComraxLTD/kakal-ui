@@ -1,4 +1,7 @@
 <kkl-drawer-layout [drawerAction]="drawerAction">
+  
+  <ng-content drawer select="[drawer]"></ng-content>
+
   <div fxLayout="column" content>
     <header>
       <mat-toolbar class="stepper-toolbar" dir="rtl">
