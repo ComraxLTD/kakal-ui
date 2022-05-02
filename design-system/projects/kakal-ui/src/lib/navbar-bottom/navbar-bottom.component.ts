@@ -3,7 +3,7 @@ import { NavbarBottomService } from './navbar-bottom.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
-import { Subject, BehaviorSubject, takeUntil } from 'rxjs';
+import { Subject, BehaviorSubject, takeUntil, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -13,12 +13,12 @@ import { Subject, BehaviorSubject, takeUntil } from 'rxjs';
 export class NavbarBottomComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
 
-  showNext$: BehaviorSubject<boolean>;
-  showSave$: BehaviorSubject<boolean>;
-  showBack$: BehaviorSubject<boolean>;
-  showNextMiddle$: BehaviorSubject<{ show: boolean; next: boolean }>;
+  showNext$: Observable<boolean>;
+  showSave$: Observable<boolean>;
+  showBack$: Observable<boolean>;
+  showNextMiddle$: Observable<{ show: boolean; next: boolean }>;
 
-  disableNext$: BehaviorSubject<boolean>;
+  disableNext$: Observable<boolean>;
 
   autoBack: boolean = true;
 
