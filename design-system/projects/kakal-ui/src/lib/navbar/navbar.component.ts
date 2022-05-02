@@ -1,4 +1,3 @@
-import { IconModel } from '../icon/icon.model';
 import {
   Component,
   EventEmitter,
@@ -8,10 +7,12 @@ import {
   Output,
 } from '@angular/core';
 import { CardStep } from '../cards/card-step/card-step.component';
-import { NavbarService } from './navbar.service';
+import { CardStatus } from '../cards/card-status/card-status.component';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
+import { PageHeadline } from '../page-headline/page-headline.component';
 import { Observable } from 'rxjs';
+import { IconModel } from '../icon/icon.component';
 
 @Component({
   selector: 'kkl-navbar',
@@ -19,10 +20,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-
   @Input() icons: IconModel[] = [];
   @Input() isOpen: boolean = false;
+  @Input() status: CardStatus[];
   @Input() showStatus$: Observable<boolean>;
+  @Input() pageHeadline$: Observable<PageHeadline>;
 
   openIcon: string = 'tree_gradient_';
   status$: Observable<CardStep[]>;
@@ -35,13 +37,11 @@ export class NavbarComponent implements OnInit {
   @Output() logoClicked = new EventEmitter();
 
   constructor(
-    private navbarService: NavbarService,
     private breakpointService: BreakpointService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
-    this.status$ = this.navbarService.getStatusObs();
     this.mobile$ = this.breakpointService.isMobile();
     this.openIcon = this.setMenuIcon();
   }

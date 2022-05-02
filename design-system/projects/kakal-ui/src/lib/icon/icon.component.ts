@@ -2,6 +2,14 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Color, palette, Palette } from '../../styles/theme';
 import { IconService } from './icons.service';
 
+export interface IconModel {
+  key: string;
+  size: number;
+  type?: 'mat' | 'svg';
+  path?: string;
+  color?: Palette;
+}
+
 @Component({
   selector: 'kkl-icon',
   templateUrl: './icon.component.html',
