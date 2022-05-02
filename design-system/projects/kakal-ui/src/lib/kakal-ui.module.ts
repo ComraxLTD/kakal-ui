@@ -47,6 +47,8 @@ import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusStepsModule } from './status-steps/status-steps.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
+import { KKLProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
+
 // CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
@@ -118,7 +120,8 @@ registerLocaleData(he);
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLCardFilterModule,
+
+    KKLProgressSpinnerModule,
 
     KKLNavigationModule,
     KKLMenuBarModule,
@@ -174,6 +177,8 @@ registerLocaleData(he);
     KKLCardStepModule,
     KKLCardUserModule,
     KKLCardDocumentModule,
+    KKLCardFilterModule,
+
 
     // NAVBAR
     KKLNavbarModule,
@@ -212,7 +217,7 @@ registerLocaleData(he);
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLCardFilterModule,
+    KKLProgressSpinnerModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
 
@@ -268,6 +273,7 @@ registerLocaleData(he);
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
+    KKLCardFilterModule,
     KKLCardUserModule,
     KKLCardDocumentModule,
     KKLCardAddModule,

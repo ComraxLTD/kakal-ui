@@ -254,9 +254,6 @@ export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
 export * from './lib/dialog/dialog.service';
 
-// spinner
-export * from './lib/spinner/spinner.component';
-export * from './lib/spinner/spinner.module';
 
 // sidenav
 export * from './lib/sidenav/sidenav.module';
@@ -394,6 +391,14 @@ export * from './lib/drawers/drawer.module';
 export * from './lib/drawers/drawer-document/drawer-document.module';
 export * from './lib/drawers/drawer-document/drawer-document.component';
 export * from './lib/drawers/drawer-document/drawer-document-item/drawer-document-item.component';
+
+// progress
+export * from './lib/progress-spinner/progress-spinner.module';
+export * from './lib/progress-spinner/progress-spinner.component';
+
+// spinner
+export * from './lib/spinner/spinner.component';
+export * from './lib/spinner/spinner.module';
 
 // pipes
 export * from './lib/pipes/area.pipe';
