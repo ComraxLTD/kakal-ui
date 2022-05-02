@@ -4,7 +4,7 @@ import { BreakpointService } from '../../../services/services';
 
 import { ButtonModel } from '../../button/models/button.types';
 import { DrawerLayoutService } from './drawer-layout.service';
-import { Observable } from 'rxjs';
+import { map, merge, Observable, of } from 'rxjs';
 
 @Component({
   selector: 'kkl-drawer-layout',
@@ -19,7 +19,6 @@ export class DrawerLayoutComponent implements OnInit {
   mobile$: Observable<boolean>;
   showStartDrawer$: Observable<boolean>;
 
-
   constructor(
     private breakpointService: BreakpointService,
     private drawerLayoutService: DrawerLayoutService
@@ -27,7 +26,9 @@ export class DrawerLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.showStartDrawer$ = this.drawerLayoutService.listenToStartDrawer();
-
+    this.showStartDrawer$ = merge(
+      of(!this.drawerAction),
+      this.drawerLayoutService.listenToStartDrawer()
+    );
   }
 }

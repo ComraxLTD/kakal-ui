@@ -1,68 +1,58 @@
-  <mat-sidenav-container class="kkl-drawer-layout" dir="rtl">
-    <mat-sidenav #drawer class="drawer-wrapper" mode="push" position="start">
-        <div
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          fxFill
-        >
-          <div
-            fxFlex="85"
-            fxLayout="column"
-            fxLayoutAlign="center center"
-            fxFill
+<mat-sidenav-container class="kkl-drawer-layout" dir="rtl">
+  <mat-sidenav #drawer class="drawer-wrapper" mode="push" position="start">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFill>
+      <div fxFlex="85" fxLayout="column" fxLayoutAlign="center center" fxFill>
+        <div fxFlex="95" fxFill>
+          <button
+          (click)="drawer.toggle()"
+            mat-fab
+            [ngClass]="{
+              'kkl-drawer-button': true,
+              open: drawer.opened
+            }"
+            [matBadge]="drawer.opened ? 'x' : '+'"
+            [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
           >
-            <div fxFlex="95" fxFill>
-              <button
-                mat-fab
-                [ngClass]="{
-                  'kkl-drawer-button': true,
-                  open: drawer.opened
-                }"
-                [matBadge]="drawer.opened ? 'x' : '+'"
-                [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
-              >
-                <kkl-icon
-                  color="primary"
-                  [key]="drawerAction?.svgIcon"
-                  [size]="1.8"
-                >
-                </kkl-icon>
-                <kkl-typography [weight]="600" [size]="1">
-                  {{ drawerAction?.label }}
-                </kkl-typography>
-              </button>
-              <ng-content select="[drawer]"></ng-content>
-            </div>
-          </div>
+            <kkl-icon
+              color="primary"
+              [key]="drawerAction?.svgIcon"
+              [size]="1.8"
+            >
+            </kkl-icon>
+            <kkl-typography [weight]="600" [size]="1">
+              {{ drawerAction?.label }}
+            </kkl-typography>
+          </button>
+          <ng-content select="[drawer]"></ng-content>
         </div>
-    </mat-sidenav>
+      </div>
+    </div>
+  </mat-sidenav>
 
+  <mat-sidenav-content>
+    <!-- DRAWER BUTTON  -->
 
-    <mat-sidenav-content >
+    <!-- <ng-container *ngIf="showStartDrawer$ | async"> -->
+    <ng-container>
+      <button
+        mat-fab
+        (click)="drawer.toggle()"
+        [ngClass]="{
+          'kkl-drawer-button': true,
+          outside: true,
+          open: drawer.opened
+        }"
+        [matBadge]="drawer.opened ? 'x' : '+'"
+        [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
+      >
+        <kkl-icon color="primary" [key]="drawerAction?.svgIcon" [size]="1.8">
+        </kkl-icon>
+        <kkl-typography [weight]="600" [size]="1">
+          {{ drawerAction?.label }}
+        </kkl-typography>
+      </button>
+    </ng-container>
 
-      <!-- DRAWER BUTTON  -->
-
-      <ng-container *ngIf="showStartDrawer$ | async">
-        <button
-          mat-fab
-          (click)="onStartSideNav('side')"
-          [ngClass]="{
-            'kkl-drawer-button': true,
-            outside: true,
-            open: drawer.opened
-          }"
-          [matBadge]="drawer.opened ? 'x' : '+'"
-          [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
-        >
-          <kkl-icon color="primary" [key]="drawerAction?.svgIcon" [size]="1.8">
-          </kkl-icon>
-          <kkl-typography [weight]="600" [size]="1">
-            {{ drawerAction?.label }}
-          </kkl-typography>
-        </button>
-      </ng-container>
-
-      <ng-content content></ng-content>
-
-    </mat-sidenav-content>
-  </mat-sidenav-container>
+    <ng-content content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

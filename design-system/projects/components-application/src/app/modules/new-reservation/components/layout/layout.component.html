@@ -1,12 +1,13 @@
-<kkl-steps-layout [steps]="steps"  (stepSelect)="onChangeStep($event)">
+<kkl-steps-layout
+  [steps]="steps"
+  [actions]="[{ type: 'file' }]"
+  (stepSelect)="onChangeStep($event)"
+>
   <div content>
     <router-outlet></router-outlet>
     <ng-container *ngIf="showMiddleNext$ | async">
-      <div fxLayout="row" fxLayoutAlign="center center">
-  
-      </div>
+      <div fxLayout="row" fxLayoutAlign="center center"></div>
     </ng-container>
   </div>
   <div endDrawerContent>replace this content with your own feature</div>
-
 </kkl-steps-layout>

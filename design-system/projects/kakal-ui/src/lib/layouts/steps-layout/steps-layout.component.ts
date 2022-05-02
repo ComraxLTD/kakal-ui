@@ -24,11 +24,15 @@ export class StepsLayoutComponent {
   @Input() set actions(value: ButtonModel[]) {
     if (value?.length) {
       this.rowActions = this.setRowActions(value);
+      this.drawerAction = this.setDrawerAction(value);
+
       // this.rowActionSource$.next(this.rowActions);
     } else {
       this.rowActions = [];
     }
   }
+
+  drawerAction: ButtonModel;
 
   stepsSelectionEvent: StepsSelectionEvent;
 
@@ -99,6 +103,19 @@ export class StepsLayoutComponent {
       last: selectedIndex === this.steps.length - 1,
       first: selectedIndex === 0,
     } as StepsSelectionEvent;
+  }
+
+  // ACTIONS SECTION
+  private setDrawerAction(actions: ButtonModel[]): ButtonModel {
+    const iconMap = {
+      file: 'file',
+      notes: 'bell',
+    };
+    const action = actions.find(
+      (action: ButtonModel) => action.type === 'file' || action.type === 'notes'
+    );
+
+    return action ? { ...action, svgIcon: iconMap[action.type] } : null;
   }
 
   // private setRowActionsFromActonState() {

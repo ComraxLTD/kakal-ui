@@ -40,7 +40,6 @@ export class LayoutComponent implements OnInit {
 
   // drawer props
   portion$: Observable<number> = of(100);
-  showStartDrawer$: Observable<boolean>;
 
   endDrawerSizeSource$: BehaviorSubject<number>;
   endDrawerSize$: Observable<number> = of(0);
@@ -67,7 +66,6 @@ export class LayoutComponent implements OnInit {
     private routerService: RouterService,
     private breakpointService: BreakpointService,
     private pageHeadlineService: PageHeadlineService,
-    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
@@ -83,8 +81,6 @@ export class LayoutComponent implements OnInit {
     this.portion$ = this.getBreakPoints();
 
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
-
-    this.showStartDrawer$ = this.layoutService.listenToStartDrawer();
   }
 
   private setPageHeadline() {

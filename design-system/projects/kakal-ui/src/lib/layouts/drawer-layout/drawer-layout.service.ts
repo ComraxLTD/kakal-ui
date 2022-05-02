@@ -5,18 +5,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class DrawerLayoutService {
-  private startDrawer$: BehaviorSubject<boolean>;
+  private drawer$: BehaviorSubject<boolean>;
 
   constructor() {
-    this.startDrawer$ = new BehaviorSubject<boolean>(false);
+    this.drawer$ = new BehaviorSubject<boolean>(false);
   }
 
   showStartDrawer(value: boolean): void {
-    this.startDrawer$.next(value);
+    this.drawer$.next(value);
   }
 
 
   listenToStartDrawer(): Observable<boolean> {
-    return this.startDrawer$.asObservable();
+    return this.drawer$.asObservable();
   }
 }

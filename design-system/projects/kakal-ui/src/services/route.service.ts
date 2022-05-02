@@ -40,8 +40,6 @@ export class RouterService {
   }
 
   public getCurrentPath(): string {
-    console.log(this.router.url);
-
     return this.setLastPath(this.router.url);
   }
 
