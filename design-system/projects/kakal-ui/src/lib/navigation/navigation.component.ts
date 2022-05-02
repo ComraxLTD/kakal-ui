@@ -16,7 +16,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  
+
   @Input() steps: CardStep[];
   @Input() template: TemplateRef<any>;
 
