@@ -3,7 +3,7 @@ import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild 
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, take, takeUntil } from 'rxjs';
 import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/table-actions.model'
 import { TableBase } from '../../models/table.model';
 import { TableServerModel } from '../../models/table-server.model';
@@ -14,6 +14,7 @@ import { setControls } from '../../../mei-services/services/form-create';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
 import { DialogService } from '../../../dialog/dialog.service';
+import { BreakpointService } from '../../../../services/services';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
@@ -31,6 +32,8 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 })
 export class EventTableComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
+
+  mobile$: Observable<boolean>;
 
   @ViewChild(MatTable) table: MatTable<any>;
 
@@ -52,7 +55,22 @@ export class EventTableComponent implements OnInit {
   @Input() paging: boolean = true;
   @Input() pageSize: number = 10;
 
-  @Input() dragable: boolean;
+  dragable: boolean;
+  @Input() set draggable(val: boolean) {
+    if(val) {
+      if(!this.displayedColumns.includes('dragHandeler')){
+        this.displayedColumns.unshift('dragHandeler')
+      }
+    } else {
+      if(this.displayedColumns.includes('dragHandeler')) {
+        const index = this.displayedColumns.indexOf('dragHandeler');
+        if (index > -1) {
+          this.displayedColumns.splice(index, 1);
+        }
+      }
+    }
+    this.dragable = val;
+  }
 
 
   oneColumns: TableBase[];
@@ -178,9 +196,10 @@ export class EventTableComponent implements OnInit {
     }
     this.form = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
     setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
+    this.mobile$ = this.breakpointService.isMobile();
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private dialogService: DialogService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private dialogService: DialogService, private breakpointService: BreakpointService) {
   }
 
   ngAfterViewInit() {

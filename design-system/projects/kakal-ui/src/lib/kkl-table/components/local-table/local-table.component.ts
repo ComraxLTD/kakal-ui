@@ -5,7 +5,7 @@ import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject, Subject, takeUntil } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { setControls } from '../../../mei-services/services/form-create';
 import { ControlBase } from '../../../mei-form/models/control.model';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
@@ -14,6 +14,7 @@ import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/tab
 import { TableBase } from '../../models/table.model';
 import { customFilterPredicate } from './local-filter';
 import { DialogService } from '../../../dialog/dialog.service';
+import { BreakpointService } from '../../../../services/services';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 
@@ -32,7 +33,10 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 export class LocalTableComponent implements OnInit {
   @ViewChild(MatTable) table: MatTable<any>;
 
+  typeLocal: boolean = true;
   destroySubject$: Subject<void> = new Subject();
+
+  mobile$: Observable<boolean>;
 
   isLoading: boolean = true;
 
@@ -49,7 +53,22 @@ export class LocalTableComponent implements OnInit {
 
   @Input() paging: boolean = true;
 
-  @Input() dragable: boolean;
+  dragable: boolean;
+  @Input() set draggable(val: boolean) {
+    if(val) {
+      if(!this.displayedColumns.includes('dragHandeler')){
+        this.displayedColumns.unshift('dragHandeler')
+      }
+    } else {
+      if(this.displayedColumns.includes('dragHandeler')) {
+        const index = this.displayedColumns.indexOf('dragHandeler');
+        if (index > -1) {
+          this.displayedColumns.splice(index, 1);
+        }
+      }
+    }
+    this.dragable = val;
+  }
 
 
   dragDisabled = true;
@@ -85,7 +104,7 @@ export class LocalTableComponent implements OnInit {
       this.displayedColumns.push('actions');
     }
     if(this.dragable) {
-      this.displayedColumns.unshift('dragHandeler')
+      this.displayedColumns.unshift('dragHandeler');
     }
     // const row = this.fb.group({});
     // this.oneColumns.forEach(col => {
@@ -174,6 +193,7 @@ export class LocalTableComponent implements OnInit {
     }
     this.form = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
     setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
+    this.mobile$ = this.breakpointService.isMobile();
   }
 
 
@@ -183,7 +203,7 @@ export class LocalTableComponent implements OnInit {
 
 
 
-  constructor(private fb: FormBuilder, private dialogService: DialogService) {
+  constructor(private fb: FormBuilder, private dialogService: DialogService, private breakpointService: BreakpointService) {
   }
 
   ngAfterViewInit() {
