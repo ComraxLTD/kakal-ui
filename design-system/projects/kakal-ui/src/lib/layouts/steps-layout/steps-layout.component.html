@@ -1,12 +1,11 @@
 <kkl-drawer-layout [drawerAction]="drawerAction">
-  
   <ng-content drawer select="[drawer]"></ng-content>
 
   <div fxLayout="column" content>
     <header>
       <mat-toolbar class="stepper-toolbar" dir="rtl">
         <div class="step-group">
-          <ng-container *ngIf="mobile$ | async; else webBlock">
+          <!-- <ng-container *ngIf="mobile$ | async; else webBlock">
             <kkl-stepper-mobile
               [steps]="steps"
               (selectStep)="onSelectStep($event)"
@@ -14,11 +13,11 @@
           </ng-container>
 
           <ng-template #webBlock>
-            <kkl-step-group
-              [steps]="steps"
-              (stepSelection)="onSelectStep($event)"
-            ></kkl-step-group>
-          </ng-template>
+          </ng-template> -->
+          <kkl-step-group
+            [steps]="steps"
+            (stepSelection)="onSelectStep($event)"
+          ></kkl-step-group>
         </div>
 
         <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">
