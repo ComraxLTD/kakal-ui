@@ -17,14 +17,14 @@ export class StepsLayoutComponent {
 
   @Input() steps: CardStep[];
 
-  rowActionSource$: BehaviorSubject<ButtonModel[]> = new BehaviorSubject([]);
-  rowActions$!: Observable<ButtonModel[]>;
+  // rowActionSource$: BehaviorSubject<ButtonModel[]> = new BehaviorSubject([]);
+  // rowActions$!: Observable<ButtonModel[]>;
   rowActions!: ButtonModel[];
 
   @Input() set actions(value: ButtonModel[]) {
     if (value?.length) {
       this.rowActions = this.setRowActions(value);
-      this.rowActionSource$.next(this.rowActions);
+      // this.rowActionSource$.next(this.rowActions);
     } else {
       this.rowActions = [];
     }
@@ -74,37 +74,37 @@ export class StepsLayoutComponent {
       });
   }
 
-  private setRowActionsFromActonState() {
-    this.stepsLayoutService.getButtonAction().pipe(
-      map((actionState: ActionButtonState) => {
-        const { action, disabled, key, buttons } = actionState;
+  // private setRowActionsFromActonState() {
+  //   this.stepsLayoutService.getButtonAction().pipe(
+  //     map((actionState: ActionButtonState) => {
+  //       const { action, disabled, key, buttons } = actionState;
 
-        switch (action) {
-          case 'disable':
-            disabled[key] = true;
-            break;
-          case 'enable':
-            disabled[key] = false;
-            break;
-          case 'add':
-            this.rowActions = this.rowActions.concat(buttons);
-            break;
-          case 'remove':
-            this.rowActions = this.rowActions.filter((v) => v.label !== key);
-            break;
-          case 'removeAll':
-            this.rowActions = [];
-          default:
-            break;
-        }
-      })
-    );
-  }
+  //       switch (action) {
+  //         case 'disable':
+  //           disabled[key] = true;
+  //           break;
+  //         case 'enable':
+  //           disabled[key] = false;
+  //           break;
+  //         case 'add':
+  //           this.rowActions = this.rowActions.concat(buttons);
+  //           break;
+  //         case 'remove':
+  //           this.rowActions = this.rowActions.filter((v) => v.label !== key);
+  //           break;
+  //         case 'removeAll':
+  //           this.rowActions = [];
+  //         default:
+  //           break;
+  //       }
+  //     })
+  //   );
+  // }
 
-  private setRowActions$() {
-    const setFromInout$ = of(this.rowActions);
-    const setFromState$ = this.setRowActionsFromActonState();
-  }
+  // private setRowActions$() {
+  //   const setFromInout$ = of(this.rowActions);
+  //   const setFromState$ = this.setRowActionsFromActonState();
+  // }
 
   private setRowActions(actions: ButtonModel[]) {
     const iconLabelMap = {
