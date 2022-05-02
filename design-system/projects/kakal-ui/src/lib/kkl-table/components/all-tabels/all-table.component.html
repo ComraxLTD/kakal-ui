@@ -47,8 +47,11 @@
 
         <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
         <ng-container matColumnDef="expandedDetail">
-          <td [ngClass]="element == expandedElement ? 'expand' : 'hide'" mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-            <div [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <td [ngClass]="element == expandedElement ? 'expanded-container' : 'hide'" mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+            <div
+              [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
+              [ngClass]="element == expandedElement ? 'expand' : ''"
+              >
               <div *ngIf="element == expandedElement" class="example-element-detail">
                 <ng-container *ngIf="expandTemplate">
                   <ng-template *ngTemplateOutlet="expandTemplate"></ng-template>
@@ -116,4 +119,3 @@
 <ng-template #webBlock>
   <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"></kkl-mobile-table>
 </ng-template>
-

@@ -23,7 +23,7 @@
           class="next-middle-btn"
           mat-fab
           [disabled]="!formGroup.valid"
-          color="paper"
+          color="primary"
           (click)="onNextMiddle()"
         >
           <span>
@@ -33,7 +33,7 @@
             <ng-template #saveTemp>{{ "שמור" }}</ng-template>
           </span>
           <br />
-          <mat-icon>expand_more</mat-icon>
+          <kkl-icon [color]="'paper'" key="expand_more"></kkl-icon>
         </button>
       </ng-container>
     </ng-container>

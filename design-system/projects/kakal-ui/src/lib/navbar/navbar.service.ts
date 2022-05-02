@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { CardStep } from '../cards/card-step/card-step.model';
-import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
+import { CardStep } from '../cards/card-step/card-step.component';
+import { CardStatus } from '../cards/card-status/card-status.component';
 import { PageHeadline } from '../page-headline/page-headline.component';
+import { BehaviorSubject, mergeAll, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,13 +12,13 @@ export class NavbarService {
 
   private titleSubject: BehaviorSubject<string>;
   private headersSubject: BehaviorSubject<Observable<PageHeadline[]>>;
-  private statusSubject: BehaviorSubject<CardStatusModel[]>;
-  private selectStatusSubject: BehaviorSubject<CardStatusModel>;
+  private statusSubject: BehaviorSubject<CardStatus[]>;
+  private selectStatusSubject: BehaviorSubject<CardStatus>;
 
   constructor() {
     this.titleSubject = new BehaviorSubject<string>('');
-    this.statusSubject = new BehaviorSubject<CardStatusModel[]>([]);
-    this.selectStatusSubject = new BehaviorSubject<CardStatusModel>(null);
+    this.statusSubject = new BehaviorSubject<CardStatus[]>([]);
+    this.selectStatusSubject = new BehaviorSubject<CardStatus>(null);
   }
 
   // headers section
@@ -46,13 +46,13 @@ export class NavbarService {
   }
 
   // status section
-  public getStatusObs(): Observable<CardStatusModel[]> {
+  public getStatusObs(): Observable<CardStatus[]> {
     return this.statusSubject.asObservable();
   }
 
-  public emitStatus(value: CardStatusModel[]): void {
-    const status: CardStatusModel[] = [...value].map(
-      (status: CardStatusModel) => {
+  public emitStatus(value: CardStatus[]): void {
+    const status: CardStatus[] = [...value].map(
+      (status: CardStatus) => {
         return {
           ...status,
           size: 6,
@@ -67,7 +67,7 @@ export class NavbarService {
     return this.selectStatusSubject.asObservable();
   }
 
-  public emitSelectStatus(value: CardStatusModel): void {
+  public emitSelectStatus(value: CardStatus): void {
     this.selectStatusSubject.next(value);
   }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +9,8 @@ export class NavbarBottomService {
   private showNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private showSave$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private showBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
-  private showNextMiddle$: BehaviorSubject<{show: boolean, next: boolean}> = new BehaviorSubject({show: false, next: true});
+  private showNextMiddle$: BehaviorSubject<{ show: boolean; next: boolean }> =
+    new BehaviorSubject({ show: false, next: true });
 
   private next$: Subject<void> = new Subject();
   private save$: Subject<void> = new Subject();
@@ -20,8 +21,7 @@ export class NavbarBottomService {
   private disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
-  constructor() {
-  }
+  constructor() {}
 
   getShowNext(): BehaviorSubject<boolean> {
     return this.showNext$;
@@ -30,68 +30,64 @@ export class NavbarBottomService {
     this.showNext$.next(val);
   }
 
-  getShowSave(): BehaviorSubject<boolean> {
-    return this.showSave$;
+  getShowSave(): Observable<boolean> {
+    return this.showSave$.asObservable();
   }
   setShowSave(val: boolean) {
     this.showSave$.next(val);
   }
 
-  getShowBack(): BehaviorSubject<boolean> {
-    return this.showBack$;
+  getShowBack(): Observable<boolean> {
+    return this.showBack$.asObservable();
   }
   setShowBack(val: boolean) {
     this.showBack$.next(val);
   }
 
-  getShowNextMiddle(): BehaviorSubject<{show: boolean, next: boolean}> {
-    return this.showNextMiddle$;
+  getShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
+    return this.showNextMiddle$.asObservable();
   }
-  setShowNextMiddle(val: {show: boolean, next: boolean}) {
+  setShowNextMiddle(val: { show: boolean; next: boolean }) {
     this.showNextMiddle$.next(val);
   }
 
-  getDisableNext(): BehaviorSubject<boolean> {
-    return this.disableNext$;
+  getDisableNext(): Observable<boolean> {
+    return this.disableNext$.asObservable();
   }
   setDisableNext(val: boolean) {
     this.disableNext$.next(val);
   }
 
-  getAutoBack(): BehaviorSubject<boolean> {
-    return this.autoBack$;
+  getAutoBack(): Observable<boolean> {
+    return this.autoBack$.asObservable();
   }
   setAutoBack(val: boolean) {
     this.autoBack$.next(val);
   }
 
-
-  getFormGroup(): Subject<FormGroup> {
-    return this.formGroup$;
+  getFormGroup(): Observable<FormGroup> {
+    return this.formGroup$.asObservable();
   }
   setFormGroup(val: FormGroup) {
     this.formGroup$.next(val);
   }
 
-
-
-  getSave(): Subject<void> {
-    return this.save$;
+  getSave(): Observable<void> {
+    return this.save$.asObservable();
   }
   setSave() {
     this.save$.next();
   }
 
-  getBack(): Subject<void> {
-    return this.back$;
+  getBack(): Observable<void> {
+    return this.back$.asObservable();
   }
   setBack() {
     this.back$.next();
   }
 
-
-  getNext(): Subject<void> {
-    return this.next$;
+  getNext(): Observable<void> {
+    return this.next$.asObservable();
   }
   setNext() {
     this.next$.next();
@@ -103,5 +99,4 @@ export class NavbarBottomService {
   setNextMiddle() {
     this.nextMiddle$.next();
   }
-
 }

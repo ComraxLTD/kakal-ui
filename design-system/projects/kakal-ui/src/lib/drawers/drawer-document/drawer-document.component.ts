@@ -17,7 +17,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './drawer-document.component.html',
   styleUrls: ['./drawer-document.component.scss'],
 })
-export class DrawerDocumentComponent<T> implements OnInit {
+export class DrawerDocumentComponent<T = any> implements OnInit {
   @Input() title: string;
   @Input() categories: SelectOption[];
 

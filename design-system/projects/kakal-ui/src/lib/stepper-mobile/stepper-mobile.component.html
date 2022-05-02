@@ -1,15 +1,23 @@
-<div fxFill fxLayout="column" dir="rtl">
+<div fxFill fxLayout="column" dir="rtl" fxLayoutGap="1.5rem">
   <div fxLayout="row" fxLayoutAlign="space-between center" dir="rtl">
-    <div [ngClass]="{'hover' : previous}" (click)="onPrevious()">
-        <kkl-icon *ngIf="previous" key="arrow_forward_ios" color="primary"></kkl-icon>
-        <kkl-icon *ngIf="!previous" key="arrow_forward_ios" color="greyFirst"></kkl-icon>
+    <div [ngClass]="{ hover: previous }" (click)="onPrevious()">
+      <kkl-icon
+        *ngIf="previous"
+        key="arrow_forward_ios"
+        color="primary"
+      ></kkl-icon>
+      <kkl-icon
+        *ngIf="!previous"
+        key="arrow_forward_ios"
+        color="greyFirst"
+      ></kkl-icon>
     </div>
-    <kkl-typography [weight]="500" [size]="1.2">
+    <kkl-typography [weight]="500" [size]="2.5">
       {{ steps[start].label }}
     </kkl-typography>
-    <div [ngClass]="{'hover' : next}" (click)="onNext()">
-        <kkl-icon *ngIf="next" key="arrow_back_ios" color="primary"></kkl-icon>
-        <kkl-icon *ngIf="!next" key="arrow_back_ios" color="greyFirst"></kkl-icon>
+    <div [ngClass]="{ hover: next }" (click)="onNext()">
+      <kkl-icon *ngIf="next" key="arrow_back_ios" color="primary"></kkl-icon>
+      <kkl-icon *ngIf="!next" key="arrow_back_ios" color="greyFirst"></kkl-icon>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">

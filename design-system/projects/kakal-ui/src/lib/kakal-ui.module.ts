@@ -47,13 +47,14 @@ import { KKLPipesModule } from './pipes/pipes.module';
 import { KKLStatusStepsModule } from './status-steps/status-steps.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
+import { KKLProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
+
 // CARDS
 import { KKLCardLobbyModule } from './cards/card-lobby/card-lobby.module';
 import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
-import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
 import { KKLCardAddModule } from './cards/card-add/card-add.module';
 import { KKLCardDocumentModule } from './cards/card-document/card-document.module';
@@ -69,10 +70,10 @@ import { KKLAdvancedSearchLayoutModule } from './layouts/advanced-search-layout/
 
 import { KKLNavbarModule } from './navbar/navbar.module';
 import { KKLNavbarBottomModule } from './navbar-bottom/navbar-bottom.module';
-import { KKLStepperModule } from './stepper/stepper.module';
 import { KKLStepperMobileModule } from './stepper-mobile/stepper-mobile.module';
 import { KKLListMenuModule } from './list-menu/list-menu.module';
 import { KKLHoverModule } from './kkl-hover/kkl-hover.module';
+
 import { KKLExpandPanelModule } from './expand-panel/expand-panel.module';
 import { KKLChipsModule } from './chips/chips.module';
 
@@ -119,7 +120,8 @@ registerLocaleData(he);
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLCardFilterModule,
+
+    KKLProgressSpinnerModule,
 
     KKLNavigationModule,
     KKLMenuBarModule,
@@ -174,15 +176,15 @@ registerLocaleData(he);
     KKLCardStatusModule,
     KKLCardStepModule,
     KKLCardUserModule,
-    KKLCardWizardModule,
     KKLCardDocumentModule,
+    KKLCardFilterModule,
+
 
     // NAVBAR
     KKLNavbarModule,
     KKLNavbarBottomModule,
 
     // STEPPER
-    KKLStepperModule,
     KKLStepperMobileModule,
     KKLStepsLayoutModule,
 
@@ -215,7 +217,7 @@ registerLocaleData(he);
     KKLTabsModule,
     OpenMotionsModule,
     KKLHoverModule,
-    KKLCardFilterModule,
+    KKLProgressSpinnerModule,
     KKLBreadCrumbsModule,
     KKLNavigationModule,
 
@@ -271,8 +273,8 @@ registerLocaleData(he);
     KKLCardInfoModule,
     KKLCardStatusModule,
     KKLCardStepModule,
+    KKLCardFilterModule,
     KKLCardUserModule,
-    KKLCardWizardModule,
     KKLCardDocumentModule,
     KKLCardAddModule,
 
@@ -297,7 +299,6 @@ registerLocaleData(he);
     KKLAdvancedSearchLayoutModule,
 
     // STEPPER
-    KKLStepperModule,
     KKLStepperMobileModule,
     KKLStepsLayoutModule,
 

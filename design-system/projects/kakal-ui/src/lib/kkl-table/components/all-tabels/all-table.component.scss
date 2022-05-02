@@ -15,12 +15,12 @@ tr.example-element-row:not(.example-expanded-row):active {
 }
 
 .example-element-detail {
-  display: flex;
-  padding: 16px;
+  // display: flex;
+  // padding: 16px;
   background-color: main.color(table);
   // background-color: red;
   width: 100%;
-  margin-right: -16px;
+  // margin-right: -16px;
 
 }
 
@@ -35,12 +35,34 @@ tr.example-element-row:not(.example-expanded-row):active {
 
 td.mat-cell {
   border-bottom: 0.5px solid main.color(table-background);
+  // padding: 0 !important;
 }
+
+.table-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 99%;
+  // padding: 1px;
+  .table-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 0px;
+  }
+}
+
 table {
-  width: 100%;
+  width: 98%;
 }
+
+thead{
+  margin: auto;
+}
+
 .expand-table {
-  border-spacing: 0 10px !important;
+  border-spacing: 0 5px !important;
 }
 .all-table-form{
   // width: 100%;
@@ -49,10 +71,13 @@ table {
 }
 
 table table {
+  width: 100%;
+  border-top: dotted 3px main.color(primaryLight);
+  padding: 10px 20px;
   tr.mat-header-row{
     th.mat-header-cell.cdk-header-cell{
       border-bottom: none;
-      background-color: lightgrey;
+      background-color: rgb(243, 243, 243);
     }
   }
 }
@@ -80,8 +105,13 @@ table table {
 //   direction: ltr;
 // }
 
+.expanded-container{
+  padding: 0 !important;
+  margin: 10px 0 !important;
+}
+
 .expand{
-  background-color: main.color(table);
+  margin-top: -5px !important;
 }
 
 .hide{

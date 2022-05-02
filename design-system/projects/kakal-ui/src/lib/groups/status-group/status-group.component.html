@@ -1,0 +1,28 @@
+<div
+  fxFill
+  dir="rtl"
+  fxLayout="row"
+  fxLayoutGap="1.5rem"
+>
+  <ng-container
+    *ngFor="
+      let step of status;
+      let i = index;
+      let last = last;
+      let first = first
+    "
+  >
+    <div appSize [type]="'status'" [size]="6" [step]="step">
+      <kkl-card-status
+        (statusSelect)="onStepStatusSelect(step, last, first)"
+        [index]="i"
+        [status]="step"
+        [options]="options"
+      ></kkl-card-status>
+    </div>
+
+    <ng-controller *ngIf="!last">
+      <div class="divider"></div>
+    </ng-controller>
+  </ng-container>
+</div>
