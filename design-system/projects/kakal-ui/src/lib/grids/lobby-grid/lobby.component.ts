@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { CardLobbyModel } from '../../cards/card-lobby/card-lobby.component';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-lobby-grid',
@@ -14,16 +14,25 @@ export class LobbyComponent implements OnInit {
   @Input() public moduleTitle: string;
   @Input() public cards: CardLobbyModel[];
 
-  public md$: Observable<boolean>;
+  public md$: Observable<{value:boolean}>;
 
   @Output() cardClick: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(private breakpointService: BreakpointService) {}
 
+  desktopCols:number;
+
   ngOnInit(): void {
-    this.md$ = this.breakpointService.isMobile();
-    this.cols = this.cols || this.cards.length / 2;
+    this.cols = Math.min(this.cols, Math.floor(window.innerWidth/180));
     this.rows = this.rows || 2;
+    this.desktopCols = this.cols;
+    this.md$ = this.mapIsMobile();
+  }
+
+  mapIsMobile() {
+    return this.breakpointService.isMobile().pipe(
+      map(val => { return { value: val } }),
+    );
   }
 
   public onCardClick(card) {

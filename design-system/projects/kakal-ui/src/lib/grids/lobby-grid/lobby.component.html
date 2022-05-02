@@ -1,35 +1,13 @@
-<div
-  fxLayout="column"
-  fxLayoutAlign="center center"
-  dir="rtl"
-  class="kkl-lobby-grid"
->
-  <div fxLayout="row">
-    <div
-      class="container"
-      fxLayout="column"
-      fxLayoutAlign="center center"
-      [fxFlex]="((md$ | async) ? 16 : 18) * cols + 'rem'"
-    >
-      <div [fxFlex]="'8rem'">
-        <kkl-typography [weight]="600" [size]="3">{{
-          moduleTitle
-        }}</kkl-typography>
-      </div>
-      <div
-        fxLayout="row wrap"
-        [fxFlex]="((md$ | async) ? 16 : 18) * rows + 'rem'"
-      >
-        <div
-          class="card"
-          *ngFor="let card of cards; let i = index"
-          appSize
-          [size]="(md$ | async) ? 16 : 18"
-          (click)="onCardClick(card)"
-        >
-          <kkl-card-lobby [card]="card"> </kkl-card-lobby>
+<div fxLayout="column" fxLayoutAlign="center center" dir="rtl" class="kkl-lobby-grid">
+  <ng-container *ngIf="md$ | async as isMobile">
+    <div fxLayout="row">
+      <div  class="container"  fxLayout="column"  [fxLayoutAlign]="isMobile.value? ' center' : 'center center'" [fxFlex]="(isMobile.value ? 16 : 18) * cols + 'rem'">
+        <div fxLayout="row wrap" [fxFlex]="(isMobile.value ? 16 : 18) * rows + 'rem'">
+          <div class="card" *ngFor="let card of cards; let i = index" appSize [size]="isMobile.value ? 16 : 18" (click)="onCardClick(card)">
+            <kkl-card-lobby [card]="card"> </kkl-card-lobby>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </ng-container>
 </div>
