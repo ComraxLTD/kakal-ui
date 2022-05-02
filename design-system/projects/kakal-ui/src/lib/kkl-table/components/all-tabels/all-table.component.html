@@ -46,8 +46,8 @@
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
       <ng-container matColumnDef="expandedDetail">
-        <td [ngClass]="element == expandedElement ? '' : 'hide'" mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
-          <div 
+        <td [ngClass]="element == expandedElement ? 'expanded-container' : 'hide'" mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+          <div
             [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'"
             [ngClass]="element == expandedElement ? 'expand' : ''"
           >
@@ -100,7 +100,7 @@
           <!-- [ngClass]="{'' : expandTemplate}" -->
 
       </tr>
-      <tr mat-row *matRowDef="let row; columns: expandTemplate? ['expandedDetail'] : []" class="example-detail-row mat-elevation-z8"></tr>
+      <tr mat-row *matRowDef="let row; columns: expandTemplate? ['expandedDetail'] : []" [ngClass]="{'mat-elevation-z8': expandTemplate}" class="example-detail-row"></tr>
 
       <!-- Row shown when there is no matching data. -->
       <tr class="mat-row" *matNoDataRow>
