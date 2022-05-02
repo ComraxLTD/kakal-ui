@@ -1,19 +1,22 @@
 import {
-  Component, ElementRef, EventEmitter, Input,
-  Output
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
 } from '@angular/core';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
-import { CardStep, StepOptions } from '../cards/card-step/card-step.model';
+import { CardStatus } from '../cards/card-status/card-status.component';
+import { CardStep, StepOptions } from '../cards/card-step/card-step.component';
 
 export interface StepsSelectionEvent {
   selectedIndex: number;
   /** Index of the step previously selected. */
   previouslySelectedIndex?: number;
   /** The step instance now selected. */
-  selectedStep: CardStatusModel | CardStep;
+  selectedStep: CardStatus | CardStep;
 
   /** The step instance previously selected. */
-  previouslySelectedStep?: CardStatusModel | CardStep;
+  previouslySelectedStep?: CardStatus | CardStep;
 
   /** If this step is the last */
   last: boolean;
@@ -21,7 +24,7 @@ export interface StepsSelectionEvent {
   /** If this step is the first */
   first: boolean;
 
-  source?: CardStatusModel[] | CardStep[];
+  source?: CardStatus[] | CardStep[];
 }
 
 @Component({
@@ -31,13 +34,8 @@ export interface StepsSelectionEvent {
 })
 export class StepperComponent {
   @Input() variant: 'step' | 'status' = 'step';
-  _steps: CardStep[] | CardStatusModel[];
-  @Input() set steps(val: CardStep[] | CardStatusModel[]) {
-    // if(((val as CardStep[]).filter(b  => b.selected)).length > 1) {
-    //   console.log('khjkg');
-
-    //   // this._steps.forEach(a => a.selected = false);
-    // }
+  _steps: CardStep[] | CardStatus[];
+  @Input() set steps(val: CardStep[] | CardStatus[]) {
     this._steps = val;
   }
   @Input() direction: 'row' | 'column' = 'row';
@@ -48,8 +46,7 @@ export class StepperComponent {
 
   constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
     this._steps.forEach((a) => (a.selected = false));
@@ -65,7 +62,7 @@ export class StepperComponent {
   }
 
   onStepStatusSelect(
-    step: CardStatusModel,
+    step: CardStatus,
     index: number,
     last: boolean,
     first: boolean

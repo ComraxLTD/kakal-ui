@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { CardInfoModel, CardStep } from '../../../../../../../kakal-ui/src/public-api';
+import { CardInfo, CardStep } from '../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-search-results',
@@ -10,7 +10,7 @@ import { CardInfoModel, CardStep } from '../../../../../../../kakal-ui/src/publi
 export class SearchResultsComponent implements OnInit {
   // cards
 
-  cards1: CardInfoModel[] = [
+  cards1: CardInfo[] = [
     {
       svgIcon: 'house',
       label: 'בקתות 2',
@@ -33,7 +33,7 @@ export class SearchResultsComponent implements OnInit {
     },
   ];
 
-  cards2: CardInfoModel[] = [
+  cards2: CardInfo[] = [
     {
       svgIcon: 'bed',
       label: 'מטבח שדה',
@@ -114,8 +114,8 @@ export class SearchResultsComponent implements OnInit {
     //   ({ label: 's', path: 'a' } as CardStep);
     // this.steps$ = this.firstSteps$.asObservable();
   }
-  onCardClick(card:CardInfoModel):void{
+  onCardClick(card:CardInfo):void{
     console.log(card);
-    
+
   }
 }

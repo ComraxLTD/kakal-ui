@@ -53,7 +53,6 @@ import { KKLCardInfoModule } from './cards/card-info/card-info.module';
 import { KKLCardStatusModule } from './cards/card-status/card-status.module';
 import { KKLCardStepModule } from './cards/card-step/card-step.module';
 import { KKLCardUserModule } from './cards/card-user/card-user.module';
-import { KKLCardWizardModule } from './cards/card-wizard/card-wizard.module';
 import { KKLCardFilterModule } from './cards/card-filter/card-filter.module';
 import { KKLCardAddModule } from './cards/card-add/card-add.module';
 import { KKLCardDocumentModule } from './cards/card-document/card-document.module';
@@ -174,7 +173,6 @@ registerLocaleData(he);
     KKLCardStatusModule,
     KKLCardStepModule,
     KKLCardUserModule,
-    KKLCardWizardModule,
     KKLCardDocumentModule,
 
     // NAVBAR
@@ -272,7 +270,6 @@ registerLocaleData(he);
     KKLCardStatusModule,
     KKLCardStepModule,
     KKLCardUserModule,
-    KKLCardWizardModule,
     KKLCardDocumentModule,
     KKLCardAddModule,
 

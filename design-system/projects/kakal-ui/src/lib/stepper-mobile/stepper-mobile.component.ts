@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CardStep } from '../cards/card-step/card-step.model';
 import { StepsSelectionEvent } from '../stepper/stepper.component';
-import { CardStatusModel } from '../cards/card-status/card-status.model';
+import { CardStep } from '../cards/card-step/card-step.component';
+import { CardStatus } from '../cards/card-status/card-status.component';
 @Component({
   selector: 'kkl-stepper-mobile',
   templateUrl: './stepper-mobile.component.html',
   styleUrls: ['./stepper-mobile.component.scss'],
 })
 export class StepperMobileComponent implements OnInit {
-  @Input() steps: CardStep[] | CardStatusModel[];
+  @Input() steps: CardStep[] | CardStatus[];
 
   start: number = 0;
   previous: boolean = false;

@@ -304,21 +304,16 @@ export * from './lib/cards/card-lobby/card-lobby.component';
 
 export * from './lib/cards/card-info/card-info.module';
 export * from './lib/cards/card-info/card-info.component';
-export * from './lib/cards/card-info/card-info.model';
 
-export * from './lib/cards/card-status/card-status.component';
-export * from './lib/cards/card-status/card-status.model';
 export * from './lib/cards/card-status/card-status.module';
+export * from './lib/cards/card-status/card-status.component';
 
-export * from './lib/cards/card-step/card-step.component';
 export * from './lib/cards/card-step/card-step.module';
-export * from './lib/cards/card-step/card-step.model';
+export * from './lib/cards/card-step/card-step.component';
 
 export * from './lib/cards/card-user/card-user.module';
 export * from './lib/cards/card-user/card-user.component';
 
-export * from './lib/cards/card-wizard/card-wizard.component';
-export * from './lib/cards/card-wizard/card-wizard.module';
 
 // card-filter
 export * from './lib/cards/card-filter/card-filter.module';

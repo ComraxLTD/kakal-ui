@@ -7,7 +7,7 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { CardStep } from '../cards/card-step/card-step.model';
+import { CardStep } from '../cards/card-step/card-step.component';
 import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
 
 @Component({
