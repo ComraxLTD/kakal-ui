@@ -23,6 +23,7 @@
     background-color: main.color(paper);
     margin: 0px !important;
     overflow-x: hidden;
+    height:calc(100% - main.$bottomBar-height) !important; 
   }
 }
 
@@ -133,3 +134,7 @@ button.mat-fab.kkl-drawer-button {
   height: main.$bottomBar-height;
   z-index: 100;
 }
+
+// .main-content-height{
+//   height: main.$wizard-height;
+// }
