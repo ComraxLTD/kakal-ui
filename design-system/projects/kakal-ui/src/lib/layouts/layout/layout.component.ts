@@ -25,6 +25,8 @@ import { ButtonModel } from '../../button/models/button.types';
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('menuDrawer') sidenav: MatSidenav;
+  @Input() pageHeadlineRouteMap: { [ket: string]: string };
+
   @Input() showStatusPath: string[];
   @Input() cards: MenuCard[];
 
@@ -51,37 +53,60 @@ export class LayoutComponent implements OnInit {
   _openDrawer!: number;
   _closedDrawer!: number;
 
-  @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
+  pageHeadline$: Observable<PageHeadline[]>;
 
   showStatus$: Observable<boolean>;
 
   mobile$: Observable<boolean>;
 
+  @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
+    private pageHeadlineService: PageHeadlineService,
     private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
-    this.showStatus$ = this.handleShowState(this.showStatusPath);
     this.mobile$ = this.breakpointService.isMobile();
+    this.showStatus$ = this.handleShowState(this.showStatusPath);
+    this.pageHeadline$ = this.setPageHeadline();
 
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
     this.endDrawerSizeSource$ = new BehaviorSubject(0);
 
-    // init actions if array exist
-
     this.portion$ = this.getBreakPoints();
 
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
 
     this.showStartDrawer$ = this.layoutService.listenToStartDrawer();
+  }
+
+  private setPageHeadline() {
+    return merge(
+      this.setPageHeadlineFromRoute(),
+      this.pageHeadlineService.listenToPageHeadline()
+    );
+  }
+
+  private setPageHeadlineFromRoute() {
+    return this.routerService.listenToRoute$().pipe(
+      map((url: string) => url.split('/').reverse()),
+      map(
+        (url: string[]) =>
+          url.find((item) => this.pageHeadlineRouteMap[item]) || ''
+      ),
+      map((path: string) => this.pageHeadlineRouteMap[path]),
+      map((path: string) => {
+        const pageHeadline: PageHeadline = { value: path };
+        return [pageHeadline];
+      })
+    );
   }
 
   private handleShowState(list: string[]) {
@@ -108,7 +133,7 @@ export class LayoutComponent implements OnInit {
 
   onStartSideNav(val: string) {
     this.selectedOpen = val;
-    if(this.selectedOpen !== 'menu' || this.cards?.length) {
+    if (this.selectedOpen !== 'menu' || this.cards?.length) {
       this.sidenav.toggle();
     }
   }
