@@ -4,8 +4,8 @@ import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsSelectionEvent } from '../../stepper/stepper.component';
-import { ActionButtonState, StepsLayoutService } from './steps-layout.service';
-import { BehaviorSubject, map, Observable, of, Subject, takeUntil } from 'rxjs';
+import { StepsLayoutService } from './steps-layout.service';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -36,7 +36,6 @@ export class StepsLayoutComponent {
 
   disabled: { [key: string]: boolean };
 
-  // @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   // @Output() stepSelect: EventEmitter<StepsSelectionEvent> = new EventEmitter();
   // @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
@@ -73,26 +72,33 @@ export class StepsLayoutComponent {
         }
       });
 
-    this.steps = this.initSteps();
+    this.stepsSelectionEvent = this.initStepsSelectionEvent();
+    this.steps = this.stepsSelectionEvent.source;
   }
 
-  private initSteps() {
+  private initStepsSelectionEvent(): StepsSelectionEvent {
     const path = this.routerService.getCurrentPath();
 
     const steps = [...this.steps];
 
-    const selectedStepIndex = this.steps.findIndex(
+    const selectedIndex = this.steps.findIndex(
       (step: CardStep) => step.path === path
     );
 
     const selectedStep = {
-      ...this.steps[selectedStepIndex],
+      ...this.steps[selectedIndex],
       selected: true,
     } as CardStep;
 
-    steps[selectedStepIndex] = selectedStep;
+    steps[selectedIndex] = selectedStep;
 
-    return steps;
+    return {
+      source: steps,
+      selectedStep,
+      selectedIndex,
+      last: selectedIndex === this.steps.length - 1,
+      first: selectedIndex === 0,
+    } as StepsSelectionEvent;
   }
 
   // private setRowActionsFromActonState() {
