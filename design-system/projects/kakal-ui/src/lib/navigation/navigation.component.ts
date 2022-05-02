@@ -1,6 +1,5 @@
 import {
   Component,
-  ElementRef,
   EventEmitter,
   Input,
   OnInit,
@@ -8,7 +7,8 @@ import {
   TemplateRef,
 } from '@angular/core';
 import { CardStep } from '../cards/card-step/card-step.component';
-import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
+import { StepsSelectionEvent } from '../groups/step-group/step-group.component';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'kkl-navigation',
@@ -16,72 +16,68 @@ import { Observable, BehaviorSubject, map, switchMap } from 'rxjs';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-  @Input() public steps$: Observable<CardStep[]>;
-  @Input() public activeStepIndex: number;
+  @Input() steps: CardStep[];
+  @Input() template: TemplateRef<any>;
 
-  @Input() slots: { content: TemplateRef<any>; step: TemplateRef<any> };
+  private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
+    new BehaviorSubject(null);
 
-  public currentIndexSubject: BehaviorSubject<number>;
-  public stepMap$: Observable<{ [key: string]: CardStep }>;
-  public activeStep$: Observable<{ value: number }>;
-  public end$: Observable<boolean>;
+  stepsSelection$: Observable<StepsSelectionEvent>;
 
-  @Output() changeStep: EventEmitter<{ step: CardStep; index: number }> =
-    new EventEmitter();
+  @Input() set stepsSelectionEvent(value: StepsSelectionEvent) {
+    this.stepsSelectionSource$.next(value);
+  }
+
+  @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.currentIndexSubject = new BehaviorSubject(this.activeStepIndex || 0);
-    this.activeStep$ = this.setActiveStep$();
-    this.stepMap$ = this.setStepsMap();
-    this.end$ = this.setEnd$();
+    this.stepsSelection$ = this.stepsSelectionSource$.asObservable();
   }
 
-  private setActiveStep$(): Observable<{ value: number }> {
-    return this.steps$.pipe(
-      map((steps) => steps.findIndex((step: CardStep) => step.selected)),
-      map((index: number) => {
-        return {
-          value: index,
-        };
-      })
-    );
+  private setStepsSelectionEvent(index: number) {
+    const event: StepsSelectionEvent = {
+      selectedStep: this.steps[index],
+      selectedIndex: index,
+      last: index === this.steps.length - 1,
+      first: index === 0,
+      source: this.steps,
+    };
+    return event;
   }
 
-  private setStepsMap() {
-    return this.steps$.pipe(
-      map((steps: CardStep[]) => {
-        const map = steps.reduce((acc, step) => {
-          return {
-            ...acc,
-            [steps.indexOf(step)]: step,
-          };
-        }, {} as { [key: string]: CardStep });
-
-        return map;
-      })
-    );
+  private dispatchSelectionState(index: number) {
+    const event = this.setStepsSelectionEvent(index);
+    this.stepsSelectionSource$.next(event);
+    this._emitChangeEvent();
   }
 
-  private setEnd$(): Observable<boolean> {
-    return this.steps$.pipe(
-      switchMap((steps: CardStep[]) => {
-        return this.currentIndexSubject.asObservable().pipe(
-          map((current: number) => {
-            return current === steps.length - 1;
-          })
-        );
-      })
-    );
+  private _emitChangeEvent() {
+    const event = this.stepsSelectionSource$.getValue();
+    this.stepSelection.emit(event);
   }
 
-  public onNext(index: number, step: CardStep) {
-    this.currentIndexSubject.next(index + 1);
-    this.changeStep.emit({ step: step, index: index + 1 });
+  onNext(selectedIndex: number) {
+    const nextIndex = ++selectedIndex;
+
+    if (nextIndex > this.steps.length) {
+      return;
+    }
+    this.dispatchSelectionState(nextIndex);
   }
-  public onPrev(index: number, step: CardStep) {
-    this.currentIndexSubject.next(index - 1);
-    this.changeStep.emit({ step: step, index: index - 1 });
+
+  onPrevious(selectedIndex: number) {
+    const nextIndex = --selectedIndex;
+
+    if (nextIndex < 0) {
+      return;
+    }
+
+    this.dispatchSelectionState(nextIndex);
+  }
+
+  onStepSelect(step: any) {
+    this._emitChangeEvent();
   }
 }
