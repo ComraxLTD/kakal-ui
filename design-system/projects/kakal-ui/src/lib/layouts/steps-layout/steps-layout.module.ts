@@ -12,9 +12,10 @@ import { KKLStepperMobileModule } from '../../stepper-mobile/stepper-mobile.modu
 import { KKLTypographyModule } from '../../typography/typography.module';
 import { KKLButtonModule } from '../../button/button.module';
 import { KKLStepGroupModule } from '../../groups/step-group/step-group.module';
-import {KKLDrawerLayoutModule } from '../drawer-layout/drawer-layout.module';
+import { KKLDrawerLayoutModule } from '../drawer-layout/drawer-layout.module';
 
 import { StepsLayoutComponent } from './steps-layout.component';
+import { KKLNavigationModule } from '../../navigation/navigation.module';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { StepsLayoutComponent } from './steps-layout.component';
     KKLIconModule,
     KKLTypographyModule,
     KKLStepperMobileModule,
-    KKLStepGroupModule
+    KKLStepGroupModule,
+    KKLNavigationModule,
   ],
   declarations: [StepsLayoutComponent],
   exports: [StepsLayoutComponent],

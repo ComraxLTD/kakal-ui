@@ -5,7 +5,6 @@ import { KKLDirectivesModule } from '../../directives/directives.module';
 import { KKLCardStepModule } from '../../cards/card-step/card-step.module';
 
 import { StepGroupComponent } from './step-group.component';
-import { KKLNavigationModule } from '../../navigation/navigation.module';
 
 @NgModule({
   declarations: [StepGroupComponent],
@@ -14,7 +13,6 @@ import { KKLNavigationModule } from '../../navigation/navigation.module';
     KKLDirectivesModule,
     FlexLayoutModule,
     KKLCardStepModule,
-    KKLNavigationModule
   ],
   exports: [StepGroupComponent]
 })

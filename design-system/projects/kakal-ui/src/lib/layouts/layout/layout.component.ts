@@ -12,11 +12,13 @@ import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
 import { PageHeadlineService } from '../../page-headline/page-headline.service';
 import { PageHeadline } from '../../page-headline/page-headline.component';
 
-import { map, startWith } from 'rxjs/operators';
-import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
-import { LayoutService } from './layout.service';
 import { ButtonModel } from '../../button/models/button.types';
+import { CardStatus } from '../../cards/card-status/card-status.component';
+
+import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+import { L } from '@angular/cdk/keycodes';
 
 @Component({
   selector: 'kkl-layout',
@@ -29,6 +31,7 @@ export class LayoutComponent implements OnInit {
 
   @Input() showStatusPath: string[];
   @Input() cards: MenuCard[];
+  @Input() status: CardStatus[];
 
   selectedOpen: string;
   @Input() contentPortion: { open: number; close: number } = {
@@ -70,7 +73,7 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.showStatus$ = this.handleShowState(this.showStatusPath);
+    this.showStatus$ = this.handleShowState(this.showStatusPath || []);
     this.pageHeadline$ = this.setPageHeadline();
 
     this._openDrawer = this.contentPortion.open;
@@ -109,13 +112,13 @@ export class LayoutComponent implements OnInit {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
-        return this.findPath(list, path);
+        return this.findPath([...list, 'lobby'], path);
       })
     );
   }
 
-  private findPath(list: any[], value: string): boolean {
-    return !!list?.find((path: string) => path == value);
+  private findPath(list: string[], value: string): boolean {
+    return list?.some((path: string) => path == value);
   }
 
   onLogoClicked() {

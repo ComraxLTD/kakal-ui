@@ -1,20 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SelectOption } from '../../form/form-select/question-select.model';
+import { SelectOption } from '../../form/models/form.types';
 import { IconService } from '../../icon/icons.service';
-import { CardVariant, CardType } from '../card.model';
-
+import { CardOptions } from '../card.model';
 export interface CardStatus {
   key: string;
   label: string;
   path: string;
   svgIcon: string;
   value?: number;
-  options: SelectOption[];
-  variant?: CardVariant;
-  type?: CardType;
-  size?: number;
-  divider?: number;
   disabled?: boolean;
+  options: SelectOption[];
 }
 
 @Component({
@@ -23,7 +18,10 @@ export interface CardStatus {
   styleUrls: ['./card-status.component.scss'],
 })
 export class CardStatusComponent implements OnInit {
+
   @Input() status: CardStatus;
+
+  @Input() options: CardOptions;
 
   @Output() statusSelect: EventEmitter<void> = new EventEmitter();
 
@@ -31,6 +29,12 @@ export class CardStatusComponent implements OnInit {
 
   ngOnInit(): void {
     this.iconService.setIcon(this.status.svgIcon);
+    this.options = {
+      ...this.options,
+      color: 'primary',
+      variant: 'circle',
+      type: 'status',
+    };
   }
 
   onStatusSelect(): void {
@@ -38,5 +42,4 @@ export class CardStatusComponent implements OnInit {
       this.statusSelect.emit();
     }
   }
-
 }
