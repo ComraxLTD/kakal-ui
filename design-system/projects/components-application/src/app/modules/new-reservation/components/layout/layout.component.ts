@@ -46,7 +46,6 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private routerService: RouterService,
-    private customerDetailsLayoutService: CustomerDetailsLayoutService,
     private newReservationService: NewReservationService
   ) {}
 
@@ -71,16 +70,6 @@ export class LayoutComponent implements OnInit {
 
   public onPrevious(): void {
     this.routerService.goBack();
-  }
-
-  onMiddleNext() {
-    const isLastStep = this.customerDetailsLayoutService.isLastStep();
-    const isComplete = this.customerDetailsLayoutService.isComplete();
-    if (!isLastStep) {
-      this.customerDetailsLayoutService.next();
-    } else if (!isComplete) {
-      this.customerDetailsLayoutService.complete();
-    }
   }
 
   onSave(event: string) {

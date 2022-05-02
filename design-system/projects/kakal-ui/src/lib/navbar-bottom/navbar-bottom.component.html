@@ -26,14 +26,18 @@
           color="primary"
           (click)="onNextMiddle()"
         >
-          <span>
+          <pre>
+
+            {{ nextMiddle | json }}
+          </pre>
+          <!-- <span>
             <ng-container *ngIf="nextMiddle.next; else saveTemp">{{
               nextLabel || "המשך"
             }}</ng-container>
             <ng-template #saveTemp>{{ "שמור" }}</ng-template>
           </span>
           <br />
-          <kkl-icon [color]="'paper'" key="expand_more"></kkl-icon>
+          <kkl-icon [color]="'paper'" key="expand_more"></kkl-icon> -->
         </button>
       </ng-container>
     </ng-container>

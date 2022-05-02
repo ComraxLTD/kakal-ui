@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
@@ -13,7 +13,7 @@ import { DrawerLayoutService } from '../drawer-layout/drawer-layout.service';
   templateUrl: './steps-layout.component.html',
   styleUrls: ['./steps-layout.component.scss'],
 })
-export class StepsLayoutComponent {
+export class StepsLayoutComponent implements OnInit, OnDestroy  {
   destroySubject$: Subject<void> = new Subject();
 
   @Input() steps: CardStep[];
@@ -80,6 +80,12 @@ export class StepsLayoutComponent {
     this.steps = this.stepsSelectionEvent.source;
   }
 
+
+  ngOnDestroy() {
+    this.destroySubject$.next();
+    this.destroySubject$.complete();
+    this.stepsLayoutService.hideDrawer()
+  }
   private initStepsSelectionEvent(): StepsSelectionEvent {
     const path = this.routerService.getCurrentPath();
 
@@ -189,8 +195,4 @@ export class StepsLayoutComponent {
     this.stepsLayoutService.setButtonClicked(event);
   }
 
-  ngOnDestroy() {
-    this.destroySubject$.next();
-    this.destroySubject$.complete();
-  }
 }
