@@ -45,9 +45,8 @@ export class StepsLayoutComponent {
 
   constructor(
     private stepsLayoutService: StepsLayoutService,
-    private drawerLayoutService: DrawerLayoutService,
     private routerService: RouterService,
-    private breakpointService: BreakpointService,
+    private breakpointService: BreakpointService
   ) {}
 
   ngOnInit(): void {
@@ -123,8 +122,8 @@ export class StepsLayoutComponent {
     this.rowActions = this.setRowActions(actions);
     this.drawerAction = this.setDrawerAction(actions);
 
-    if(this.drawerAction) {
-      this.drawerLayoutService.show()
+    if (this.drawerAction) {
+      this.stepsLayoutService.showDrawer();
     }
   }
 

@@ -6,15 +6,17 @@ import {
   RouterService,
   StepsLayoutService,
 } from '../../../../../../../kakal-ui/src/public-api';
-import { combineLatest, map, Observable, of } from 'rxjs';
 import { CustomerDetailsLayoutService } from '../../modules/details/components/customer-details-layout.service';
 import { NewReservationService } from '../../new-reservation.service';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { DrawerLayoutService } from '../../../../../../../kakal-ui/src/lib/layouts/drawer-layout/drawer-layout.service';
+import { map, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
+  providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
   actions: ButtonModel[] = [
@@ -41,7 +43,6 @@ export class LayoutComponent implements OnInit {
       path: 'summary',
     },
   ];
-  steps$: Observable<CardStep[]> = of([]);
 
   constructor(
     private routerService: RouterService,
@@ -57,7 +58,7 @@ export class LayoutComponent implements OnInit {
 
         const map = { details, parts };
 
-        console.log(path)
+        console.log(path);
 
         return map[path];
       })
