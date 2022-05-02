@@ -46,6 +46,76 @@ export class LobbyComponent implements OnInit {
       svgIcon: 'search',
       path: 'marketers',
     },
+    {
+      label: 'בדיקת זמינות',
+      svgIcon: 'calendar',
+      path: 'availability-check',
+    },
+    {
+      label: 'בדיקת זמינות',
+      svgIcon: 'calendar',
+      path: 'availability-check',
+    },
+    {
+      label: 'בדיקת זמינות',
+      svgIcon: 'calendar',
+      path: 'availability-check',
+    },
+    {
+      label: 'הזמנה חדשה',
+      svgIcon: 'connect',
+      path: 'reservation',
+    },
+    {
+      label: 'רשימת טיולים',
+      svgIcon: 'evaluation',
+      path: 'tours-list',
+    },
+    {
+      label: 'דוחות',
+      svgIcon: 'reports',
+      path: 'reports',
+    },
+    {
+      label: 'משווקים',
+      svgIcon: 'search',
+      path: 'marketers',
+    },
+    {
+      label: 'בדיקת זמינות',
+      svgIcon: 'calendar',
+      path: 'availability-check',
+    },
+    {
+      label: 'בדיקת זמינות',
+      svgIcon: 'calendar',
+      path: 'availability-check',
+    },
+    {
+      label: 'בדיקת זמינות',
+      svgIcon: 'calendar',
+      path: 'availability-check',
+    },
+    {
+      label: 'הזמנה חדשה',
+      svgIcon: 'connect',
+      path: 'reservation',
+    },
+    {
+      label: 'רשימת טיולים',
+      svgIcon: 'evaluation',
+      path: 'tours-list',
+    },
+    {
+      label: 'דוחות',
+      svgIcon: 'reports',
+      path: 'reports',
+    },
+    {
+      label: 'משווקים',
+      svgIcon: 'search',
+      path: 'marketers',
+    },
   ];
 
   constructor(
