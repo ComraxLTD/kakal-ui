@@ -20,18 +20,21 @@ export class LobbyComponent implements OnInit {
 
   constructor(private breakpointService: BreakpointService) { }
 
+  desktopCols:number;
+
   ngOnInit(): void {
-    this.md$ = this.mapIsMobile();
     this.cols = this.cols || this.cards.length / 2;
     this.rows = this.rows || 2;
-    
+    this.desktopCols = this.cols;
+    this.md$ = this.mapIsMobile();
   }
 
   mapIsMobile() {
     return this.breakpointService.isMobile().pipe(
       map(val => { return { value: val } }),
-      tap(val => {
-        if(val) this.cols = 2; 
+      tap(obs => {
+        if(obs.value && this.cols > 2) this.cols = 2;
+        else this.cols = this.desktopCols;        
       })
     );
   }
