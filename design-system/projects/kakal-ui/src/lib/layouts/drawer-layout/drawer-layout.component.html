@@ -1,5 +1,5 @@
   <mat-sidenav-container class="kkl-drawer-layout" dir="rtl">
-    <mat-sidenav class="drawer-wrapper" mode="push" position="start">
+    <mat-sidenav #drawer class="drawer-wrapper" mode="push" position="start">
         <div
           fxLayout="row"
           fxLayoutAlign="center center"
@@ -14,13 +14,12 @@
             <div fxFlex="95" fxFill>
               <button
                 mat-fab
-                (click)="onStartSideNav('side')"
                 [ngClass]="{
                   'kkl-drawer-button': true,
-                  open: menuDrawer.opened
+                  open: drawer.opened
                 }"
-                [matBadge]="menuDrawer.opened ? 'x' : '+'"
-                [matBadgeColor]="menuDrawer.opened ? 'text' : 'primary'"
+                [matBadge]="drawer.opened ? 'x' : '+'"
+                [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
               >
                 <kkl-icon
                   color="primary"
@@ -50,10 +49,10 @@
           [ngClass]="{
             'kkl-drawer-button': true,
             outside: true,
-            open: menuDrawer.opened
+            open: drawer.opened
           }"
-          [matBadge]="menuDrawer.opened ? 'x' : '+'"
-          [matBadgeColor]="menuDrawer.opened ? 'text' : 'primary'"
+          [matBadge]="drawer.opened ? 'x' : '+'"
+          [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
         >
           <kkl-icon color="primary" [key]="drawerAction?.svgIcon" [size]="1.8">
           </kkl-icon>
@@ -67,4 +66,3 @@
 
     </mat-sidenav-content>
   </mat-sidenav-container>
-</ng-container>

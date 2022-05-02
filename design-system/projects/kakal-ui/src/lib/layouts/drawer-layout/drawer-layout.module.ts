@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { LayoutComponent } from './layout.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatBadgeModule } from '@angular/material/badge';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -15,6 +14,7 @@ import { KKLButtonModule } from '../../button/button.module';
 import { KKLIconModule } from '../../icon/icon.module';
 import { KKLTypographyModule } from '../../typography/typography.module';
 
+import { DrawerLayoutComponent } from './drawer-layout.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -31,7 +31,7 @@ import { KKLTypographyModule } from '../../typography/typography.module';
     KKLIconModule,
     KKLTypographyModule,
   ],
-  declarations: [LayoutComponent],
-  exports: [LayoutComponent],
+  declarations: [DrawerLayoutComponent],
+  exports: [DrawerLayoutComponent],
 })
-export class KKLLayoutModule {}
+export class KKLDrawerLayoutModule {}

@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-drawer-layout',
-  templateUrl: './-drawer-layout.component.html',
-  styleUrls: ['./-drawer-layout.component.scss'],
+  templateUrl: './drawer-layout.component.html',
+  styleUrls: ['./drawer-layout.component.scss'],
 })
 export class DrawerLayoutComponent implements OnInit {
   selectedOpen: string;
@@ -17,6 +17,8 @@ export class DrawerLayoutComponent implements OnInit {
   @Input() drawerAction: ButtonModel;
 
   mobile$: Observable<boolean>;
+  showStartDrawer$: Observable<boolean>;
+
 
   constructor(
     private breakpointService: BreakpointService,
@@ -25,5 +27,7 @@ export class DrawerLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
+    this.showStartDrawer$ = this.drawerLayoutService.listenToStartDrawer();
+
   }
 }
