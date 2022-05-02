@@ -13,6 +13,8 @@ import { KKLButtonModule } from '../button/button.module';
 import { KKLPageHeadlineModule } from '../page-headline/page-headline.module';
 import { KKLTypographyModule } from '../typography/typography.module';
 
+import { KKLStatusGroupModule } from '../groups/status-group/status-group.module';
+
 import { NavbarComponent } from './navbar.component';
 
 @NgModule({
@@ -27,6 +29,7 @@ import { NavbarComponent } from './navbar.component';
     KKLDirectivesModule,
     KKLBreadCrumbsModule,
     KKLPageHeadlineModule,
+    KKLStatusGroupModule,
   ],
   declarations: [NavbarComponent],
   exports: [NavbarComponent],

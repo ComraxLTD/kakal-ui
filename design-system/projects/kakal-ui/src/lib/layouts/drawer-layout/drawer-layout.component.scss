@@ -2,21 +2,11 @@
 
 ::ng-deep mat-sidenav {
   overflow: visible !important;
-  // visibility: visible !important;
-
-  &.menu {
-    top: main.$toolbar-height;
-    height: main.$content-height;
-
-    div.menu-container {
-      height: inherit;
-    }
-  }
 }
 
 :host {
-  .kkl-sidenav-container {
-    height: 100%;
+  .kkl-drawer-layout {
+    height: main.$content-height
   }
 
   mat-sidenav-content {
@@ -39,7 +29,7 @@ div.content {
   margin-bottom: main.$bottomBar-height;
 }
 
-.sidenav-drawer {
+.drawer-wrapper {
   width: 32rem !important;
 }
 
@@ -69,8 +59,13 @@ button.mat-fab.kkl-drawer-button {
   right: 28rem;
 
   &.outside {
-    margin-top : 1%;
+    margin-top: 1%;
     right: 8rem;
+    right: 8rem;
+  }
+
+  &.opened {
+    right: 28rem;
   }
 }
 
@@ -83,53 +78,4 @@ button.mat-fab.kkl-drawer-button {
   span.mat-badge-content.mat-badge-active {
     background-color: main.color(text);
   }
-}
-
-// style bottom navbar
-.bottom-navbar {
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-  height: main.$bottomBar-height;
-  z-index: 100;
-  overflow: hidden;
-  & * {
-    overflow: hidden;
-  }
-}
-
-.example-container {
-  height: 500px;
-}
-
-.end-drawer-button {
-  height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 5rem;
-  background-color: #f9f8f6;
-  opacity: 0.5;
-  cursor: pointer;
-}
-
-.mat-sidenav-container {
-  width: 100%;
-}
-
-.end-drawer-btn {
-  // border: 1px solid main.$primary;
-  // border-radius: 100px;
-  position: fixed;
-  bottom: calc(main.$bottomBar-height + 3rem);
-  left: 3rem;
-}
-
-// style bottom navbar
-.navbar-bottom {
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-  height: main.$bottomBar-height;
-  z-index: 100;
 }

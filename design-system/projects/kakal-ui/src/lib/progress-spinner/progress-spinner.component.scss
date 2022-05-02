@@ -1,0 +1,12 @@
+div.kkl-progress-spinner {
+  position: relative;
+}
+::ng-deep mat-progress-spinner.shadow {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  circle {
+    stroke: #bababa !important;
+
+  }
+}

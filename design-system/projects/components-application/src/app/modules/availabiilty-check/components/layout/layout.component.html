@@ -1,21 +1,14 @@
-<kkl-stepper-layout
-  dir="rtl"
-  (openChanged)="onDrawerOpenChanged($event)"
-
->
-
-<div content>
-<div title class="title" > 
-  <kkl-form
-  (queryChanged)="onQueryChanged($event)"
-  (selectChanged)="onSelectChanged($event)"
-  (openChanged)="onOpenChanged($event)"
-   [controls]="questions" 
-   [grid]="formGrid" 
-
- ></kkl-form> 
-</div> 
-  <router-outlet  ></router-outlet>
-</div>
-
-</kkl-stepper-layout>
+<kkl-steps-layout dir="rtl" [steps]="steps">
+  <div content>
+    <div title class="title">
+      <kkl-form
+        (queryChanged)="onQueryChanged($event)"
+        (selectChanged)="onSelectChanged($event)"
+        (openChanged)="onOpenChanged($event)"
+        [controls]="questions"
+        [grid]="formGrid"
+      ></kkl-form>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</kkl-steps-layout>

@@ -15,7 +15,6 @@ export * from './lib/button/directives/stroked-button.directive';
 export * from './lib/button/directives/action-button.directive';
 export * from './lib/button/directives/form-button.directive';
 
-
 export * from './lib/button/models/button.types';
 
 export * from './lib/typography/typography.module';
@@ -24,9 +23,8 @@ export * from './lib/typography/typography.directive';
 
 export * from './lib/icon/icon.module';
 export * from './lib/icon/icon.component';
-export * from './lib/icon/icon.directive';
-export * from './lib/icon/icon.model';
 export * from './lib/icon/icons.service';
+export * from './lib/icon/icon.directive';
 
 export * from './lib/open-motions/open-motions.module';
 export * from './lib/open-motions/open-motions.component';
@@ -133,9 +131,6 @@ export * from './lib/mei-form/mei-checkbox/mei-checkbox.component';
 export * from './lib/mei-form/mei-toggle/mei-toggle.component';
 export * from './lib/kkl-table/components/local-table/local-advanced-search.component';
 
-
-
-
 // FORM QUESTIONS //
 
 export * from './lib/form/models/question-group.model';
@@ -165,7 +160,6 @@ export * from './lib/kkl-table/components/event-table/event-advanced-search.comp
 export * from './lib/kkl-table/components/table-cell/table-cell.component';
 export * from './lib/kkl-table/components/table-form/table-form.component';
 export * from './lib/kkl-table/components/mei-filters/mei-filters.component';
-
 
 // NEW SERVICES
 export * from './lib/mei-services/mei-services.module';
@@ -221,7 +215,6 @@ export * from './lib/filters/filters.component';
 export * from './lib/filters/filters.types';
 export * from './lib/filters/filters.service';
 
-
 // menu-bar
 
 export * from './lib/menu-bar/menu-bar.module';
@@ -253,10 +246,6 @@ export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
 export * from './lib/dialog/dialog.service';
-
-// spinner
-export * from './lib/spinner/spinner.component';
-export * from './lib/spinner/spinner.module';
 
 // sidenav
 export * from './lib/sidenav/sidenav.module';
@@ -304,21 +293,15 @@ export * from './lib/cards/card-lobby/card-lobby.component';
 
 export * from './lib/cards/card-info/card-info.module';
 export * from './lib/cards/card-info/card-info.component';
-export * from './lib/cards/card-info/card-info.model';
 
-export * from './lib/cards/card-status/card-status.component';
-export * from './lib/cards/card-status/card-status.model';
 export * from './lib/cards/card-status/card-status.module';
+export * from './lib/cards/card-status/card-status.component';
 
-export * from './lib/cards/card-step/card-step.component';
 export * from './lib/cards/card-step/card-step.module';
-export * from './lib/cards/card-step/card-step.model';
+export * from './lib/cards/card-step/card-step.component';
 
 export * from './lib/cards/card-user/card-user.module';
 export * from './lib/cards/card-user/card-user.component';
-
-export * from './lib/cards/card-wizard/card-wizard.component';
-export * from './lib/cards/card-wizard/card-wizard.module';
 
 // card-filter
 export * from './lib/cards/card-filter/card-filter.module';
@@ -337,23 +320,29 @@ export * from './lib/navbar-bottom/navbar-bottom.component';
 export * from './lib/navbar-bottom/navbar-bottom.directive';
 export * from './lib/navbar-bottom/navbar-bottom.service';
 
-// stepper
-export * from './lib/stepper/stepper.module';
-export * from './lib/stepper/stepper.component';
-
 // stepper mobile
 export * from './lib/stepper-mobile/stepper-mobile.module';
 export * from './lib/stepper-mobile/stepper-mobile.component';
+
+// LAYOUTS
+
+// layout
+export * from './lib/layouts/layout/layout.component';
+export * from './lib/layouts/layout/layout.module';
+export * from './lib/layouts/layout/layout.service';
+
+// drawer-layout
+export * from './lib/layouts/drawer-layout/drawer-layout.module';
+export * from './lib/layouts/drawer-layout/drawer-layout.component';
 
 // steps layout
 export * from './lib/layouts/steps-layout/steps-layout.component';
 export * from './lib/layouts/steps-layout/steps-layout.module';
 export * from './lib/layouts/steps-layout/steps-layout.service';
 
-// layout
-export * from './lib/layouts/layout/layout.component';
-export * from './lib/layouts/layout/layout.module';
-export * from './lib/layouts/layout/layout.service';
+//  steps-accordion-layout
+export * from './lib/layouts/steps-accordion-layout/steps-accordion.module';
+export * from './lib/layouts/steps-accordion-layout/steps-accordion.component';
 
 // accordion layout
 export * from './lib/layouts/accordion-layout/accordion-layout.module';
@@ -361,14 +350,10 @@ export * from './lib/layouts/accordion-layout/accordion-layout.component';
 export * from './lib/layouts/accordion-layout/accordion-datasource';
 export * from './lib/layouts/accordion-layout/accordion-types';
 
-// advanced search-layout
+// advanced-search-layout
 export * from './lib/layouts/advanced-search-layout/advanced-search-layout.module';
 export * from './lib/layouts/advanced-search-layout/advanced-search-layout.component';
 export * from './lib/layouts/advanced-search-layout/advanced-search.directive';
-
-// vertical steps-layout
-export * from './lib/layouts/steps-accordion-layout/steps-accordion.module';
-export * from './lib/layouts/steps-accordion-layout/steps-accordion.component';
 
 // page
 export * from './lib/layouts/page/page.module';
@@ -377,7 +362,6 @@ export * from './lib/layouts/page/page.component';
 // section
 export * from './lib/layouts/section/section.module';
 export * from './lib/layouts/section/section.component';
-
 
 // facility card
 export * from './lib/facility-card/facility-card.model';
@@ -403,6 +387,14 @@ export * from './lib/drawers/drawer.module';
 export * from './lib/drawers/drawer-document/drawer-document.module';
 export * from './lib/drawers/drawer-document/drawer-document.component';
 export * from './lib/drawers/drawer-document/drawer-document-item/drawer-document-item.component';
+
+// progress
+export * from './lib/progress-spinner/progress-spinner.module';
+export * from './lib/progress-spinner/progress-spinner.component';
+
+// spinner
+export * from './lib/spinner/spinner.component';
+export * from './lib/spinner/spinner.module';
 
 // pipes
 export * from './lib/pipes/area.pipe';
@@ -440,13 +432,13 @@ export * from './lib/full-calendar/full-calendar.component';
 export * from './lib/full-calendar/dynamic/dynamic.component';
 export * from './lib/full-calendar/calendar-card/calendar-card.component';
 
-export * from './lib/display-data/display-data.module'
-export * from './lib/display-data/display-data.component'
+export * from './lib/display-data/display-data.module';
+export * from './lib/display-data/display-data.component';
 
 // grids
 
-export * from './lib/grids/document-grid/document-grid.module'
-export * from './lib/grids/document-grid/document-grid.component'
+export * from './lib/grids/document-grid/document-grid.module';
+export * from './lib/grids/document-grid/document-grid.component';
 
 export * from './lib/grids/lobby-grid/lobby.module';
 export * from './lib/grids/lobby-grid/lobby.component';
@@ -455,5 +447,5 @@ export * from './lib/grids/display-grid/display-grid.module';
 export * from './lib/grids/display-grid/display-grid.component';
 
 // groups
-export * from './lib/groups/display-group/display-group.module'
+export * from './lib/groups/display-group/display-group.module';
 export * from './lib/groups/display-group/display-group.component';
