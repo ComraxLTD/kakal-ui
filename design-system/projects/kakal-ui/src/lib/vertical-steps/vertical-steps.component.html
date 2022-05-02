@@ -1,25 +1,28 @@
 <!-- (selectionChange)="onSelectionChanged($event)" -->
-<mat-vertical-stepper
+<ng-container *ngIf="!(isSmallScreen$ | async) as isSmallScreen">
+
+  <mat-vertical-stepper
   #stepper
   class="kkl-vertical-steps"
   [(selectedIndex)]="_selectedIndex"
   [disableRipple]="true"
   (selectionChange)="onSelectionChanged($event)"
->
-  <ng-container>
+> 
+  <ng-container >
     <mat-step
       [completed]="step.completed"
       [stepControl]="step.control"
       *ngFor="let step of steps; let i = index"
     >
-    </mat-step>
-  </ng-container>
+  </mat-step>
+</ng-container>
 
-  <!-- Icon overrides. -->
-  <ng-template matStepperIcon="done">
-    <mat-icon>done</mat-icon>
-  </ng-template>
+<!-- Icon overrides. -->
+<ng-template matStepperIcon="done">
+  <mat-icon>done</mat-icon>
+</ng-template>
 </mat-vertical-stepper>
+</ng-container>
 <div fxFlex="100" dir="rtl">
   <ng-container *ngTemplateOutlet="templates[cellTemplate]"></ng-container>
 </div>
