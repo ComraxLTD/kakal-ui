@@ -28,4 +28,6 @@
     </ng-container>
   </div>
 </ng-container>
-<ng-container *ngIf="mobile$ | async"> </ng-container>
+<ng-container *ngIf="mobile$ | async">
+  <kkl-navigation [steps]="steps"></kkl-navigation>
+</ng-container>

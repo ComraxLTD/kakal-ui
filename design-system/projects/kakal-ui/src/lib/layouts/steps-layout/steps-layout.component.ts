@@ -6,14 +6,13 @@ import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 import { Observable, Subject, takeUntil } from 'rxjs';
-import { DrawerLayoutService } from '../drawer-layout/drawer-layout.service';
 
 @Component({
   selector: 'kkl-steps-layout',
   templateUrl: './steps-layout.component.html',
   styleUrls: ['./steps-layout.component.scss'],
 })
-export class StepsLayoutComponent implements OnInit, OnDestroy  {
+export class StepsLayoutComponent implements OnInit, OnDestroy {
   destroySubject$: Subject<void> = new Subject();
 
   @Input() steps: CardStep[];
@@ -78,13 +77,13 @@ export class StepsLayoutComponent implements OnInit, OnDestroy  {
 
     this.stepsSelectionEvent = this.initStepsSelectionEvent();
     this.steps = this.stepsSelectionEvent.source;
+    this._emitChanged()
   }
-
 
   ngOnDestroy() {
     this.destroySubject$.next();
     this.destroySubject$.complete();
-    this.stepsLayoutService.hideDrawer()
+    this.stepsLayoutService.hideDrawer();
   }
   private initStepsSelectionEvent(): StepsSelectionEvent {
     const path = this.routerService.getCurrentPath();
@@ -195,4 +194,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy  {
     this.stepsLayoutService.setButtonClicked(event);
   }
 
+  private _emitChanged() {
+    this.stepsLayoutService.setStepsSelection(this.stepsSelectionEvent);
+  }
 }

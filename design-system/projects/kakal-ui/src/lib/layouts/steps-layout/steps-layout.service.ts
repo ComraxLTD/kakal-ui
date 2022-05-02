@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ButtonModel } from '../../button/models/button.types';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DrawerLayoutService } from '../drawer-layout/drawer-layout.service';
+import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 
 export interface ActionButtonState {
   action: 'add' | 'remove' | 'disable' | 'removeAll' | 'enable';
@@ -17,7 +18,25 @@ export class StepsLayoutService {
 
   private buttonClicked$: Subject<ButtonModel> = new Subject();
 
-  constructor(private drawerLayoutService: DrawerLayoutService) {}
+  private stepsSelectionEvent$: BehaviorSubject<StepsSelectionEvent>;
+
+  constructor(private drawerLayoutService: DrawerLayoutService) {
+    this.stepsSelectionEvent$ = new BehaviorSubject<StepsSelectionEvent>(
+      {} as StepsSelectionEvent
+    );
+  }
+
+  getStepsSelection(): StepsSelectionEvent {
+    return this.stepsSelectionEvent$.getValue();
+  }
+
+  listenToStepsSelection(): Observable<StepsSelectionEvent> {
+    return this.stepsSelectionEvent$.asObservable();
+  }
+
+  setStepsSelection(value: StepsSelectionEvent): void {
+    return this.stepsSelectionEvent$.next(value);
+  }
 
   getButtonAction(): Observable<ActionButtonState> {
     return this.actionState$.asObservable();
