@@ -1,17 +1,5 @@
 @use ".././../../styles/variables" as main;
 
-::ng-deep mat-form-field {
-  width: 100%;
-  font-size: 14px !important;
-}
-
-
-@media screen and (max-width: 1024px) {
-  mat-form-field {
-    font-size: 9px !important;
-  }
-}
-
 ::ng-deep .primary {
   background: rgba($color: main.color(primary), $alpha: 0.2) !important;
   border-radius: 100%;

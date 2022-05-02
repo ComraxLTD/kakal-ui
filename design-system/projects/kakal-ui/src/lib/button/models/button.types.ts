@@ -5,7 +5,7 @@ export interface ButtonModel {
   label?: string;
   svgIcon?: string;
   state?: ButtonState;
-  action: FormActions;
+  action?: FormActions;
 }
 
 export interface ButtonState {

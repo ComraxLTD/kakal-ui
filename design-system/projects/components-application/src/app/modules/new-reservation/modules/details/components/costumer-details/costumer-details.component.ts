@@ -2,13 +2,21 @@ import { Component, Inject, OnInit } from '@angular/core';
 
 import { DetailsService } from '../costumer-details.service';
 import { Observable, of, pluck } from 'rxjs';
-import {FormChangeEvent, FormDataSource, FormService, PageHeadlineService, Question, RowActionModel, TableBase,} from '../../../../../../../../../kakal-ui/src/public-api'
+import {
+  FormChangeEvent,
+  FormDataSource,
+  FormService,
+  PageHeadlineService,
+  Question,
+  RowActionModel,
+  TableBase,
+} from '../../../../../../../../../kakal-ui/src/public-api';
 import { FormGrid } from '../../../../../../../../../kakal-ui/src/lib/form/models/question.types';
 @Component({
   selector: 'app-costumer-details',
   templateUrl: './costumer-details.component.html',
   styleUrls: ['./costumer-details.component.scss'],
-  providers:[FormDataSource]
+  providers: [FormDataSource],
 })
 export class CostumerDetailsComponent implements OnInit {
   // TABLE PROPS
@@ -42,6 +50,7 @@ export class CostumerDetailsComponent implements OnInit {
     // key must be search!
     {
       key: 'search',
+      label: 'חפש',
       controlType: 'autocomplete',
     },
     {
@@ -53,23 +62,24 @@ export class CostumerDetailsComponent implements OnInit {
       key: 'calendar',
       label: 'סוג לקוח',
       controlType: 'text',
-    }
+    },
   ];
-  
+
   formGrid!: FormGrid;
   searchKey: string = 'search';
   constructor(
     private detailsService: DetailsService,
     private formDataSource: FormDataSource,
     private formService: FormService,
-    private pageHeadlineService:PageHeadlineService
+    private pageHeadlineService: PageHeadlineService
   ) {}
 
   ngOnInit(): void {
     // this.questions = this.detailsService.getFormQuestions();
     this.formGrid = { cols: 2 };
-    this.pageHeadlineService.emitPageHeadlineItems([{ value: 'הוספת הזמנה חדשה' }]);
-
+    this.pageHeadlineService.emitPageHeadlineItems([
+      { value: 'הוספת הזמנה חדשה' },
+    ]);
   }
 
   // DOM EVENTS SECTION
