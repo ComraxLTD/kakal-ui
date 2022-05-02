@@ -6,6 +6,7 @@ import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 import { Observable, Subject, takeUntil } from 'rxjs';
+import { DrawerLayoutService } from '../drawer-layout/drawer-layout.service';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -23,8 +24,7 @@ export class StepsLayoutComponent {
 
   @Input() set actions(value: ButtonModel[]) {
     if (value?.length) {
-      this.rowActions = this.setRowActions(value);
-      this.drawerAction = this.setDrawerAction(value);
+      this.setActions(value);
 
       // this.rowActionSource$.next(this.rowActions);
     } else {
@@ -44,9 +44,10 @@ export class StepsLayoutComponent {
   // @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
 
   constructor(
+    private stepsLayoutService: StepsLayoutService,
+    private drawerLayoutService: DrawerLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private stepsLayoutService: StepsLayoutService
   ) {}
 
   ngOnInit(): void {
@@ -116,6 +117,15 @@ export class StepsLayoutComponent {
     );
 
     return action ? { ...action, svgIcon: iconMap[action.type] } : null;
+  }
+
+  private setActions(actions: ButtonModel[]) {
+    this.rowActions = this.setRowActions(actions);
+    this.drawerAction = this.setDrawerAction(actions);
+
+    if(this.drawerAction) {
+      this.drawerLayoutService.show()
+    }
   }
 
   // private setRowActionsFromActonState() {

@@ -7,7 +7,6 @@ export interface ActionButtonState {
   key?: string;
   buttons?: ButtonModel[];
   disabled?: { [key: string]: boolean };
-
 }
 @Injectable({
   providedIn: 'root',

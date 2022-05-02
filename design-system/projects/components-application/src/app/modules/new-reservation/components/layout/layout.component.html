@@ -1,6 +1,6 @@
 <kkl-steps-layout
   [steps]="steps"
-  [actions]="[{ type: 'file' }]"
+  [actions]="(actions$ | async)!"
   (stepSelect)="onChangeStep($event)"
 >
   <kkl-drawer-document drawer></kkl-drawer-document>

@@ -11,10 +11,13 @@ export class DrawerLayoutService {
     this.drawer$ = new BehaviorSubject<boolean>(false);
   }
 
-  showStartDrawer(value: boolean): void {
-    this.drawer$.next(value);
+  show() {
+    this.drawer$.next(true);
   }
-
+  
+  hide() {
+    this.drawer$.next(false);
+  }
 
   listenToStartDrawer(): Observable<boolean> {
     return this.drawer$.asObservable();

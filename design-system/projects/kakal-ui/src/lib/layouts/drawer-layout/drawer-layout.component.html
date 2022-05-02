@@ -34,27 +34,32 @@
   <mat-sidenav-content>
     <!-- DRAWER BUTTON  -->
 
-    <!-- <ng-container *ngIf="showStartDrawer$ | async"> -->
-    <div class="kkl-drawer-button'-wrapper">
-      <ng-container *ngIf="!drawer.opened">
-        <button
-          mat-fab
-          (click)="drawer.toggle()"
-          [ngClass]="{
-            'kkl-drawer-button': true,
-            outside: true
-          }"
-          [matBadge]="drawer.opened ? 'x' : '+'"
-          [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
-        >
-          <kkl-icon color="primary" [key]="drawerAction?.svgIcon" [size]="1.8">
-          </kkl-icon>
-          <kkl-typography [weight]="600" [size]="1">
-            {{ drawerAction?.label }}
-          </kkl-typography>
-        </button>
-      </ng-container>
-    </div>
+    <ng-container *ngIf="showStartDrawer$ | async">
+      <div class="kkl-drawer-button'-wrapper">
+        <ng-container *ngIf="!drawer.opened">
+          <button
+            mat-fab
+            (click)="drawer.toggle()"
+            [ngClass]="{
+              'kkl-drawer-button': true,
+              outside: true
+            }"
+            [matBadge]="drawer.opened ? 'x' : '+'"
+            [matBadgeColor]="drawer.opened ? 'text' : 'primary'"
+          >
+            <kkl-icon
+              color="primary"
+              [key]="drawerAction?.svgIcon"
+              [size]="1.8"
+            >
+            </kkl-icon>
+            <kkl-typography [weight]="600" [size]="1">
+              {{ drawerAction?.label }}
+            </kkl-typography>
+          </button>
+        </ng-container>
+      </div>
+    </ng-container>
 
     <ng-content select="[content]"></ng-content>
   </mat-sidenav-content>

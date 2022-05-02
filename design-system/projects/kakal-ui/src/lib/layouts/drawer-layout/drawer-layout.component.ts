@@ -27,9 +27,6 @@ export class DrawerLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.showStartDrawer$ = merge(
-      of(!this.drawerAction),
-      this.drawerLayoutService.listenToStartDrawer()
-    );
+    this.showStartDrawer$ = this.drawerLayoutService.listenToStartDrawer();
   }
 }
