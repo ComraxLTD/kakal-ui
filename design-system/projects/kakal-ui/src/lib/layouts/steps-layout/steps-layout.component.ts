@@ -5,7 +5,7 @@ import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { map, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -38,6 +38,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   mobile$: Observable<boolean>;
 
   disabled: { [key: string]: boolean };
+
+  steps$: Observable<CardStep[]>;
 
   // @Output() stepSelect: EventEmitter<StepsSelectionEvent> = new EventEmitter();
   // @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
@@ -75,9 +77,10 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         }
       });
 
+    this.steps$ = this.setStepsSelectionEvent();
     this.stepsSelectionEvent = this.initStepsSelectionEvent();
     this.steps = this.stepsSelectionEvent.source;
-    this._emitChanged()
+    this._emitChanged();
   }
 
   ngOnDestroy() {
@@ -85,6 +88,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     this.destroySubject$.complete();
     this.stepsLayoutService.hideDrawer();
   }
+
   private initStepsSelectionEvent(): StepsSelectionEvent {
     const path = this.routerService.getCurrentPath();
 
@@ -108,6 +112,43 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
       last: selectedIndex === this.steps.length - 1,
       first: selectedIndex === 0,
     } as StepsSelectionEvent;
+  }
+
+  private getStepAndIndex(
+    key: keyof CardStep,
+    value: any
+  ): { index: number; step: CardStep } {
+    const index = this.steps.findIndex((s) => s[key] === value);
+    const step = this.steps[index];
+    return { index, step };
+  }
+
+  private setStepsSelectionEvent(): Observable<CardStep[]> {
+    return this.routerService.getLastPath$().pipe(
+      map((path: string) => {
+        const find: { key: keyof CardStep; value: any }[] = [
+          { key: 'selected', value: true },
+          { key: 'path', value: path },
+        ];
+
+        const steps = [...this.steps];
+
+        for (let cell of find) {
+          const { key, value } = cell;
+          const { index, step } = this.getStepAndIndex(key, value);
+
+          const resultStep = {
+            ...step,
+            selected: !step.selected,
+          };
+          if (index !== -1) {
+            steps[index] = { ...resultStep } as CardStep;
+          }
+
+          return steps;
+        }
+      })
+    );
   }
 
   // ACTIONS SECTION
