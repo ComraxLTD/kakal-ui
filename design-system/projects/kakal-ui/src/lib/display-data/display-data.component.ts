@@ -6,7 +6,7 @@ export interface DisplayItem<T = any> {
   format?: { type: string; args: any };
   svgIcon?: string;
   template?: string;
-  type?: 'action' | 'status' | 'form';
+  type?: 'action' | 'status' | 'template';
 }
 
 export declare type DisplayType = 'form' | 'table' | 'display';
