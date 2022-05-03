@@ -1,13 +1,29 @@
 ::ng-deep mat-vertical-stepper.kkl-vertical-steps {
+  max-width: 9rem !important;
   mat-step-header {
     display: flex;
     justify-content: space-between !important;
+     &:hover{
+       background-color: #fff !important; 
+      }
+    }
+    ::ng-deep .cdk-program-focused{
+    background-color: #fff !important; 
   }
+}
+
+::ng-deep .mat-drawer-container{
+  background-color: #fff !important;
 }
 
 // .kkl-vertical-stepper-label {
 //   width: 100px;
 // }
+
+::ng-deep .mat-vertical-stepper-header{
+  padding: 0 !important;
+  margin: 2.4rem;
+}
 
 ::ng-deep mat-vertical-content-container {
   display: flex;

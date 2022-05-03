@@ -51,7 +51,7 @@ export class NavbarBottomComponent implements OnInit {
     this.navbarBottomService
       .getFormGroup()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((b) => {
+      .subscribe((b:FormGroup) => {
         if (b) {
           this.formGroup = b;
         } else {
@@ -61,7 +61,7 @@ export class NavbarBottomComponent implements OnInit {
     this.navbarBottomService
       .getAutoBack()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a) => {
+      .subscribe((a:boolean) => {
         this.autoBack = a;
       });
   }

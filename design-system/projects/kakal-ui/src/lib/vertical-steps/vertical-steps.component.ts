@@ -14,6 +14,8 @@ import {
 } from '@angular/cdk/stepper';
 import { Step } from './step/step.model';
 import { MatStepper } from '@angular/material/stepper';
+import { BreakpointService } from '../../public-api';
+import { Observable, of, tap } from 'rxjs';
 
 export interface StepSelectEvent {
   selectedIndex: number;
@@ -43,6 +45,7 @@ export interface StepSelectEvent {
   ],
 })
 export class VerticalStepsComponent implements OnInit {
+  isSmallScreen$: Observable<boolean>=of(true);
 
   @Input() linear: boolean;
 
@@ -54,9 +57,9 @@ export class VerticalStepsComponent implements OnInit {
 
   _selectedIndex: number = 0;
   @Input() set selectedIndex(val: number) {
-    if(val) {
+    if (val || val ===0) {
       this._selectedIndex = val;
-      if(this.steps) {
+      if (this.steps) {
         this.cellTemplate = this.steps[val].key as string;
       }
     }
@@ -68,12 +71,20 @@ export class VerticalStepsComponent implements OnInit {
   // @Output() interacted: EventEmitter<CdkStep> = new EventEmitter();
   @Output() stepChanged: EventEmitter<StepSelectEvent> = new EventEmitter();
 
-  constructor() {}
+  constructor(private breakPointService: BreakpointService) {}
 
   ngOnInit(): void {
     this.cellTemplate = this.steps[this._selectedIndex].key as string;
+    this.isSmallScreen$ = this.getIsSmallScreen();
   }
 
+  getIsSmallScreen(): Observable<boolean> {
+    return this.breakPointService.isMobile().pipe( 
+      tap((value) => {
+        return value
+      })
+    );
+  }
 
   onSelectionChanged(event: StepperSelectionEvent) {
     const { selectedIndex, previouslySelectedIndex } = event;

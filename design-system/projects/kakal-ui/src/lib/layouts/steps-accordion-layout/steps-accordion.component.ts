@@ -67,19 +67,23 @@ export class StepsAccordionComponent implements OnInit {
       .subscribe((a) => {
         if (this.completed) {
           this.completed = false;
+          this.navbarBottomService.setShowNextMiddle({
+            show:true,next:false
+          })
+          this.navbarBottomService.setShowSave(false)
           this.selectedIndex = this.steps.length - 1;
-          this.navbarBottomService.setFormGroup(
+          this.navbarBottomService.setFormGroup( 
             this.steps[this.selectedIndex].control
           );
         } else {
-          if (this.currentStep && this.currentStep.previouslySelectedIndex) {
+          if (this.currentStep && this.currentStep.selectedIndex) {
             if (this.currentStep.last) {
               this.navbarBottomService.setShowNextMiddle({
                 show: true,
                 next: false,
-              });
+              }); 
             }
-            this.selectedIndex = this.currentStep.previouslySelectedIndex;
+            this.selectedIndex = this.currentStep.selectedIndex-1;
             this.navbarBottomService.setFormGroup(
               this.steps[this.selectedIndex].control
             );
