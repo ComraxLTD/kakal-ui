@@ -2,7 +2,7 @@
 
   [ngClass]="['kkl-tabs', direction]"
   animationDuration="0ms"
-  [fxLayout]="direction === 'vertical' ? 'row' : 'column'"
+  [fxLayout]="direction === 'horizontal' ? 'row' : 'column'"
   [backgroundColor]="backgroundColor"
 >
   <ng-container *ngFor="let tab of tabs">

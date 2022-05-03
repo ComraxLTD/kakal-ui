@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { IconService } from '../../icon/icons.service';
 
 export interface MenuCard {
@@ -6,6 +6,7 @@ export interface MenuCard {
   svgIcon: string;
   selected?: boolean;
   path?: string;
+  templateName: string;
 }
 
 
@@ -17,6 +18,7 @@ export interface MenuCard {
 })
 export class MenuCardComponent implements OnInit {
   @Input() card!: MenuCard;
+  @Input() template: TemplateRef<any>;
 
   @Output() cardSelect: EventEmitter<MenuCard> = new EventEmitter();
 

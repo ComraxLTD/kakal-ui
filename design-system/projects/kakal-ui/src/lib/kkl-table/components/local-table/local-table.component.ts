@@ -358,6 +358,8 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
   }
 
   addRowGroup(obj: any) {
+    console.log(obj);
+
     const row = this.fb.group({});
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(obj[col.key]));
