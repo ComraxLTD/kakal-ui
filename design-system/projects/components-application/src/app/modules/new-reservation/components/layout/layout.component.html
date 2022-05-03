@@ -8,7 +8,7 @@
   <!-- <router-outlet content></router-outlet> -->
 
   <div content>
-    <kkl-page title="kkl-display-group">
+    <kkl-page title="kkl-display-group" dir="rtl">
       <div content fxLayout="column" fxLayoutGap="3rem">
         <kkl-section label="Table variant (default)">
           <kkl-display-group
@@ -22,6 +22,7 @@
             variant="display"
             [displayData]="displayData"
             [data]="data"
+            [templates]="{progress}"
           ></kkl-display-group>
         </kkl-section>
 
@@ -36,3 +37,7 @@
     </kkl-page>
   </div>
 </kkl-steps-layout>
+
+<ng-template #progress let-data>
+  <kkl-progress-spinner [value]="data"></kkl-progress-spinner>
+</ng-template>

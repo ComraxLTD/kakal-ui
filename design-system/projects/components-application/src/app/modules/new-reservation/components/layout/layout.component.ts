@@ -6,13 +6,20 @@ import {
   FormActions,
   PageHeadlineService,
   RouterService,
+  StatusBars,
   StepsLayoutService,
 } from '../../../../../../../kakal-ui/src/public-api';
-import { CustomerDetailsLayoutService } from '../../modules/details/components/customer-details-layout.service';
 import { NewReservationService } from '../../new-reservation.service';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { DrawerLayoutService } from '../../../../../../../kakal-ui/src/lib/layouts/drawer-layout/drawer-layout.service';
 import { map, Observable } from 'rxjs';
+
+export interface DataEx {
+  budget: number;
+  date: Date;
+  tour: string;
+  status: StatusBars;
+  progress: number;
+}
 
 @Component({
   selector: 'app-layout',
@@ -38,7 +45,7 @@ export class LayoutComponent implements OnInit {
       label: 'מרכיבי הזמנה',
       svgIcon: 'tree',
       path: 'parts',
-      disabled : true
+      disabled: true,
     },
     {
       label: 'סיכום הזמנה',
@@ -47,36 +54,45 @@ export class LayoutComponent implements OnInit {
     },
   ];
 
-  displayData: DisplayItem[] = [
+  displayData: DisplayItem<DataEx>[] = [
     {
-      key: 'key',
-      label: 'label',
-      format: {
-        type: 'type',
-        args: 'args',
-      },
-      svgIcon: 'tree',
-      template: 'template',
+      key: 'budget',
+      format: { type: 'currency' },
+      label: 'תקציב',
+    },
+    {
+      key: 'date',
+      format: { type: 'date' },
+      label: 'תאריך יציאה',
+    },
+    {
+      key: 'tour',
+      label: 'טיול',
+    },
+    {
+      key: 'status',
+      type: 'status',
+      label: 'טיול',
+    },
+    {
+      key: 'progress',
+      label: '',
+      type: 'template',
     },
   ];
 
-  data = {
-    key: 'key',
-    label: 'label',
-    value: 'value',
-    format: {
-      type: 'type',
-      args: 'args',
-    },
-    icon: 'tree',
-    template: 'template',
-    type: 'type',
+  data: DataEx = {
+    budget: 100,
+    date: new Date(),
+    tour: 'בית ספר נחלים',
+    status: { totalBars: 5, authorizedBars: 3, label: 'התקדמות' } as StatusBars,
+    progress: 40,
   };
 
   constructor(
     private routerService: RouterService,
     private newReservationService: NewReservationService,
-    private pageHeadlineSource : PageHeadlineService
+    private pageHeadlineSource: PageHeadlineService
   ) {}
 
   ngOnInit(): void {
@@ -93,7 +109,7 @@ export class LayoutComponent implements OnInit {
       { value: 'first' },
       { value: 'sec' },
       { value: 'third' },
-    ])
+    ]);
   }
 
   public onChangeStep(step: StepperSelectionEvent) {
