@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 export interface DisplayItem<T = any> {
-
   // ** use for extract data from the give data object **
   key: keyof T;
 
@@ -11,11 +10,10 @@ export interface DisplayItem<T = any> {
   // ** use to format value. type : desired pipe name, args :  **
   format?: { type: string; args?: any };
 
-
   svgIcon?: string;
 
   // ** type of value ui **
-  type?: 'action' | 'status' | 'template';
+  type?: 'action' | 'status' | 'icon' | 'template';
 }
 
 export declare type DisplayType = 'form' | 'table' | 'display';
