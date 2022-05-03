@@ -58,5 +58,7 @@ export class NavbarComponent implements OnInit {
     this.logoClicked.emit();
   }
 
-  onStatusSelection() {}
+  onStatusSelection(event : StatusSelectionEvent) {
+    this.statusSelection.emit(event)
+  }
 }

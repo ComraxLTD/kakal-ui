@@ -21,6 +21,7 @@ import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import { CardStatus } from '../../cards/card-status/card-status.component';
 import { ROOT_PREFIX } from '../../../constants/root-prefix';
+import { StatusSelectionEvent } from '../../groups/status-group/status-group.component';
 
 @Component({
   selector: 'kkl-layout',
@@ -68,12 +69,12 @@ export class LayoutComponent implements OnInit {
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
+  @Output() statusSelection: EventEmitter<StatusSelectionEvent> = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
     private pageHeadlineService: PageHeadlineService,
-    @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
@@ -137,12 +138,17 @@ export class LayoutComponent implements OnInit {
     this.menuSelected.emit(event);
   }
 
+  onStatusSelection(event: StatusSelectionEvent) {
+    this.statusSelection.emit(event);
+  }
+
   onStartSideNav(val: string) {
     this.selectedOpen = val;
     if (this.selectedOpen !== 'menu' || this.cards?.length) {
       this.sidenav.toggle();
     }
   }
+
   // control content width when end drawer is open and close in %
 
   // PORTION LOGIC SECTION
