@@ -8,7 +8,7 @@ import { ComponentRef } from '@angular/core';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent implements OnInit {
-  @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
+  // @ViewChild('container', { read: ViewContainerRef, static: true }) container!: ViewContainerRef;
   @ViewChild("renderComponentHere", { read: ViewContainerRef, static: true  }) vcRef!: ViewContainerRef;
   saveBtnLabel!:string
   closeBtnLabel!:string

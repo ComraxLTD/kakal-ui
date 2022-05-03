@@ -2,5 +2,9 @@
     ::ng-deep .mat-tab-body-wrapper ,kkl-tabs {
         width:  100% !important;
     }
-
+ ::mat-icon{
+     display: flex;
+     justify-content: center;
+     align-items: center; 
+ }
 }

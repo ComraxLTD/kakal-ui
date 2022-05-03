@@ -5,6 +5,7 @@ import {
   Input,
   OnInit,
   Output,
+  TemplateRef,
 } from '@angular/core';
 
 export interface StatusBars {
@@ -24,7 +25,7 @@ export class StatusStepsComponent implements OnInit {
   @Input() hasLabel: boolean;
   @Input() status: StatusBars;
 
-  @Input() labelRef: ElementRef;
+  @Input() labelRef: TemplateRef<any>;
 
   steps: string[] = [];
 
