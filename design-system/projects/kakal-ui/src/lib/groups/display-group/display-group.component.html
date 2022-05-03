@@ -1,23 +1,11 @@
 <div class="kkl-display-group" fxLayout="row" fxLayoutGap="5rem">
   <div fxLayout="column" fxLayoutGap=".5rem" *ngFor="let item of displayData">
-    <header class="kkl-display-group-label">
-      <ng-container [ngSwitch]="variant">
-        <ng-container *ngSwitchCase="'form'">
-          <kkl-typography [size]="1.6"
-            >{{ item | pluck: "label" }}:</kkl-typography
-          >
-        </ng-container>
-
-        <ng-container *ngSwitchDefault>
-          <kkl-typography
-            [class.display]="variant === 'display'"
-            [weight]="600"
-            >{{ item | pluck: "label" }}</kkl-typography
-          >
-        </ng-container>
-      </ng-container>
+    <header>
+      <span [ngClass]="['kkl-display-group-label', variant]">
+        {{ item | pluck: "label" }}
+      </span>
     </header>
-    <mat-divider *ngIf="variant !== 'display'"></mat-divider>
+    <mat-divider *ngIf="variant === 'table'"></mat-divider>
 
     <ng-container
       *ngTemplateOutlet="

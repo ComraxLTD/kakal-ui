@@ -5,8 +5,22 @@
     min-height: 2rem;
   }
 
-  kkl-typography.display {
-    background-color: rgba(243, 243, 243, 1);
+  span.kkl-display-group-label {
+    font-size: 1.4rem;
+    font-weight: 600;
+
+    &.table {
+      font-weight: 600;
+    }
+
+    &.display {
+      background-color: rgba(243, 243, 243, 1);
+    }
+
+    &.form {
+      font-weight: 500;
+      font-size: 1.6rem;
+    }
   }
 
   div.form-wrapper {

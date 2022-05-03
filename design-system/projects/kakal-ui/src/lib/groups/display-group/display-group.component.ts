@@ -18,7 +18,7 @@ import {
 })
 export class DisplayGroupComponent<T> {
 
-  @Input() variant: DisplayType;
+  @Input() variant: DisplayType = 'table';
 
   @Input() displayData!: DisplayItem<T>[];
   @Input() data!: T;
