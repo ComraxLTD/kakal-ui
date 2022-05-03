@@ -29,7 +29,10 @@ export class FormatPipe implements PipeTransform {
       value = value.split(',').reduce((acc, val) => acc + val);
     }
 
-    return formatCurrency(value, this.locale, args(), '', '1.0');
+    if (args) {
+      return formatCurrency(value, this.locale, args(), '', '1.0');
+    }
+    return formatCurrency(value, this.locale, '₪', '', '1.0');
   }
 
   private format(value: any, format: string, args?: string): string {
