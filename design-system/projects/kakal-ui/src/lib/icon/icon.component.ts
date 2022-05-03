@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 import { Color, palette, Palette } from '../../styles/theme';
 import { IconService } from './icons.service';
 
@@ -17,8 +17,10 @@ export interface IconModel {
 })
 export class IconComponent implements OnInit {
   public palette: Color = palette;
-
+  
   private _key: string;
+  
+  public padding!:number
 
   @Input()
   get key(): string {
@@ -51,6 +53,7 @@ export class IconComponent implements OnInit {
   @Input() public backgroundColor: Palette;
 
   @Input() public disabled: boolean;
+  @HostBinding('style.border') paddingValue:string
 
   public scale: string;
 
@@ -60,6 +63,7 @@ export class IconComponent implements OnInit {
     this.setIcon();
     this.setSize();
     this.color = this.color || 'default';
+    this.paddingValue=this.padding+ ' !importent'
   }
 
   private setIcon() {

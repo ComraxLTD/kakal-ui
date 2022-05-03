@@ -19,13 +19,14 @@ export class SizeDirective implements OnInit, OnDestroy {
   @Input() type: string;
   @Input() divider: number;
   @Input() space: number;
+  @Input() padding:number[];
 
   private mobile$: Observable<boolean>;
-
   private subscription: Subscription;
 
   @HostBinding('style.height') public height: string;
   @HostBinding('style.width') public width: string;
+  @HostBinding('style.padding') public paddingValue:string
 
   private stepHeight: number;
 
@@ -35,6 +36,12 @@ export class SizeDirective implements OnInit, OnDestroy {
     this.setSize();
     this.mobile$ = this.breakpointService.isMobile();
     this.subscribeToBreakpoint();
+    
+    if(this.padding && this.padding.length){
+      this.paddingValue=this.padding.reduce((pre,cur)=>pre+(cur+'px '),'')
+    }
+      console.log(this.paddingValue);
+    this.paddingValue+=' !important'
   }
 
   ngOnDestroy(): void {

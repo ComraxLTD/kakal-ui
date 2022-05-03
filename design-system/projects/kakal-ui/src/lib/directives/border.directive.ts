@@ -9,6 +9,7 @@ export class KKLBorderDirective {
 
   @Input() color: Palette;
   @Input() thick: number;
+  @Input() radius: number;
   @Input() disabled: boolean;
 
   private _color: Palette;
@@ -22,10 +23,12 @@ export class KKLBorderDirective {
   }
 
   @HostBinding('style.border') private border: string;
+  @HostBinding('style.border-radius') private borderRadius:string
 
   constructor() {}
 
   ngOnInit(): void {
+    this.borderRadius = this.radius+'px'
     this.border = `${this.thick || 1}px solid ${
       this.palette[this._color || 'primary']
     } !important`;

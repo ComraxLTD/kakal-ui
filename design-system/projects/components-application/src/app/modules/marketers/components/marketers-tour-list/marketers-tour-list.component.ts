@@ -42,4 +42,5 @@ export class MarketersTourListComponent implements OnInit {
   onOpenChanged(event: any) {
     console.log(event);
   }
+  padding=[120,45]
 }
