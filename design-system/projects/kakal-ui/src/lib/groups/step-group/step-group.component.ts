@@ -47,20 +47,7 @@ export class StepGroupComponent implements OnInit {
     this.mobile$ = this.breakpointService.isMobile();
   }
 
-  // onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
-  //   const event: StepsSelectionEvent = {
-  //     selectedStep: step,
-  //     selectedIndex: index,
-  //     last,
-  //     first,
-  //     source: this.steps,
-  //   };
-  //   this.stepSelection.emit(event);
-  // }
-
   onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
-    this._steps.forEach((a) => (a.selected = false));
-    step.selected = true;
     const event: StepsSelectionEvent = {
       selectedStep: step,
       selectedIndex: index,
