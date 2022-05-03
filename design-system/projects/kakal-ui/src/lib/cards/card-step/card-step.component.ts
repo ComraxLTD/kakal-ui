@@ -30,6 +30,7 @@ export interface StepOptions {
 export class CardStepComponent implements OnInit {
   @Input() step: CardStep;
   @Input() options: CardOptions;
+  @Input() selected: boolean;
 
   mobile$: Observable<boolean>;
 

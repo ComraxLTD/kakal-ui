@@ -5,7 +5,7 @@ import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
-import { map, Observable, Subject, takeUntil } from 'rxjs';
+import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -33,13 +33,12 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   drawerAction: ButtonModel;
 
-  stepsSelectionEvent: StepsSelectionEvent;
+  private _stepsSelectionEvent: StepsSelectionEvent;
+  stepsSelectionEvent$: Observable<StepsSelectionEvent>;
 
   mobile$: Observable<boolean>;
 
   disabled: { [key: string]: boolean };
-
-  steps$: Observable<CardStep[]>;
 
   // @Output() stepSelect: EventEmitter<StepsSelectionEvent> = new EventEmitter();
   // @Output() actionChanged: EventEmitter<ButtonModel> = new EventEmitter();
@@ -77,9 +76,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         }
       });
 
-    // this.steps$ = this.setStepsSelectionEvent();
-    this.stepsSelectionEvent = this.setStepsSelectionEvent();
-    this.steps = this.stepsSelectionEvent.source;
+    this.stepsSelectionEvent$ = this.setStepsSelectionEventFromRoute();
+
     this._emitChanged();
   }
 
@@ -89,30 +87,55 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     this.stepsLayoutService.hideDrawer();
   }
 
-  private setStepsSelectionEvent(): StepsSelectionEvent {
-    const path = this.routerService.getCurrentPath();
+  private findIndex(
+    steps: CardStep[],
+    key: keyof CardStep,
+    value: any
+  ): number {
+    const index = steps.findIndex((s: CardStep) => s[key] === value);
+    return index;
+  }
 
-    const steps = [...this.steps];
+  private setSource(
+    steps: CardStep[],
+    selectedIndex: number,
+    previouslySelectedIndex: number
+  ) {
+    steps[selectedIndex] = { ...steps[selectedIndex], selected: true };
+    steps[previouslySelectedIndex] = {
+      ...steps[previouslySelectedIndex],
+      selected: false,
+    };
+    return steps;
+  }
 
-    const selectedIndex = this.steps.findIndex(
-      (step: CardStep) => step.path === path
+  private setStepsSelectionEventFromRoute(): Observable<StepsSelectionEvent> {
+    return this.routerService.getLastPath$().pipe(
+      map((path: string) => {
+        const steps = [...this.steps];
+
+        const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
+        const selectedIndex = this.findIndex(steps, 'path', path);
+
+        const source = this.setSource(
+          steps,
+          selectedIndex,
+          previouslySelectedIndex
+        );
+
+        this._stepsSelectionEvent = {
+          selectedIndex,
+          previouslySelectedIndex,
+          source,
+          selectedStep: source[selectedIndex],
+          previouslySelectedStep: source[previouslySelectedIndex],
+          last: selectedIndex === this.steps.length - 1,
+          first: selectedIndex === 0,
+        } as StepsSelectionEvent;
+
+        return this._stepsSelectionEvent;
+      })
     );
-
-    const selectedStep = {
-      ...this.steps[selectedIndex],
-      selected: true,
-    } as CardStep;
-
-    steps[selectedIndex] = selectedStep;
-
-    return {
-      source: steps,
-      selectedStep,
-      selectedIndex,
-      previouslySelectedIndex: selectedIndex,
-      last: selectedIndex === this.steps.length - 1,
-      first: selectedIndex === 0,
-    } as StepsSelectionEvent;
   }
 
   // ACTIONS SECTION
@@ -192,8 +215,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   onSelectStep(event: StepsSelectionEvent): void {
-    this.stepsSelectionEvent = { ...event };
-    this._emitChanged();
     this.navigate(event.selectedStep.path);
   }
 
@@ -202,6 +223,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   private _emitChanged() {
-    this.stepsLayoutService.setStepsSelection(this.stepsSelectionEvent);
+    this.stepsLayoutService.setStepsSelection(this._stepsSelectionEvent);
   }
 }

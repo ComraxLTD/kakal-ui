@@ -23,7 +23,7 @@
       [variant]="options.variant"
       [ngClass]="{
         'mat-elevation-z0': true,
-        selected: step.selected,
+        selected: selected,
         disabled: step.disabled
       }"
     >
@@ -31,7 +31,7 @@
         <mat-icon
           appSize
           [ngClass]="{
-            selected: step.selected,
+            selected: selected,
             disabled: step.disabled
           }"
           [size]="options.size"
@@ -46,8 +46,8 @@
   <div fxLayout="row" fxFlex>
     <div fxFill fxLayout="column" fxLayoutAlign="center center" class="no-warp">
       <kkl-typography
-        [class.selected]="step.selected"
-        [weight]="step.selected ? 600 : 500"
+        [class.selected]="selected"
+        [weight]="selected ? 600 : 500"
         [size]="1.2"
       >
         {{ step.label }}

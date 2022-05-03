@@ -19,6 +19,7 @@
         <kkl-card-step
           (stepSelect)="onStepSelect(step, i, last, first)"
           [index]="i"
+          [selected]="stepsSelectionEvent.selectedIndex === i"
           [step]="step"
           [options]="options"
         ></kkl-card-step>
