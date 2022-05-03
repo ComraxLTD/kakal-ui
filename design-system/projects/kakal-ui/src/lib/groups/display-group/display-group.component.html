@@ -1,19 +1,11 @@
-<div fxLayout="row" fxLayoutGap="5rem">
+<div class="kkl-display-group" fxLayout="row" fxLayoutGap="5rem">
   <div fxLayout="column" fxLayoutGap=".5rem" *ngFor="let item of displayData">
-    <ng-container [ngSwitch]="variant">
-      <ng-container *ngSwitchCase="'form'">
-        <kkl-typography [size]="1.6"
-          >{{ item | pluck: "label" }}:</kkl-typography
-        >
-      </ng-container>
-
-      <ng-container *ngSwitchDefault>
-        <kkl-typography [class.form]="variant === 'display'" [weight]="600">{{
-          item | pluck: "label"
-        }}</kkl-typography>
-        <mat-divider></mat-divider>
-      </ng-container>
-    </ng-container>
+    <header>
+      <span [ngClass]="['kkl-display-group-label', variant]">
+        {{ item | pluck: "label" }}
+      </span>
+    </header>
+    <mat-divider *ngIf="variant === 'table'"></mat-divider>
 
     <ng-container
       *ngTemplateOutlet="
@@ -31,10 +23,12 @@
     fxLayoutAlign="center center"
   >
     <ng-container [ngSwitch]="item?.type">
-      <ng-container *ngSwitchCase="'action'">
+      <ng-container *ngSwitchCase="'icon'">
         <div fxFlex="70" fxLayoutAlign="center center">
           <kkl-typography [size]="1.6" [weight]="600">{{
-            data | pluck: item.key | format: item?.format?.type:item?.format?.args
+            data
+              | pluck: item.key
+              | format: item?.format?.type:item?.format?.args
           }}</kkl-typography>
         </div>
 
@@ -70,6 +64,14 @@
 
     <ng-container *ngSwitchCase="'status'">
       <kkl-status-steps [status]="data | pluck: item.key"></kkl-status-steps>
+    </ng-container>
+    <ng-container *ngSwitchCase="'template'">
+      <ng-container
+        *ngTemplateOutlet="
+          templates[item.key];
+          context: { $implicit: data | pluck: item.key }
+        "
+      ></ng-container>
     </ng-container>
 
     <ng-container *ngSwitchDefault>

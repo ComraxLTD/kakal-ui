@@ -18,13 +18,11 @@ import {
 })
 export class DisplayGroupComponent<T> {
 
-  @Input() variant: DisplayType;
+  @Input() variant: DisplayType = 'table';
 
   @Input() displayData!: DisplayItem<T>[];
   @Input() data!: T;
   @Input() templates: { [key: string]: TemplateRef<any> } = {};
-
-  @Input() gap: number;
 
   data$!: Observable<T>;
 
