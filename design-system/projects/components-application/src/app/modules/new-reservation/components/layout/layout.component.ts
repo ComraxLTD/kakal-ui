@@ -54,11 +54,7 @@ export class LayoutComponent implements OnInit {
       map((path: string) => {
         const details = this.actions;
         const parts = [];
-
         const map = { details, parts };
-
-        console.log(path);
-
         return map[path];
       })
     );

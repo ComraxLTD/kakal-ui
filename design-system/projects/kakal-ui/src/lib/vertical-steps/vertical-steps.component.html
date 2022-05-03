@@ -1,16 +1,18 @@
 <!-- (selectionChange)="onSelectionChanged($event)" -->
+<div fxLayout="row">
 <ng-container *ngIf="!(isSmallScreen$ | async) as isSmallScreen">
 
   <mat-vertical-stepper
   #stepper
+  fxFlex="nogrow"
   class="kkl-vertical-steps"
   [(selectedIndex)]="_selectedIndex"
   [disableRipple]="true"
   (selectionChange)="onSelectionChanged($event)"
 > 
-  <ng-container >
+<ng-container >
     <mat-step
-      [completed]="step.completed"
+    [completed]="step.completed"
       [stepControl]="step.control"
       *ngFor="let step of steps; let i = index"
     >
@@ -23,6 +25,7 @@
 </ng-template>
 </mat-vertical-stepper>
 </ng-container>
-<div fxFlex="100" dir="rtl">
+<div  fxFlex="grow" fxFill  dir="rtl">
   <ng-container *ngTemplateOutlet="templates[cellTemplate]"></ng-container>
+</div>
 </div>

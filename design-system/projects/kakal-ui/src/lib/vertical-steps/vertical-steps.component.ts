@@ -57,7 +57,7 @@ export class VerticalStepsComponent implements OnInit {
 
   _selectedIndex: number = 0;
   @Input() set selectedIndex(val: number) {
-    if (val) {
+    if (val || val ===0) {
       this._selectedIndex = val;
       if (this.steps) {
         this.cellTemplate = this.steps[val].key as string;
@@ -81,7 +81,6 @@ export class VerticalStepsComponent implements OnInit {
   getIsSmallScreen(): Observable<boolean> {
     return this.breakPointService.isMobile().pipe( 
       tap((value) => {
-        console.log(value);
         return value
       })
     );
