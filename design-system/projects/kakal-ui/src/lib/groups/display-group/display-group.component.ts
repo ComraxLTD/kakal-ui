@@ -24,8 +24,6 @@ export class DisplayGroupComponent<T> {
   @Input() data!: T;
   @Input() templates: { [key: string]: TemplateRef<any> } = {};
 
-  @Input() gap: number;
-
   data$!: Observable<T>;
 
   @Output() action: EventEmitter<DisplayItem<T>> = new EventEmitter();
