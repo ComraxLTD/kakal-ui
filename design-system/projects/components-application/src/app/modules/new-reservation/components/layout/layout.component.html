@@ -7,37 +7,5 @@
 
   <!-- <router-outlet content></router-outlet> -->
 
-  <div content>
-    <kkl-page title="kkl-display-group" dir="rtl">
-      <div content fxLayout="column" fxLayoutGap="3rem">
-        <kkl-section label="Table variant (default)">
-          <kkl-display-group
-            [displayData]="displayData"
-            [data]="data"
-          ></kkl-display-group>
-        </kkl-section>
-
-        <kkl-section label="Display variant">
-          <kkl-display-group
-            variant="display"
-            [displayData]="displayData"
-            [data]="data"
-            [templates]="{progress}"
-          ></kkl-display-group>
-        </kkl-section>
-
-        <kkl-section label="Form variant">
-          <kkl-display-group
-            variant="form"
-            [displayData]="displayData"
-            [data]="data"
-          ></kkl-display-group>
-        </kkl-section>
-      </div>
-    </kkl-page>
-  </div>
+  <router-outlet content></router-outlet>
 </kkl-steps-layout>
-
-<ng-template #progress let-data>
-  <kkl-progress-spinner [value]="data"></kkl-progress-spinner>
-</ng-template>
