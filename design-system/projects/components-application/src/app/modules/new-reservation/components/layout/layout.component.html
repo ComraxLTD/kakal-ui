@@ -5,5 +5,34 @@
 >
   <kkl-drawer-document drawer></kkl-drawer-document>
 
-  <router-outlet content></router-outlet>
+  <!-- <router-outlet content></router-outlet> -->
+
+  <div content>
+    <kkl-page title="kkl-display-group">
+      <div content fxLayout="column" fxLayoutGap="3rem">
+        <kkl-section label="Table variant (default)">
+          <kkl-display-group
+            [displayData]="displayData"
+            [data]="data"
+          ></kkl-display-group>
+        </kkl-section>
+
+        <kkl-section label="Display variant">
+          <kkl-display-group
+            variant="display"
+            [displayData]="displayData"
+            [data]="data"
+          ></kkl-display-group>
+        </kkl-section>
+
+        <kkl-section label="Form variant">
+          <kkl-display-group
+            variant="form"
+            [displayData]="displayData"
+            [data]="data"
+          ></kkl-display-group>
+        </kkl-section>
+      </div>
+    </kkl-page>
+  </div>
 </kkl-steps-layout>

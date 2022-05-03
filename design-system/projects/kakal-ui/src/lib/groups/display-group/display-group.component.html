@@ -13,7 +13,7 @@
           [weight]="600"
           >{{ item | pluck: "label" }}</kkl-typography
         >
-        <mat-divider></mat-divider>
+        <mat-divider *ngIf="variant !== 'display'"></mat-divider>
       </ng-container>
     </ng-container>
 

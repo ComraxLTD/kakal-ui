@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   ButtonModel,
   CardStep,
+  DisplayItem,
   FormActions,
   PageHeadlineService,
   RouterService,
@@ -45,6 +46,32 @@ export class LayoutComponent implements OnInit {
       path: 'summary',
     },
   ];
+
+  displayData: DisplayItem[] = [
+    {
+      key: 'key',
+      label: 'label',
+      format: {
+        type: 'type',
+        args: 'args',
+      },
+      svgIcon: 'tree',
+      template: 'template',
+    },
+  ];
+
+  data = {
+    key: 'key',
+    label: 'label',
+    value: 'value',
+    format: {
+      type: 'type',
+      args: 'args',
+    },
+    icon: 'tree',
+    template: 'template',
+    type: 'type',
+  };
 
   constructor(
     private routerService: RouterService,
