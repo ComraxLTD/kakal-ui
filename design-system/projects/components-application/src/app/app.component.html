@@ -2,6 +2,12 @@
   [pageHeadlineRouteMap]="{ lobby: 'admin' }"
   [status]="status"
   (logoClicked)="onLogoClicked()"
+  [cards]="cards"
+  menuTemplates="{temp:temp}"
 >
   <router-outlet></router-outlet>
 </kkl-layout>
+
+<ng-template #temp>
+  <kkl-icon key="edit"></kkl-icon>
+</ng-template>

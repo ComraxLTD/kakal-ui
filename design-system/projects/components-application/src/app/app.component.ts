@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   CardStatus,
+  MenuCard,
   PageHeadlineService,
   RouterService,
 } from '../../../kakal-ui/src/public-api';
@@ -12,6 +13,10 @@ import {
 })
 export class AppComponent {
   title = 'education';
+
+cards:MenuCard[]=[
+  {path:'as',templateName:"",svgIcon:'edit'}as MenuCard 
+]
 
   status: CardStatus[] = [
     {
