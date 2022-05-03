@@ -77,9 +77,9 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.steps$ = this.setStepsSelectionEvent();
-    this.stepsSelectionEvent = this.initStepsSelectionEvent();
-    // this.steps = this.stepsSelectionEvent.source;
+    // this.steps$ = this.setStepsSelectionEvent();
+    this.stepsSelectionEvent = this.setStepsSelectionEvent();
+    this.steps = this.stepsSelectionEvent.source;
     this._emitChanged();
   }
 
@@ -89,7 +89,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     this.stepsLayoutService.hideDrawer();
   }
 
-  private initStepsSelectionEvent(): StepsSelectionEvent {
+  private setStepsSelectionEvent(): StepsSelectionEvent {
     const path = this.routerService.getCurrentPath();
 
     const steps = [...this.steps];
@@ -109,45 +109,10 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
       source: steps,
       selectedStep,
       selectedIndex,
+      previouslySelectedIndex: selectedIndex,
       last: selectedIndex === this.steps.length - 1,
       first: selectedIndex === 0,
     } as StepsSelectionEvent;
-  }
-
-  private getStepAndIndex(
-    key: keyof CardStep,
-    value: any
-  ): { index: number; step: CardStep } {
-    const index = this.steps.findIndex((s: CardStep) => s[key] === value);
-    const step = this.steps[index];
-    return { index, step };
-  }
-
-  private setStepsSelectionEvent(): Observable<CardStep[]> {
-    return this.routerService.getLastPath$().pipe(
-      map((path: string) => {
-        const find: { key: keyof CardStep; value: any }[] = [
-          { key: 'selected', value: true },
-          { key: 'path', value: path },
-        ];
-
-        const steps = [...this.steps];
-
-        find.forEach((obj) => {
-          const { key, value } = obj;
-          const { index, step } = this.getStepAndIndex(key, value);
-
-          if (index !== -1) {
-            const resultStep = {
-              ...step,
-              selected: !step.selected,
-            };
-            steps[index] = { ...resultStep } as CardStep;
-          }
-        });
-        return steps;
-      })
-    );
   }
 
   // ACTIONS SECTION
@@ -227,7 +192,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   onSelectStep(event: StepsSelectionEvent): void {
-    console.log(event);
+    this.stepsSelectionEvent = { ...event };
+    this._emitChanged();
     this.navigate(event.selectedStep.path);
   }
 

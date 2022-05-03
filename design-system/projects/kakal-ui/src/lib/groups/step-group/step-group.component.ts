@@ -37,7 +37,11 @@ export class StepGroupComponent implements OnInit {
   }
   @Input() direction: 'row' | 'column' = 'row';
 
+  @Input() stepsSelectionEvent: StepsSelectionEvent;
+
   mobile$: Observable<boolean>;
+
+  previouslySelectedIndex: number;
 
   @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
@@ -45,16 +49,37 @@ export class StepGroupComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
+    this.previouslySelectedIndex =
+      this.stepsSelectionEvent.previouslySelectedIndex;
+  }
+
+  private setSource(selectedIndex: number, previouslySelectedIndex: number) {
+    const steps = [...this._steps];
+
+    console.log(this.previouslySelectedIndex)
+
+    steps[selectedIndex] = { ...steps[selectedIndex], selected: true };
+    steps[previouslySelectedIndex] = {
+      ...steps[previouslySelectedIndex],
+      selected: false,
+    };
+    return steps;
   }
 
   onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
-    const event: StepsSelectionEvent = {
-      selectedStep: step,
-      selectedIndex: index,
-      last,
-      first,
-      source: this.steps,
-    };
-    this.stepSelection.emit(event);
+    if (!step.selected) {
+      const event: StepsSelectionEvent = {
+        ...this.stepsSelectionEvent,
+        selectedStep: { ...step, selected: true },
+        selectedIndex: index,
+        last,
+        first,
+        previouslySelectedIndex : this.previouslySelectedIndex,
+        source: this.setSource(index, this.previouslySelectedIndex),
+      };
+
+      this.previouslySelectedIndex = index;
+      this.stepSelection.emit(event);
+    }
   }
 }
