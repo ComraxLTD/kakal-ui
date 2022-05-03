@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -30,9 +30,10 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
     ]),
   ],
 })
-export class LocalTableComponent implements OnInit {
+export class LocalTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatTable) table: MatTable<any>;
 
+  @Input() noMobile: boolean = false;
   typeLocal: boolean = true;
   destroySubject$: Subject<void> = new Subject();
 

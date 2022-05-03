@@ -1,8 +1,8 @@
 <mat-tab-group
-  
-  [ngClass]="['kkl-tabs', variant]"
+
+  [ngClass]="['kkl-tabs', direction]"
   animationDuration="0ms"
-  [fxLayout]="variant === 'table' ? 'row' : 'column'"
+  [fxLayout]="direction === 'vertical' ? 'row' : 'column'"
   [backgroundColor]="backgroundColor"
 >
   <ng-container *ngFor="let tab of tabs">

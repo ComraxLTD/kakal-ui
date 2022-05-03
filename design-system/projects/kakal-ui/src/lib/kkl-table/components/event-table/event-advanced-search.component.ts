@@ -16,6 +16,7 @@ import { TableServerModel } from '../../models/table-server.model';
 export class EventAdvancedSearchComponent implements OnInit {
   @ViewChild(EventTableComponent) eventTable: EventTableComponent;
 
+  @Input() noMobile: boolean = false;
   typeLocal: boolean = false;
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
