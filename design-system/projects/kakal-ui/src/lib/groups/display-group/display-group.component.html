@@ -77,6 +77,14 @@
     <ng-container *ngSwitchCase="'status'">
       <kkl-status-steps [status]="data | pluck: item.key"></kkl-status-steps>
     </ng-container>
+    <ng-container *ngSwitchCase="'template'">
+      <ng-container
+        *ngTemplateOutlet="
+          templates[item.key];
+          context: { $implicit: data | pluck: item.key }
+        "
+      ></ng-container>
+    </ng-container>
 
     <ng-container *ngSwitchDefault>
       <kkl-typography>{{
