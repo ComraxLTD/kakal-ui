@@ -4,6 +4,7 @@
   (logoClicked)="onLogoClicked()"
   [cards]="cards"
   menuTemplates="{temp:temp}"
+  (statusSelection)="onStatus($event)"
 >
   <router-outlet></router-outlet>
 </kkl-layout>
