@@ -1,3 +1,7 @@
-<kkl-layout [status]="status" (logoClicked)="onLogoClicked()">
+<kkl-layout
+  [pageHeadlineRouteMap]="{ lobby: 'admin' }"
+  [status]="status"
+  (logoClicked)="onLogoClicked()"
+>
   <router-outlet></router-outlet>
 </kkl-layout>

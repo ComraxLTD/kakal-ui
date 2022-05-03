@@ -3,6 +3,7 @@ import {
   ButtonModel,
   CardStep,
   FormActions,
+  PageHeadlineService,
   RouterService,
   StepsLayoutService,
 } from '../../../../../../../kakal-ui/src/public-api';
@@ -47,7 +48,8 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private routerService: RouterService,
-    private newReservationService: NewReservationService
+    private newReservationService: NewReservationService,
+    private pageHeadlineSource : PageHeadlineService
   ) {}
 
   ngOnInit(): void {
@@ -59,6 +61,12 @@ export class LayoutComponent implements OnInit {
         return map[path];
       })
     );
+
+    this.pageHeadlineSource.emitPageHeadlineItems([
+      { value: 'first' },
+      { value: 'sec' },
+      { value: 'third' },
+    ])
   }
 
   public onChangeStep(step: StepperSelectionEvent) {

@@ -21,6 +21,7 @@ export class PageHeadlineComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    console.log(this.mobile)
     this.slice = this.mobile ? 1 : 1000;
   }
 }

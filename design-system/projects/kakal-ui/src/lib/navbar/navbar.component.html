@@ -38,7 +38,10 @@
       <kkl-bread-crumbs></kkl-bread-crumbs>
     </div>
     <div>
-      <kkl-page-headline></kkl-page-headline>
+      <kkl-page-headline
+        [pageHeadline$]="pageHeadline$"
+        [mobile]="mobile$ | async"
+      ></kkl-page-headline>
     </div>
   </div>
 
