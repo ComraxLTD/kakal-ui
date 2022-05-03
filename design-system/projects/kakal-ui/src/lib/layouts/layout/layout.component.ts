@@ -120,7 +120,7 @@ export class LayoutComponent implements OnInit {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
-        return this.findPath([...list, 'lobby'], path);
+        return this.findPath([...list], path);
       })
     );
   }
