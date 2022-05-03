@@ -75,7 +75,7 @@ export class EventAdvancedSearchComponent implements OnInit {
   @Input() newRowAction: string;
   @Input() paging: boolean = true;
   @Input() pageSize: number = 10;
-  @Input() dragable: boolean;
+  @Input() draggable: boolean;
   @Input() columns: TableBase[];
   @Input() dataSourceUrl: string;
   @Input() dataSourceServer: TableServerModel;

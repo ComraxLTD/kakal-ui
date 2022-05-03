@@ -6,7 +6,7 @@ import { KklFormChangeEvent } from '../models/kkl-form-events';
 import { MessageService } from '../mei-services/message.service';
 import { BehaviorSubject, Subject, take, takeUntil } from 'rxjs';
 import { Appearance } from '../models/control.types';
-
+import { Palette } from '../../../styles/theme';
 @Component({
   selector: 'kkl-select',
   templateUrl: './mei-select.component.html',
@@ -14,7 +14,7 @@ import { Appearance } from '../models/control.types';
 })
 export class MeiSelectComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
-  
+
   @Input() control!: FormControl;
   @Input() multi!: boolean;
 
@@ -47,7 +47,7 @@ export class MeiSelectComponent implements OnInit {
 
   @Input() placeHolder!: string;
   @Input() label!: string;
-  @Input() theme!: string;
+  @Input() theme!: Palette;
   @Input() key!: string;
   @Input() appearance: Appearance;
 

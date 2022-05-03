@@ -5,7 +5,7 @@ import { MessageService } from '../mei-services/message.service';
 import { Appearance } from '../models/control.types';
 import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
 import { KklSelectOption } from '../models/kkl-select.model';
-
+import { Palette } from '../../../styles/theme';
 @Component({
   selector: 'kkl-currency',
   templateUrl: './mei-currency.component.html',
@@ -37,7 +37,7 @@ export class MeiCurrencyComponent implements OnInit {
 
   @Input() placeHolder!: string;
   @Input() label!: string;
-  @Input() theme!: string;
+  @Input() theme!: Palette;
   @Input() key!: string;
   @Input() appearance: Appearance;
   @Input() debounce!: number;

@@ -28,6 +28,7 @@ import { MeiFiltersComponent } from './components/mei-filters/mei-filters.compon
 import { LocalAdvancedSearchComponent } from './components/local-table/local-advanced-search.component';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MobileTableComponent } from './components/mobile-table/mobile-table.component';
 @NgModule({
   declarations: [
     LocalTableComponent,
@@ -38,6 +39,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     LocalAdvancedSearchComponent,
     MeiFiltersComponent,
     KKLNewPaginatorDirective,
+    MobileTableComponent,
  ],
   imports: [
     CommonModule,
