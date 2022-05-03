@@ -18,7 +18,7 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { ButtonModel } from '../../button/models/button.types';
 
 import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
+import { filter, map, startWith } from 'rxjs/operators';
 import { CardStatus } from '../../cards/card-status/card-status.component';
 import { ROOT_PREFIX } from '../../../constants/root-prefix';
 
@@ -29,7 +29,7 @@ import { ROOT_PREFIX } from '../../../constants/root-prefix';
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('menuDrawer') sidenav: MatSidenav;
-  @Input() pageHeadlineRouteMap: { [ket: string]: string };
+  @Input() pageHeadlineRouteMap: { [ket: string]: string } = {};
 
   @Input() menuTemplates: { [key: string]: TemplateRef<any> };
 
@@ -101,13 +101,15 @@ export class LayoutComponent implements OnInit {
   private setPageHeadlineFromRoute() {
     return this.routerService.listenToRoute$().pipe(
       map((url: string) => url.split('/').reverse()),
-      map(
-        (url: string[]) =>
-          url.find((item) => this.pageHeadlineRouteMap[item]) || ''
+      filter((url: string[]) =>
+        url.some((item) => this.pageHeadlineRouteMap[item])
+      ),
+      map((url: string[]) =>
+        url.find((item) => this.pageHeadlineRouteMap[item])
       ),
       map((path: string) => this.pageHeadlineRouteMap[path]),
-      map((path: string) => {
-        const pageHeadline: PageHeadline = { value: path };
+      map((headline: string) => {
+        const pageHeadline: PageHeadline = { value: headline };
         return [pageHeadline];
       })
     );

@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { CardStatus, RouterService } from '../../../kakal-ui/src/public-api';
+import {
+  CardStatus,
+  PageHeadlineService,
+  RouterService,
+} from '../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +37,14 @@ export class AppComponent {
     },
   ];
 
-  constructor(private routerService: RouterService) {}
+  constructor(
+    private routerService: RouterService,
+    private pageHeadlineSource: PageHeadlineService
+  ) {}
+
+  ngOnInit(): void {
+;
+  }
 
   onLogoClicked() {
     this.routerService.navigate('/');

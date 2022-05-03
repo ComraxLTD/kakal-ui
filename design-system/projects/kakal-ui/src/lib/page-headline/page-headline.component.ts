@@ -14,8 +14,14 @@ export interface PageHeadline {
 })
 export class PageHeadlineComponent implements OnInit {
   @Input() pageHeadline$!: Observable<PageHeadline[]>;
+  @Input() mobile: boolean;
+
+  slice: number;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.mobile)
+    this.slice = this.mobile ? 1 : 1000;
+  }
 }
