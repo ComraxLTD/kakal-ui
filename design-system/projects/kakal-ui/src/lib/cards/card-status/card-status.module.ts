@@ -6,12 +6,14 @@ import { CardStatusComponent } from './card-status.component';
 import { MatBadgeModule } from '@angular/material/badge';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CommonModule } from '@angular/common';
+import { KKLButtonModule } from '../../button/button.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    MatBadgeModule,
     FlexLayoutModule,
+    MatBadgeModule,
+    KKLButtonModule,
     KKLTypographyModule,
     KKLDirectivesModule,
     KKLIconModule,
