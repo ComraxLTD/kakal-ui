@@ -1,9 +1,11 @@
 import {
   Component,
   EventEmitter,
+  Inject,
   Input,
   OnInit,
   Output,
+  TemplateRef,
   ViewChild,
 } from '@angular/core';
 
@@ -18,6 +20,8 @@ import { ButtonModel } from '../../button/models/button.types';
 import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import { CardStatus } from '../../cards/card-status/card-status.component';
+import { ROOT_PREFIX } from '../../../constants/root-prefix';
+
 @Component({
   selector: 'kkl-layout',
   templateUrl: './layout.component.html',
@@ -26,6 +30,8 @@ import { CardStatus } from '../../cards/card-status/card-status.component';
 export class LayoutComponent implements OnInit {
   @ViewChild('menuDrawer') sidenav: MatSidenav;
   @Input() pageHeadlineRouteMap: { [ket: string]: string } = {};
+
+  @Input() menuTemplates: { [key: string]: TemplateRef<any> };
 
   @Input() showStatusPath: string[];
   @Input() cards: MenuCard[];
@@ -66,7 +72,8 @@ export class LayoutComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private pageHeadlineService: PageHeadlineService
+    private pageHeadlineService: PageHeadlineService,
+    @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {

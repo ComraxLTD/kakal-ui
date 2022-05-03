@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { MenuCard } from '../menu-card/menu-card.component';
 
 
@@ -9,6 +9,7 @@ import { MenuCard } from '../menu-card/menu-card.component';
 })
 export class MenuBarComponent implements OnInit {
   @Input() cards: MenuCard[];
+  @Input() templates: { [key: string]: TemplateRef<any> };
 
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
 

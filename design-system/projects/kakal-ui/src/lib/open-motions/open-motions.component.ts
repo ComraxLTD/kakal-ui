@@ -9,7 +9,7 @@ export class OpenMotionsComponent implements OnInit {
   @Input() title: string;
   @Input() content: TemplateRef<any>;
   @Input() direction: 'right' | 'left' = 'left';
-  
+
   @Output() closeEvent: EventEmitter<void> = new EventEmitter();
 
   public iconDirection: string;

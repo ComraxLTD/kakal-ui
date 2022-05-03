@@ -3,9 +3,25 @@
     <mat-sidenav #menuDrawer class="menu" mode="push" position="start">
       <ng-container *ngIf="selectedOpen === 'menu'; else elseBlock">
         <div class="menu-container" fxLayout="column" fxLayoutAlign="start end">
+          <div fxLayout="column" fxLayoutAlign="start end" class="toolbar-height"
+             kkl-underline kkl-button (click)="onStartSideNav('menu')">
+            <kkl-icon
+            fxFlex="grow"
+              color="primary"
+              kkl-button
+              [key]="'tree_gradient_'+rootPrefix"
+              [size]="4"
+            ></kkl-icon>
+            <div fxLayoutAlign="start center">
+              <kkl-typography [size]="1" color="primary">
+                'סגור תפריט'
+              </kkl-typography>
+            </div>
+          </div>
           <kkl-menu-bar
             [cards]="cards"
             (menuSelected)="onMenuSelected($event)"
+            [templates]="menuTemplates"
           ></kkl-menu-bar>
         </div>
       </ng-container>
