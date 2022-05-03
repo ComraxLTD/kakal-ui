@@ -79,7 +79,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
     this.steps$ = this.setStepsSelectionEvent();
     this.stepsSelectionEvent = this.initStepsSelectionEvent();
-    this.steps = this.stepsSelectionEvent.source;
+    // this.steps = this.stepsSelectionEvent.source;
     this._emitChanged();
   }
 
@@ -118,7 +118,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     key: keyof CardStep,
     value: any
   ): { index: number; step: CardStep } {
-    const index = this.steps.findIndex((s) => s[key] === value);
+    const index = this.steps.findIndex((s: CardStep) => s[key] === value);
     const step = this.steps[index];
     return { index, step };
   }
@@ -133,20 +133,22 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
         const steps = [...this.steps];
 
-        for (let cell of find) {
-          const { key, value } = cell;
+        find.forEach((obj) => {
+          const { key, value } = obj;
           const { index, step } = this.getStepAndIndex(key, value);
 
-          const resultStep = {
-            ...step,
-            selected: !step.selected,
-          };
+          console.log(index);
+
           if (index !== -1) {
+            const resultStep = {
+              ...step,
+              selected: !step.selected,
+            };
             steps[index] = { ...resultStep } as CardStep;
           }
-
-          return steps;
-        }
+          console.log(steps);
+        });
+        return steps;
       })
     );
   }
@@ -228,6 +230,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   onSelectStep(event: StepsSelectionEvent): void {
+    console.log(event)
     this.navigate(event.selectedStep.path);
   }
 
