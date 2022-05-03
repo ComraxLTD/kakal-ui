@@ -6,6 +6,7 @@ import { MenuBarComponent } from './menu-bar/menu-bar.component';
 import { MenuCardComponent } from './menu-card/menu-card.component';
 import { KKLIconModule } from '../icon/icon.module';
 import { KKLTypographyModule } from '../typography/typography.module';
+import { KKLDirectivesModule } from '../directives/directives.module';
 
 @NgModule({
   declarations: [MenuBarComponent, MenuCardComponent],
@@ -15,6 +16,7 @@ import { KKLTypographyModule } from '../typography/typography.module';
     MatButtonModule,
     KKLIconModule,
     KKLTypographyModule,
+    KKLDirectivesModule
   ],
   exports: [MenuBarComponent, MenuCardComponent],
 })

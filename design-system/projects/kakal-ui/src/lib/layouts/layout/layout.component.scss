@@ -4,13 +4,15 @@
   overflow: visible !important;
   // visibility: visible !important;
 
-  &.menu {
-    top: main.$toolbar-height;
-    height: main.$content-height;
 
-    div.menu-container {
-      height: inherit;
-    }
+  &.menu {
+    height: 100%;
+    // top: main.$toolbar-height;
+    // height: main.$content-height;
+
+    // div.menu-container {
+    //   height: inherit;
+    // }
   }
 }
 
@@ -23,7 +25,7 @@
     background-color: main.color(paper);
     margin: 0px !important;
     overflow-x: hidden;
-    height:calc(100% - main.$bottomBar-height) !important; 
+    height:calc(100% - main.$bottomBar-height) !important;
   }
 }
 
@@ -138,3 +140,8 @@ button.mat-fab.kkl-drawer-button {
 // .main-content-height{
 //   height: main.$wizard-height;
 // }
+
+
+.toolbar-height {
+  height: 8rem !important;
+}
