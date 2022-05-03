@@ -96,19 +96,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     return index;
   }
 
-  private setSource(
-    steps: CardStep[],
-    selectedIndex: number,
-    previouslySelectedIndex: number
-  ) {
-    steps[selectedIndex] = { ...steps[selectedIndex], selected: true };
-    steps[previouslySelectedIndex] = {
-      ...steps[previouslySelectedIndex],
-      selected: false,
-    };
-    return steps;
-  }
-
   private setStepsSelectionEventFromRoute(): Observable<StepsSelectionEvent> {
     return this.routerService.getLastPath$().pipe(
       map((path: string) => {
@@ -117,18 +104,14 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
         const selectedIndex = this.findIndex(steps, 'path', path);
 
-        const source = this.setSource(
-          steps,
-          selectedIndex,
-          previouslySelectedIndex
-        );
+        steps.forEach((s, i) => (s.selected = selectedIndex === i));
 
         this._stepsSelectionEvent = {
           selectedIndex,
           previouslySelectedIndex,
-          source,
-          selectedStep: source[selectedIndex],
-          previouslySelectedStep: source[previouslySelectedIndex],
+          source : steps,
+          selectedStep: steps[selectedIndex],
+          previouslySelectedStep: steps[previouslySelectedIndex],
           last: selectedIndex === this.steps.length - 1,
           first: selectedIndex === 0,
         } as StepsSelectionEvent;

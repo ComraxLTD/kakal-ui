@@ -54,6 +54,7 @@ export class StepGroupComponent implements OnInit {
   }
 
   onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
+
     const event: StepsSelectionEvent = {
       ...this.stepsSelectionEvent,
       selectedStep: { ...step, selected: true },
