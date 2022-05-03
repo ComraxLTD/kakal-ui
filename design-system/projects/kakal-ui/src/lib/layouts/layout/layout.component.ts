@@ -14,12 +14,10 @@ import { PageHeadline } from '../../page-headline/page-headline.component';
 
 import { MatSidenav } from '@angular/material/sidenav';
 import { ButtonModel } from '../../button/models/button.types';
-import { CardStatus } from '../../cards/card-status/card-status.component';
 
 import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
-import { L } from '@angular/cdk/keycodes';
-
+import { CardStatus } from '../../cards/card-status/card-status.component';
 @Component({
   selector: 'kkl-layout',
   templateUrl: './layout.component.html',

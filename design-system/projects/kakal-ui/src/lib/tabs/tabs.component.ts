@@ -15,7 +15,7 @@ export class TabsComponent implements OnInit {
   @Input() templates: { [key: string]: TemplateRef<any> };
   @Input() backgroundColor: string;
 
-  @Input() variant: 'table' | 'default' = 'default';
+  @Input() direction: 'vertical' | 'horizontal' = 'horizontal';
 
   constructor() {}
 

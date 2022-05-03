@@ -71,7 +71,8 @@ import { MobileTableComponent } from './components/mobile-table/mobile-table.com
     TableCellComponent,
     KKLNewPaginatorDirective,
     MeiFiltersComponent,
-    LocalAdvancedSearchComponent
+    LocalAdvancedSearchComponent,
+    MobileTableComponent,
   ],
   providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
