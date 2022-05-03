@@ -2,7 +2,9 @@
 
 :host {
   .kkl-step-card {
-    pointer-events: none !important;
+    &.disabled {
+      pointer-events: none !important;
+    }
     // display: block;
   }
   mat-card,
@@ -35,7 +37,7 @@
       color: main.color(default);
     }
     &.disabled {
-      color: main.color(disableButton)
+      color: main.color(disableButton);
     }
   }
 }
