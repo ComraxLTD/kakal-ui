@@ -14,7 +14,7 @@ import {
 } from '@angular/cdk/stepper';
 import { Step } from './step/step.model';
 import { MatStepper } from '@angular/material/stepper';
-import { BreakpointService } from '../../public-api';
+import { BreakpointService } from '../../services/breakpoint.service';
 import { Observable, of, tap } from 'rxjs';
 
 export interface StepSelectEvent {
@@ -79,7 +79,7 @@ export class VerticalStepsComponent implements OnInit {
   }
 
   getIsSmallScreen(): Observable<boolean> {
-    return this.breakPointService.isMobile().pipe( 
+    return this.breakPointService.isMobile().pipe(
       tap((value) => {
         return value
       })
