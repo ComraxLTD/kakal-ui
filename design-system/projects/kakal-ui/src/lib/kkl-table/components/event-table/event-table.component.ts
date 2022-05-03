@@ -33,6 +33,8 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
 export class EventTableComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
 
+  @Input() noMobile: boolean = false;
+  typeLocal: boolean = false;
   mobile$: Observable<boolean>;
 
   @ViewChild(MatTable) table: MatTable<any>;

@@ -1,4 +1,5 @@
-<ng-container *ngIf="!(mobile$ | async); else webBlock">
+<div [ngClass]="{'mobile-hidden': !noMobile}">
+<!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
   <form [formGroup]="form" class="all-table-form">
     <div *ngIf="displayedColumns.length" class="table-wrapper"
       cdkDropList
@@ -115,7 +116,74 @@
     </div>
   </form>
 
+<!-- </ng-container> -->
+</div>
+<div [ngClass]="{'desktop-hidden': !noMobile}">
+<ng-container *ngIf="dataTable">
+  <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
+    [colsTemplate]="colsTemplate" [editItems]="editItems"
+  ></kkl-mobile-table> -->
+  <mat-accordion class="example-headers-align" multi>
+    <ng-container *ngFor="let item of (typeLocal? dataTable?.filteredData : dataTable)">
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <table style="width:100%">
+              <tr>
+                <td style="font-weight: bolder;">{{oneColumns[0].label}}</td>
+                <td>
+                  <kkl-table-cell [data]="item[oneColumns[0].key]" [question]="oneColumns[0]" (buttClick)="buttonClick(oneColumns[0].button, item, oneColumns[0].key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                </td>
+              </tr>
+            </table>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+            <table style="width:100%">
+              <tr *ngFor="let col of oneColumns">
+                <td style="font-weight: bolder;">{{col.label}}</td>
+                <td>
+                  <ng-container *ngIf="!(item | arrInclueds : editItems); else editBlock">
+                    <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                  </ng-container>
+                  <ng-template #editBlock>
+                    <ng-container *ngIf="col.notEditable; else innerEditBlock">
+                      <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                    </ng-container>
+                    <ng-template #innerEditBlock>
+                      <kkl-table-form [formGroupName]="(item | arrIndex : editItems)" [question]="col"></kkl-table-form>
+                    </ng-template>
+                  </ng-template>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <ng-container *ngIf="!(element | arrInclueds : editItems); else addButton">
+                    <ng-container *ngFor="let butt of localButtons">
+                      <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, element, 'actions')">
+                        <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                      </button>
+                    </ng-container>
+                  </ng-container>
+                  <ng-template #addButton>
+                    <button matTooltip="save" mat-button color="primary" (click)="saveRowClick(element)">
+                      <kkl-icon key="save"></kkl-icon>
+                    </button>
+                    <button matTooltip="cancel" mat-button color="primary" (click)="cancelRowClick(element)">
+                      <kkl-icon key="cancel"></kkl-icon>
+                    </button>
+                  </ng-template>
+                </td>
+              </tr>
+            </table>
+
+            <div *ngIf="element == expandedElement" class="example-element-detail">
+              <ng-container *ngIf="expandTemplate">
+                <ng-template *ngTemplateOutlet="expandTemplate"></ng-template>
+              </ng-container>
+            </div>
+
+      </mat-expansion-panel>
+    </ng-container>
+  </mat-accordion>
 </ng-container>
-<ng-template #webBlock>
-  <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"></kkl-mobile-table>
-</ng-template>
+</div>

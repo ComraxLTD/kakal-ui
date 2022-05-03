@@ -10,9 +10,26 @@
           <mat-icon>account_circle</mat-icon>
         </mat-panel-description> -->
       </mat-expansion-panel-header>
-      <ng-container *ngFor="let col of oneColumns">
-        <h3>{{col.label}}: {{item[col.key]}}</h3>
-      </ng-container>
+          <table style="width:100%">
+
+            <tr *ngFor="let col of oneColumns">
+              <td style="font-weight: bolder;">{{col.label}}</td>
+              <td>{{item[col.key]}}
+                <ng-container *ngIf="!(item | arrInclueds : editItems); else editBlock">
+                  <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                </ng-container>
+                <ng-template #editBlock>
+                  <ng-container *ngIf="col.notEditable; else innerEditBlock">
+                    <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                  </ng-container>
+                  <ng-template #innerEditBlock>
+                    <kkl-table-form [formGroupName]="(item | arrIndex : editItems)" [question]="col"></kkl-table-form>
+                  </ng-template>
+                </ng-template>
+              </td>
+            </tr>
+
+          </table>
     </mat-expansion-panel>
   </ng-container>
 </mat-accordion>

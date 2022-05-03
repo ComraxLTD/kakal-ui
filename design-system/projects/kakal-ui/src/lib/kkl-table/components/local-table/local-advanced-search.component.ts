@@ -15,6 +15,7 @@ import { LocalTableComponent } from './local-table.component';
 export class LocalAdvancedSearchComponent implements OnInit {
   @ViewChild(LocalTableComponent) localTable: LocalTableComponent;
 
+  @Input() noMobile: boolean = false;
   typeLocal: boolean = true;
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
