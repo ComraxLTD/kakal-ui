@@ -5,7 +5,7 @@ import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -33,7 +33,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   drawerAction: ButtonModel;
 
-  stepsSelectionEvent: StepsSelectionEvent;
+  _stepsSelectionEvent: StepsSelectionEvent;
+  stepsSelectionEvent$: Observable<StepsSelectionEvent>;
 
   mobile$: Observable<boolean>;
 
@@ -75,9 +76,9 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.stepsSelectionEvent = this.initStepsSelectionEvent();
-    this.steps = this.stepsSelectionEvent.source;
-    this._emitChanged()
+    this.setStepsSelectionEventFromRoute().subscribe();
+
+    this._emitChanged();
   }
 
   ngOnDestroy() {
@@ -85,29 +86,39 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     this.destroySubject$.complete();
     this.stepsLayoutService.hideDrawer();
   }
-  private initStepsSelectionEvent(): StepsSelectionEvent {
-    const path = this.routerService.getCurrentPath();
 
-    const steps = [...this.steps];
+  private findIndex(
+    steps: CardStep[],
+    key: keyof CardStep,
+    value: any
+  ): number {
+    const index = steps.findIndex((s: CardStep) => s[key] === value);
+    return index;
+  }
 
-    const selectedIndex = this.steps.findIndex(
-      (step: CardStep) => step.path === path
+  private setStepsSelectionEventFromRoute(): Observable<StepsSelectionEvent> {
+    return this.routerService.getLastPath$().pipe(
+      map((path: string) => {
+        const steps = [...this.steps];
+
+        const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
+        const selectedIndex = this.findIndex(steps, 'path', path);
+
+        steps.forEach((s, i) => (s.selected = selectedIndex === i));
+
+        this._stepsSelectionEvent = {
+          selectedIndex,
+          previouslySelectedIndex,
+          source : steps,
+          selectedStep: steps[selectedIndex],
+          previouslySelectedStep: steps[previouslySelectedIndex],
+          last: selectedIndex === this.steps.length - 1,
+          first: selectedIndex === 0,
+        } as StepsSelectionEvent;
+
+        return this._stepsSelectionEvent;
+      })
     );
-
-    const selectedStep = {
-      ...this.steps[selectedIndex],
-      selected: true,
-    } as CardStep;
-
-    steps[selectedIndex] = selectedStep;
-
-    return {
-      source: steps,
-      selectedStep,
-      selectedIndex,
-      last: selectedIndex === this.steps.length - 1,
-      first: selectedIndex === 0,
-    } as StepsSelectionEvent;
   }
 
   // ACTIONS SECTION
@@ -195,6 +206,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   private _emitChanged() {
-    this.stepsLayoutService.setStepsSelection(this.stepsSelectionEvent);
+    this.stepsLayoutService.setStepsSelection(this._stepsSelectionEvent);
   }
 }

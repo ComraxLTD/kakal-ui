@@ -1,28 +1,31 @@
-<div
-  fxFill
-  dir="rtl"
-  [fxLayout]="direction"
-  fxLayoutAlign.gt-sm="center center"
-  fxLayoutAlign.lt-sm="space-evenly center"
-  class="steps-container"
->
-  <ng-container
-    *ngFor="
-      let step of _steps;
-      let i = index;
-      let last = last;
-      let first = first
-    "
+<ng-container *ngIf="stepsSelectionEvent">
+  <div
+    fxFill
+    dir="rtl"
+    [fxLayout]="direction"
+    fxLayoutAlign.gt-sm="center center"
+    fxLayoutAlign.lt-sm="space-evenly center"
+    class="steps-container"
   >
-    <div appSize [type]="'step'" [size]="6" [step]="step">
-      <kkl-card-step
-        (stepSelect)="onStepSelect(step, i, last, first)"
-        [index]="i"
-        [step]="step"
-        [options]="options"
-      ></kkl-card-step>
-    </div>
+    <ng-container
+      *ngFor="
+        let step of stepsSelectionEvent.source;
+        let i = index;
+        let last = last;
+        let first = first
+      "
+    >
+      <div appSize [type]="'step'" [size]="6" [step]="step">
+        <kkl-card-step
+          (stepSelect)="onStepSelect(step, i, last, first)"
+          [index]="i"
+          [selected]="stepsSelectionEvent.selectedIndex === i"
+          [step]="step"
+          [options]="options"
+        ></kkl-card-step>
+      </div>
 
-    <div *ngIf="!last" class="divider"></div>
-  </ng-container>
-</div>
+      <div *ngIf="!last" class="divider"></div>
+    </ng-container>
+  </div>
+</ng-container>

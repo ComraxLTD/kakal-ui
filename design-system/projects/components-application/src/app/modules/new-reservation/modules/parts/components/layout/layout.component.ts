@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DrawerLayoutService } from '../../../../../../../../../kakal-ui/src/lib/layouts/drawer-layout/drawer-layout.service';
-import { RouterService } from '../../../../../../../../../kakal-ui/src/public-api';
+import {
+  NavbarBottomService,
+  RouterService,
+  StepsLayoutService,
+} from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-layout',
@@ -73,13 +76,15 @@ export class LayoutComponent implements OnInit {
 
   constructor(
     private routerService: RouterService,
-    private drawerLayoutService: DrawerLayoutService
+    private stepsLayoutService: StepsLayoutService,
+    private navbarBottomService: NavbarBottomService
   ) {}
 
   ngOnInit(): void {
-    this.drawerLayoutService.hide()
+    this.stepsLayoutService.hideDrawer();
+    this.navbarBottomService.setShowNext(true);
+    this.navbarBottomService.setDisableNext(false);
   }
-
 
   public onCardClick(index: number) {
     const url: string = `/reservation/parts/${this.cards[index].path}`;
