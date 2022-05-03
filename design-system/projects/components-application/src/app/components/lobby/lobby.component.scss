@@ -1,3 +1,5 @@
+@use "../../../styles/variables" as main;
+
 ::ng-deep kkl-lobby-grid {
   div.kkl-lobby-grid {
     background-image: url("../../../assets/images/education-table-background.jpg");
