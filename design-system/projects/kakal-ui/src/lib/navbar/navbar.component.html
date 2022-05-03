@@ -53,7 +53,10 @@
     *ngIf="!(mobile$ | async)"
   >
     <ng-container *ngIf="showStatus$ | async">
-      <kkl-status-group [status]="status"></kkl-status-group>
+      <kkl-status-group
+        [status]="status"
+        (statusSelection)="onStatusSelection($event)"
+      ></kkl-status-group>
     </ng-container>
   </div>
 
