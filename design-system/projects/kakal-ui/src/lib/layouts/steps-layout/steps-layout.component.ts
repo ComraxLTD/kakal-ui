@@ -137,8 +137,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
           const { key, value } = obj;
           const { index, step } = this.getStepAndIndex(key, value);
 
-          console.log(index);
-
           if (index !== -1) {
             const resultStep = {
               ...step,
@@ -146,7 +144,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
             };
             steps[index] = { ...resultStep } as CardStep;
           }
-          console.log(steps);
         });
         return steps;
       })
@@ -230,7 +227,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   onSelectStep(event: StepsSelectionEvent): void {
-    console.log(event)
+    console.log(event);
     this.navigate(event.selectedStep.path);
   }
 
