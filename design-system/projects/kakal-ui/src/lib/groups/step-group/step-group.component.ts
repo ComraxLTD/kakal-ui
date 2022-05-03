@@ -53,21 +53,17 @@ export class StepGroupComponent implements OnInit {
       this.stepsSelectionEvent.previouslySelectedIndex;
   }
 
-
-
   onStepSelect(step: CardStep, index: number, last: boolean, first: boolean) {
     const event: StepsSelectionEvent = {
       ...this.stepsSelectionEvent,
-        selectedStep: { ...step, selected: true },
-        selectedIndex: index,
-        last,
-        first,
-        previouslySelectedIndex : this.previouslySelectedIndex,
-      };
+      selectedStep: { ...step, selected: true },
+      selectedIndex: index,
+      last,
+      first,
+      previouslySelectedIndex: this.previouslySelectedIndex,
+    };
 
-      this.previouslySelectedIndex = index;
-      this.stepSelection.emit(event);
-    //   if (!step.selected) {
-    // }
+    this.previouslySelectedIndex = index;
+    this.stepSelection.emit(event);
   }
 }

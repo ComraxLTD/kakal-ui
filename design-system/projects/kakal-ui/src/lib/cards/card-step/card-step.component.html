@@ -1,5 +1,5 @@
 <div
-  class="kkl-card-step"
+  class="kkl-card-step-wrapper"
   [class.disabled]="step.disabled"
   fxLayout="column"
   fxLayoutAlign="center center"
@@ -19,20 +19,23 @@
     <mat-card
       fxFill
       kkl-button
-      appVariant
-      [type]="options.type"
-      [variant]="options.variant"
       [ngClass]="{
+        'kkl-card-step': true,
         'mat-elevation-z0': true,
-        selected: selected,
+        selected: step.selected,
         disabled: step.disabled
       }"
     >
-      <mat-card-content fxFill fxLayout="column" fxLayoutAlign="center center">
+      <mat-card-content
+        fxFill
+        class="kkl-card-step-content"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+      >
         <mat-icon
           appSize
           [ngClass]="{
-            selected: selected,
+            selected: step.selected,
             disabled: step.disabled
           }"
           [size]="options.size"
@@ -47,7 +50,7 @@
   <div fxLayout="row" fxFlex>
     <div fxFill fxLayout="column" fxLayoutAlign="center center" class="no-warp">
       <kkl-typography
-        [class.selected]="selected"
+        [class.selected]="step.selected"
         [weight]="selected ? 600 : 500"
         [size]="1.2"
       >

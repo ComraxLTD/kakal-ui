@@ -33,7 +33,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   drawerAction: ButtonModel;
 
-  private _stepsSelectionEvent: StepsSelectionEvent;
+  _stepsSelectionEvent: StepsSelectionEvent;
   stepsSelectionEvent$: Observable<StepsSelectionEvent>;
 
   mobile$: Observable<boolean>;
@@ -76,7 +76,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.stepsSelectionEvent$ = this.setStepsSelectionEventFromRoute();
+    this.setStepsSelectionEventFromRoute().subscribe();
 
     this._emitChanged();
   }
