@@ -20,12 +20,9 @@ export class LobbyComponent implements OnInit {
 
   constructor(private breakpointService: BreakpointService) {}
 
-  desktopCols:number;
-
   ngOnInit(): void {
     this.cols = Math.min(this.cols, Math.floor(window.innerWidth/180));
     this.rows = this.rows || 2;
-    this.desktopCols = this.cols;
     this.md$ = this.mapIsMobile();
   }
 

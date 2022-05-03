@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { Observable } from 'rxjs';
-import { BreakpointService, CardLobbyModel, RouterService } from '../../../../../kakal-ui/src/public-api';
+import { BreakpointService, CardLobbyModel, KklSelectOption, RouterService } from '../../../../../kakal-ui/src/public-api';
 
 @Component({
   selector: 'app-lobby',
@@ -42,6 +43,30 @@ export class LobbyComponent implements OnInit {
     private routerService: RouterService,
     private breakpointService: BreakpointService
   ) {}
+
+  groupControl = new FormGroup({
+    sum: new FormControl(),
+    currency: new FormControl()
+  })
+
+  options: KklSelectOption[] = [
+    {
+      label: '$',
+      value: 'USD',
+    },
+    {
+      label: '₪',
+      value: 'ILS',
+    },
+    {
+      label: '€',
+      value: 'EUR',
+    },
+    {
+      label: '£',
+      value: 'GBP',
+    },
+  ]
 
   ngOnInit(): void {
     this.md$ = this.breakpointService.isMedium();
