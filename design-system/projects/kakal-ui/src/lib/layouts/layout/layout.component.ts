@@ -33,9 +33,10 @@ export class LayoutComponent implements OnInit {
 
   @Input() menuTemplates: { [key: string]: TemplateRef<any> };
 
-  @Input() showStatusPath: string[];
   @Input() cards: MenuCard[];
   @Input() status: CardStatus[];
+  @Input() showStatusPath: string[];
+  @Input() hideFooterPath: string[];
 
   selectedOpen: string;
   @Input() contentPortion: { open: number; close: number } = {
@@ -62,6 +63,7 @@ export class LayoutComponent implements OnInit {
   pageHeadline$: Observable<PageHeadline[]>;
 
   showStatus$: Observable<boolean>;
+  hideFooter$: Observable<boolean>;
 
   mobile$: Observable<boolean>;
 
@@ -79,7 +81,8 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.showStatus$ = this.handleShowState(this.showStatusPath || []);
+    this.showStatus$ = this.handleShow(this.showStatusPath || []);
+    this.hideFooter$ = this.handleShow(this.hideFooterPath || []);
 
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
@@ -91,7 +94,7 @@ export class LayoutComponent implements OnInit {
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
   }
 
-  private handleShowState(list: string[]) {
+  private handleShow(list: string[]) {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
