@@ -50,7 +50,7 @@ export class AppComponent {
   ngOnInit(): void {}
 
   onLogoClicked() {
-    this.routerService.navigate('/lobby');
+    this.routerService.navigate('/');
   }
   onStatus(event: StatusSelectionEvent) {
     console.log(event);
