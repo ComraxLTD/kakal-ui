@@ -75,6 +75,9 @@ export class LayoutComponent implements OnInit {
     private routerService: RouterService,
     private breakpointService: BreakpointService,
     private pageHeadlineService: PageHeadlineService,
+    @Inject(ROOT_PREFIX) public rootPrefix: string,
+
+
   ) {}
 
   ngOnInit(): void {
