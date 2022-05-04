@@ -8,7 +8,7 @@ import { ButtonModel } from '../../public-api';
 })
 export class ExpandPanelComponent implements OnInit {
   // prop for custom class
-
+  @Input() title: string;
   @Input() variant: string;
   @Input() hideToggle: boolean = true;
   @Input() showHeader: boolean;
@@ -21,7 +21,7 @@ export class ExpandPanelComponent implements OnInit {
   @Output() closed: EventEmitter<void> = new EventEmitter();
   @Output() opened: EventEmitter<void> = new EventEmitter();
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit(): void {
     this.variant = this.variant || '';

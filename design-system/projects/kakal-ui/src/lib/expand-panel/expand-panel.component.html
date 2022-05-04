@@ -1,35 +1,19 @@
 <div class="kkl-expansion-panel">
-  <mat-expansion-panel
-    [ngClass]="[variant]"
-    [hideToggle]="hideToggle"
-    [expanded]="expanded"
-    [disabled]="disabled"
-    [ngClass]="[variant, 'default', 'mat-elevation-z0']"
-    (closed)="onPanelClosed()"
-    (opened)="onPanelOpen()"
-  >
+  <mat-expansion-panel [ngClass]="[variant]" [hideToggle]="hideToggle" [expanded]="expanded" [disabled]="disabled"
+    [ngClass]="[variant, 'default', 'mat-elevation-z0']" (closed)="onPanelClosed()" (opened)="onPanelOpen()">
     <mat-expansion-panel-header [ngClass]="[variant]" *ngIf="!showHeader">
       <mat-panel-title [ngClass]="[variant, 'default']">
-        <div
-          class="title"
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          fxLayoutGap="1rem"
-        >
-          <ng-content select="[title]"></ng-content>
-          <kkl-icon
-            *ngIf="hideToggle"
-            color="primary"
-            [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
-          ></kkl-icon>
+        <div class="title" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="1rem">
+          <!-- <ng-content select="[title]"></ng-content> -->
+          <kkl-typography color="primary" [weight]="600" [size]="1.8">{{title}}</kkl-typography>
+          <kkl-icon *ngIf="hideToggle" color="primary" [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'">
+          </kkl-icon>
         </div>
       </mat-panel-title>
       <mat-panel-description>
-        <ng-container
-          *ngTemplateOutlet="
+        <ng-container *ngTemplateOutlet="
             panelActions?.length ? actionTemplate : defaultTemplate
-          "
-        ></ng-container>
+          "></ng-container>
       </mat-panel-description>
     </mat-expansion-panel-header>
 
