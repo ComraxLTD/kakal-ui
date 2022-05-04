@@ -10,11 +10,11 @@
           >
         </ng-container>
             <ng-container *ngIf="mobile$ | async; else elseBlock">
-              <kkl-navigation
+              <kkl-stepper-mobile
                 [steps]="steps"
                 [stepsSelectionEvent]="_stepsSelectionEvent"
-                (stepSelection)="onSelectStep($event)"
-              ></kkl-navigation>
+                (selectStep)="onSelectStep($event)"
+              ></kkl-stepper-mobile>
             </ng-container>
 
             <ng-template #elseBlock>
