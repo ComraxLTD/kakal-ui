@@ -71,7 +71,7 @@ export class LayoutComponent implements OnInit {
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
   @Output() statusSelection: EventEmitter<StatusSelectionEvent> =
-    new EventEmitter();
+    new EventEmitter<StatusSelectionEvent>();
 
   constructor(
     private routerService: RouterService,
