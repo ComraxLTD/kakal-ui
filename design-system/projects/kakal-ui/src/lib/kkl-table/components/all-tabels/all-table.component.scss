@@ -39,15 +39,15 @@ td.mat-cell {
 }
 
 .table-wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  margin: auto;
   width: 99%;
   // padding: 1px;
   .table-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin: auto;
     width: 100%;
     padding: 0px;
   }
@@ -55,6 +55,7 @@ td.mat-cell {
 
 table {
   width: 98%;
+  margin: auto;
 }
 
 thead{
@@ -191,7 +192,7 @@ th>h3 {
 //shorter a liitle bit before the pagination
 
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 600px) {
   .desktop-hidden {
     display: initial;
   }
@@ -199,7 +200,7 @@ th>h3 {
     display: none;
   }
 }
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
   .desktop-hidden {
     display: none;
   }

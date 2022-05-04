@@ -136,12 +136,14 @@ export class EventAdvancedSearchComponent implements OnInit {
     this.eventTable.requsetChange(null);
   }
   onOpenedChange(event) {
+    this.eventTable.onRowEditChange(-1);
     this.openedChange.emit(event);
   }
   onValueChanged(event) {
     this.eventTable.requsetChange(null);
   }
   onFocusChanged(event) {
+    this.eventTable.onRowEditChange(-1);
     this.focusChanged.emit(event);
   }
 

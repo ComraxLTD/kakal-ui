@@ -6,7 +6,7 @@ export interface MenuCard {
   svgIcon: string;
   selected?: boolean;
   path?: string;
-  templateName: string;
+  templateName?: string;
 }
 
 

@@ -36,11 +36,10 @@ export class SizeDirective implements OnInit, OnDestroy {
     this.setSize();
     this.mobile$ = this.breakpointService.isMobile();
     this.subscribeToBreakpoint();
-    
+
     if(this.padding && this.padding.length){
       this.paddingValue=this.padding.reduce((pre,cur)=>pre+(cur+'px '),'')
     }
-      console.log(this.paddingValue);
     this.paddingValue+=' !important'
   }
 

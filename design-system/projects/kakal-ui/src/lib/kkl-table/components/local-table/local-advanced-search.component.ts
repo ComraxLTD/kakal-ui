@@ -123,6 +123,7 @@ export class LocalAdvancedSearchComponent implements OnInit {
     this.selectChanged.emit(event);
   }
   onQueryChanged(event) {
+    this.localTable.onRowEditChange(-1);
     this.queryChanged.emit(event);
   }
   onSelectChanged(event) {
@@ -137,6 +138,7 @@ export class LocalAdvancedSearchComponent implements OnInit {
     this.valueChanged.emit(event);
   }
   onFocusChanged(event) {
+    this.localTable.onRowEditChange(-1);
     this.focusChanged.emit(event);
   }
 
