@@ -1,7 +1,7 @@
 <ng-container *ngIf="portion$ | async as portion">
   <mat-sidenav-container class="kkl-sidenav-container" dir="rtl">
     <mat-sidenav #menuDrawer class="menu" mode="push" position="start">
-      <ng-container *ngIf="selectedOpen === 'menu'; else elseBlock">
+      <ng-container>
         <div
           class="menu-container"
           fxLayout="column"
@@ -20,7 +20,7 @@
             <kkl-icon
               color="primary"
               kkl-button
-              [key]="'tree_gradient_'+ rootPrefix"
+              [key]="'tree_gradient_' + rootPrefix || 'lands'"
               [size]="4"
             ></kkl-icon>
             <div fxFlex="10" fxLayoutAlign="start center">
@@ -36,46 +36,6 @@
           ></kkl-menu-bar>
         </div>
       </ng-container>
-
-      <ng-template #elseBlock>
-        <div
-          class="sidenav-drawer"
-          fxLayout="row"
-          fxLayoutAlign="center center"
-          fxFill
-        >
-          <div
-            fxFlex="85"
-            fxLayout="column"
-            fxLayoutAlign="center center"
-            fxFill
-          >
-            <div fxFlex="95" fxFill>
-              <button
-                mat-fab
-                (click)="onStartSideNav('side')"
-                [ngClass]="{
-                  'kkl-drawer-button': true,
-                  open: menuDrawer.opened
-                }"
-                [matBadge]="menuDrawer.opened ? 'x' : '+'"
-                [matBadgeColor]="menuDrawer.opened ? 'text' : 'primary'"
-              >
-                <kkl-icon
-                  color="primary"
-                  [key]="drawerAction?.svgIcon"
-                  [size]="1.8"
-                >
-                </kkl-icon>
-                <kkl-typography [weight]="600" [size]="1">
-                  {{ drawerAction?.label }}
-                </kkl-typography>
-              </button>
-              <ng-content select="[drawer]"></ng-content>
-            </div>
-          </div>
-        </div>
-      </ng-template>
     </mat-sidenav>
 
     <mat-sidenav
@@ -113,9 +73,9 @@
         [status]="status"
         [showStatus$]="showStatus$"
         [isOpen]="menuDrawer.opened"
-        [pageHeadline$]="pageHeadline$"
         (menuToggle)="onStartSideNav('menu')"
         (logoClicked)="onLogoClicked()"
+        (statusSelection)="onStatusSelection($event)"
       ></kkl-navbar>
 
       <kkl-icon
@@ -126,33 +86,13 @@
         class="end-drawer-btn"
       ></kkl-icon>
 
-      <!-- DRAWER BUTTON  -->
-
-      <ng-container *ngIf="showStartDrawer$ | async">
-        <button
-          mat-fab
-          (click)="onStartSideNav('side')"
-          [ngClass]="{
-            'kkl-drawer-button': true,
-            outside: true,
-            open: menuDrawer.opened
-          }"
-          [matBadge]="menuDrawer.opened ? 'x' : '+'"
-          [matBadgeColor]="menuDrawer.opened ? 'text' : 'primary'"
-        >
-          <kkl-icon color="primary" [key]="drawerAction?.svgIcon" [size]="1.8">
-          </kkl-icon>
-          <kkl-typography [weight]="600" [size]="1">
-            {{ drawerAction?.label }}
-          </kkl-typography>
-        </button>
-      </ng-container>
-
       <ng-content content></ng-content>
 
-      <div class="navbar-bottom">
-        <kkl-navbar-bottom></kkl-navbar-bottom>
-      </div>
+      <ng-container *ngIf="!(hideFooter$ | async)">
+        <div class="navbar-bottom">
+          <kkl-navbar-bottom></kkl-navbar-bottom>
+        </div>
+      </ng-container>
     </mat-sidenav-content>
   </mat-sidenav-container>
 </ng-container>

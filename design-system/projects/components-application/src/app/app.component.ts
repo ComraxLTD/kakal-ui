@@ -4,6 +4,7 @@ import {
   MenuCard,
   PageHeadlineService,
   RouterService,
+  StatusSelectionEvent,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -14,9 +15,9 @@ import {
 export class AppComponent {
   title = 'education';
 
-cards:MenuCard[]=[
-  {path:'as',templateName:"",svgIcon:'edit'}as MenuCard 
-]
+  cards: MenuCard[] = [
+    { path: 'as', templateName: '', svgIcon: 'edit' } as MenuCard,
+  ];
 
   status: CardStatus[] = [
     {
@@ -47,11 +48,12 @@ cards:MenuCard[]=[
     private pageHeadlineSource: PageHeadlineService
   ) {}
 
-  ngOnInit(): void {
-;
-  }
+  ngOnInit(): void {}
 
   onLogoClicked() {
     this.routerService.navigate('/');
+  }
+  onStatus(event: StatusSelectionEvent) {
+    console.log(event);
   }
 }

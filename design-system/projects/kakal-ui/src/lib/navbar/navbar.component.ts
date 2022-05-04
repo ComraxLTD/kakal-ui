@@ -6,13 +6,13 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { CardStep } from '../cards/card-step/card-step.component';
 import { CardStatus } from '../cards/card-status/card-status.component';
+import { StatusSelectionEvent } from '../groups/status-group/status-group.component';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { PageHeadline } from '../page-headline/page-headline.component';
-import { Observable } from 'rxjs';
 import { IconModel } from '../icon/icon.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar',
@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
   @Input() isOpen: boolean = false;
   @Input() status: CardStatus[];
   @Input() showStatus$: Observable<boolean>;
-  @Input() pageHeadline$: Observable<PageHeadline>;
 
   openIcon: string = 'tree_gradient_';
   mobile$: Observable<boolean>;
@@ -32,6 +31,7 @@ export class NavbarComponent implements OnInit {
   openLabel: string = 'תפריט';
   closeLabel: string = 'סגור תפריט';
 
+  @Output() statusSelection = new EventEmitter<StatusSelectionEvent>();
   @Output() menuToggle = new EventEmitter();
   @Output() logoClicked = new EventEmitter();
 
@@ -55,5 +55,9 @@ export class NavbarComponent implements OnInit {
 
   onLogoClick() {
     this.logoClicked.emit();
+  }
+
+  onStatusSelection(event : StatusSelectionEvent) {
+    this.statusSelection.emit(event)
   }
 }

@@ -34,7 +34,7 @@ export class IconService {
 
     bottom_tree_tac: AppIcons.BOTTOM_TREE_LOGO_TAC_ICON,
     bottom_tree_lands: AppIcons.BOTTOM_TREE_LOGO_LANDS_ICON,
-    // bottom_tree_education: AppIcons.BOTTOM_TREE_LOGO__EDUCATION_ICON,
+    bottom_tree_education: AppIcons.BOTTOM_TREE_LOGO_EDUCATION_ICON,
     // bottom_tree_forestry: AppIcons.BOTTOM_TREE_LOGO__FORESTRY_ICON,
 
     // TABLE ICONS

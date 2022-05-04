@@ -2,7 +2,7 @@
   fxFill
   dir="rtl"
   fxLayout="row"
-  fxLayoutGap="1.5rem"
+  fxLayoutGap="3rem"
 >
   <ng-container
     *ngFor="
@@ -14,7 +14,7 @@
   >
     <div appSize [type]="'status'" [size]="6" [step]="step">
       <kkl-card-status
-        (statusSelect)="onStepStatusSelect(step, last, first)"
+        (statusSelect)="onStepStatusSelect(step, i, last, first)"
         [index]="i"
         [status]="step"
         [options]="options"
