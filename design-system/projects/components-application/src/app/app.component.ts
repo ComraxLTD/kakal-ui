@@ -45,13 +45,12 @@ export class AppComponent {
 
   constructor(
     private routerService: RouterService,
-    private pageHeadlineSource: PageHeadlineService
   ) {}
 
   ngOnInit(): void {}
 
   onLogoClicked() {
-    this.routerService.navigate('/');
+    this.routerService.navigate('/lobby');
   }
   onStatus(event: StatusSelectionEvent) {
     console.log(event);
