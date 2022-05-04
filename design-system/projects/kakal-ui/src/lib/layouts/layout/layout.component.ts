@@ -30,7 +30,6 @@ import { StatusSelectionEvent } from '../../groups/status-group/status-group.com
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('menuDrawer') sidenav: MatSidenav;
-  @Input() pageHeadlineRouteMap: { [ket: string]: string } = {};
 
   @Input() menuTemplates: { [key: string]: TemplateRef<any> };
 
@@ -69,21 +68,18 @@ export class LayoutComponent implements OnInit {
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
-  @Output() statusSelection: EventEmitter<StatusSelectionEvent> = new EventEmitter();
+  @Output() statusSelection: EventEmitter<StatusSelectionEvent> =
+    new EventEmitter();
 
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private pageHeadlineService: PageHeadlineService,
-    @Inject(ROOT_PREFIX) public rootPrefix: string,
-
-
+    @Inject(ROOT_PREFIX) public rootPrefix: string
   ) {}
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
     this.showStatus$ = this.handleShowState(this.showStatusPath || []);
-    this.pageHeadline$ = this.setPageHeadline();
 
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
@@ -93,30 +89,6 @@ export class LayoutComponent implements OnInit {
     this.portion$ = this.getBreakPoints();
 
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
-  }
-
-  private setPageHeadline() {
-    return merge(
-      this.setPageHeadlineFromRoute(),
-      this.pageHeadlineService.listenToPageHeadline()
-    );
-  }
-
-  private setPageHeadlineFromRoute() {
-    return this.routerService.listenToRoute$().pipe(
-      map((url: string) => url.split('/').reverse()),
-      filter((url: string[]) =>
-        url.some((item) => this.pageHeadlineRouteMap[item])
-      ),
-      map((url: string[]) =>
-        url.find((item) => this.pageHeadlineRouteMap[item])
-      ),
-      map((path: string) => this.pageHeadlineRouteMap[path]),
-      map((headline: string) => {
-        const pageHeadline: PageHeadline = { value: headline };
-        return [pageHeadline];
-      })
-    );
   }
 
   private handleShowState(list: string[]) {

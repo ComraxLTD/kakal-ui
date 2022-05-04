@@ -24,7 +24,6 @@ export class NavbarComponent implements OnInit {
   @Input() isOpen: boolean = false;
   @Input() status: CardStatus[];
   @Input() showStatus$: Observable<boolean>;
-  @Input() pageHeadline$: Observable<PageHeadline>;
 
   openIcon: string = 'tree_gradient_';
   mobile$: Observable<boolean>;

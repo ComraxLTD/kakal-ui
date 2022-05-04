@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { PageHeadlineService } from './page-headline.service';
 
 export interface PageHeadline {
   value: any;
@@ -13,15 +14,17 @@ export interface PageHeadline {
   styleUrls: ['./page-headline.component.scss'],
 })
 export class PageHeadlineComponent implements OnInit {
-  @Input() pageHeadline$!: Observable<PageHeadline[]>;
   @Input() mobile: boolean;
 
   slice: number;
+  pageHeadline$!: Observable<PageHeadline[]>;
 
-  constructor() {}
+  constructor(
+    private pageHeadlineService : PageHeadlineService
+  ) {}
 
   ngOnInit(): void {
-    console.log(this.mobile)
+    this.pageHeadline$ = this.pageHeadlineService.listenToPageHeadline()
     this.slice = this.mobile ? 1 : 1000;
   }
 }
