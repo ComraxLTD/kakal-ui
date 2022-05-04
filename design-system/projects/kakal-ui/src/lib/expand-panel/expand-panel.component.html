@@ -2,7 +2,7 @@
   <mat-expansion-panel
     [ngClass]="[variant]"
     [hideToggle]="hideToggle"
-    [expanded]="expanded"
+    [(expanded)]="expanded"
     [disabled]="disabled"
     [ngClass]="[variant, 'default', 'mat-elevation-z0']"
     (closed)="onPanelClosed()"
