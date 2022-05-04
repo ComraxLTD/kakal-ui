@@ -78,7 +78,7 @@ export class NavigationComponent implements OnInit {
     this.dispatchSelectionState(nextIndex);
   }
 
-  onStepSelect(step: any) {
-    this._emitChangeEvent();
+  onStepSelect(step: number) {
+    this.dispatchSelectionState(step);
   }
 }

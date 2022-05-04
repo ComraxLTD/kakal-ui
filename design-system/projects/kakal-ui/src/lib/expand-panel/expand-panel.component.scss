@@ -2,7 +2,7 @@
 
 .kkl-expansion-panel {
   ::ng-deep .mat-expansion-panel-body {
-    padding: 0 !important;
+    padding: 1rem !important;
   }
 }
 
@@ -38,6 +38,7 @@
 
     .title {
       border-bottom: 2px solid main.color(primary) !important;
+      padding: 0 1rem !important;
     }
   }
 
@@ -51,6 +52,7 @@
 
     .title {
       border-bottom: 2px solid main.color(primary) !important;
+      padding: 0 1rem !important;
     }
   }
 

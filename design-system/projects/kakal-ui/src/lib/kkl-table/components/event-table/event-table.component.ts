@@ -35,6 +35,7 @@ export class EventTableComponent implements OnInit {
 
   @Input() noMobile: boolean = false;
   typeLocal: boolean = false;
+  currentEditRow: number = -1;
   mobile$: Observable<boolean>;
 
   @ViewChild(MatTable) table: MatTable<any>;
@@ -95,8 +96,8 @@ export class EventTableComponent implements OnInit {
         });
       });
       setControls(newVals, this.searchRow, this.fb, this.localObservables);
-      this.rows.controls.forEach(h => {
-        setControls(newVals, h as FormGroup, this.fb, this.localObservables);
+      this.rows.controls.forEach((h, index) => {
+        setControls(newVals, h as FormGroup, this.fb, this.editObservables.get(index));
       });
     }
     this.oneColumns = value;
@@ -190,6 +191,7 @@ export class EventTableComponent implements OnInit {
 
 
   localObservables: Map<string, BehaviorSubject<KklSelectOption[]>> = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+  editObservables:  Map<number, Map<string, BehaviorSubject<KklSelectOption[]>>> = new Map<number, Map<string, BehaviorSubject<KklSelectOption[]>>>();
 
 
   ngOnInit(): void {
@@ -245,6 +247,7 @@ export class EventTableComponent implements OnInit {
     }
     this.paginator.pageIndex = 0;
     this.cleanPreLoading();
+    this.currentEditRow = -1;
   }
 
   pageChanged(event: PageEvent) {
@@ -319,6 +322,12 @@ export class EventTableComponent implements OnInit {
       this.saveRow.emit(this.rows.at(index));
       this.rows.removeAt(index);
       this.readySpanData(0, this.dataTable.length);
+      let ind = index;
+      while(this.editObservables.has(ind+1)) {
+        this.editObservables.set(ind, this.editObservables.get(ind+1));
+        ind++;
+      }
+      this.editObservables.delete(ind);
     }
   }
 
@@ -337,6 +346,12 @@ export class EventTableComponent implements OnInit {
       }
       this.rows.removeAt(index);
       this.readySpanData(0, this.dataTable.length);
+      let ind = index;
+      while(this.editObservables.has(ind+1)) {
+        this.editObservables.set(ind, this.editObservables.get(ind+1));
+        ind++;
+      }
+      this.editObservables.delete(ind);
     }
   }
 
@@ -345,7 +360,9 @@ export class EventTableComponent implements OnInit {
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(obj[col.key]));
     // });
-    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    const temp = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+    this.editObservables.set(this.editItems.length, temp);
+    setControls(this.oneColumns, row, this.fb, temp);
     row.setValue(obj);
     this.rows.push(row);
   }
@@ -355,7 +372,9 @@ export class EventTableComponent implements OnInit {
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(null));
     // })
-    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    const temp = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+    this.editObservables.set(this.editItems.length, temp);
+    setControls(this.oneColumns, row, this.fb, temp);
     this.rows.push(row);
     const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
@@ -427,9 +446,24 @@ export class EventTableComponent implements OnInit {
   }
 
   putOptions() {
-    this.myOptions.forEach(b => {
-      (this.localObservables.get(b.key))?.next(b.val);
-    });
+    if(this.currentEditRow == -1) {
+      this.myOptions.forEach(b => {
+        (this.localObservables.get(b.key))?.next(b.val);
+      });
+    } else{
+      const temp = this.editObservables.get(this.currentEditRow);
+      this.myOptions.forEach(b => {
+        (temp?.get(b.key))?.next(b.val);
+      });
+    }
+  }
+
+  onRowEditChange(ind: number | any) {
+    if(ind !== -1) {
+      this.currentEditRow = this.editItems.indexOf(ind);
+    } else {
+      this.currentEditRow = ind;
+    }
   }
 
 
