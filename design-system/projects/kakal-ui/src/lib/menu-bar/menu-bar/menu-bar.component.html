@@ -1,5 +1,5 @@
 <div dir="rtl" fxFill fxLayout="column" fxLayoutGap="1rem">
   <ng-container *ngFor="let card of cards; let i = index">
-    <kkl-menu-card (cardSelect)="onCardSelect(card)" [card]="card" [index]="i" [template]="templates[card.templateName]"></kkl-menu-card>
+    <kkl-menu-card (cardSelect)="onCardSelect(card)" [card]="card" [index]="i" [template]="card.templateName? templates[card.templateName] : ''"></kkl-menu-card>
   </ng-container>
 </div>

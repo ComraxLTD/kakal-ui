@@ -279,6 +279,7 @@ export * from './constants/step-prefix';
 export * from './styles/theme';
 // hover component
 export * from './lib/kkl-hover/kkl-hover.component';
+export * from './lib/menu-bar/hover-popup/hover-popup.component';
 export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards

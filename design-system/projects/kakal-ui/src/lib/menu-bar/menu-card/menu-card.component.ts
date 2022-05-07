@@ -19,6 +19,7 @@ export interface MenuCard {
 export class MenuCardComponent implements OnInit {
   @Input() card!: MenuCard;
   @Input() template: TemplateRef<any>;
+  isOpened = false;
 
   @Output() cardSelect: EventEmitter<MenuCard> = new EventEmitter();
 

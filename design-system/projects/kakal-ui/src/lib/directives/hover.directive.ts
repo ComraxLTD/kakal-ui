@@ -14,17 +14,21 @@ export class KKLHoverDirective {
     @Input() hoverColor: 'white' | 'black' = 'white';
 
     @HostListener('mouseover') onMouseOver() {
-        // console.log('over');   
-        const hoverRef: ComponentRef<KKLHoverComponent>
-            = this.overlayRef.attach(new ComponentPortal(KKLHoverComponent));
-        if (this.hoverColor) hoverRef.instance.hoverColor = this.hoverColor;
-        if (this.text) hoverRef.instance.text = this.text;
-        if (this.template) hoverRef.instance.template = this.template;
+        // console.log('over');
+        if(this.text || this.template) {
+          const hoverRef: ComponentRef<KKLHoverComponent>
+              = this.overlayRef.attach(new ComponentPortal(KKLHoverComponent));
+          if (this.hoverColor) hoverRef.instance.hoverColor = this.hoverColor;
+          if (this.text) hoverRef.instance.text = this.text;
+          if (this.template) hoverRef.instance.template = this.template;
+        }
     }
 
     @HostListener('mouseout') onMouseOut() {
+      // this.overlayRef._keydownEvents
+      // this.overlayRef.outsidePointerEvents().subscribe
         // console.log('out');
-        this.overlayRef.detach();
+        // this.overlayRef.detach();
     }
     constructor(private overlay: Overlay,
         private overlayPositionBuilder: OverlayPositionBuilder,
