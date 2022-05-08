@@ -101,26 +101,11 @@ button.mat-fab.kkl-drawer-button {
 }
 
 .end-drawer-button {
-  height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 5rem;
   background-color: #f9f8f6;
-  opacity: 0.5;
-  cursor: pointer;
 }
 
 .mat-sidenav-container {
   width: 100%;
-}
-
-.end-drawer-btn {
-  // border: 1px solid main.$primary;
-  // border-radius: 100px;
-  position: fixed;
-  bottom: calc(main.$bottomBar-height + 3rem);
-  left: 3rem;
 }
 
 // style bottom navbar
@@ -132,10 +117,16 @@ button.mat-fab.kkl-drawer-button {
   z-index: 100;
 }
 
-// .main-content-height{
-//   height: main.$wizard-height;
-// }
-
 .toolbar-height {
   height: 8rem !important;
+}
+
+button.mat-fab.end-drawer-btn {
+  position: fixed;
+  bottom: calc(main.$bottomBar-height + 3rem);
+  left: 3rem;
+
+  mat-icon {
+    color: main.color(paper);
+  }
 }

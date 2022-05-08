@@ -16,7 +16,7 @@ export class AppComponent {
   title = 'education';
 
   cards: MenuCard[] = [
-    { path: 'as', templateName: '', svgIcon: 'edit' } as MenuCard,
+    { path: 'as', templateName: '', svgIcon: 'home' } as MenuCard,
   ];
 
   status: CardStatus[] = [

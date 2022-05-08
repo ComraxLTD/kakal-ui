@@ -3,8 +3,7 @@
   [cards]="cards"
   [hideFooterPath]="['lobby']"
   [showStatusPath]="['lobby']"
-  [showEndDrawer]="true"
-  [drawerPortion]="{ open: 50, close: 5 }"
+  [drawerPortion]="{ open: 50, close: 5, hasButton: true }"
   [menuTemplates]="{ temp }"
   (logoClicked)="onLogoClicked()"
   (statusSelection)="onStatus($event)"
@@ -12,6 +11,11 @@
   <ng-container content>
     <router-outlet></router-outlet>
   </ng-container>
+
+  <ng-container endDrawerContent>
+    works
+  </ng-container>
+
 </kkl-layout>
 
 <ng-template #temp>
