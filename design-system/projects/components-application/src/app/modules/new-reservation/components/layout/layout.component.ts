@@ -29,7 +29,6 @@ export interface DataEx {
 })
 export class LayoutComponent implements OnInit {
   actions: ButtonModel[] = [
-    { type: 'portion' },
     { type: 'file' },
     { type: 'form', action: FormActions.EDIT },
   ];
@@ -64,8 +63,8 @@ export class LayoutComponent implements OnInit {
       key: 'date',
       format: { type: 'date' },
       label: 'תאריך יציאה',
-      svgIcon : 'calendar',
-      type: 'icon'
+      svgIcon: 'calendar',
+      type: 'icon',
     },
     {
       key: 'tour',

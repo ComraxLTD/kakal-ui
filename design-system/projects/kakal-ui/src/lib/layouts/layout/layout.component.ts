@@ -44,8 +44,6 @@ export class LayoutComponent implements OnInit {
     close: 100,
   };
 
-  @Input() drawerAction: ButtonModel;
-
   // drawer props
   portion$: Observable<number> = of(100);
 
