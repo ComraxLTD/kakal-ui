@@ -45,7 +45,6 @@ export class AppComponent {
 
   constructor(
     private routerService: RouterService,
-    private pageHeadlineSource: PageHeadlineService
   ) {}
 
   ngOnInit(): void {}

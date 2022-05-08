@@ -71,7 +71,7 @@ export class LayoutComponent implements OnInit {
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
   @Output() statusSelection: EventEmitter<StatusSelectionEvent> =
-    new EventEmitter();
+    new EventEmitter<StatusSelectionEvent>();
 
   constructor(
     private routerService: RouterService,
@@ -82,8 +82,8 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
     this.showStatus$ = this.handleShow(this.showStatusPath || []);
-    this.hideFooter$ = this.handleShow([...this.hideFooterPath, ''])
-    
+    this.hideFooter$ = this.handleShow([...this.hideFooterPath, '']);
+
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
