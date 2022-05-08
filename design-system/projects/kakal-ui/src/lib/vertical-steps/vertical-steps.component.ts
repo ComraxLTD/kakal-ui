@@ -13,7 +13,6 @@ import {
   STEPPER_GLOBAL_OPTIONS,
 } from '@angular/cdk/stepper';
 import { Step } from './step/step.model';
-import { MatStepper } from '@angular/material/stepper';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { Observable, of, tap } from 'rxjs';
 
