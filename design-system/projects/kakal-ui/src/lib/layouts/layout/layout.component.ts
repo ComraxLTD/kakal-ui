@@ -92,7 +92,7 @@ export class LayoutComponent implements OnInit {
 
     this.endDrawerSizeSource$ = new BehaviorSubject(0);
 
-    this.portion$ = this.getBreakPoints();
+    this.portionState$ = this.setPortionState$();
 
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
   }
@@ -135,7 +135,7 @@ export class LayoutComponent implements OnInit {
   // PORTION LOGIC SECTION
 
   // breakpoints
-  private mergeBreakPoints() {
+  private isMobile() {
     return this.breakpointService
       .isSmall()
       .pipe(
@@ -147,8 +147,8 @@ export class LayoutComponent implements OnInit {
       );
   }
 
-  private getBreakPoints() {
-    return this.mergeBreakPoints().pipe(
+  private setPortionState$() {
+    return this.isMobile().pipe(
       map((value: boolean[]) => {
         if (value.includes(true)) {
           this._openDrawer = 1;
@@ -158,7 +158,10 @@ export class LayoutComponent implements OnInit {
           this._closedDrawer = this.drawerPortion.close;
         }
         this.endDrawerSizeSource$.next(this._closedDrawer);
-        return 100 - this._closedDrawer;
+        return {
+          drawer: this.drawerPortion.close,
+          content: 100 - this.drawerPortion.close,
+        };
       })
     );
   }

@@ -1,4 +1,4 @@
-<ng-container *ngIf="portion$ | async as portion">
+<ng-container *ngIf="portionState$ | async as portionState">
   <mat-sidenav-container class="kkl-sidenav-container" dir="rtl">
     <mat-sidenav #menuDrawer class="menu" mode="push" position="start">
       <ng-container>
@@ -46,16 +46,12 @@
       fxLayoutAlign="stretch stretch"
       mode="side"
       position="end"
-      [ngStyle]="{ width: (endDrawerSize$ | async) + '%' }"
+      [ngStyle]="{ width: portionState.drawer + '%' }"
     >
       <!-- end drawer content -->
       <div fxLayout="row" fxFill fxLayoutAlign="stretch stretch">
         <div fxFlex="100" fxLayout="column" fxFill>
-          <div
-            class="end-drawer-button"
-            (click)="emitEndDrawer()"
-            *ngIf="portion != 1 && portion != 99"
-          >
+          <div class="end-drawer-button" (click)="emitEndDrawer()">
             <!-- end drawer button -->
             <kkl-icon
               [key]="'chevron_left'"
@@ -68,7 +64,7 @@
       </div>
     </mat-sidenav>
 
-    <mat-sidenav-content [fxFlex]="portion">
+    <mat-sidenav-content [fxFlex]="portionState.content">
       <kkl-navbar
         [status]="status"
         [showStatus$]="showStatus$"
