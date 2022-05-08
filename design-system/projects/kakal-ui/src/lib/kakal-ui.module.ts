@@ -105,6 +105,7 @@ import { KKLDisplayGridModule } from './grids/display-grid/display-grid.module';
 import { KKLDisplayGroupModule } from './groups/display-group/display-group.module';
 
 import { MeiServiceModule } from './mei-services/mei-services.module';
+import { KKLStepGroupModule } from './groups/step-group/step-group.module';
 
 registerLocaleData(he);
 
@@ -186,6 +187,7 @@ registerLocaleData(he);
 
     // STEPPER
     KKLStepperMobileModule,
+    KKLStepGroupModule,
     KKLStepsLayoutModule,
 
     KKLVerticalStepsModule,
@@ -300,6 +302,7 @@ registerLocaleData(he);
 
     // STEPPER
     KKLStepperMobileModule,
+    KKLStepGroupModule,
     KKLStepsLayoutModule,
 
     KKLVerticalStepsModule,
