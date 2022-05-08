@@ -11,17 +11,16 @@ import {
 
 import { RouterService, BreakpointService } from '../../../services/services';
 import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
-import { PageHeadlineService } from '../../page-headline/page-headline.service';
 import { PageHeadline } from '../../page-headline/page-headline.component';
 
 import { MatSidenav } from '@angular/material/sidenav';
-import { ButtonModel } from '../../button/models/button.types';
 
-import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
 import { CardStatus } from '../../cards/card-status/card-status.component';
 import { ROOT_PREFIX } from '../../../constants/root-prefix';
 import { StatusSelectionEvent } from '../../groups/status-group/status-group.component';
+
+import { BehaviorSubject, Observable, of, mergeMap } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 
 @Component({
   selector: 'kkl-layout',
