@@ -4,6 +4,10 @@ import { BreakpointService } from '../../../services/breakpoint.service';
 import { Observable } from 'rxjs';
 
 export interface StepsSelectionEvent {
+
+  // The steps for the UI
+  source: CardStep[];
+
   /** Index of the step selected. */
   selectedIndex: number;
 
@@ -22,7 +26,6 @@ export interface StepsSelectionEvent {
   /** If this step is the first */
   first?: boolean;
 
-  source?: CardStep[];
 }
 @Component({
   selector: 'kkl-step-group',
