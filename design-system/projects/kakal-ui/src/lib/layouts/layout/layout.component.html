@@ -55,6 +55,14 @@
             <mat-icon>chevron_left</mat-icon>
           </button>
         </ng-container>
+
+        <!-- MOBILE BUTTON FOR PORTION DRAWER -->
+        <ng-container *ngIf="portion.mobile && endDrawer.opened">
+          <button mat-fab class="end-drawer-btn" (click)="endDrawer.toggle()">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </ng-container>
+
         <div fxFlex>
           <ng-content select="[endDrawerContent]"></ng-content>
         </div>
@@ -74,7 +82,7 @@
       <ng-content select="[content]"></ng-content>
 
       <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-      <ng-container *ngIf="portion.mobile">
+      <ng-container *ngIf="portion.mobile && !endDrawer.opened">
         <button mat-fab class="end-drawer-btn" (click)="endDrawer.toggle()">
           <mat-icon>edit</mat-icon>
         </button>

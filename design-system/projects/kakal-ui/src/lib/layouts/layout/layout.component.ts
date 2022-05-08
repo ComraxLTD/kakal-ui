@@ -120,7 +120,7 @@ export class LayoutComponent implements OnInit {
             show: false,
             opened: false,
             mobile: true,
-            hasButton,
+            hasButton: false,
           };
         } else {
           state = {

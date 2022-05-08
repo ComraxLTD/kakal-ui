@@ -117,14 +117,11 @@ button.mat-fab.kkl-drawer-button {
   z-index: 100;
 }
 
-.toolbar-height {
-  height: 8rem !important;
-}
 
 button.mat-fab.end-drawer-btn {
   position: fixed;
-  bottom: calc(main.$bottomBar-height + 3rem);
-  left: 3rem;
+  bottom: 5%;
+  left: 5%;
 
   mat-icon {
     color: main.color(paper);
