@@ -21,6 +21,7 @@ import { StatusSelectionEvent } from '../../groups/status-group/status-group.com
 
 import { BehaviorSubject, Observable, mergeMap, merge } from 'rxjs';
 import { map, startWith, switchMap } from 'rxjs/operators';
+import { LayoutService } from './layout.service';
 
 export interface Portion {
   content: number;
@@ -70,29 +71,18 @@ export class LayoutComponent implements OnInit {
     new EventEmitter<StatusSelectionEvent>();
 
   constructor(
-    private routerService: RouterService,
-    private breakpointService: BreakpointService,
+    private layoutService: LayoutService,
     @Inject(ROOT_PREFIX) public rootPrefix: string
   ) {}
 
   ngOnInit(): void {
-    this.showStatus$ = this.handleShow(this.showStatusPath || []);
-    this.hideFooter$ = this.handleShow([...this.hideFooterPath, '']);
+    this.showStatus$ = this.layoutService.handleShow(this.showStatusPath || []);
+    this.hideFooter$ = this.layoutService.handleShow([
+      ...this.hideFooterPath,
+      '',
+    ]);
 
-    this.portion$ = this.setPortionState$();
-  }
-
-  private handleShow(list: string[]) {
-    return this.routerService.getLastPath$().pipe(
-      startWith(this.routerService.getCurrentPath()),
-      map((path: string) => {
-        return this.findPath([...list], path);
-      })
-    );
-  }
-
-  private findPath(list: string[], value: string): boolean {
-    return list?.some((path: string) => path == value);
+    this.portion$ = this.initState$();
   }
 
   onLogoClicked() {
@@ -115,36 +105,19 @@ export class LayoutComponent implements OnInit {
     }
   }
 
-  // control content width when end drawer is open and close in %
-
   // PORTION LOGIC SECTION
 
-  // breakpoints
-  private isMobile() {
-    return this.breakpointService
-      .isSmall()
-      .pipe(
-        mergeMap((isSmall) =>
-          this.breakpointService
-            .isMobile()
-            .pipe(map((isMobile) => [isSmall, isMobile]))
-        )
-      );
-  }
-
-  private setStateFromMobile$(): Observable<Portion> {
+  private initState$(): Observable<Portion> {
     const { close, hasButton } = this.drawerPortion;
     let state: Portion;
 
-    console.log(hasButton);
-
-    return this.isMobile().pipe(
+    return this.layoutService.isMobile().pipe(
       switchMap((value: boolean[]) => {
         if (value.includes(true)) {
           state = {
-            drawer: 0,
+            drawer: 100,
             content: 100,
-            show: true,
+            show: false,
             opened: false,
             mobile: true,
             hasButton,
@@ -164,11 +137,6 @@ export class LayoutComponent implements OnInit {
         return this.portionSource$.asObservable();
       })
     );
-  }
-
-  private setPortionState$() {
-    const stateFromMobile$ = this.setStateFromMobile$();
-    return merge(stateFromMobile$);
   }
 
   private setDrawerStateOnDesktop(oldState: Portion) {
@@ -192,7 +160,6 @@ export class LayoutComponent implements OnInit {
     }
   }
   private setDrawerStateOnMobile(oldState: Portion) {
-
     // logic when close
     if (!oldState.opened) {
       return {

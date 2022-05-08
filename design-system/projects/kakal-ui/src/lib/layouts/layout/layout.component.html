@@ -49,18 +49,12 @@
     >
       <!-- end drawer content -->
       <div fxLayout="row" fxFill fxLayoutAlign="stretch stretch">
-        <div fxFlex fxLayout="column" fxLayoutAlign="center center">
-          <ng-container *ngIf="portion.hasButton">
-            <div class="end-drawer-button" (click)="emitEndDrawer()">
-              <!-- end drawer button -->
-              <kkl-icon
-                [key]="'chevron_left'"
-                color="success"
-                [size]="4"
-              ></kkl-icon>
-            </div>
-          </ng-container>
-        </div>
+        <ng-container *ngIf="portion.hasButton">
+          <!-- inner end drawer button -->
+          <button [disableRipple]="true" mat-button (click)="emitEndDrawer()">
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+        </ng-container>
         <div fxFlex>
           <ng-content select="[endDrawerContent]"></ng-content>
         </div>
@@ -81,7 +75,7 @@
 
       <!-- MOBILE BUTTON FOR PORTION DRAWER -->
       <ng-container *ngIf="portion.mobile">
-        <button mat-fab class="end-drawer-btn" (click)="emitEndDrawer()">
+        <button mat-fab class="end-drawer-btn" (click)="endDrawer.toggle()">
           <mat-icon>edit</mat-icon>
         </button>
       </ng-container>
