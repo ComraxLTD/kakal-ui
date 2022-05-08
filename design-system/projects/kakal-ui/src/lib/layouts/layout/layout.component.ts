@@ -38,11 +38,13 @@ export class LayoutComponent implements OnInit {
   @Input() showStatusPath: string[];
   @Input() hideFooterPath: string[];
 
-  selectedOpen: string;
+  @Input() showEndDrawer: boolean = false;
   @Input() contentPortion: { open: number; close: number } = {
     open: 0,
     close: 100,
   };
+
+  selectedOpen: string;
 
   // drawer props
   portion$: Observable<number> = of(100);
@@ -52,7 +54,6 @@ export class LayoutComponent implements OnInit {
 
   //end drawer opened/closed
   _endDrawerOpen: boolean = false;
-  showEndDrawer: boolean = false;
 
   //drawer sizes
   _openDrawer!: number;
