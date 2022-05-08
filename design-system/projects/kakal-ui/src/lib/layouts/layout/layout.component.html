@@ -51,14 +51,23 @@
       <div fxLayout="row" fxFill fxLayoutAlign="stretch stretch">
         <ng-container *ngIf="portion.hasButton">
           <!-- inner end drawer button -->
-          <button [disableRipple]="true" mat-button (click)="emitEndDrawer()">
+          <button
+            class="drawer-desktop-btn"
+            [disableRipple]="true"
+            mat-button
+            (click)="onEndDrawerToggle()"
+          >
             <mat-icon>chevron_left</mat-icon>
           </button>
         </ng-container>
 
         <!-- MOBILE BUTTON FOR PORTION DRAWER -->
         <ng-container *ngIf="portion.mobile && endDrawer.opened">
-          <button mat-fab class="end-drawer-btn" (click)="endDrawer.toggle()">
+          <button
+            mat-fab
+            class="drawer-mobile-btn"
+            (click)="endDrawer.toggle()"
+          >
             <mat-icon>edit</mat-icon>
           </button>
         </ng-container>
@@ -82,14 +91,16 @@
       <ng-content select="[content]"></ng-content>
 
       <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-      <ng-container *ngIf="portion.mobile && !endDrawer.opened">
-        <button mat-fab class="end-drawer-btn" (click)="endDrawer.toggle()">
+      <ng-container
+        *ngIf="portion.mobile && !endDrawer.opened"
+      >
+        <button mat-fab class="drawer-mobile-btn" (click)="endDrawer.toggle()">
           <mat-icon>edit</mat-icon>
         </button>
       </ng-container>
 
       <ng-container *ngIf="!(hideFooter$ | async)">
-        <div class="navbar-bottom">
+        <div class="footer">
           <kkl-navbar-bottom></kkl-navbar-bottom>
         </div>
       </ng-container>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   CardStatus,
   MenuCard,
-  PageHeadlineService,
   RouterService,
   StatusSelectionEvent,
 } from '../../../kakal-ui/src/public-api';

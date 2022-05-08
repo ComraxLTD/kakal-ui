@@ -83,42 +83,27 @@ button.mat-fab.kkl-drawer-button {
   }
 }
 
-// style bottom navbar
-.bottom-navbar {
+// style bottom-navbar
+.footer {
   bottom: 0;
   width: 100%;
   position: fixed;
   height: main.$bottomBar-height;
   z-index: 100;
-  overflow: hidden;
-  & * {
-    overflow: hidden;
-  }
+  // overflow: hidden;
+  // & * {
+  //   overflow: hidden;
+  // }
 }
 
-.example-container {
-  height: 500px;
-}
-
-.end-drawer-button {
+// style for end drawer buttons
+button.mat-button.drawer-desktop-btn {
   background-color: #f9f8f6;
+  min-width: 24px;
+  padding: 0 8px;
 }
 
-.mat-sidenav-container {
-  width: 100%;
-}
-
-// style bottom navbar
-.navbar-bottom {
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-  height: main.$bottomBar-height;
-  z-index: 100;
-}
-
-
-button.mat-fab.end-drawer-btn {
+button.mat-fab.drawer-mobile-btn {
   position: fixed;
   bottom: 5%;
   left: 5%;

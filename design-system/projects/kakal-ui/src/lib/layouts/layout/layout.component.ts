@@ -9,9 +9,7 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { RouterService, BreakpointService } from '../../../services/services';
 import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
-import { PageHeadline } from '../../page-headline/page-headline.component';
 
 import { MatSidenav } from '@angular/material/sidenav';
 
@@ -19,18 +17,9 @@ import { CardStatus } from '../../cards/card-status/card-status.component';
 import { ROOT_PREFIX } from '../../../constants/root-prefix';
 import { StatusSelectionEvent } from '../../groups/status-group/status-group.component';
 
-import { BehaviorSubject, Observable, mergeMap, merge } from 'rxjs';
-import { map, startWith, switchMap } from 'rxjs/operators';
-import { LayoutService } from './layout.service';
-
-export interface Portion {
-  content: number;
-  drawer: number;
-  show: boolean;
-  opened: boolean;
-  mobile: boolean;
-  hasButton: boolean;
-}
+import { BehaviorSubject, Observable } from 'rxjs';
+import { combineLatestWith, map, switchMap } from 'rxjs/operators';
+import { LayoutService, Portion } from './layout.service';
 
 @Component({
   selector: 'kkl-layout',
@@ -47,19 +36,20 @@ export class LayoutComponent implements OnInit {
   @Input() showStatusPath: string[];
   @Input() hideFooterPath: string[];
 
-  @Input() drawerPortion: { open: number; close: number; hasButton: boolean } =
-    {
-      open: 0,
-      close: 0,
-      hasButton: false,
-    };
+  private _portion: Portion = {
+    drawer: 0,
+    content: 0,
+    show: false,
+    opened: false,
+    mobile: true,
+    hasButton: false,
+  };
 
   selectedOpen: string;
 
   // PORTION LOGIC
   portionSource$: BehaviorSubject<Portion>;
   portion$: Observable<Portion>;
-  _endDrawerOpen: boolean;
 
   showStatus$: Observable<boolean>;
   hideFooter$: Observable<boolean>;
@@ -76,13 +66,15 @@ export class LayoutComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.portionSource$ = new BehaviorSubject<Portion>(this._portion);
+
     this.showStatus$ = this.layoutService.handleShow(this.showStatusPath || []);
     this.hideFooter$ = this.layoutService.handleShow([
       ...this.hideFooterPath,
       '',
     ]);
 
-    this.portion$ = this.initState$();
+    this.portion$ = this.combineState$();
   }
 
   onLogoClicked() {
@@ -107,20 +99,24 @@ export class LayoutComponent implements OnInit {
 
   // PORTION LOGIC SECTION
 
-  private initState$(): Observable<Portion> {
-    const { close, hasButton } = this.drawerPortion;
-    let state: Portion;
+  private combineState$() {
+    const drawerState$ = this.layoutService.listenToDrawerPortion();
+    const mobileState$ = this.layoutService.isMobile();
 
-    return this.layoutService.isMobile().pipe(
-      switchMap((value: boolean[]) => {
-        if (value.includes(true)) {
+    return mobileState$.pipe(
+      combineLatestWith(drawerState$),
+      switchMap(([mobile, drawerState]) => {
+        const { close, hasButton } = drawerState;
+        let state: Portion;
+
+        if (mobile.includes(true)) {
           state = {
             drawer: 100,
             content: 100,
             show: false,
             opened: false,
             mobile: true,
-            hasButton: false,
+            hasButton
           };
         } else {
           state = {
@@ -132,15 +128,15 @@ export class LayoutComponent implements OnInit {
             hasButton,
           };
         }
-
-        this.portionSource$ = new BehaviorSubject<Portion>(state);
+        console.log(state)
+        this.portionSource$.next(state);
         return this.portionSource$.asObservable();
       })
     );
   }
 
   private setDrawerStateOnDesktop(oldState: Portion) {
-    const { open, close } = this.drawerPortion;
+    const { close, open, hasButton } = this.layoutService.getDrawerPortion();
 
     // logic when close
     if (!oldState.opened) {
@@ -149,6 +145,7 @@ export class LayoutComponent implements OnInit {
         opened: true,
         drawer: open,
         content: 100 - open,
+        hasButton,
       };
     } else {
       return {
@@ -156,6 +153,7 @@ export class LayoutComponent implements OnInit {
         opened: false,
         drawer: close,
         content: 100 - close,
+        hasButton,
       };
     }
   }
@@ -181,8 +179,7 @@ export class LayoutComponent implements OnInit {
   }
 
   // function called each time the left(end) drawer is closed/opened
-  emitEndDrawer(): void {
-    const { open, close } = this.drawerPortion;
+  onEndDrawerToggle(): void {
     const oldState = this.portionSource$.getValue();
     let portionState = {} as Portion;
 
@@ -193,6 +190,6 @@ export class LayoutComponent implements OnInit {
     }
 
     this.portionSource$.next(portionState);
-    this.openChanged.emit(this._endDrawerOpen);
+    this.openChanged.emit(portionState.opened);
   }
 }

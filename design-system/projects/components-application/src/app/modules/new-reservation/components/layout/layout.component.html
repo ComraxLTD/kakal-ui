@@ -1,11 +1,5 @@
-<kkl-steps-layout
-  [steps]="steps"
-  [actions]="(actions$ | async)!"
-  (stepSelect)="onChangeStep($event)"
->
+<kkl-steps-layout [steps]="steps">
   <kkl-drawer-document drawer></kkl-drawer-document>
-
-  <!-- <router-outlet content></router-outlet> -->
 
   <router-outlet content></router-outlet>
 </kkl-steps-layout>
