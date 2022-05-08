@@ -82,8 +82,8 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
     this.showStatus$ = this.handleShow(this.showStatusPath || []);
-    this.hideFooter$ = this.handleShow(this.hideFooterPath || []);
-
+    this.hideFooter$ = this.handleShow([...this.hideFooterPath, ''])
+    
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
 
