@@ -28,7 +28,6 @@ export class LayoutComponent implements OnInit {
     },
   ];
 
-  contentPortion = { open: 10, close: 50 };
   formValues = { select: '', date: ''}
 
   isFormFull(){

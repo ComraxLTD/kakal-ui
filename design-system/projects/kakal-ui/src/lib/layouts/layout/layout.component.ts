@@ -39,15 +39,20 @@ export class LayoutComponent implements OnInit {
   @Input() hideFooterPath: string[];
 
   @Input() showEndDrawer: boolean = false;
-  @Input() contentPortion: { open: number; close: number } = {
+  @Input() drawerPortion: { open: number; close: number } = {
     open: 0,
-    close: 100,
+    close: 0,
   };
 
   selectedOpen: string;
 
   // drawer props
   portion$: Observable<number> = of(100);
+  // drawer props
+  portionState$: Observable<{ content: number; drawer: number }> = of({
+    content: 100,
+    drawer: 0,
+  });
 
   endDrawerSizeSource$: BehaviorSubject<number>;
   endDrawerSize$: Observable<number> = of(0);
@@ -83,8 +88,8 @@ export class LayoutComponent implements OnInit {
     this.showStatus$ = this.handleShow(this.showStatusPath || []);
     this.hideFooter$ = this.handleShow([...this.hideFooterPath, '']);
 
-    this._openDrawer = this.contentPortion.open;
-    this._closedDrawer = this.contentPortion.close;
+    this._openDrawer = this.drawerPortion.open;
+    this._closedDrawer = this.drawerPortion.close;
 
     this.endDrawerSizeSource$ = new BehaviorSubject(0);
 
@@ -150,11 +155,11 @@ export class LayoutComponent implements OnInit {
           this._openDrawer = 1;
           this._closedDrawer = 99;
         } else {
-          this._openDrawer = this.contentPortion.open;
-          this._closedDrawer = this.contentPortion.close;
+          this._openDrawer = this.drawerPortion.open;
+          this._closedDrawer = this.drawerPortion.close;
         }
-        this.endDrawerSizeSource$.next(this._openDrawer);
-        return 100 - this._openDrawer;
+        this.endDrawerSizeSource$.next(this._closedDrawer);
+        return 100 - this._closedDrawer;
       })
     );
   }
@@ -163,7 +168,6 @@ export class LayoutComponent implements OnInit {
   emitEndDrawer(): void {
     let portion: number = 0;
 
-    this._endDrawerOpen = !this._endDrawerOpen;
     if (!this._endDrawerOpen) {
       portion = 100 - this._openDrawer;
       this.portion$ = of(portion);
@@ -173,6 +177,7 @@ export class LayoutComponent implements OnInit {
       this.portion$ = of(portion);
       this.endDrawerSizeSource$.next(this._closedDrawer);
     }
+    this._endDrawerOpen = !this._endDrawerOpen;
     this.openChanged.emit(this._endDrawerOpen);
   }
 }
