@@ -86,7 +86,7 @@
         class="end-drawer-btn"
       ></kkl-icon>
 
-      <ng-content content></ng-content>
+      <ng-content select="[content]"></ng-content>
 
       <ng-container *ngIf="!(hideFooter$ | async)">
         <div class="navbar-bottom">

@@ -28,10 +28,7 @@ export interface DataEx {
   providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
-  actions: ButtonModel[] = [
-    { type: 'file' },
-    { type: 'form', action: FormActions.EDIT },
-  ];
+  actions: ButtonModel[] = [{ type: 'file' }];
   actions$: Observable<ButtonModel[]>;
 
   steps: CardStep[] = [

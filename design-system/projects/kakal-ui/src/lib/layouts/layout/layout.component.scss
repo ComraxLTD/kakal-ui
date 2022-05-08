@@ -4,7 +4,6 @@
   overflow: visible !important;
   // visibility: visible !important;
 
-
   &.menu {
     height: 100%;
     // top: main.$toolbar-height;
@@ -42,10 +41,6 @@ div.content {
   margin-bottom: main.$bottomBar-height;
 }
 
-.sidenav-drawer {
-  width: 32rem !important;
-}
-
 // style button of side menu
 button.mat-fab.kkl-drawer-button {
   background-color: main.color(paper) !important;
@@ -72,7 +67,7 @@ button.mat-fab.kkl-drawer-button {
   right: 28rem;
 
   &.outside {
-    margin-top : 1%;
+    margin-top: 1%;
     right: 8rem;
   }
 }
@@ -140,7 +135,6 @@ button.mat-fab.kkl-drawer-button {
 // .main-content-height{
 //   height: main.$wizard-height;
 // }
-
 
 .toolbar-height {
   height: 8rem !important;
