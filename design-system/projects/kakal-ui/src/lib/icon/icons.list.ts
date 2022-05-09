@@ -939,8 +939,8 @@ export const ACCEPT_WITH_CIRCLE = `
       <g id="Group_2133" data-name="Group 2133">
         <g id="Group_2151" data-name="Group 2151">
           <path id="Path_1115" data-name="Path 1115" d="M10.082,20.165A10.082,10.082,0,1,1,14.247.9a.579.579,0,1,1-.479,1.054,8.925,8.925,0,1,0,5.238,8.13,9.012,9.012,0,0,0-.155-1.667A.579.579,0,1,1,19.989,8.2a10.09,10.09,0,0,1-9.907,11.964" transform="translate(0 -0.001)" fill="#01a7b4"/>
-          <path id="Path_1116" data-name="Path 1116" d="M129.862,31.128a.756.756,0,1,1-.756-.756.756.756,0,0,1,.756.756" transform="translate(-111.833 -26.464)" fill="#01a7b4"/>
-          <path id="Icon_feather-check" data-name="Icon feather-check" d="M13.794,9,8.436,14.359,6,11.923" transform="translate(0.5 -1.03)" fill="none" stroke="#01a7b4" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"/>
+          <path id="Path_1116" data-name="Path 1116" d="M129.862,31.128a.756.756,0,1,1-.756-.756.756.756,0,0,1,.756.756" transform="translate(-111.833 -26.464)" fill="'none'"/>
+          <path id="Icon_feather-check" data-name="Icon feather-check" d="M13.794,9,8.436,14.359,6,11.923" transform="translate(0.5 -1.03)" fill="none" stroke="'none'" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.3"/>
         </g>
       </g>
     </g>
