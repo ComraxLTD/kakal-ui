@@ -1,7 +1,13 @@
 <div fxLayout="column" dir="rtl" fxFill [class.kkl-alert-dialog]>
   <ng-container *ngIf="data?.title">
     <div>
-      <kkl-typography fxLayout="row" fxLayoutAlign="center center" mat-dialog-title [size]="2.4" color="primary">
+      <kkl-typography
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        mat-dialog-title
+        [size]="2.4"
+        color="primary"
+      >
         {{ data.title }}
       </kkl-typography>
     </div>
@@ -15,8 +21,14 @@
   </ng-container>
 
   <ng-container *ngIf="data?.buttonText">
-    <mat-dialog-actions fxFlexOffset="1rem" fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem" dir="ltr">
-      <button mat-raised-button (click)="onConfirmClick()" kkl-border>
+    <mat-dialog-actions
+      fxFlexOffset="1rem"
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxLayoutGap="2rem"
+      dir="ltr"
+    >
+      <button mat-raised-button (click)="onConfirmClick(true)" kkl-border>
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
           <kkl-icon color="primary" key="accept_circle"></kkl-icon>
           <kkl-typography>
@@ -24,7 +36,14 @@
           </kkl-typography>
         </div>
       </button>
-      <button *ngIf="data.buttonText.cancel" mat-raised-button mat-dialog-close kkl-border color="default">
+      <button
+        *ngIf="data.buttonText.cancel"
+        mat-raised-button
+        mat-dialog-close
+        kkl-border
+        color="default"
+        (click)="onConfirmClick(false)"
+      >
         <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1rem">
           <kkl-icon key="cancel_circle"></kkl-icon>
           <kkl-typography>
