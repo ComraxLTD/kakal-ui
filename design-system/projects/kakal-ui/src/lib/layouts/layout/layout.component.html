@@ -15,7 +15,7 @@
             fxLayoutGap="0.5rem"
             kkl-underline
             kkl-button
-            (click)="onStartSideNav('menu')"
+            (click)="menuDrawer.toggle()"
           >
             <kkl-icon
               color="primary"
@@ -73,7 +73,7 @@
         [status]="status"
         [showStatus$]="showStatus$"
         [isOpen]="menuDrawer.opened"
-        (menuToggle)="onStartSideNav('menu')"
+        (menuToggle)="menuDrawer.toggle()"
         (logoClicked)="onLogoClicked()"
         (statusSelection)="onStatusSelection($event)"
       ></kkl-navbar>
