@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   CardStatus,
   MenuCard,
-  PageHeadlineService,
   RouterService,
   StatusSelectionEvent,
 } from '../../../kakal-ui/src/public-api';
@@ -16,7 +15,7 @@ export class AppComponent {
   title = 'education';
 
   cards: MenuCard[] = [
-    { path: 'as', templateName: '', svgIcon: 'edit' } as MenuCard,
+    { path: 'as', templateName: '', svgIcon: 'home' } as MenuCard,
   ];
 
   status: CardStatus[] = [
@@ -45,7 +44,6 @@ export class AppComponent {
 
   constructor(
     private routerService: RouterService,
-    private pageHeadlineSource: PageHeadlineService
   ) {}
 
   ngOnInit(): void {}

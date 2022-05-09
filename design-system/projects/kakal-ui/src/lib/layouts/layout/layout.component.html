@@ -39,36 +39,46 @@
     </mat-sidenav>
 
     <mat-sidenav
-      *ngIf="showEndDrawer"
       #endDrawer
       class="sidenav-drawer"
-      [opened]="true"
+      [opened]="portion.show"
       fxLayoutAlign="stretch stretch"
       mode="side"
       position="end"
-      [ngStyle]="{ width: (endDrawerSize$ | async) + '%' }"
+      [ngStyle]="{ width: portion.drawer + '%' }"
     >
       <!-- end drawer content -->
       <div fxLayout="row" fxFill fxLayoutAlign="stretch stretch">
-        <div fxFlex="100" fxLayout="column" fxFill>
-          <div
-            class="end-drawer-button"
-            (click)="emitEndDrawer()"
-            *ngIf="portion != 1 && portion != 99"
+        <ng-container *ngIf="portion.hasButton">
+          <!-- inner end drawer button -->
+          <button
+            class="drawer-desktop-btn"
+            [disableRipple]="true"
+            mat-button
+            (click)="onEndDrawerToggle()"
           >
-            <!-- end drawer button -->
-            <kkl-icon
-              [key]="'chevron_left'"
-              color="success"
-              [size]="4"
-            ></kkl-icon>
-          </div>
+            <mat-icon>chevron_left</mat-icon>
+          </button>
+        </ng-container>
+
+        <!-- MOBILE BUTTON FOR PORTION DRAWER -->
+        <ng-container *ngIf="portion.mobile && endDrawer.opened">
+          <button
+            mat-fab
+            class="drawer-mobile-btn"
+            (click)="endDrawer.toggle()"
+          >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </ng-container>
+
+        <div fxFlex>
           <ng-content select="[endDrawerContent]"></ng-content>
         </div>
       </div>
     </mat-sidenav>
 
-    <mat-sidenav-content [fxFlex]="portion">
+    <mat-sidenav-content [fxFlex]="portion.content">
       <kkl-navbar
         [status]="status"
         [showStatus$]="showStatus$"
@@ -78,18 +88,19 @@
         (statusSelection)="onStatusSelection($event)"
       ></kkl-navbar>
 
-      <kkl-icon
-        *ngIf="portion === 1 || portion === 99"
-        [size]="10"
-        [key]="'drawer_toggle_icon'"
-        (click)="emitEndDrawer()"
-        class="end-drawer-btn"
-      ></kkl-icon>
+      <ng-content select="[content]"></ng-content>
 
-      <ng-content content></ng-content>
+      <!-- MOBILE BUTTON FOR PORTION DRAWER -->
+      <ng-container
+        *ngIf="portion.mobile && !endDrawer.opened"
+      >
+        <button mat-fab class="drawer-mobile-btn" (click)="endDrawer.toggle()">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </ng-container>
 
       <ng-container *ngIf="!(hideFooter$ | async)">
-        <div class="navbar-bottom">
+        <div class="footer">
           <kkl-navbar-bottom></kkl-navbar-bottom>
         </div>
       </ng-container>
