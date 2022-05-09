@@ -94,6 +94,9 @@ export class IconService {
     // DIALOG
     accept_circle: AppIcons.ACCEPT_WITH_CIRCLE,
     cancel_circle: AppIcons.CANCEL_WITH_CIRCLE,
+    dialog_success: AppIcons.DIALOG_SUCCESS_ICON,
+    dialog_cancel: AppIcons.DIALOG_CANCEL_ICON,
+    dialog_wait: AppIcons.DIALOG_WAIT_ICON,
 
     //-------FORESTRY ICONS--------------------------------------------------------------
     strategy: AppIcons.STRATEGY,

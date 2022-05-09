@@ -1,4 +1,4 @@
-<kkl-layout
+<!-- <kkl-layout
   [hideFooterPath]="['lobby']"
   [status]="status"
   (logoClicked)="onLogoClicked()"
@@ -11,4 +11,17 @@
 
 <ng-template #temp>
   <kkl-icon key="edit"></kkl-icon>
-</ng-template>
+</ng-template> -->
+
+
+<button mat-raised-button color="primary" (click)="onSuccessDialog()">
+  <kkl-typography >Open success Dialog</kkl-typography>
+</button>
+
+<button mat-raised-button color="primary" (click)="onCancelDialog()">
+  <kkl-typography >Open cancel Dialog</kkl-typography>
+</button>
+
+<button mat-raised-button color="primary" (click)="onWaitDialog()">
+  <kkl-typography >Open wait Dialog</kkl-typography>
+</button>

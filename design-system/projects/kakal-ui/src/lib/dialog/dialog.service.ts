@@ -4,6 +4,7 @@ import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DialogComponent } from './dialog.component';
 import { DialogAlertComponent } from '../dialog-alert/dialog-alert.component';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 
 export interface DialogData {
   type: string;
@@ -142,5 +143,24 @@ export class DialogService {
     };
 
     return this.dialog.open(DialogAlertComponent, configError);
+  }
+
+  public openCustom(options: {
+    message: string;
+    title?: string;
+    icon?: string;
+    config?: MatDialogConfig;
+  }) : MatDialogRef<CustomDialogComponent>  {
+    const { title, message, icon, config } = options;
+    const configError = {
+      ...config,
+      data: {
+        title,
+        message,
+        icon,
+      },
+    };
+
+    return this.dialog.open(CustomDialogComponent, configError);
   }
 }
