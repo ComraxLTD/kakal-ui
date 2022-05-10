@@ -17,14 +17,13 @@ export class NavbarBottomComponent implements OnInit {
   showSave$: Observable<boolean>;
   showBack$: Observable<boolean>;
   showNextMiddle$: Observable<{ show: boolean; next: boolean }>;
+  nextLabel$: Observable<string>;
 
   disableNext$: Observable<boolean>;
 
   autoBack: boolean = true;
 
   formGroup: FormGroup = new FormGroup({});
-
-  @Input() nextLabel: string;
 
   bottomIcon: string = 'bottom_tree_';
 
@@ -51,7 +50,7 @@ export class NavbarBottomComponent implements OnInit {
     this.navbarBottomService
       .getFormGroup()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((b:FormGroup) => {
+      .subscribe((b: FormGroup) => {
         if (b) {
           this.formGroup = b;
         } else {
@@ -61,7 +60,7 @@ export class NavbarBottomComponent implements OnInit {
     this.navbarBottomService
       .getAutoBack()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a:boolean) => {
+      .subscribe((a: boolean) => {
         this.autoBack = a;
       });
   }
