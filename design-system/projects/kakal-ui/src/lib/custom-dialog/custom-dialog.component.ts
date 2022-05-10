@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IconService } from '../icon/icons.service';
 
 @Component({
   selector: 'pl-custom-dialog',
@@ -11,15 +10,15 @@ export class CustomDialogComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
+    // not sure is necessary 
     public dialogRef: MatDialogRef<CustomDialogComponent>,
   ) {}
 
+  // not sure is necessary 
   ngOnInit(): void {
-    this.data.icon = this.data.icon || 'accept_circle';
-    this.data.title = this.data.title || '';
-    this.data.message = this.data.message || 'message';
   }
 
+  // not sure is necessary 
   onClose() {
     this.dialogRef.close();
   }

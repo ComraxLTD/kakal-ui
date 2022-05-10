@@ -18,21 +18,6 @@ import { CustomDialogComponent } from '../../../kakal-ui/src/lib/custom-dialog/c
 })
 export class AppComponent {
 
-  public onSuccessDialog() {
-  const messageRef:MatDialogRef<CustomDialogComponent> = this.dialogService.openCustom({message:'התקבל אישור תקציבי', icon: 'dialog_success'})
-    messageRef.afterClosed().subscribe(value=>console.log(value))
-  }
-
-  public onCancelDialog() {
-  const messageRef:MatDialogRef<CustomDialogComponent> = this.dialogService.openCustom({message:'אין אישור תקציבי', icon: 'dialog_cancel', title: 'ה הליך מפ/1234/21 - כיבוד'})
-    messageRef.afterClosed().subscribe(value=>console.log(value))
-  }
-
-  public onWaitDialog() {
-  const messageRef:MatDialogRef<CustomDialogComponent> = this.dialogService.openCustom({message:'בהמתנה לאישור תקציבי', icon: 'dialog_wait', title: 'ה הליך מפ/1234/21 - כיבוד'})
-    messageRef.afterClosed().subscribe(value=>console.log(value))
-  }
-
   title = 'education';
 
   cards: MenuCard[] = [
@@ -66,7 +51,6 @@ export class AppComponent {
   constructor(
     private routerService: RouterService,
     private pageHeadlineSource: PageHeadlineService,
-    private dialogService:DialogService
   ) {}
 
   ngOnInit(): void {}

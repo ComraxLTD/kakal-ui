@@ -146,7 +146,7 @@ export class DialogService {
   }
 
   public openCustom(options: {
-    message: string;
+    message?: string;
     title?: string;
     icon?: string;
     config?: MatDialogConfig;
