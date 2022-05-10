@@ -62,7 +62,7 @@
         color="primary"
         (click)="onNext()"
       >
-        {{ nextLabel || "המשך" }}
+        {{ nextLabel$ | async }}
       </button>
     </ng-container>
   </div>

@@ -26,7 +26,7 @@ export class NavbarBottomService {
   constructor() {}
 
   // show next button methods
-  getShowNext(): BehaviorSubject<boolean> {
+  listenToShowNext(): BehaviorSubject<boolean> {
     return this.showNext$;
   }
   setShowNext(val: boolean) {
@@ -34,7 +34,7 @@ export class NavbarBottomService {
   }
 
   // show save button methods
-  getShowSave(): Observable<boolean> {
+  listenToShowSave(): Observable<boolean> {
     return this.showSave$.asObservable();
   }
   setShowSave(val: boolean) {
@@ -42,7 +42,7 @@ export class NavbarBottomService {
   }
 
   // show previous button methods
-  getShowBack(): Observable<boolean> {
+  listenToShowBack(): Observable<boolean> {
     return this.showBack$.asObservable();
   }
   setShowBack(val: boolean) {
@@ -50,7 +50,7 @@ export class NavbarBottomService {
   }
 
   // show next middle button methods
-  getShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
+  listenToShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
     return this.showNextMiddle$.asObservable();
   }
   setShowNextMiddle(val: { show: boolean; next: boolean }) {
@@ -58,7 +58,7 @@ export class NavbarBottomService {
   }
 
   // next disable button methods
-  getDisableNext(): Observable<boolean> {
+  listenToDisableNext(): Observable<boolean> {
     return this.disableNext$.asObservable();
   }
 
@@ -66,14 +66,14 @@ export class NavbarBottomService {
     this.disableNext$.next(val);
   }
 
-  getAutoBack(): Observable<boolean> {
+  listenToAutoBack(): Observable<boolean> {
     return this.autoBack$.asObservable();
   }
   setAutoBack(val: boolean) {
     this.autoBack$.next(val);
   }
 
-  getFormGroup(): Observable<FormGroup> {
+  listenToFormGroup(): Observable<FormGroup> {
     return this.formGroup$.asObservable();
   }
   setFormGroup(val: FormGroup) {
@@ -102,7 +102,7 @@ export class NavbarBottomService {
     this.next$.next();
   }
 
-  getNextMiddle(): Subject<void> {
+  listenToNextMiddle(): Subject<void> {
     return this.nextMiddle$;
   }
   setNextMiddle() {

@@ -41,14 +41,15 @@ export class NavbarBottomComponent implements OnInit {
   ngOnInit(): void {
     this.bottomIcon = this.setBottomIcon();
 
-    this.showNext$ = this.navbarBottomService.getShowNext();
-    this.showSave$ = this.navbarBottomService.getShowSave();
-    this.showBack$ = this.navbarBottomService.getShowBack();
-    this.showNextMiddle$ = this.navbarBottomService.getShowNextMiddle();
-    this.disableNext$ = this.navbarBottomService.getDisableNext();
+    this.showNext$ = this.navbarBottomService.listenToShowNext();
+    this.showSave$ = this.navbarBottomService.listenToShowSave();
+    this.showBack$ = this.navbarBottomService.listenToShowBack();
+    this.showNextMiddle$ = this.navbarBottomService.listenToShowNextMiddle();
+    this.disableNext$ = this.navbarBottomService.listenToDisableNext();
+    this.nextLabel$ = this.navbarBottomService.listenNextLabel()
 
     this.navbarBottomService
-      .getFormGroup()
+      .listenToFormGroup()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((b: FormGroup) => {
         if (b) {
@@ -58,7 +59,7 @@ export class NavbarBottomComponent implements OnInit {
         }
       });
     this.navbarBottomService
-      .getAutoBack()
+      .listenToAutoBack()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a: boolean) => {
         this.autoBack = a;
