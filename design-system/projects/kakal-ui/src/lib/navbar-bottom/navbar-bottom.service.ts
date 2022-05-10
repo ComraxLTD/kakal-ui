@@ -25,7 +25,7 @@ export class NavbarBottomService {
 
   constructor() {}
 
-  // next button methods
+  // show next button methods
   getShowNext(): BehaviorSubject<boolean> {
     return this.showNext$;
   }
@@ -33,7 +33,7 @@ export class NavbarBottomService {
     this.showNext$.next(val);
   }
 
-  // save button methods
+  // show save button methods
   getShowSave(): Observable<boolean> {
     return this.showSave$.asObservable();
   }
@@ -41,7 +41,7 @@ export class NavbarBottomService {
     this.showSave$.next(val);
   }
 
-  // previous button methods
+  // show previous button methods
   getShowBack(): Observable<boolean> {
     return this.showBack$.asObservable();
   }
@@ -49,7 +49,7 @@ export class NavbarBottomService {
     this.showBack$.next(val);
   }
 
-  // next middle button methods
+  // show next middle button methods
   getShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
     return this.showNextMiddle$.asObservable();
   }
@@ -57,9 +57,11 @@ export class NavbarBottomService {
     this.showNextMiddle$.next(val);
   }
 
+  // next disable button methods
   getDisableNext(): Observable<boolean> {
     return this.disableNext$.asObservable();
   }
+
   setDisableNext(val: boolean) {
     this.disableNext$.next(val);
   }
@@ -78,21 +80,22 @@ export class NavbarBottomService {
     this.formGroup$.next(val);
   }
 
-  getSave(): Observable<void> {
+  listenToSave(): Observable<void> {
     return this.save$.asObservable();
   }
+
   setSave() {
     this.save$.next();
   }
 
-  getBack(): Observable<void> {
+  listenToBack(): Observable<void> {
     return this.back$.asObservable();
   }
   setBack() {
     this.back$.next();
   }
 
-  getNext(): Observable<void> {
+  listenToNext(): Observable<void> {
     return this.next$.asObservable();
   }
   setNext() {
@@ -104,5 +107,14 @@ export class NavbarBottomService {
   }
   setNextMiddle() {
     this.nextMiddle$.next();
+  }
+
+  // next label methods
+
+  setNextLabel(value: string): void {
+    this.nextLabel$.next(value);
+  }
+  listenNextLabel(): Observable<string> {
+    return this.nextLabel$.asObservable();
   }
 }
