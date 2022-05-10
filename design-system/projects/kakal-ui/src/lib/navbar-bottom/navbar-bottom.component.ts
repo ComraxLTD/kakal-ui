@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
-import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
-import { Subject, BehaviorSubject, takeUntil, Observable } from 'rxjs';
+import { ROOT_PREFIX } from '../../constants/root-prefix';
+import { Subject, takeUntil, Observable } from 'rxjs';
+import { IconService } from '../icon/icons.service';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -35,18 +36,20 @@ export class NavbarBottomComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private navbarBottomService: NavbarBottomService,
+    private iconService: IconService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
     this.bottomIcon = this.setBottomIcon();
+    this.iconService.setIcon(this.bottomIcon);
 
     this.showNext$ = this.navbarBottomService.listenToShowNext();
     this.showSave$ = this.navbarBottomService.listenToShowSave();
     this.showBack$ = this.navbarBottomService.listenToShowBack();
     this.showNextMiddle$ = this.navbarBottomService.listenToShowNextMiddle();
     this.disableNext$ = this.navbarBottomService.listenToDisableNext();
-    this.nextLabel$ = this.navbarBottomService.listenNextLabel()
+    this.nextLabel$ = this.navbarBottomService.listenNextLabel();
 
     this.navbarBottomService
       .listenToFormGroup()

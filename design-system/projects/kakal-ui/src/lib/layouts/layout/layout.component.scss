@@ -2,41 +2,23 @@
 
 ::ng-deep mat-sidenav {
   overflow: visible !important;
-  // visibility: visible !important;
 
   &.menu {
     height: 100%;
-    // top: main.$toolbar-height;
-    // height: main.$content-height;
-
-    // div.menu-container {
-    //   height: inherit;
-    // }
   }
 }
 
-:host {
-  .kkl-sidenav-container {
-    height: 100%;
-  }
-
-  mat-sidenav-content {
-    background-color: main.color(paper);
-    margin: 0px !important;
-    overflow-x: hidden;
-    // height:calc(100% - main.$bottomBar-height) !important;
-  }
-}
-
-.sidenav-container {
-  background-color: main.color(paper);
+::ng-deep mat-sidenav-container.kkl-layout {
+  height: 100%;
 }
 
 mat-sidenav-content {
+  // height: 100%;
   background-color: main.color(paper);
-  margin-left: 0 !important;
+  margin: 0px !important;
+  // overflow-x: hidden;
+  // height:calc(100% - main.$bottomBar-height) !important;
 }
-
 div.content {
   margin-bottom: main.$bottomBar-height;
 }
@@ -86,8 +68,7 @@ button.mat-fab.kkl-drawer-button {
 // style bottom-navbar
 .footer {
   bottom: 0;
-  width: 100%;
-  position: fixed;
+  position: sticky;
   height: main.$bottomBar-height;
   z-index: 100;
   // overflow: hidden;

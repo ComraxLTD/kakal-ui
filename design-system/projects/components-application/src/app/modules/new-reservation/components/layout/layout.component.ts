@@ -5,6 +5,7 @@ import {
   DisplayItem,
   FormActions,
   LayoutService,
+  NavbarBottomService,
   PageHeadlineService,
   RouterService,
   StatusBars,
@@ -42,14 +43,13 @@ export class LayoutComponent implements OnInit {
       label: 'מרכיבי הזמנה',
       svgIcon: 'tree',
       path: 'parts',
-      disabled: true,
     },
     {
       label: 'סיכום הזמנה',
       svgIcon: 'list',
       path: 'summary',
     },
-  ];
+    ];
 
   displayData: DisplayItem<DataEx>[] = [
     {
@@ -92,6 +92,8 @@ export class LayoutComponent implements OnInit {
     private routerService: RouterService,
     private newReservationService: NewReservationService,
     private pageHeadlineSource: PageHeadlineService,
+    private navbarBottomService: NavbarBottomService,
+    private stepsLayoutService: StepsLayoutService,
     private layoutService: LayoutService
   ) {}
 
@@ -107,10 +109,36 @@ export class LayoutComponent implements OnInit {
       close: 5,
       hasButton: true,
     });
+
+    this.onNext().subscribe()
+
+    this.navbarBottomService.setShowNext(true);
   }
 
   ngOnDestroy() {
-    this.layoutService.destroyDrawer()
+    this.layoutService.destroyDrawer();
+  }
+
+  onNext() {
+    return this.navbarBottomService.listenToNext().pipe(
+      map((_) => {
+        return this.routerService.getCurrentPath();
+      }),
+      map((currentPath: string) => {
+        const stepSelectEvent = this.stepsLayoutService.getStepsSelection();
+
+        const { selectedIndex } = stepSelectEvent;
+        const nextIndex =
+          selectedIndex === this.steps.length - 1
+            ? selectedIndex
+            : selectedIndex + 1;
+
+        const nextPath = this.steps[nextIndex].path;
+
+        const url = this.routerService.url.replace(currentPath, nextPath);
+        this.routerService.navigate(url);
+      })
+    );
   }
 
   public onPrevious(): void {
