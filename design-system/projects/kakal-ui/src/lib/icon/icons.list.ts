@@ -1,3 +1,9 @@
+export const MOBILE_DROP_DOWN = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="17.317" height="17.317" viewBox="0 0 17.317 17.317">
+    <path id="Icon_ionic-ios-arrow-dropdown-circle" data-name="Icon ionic-ios-arrow-dropdown-circle" d="M3.375,12.033a8.658,8.658,0,1,0,8.658-8.658A8.657,8.657,0,0,0,3.375,12.033Zm12.034-1.807a.806.806,0,0,1,1.136,0,.794.794,0,0,1,.233.566.808.808,0,0,1-.237.57l-3.925,3.913a.8.8,0,0,1-1.107-.025L7.525,11.28a.8.8,0,1,1,1.136-1.136l3.376,3.409Z" transform="translate(-3.375 -3.375)" fill="'none'"/>
+  </svg>
+`
+
 export const DIALOG_WAIT_ICON = `
   <svg id="Group_2223" data-name="Group 2223" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="236" height="236" viewBox="0 0 236 236">
   <defs>

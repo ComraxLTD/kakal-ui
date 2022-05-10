@@ -40,6 +40,7 @@ export class IconService {
     // TABLE ICONS
     drag_n_drop: AppIcons.DRAG_N_DROP,
     all_directions: AppIcons.AAL_DIRECTIONS,
+    mobile_drop_down: AppIcons.MOBILE_DROP_DOWN,
 
     // ACTIONS ICONS
     two_arrows: AppIcons.TWO_ARROWS_UP,
