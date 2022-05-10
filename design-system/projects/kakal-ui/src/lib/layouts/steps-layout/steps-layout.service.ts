@@ -56,21 +56,26 @@ export class StepsLayoutService {
   disableButton(val: string) {
     this.actionState$.next({ action: 'disable', key: val });
   }
+
   enableButton(val: string) {
     this.actionState$.next({ action: 'enable', key: val });
   }
 
+  // *** use to listen to the left action buttons
   getButtonClicked(): Observable<ButtonModel> {
     return this.buttonClicked$.asObservable();
   }
 
+  // *** use to set the action buttons
   setButtonClicked(butt: ButtonModel) {
     this.buttonClicked$.next(butt);
   }
 
+  // *** use to show drawer button
   showDrawer() {
     this.drawerLayoutService.show();
   }
+  // *** use to hide side drawer button
   hideDrawer() {
     this.drawerLayoutService.hide();
   }

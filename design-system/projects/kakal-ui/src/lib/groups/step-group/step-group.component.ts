@@ -4,6 +4,10 @@ import { BreakpointService } from '../../../services/breakpoint.service';
 import { Observable } from 'rxjs';
 
 export interface StepsSelectionEvent {
+
+  // The steps for the UI
+  source: CardStep[];
+
   /** Index of the step selected. */
   selectedIndex: number;
 
@@ -17,12 +21,11 @@ export interface StepsSelectionEvent {
   previouslySelectedStep?: CardStep;
 
   /** If this step is the last */
-  last: boolean;
+  last?: boolean;
 
   /** If this step is the first */
-  first: boolean;
+  first?: boolean;
 
-  source?: CardStep[];
 }
 @Component({
   selector: 'kkl-step-group',
@@ -30,14 +33,15 @@ export interface StepsSelectionEvent {
   styleUrls: ['./step-group.component.scss'],
 })
 export class StepGroupComponent implements OnInit {
-  _steps: CardStep[];
+  // _steps: CardStep[];
 
-  @Input() set steps(value: CardStep[]) {
-    this._steps = value;
-  }
+  // @Input() set steps(value: CardStep[]) {
+  //   this._steps = value;
+  // }
+  @Input() stepsSelectionEvent: StepsSelectionEvent;
+
   @Input() direction: 'row' | 'column' = 'row';
 
-  @Input() stepsSelectionEvent: StepsSelectionEvent;
 
   mobile$: Observable<boolean>;
 
