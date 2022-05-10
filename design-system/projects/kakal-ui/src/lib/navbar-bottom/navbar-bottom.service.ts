@@ -18,11 +18,14 @@ export class NavbarBottomService {
   private nextMiddle$: Subject<void> = new Subject();
   private formGroup$: Subject<FormGroup> = new Subject();
 
+  private nextLabel$: BehaviorSubject<string> = new BehaviorSubject('המשך');
+
   private disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor() {}
 
+  // next button methods
   getShowNext(): BehaviorSubject<boolean> {
     return this.showNext$;
   }
@@ -30,6 +33,7 @@ export class NavbarBottomService {
     this.showNext$.next(val);
   }
 
+  // save button methods
   getShowSave(): Observable<boolean> {
     return this.showSave$.asObservable();
   }
@@ -37,6 +41,7 @@ export class NavbarBottomService {
     this.showSave$.next(val);
   }
 
+  // previous button methods
   getShowBack(): Observable<boolean> {
     return this.showBack$.asObservable();
   }
@@ -44,6 +49,7 @@ export class NavbarBottomService {
     this.showBack$.next(val);
   }
 
+  // next middle button methods
   getShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
     return this.showNextMiddle$.asObservable();
   }
