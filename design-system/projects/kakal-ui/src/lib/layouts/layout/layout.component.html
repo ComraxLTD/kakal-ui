@@ -78,7 +78,7 @@
       </div>
     </mat-sidenav>
 
-    <mat-sidenav-content [fxFlex]="portion.content">
+    <mat-sidenav-content [ngStyle]="{ width: portion.content + '%' }">
       <kkl-navbar
         [status]="status"
         [showStatus$]="showStatus$"
@@ -100,7 +100,7 @@
       </ng-container>
 
       <ng-container *ngIf="!(hideFooter$ | async)">
-        <div class="footer">
+        <div class="footer" [ngStyle]="{ width: portion.content + '%' }">
           <kkl-navbar-bottom></kkl-navbar-bottom>
         </div>
       </ng-container>

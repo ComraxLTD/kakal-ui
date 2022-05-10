@@ -1,5 +1,10 @@
 @use "../../../styles/variables" as main;
 
+:host {
+  height: 100%;
+  width: 100%;
+}
+
 ::ng-deep mat-sidenav {
   overflow: visible !important;
 
@@ -68,8 +73,7 @@ button.mat-fab.kkl-drawer-button {
 // style bottom-navbar
 .footer {
   bottom: 0;
-  position: sticky;
-  height: main.$bottomBar-height;
+  position: fixed;
   z-index: 100;
   // overflow: hidden;
   // & * {

@@ -1,33 +1,19 @@
 @use "../../../styles/variables" as main;
 
+mat-sidenav-container.kkl-drawer-layout {
+  height: calc(100% - 16rem);
+}
+
 ::ng-deep mat-sidenav {
   overflow: visible !important;
 }
 
-:host {
-  .kkl-drawer-layout {
-    height: main.$content-height;
-  }
-
-  mat-sidenav-content {
-    background-color: main.color(paper);
-    margin: 0px !important;
-    overflow-x: hidden;
-  }
-}
-
-.sidenav-container {
-  background-color: main.color(paper);
-}
-
 mat-sidenav-content {
   background-color: main.color(paper);
-  margin-left: 0 !important;
+  margin: 0px !important;
+  overflow-x: hidden;
 }
 
-div.content {
-  margin-bottom: main.$bottomBar-height;
-}
 
 .drawer-wrapper {
   width: 32rem !important;
