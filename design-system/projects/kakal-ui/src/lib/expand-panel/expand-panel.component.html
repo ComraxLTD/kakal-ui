@@ -15,12 +15,15 @@
           fxLayout="row"
           fxLayoutAlign="center center"
           fxLayoutGap="1rem"
+          [ngClass]="expanded && 'expanded'"
         >
           <ng-content select="[title]"></ng-content>
           <kkl-icon
             *ngIf="hideToggle"
+            style="padding: 0 5px;"
             color="primary"
-            [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'"
+            [size]="3"
+            [key]="'keyboard_arrow_down'"
           ></kkl-icon>
         </div>
       </mat-panel-title>

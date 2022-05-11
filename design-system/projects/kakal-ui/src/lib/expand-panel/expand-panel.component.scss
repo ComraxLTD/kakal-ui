@@ -38,7 +38,17 @@
 
     .title {
       border-bottom: 2px solid main.color(primary) !important;
-      padding: 0 1rem !important;
+      padding: 0 1rem .5rem 1rem !important;
+      ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+        transform: rotate(0) ;
+        transition: .5s all;
+      }
+    }
+    .expanded{
+      ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+        transform: rotate(180deg) !important;
+        transition: .5s all;
+      }
     }
   }
 
@@ -52,7 +62,17 @@
 
     .title {
       border-bottom: 2px solid main.color(primary) !important;
-      padding: 0 1rem !important;
+      padding: 0 1rem .5rem 1rem !important;
+      ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+        transform: rotate(0) ;
+        transition: .5s all;
+      }
+    }
+    .expanded{
+      ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+        transform: rotate(180deg) !important;
+        transition: .5s all;
+      }
     }
   }
 

@@ -1,4 +1,4 @@
-<kkl-layout
+<!-- <kkl-layout
   [hideFooterPath]="['lobby']"
   [status]="status"
   (logoClicked)="onLogoClicked()"
@@ -11,4 +11,12 @@
 
 <ng-template #temp>
   <kkl-icon key="edit"></kkl-icon>
-</ng-template>
+</ng-template> -->
+
+
+<kkl-expand-panel [variant]="'form'" dir="rtl">
+
+  <kkl-typography class="label" title [color]="'primary'" [size]="2" [weight]="600">כותרת</kkl-typography>
+  <kkl-typography [size]="2" content>תוכן</kkl-typography>
+
+</kkl-expand-panel>
