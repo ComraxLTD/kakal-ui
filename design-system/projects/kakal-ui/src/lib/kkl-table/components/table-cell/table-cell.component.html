@@ -9,10 +9,10 @@
   <span *ngIf="question.button; else withoutButton">
     <button mat-button color="primary" (click)="buttonClick()">
       <span fxLayout="row" fxFlex>
-        <span *ngIf="data" style="white-space: pre-wrap;">
+        <span *ngIf="data" style="white-space: pre-wrap; border-bottom: 1px solid; line-height: normal;">
           {{data | tableCellPipe: question.controlType}}
         </span>
-        <kkl-icon *ngIf="question.button.icon" [key]="question.button.icon"></kkl-icon>
+        <kkl-icon [color]="'primary'" *ngIf="question.button.icon" [key]="question.button.icon"></kkl-icon>
       </span>
     </button>
   </span>
