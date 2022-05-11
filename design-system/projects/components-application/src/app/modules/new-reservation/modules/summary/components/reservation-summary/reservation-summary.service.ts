@@ -13,6 +13,41 @@ export class ReservationSummaryService {
       chargedProvider: 123,
       chargedCustomer: 12,
     },
+    {
+      type: 'פעילות',
+      amount: 1,
+      price: 1,
+      chargedProvider: 123,
+      chargedCustomer: 12,
+    },
+    {
+      type: 'פעילות',
+      amount: 1,
+      price: 1,
+      chargedProvider: 123,
+      chargedCustomer: 12,
+    },
+    {
+      type: 'פעילות',
+      amount: 1,
+      price: 1,
+      chargedProvider: 123,
+      chargedCustomer: 12,
+    },
+    {
+      type: 'פעילות',
+      amount: 1,
+      price: 1,
+      chargedProvider: 123,
+      chargedCustomer: 12,
+    },
+    {
+      type: 'פעילות',
+      amount: 1,
+      price: 1,
+      chargedProvider: 123,
+      chargedCustomer: 12,
+    },
   ];
 
   expandDatasource: any[] = [
@@ -36,11 +71,12 @@ export class ReservationSummaryService {
       button: { type: 'inlineExpand', icon: '' },
     },
     {
+      controlType: 'toggle',
       key: 'amount',
       label: 'כמות',
       button: { type: 'inlineExpand', icon: '' },
     },
-    { key: 'price', label: 'מחיר' },
+    { key: 'price', label: 'מחיר', colIcon: 'add' },
     { key: 'chargedProvider', label: 'חיוב ספק' },
     { key: 'chargedCustomer', label: 'חיוב לקוח' },
   ];

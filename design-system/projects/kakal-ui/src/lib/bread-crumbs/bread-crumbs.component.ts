@@ -10,7 +10,7 @@ import { distinctUntilChanged, filter, Subject, takeUntil, } from 'rxjs';
 })
 export class BreadCrumbsComponent implements OnInit {
   destroySubject$: Subject<void> = new Subject();
-  breadcrumbs: IBreadCrumb[]
+  breadcrumbs: IBreadCrumb[];
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
 

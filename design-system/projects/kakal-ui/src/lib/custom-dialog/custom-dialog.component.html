@@ -1,0 +1,18 @@
+<div class="dialog-container" fxFill fxLayout="column" fxLayoutAlign="space-between center">
+  <button mat-dialog-close mat-icon-button>
+    <mat-icon>clear</mat-icon>
+  </button>
+  <header mat-dialog-title>
+    <kkl-typography fxLayout="row" fxLayoutAlign="start center" [size]="1.75" [weight]="900">
+      {{ data.title }}
+    </kkl-typography>
+  </header>
+  <main fxFlex="50" fxLayout="column" fxLayoutAlign="center center">
+    <kkl-icon [size]="30" [key]="data.icon" [color]="'primary'"></kkl-icon>
+  </main>
+  <footer>
+    <kkl-typography fxLayout="row" fxLayoutAlign="end center" [size]="2.4" [weight]="900" [color]="'primary'">
+      {{ data.message }}
+    </kkl-typography>
+  </footer>
+</div>
