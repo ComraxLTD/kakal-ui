@@ -1,9 +1,10 @@
 <kkl-layout
-  [pageHeadlineRouteMap]="{ lobby: 'admin' }"
+  [hideFooterPath]="['lobby']"
   [status]="status"
   (logoClicked)="onLogoClicked()"
   [cards]="cards"
   menuTemplates="{temp:temp}"
+  (statusSelection)="onStatus($event)"
 >
   <router-outlet></router-outlet>
 </kkl-layout>

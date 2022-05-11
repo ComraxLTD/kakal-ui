@@ -1,5 +1,9 @@
-<div fxFill class="kkl-card-menu-wrapper" kkl-hover [template]="template">
+<div
+fxFill class="kkl-card-menu-wrapper">
   <button
+    [class.active]="isOpened" class="origin"
+    #CdkOverlayOrigin="cdkOverlayOrigin"
+    cdkOverlayOrigin
     class="kkl-card-menu"
     mat-stroked-button
     [disableRipple]="true"
@@ -10,3 +14,10 @@
     <span>{{ card.label }}</span>
   </button>
 </div>
+
+
+<hover-popup [CdkOverlayOrigin]="CdkOverlayOrigin"
+        (close)="isOpened = false"
+        (open)="isOpened = true">
+      <ng-template [ngTemplateOutlet]="template"></ng-template>
+</hover-popup>

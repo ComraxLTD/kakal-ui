@@ -35,6 +35,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
 
   @Input() noMobile: boolean = false;
   typeLocal: boolean = true;
+  currentEditRow: number = -1;
   destroySubject$: Subject<void> = new Subject();
 
   mobile$: Observable<boolean>;
@@ -95,8 +96,8 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
         });
       });
       setControls(newVals, this.searchRow, this.fb, this.localObservables);
-      this.rows.controls.forEach(h => {
-        setControls(newVals, h as FormGroup, this.fb, this.localObservables);
+      this.rows.controls.forEach((h, index) => {
+        setControls(newVals, h as FormGroup, this.fb, this.editObservables.get(index));
       });
     }
     this.oneColumns = value;
@@ -186,6 +187,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
 
 
   localObservables: Map<string, BehaviorSubject<KklSelectOption[]>> = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+  editObservables:  Map<number, Map<string, BehaviorSubject<KklSelectOption[]>>> = new Map<number, Map<string, BehaviorSubject<KklSelectOption[]>>>();
 
 
   ngOnInit(): void {
@@ -235,6 +237,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
   }
   searchFiltersChanged(arr: TableBase[]) {
     this.connectFilters(this.oneColumns.concat(arr));
+    this.currentEditRow = -1;
   }
   connectFilters(arr: TableBase[]) {
     const searchVal = this.searchRow.value;
@@ -328,6 +331,12 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
       // Object.assign(ele, this.rows.at(index).value);
       this.saveRow.emit(this.rows.at(index));
       this.rows.removeAt(index);
+      let ind = index;
+      while(this.editObservables.has(ind+1)) {
+        this.editObservables.set(ind, this.editObservables.get(ind+1));
+        ind++;
+      }
+      this.editObservables.delete(ind);
     }
   }
 
@@ -346,6 +355,12 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
       }
       this.groupDataReload();
       this.rows.removeAt(index);
+      let ind = index;
+      while(this.editObservables.has(ind+1)) {
+        this.editObservables.set(ind, this.editObservables.get(ind+1));
+        ind++;
+      }
+      this.editObservables.delete(ind);
     }
   }
 
@@ -358,13 +373,13 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
   }
 
   addRowGroup(obj: any) {
-    console.log(obj);
-
     const row = this.fb.group({});
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(obj[col.key]));
     // });
-    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    const temp = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+    this.editObservables.set(this.editItems.length, temp);
+    setControls(this.oneColumns, row, this.fb, temp);
     row.setValue(obj);
     this.rows.push(row);
     this.editItems = [...this.editItems, obj];
@@ -375,7 +390,9 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(null));
     // })
-    setControls(this.oneColumns, row, this.fb, this.localObservables);
+    const temp = new Map<string, BehaviorSubject<KklSelectOption[]>>();
+    this.editObservables.set(this.editItems.length, temp);
+    setControls(this.oneColumns, row, this.fb, temp);
     this.rows.push(row);
     const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
@@ -447,9 +464,24 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
   }
 
   putOptions() {
-    this.myOptions.forEach(b => {
-      (this.localObservables.get(b.key))?.next(b.val);
-    });
+    if(this.currentEditRow == -1) {
+      this.myOptions.forEach(b => {
+        (this.localObservables.get(b.key))?.next(b.val);
+      });
+    } else{
+      const temp = this.editObservables.get(this.currentEditRow);
+      this.myOptions.forEach(b => {
+        (temp?.get(b.key))?.next(b.val);
+      });
+    }
+  }
+
+  onRowEditChange(ind: number | any) {
+    if(ind !== -1) {
+      this.currentEditRow = this.editItems.indexOf(ind);
+    } else {
+      this.currentEditRow = ind;
+    }
   }
 
 

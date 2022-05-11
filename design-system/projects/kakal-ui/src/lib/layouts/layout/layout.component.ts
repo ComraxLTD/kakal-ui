@@ -21,6 +21,7 @@ import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
 import { filter, map, startWith } from 'rxjs/operators';
 import { CardStatus } from '../../cards/card-status/card-status.component';
 import { ROOT_PREFIX } from '../../../constants/root-prefix';
+import { StatusSelectionEvent } from '../../groups/status-group/status-group.component';
 
 @Component({
   selector: 'kkl-layout',
@@ -29,13 +30,13 @@ import { ROOT_PREFIX } from '../../../constants/root-prefix';
 })
 export class LayoutComponent implements OnInit {
   @ViewChild('menuDrawer') sidenav: MatSidenav;
-  @Input() pageHeadlineRouteMap: { [ket: string]: string } = {};
 
   @Input() menuTemplates: { [key: string]: TemplateRef<any> };
 
-  @Input() showStatusPath: string[];
   @Input() cards: MenuCard[];
   @Input() status: CardStatus[];
+  @Input() showStatusPath: string[];
+  @Input() hideFooterPath: string[];
 
   selectedOpen: string;
   @Input() contentPortion: { open: number; close: number } = {
@@ -62,24 +63,26 @@ export class LayoutComponent implements OnInit {
   pageHeadline$: Observable<PageHeadline[]>;
 
   showStatus$: Observable<boolean>;
+  hideFooter$: Observable<boolean>;
 
   mobile$: Observable<boolean>;
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
+  @Output() statusSelection: EventEmitter<StatusSelectionEvent> =
+    new EventEmitter();
 
   constructor(
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private pageHeadlineService: PageHeadlineService,
-    @Inject(ROOT_PREFIX) private rootPrefix
+    @Inject(ROOT_PREFIX) public rootPrefix: string
   ) {}
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
-    this.showStatus$ = this.handleShowState(this.showStatusPath || []);
-    this.pageHeadline$ = this.setPageHeadline();
+    this.showStatus$ = this.handleShow(this.showStatusPath || []);
+    this.hideFooter$ = this.handleShow(this.hideFooterPath || []);
 
     this._openDrawer = this.contentPortion.open;
     this._closedDrawer = this.contentPortion.close;
@@ -91,35 +94,11 @@ export class LayoutComponent implements OnInit {
     this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
   }
 
-  private setPageHeadline() {
-    return merge(
-      this.setPageHeadlineFromRoute(),
-      this.pageHeadlineService.listenToPageHeadline()
-    );
-  }
-
-  private setPageHeadlineFromRoute() {
-    return this.routerService.listenToRoute$().pipe(
-      map((url: string) => url.split('/').reverse()),
-      filter((url: string[]) =>
-        url.some((item) => this.pageHeadlineRouteMap[item])
-      ),
-      map((url: string[]) =>
-        url.find((item) => this.pageHeadlineRouteMap[item])
-      ),
-      map((path: string) => this.pageHeadlineRouteMap[path]),
-      map((headline: string) => {
-        const pageHeadline: PageHeadline = { value: headline };
-        return [pageHeadline];
-      })
-    );
-  }
-
-  private handleShowState(list: string[]) {
+  private handleShow(list: string[]) {
     return this.routerService.getLastPath$().pipe(
       startWith(this.routerService.getCurrentPath()),
       map((path: string) => {
-        return this.findPath([...list, 'lobby'], path);
+        return this.findPath([...list], path);
       })
     );
   }
@@ -137,12 +116,17 @@ export class LayoutComponent implements OnInit {
     this.menuSelected.emit(event);
   }
 
+  onStatusSelection(event: StatusSelectionEvent) {
+    this.statusSelection.emit(event);
+  }
+
   onStartSideNav(val: string) {
     this.selectedOpen = val;
     if (this.selectedOpen !== 'menu' || this.cards?.length) {
       this.sidenav.toggle();
     }
   }
+
   // control content width when end drawer is open and close in %
 
   // PORTION LOGIC SECTION

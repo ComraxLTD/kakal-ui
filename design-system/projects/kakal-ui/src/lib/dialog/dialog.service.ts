@@ -1,4 +1,4 @@
-import { Component, Injectable, TemplateRef } from '@angular/core';
+import {  Injectable, Type } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ComponentRef } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ export class DialogService {
   public readonly ERROR_MSG = 'מצטערים, קרתה תקלה ולא ניתן לבצע את הפעולה';
 
   openDialogGetAfterClosedObs(data: {
-    component:any;
+    component:Type<any>;
     closeBtnLabel?: string;
     saveBtnLabel?: string;
   }): Observable<any> {
@@ -32,7 +32,7 @@ export class DialogService {
       })
       .afterClosed();
   }
-  
+
   openDialog(data: {
     component: ComponentRef<any>;
     closeBtnLabel?: string;
@@ -47,7 +47,7 @@ export class DialogService {
     });
   }
 
-  
+
   private openDefault(
     config?: MatDialogConfig
   ): MatDialogRef<DialogAlertComponent> {

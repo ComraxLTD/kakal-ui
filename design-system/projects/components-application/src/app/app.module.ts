@@ -12,7 +12,7 @@ import { ROOT_PREFIX } from '../../../kakal-ui/src/public-api';
   declarations: [
     AppComponent,
     LobbyComponent,
-  
+
   ],
   imports: [
     BrowserModule,
@@ -21,7 +21,7 @@ import { ROOT_PREFIX } from '../../../kakal-ui/src/public-api';
     HttpClientModule,
     CoreModule
   ],
-  providers: [{ provide: ROOT_PREFIX, useValue: 'tac' }],
+  providers: [{ provide: ROOT_PREFIX, useValue: 'education' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

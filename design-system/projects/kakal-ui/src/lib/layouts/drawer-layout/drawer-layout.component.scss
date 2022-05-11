@@ -6,7 +6,7 @@
 
 :host {
   .kkl-drawer-layout {
-    height: main.$content-height
+    height: main.$content-height;
   }
 
   mat-sidenav-content {
@@ -77,5 +77,21 @@ button.mat-fab.kkl-drawer-button {
 ::ng-deep .open {
   span.mat-badge-content.mat-badge-active {
     background-color: main.color(text);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  // style button of side menu
+  button.mat-fab.kkl-drawer-button {
+    // position css
+
+    &.outside {
+      right: 1rem !important;
+      margin-top: 10%;
+    }
+
+    &.opened {
+      right: 28rem;
+    }
   }
 }

@@ -38,10 +38,7 @@
       <kkl-bread-crumbs></kkl-bread-crumbs>
     </div>
     <div>
-      <kkl-page-headline
-        [pageHeadline$]="pageHeadline$"
-        [mobile]="mobile$ | async"
-      ></kkl-page-headline>
+      <kkl-page-headline [mobile]="mobile$ | async"></kkl-page-headline>
     </div>
   </div>
 
@@ -53,12 +50,10 @@
     *ngIf="!(mobile$ | async)"
   >
     <ng-container *ngIf="showStatus$ | async">
-      <kkl-status-group [status]="status"></kkl-status-group>
-      <!-- <kkl-stepper
-          [variant]="'status'"
-          direction="row"
-          [steps]="steps"
-        ></kkl-stepper> -->
+      <kkl-status-group
+        [status]="status"
+        (statusSelection)="onStatusSelection($event)"
+      ></kkl-status-group>
     </ng-container>
   </div>
 

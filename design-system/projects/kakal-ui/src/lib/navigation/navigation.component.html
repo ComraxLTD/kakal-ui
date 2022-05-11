@@ -4,7 +4,7 @@
       <!-- forward button -->
       <div
         fxLayout="row"
-        fxLayoutAlign="space-between center"
+        fxLayoutAlign="center center"
         fxFill
         fxLayoutGap="1.5rem"
         fxFlex
@@ -43,7 +43,7 @@
           <div
             kkl-border
             kkl-button
-            (click)="onStepSelect(item)"
+            (click)="onStepSelect(i)"
             [ngClass]="{
               selected: stepsSelection.selectedIndex === i,
               button: true

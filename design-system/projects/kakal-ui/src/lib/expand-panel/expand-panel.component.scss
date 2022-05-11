@@ -2,7 +2,7 @@
 
 .kkl-expansion-panel {
   ::ng-deep .mat-expansion-panel-body {
-    padding: 0 !important;
+    padding: 1rem !important;
   }
 }
 
@@ -27,17 +27,6 @@
 ::ng-deep mat-expansion-panel-header {
   // align-items: flex-end;
   padding: 0px !important;
-  .title {
-    border-bottom: 2px solid main.color(primary) !important;
-    kkl-typography {
-      margin-right: 0.5rem;
-    }
-  }
-  .mat-content{
-    border-bottom: 1px solid main.color(secondLine) !important;
-  }
-  &:not(.form) {
-  }
   &.form {
     display: flex;
     align-items: flex-end;
@@ -46,6 +35,10 @@
     border-radius: 0px !important;
     padding-left: main.spacing(1) !important;
 
+    .title {
+      border-bottom: 2px solid main.color(primary) !important;
+      padding: 0 1rem !important;
+    }
   }
 
   &.data {
@@ -58,6 +51,7 @@
 
     .title {
       border-bottom: 2px solid main.color(primary) !important;
+      padding: 0 1rem !important;
     }
   }
 

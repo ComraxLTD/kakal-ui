@@ -279,6 +279,7 @@ export * from './constants/step-prefix';
 export * from './styles/theme';
 // hover component
 export * from './lib/kkl-hover/kkl-hover.component';
+export * from './lib/menu-bar/hover-popup/hover-popup.component';
 export * from './lib/kkl-hover/kkl-hover.module';
 
 // cards
@@ -448,9 +449,12 @@ export * from './lib/grids/display-grid/display-grid.module';
 export * from './lib/grids/display-grid/display-grid.component';
 
 // groups
+
 export * from './lib/groups/display-group/display-group.module';
 export * from './lib/groups/display-group/display-group.component';
+
 export * from './lib/groups/status-group/status-group.module';
 export * from './lib/groups/status-group/status-group.component';
+
 export * from './lib/groups/step-group/step-group.module';
 export * from './lib/groups/step-group/step-group.component';

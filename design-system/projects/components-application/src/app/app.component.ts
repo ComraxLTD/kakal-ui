@@ -5,7 +5,7 @@ import {
   PageHeadline,
   PageHeadlineService,
   RouterService,
-  StatusBars,
+  StatusSelectionEvent,
 } from '../../../kakal-ui/src/public-api';
 
 @Component({
@@ -16,9 +16,9 @@ import {
 export class AppComponent {
   title = 'education';
 
-cards:MenuCard[]=[
-  {path:'as',templateName:"",svgIcon:'edit'}as MenuCard 
-]
+  cards: MenuCard[] = [
+    { path: 'as', templateName: '', svgIcon: 'edit' } as MenuCard,
+  ];
 
   // status: CardStatus[] = [
   //   {
@@ -50,26 +50,12 @@ cards:MenuCard[]=[
     private pageHeadlineSource: PageHeadlineService
   ) {}
 
-  
-
-  status: StatusBars = {
-    label: 'Label',
-    authorizedBars: 3,
-    totalBars: 6,
-  };
-
-  headlineItems: PageHeadline[] = [
-    { value: 'big Headline' },
-    { value: 'small headline ' },
-    { value: new Date(), format: 'date' },
-    { value: this.status, status: true },
-  ];
-  ngOnInit(): void {
-    this.pageHeadlineService.emitPageHeadlineItems(this.headlineItems);
-
-  }
+  ngOnInit(): void {}
 
   onLogoClicked() {
     this.routerService.navigate('/');
+  }
+  onStatus(event: StatusSelectionEvent) {
+    console.log(event);
   }
 }
