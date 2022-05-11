@@ -2,8 +2,8 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
   ViewChild
 } from '@angular/core';
-import {CdkOverlayOrigin} from '@angular/cdk/overlay';
-import {debounceTime, filter, Observable, share, startWith, switchMap, takeUntil} from 'rxjs';
+import {CdkOverlayOrigin, ConnectionPositionPair} from '@angular/cdk/overlay';
+import {debounceTime, filter, Observable, share, startWith, switchMap, takeUntil, tap} from 'rxjs';
 import {Subject, fromEvent} from 'rxjs';
 
 @Component({
@@ -14,6 +14,7 @@ import {Subject, fromEvent} from 'rxjs';
 })
 export class HoverPopupComponent implements OnDestroy, OnInit {
   @Input() CdkOverlayOrigin: CdkOverlayOrigin;
+  @Input() isChildren:boolean;
   @Output() close = new EventEmitter<any>();
   @Output() open = new EventEmitter<any>();
 
@@ -26,7 +27,7 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     const CdkOverlayOriginEl = this.CdkOverlayOrigin.elementRef.nativeElement;
-
+  
     // open popup if mouse stopped in CdkOverlayOriginEl (for short time).
     // If user just quickly got over CdkOverlayOriginEl element - do not open
     const open$ = fromEvent(CdkOverlayOriginEl, 'mouseenter').pipe(
@@ -35,7 +36,7 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
         fromEvent(document, 'mousemove').pipe(
           startWith(enterEvent),
           debounceTime(300),
-          filter(event => CdkOverlayOriginEl === event['target'])
+          filter(event => CdkOverlayOriginEl === event['path'].find(element => element instanceof HTMLButtonElement))
       )),
       share()
       );
@@ -77,4 +78,15 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
   private isMovedOutside(CdkOverlayOriginEl, dialog, event): boolean {
     return !(CdkOverlayOriginEl.contains(event['target']) ||     dialog.nativeElement.contains(event['target']));
   }
+
+  positionPairs: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: -130,
+      offsetY: 0,
+    },
+  ];
 }
