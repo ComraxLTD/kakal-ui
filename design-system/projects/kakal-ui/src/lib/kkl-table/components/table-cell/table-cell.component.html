@@ -7,18 +7,22 @@
 <ng-template #noTemplate>
   <kkl-icon *ngIf="question.colIcon" [key]="question.colIcon"></kkl-icon>
   <span *ngIf="question.button; else withoutButton">
-    <button mat-button color="primary" (click)="buttonClick()">
-      <span fxLayout="row" fxFlex>
-        <span *ngIf="data" style="white-space: pre-wrap; border-bottom: 1px solid; line-height: normal;">
-          {{data | tableCellPipe: question.controlType}}
+    <button style="width: 100%;" mat-button color="primary" (click)="buttonClick()">
+      <span fxLayout="row" fxFlex fxLayoutAlign="end center">
+        <span *ngIf="data" style="white-space: pre-wrap; line-height: normal; width: 80%;">
+          <span style="border-bottom: 1px solid;">
+            {{data | tableCellPipe: question.controlType}}
+          </span>
         </span>
         <kkl-icon [color]="'primary'" *ngIf="question.button.icon" [key]="question.button.icon"></kkl-icon>
       </span>
     </button>
   </span>
   <ng-template #withoutButton>
-    <span *ngIf="data" style="white-space: pre-wrap;">
-      {{data | tableCellPipe: question.controlType}}
-    </span>
+    <div *ngIf="data" style="white-space: pre-wrap; width: 100%;">
+      <span fxLayout="row" fxFlex fxLayoutAlign="center center">
+        {{data | tableCellPipe: question.controlType}}
+      </span>
+    </div>
   </ng-template>
 </ng-template>

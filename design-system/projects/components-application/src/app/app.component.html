@@ -1,4 +1,4 @@
-<kkl-layout
+<!-- <kkl-layout
   [hideFooterPath]="['lobby']"
   [status]="status"
   (logoClicked)="onLogoClicked()"
@@ -11,4 +11,23 @@
 
 <ng-template #temp>
   <kkl-icon key="edit"></kkl-icon>
+</ng-template> -->
+
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
+  (actionClicked)="onClicked($event)"
+></kkl-local-table>
+
+
+<ng-template #expand>
+  <kkl-local-table
+    fxFill
+    [dataSource]="dataSource2"
+    [columns]="columns2"
+    [paging]="false"
+  ></kkl-local-table>
 </ng-template>
