@@ -3,8 +3,9 @@ import {
   ViewChild
 } from '@angular/core';
 import {CdkOverlayOrigin} from '@angular/cdk/overlay';
-import {debounceTime, filter, Observable, share, startWith, switchMap, takeUntil} from 'rxjs';
+import {debounceTime, filter, Observable, share, startWith, switchMap, takeUntil, tap} from 'rxjs';
 import {Subject, fromEvent} from 'rxjs';
+import { MenuCardComponent } from '../menu-card/menu-card.component';
 
 @Component({
   selector: 'hover-popup',
@@ -26,7 +27,7 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     const CdkOverlayOriginEl = this.CdkOverlayOrigin.elementRef.nativeElement;
-
+  
     // open popup if mouse stopped in CdkOverlayOriginEl (for short time).
     // If user just quickly got over CdkOverlayOriginEl element - do not open
     const open$ = fromEvent(CdkOverlayOriginEl, 'mouseenter').pipe(
@@ -35,7 +36,7 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
         fromEvent(document, 'mousemove').pipe(
           startWith(enterEvent),
           debounceTime(300),
-          filter(event => CdkOverlayOriginEl === event['target'])
+          filter(event => CdkOverlayOriginEl === event['path'].find(element => element instanceof HTMLButtonElement))
       )),
       share()
       );
