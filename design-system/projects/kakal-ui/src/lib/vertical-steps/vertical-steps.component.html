@@ -1,6 +1,6 @@
 <!-- (selectionChange)="onSelectionChanged($event)" -->
 <div fxLayout="row">
-<ng-container *ngIf="!(isSmallScreen$ | async) as isSmallScreen">
+<div class="mobile-hidden">
 
   <mat-vertical-stepper
   #stepper
@@ -9,7 +9,7 @@
   [(selectedIndex)]="_selectedIndex"
   [disableRipple]="true"
   (selectionChange)="onSelectionChanged($event)"
-> 
+>
 <ng-container >
     <mat-step
     [completed]="step.completed"
@@ -24,8 +24,9 @@
   <mat-icon>done</mat-icon>
 </ng-template>
 </mat-vertical-stepper>
-</ng-container>
+</div>
 <div  fxFlex="grow" fxFill  dir="rtl">
+  <kkl-typography [weight]="600" [underline]="true" [color]="'primary'">{{_selectedIndex+1}}. {{steps[_selectedIndex].label}}</kkl-typography>
   <ng-container *ngTemplateOutlet="templates[cellTemplate]"></ng-container>
 </div>
 </div>

@@ -45,6 +45,7 @@ td.mat-cell {
   // justify-content: center;
   margin: auto;
   width: 99%;
+  // overflow-x: scroll;
   // padding: 1px;
   .table-wrapper{
     margin: auto;
@@ -88,9 +89,7 @@ table table {
 // }
 
 
-// .mat-header-cell {
-//   min-width:min-content;
-// }
+
 
 // table td tr:nth-child(1) {
 //   border-bottom: none;

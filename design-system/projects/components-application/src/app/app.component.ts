@@ -15,6 +15,11 @@ import {
 export class AppComponent {
   title = 'education';
 
+  tabs = [
+    { key: 'first', label: 'First Tab'},
+    { key: 'second', label: 'Second Tab'},
+    { key: 'third', label: 'Third Tab'}
+  ];
   cards: MenuCard[] = [
     { path: 'as', templateName: '', svgIcon: 'edit' } as MenuCard,
   ];
@@ -45,10 +50,18 @@ export class AppComponent {
 
   constructor(
     private routerService: RouterService,
-    private pageHeadlineSource: PageHeadlineService
+    private pageHeadlineSource: PageHeadlineService,
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // setTimeout(() => {
+      this.pageHeadlineSource.emitPageHeadlineItems([{ value: {
+        label: 'כותרת נוספת',
+        authorizedBars: 7,
+        totalBars: 10,
+      }, status: true }]);
+    // }, 3000);
+  }
 
   onLogoClicked() {
     this.routerService.navigate('/');

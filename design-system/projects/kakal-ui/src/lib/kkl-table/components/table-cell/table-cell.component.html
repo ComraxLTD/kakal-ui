@@ -5,7 +5,7 @@
   </div>
 </ng-container>
 <ng-template #noTemplate>
-  <kkl-icon *ngIf="question.colIcon" [key]="question.colIcon"></kkl-icon>
+  <kkl-icon style="display: inline-block; padding-left: 8px;" *ngIf="question.colIcon" color="primary" [key]="question.colIcon"></kkl-icon>
   <span *ngIf="question.button; else withoutButton">
     <button mat-button color="primary" (click)="buttonClick()">
       <span fxLayout="row" fxFlex>

@@ -22,7 +22,7 @@
         </ng-container>
 
         <ng-container *ngFor="let column of oneColumns" [matColumnDef]="column.key">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef style="white-space: nowrap;">
             <h3 mat-sort-header style="display: inline-block;">{{column.label}}</h3>
             <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
@@ -123,6 +123,10 @@
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
+      <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
+        {{newRowAction}}
+        <mat-icon>add</mat-icon>
+      </button>
       <mat-accordion class="example-headers-align" multi formArrayName="myRows" dir="rtl">
         <ng-container *ngFor="let item of (typeLocal? dataTable?.filteredData : dataTable);let i = index">
           <mat-expansion-panel *ngIf="(i >= myPaging.pageIndex*myPaging.pageSize && (myPaging.pageIndex+1)*myPaging.pageSize > i)">

@@ -90,7 +90,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'toggle'">
           <kkl-slide-toggle
-            [control]="formGroup.controls[question.key]"
+            [control]="controlContainer.control.controls[question.key]"
             [label]="question.label"
             [key]="question.key"
             (selectChanged)="onSelectChanged($event, question)"
@@ -98,7 +98,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'checkbox'">
           <kkl-checkbox
-            [control]="formGroup.controls[question.key]"
+            [control]="controlContainer.control.controls[question.key]"
             [label]="question.label"
             [key]="question.key"
             (selectChanged)="onSelectChanged($event, question)"
@@ -120,7 +120,7 @@
         <ng-container *ngSwitchCase="'texteditor'">
           <kkl-text-editor
             [key]="question?.key"
-            [control]="formGroup.controls[question.key]"
+            [control]="controlContainer.control.controls[question.key]"
             [placeHolder]="question.placeHolder"
             [debounce]="question.debounce"
             (valueChanged)="onValueChanged($event, question)"
@@ -128,7 +128,7 @@
         </ng-container>
         <ng-container *ngSwitchCase="'range'">
           <kkl-range
-            [groupControl]="formGroup.controls[question.key]"
+            [groupControl]="controlContainer.control.controls[question.key]"
             [label]="question.label"
             [key]="question.key"
             [theme]="question.theme"

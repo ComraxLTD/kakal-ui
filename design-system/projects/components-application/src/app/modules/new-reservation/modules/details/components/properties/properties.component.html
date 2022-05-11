@@ -1,15 +1,17 @@
 <div dir="rtl" fxLayout="column" fxLayoutGap="3rem">
   <!-- kkl-form -->
+
  <kkl-form
+
     [controls]="questions"
     (queryChanged)="onQueryChanged($event)"
     (selectChanged)="onSelectChanged($event)"
     (openChanged)="onOpenChanged($event)"
     [grid]="formGrid"
-  ></kkl-form> 
+  ></kkl-form>
 
   <!-- separator -->
-<!-- 
+<!--
   <div fxLayout="row wrap" dir="rtl" fxLayoutGap="20px">
     <p>
       <mat-form-field appearance="outline">
@@ -81,7 +83,7 @@
   </div> -->
 
   <div kkl-underline [color]="'text'" [pattern]="'dotted'"></div>
-<!-- 
+<!--
   <kkl-display-data
     fxLayoutAlign="center"
     fxLayout="row"

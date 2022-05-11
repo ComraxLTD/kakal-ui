@@ -14,9 +14,9 @@ import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../models/tab
 import { TableBase } from '../../models/table.model';
 import { customFilterPredicate } from './local-filter';
 import { DialogService } from '../../../dialog/dialog.service';
-import { BreakpointService } from '../../../../services/services';
+import { BreakpointService, RouterService } from '../../../../services/services';
 
-const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
+const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavigation'];
 
 @Component({
   selector: 'kkl-local-table',
@@ -206,7 +206,8 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
 
 
 
-  constructor(private fb: FormBuilder, private dialogService: DialogService, private breakpointService: BreakpointService) {
+  constructor(private fb: FormBuilder, private dialogService: DialogService, private breakpointService: BreakpointService,
+    private routerService: RouterService) {
   }
 
   ngAfterViewInit() {
@@ -294,6 +295,10 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
         case 'inlineExpand':
           this.expandRow.emit({row: obj, key: key});
           this.addExpandedRow(obj);
+          break;
+        case 'inlineNavigation':
+          const url = this.routerService.getUrl(butt.navigation);
+          this.routerService.navigate(url);
           break;
         default:
           break;
