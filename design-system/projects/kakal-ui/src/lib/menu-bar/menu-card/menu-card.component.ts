@@ -7,6 +7,7 @@ export interface MenuCard {
   selected?: boolean;
   path?: string;
   templateName?: string;
+  isChildren?:boolean;
 }
 
 
@@ -23,10 +24,10 @@ export class MenuCardComponent implements OnInit {
 
   @Output() cardSelect: EventEmitter<MenuCard> = new EventEmitter();
 
-  constructor(private iconService: IconService) {}
+  constructor(private iconService: IconService) { }
 
-  ngOnInit(): void {
-    this.iconService.setIcon(this.card.svgIcon);
+  ngOnInit(): void {    
+    if (this.card.svgIcon) this.iconService.setIcon(this.card.svgIcon);
   }
 
   onSelect() {

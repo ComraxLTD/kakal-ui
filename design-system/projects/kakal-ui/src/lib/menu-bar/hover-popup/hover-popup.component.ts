@@ -5,7 +5,6 @@ import {
 import {CdkOverlayOrigin, ConnectionPositionPair} from '@angular/cdk/overlay';
 import {debounceTime, filter, Observable, share, startWith, switchMap, takeUntil, tap} from 'rxjs';
 import {Subject, fromEvent} from 'rxjs';
-import { MenuCardComponent } from '../menu-card/menu-card.component';
 
 @Component({
   selector: 'hover-popup',
@@ -15,6 +14,7 @@ import { MenuCardComponent } from '../menu-card/menu-card.component';
 })
 export class HoverPopupComponent implements OnDestroy, OnInit {
   @Input() CdkOverlayOrigin: CdkOverlayOrigin;
+  @Input() isChildren:boolean;
   @Output() close = new EventEmitter<any>();
   @Output() open = new EventEmitter<any>();
 
@@ -26,7 +26,6 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-
     const CdkOverlayOriginEl = this.CdkOverlayOrigin.elementRef.nativeElement;
   
     // open popup if mouse stopped in CdkOverlayOriginEl (for short time).

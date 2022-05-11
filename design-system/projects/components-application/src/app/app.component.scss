@@ -6,3 +6,12 @@
     flex-direction: column;
     color: white;
 }
+
+.newTest {
+    display: flex;
+    flex-direction: column;
+    color: black;
+    p {
+        border-bottom: 1px solid main.color(accent);
+    }
+}

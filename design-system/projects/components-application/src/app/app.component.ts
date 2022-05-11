@@ -14,15 +14,17 @@ import {
 })
 export class AppComponent {
   title = 'education';
-
+  isOpened: boolean = false;
   cards: MenuCard[] = [
-    { path: 'as', templateName: 'temp', svgIcon: 'tree',label:'test' } as MenuCard,
-    { path: 'as', templateName: 'test', svgIcon: 'connect',label:'test2' } as MenuCard,
-    { path: 'as', templateName: 'test3', svgIcon: 'tree',label:'test3' } as MenuCard,
-
-
+    { path: 'as', templateName: 'temp', svgIcon: 'tree', label: 'test' } as MenuCard,
+    { path: 'as', templateName: 'test', svgIcon: 'connect', label: 'test2' } as MenuCard,
+    { path: 'as', templateName: 'test3', svgIcon: 'tree', label: 'test3' } as MenuCard,
   ];
-
+  cards2: MenuCard[] = [
+    { path: 'as', templateName: 'new', label: 'test',isChildren:true } as MenuCard,
+    { path: 'as', templateName: 'test', label: 'test2', isChildren: true } as MenuCard,
+    { path: 'as', templateName: 'newTest', label: 'test3',isChildren:true } as MenuCard,
+  ];
   status: CardStatus[] = [
     {
       key: 'first',
@@ -50,9 +52,9 @@ export class AppComponent {
   constructor(
     private routerService: RouterService,
     private pageHeadlineSource: PageHeadlineService
-  ) {}
+  ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onLogoClicked() {
     this.routerService.navigate('/');
