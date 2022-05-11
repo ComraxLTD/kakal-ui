@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {
   CardStatus,
   MenuCard,
+  PageHeadline,
   PageHeadlineService,
   RouterService,
   StatusSelectionEvent,
@@ -24,33 +25,36 @@ export class AppComponent {
     { path: 'as', templateName: '', svgIcon: 'edit' } as MenuCard,
   ];
 
-  status: CardStatus[] = [
-    {
-      key: 'first',
-      svgIcon: 'home',
-      label: 'working',
-      path: '',
-      options: [],
-    },
-    {
-      key: 'second',
-      svgIcon: 'home',
-      label: 'working',
-      path: '',
-      options: [],
-    },
-    {
-      key: 'third',
-      svgIcon: 'home',
-      label: 'working',
-      path: '',
-      options: [],
-    },
-  ];
+  // status: CardStatus[] = [
+  //   {
+  //     key: 'first',
+  //     svgIcon: 'home',
+  //     label: 'working',
+  //     path: '',
+  //     options: [],
+  //   },
+  //   {
+  //     key: 'second',
+  //     svgIcon: 'home',
+  //     label: 'working',
+  //     path: '',
+  //     options: [],
+  //   },
+  //   {
+  //     key: 'third',
+  //     svgIcon: 'home',
+  //     label: 'working',
+  //     path: '',
+  //     options: [],
+  //   },
+  // ];
 
   constructor(
     private routerService: RouterService,
-    private pageHeadlineSource: PageHeadlineService,
+
+    
+    private pageHeadlineSource: PageHeadlineService
+
   ) {}
 
   ngOnInit(): void {
