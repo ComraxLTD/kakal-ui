@@ -1,7 +1,8 @@
-<ng-template
+<ng-template 
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="CdkOverlayOrigin"
   [cdkConnectedOverlayOpen]="isOpened"
+  [cdkConnectedOverlayPositions]="positionPairs"
   (detach)="connectedOverlayDetach()">
   <div #dialog role="dialog" aria-label="Dialog" class="dialog-container">
     <ng-content></ng-content>

@@ -18,6 +18,8 @@ export class AppComponent {
   cards: MenuCard[] = [
     { path: 'as', templateName: 'temp', svgIcon: 'tree',label:'test' } as MenuCard,
     { path: 'as', templateName: 'test', svgIcon: 'connect',label:'test2' } as MenuCard,
+    { path: 'as', templateName: 'test3', svgIcon: 'tree',label:'test3' } as MenuCard,
+
 
   ];
 

@@ -1,5 +1,9 @@
+@use "../../../styles/variables" as main;
+
 .dialog-container {
-  padding: 20px;
-  background-color: white;
+  padding: 1rem;
+  background-color: main.color(accent);
   box-shadow: 0 0 5px 0px rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  min-width: 100px;
 }

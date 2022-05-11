@@ -2,7 +2,7 @@ import {
   ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output,
   ViewChild
 } from '@angular/core';
-import {CdkOverlayOrigin} from '@angular/cdk/overlay';
+import {CdkOverlayOrigin, ConnectionPositionPair} from '@angular/cdk/overlay';
 import {debounceTime, filter, Observable, share, startWith, switchMap, takeUntil, tap} from 'rxjs';
 import {Subject, fromEvent} from 'rxjs';
 import { MenuCardComponent } from '../menu-card/menu-card.component';
@@ -26,6 +26,7 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+
     const CdkOverlayOriginEl = this.CdkOverlayOrigin.elementRef.nativeElement;
   
     // open popup if mouse stopped in CdkOverlayOriginEl (for short time).
@@ -78,4 +79,15 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
   private isMovedOutside(CdkOverlayOriginEl, dialog, event): boolean {
     return !(CdkOverlayOriginEl.contains(event['target']) ||     dialog.nativeElement.contains(event['target']));
   }
+
+  positionPairs: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: -130,
+      offsetY: 0,
+    },
+  ];
 }

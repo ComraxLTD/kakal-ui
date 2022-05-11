@@ -1,0 +1,8 @@
+@use "../styles/variables" as main;
+
+.test {
+    // padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    color: white;
+}

@@ -3,19 +3,37 @@
   [status]="status"
   (logoClicked)="onLogoClicked()"
   [cards]="cards"
-  [menuTemplates]="{temp,test}"
+  [menuTemplates]="{temp,test,test3}"
   (statusSelection)="onStatus($event)"
 >
   <router-outlet></router-outlet>
 </kkl-layout>
 
 <ng-template #temp>
-  <kkl-icon key="tree"></kkl-icon>
-  <p>test</p>
+<div class="test">
+<p>test test test test test</p>
+<p>test</p>
+<p>test</p>
+<p>test</p>
+<p>test</p>
+
+</div>
 </ng-template>
 
 
 <ng-template #test>
-  <kkl-icon key="connect"></kkl-icon>
-  <p>test</p>
+  <div class="test">
+    <p>test</p>
+  </div>
+</ng-template>
+
+
+<ng-template #test3>
+  <div class="test">
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+    
+    </div>
 </ng-template>
