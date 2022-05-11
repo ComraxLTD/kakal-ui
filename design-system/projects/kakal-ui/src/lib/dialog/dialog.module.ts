@@ -9,9 +9,10 @@ import { CommonModule } from '@angular/common';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from './dialog.service';
+import { CustomDialogComponent } from '../custom-dialog/custom-dialog.component';
 
 @NgModule({
-  declarations: [DialogAlertComponent, DialogComponent],
+  declarations: [DialogAlertComponent, DialogComponent, CustomDialogComponent],
   imports: [
     CoreModule,
     CommonModule,
@@ -22,6 +23,6 @@ import { DialogService } from './dialog.service';
     KKLDirectivesModule,
   ],
   providers: [DialogService],
-  exports: [DialogAlertComponent, DialogComponent],
+  exports: [DialogAlertComponent, DialogComponent, CustomDialogComponent],
 })
 export class KKLDialogModule {}

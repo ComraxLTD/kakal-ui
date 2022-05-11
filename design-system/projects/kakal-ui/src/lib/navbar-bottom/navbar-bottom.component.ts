@@ -24,7 +24,8 @@ export class NavbarBottomComponent implements OnInit {
 
   formGroup: FormGroup = new FormGroup({});
 
-  @Input() nextLabel: string;
+  nextLabel: string;
+  saveLabel: string;
 
   bottomIcon: string = 'bottom_tree_';
 
@@ -63,6 +64,19 @@ export class NavbarBottomComponent implements OnInit {
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a:boolean) => {
         this.autoBack = a;
+      });
+
+      this.navbarBottomService
+      .getTextNext()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe((a:string) => {
+        this.nextLabel = a;
+      });
+      this.navbarBottomService
+      .getTextSave()
+      .pipe(takeUntil(this.destroySubject$))
+      .subscribe((a:string) => {
+        this.saveLabel = a;
       });
   }
 
