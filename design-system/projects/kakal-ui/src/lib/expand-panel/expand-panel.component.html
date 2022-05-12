@@ -10,11 +10,15 @@
   >
     <mat-expansion-panel-header [ngClass]="[variant]" *ngIf="!showHeader">
       <mat-panel-title [ngClass]="[variant, 'default']">
-        <div class="title" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="1rem">
+
+        <div class="title" fxLayout="row" fxLayoutAlign="flex-start center" fxLayoutGap="1rem" [ngClass]="expanded && 'expanded'">
           <!-- <ng-content select="[title]"></ng-content> -->
           <kkl-typography color="primary" [weight]="600" [size]="1.8">{{title}}</kkl-typography>
-          <kkl-icon *ngIf="hideToggle" color="primary" [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'">
+          <kkl-icon *ngIf="hideToggle" style="padding: 0 5px;"
+            color="primary"
+            [size]="3" [key]="!expanded ? 'keyboard_arrow_down' : 'keyboard_arrow_up'">
           </kkl-icon>
+
         </div>
       </mat-panel-title>
       <mat-panel-description>
