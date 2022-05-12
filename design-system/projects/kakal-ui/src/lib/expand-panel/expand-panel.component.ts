@@ -9,7 +9,7 @@ import { ButtonModel } from '../../public-api';
 export class ExpandPanelComponent implements OnInit {
   // prop for custom class
   @Input() title: string;
-  @Input() variant: string;
+  @Input() variant: 'table' | 'form';
   @Input() hideToggle: boolean = true;
   @Input() showHeader: boolean;
   @Input() disabled: boolean;
@@ -24,7 +24,7 @@ export class ExpandPanelComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.variant = this.variant || '';
+    this.variant = this.variant || 'form';
     this.expanded = this.expanded || false;
     this.hideToggle = this.hideToggle || false;
     this.showHeader = this.showHeader || false;
