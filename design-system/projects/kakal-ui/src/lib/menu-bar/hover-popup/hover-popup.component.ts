@@ -89,4 +89,14 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
       offsetY: 0,
     },
   ];
+  childrenPositionPairs: ConnectionPositionPair[] = [
+    {
+      originX: 'end',
+      originY: 'center',
+      overlayX: 'end',
+      overlayY: 'center',
+      offsetX: -150,
+      offsetY: 0,
+    },
+  ];
 }
