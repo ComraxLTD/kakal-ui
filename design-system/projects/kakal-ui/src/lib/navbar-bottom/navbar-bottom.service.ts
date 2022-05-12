@@ -12,6 +12,9 @@ export class NavbarBottomService {
   private showNextMiddle$: BehaviorSubject<{ show: boolean; next: boolean }> =
     new BehaviorSubject({ show: false, next: true });
 
+  private textNext$: Subject<string> = new Subject();
+  private textSave$: Subject<string> = new Subject();
+
   private next$: Subject<void> = new Subject();
   private save$: Subject<void> = new Subject();
   private back$: Subject<void> = new Subject();
@@ -109,7 +112,6 @@ export class NavbarBottomService {
     this.nextMiddle$.next();
   }
 
-  // next label methods
 
   setNextLabel(value: string): void {
     this.nextLabel$.next(value);
@@ -117,4 +119,13 @@ export class NavbarBottomService {
   listenNextLabel(): Observable<string> {
     return this.nextLabel$.asObservable();
   }
+
+
+  getTextSave(): Observable<string> {
+    return this.textSave$.asObservable();
+  }
+  setTextSave(val: string) {
+    this.textSave$.next(val);
+  }
+
 }

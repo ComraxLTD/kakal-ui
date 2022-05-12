@@ -24,6 +24,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   @Input() set actions(value: ButtonModel[]) {
     if (value?.length) {
+      console.log(value);
+
       this.setActions(value);
 
       // this.rowActionSource$.next(this.rowActions);
@@ -31,6 +33,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
       this.rowActions = [];
     }
   }
+
+  @Input() baseUrl: string;
 
   drawerAction: ButtonModel;
 
@@ -48,11 +52,16 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     private stepsLayoutService: StepsLayoutService,
     private routerService: RouterService,
     private breakpointService: BreakpointService,
-    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
+
+
+    if(!this.baseUrl) {
+      this.baseUrl = this.routerService.getParentPath();
+    }
+
 
     this.stepsLayoutService
       .getButtonAction()
@@ -123,11 +132,40 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
           ...this.steps,
         ]);
 
-        this._emitChanged();
 
-        return this._stepsSelectionEvent;
+        if(selectedIndex !== -1){
+          return this.slectionRouteHandler(selectedIndex, steps, previouslySelectedIndex);
+        } else {
+          const pathParts = (this.routerService.getUrl(path)).split('/');
+          let location = pathParts.length-2;
+          while(location !== -1) {
+            const newSelectedIndex = this.findIndex(steps, 'path', pathParts[location]);
+            if(newSelectedIndex !== -1){
+              return this.slectionRouteHandler(newSelectedIndex, steps, previouslySelectedIndex);
+            }
+            location--;
+          }
+
+
+        }
       })
     );
+  }
+
+  slectionRouteHandler(selectedIndex: number, steps, previouslySelectedIndex: number){
+    steps.forEach((s, i) => (s.selected = selectedIndex === i));
+
+    this._stepsSelectionEvent = {
+      selectedIndex,
+      previouslySelectedIndex,
+      source : steps,
+      selectedStep: steps[selectedIndex],
+      previouslySelectedStep: steps[previouslySelectedIndex],
+      last: selectedIndex === this.steps.length - 1,
+      first: selectedIndex === 0,
+    } as StepsSelectionEvent;
+
+    return this._stepsSelectionEvent;
   }
 
   // ACTIONS SECTION
@@ -168,14 +206,12 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
       });
   }
 
-  // NAVIGATION EVENTS SECTION
-  private navigate(nextPath: string) {
-    // const url = this.routerService.getUrl(path);
-    // this.routerService.navigate(url);
 
-    const currentPath = this.routerService.getCurrentPath();
-    const url = this.router.url.replace(currentPath, nextPath);
-    this.router.navigateByUrl(url);
+  // NAVIGATION EVENTS SECTION
+
+  private navigate(path: string) {
+    const url = this.routerService.getUrlFromBase(path, this.baseUrl);
+    this.routerService.navigate(url);
   }
 
   onSelectStep(event: StepsSelectionEvent): void {

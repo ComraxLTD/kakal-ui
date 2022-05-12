@@ -77,16 +77,23 @@ export class StepsAccordionComponent implements OnInit {
           );
         } else {
           if (this.currentStep && this.currentStep.selectedIndex) {
-            if (this.currentStep.last) {
-              this.navbarBottomService.setShowNextMiddle({
-                show: true,
-                next: false,
-              });
-            }
             this.selectedIndex = this.currentStep.selectedIndex-1;
             this.navbarBottomService.setFormGroup(
               this.steps[this.selectedIndex].control
             );
+            setTimeout(() => {
+              if (this.currentStep.last) {
+                this.navbarBottomService.setShowNextMiddle({
+                  show: true,
+                  next: false,
+                });
+              } else {
+                this.navbarBottomService.setShowNextMiddle({
+                  show: true,
+                  next: true,
+                });
+              }
+            }, 100);
           } else {
             this.routerService.goBack();
           }
@@ -122,6 +129,7 @@ export class StepsAccordionComponent implements OnInit {
     this.navbarBottomService.setAutoBack(true);
     this.navbarBottomService.setFormGroup(null);
     this.navbarBottomService.setShowNextMiddle({ show: false, next: true });
+    this.navbarBottomService.setDisableNext(false);
     this.destroySubject$.next();
     this.destroySubject$.complete();
   }
@@ -130,6 +138,8 @@ export class StepsAccordionComponent implements OnInit {
     this.currentStep = event;
     if (this.currentStep.last) {
       this.navbarBottomService.setShowNextMiddle({ show: true, next: false });
+    } else {
+      this.navbarBottomService.setShowNextMiddle({ show: true, next: true });
     }
     this.navbarBottomService.setFormGroup(
       this.steps[this.currentStep.selectedIndex].control

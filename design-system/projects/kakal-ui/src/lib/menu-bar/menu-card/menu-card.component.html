@@ -10,13 +10,12 @@ fxFill class="kkl-card-menu-wrapper">
     [color]="card.selected ? 'primary' : ''"
     (click)="onSelect()"
   >
-    <mat-icon [svgIcon]="card.svgIcon"></mat-icon>
+    <mat-icon *ngIf='card.svgIcon' [svgIcon]="card.svgIcon" [color]="grey-second"></mat-icon>
     <span>{{ card.label }}</span>
   </button>
 </div>
 
-
-<hover-popup [CdkOverlayOrigin]="CdkOverlayOrigin"
+<hover-popup [CdkOverlayOrigin]="CdkOverlayOrigin" [isChildren]="card.isChildren"
         (close)="isOpened = false"
         (open)="isOpened = true">
       <ng-template [ngTemplateOutlet]="template"></ng-template>

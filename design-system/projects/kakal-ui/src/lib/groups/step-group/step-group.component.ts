@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardStep } from '../../cards/card-step/card-step.component';
-import { BreakpointService } from '../../../services/breakpoint.service';
-import { Observable } from 'rxjs';
 
 export interface StepsSelectionEvent {
 
@@ -43,16 +41,13 @@ export class StepGroupComponent implements OnInit {
   @Input() direction: 'row' | 'column' = 'row';
 
 
-  mobile$: Observable<boolean>;
-
   previouslySelectedIndex: number;
 
   @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
-  constructor(private breakpointService: BreakpointService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.mobile$ = this.breakpointService.isMobile();
     this.previouslySelectedIndex =
       this.stepsSelectionEvent.previouslySelectedIndex;
   }

@@ -24,7 +24,7 @@
             <ng-container *ngIf="nextMiddle.next; else saveTemp">{{
               nextLabel || "המשך"
             }}</ng-container>
-            <ng-template #saveTemp>{{ "שמור" }}</ng-template>
+            <ng-template #saveTemp>{{ saveLabel || "שמור" }}</ng-template>
           </span>
           <br />
           <kkl-icon [color]="'paper'" key="expand_more"></kkl-icon>
@@ -37,14 +37,9 @@
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
-      <button
-        class="kkl-save-button"
-        mat-raised-button
-        kkl-border
-        [thick]="2"
-        (click)="onSave()"
-      >
-        שמור
+
+      <button class="kkl-save-button" mat-raised-button kkl-border [thick]="2" (click)="onSave()">
+        {{ saveLabel || "שמור" }}
       </button>
     </ng-container>
 
