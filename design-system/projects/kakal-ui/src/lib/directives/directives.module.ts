@@ -8,7 +8,7 @@ import { OutsideDirective } from './outside.directive';
 import { WizardDirective } from './wizard.directive';
 import { KKLOutsideButtonDirective } from './outside-button.directive';
 import { KKLHoverDirective } from './hover.directive';
-
+import { ResizedDirective } from './resized.directive';
 @NgModule({
   declarations: [
     KKLHoverDirective,
@@ -19,7 +19,7 @@ import { KKLHoverDirective } from './hover.directive';
     VariantDirective,
     WizardDirective,
     KKLOutsideButtonDirective,
-
+    ResizedDirective,
   ],
   exports: [
     KKLHoverDirective,
@@ -30,6 +30,7 @@ import { KKLHoverDirective } from './hover.directive';
     VariantDirective,
     WizardDirective,
     KKLOutsideButtonDirective,
+    ResizedDirective,
   ],
 })
 export class KKLDirectivesModule { }

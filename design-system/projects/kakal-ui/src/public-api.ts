@@ -417,6 +417,7 @@ export * from './lib/directives/underline.directive';
 export * from './lib/directives/border.directive';
 export * from './lib/directives/outside.directive';
 export * from './lib/directives/wizard.directive';
+export * from './lib/directives/resized.directive';
 
 export * from './lib/directives/outside-button.directive';
 

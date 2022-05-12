@@ -109,8 +109,6 @@ export class MeiFormComponent {
   }
 
   onResize(event) {
-    console.log('lklk');
-
     const size = this.myIdentifier.nativeElement.offsetWidth;
     this.breakpoint = (size <= 420) ? 1 : Math.min(this.cols, Math.floor(size/220));
     this.flex = 85 / this.breakpoint;

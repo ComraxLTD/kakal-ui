@@ -1,12 +1,11 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
-import { map, Observable, Subject, takeUntil } from 'rxjs';
-import { Router } from '@angular/router';
+import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -38,8 +37,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   drawerAction: ButtonModel;
 
+  _stepsSelectionEvent: StepsSelectionEvent;
   stepsSelectionEvent$: Observable<StepsSelectionEvent>;
-  private _stepsSelectionEvent: StepsSelectionEvent;
 
   mobile$: Observable<boolean>;
 
@@ -87,7 +86,9 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.stepsSelectionEvent$ = this.setStepsSelectionEventFromRoute();
+      this.stepsSelectionEvent$ = this.setStepsSelectionEventFromRoute();
+
+    this._emitChanged();
   }
 
   ngOnDestroy() {
@@ -105,33 +106,13 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     return index;
   }
 
-  private setStepsSelectionEvent(
-    currentPath: string,
-    steps: CardStep[]
-  ): StepsSelectionEvent {
-    const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
-    const selectedIndex = this.findIndex(steps, 'path', currentPath);
-
-    steps.forEach((s, i) => (s.selected = selectedIndex === i));
-
-    return {
-      selectedIndex,
-      previouslySelectedIndex,
-      source: steps,
-      selectedStep: steps[selectedIndex],
-      previouslySelectedStep: steps[previouslySelectedIndex],
-      last: selectedIndex === this.steps.length - 1,
-      first: selectedIndex === 0,
-    } as StepsSelectionEvent;
-  }
-
   private setStepsSelectionEventFromRoute(): Observable<StepsSelectionEvent> {
     return this.routerService.getLastPath$().pipe(
       map((path: string) => {
-        this._stepsSelectionEvent = this.setStepsSelectionEvent(path, [
-          ...this.steps,
-        ]);
+        const steps = [...this.steps];
 
+        const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
+        const selectedIndex = this.findIndex(steps, 'path', path);
 
         if(selectedIndex !== -1){
           return this.slectionRouteHandler(selectedIndex, steps, previouslySelectedIndex);
@@ -190,6 +171,38 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     }
   }
 
+  // private setRowActionsFromActonState() {
+  //   this.stepsLayoutService.getButtonAction().pipe(
+  //     map((actionState: ActionButtonState) => {
+  //       const { action, disabled, key, buttons } = actionState;
+
+  //       switch (action) {
+  //         case 'disable':
+  //           disabled[key] = true;
+  //           break;
+  //         case 'enable':
+  //           disabled[key] = false;
+  //           break;
+  //         case 'add':
+  //           this.rowActions = this.rowActions.concat(buttons);
+  //           break;
+  //         case 'remove':
+  //           this.rowActions = this.rowActions.filter((v) => v.label !== key);
+  //           break;
+  //         case 'removeAll':
+  //           this.rowActions = [];
+  //         default:
+  //           break;
+  //       }
+  //     })
+  //   );
+  // }
+
+  // private setRowActions$() {
+  //   const setFromInout$ = of(this.rowActions);
+  //   const setFromState$ = this.setRowActionsFromActonState();
+  // }
+
   private setRowActions(actions: ButtonModel[]) {
     const iconLabelMap = {
       [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
@@ -208,7 +221,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
 
   // NAVIGATION EVENTS SECTION
-
   private navigate(path: string) {
     const url = this.routerService.getUrlFromBase(path, this.baseUrl);
     this.routerService.navigate(url);
