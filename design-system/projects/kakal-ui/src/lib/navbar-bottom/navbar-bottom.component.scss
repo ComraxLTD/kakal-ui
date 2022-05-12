@@ -1,9 +1,5 @@
 @use "../../styles/variables" as main;
 
-:host {
-  overflow: visible !important;
-}
-
 mat-toolbar {
   overflow: visible !important;
   padding-left: main.spacing(5);
@@ -11,14 +7,20 @@ mat-toolbar {
   background-color: rgba($color: #ffffff, $alpha: 0.72) !important;
 }
 
-div {
-  height: 100%;
-}
 mat-icon {
   color: main.color(primary);
+
+  &.bottom_icon {
+    transform: scale(8);
+  }
 }
+
 button.mat-mini-fab {
   background-color: main.color(paper) !important;
+}
+
+button.mat-raised-button.kkl-save-button:not(.mat-button-disabled) {
+  color: main.color(text);
 }
 
 button.kkl-next-button:not(.mat-button-disabled) {
@@ -27,7 +29,8 @@ button.kkl-next-button:not(.mat-button-disabled) {
 
 ::ng-deep button.mat-fab.next-middle-btn {
   position: absolute;
-  transform: translateY(-3.5rem);
+  transform: translateY(-6rem);
+  z-index: 1000;
 
   .mat-button-wrapper {
     line-height: main.spacing(2) !important;

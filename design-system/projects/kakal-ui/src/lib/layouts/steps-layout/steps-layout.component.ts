@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
@@ -23,6 +23,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   @Input() set actions(value: ButtonModel[]) {
     if (value?.length) {
+      console.log(value);
+
       this.setActions(value);
 
       // this.rowActionSource$.next(this.rowActions);
@@ -30,6 +32,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
       this.rowActions = [];
     }
   }
+
+  @Input() baseUrl: string;
 
   drawerAction: ButtonModel;
 
@@ -46,11 +50,17 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private stepsLayoutService: StepsLayoutService,
     private routerService: RouterService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
   ) {}
 
   ngOnInit(): void {
     this.mobile$ = this.breakpointService.isMobile();
+
+
+    if(!this.baseUrl) {
+      this.baseUrl = this.routerService.getParentPath();
+    }
+
 
     this.stepsLayoutService
       .getButtonAction()
@@ -76,7 +86,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.setStepsSelectionEventFromRoute().subscribe();
+      this.stepsSelectionEvent$ = this.setStepsSelectionEventFromRoute();
 
     this._emitChanged();
   }
@@ -104,21 +114,39 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
         const selectedIndex = this.findIndex(steps, 'path', path);
 
-        steps.forEach((s, i) => (s.selected = selectedIndex === i));
+        if(selectedIndex !== -1){
+          return this.slectionRouteHandler(selectedIndex, steps, previouslySelectedIndex);
+        } else {
+          const pathParts = (this.routerService.getUrl(path)).split('/');
+          let location = pathParts.length-2;
+          while(location !== -1) {
+            const newSelectedIndex = this.findIndex(steps, 'path', pathParts[location]);
+            if(newSelectedIndex !== -1){
+              return this.slectionRouteHandler(newSelectedIndex, steps, previouslySelectedIndex);
+            }
+            location--;
+          }
 
-        this._stepsSelectionEvent = {
-          selectedIndex,
-          previouslySelectedIndex,
-          source : steps,
-          selectedStep: steps[selectedIndex],
-          previouslySelectedStep: steps[previouslySelectedIndex],
-          last: selectedIndex === this.steps.length - 1,
-          first: selectedIndex === 0,
-        } as StepsSelectionEvent;
 
-        return this._stepsSelectionEvent;
+        }
       })
     );
+  }
+
+  slectionRouteHandler(selectedIndex: number, steps, previouslySelectedIndex: number){
+    steps.forEach((s, i) => (s.selected = selectedIndex === i));
+
+    this._stepsSelectionEvent = {
+      selectedIndex,
+      previouslySelectedIndex,
+      source : steps,
+      selectedStep: steps[selectedIndex],
+      previouslySelectedStep: steps[previouslySelectedIndex],
+      last: selectedIndex === this.steps.length - 1,
+      first: selectedIndex === 0,
+    } as StepsSelectionEvent;
+
+    return this._stepsSelectionEvent;
   }
 
   // ACTIONS SECTION
@@ -178,7 +206,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   private setRowActions(actions: ButtonModel[]) {
     const iconLabelMap = {
       [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
-      [FormActions.SUBMIT]: { svgIcon: 'save', label: 'שמירה' },
+      [FormActions.VALUE_CHANGED]: { svgIcon: 'print', label: 'הדפס' },
     };
 
     return actions
@@ -191,9 +219,10 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
       });
   }
 
+
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    const url = this.routerService.getUrl(path);
+    const url = this.routerService.getUrlFromBase(path, this.baseUrl);
     this.routerService.navigate(url);
   }
 

@@ -5,6 +5,7 @@ import { KKLIconModule } from '../icon/icon.module';
 import { ExpandPanelComponent } from './expand-panel.component';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { KKLButtonModule } from '../button/button.module';
+import { KKLTypographyModule } from '../typography/typography.module';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { KKLButtonModule } from '../button/button.module';
     MatExpansionModule,
     KKLButtonModule,
     KKLIconModule,
+    KKLTypographyModule
   ],
   declarations: [ExpandPanelComponent],
   exports: [ExpandPanelComponent, MatExpansionModule],

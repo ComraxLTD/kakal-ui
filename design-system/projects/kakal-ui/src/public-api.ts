@@ -246,6 +246,7 @@ export * from './lib/navigation/navigation.component';
 export * from './lib/dialog/dialog.module';
 export * from './lib/dialog/dialog.component';
 export * from './lib/dialog-alert/dialog-alert.component';
+export * from './lib/custom-dialog/custom-dialog.component';
 export * from './lib/dialog/dialog.service';
 
 // sidenav
@@ -416,6 +417,7 @@ export * from './lib/directives/underline.directive';
 export * from './lib/directives/border.directive';
 export * from './lib/directives/outside.directive';
 export * from './lib/directives/wizard.directive';
+export * from './lib/directives/resized.directive';
 
 export * from './lib/directives/outside-button.directive';
 

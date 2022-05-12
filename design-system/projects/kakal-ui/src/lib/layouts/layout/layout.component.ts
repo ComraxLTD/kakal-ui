@@ -9,19 +9,17 @@ import {
   ViewChild,
 } from '@angular/core';
 
-import { RouterService, BreakpointService } from '../../../services/services';
 import { MenuCard } from '../../menu-bar/menu-card/menu-card.component';
-import { PageHeadlineService } from '../../page-headline/page-headline.service';
-import { PageHeadline } from '../../page-headline/page-headline.component';
 
 import { MatSidenav } from '@angular/material/sidenav';
-import { ButtonModel } from '../../button/models/button.types';
 
-import { BehaviorSubject, merge, Observable, of, mergeMap } from 'rxjs';
-import { filter, map, startWith } from 'rxjs/operators';
 import { CardStatus } from '../../cards/card-status/card-status.component';
 import { ROOT_PREFIX } from '../../../constants/root-prefix';
 import { StatusSelectionEvent } from '../../groups/status-group/status-group.component';
+
+import { BehaviorSubject, Observable } from 'rxjs';
+import { combineLatestWith, map, switchMap } from 'rxjs/operators';
+import { LayoutService, Portion } from './layout.service';
 
 @Component({
   selector: 'kkl-layout',
@@ -38,73 +36,45 @@ export class LayoutComponent implements OnInit {
   @Input() showStatusPath: string[];
   @Input() hideFooterPath: string[];
 
-  selectedOpen: string;
-  @Input() contentPortion: { open: number; close: number } = {
-    open: 0,
-    close: 100,
+  private _portion: Portion = {
+    drawer: 0,
+    content: 0,
+    show: false,
+    opened: false,
+    mobile: true,
+    hasButton: false,
   };
 
-  @Input() drawerAction: ButtonModel;
+  selectedOpen: string;
 
-  // drawer props
-  portion$: Observable<number> = of(100);
-
-  endDrawerSizeSource$: BehaviorSubject<number>;
-  endDrawerSize$: Observable<number> = of(0);
-
-  //end drawer opened/closed
-  _endDrawerOpen: boolean = false;
-  showEndDrawer: boolean = false;
-
-  //drawer sizes
-  _openDrawer!: number;
-  _closedDrawer!: number;
-
-  pageHeadline$: Observable<PageHeadline[]>;
+  // PORTION LOGIC
+  portionSource$: BehaviorSubject<Portion>;
+  portion$: Observable<Portion>;
 
   showStatus$: Observable<boolean>;
   hideFooter$: Observable<boolean>;
-
-  mobile$: Observable<boolean>;
 
   @Output() openChanged: EventEmitter<boolean> = new EventEmitter();
   @Output() logoClicked: EventEmitter<void> = new EventEmitter();
   @Output() menuSelected: EventEmitter<MenuCard> = new EventEmitter();
   @Output() statusSelection: EventEmitter<StatusSelectionEvent> =
-    new EventEmitter();
+    new EventEmitter<StatusSelectionEvent>();
 
   constructor(
-    private routerService: RouterService,
-    private breakpointService: BreakpointService,
+    private layoutService: LayoutService,
     @Inject(ROOT_PREFIX) public rootPrefix: string
   ) {}
 
   ngOnInit(): void {
-    this.mobile$ = this.breakpointService.isMobile();
-    this.showStatus$ = this.handleShow(this.showStatusPath || []);
-    this.hideFooter$ = this.handleShow(this.hideFooterPath || []);
+    this.portionSource$ = new BehaviorSubject<Portion>(this._portion);
 
-    this._openDrawer = this.contentPortion.open;
-    this._closedDrawer = this.contentPortion.close;
+    this.showStatus$ = this.layoutService.handleShow(this.showStatusPath || []);
+    this.hideFooter$ = this.layoutService.handleShow([
+      ...this.hideFooterPath,
+      '',
+    ]);
 
-    this.endDrawerSizeSource$ = new BehaviorSubject(0);
-
-    this.portion$ = this.getBreakPoints();
-
-    this.endDrawerSize$ = this.endDrawerSizeSource$.asObservable();
-  }
-
-  private handleShow(list: string[]) {
-    return this.routerService.getLastPath$().pipe(
-      startWith(this.routerService.getCurrentPath()),
-      map((path: string) => {
-        return this.findPath([...list], path);
-      })
-    );
-  }
-
-  private findPath(list: string[], value: string): boolean {
-    return list?.some((path: string) => path == value);
+    this.portion$ = this.combineState$();
   }
 
   onLogoClicked() {
@@ -127,53 +97,99 @@ export class LayoutComponent implements OnInit {
     }
   }
 
-  // control content width when end drawer is open and close in %
-
   // PORTION LOGIC SECTION
 
-  // breakpoints
-  private mergeBreakPoints() {
-    return this.breakpointService
-      .isSmall()
-      .pipe(
-        mergeMap((isSmall) =>
-          this.breakpointService
-            .isMobile()
-            .pipe(map((isMobile) => [isSmall, isMobile]))
-        )
-      );
-  }
+  private combineState$() {
+    const drawerState$ = this.layoutService.listenToDrawerPortion();
+    const mobileState$ = this.layoutService.isMobile();
 
-  private getBreakPoints() {
-    return this.mergeBreakPoints().pipe(
-      map((value: boolean[]) => {
-        if (value.includes(true)) {
-          this._openDrawer = 1;
-          this._closedDrawer = 99;
+    return mobileState$.pipe(
+      combineLatestWith(drawerState$),
+      switchMap(([mobile, drawerState]) => {
+        const { close, hasButton } = drawerState;
+        let state: Portion;
+
+        if (mobile.includes(true)) {
+          state = {
+            drawer: 100,
+            content: 100,
+            show: false,
+            opened: false,
+            mobile: true,
+            hasButton
+          };
         } else {
-          this._openDrawer = this.contentPortion.open;
-          this._closedDrawer = this.contentPortion.close;
+          state = {
+            drawer: close,
+            content: 100 - close,
+            show: true,
+            opened: false,
+            mobile: false,
+            hasButton,
+          };
         }
-        this.endDrawerSizeSource$.next(this._openDrawer);
-        return 100 - this._openDrawer;
+        console.log(state)
+        this.portionSource$.next(state);
+        return this.portionSource$.asObservable();
       })
     );
   }
 
-  // function called each time the left(end) drawer is closed/opened
-  emitEndDrawer(): void {
-    let portion: number = 0;
+  private setDrawerStateOnDesktop(oldState: Portion) {
+    const { close, open, hasButton } = this.layoutService.getDrawerPortion();
 
-    this._endDrawerOpen = !this._endDrawerOpen;
-    if (!this._endDrawerOpen) {
-      portion = 100 - this._openDrawer;
-      this.portion$ = of(portion);
-      this.endDrawerSizeSource$.next(this._openDrawer);
+    // logic when close
+    if (!oldState.opened) {
+      return {
+        ...oldState,
+        opened: true,
+        drawer: open,
+        content: 100 - open,
+        hasButton,
+      };
     } else {
-      portion = 100 - this._closedDrawer;
-      this.portion$ = of(portion);
-      this.endDrawerSizeSource$.next(this._closedDrawer);
+      return {
+        ...oldState,
+        opened: false,
+        drawer: close,
+        content: 100 - close,
+        hasButton,
+      };
     }
-    this.openChanged.emit(this._endDrawerOpen);
+  }
+  private setDrawerStateOnMobile(oldState: Portion) {
+    // logic when close
+    if (!oldState.opened) {
+      return {
+        ...oldState,
+        opened: true,
+        show: true,
+        drawer: 100,
+        content: 0,
+      };
+    } else {
+      return {
+        ...oldState,
+        opened: false,
+        show: false,
+        drawer: 0,
+        content: 100,
+      };
+    }
+  }
+
+  // function called each time the left(end) drawer is closed/opened
+  onEndDrawerToggle(): void {
+    const oldState = this.portionSource$.getValue();
+    let portionState = {} as Portion;
+
+    if (oldState.mobile) {
+      portionState = this.setDrawerStateOnMobile(oldState);
+    } else {
+      portionState = this.setDrawerStateOnDesktop(oldState);
+    }
+
+    this.portionSource$.next(portionState);
+    this.openChanged.emit(portionState.opened);
   }
 }

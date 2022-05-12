@@ -1,4 +1,4 @@
-<ng-container [ngSwitch]="variant" (window:resize)="onResize($event)">
+<div [ngSwitch]="variant" (resized)="onResize($event)" #myIdentifier>
   <ng-container *ngSwitchCase="'grid'">
     <form (ngSubmit)="onSubmitEvent()" [formGroup]="formGroup" autocomplete="off">
       <mat-grid-list [cols]="breakpoint" [rowHeight]="(rowHeight || 9) + 'rem'" [gutterSize]="(gutter) + 'rem'">
@@ -404,5 +404,5 @@
     </form>
 
   </ng-container>
-</ng-container>
+</div>
 

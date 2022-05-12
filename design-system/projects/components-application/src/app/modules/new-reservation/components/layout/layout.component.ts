@@ -4,6 +4,8 @@ import {
   CardStep,
   DisplayItem,
   FormActions,
+  LayoutService,
+  NavbarBottomService,
   PageHeadlineService,
   RouterService,
   StatusBars,
@@ -28,11 +30,7 @@ export interface DataEx {
   providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
-  actions: ButtonModel[] = [
-    { type: 'portion' },
-    { type: 'file' },
-    { type: 'form', action: FormActions.EDIT },
-  ];
+  actions: ButtonModel[] = [{ type: 'file' }];
   actions$: Observable<ButtonModel[]>;
 
   steps: CardStep[] = [
@@ -45,14 +43,13 @@ export class LayoutComponent implements OnInit {
       label: 'מרכיבי הזמנה',
       svgIcon: 'tree',
       path: 'parts',
-      disabled: true,
     },
     {
       label: 'סיכום הזמנה',
       svgIcon: 'list',
       path: 'summary',
     },
-  ];
+    ];
 
   displayData: DisplayItem<DataEx>[] = [
     {
@@ -64,8 +61,8 @@ export class LayoutComponent implements OnInit {
       key: 'date',
       format: { type: 'date' },
       label: 'תאריך יציאה',
-      svgIcon : 'calendar',
-      type: 'icon'
+      svgIcon: 'calendar',
+      type: 'icon',
     },
     {
       key: 'tour',
@@ -94,28 +91,54 @@ export class LayoutComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private newReservationService: NewReservationService,
-    private pageHeadlineSource: PageHeadlineService
+    private pageHeadlineSource: PageHeadlineService,
+    private navbarBottomService: NavbarBottomService,
+    private stepsLayoutService: StepsLayoutService,
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
-    this.actions$ = this.routerService.getLastPath$().pipe(
-      map((path: string) => {
-        const details = this.actions;
-        const parts = [];
-        const map = { details, parts };
-        return map[path];
-      })
-    );
-
     this.pageHeadlineSource.emitPageHeadlineItems([
       { value: 'first' },
       { value: 'sec' },
       { value: 'third' },
     ]);
+
+    this.layoutService.emitDrawerPortion({
+      open: 50,
+      close: 5,
+      hasButton: true,
+    });
+
+    this.onNext().subscribe()
+
+    this.navbarBottomService.setShowNext(true);
   }
 
-  public onChangeStep(step: StepperSelectionEvent) {
-    // this.navigate(step.selectedStep.path!);
+  ngOnDestroy() {
+    this.layoutService.destroyDrawer();
+  }
+
+  onNext() {
+    return this.navbarBottomService.listenToNext().pipe(
+      map((_) => {
+        return this.routerService.getCurrentPath();
+      }),
+      map((currentPath: string) => {
+        const stepSelectEvent = this.stepsLayoutService.getStepsSelection();
+
+        const { selectedIndex } = stepSelectEvent;
+        const nextIndex =
+          selectedIndex === this.steps.length - 1
+            ? selectedIndex
+            : selectedIndex + 1;
+
+        const nextPath = this.steps[nextIndex].path;
+
+        const url = this.routerService.url.replace(currentPath, nextPath);
+        this.routerService.navigate(url);
+      })
+    );
   }
 
   public onPrevious(): void {

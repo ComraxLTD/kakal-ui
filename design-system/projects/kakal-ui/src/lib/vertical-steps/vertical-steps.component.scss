@@ -4,11 +4,11 @@
     display: flex;
     justify-content: space-between !important;
      &:hover{
-       background-color: #fff !important; 
+       background-color: #fff !important;
       }
     }
     ::ng-deep .cdk-program-focused{
-    background-color: #fff !important; 
+    background-color: #fff !important;
   }
 }
 
@@ -34,3 +34,10 @@
 // ::ng-deep .mat-step-header{
 //   pointer-events: none !important;
 // }
+
+
+@media screen and (max-width: 600px) {
+  .mobile-hidden {
+    display: none !important;
+  }
+}

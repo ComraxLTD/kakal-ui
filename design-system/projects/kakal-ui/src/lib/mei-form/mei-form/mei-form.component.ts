@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ControlBase } from '../models/control.model';
 import { OptionsModel } from '../models/options.model'
@@ -14,6 +14,8 @@ import { setControls } from '../../mei-services/services/form-create';
   styleUrls: ['./mei-form.component.scss']
 })
 export class MeiFormComponent {
+  @ViewChild('myIdentifier')
+  myIdentifier: ElementRef;
 
   @Output() openedChange: EventEmitter<KklFormChangeEvent> = new EventEmitter();
   @Output() queryChanged: EventEmitter<KklFormChangeEvent> = new EventEmitter();
@@ -100,19 +102,24 @@ export class MeiFormComponent {
       this.formGroup = this.fb.group({});
     }
     setControls(this.myQuestions, this.formGroup, this.fb, this.localObservables);
-
-    this.breakpoint = (window.innerWidth <= 420) ? 1 : Math.min(this.cols, Math.floor(window.innerWidth/220));
+    this.breakpoint = this.cols;
     this.flex = 85 / this.breakpoint;
+
+
   }
 
   onResize(event) {
-    this.breakpoint = (window.innerWidth <= 420) ? 1 : Math.min(this.cols, Math.floor(window.innerWidth/220));
+    const size = this.myIdentifier.nativeElement.offsetWidth;
+    this.breakpoint = (size <= 420) ? 1 : Math.min(this.cols, Math.floor(size/220));
     this.flex = 85 / this.breakpoint;
   }
 
   ngAfterViewInit() {
     this.putOptions();
     this.putEditData();
+    setTimeout(() => {
+      this.onResize(null);
+    }, 0);
   }
 
   // setControls(controles: ControlBase[]) {

@@ -12,9 +12,10 @@ mat-form-field {
   font-size: 1.5rem !important;
 }
 
-::ng-deep .autocomplete-option > div {
-  flex-direction: row !important;
-  gap: 1rem;
+::ng-deep .chips-wrapper {
+  mat-chip{
+    margin: 0 10px;
+  }
 }
 
 @media screen and (max-width: 1024px) {

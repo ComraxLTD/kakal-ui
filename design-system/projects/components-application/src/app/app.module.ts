@@ -7,6 +7,7 @@ import { LobbyComponent } from './components/lobby/lobby.component';
 import { CoreModule } from './modules/core/core.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ROOT_PREFIX } from '../../../kakal-ui/src/public-api';
+import { OverlayModule } from '@angular/cdk/overlay';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ROOT_PREFIX } from '../../../kakal-ui/src/public-api';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CoreModule
+    CoreModule,
+    OverlayModule
   ],
   providers: [{ provide: ROOT_PREFIX, useValue: 'education' }],
   bootstrap: [AppComponent]

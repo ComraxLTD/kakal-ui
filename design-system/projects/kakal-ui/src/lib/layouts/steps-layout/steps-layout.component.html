@@ -1,18 +1,17 @@
-<kkl-drawer-layout [drawerAction]="drawerAction">
+<kkl-drawer-layout class="kkl-steps-layout" [drawerAction]="drawerAction">
   <ng-content drawer select="[drawer]"></ng-content>
 
   <div fxLayout="column" content>
     <header>
-      <mat-toolbar class="stepper-toolbar" dir="rtl">
+      <mat-toolbar class="steps-layout-toolbar" dir="rtl">
         <div class="step-group">
           <ng-container
             *ngIf="stepsSelectionEvent$ | async as stepsSelectionEvent"
           >
-        </ng-container>
             <ng-container *ngIf="mobile$ | async; else elseBlock">
               <kkl-stepper-mobile
                 [steps]="steps"
-                [stepsSelectionEvent]="_stepsSelectionEvent"
+                [stepsSelectionEvent]="stepsSelectionEvent"
                 (selectStep)="onSelectStep($event)"
               ></kkl-stepper-mobile>
             </ng-container>
@@ -20,24 +19,14 @@
             <ng-template #elseBlock>
               <kkl-step-group
                 [steps]="steps"
-                [stepsSelectionEvent]="_stepsSelectionEvent"
+                [stepsSelectionEvent]="stepsSelectionEvent"
                 (stepSelection)="onSelectStep($event)"
               ></kkl-step-group>
             </ng-template>
-        </div>
-
-        <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">
-          <ng-container *ngFor="let action of rowActions">
-            <button
-              mat-icon-button
-              kkl-action-button
-              color="primary"
-              (click)="onAction(action)"
-            >
-              <mat-icon>{{ action.svgIcon }}</mat-icon>
-            </button>
           </ng-container>
         </div>
+
+
       </mat-toolbar>
     </header>
     <main fxLayout="row" fxLayoutAlign="center center">

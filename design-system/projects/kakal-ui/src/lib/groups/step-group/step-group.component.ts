@@ -1,9 +1,11 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { CardStep } from '../../cards/card-step/card-step.component';
-import { BreakpointService } from '../../../services/breakpoint.service';
-import { Observable } from 'rxjs';
 
 export interface StepsSelectionEvent {
+
+  // The steps for the UI
+  source: CardStep[];
+
   /** Index of the step selected. */
   selectedIndex: number;
 
@@ -17,12 +19,11 @@ export interface StepsSelectionEvent {
   previouslySelectedStep?: CardStep;
 
   /** If this step is the last */
-  last: boolean;
+  last?: boolean;
 
   /** If this step is the first */
-  first: boolean;
+  first?: boolean;
 
-  source?: CardStep[];
 }
 @Component({
   selector: 'kkl-step-group',
@@ -30,25 +31,23 @@ export interface StepsSelectionEvent {
   styleUrls: ['./step-group.component.scss'],
 })
 export class StepGroupComponent implements OnInit {
-  _steps: CardStep[];
+  // _steps: CardStep[];
 
-  @Input() set steps(value: CardStep[]) {
-    this._steps = value;
-  }
-  @Input() direction: 'row' | 'column' = 'row';
-
+  // @Input() set steps(value: CardStep[]) {
+  //   this._steps = value;
+  // }
   @Input() stepsSelectionEvent: StepsSelectionEvent;
 
-  mobile$: Observable<boolean>;
+  @Input() direction: 'row' | 'column' = 'row';
+
 
   previouslySelectedIndex: number;
 
   @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
-  constructor(private breakpointService: BreakpointService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.mobile$ = this.breakpointService.isMobile();
     this.previouslySelectedIndex =
       this.stepsSelectionEvent.previouslySelectedIndex;
   }

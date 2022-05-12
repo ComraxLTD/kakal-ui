@@ -37,7 +37,7 @@ export class StepsAccordionComponent implements OnInit {
   // optional
 
   @Input() isLinear?: boolean = false;
-  
+
   // ** an interface for ui **
   @Input() buttonLabel: string;
 
@@ -62,7 +62,7 @@ export class StepsAccordionComponent implements OnInit {
     this.navbarBottomService.setAutoBack(false);
     this.navbarBottomService.setDisableNext(true);
     this.navbarBottomService
-      .getBack()
+      .listenToBack()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a) => {
         if (this.completed) {
@@ -72,28 +72,35 @@ export class StepsAccordionComponent implements OnInit {
           })
           this.navbarBottomService.setShowSave(false)
           this.selectedIndex = this.steps.length - 1;
-          this.navbarBottomService.setFormGroup( 
+          this.navbarBottomService.setFormGroup(
             this.steps[this.selectedIndex].control
           );
         } else {
           if (this.currentStep && this.currentStep.selectedIndex) {
-            if (this.currentStep.last) {
-              this.navbarBottomService.setShowNextMiddle({
-                show: true,
-                next: false,
-              }); 
-            }
             this.selectedIndex = this.currentStep.selectedIndex-1;
             this.navbarBottomService.setFormGroup(
               this.steps[this.selectedIndex].control
             );
+            setTimeout(() => {
+              if (this.currentStep.last) {
+                this.navbarBottomService.setShowNextMiddle({
+                  show: true,
+                  next: false,
+                });
+              } else {
+                this.navbarBottomService.setShowNextMiddle({
+                  show: true,
+                  next: true,
+                });
+              }
+            }, 100);
           } else {
             this.routerService.goBack();
           }
         }
       });
     this.navbarBottomService
-      .getNextMiddle()
+      .listenToNextMiddle()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a) => {
         if (this.currentStep?.selectedIndex === this.steps.length - 1) {
@@ -122,6 +129,7 @@ export class StepsAccordionComponent implements OnInit {
     this.navbarBottomService.setAutoBack(true);
     this.navbarBottomService.setFormGroup(null);
     this.navbarBottomService.setShowNextMiddle({ show: false, next: true });
+    this.navbarBottomService.setDisableNext(false);
     this.destroySubject$.next();
     this.destroySubject$.complete();
   }
@@ -130,6 +138,8 @@ export class StepsAccordionComponent implements OnInit {
     this.currentStep = event;
     if (this.currentStep.last) {
       this.navbarBottomService.setShowNextMiddle({ show: true, next: false });
+    } else {
+      this.navbarBottomService.setShowNextMiddle({ show: true, next: true });
     }
     this.navbarBottomService.setFormGroup(
       this.steps[this.currentStep.selectedIndex].control

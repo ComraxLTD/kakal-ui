@@ -1,11 +1,10 @@
+
 <kkl-steps-layout
   [steps]="steps"
   [actions]="(actions$ | async)!"
-  (stepSelect)="onChangeStep($event)"
+  baseUrl="reservation"
 >
   <kkl-drawer-document drawer></kkl-drawer-document>
-
-  <!-- <router-outlet content></router-outlet> -->
 
   <router-outlet content></router-outlet>
 </kkl-steps-layout>
