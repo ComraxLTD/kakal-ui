@@ -48,7 +48,8 @@
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
-      <button mat-raised-button kkl-border [thick]="2" (click)="onSave()">
+
+      <button class="kkl-save-button" mat-raised-button kkl-border [thick]="2" (click)="onSave()">
         {{ saveLabel || "שמור" }}
       </button>
     </ng-container>

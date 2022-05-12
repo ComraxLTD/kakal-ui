@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import {
   CardStatus,
   MenuCard,
-  PageHeadline,
   PageHeadlineService,
   RouterService,
   StatusSelectionEvent,
@@ -23,6 +22,7 @@ export class AppComponent {
     { key: 'third', label: 'Third Tab'}
   ];
   cards: MenuCard[] = [
+    { path: 'as', templateName: '', svgIcon: 'home' } as MenuCard,
     { path: 'as', templateName: 'temp', svgIcon: 'tree', label: 'test' } as MenuCard,
     { path: 'as', templateName: 'test', svgIcon: 'connect', label: 'test2' } as MenuCard,
     { path: 'as', templateName: 'test3', svgIcon: 'tree', label: 'test3' } as MenuCard,
@@ -84,9 +84,9 @@ export class AppComponent {
 
   constructor(
     private routerService: RouterService,
+     private pageHeadlineSource: PageHeadlineService
+  ) {}
 
-    
-    private pageHeadlineSource: PageHeadlineService
 
 
   ngOnInit(): void {

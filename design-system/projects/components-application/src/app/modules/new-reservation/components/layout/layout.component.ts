@@ -4,6 +4,7 @@ import {
   CardStep,
   DisplayItem,
   FormActions,
+  LayoutService,
   PageHeadlineService,
   RouterService,
   StatusBars,
@@ -28,11 +29,7 @@ export interface DataEx {
   providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
-  actions: ButtonModel[] = [
-    { type: 'portion' },
-    { type: 'file' },
-    { type: 'form', action: FormActions.EDIT },
-  ];
+  actions: ButtonModel[] = [{ type: 'file' }];
   actions$: Observable<ButtonModel[]>;
 
   steps: CardStep[] = [
@@ -64,8 +61,8 @@ export class LayoutComponent implements OnInit {
       key: 'date',
       format: { type: 'date' },
       label: 'תאריך יציאה',
-      svgIcon : 'calendar',
-      type: 'icon'
+      svgIcon: 'calendar',
+      type: 'icon',
     },
     {
       key: 'tour',
@@ -94,28 +91,26 @@ export class LayoutComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private newReservationService: NewReservationService,
-    private pageHeadlineSource: PageHeadlineService
+    private pageHeadlineSource: PageHeadlineService,
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
-    this.actions$ = this.routerService.getLastPath$().pipe(
-      map((path: string) => {
-        const details = this.actions;
-        const parts = [];
-        const map = { details, parts };
-        return map[path];
-      })
-    );
-
     this.pageHeadlineSource.emitPageHeadlineItems([
       { value: 'first' },
       { value: 'sec' },
       { value: 'third' },
     ]);
+
+    this.layoutService.emitDrawerPortion({
+      open: 50,
+      close: 5,
+      hasButton: true,
+    });
   }
 
-  public onChangeStep(step: StepperSelectionEvent) {
-    // this.navigate(step.selectedStep.path!);
+  ngOnDestroy() {
+    this.layoutService.destroyDrawer()
   }
 
   public onPrevious(): void {

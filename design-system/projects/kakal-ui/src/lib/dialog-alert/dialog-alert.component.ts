@@ -7,13 +7,13 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog-alert.component.scss'],
 })
 export class DialogAlertComponent {
-  
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<DialogAlertComponent>
   ) { }
 
-  onConfirmClick(): void {
-    this.dialogRef.close(true);
+  onConfirmClick(confirm : boolean): void {
+    this.dialogRef.close(confirm);
   }
 }

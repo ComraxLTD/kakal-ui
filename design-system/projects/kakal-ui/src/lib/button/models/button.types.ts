@@ -1,7 +1,7 @@
 import { FormActions } from '../../form/models/form.types';
 
 export interface ButtonModel {
-  type: 'form' | 'notes' | 'file' | 'portion';
+  type: 'form' | 'notes' | 'file';
   label?: string;
   svgIcon?: string;
   state?: ButtonState;

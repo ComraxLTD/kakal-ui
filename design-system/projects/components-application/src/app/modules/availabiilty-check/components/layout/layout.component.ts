@@ -28,9 +28,6 @@ export class LayoutComponent implements OnInit {
     },
   ];
 
-  contentPortion = { open: 10, close: 50 };
-  actions: ButtonModel[] = [{ type: 'portion' } as ButtonModel];
-
   formValues = { select: '', date: ''}
 
   isFormFull(){

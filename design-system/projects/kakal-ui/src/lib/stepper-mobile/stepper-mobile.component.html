@@ -1,5 +1,6 @@
 <div fxFill fxLayout="column" dir="rtl" fxLayoutGap="1.5rem">
-  <div fxLayout="row" fxLayoutAlign="center" dir="rtl">
+
+  <div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
     <div style="padding-top: 5px" [ngClass]="{ hover: stepsSelectionEvent.selectedIndex }" (click)="onPrevious()">
       <kkl-icon
         *ngIf="stepsSelectionEvent.selectedIndex"

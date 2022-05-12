@@ -4,7 +4,6 @@
   overflow: visible !important;
   // visibility: visible !important;
 
-
   &.menu {
     height: 100%;
     // top: main.$toolbar-height;
@@ -42,10 +41,6 @@ div.content {
   margin-bottom: main.$bottomBar-height;
 }
 
-.sidenav-drawer {
-  width: 32rem !important;
-}
-
 // style button of side menu
 button.mat-fab.kkl-drawer-button {
   background-color: main.color(paper) !important;
@@ -72,7 +67,7 @@ button.mat-fab.kkl-drawer-button {
   right: 28rem;
 
   &.outside {
-    margin-top : 1%;
+    margin-top: 1%;
     right: 8rem;
   }
 }
@@ -88,60 +83,32 @@ button.mat-fab.kkl-drawer-button {
   }
 }
 
-// style bottom navbar
-.bottom-navbar {
+// style bottom-navbar
+.footer {
   bottom: 0;
   width: 100%;
   position: fixed;
   height: main.$bottomBar-height;
   z-index: 100;
-  overflow: hidden;
-  & * {
-    overflow: hidden;
-  }
+  // overflow: hidden;
+  // & * {
+  //   overflow: hidden;
+  // }
 }
 
-.example-container {
-  height: 500px;
-}
-
-.end-drawer-button {
-  height: 100%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 5rem;
+// style for end drawer buttons
+button.mat-button.drawer-desktop-btn {
   background-color: #f9f8f6;
-  opacity: 0.5;
-  cursor: pointer;
+  min-width: 24px;
+  padding: 0 8px;
 }
 
-.mat-sidenav-container {
-  width: 100%;
-}
-
-.end-drawer-btn {
-  // border: 1px solid main.$primary;
-  // border-radius: 100px;
+button.mat-fab.drawer-mobile-btn {
   position: fixed;
-  bottom: calc(main.$bottomBar-height + 3rem);
-  left: 3rem;
-}
+  bottom: 5%;
+  left: 5%;
 
-// style bottom navbar
-.navbar-bottom {
-  bottom: 0;
-  width: 100%;
-  position: fixed;
-  height: main.$bottomBar-height;
-  z-index: 100;
-}
-
-// .main-content-height{
-//   height: main.$wizard-height;
-// }
-
-
-.toolbar-height {
-  height: 8rem !important;
+  mat-icon {
+    color: main.color(paper);
+  }
 }

@@ -21,6 +21,10 @@ button.mat-mini-fab {
   background-color: main.color(paper) !important;
 }
 
+button.mat-raised-button.kkl-save-button:not(.mat-button-disabled) {
+  color: main.color(text);
+}
+
 button.kkl-next-button:not(.mat-button-disabled) {
   color: main.color(paper) !important;
 }
