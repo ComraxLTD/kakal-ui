@@ -2,7 +2,7 @@
 
 <kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
   [menuTemplates]="{temp,test,test3}" (statusSelection)="onStatus($event)">
-  <router-outlet></router-outlet>
+  <router-outlet content></router-outlet>
 </kkl-layout>
 
 
@@ -14,14 +14,14 @@
   <kkl-typography [size]="2" content>תוכן</kkl-typography>
 
 </kkl-expand-panel>
-
+<ng-template #test>
   <div class="test">
     <kkl-menu-bar [cards]="cards2" [templates]="{newTest}"></kkl-menu-bar>
   </div>
 
 </ng-template>
 
-<ng-template #newTest>
+<ng-template #temp>
   <div class="newTest">
     <p>test</p>
     <p>test</p>

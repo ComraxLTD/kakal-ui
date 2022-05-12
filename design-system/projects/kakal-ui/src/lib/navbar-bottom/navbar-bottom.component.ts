@@ -73,7 +73,7 @@ export class NavbarBottomComponent implements OnInit {
       });
 
       this.navbarBottomService
-      .getTextNext()
+      .listenNextLabel()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a:string) => {
         this.nextLabel = a;
