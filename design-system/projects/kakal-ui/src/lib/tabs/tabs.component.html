@@ -1,8 +1,8 @@
-<mat-tab-group
-
-  [ngClass]="['kkl-tabs', direction]"
+<mat-tab-group *ngIf="direction == 'vertical';else horizontal"
+mat-stretch-tabs
+  class="kkl-tabs vertical"
   animationDuration="0ms"
-  [fxLayout]="direction === 'horizontal' ? 'row' : 'column'"
+  [fxLayout]="'column'"
   [backgroundColor]="backgroundColor"
 >
   <ng-container *ngFor="let tab of tabs">
@@ -11,3 +11,17 @@
     </mat-tab>
   </ng-container>
 </mat-tab-group>
+<ng-template #horizontal>
+  <mat-tab-group
+    class="kkl-tabs horizontal"
+    animationDuration="0ms"
+    [fxLayout]="'row'"
+    [backgroundColor]="backgroundColor"
+  >
+    <ng-container *ngFor="let tab of tabs">
+      <mat-tab [label]="tab.label">
+        <ng-container *ngTemplateOutlet="templates[tab.key]"></ng-container>
+      </mat-tab>
+    </ng-container>
+  </mat-tab-group>
+</ng-template>

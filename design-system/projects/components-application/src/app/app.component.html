@@ -1,17 +1,10 @@
-<!-- <kkl-layout
-  [hideFooterPath]="['lobby']"
-  [status]="status"
-  (logoClicked)="onLogoClicked()"
-  [cards]="cards"
-  menuTemplates="{temp:temp}"
-  (statusSelection)="onStatus($event)"
->
+
+<kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
+  [menuTemplates]="{temp,test,test3}" (statusSelection)="onStatus($event)">
   <router-outlet></router-outlet>
 </kkl-layout>
 
-<ng-template #temp>
-  <kkl-icon key="edit"></kkl-icon>
-</ng-template> -->
+
 
 
 <kkl-expand-panel [variant]="'form'" dir="rtl">
@@ -20,3 +13,32 @@
   <kkl-typography [size]="2" content>תוכן</kkl-typography>
 
 </kkl-expand-panel>
+
+  <div class="test">
+    <kkl-menu-bar [cards]="cards2" [templates]="{newTest}"></kkl-menu-bar>
+  </div>
+
+</ng-template>
+
+<ng-template #newTest>
+  <div class="newTest">
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+  </div>
+</ng-template>
+
+
+
+
+<ng-template #test3>
+  <div class="test">
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+
+  </div>
+</ng-template>
+

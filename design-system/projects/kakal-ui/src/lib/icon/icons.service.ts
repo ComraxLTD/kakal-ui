@@ -40,6 +40,7 @@ export class IconService {
     // TABLE ICONS
     drag_n_drop: AppIcons.DRAG_N_DROP,
     all_directions: AppIcons.AAL_DIRECTIONS,
+    mobile_drop_down: AppIcons.MOBILE_DROP_DOWN,
 
     // ACTIONS ICONS
     two_arrows: AppIcons.TWO_ARROWS_UP,
@@ -94,6 +95,9 @@ export class IconService {
     // DIALOG
     accept_circle: AppIcons.ACCEPT_WITH_CIRCLE,
     cancel_circle: AppIcons.CANCEL_WITH_CIRCLE,
+    dialog_success: AppIcons.DIALOG_SUCCESS_ICON,
+    dialog_cancel: AppIcons.DIALOG_CANCEL_ICON,
+    dialog_wait: AppIcons.DIALOG_WAIT_ICON,
 
     //-------FORESTRY ICONS--------------------------------------------------------------
     strategy: AppIcons.STRATEGY,

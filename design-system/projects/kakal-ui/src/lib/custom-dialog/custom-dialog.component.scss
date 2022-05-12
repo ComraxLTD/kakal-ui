@@ -1,0 +1,30 @@
+@use "../../styles/variables" as main;
+
+:host {
+  div.dialog-container {
+    min-height: 20rem !important;
+    min-width: 60rem !important;
+    position: relative;
+    
+    button.mat-icon-button[mat-dialog-close] {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    header {
+      border-bottom: 1px dotted main.color(primary);
+    }
+
+    main {
+      width: 100%;
+    }
+
+    footer{
+      margin-top: 20px;
+      kkl-typography{
+        margin-top: 20px;
+      }
+    }
+  }
+}

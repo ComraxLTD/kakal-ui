@@ -26,18 +26,7 @@
             </ng-template>
         </div>
 
-        <div class="actions" fxLayout="row" fxLayoutGap="1rem" dir="rtl">
-          <ng-container *ngFor="let action of rowActions">
-            <button
-              mat-icon-button
-              kkl-action-button
-              color="primary"
-              (click)="onAction(action)"
-            >
-              <mat-icon>{{ action.svgIcon }}</mat-icon>
-            </button>
-          </ng-container>
-        </div>
+
       </mat-toolbar>
     </header>
     <main fxLayout="row" fxLayoutAlign="center center">
