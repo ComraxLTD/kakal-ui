@@ -62,7 +62,7 @@ export class StepsAccordionComponent implements OnInit {
     this.navbarBottomService.setAutoBack(false);
     this.navbarBottomService.setDisableNext(true);
     this.navbarBottomService
-      .getBack()
+      .listenToBack()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a) => {
         if (this.completed) {
@@ -100,7 +100,7 @@ export class StepsAccordionComponent implements OnInit {
         }
       });
     this.navbarBottomService
-      .getNextMiddle()
+      .listenToNextMiddle()
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a) => {
         if (this.currentStep?.selectedIndex === this.steps.length - 1) {

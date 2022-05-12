@@ -1,5 +1,5 @@
 <ng-container *ngIf="portion$ | async as portion">
-  <mat-sidenav-container class="kkl-sidenav-container" dir="rtl">
+  <mat-sidenav-container class="kkl-layout" dir="rtl">
     <mat-sidenav #menuDrawer class="menu" mode="push" position="start">
       <ng-container>
         <div
@@ -78,7 +78,7 @@
       </div>
     </mat-sidenav>
 
-    <mat-sidenav-content [fxFlex]="portion.content">
+    <mat-sidenav-content [ngStyle]="{ width: portion.content + '%' }">
       <kkl-navbar
         [status]="status"
         [showStatus$]="showStatus$"
@@ -89,18 +89,18 @@
       ></kkl-navbar>
 
       <ng-content select="[content]"></ng-content>
+      <!-- <div class="content">
+      </div> -->
 
       <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-      <ng-container
-        *ngIf="portion.mobile && !endDrawer.opened"
-      >
+      <ng-container *ngIf="portion.mobile && !endDrawer.opened">
         <button mat-fab class="drawer-mobile-btn" (click)="endDrawer.toggle()">
           <mat-icon>edit</mat-icon>
         </button>
       </ng-container>
 
       <ng-container *ngIf="!(hideFooter$ | async)">
-        <div class="footer">
+        <div class="footer" [ngStyle]="{ width: portion.content + '%' }">
           <kkl-navbar-bottom></kkl-navbar-bottom>
         </div>
       </ng-container>

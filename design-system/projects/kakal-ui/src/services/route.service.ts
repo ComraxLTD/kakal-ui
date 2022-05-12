@@ -12,7 +12,9 @@ export class RouterService {
   private modulePrefix$: BehaviorSubject<string> = new BehaviorSubject(
     'small-contract'
   );
-  public history: string[] = [];
+  history: string[] = [];
+
+  url: string;
 
   constructor(
     private router: Router,
@@ -21,6 +23,7 @@ export class RouterService {
   ) {
     // this.listenToRoute$();
   }
+
 
   public getUrl(path: string) {
     const routes = this.router.url.split('/');
@@ -62,22 +65,23 @@ export class RouterService {
     }
   }
 
-  public getCurrentPath(): string {
+  getCurrentPath(): string {
     return this.setLastPath(this.router.url);
   }
 
-  public listenToRoute$(): Observable<string> {
+  listenToRoute$(): Observable<string> {
     return this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),
-      map((event: any) => {
+      map((event: NavigationEnd) => {
         this.history.push(event.urlAfterRedirects);
+        this.url = event.url;
         // this.currentRoute = (event as NavigationEnd).url;
         return event.url;
       })
     );
   }
 
-  public getLastPath$(steps?: CardStep[]): Observable<string> {
+  getLastPath$(steps?: CardStep[]): Observable<string> {
     return this.listenToRoute$().pipe(
       startWith(this.getCurrentPath()),
       map((path: string) =>
@@ -88,14 +92,14 @@ export class RouterService {
     );
   }
 
-  public async navigate(path: string) {
+  async navigate(path: string) {
     try {
       await this.router.navigateByUrl(path);
     } catch (err) {
       console.log(err);
     }
   }
-  public setLastPathWithSteps(path: string, steps: CardStep[]): string {
+  setLastPathWithSteps(path: string, steps: CardStep[]): string {
     let currentStep: CardStep;
     const pathArr = path.split('/');
     pathArr.filter((path) => {
@@ -106,20 +110,20 @@ export class RouterService {
     return currentStep?.path;
   }
 
-  public setLastPath(url: string) {
+  setLastPath(url: string) {
     const path = url.split('/');
     return path[path.length - 1];
   }
 
-  public getModulePrefixObs(): Observable<string> {
+  getModulePrefixObs(): Observable<string> {
     return this.modulePrefix$.asObservable();
   }
 
-  public emitModulePrefix(path: string): void {
+  emitModulePrefix(path: string): void {
     this.modulePrefix$.next(path);
   }
 
-  public getParams$(): Observable<Params> {
+  getParams$(): Observable<Params> {
     return this.activatedRoute.params;
   }
 }

@@ -1,5 +1,10 @@
 @use "../../../styles/variables" as main;
 
+:host {
+  height: 100%;
+  width: 100%;
+}
+
 .sidenav-container {
   background-color: main.color(paper);
 }
@@ -7,10 +12,6 @@
 mat-sidenav-content {
   background-color: main.color(paper);
   margin-left: 0 !important;
-}
-
-div.content {
-  margin-bottom: main.$bottomBar-height;
 }
 
 mat-toolbar {
@@ -23,4 +24,6 @@ mat-toolbar {
     box-sizing: border-box;
   }
 }
-
+main {
+  // margin-bottom: main.$bottomBar-height;
+}

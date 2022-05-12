@@ -21,88 +21,104 @@ export class NavbarBottomService {
   private nextMiddle$: Subject<void> = new Subject();
   private formGroup$: Subject<FormGroup> = new Subject();
 
+  private nextLabel$: BehaviorSubject<string> = new BehaviorSubject('המשך');
+
   private disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
 
   constructor() {}
 
-  getShowNext(): BehaviorSubject<boolean> {
+  // show next button methods
+  listenToShowNext(): BehaviorSubject<boolean> {
     return this.showNext$;
   }
   setShowNext(val: boolean) {
     this.showNext$.next(val);
   }
 
-  getShowSave(): Observable<boolean> {
+  // show save button methods
+  listenToShowSave(): Observable<boolean> {
     return this.showSave$.asObservable();
   }
   setShowSave(val: boolean) {
     this.showSave$.next(val);
   }
 
-  getShowBack(): Observable<boolean> {
+  // show previous button methods
+  listenToShowBack(): Observable<boolean> {
     return this.showBack$.asObservable();
   }
   setShowBack(val: boolean) {
     this.showBack$.next(val);
   }
 
-  getShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
+  // show next middle button methods
+  listenToShowNextMiddle(): Observable<{ show: boolean; next: boolean }> {
     return this.showNextMiddle$.asObservable();
   }
   setShowNextMiddle(val: { show: boolean; next: boolean }) {
     this.showNextMiddle$.next(val);
   }
 
-  getDisableNext(): Observable<boolean> {
+  // next disable button methods
+  listenToDisableNext(): Observable<boolean> {
     return this.disableNext$.asObservable();
   }
+
   setDisableNext(val: boolean) {
     this.disableNext$.next(val);
   }
 
-  getAutoBack(): Observable<boolean> {
+  listenToAutoBack(): Observable<boolean> {
     return this.autoBack$.asObservable();
   }
   setAutoBack(val: boolean) {
     this.autoBack$.next(val);
   }
 
-  getFormGroup(): Observable<FormGroup> {
+  listenToFormGroup(): Observable<FormGroup> {
     return this.formGroup$.asObservable();
   }
   setFormGroup(val: FormGroup) {
     this.formGroup$.next(val);
   }
 
-  getSave(): Observable<void> {
+  listenToSave(): Observable<void> {
     return this.save$.asObservable();
   }
+
   setSave() {
     this.save$.next();
   }
 
-  getBack(): Observable<void> {
+  listenToBack(): Observable<void> {
     return this.back$.asObservable();
   }
   setBack() {
     this.back$.next();
   }
 
-  getNext(): Observable<void> {
+  listenToNext(): Observable<void> {
     return this.next$.asObservable();
   }
   setNext() {
     this.next$.next();
   }
 
-  getNextMiddle(): Subject<void> {
+  listenToNextMiddle(): Subject<void> {
     return this.nextMiddle$;
   }
   setNextMiddle() {
     this.nextMiddle$.next();
   }
 
+
+  setNextLabel(value: string): void {
+    this.nextLabel$.next(value);
+  }
+  listenNextLabel(): Observable<string> {
+    return this.nextLabel$.asObservable();
+  }
 
 
   getTextSave(): Observable<string> {
@@ -112,10 +128,4 @@ export class NavbarBottomService {
     this.textSave$.next(val);
   }
 
-  getTextNext(): Observable<string> {
-    return this.textNext$.asObservable();
-  }
-  setTextNext(val: string) {
-    this.textNext$.next(val);
-  }
 }

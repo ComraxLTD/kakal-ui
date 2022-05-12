@@ -1,9 +1,10 @@
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
-import { ROOT_PREFIX } from '../../constants/root-prefix';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
-import { Subject, BehaviorSubject, takeUntil, Observable } from 'rxjs';
+import { ROOT_PREFIX } from '../../constants/root-prefix';
+import { Subject, takeUntil, Observable } from 'rxjs';
+import { IconService } from '../icon/icons.service';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -17,12 +18,14 @@ export class NavbarBottomComponent implements OnInit {
   showSave$: Observable<boolean>;
   showBack$: Observable<boolean>;
   showNextMiddle$: Observable<{ show: boolean; next: boolean }>;
+  nextLabel$: Observable<string>;
 
   disableNext$: Observable<boolean>;
 
   autoBack: boolean = true;
 
   formGroup: FormGroup = new FormGroup({});
+
 
   nextLabel: string;
   saveLabel: string;
@@ -37,22 +40,25 @@ export class NavbarBottomComponent implements OnInit {
   constructor(
     private routerService: RouterService,
     private navbarBottomService: NavbarBottomService,
+    private iconService: IconService,
     @Inject(ROOT_PREFIX) private rootPrefix
   ) {}
 
   ngOnInit(): void {
     this.bottomIcon = this.setBottomIcon();
+    this.iconService.setIcon(this.bottomIcon);
 
-    this.showNext$ = this.navbarBottomService.getShowNext();
-    this.showSave$ = this.navbarBottomService.getShowSave();
-    this.showBack$ = this.navbarBottomService.getShowBack();
-    this.showNextMiddle$ = this.navbarBottomService.getShowNextMiddle();
-    this.disableNext$ = this.navbarBottomService.getDisableNext();
+    this.showNext$ = this.navbarBottomService.listenToShowNext();
+    this.showSave$ = this.navbarBottomService.listenToShowSave();
+    this.showBack$ = this.navbarBottomService.listenToShowBack();
+    this.showNextMiddle$ = this.navbarBottomService.listenToShowNextMiddle();
+    this.disableNext$ = this.navbarBottomService.listenToDisableNext();
+    this.nextLabel$ = this.navbarBottomService.listenNextLabel();
 
     this.navbarBottomService
-      .getFormGroup()
+      .listenToFormGroup()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((b:FormGroup) => {
+      .subscribe((b: FormGroup) => {
         if (b) {
           this.formGroup = b;
         } else {
@@ -60,9 +66,9 @@ export class NavbarBottomComponent implements OnInit {
         }
       });
     this.navbarBottomService
-      .getAutoBack()
+      .listenToAutoBack()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a:boolean) => {
+      .subscribe((a: boolean) => {
         this.autoBack = a;
       });
 

@@ -1,11 +1,5 @@
-<mat-toolbar
-  class="kkl-navbar-bottom"
-  fxLayout="row"
-  fxLayoutAlign="space-between center"
-  fxFill
-  dir="rtl"
->
-  <div fxFlex="10">
+<mat-toolbar class="kkl-navbar-bottom">
+  <div fxFill fxFlex="10rem">
     <div
       fxLayout="column"
       fxLayoutAlign="center start"
@@ -16,7 +10,7 @@
       </button>
     </div>
   </div>
-  <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
+  <div fxFlex="grow" fxLayout="column" fxLayoutAlign="center center">
     <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
       <ng-container *ngIf="nextMiddle.show">
         <button
@@ -38,12 +32,7 @@
       </ng-container>
     </ng-container>
 
-    <kkl-icon
-      type="svg"
-      [size]="20"
-      [key]="bottomIcon"
-      color="primary"
-    ></kkl-icon>
+    <mat-icon class="bottom_icon" [svgIcon]="bottomIcon" color="primary"></mat-icon>
   </div>
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!--save button -->
@@ -63,24 +52,24 @@
         color="primary"
         (click)="onNext()"
       >
-        {{ nextLabel || "המשך" }}
+        {{ nextLabel$ | async }}
       </button>
     </ng-container>
-    <!-- </ng-container> -->
   </div>
 </mat-toolbar>
 
 <!-- <ng-container *ngIf="(showNextMiddle$ | async).show">
   <button
-    class="kkl-next-button"
-    mat-raised-button
+  class="kkl-next-button"
+  mat-raised-button
     [disabled]="!formGroup.valid"
     color="primary"
     (click)="onNextMiddle()"
-  >
+    >
     <ng-container *ngIf="(showNextMiddle$ | async).next; else saveTemp">{{
       nextLabel || "המשך"
     }}</ng-container>
     <ng-template #saveTemp>{{ "שמור" }}</ng-template>
   </button>
 </ng-container> -->
+<!-- </ng-container> -->
