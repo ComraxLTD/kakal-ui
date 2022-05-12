@@ -2,6 +2,7 @@ export interface RowActionModel {
   type: string;
   icon?: string;
   label?: string;
+  navigation?: string;
 }
 export interface RowActionEvent {
   action: string;

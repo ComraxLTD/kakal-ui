@@ -2,12 +2,6 @@
   <mat-label>{{ label }}</mat-label>
 
   <mat-chip-list #chipList aria-label="Fruit selection">
-    <mat-chip *ngFor="let fruit of control.value" (removed)="remove(fruit)">
-      {{ fruit.label }}
-      <button matChipRemove [disabled]="control.disabled">
-        <mat-icon>cancel</mat-icon>
-      </button>
-    </mat-chip>
 
     <input type="text" [placeholder]="placeHolder" matInput [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
       [disabled]="control.disabled" [matChipInputFor]="chipList" [matAutocomplete]="auto1" [formControl]="myAutoControl"
@@ -28,3 +22,12 @@
   <kkl-icon matSuffix *ngIf="!withButton" color="primary" [key]="icon || 'search'" [size]="1.8"></kkl-icon>
   <mat-error>{{ error$ | async }}</mat-error>
 </mat-form-field>
+
+<div class="chips-wrapper" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1rem">  
+  <mat-chip *ngFor="let fruit of control.value" (removed)="remove(fruit)">
+    {{ fruit.label }}
+    <button matChipRemove [disabled]="control.disabled">
+      <mat-icon>cancel</mat-icon>
+    </button>
+  </mat-chip>
+</div>

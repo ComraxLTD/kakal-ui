@@ -14,9 +14,9 @@ import { setControls } from '../../../mei-services/services/form-create';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
 import { DialogService } from '../../../dialog/dialog.service';
-import { BreakpointService } from '../../../../services/services';
+import { BreakpointService, RouterService } from '../../../../services/services';
 
-const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand'];
+const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavigation'];
 
 @Component({
   selector: 'kkl-server-table',
@@ -203,7 +203,8 @@ export class EventTableComponent implements OnInit {
     this.mobile$ = this.breakpointService.isMobile();
   }
 
-  constructor(private fb: FormBuilder, private http: HttpClient, private dialogService: DialogService, private breakpointService: BreakpointService) {
+  constructor(private fb: FormBuilder, private http: HttpClient, private dialogService: DialogService,
+    private breakpointService: BreakpointService, private routerService: RouterService) {
   }
 
   ngAfterViewInit() {
@@ -286,6 +287,10 @@ export class EventTableComponent implements OnInit {
         case 'inlineExpand':
           this.expandRow.emit({row: obj, key: key});
           this.addExpandedRow(obj);
+          break;
+        case 'inlineNavigation':
+          const url = this.routerService.getUrl(butt.navigation);
+          this.routerService.navigate(url);
           break;
         default:
           break;
