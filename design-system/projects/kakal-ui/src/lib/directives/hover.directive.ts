@@ -27,8 +27,7 @@ export class KKLHoverDirective {
     @HostListener('mouseout') onMouseOut() {
       // this.overlayRef._keydownEvents
       // this.overlayRef.outsidePointerEvents().subscribe
-        // console.log('out');
-        // this.overlayRef.detach();
+      this.overlayRef.detach();
     }
     constructor(private overlay: Overlay,
         private overlayPositionBuilder: OverlayPositionBuilder,

@@ -19,7 +19,7 @@ export class FacilityCardComponent implements OnInit {
   createOccupiedHoursArray() {
     let startingHour = 0;
 
-    this.data.map((hour) => {
+    this.data?.map((hour) => {
       if (startingHour < hour.startingHour) {
         this.occupiedHoursArray.push({
           totalHours: hour.startingHour - startingHour,
