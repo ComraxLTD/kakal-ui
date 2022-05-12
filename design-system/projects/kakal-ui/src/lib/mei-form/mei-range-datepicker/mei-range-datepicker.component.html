@@ -10,7 +10,7 @@
     <input matStartDate formControlName="start" placeholder="מתאריך" />
     <input matEndDate formControlName="end" placeholder="עד תאריך" />
   </mat-date-range-input>
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker-toggle class="mat-datepicker-toggle-active" matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-date-range-picker #picker></mat-date-range-picker>
 
   <!-- <mat-error>{{ message$ | async }}</mat-error> -->
