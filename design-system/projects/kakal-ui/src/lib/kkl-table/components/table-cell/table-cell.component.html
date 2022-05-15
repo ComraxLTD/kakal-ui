@@ -5,24 +5,26 @@
   </div>
 </ng-container>
 <ng-template #noTemplate>
-  <kkl-icon style="display: inline-block; padding-left: 8px;" *ngIf="question.colIcon" color="primary" [key]="question.colIcon"></kkl-icon>
-  <span *ngIf="question.button; else withoutButton">
-    <button style="width: 100%;" mat-button color="primary" (click)="buttonClick()">
-      <span fxLayout="row" fxFlex fxLayoutAlign="end center">
-        <span *ngIf="data" style="white-space: pre-wrap; line-height: normal; width: 80%;">
-          <span style="border-bottom: 1px solid;">
-            {{data | tableCellPipe: question.controlType}}
+  <span fxLayout="row" fxFlex fxLayoutAlign="center center">
+    <kkl-icon style="display: inline-block; padding-left: 8px;" *ngIf="question.colIcon" color="primary" [key]="question.colIcon"></kkl-icon>
+    <span *ngIf="question.button; else withoutButton">
+      <button style="width: 100%;" mat-button color="primary" (click)="buttonClick()">
+        <span  fxFlex fxLayoutAlign="end center">
+          <span *ngIf="data" style="white-space: pre-wrap; line-height: normal; width: 80%;">
+            <span style="border-bottom: 1px solid;">
+              {{data | tableCellPipe: question.controlType}}
+            </span>
           </span>
+          <kkl-icon [color]="'primary'" *ngIf="question.button.icon" [key]="question.button.icon"></kkl-icon>
         </span>
-        <kkl-icon [color]="'primary'" *ngIf="question.button.icon" [key]="question.button.icon"></kkl-icon>
-      </span>
-    </button>
+      </button>
+    </span>
+    <ng-template #withoutButton>
+      <div *ngIf="data" style="white-space: pre-wrap;">
+        <span >
+          {{data | tableCellPipe: question.controlType}}
+        </span>
+      </div>
+    </ng-template>
   </span>
-  <ng-template #withoutButton>
-    <div *ngIf="data" style="white-space: pre-wrap; width: 100%;">
-      <span fxLayout="row" fxFlex fxLayoutAlign="center center">
-        {{data | tableCellPipe: question.controlType}}
-      </span>
-    </div>
-  </ng-template>
 </ng-template>

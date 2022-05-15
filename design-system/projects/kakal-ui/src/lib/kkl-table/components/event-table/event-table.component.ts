@@ -1,5 +1,5 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
-import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -31,6 +31,8 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavi
   ],
 })
 export class EventTableComponent implements OnInit {
+  @ViewChild('myIdentifier')
+  myIdentifier: ElementRef;
   destroySubject$: Subject<void> = new Subject();
 
   @Input() noMobile: boolean = false;
@@ -175,6 +177,7 @@ export class EventTableComponent implements OnInit {
   lastSpan: string | undefined;
   spans: any[] = [];
 
+  isDesktop: boolean = true;
 
   dragDisabled = true;
 
@@ -214,6 +217,14 @@ export class EventTableComponent implements OnInit {
     this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
       this.requsetChange(sor);
     });
+    setTimeout(() => {
+      const size = this.myIdentifier.nativeElement.offsetWidth;
+      if(size <= 600 && !this.noMobile) {
+        this.isDesktop = false;
+      } else {
+        this.isDesktop = true;
+      }
+    }, 0);
   }
 
   searchChanged() {
@@ -471,6 +482,15 @@ export class EventTableComponent implements OnInit {
     }
   }
 
+
+  onResize(event) {
+    const size = event.newRect.width;
+    if(size <= 600 && !this.noMobile) {
+      this.isDesktop = false;
+    } else {
+      this.isDesktop = true;
+    }
+  }
 
   ngOnDestroy() {
     this.destroySubject$.next();

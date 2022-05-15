@@ -70,6 +70,7 @@ thead{
   // width: 100%;
   // position: relative;
   overflow: auto;
+  height: 100%;
 }
 
 table table {
@@ -206,6 +207,10 @@ th>h3 {
   .mobile-hidden {
     display: initial;
   }
+}
+
+.hidden-class {
+  display: none;
 }
 
 ::ng-deep .example-headers-align {

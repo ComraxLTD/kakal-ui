@@ -1,6 +1,6 @@
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { AfterViewInit, Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -32,13 +32,14 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavi
 })
 export class LocalTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatTable) table: MatTable<any>;
+  @ViewChild('myIdentifier')
+  myIdentifier: ElementRef;
 
   @Input() noMobile: boolean = false;
   typeLocal: boolean = true;
   currentEditRow: number = -1;
   destroySubject$: Subject<void> = new Subject();
 
-  mobile$: Observable<boolean>;
 
   isLoading: boolean = true;
 
@@ -171,6 +172,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
   spans: any[] = [];
 
 
+  isDesktop: boolean = true;
 
 
 
@@ -196,7 +198,6 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     }
     this.form = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
     setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
-    this.mobile$ = this.breakpointService.isMobile();
   }
 
 
@@ -231,6 +232,14 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     }
     this.dataTable.filterPredicate = customFilterPredicate;
     this.putOptions();
+    setTimeout(() => {
+      const size = this.myIdentifier.nativeElement.offsetWidth;
+      if(size <= 600 && !this.noMobile) {
+        this.isDesktop = false;
+      } else {
+        this.isDesktop = true;
+      }
+    }, 0);
   }
 
   searchChanged() {
@@ -486,6 +495,16 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
       this.currentEditRow = this.editItems.indexOf(ind);
     } else {
       this.currentEditRow = ind;
+    }
+  }
+
+
+  onResize(event) {
+    const size = event.newRect.width;
+    if(size <= 600 && !this.noMobile) {
+      this.isDesktop = false;
+    } else {
+      this.isDesktop = true;
     }
   }
 
