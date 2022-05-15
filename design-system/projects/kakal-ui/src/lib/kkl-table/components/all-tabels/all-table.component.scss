@@ -28,6 +28,9 @@ tr.example-element-row:not(.example-expanded-row):active {
 //   border-collapse: separate !important;
 //   border-spacing: 0 4px !important;
 // }
+th.mat-header-cell {
+  text-align: center !important;
+}
 
 .center-butt {
   text-align: center !important;
@@ -192,22 +195,22 @@ th>h3 {
 //shorter a liitle bit before the pagination
 
 
-@media screen and (max-width: 600px) {
-  .desktop-hidden {
-    display: initial;
-  }
-  .mobile-hidden {
-    display: none;
-  }
-}
-@media screen and (min-width: 600px) {
-  .desktop-hidden {
-    display: none;
-  }
-  .mobile-hidden {
-    display: initial;
-  }
-}
+// @media screen and (max-width: 600px) {
+//   .desktop-hidden {
+//     display: initial;
+//   }
+//   .mobile-hidden {
+//     display: none;
+//   }
+// }
+// @media screen and (min-width: 600px) {
+//   .desktop-hidden {
+//     display: none;
+//   }
+//   .mobile-hidden {
+//     display: initial;
+//   }
+// }
 
 .hidden-class {
   display: none;
