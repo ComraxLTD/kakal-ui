@@ -1,7 +1,10 @@
 <div fxFill fxLayout="column" dir="rtl" fxLayoutGap="1.5rem">
-
   <div fxLayout="row" fxLayoutAlign="center center" dir="rtl">
-    <div style="padding-top: 5px" [ngClass]="{ hover: stepsSelectionEvent.selectedIndex }" (click)="onPrevious()">
+    <div
+      style="padding-top: 5px"
+      [ngClass]="{ hover: stepsSelectionEvent.selectedIndex }"
+      (click)="onPrevious()"
+    >
       <kkl-icon
         *ngIf="stepsSelectionEvent.selectedIndex"
         key="arrow_forward_ios"
@@ -16,9 +19,23 @@
     <kkl-typography [weight]="500" [size]="2.5">
       {{ _steps[stepsSelectionEvent.selectedIndex].label }}
     </kkl-typography>
-    <div style="padding-top: 5px" [ngClass]="{ hover: stepsSelectionEvent.selectedIndex !== _steps.length-1 }" (click)="onNext()">
-      <kkl-icon *ngIf="stepsSelectionEvent.selectedIndex !== _steps.length-1" key="arrow_back_ios" color="primary"></kkl-icon>
-      <kkl-icon *ngIf="stepsSelectionEvent.selectedIndex === _steps.length-1" key="arrow_back_ios" color="greyFirst"></kkl-icon>
+    <div
+      style="padding-top: 5px"
+      [ngClass]="{
+        hover: stepsSelectionEvent.selectedIndex !== _steps.length - 1
+      }"
+      (click)="onNext()"
+    >
+      <kkl-icon
+        *ngIf="stepsSelectionEvent.selectedIndex !== _steps.length - 1"
+        key="arrow_back_ios"
+        color="primary"
+      ></kkl-icon>
+      <kkl-icon
+        *ngIf="stepsSelectionEvent.selectedIndex === _steps.length - 1"
+        key="arrow_back_ios"
+        color="greyFirst"
+      ></kkl-icon>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
