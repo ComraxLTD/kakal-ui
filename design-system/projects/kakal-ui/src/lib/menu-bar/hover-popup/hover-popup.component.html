@@ -2,7 +2,7 @@
   cdkConnectedOverlay
   [cdkConnectedOverlayOrigin]="CdkOverlayOrigin"
   [cdkConnectedOverlayOpen]="isOpened"
-  [cdkConnectedOverlayPositions]="positionPairs"
+  [cdkConnectedOverlayPositions]="isChildren? childrenPositionPairs: positionPairs"
   (detach)="connectedOverlayDetach()">
   <div #dialog role="dialog" aria-label="Dialog" [ngClass]="isChildren ? 'dialog-container-children' : 'dialog-container'" class="dialog-container">
     <ng-content></ng-content>
