@@ -29,6 +29,7 @@ import { LocalAdvancedSearchComponent } from './components/local-table/local-adv
 import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MobileTableComponent } from './components/mobile-table/mobile-table.component';
+import { KKLDirectivesModule } from '../directives/directives.module';
 @NgModule({
   declarations: [
     LocalTableComponent,
@@ -61,7 +62,8 @@ import { MobileTableComponent } from './components/mobile-table/mobile-table.com
     MeiFormModule,
     MeiServiceModule,
     MatChipsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    KKLDirectivesModule
   ],
   exports: [
     LocalTableComponent,
