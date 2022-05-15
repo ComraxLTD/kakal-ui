@@ -1,14 +1,13 @@
 <kkl-steps-layout dir="rtl" [steps]="steps">
   <div content>
-    <div title class="title">
-      <!-- <kkl-form
-        (queryChanged)="onQueryChanged($event)"
-        (selectChanged)="onSelectChanged($event)"
-        (openChanged)="onOpenChanged($event)"
-        [controls]="questions"
-        [grid]="formGrid"
-      ></kkl-form> -->
-    </div>
-    <router-outlet></router-outlet>
+    <mat-accordion fxFlex="30">
+      <kkl-expand-panel [hideToggle]="false" variant="form" [expanded]="true">
+        <kkl-typography title>הסכמים</kkl-typography>
+        <app-case-contract-panel
+          (itemSelected)="onCardSelect($event)"
+          content
+        ></app-case-contract-panel>
+      </kkl-expand-panel>
+    </mat-accordion>
   </div>
 </kkl-steps-layout>

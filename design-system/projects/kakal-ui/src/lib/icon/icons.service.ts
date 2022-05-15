@@ -19,7 +19,6 @@ export class IconService {
   ) {}
 
   public icons = {
-
     download_new: AppIcons.DOWNLOAD_NEW,
     printed_new: AppIcons.PRINTER_NEW,
     calendar_new: AppIcons.CALENDAR_NEW,
@@ -60,7 +59,7 @@ export class IconService {
     nike: AppIcons.NIKE_ICON,
     helper: AppIcons.HELPER_ICON,
     phone: AppIcons.PHONE_ICON,
-    file : FILE_ICON,
+    file: FILE_ICON,
     time: AppIcons.TIME_ICON,
     closepopup: AppIcons.CLOSE_POPUP_ICON,
     send: AppIcons.SEND_ICON,
@@ -118,6 +117,12 @@ export class IconService {
     measurements: AppIcons.MEASUREMENTS_ICON,
     list: AppIcons.LIST_ICON,
 
+    // TRANSACTIONS ICONS
+    protocols: AppIcons.PROTOCOLS_ICON,
+    agreements: AppIcons.AGREEMENT_ICON,
+    handshake: AppIcons.HANDSHAKE_ICON,
+    files_folders: AppIcons.FILES_FOLDERS_ICON,
+
     // lobby
     supervision: AppIcons.SUPERVISION_ICON,
     planing: AppIcons.PLANING_ICON,
@@ -158,5 +163,4 @@ export class IconService {
   public addIconsToList(iconsMap: { [key: string]: string }) {
     this.icons = { ...this.icons, ...iconsMap };
   }
-
 }

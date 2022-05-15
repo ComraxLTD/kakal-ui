@@ -88,7 +88,10 @@ export class DocumentGridComponent implements OnInit {
   }
 
   private compare(o1: CardDocument, o2: CardDocument): boolean {
-    return Object.is(o1.id, o2.id);
+    if (o1 !== null && o2 !== null) {
+      return Object.is(o1.id, o2.id);
+    }
+    return false;
   }
 
   private _emitChanged() {

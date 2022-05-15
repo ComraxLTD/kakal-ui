@@ -1,0 +1,30 @@
+<div fxFill>
+  <!-- GRID DOCS HEADER -->
+  <header>
+    <kkl-grid-documents
+      (change)="onDocumentChanged($event)"
+      [cards]="cards"
+    ></kkl-grid-documents>
+  </header>
+
+  <!-- CONDITIONS TABLE -->
+  <section>
+    <kkl-local-table
+      [dataSource]="dataSourceConditions"
+      [columns]="columns"
+      [rowActions]="rowActions"
+      [newRowAction]="'הוסף'"
+      [paging]="false"
+      [noMobile]="true"
+    ></kkl-local-table>
+  </section>
+
+  <section>
+    <kkl-local-table
+      [dataSource]="dataSourceComments"
+      [columns]="columnsComments"
+      [rowActions]="rowActions"
+      [paging]="false"
+    ></kkl-local-table>
+  </section>
+</div>
