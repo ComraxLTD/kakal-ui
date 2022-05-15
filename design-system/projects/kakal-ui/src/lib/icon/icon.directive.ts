@@ -21,6 +21,7 @@ export class KKLIconDirective {
   private stroke: string;
 
   private _disabled: boolean;
+  
   @Input()
   get disabled(): boolean {
     return this._disabled;

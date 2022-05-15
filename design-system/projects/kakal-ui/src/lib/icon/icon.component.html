@@ -1,8 +1,8 @@
-  <mat-icon
+<mat-icon
   *ngIf="type === 'svg'"
   appSize
   kkl-icon
-  [color]="color"
+  [color]="disabled ? 'default' : _color"
   [size]="size"
   [ngStyle]="{
     background: backgroundColor
@@ -14,7 +14,7 @@
 <mat-icon
   *ngIf="type === 'mat'"
   kkl-icon
-  [color]="color"
+  [color]="disabled ? 'default' : _color"
   class="kkl-icon"
   [ngStyle]="{
     transform: scale,

@@ -17,10 +17,10 @@ export interface IconModel {
 })
 export class IconComponent implements OnInit {
   public palette: Color = palette;
-  
+
   private _key: string;
-  
-  public padding!:number
+
+  public padding!: number;
 
   @Input()
   get key(): string {
@@ -28,17 +28,14 @@ export class IconComponent implements OnInit {
   }
   set key(value: string) {
     this._key = value;
-    if(value) {
+    if (value) {
       this.IconService.setIcon(this._key);
     }
   }
 
-  private _color: string = 'default';
+  _color: string = 'default';
 
   @Input()
-  get color(): string {
-    return this._color;
-  }
   set color(value: string) {
     this._color = value;
   }
@@ -53,7 +50,8 @@ export class IconComponent implements OnInit {
   @Input() public backgroundColor: Palette;
 
   @Input() public disabled: boolean;
-  @HostBinding('style.border') paddingValue:string
+
+  @HostBinding('style.border') paddingValue: string;
 
   public scale: string;
 
@@ -63,11 +61,11 @@ export class IconComponent implements OnInit {
     this.setIcon();
     this.setSize();
     this.color = this.color || 'default';
-    this.paddingValue=this.padding+ ' !importent'
+    this.paddingValue = this.padding + ' !important';
   }
 
   private setIcon() {
-    if(this._key) {
+    if (this._key) {
       const isSvg = this.IconService.setIcon(this.key);
       if (this.type) {
         this.type = this.type;
