@@ -1,14 +1,51 @@
 <kkl-steps-layout dir="rtl" [steps]="steps">
   <div content>
-    <div title class="title">
-      <!-- <kkl-form
-        (queryChanged)="onQueryChanged($event)"
-        (selectChanged)="onSelectChanged($event)"
-        (openChanged)="onOpenChanged($event)"
-        [controls]="questions"
-        [grid]="formGrid"
-      ></kkl-form> -->
-    </div>
+      <kkl-steps-accordion-layout 
+      [panels]="cases"
+      [steps]="steps"
+      [templates]="{costumerDetails, propertiesBudget, reservationDetails}"
+      dir="ltr"
+      >
+      <ng-template #costumerDetails>
+        <div fxLayout="column">
+          <p>test</p>
+          <p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p>
+          <p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p>
+          <p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p>
+         </div>
+      </ng-template>
+    
+     
+    
+      <ng-template #propertiesBudget>
+        <div fxLayout="column">
+          <p>test</p>
+          <p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p>
+          <p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p>
+          <p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p><p>test</p>
+         </div>
+      </ng-template>
+    
+      <ng-template #reservationDetails>
+   <div fxLayout="column">
+   
+<div fxLayout="column" fxLayoutGap="3rem" dir="rtl">
+  <div fxLayout="row" fxLayoutAlign="space-between center">
+      <kkl-typography [weight]="600" [size]="2">קבצים נדרשים</kkl-typography>
+  </div>
+  <kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [newRowAction]="newRowAction"
+></kkl-local-table>
+</div>
+   </div>
+      
+      </ng-template>
+    </kkl-steps-accordion-layout>
+    
+
     <router-outlet></router-outlet>
   </div>
 </kkl-steps-layout>

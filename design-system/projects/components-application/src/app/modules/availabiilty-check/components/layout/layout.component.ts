@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BreakpointService, ButtonModel, CardStep, ControlBase, FormChangeEvent, FormDataSource, FormService, Question, QuestionGroupModel, RouterService, SelectOption, StepsLayoutService }from '../../../../../../../kakal-ui/src/public-api';
+import { BreakpointService, ButtonModel, CardStep, ControlBase, FormChangeEvent, FormDataSource, FormService, NavbarBottomService, Panel, Question, QuestionGroupModel, RouterService, RowActionModel, SelectOption, StepsLayoutService, TableBase }from '../../../../../../../kakal-ui/src/public-api';
 import { map, mergeMap, Observable, of} from 'rxjs';
 
 @Component({
@@ -9,7 +9,15 @@ import { map, mergeMap, Observable, of} from 'rxjs';
   providers: [FormDataSource, StepsLayoutService]
 })
 export class LayoutComponent implements OnInit {
+  dataSource: any[] = [];
+  columns: TableBase[] = [{ key: 'docName', label: 'שם קובץ נדרש' }];
 
+  rowActions: RowActionModel[] = [
+    { type: 'inlineEdit', icon: 'edit' },
+    { type: 'inlineDelete', icon: 'delete' },
+  ];
+
+  newRowAction = 'הוספת שם קובץ';
   steps: CardStep[] = [
     {
       label: 'פרטי הזמנה',
@@ -27,7 +35,12 @@ export class LayoutComponent implements OnInit {
       path: 'summary',
     },
   ];
-
+  public cases: Panel[] = [
+    { key: 'costumerDetails', label: 'פרטי לקוח' },
+    // { key: 'materialForm', label: 'טופס דוגמא מטריאל' },
+    { key: 'propertiesBudget', label: 'מאפיינים ותקציב' },
+    { key: 'reservationDetails', label: 'פרטי הזמנה' },
+  ];
   formValues = { select: '', date: ''}
 
   isFormFull(){
@@ -81,7 +94,8 @@ export class LayoutComponent implements OnInit {
     private breakpointsService: BreakpointService,
     private routerService: RouterService,
     private stepperLayoutService: StepsLayoutService,
-    private formService: FormService
+    private formService: FormService,
+    private navbarBottomService:NavbarBottomService
   ) { }
 
   ngOnInit(): void {
@@ -92,6 +106,7 @@ export class LayoutComponent implements OnInit {
     //   cols: 2,
     //   variant: 'flex',
     // });
+    this.navbarBottomService.setShowNext(true)
   }
 
   // breakpoints
