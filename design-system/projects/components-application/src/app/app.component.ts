@@ -19,118 +19,71 @@ import {
 })
 export class AppComponent {
 
+  title = 'education';
+  isOpened: boolean = false;
 
-
-
-  columns: TableBase[] = [
-    { key: 'id', label: 'Id', controlType: 'number' },
-    { key: 'name', label: 'Name', controlType: 'text', },
-    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', },
-    { key: 'occupation', label: 'Occupation', controlType: 'text', },
-    { key: 'city', label: 'עיר', controlType: 'select' },
-    { key: 'dob', label: 'תאריך', controlType: 'date', },
+  tabs = [
+    { key: 'first', label: 'First Tab'},
+    { key: 'second', label: 'Second Tab'},
+    { key: 'third', label: 'Third Tab'}
+  ];
+  cards: MenuCard[] = [
+    { path: 'as', templateName: '', svgIcon: 'home' } as MenuCard,
+    { path: 'as', templateName: 'temp', svgIcon: 'tree', label: 'test' } as MenuCard,
+    { path: 'as', templateName: 'test', svgIcon: 'connect', label: 'test2' } as MenuCard,
+    { path: 'as', templateName: 'test3', svgIcon: 'tree', label: 'test3' } as MenuCard,
+  ];
+  cards2: MenuCard[] = [
+    { path: 'as', templateName: 'new', label: 'test',isChildren:true } as MenuCard,
+    { path: 'as', templateName: 'test', label: 'test2', isChildren: true } as MenuCard,
+    { path: 'as', templateName: 'newTest', label: 'test3',isChildren:true } as MenuCard,
   ];
 
+  status: CardStatus[] = [
+    {
+      key: 'first',
+      svgIcon: 'home',
+      label: 'working',
+      path: '',
+      options: [],
+    },
+    {
+      key: 'second',
+      svgIcon: 'home',
+      label: 'working',
+      path: '',
+      options: [],
+    },
+    {
+      key: 'third',
+      svgIcon: 'home',
+      label: 'working',
+      path: '',
+      options: [],
+    },
+  ];
 
+  constructor(
+    private routerService: RouterService,
+     private pageHeadlineSource: PageHeadlineService
+  ) {}
 
+  ngOnInit(): void {
+    // setTimeout(() => {
+      this.pageHeadlineSource.emitPageHeadlineItems([{ value: {
+        label: 'כותרת נוספת',
+        authorizedBars: 7,
+        totalBars: 10,
+      }, status: true }]);
+    // }, 3000);
+  }
 
-
-
-
-
-
-//   title = 'education';
-//   isOpened: boolean = false;
-
-//   tabs = [
-//     { key: 'first', label: 'First Tab'},
-//     { key: 'second', label: 'Second Tab'},
-//     { key: 'third', label: 'Third Tab'}
-//   ];
-//   cards: MenuCard[] = [
-//     { path: 'as', templateName: '', svgIcon: 'home' } as MenuCard,
-//     { path: 'as', templateName: 'temp', svgIcon: 'tree', label: 'test' } as MenuCard,
-//     { path: 'as', templateName: 'test', svgIcon: 'connect', label: 'test2' } as MenuCard,
-//     { path: 'as', templateName: 'test3', svgIcon: 'tree', label: 'test3' } as MenuCard,
-//   ];
-//   cards2: MenuCard[] = [
-//     { path: 'as', templateName: 'new', label: 'test',isChildren:true } as MenuCard,
-//     { path: 'as', templateName: 'test', label: 'test2', isChildren: true } as MenuCard,
-//     { path: 'as', templateName: 'newTest', label: 'test3',isChildren:true } as MenuCard,
-//   ];
-
-//   status: CardStatus[] = [
-//     {
-//       key: 'first',
-//       svgIcon: 'home',
-//       label: 'working',
-//       path: '',
-//       options: [],
-//     },
-//     {
-//       key: 'second',
-//       svgIcon: 'home',
-//       label: 'working',
-//       path: '',
-//       options: [],
-//     },
-//     {
-//       key: 'third',
-//       svgIcon: 'home',
-//       label: 'working',
-//       path: '',
-//       options: [],
-//     },
-//   ];
-
-//   // status: CardStatus[] = [
-//   //   {
-//   //     key: 'first',
-//   //     svgIcon: 'home',
-//   //     label: 'working',
-//   //     path: '',
-//   //     options: [],
-//   //   },
-//   //   {
-//   //     key: 'second',
-//   //     svgIcon: 'home',
-//   //     label: 'working',
-//   //     path: '',
-//   //     options: [],
-//   //   },
-//   //   {
-//   //     key: 'third',
-//   //     svgIcon: 'home',
-//   //     label: 'working',
-//   //     path: '',
-//   //     options: [],
-//   //   },
-//   // ];
-
-
-//   constructor(
-//     private routerService: RouterService,
-//      private pageHeadlineSource: PageHeadlineService
-//   ) {}
-
-
-
-//   ngOnInit(): void {
-//     // setTimeout(() => {
-//       this.pageHeadlineSource.emitPageHeadlineItems([{ value: {
-//         label: 'כותרת נוספת',
-//         authorizedBars: 7,
-//         totalBars: 10,
-//       }, status: true }]);
-//     // }, 3000);
-//   }
-
-//   onLogoClicked() {
-//     this.routerService.navigate('/');
-//   }
-//   onStatus(event: StatusSelectionEvent) {
-//     console.log(event);
-//   }
+  onLogoClicked() {
+    this.routerService.navigate('/');
+  }
+  onStatus(event: StatusSelectionEvent) {
+    console.log(event);
+  }
 
 
 
@@ -487,59 +440,59 @@ export class AppComponent {
 
   }];
 
-//   description;
+  description;
 //   // the columns of the table, according to the data coming from ComraxTablesService
-//   columns: TableBase[] = [
-//     // in the first column, there is an additional 'button' property, which makes the cells in that column into buttons
-//     // the 'button' property correlates with the RowActionModel, accept for the 'label', which has no effect on the UI
-//     { key: 'id', label: 'Id', controlType: 'number', button: { type: 'visibility' } },
-//     { key: 'name', label: 'Name', controlType: 'text', },
-//     // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
-//     { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
-//     { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
-//     { key: 'city', label: 'עיר', controlType: 'select' },
-//     { key: 'dob', label: 'תאריך', controlType: 'date' },
-//   ];
+  columns: TableBase[] = [
+    // in the first column, there is an additional 'button' property, which makes the cells in that column into buttons
+    // the 'button' property correlates with the RowActionModel, accept for the 'label', which has no effect on the UI
+    { key: 'id', label: 'Id', controlType: 'number', button: { type: 'visibility' } },
+    { key: 'name', label: 'Name', controlType: 'text', },
+    // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
+    { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
+    { key: 'city', label: 'עיר', controlType: 'select' },
+    { key: 'dob', label: 'תאריך', controlType: 'date' },
+  ];
 
 //   // every object in the rowActions array is a button that will appear on the left side of every row of the table
-//   rowActions: RowActionModel[] = [
-//     { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
-//     { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
-//     { type: 'visibility', icon: 'visibility', label: 'Show' },
-//     { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' }
-//   ]
+  rowActions: RowActionModel[] = [
+    { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
+    { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
+    { type: 'visibility', icon: 'visibility', label: 'Show' },
+    { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' }
+  ]
 
 //   // newRowAction is the label of the button in the actions column header
-//   newRowAction: string = 'הוסף שורה חדשה'
-//   dataSource2;
+  newRowAction: string = 'הוסף שורה חדשה'
+  dataSource2;
 
-//   columns2: TableBase[] = [
-//     { key: 'occupation', label: 'Occupation', controlType: 'text', noFilter: true},
-//     { key: 'name', label: 'Name', controlType: 'text', noFilter: true},
-//     { key: 'city', label: 'עיר', controlType: 'select', noFilter: true},
-//   ]
+  columns2: TableBase[] = [
+    { key: 'occupation', label: 'Occupation', controlType: 'text', noFilter: true},
+    { key: 'name', label: 'Name', controlType: 'text', noFilter: true},
+    { key: 'city', label: 'עיר', controlType: 'select', noFilter: true},
+  ]
 
 
 
-//   // inserting the data into dataSource2
-//   onExpand(event: RowExpandEvent) {
-//     this.dataSource2 = [event.row]
-//     console.log(event);
-//   }
-//   // changing the description according to the actions taken
-//   // the visibility action, in the ID column and in the actions column
-//   onClicked(event: RowActionEvent) {
-//     this.description = `Actions Table: (ID: ${event.row.id}, ActionName: ${event.action}, City: ${event.row.city.label}, Date: ${event.row.dob}, Occupation: ${event.row.occupation}, YearsOfExperience: ${event.row.yearsOfExperience})`
-//   }
+  // inserting the data into dataSource2
+  onExpand(event: RowExpandEvent) {
+    this.dataSource2 = [event.row]
+    console.log(event);
+  }
+  // changing the description according to the actions taken
+  // the visibility action, in the ID column and in the actions column
+  onClicked(event: RowActionEvent) {
+    this.description = `Actions Table: (ID: ${event.row.id}, ActionName: ${event.action}, City: ${event.row.city.label}, Date: ${event.row.dob}, Occupation: ${event.row.occupation}, YearsOfExperience: ${event.row.yearsOfExperience})`
+  }
 
-//   // the save action
-//   onSave(event: FormGroup) {
-//     this.description = `Save Action: (ID: ${event.value.id}, Name: ${event.value.name}, City: ${event.value.city?.label}, Date: ${event.value.dob}, Occupation: ${event.value.occupation}, YearsOfExperience: ${event.value.yearsOfExperience})`
-//   }
+  // the save action
+  onSave(event: FormGroup) {
+    this.description = `Save Action: (ID: ${event.value.id}, Name: ${event.value.name}, City: ${event.value.city?.label}, Date: ${event.value.dob}, Occupation: ${event.value.occupation}, YearsOfExperience: ${event.value.yearsOfExperience})`
+  }
 
-//   // the delete action
-//   onDelete(event: any) {
-//     this.description = `Delete Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
-//   }
+  // the delete action
+  onDelete(event: any) {
+    this.description = `Delete Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
+  }
 
 }
