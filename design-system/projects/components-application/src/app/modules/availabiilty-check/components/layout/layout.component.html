@@ -1,5 +1,11 @@
 <kkl-steps-layout dir="rtl" [steps]="steps">
   <div content>
+    <div fxLayout="row" fxLayoutGap="1rem">
+      <ng-container *ngFor="let card of cards">
+        <kkl-card-add [title]="card.title" [content]="card.content"></kkl-card-add>
+      </ng-container>
+    </div>
+    
       <kkl-steps-accordion-layout 
       [panels]="cases"
       [steps]="cases"

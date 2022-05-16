@@ -9,6 +9,24 @@ import { map, mergeMap, Observable, of} from 'rxjs';
   providers: [FormDataSource, StepsLayoutService]
 })
 export class LayoutComponent implements OnInit {
+
+  cards: { title: string; content: string }[] = [
+    { title: 'כותרת לא ארוכה', content: 'תוכן לא ארוך ' },
+    {
+      title: 'כותרת ארוכה לכרטיסיה עם תוכן ארוך',
+      content:
+        'תוכן ארוך עם הרבה מילים יחסית לכרטיסיה שלא אמורה להכיל הרבה מילים',
+    },
+    { title: 'כותרת לא ארוכה', content: 'תוכן לא ארוך ' },
+    { title: 'כותרת לא ארוכה', content: 'תוכן לא ארוך ' },
+    {
+      title: 'כותרת לא ארוכה',
+      content:
+        'תוכן ארוך עם הרבה מילים יחסית לכרטיסיה שלא אמורה להכיל הרבה מילים',
+    },
+  ];
+
+
   dataSource: any[] = [];
   columns: TableBase[] = [{ key: 'docName', label: 'שם קובץ נדרש' }];
 
