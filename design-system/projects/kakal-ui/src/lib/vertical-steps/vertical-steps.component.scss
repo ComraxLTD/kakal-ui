@@ -1,3 +1,5 @@
+@use "../../styles/variables" as main;
+
 ::ng-deep mat-vertical-stepper.kkl-vertical-steps {
   max-width: 9rem !important;
   mat-step-header {
@@ -19,7 +21,14 @@
 // .kkl-vertical-stepper-label {
 //   width: 100px;
 // }
-
+ ::ng-deep .steps-thickness{
+  border-bottom: 1px solid main.color(primaryLight);
+  span{
+  border-bottom: 2px solid main.color(primary);
+    
+    text-decoration-thickness: 2px!important;
+  }
+ }
 ::ng-deep .mat-vertical-stepper-header{
   padding: 0 !important;
   margin: 2.4rem;
