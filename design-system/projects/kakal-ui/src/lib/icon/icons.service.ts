@@ -19,6 +19,7 @@ export class IconService {
   ) {}
 
   public icons = {
+    bell: AppIcons.BELL_ICON,
     download_new: AppIcons.DOWNLOAD_NEW,
     printed_new: AppIcons.PRINTER_NEW,
     calendar_new: AppIcons.CALENDAR_NEW,
