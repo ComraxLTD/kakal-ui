@@ -1,5 +1,11 @@
 @use "../../styles/variables" as main;
 
+
+.center-container {
+  left: 50%;
+  position: absolute;
+}
+
 mat-toolbar {
   overflow: visible !important;
   padding-left: main.spacing(5);

@@ -1,11 +1,15 @@
 <div class="card-add" fxLayout="row" dir="rtl">
-  <div fxFlex="74" class="card-add-content">
+  <div fxFlex="74" class="card-add-content" fxLayoutGap="0.5rem" fxLayout="column">
     <div>
-      <kkl-typography [weight]="600">{{ title }}</kkl-typography>
+      <kkl-typography [weight]="600">
+        {{ (title.length>21)? (title | slice:0:21)+'...':(title) }}
+      </kkl-typography>
     </div>
-    <span >
-      <kkl-typography class="content">{{ content }}</kkl-typography>
-    </span>
+    <div>
+      <kkl-typography class="content">
+        {{ (content.length>21)? (content | slice:0:21)+'...':(content) }}
+      </kkl-typography>
+    </div>
   </div>
   <div fxFlex="26" fxLayout="row" fxLayoutAlign="space-evenly center">
     <div class="border"></div>

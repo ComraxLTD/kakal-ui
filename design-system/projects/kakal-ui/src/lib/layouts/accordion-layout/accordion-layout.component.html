@@ -13,7 +13,7 @@
   <main>
     <mat-accordion #accordion multi hideToggle>
       <ng-container *ngFor="let panel of panels; let i = index">
-        <mat-expansion-panel #expandPanel [expanded]="i === 0">
+        <mat-expansion-panel #expandPanel [expanded]="i === 0" fxLayoutGap="1rem" fxLayout="column">
           <mat-expansion-panel-header>
             <mat-panel-title [ngClass]="['default']">
               <div
