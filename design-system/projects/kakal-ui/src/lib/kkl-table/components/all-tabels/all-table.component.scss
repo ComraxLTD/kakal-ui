@@ -171,23 +171,21 @@ th>h3 {
 
 
 //  scroll css
-/* width */
+/* width & height*/
 ::-webkit-scrollbar {
-  height: 4px !important;
-  border-radius: 30px;
+  height: 5px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: #e4e4e4;
-  width: 20%;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #707070;
-  width: 20%;
-  border-radius: 210px;
+  border-radius: 30px;
 }
 
 
