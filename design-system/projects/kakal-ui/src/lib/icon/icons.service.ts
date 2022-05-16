@@ -19,6 +19,7 @@ export class IconService {
   ) {}
 
   public icons = {
+    bell: AppIcons.BELL_ICON,
     map_mobile : AppIcons.MOBILE_MAP,
     map_mobile_back : AppIcons.MOBILE_MAP_BACK,
     download_new: AppIcons.DOWNLOAD_NEW,

@@ -354,15 +354,22 @@ export const EDIT_ICON = `<svg xmlns="http://www.w3.org/2000/svg"
   d="M4.5,14.177v2.547H7.047L14.56,9.212,12.013,6.665ZM16.53,7.242a.676.676,0,0,0,0-.958L14.94,4.695a.676.676,0,0,0-.958,0L12.739,5.938l2.547,2.547L16.53,7.242Z"
    transform="translate(-4.5 -4.496)"/></svg>`;
 
-export const BELL_ICON = `<svg xmlns="http://www.w3.org/2000/svg"
- width="20.107" height="22.307" viewBox="0 0 20.107 22.307">
- <defs><style>.bell{fill:#448ecd;}</style></defs>
- <g transform="translate(-25.25)"><g transform="translate(32.336)"><path class="bell"
-  d="M190.857,0a2.971,2.971,0,0,0-2.968,2.968v.9h1.535v-.9a1.433,1.433,0,0,1,2.865,0v.9h1.535v-.9A2.971,2.971,0,0,0,190.857,0Z"
-   transform="translate(-187.89)"/></g><g transform="translate(31.671 18.7)"><path class="bell"
-    d="M178.354,429.2a2.075,2.075,0,0,1-2.072,2.072h-.051a2.075,2.075,0,0,1-2.072-2.072h-1.535a3.611,3.611,0,0,0,3.607,3.607h.051a3.611,3.611,0,0,0,3.607-3.607Z" transform="translate(-172.624 -429.205)"/>
-    </g><g transform="translate(25.25 2.84)"><path class="bell" d="M45.235,80.748l-2.18-3.392V73a7.752,7.752,0,1,0-15.5,0v4.354l-2.18,3.392a.768.768,0,0,0,.645,1.183H44.59a.767.767,0,0,0,.645-1.182ZM27.423,80.4,28.965,78a.767.767,0,0,0,.122-.415V73A6.217,6.217,0,1,1,41.52,73v4.579a.768.768,0,0,0,.122.415l1.542,2.4Z"
-    transform="translate(-25.25 -65.174)"/></g></g></svg>`;
+export const BELL_ICON = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20.107" height="22.307" viewBox="0 0 20.107 22.307">
+    <defs>
+      <style>.bell{fill:'none'}</style>
+    </defs>
+    <g transform="translate(-25.25)"><g transform="translate(32.336)">
+      <path class="bell" d="M190.857,0a2.971,2.971,0,0,0-2.968,2.968v.9h1.535v-.9a1.433,1.433,0,0,1,2.865,0v.9h1.535v-.9A2.971,2.971,0,0,0,190.857,0Z" transform="translate(-187.89)"/>
+    </g>
+    <g transform="translate(31.671 18.7)">
+      <path class="bell" d="M178.354,429.2a2.075,2.075,0,0,1-2.072,2.072h-.051a2.075,2.075,0,0,1-2.072-2.072h-1.535a3.611,3.611,0,0,0,3.607,3.607h.051a3.611,3.611,0,0,0,3.607-3.607Z" transform="translate(-172.624 -429.205)"/>
+    </g>
+    <g transform="translate(25.25 2.84)">
+      <path class="bell" d="M45.235,80.748l-2.18-3.392V73a7.752,7.752,0,1,0-15.5,0v4.354l-2.18,3.392a.768.768,0,0,0,.645,1.183H44.59a.767.767,0,0,0,.645-1.182ZM27.423,80.4,28.965,78a.767.767,0,0,0,.122-.415V73A6.217,6.217,0,1,1,41.52,73v4.579a.768.768,0,0,0,.122.415l1.542,2.4Z" transform="translate(-25.25 -65.174)"/>
+    </g>
+  </svg>
+`;
 
 export const CONNECT_ICON = `
 <svg xmlns="http://www.w3.org/2000/svg" width="63.186" height="64.681" viewBox="0 0 63.186 64.681">

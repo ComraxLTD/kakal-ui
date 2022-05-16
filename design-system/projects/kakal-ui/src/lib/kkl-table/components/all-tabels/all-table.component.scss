@@ -171,23 +171,21 @@ th>h3 {
 
 
 //  scroll css
-/* width */
+/* width & height*/
 ::-webkit-scrollbar {
-  height: 4px !important;
-  border-radius: 30px;
+  height: 5px;
+  width: 5px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
   background: #e4e4e4;
-  width: 20%;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
   background: #707070;
-  width: 20%;
-  border-radius: 210px;
+  border-radius: 30px;
 }
 
 
@@ -238,18 +236,33 @@ th>h3 {
     }
 
     .kkl-table-cell{
-      .ng-star-inserted{
-        font-weight: bolder;
-      }
+      // .ng-star-inserted{
+      //   font-weight: bolder;
+      // }
       button{
         padding: 0;
       }
     }
 
-    .container-button {
-      padding: 0 11px 0 14px !important;
-      border-radius: 25px;
+    .actions{
+      .expanded{
+        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+          transform: rotate(180deg) !important;
+          transition: .2s all;
+        }
+      }
+      button{
+        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+          transform: rotate(0) ;
+          transition: .2s all;
+        }
+      }
     }
+
+    // .container-button {
+    //   padding: 0 11px 0 14px !important;
+    //   border-radius: 25px;
+    // }
 
     .example-element-detail{
       kkl-local-table{
@@ -280,13 +293,13 @@ th>h3 {
 
   ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
   transform: rotate(180deg) !important;
-  transition: .5s all;
+  transition: .2s all;
   }
   }
   ::ng-deep .example-element-row .center-butt{
 
       ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
       transform: rotate(0) ;
-      transition: .5s all;
+      transition: .2s all;
   }
 }
