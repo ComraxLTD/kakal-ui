@@ -19,6 +19,8 @@ export class IconService {
   ) {}
 
   public icons = {
+    map_mobile : AppIcons.MOBILE_MAP,
+    map_mobile_back : AppIcons.MOBILE_MAP_BACK,
     download_new: AppIcons.DOWNLOAD_NEW,
     printed_new: AppIcons.PRINTER_NEW,
     calendar_new: AppIcons.CALENDAR_NEW,

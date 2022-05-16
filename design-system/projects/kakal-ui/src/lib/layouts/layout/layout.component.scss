@@ -88,12 +88,12 @@ button.mat-button.drawer-desktop-btn {
   padding: 0 8px;
 }
 
-button.mat-fab.drawer-mobile-btn {
+.drawer-mobile-btn {
   position: fixed;
-  bottom: 5%;
+  bottom: 10%;
   left: 5%;
 
-  mat-icon {
-    color: main.color(paper);
-  }
+  // mat-icon {
+  //   color: main.color(paper);
+  // }
 }
