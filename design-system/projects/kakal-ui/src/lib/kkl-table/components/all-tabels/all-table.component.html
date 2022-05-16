@@ -141,15 +141,9 @@
                 <table style="width:100%; height: 100%;">
                   <tr fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100">
                     <span style="width:100%" fxLayout="row">
-                      <td style="font-weight: bolder; padding-top: 2rem;">{{oneColumns[0].label}}</td>
-                      <td style="margin-right: 4rem;" fxLayout="column" fxLayoutAlign="space-evenly start">
+                      <td style="font-weight: bolder; padding: 14.5px 0 0 30px;">{{oneColumns[0].label}}</td>
+                      <td style="margin-top: 13px;" fxLayout="column" fxLayoutAlign="start start">
                         <kkl-table-cell class="kkl-table-cell" [data]="item[oneColumns[0].key]" [question]="oneColumns[0]" (buttClick)="buttonClick(oneColumns[0].button, item, oneColumns[0].key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
-                        <span style="width:100%; margin-top: -1rem;" fxLayout="row" fxLayoutAlign="start center">
-                          <td style="font-weight: bold;">{{oneColumns[1].label}}</td>
-                          <td>
-                            <kkl-table-cell [data]="item[oneColumns[1].key]" [question]="oneColumns[1]" (buttClick)="buttonClick(oneColumns[1].button, item, oneColumns[1].key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
-                          </td>
-                        </span>
                       </td>
                       <span></span>
                     </span>
@@ -163,9 +157,9 @@
 
             <table style="width:100%; border-spacing: 0 10px; border-top: 1px solid #e4e4e4;" >
               <tr *ngFor="let col of oneColumns">
-                <ng-container *ngIf="col.key !== oneColumns[0].key && col.key !== oneColumns[1].key">
+                <ng-container *ngIf="col.key !== oneColumns[0].key">
                   <ng-container *ngIf="!(item | arrInclueds : editItems); else editBlock">
-                    <td style="height: 6rem; font-weight: bolder;border-bottom: 1px solid #e4e4e4;">{{col.label}}</td>
+                    <td style="height: 6rem; font-weight: bolder; border-bottom: 1px solid #e4e4e4;">{{col.label}}</td>
                     <td style="height: 6rem; border-bottom: 1px solid #e4e4e4;">
                       <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
                     </td>
@@ -187,7 +181,7 @@
               </tr>
               <tr *ngIf="localButtons?.length">
                 <td style="font-weight: bolder;"> פעולות</td>
-                <td fxLayout="row wrap" fxLayoutAlign="space-evenly">
+                <td class="actions" fxLayout="row wrap" fxLayoutAlign="space-evenly">
                   <ng-container *ngIf="!(item | arrInclueds : editItems); else addButton">
                     <ng-container *ngFor="let butt of localButtons">
 
@@ -199,7 +193,7 @@
 
                       <ng-template #closeExpand>
                         <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
-                          <button  [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, item, 'actions')">
+                          <button [ngClass]="{'expanded':item == expandedElement}" [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, item, 'actions')">
                             <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
                           </button>
                         <!-- </ng-container>
