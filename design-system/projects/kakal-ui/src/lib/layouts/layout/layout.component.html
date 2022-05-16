@@ -63,13 +63,14 @@
 
         <!-- MOBILE BUTTON FOR PORTION DRAWER -->
         <ng-container *ngIf="portion.mobile && endDrawer.opened">
-          <button
+          <!-- <button
             mat-fab
             class="drawer-mobile-btn"
             (click)="endDrawer.toggle()"
           >
             <mat-icon>edit</mat-icon>
-          </button>
+          </button> -->
+          <kkl-icon key="map_mobile_back" [size]="12" class="drawer-mobile-btn" (click)="endDrawer.toggle()"></kkl-icon>
         </ng-container>
 
         <div fxFlex>
@@ -93,10 +94,11 @@
       </div> -->
 
       <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-      <ng-container *ngIf="portion.mobile && !endDrawer.opened">
-        <button mat-fab class="drawer-mobile-btn" (click)="endDrawer.toggle()">
-          <mat-icon>edit</mat-icon>
-        </button>
+      <ng-container *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton">
+        <!-- <button mat-fab class="drawer-mobile-btn" (click)="endDrawer.toggle()"> -->
+          <!-- <mat-icon>edit</mat-icon> -->
+          <kkl-icon key="map_mobile" [size]="12" class="drawer-mobile-btn" (click)="endDrawer.toggle()"></kkl-icon>
+        <!-- </button> -->
       </ng-container>
 
       <ng-container *ngIf="!(hideFooter$ | async)">
