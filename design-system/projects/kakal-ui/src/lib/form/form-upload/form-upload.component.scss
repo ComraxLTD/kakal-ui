@@ -4,7 +4,8 @@
   mat-label {
     text-decoration: underline;
     &.active {
-      color: main.color(primary) !important;
+      // color: main.color(primary) !important;
+      color: main.color(text) !important;
     }
     &:not(.active) {
       color: main.color(default) !important;
@@ -26,8 +27,4 @@
   }
 }
 
-// @media screen and (max-width: 1024px) {
-//   mat-form-field {
-//     font-size: 9px !important;
-//   }
-// }
+
