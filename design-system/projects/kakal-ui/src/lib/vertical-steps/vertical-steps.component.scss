@@ -1,26 +1,37 @@
+@use "../../styles/variables" as main;
+
+.padding-bottom {
+  padding-bottom: 6rem;
+}
 ::ng-deep mat-vertical-stepper.kkl-vertical-steps {
   max-width: 9rem !important;
   mat-step-header {
     display: flex;
     justify-content: space-between !important;
-     &:hover{
-       background-color: #fff !important;
-      }
+    &:hover {
+      background-color: #fff !important;
     }
-    ::ng-deep .cdk-program-focused{
+  }
+  ::ng-deep .cdk-program-focused {
     background-color: #fff !important;
   }
 }
 
-::ng-deep .mat-drawer-container{
+::ng-deep .mat-drawer-container {
   background-color: #fff !important;
 }
 
 // .kkl-vertical-stepper-label {
 //   width: 100px;
 // }
-
-::ng-deep .mat-vertical-stepper-header{
+::ng-deep .steps-thickness {
+  border-bottom: 1px solid main.color(primaryLight);
+  span {
+    padding: 0.2rem;
+    border-bottom: 2px solid main.color(primary);
+  }
+}
+::ng-deep .mat-vertical-stepper-header {
   padding: 0 !important;
   margin: 2.4rem;
 }
@@ -34,7 +45,6 @@
 // ::ng-deep .mat-step-header{
 //   pointer-events: none !important;
 // }
-
 
 @media screen and (max-width: 600px) {
   .mobile-hidden {

@@ -75,10 +75,6 @@ button.mat-fab.kkl-drawer-button {
   bottom: 0;
   position: fixed;
   z-index: 100;
-  // overflow: hidden;
-  // & * {
-  //   overflow: hidden;
-  // }
 }
 
 // style for end drawer buttons
@@ -93,7 +89,16 @@ button.mat-button.drawer-desktop-btn {
   bottom: 10%;
   left: 5%;
 
-  // mat-icon {
-  //   color: main.color(paper);
-  // }
+
+}
+
+
+//css for footer mobile.
+@media (max-width: 599px){
+  ::ng-deep .navbar-footer {
+     .mat-toolbar-single-row {
+        height: 75px!important;
+    }
+  }
+
 }

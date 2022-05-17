@@ -1,5 +1,8 @@
+
 <!-- <router-outlet></router-outlet> -->
- <kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
+ 
+<kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
+
   [menuTemplates]="{temp,test,test3}" (statusSelection)="onStatus($event)">
   <router-outlet content></router-outlet>
 </kkl-layout>
@@ -26,10 +29,11 @@
     <p>test</p>
     <p>test</p>
   </div>
+
 </ng-template>
 
 
-<!-- <kkl-form [controls]="myCols"></kkl-form> -->
+
 
 <!-- <kkl-local-table
   [dataSource]="dataSource"
@@ -37,7 +41,7 @@
   [rowActions]="rowActions"
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
-></kkl-local-table>
+></kkl-local-table> -->
 
 <ng-template #expand>
   <kkl-local-table
@@ -69,12 +73,4 @@
           ></kkl-local-table> -->
 
 
-      <!-- the inner table -->
-      <!-- <ng-template #expand>
-        <kkl-local-table
-          fxFill
-          [dataSource]="dataSource2"
-          [columns]="columns2"
-          [paging]="false"
-        ></kkl-local-table>
-      </ng-template> -->
+
