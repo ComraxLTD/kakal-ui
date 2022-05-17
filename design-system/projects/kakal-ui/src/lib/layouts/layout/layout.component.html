@@ -88,11 +88,11 @@
       ></kkl-navbar>
 
       <ng-content select="[content]"></ng-content>
-      <!-- <div class="content">
-      </div> -->
 
       <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-      <ng-container>
+      <ng-container
+        *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton"
+      >
         <kkl-icon
           key="map_mobile"
           [size]="12"
