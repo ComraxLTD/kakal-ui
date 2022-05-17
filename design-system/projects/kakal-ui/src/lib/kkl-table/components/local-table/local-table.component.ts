@@ -394,7 +394,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     const temp = new Map<string, BehaviorSubject<KklSelectOption[]>>();
     this.editObservables.set(this.editItems.length, temp);
     setControls(this.oneColumns, row, this.fb, temp);
-    row.setValue(obj);
+    row.patchValue(obj);
     this.rows.push(row);
     this.editItems = [...this.editItems, obj];
   }
