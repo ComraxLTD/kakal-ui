@@ -22,7 +22,7 @@
         </ng-container>
 
         <ng-container *ngFor="let column of oneColumns" [matColumnDef]="column.key">
-          <th mat-header-cell *matHeaderCellDef style="white-space: nowrap;" [ngStyle]="{'text-align': column.controlType === 'number' ? 'center !important' : 'right !important'}">
+          <th mat-header-cell *matHeaderCellDef style="white-space: nowrap;" [ngClass]="{'mat-header-cell-text': column.controlType !== 'number'}">
             <h3 mat-sort-header style="display: inline-block;">{{column.label}}</h3>
             <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
