@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
   CardStatus,
+  CustomDialogComponent,
+  DialogService,
   MenuCard,
   PageHeadlineService,
   RouterService,
@@ -98,7 +100,7 @@ export class AppComponent {
 
     "occupation": "Physical Therapy Assistant",
 
-    "yearsOfExperience": 32,
+    "yearsOfExperience": 0.5,
 
     "city": {"label":"La Mesa","value":10}
 
@@ -465,7 +467,7 @@ export class AppComponent {
     { key: 'name', label: 'Name', controlType: 'text', },
     // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
     { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
-    { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
+    { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'logo' } },
     { key: 'city', label: 'עיר', controlType: 'select' },
     { key: 'dob', label: 'תאריך', controlType: 'date' },
   ];

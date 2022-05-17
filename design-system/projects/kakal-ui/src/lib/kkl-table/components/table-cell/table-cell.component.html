@@ -5,10 +5,10 @@
   </div>
 </ng-container>
 <ng-template #noTemplate>
-  <span fxLayout="row" fxFlex fxLayoutAlign="center center">
+  <span fxLayout="row" fxFlex fxLayoutAlign="center center" [ngStyle]="{'place-content': question.controlType === 'number' ? 'center' : 'start'}">
     <kkl-icon style="display: inline-block; padding-left: 8px;" *ngIf="question.colIcon" color="primary" [key]="question.colIcon"></kkl-icon>
     <span *ngIf="question.button; else withoutButton">
-      <button style="width: 100%;" mat-button color="primary" (click)="buttonClick()">
+      <button style="width: 100%; padding: 0;" mat-button color="primary" (click)="buttonClick()">
         <span  fxFlex fxLayoutAlign="start center">
           <span *ngIf="data" style="white-space: pre-wrap; line-height: normal;">
             <span style="border-bottom: 1px solid;">
