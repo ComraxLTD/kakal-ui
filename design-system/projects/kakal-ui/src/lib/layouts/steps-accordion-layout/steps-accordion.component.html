@@ -7,13 +7,12 @@
   ></kkl-accordion-layout>
 </ng-container>
 
-<ng-template #elseTemplate>
+<ng-template #elseTemplate> 
   <kkl-vertical-steps
-    [steps]="steps"
-    [templates]="templates"
-    [linear]="isLinear"
-    [selectedIndex]="selectedIndex"
-    (stepChanged)="onStepChanged($event)"
-  >
-  </kkl-vertical-steps
-></ng-template>
+      [steps]="steps"
+      [templates]="templates"
+      [linear]="isLinear"
+      [selectedIndex]="selectedIndex"
+      (stepChanged)="onStepChanged($event)">
+    </kkl-vertical-steps>
+</ng-template>
