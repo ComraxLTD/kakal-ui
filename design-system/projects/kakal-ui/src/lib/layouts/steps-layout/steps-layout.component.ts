@@ -139,9 +139,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
             } else {
               return this.selectionRouteHandler(0, steps, 0);
             }
-
-            // location--;
           }
+          location--;
         }
       })
     );
