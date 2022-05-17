@@ -25,7 +25,7 @@ export class MeiFormComponent {
   @Output() submitEvent: EventEmitter<FormGroup> = new EventEmitter();
 
   @Input() grid: GridProps;
-  variant: 'flex' | 'grid' = 'grid';
+  variant: 'flex' | 'grid' = 'flex';
 
   @Input() rowHeight: number;
 
