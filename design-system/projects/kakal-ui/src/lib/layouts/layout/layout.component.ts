@@ -34,7 +34,7 @@ export class LayoutComponent implements OnInit {
   @Input() cards: MenuCard[];
   @Input() status: CardStatus[];
   @Input() showStatusPath: string[];
-  @Input() hideFooterPath: string[];
+  @Input() hideFooterPath: string[] = [];
 
   private _portion: Portion = {
     drawer: 0,
@@ -76,7 +76,7 @@ export class LayoutComponent implements OnInit {
 
     this.portion$ = this.combineState$();
     this.portion$.subscribe(res => console.log(res))
-    
+
   }
 
   onLogoClicked() {
