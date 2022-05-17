@@ -75,7 +75,6 @@ export class VerticalStepsComponent implements OnInit {
 
   ngOnInit(): void {
     this.listenToShowNextMiddle$ = this.navbarBottomService.listenToShowNextMiddle();
-    this.navbarBottomService.listenToShowNextMiddle().subscribe(res => console.log(res))
     this.cellTemplate = this.steps[this._selectedIndex].key as string;
     this.isSmallScreen$ = this.getIsSmallScreen();
   }
