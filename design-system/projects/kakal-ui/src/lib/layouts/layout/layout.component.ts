@@ -75,7 +75,6 @@ export class LayoutComponent implements OnInit {
     ]);
 
     this.portion$ = this.combineState$();
-    this.portion$.subscribe((res) => console.log(res));
   }
 
   onLogoClicked() {
@@ -129,7 +128,6 @@ export class LayoutComponent implements OnInit {
             hasButton,
           };
         }
-        console.log(state);
         this.portionSource$.next(state);
         return this.portionSource$.asObservable();
       })
