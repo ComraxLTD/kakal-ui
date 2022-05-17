@@ -97,3 +97,14 @@ button.mat-button.drawer-desktop-btn {
   //   color: main.color(paper);
   // }
 }
+
+
+//css for footer mobile.
+@media (max-width: 599px){
+  ::ng-deep .navbar-footer {
+     .mat-toolbar-single-row {
+        height: 75px!important;
+    }
+  }
+
+}
