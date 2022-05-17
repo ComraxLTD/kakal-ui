@@ -10,8 +10,14 @@ export interface Portion {
   hasButton: boolean;
 }
 export interface DrawerPortion {
+
+  // ** width in % of the drawer when open - 0 by default
   open: number;
+
+  // ** width in % of the drawer when closed - 0 by default
   close: number;
+
+  // ** if the drawer have an inner button - false by default
   hasButton: boolean;
 }
 
@@ -19,7 +25,7 @@ export interface DrawerPortion {
   providedIn: 'root',
 })
 export class LayoutService {
-  drawerState$: BehaviorSubject<DrawerPortion>;
+  private drawerState$: BehaviorSubject<DrawerPortion>;
 
 
   constructor(
