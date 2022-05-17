@@ -91,6 +91,9 @@ export class LayoutComponent implements OnInit {
     },
   ];
 
+  actions: ButtonModel[] = [{ type: 'file', label: 'מסמכי הליך' }];
+
+
   questions: ControlBase[] = [
     {
       key: 'select',

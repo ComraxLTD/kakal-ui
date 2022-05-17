@@ -1,5 +1,11 @@
-<kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
-  [menuTemplates]="{temp,test,test3}" (statusSelection)="onStatus($event)">
+<kkl-layout
+  [hideFooterPath]="['lobby']"
+  [status]="status"
+  (logoClicked)="onLogoClicked()"
+  [cards]="cards"
+  [menuTemplates]="{temp,test,test3}"
+  (statusSelection)="onStatus($event)"
+>
   <router-outlet content></router-outlet>
 </kkl-layout>
 
@@ -26,4 +32,3 @@
     <p>test</p>
   </div>
 </ng-template>
-
