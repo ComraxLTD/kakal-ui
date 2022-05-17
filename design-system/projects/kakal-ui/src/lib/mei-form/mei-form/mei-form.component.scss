@@ -15,31 +15,26 @@
       font-size: 14px !important;
     }
   }
+}
 
-  kkl-form-input {
-    width: 100%;
-    font-size: main.spacing(2);
-  }
+// margin and padding of mat-form-field
+.btn-form {
+  margin: 3px 0px;
+  padding-bottom: 16.125px;
+}
 
-  // margin and padding of mat-form-field
-  .btn-form {
-    margin: 3px 0px;
-    padding-bottom: 16.125px;
-  }
-
-  @media screen and (max-width: 1024px) {
-    form.kkl-form {
-      mat-form-field {
-        &.kkl-form.input,
-        &.kkl-form-autocomplete,
-        &.kkl-form-currency,
-        &.kkl-form-select,
-        &.kkl-form-counter,
-        &.kkl-form-datepicker,
-        &.kkl-form-range-datepicker,
-        &.kkl-form-range {
-          font-size: 9px !important;
-        }
+@media screen and (max-width: 1024px) {
+  form.kkl-form {
+    mat-form-field {
+      &.kkl-form.input,
+      &.kkl-form-autocomplete,
+      &.kkl-form-currency,
+      &.kkl-form-select,
+      &.kkl-form-counter,
+      &.kkl-form-datepicker,
+      &.kkl-form-range-datepicker,
+      &.kkl-form-range {
+        font-size: 9px !important;
       }
     }
   }
