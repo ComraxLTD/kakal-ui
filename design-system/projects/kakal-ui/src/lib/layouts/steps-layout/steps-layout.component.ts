@@ -115,14 +115,14 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         const selectedIndex = this.findIndex(steps, 'path', path);
 
         if(selectedIndex !== -1){
-          return this.slectionRouteHandler(selectedIndex, steps, previouslySelectedIndex);
+          return this.selectionRouteHandler(selectedIndex, steps, previouslySelectedIndex);
         } else {
           const pathParts = (this.routerService.getUrl(path)).split('/');
           let location = pathParts.length-2;
           while(location !== -1) {
             const newSelectedIndex = this.findIndex(steps, 'path', pathParts[location]);
             if(newSelectedIndex !== -1){
-              return this.slectionRouteHandler(newSelectedIndex, steps, previouslySelectedIndex);
+              return this.selectionRouteHandler(newSelectedIndex, steps, previouslySelectedIndex);
             }
             location--;
           }
@@ -133,7 +133,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     );
   }
 
-  slectionRouteHandler(selectedIndex: number, steps, previouslySelectedIndex: number){
+  selectionRouteHandler(selectedIndex: number, steps, previouslySelectedIndex: number){
     steps.forEach((s, i) => (s.selected = selectedIndex === i));
 
     this._stepsSelectionEvent = {
