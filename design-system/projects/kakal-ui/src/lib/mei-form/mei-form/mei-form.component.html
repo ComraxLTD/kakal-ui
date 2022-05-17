@@ -211,7 +211,7 @@
     <form (ngSubmit)="onSubmitEvent()" [formGroup]="formGroup" [fxLayout]="layout + ' wrap'" [fxLayoutGap]="offset+'px'" fxLayoutAlign="start center" autocomplete="off">
       <ng-container *ngFor="let question of myQuestions; let index = index">
         <ng-container [ngSwitch]="question.controlType">
-          <div [fxFlex]="question.cols*flex">
+          <div [fxFlex]="(question.cols || 1)*flex">
           <!-- SELECT INPUT SECTION -->
             <ng-container *ngSwitchCase="'select'">
                 <kkl-select
