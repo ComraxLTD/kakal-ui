@@ -112,8 +112,18 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         const steps = [...this.steps];
 
         const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
-        const selectedIndex = this.findIndex(steps, 'path', path);
+        // const selectedIndex = this.findIndex(steps, 'path', path);
+        const pathMap = this.routerService.getUrlAsMap();
+        const selectedIndex = this.steps.findIndex(
+          (step) => pathMap[step.path]
+        );
 
+        return this.selectionRouteHandler(
+          selectedIndex,
+          steps,
+          previouslySelectedIndex
+        );
+        
         if (selectedIndex !== -1) {
           return this.selectionRouteHandler(
             selectedIndex,
@@ -121,26 +131,25 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
             previouslySelectedIndex
           );
         } else {
-          const pathParts = this.routerService.getUrl(path).split('/');
-          let location = pathParts.length - 2;
+          // let location = pathParts.length - 2;
 
-          while (location !== -1) {
-            const newSelectedIndex = this.findIndex(
-              steps,
-              'path',
-              pathParts[location]
-            );
-            if (newSelectedIndex !== -1) {
-              return this.selectionRouteHandler(
-                newSelectedIndex,
-                steps,
-                previouslySelectedIndex
-              );
-            } else {
-              return this.selectionRouteHandler(0, steps, 0);
-            }
-          }
-          location--;
+          // while (location !== -1) {
+          //   const newSelectedIndex = this.findIndex(
+          //     steps,
+          //     'path',
+          //     pathParts[location]
+          //   );
+          //   if (newSelectedIndex !== -1) {
+          //     return this.selectionRouteHandler(
+          //       newSelectedIndex,
+          //       steps,
+          //       previouslySelectedIndex
+          //     );
+          //   } else {
+          //     return this.selectionRouteHandler(0, steps, 0);
+          //   }
+          // }
+          // location--;
         }
       })
     );
