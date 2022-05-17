@@ -101,11 +101,10 @@
         ></kkl-icon>
       </ng-container>
 
-      <ng-container *ngIf="!(hideFooter$ | async)">
-        <div class="footer" [ngStyle]="{ width: portion.content + '%' }">
-          <kkl-navbar-bottom></kkl-navbar-bottom>
-        </div>
-      </ng-container>
     </mat-sidenav-content>
   </mat-sidenav-container>
+  
+  <div *ngIf="!(hideFooter$ | async)" class="footer navbar-footer" dir="rtl" [ngStyle]="{ width: portion.content + '%' }">
+    <kkl-navbar-bottom></kkl-navbar-bottom>
+  </div>
 </ng-container>
