@@ -103,7 +103,7 @@ button.mat-button.drawer-desktop-btn {
 @media (max-width: 599px){
   ::ng-deep .navbar-footer {
      .mat-toolbar-single-row {
-        // padding: 5rem;
+        height: 75px!important;
     }
   }
 
