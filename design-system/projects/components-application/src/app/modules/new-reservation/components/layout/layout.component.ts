@@ -49,7 +49,7 @@ export class LayoutComponent implements OnInit {
       svgIcon: 'list',
       path: 'summary',
     },
-    ];
+  ];
 
   displayData: DisplayItem<DataEx>[] = [
     {
@@ -110,7 +110,7 @@ export class LayoutComponent implements OnInit {
       hasButton: true,
     });
 
-    this.onNext().subscribe()
+    this.onNext().subscribe();
 
     this.navbarBottomService.setShowNext(true);
   }

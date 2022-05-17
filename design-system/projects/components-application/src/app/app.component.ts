@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import {
   CardStatus,
   MenuCard,
@@ -439,6 +439,22 @@ export class AppComponent {
     "city": {"label":"Jiangshan","value":70}
 
   }];
+
+  formGroup = new FormControl('')
+  myCols = [
+    {
+      key: 'city',
+      label: 'עיר',
+      controlType: 'textarea',
+      // cols: 3
+    },
+    {
+      key: 'city1',
+      label: 'עיר',
+      controlType: 'texteditor',
+      rows: 2
+    },
+  ]
 
   description;
 //   // the columns of the table, according to the data coming from ComraxTablesService

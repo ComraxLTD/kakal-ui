@@ -63,14 +63,12 @@
 
         <!-- MOBILE BUTTON FOR PORTION DRAWER -->
         <ng-container *ngIf="portion.mobile && endDrawer.opened">
-          <!-- <button
-            mat-fab
+          <kkl-icon
+            key="map_mobile_back"
+            [size]="12"
             class="drawer-mobile-btn"
             (click)="endDrawer.toggle()"
-          >
-            <mat-icon>edit</mat-icon>
-          </button> -->
-          <kkl-icon key="map_mobile_back" [size]="12" class="drawer-mobile-btn" (click)="endDrawer.toggle()"></kkl-icon>
+          ></kkl-icon>
         </ng-container>
 
         <div fxFlex>
@@ -90,15 +88,17 @@
       ></kkl-navbar>
 
       <ng-content select="[content]"></ng-content>
-      <!-- <div class="content">
-      </div> -->
 
       <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-      <ng-container *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton">
-        <!-- <button mat-fab class="drawer-mobile-btn" (click)="endDrawer.toggle()"> -->
-          <!-- <mat-icon>edit</mat-icon> -->
-          <kkl-icon key="map_mobile" [size]="12" class="drawer-mobile-btn" (click)="endDrawer.toggle()"></kkl-icon>
-        <!-- </button> -->
+      <ng-container
+        *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton"
+      >
+        <kkl-icon
+          key="map_mobile"
+          [size]="12"
+          class="drawer-mobile-btn"
+          (click)="endDrawer.toggle()"
+        ></kkl-icon>
       </ng-container>
 
     </mat-sidenav-content>
