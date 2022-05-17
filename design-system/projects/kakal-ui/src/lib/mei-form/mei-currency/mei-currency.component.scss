@@ -1,24 +1,24 @@
-:host {
-    ::ng-deep .mat-select-arrow {
-        opacity: 0;
-      }
-      .currency-container {
-          border-right: 1px solid;
-          margin-left:3px;
-          ::ng-deep mat-select {
-              margin-right: 3px;
-              z-index: 2;
-          }
-      }
-      kkl-icon {
-        position: absolute;
-        right: 90%;
-        bottom: 0.5rem;
-      }
-      kkl-icon:hover {
-        cursor: pointer;
-      }
-      ::ng-deep .mat-form-field-infix {
-          display: flex;
-      }
+::ng-deep mat-form-field.kkl-form-currency {
+  .mat-select-arrow {
+    opacity: 0;
+  }
+  .currency-container {
+    border-right: 1px solid;
+    margin-left: 3px;
+    ::ng-deep mat-select {
+      margin-right: 3px;
+      z-index: 2;
+    }
+  }
+  kkl-icon {
+    position: absolute;
+    right: 90%;
+    bottom: 0.5rem;
+  }
+  kkl-icon:hover {
+    cursor: pointer;
+  }
+  ::ng-deep .mat-form-field-infix {
+    display: flex;
+  }
 }

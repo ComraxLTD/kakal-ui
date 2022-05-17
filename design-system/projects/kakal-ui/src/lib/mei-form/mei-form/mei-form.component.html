@@ -1,14 +1,24 @@
 <div [ngSwitch]="variant" (resized)="onResize($event)" #myIdentifier>
   <ng-container *ngSwitchCase="'grid'">
-    <form (ngSubmit)="onSubmitEvent()" [formGroup]="formGroup" autocomplete="off">
-      <mat-grid-list [cols]="breakpoint" [rowHeight]="(rowHeight || 9) + 'rem'" [gutterSize]="(gutter) + 'rem'">
-
+    <form
+      class="kkl-form"
+      (ngSubmit)="onSubmitEvent()"
+      [formGroup]="formGroup"
+      autocomplete="off"
+    >
+      <mat-grid-list
+        [cols]="breakpoint"
+        [rowHeight]="(rowHeight || 9) + 'rem'"
+        [gutterSize]="gutter + 'rem'"
+      >
         <ng-container *ngFor="let question of myQuestions; let index = index">
-          <mat-grid-tile [colspan]=" question?.cols > breakpoint? breakpoint : question?.cols || 1" [rowspan]="question?.rows || 1">
+          <mat-grid-tile
+            [colspan]="
+              question?.cols > breakpoint ? breakpoint : question?.cols || 1
+            "
+            [rowspan]="question?.rows || 1"
+          >
             <div [ngSwitch]="question.controlType" fxFlex="100">
-
-
-
               <ng-container *ngSwitchCase="'select'">
                 <kkl-select
                   [control]="formGroup.controls[question.key]"
@@ -40,7 +50,8 @@
                     [panelWidth]="question.panelWidth"
                     (queryChanged)="onQueryChanged($event, question)"
                     (selectChanged)="onSelectChanged($event, question)"
-                    (openedChange)="onOpenedChange($event, question)">
+                    (openedChange)="onOpenedChange($event, question)"
+                  >
                   </kkl-multi-autocomplete>
                 </ng-container>
                 <ng-template #simpleAutocomplete>
@@ -151,82 +162,101 @@
                 ></kkl-range>
               </ng-container>
               <ng-container *ngSwitchCase="'costum'">
-                <ng-container *ngTemplateOutlet="templates[question.key]"></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="templates[question.key]"
+                ></ng-container>
               </ng-container>
               <ng-container *ngSwitchCase="'counter'">
                 <!-- <div fxFill [fxLayoutAlign]="question?.gridProps?.flex?.align || 'center' + ' center'">
                   <div [fxFlex]="question?.gridProps?.flex?.width || 100"> -->
-                    <kkl-counter
-                      [control]="formGroup.controls[question.key]"
-                      [label]="question.label"
-                      [key]="question.key"
-                      [placeHolder]="question.placeHolder"
-                      [icon]="question.icon"
-                      [debounce]="question.debounce"
-                      (focusChanged)="onFocusChanged($event, question)"
-                      (valueChanged)="onValueChanged($event, question)"
-                    >
-                    </kkl-counter>
-                  <!-- </div>
+                <kkl-counter
+                  [control]="formGroup.controls[question.key]"
+                  [label]="question.label"
+                  [key]="question.key"
+                  [placeHolder]="question.placeHolder"
+                  [icon]="question.icon"
+                  [debounce]="question.debounce"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
+                >
+                </kkl-counter>
+                <!-- </div>
                 </div> -->
               </ng-container>
               <ng-container *ngSwitchDefault>
                 <!-- <div fxFill [fxLayoutAlign]="question?.gridProps?.flex?.align || 'center' + ' center'">
                   <div [fxFlex]="question?.gridProps?.flex?.width || 100"> -->
-                    <kkl-input
-                      [control]="formGroup.controls[question.key]"
-                      [label]="question.label"
-                      [key]="question.key"
-                      [placeHolder]="question.placeHolder"
-                      [theme]="question.theme"
-                      [appearance]="question.appearance"
-                      [icon]="question.icon"
-                      [format]="question.format"
-                      [controlType]="question?.controlType"
-                      [debounce]="question.debounce"
-                      (focusChanged)="onFocusChanged($event, question)"
-                      (valueChanged)="onValueChanged($event, question)"
-                    >
-                    </kkl-input>
-                  <!-- </div>
+                <kkl-input
+                  [control]="formGroup.controls[question.key]"
+                  [label]="question.label"
+                  [key]="question.key"
+                  [placeHolder]="question.placeHolder"
+                  [theme]="question.theme"
+                  [appearance]="question.appearance"
+                  [icon]="question.icon"
+                  [format]="question.format"
+                  [controlType]="question?.controlType"
+                  [debounce]="question.debounce"
+                  (focusChanged)="onFocusChanged($event, question)"
+                  (valueChanged)="onValueChanged($event, question)"
+                >
+                </kkl-input>
+                <!-- </div>
                 </div> -->
               </ng-container>
-
             </div>
           </mat-grid-tile>
         </ng-container>
 
-        <mat-grid-tile *ngIf="grid?.buttonCols" [colspan]="grid?.buttonCols || 1">
+        <mat-grid-tile
+          *ngIf="grid?.buttonCols"
+          [colspan]="grid?.buttonCols || 1"
+        >
           <div class="btn-form" fxFlex="100">
-            <button type="submit" kkl-border color="primary" [thick]="2" mat-stroked-button color="primary" [disabled]="!formGroup.valid">{{ buttonLabel }}</button>
+            <button
+              type="submit"
+              kkl-border
+              color="primary"
+              [thick]="2"
+              mat-stroked-button
+              color="primary"
+              [disabled]="!formGroup.valid"
+            >
+              {{ buttonLabel }}
+            </button>
           </div>
         </mat-grid-tile>
       </mat-grid-list>
     </form>
-
   </ng-container>
 
-
   <ng-container *ngSwitchCase="'flex'">
-    <form (ngSubmit)="onSubmitEvent()" [formGroup]="formGroup" [fxLayout]="layout + ' wrap'" [fxLayoutGap]="offset+'px'" fxLayoutAlign="start center" autocomplete="off">
+    <form
+      (ngSubmit)="onSubmitEvent()"
+      [formGroup]="formGroup"
+      [fxLayout]="layout + ' wrap'"
+      [fxLayoutGap]="offset + 'px'"
+      fxLayoutAlign="start center"
+      autocomplete="off"
+    >
       <ng-container *ngFor="let question of myQuestions; let index = index">
         <ng-container [ngSwitch]="question.controlType">
-          <div [fxFlex]="(question.cols || 1)*flex">
-          <!-- SELECT INPUT SECTION -->
+          <div [fxFlex]="(question.cols || 1) * flex">
+            <!-- SELECT INPUT SECTION -->
             <ng-container *ngSwitchCase="'select'">
-                <kkl-select
-                  [control]="formGroup.controls[question.key]"
-                  [options]="question.options"
-                  [multi]="question.multi"
-                  [placeHolder]="question.placeHolder"
-                  [key]="question.key"
-                  [label]="question.label"
-                  [theme]="question.theme"
-                  [appearance]="question.appearance"
-                  [disabled]="question.disabled"
-                  (selectChanged)="onSelectChanged($event, question)"
-                  (openedChange)="onOpenedChange($event, question)"
-                ></kkl-select>
+              <kkl-select
+                [control]="formGroup.controls[question.key]"
+                [options]="question.options"
+                [multi]="question.multi"
+                [placeHolder]="question.placeHolder"
+                [key]="question.key"
+                [label]="question.label"
+                [theme]="question.theme"
+                [appearance]="question.appearance"
+                [disabled]="question.disabled"
+                (selectChanged)="onSelectChanged($event, question)"
+                (openedChange)="onOpenedChange($event, question)"
+              ></kkl-select>
             </ng-container>
             <ng-container *ngSwitchCase="'autocomplete'">
               <ng-container *ngIf="question.multi; else simpleAutocomplete">
@@ -244,7 +274,8 @@
                   [panelWidth]="question.panelWidth"
                   (queryChanged)="onQueryChanged($event, question)"
                   (selectChanged)="onSelectChanged($event, question)"
-                  (openedChange)="onOpenedChange($event, question)">
+                  (openedChange)="onOpenedChange($event, question)"
+                >
                 </kkl-multi-autocomplete>
               </ng-container>
               <ng-template #simpleAutocomplete>
@@ -334,7 +365,7 @@
             </ng-container>
             <ng-container *ngSwitchCase="'texteditor'">
               <div fxLayout="column">
-                <div [fxFlex]="((question?.rows * 10) || 40) + 'rem'">
+                <div [fxFlex]="(question?.rows * 10 || 40) + 'rem'">
                   <kkl-text-editor
                     [key]="question?.key"
                     [control]="formGroup.controls[question.key]"
@@ -358,7 +389,9 @@
               ></kkl-range>
             </ng-container>
             <ng-container *ngSwitchCase="'costum'">
-              <ng-container *ngTemplateOutlet="templates[question.key]"></ng-container>
+              <ng-container
+                *ngTemplateOutlet="templates[question.key]"
+              ></ng-container>
             </ng-container>
             <ng-container *ngSwitchCase="'counter'">
               <kkl-counter
@@ -389,20 +422,20 @@
                 (valueChanged)="onValueChanged($event, question)"
               ></kkl-input>
             </ng-container>
-
           </div>
-
         </ng-container>
       </ng-container>
 
       <ng-container *ngIf="grid?.buttonCols">
         <div [class.button-container]="true" fxFlex kkl-form-button>
-          <kkl-stroke-button type="submit" color="primary" [disabled]="!formGroup.valid">{{ buttonLabel }}</kkl-stroke-button>
+          <kkl-stroke-button
+            type="submit"
+            color="primary"
+            [disabled]="!formGroup.valid"
+            >{{ buttonLabel }}</kkl-stroke-button
+          >
         </div>
       </ng-container>
-
     </form>
-
   </ng-container>
 </div>
-

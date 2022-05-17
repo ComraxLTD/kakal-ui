@@ -1,5 +1,11 @@
-<kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
-  [menuTemplates]="{temp,test,test3}" (statusSelection)="onStatus($event)">
+<kkl-layout
+  [hideFooterPath]="['lobby']"
+  [status]="status"
+  (logoClicked)="onLogoClicked()"
+  [cards]="cards"
+  [menuTemplates]="{temp,test,test3}"
+  (statusSelection)="onStatus($event)"
+>
   <router-outlet content></router-outlet>
 </kkl-layout>
 
@@ -25,9 +31,7 @@
     <p>test</p>
     <p>test</p>
   </div>
-
-</ng-template> 
-
+</ng-template>
 
 <!-- <kkl-local-table
   [dataSource]="dataSource"
@@ -44,7 +48,7 @@
     [columns]="columns2"
     [paging]="false"
   ></kkl-local-table>
-</ng-template> -->
+</ng-template>
 
 <!-- <kkl-local-table
   [dataSource]="dataSource"
@@ -57,7 +61,6 @@
   (saveRow)="onSave($event)"
 ></kkl-local-table> -->
 
-
 <!-- <kkl-local-table
             [dataSource]="dataSource"
             [columns]="columns"
@@ -65,6 +68,3 @@
             [expandTemplate]="expand"
             (expandRow)="onExpand($event)"
           ></kkl-local-table> -->
-
-
-
