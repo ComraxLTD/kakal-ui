@@ -1,32 +1,24 @@
 <!-- (selectionChange)="onSelectionChanged($event)" -->
 <div fxLayout="row">
-<div class="mobile-hidden">
+  <div class="mobile-hidden">
 
-  <mat-vertical-stepper
-  #stepper
-  fxFlex="nogrow"
-  class="kkl-vertical-steps"
-  [(selectedIndex)]="_selectedIndex"
-  [disableRipple]="true"
-  (selectionChange)="onSelectionChanged($event)"
->
-<ng-container >
-    <mat-step
-    [completed]="step.completed"
-      [stepControl]="step.control"
-      *ngFor="let step of steps; let i = index"
-    >
-  </mat-step>
-</ng-container>
+    <mat-vertical-stepper #stepper fxFlex="nogrow" class="kkl-vertical-steps" [(selectedIndex)]="_selectedIndex"
+      [disableRipple]="true" (selectionChange)="onSelectionChanged($event)">
+      <ng-container>
+        <mat-step [completed]="step.completed" [stepControl]="step.control" *ngFor="let step of steps; let i = index">
+        </mat-step>
+      </ng-container>
 
-<!-- Icon overrides. -->
-<ng-template matStepperIcon="done">
-  <mat-icon>done</mat-icon>
-</ng-template>
-</mat-vertical-stepper>
-</div>
-<div  fxFlex="grow" fxFill  dir="rtl" fxLayoutGap="1rem" fxLayout="column">
-  <kkl-typography color="primary" [weight]="600" [size]="1.8" [underline]="true">{{_selectedIndex+1}}. {{steps[_selectedIndex].label}}</kkl-typography>
-  <ng-container *ngTemplateOutlet="templates[cellTemplate]"></ng-container>
-</div>
+      <!-- Icon overrides. -->
+      <ng-template matStepperIcon="done">
+        <mat-icon>done</mat-icon>
+      </ng-template>
+    </mat-vertical-stepper>
+  </div>
+  <div fxFlex="grow" fxFill dir="rtl" fxLayoutGap="1rem" fxLayout="column">
+    <kkl-typography  class='steps-thickness' color="primary"
+     [weight]="600" [size]="1.8">
+     {{_selectedIndex+1}}.{{steps[_selectedIndex].label}}</kkl-typography>
+    <ng-container *ngTemplateOutlet="templates[cellTemplate]"></ng-container>
+  </div>
 </div>

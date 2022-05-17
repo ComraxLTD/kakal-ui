@@ -25,5 +25,46 @@
     <p>test</p>
     <p>test</p>
   </div>
-</ng-template>
+
+</ng-template> 
+
+
+<!-- <kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
+></kkl-local-table> -->
+
+<ng-template #expand>
+  <kkl-local-table
+    fxFill
+    [dataSource]="dataSource2"
+    [columns]="columns2"
+    [paging]="false"
+  ></kkl-local-table>
+</ng-template> -->
+
+<!-- <kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [newRowAction]="newRowAction"
+
+  (actionClicked)="onClicked($event)"
+  (deleteRow)="onDelete($event)"
+  (saveRow)="onSave($event)"
+></kkl-local-table> -->
+
+
+<!-- <kkl-local-table
+            [dataSource]="dataSource"
+            [columns]="columns"
+            [rowActions]="rowActions"
+            [expandTemplate]="expand"
+            (expandRow)="onExpand($event)"
+          ></kkl-local-table> -->
+
+
 
