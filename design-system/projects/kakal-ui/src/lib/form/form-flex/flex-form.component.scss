@@ -1,23 +1,55 @@
 @use ".././../../styles/variables" as main;
 
-.kkl-flex-form,
-kkl-form-input {
+::ng-deep form.kkl-flex-form {
   width: 100%;
-}
 
-div {
-  &.input-container {
+  kkl-form-input {
     width: 100%;
   }
 
-  &.input-space {
-    box-sizing: border-box;
-    padding-left: main.spacing(2);
-  }
-
-  &.button-container {
-    box-sizing: border-box;
-    padding-left: main.spacing(1);
+  mat-form-field {
+    &.kkl-form.input,
+    &.kkl-form-autocomplete,
+    &.kkl-form-currency,
+    &.kkl-form-select,
+    &.kkl-form-counter,
+    &.kkl-form-datepicker,
+    &.kkl-form-range-datepicker,
+    &.kkl-form-range {
+      font-size: 14px !important;
+    }
   }
 }
 
+// div {
+//   &.input-container {
+//     width: 100%;
+//   }
+
+//   &.input-space {
+//     box-sizing: border-box;
+//     padding-left: main.spacing(2);
+//   }
+
+//   &.button-container {
+//     box-sizing: border-box;
+//     padding-left: main.spacing(1);
+//   }
+// }
+
+@media screen and (max-width: 1024px) {
+  form.kkl-flex-form {
+    mat-form-field {
+      &.kkl-form.input,
+      &.kkl-form-autocomplete,
+      &.kkl-form-currency,
+      &.kkl-form-select,
+      &.kkl-form-counter,
+      &.kkl-form-datepicker,
+      &.kkl-form-range-datepicker,
+      &.kkl-form-range {
+        font-size: 9px !important;
+      }
+    }
+  }
+}
