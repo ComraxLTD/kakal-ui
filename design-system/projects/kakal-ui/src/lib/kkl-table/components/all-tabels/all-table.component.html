@@ -476,13 +476,12 @@
 </form>
 
 <ng-template #buttonTemp let-button>
-  <button
-    mat-stroked-button
+  <kkl-stroke-button
     color="primary"
-    (click)="buttonClick(button, element, 'actions')"
+    (clickEvent)="buttonClick(button, element, 'actions')"
   >
     {{ button.label }}
-  </button>
+  </kkl-stroke-button>
 </ng-template>
 
 <ng-template #iconButtonTemp let-button>
