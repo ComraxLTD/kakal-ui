@@ -71,13 +71,13 @@ export class ReservationSummaryService {
     {
       key: 'type',
       label: 'סוג',
-      button: { type: 'inlineExpand', icon: '' },
+      button: { type: 'inlineNavigation' },
     },
     {
       controlType: 'toggle',
       key: 'amount',
       label: 'כמות',
-      button: { type: 'inlineExpand', icon: 'expand_more', label: 'כמות' },
+      button: { type: 'inlineExpand', label: 'כמות' },
     },
     { key: 'price', label: 'מחיר', colIcon: 'add' },
     { key: 'chargedProvider', label: 'חיוב ספק' },

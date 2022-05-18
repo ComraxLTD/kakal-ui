@@ -42,8 +42,10 @@
           </span>
           <kkl-icon
             [color]="'primary'"
-            *ngIf="question.button.icon"
-            [key]="question.button.icon"
+            *ngIf="
+              question.button.icon || question.button.type === 'inlineExpand'
+            "
+            [key]="question.button.icon || 'expand_more'"
           ></kkl-icon>
         </span>
       </button>
