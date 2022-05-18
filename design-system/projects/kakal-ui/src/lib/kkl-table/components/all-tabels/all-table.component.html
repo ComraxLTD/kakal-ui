@@ -143,7 +143,7 @@
                     <span style="width:100%" fxLayout="row">
                       <td style="font-weight: bolder; padding: 14.5px 0 0 30px;">{{oneColumns[0].label}}</td>
                       <td style="margin-top: 13px;" fxLayout="column" fxLayoutAlign="start start">
-                        <kkl-table-cell class="kkl-table-cell" [data]="item[oneColumns[0].key]" [question]="oneColumns[0]" (buttClick)="buttonClick(oneColumns[0].button, item, oneColumns[0].key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                        <kkl-table-cell [isMobile]="true" class="kkl-table-cell" [data]="item[oneColumns[0].key]" [question]="oneColumns[0]" (buttClick)="buttonClick(oneColumns[0].button, item, oneColumns[0].key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
                       </td>
                       <span></span>
                     </span>
@@ -161,14 +161,14 @@
                   <ng-container *ngIf="!(item | arrInclueds : editItems); else editBlock">
                     <td style="height: 6rem; font-weight: bolder; border-bottom: 1px solid #e4e4e4;">{{col.label}}</td>
                     <td style="height: 6rem; border-bottom: 1px solid #e4e4e4;">
-                      <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                      <kkl-table-cell [isMobile]="true" [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
                     </td>
                   </ng-container>
                   <ng-template #editBlock>
                     <ng-container *ngIf="col.notEditable; else innerEditBlock">
                       <td style="font-weight: bolder;">{{col.label}}</td>
                       <td>
-                        <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                        <kkl-table-cell [isMobile]="true" [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
                       </td>
                     </ng-container>
                     <ng-template #innerEditBlock>

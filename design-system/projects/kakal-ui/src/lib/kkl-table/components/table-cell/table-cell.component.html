@@ -6,12 +6,14 @@
 </ng-container>
 <ng-template #noTemplate>
   <!-- [ngClass]="{'mat-header-cell-text': column.controlType !== 'number'}" -->
-  <span fxLayout="row" [ngStyle]="{'place-content': question.controlType === 'number' ? 'center' : 'start'}">
+  <!-- [ngStyle]="{'place-content': question.controlType === 'number' ? 'center' : 'start'}" -->
+  <span fxLayout="row" plContentAlignment [justifyContent]="{isMobile}">
     <!-- style="display: inline-block; padding-left: 8px;" -->
     <kkl-icon *ngIf="question.colIcon" color="primary" [key]="question.colIcon"></kkl-icon>
     <span style="width: 100%;" *ngIf="question.button; else withoutButton">
       <button style="width: 100%; padding: 0;" mat-button color="primary" (click)="buttonClick()">
-        <span fxLayoutAlign="space-between center" >
+        <!-- "isMobile ? 'space-between' : question.controlType === 'number' ? 'center' : 'start'" -->
+        <span fxLayoutAlign="start center" plContentAlignment [buttonJustifyContent]="{isMobile, isNumber: question.controlType === 'number'}">
           <span *ngIf="data" fxLayout="row" style="white-space: pre-wrap; line-height: normal;">
             <span style="border-bottom: 1px solid;">
               {{data | tableCellPipe: question.controlType}}
