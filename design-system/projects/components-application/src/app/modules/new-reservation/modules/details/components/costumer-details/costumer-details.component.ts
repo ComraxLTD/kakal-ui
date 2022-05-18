@@ -40,6 +40,12 @@ export class CostumerDetailsComponent implements OnInit {
       type: 'deleteEdit',
       icon: 'delete',
     },
+    {
+      type: 'deleteEdit',
+      icon: 'visibility',
+      label: 'אשר',
+      button: true,
+    },
   ];
 
   //  FORM PROPS
