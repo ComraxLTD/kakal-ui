@@ -10,35 +10,17 @@
       </button>
     </div>
   </div>
-  <div fxFlex="grow" fxLayout="column" fxLayoutAlign="center center">
-    <!-- <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
-      <ng-container *ngIf="nextMiddle.show">
-        <button
-          class="next-middle-btn"
-          mat-fab
-          [disabled]="!formGroup.valid"
-          color="primary"
-          (click)="onNextMiddle()"
-        >
-          <span>
-            <ng-container *ngIf="nextMiddle.next; else saveTemp">{{
-              nextLabel || "המשך"
-            }}</ng-container>
-            <ng-template #saveTemp>{{ saveLabel || "שמור" }}</ng-template>
-          </span>
-          <br />
-          <kkl-icon [color]="'paper'" key="expand_more"></kkl-icon>
-        </button>
-      </ng-container>
-    </ng-container>
-
-    <mat-icon class="bottom_icon" [svgIcon]="bottomIcon" color="primary"></mat-icon> -->
-  </div>
+  <div fxFlex="grow" fxLayout="column" fxLayoutAlign="center center"></div>
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
-
-      <button class="kkl-save-button" mat-raised-button kkl-border [thick]="2" (click)="onSave()">
+      <button
+        class="kkl-save-button"
+        mat-raised-button
+        kkl-border
+        [thick]="2"
+        (click)="onSave()"
+      >
         {{ saveLabel || "שמור" }}
       </button>
     </ng-container>
@@ -56,8 +38,9 @@
       </button>
     </ng-container>
   </div>
+
   <div class="center-container" fxLayout="column" fxLayoutAlign="center center">
-      <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
+    <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
       <ng-container *ngIf="nextMiddle.show">
         <button
           class="next-middle-btn"
@@ -78,7 +61,11 @@
       </ng-container>
     </ng-container>
 
-    <mat-icon class="bottom_icon" [svgIcon]="bottomIcon" color="primary"></mat-icon>
+    <mat-icon
+      class="bottom_icon"
+      [svgIcon]="bottomIcon"
+      color="primary"
+    ></mat-icon>
   </div>
 </mat-toolbar>
 
