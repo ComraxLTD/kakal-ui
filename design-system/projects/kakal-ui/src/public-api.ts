@@ -421,6 +421,7 @@ export * from './lib/directives/resized.directive';
 
 export * from './lib/directives/outside-button.directive';
 
+export * from './lib/directives/next-navigation.directive';
 export * from './lib/directives/directives.module';
 //
 export * from './lib/tabs/tabs.component';

@@ -16,8 +16,6 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
-
-  @Input() steps: CardStep[];
   @Input() template: TemplateRef<any>;
 
   private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
@@ -38,12 +36,14 @@ export class NavigationComponent implements OnInit {
   }
 
   private setStepsSelectionEvent(index: number) {
+    const { source } = this.stepsSelectionSource$.getValue();
+
     const event: StepsSelectionEvent = {
-      selectedStep: this.steps[index],
+      selectedStep: source[index],
       selectedIndex: index,
-      last: index === this.steps.length - 1,
+      last: index === source.length - 1,
       first: index === 0,
-      source: this.steps,
+      source: source,
     };
     return event;
   }
@@ -60,9 +60,10 @@ export class NavigationComponent implements OnInit {
   }
 
   onNext(selectedIndex: number) {
+    const { source } = this.stepsSelectionSource$.getValue();
     const nextIndex = ++selectedIndex;
 
-    if (nextIndex > this.steps.length) {
+    if (nextIndex > source.length) {
       return;
     }
     this.dispatchSelectionState(nextIndex);
