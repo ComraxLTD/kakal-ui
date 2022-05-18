@@ -35,10 +35,12 @@ export class CostumerDetailsComponent implements OnInit {
     {
       type: 'inlineEdit',
       icon: 'edit',
+      button : false
     },
     {
       type: 'deleteEdit',
       icon: 'delete',
+      button : false
     },
     {
       type: 'deleteEdit',

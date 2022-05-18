@@ -168,16 +168,26 @@
               *ngIf="!(element | arrInclueds: editItems); else addButton"
             >
               <ng-container *ngFor="let butt of localButtons">
-                <button
-                  [matTooltip]="butt.label"
-                  mat-icon-button
-                  color="primary"
-                  (click)="buttonClick(butt, element, 'actions')"
-                >
-                  <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                </button>
+                <ng-container
+                  *ngTemplateOutlet="
+                    butt.button ? buttonTemp : iconButtonTemp;
+                    context: { $implicit: butt }
+                  "
+                ></ng-container>
+
+                <!-- <ng-container *ngIf="!butt.button; else buttonTemp">
+                  <button
+                    [matTooltip]="butt.label"
+                    mat-icon-button
+                    color="primary"
+                    (click)="buttonClick(butt, element, 'actions')"
+                  >
+                    <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                  </button>
+                </ng-container> -->
               </ng-container>
             </ng-container>
+
             <ng-template #addButton>
               <button
                 matTooltip="save"
@@ -464,4 +474,23 @@
   </div>
 </form>
 
-<!-- </ng-container> -->
+<ng-template #buttonTemp let-button>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="buttonClick(button, element, 'actions')"
+  >
+    {{ button.label }}
+  </button>
+</ng-template>
+
+<ng-template #iconButtonTemp let-button>
+  <button
+    [matTooltip]="button.label"
+    mat-icon-button
+    color="primary"
+    (click)="buttonClick(button, element, 'actions')"
+  >
+    <kkl-icon *ngIf="button.icon" [key]="button.icon"></kkl-icon>
+  </button>
+</ng-template>
