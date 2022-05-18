@@ -158,7 +158,6 @@
             <h3 *ngIf="!newRowAction">פעולות</h3>
           </th>
           <td
-            fxLayout="row"
             mat-cell
             *matCellDef="let element"
             class="center-butt"
@@ -166,7 +165,10 @@
             [attr.rowspan]="element == expandedElement ? 1 : 2"
           >
             <ng-container
-              *ngIf="!(element | arrInclueds: editItems); else addButton"
+              *ngIf="
+                !(element | arrInclueds: editItems);
+                else addButtonTemplate
+              "
             >
               <ng-container *ngFor="let butt of localButtons">
                 <ng-container
@@ -175,17 +177,6 @@
                     context: { $implicit: butt }
                   "
                 ></ng-container>
-
-                <!-- <ng-container *ngIf="!butt.button; else buttonTemp">
-                  <button
-                    [matTooltip]="butt.label"
-                    mat-icon-button
-                    color="primary"
-                    (click)="buttonClick(butt, element, 'actions')"
-                  >
-                    <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                  </button>
-                </ng-container> -->
               </ng-container>
             </ng-container>
           </td>
@@ -376,7 +367,7 @@
                   fxLayout="row wrap"
                   fxLayoutAlign="space-evenly"
                 >
-                  <ng-container *ngIf="false; else addButton">
+                  <ng-container *ngIf="false; else addButtonTemplate">
                     <ng-container *ngFor="let butt of localButtons">
                       <!-- <ng-container *ngIf="element == expandedElement && butt.type === 'inlineExpand'; else closeExpand">
                         <button class="container-button" mat-raised-button color="primary" (click)="buttonClick(butt, item, 'actions')">
@@ -453,23 +444,22 @@
     color="primary"
     (click)="buttonClick(button, element, 'actions')"
   >
-    <kkl-icon *ngIf="button.icon" [key]="button.icon"></kkl-icon>
+    <kkl-icon [key]="button.icon"></kkl-icon>
   </button>
 </ng-template>
 
-<ng-template #addButton>
-  <button
-    matTooltip="save"
-    mat-button
+<ng-template #addButtonTemplate>
+  <kkl-stroke-button
+    table-save-button
     color="primary"
-    (click)="saveRowClick(item)"
+    (clickEvent)="buttonClick(button, element, 'actions')"
   >
-    <kkl-icon key="save"></kkl-icon>
-  </button>
+    שמור
+  </kkl-stroke-button>
   <button
-    matTooltip="cancel"
+    fxFlexOffset="1rem"
+    matTooltip="בטל"
     mat-icon-button
-    color="primary"
     (click)="cancelRowClick(item)"
   >
     <kkl-icon key="cancel"></kkl-icon>
