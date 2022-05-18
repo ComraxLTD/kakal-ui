@@ -29,18 +29,22 @@ export class LobbyComponent implements OnInit {
   constructor(private breakpointService: BreakpointService) {}
 
   ngOnInit(): void {
-    this.cols = Math.min(this.cols, Math.floor(window.innerWidth / 180));
-    console.log(this.cols);
-    this.rows = this.rows || 2;
     this.ui$ = this.mapIsMobile();
+  }
+
+  private setRows(mobile: boolean): number {
+    return mobile ? Math.ceil(this.cards.length / 2) : this.rows || 2;
+  }
+  private setCols(): number {
+    return Math.min(this.cols, Math.floor(window.innerWidth / 180));
   }
 
   mapIsMobile(): Observable<LobbyGrid> {
     return this.breakpointService.isMobile().pipe(
       map((mobile) => {
         return {
-          cols: this.cols,
-          rows: mobile ? Math.ceil(this.cards.length / 2) : this.rows,
+          cols: this.setCols(),
+          rows: this.setRows(mobile),
           size: mobile ? 16 : 18,
         };
       })
