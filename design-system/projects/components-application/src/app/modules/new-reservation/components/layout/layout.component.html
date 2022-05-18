@@ -1,9 +1,4 @@
-
-<kkl-steps-layout
-  [steps]="steps"
-  [actions]="(actions$ | async)!"
-  baseUrl="reservation"
->
+<kkl-steps-layout kklNextNavigation [steps]="steps">
   <kkl-drawer-document drawer></kkl-drawer-document>
 
   <router-outlet content></router-outlet>
