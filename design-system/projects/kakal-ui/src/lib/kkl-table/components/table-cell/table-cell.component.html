@@ -26,12 +26,17 @@
         color="primary"
         (click)="buttonClick()"
       >
-        <span fxFlex fxLayoutAlign="start center">
+        <span
+          fxFlex
+          fxLayoutAlign="start center"
+          style="border-bottom: 1px solid"
+        >
           <span *ngIf="data" style="white-space: pre-wrap; line-height: normal">
-            <span style="border-bottom: 1px solid">
+            <span>
               {{
-                question.button.label || data
-                  | tableCellPipe: question.controlType
+                question.button?.label
+                  ? question.button.label
+                  : (data | tableCellPipe: question.controlType)
               }}
             </span>
           </span>

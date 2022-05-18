@@ -35,19 +35,14 @@ export class CostumerDetailsComponent implements OnInit {
     {
       type: 'inlineEdit',
       icon: 'edit',
-      button : false
+      button: false,
     },
     {
       type: 'deleteEdit',
       icon: 'delete',
-      button : false
+      button: false,
     },
-    {
-      type: 'deleteEdit',
-      icon: 'visibility',
-      label: 'אשר',
-      button: true,
-    },
+
   ];
 
   //  FORM PROPS
@@ -73,12 +68,22 @@ export class CostumerDetailsComponent implements OnInit {
     },
   ];
 
+  dataSource = [
+    {
+      costumerName: 'costumerName',
+      costumerType: 'costumerType',
+      contactName: 'contactName',
+      cellPhone: 'cellPhone',
+      email: 'email',
+      address: 'address',
+      payingCostumer: 'payingCostumer',
+    },
+  ];
+
   formGrid!: FormGrid;
   searchKey: string = 'search';
   constructor(
-    private detailsService: DetailsService,
     private formDataSource: FormDataSource,
-    private formService: FormService,
     private pageHeadlineService: PageHeadlineService
   ) {}
 
