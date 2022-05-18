@@ -1,5 +1,8 @@
 @use "../../styles/variables" as main;
 
+.padding-bottom {
+  padding-bottom: 6rem;
+}
 ::ng-deep mat-vertical-stepper.kkl-vertical-steps {
   max-width: 9rem !important;
   mat-step-header {
