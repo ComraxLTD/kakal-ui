@@ -165,10 +165,7 @@
             [attr.rowspan]="element == expandedElement ? 1 : 2"
           >
             <ng-container
-              *ngIf="
-                !(element | arrInclueds: editItems);
-                else addButtonTemplate
-              "
+              *ngIf="!(element | arrInclueds: editItems); else addButtonTemplate"
             >
               <ng-container *ngFor="let butt of localButtons">
                 <ng-container
