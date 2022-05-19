@@ -9,8 +9,6 @@
 }
 mat-toolbar {
   overflow: visible !important;
-  padding-left: main.spacing(5);
-  padding-right: main.spacing(5);
   background-color: rgba($color: #ffffff, $alpha: 0.72) !important;
 }
 
@@ -51,12 +49,7 @@ button.kkl-next-button:not(.mat-button-disabled) {
 
 //css for mobile.
 @media screen and (max-width: 800px) {
-  mat-toolbar {
-    padding-left: main.spacing(2);
-    padding-right: main.spacing(2);
-  }
   mat-icon.bottom_icon {
-    // display: none;
     transform: scale(4) translateY(4px);
   }
 }
