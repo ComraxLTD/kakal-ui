@@ -2,12 +2,12 @@ import { Component, OnInit, Inject, Input, ContentChild } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
+
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { Subject, takeUntil, Observable } from 'rxjs';
 import { IconService } from '../icon/icons.service';
-import { LayoutComponent } from '../layouts/layout/layout.component';
 import { Portion } from '../layouts/layout/layout.service';
 import { FooterButtonDirective } from './navbar-bottom.directive';
+import { Subject, takeUntil, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar-bottom',
