@@ -35,19 +35,14 @@ export class CostumerDetailsComponent implements OnInit {
     {
       type: 'inlineEdit',
       icon: 'edit',
-      button : false
+      button: false,
     },
     {
       type: 'deleteEdit',
       icon: 'delete',
-      button : false
+      button: false,
     },
-    {
-      type: 'deleteEdit',
-      icon: 'visibility',
-      label: 'אשר',
-      button: true,
-    },
+
   ];
 
   datasource = [{ email: new Date(), address: 'djskjds', payingCostumer: 100 }];
@@ -72,6 +67,18 @@ export class CostumerDetailsComponent implements OnInit {
       key: 'calendar',
       label: 'סוג לקוח',
       controlType: 'text',
+    },
+  ];
+
+  dataSource = [
+    {
+      costumerName: 'costumerName',
+      costumerType: 'costumerType',
+      contactName: 'contactName',
+      cellPhone: 'cellPhone',
+      email: 'email',
+      address: 'address',
+      payingCostumer: 'payingCostumer',
     },
   ];
 

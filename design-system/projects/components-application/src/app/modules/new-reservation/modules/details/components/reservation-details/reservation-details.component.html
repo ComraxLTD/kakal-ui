@@ -1,7 +1,7 @@
 <div dir="rtl" fxLayout="column" fxLayoutGap="3rem">
 
   <kkl-form
-  [controls]="questions" 
+  [controls]="questions"
   (queryChanged)="onQueryChanged($event)"
   (selectChanged)="onSelectChanged($event)"
   (openChanged)="onOpenChanged($event)"
@@ -10,81 +10,7 @@
 
 
 
-  <!-- <div fxLayout="row wrap" dir="rtl" fxLayoutGap="20px">
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>שם/תיאור הזמנה</mat-label>
-        <input matInput placeholder="Placeholder" />
-        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>מרכז שדה</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>תאריך הזמנה</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input
-            matStartDate
-            formControlName="start"
-            placeholder="Start date"
-          />
-          <input matEndDate formControlName="end" placeholder="End date" />
-        </mat-date-range-input>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>אזור</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>פניפ\חוץ מרכז שדה</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>קבוצת גיל</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>מעורב</mat-label>
-        <mat-select>
-          <mat-option value="one">First option</mat-option>
-          <mat-option value="two">Second option</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </p>
-    <p>
-      <mat-form-field appearance="outline">
-        <mat-label>הערות למרכז הזמנות</mat-label>
-        <textarea matInput></textarea>
-      </mat-form-field>
-    </p>
-  </div> -->
+
 
   <div fxLayout="row" fxLayoutAlign="space-evenly" fxFlexOffset="2">
 

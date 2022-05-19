@@ -291,8 +291,9 @@ th > h3 {
   }
 }
 
-button.mat-stroked-button.add-button {
-  span {
-    color: main.color(text);
+
+::ng-deep kkl-stroke-button[table-action-button] {
+  button {
+    transform: translateY(-5px);
   }
 }
