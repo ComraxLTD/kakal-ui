@@ -16,69 +16,60 @@ import { Observable, BehaviorSubject } from 'rxjs';
   styleUrls: ['./navigation.component.scss'],
 })
 export class NavigationComponent implements OnInit {
+  @Input() stepsSelectionEvent: StepsSelectionEvent;
+  @Input() contentTemplate: TemplateRef<any>;
+  @Input() stepTemplate: TemplateRef<any>;
 
-  @Input() steps: CardStep[];
-  @Input() template: TemplateRef<any>;
-
-  private stepsSelectionSource$: BehaviorSubject<StepsSelectionEvent> =
-    new BehaviorSubject(null);
-
-  stepsSelection$: Observable<StepsSelectionEvent>;
-
-  @Input() set stepsSelectionEvent(value: StepsSelectionEvent) {
-    this.stepsSelectionSource$.next(value);
-  }
+  private _stepsSelectionEvent: StepsSelectionEvent;
 
   @Output() stepSelection = new EventEmitter<StepsSelectionEvent>();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.stepsSelection$ = this.stepsSelectionSource$.asObservable();
+    console.log(this.stepsSelectionEvent)
   }
 
   private setStepsSelectionEvent(index: number) {
+    const { source } = this.stepsSelectionEvent;
+
     const event: StepsSelectionEvent = {
-      selectedStep: this.steps[index],
+      selectedStep: source[index],
       selectedIndex: index,
-      last: index === this.steps.length - 1,
+      last: index === source.length - 1,
       first: index === 0,
-      source: this.steps,
+      source: source,
     };
     return event;
   }
 
   private dispatchSelectionState(index: number) {
-    const event = this.setStepsSelectionEvent(index);
-    this.stepsSelectionSource$.next(event);
+    this._stepsSelectionEvent = this.setStepsSelectionEvent(index);
     this._emitChangeEvent();
   }
 
   private _emitChangeEvent() {
-    const event = this.stepsSelectionSource$.getValue();
-    this.stepSelection.emit(event);
+    this.stepSelection.emit(this._stepsSelectionEvent);
   }
 
   onNext(selectedIndex: number) {
+    const { source } = this.stepsSelectionEvent;
     const nextIndex = ++selectedIndex;
 
-    if (nextIndex > this.steps.length) {
-      return;
-    }
+    if (nextIndex > source.length) return;
+
     this.dispatchSelectionState(nextIndex);
   }
 
   onPrevious(selectedIndex: number) {
     const nextIndex = --selectedIndex;
 
-    if (nextIndex < 0) {
-      return;
-    }
+    if (nextIndex < 0) return;
 
     this.dispatchSelectionState(nextIndex);
   }
 
-  onStepSelect(step: number) {
-    this.dispatchSelectionState(step);
+  onSelectStep(selectedIndex: number) {
+    this.dispatchSelectionState(selectedIndex);
   }
 }

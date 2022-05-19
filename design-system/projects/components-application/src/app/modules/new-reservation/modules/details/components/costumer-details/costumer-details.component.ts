@@ -70,9 +70,7 @@ export class CostumerDetailsComponent implements OnInit {
   formGrid!: FormGrid;
   searchKey: string = 'search';
   constructor(
-    private detailsService: DetailsService,
     private formDataSource: FormDataSource,
-    private formService: FormService,
     private pageHeadlineService: PageHeadlineService
   ) {}
 
