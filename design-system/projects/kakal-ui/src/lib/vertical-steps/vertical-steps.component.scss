@@ -21,16 +21,14 @@
   background-color: #fff !important;
 }
 
-// .kkl-vertical-stepper-label {
-//   width: 100px;
-// }
-::ng-deep .steps-thickness {
+.text-container {
   border-bottom: 1px solid main.color(primaryLight);
-  span {
-    padding: 0.2rem;
+
+  kkl-typography {
     border-bottom: 2px solid main.color(primary);
   }
 }
+
 ::ng-deep .mat-vertical-stepper-header {
   padding: 0 !important;
   margin: 2.4rem;

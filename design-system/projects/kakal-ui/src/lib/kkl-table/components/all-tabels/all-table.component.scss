@@ -1,7 +1,5 @@
 @use "../../../../styles/variables" as main;
 
-
-
 tr.example-detail-row {
   height: 0;
 }
@@ -21,7 +19,6 @@ tr.example-element-row:not(.example-expanded-row):active {
   // background-color: red;
   width: 100%;
   // margin-right: -16px;
-
 }
 
 // .mat-table{
@@ -41,7 +38,7 @@ td.mat-cell {
   // padding: 0 !important;
 }
 
-.table-wrapper{
+.table-wrapper {
   // display: flex;
   // flex-direction: column;
   // align-items: center;
@@ -50,7 +47,7 @@ td.mat-cell {
   width: 99%;
   // overflow-x: scroll;
   // padding: 1px;
-  .table-wrapper{
+  .table-wrapper {
     margin: auto;
     width: 100%;
     padding: 0px;
@@ -62,14 +59,14 @@ table {
   margin: auto;
 }
 
-thead{
+thead {
   margin: auto;
 }
 
 .expand-table {
   border-spacing: 0 3px !important;
 }
-.all-table-form{
+.all-table-form {
   // width: 100%;
   // position: relative;
   overflow: auto;
@@ -80,8 +77,8 @@ table table {
   width: 100%;
   border-top: dashed 1.5px main.color(primaryLight);
   padding: 10px 20px;
-  tr.mat-header-row{
-    th.mat-header-cell.cdk-header-cell{
+  tr.mat-header-row {
+    th.mat-header-cell.cdk-header-cell {
       border-bottom: none;
       background-color: main.color(secondLine);
     }
@@ -91,9 +88,6 @@ table table {
 //   border-spacing: 0 !important;
 //   // border-bottom: 10px ;
 // }
-
-
-
 
 // table td tr:nth-child(1) {
 //   border-bottom: none;
@@ -109,45 +103,45 @@ table table {
 //   direction: ltr;
 // }
 
-.expanded-container{
+.expanded-container {
   padding: 0 !important;
   margin: 10px 0 !important;
 }
 
-.expand{
+.expand {
   margin-top: -3px !important;
 }
 
-.hide{
+.hide {
   display: none;
   border-spacing: 0 !important;
 }
 
-tr.mat-header-row{
-  th.mat-header-cell.cdk-header-cell{
+tr.mat-header-row {
+  th.mat-header-cell.cdk-header-cell {
     border-bottom: 2px solid main.color(accent);
   }
 }
 
-.arrow-down{
+.arrow-down {
   color: main.color(primary);
   font-size: 3rem;
 }
 
-th>h3 {
+th > h3 {
   font-weight: 600;
   color: main.color(text);
 }
 
-.dragCursor:hover{
+.dragCursor:hover {
   cursor: grab;
 }
 
-.dragCursor:active{
+.dragCursor:active {
   cursor: grabbing;
 }
 
-::ng-deep.paginator-button{
+::ng-deep.paginator-button {
   border: none !important;
   background-color: transparent !important;
   color: main.color(primary) !important;
@@ -158,7 +152,7 @@ th>h3 {
 //   color: main.color(disable);
 // }
 
-::ng-deep.paginator-button-active{
+::ng-deep.paginator-button-active {
   border: solid 2px main.color(primary) !important;
   border-radius: 5px !important;
   background-color: transparent !important;
@@ -168,7 +162,6 @@ th>h3 {
 //   // color: main.color(primary) !important;
 //   color: red !important;
 // }
-
 
 //  scroll css
 /* width & height*/
@@ -188,10 +181,8 @@ th>h3 {
   border-radius: 30px;
 }
 
-
 // shorten the track size and add border radius
 //shorter a liitle bit before the pagination
-
 
 // @media screen and (max-width: 600px) {
 //   .desktop-hidden {
@@ -215,46 +206,44 @@ th>h3 {
 }
 
 ::ng-deep .example-headers-align {
-  .expansion-panel{
-    box-shadow:
-      0px 3px 1px -2px rgba(0, 0, 0, 5%),
-      0px 2px 2px 0px rgb(0 0 0 / 5%),
-      0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
+  .expansion-panel {
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 5%),
+      0px 2px 2px 0px rgb(0 0 0 / 5%), 0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
 
-    .expansion-panel-header>span{
+    .expansion-panel-header > span {
       height: 10rem;
     }
 
     .mat-expanded .mobile-drop-down {
       transform: rotate(180deg) !important;
-      transition: .5s all;
+      transition: 0.5s all;
     }
 
     .mobile-drop-down {
-      transform: rotate(0) ;
-      transition: .5s all;
+      transform: rotate(0);
+      transition: 0.5s all;
     }
 
-    .kkl-table-cell{
+    .kkl-table-cell {
       // .ng-star-inserted{
       //   font-weight: bolder;
       // }
-      button{
+      button {
         padding: 0;
       }
     }
 
-    .actions{
-      .expanded{
-        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+    .actions {
+      .expanded {
+        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
           transform: rotate(180deg) !important;
-          transition: .2s all;
+          transition: 0.2s all;
         }
       }
-      button{
-        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
-          transform: rotate(0) ;
-          transition: .2s all;
+      button {
+        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+          transform: rotate(0);
+          transition: 0.2s all;
         }
       }
     }
@@ -264,20 +253,20 @@ th>h3 {
     //   border-radius: 25px;
     // }
 
-    .example-element-detail{
-      kkl-local-table{
+    .example-element-detail {
+      kkl-local-table {
         .desktop-hidden {
           display: none;
         }
         .mobile-hidden {
           display: initial;
         }
-        .table-wrapper{
+        .table-wrapper {
           width: 100%;
-          table{
+          table {
             width: 100%;
-            tr.mat-header-row{
-              th.mat-header-cell.cdk-header-cell{
+            tr.mat-header-row {
+              th.mat-header-cell.cdk-header-cell {
                 border-bottom: none;
                 background-color: main.color(secondLine);
               }
@@ -289,17 +278,22 @@ th>h3 {
   }
 }
 
-::ng-deep .example-expanded-row .center-butt{
-
-  ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
-  transform: rotate(180deg) !important;
-  transition: .2s all;
+::ng-deep .example-expanded-row .center-butt {
+  ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+    transform: rotate(180deg) !important;
+    transition: 0.2s all;
   }
+}
+::ng-deep .example-element-row .center-butt {
+  ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+    transform: rotate(0);
+    transition: 0.2s all;
   }
-  ::ng-deep .example-element-row .center-butt{
+}
 
-      ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
-      transform: rotate(0) ;
-      transition: .2s all;
+
+::ng-deep kkl-stroke-button[table-action-button] {
+  button {
+    transform: translateY(-5px);
   }
 }

@@ -27,6 +27,7 @@
       </ng-template>
     </mat-vertical-stepper>
   </div>
+
   <div fxFlex="grow" fxFill dir="rtl" fxLayoutGap="1rem" fxLayout="column">
     <kkl-typography
       class="steps-thickness"
@@ -36,6 +37,7 @@
     >
       {{ _selectedIndex + 1 }}.{{ steps[_selectedIndex].label }}</kkl-typography
     >
+
     <ng-container *ngTemplateOutlet="templates[cellTemplate]"></ng-container>
   </div>
 </div>
