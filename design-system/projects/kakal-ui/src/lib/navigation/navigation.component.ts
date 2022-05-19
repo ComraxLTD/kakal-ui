@@ -26,9 +26,7 @@ export class NavigationComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.stepsSelectionEvent)
-  }
+  ngOnInit(): void {}
 
   private setStepsSelectionEvent(index: number) {
     const { source } = this.stepsSelectionEvent;
