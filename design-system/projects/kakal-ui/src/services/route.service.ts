@@ -24,8 +24,7 @@ export class RouterService {
     // this.listenToRoute$();
   }
 
-
-  public getUrl(path: string) {
+  getUrl(path: string) {
     const routes = this.router.url.split('/');
     routes.unshift();
     routes.pop();
@@ -33,13 +32,13 @@ export class RouterService {
     return routes.join('/');
   }
 
-  public getUrlFromBase(path: string, base: string) {
+  getUrlFromBase(path: string, base: string) {
     const routes = this.router.url.split('/');
     routes.unshift();
 
-    let location = routes.length-1;
-    while(location !== -1) {
-      if(routes[location] === base){
+    let location = routes.length - 1;
+    while (location !== -1) {
+      if (routes[location] === base) {
         routes.push(path);
         return routes.join('/');
       } else {
@@ -49,14 +48,14 @@ export class RouterService {
     }
   }
 
-  public getParentPath() {
+  getParentPath() {
     const routes = this.router.url.split('/');
     routes.unshift();
     routes.pop();
     return routes.pop();
   }
 
-  public goBack() {
+  goBack() {
     this.history.pop();
     if (this.history.length > 0) {
       this.location.back();
@@ -90,6 +89,19 @@ export class RouterService {
           : this.setLastPath(path)
       )
     );
+  }
+
+  getUrlAsMap(): { [key: string]: string } {
+    return this.url.split('/').reduce((acc, key) => {
+      if (!key) {
+        return acc;
+      }
+
+      return {
+        ...acc,
+        [key]: key,
+      };
+    }, {});
   }
 
   async navigate(path: string) {

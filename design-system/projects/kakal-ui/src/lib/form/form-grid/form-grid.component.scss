@@ -2,11 +2,27 @@
 
 
 
-form,
-kkl-form-input {
+::ng-deep form.kkl-grid-form {
   width: 100%;
-  font-size: main.spacing(2);
+
+  kkl-form-input {
+    width: 100%;
+  }
+
+  mat-form-field {
+    &.kkl-form.input,
+    &.kkl-form-autocomplete,
+    &.kkl-form-currency,
+    &.kkl-form-select,
+    &.kkl-form-counter,
+    &.kkl-form-datepicker,
+    &.kkl-form-range-datepicker,
+    &.kkl-form-range {
+      font-size: 14px !important;
+    }
+  }
 }
+
 
 // margin and padding of mat-form-field
 .btn-form {
