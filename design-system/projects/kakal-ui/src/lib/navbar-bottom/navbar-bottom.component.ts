@@ -2,12 +2,12 @@ import { Component, OnInit, Inject, Input, ContentChild } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
+
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { Subject, takeUntil, Observable } from 'rxjs';
 import { IconService } from '../icon/icons.service';
-import { LayoutComponent } from '../layouts/layout/layout.component';
 import { Portion } from '../layouts/layout/layout.service';
 import { FooterButtonDirective } from './navbar-bottom.directive';
+import { Subject, takeUntil, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -19,6 +19,7 @@ export class NavbarBottomComponent implements OnInit {
   footerButtonDirective: FooterButtonDirective | undefined;
 
   @Input() endDrawer;
+  @Input() portion: Portion;
 
   destroySubject$: Subject<void> = new Subject();
 
@@ -39,10 +40,7 @@ export class NavbarBottomComponent implements OnInit {
 
   bottomIcon: string = 'bottom_tree_';
 
-  portion$: Observable<Portion>;
-
   constructor(
-    private layoutComponent: LayoutComponent,
     private routerService: RouterService,
     private navbarBottomService: NavbarBottomService,
     private iconService: IconService,
@@ -89,8 +87,6 @@ export class NavbarBottomComponent implements OnInit {
       .subscribe((a: string) => {
         this.saveLabel = a;
       });
-
-    this.portion$ = this.layoutComponent.portion$;
   }
 
   private setBottomIcon() {
