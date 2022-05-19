@@ -1,4 +1,7 @@
-<mat-form-field [appearance]="control.disabled ? 'fill' : 'outline'">
+<mat-form-field
+  class="kkl-form-autocomplete"
+  [appearance]="control.disabled ? 'fill' : 'outline'"
+>
   <mat-label>{{ label }}</mat-label>
 
   <input
@@ -19,7 +22,7 @@
   >
     <ng-container *ngIf="!multi">
       <mat-option
-        class="autocomplete-option"
+        class="kkl-form-autocomplete-option"
         [disabled]="option.disabled"
         *ngFor="let option of options"
         [value]="option"
@@ -40,7 +43,7 @@
         (selectionChange)="onSelectionChange(selectionList)"
       >
         <mat-list-option
-          class="kkl-autocomplete-option"
+          class="kkl-form-autocomplete-list-option"
           [disabled]="option.disabled"
           *ngFor="let option of options"
           [value]="option"

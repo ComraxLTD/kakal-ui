@@ -1,6 +1,5 @@
 @use "../../styles/variables" as main;
 
-
 .center-container {
   left: 50%;
   position: absolute;
@@ -25,8 +24,12 @@ button.mat-mini-fab {
   background-color: main.color(paper) !important;
 }
 
-button.mat-raised-button.kkl-save-button:not(.mat-button-disabled) {
-  color: main.color(text);
+button.mat-raised-button.kkl-save-button {
+  z-index: 1000;
+
+  &:not(.mat-button-disabled) {
+    color: main.color(text);
+  }
 }
 
 button.kkl-next-button:not(.mat-button-disabled) {
@@ -41,5 +44,17 @@ button.kkl-next-button:not(.mat-button-disabled) {
   .mat-button-wrapper {
     line-height: main.spacing(2) !important;
     color: main.color(paper) !important;
+  }
+}
+
+//css for mobile.
+@media screen and (max-width: 800px) {
+  mat-toolbar {
+    padding-left: main.spacing(2);
+    padding-right: main.spacing(2);
+  }
+  mat-icon.bottom_icon {
+    // display: none;
+    transform: scale(4) translateY(4px);
   }
 }

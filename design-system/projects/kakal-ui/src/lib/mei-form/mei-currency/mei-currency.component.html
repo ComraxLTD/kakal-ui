@@ -1,19 +1,44 @@
-<mat-form-field [formGroup]="groupControl" class="kkl-form-select" [color]="theme"
-  [appearance]="groupControl.disabled ? 'fill' : appearance || 'outline'" dir="rtl">
+<mat-form-field
+  [formGroup]="groupControl"
+  class="kkl-form-currency"
+  [color]="theme"
+  [appearance]="groupControl.disabled ? 'fill' : appearance || 'outline'"
+  dir="rtl"
+>
   <mat-label>{{ label }}</mat-label>
 
-  <input matInput formControlName="sum" [name]="key" [type]="'text'" sumInput [placeholder]="placeHolder"
-    (focusout)="setErrorMessage()" (focus)="onFocus()" />
+  <input
+    matInput
+    formControlName="sum"
+    [name]="key"
+    [type]="'text'"
+    sumInput
+    [placeholder]="placeHolder"
+    (focusout)="setErrorMessage()"
+    (focus)="onFocus()"
+  />
   <div class="currency-container" fxFlex="15">
-      <mat-select #select matSuffix formControlName="currency" [compareWith]="compareFunction"
-        (selectionChange)="onSelectChanged($event)" (focusout)="setErrorMessage()">
-        <mat-option *ngFor="let option of options$ | async" [value]="option" [disabled]="option.disabled">
-          {{ option.label }}
-        </mat-option>
-  
-      </mat-select>
-      <kkl-icon (click)="select.open()" color="primary" key="keyboard_arrow_down"></kkl-icon>
-
+    <mat-select
+      #select
+      matSuffix
+      formControlName="currency"
+      [compareWith]="compareFunction"
+      (selectionChange)="onSelectChanged($event)"
+      (focusout)="setErrorMessage()"
+    >
+      <mat-option
+        *ngFor="let option of options$ | async"
+        [value]="option"
+        [disabled]="option.disabled"
+      >
+        {{ option.label }}
+      </mat-option>
+    </mat-select>
+    <kkl-icon
+      (click)="select.open()"
+      color="primary"
+      key="keyboard_arrow_down"
+    ></kkl-icon>
   </div>
 
   <mat-error>{{ error$ | async }}</mat-error>

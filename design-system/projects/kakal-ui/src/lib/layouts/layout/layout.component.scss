@@ -88,17 +88,13 @@ button.mat-button.drawer-desktop-btn {
   position: fixed;
   bottom: 10%;
   left: 5%;
-
-
 }
 
-
-//css for footer mobile.
-@media (max-width: 599px){
-  ::ng-deep .navbar-footer {
-     .mat-toolbar-single-row {
-        height: 75px!important;
-    }
-  }
-
-}
+// //css for footer mobile.
+// @media (max-width: 599px) {
+//   ::ng-deep .navbar-footer {
+//     .mat-toolbar-single-row {
+//       height: 75px !important;
+//     }
+//   }
+// }

@@ -1,9 +1,25 @@
-<mat-form-field  color="primary" [appearance]="control.disabled ? 'fill' : appearance || 'outline'" class="kkl-form-date">
+<mat-form-field
+  class="kkl-form-datepicker"
+  color="primary"
+  [appearance]="control.disabled ? 'fill' : appearance || 'outline'"
+>
   <mat-label>{{ label }}</mat-label>
 
-  <input matInput [matDatepicker]="dp" [formControl]="control" [max]="maxDate" [min]="minDate"
-    (focus)="dp.open()" (focus)="onFocus()"/>
-  <mat-datepicker-toggle class="mat-datepicker-toggle-active" [disabled]="control.disabled" matSuffix [for]="dp"></mat-datepicker-toggle>
+  <input
+    matInput
+    [matDatepicker]="dp"
+    [formControl]="control"
+    [max]="maxDate"
+    [min]="minDate"
+    (focus)="dp.open()"
+    (focus)="onFocus()"
+  />
+  <mat-datepicker-toggle
+    class="mat-datepicker-toggle-active"
+    [disabled]="control.disabled"
+    matSuffix
+    [for]="dp"
+  ></mat-datepicker-toggle>
   <mat-datepicker #dp></mat-datepicker>
 
   <mat-error>{{ error$ | async }}</mat-error>
