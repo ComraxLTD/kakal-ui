@@ -1,6 +1,5 @@
 <ng-container *ngIf="question.cellTemplate; else noTemplate">
   <div [ngSwitch]="question.cellTemplate">
-    <!-- <div *ngSwitchCase="statusBar"><kkl-status-steps [status]="{}"></kkl-status-steps></div> -->
     <div *ngSwitchDefault>
       <ng-container
         *ngTemplateOutlet="

@@ -20,7 +20,7 @@
         (selectChanged)="onSelectChanged($event)"
         (openChanged)="onOpenChanged($event)"
       ></kkl-form>
-<!-- 
+<!--
       <button mat-raised-button color="primary">
         <kkl-typography> טיול חדש</kkl-typography>
       </button> -->
@@ -51,7 +51,7 @@
   ></kkl-tabs>
 </ng-template>
 <ng-template #statusTemp let-data>
-  <kkl-status-steps [status]="data" [labelRef]="label"></kkl-status-steps>
+  <kkl-status-progress [status]="data" [labelRef]="label"></kkl-status-progress>
 </ng-template>
 <ng-template #Providers>
   <app-marketers-providers></app-marketers-providers>
