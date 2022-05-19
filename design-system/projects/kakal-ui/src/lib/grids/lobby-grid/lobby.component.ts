@@ -36,7 +36,7 @@ export class LobbyComponent implements OnInit {
     return mobile ? Math.ceil(this.cards.length / 2) : this.rows || 2;
   }
   private setCols(): number {
-    return Math.min(this.cols, Math.floor(window.innerWidth / 180));
+    return Math.min(this.cols, Math.floor(window.innerWidth / 100));
   }
 
   mapIsMobile(): Observable<LobbyGrid> {
