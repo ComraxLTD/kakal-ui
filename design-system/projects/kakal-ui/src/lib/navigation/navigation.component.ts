@@ -6,9 +6,7 @@ import {
   Output,
   TemplateRef,
 } from '@angular/core';
-import { CardStep } from '../cards/card-step/card-step.component';
 import { StepsSelectionEvent } from '../groups/step-group/step-group.component';
-import { Observable, BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'kkl-navigation',
@@ -27,7 +25,7 @@ export class NavigationComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.stepsSelectionEvent)
+    console.log(this.stepsSelectionEvent);
   }
 
   private setStepsSelectionEvent(index: number) {

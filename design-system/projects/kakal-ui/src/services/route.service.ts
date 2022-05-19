@@ -91,8 +91,8 @@ export class RouterService {
     );
   }
 
-  getUrlAsMap(): { [key: string]: string } {
-    return this.url.split('/').reduce((acc, key) => {
+  getUrlAsMap(url: string): { [key: string]: string } {
+    return url.split('/').reduce((acc, key) => {
       if (!key) {
         return acc;
       }

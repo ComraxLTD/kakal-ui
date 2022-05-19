@@ -94,7 +94,12 @@
         class="footer navbar-footer"
         [ngStyle]="{ width: portion.content + '%' }"
       >
-        <kkl-navbar-bottom [endDrawer]="endDrawer"></kkl-navbar-bottom>
+        <kkl-navbar-bottom [endDrawer]="endDrawer">
+          <ng-container *kklFooterButton>
+            <ng-container *ngTemplateOutlet="footerButtonDirective?.template">
+            </ng-container>
+          </ng-container>
+        </kkl-navbar-bottom>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>
