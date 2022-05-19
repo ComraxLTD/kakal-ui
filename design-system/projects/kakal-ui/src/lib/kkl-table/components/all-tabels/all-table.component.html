@@ -145,7 +145,6 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="center-butt">
             <button
-              class="add-button"
               *ngIf="newRowAction"
               kkl-border
               [thick]="2"
@@ -153,14 +152,13 @@
               color="primary"
               (click)="addNewRowGroup()"
             >
-              <span>
-                {{ newRowAction }}
-              </span>
+              {{ newRowAction }}
               <mat-icon>add</mat-icon>
             </button>
             <h3 *ngIf="!newRowAction">פעולות</h3>
           </th>
           <td
+            fxLayout="row"
             mat-cell
             *matCellDef="let element"
             class="center-butt"
@@ -171,16 +169,27 @@
               *ngIf="!(element | arrInclueds: editItems); else addButton"
             >
               <ng-container *ngFor="let butt of localButtons">
-                <button
-                  [matTooltip]="butt.label"
-                  mat-button
-                  color="primary"
-                  (click)="buttonClick(butt, element, 'actions')"
-                >
-                  <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                </button>
+                <ng-container
+                  *ngTemplateOutlet="
+                    butt.button ? buttonTemp : iconButtonTemp;
+                    context: { $implicit: butt }
+                  "
+                ></ng-container>
+
+                <!-- <ng-container *ngIf="!butt.button; else buttonTemp">
+                  <button
+                    [matTooltip]="butt.label"
+                    mat-icon-button
+                    color="primary"
+                    (click)="buttonClick(butt, element, 'actions')"
+                  >
+                    <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                  </button>
+                </ng-container> -->
+
               </ng-container>
             </ng-container>
+
             <ng-template #addButton>
               <button
                 matTooltip="save"
@@ -245,7 +254,6 @@
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
       <button
-        class="add-button"
         *ngIf="newRowAction"
         kkl-border
         [thick]="2"
@@ -253,9 +261,7 @@
         color="primary"
         (click)="addNewRowGroup()"
       >
-        <span>
-          {{ newRowAction }}
-        </span>
+        {{ newRowAction }}
         <mat-icon>add</mat-icon>
       </button>
       <mat-accordion
@@ -405,7 +411,7 @@
                       <button
                         [ngClass]="{ expanded: item == expandedElement }"
                         [matTooltip]="butt.label"
-                        mat-button
+                        mat-icon-button
                         color="primary"
                         (click)="buttonClick(butt, item, 'actions')"
                       >
@@ -470,4 +476,23 @@
   </div>
 </form>
 
-<!-- </ng-container> -->
+<ng-template #buttonTemp let-button>
+  <kkl-stroke-button
+    table-action-button
+    color="primary"
+    (clickEvent)="buttonClick(button, element, 'actions')"
+  >
+    {{ button.label }}
+  </kkl-stroke-button>
+</ng-template>
+
+<ng-template #iconButtonTemp let-button>
+  <button
+    [matTooltip]="button.label"
+    mat-icon-button
+    color="primary"
+    (click)="buttonClick(button, element, 'actions')"
+  >
+    <kkl-icon *ngIf="button.icon" [key]="button.icon"></kkl-icon>
+  </button>
+</ng-template>
