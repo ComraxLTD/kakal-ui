@@ -1,11 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
@@ -13,6 +6,7 @@ import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -52,7 +46,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   constructor(
     private stepsLayoutService: StepsLayoutService,
     private routerService: RouterService,
-    private breakpointService: BreakpointService
+    private breakpointService: BreakpointService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -112,45 +107,15 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
         const steps = [...this.steps];
 
         const previouslySelectedIndex = this.findIndex(steps, 'selected', true);
-        // const selectedIndex = this.findIndex(steps, 'path', path);
-        const pathMap = this.routerService.getUrlAsMap();
-        const selectedIndex = this.steps.findIndex(
-          (step) => pathMap[step.path]
-        );
+        const pathMap = this.routerService.getUrlAsMap(this.router.url);
+        const index = this.steps.findIndex((step) => pathMap[step.path]);
+        const selectedIndex = index !== -1 ? index : 0;
 
         return this.selectionRouteHandler(
           selectedIndex,
           steps,
           previouslySelectedIndex
         );
-        
-        if (selectedIndex !== -1) {
-          return this.selectionRouteHandler(
-            selectedIndex,
-            steps,
-            previouslySelectedIndex
-          );
-        } else {
-          // let location = pathParts.length - 2;
-
-          // while (location !== -1) {
-          //   const newSelectedIndex = this.findIndex(
-          //     steps,
-          //     'path',
-          //     pathParts[location]
-          //   );
-          //   if (newSelectedIndex !== -1) {
-          //     return this.selectionRouteHandler(
-          //       newSelectedIndex,
-          //       steps,
-          //       previouslySelectedIndex
-          //     );
-          //   } else {
-          //     return this.selectionRouteHandler(0, steps, 0);
-          //   }
-          // }
-          // location--;
-        }
       })
     );
   }

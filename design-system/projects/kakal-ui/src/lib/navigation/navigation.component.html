@@ -59,7 +59,7 @@
 <ng-template #defaultTemplate let-stepsSelectionEvent>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1.5rem">
     <kkl-typography [size]="1.8" [bold]="600">{{
-      stepsSelectionEvent.selectedStep | pluck: "label"
+      stepsSelectionEvent?.selectedStep! | pluck: "label"
     }}</kkl-typography>
   </div>
 </ng-template>
