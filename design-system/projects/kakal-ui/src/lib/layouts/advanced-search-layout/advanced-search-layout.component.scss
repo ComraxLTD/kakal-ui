@@ -14,3 +14,10 @@
     padding: 0px !important;
   }
 }
+
+::ng-deep .kkl-advanced-search-layout {
+  .kkl-form-autocomplete {
+    width: 100%;
+    font-size: 14px;
+  }
+}

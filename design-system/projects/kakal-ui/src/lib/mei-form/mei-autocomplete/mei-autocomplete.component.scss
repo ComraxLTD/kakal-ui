@@ -1,6 +1,6 @@
 @use ".././../../styles/variables" as main;
 
-mat-form-field {
+mat-form-field.kkl-form-autocomplete {
   width: 100%;
   font-size: 14px;
 }
@@ -17,8 +17,3 @@ mat-form-field {
   gap: 1rem;
 }
 
-@media screen and (max-width: 1024px) {
-  mat-form-field {
-    font-size: 9px !important;
-  }
-}
