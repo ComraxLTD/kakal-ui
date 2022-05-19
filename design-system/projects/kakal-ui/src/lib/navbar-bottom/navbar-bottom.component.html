@@ -15,7 +15,7 @@
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!-- custom buttons -->
 
-    <ng-container *ngTemplateOutlet="footerButtonDirective"> </ng-container>
+    <ng-container *ngTemplateOutlet="footerButtonDirective?.template"> </ng-container>
 
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
