@@ -44,7 +44,7 @@ import { SpinnerModule } from './spinner/spinner.module';
 import { KKLDirectivesModule } from './directives/directives.module';
 import { KKLPageHeadlineModule } from './page-headline/page-headline.module';
 import { KKLPipesModule } from './pipes/pipes.module';
-import { KKLStatusStepsModule } from './status-steps/status-steps.module';
+import { StatusProgressModule } from './status-progress/status-progress.module';
 import { KKLMenuBarModule } from './menu-bar/menu-bar.module';
 
 import { KKLProgressSpinnerModule } from './progress-spinner/progress-spinner.module';
@@ -127,7 +127,7 @@ registerLocaleData(he);
     KKLNavigationModule,
     KKLMenuBarModule,
 
-    KKLStatusStepsModule,
+    StatusProgressModule,
     KKLIconModule,
     KklTitleModule,
     KKLStepTitleModule,
@@ -234,7 +234,7 @@ registerLocaleData(he);
     KklTitleModule,
     KKLStepTitleModule,
     KKLSidenavModule,
-    KKLStatusStepsModule,
+    StatusProgressModule,
     KKLListMenuModule,
     KKLExpandPanelModule,
     KKLFiltersModule,

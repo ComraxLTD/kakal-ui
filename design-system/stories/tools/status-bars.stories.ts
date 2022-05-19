@@ -5,10 +5,10 @@
 //   title: 'Tools/Status-Bars',
 //   decorators: [
 //     moduleMetadata({
-//       imports: [KKLStatusStepsModule],
+//       imports: [StatusProgressModule],
 //     }),
 //   ],
-//   component: StatusStepsComponent,
+//   component: StatusProgressComponent,
 //   argTypes: {
 //     status: {
 //         name: 'status',
@@ -51,10 +51,10 @@
 //   },
 // } as Meta;
 
-// const Template: Story<StatusStepsComponent> = (
-//   args: StatusStepsComponent
+// const Template: Story<StatusProgressComponent> = (
+//   args: StatusProgressComponent
 // ) => ({
-//   component: StatusStepsComponent,
+//   component: StatusProgressComponent,
 //   props: args,
 // });
 
@@ -64,7 +64,7 @@
 
 // statusBar.args = {
 //     status:new StatusBarsModel({
-//     label: 'statusBars',
+//     label: 'StatusProgress',
 //     authorizedBars:3,
 //     totalBars:5
 //   })

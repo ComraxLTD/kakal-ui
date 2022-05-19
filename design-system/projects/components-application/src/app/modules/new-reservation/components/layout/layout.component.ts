@@ -8,7 +8,7 @@ import {
   NavbarBottomService,
   PageHeadlineService,
   RouterService,
-  StatusBars,
+  StatusProgress,
   StepsLayoutService,
 } from '../../../../../../../kakal-ui/src/public-api';
 import { NewReservationService } from '../../new-reservation.service';
@@ -19,7 +19,7 @@ export interface DataEx {
   budget: number;
   date: Date;
   tour: string;
-  status: StatusBars;
+  status: StatusProgress;
   progress: number;
 }
 
@@ -84,7 +84,7 @@ export class LayoutComponent implements OnInit {
     budget: 100,
     date: new Date(),
     tour: 'בית ספר נחלים',
-    status: { totalBars: 5, authorizedBars: 3, label: 'התקדמות' } as StatusBars,
+    status: { totalBars: 5, authorizedBars: 3, label: 'התקדמות' } as StatusProgress,
     progress: 40,
   };
 

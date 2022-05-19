@@ -259,8 +259,8 @@ export * from './lib/page-headline/page-headline.component';
 export * from './lib/page-headline/page-headline.service';
 
 // status-bars
-export * from './lib/status-steps/status-steps.module';
-export * from './lib/status-steps/status-steps.component';
+export * from './lib/status-progress/status-progress.module';
+export * from './lib/status-progress/status-progress.component';
 
 // step title
 export * from './lib/step-title/step-title.module';

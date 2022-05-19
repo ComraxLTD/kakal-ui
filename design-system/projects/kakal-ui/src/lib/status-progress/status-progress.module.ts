@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {StatusStepsComponent} from './status-steps.component'
+import {StatusProgressComponent} from './status-progress.component'
 import {KKLTypographyModule} from '../typography/typography.module'
 import { FlexLayoutModule } from '@angular/flex-layout';
 
@@ -12,8 +12,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FlexLayoutModule
 
 ],
-  declarations: [StatusStepsComponent],
-  exports: [StatusStepsComponent],
+  declarations: [StatusProgressComponent],
+  exports: [StatusProgressComponent],
 })
 
-export class KKLStatusStepsModule {}
+export class StatusProgressModule {}
