@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { RowActionModel, TableBase } from '../../../../../../../../../kakal-ui/src/public-api';
+import {
+  RowActionModel,
+  TableBase,
+} from '../../../../../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root',
@@ -68,13 +71,13 @@ export class ReservationSummaryService {
     {
       key: 'type',
       label: 'סוג',
-      button: { type: 'inlineExpand', icon: '' },
+      button: { type: 'inlineNavigation' },
     },
     {
       controlType: 'toggle',
       key: 'amount',
       label: 'כמות',
-      button: { type: 'inlineExpand', icon: '' },
+      button: { type: 'inlineExpand', label: 'כמות' },
     },
     { key: 'price', label: 'מחיר', colIcon: 'add' },
     { key: 'chargedProvider', label: 'חיוב ספק' },
@@ -97,12 +100,17 @@ export class ReservationSummaryService {
     {
       type: 'inlineEdit',
       icon: 'edit',
-      label: 'Edit',
+      label: 'ערוך',
     },
     {
       type: 'inlineDelete',
-      icon: 'cancel',
-      label: 'Delete',
+      icon: 'delete',
+      label: 'מחק',
+    },
+    {
+      type: 'inlineDelete',
+      label: 'אשר',
+      button : true
     },
   ];
 

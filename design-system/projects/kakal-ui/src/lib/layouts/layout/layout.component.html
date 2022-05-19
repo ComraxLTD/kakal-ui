@@ -49,7 +49,7 @@
     >
       <!-- end drawer content -->
       <div fxLayout="row" fxFill fxLayoutAlign="stretch stretch">
-        <ng-container *ngIf="portion.hasButton">
+        <ng-container *ngIf="portion.hasButton && !portion.mobile">
           <!-- inner end drawer button -->
           <button
             class="drawer-desktop-btn"
@@ -89,24 +89,12 @@
 
       <ng-content select="[content]"></ng-content>
 
-      <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-      <ng-container
-        *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton"
-      >
-        <kkl-icon
-          key="map_mobile"
-          [size]="12"
-          class="drawer-mobile-btn"
-          (click)="endDrawer.toggle()"
-        ></kkl-icon>
-      </ng-container>
-
       <div
         *ngIf="!(hideFooter$ | async)"
         class="footer navbar-footer"
         [ngStyle]="{ width: portion.content + '%' }"
       >
-        <kkl-navbar-bottom></kkl-navbar-bottom>
+        <kkl-navbar-bottom [endDrawer]="endDrawer"></kkl-navbar-bottom>
       </div>
     </mat-sidenav-content>
   </mat-sidenav-container>

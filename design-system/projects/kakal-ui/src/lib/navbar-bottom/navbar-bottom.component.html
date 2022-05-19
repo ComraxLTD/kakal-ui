@@ -1,5 +1,5 @@
 <mat-toolbar class="kkl-navbar-bottom">
-  <div class="nav-buttons"> 
+  <div class="nav-buttons">
     <div
       fxLayout="column"
       fxLayoutAlign="center start"
@@ -11,7 +11,8 @@
     </div>
   </div>
   <div fxFlex="grow" fxLayout="column" fxLayoutAlign="center center"></div>
-  <div class="nav-buttons" fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
+
+  <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
       <button
@@ -38,6 +39,20 @@
       </button>
     </ng-container>
   </div>
+
+  <!-- MOBILE BUTTON FOR PORTION DRAWER -->
+  <ng-container *ngIf="portion$ | async as portion">
+    <ng-container
+      *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton"
+    >
+      <kkl-icon
+        key="map_mobile"
+        [size]="12"
+        class="drawer-mobile-btn"
+        (click)="endDrawer.toggle()"
+      ></kkl-icon>
+    </ng-container>
+  </ng-container>
 
   <div class="center-container" fxLayout="column" fxLayoutAlign="center center">
     <ng-container *ngIf="showNextMiddle$ | async as nextMiddle">
