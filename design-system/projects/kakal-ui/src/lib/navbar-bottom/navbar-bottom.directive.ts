@@ -2,13 +2,10 @@ import { Directive, TemplateRef } from '@angular/core';
 import { NavbarBottomComponent } from './navbar-bottom.component';
 
 @Directive({
-  selector: '[kklNavbarBottom]',
+  selector: '[kklFooterButton]',
 })
-export class NavbarBottomDirective {
-  constructor(
-    public hostBottomNavbar: NavbarBottomComponent,
-    public template: TemplateRef<any>
-  ) {}
+export class FooterButtonDirective {
+  constructor(public template: TemplateRef<any>) {}
 
   ngOnInit(): void {}
 }

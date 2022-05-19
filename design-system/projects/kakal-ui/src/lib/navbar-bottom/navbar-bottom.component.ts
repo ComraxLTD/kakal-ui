@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject, Input, ContentChild } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
@@ -7,6 +7,7 @@ import { Subject, takeUntil, Observable } from 'rxjs';
 import { IconService } from '../icon/icons.service';
 import { LayoutComponent } from '../layouts/layout/layout.component';
 import { Portion } from '../layouts/layout/layout.service';
+import { FooterButtonDirective } from './navbar-bottom.directive';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -14,8 +15,10 @@ import { Portion } from '../layouts/layout/layout.service';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
+  @ContentChild(FooterButtonDirective)
+  footerButtonDirective: FooterButtonDirective | undefined;
 
-  @Input() endDrawer
+  @Input() endDrawer;
 
   destroySubject$: Subject<void> = new Subject();
 
@@ -87,7 +90,7 @@ export class NavbarBottomComponent implements OnInit {
         this.saveLabel = a;
       });
 
-    this.portion$ = this.layoutComponent.portion$
+    this.portion$ = this.layoutComponent.portion$;
   }
 
   private setBottomIcon() {
