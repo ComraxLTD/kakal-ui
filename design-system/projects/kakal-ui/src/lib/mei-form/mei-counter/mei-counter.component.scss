@@ -1,19 +1,20 @@
 @use ".././../../styles/variables" as main;
-mat-form-field.center  {
-  text-align: center !important;
-}
 
-.kkl-form-counter {
+.kkl-from-counter-wrapper {
   width: 12rem;
   height: 12rem;
   border-radius: 0.5rem;
   padding: 1rem;
+}
+mat-form-field.kkl-form-counter {
+  text-align: center !important;
 }
 
 hr {
   width: 90%;
   border-top: 1px dashed main.color(default);
 }
+
 input.small {
   width: 5rem;
   height: 2rem;
@@ -29,5 +30,4 @@ input.small {
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-
 }

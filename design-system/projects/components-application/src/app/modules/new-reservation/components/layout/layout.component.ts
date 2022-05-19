@@ -89,11 +89,8 @@ export class LayoutComponent implements OnInit {
   };
 
   constructor(
-    private routerService: RouterService,
-    private newReservationService: NewReservationService,
     private pageHeadlineSource: PageHeadlineService,
     private navbarBottomService: NavbarBottomService,
-    private stepsLayoutService: StepsLayoutService,
     private layoutService: LayoutService
   ) {}
 
@@ -110,42 +107,10 @@ export class LayoutComponent implements OnInit {
       hasButton: true,
     });
 
-    this.onNext().subscribe();
-
     this.navbarBottomService.setShowNext(true);
   }
 
   ngOnDestroy() {
     this.layoutService.destroyDrawer();
-  }
-
-  onNext() {
-    return this.navbarBottomService.listenToNext().pipe(
-      map((_) => {
-        return this.routerService.getCurrentPath();
-      }),
-      map((currentPath: string) => {
-        const stepSelectEvent = this.stepsLayoutService.getStepsSelection();
-
-        const { selectedIndex } = stepSelectEvent;
-        const nextIndex =
-          selectedIndex === this.steps.length - 1
-            ? selectedIndex
-            : selectedIndex + 1;
-
-        const nextPath = this.steps[nextIndex].path;
-
-        const url = this.routerService.url.replace(currentPath, nextPath);
-        this.routerService.navigate(url);
-      })
-    );
-  }
-
-  public onPrevious(): void {
-    this.routerService.goBack();
-  }
-
-  onSave(event: string) {
-    this.newReservationService.emitNewIsSaved(true);
   }
 }
