@@ -42,7 +42,7 @@ export class CostumerDetailsComponent implements OnInit {
     },
   ];
 
-  datasource = [{ email: new Date(), address: 'djskjds', payingCostumer: 100 }];
+  datasource = [{}];
 
   //  FORM PROPS
 
