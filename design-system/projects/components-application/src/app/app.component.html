@@ -7,6 +7,10 @@
   (statusSelection)="onStatus($event)"
 >
   <router-outlet content></router-outlet>
+
+  <ng-container *kklFooterButton>
+    <button mat-button>כפתור עם טקסט</button>
+  </ng-container>
 </kkl-layout>
 
 <ng-template #test>
