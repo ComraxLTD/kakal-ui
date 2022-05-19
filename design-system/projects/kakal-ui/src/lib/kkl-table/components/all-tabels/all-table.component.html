@@ -145,7 +145,6 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="center-butt">
             <button
-              class="add-button"
               *ngIf="newRowAction"
               kkl-border
               [thick]="2"
@@ -153,9 +152,7 @@
               color="primary"
               (click)="addNewRowGroup()"
             >
-              <span>
-                {{ newRowAction }}
-              </span>
+              {{ newRowAction }}
               <mat-icon>add</mat-icon>
             </button>
             <h3 *ngIf="!newRowAction">פעולות</h3>
@@ -168,37 +165,17 @@
             [attr.rowspan]="element == expandedElement ? 1 : 2"
           >
             <ng-container
-              *ngIf="!(element | arrInclueds: editItems); else addButton"
+              *ngIf="!(element | arrInclueds: editItems); else addButtonTemplate"
             >
               <ng-container *ngFor="let butt of localButtons">
-                <button
-                  [matTooltip]="butt.label"
-                  mat-button
-                  color="primary"
-                  (click)="buttonClick(butt, element, 'actions')"
-                >
-                  <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                </button>
+                <ng-container
+                  *ngTemplateOutlet="
+                    butt.button ? buttonTemp : iconButtonTemp;
+                    context: { $implicit: butt }
+                  "
+                ></ng-container>
               </ng-container>
             </ng-container>
-            <ng-template #addButton>
-              <button
-                matTooltip="save"
-                mat-button
-                color="primary"
-                (click)="saveRowClick(element)"
-              >
-                <kkl-icon key="save"></kkl-icon>
-              </button>
-              <button
-                matTooltip="cancel"
-                mat-button
-                color="primary"
-                (click)="cancelRowClick(element)"
-              >
-                <kkl-icon key="cancel"></kkl-icon>
-              </button>
-            </ng-template>
           </td>
         </ng-container>
 
@@ -245,7 +222,6 @@
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
       <button
-        class="add-button"
         *ngIf="newRowAction"
         kkl-border
         [thick]="2"
@@ -253,9 +229,7 @@
         color="primary"
         (click)="addNewRowGroup()"
       >
-        <span>
-          {{ newRowAction }}
-        </span>
+        {{ newRowAction }}
         <mat-icon>add</mat-icon>
       </button>
       <mat-accordion
@@ -390,9 +364,7 @@
                   fxLayout="row wrap"
                   fxLayoutAlign="space-evenly"
                 >
-                  <ng-container
-                    *ngIf="!(item | arrInclueds: editItems); else addButton"
-                  >
+                  <ng-container *ngIf="false; else addButtonTemplate">
                     <ng-container *ngFor="let butt of localButtons">
                       <!-- <ng-container *ngIf="element == expandedElement && butt.type === 'inlineExpand'; else closeExpand">
                         <button class="container-button" mat-raised-button color="primary" (click)="buttonClick(butt, item, 'actions')">
@@ -405,7 +377,7 @@
                       <button
                         [ngClass]="{ expanded: item == expandedElement }"
                         [matTooltip]="butt.label"
-                        mat-button
+                        mat-icon-button
                         color="primary"
                         (click)="buttonClick(butt, item, 'actions')"
                       >
@@ -424,24 +396,6 @@
                       </ng-template> -->
                     </ng-container>
                   </ng-container>
-                  <ng-template #addButton>
-                    <button
-                      matTooltip="save"
-                      mat-button
-                      color="primary"
-                      (click)="saveRowClick(item)"
-                    >
-                      <kkl-icon key="save"></kkl-icon>
-                    </button>
-                    <button
-                      matTooltip="cancel"
-                      mat-button
-                      color="primary"
-                      (click)="cancelRowClick(item)"
-                    >
-                      <kkl-icon key="cancel"></kkl-icon>
-                    </button>
-                  </ng-template>
                 </td>
               </tr>
             </table>
@@ -470,4 +424,41 @@
   </div>
 </form>
 
-<!-- </ng-container> -->
+<ng-template #buttonTemp let-button>
+  <kkl-stroke-button
+    table-action-button
+    color="primary"
+    (clickEvent)="buttonClick(button, element, 'actions')"
+  >
+    {{ button.label }}
+  </kkl-stroke-button>
+</ng-template>
+
+<ng-template #iconButtonTemp let-button>
+  <button
+    [matTooltip]="button.label"
+    mat-icon-button
+    color="primary"
+    (click)="buttonClick(button, element, 'actions')"
+  >
+    <kkl-icon [key]="button.icon"></kkl-icon>
+  </button>
+</ng-template>
+
+<ng-template #addButtonTemplate>
+  <kkl-stroke-button
+    table-save-button
+    color="primary"
+    (clickEvent)="buttonClick(button, element, 'actions')"
+  >
+    שמור
+  </kkl-stroke-button>
+  <button
+    fxFlexOffset="1rem"
+    matTooltip="בטל"
+    mat-icon-button
+    (click)="cancelRowClick(item)"
+  >
+    <kkl-icon key="cancel"></kkl-icon>
+  </button>
+</ng-template>

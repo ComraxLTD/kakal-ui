@@ -60,3 +60,9 @@ button.kkl-next-button:not(.mat-button-disabled) {
     transform: scale(4) translateY(4px);
   }
 }
+
+.drawer-mobile-btn {
+  position: fixed;
+  bottom: 10%;
+  left: 1%;
+}

@@ -99,6 +99,7 @@ export class VerticalStepsComponent implements OnInit {
       last: selectedIndex === this.steps.length - 1,
     };
     this.cellTemplate = this.steps[selectedIndex].key as string;
+    this._selectedIndex = selectedIndex
     this.stepChanged.emit(stepSelectEvent);
   }
 }
