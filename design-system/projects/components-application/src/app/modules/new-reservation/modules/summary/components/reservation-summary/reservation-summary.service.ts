@@ -100,12 +100,17 @@ export class ReservationSummaryService {
     {
       type: 'inlineEdit',
       icon: 'edit',
-      label: 'Edit',
+      label: 'ערוך',
     },
     {
       type: 'inlineDelete',
-      icon: 'cancel',
-      label: 'Delete',
+      icon: 'delete',
+      label: 'מחק',
+    },
+    {
+      type: 'inlineDelete',
+      label: 'אשר',
+      button : true
     },
   ];
 
