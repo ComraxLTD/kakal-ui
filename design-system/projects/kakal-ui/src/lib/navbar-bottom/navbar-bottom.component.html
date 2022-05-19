@@ -15,7 +15,8 @@
   <div fxLayout="row" fxLayoutGap="2rem" fxLayoutAlign="end center">
     <!-- custom buttons -->
 
-    <ng-container *ngTemplateOutlet="footerButtonDirective?.template"> </ng-container>
+    <ng-container *ngTemplateOutlet="footerButtonDirective?.template">
+    </ng-container>
 
     <!--save button -->
     <ng-container *ngIf="showSave$ | async">
@@ -45,17 +46,15 @@
   </div>
 
   <!-- MOBILE BUTTON FOR PORTION DRAWER -->
-  <ng-container *ngIf="portion$ | async as portion">
-    <ng-container
-      *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton"
-    >
-      <kkl-icon
-        key="map_mobile"
-        [size]="12"
-        class="drawer-mobile-btn"
-        (click)="endDrawer.toggle()"
-      ></kkl-icon>
-    </ng-container>
+  <ng-container
+    *ngIf="portion.mobile && !endDrawer.opened && portion.hasButton"
+  >
+    <kkl-icon
+      key="map_mobile"
+      [size]="12"
+      class="drawer-mobile-btn"
+      (click)="endDrawer.toggle()"
+    ></kkl-icon>
   </ng-container>
 
   <div class="center-container" fxLayout="column" fxLayoutAlign="center center">

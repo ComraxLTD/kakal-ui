@@ -19,6 +19,7 @@ export class NavbarBottomComponent implements OnInit {
   footerButtonDirective: FooterButtonDirective | undefined;
 
   @Input() endDrawer;
+  @Input() portion: Portion;
 
   destroySubject$: Subject<void> = new Subject();
 
@@ -39,10 +40,7 @@ export class NavbarBottomComponent implements OnInit {
 
   bottomIcon: string = 'bottom_tree_';
 
-  portion$: Observable<Portion>;
-
   constructor(
-    private layoutComponent: LayoutComponent,
     private routerService: RouterService,
     private navbarBottomService: NavbarBottomService,
     private iconService: IconService,
@@ -89,8 +87,6 @@ export class NavbarBottomComponent implements OnInit {
       .subscribe((a: string) => {
         this.saveLabel = a;
       });
-
-    this.portion$ = this.layoutComponent.portion$;
   }
 
   private setBottomIcon() {
