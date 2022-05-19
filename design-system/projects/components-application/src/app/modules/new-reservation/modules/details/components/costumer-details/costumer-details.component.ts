@@ -22,13 +22,13 @@ export class CostumerDetailsComponent implements OnInit {
   // TABLE PROPS
 
   columns: TableBase[] = [
-    { key: 'costumerName', label: 'שם לקוח', controlType: 'autocomplete' },
-    { key: 'costumerType', label: 'סוג לקוח', controlType: 'autocomplete' },
-    { key: 'contactName', label: 'שם איש קשר', controlType: 'autocomplete' },
-    { key: 'cellPhone', label: 'נייד', controlType: 'autocomplete' },
-    { key: 'email', label: 'דוא"ל', controlType: 'autocomplete' },
-    { key: 'address', label: 'כתובת', controlType: 'autocomplete' },
-    { key: 'payingCostumer', label: 'לקוח משלם', controlType: 'autocomplete' },
+    // { key: 'costumerName', label: 'שם לקוח', controlType: 'autocomplete' },
+    // { key: 'costumerType', label: 'סוג לקוח', controlType: 'autocomplete' },
+    // { key: 'contactName', label: 'שם איש קשר', controlType: 'autocomplete' },
+    // { key: 'cellPhone', label: 'נייד', controlType: 'autocomplete' },
+    { key: 'email', label: 'דוא"ל', controlType: 'date' },
+    { key: 'address', label: 'כתובת', controlType: 'toggle' },
+    { key: 'payingCostumer', label: 'לקוח משלם', controlType: 'select' },
   ];
 
   rowActions: RowActionModel[] = [
@@ -44,6 +44,8 @@ export class CostumerDetailsComponent implements OnInit {
     },
 
   ];
+
+  datasource = [{ email: new Date(), address: 'djskjds', payingCostumer: 100 }];
 
   //  FORM PROPS
 

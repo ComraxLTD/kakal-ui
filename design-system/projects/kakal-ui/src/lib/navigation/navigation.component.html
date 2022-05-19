@@ -1,64 +1,77 @@
 <div fxFill fxLayout="column" dir="rtl">
-  <ng-container *ngIf="stepsSelection$ | async as stepsSelection">
-    <nav fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem">
-      <!-- forward button -->
-      <div
-        fxLayout="row"
-        fxLayoutAlign="center center"
-        fxFill
-        fxLayoutGap="1.5rem"
-        fxFlex
+  <!-- <ng-container *ngIf="stepsSelectionEvent$ | async as stepsSelectionEvent"> -->
+  <nav fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="1.5rem">
+    <!-- forward button -->
+    <div
+      fxLayout="row"
+      fxLayoutAlign="center center"
+      fxFill
+      fxLayoutGap="1.5rem"
+      fxFlex
+    >
+      <button
+        mat-icon-button
+        (click)="onPrevious(stepsSelectionEvent.selectedIndex)"
+        [disabled]="stepsSelectionEvent.first"
+        color="primary"
       >
-        <button
-          mat-icon-button
-          (click)="onPrevious(stepsSelection.selectedIndex)"
-          [disabled]="stepsSelection.first"
-        >
-          <kkl-icon key="arrow_forward_ios" color="primary"></kkl-icon>
-        </button>
+        <mat-icon>arrow_forward_ios</mat-icon>
+      </button>
 
-        <!-- show current ui -->
+      <!-- show current ui -->
 
+      <ng-container
+        *ngTemplateOutlet="
+          contentTemplate || defaultTemplate;
+          context: { $implicit: stepsSelectionEvent }
+        "
+      ></ng-container>
+
+      <!-- previous button -->
+
+      <button
+        mat-icon-button
+        (click)="onNext(stepsSelectionEvent.selectedIndex)"
+        [disabled]="stepsSelectionEvent.last"
+        color="primary"
+      >
+        <mat-icon>arrow_back_ios</mat-icon>
+      </button>
+    </div>
+
+    <!-- steps items -->
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
+      <ng-container
+        *ngFor="let item of stepsSelectionEvent.source; let i = index"
+      >
         <ng-container
           *ngTemplateOutlet="
-            template || defaultTemplate;
-            context: { $implicit: stepsSelection }
+            stepTemplate || defaultStepTemplate;
+            context: { $implicit: stepsSelectionEvent, i  }
           "
         ></ng-container>
-
-        <!-- previous button -->
-
-        <button
-          mat-icon-button
-          (click)="onNext(stepsSelection.selectedIndex)"
-          [disabled]="stepsSelection.last"
-        >
-          <kkl-icon key="arrow_back_ios" color="primary"></kkl-icon>
-        </button>
-      </div>
-
-      <!-- steps items -->
-      <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="2rem">
-        <ng-container *ngFor="let item of stepsSelection.source; let i = index">
-          <div
-            kkl-border
-            kkl-button
-            (click)="onStepSelect(i)"
-            [ngClass]="{
-              selected: stepsSelection.selectedIndex === i,
-              button: true
-            }"
-          ></div>
-        </ng-container>
-      </div>
-    </nav>
-  </ng-container>
+      </ng-container>
+    </div>
+  </nav>
+  <!-- </ng-container> -->
 </div>
 
-<ng-template #defaultTemplate let-stepsSelection>
+<ng-template #defaultTemplate let-stepsSelectionEvent>
   <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="1.5rem">
     <kkl-typography [size]="1.8" [bold]="600">{{
-      stepsSelection.selectedStep | pluck: "label"
+      stepsSelectionEvent.selectedStep | pluck: "label"
     }}</kkl-typography>
   </div>
+</ng-template>
+
+<ng-template #defaultStepTemplate let-stepsSelectionEvent let-i="i">
+  <div
+    kkl-border
+    kkl-button
+    (click)="onSelectStep(i)"
+    [ngClass]="{
+      selected: stepsSelectionEvent.selectedIndex === i,
+      button: true
+    }"
+  ></div>
 </ng-template>

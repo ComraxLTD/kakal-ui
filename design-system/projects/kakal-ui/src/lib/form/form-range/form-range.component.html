@@ -1,7 +1,12 @@
-<div fxLayout="row" fxLayoutAlign="space-between">
+<div
+  class="kkl-form-range-wrapper"
+  fxLayout="row"
+  fxLayoutAlign="space-between"
+>
   <ng-container [formGroup]="rangeGroup.formGroup">
     <ng-container *ngFor="let q of rangeGroup.questions">
       <kkl-form-input
+        class="kkl-form-range"
         fxFlex="47"
         [key]="q.key"
         [control]="rangeGroup.formGroup.controls[q.key]"
