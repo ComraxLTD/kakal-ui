@@ -40,6 +40,19 @@ th.mat-header-cell-text {
   text-align: center !important;
 }
 
+.mat-icon-button{
+  width: fit-content;
+  padding: 5px;
+}
+
+// .filter{
+  // .mat-menu-content{
+    // background-color: red !important;
+    // display: flex;
+    // padding: 10px;
+  // }
+// }
+
 td.mat-cell {
   border-bottom: 0.5px solid main.color(table-background);
   // padding: 0 !important;
