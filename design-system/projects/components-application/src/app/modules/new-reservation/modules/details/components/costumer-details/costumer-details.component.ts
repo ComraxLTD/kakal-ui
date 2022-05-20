@@ -26,7 +26,7 @@ export class CostumerDetailsComponent implements OnInit {
     // { key: 'costumerType', label: 'סוג לקוח', controlType: 'autocomplete' },
     // { key: 'contactName', label: 'שם איש קשר', controlType: 'autocomplete' },
     // { key: 'cellPhone', label: 'נייד', controlType: 'autocomplete' },
-    { key: 'email', label: 'דוא"ל', controlType: 'date' },
+    { key: 'email', label: 'דוא"ל', controlType: 'text' },
     { key: 'address', label: 'כתובת', controlType: 'toggle' },
     { key: 'payingCostumer', label: 'לקוח משלם', controlType: 'select' },
   ];
@@ -42,7 +42,6 @@ export class CostumerDetailsComponent implements OnInit {
       icon: 'delete',
       button: false,
     },
-
   ];
 
   datasource = [{}];
