@@ -32,9 +32,9 @@ import { KKLFormCheckboxModule } from './form/form-checkbox/form-checkbox.module
 import { KKLFormSearchModule } from '../lib/form/form-search/form-search.module';
 import { KKLFormCounterModule } from '../lib/form/form-counter/form-counter.module';
 
-import { KKLTableModule } from './table/table.module';
-import { KKLTableCellModule } from './table/components/cells/table-cell.module';
-import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
+// import { KKLTableModule } from './table/table.module';
+// import { KKLTableCellModule } from './table/components/cells/table-cell.module';
+// import { KKLHeaderCellModule } from './table/components/header-cells/header-cells.module';
 
 import { KKLDialogModule } from './dialog/dialog.module';
 
@@ -84,6 +84,7 @@ import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
+import { KKLNgxTableModule } from './kkl-ngx-table/kkl-ngx-table.module';
 
 import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module';
 import { FacilityCardModule } from './facility-card/facility-card.module';
@@ -159,12 +160,13 @@ registerLocaleData(he);
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
+    KKLNgxTableModule,
     MeiFormModule,
 
     // TABLE MODULES
-    KKLTableModule,
-    KKLHeaderCellModule,
-    KKLTableCellModule,
+    // KKLTableModule,
+    // KKLHeaderCellModule,
+    // KKLTableCellModule,
 
     KKLDirectivesModule,
     KKLPipesModule,
@@ -255,13 +257,14 @@ registerLocaleData(he);
 
     // NEW TABLE
     KKLNewTableModule,
+    KKLNgxTableModule,
     MeiFormModule,
     MeiServiceModule,
 
     // TABLE
-    KKLTableModule,
-    KKLHeaderCellModule,
-    KKLTableCellModule,
+    // KKLTableModule,
+    // KKLHeaderCellModule,
+    // KKLTableCellModule,
 
     KKLDialogModule,
 
