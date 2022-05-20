@@ -15,6 +15,7 @@ import { TableBase } from '../../../kkl-table/models/table.model';
 import { customFilterPredicate } from './local-filter';
 import { DialogService } from '../../../dialog/dialog.service';
 import { BreakpointService, RouterService } from '../../../../services/services';
+import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavigation'];
 
@@ -22,21 +23,18 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavi
   selector: 'kkl-ngx-local-table',
   templateUrl: '../all-tabels/all-table.component.html',
   styleUrls: ['../all-tabels/all-table.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
 })
 export class NgxLocalTableComponent implements OnInit, AfterViewInit {
-  @ViewChild(MatTable) table: MatTable<any>;
+  ColumnMode = ColumnMode;
+  @ViewChild('myTable') ngxTable: DatatableComponent;
+  @ViewChild('myExpand') myExpand!: ElementRef;
+  expandHeight: number = 0;
+
+
   @ViewChild('myIdentifier')
   myIdentifier: ElementRef;
 
   @Input() noMobile: boolean = false;
-  typeLocal: boolean = true;
   currentEditRow: number = -1;
   destroySubject$: Subject<void> = new Subject();
 
@@ -58,21 +56,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   dragable: boolean;
   @Input() set draggable(val: boolean) {
-    if(val) {
-      if(!this.displayedColumns.includes('dragHandeler')){
-        this.displayedColumns.unshift('dragHandeler')
-      }
-    } else {
-      if(this.displayedColumns.includes('dragHandeler')) {
-        const index = this.displayedColumns.indexOf('dragHandeler');
-        if (index > -1) {
-          this.displayedColumns.splice(index, 1);
-        }
-      }
-    }
     this.dragable = val;
   }
-
 
   dragDisabled = true;
 
@@ -102,13 +87,6 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
       });
     }
     this.oneColumns = value;
-    this.displayedColumns = value.map(a => a.key);
-    if(this.localButtons?.length) {
-      this.displayedColumns.push('actions');
-    }
-    if(this.dragable) {
-      this.displayedColumns.unshift('dragHandeler');
-    }
     // const row = this.fb.group({});
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(null));
@@ -117,44 +95,23 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
 
-  dataTable: MatTableDataSource<any[]> = new MatTableDataSource();
+  dataTable: any[];
 
   @Input() set dataSource(value: any[]) {
     if(value) {
-      this.dataTable.data = value;
-      if(this.paginator) {
-        if(this.paging) {
-          this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
-        } else {
-          this.readySpanData(0, this.dataTable.filteredData.length);
-        }
-      }
+      this.dataTable = value;
       this.isLoading = false;
     }
     else {
-      this.dataTable.data = [];
+      this.dataTable = [];
     }
   }
 
 
   localButtons: RowActionModel[];
   @Input() set rowActions(val: RowActionModel[]) {
-    if(val?.length) {
-      if(!this.displayedColumns.includes('actions')){
-        this.displayedColumns.push('actions');
-      }
-    } else {
-      if(this.displayedColumns.includes('actions')) {
-        const index = this.displayedColumns.indexOf('actions');
-        if (index > -1) {
-          this.displayedColumns.splice(index, 1);
-        }
-      }
-    }
     this.localButtons = val;
   }
-
-  displayedColumns: string[] = [];
 
   editItems: any[] = [];
   rows: FormArray = this.fb.array([]);
@@ -166,10 +123,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-  expandedElement: any;
 
-  lastSpan: string | undefined;
-  spans: any[] = [];
 
 
   isDesktop: boolean = true;
@@ -212,25 +166,6 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataTable.sort = this.sort;
-    if(this.paging) {
-      this.dataTable.paginator = this.paginator;
-      this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
-        this.filteredDataSort(sor);
-        if(this.paginator.pageIndex === 0) {
-          this.paginator.firstPage();
-        }
-        this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
-      });
-      this.readySpanData(0, Math.min(this.paginator.pageSize, this.dataTable.filteredData.length));
-    } else {
-      this.sort.sortChange.pipe(takeUntil(this.destroySubject$)).subscribe((sor: any) => {
-        this.filteredDataSort(sor);
-        this.readySpanData(0, this.dataTable.filteredData.length);
-      });
-      this.readySpanData(0, this.dataTable.filteredData.length);
-    }
-    this.dataTable.filterPredicate = customFilterPredicate;
     this.putOptions();
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
@@ -259,34 +194,10 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
         filters.push({key: a.key, controlType: a.controlType, val: searchVal[a.key]});
       }
     });
-    this.dataTable.filter = JSON.stringify(filters);
+    // this.dataTable.filter = JSON.stringify(filters);
   }
 
-  pageChanged(event: PageEvent) {
-    this.readySpanData(event.pageIndex*event.pageSize, Math.min((event.pageIndex+1)*event.pageSize, this.dataTable.filteredData.length) - event.pageIndex*event.pageSize);
-  }
 
-  filteredDataSort(sor: any) {
-    if(sor.direction === 'asc') {
-      this.dataTable.filteredData.sort((a, b) => {
-        if(a[sor.active] > b[sor.active]) {
-          return 1;
-        } else if(a[sor.active] < b[sor.active]) {
-          return -1;
-        }
-        return 0;
-      });
-    } else {
-      this.dataTable.filteredData.sort((a, b) => {
-        if(a[sor.active] > b[sor.active]) {
-          return -1;
-        } else if(a[sor.active] < b[sor.active]) {
-          return 1;
-        }
-        return 0;
-      });
-    }
-  }
 
   buttonClick(butt: RowActionModel, obj:any, key: string) {
     if(normalActions.includes(butt.type)) {
@@ -312,14 +223,16 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
         default:
           break;
       }
-      this.groupDataReload();
     } else {
       this.actionClicked.emit({action: butt.type, row: obj, key: key});
     }
   }
 
   addExpandedRow(obj: any) {
-    this.expandedElement = this.expandedElement == obj? null : obj;
+    this.ngxTable.rowDetail.toggleExpandRow(obj);
+    setTimeout(() => {
+      this.onResizeExpand();
+    }, 300);
   }
 
   onExpandOut(obj: any) {
@@ -334,14 +247,13 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
       if(!Object.keys(ele).length) {
-        const dIndex = this.dataTable.data.indexOf(ele);
+        const dIndex = this.dataTable.indexOf(ele);
         if(dIndex > -1) {
-          this.dataTable.data.splice(dIndex, 1);
-          this.dataTable.data = this.dataTable.data.slice();
-          this.table.renderRows();
+          this.dataTable.splice(dIndex, 1);
+          this.dataTable = this.dataTable.slice();
+          this.ngxTable.recalculate();
         }
       }
-      this.groupDataReload();
       // Object.assign(ele, this.rows.at(index).value);
       this.saveRow.emit(this.rows.at(index));
       this.rows.removeAt(index);
@@ -360,14 +272,13 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
       this.editItems.splice(index, 1);
       this.editItems = [...this.editItems];
       if(!Object.keys(ele).length) {
-        const dIndex =this.dataTable.data.indexOf(ele);
+        const dIndex =this.dataTable.indexOf(ele);
         if(dIndex > -1) {
-          this.dataTable.data.splice(dIndex, 1);
-          this.dataTable.data = this.dataTable.data.slice();
-          this.table.renderRows();
+          this.dataTable.splice(dIndex, 1);
+          this.dataTable = this.dataTable.slice();
+          this.ngxTable.recalculate();
         }
       }
-      this.groupDataReload();
       this.rows.removeAt(index);
       let ind = index;
       while(this.editObservables.has(ind+1)) {
@@ -375,14 +286,6 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
         ind++;
       }
       this.editObservables.delete(ind);
-    }
-  }
-
-  groupDataReload() {
-    if(this.paging){
-      this.readySpanData(this.paginator.pageIndex*this.paginator.pageSize, Math.min((this.paginator.pageIndex+1)*this.paginator.pageSize, this.dataTable.filteredData.length) - this.paginator.pageIndex*this.paginator.pageSize);
-    } else {
-      this.readySpanData(0, this.dataTable.filteredData.length);
     }
   }
 
@@ -410,71 +313,26 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.rows.push(row);
     const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
-    this.dataTable.data.unshift(rowData);
-    this.dataTable.data = [...this.dataTable.data];
+    this.dataTable.unshift(rowData);
+    this.dataTable = [...this.dataTable];
   }
 
-  readySpanData(offset:number, pageEnd:number) {
-    this.lastSpan = undefined;
-    this.spans = [];
-    this.oneColumns.forEach(element => {
-      if(element.group === element.key) {
-        this.spanRowData((d:any) => d[element.key], element.key, offset, pageEnd);
-        this.lastSpan = element.key;
-      }
-    });
-  }
 
-  spanRowData(accessor: any, key: any, offset:number, pageEnd:number) {
-    if(this.lastSpan) {
-      var start: number = 0;
-      var end: number = this.spans[0]? this.spans[0][this.lastSpan] : 0;
-      while (end < pageEnd) {
-        this.spanWorkData(accessor, key, start, end, offset);
-        start = end;
-        end += this.spans[start][this.lastSpan];
-      }
-      this.spanWorkData(accessor, key, start, pageEnd, offset);
-    } else {
-      this.spanWorkData(accessor, key, 0, pageEnd, offset);
-    }
-  }
-  spanWorkData(accessor: any, key: any, start:number, end:number, offset: number) {
-    for (let i = start; i < end;) {
-      let currentValue = accessor(this.dataTable.filteredData[i+offset]);
-      let count = 1;
 
-      if(!this.editItems.includes(this.dataTable.filteredData[i+offset]) && this.expandedElement !== this.dataTable.filteredData[i+offset]) {
-        for (let j = i + 1; j < end; j++) {
-          if(JSON.stringify(currentValue) !== JSON.stringify(accessor(this.dataTable.filteredData[j+offset])) || this.editItems.includes(this.dataTable.filteredData[j+offset]) || this.expandedElement == this.dataTable.filteredData[j+offset]) {
-            break;
-          }
-          count++;
-        }
-      }
-      if (!this.spans[i]) {
-        this.spans[i] = {};
-      }
-      this.spans[i][key] = count;
-      i += count;
-    }
-
-  }
 
   dropTable(event: CdkDragDrop<MatTableDataSource<any>, any>) {
     this.dragDisabled = true;
 
     if(this.paging){
-      let cutOut = this.dataTable.data.splice(this.paginator.pageIndex*this.paginator.pageSize + event.previousIndex, 1) [0]; // cut the element at index 'from'
-      this.dataTable.data.splice(this.paginator.pageIndex*this.paginator.pageSize + event.currentIndex, 0, cutOut);
+      let cutOut = this.dataTable.splice(this.paginator.pageIndex*this.paginator.pageSize + event.previousIndex, 1) [0]; // cut the element at index 'from'
+      this.dataTable.splice(this.paginator.pageIndex*this.paginator.pageSize + event.currentIndex, 0, cutOut);
     } else {
-      let cutOut = this.dataTable.data.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
-      this.dataTable.data.splice(event.currentIndex, 0, cutOut);
+      let cutOut = this.dataTable.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
+      this.dataTable.splice(event.currentIndex, 0, cutOut);
     }
-    this.dataTable.data = this.dataTable.data.slice();
+    this.dataTable = this.dataTable.slice();
     // moveItemInArray(this.dataTable.data, event.previousIndex, event.currentIndex);
-    this.groupDataReload();
-    this.table.renderRows();
+    this.ngxTable.recalculate();
   }
 
   putOptions() {
@@ -506,6 +364,11 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     } else {
       this.isDesktop = true;
     }
+    this.onResizeExpand();
+  }
+  onResizeExpand(){
+    this.expandHeight = this.myExpand?.nativeElement.offsetHeight;
+    this.dataTable = [...this.dataTable];
   }
 
 
@@ -513,5 +376,15 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.destroySubject$.next();
     this.destroySubject$.complete();
   }
+
+
+
+  onPage(event) {
+    // clearTimeout(this.timeout);
+    // this.timeout = setTimeout(() => {
+      console.log('paged!', event);
+    // }, 100);
+  }
+
 
 }

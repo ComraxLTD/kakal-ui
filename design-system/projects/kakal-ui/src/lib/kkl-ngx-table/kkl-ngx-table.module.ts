@@ -22,6 +22,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { NgxLocalTableComponent } from './components/local-table/local-table.component';
 import { KKLNewTableModule } from '../kkl-table/kkl-table.module';
+import { NgxDatatableModule} from '@swimlane/ngx-datatable';
 @NgModule({
   declarations: [
     NgxLocalTableComponent,
@@ -56,7 +57,8 @@ import { KKLNewTableModule } from '../kkl-table/kkl-table.module';
     MatChipsModule,
     MatExpansionModule,
     KKLDirectivesModule,
-    KKLNewTableModule
+    KKLNewTableModule,
+    NgxDatatableModule
   ],
   exports: [
     NgxLocalTableComponent,

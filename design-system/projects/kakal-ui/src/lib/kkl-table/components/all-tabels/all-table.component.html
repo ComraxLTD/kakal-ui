@@ -57,7 +57,7 @@
               >
               <div *ngIf="element == expandedElement" class="example-element-detail">
                 <ng-container *ngIf="expandTemplate">
-                  <ng-template *ngTemplateOutlet="expandTemplate"></ng-template>
+                  <ng-template *ngTemplateOutlet="expandTemplate; context: {$implicit:expandedElement}"></ng-template>
                 </ng-container>
               </div>
             </div>
@@ -221,7 +221,7 @@
 
             <div *ngIf="item == expandedElement" class="example-element-detail">
               <ng-container *ngIf="expandTemplate">
-                <ng-template *ngTemplateOutlet="expandTemplate"></ng-template>
+                <ng-template *ngTemplateOutlet="expandTemplate; context: {$implicit:expandedElement}"></ng-template>
               </ng-container>
             </div>
 
