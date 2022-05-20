@@ -12,7 +12,7 @@
       fxLayoutGap=".5rem"
     >
       <ng-container *ngIf="item.status; else normalTemp">
-        <kkl-status-steps dir="ltr" [status]="item.value"></kkl-status-steps>
+        <kkl-status-progress dir="ltr" [status]="item.value"></kkl-status-progress>
       </ng-container>
 
       <ng-template #normalTemp>

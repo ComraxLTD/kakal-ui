@@ -1,7 +1,17 @@
-<!-- <router-outlet></router-outlet> -->
- <!-- <kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
-  [menuTemplates]="{temp,test,test3}" (statusSelection)="onStatus($event)">
+
+<kkl-layout
+  [hideFooterPath]="['lobby']"
+  [status]="status"
+  (logoClicked)="onLogoClicked()"
+  [cards]="cards"
+  [menuTemplates]="{temp,test,test3}"
+  (statusSelection)="onStatus($event)"
+>
   <router-outlet content></router-outlet>
+
+  <ng-container *kklFooterButton>
+    <button mat-button>כפתור עם טקסט</button>
+  </ng-container>
 </kkl-layout>
 
 <ng-template #test>
@@ -26,7 +36,7 @@
     <p>test</p>
     <p>test</p>
   </div>
-</ng-template> -->
+</ng-template>
 
 
 <!-- <kkl-form [controls]="myCols"></kkl-form> -->
@@ -87,3 +97,4 @@
           [paging]="false"
         ></kkl-local-table>
       </ng-template> -->
+

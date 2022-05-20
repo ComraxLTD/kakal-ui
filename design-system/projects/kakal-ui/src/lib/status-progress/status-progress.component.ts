@@ -1,29 +1,19 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  TemplateRef,
-} from '@angular/core';
+import { Component, Input, OnInit, TemplateRef } from '@angular/core';
 
-export interface StatusBars {
+export interface StatusProgress {
   label: string;
   authorizedBars: number;
   totalBars: number;
 }
 
-
 @Component({
-  selector: 'kkl-status-steps',
-  templateUrl: './status-steps.component.html',
-  styleUrls: ['./status-steps.component.scss'],
+  selector: 'kkl-status-progress',
+  templateUrl: './status-progress.component.html',
+  styleUrls: ['./status-progress.component.scss'],
 })
-export class StatusStepsComponent implements OnInit {
-
+export class StatusProgressComponent implements OnInit {
   @Input() hasLabel: boolean;
-  @Input() status: StatusBars;
+  @Input() status: StatusProgress;
 
   @Input() labelRef: TemplateRef<any>;
 
@@ -43,6 +33,6 @@ export class StatusStepsComponent implements OnInit {
     ).fill('');
 
     this.steps.push(...disableBars);
-    this.steps=this.steps.reverse()
+    this.steps = this.steps.reverse();
   }
 }

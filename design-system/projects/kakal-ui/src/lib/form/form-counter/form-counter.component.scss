@@ -1,10 +1,10 @@
 @use "../../../styles/variables" as main;
 
-mat-form-field  {
+mat-form-field.kkl-form-counter {
   text-align: center !important;
 }
 
-.kkl-form-counter {
+.kkl-form-counter-wrapper {
   width: 12rem;
   height: 12rem;
   border-radius: 0.5rem;
@@ -30,5 +30,4 @@ input {
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
-
 }

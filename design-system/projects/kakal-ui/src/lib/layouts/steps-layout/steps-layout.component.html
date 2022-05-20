@@ -9,24 +9,21 @@
             *ngIf="stepsSelectionEvent$ | async as stepsSelectionEvent"
           >
             <ng-container *ngIf="mobile$ | async; else elseBlock">
-              <kkl-stepper-mobile
-                [steps]="steps"
+              <kkl-navigation
                 [stepsSelectionEvent]="stepsSelectionEvent"
-                (selectStep)="onSelectStep($event)"
-              ></kkl-stepper-mobile>
+                (stepSelection)="onSelectStep($event)"
+              ></kkl-navigation>
             </ng-container>
 
             <ng-template #elseBlock>
               <kkl-step-group
-                [steps]="steps"
+                [steps]="stepsSelectionEvent.source"
                 [stepsSelectionEvent]="stepsSelectionEvent"
                 (stepSelection)="onSelectStep($event)"
               ></kkl-step-group>
             </ng-template>
           </ng-container>
         </div>
-
-
       </mat-toolbar>
     </header>
     <main fxLayout="row" fxLayoutAlign="center center">
