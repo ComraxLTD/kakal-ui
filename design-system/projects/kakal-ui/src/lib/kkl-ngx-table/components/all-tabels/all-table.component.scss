@@ -1,0 +1,305 @@
+@use "../../../../styles/variables" as main;
+
+
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-detail {
+  // display: flex;
+  // padding: 16px;
+  background-color: main.color(table);
+  // background-color: red;
+  width: 100%;
+  // margin-right: -16px;
+
+}
+
+// .mat-table{
+//   border-collapse: separate !important;
+//   border-spacing: 0 4px !important;
+// }
+th.mat-header-cell {
+  text-align: center !important;
+}
+
+.center-butt {
+  text-align: center !important;
+}
+
+td.mat-cell {
+  border-bottom: 0.5px solid main.color(table-background);
+  // padding: 0 !important;
+}
+
+.table-wrapper{
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  margin: auto;
+  width: 99%;
+  // overflow-x: scroll;
+  // padding: 1px;
+  .table-wrapper{
+    margin: auto;
+    width: 100%;
+    padding: 0px;
+  }
+}
+
+table {
+  width: 98%;
+  margin: auto;
+}
+
+thead{
+  margin: auto;
+}
+
+.expand-table {
+  border-spacing: 0 3px !important;
+}
+.all-table-form{
+  // width: 100%;
+  // position: relative;
+  overflow: auto;
+  height: 100%;
+}
+
+table table {
+  width: 100%;
+  border-top: dashed 1.5px main.color(primaryLight);
+  padding: 10px 20px;
+  tr.mat-header-row{
+    th.mat-header-cell.cdk-header-cell{
+      border-bottom: none;
+      background-color: main.color(secondLine);
+    }
+  }
+}
+// table tr {
+//   border-spacing: 0 !important;
+//   // border-bottom: 10px ;
+// }
+
+
+
+
+// table td tr:nth-child(1) {
+//   border-bottom: none;
+//   width: 20px;
+// }
+// .table-wrapper {
+
+//   margin: auto;
+//   // overflow: auto;
+// }
+
+// mat-paginator {
+//   direction: ltr;
+// }
+
+.expanded-container{
+  padding: 0 !important;
+  margin: 10px 0 !important;
+}
+
+.expand{
+  margin-top: -3px !important;
+}
+
+.hide{
+  display: none;
+  border-spacing: 0 !important;
+}
+
+tr.mat-header-row{
+  th.mat-header-cell.cdk-header-cell{
+    border-bottom: 2px solid main.color(accent);
+  }
+}
+
+.arrow-down{
+  color: main.color(primary);
+  font-size: 3rem;
+}
+
+th>h3 {
+  font-weight: 600;
+  color: main.color(text);
+}
+
+.dragCursor:hover{
+  cursor: grab;
+}
+
+.dragCursor:active{
+  cursor: grabbing;
+}
+
+::ng-deep.paginator-button{
+  border: none !important;
+  background-color: transparent !important;
+  color: main.color(primary) !important;
+  cursor: pointer;
+}
+
+// ::ng-deep.paginator-button-disabled{
+//   color: main.color(disable);
+// }
+
+::ng-deep.paginator-button-active{
+  border: solid 2px main.color(primary) !important;
+  border-radius: 5px !important;
+  background-color: transparent !important;
+  color: main.color(primary) !important;
+}
+// ::ng-deep .mat-progress-bar-fill::after{
+//   // color: main.color(primary) !important;
+//   color: red !important;
+// }
+
+
+//  scroll css
+/* width & height*/
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e4e4e4;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #707070;
+  border-radius: 30px;
+}
+
+
+// shorten the track size and add border radius
+//shorter a liitle bit before the pagination
+
+
+// @media screen and (max-width: 600px) {
+//   .desktop-hidden {
+//     display: initial;
+//   }
+//   .mobile-hidden {
+//     display: none;
+//   }
+// }
+// @media screen and (min-width: 600px) {
+//   .desktop-hidden {
+//     display: none;
+//   }
+//   .mobile-hidden {
+//     display: initial;
+//   }
+// }
+
+.hidden-class {
+  display: none;
+}
+
+::ng-deep .example-headers-align {
+  .expansion-panel{
+    box-shadow:
+      0px 3px 1px -2px rgba(0, 0, 0, 5%),
+      0px 2px 2px 0px rgb(0 0 0 / 5%),
+      0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
+
+    .expansion-panel-header>span{
+      height: 10rem;
+    }
+
+    .mat-expanded .mobile-drop-down {
+      transform: rotate(180deg) !important;
+      transition: .5s all;
+    }
+
+    .mobile-drop-down {
+      transform: rotate(0) ;
+      transition: .5s all;
+    }
+
+    .kkl-table-cell{
+      // .ng-star-inserted{
+      //   font-weight: bolder;
+      // }
+      button{
+        padding: 0;
+      }
+    }
+
+    .actions{
+      .expanded{
+        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+          transform: rotate(180deg) !important;
+          transition: .2s all;
+        }
+      }
+      button{
+        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+          transform: rotate(0) ;
+          transition: .2s all;
+        }
+      }
+    }
+
+    // .container-button {
+    //   padding: 0 11px 0 14px !important;
+    //   border-radius: 25px;
+    // }
+
+    .example-element-detail{
+      kkl-local-table{
+        .desktop-hidden {
+          display: none;
+        }
+        .mobile-hidden {
+          display: initial;
+        }
+        .table-wrapper{
+          width: 100%;
+          table{
+            width: 100%;
+            tr.mat-header-row{
+              th.mat-header-cell.cdk-header-cell{
+                border-bottom: none;
+                background-color: main.color(secondLine);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .example-expanded-row .center-butt{
+
+  ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+  transform: rotate(180deg) !important;
+  transition: .2s all;
+  }
+  }
+  ::ng-deep .example-element-row .center-butt{
+
+      ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
+      transform: rotate(0) ;
+      transition: .2s all;
+  }
+}

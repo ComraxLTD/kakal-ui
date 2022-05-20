@@ -84,6 +84,7 @@ import { OpenMotionsModule } from './open-motions/open-motions.module';
 import { KKLTabsModule } from './tabs/tabs.module';
 
 import { KKLNewTableModule } from './kkl-table/kkl-table.module';
+import { KKLNgxTableModule } from './kkl-ngx-table/kkl-ngx-table.module';
 
 import { KKLVerticalStepsModule } from './vertical-steps/vertical-steps.module';
 import { FacilityCardModule } from './facility-card/facility-card.module';
@@ -159,6 +160,7 @@ registerLocaleData(he);
 
     //KKL NEW TABLE MODULES
     KKLNewTableModule,
+    KKLNgxTableModule,
     MeiFormModule,
 
     // TABLE MODULES
@@ -255,6 +257,7 @@ registerLocaleData(he);
 
     // NEW TABLE
     KKLNewTableModule,
+    KKLNgxTableModule,
     MeiFormModule,
     MeiServiceModule,
 

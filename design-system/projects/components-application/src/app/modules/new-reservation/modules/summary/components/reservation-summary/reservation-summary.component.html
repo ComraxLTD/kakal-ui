@@ -12,12 +12,12 @@
       <kkl-typography>סגור הכול</kkl-typography>
     </div>
   </div>
-  <kkl-local-table
+  <kkl-ngx-local-table
     [dataSource]="datasource"
     [columns]="columns"
     [expandTemplate]="expand"
     (expandRow)="onExpand($event)"
-  ></kkl-local-table>
+  ></kkl-ngx-local-table>
 </div>
 
 <ng-template #expand>

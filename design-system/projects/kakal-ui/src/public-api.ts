@@ -162,6 +162,12 @@ export * from './lib/kkl-table/components/table-cell/table-cell.component';
 export * from './lib/kkl-table/components/table-form/table-form.component';
 export * from './lib/kkl-table/components/mei-filters/mei-filters.component';
 
+// NGX TABLE
+export * from './lib/kkl-ngx-table/kkl-ngx-table.module';
+
+export * from './lib/kkl-ngx-table/components/local-table/local-table.component';
+
+
 // NEW SERVICES
 export * from './lib/mei-services/mei-services.module';
 export * from './lib/mei-services/pipes/arr-includes.pipe';
