@@ -19,6 +19,18 @@ export class IconService {
   ) {}
 
   public icons = {
+      
+    // new icons for table
+    allDirections: AppIcons.ALL_DIRECTIONS,
+    cancel: AppIcons.CANCEL_ICON,
+    trash_delete: AppIcons.TRASH_DELETE_ICON,
+    duplicateIcon: AppIcons.DUPLICATE_ICON,
+    edit: AppIcons.EDIT,
+    eye: AppIcons.EYE,
+    print_new: AppIcons.PRINT,
+    send: AppIcons.SEND_ICON,
+    sticker: AppIcons.STICKER,
+
     bell: AppIcons.BELL_ICON,
     map_mobile : AppIcons.MOBILE_MAP,
     map_mobile_back : AppIcons.MOBILE_MAP_BACK,
@@ -43,7 +55,6 @@ export class IconService {
     drag_n_drop: AppIcons.DRAG_N_DROP,
     all_directions: AppIcons.AAL_DIRECTIONS,
     mobile_drop_down: AppIcons.MOBILE_DROP_DOWN,
-    duplicate: AppIcons.DUPLICATE_ICON,
     chart: AppIcons.CHART_ICONS,
 
     // ACTIONS ICONS
@@ -67,13 +78,10 @@ export class IconService {
     file: FILE_ICON,
     time: AppIcons.TIME_ICON,
     closepopup: AppIcons.CLOSE_POPUP_ICON,
-    send: AppIcons.SEND_ICON,
     clear_with_background: AppIcons.CLEAR_WITH_BACKGROUND_ICON,
     close_box: AppIcons.CLOSE_WITH_BOX_ICON,
     close_table: AppIcons.CLOSE_TABLE,
 
-    cancel: AppIcons.CANCEL_ICON,
-    trash_delete: AppIcons.TRASH_DELETE_ICON,
     add_circle: AppIcons.ADD_ICON_WITH_CIRCLE,
     open_border: AppIcons.OPEN_PLUS_WITH_BORDER,
     open: AppIcons.OPEN_PLUS,
