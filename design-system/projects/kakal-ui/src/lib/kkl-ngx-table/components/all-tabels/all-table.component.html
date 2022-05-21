@@ -19,7 +19,7 @@
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
         [footerHeight]="50"
-        [rowHeight]="50"
+        [rowHeight]="60"
         [scrollbarV]="true"
         [rows]="dataTable"
         (page)="onPage($event)"
@@ -54,17 +54,42 @@
           </ng-template>
         </ngx-datatable-column> -->
         <ngx-datatable-column *ngFor="let column of oneColumns" [name]="column.key">
+          <ng-template let-sort="sortFn" ngx-datatable-header-template>
+            <span (click)="sort()">{{ column.label }}</span>
+            <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
+              <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
+              <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu" (closed)="searchChanged()">
+              <kkl-ngx-table-form [question]="column" (rowEdited)="updateFilter($event, column.key)"></kkl-ngx-table-form>
+            </mat-menu>
+          </ng-template>
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <kkl-table-cell [data]="value" [question]="column" (buttClick)="buttonClick(column.button, row, column.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+            <ng-container *ngIf="!(row | arrInclueds : editItems) || column.notEditable; else editBlock">
+              <kkl-table-cell [data]="value" [question]="column" (buttClick)="buttonClick(column.button, row, column.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>            </ng-container>
+            <ng-template #editBlock>
+              <kkl-ngx-table-form [question]="column" (rowEdited)="onRowEditChange($event, row, column.key)"></kkl-ngx-table-form>
+            </ng-template>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="פעולות">
-          <ng-template let-row="row" ngx-datatable-cell-template>
-            <ng-container *ngFor="let butt of localButtons">
-              <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, row, 'actions')">
-                <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-              </button>
+          <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
+            <ng-container *ngIf="!(row | arrInclueds : editItems); else addButton">
+              <ng-container *ngFor="let butt of localButtons">
+                <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, row, 'actions')">
+                  <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                </button>
+              </ng-container>
             </ng-container>
+            <ng-template #addButton>
+              <button matTooltip="save" mat-button color="primary" (click)="saveRowClick(row)">
+                <kkl-icon key="save"></kkl-icon>
+              </button>
+              <button matTooltip="cancel" mat-button color="primary" (click)="cancelRowClick(row)">
+                <kkl-icon key="cancel"></kkl-icon>
+              </button>
+            </ng-template>
+
           </ng-template>
         </ngx-datatable-column>
 

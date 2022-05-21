@@ -468,7 +468,7 @@ export class AppComponent {
     // in the first column, there is an additional 'button' property, which makes the cells in that column into buttons
     // the 'button' property correlates with the RowActionModel, accept for the 'label', which has no effect on the UI
     { key: 'id', label: 'Id', controlType: 'number', button: { type: 'inlineExpand' } },
-    { key: 'name', label: 'Name', controlType: 'text', },
+    { key: 'name', label: 'Name', controlType: 'text', notEditable: true},
     // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
     { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
     { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
