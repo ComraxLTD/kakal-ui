@@ -19,7 +19,16 @@
   <kkl-local-table
     [columns]="columns"
     [rowActions]="rowActions"
+    [dataSource]="dataSource"
+    [expandTemplate]="expandTemplate"
+  ></kkl-local-table>
+</div>
+
+<ng-template #expandTemplate>
+  <kkl-local-table
+    [columns]="columns"
+    [rowActions]="rowActions"
     [newRowAction]="'הוסף שורה'"
     [dataSource]="dataSource"
   ></kkl-local-table>
-</div>
+</ng-template>
