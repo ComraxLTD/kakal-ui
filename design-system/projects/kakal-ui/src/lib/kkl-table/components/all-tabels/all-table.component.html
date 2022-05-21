@@ -2,7 +2,7 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 <form [formGroup]="form" class="all-table-form"  (resized)="onResize($event)" #myIdentifier>
   <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
-    {{newRowAction}}
+    {{ newRowAction }}
     <mat-icon>add</mat-icon>
   </button>
   <div [ngClass]="{'hidden-class': !isDesktop}">
