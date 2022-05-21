@@ -14,7 +14,12 @@
   <span 
     fxLayout="row"
     plContentAlignment 
-    [justifyContent]="{isMobile, isNumber: question.controlType === 'number'}"
+    [justifyContent]="{
+      isMobile, 
+      isNumber: 
+        question.controlType === 'number' || 
+        question.controlType === 'sum'
+    }"
   >
     <kkl-icon 
       *ngIf="question.colIcon" 
@@ -36,7 +41,12 @@
         <span 
           fxLayoutAlign="start center" 
           plContentAlignment 
-          [buttonJustifyContent]="{isMobile, isNumber: question.controlType === 'number'}"
+          [buttonJustifyContent]="{
+            isMobile, 
+            isNumber: 
+              question.controlType === 'number' || 
+              question.controlType === 'sum'
+          }"
         >
           <span 
               *ngIf="data" 
@@ -54,14 +64,20 @@
           <kkl-icon 
             style="padding: 0 10px;" 
             [color]="'primary'" 
-            *ngIf="question.button.icon || question.button.type === 'inlineExpand'" 
+            *ngIf="
+              question.button.icon || 
+              question.button.type === 'inlineExpand'
+            " 
             [key]="question.button.icon || 'expand_more'"
           ></kkl-icon>
         </span>
       </button>
     </span>
     <ng-template #withoutButton>
-      <div *ngIf="data" style="white-space: pre-wrap; margin-top: 1px">
+      <div 
+        *ngIf="data" 
+        style="white-space: pre-wrap; margin-top: 1px"
+      >
         <span>
           {{ data | tableCellPipe: question.controlType }}
         </span>
