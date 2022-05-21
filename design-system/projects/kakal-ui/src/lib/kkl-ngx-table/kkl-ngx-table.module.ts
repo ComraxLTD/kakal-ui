@@ -23,9 +23,13 @@ import { KKLDirectivesModule } from '../directives/directives.module';
 import { NgxLocalTableComponent } from './components/local-table/local-table.component';
 import { KKLNewTableModule } from '../kkl-table/kkl-table.module';
 import { NgxDatatableModule} from '@swimlane/ngx-datatable';
+import {TableFormComponent} from './components/table-form/table-form.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 @NgModule({
   declarations: [
     NgxLocalTableComponent,
+    TableFormComponent,
     // EventTableComponent,
     // EventAdvancedSearchComponent,
     // TableFormComponent,
@@ -58,10 +62,14 @@ import { NgxDatatableModule} from '@swimlane/ngx-datatable';
     MatExpansionModule,
     KKLDirectivesModule,
     KKLNewTableModule,
-    NgxDatatableModule
+    NgxDatatableModule,
+    MatInputModule,
+    MatSelectModule,
+
   ],
   exports: [
     NgxLocalTableComponent,
+    TableFormComponent,
     // EventTableComponent,
     // EventAdvancedSearchComponent,
     // TableFormComponent,

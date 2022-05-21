@@ -1,0 +1,165 @@
+<div (click)="$event.stopPropagation()" style="width: 200px;">
+  <ng-container [ngSwitch]="question?.controlType">
+    <ng-container *ngSwitchCase="'select'">
+      <kkl-select
+        [control]="control"
+        [options]="question.options"
+        [multi]="question.multi"
+        [placeHolder]="question.placeHolder"
+        [key]="question.key"
+        [label]="question.label"
+        [theme]="question.theme"
+        [appearance]="question.appearance"
+        [disabled]="question.disabled"
+        (selectChanged)="onSelectChanged($event, question)"
+      ></kkl-select>
+    </ng-container>
+    <ng-container *ngSwitchCase="'autocomplete'">
+      <ng-container *ngIf="question.multi; else simpleAutocomplete">
+        <kkl-multi-autocomplete
+          [control]="control"
+          [options]="question.options"
+          [placeHolder]="question.placeHolder"
+          [key]="question.key"
+          [label]="question.label"
+          [debounce]="question.debounce"
+          [appearance]="question.appearance"
+          [disabled]="question.disabled"
+          [withButton]="question.withButton"
+          [icon]="question.icon"
+          [panelWidth]="question.panelWidth"
+          (selectChanged)="onSelectChanged($event, question)">
+        </kkl-multi-autocomplete>
+      </ng-container>
+      <ng-template #simpleAutocomplete>
+        <kkl-autocomplete
+          [control]="control"
+          [options]="question.options"
+          [placeHolder]="question.placeHolder"
+          [key]="question.key"
+          [label]="question.label"
+          [debounce]="question.debounce"
+          [appearance]="question.appearance"
+          [disabled]="question.disabled"
+          [withButton]="question.withButton"
+          [icon]="question.icon"
+          [panelWidth]="question.panelWidth"
+          (selectChanged)="onSelectChanged($event, question)"
+        ></kkl-autocomplete>
+      </ng-template>
+    </ng-container>
+    <ng-container *ngSwitchCase="'date'">
+      <kkl-datepicker
+        [control]="control"
+        [key]="question.key"
+        [label]="question.label"
+        [placeHolder]="question.placeHolder"
+        [maxDate]="question.maxDate"
+        [minDate]="question.minDate"
+        [appearance]="question.appearance"
+        (valueChanged)="onValueChanged($event, question)"
+      ></kkl-datepicker>
+    </ng-container>
+    <ng-container *ngSwitchCase="'dateRange'">
+      <kkl-range-datepicker
+        [groupControl]="control"
+        [key]="question?.key"
+        [label]="question?.label"
+        [appearance]="question?.appearance"
+        [maxDate]="question.maxDate"
+        [minDate]="question.minDate"
+        (valueChanged)="onValueChanged($event, question)">
+      </kkl-range-datepicker>
+    </ng-container>
+    <ng-container *ngSwitchCase="'radio'">
+      <kkl-radio-group
+        [control]="control"
+        [label]="question.label"
+        [key]="question.key"
+        [placeHolder]="question.placeHolder"
+        [options]="question.options"
+        (selectChanged)="onSelectChanged($event, question)"
+      ></kkl-radio-group>
+    </ng-container>
+    <ng-container *ngSwitchCase="'toggle'">
+      <kkl-slide-toggle
+        [control]="control"
+        [label]="question.label"
+        [key]="question.key"
+        (selectChanged)="onSelectChanged($event, question)"
+      ></kkl-slide-toggle>
+    </ng-container>
+    <ng-container *ngSwitchCase="'checkbox'">
+      <kkl-checkbox
+        [control]="control"
+        [label]="question.label"
+        [key]="question.key"
+        (selectChanged)="onSelectChanged($event, question)"
+      ></kkl-checkbox>
+    </ng-container>
+    <ng-container *ngSwitchCase="'currency'">
+      <kkl-currency
+        [groupControl]="control"
+        [label]="question.label"
+        [key]="question.key"
+        [placeHolder]="question.placeHolder"
+        [theme]="question.theme"
+        [appearance]="question.appearance"
+        [debounce]="question.debounce"
+        (valueChanged)="onValueChanged($event, question)">
+      </kkl-currency>
+    </ng-container>
+    <ng-container *ngSwitchCase="'texteditor'">
+      <kkl-text-editor
+        [key]="question?.key"
+        [control]="control"
+        [placeHolder]="question.placeHolder"
+        [debounce]="question.debounce"
+        (valueChanged)="onValueChanged($event, question)"
+      ></kkl-text-editor>
+    </ng-container>
+    <ng-container *ngSwitchCase="'range'">
+      <kkl-range
+        [groupControl]="control"
+        [label]="question.label"
+        [key]="question.key"
+        [theme]="question.theme"
+        [appearance]="question.appearance"
+        [debounce]="question.debounce"
+        (valueChanged)="onValueChanged($event, question)"
+      ></kkl-range>
+    </ng-container>
+    <ng-container *ngSwitchCase="'counter'">
+      <kkl-counter
+        [control]="control"
+        [label]="question.label"
+        [key]="question.key"
+        [placeHolder]="question.placeHolder"
+        [icon]="question.icon"
+        [debounce]="question.debounce"
+        (valueChanged)="onValueChanged($event, question)"
+      >
+      </kkl-counter>
+    </ng-container>
+    <!-- <ng-container *ngSwitchCase="'costum'">
+      <ng-container *ngTemplateOutlet="templates[question.key]"></ng-container>
+    </ng-container> -->
+    <ng-container *ngSwitchDefault>
+      <kkl-input
+        [control]="control"
+        [label]="question.label"
+        [key]="question.key"
+        [placeHolder]="question.placeHolder"
+        [theme]="question.theme"
+        [appearance]="question.appearance"
+        [icon]="question.icon"
+        [format]="question.format"
+        [debounce]="question.debounce"
+        [controlType]="question.controlType"
+        (valueChanged)="onValueChanged($event, question)"
+      ></kkl-input>
+    </ng-container>
+
+  </ng-container>
+
+</div>
