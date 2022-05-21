@@ -375,8 +375,6 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
             });
           break;
         case 'inlineEdit':
-          console.log(butt);
-
           this.addRowGroup(obj);
           break;
         case 'inlineExpand':
@@ -433,7 +431,6 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
   }
 
   cancelRowClick(ele: any) {
-    console.log(ele);
     const index = this.editItems.indexOf(ele);
     if (index > -1) {
       this.editItems.splice(index, 1);
