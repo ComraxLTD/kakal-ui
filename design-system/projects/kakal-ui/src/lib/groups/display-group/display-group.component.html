@@ -63,7 +63,7 @@
     </ng-container>
 
     <ng-container *ngSwitchCase="'status'">
-      <kkl-status-steps [status]="data | pluck: item.key"></kkl-status-steps>
+      <kkl-status-progress [status]="data | pluck: item.key"></kkl-status-progress>
     </ng-container>
     <ng-container *ngSwitchCase="'template'">
       <ng-container

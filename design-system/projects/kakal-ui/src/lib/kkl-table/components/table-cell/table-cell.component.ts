@@ -20,6 +20,7 @@ export class TableCellComponent implements OnInit  {
   }
 
   buttonClick() {
+    console.log(this.data)
     this.buttClick.emit(null);
   }
 

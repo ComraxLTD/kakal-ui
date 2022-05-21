@@ -1,7 +1,17 @@
-<!-- <kkl-layout [hideFooterPath]="['lobby']" [status]="status" (logoClicked)="onLogoClicked()" [cards]="cards"
 
-  [menuTemplates]="{temp,test,test3}" (statusSelection)="onStatus($event)">
+<kkl-layout
+  [hideFooterPath]="['lobby']"
+  [status]="status"
+  (logoClicked)="onLogoClicked()"
+  [cards]="cards"
+  [menuTemplates]="{temp,test,test3}"
+  (statusSelection)="onStatus($event)"
+>
   <router-outlet content></router-outlet>
+
+  <ng-container *kklFooterButton>
+    <button mat-button>כפתור עם טקסט</button>
+  </ng-container>
 </kkl-layout>
 
 <ng-template #test>
@@ -26,30 +36,65 @@
     <p>test</p>
     <p>test</p>
   </div>
+</ng-template>
 
-</ng-template> -->
 
-<div class="block">
-  <app-demo-section fxFlex="100" description="Expand Table">
+<!-- <kkl-form [controls]="myCols"></kkl-form> -->
 
-    <kkl-local-table
-      [dataSource]="dataSource"
-      [columns]="columns"
-      [rowActions]="rowActions"
-      [expandTemplate]="expand"
-      (expandRow)="onExpand($event)"
-      [draggable]="true"
-    ></kkl-local-table>
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
+></kkl-local-table>
 
-  </app-demo-section>
-</div>
+<kkl-ngx-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [expandTemplate]="expand"
+  (expandRow)="onExpand($event)"
+></kkl-ngx-local-table>
 
-<!-- the inner table -->
 <ng-template #expand>
-  <kkl-local-table
+  <!-- <kkl-local-table
     fxFill
     [dataSource]="dataSource2"
     [columns]="columns2"
     [paging]="false"
-  ></kkl-local-table>
+  ></kkl-local-table> -->
+  im open
 </ng-template>
+
+<!-- <kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  [newRowAction]="newRowAction"
+
+  (actionClicked)="onClicked($event)"
+  (deleteRow)="onDelete($event)"
+  (saveRow)="onSave($event)"
+></kkl-local-table> -->
+
+
+<!-- <kkl-local-table
+            [dataSource]="dataSource"
+            [columns]="columns"
+            [rowActions]="rowActions"
+            [expandTemplate]="expand"
+            (expandRow)="onExpand($event)"
+          ></kkl-local-table> -->
+
+
+      <!-- the inner table -->
+      <!-- <ng-template #expand>
+        <kkl-local-table
+          fxFill
+          [dataSource]="dataSource2"
+          [columns]="columns2"
+          [paging]="false"
+        ></kkl-local-table>
+      </ng-template> -->
+

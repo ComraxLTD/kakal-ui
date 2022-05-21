@@ -10,11 +10,13 @@ import { HeaderState, FetchState, SortState, TableState } from './table.state';
 import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { filter, map, pluck } from 'rxjs/operators';
 
-import * as uuid from 'uuid';
+import {v4} from 'uuid';
+import { FilterState } from '../../filters/filters.types';
 
 export class TableDataSource<T = any> {
   private dataSubject: BehaviorSubject<T[]>;
   private columnSubject: BehaviorSubject<HeaderCellModel<T>[]>;
+
 
   private tableState: BehaviorSubject<TableState>;
 
@@ -34,7 +36,7 @@ export class TableDataSource<T = any> {
       disabled: [],
       activeColumns: [],
       pagination: {
-        id: uuid.v4(),
+        id: v4(),
         itemsPerPage: 10,
         currentPage: 1,
         pages: [10, 20, 30],

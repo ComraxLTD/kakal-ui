@@ -1,0 +1,83 @@
+
+<!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
+<div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
+  <div [ngClass]="{'hidden-class': !isDesktop}">
+    <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
+      {{newRowAction}}
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="table-wrapper"
+      cdkDropList
+      (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled">
+      <!-- [cdkDropListData]="dataTable" -->
+      <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+
+      <ngx-datatable
+        dir="rtl"
+        #myTable
+        class="material expandable"
+        [columnMode]="ColumnMode.force"
+        [headerHeight]="50"
+        [footerHeight]="50"
+        [rowHeight]="50"
+        [scrollbarV]="true"
+        [rows]="dataTable"
+        (page)="onPage($event)"
+      >
+        <!-- Row Detail Template -->
+        <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
+          <ng-template let-row="row" let-expanded="expanded" let-co="col" ngx-datatable-row-detail-template>
+            <div *ngIf="expanded" class="example-element-detail" #myExpand>
+              <ng-container *ngIf="expandTemplate">
+                <ng-template *ngTemplateOutlet="expandTemplate; context: {$implicit:row}"></ng-template>
+              </ng-container>
+            </div>
+          </ng-template>
+        </ngx-datatable-row-detail>
+        <!-- Column Templates -->
+        <!-- <ngx-datatable-column
+          [width]="50"
+          [resizeable]="false"
+          [sortable]="false"
+          [draggable]="false"
+          [canAutoResize]="false"
+        >
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            <a
+              href="javascript:void(0)"
+              [class.datatable-icon-right]="!expanded"
+              [class.datatable-icon-down]="expanded"
+              title="Expand/Collapse Row"
+              (click)="toggleExpandRow(row)"
+            >
+            </a>
+          </ng-template>
+        </ngx-datatable-column> -->
+        <ngx-datatable-column *ngFor="let column of oneColumns" [name]="column.key">
+          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+            <kkl-table-cell [data]="value" [question]="column" (buttClick)="buttonClick(column.button, row, column.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="פעולות">
+          <ng-template let-row="row" ngx-datatable-cell-template>
+            <ng-container *ngFor="let butt of localButtons">
+              <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, row, 'actions')">
+                <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+              </button>
+            </ng-container>
+          </ng-template>
+        </ngx-datatable-column>
+
+
+      </ngx-datatable>
+
+    </div>
+
+
+
+  </div>
+  <div [hidden]="!paging">
+    <mat-paginator #myPaging dir="ltr" fxLayout="row" fxLayoutAlign="center center" kklNewPagination [pageSizeOptions]="[10, 25, 100]" (page)="onPage($event)" aria-label="Select page"></mat-paginator>
+  </div>
+</div>
+

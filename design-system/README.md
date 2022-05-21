@@ -32,3 +32,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 PageHeadlineModel - change to PageHeadline
 
 
+
+
+# Dvit Changed on 3.0
+
+## kkl-status-steps
+
+- rename selector to kkl-status-progress
+- rename interface to StatusProgress

@@ -8,7 +8,7 @@ import {
   NavbarBottomService,
   PageHeadlineService,
   RouterService,
-  StatusBars,
+  StatusProgress,
   StepsLayoutService,
 } from '../../../../../../../kakal-ui/src/public-api';
 import { NewReservationService } from '../../new-reservation.service';
@@ -19,7 +19,7 @@ export interface DataEx {
   budget: number;
   date: Date;
   tour: string;
-  status: StatusBars;
+  status: StatusProgress;
   progress: number;
 }
 
@@ -84,16 +84,13 @@ export class LayoutComponent implements OnInit {
     budget: 100,
     date: new Date(),
     tour: 'בית ספר נחלים',
-    status: { totalBars: 5, authorizedBars: 3, label: 'התקדמות' } as StatusBars,
+    status: { totalBars: 5, authorizedBars: 3, label: 'התקדמות' } as StatusProgress,
     progress: 40,
   };
 
   constructor(
-    private routerService: RouterService,
-    private newReservationService: NewReservationService,
     private pageHeadlineSource: PageHeadlineService,
     private navbarBottomService: NavbarBottomService,
-    private stepsLayoutService: StepsLayoutService,
     private layoutService: LayoutService
   ) {}
 
@@ -110,42 +107,10 @@ export class LayoutComponent implements OnInit {
       hasButton: true,
     });
 
-    this.onNext().subscribe();
-
     this.navbarBottomService.setShowNext(true);
   }
 
   ngOnDestroy() {
     this.layoutService.destroyDrawer();
-  }
-
-  onNext() {
-    return this.navbarBottomService.listenToNext().pipe(
-      map((_) => {
-        return this.routerService.getCurrentPath();
-      }),
-      map((currentPath: string) => {
-        const stepSelectEvent = this.stepsLayoutService.getStepsSelection();
-
-        const { selectedIndex } = stepSelectEvent;
-        const nextIndex =
-          selectedIndex === this.steps.length - 1
-            ? selectedIndex
-            : selectedIndex + 1;
-
-        const nextPath = this.steps[nextIndex].path;
-
-        const url = this.routerService.url.replace(currentPath, nextPath);
-        this.routerService.navigate(url);
-      })
-    );
-  }
-
-  public onPrevious(): void {
-    this.routerService.goBack();
-  }
-
-  onSave(event: string) {
-    this.newReservationService.emitNewIsSaved(true);
   }
 }

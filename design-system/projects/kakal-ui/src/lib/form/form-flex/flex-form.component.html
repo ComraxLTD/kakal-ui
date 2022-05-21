@@ -1,4 +1,5 @@
 <form
+  class="kkl-flex-form"
   [fxLayout]="layout + ' wrap'"
   fxLayoutAlign="start center"
   [formGroup]="formGroup"
@@ -6,9 +7,6 @@
 >
   <!-- [class.input-space]="(index + 1) % cols !== 0" -->
   <ng-container *ngFor="let question of questions; let index = index">
-
-
-
     <ng-container *ngIf="question.gridProps?.skip">
       <div flex-form-input [fxFlex]="flex * question.gridProps.skip"></div>
     </ng-container>

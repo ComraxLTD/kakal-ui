@@ -1,10 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Input, ContentChild } from '@angular/core';
 import { NavbarBottomService } from './navbar-bottom.service';
 import { RouterService } from '../../services/route.service';
 import { FormGroup } from '@angular/forms';
+
 import { ROOT_PREFIX } from '../../constants/root-prefix';
-import { Subject, takeUntil, Observable } from 'rxjs';
 import { IconService } from '../icon/icons.service';
+import { Portion } from '../layouts/layout/layout.service';
+import { FooterButtonDirective } from './navbar-bottom.directive';
+import { Subject, takeUntil, Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-navbar-bottom',
@@ -12,6 +15,12 @@ import { IconService } from '../icon/icons.service';
   styleUrls: ['./navbar-bottom.component.scss'],
 })
 export class NavbarBottomComponent implements OnInit {
+  @ContentChild(FooterButtonDirective)
+  footerButtonDirective: FooterButtonDirective | undefined;
+
+  @Input() endDrawer;
+  @Input() portion: Portion;
+
   destroySubject$: Subject<void> = new Subject();
 
   showNext$: Observable<boolean>;
@@ -26,16 +35,10 @@ export class NavbarBottomComponent implements OnInit {
 
   formGroup: FormGroup = new FormGroup({});
 
-
   nextLabel: string;
   saveLabel: string;
 
   bottomIcon: string = 'bottom_tree_';
-
-  // @Output() previous = new EventEmitter();
-  // @Output() next = new EventEmitter<void>();
-  // @Output() nextStep = new EventEmitter<StepsSelectionEvent>();
-  // @Output() save = new EventEmitter();
 
   constructor(
     private routerService: RouterService,
@@ -72,16 +75,16 @@ export class NavbarBottomComponent implements OnInit {
         this.autoBack = a;
       });
 
-      this.navbarBottomService
+    this.navbarBottomService
       .listenNextLabel()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a:string) => {
+      .subscribe((a: string) => {
         this.nextLabel = a;
       });
-      this.navbarBottomService
+    this.navbarBottomService
       .getTextSave()
       .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a:string) => {
+      .subscribe((a: string) => {
         this.saveLabel = a;
       });
   }

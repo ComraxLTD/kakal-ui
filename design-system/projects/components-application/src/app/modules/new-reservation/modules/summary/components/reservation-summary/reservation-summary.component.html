@@ -8,15 +8,18 @@
   >
     <kkl-typography [size]="2.5">פעילות</kkl-typography>
     <div fxLayoutGap="1rem">
-      <kkl-typography (click)='toggleShow()' >{{!showCancel?'הצג ביטולים':'בטל ביטולים'}}</kkl-typography>
+      <kkl-typography (click)="toggleShow()">{{
+        !showCancel ? "הצג ביטולים" : "בטל ביטולים"
+      }}</kkl-typography>
       <kkl-typography>סגור הכול</kkl-typography>
     </div>
   </div>
-  <kkl-local-table
+  <kkl-ngx-local-table
     [dataSource]="datasource"
     [columns]="columns"
     [expandTemplate]="expand"
     (expandRow)="onExpand($event)"
+    [rowActions]="rowActions"
   ></kkl-local-table>
 </div>
 
