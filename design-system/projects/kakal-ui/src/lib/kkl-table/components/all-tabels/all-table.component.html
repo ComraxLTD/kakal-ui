@@ -360,11 +360,7 @@
               </tr>
               <tr *ngIf="localButtons?.length">
                 <td style="font-weight: bolder">פעולות</td>
-                <td
-                  class="actions"
-                  fxLayout="row wrap"
-                  fxLayoutAlign="space-evenly"
-                >
+                <td class="actions" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngIf="
                       !(element | arrInclueds: editItems);
@@ -381,7 +377,7 @@
                       <ng-template #closeExpand>
                         <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
                       <button
-                        [ngClass]="{ expanded: item == expandedElement }"
+                        [ngClass]="{ expanded: item === expandedElement }"
                         [matTooltip]="butt.label"
                         mat-icon-button
                         color="primary"
@@ -475,12 +471,7 @@
   >
     שמור
   </kkl-stroke-button>
-  <button
-    fxFlexOffset="1rem"
-    matTooltip="בטל"
-    mat-icon-button
-    (click)="cancelRowClick(element)"
-  >
+  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
     <kkl-icon key="cancel"></kkl-icon>
   </button>
 </ng-template>
