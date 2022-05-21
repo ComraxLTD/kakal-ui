@@ -9,7 +9,7 @@ import { KKLPipesModule } from '../../pipes/pipes.module';
 import { KKLIconModule } from '../../icon/icon.module';
 
 import { DisplayGroupComponent } from './display-group.component';
-import { KKLStatusStepsModule } from '../../status-steps/status-steps.module';
+import { StatusProgressModule } from '../../status-progress/status-progress.module';
 import { KKLButtonModule } from '../../button/button.module';
 
 @NgModule({
@@ -23,7 +23,7 @@ import { KKLButtonModule } from '../../button/button.module';
     KKLTypographyModule,
     KKLPipesModule,
     KKLDisplayDataModule,
-    KKLStatusStepsModule,
+    StatusProgressModule,
     KKLIconModule,
 
   ],

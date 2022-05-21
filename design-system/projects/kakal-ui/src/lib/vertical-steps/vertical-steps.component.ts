@@ -15,6 +15,7 @@ import {
 import { Step } from './step/step.model';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { Observable, of, tap } from 'rxjs';
+import { NavbarBottomService } from '../navbar-bottom/navbar-bottom.service';
 
 export interface StepSelectEvent {
   selectedIndex: number;
@@ -45,7 +46,7 @@ export interface StepSelectEvent {
 })
 export class VerticalStepsComponent implements OnInit {
   isSmallScreen$: Observable<boolean>=of(true);
-
+  listenToShowNextMiddle$:Observable<any>;
   @Input() linear: boolean;
 
   @Input() steps: Step[];
@@ -70,9 +71,10 @@ export class VerticalStepsComponent implements OnInit {
   // @Output() interacted: EventEmitter<CdkStep> = new EventEmitter();
   @Output() stepChanged: EventEmitter<StepSelectEvent> = new EventEmitter();
 
-  constructor(private breakPointService: BreakpointService) {}
+  constructor(private breakPointService: BreakpointService,private navbarBottomService: NavbarBottomService) {}
 
   ngOnInit(): void {
+    this.listenToShowNextMiddle$ = this.navbarBottomService.listenToShowNextMiddle();
     this.cellTemplate = this.steps[this._selectedIndex].key as string;
     this.isSmallScreen$ = this.getIsSmallScreen();
   }
@@ -97,6 +99,7 @@ export class VerticalStepsComponent implements OnInit {
       last: selectedIndex === this.steps.length - 1,
     };
     this.cellTemplate = this.steps[selectedIndex].key as string;
+    this._selectedIndex = selectedIndex
     this.stepChanged.emit(stepSelectEvent);
   }
 }

@@ -1,5 +1,3 @@
-
-
 .slider-over {
   position: absolute !important;
   top: 16px;
@@ -43,25 +41,29 @@ ngx-mat-range-slider {
   }
 
   .slider-min-value {
-    .mat-slider-track-fill, .mat-slider-track-fill:focus {
+    .mat-slider-track-fill,
+    .mat-slider-track-fill:focus {
       background-color: $range-outer-color !important;
       outline: $range-outer-color;
       z-index: 99;
     }
 
-    .mat-slider-track-background, .mat-slider-track-background:focus {
+    .mat-slider-track-background,
+    .mat-slider-track-background:focus {
       display: none;
     }
   }
 
   .slider-max-value {
-    .mat-slider-track-background, .mat-slider-track-background:focus {
+    .mat-slider-track-background,
+    .mat-slider-track-background:focus {
       background-color: $range-outer-color !important;
       outline: $range-outer-color;
       z-index: 99;
     }
 
-    .mat-slider-track-fill, .mat-slider-track-fill:focus {
+    .mat-slider-track-fill,
+    .mat-slider-track-fill:focus {
       display: none;
     }
   }
@@ -75,14 +77,14 @@ ngx-mat-range-slider {
       background-color: $range-outer-color !important;
       border-bottom: 1px solid $range-outer-color !important;
       display: table-cell;
-      width: 50%
+      width: 50%;
     }
 
     .slider-line-cover-init {
       background-color: $range-intersection-color !important;
       border-bottom: 1px solid $range-intersection-color !important;
       display: table-cell;
-      width: 50%
+      width: 50%;
     }
   }
 

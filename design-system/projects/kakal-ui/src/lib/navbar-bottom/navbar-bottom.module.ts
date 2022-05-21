@@ -5,7 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLIconModule } from '../icon/icon.module';
 import { NavbarBottomComponent } from './navbar-bottom.component';
-import { NavbarBottomDirective } from './navbar-bottom.directive';
+import { FooterButtonDirective } from './navbar-bottom.directive';
 import { KKLButtonModule } from '../button/button.module';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { KKLButtonModule } from '../button/button.module';
     KKLIconModule,
     KKLDirectivesModule,
   ],
-  declarations: [NavbarBottomComponent, NavbarBottomDirective],
-  exports: [NavbarBottomComponent, NavbarBottomDirective],
+  declarations: [NavbarBottomComponent, FooterButtonDirective],
+  exports: [NavbarBottomComponent, FooterButtonDirective],
 })
 export class KKLNavbarBottomModule {}

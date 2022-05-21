@@ -1,15 +1,14 @@
 @use "../../styles/variables" as main;
 
-
 .center-container {
   left: 50%;
   position: absolute;
 }
-
+.nav-buttons {
+  z-index: 1;
+}
 mat-toolbar {
   overflow: visible !important;
-  padding-left: main.spacing(5);
-  padding-right: main.spacing(5);
   background-color: rgba($color: #ffffff, $alpha: 0.72) !important;
 }
 
@@ -25,8 +24,12 @@ button.mat-mini-fab {
   background-color: main.color(paper) !important;
 }
 
-button.mat-raised-button.kkl-save-button:not(.mat-button-disabled) {
-  color: main.color(text);
+button.mat-raised-button.kkl-save-button {
+  z-index: 1000;
+
+  &:not(.mat-button-disabled) {
+    color: main.color(text);
+  }
 }
 
 button.kkl-next-button:not(.mat-button-disabled) {
@@ -42,4 +45,17 @@ button.kkl-next-button:not(.mat-button-disabled) {
     line-height: main.spacing(2) !important;
     color: main.color(paper) !important;
   }
+}
+
+//css for mobile.
+@media screen and (max-width: 800px) {
+  mat-icon.bottom_icon {
+    transform: scale(4) translateY(5px);
+  }
+}
+
+.drawer-mobile-btn {
+  position: fixed;
+  bottom: 10%;
+  left: 1%;
 }

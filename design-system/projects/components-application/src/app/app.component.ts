@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
   CardStatus,
+  CardStep,
   MenuCard,
   PageHeadlineService,
   RouterService,
@@ -21,6 +22,25 @@ export class AppComponent {
 
   title = 'education';
   isOpened: boolean = false;
+
+
+  steps: CardStep[] = [
+    {
+      label: 'פרטי הזמנה',
+      svgIcon: 'plant',
+      path: 'details',
+    },
+    {
+      label: 'מרכיבי הזמנה',
+      svgIcon: 'tree',
+      path: 'parts',
+    },
+    {
+      label: 'סיכום הזמנה',
+      svgIcon: 'list',
+      path: 'summary',
+    },
+  ];
 
   tabs = [
     { key: 'first', label: 'First Tab'},
