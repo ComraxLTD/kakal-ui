@@ -34,11 +34,7 @@
       <ngx-datatable
         dir="rtl"
         #myTable
-        class="expandable"
-        [columnMode]="ColumnMode.force"
-        [headerHeight]="50"
-        [footerHeight]="65"
-        rowHeight="auto"
+        default
         [rows]="dataTable"
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
@@ -49,7 +45,7 @@
           <ng-template
             let-row="row"
             let-expanded="expanded"
-            let-co="col"
+            let-col="col"
             ngx-datatable-row-detail-template
           >
             <div *ngIf="expanded" class="example-element-detail" #myExpand>
