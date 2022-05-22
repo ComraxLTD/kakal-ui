@@ -38,6 +38,7 @@
 </ng-template>
 
 <!-- <kkl-form [controls]="myCols"></kkl-form> -->
+
 {{ currStr }}
 <!-- <kkl-local-table
   [dataSource]="dataSource"
@@ -48,11 +49,12 @@
   (expandRow)="onExpand($event)"
 ></kkl-local-table> -->
 
+
 <kkl-ngx-local-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
-  newRowAction="hghd gdgd"
+  newRowAction="הוסף שורה"
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
 ></kkl-ngx-local-table>

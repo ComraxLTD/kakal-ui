@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
-import { ButtonModel, ControlBase, FormActions, OptionsModel, TableBase } from '../../../../../../../kakal-ui/src/public-api';
-
+import {
+  ButtonModel,
+  ControlBase,
+  FormActions,
+  OptionsModel,
+  TableBase,
+} from '../../../../../../../kakal-ui/src/public-api';
 
 @Injectable({
   providedIn: 'root',
@@ -34,6 +39,15 @@ export class MarketersTourListService {
   ];
 
   dataSource: any[] = [
+    {
+      tourId: '1234',
+      customer: 'בית ספר סוסיא',
+      tourName: 'שם הטיול',
+      destination: 'הר גלבוע',
+      tourDates: '12.07.13-15.07.14',
+      status: { label: 'סטטוס', authorizedBars: 5, totalBars: 9 },
+      activities: 'שלח תזכורת',
+    },
     {
       tourId: '1234',
       customer: 'בית ספר סוסיא',

@@ -12,6 +12,10 @@ export class TourListTableComponent implements OnInit {
   columns!: TableBase[];
   expandColumns!: TableBase[];
 
+  data:any[]=[
+    {process:'asd',permission:'asdas',status:'asda'}
+  ]
+
   constructor(private tourListTableService: TourListTableService) {}
 
   ngOnInit(): void {
@@ -23,3 +27,5 @@ export class TourListTableComponent implements OnInit {
     console.log(event);
   }
 }
+
+
