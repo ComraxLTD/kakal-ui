@@ -184,6 +184,7 @@
             <div class="container">
               <ng-container *ngIf="paging">
                 <mat-paginator
+                  class="kkl-pagination"
                   #myPaging
                   dir="ltr"
                   fxLayout="row"
@@ -377,8 +378,9 @@
         </ng-container>
       </mat-accordion>
     </ng-container>
-    <div *ngIf="paging && isDesktop">
+    <div *ngIf="paging">
       <mat-paginator
+        class="kkl-pagination"
         #myPaging
         kklNewPagination
         [pageIndex]="page.pageIndex"
