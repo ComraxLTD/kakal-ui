@@ -5,7 +5,10 @@ import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { MatPaginatorIntl, MatPaginatorModule } from '@angular/material/paginator';
+import {
+  MatPaginatorIntl,
+  MatPaginatorModule,
+} from '@angular/material/paginator';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSortModule } from '@angular/material/sort';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -22,10 +25,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { NgxLocalTableComponent } from './components/local-table/local-table.component';
 import { KKLNewTableModule } from '../kkl-table/kkl-table.module';
-import { NgxDatatableModule} from '@swimlane/ngx-datatable';
-import {TableFormComponent} from './components/table-form/table-form.component';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
+import { TableFormComponent } from './components/table-form/table-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+
+import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
 @NgModule({
   declarations: [
     NgxLocalTableComponent,
@@ -38,7 +43,7 @@ import { MatSelectModule } from '@angular/material/select';
     // MeiFiltersComponent,
     // KKLNewPaginatorDirective,
     // MobileTableComponent,
- ],
+  ],
   imports: [
     CommonModule,
     MatTableModule,
@@ -65,7 +70,6 @@ import { MatSelectModule } from '@angular/material/select';
     NgxDatatableModule,
     MatInputModule,
     MatSelectModule,
-
   ],
   exports: [
     NgxLocalTableComponent,
@@ -81,4 +85,4 @@ import { MatSelectModule } from '@angular/material/select';
   ],
   // providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
-export class KKLNgxTableModule { }
+export class KKLNgxTableModule {}
