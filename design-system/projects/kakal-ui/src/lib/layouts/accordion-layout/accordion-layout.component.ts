@@ -10,7 +10,8 @@ import {
 import { MatCheckboxChange } from '@angular/material/checkbox';
 import { MatAccordion } from '@angular/material/expansion';
 import { AccordionDataSource } from './accordion-datasource';
-import { Panel, AccordionState } from './accordion-types';
+import { Panel } from './accordion-types';
+import { BreakpointService } from '../../../services/breakpoint.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -37,9 +38,15 @@ export class AccordionLayoutComponent implements OnInit {
     0: 600,
   };
 
-  constructor() {}
+  mobile$ : Observable<boolean>
+
+  constructor(
+    private breakpointService : BreakpointService
+  ) {}
 
   ngOnInit(): void {
+
+    this.mobile$ = this.breakpointService.isMobile()
   }
 
 

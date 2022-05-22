@@ -14,7 +14,7 @@
   </button>
   <div
     fxLayout="column"
-    fxLayoutAlign=" start"
+    fxLayoutAlign="start"
     fxLayoutGap="1rem"
     [ngClass]="{ 'hidden-class': !isDesktop }"
   >
@@ -184,6 +184,7 @@
             <div class="container">
               <ng-container *ngIf="paging">
                 <mat-paginator
+                  class="kkl-pagination"
                   #myPaging
                   dir="ltr"
                   fxLayout="row"
@@ -203,14 +204,13 @@
     </div>
   </div>
 
-
   <div [ngClass]="{ 'hidden-class': isDesktop }">
     <ng-container *ngIf="dataTable">
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
       <mat-accordion class="example-headers-align" multi dir="rtl">
-        <ng-container *ngFor="let item of dataTable;let i = index">
+        <ng-container *ngFor="let item of dataTable; let i = index">
           <mat-expansion-panel
             class="expansion-panel"
             style="margin: 8px 8px"
@@ -281,7 +281,10 @@
               <tr *ngFor="let col of oneColumns">
                 <ng-container *ngIf="col.key !== oneColumns[0].key">
                   <ng-container
-                    *ngIf="!(item | arrInclueds: editItems) || col.notEditable; else editBlock"
+                    *ngIf="
+                      !(item | arrInclueds: editItems) || col.notEditable;
+                      else editBlock
+                    "
                   >
                     <td
                       style="
@@ -319,7 +322,7 @@
                 <td class="actions" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngIf="
-                      !(element | arrInclueds: editItems);
+                      !(item | arrInclueds: editItems);
                       else addButtonTemplate
                     "
                   >
@@ -333,7 +336,7 @@
                       <ng-template #closeExpand>
                         <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
                       <button
-                        [ngClass]="{ expanded: item === expandedElement }"
+                        [ngClass]="{ expanded: (item | arrInclueds: expanded) }"
                         [matTooltip]="butt.label"
                         mat-icon-button
                         color="primary"
@@ -358,7 +361,10 @@
               </tr>
             </table>
 
-            <div *ngIf="item | arrInclueds: expanded" class="example-element-detail">
+            <div
+              *ngIf="item | arrInclueds: expanded"
+              class="example-element-detail"
+            >
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
@@ -372,12 +378,10 @@
         </ng-container>
       </mat-accordion>
     </ng-container>
-    <div [hidden]="!paging">
+    <div *ngIf="paging">
       <mat-paginator
+        class="kkl-pagination"
         #myPaging
-        dir="ltr"
-        fxLayout="row"
-        fxLayoutAlign="center center"
         kklNewPagination
         [pageIndex]="page.pageIndex"
         [pageSize]="page.pageSize"
@@ -387,8 +391,16 @@
       ></mat-paginator>
     </div>
   </div>
-
-
-
-
 </div>
+<ng-template #addButtonTemplate let-element="element">
+  <kkl-stroke-button
+    table-save-button
+    color="primary"
+    (clickEvent)="saveRowClick(element)"
+  >
+    שמור
+  </kkl-stroke-button>
+  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
+    <kkl-icon key="cancel"></kkl-icon>
+  </button>
+</ng-template>

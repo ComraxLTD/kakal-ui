@@ -426,15 +426,32 @@ th > h3 {
 }
 
 @media screen and (min-width: 600px) {
-  .button-center-start{
+  .button-center-start {
     float: left;
     margin-left: 100px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .button-center-start{
+  .button-center-start {
     margin: 0 auto;
     display: block;
+  }
+}
+
+::ng-deep mat-paginator.kkl-pagination {
+  .mat-paginator-page-size {
+    width: 50px !important;
+  }
+  .mat-paginator-container {
+    justify-content: center !important;
+
+    mat-form-field {
+      text-align: center;
+    }
+
+    .mat-select-arrow-wrapper {
+      display: none;
+    }
   }
 }

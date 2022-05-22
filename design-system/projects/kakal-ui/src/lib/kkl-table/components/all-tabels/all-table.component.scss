@@ -310,3 +310,29 @@ th>h4 {
     transform: translateY(-5px);
   }
 }
+
+
+@media screen and (max-width: 1280px) {
+  .table-form-wrapper {
+    width: 100%;
+  }
+
+  mat-form-field {
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .button-center-start{
+    float: left;
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .button-center-start{
+    margin: 0 auto;
+    display: block;
+  }
+}
