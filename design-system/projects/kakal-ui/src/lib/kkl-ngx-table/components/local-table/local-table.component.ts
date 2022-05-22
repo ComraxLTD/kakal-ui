@@ -1,6 +1,22 @@
-import { trigger, state, style, transition, animate } from '@angular/animations';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
-import { AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+  ViewChild,
+} from '@angular/core';
 import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -10,15 +26,29 @@ import { setControls } from '../../../mei-services/services/form-create';
 import { ControlBase } from '../../../mei-form/models/control.model';
 import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
-import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../../kkl-table/models/table-actions.model';
+import {
+  RowActionEvent,
+  RowActionModel,
+  RowExpandEvent,
+} from '../../../kkl-table/models/table-actions.model';
 import { TableBase } from '../../../kkl-table/models/table.model';
 
 import { DialogService } from '../../../dialog/dialog.service';
-import { BreakpointService, RouterService } from '../../../../services/services';
+import {
+  BreakpointService,
+  RouterService,
+} from '../../../../services/services';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 import { customFilterPredicate } from '../../../kkl-table/components/local-table/local-filter';
 
-const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavigation'];
+import { Page } from '../../models/page';
+
+const normalActions = [
+  'inlineEdit',
+  'inlineDelete',
+  'inlineExpand',
+  'inlineNavigation',
+];
 
 @Component({
   selector: 'kkl-ngx-local-table',
@@ -32,12 +62,11 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @ViewChild('myExpand') myExpand!: ElementRef;
   expandHeight: number = 0;
 
-// control the size of div
+  // control the size of div
   @ViewChild('myIdentifier') myIdentifier: ElementRef;
 
   @Input() noMobile: boolean = false;
   destroySubject$: Subject<void> = new Subject();
-
 
   isLoading: boolean = true;
 
@@ -66,21 +95,18 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.oneColumns = value;
   }
 
-
   dataTable: any[];
   allData: any[];
   @Input() set dataSource(value: any[]) {
-    if(value) {
-      this.allData = [...value]
+    if (value) {
+      this.allData = [...value];
       this.dataTable = value;
       this.isLoading = false;
-    }
-    else {
+    } else {
       this.allData = [];
       this.dataTable = [];
     }
   }
-
 
   localButtons: RowActionModel[];
   @Input() set rowActions(val: RowActionModel[]) {
@@ -92,33 +118,34 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort)
   sort!: MatSort;
 
-
   searchRow = {};
   editItems = [];
   editItemsData = [];
 
-
   isDesktop: boolean = true;
 
+  page = new Page();
 
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-  }
-
-  constructor(private dialogService: DialogService, private routerService: RouterService) {
+  constructor(
+    private dialogService: DialogService,
+    private routerService: RouterService
+  ) {
+    this.page.pageIndex = 0;
+    this.page.pageSize = 5;
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
-      if(size <= 600 && !this.noMobile) {
+      if (size <= 600 && !this.noMobile) {
         this.isDesktop = false;
       } else {
         this.isDesktop = true;
       }
     }, 0);
   }
-
 
   updateFilter(event, key) {
     this.searchRow[key] = event;
@@ -131,13 +158,17 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     const searchVal = this.searchRow;
     let filters = [];
     const keys = [];
-    arr.forEach(a => {
-      if(searchVal[a.key] && !keys.includes(a.key)){
+    arr.forEach((a) => {
+      if (searchVal[a.key] && !keys.includes(a.key)) {
         keys.push(a.key);
-        filters.push({key: a.key, controlType: a.controlType, val: searchVal[a.key]});
+        filters.push({
+          key: a.key,
+          controlType: a.controlType,
+          val: searchVal[a.key],
+        });
       }
     });
-    const temp = this.allData.filter(d => {
+    const temp = this.allData.filter((d) => {
       return customFilterPredicate(d, JSON.stringify(filters));
     });
     // update the rows
@@ -146,23 +177,27 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.ngxTable.offset = 0;
   }
 
-
-
-  buttonClick(butt: RowActionModel, obj:any, key: string) {
-    if(normalActions.includes(butt.type)) {
+  buttonClick(butt: RowActionModel, obj: any, key: string) {
+    if (normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
-          this.dialogService.openAlert({message: 'האם אתה בטוח שאתה רוצה למחוק?', isConfirm: true}).afterClosed().subscribe(result => {
-            if(result){
-              this.deleteRow.emit(obj);
-            }
-          });
+          this.dialogService
+            .openAlert({
+              message: 'האם אתה בטוח שאתה רוצה למחוק?',
+              isConfirm: true,
+            })
+            .afterClosed()
+            .subscribe((result) => {
+              if (result) {
+                this.deleteRow.emit(obj);
+              }
+            });
           break;
         case 'inlineEdit':
           this.addRowGroup(obj);
           break;
         case 'inlineExpand':
-          this.expandRow.emit({row: obj, key: key});
+          this.expandRow.emit({ row: obj, key: key });
           this.addExpandedRow(obj);
           break;
         case 'inlineNavigation':
@@ -173,7 +208,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
           break;
       }
     } else {
-      this.actionClicked.emit({action: butt.type, row: obj, key: key});
+      this.actionClicked.emit({ action: butt.type, row: obj, key: key });
     }
   }
 
@@ -191,9 +226,9 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.saveRow.emit(this.editItemsData.splice(index, 1)[0]);
     this.editItemsData = [...this.editItemsData];
 
-    if(!Object.keys(row).length) {
+    if (!Object.keys(row).length) {
       const dIndex = this.dataTable.indexOf(row);
-      if(dIndex > -1) {
+      if (dIndex > -1) {
         this.dataTable.splice(dIndex, 1);
         this.dataTable = this.dataTable.slice();
         // this.ngxTable.recalculate();
@@ -208,9 +243,9 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.editItemsData.splice(index, 1);
     this.editItemsData = [...this.editItemsData];
 
-    if(!Object.keys(row).length) {
+    if (!Object.keys(row).length) {
       const dIndex = this.dataTable.indexOf(row);
-      if(dIndex > -1) {
+      if (dIndex > -1) {
         this.dataTable.splice(dIndex, 1);
         this.dataTable = this.dataTable.slice();
         // this.ngxTable.recalculate();
@@ -231,21 +266,27 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.dataTable = [...this.dataTable];
   }
 
-
   onRowEditChange(event, row, key) {
     const index = this.editItems.indexOf(row);
     this.editItemsData[index][key] = event;
   }
 
-
   dropTable(event: CdkDragDrop<MatTableDataSource<any>, any>) {
     this.dragDisabled = true;
 
-    if(this.paging){
-      let cutOut = this.dataTable.splice(this.paginator.pageIndex*this.paginator.pageSize + event.previousIndex, 1) [0]; // cut the element at index 'from'
-      this.dataTable.splice(this.paginator.pageIndex*this.paginator.pageSize + event.currentIndex, 0, cutOut);
+    if (this.paging) {
+      let cutOut = this.dataTable.splice(
+        this.paginator.pageIndex * this.paginator.pageSize +
+          event.previousIndex,
+        1
+      )[0]; // cut the element at index 'from'
+      this.dataTable.splice(
+        this.paginator.pageIndex * this.paginator.pageSize + event.currentIndex,
+        0,
+        cutOut
+      );
     } else {
-      let cutOut = this.dataTable.splice(event.previousIndex, 1) [0]; // cut the element at index 'from'
+      let cutOut = this.dataTable.splice(event.previousIndex, 1)[0]; // cut the element at index 'from'
       this.dataTable.splice(event.currentIndex, 0, cutOut);
     }
     this.dataTable = this.dataTable.slice();
@@ -253,37 +294,27 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.ngxTable.recalculate();
   }
 
-
-
-
   onResize(event) {
     const size = event.newRect.width;
-    if(size <= 600 && !this.noMobile) {
+    if (size <= 600 && !this.noMobile) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;
     }
     this.onResizeExpand();
   }
-  onResizeExpand(){
+  onResizeExpand() {
     this.expandHeight = this.myExpand?.nativeElement.offsetHeight;
     this.dataTable = [...this.dataTable];
   }
-
 
   ngOnDestroy() {
     this.destroySubject$.next();
     this.destroySubject$.complete();
   }
 
-
-
-  onPage(event) {
-    // clearTimeout(this.timeout);
-    // this.timeout = setTimeout(() => {
-      console.log('paged!', event);
-    // }, 100);
+  pageChanged(event: PageEvent) {
+    console.log(event)
+    this.page = { ...this.page, ...event };
   }
-
-
 }

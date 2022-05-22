@@ -35,7 +35,6 @@ import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
   declarations: [
     NgxLocalTableComponent,
     TableFormComponent,
-    KKLNgxPaginatorDirective,
     // EventTableComponent,
     // EventAdvancedSearchComponent,
     // TableFormComponent,
@@ -75,7 +74,6 @@ import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
   exports: [
     NgxLocalTableComponent,
     TableFormComponent,
-    KKLNgxPaginatorDirective,
     // EventTableComponent,
     // EventAdvancedSearchComponent,
     // TableFormComponent,

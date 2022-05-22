@@ -34,7 +34,8 @@
         [footerHeight]="50"
         rowHeight="auto"
         [rows]="dataTable"
-        [limit]="5"
+        [offset]="page.pageIndex"
+        [limit]="page.pageSize"
       >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
@@ -180,11 +181,12 @@
                 dir="ltr"
                 fxLayout="row"
                 fxLayoutAlign="center center"
-                kklNgxPagination
+                kklNewPagination
+                [pageIndex]="offset"
                 [pageSize]="pageSize"
                 [length]="rowCount"
-                [pageSizeOptions]="[10, 25, 100]"
-                (page)="onPage($event)"
+                [pageSizeOptions]="[5, 10, 25]"
+                (page)="pageChanged($event)"
               ></mat-paginator>
             </div>
           </ng-template>
@@ -192,7 +194,4 @@
       </ngx-datatable>
     </div>
   </div>
-  <!-- <div [hidden]="!paging">
-    <mat-paginator #myPaging dir="ltr" fxLayout="row" fxLayoutAlign="center center" kklNewPagination [pageSizeOptions]="[10, 25, 100]" (page)="onPage($event)" aria-label="Select page"></mat-paginator>
-  </div> -->
 </div>
