@@ -181,7 +181,8 @@
                 fxLayout="row"
                 fxLayoutAlign="center center"
                 kklNgxPagination
-        
+                [pageSize]="pageSize"
+                [length]="rowCount"
                 [pageSizeOptions]="[10, 25, 100]"
                 (page)="onPage($event)"
               ></mat-paginator>
