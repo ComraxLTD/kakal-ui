@@ -1,7 +1,7 @@
 
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 <div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
-  <div [ngClass]="{'hidden-class': !isDesktop}">
+  <div fxLayout="column" fxLayoutAlign=" start" fxLayoutGap="1rem" [ngClass]="{'hidden-class': !isDesktop}">
     <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
       {{newRowAction}}
       <mat-icon>add</mat-icon>
@@ -53,9 +53,19 @@
             </a>
           </ng-template>
         </ngx-datatable-column> -->
-        <ngx-datatable-column *ngFor="let column of oneColumns" [name]="column.key">
-          <ng-template let-sort="sortFn" ngx-datatable-header-template>
-            <span (click)="sort()">{{ column.label }}</span>
+        <ngx-datatable-column
+          *ngFor="let column of oneColumns"
+          [name]="column.key"
+        >
+            <!-- style="background-color: blue;" -->
+          <ng-template
+            let-sort="sortFn"
+            ngx-datatable-header-template
+          >
+          <!-- column.controlType === 'number' || column.controlType === 'sum' -->
+            <span
+            (click)="sort()"
+            >{{ column.label }}</span>
             <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>

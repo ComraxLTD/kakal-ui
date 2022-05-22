@@ -3,16 +3,30 @@
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
 // @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
+
 :host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
 :host ::ng-deep .datatable-header {
-  border-bottom: 1px solid main.color(primary) !important;
+  border-bottom: 2px solid main.color(accent) !important;
 }
 
-::ng-deep .datatable-header-cell-label{
+::ng-deep .datatable-header-cell-template-wrap{
   font-size: 14px;
   font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+::ng-deep .datatable-body-cell{
+  min-height: 50px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+// ::ng-deep .datatable-body-cell>span{
+//   height: 50px !important;
+// }
 
 tr.example-detail-row {
   height: 0;
@@ -86,6 +100,14 @@ thead{
   // position: relative;
   overflow: auto;
   height: 100%;
+}
+.all-table-form>div{
+  width: 99%;
+  margin: auto;
+}
+
+.all-table-form>div>div{
+  width: 100%;
 }
 
 table table {

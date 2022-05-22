@@ -11,46 +11,33 @@
   </div>
 </ng-container>
 <ng-template #noTemplate>
-  <span 
+  <span
     fxLayout="row"
-    plContentAlignment 
-    [justifyContent]="{
-      isMobile, 
-      isNumber: 
-        question.controlType === 'number' || 
-        question.controlType === 'sum'
-    }"
+    fxLayoutAlign="center center"
   >
-    <kkl-icon 
-      *ngIf="question.colIcon" 
-      color="primary" 
-      [key]="question.colIcon" 
+    <kkl-icon
+      *ngIf="question.colIcon"
+      color="primary"
+      [key]="question.colIcon"
       style="display: inline-block; padding-left: 8px"
     ></kkl-icon>
-    <span 
-      style="width: 100%;" 
-      *ngIf="question.button; 
+    <span
+      style="width: 100%;"
+      *ngIf="question.button;
       else withoutButton"
     >
-      <button 
-        style="width: 100%; padding: 0;" 
-        mat-button 
-        color="primary" 
+      <button
+        style="width: 100%; padding: 0;"
+        mat-button
+        color="primary"
         (click)="buttonClick()"
       >
-        <span 
-          fxLayoutAlign="start center" 
-          plContentAlignment 
-          [buttonJustifyContent]="{
-            isMobile, 
-            isNumber: 
-              question.controlType === 'number' || 
-              question.controlType === 'sum'
-          }"
+        <span
+          fxLayoutAlign="center center"
         >
-          <span 
-              *ngIf="data" 
-              fxLayout="row" 
+          <span
+              *ngIf="data"
+              fxLayout="row"
               style="white-space: pre-wrap; line-height: normal;"
             >
             <span style="border-bottom: 1px solid;">
@@ -61,22 +48,22 @@
               }}
             </span>
           </span>
-          <kkl-icon 
-            style="padding: 0 10px;" 
-            [color]="'primary'" 
+          <kkl-icon
+            style="padding: 0 10px;"
+            [color]="'primary'"
             *ngIf="
-              question.button.icon || 
+              question.button.icon ||
               question.button.type === 'inlineExpand'
-            " 
+            "
             [key]="question.button.icon || 'expand_more'"
           ></kkl-icon>
         </span>
       </button>
     </span>
     <ng-template #withoutButton>
-      <div 
-        *ngIf="data" 
-        style="white-space: pre-wrap; margin-top: 1px"
+      <div
+        *ngIf="data"
+        style="white-space: pre-wrap; font-size: 14px !important;"
       >
         <span>
           {{ data | tableCellPipe: question.controlType }}
