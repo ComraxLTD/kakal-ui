@@ -1,8 +1,8 @@
 @use "../../../../styles/variables" as main;
 @use '@angular/material' as mat;
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.scss';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
 // @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
 :host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
@@ -10,7 +10,7 @@
   border-bottom: 2px solid main.color(accent) !important;
 }
 
-::ng-deep .datatable-header-cell-template-wrap{
+::ng-deep .datatable-header-cell-template-wrap {
   font-size: 14px;
   font-weight: 600;
   display: flex;
@@ -18,15 +18,15 @@
   justify-content: center;
 }
 
-::ng-deep .datatable-body-cell{
+::ng-deep .datatable-body-cell {
   min-height: 50px !important;
   display: flex !important;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-::ng-deep datatable-body-row{
-  margin: 5px;
+::ng-deep datatable-body-row {
+  margin: 3px;
 }
 
 // ::ng-deep .datatable-body-cell>span{
@@ -112,12 +112,12 @@ thead {
   overflow: auto;
   height: 100%;
 }
-.all-table-form>div{
+.all-table-form > div {
   width: 99%;
   margin: auto;
 }
 
-.all-table-form>div>div{
+.all-table-form > div > div {
   width: 100%;
 }
 
@@ -346,7 +346,6 @@ th > h3 {
   justify-content: center;
 }
 
-
 // Summary row styles
 .datatable-summary-row {
   .datatable-body-row {
@@ -362,16 +361,54 @@ th > h3 {
   }
 }
 
+::ng-deep.expand-class + .datatable-row-detail {
+  @include mat.elevation(2);
+  margin-top: -5px;
+  margin-right: 2px;
+  height: fit-content !important;
+  & > .example-element-detail {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #ffffff !important;
+    .datatable-header {
+      border-top: dashed 1.5px main.color(primaryLight);
+      border-bottom: 0px !important;
+      border-bottom: none;
+      display: flex;
+      align-items: center;
 
+      datatable-header-cell {
+        background-color: main.color(secondLine);
+      }
 
-::ng-deep.expand-class + .datatable-row-detail > .example-element-detail{
-  width: 100%;
-  border-top: dashed 1.5px main.color(primaryLight);
-  padding: 10px 20px;
-  background-color: #ffffff !important;
-  .datatable-header{
-    border-bottom: 0px !important;
-    border-bottom: none;
-    background-color: main.color(secondLine);
+      .datatable-header-inner {
+        height: main.spacing(4);
+      }
+    }
+  }
+}
+::ng-deep button[table-add-button] {
+  span {
+    color: main.color(text);
+  }
+}
+
+::ng-deep datatable-header-cell.datatable-header-cell {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.table-form-wrapper {
+  width: 200px;
+}
+
+@media screen and (max-width: 1280px) {
+  .table-form-wrapper {
+    width: 100%;
+  }
+
+  mat-form-field {
+    width: 100%;
+    font-size: 14px;
   }
 }

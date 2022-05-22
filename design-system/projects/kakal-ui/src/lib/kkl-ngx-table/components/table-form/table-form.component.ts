@@ -5,8 +5,9 @@ import { QuestionBase } from '../../../form/models/question.model';
 @Component({
   selector: 'kkl-ngx-table-form',
   templateUrl: './table-form.component.html',
+  styleUrls : ['./table-form.component.scss']
 })
-export class TableFormComponent implements OnInit  {
+export class NgxTableFormComponent implements OnInit  {
   @Input() question!: QuestionBase;
   @Input() initial!: any;
 

@@ -1,57 +1,27 @@
-<div fxLayout="column" fxLayoutAlign="center" class="marketers-tour-list">
+<div fxLayout="column" fxLayoutAlign="center" fxLayoutGap="2rem" class="marketers-tour-list">
   <div fxLayout="row" fxLayoutAlign="center">
-    <div
-      fxLayout="row-reverse"
-      fxFlex="80"
-      fxLayoutAlign="space-between center"
-    >
-      <kkl-form
-        fxFlex="20%"
-        [controls]="select"
-        [options]="selectOptions"
-        (queryChanged)="onQueryChanged($event)"
-        (selectChanged)="onSelectChanged($event)"
-        (openChanged)="onOpenChanged($event)"
-      ></kkl-form>
-      <kkl-form
-        fxFlex="40%"
-        [controls]="autoComplete"
-        (queryChanged)="onQueryChanged($event)"
-        (selectChanged)="onSelectChanged($event)"
-        (openChanged)="onOpenChanged($event)"
-      ></kkl-form>
-<!--
-      <button mat-raised-button color="primary">
-        <kkl-typography> טיול חדש</kkl-typography>
-      </button> -->
-      <div class="icon-container mat-elevation-z4" fxLayout="column" fxLayoutAlign="center center" appSize [padding]="[5]">
-        <kkl-icon [size]="2" [color]="'primary'" key="delete"></kkl-icon>
+      <div fxLayout.sm="column" fxLayout.lt-sm="column" fxLayout="row" fxFlex.lt-sm="100" fxFlex="80" fxLayoutAlign="space-between center" fxLayoutAlign.lt-sm="center center">
+          <kkl-form fxFlex.lt-sm="100" fxFlex="20" dir="rtl" [controls]="select" [options]="selectOptions" (queryChanged)="onQueryChanged($event)" (selectChanged)="onSelectChanged($event)" (openChanged)="onOpenChanged($event)"></kkl-form>
+          <kkl-form fxFlex.lt-sm="100" dir="rtl" fxFlex="40" [controls]="autoComplete" (queryChanged)="onQueryChanged($event)" (selectChanged)="onSelectChanged($event)" (openChanged)="onOpenChanged($event)"></kkl-form>
+
+          <button mat-raised-button color="primary">
+      <kkl-typography color="paper"> טיול חדש</kkl-typography>
+    </button>
       </div>
-    </div>
   </div>
 
   <div fxLayout="row" fxLayoutAlign="center">
-    <div fxFlex="80">
-      <kkl-local-table
-        [dataSource]="dataSource"
-        [columns]="columns"
-        [rowActions]="rowActions"
-        [expandTemplate]="expand"
-        (expandRow)="onExpand($event)"
-        [colsTemplate]="{ status: statusTemp }"
-      ></kkl-local-table>
-    </div>
+      <div fxFlex="80">
+          <kkl-ngx-local-table [dataSource]="dataSource" [columns]="columns" [rowActions]="rowActions" [expandTemplate]="expand" (expandRow)="onExpand($event)" [colsTemplate]="{ status: statusTemp }"></kkl-ngx-local-table>
+      </div>
   </div>
 </div>
 
 <ng-template #expand>
-  <kkl-tabs
-    [data]="data"
-    [templates]="{Providers,Charged,LastTransactions}"
-  ></kkl-tabs>
+  <kkl-tabs fxFlex="100" [direction]="'horizontal'" [tabs]="data" [templates]="{Providers,Charged,LastTransactions}"></kkl-tabs>
 </ng-template>
 <ng-template #statusTemp let-data>
-  <kkl-status-progress [status]="data" [labelRef]="label"></kkl-status-progress>
+  <kkl-status-progress [status]="data"></kkl-status-progress>
 </ng-template>
 <ng-template #Providers>
   <app-marketers-providers></app-marketers-providers>

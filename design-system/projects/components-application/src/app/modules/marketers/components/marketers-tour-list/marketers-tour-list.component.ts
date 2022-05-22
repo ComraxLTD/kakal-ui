@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ControlBase, OptionsModel, RowActionModel, TableBase } from '../../../../../../../kakal-ui/src/public-api';
+import {
+  ControlBase,
+  OptionsModel,
+  RowActionModel,
+  TableBase,
+} from '../../../../../../../kakal-ui/src/public-api';
 import { MarketersTourListService } from './marketers-tour-list.service';
 
 @Component({
@@ -15,9 +20,8 @@ export class MarketersTourListComponent implements OnInit {
   select: ControlBase[] = [];
   selectOptions: OptionsModel[] = [];
   autoComplete: ControlBase[] = [];
-  data:any[]=[]
   constructor(private marketersTourListService: MarketersTourListService) {}
-
+  data!: { key: string; label: string }[];
   ngOnInit(): void {
     this.select = this.marketersTourListService.select;
     this.selectOptions = this.marketersTourListService.selectOptions;
@@ -27,7 +31,9 @@ export class MarketersTourListComponent implements OnInit {
     this.data = this.marketersTourListService.data;
   }
 
-  rowActions: RowActionModel[] = [{ type: 'inlineExpand', icon: 'expand' }];
+  rowActions: RowActionModel[] = [
+    { type: 'inlineExpand', icon: 'keyboard_arrow_down' },
+  ];
   onExpand(event: any) {
     console.log(event);
   }
@@ -42,5 +48,4 @@ export class MarketersTourListComponent implements OnInit {
   onOpenChanged(event: any) {
     console.log(event);
   }
-  padding=[120,45]
 }
