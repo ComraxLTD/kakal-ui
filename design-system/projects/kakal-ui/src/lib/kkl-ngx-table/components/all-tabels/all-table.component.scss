@@ -412,3 +412,17 @@ th > h3 {
     font-size: 14px;
   }
 }
+
+@media screen and (min-width: 600px) {
+  .button-center-start{
+    float: left;
+    margin-left: 100px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .button-center-start{
+    margin: 0 auto;
+    display: block;
+  }
+}
