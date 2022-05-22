@@ -1,23 +1,13 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 <div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
-  <div [ngClass]="{ 'hidden-class': !isDesktop }">
-    <button
-      *ngIf="newRowAction"
-      kkl-border
-      [thick]="2"
-      mat-stroked-button
-      color="primary"
-      (click)="addNewRowGroup()"
-    >
-      {{ newRowAction }}
+  <div fxLayout="column" fxLayoutAlign=" start" fxLayoutGap="1rem" [ngClass]="{'hidden-class': !isDesktop}">
+    <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
+      {{newRowAction}}
       <mat-icon>add</mat-icon>
     </button>
-    <div
-      class="table-wrapper"
-      cdkDropList
-      (cdkDropListDropped)="dropTable($event)"
-      [cdkDropListDisabled]="dragDisabled"
-    >
+    <div class="table-wrapper">
+      <!-- cdkDropList
+      (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled"> -->
       <!-- [cdkDropListData]="dataTable" -->
       <mat-progress-bar
         mode="indeterminate"
@@ -28,7 +18,7 @@
       <ngx-datatable
         dir="rtl"
         #myTable
-        class="material expandable"
+        class="expandable"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
         [footerHeight]="50"
@@ -36,6 +26,8 @@
         [rows]="dataTable"
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
+        [rowClass]="getRowClass"
+        [limit]="5"
       >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
@@ -80,13 +72,16 @@
           *ngFor="let column of oneColumns"
           [name]="column.key"
         >
-          <ng-template let-sort="sortFn" ngx-datatable-header-template>
-            <span (click)="sort()">{{ column.label }}</span>
-            <button
-              *ngIf="!column.noFilter"
-              mat-icon-button
-              [matMenuTriggerFor]="menu"
-            >
+            <!-- style="background-color: blue;" -->
+          <ng-template
+            let-sort="sortFn"
+            ngx-datatable-header-template
+          >
+          <!-- column.controlType === 'number' || column.controlType === 'sum' -->
+            <span
+            (click)="sort()"
+            >{{ column.label }}</span>
+            <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
             </button>

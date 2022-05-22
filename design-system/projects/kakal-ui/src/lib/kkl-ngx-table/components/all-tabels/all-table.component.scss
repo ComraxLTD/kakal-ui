@@ -1,63 +1,35 @@
 @use "../../../../styles/variables" as main;
-
-@import "~@swimlane/ngx-datatable/index.css";
-@import "~@swimlane/ngx-datatable/themes/material.scss";
-@import "~@swimlane/ngx-datatable/assets/icons.css";
-
-// common datatable colors
-$ngx-datatable-background: #fff !default;
-$ngx-datatable-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-  0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12) !default;
-$ngx-datatable-row-odd-background: #eee !default;
-
-// default row and cell background colors
-$ngx-datatable-default-background: #fff !default;
-$ngx-datatable-default-background-hover: #eee !default;
-$ngx-datatable-default-background-focus: #ddd !default;
-
-// default background colors for cell selection style
-$ngx-datatable-cellselection-background-hover: #eee !default;
-$ngx-datatable-cellselection-background-focus: #ddd !default;
-
-// background and text colors for selected cell / row
-$ngx-datatable-selected-active-background: #304ffe !default;
-$ngx-datatable-selected-active-color: #fff !default;
-$ngx-datatable-selected-active-background-hover: #193ae4 !default;
-$ngx-datatable-selected-active-color-hover: #fff !default;
-$ngx-datatable-selected-active-background-focus: #2041ef !default;
-$ngx-datatable-selected-active-color-focus: #fff !default;
-
-// colors for header elements
-$datatable-header-cell-background: #fff !default;
-$datatable-header-cell-color: rgba(0, 0, 0, 0.54) !default;
-$datatable-header-border-bottom-color: rgba(0, 0, 0, 0.12) !default;
-$datatable-header-resize-handle-color: #eee !default;
-
-// colors for table body elements
-$datatable-row-detail-background: #f5f5f5 !default;
-$datatable-body-cell-color: rgba(0, 0, 0, 0.87) !default;
-$datatable-group-header-background: #f5f5f5 !default;
-$datatable-group-header-border-top-color: #d9d8d9 !default;
-$datatable-group-header-border-bottom-color: #d9d8d9 !default;
-
-// colors for footer elements
-$datatable-footer-cell-color: rgba(0, 0, 0, 0.54) !default;
-$datatable-footer-border-top-color: rgba(0, 0, 0, 0.12) !default;
-$datatable-pager-color: rgba(0, 0, 0, 0.54) !default;
-$datatable-pager-color-hover: rgba(0, 0, 0, 0.75) !default;
-$datatable-pager-background-hover: rgba(158, 158, 158, 0.2) !default;
-$datatable-pager-disabled-color: rgba(0, 0, 0, 0.26) !default;
-$datatable-pager-disabled-background: transparent !default;
-$datatable-pager-active-background: rgba(158, 158, 158, 0.2) !default;
-
-// colors for summary row elements
-$datatable-summary-row-background: #ddd !default;
-$datatable-summary-row-background-hover: #ddd !default;
-
+@use '@angular/material' as mat;
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
 // @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
+
 :host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
 :host ::ng-deep .datatable-header {
-  border-bottom: 1px solid main.color(primary) !important;
+  border-bottom: 2px solid main.color(accent) !important;
+}
+
+::ng-deep .datatable-header-cell-template-wrap{
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+::ng-deep .datatable-body-cell{
+  min-height: 50px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+// ::ng-deep .datatable-body-cell>span{
+//   height: 50px !important;
+// }
+:host ::ng-deep .expand-class {
+  @include mat.elevation(2);
 }
 
 tr.example-detail-row {
@@ -131,6 +103,14 @@ thead {
   // position: relative;
   overflow: auto;
   height: 100%;
+}
+.all-table-form>div{
+  width: 99%;
+  margin: auto;
+}
+
+.all-table-form>div>div{
+  width: 100%;
 }
 
 table table {

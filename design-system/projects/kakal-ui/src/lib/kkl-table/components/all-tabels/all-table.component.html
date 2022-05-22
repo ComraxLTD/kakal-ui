@@ -50,24 +50,33 @@
           *ngFor="let column of oneColumns"
           [matColumnDef]="column.key"
         >
-          <th mat-header-cell *matHeaderCellDef style="white-space: nowrap">
-            <h3 mat-sort-header style="display: inline-block">
-              {{ column.label }}
-            </h3>
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            style="white-space: nowrap;"
+            [ngClass]="{'mat-header-cell-text': column.controlType !== 'number'}"
+          >
+            <h4 style="display: inline-block; font-size: 14px !important;">{{column.label}}</h4>
             <button
               *ngIf="!column.noFilter"
               mat-icon-button
               [matMenuTriggerFor]="menu"
             >
+              <!-- mat-sort-header -->
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" (closed)="searchChanged()">
+            <mat-menu
+              class="filter"
+              #menu="matMenu"
+              (closed)="searchChanged()"
+            >
               <kkl-table-form
                 [formGroup]="searchRow"
                 [question]="column"
                 (rowEdited)="onRowEditChange(-1)"
               ></kkl-table-form>
+              <span mat-sort-header></span>
             </mat-menu>
           </th>
           <td
@@ -133,7 +142,12 @@
                 class="example-element-detail"
               >
                 <ng-container *ngIf="expandTemplate">
-                  <ng-template *ngTemplateOutlet="expandTemplate; context: {$implicit:expandedElement}"></ng-template>
+                  <ng-template
+                    *ngTemplateOutlet="
+                      expandTemplate;
+                      context: { $implicit: expandedElement }
+                    "
+                  ></ng-template>
                 </ng-container>
               </div>
             </div>
@@ -142,7 +156,25 @@
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="center-butt">
-            <h3> פעולות</h3>
+            <button
+              *ngIf="newRowAction"
+              kkl-border
+              [thick]="2"
+              mat-stroked-button
+              color="primary"
+              (click)="addNewRowGroup()"
+            >
+              {{ newRowAction }}
+              <mat-icon>add</mat-icon>
+            </button>
+            <h4
+              style="
+                font-size: 14px !important;
+                text-align: start;
+                margin-bottom: 2px;
+              "
+              *ngIf="!newRowAction"
+            > פעולות</h4>
           </th>
           <td
             mat-cell
@@ -152,17 +184,11 @@
             [attr.rowspan]="element == expandedElement ? 1 : 2"
           >
             <ng-container
-              *ngIf="!(element | arrInclueds: editItems); else addButtonTemplate"
-            >
-              <ng-container *ngFor="let butt of localButtons">
-                <ng-container
-                  *ngTemplateOutlet="
-                    butt.button ? buttonTemp : iconButtonTemp;
-                    context: { $implicit: butt }
-                  "
-                ></ng-container>
-              </ng-container>
-            </ng-container>
+              *ngTemplateOutlet="
+              !(element | arrInclueds: editItems)
+              ? actions : addButtonTemplate;
+               context: { $implicit: localButtons, element }"
+            ></ng-container>
           </td>
         </ng-container>
 
@@ -237,6 +263,7 @@
                         fxLayoutAlign="start start"
                       >
                         <kkl-table-cell
+                          [isMobile]="true"
                           class="kkl-table-cell"
                           [data]="item[oneColumns[0].key]"
                           [question]="oneColumns[0]"
@@ -286,12 +313,14 @@
                         height: 6rem;
                         font-weight: bolder;
                         border-bottom: 1px solid #e4e4e4;
+                        width: 40%;
                       "
                     >
                       {{ col.label }}
                     </td>
                     <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
                       <kkl-table-cell
+                        [isMobile]="true"
                         [data]="item[col.key]"
                         [question]="col"
                         (buttClick)="buttonClick(col.button, item, col.key)"
@@ -304,6 +333,7 @@
                       <td style="font-weight: bolder">{{ col.label }}</td>
                       <td>
                         <kkl-table-cell
+                          [isMobile]="true"
                           [data]="item[col.key]"
                           [question]="col"
                           (buttClick)="buttonClick(col.button, item, col.key)"
@@ -325,12 +355,13 @@
               </tr>
               <tr *ngIf="localButtons?.length">
                 <td style="font-weight: bolder">פעולות</td>
-                <td
-                  class="actions"
-                  fxLayout="row wrap"
-                  fxLayoutAlign="space-evenly"
-                >
-                  <ng-container *ngIf="false; else addButtonTemplate">
+                <td class="actions" fxLayoutAlign="space-evenly">
+                  <ng-container
+                    *ngIf="
+                      !(element | arrInclueds: editItems);
+                      else addButtonTemplate
+                    "
+                  >
                     <ng-container *ngFor="let butt of localButtons">
                       <!-- <ng-container *ngIf="element == expandedElement && butt.type === 'inlineExpand'; else closeExpand">
                         <button class="container-button" mat-raised-button color="primary" (click)="buttonClick(butt, item, 'actions')">
@@ -341,7 +372,7 @@
                       <ng-template #closeExpand>
                         <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
                       <button
-                        [ngClass]="{ expanded: item == expandedElement }"
+                        [ngClass]="{ expanded: item === expandedElement }"
                         [matTooltip]="butt.label"
                         mat-icon-button
                         color="primary"
@@ -368,7 +399,12 @@
 
             <div *ngIf="item == expandedElement" class="example-element-detail">
               <ng-container *ngIf="expandTemplate">
-                <ng-template *ngTemplateOutlet="expandTemplate; context: {$implicit:expandedElement}"></ng-template>
+                <ng-template
+                  *ngTemplateOutlet="
+                    expandTemplate;
+                    context: { $implicit: expandedElement }
+                  "
+                ></ng-template>
               </ng-container>
             </div>
           </mat-expansion-panel>
@@ -390,7 +426,18 @@
   </div>
 </form>
 
-<ng-template #buttonTemp let-button>
+<ng-template #actions let-localButtons let-element="element">
+  <ng-container *ngFor="let butt of localButtons">
+    <ng-container
+      *ngTemplateOutlet="
+                    butt.button ? buttonTemp : iconButtonTemp;
+                    context: { $implicit: butt, element }
+                  "
+    ></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #buttonTemp let-button let-element="element">
   <kkl-stroke-button
     table-action-button
     color="primary"
@@ -400,7 +447,7 @@
   </kkl-stroke-button>
 </ng-template>
 
-<ng-template #iconButtonTemp let-button>
+<ng-template #iconButtonTemp let-button let-element="element">
   <button
     [matTooltip]="button.label"
     mat-icon-button
@@ -411,20 +458,15 @@
   </button>
 </ng-template>
 
-<ng-template #addButtonTemplate>
+<ng-template #addButtonTemplate let-element="element">
   <kkl-stroke-button
     table-save-button
     color="primary"
-    (clickEvent)="buttonClick(button, element, 'actions')"
+    (clickEvent)="saveRowClick(element)"
   >
     שמור
   </kkl-stroke-button>
-  <button
-    fxFlexOffset="1rem"
-    matTooltip="בטל"
-    mat-icon-button
-    (click)="cancelRowClick(item)"
-  >
+  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
     <kkl-icon key="cancel"></kkl-icon>
   </button>
 </ng-template>

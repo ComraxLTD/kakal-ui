@@ -1,3 +1,37 @@
+export const STICKER = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="21.333" height="20" viewBox="0 0 21.333 20">
+    <g id="Group_4184" data-name="Group 4184" transform="translate(-333 -108.266)">
+      <path id="Path_854" data-name="Path 854" d="M18.583,16H2.75A2.753,2.753,0,0,0,0,18.75v14.5A2.753,2.753,0,0,0,2.75,36H16.667a3.061,3.061,0,0,0,2.178-.9l1.586-1.586a3.061,3.061,0,0,0,.9-2.178V18.75A2.753,2.753,0,0,0,18.583,16ZM2.75,17.333H18.583A1.418,1.418,0,0,1,20,18.75v1.917H1.333V18.75A1.418,1.418,0,0,1,2.75,17.333ZM1.333,33.25V22H20v8.667H17.917A1.919,1.919,0,0,0,16,32.583v2.083H2.75A1.418,1.418,0,0,1,1.333,33.25Zm18.155-.681L17.9,34.155a1.745,1.745,0,0,1-.569.381V32.583A.584.584,0,0,1,17.917,32h1.952A1.746,1.746,0,0,1,19.488,32.569Z" transform="translate(333 92.266)" fill="'none'"/>
+      <path id="Path_855" data-name="Path 855" d="M124,208.667a.667.667,0,0,0-.667-.667H112.667a.667.667,0,1,0,0,1.333h10.667A.667.667,0,0,0,124,208.667Z" transform="translate(225.667 -91.734)" fill="'none'"/>
+      <path id="Path_856" data-name="Path 856" d="M152.667,288h-8a.667.667,0,1,0,0,1.333h8a.667.667,0,1,0,0-1.333Z" transform="translate(195 -168.401)" fill="'none'"/>
+    </g>
+  </svg>
+`;
+
+export const PRINT = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <path id="Icon_awesome-print" data-name="Icon awesome-print" d="M17.5,7.5V3.018a1.251,1.251,0,0,0-.366-.884L15.366.366A1.25,1.25,0,0,0,14.482,0H3.75A1.25,1.25,0,0,0,2.5,1.25V7.5A2.5,2.5,0,0,0,0,10v4.375A.625.625,0,0,0,.625,15H2.5v3.75A1.25,1.25,0,0,0,3.75,20h12.5a1.25,1.25,0,0,0,1.25-1.25V15h1.875A.625.625,0,0,0,20,14.375V10A2.5,2.5,0,0,0,17.5,7.5ZM15,17.5H5V13.75H15Zm0-8.75H5V2.5h7.5V4.375A.625.625,0,0,0,13.125,5H15Zm1.875,2.813a.938.938,0,1,1,.938-.937A.938.938,0,0,1,16.875,11.563Z" fill="'none'"/>
+  </svg>
+`;
+
+export const EYE = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="21.858" height="14.735" viewBox="0 0 21.858 14.735">
+    <path id="Icon_ionic-md-eye" data-name="Icon ionic-md-eye" d="M13.179,7.383A11.752,11.752,0,0,0,2.25,14.75a11.79,11.79,0,0,0,21.858,0A11.752,11.752,0,0,0,13.179,7.383Zm0,12.28a4.913,4.913,0,1,1,4.967-4.913A4.954,4.954,0,0,1,13.179,19.663Zm0-7.86A2.947,2.947,0,1,0,16.16,14.75,2.974,2.974,0,0,0,13.179,11.8Z" transform="translate(-2.25 -7.383)" fill="'none'"/>
+  </svg>
+`;
+
+export const EDIT = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <path id="Icon_material-edit" data-name="Icon material-edit" d="M4.5,20.33V24.5H8.666L20.953,12.209,16.787,8.043ZM24.175,8.987a1.106,1.106,0,0,0,0-1.566l-2.6-2.6a1.106,1.106,0,0,0-1.566,0L17.976,6.854l4.166,4.166Z" transform="translate(-4.5 -4.496)" fill="'none'"/>
+  </svg>
+`;
+
+export const ALL_DIRECTIONS = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
+    <path id="all-directions" d="M25,13.5l-3.933,3.933a.583.583,0,0,1-1-.412V14.732H14.732v5.339h2.289a.583.583,0,0,1,.412,1L13.5,25,9.567,21.067a.583.583,0,0,1,.412-1h2.289V14.732H6.929v2.289a.583.583,0,0,1-1,.412L2,13.5,5.933,9.567a.583.583,0,0,1,1,.412v2.289h5.339V6.929H9.979a.583.583,0,0,1-.412-1L13.5,2l3.933,3.933a.583.583,0,0,1-.412,1H14.732v5.339h5.339V9.979a.583.583,0,0,1,1-.412Z" transform="translate(-2 -2)" fill="'none'" opacity="0.777"/>
+  </svg>
+`;
+
 export const MOBILE_MAP_BACK = `
 <svg xmlns="http://www.w3.org/2000/svg" width="123" height="123" viewBox="0 0 123 123" fill="none">
 <g filter="url(#filter0_d_7_33)">
@@ -221,6 +255,7 @@ export const DUPLICATE_ICON = `
 export const AAL_DIRECTIONS = `
   <svg id="Line" enable-background="new 0 0 32 32" height="512" viewBox="0 0 32 32" width="512" xmlns="http://www.w3.org/2000/svg"><path d="m29.707 16.707-4 4c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414l2.293-2.293h-9.586v9.586l2.293-2.293c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-4 4c-.378.379-1.013.402-1.415 0l-4-4c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l2.294 2.293v-9.586h-9.586l2.293 2.293c.391.391.391 1.023 0 1.414s-1.023.391-1.414 0l-4-4c-.387-.387-.39-1.025 0-1.415l4-4c.391-.391 1.023-.391 1.414 0s.391 1.023 0 1.414l-2.293 2.294h9.586v-9.586l-2.293 2.293c-.391.391-1.023.391-1.414 0s-.391-1.023 0-1.414l4-4c.387-.387 1.025-.39 1.415 0l4 4c.391.391.391 1.023 0 1.414-.196.195-.452.293-.708.293s-.512-.098-.707-.293l-2.293-2.293v9.586h9.586l-2.293-2.293c-.391-.391-.391-1.023 0-1.414s1.023-.391 1.414 0l4 4c.39.389.387 1.028 0 1.414z"/></svg>
 `;
+
 export const FILE_ICON = `
   <svg id="documents-folder" xmlns="http://www.w3.org/2000/svg" width="22.593" height="22.777" viewBox="0 0 22.593 22.777">
     <g id="Group_1413" data-name="Group 1413">
@@ -1192,7 +1227,7 @@ export const SELECT_ICON = `
 
 export const TRASH_DELETE_ICON = `
 <svg xmlns="http://www.w3.org/2000/svg" width="15.556" height="20" viewBox="0 0 15.556 20">
-  <path id="Icon_material-delete" data-name="Icon material-delete" d="M8.611,22.278A2.229,2.229,0,0,0,10.833,24.5h8.889a2.229,2.229,0,0,0,2.222-2.222V8.944H8.611ZM23.056,5.611H19.167L18.056,4.5H12.5L11.389,5.611H7.5V7.833H23.056Z" transform="translate(-7.5 -4.5)" fill="#8e8e8e" opacity="0.49"/>
+  <path id="Icon_material-delete" data-name="Icon material-delete" d="M8.611,22.278A2.229,2.229,0,0,0,10.833,24.5h8.889a2.229,2.229,0,0,0,2.222-2.222V8.944H8.611ZM23.056,5.611H19.167L18.056,4.5H12.5L11.389,5.611H7.5V7.833H23.056Z" transform="translate(-7.5 -4.5)" fill="'none'" opacity="0.49"/>
 </svg>`;
 
 export const SAVE_ICON = `
@@ -1220,9 +1255,11 @@ id="Icon_ionic-md-add-circle-outline" data-name="Icon ionic-md-add-circle-outlin
 </svg>`;
 
 export const CANCEL_ICON = `
-<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-  <path id="Icon_metro-cancel" data-name="Icon metro-cancel" d="M12.571,1.928a10,10,0,1,0,10,10,10,10,0,0,0-10-10Zm0,18.125A8.125,8.125,0,1,1,20.7,11.928,8.125,8.125,0,0,1,12.571,20.053ZM15.7,6.928l-3.125,3.125L9.446,6.928,7.571,8.8,10.7,11.928,7.571,15.053l1.875,1.875L12.571,13.8,15.7,16.928l1.875-1.875-3.125-3.125L17.571,8.8Z" transform="translate(-2.571 -1.928)" fill="'none'"/>
-</svg>`;
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+    <path id="Icon_metro-cancel" data-name="Icon metro-cancel" d="M12.571,1.928a10,10,0,1,0,10,10,10,10,0,0,0-10-10Zm0,18.125A8.125,8.125,0,1,1,20.7,11.928,8.125,8.125,0,0,1,12.571,20.053ZM15.7,6.928l-3.125,3.125L9.446,6.928,7.571,8.8,10.7,11.928,7.571,15.053l1.875,1.875L12.571,13.8,15.7,16.928l1.875-1.875-3.125-3.125L17.571,8.8Z" transform="translate(-2.571 -1.928)" fill="'none'"/>
+  </svg>
+`;
+
 export const HELPER_ICON = `
 <svg id="help" xmlns="http://www.w3.org/2000/svg" width="17.559" height="17.559" viewBox="0 0 17.559 17.559">
   <g id="Group_1466" data-name="Group 1466">

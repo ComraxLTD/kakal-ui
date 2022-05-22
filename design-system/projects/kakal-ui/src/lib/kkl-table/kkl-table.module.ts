@@ -30,6 +30,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MobileTableComponent } from './components/mobile-table/mobile-table.component';
 import { KKLDirectivesModule } from '../directives/directives.module';
+import { ContentAlignmentDirective } from './directives/content-alignment.directive';
 @NgModule({
   declarations: [
     LocalTableComponent,
@@ -41,6 +42,7 @@ import { KKLDirectivesModule } from '../directives/directives.module';
     MeiFiltersComponent,
     KKLNewPaginatorDirective,
     MobileTableComponent,
+    ContentAlignmentDirective,
  ],
   imports: [
     CommonModule,
