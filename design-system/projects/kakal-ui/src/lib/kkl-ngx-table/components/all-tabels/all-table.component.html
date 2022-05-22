@@ -34,13 +34,14 @@
         class="expandable"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
-        [footerHeight]="65"
+        [footerHeight]="paging? 65 : 0"
         rowHeight="auto"
         [rows]="dataTable"
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
         [rowClass]="getRowClass"
-      >
+        >
+        <!-- [scrollbarH]="true" -->
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
           <ng-template
