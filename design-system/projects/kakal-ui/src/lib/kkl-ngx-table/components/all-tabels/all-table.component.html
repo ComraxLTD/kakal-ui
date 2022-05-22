@@ -203,14 +203,13 @@
     </div>
   </div>
 
-
   <div [ngClass]="{ 'hidden-class': isDesktop }">
     <ng-container *ngIf="dataTable">
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
       <mat-accordion class="example-headers-align" multi dir="rtl">
-        <ng-container *ngFor="let item of dataTable;let i = index">
+        <ng-container *ngFor="let item of dataTable; let i = index">
           <mat-expansion-panel
             class="expansion-panel"
             style="margin: 8px 8px"
@@ -281,7 +280,10 @@
               <tr *ngFor="let col of oneColumns">
                 <ng-container *ngIf="col.key !== oneColumns[0].key">
                   <ng-container
-                    *ngIf="!(item | arrInclueds: editItems) || col.notEditable; else editBlock"
+                    *ngIf="
+                      !(item | arrInclueds: editItems) || col.notEditable;
+                      else editBlock
+                    "
                   >
                     <td
                       style="
@@ -358,7 +360,10 @@
               </tr>
             </table>
 
-            <div *ngIf="item | arrInclueds: expanded" class="example-element-detail">
+            <div
+              *ngIf="item | arrInclueds: expanded"
+              class="example-element-detail"
+            >
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
@@ -372,12 +377,9 @@
         </ng-container>
       </mat-accordion>
     </ng-container>
-    <div [hidden]="!paging">
+    <div *ngIf="paging && isDesktop">
       <mat-paginator
         #myPaging
-        dir="ltr"
-        fxLayout="row"
-        fxLayoutAlign="center center"
         kklNewPagination
         [pageIndex]="page.pageIndex"
         [pageSize]="page.pageSize"
@@ -387,8 +389,4 @@
       ></mat-paginator>
     </div>
   </div>
-
-
-
-
 </div>
