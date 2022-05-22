@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import {
@@ -482,6 +483,8 @@ export class AppComponent {
     },
   ]
 
+
+  currStr = new CurrencyPipe('he-HE').transform(1500, 'USD', 'symbol', '1.0-3');
   description;
 //   // the columns of the table, according to the data coming from ComraxTablesService
   columns: TableBase[] = [
