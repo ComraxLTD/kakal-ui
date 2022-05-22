@@ -141,7 +141,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
 
     this.page.pageIndex = 0;
-    this.page.pageSize = this.paging ? 5 : this.dataSource.length;
+    this.page.pageSize = this.paging ? 5 : this.dataTable.length;
   }
 
   ngAfterViewInit() {

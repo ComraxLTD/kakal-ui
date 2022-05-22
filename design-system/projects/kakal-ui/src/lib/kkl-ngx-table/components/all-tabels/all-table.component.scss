@@ -368,8 +368,15 @@ th > h3 {
   margin-top: -5px;
   margin-right: 2px;
   height: fit-content !important;
+  width: 101%;
 & > .example-element-detail{
-
+& > kkl-tabs{
+  ::ng-deep   .datatable-header{
+    border-bottom: 0px !important;
+    border-bottom: none;
+    background-color: main.color(secondLine);
+  }
+}
   width: 100%;
   padding: 10px 20px;
   background-color: #ffffff !important;
