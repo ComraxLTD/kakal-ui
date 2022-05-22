@@ -133,7 +133,12 @@
                 class="example-element-detail"
               >
                 <ng-container *ngIf="expandTemplate">
-                  <ng-template *ngTemplateOutlet="expandTemplate; context: {$implicit:expandedElement}"></ng-template>
+                  <ng-template
+                    *ngTemplateOutlet="
+                      expandTemplate;
+                      context: { $implicit: expandedElement }
+                    "
+                  ></ng-template>
                 </ng-container>
               </div>
             </div>
@@ -152,17 +157,11 @@
             [attr.rowspan]="element == expandedElement ? 1 : 2"
           >
             <ng-container
-              *ngIf="!(element | arrInclueds: editItems); else addButtonTemplate"
-            >
-              <ng-container *ngFor="let butt of localButtons">
-                <ng-container
-                  *ngTemplateOutlet="
-                    butt.button ? buttonTemp : iconButtonTemp;
-                    context: { $implicit: butt }
-                  "
-                ></ng-container>
-              </ng-container>
-            </ng-container>
+              *ngTemplateOutlet="
+              !(element | arrInclueds: editItems)
+              ? actions : addButtonTemplate;
+               context: { $implicit: localButtons, element }"
+            ></ng-container>
           </td>
         </ng-container>
 
@@ -325,12 +324,13 @@
               </tr>
               <tr *ngIf="localButtons?.length">
                 <td style="font-weight: bolder">פעולות</td>
-                <td
-                  class="actions"
-                  fxLayout="row wrap"
-                  fxLayoutAlign="space-evenly"
-                >
-                  <ng-container *ngIf="false; else addButtonTemplate">
+                <td class="actions" fxLayoutAlign="space-evenly">
+                  <ng-container
+                    *ngIf="
+                      !(element | arrInclueds: editItems);
+                      else addButtonTemplate
+                    "
+                  >
                     <ng-container *ngFor="let butt of localButtons">
                       <!-- <ng-container *ngIf="element == expandedElement && butt.type === 'inlineExpand'; else closeExpand">
                         <button class="container-button" mat-raised-button color="primary" (click)="buttonClick(butt, item, 'actions')">
@@ -341,7 +341,7 @@
                       <ng-template #closeExpand>
                         <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
                       <button
-                        [ngClass]="{ expanded: item == expandedElement }"
+                        [ngClass]="{ expanded: item === expandedElement }"
                         [matTooltip]="butt.label"
                         mat-icon-button
                         color="primary"
@@ -368,7 +368,12 @@
 
             <div *ngIf="item == expandedElement" class="example-element-detail">
               <ng-container *ngIf="expandTemplate">
-                <ng-template *ngTemplateOutlet="expandTemplate; context: {$implicit:expandedElement}"></ng-template>
+                <ng-template
+                  *ngTemplateOutlet="
+                    expandTemplate;
+                    context: { $implicit: expandedElement }
+                  "
+                ></ng-template>
               </ng-container>
             </div>
           </mat-expansion-panel>
@@ -390,7 +395,18 @@
   </div>
 </form>
 
-<ng-template #buttonTemp let-button>
+<ng-template #actions let-localButtons let-element="element">
+  <ng-container *ngFor="let butt of localButtons">
+    <ng-container
+      *ngTemplateOutlet="
+                    butt.button ? buttonTemp : iconButtonTemp;
+                    context: { $implicit: butt, element }
+                  "
+    ></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #buttonTemp let-button let-element="element">
   <kkl-stroke-button
     table-action-button
     color="primary"
@@ -400,7 +416,7 @@
   </kkl-stroke-button>
 </ng-template>
 
-<ng-template #iconButtonTemp let-button>
+<ng-template #iconButtonTemp let-button let-element="element">
   <button
     [matTooltip]="button.label"
     mat-icon-button
@@ -411,20 +427,15 @@
   </button>
 </ng-template>
 
-<ng-template #addButtonTemplate>
+<ng-template #addButtonTemplate let-element="element">
   <kkl-stroke-button
     table-save-button
     color="primary"
-    (clickEvent)="buttonClick(button, element, 'actions')"
+    (clickEvent)="saveRowClick(element)"
   >
     שמור
   </kkl-stroke-button>
-  <button
-    fxFlexOffset="1rem"
-    matTooltip="בטל"
-    mat-icon-button
-    (click)="cancelRowClick(item)"
-  >
+  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
     <kkl-icon key="cancel"></kkl-icon>
   </button>
 </ng-template>
