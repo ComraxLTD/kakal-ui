@@ -8,6 +8,7 @@ import { QuestionBase } from '../../../form/models/question.model';
 })
 export class TableFormComponent implements OnInit  {
   @Input() question!: QuestionBase;
+  @Input() initial!: any;
 
   control: FormControl | FormGroup;
 
@@ -16,19 +17,28 @@ export class TableFormComponent implements OnInit  {
   constructor() {
   }
   ngOnInit(): void {
+    const data = this.getCellData(this.question.key);
     switch (this.question.controlType) {
       case 'dateRange':
       case 'range':
-        this.control = new FormGroup({start: new FormControl(''), end: new FormControl('')});
+        this.control = new FormGroup({start: new FormControl(data?.start), end: new FormControl(data?.end)});
         break;
       case 'currency':
-        this.control = new FormGroup({sum: new FormControl(''), currency: new FormControl('')});
+        this.control = new FormGroup({sum: new FormControl(data?.sum), currency: new FormControl(data?.currency)});
         break;
       // case 'costum':
       //   break;
       default:
-        this.control = new FormControl('');
+        this.control = new FormControl(data);
         break;
+    }
+  }
+
+  getCellData(key: string) {
+    if(this.initial) {
+      return this.initial[key];
+    } else {
+      return null;
     }
   }
 

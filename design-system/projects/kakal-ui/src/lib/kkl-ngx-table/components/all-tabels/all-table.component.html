@@ -12,6 +12,7 @@
       <!-- [cdkDropListData]="dataTable" -->
       <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 
+      <!-- [scrollbarV]="true" -->
       <ngx-datatable
         dir="rtl"
         #myTable
@@ -19,10 +20,9 @@
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
         [footerHeight]="50"
-        [rowHeight]="60"
-        [scrollbarV]="true"
+        rowHeight="auto"
         [rows]="dataTable"
-        (page)="onPage($event)"
+        [limit]="5"
       >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
@@ -68,7 +68,7 @@
             <ng-container *ngIf="!(row | arrInclueds : editItems) || column.notEditable; else editBlock">
               <kkl-table-cell [data]="value" [question]="column" (buttClick)="buttonClick(column.button, row, column.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>            </ng-container>
             <ng-template #editBlock>
-              <kkl-ngx-table-form [question]="column" (rowEdited)="onRowEditChange($event, row, column.key)"></kkl-ngx-table-form>
+              <kkl-ngx-table-form [initial]="editItemsData[(row | arrIndex : editItems)]" [question]="column" (rowEdited)="onRowEditChange($event, row, column.key)"></kkl-ngx-table-form>
             </ng-template>
           </ng-template>
         </ngx-datatable-column>
@@ -92,6 +92,7 @@
 
           </ng-template>
         </ngx-datatable-column>
+
 
 
       </ngx-datatable>
