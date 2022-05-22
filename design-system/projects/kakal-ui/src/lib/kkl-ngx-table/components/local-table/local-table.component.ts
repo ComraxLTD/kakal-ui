@@ -135,7 +135,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (
       this.localButtons?.some((a) => a.type === 'inlineExpand') ||
-      this.oneColumns.some((a) => a.button.type === 'inlineExpand')
+      this.oneColumns.some((a) => a.button?.type === 'inlineExpand')
     ) {
       this.expand = true;
     }

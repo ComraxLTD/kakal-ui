@@ -503,7 +503,7 @@ export class AppComponent {
   rowActions: RowActionModel[] = [
     { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
     { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
-    { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' },
+    // { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' },
     { type: 'visibility', icon: 'visibility', label: 'Show' },
   ]
 
