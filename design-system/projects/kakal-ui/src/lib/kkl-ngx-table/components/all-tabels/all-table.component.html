@@ -6,17 +6,21 @@
     fxLayoutGap="1rem"
     [ngClass]="{ 'hidden-class': !isDesktop }"
   >
-    <button
-      *ngIf="newRowAction"
-      kkl-border
-      [thick]="2"
-      mat-stroked-button
-      color="primary"
-      (click)="addNewRowGroup()"
-    >
-      {{ newRowAction }}
-      <mat-icon>add</mat-icon>
-    </button>
+    <ng-container *ngIf="newRowAction">
+      <button
+        kkl-border
+        table-add-button
+        [thick]="2"
+        mat-stroked-button
+        color="primary"
+        (click)="addNewRowGroup()"
+      >
+        <span>
+          {{ newRowAction }}
+        </span>
+        <mat-icon color="primary">add</mat-icon>
+      </button>
+    </ng-container>
     <div class="table-wrapper">
       <!-- cdkDropList
       (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled"> -->
