@@ -1,5 +1,12 @@
 @use "../../../../styles/variables" as main;
-
+@import '~@swimlane/ngx-datatable/index.css';
+@import '~@swimlane/ngx-datatable/themes/material.scss';
+@import '~@swimlane/ngx-datatable/assets/icons.css';
+// @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
+:host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
+:host ::ng-deep .datatable-header {
+  border-bottom: 1px solid main.color(primary) !important;
+}
 
 ::ng-deep .datatable-header-cell-label{
   font-size: 14px;

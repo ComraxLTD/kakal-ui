@@ -12,10 +12,11 @@ import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
 import { OptionsModel } from '../../../mei-form/models/options.model';
 import { RowActionEvent, RowActionModel, RowExpandEvent } from '../../../kkl-table/models/table-actions.model';
 import { TableBase } from '../../../kkl-table/models/table.model';
-import { customFilterPredicate } from './local-filter';
+
 import { DialogService } from '../../../dialog/dialog.service';
 import { BreakpointService, RouterService } from '../../../../services/services';
 import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+import { customFilterPredicate } from '../../../kkl-table/components/local-table/local-filter';
 
 const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavigation'];
 
@@ -27,15 +28,14 @@ const normalActions = ['inlineEdit', 'inlineDelete', 'inlineExpand', 'inlineNavi
 export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   ColumnMode = ColumnMode;
   @ViewChild('myTable') ngxTable: DatatableComponent;
+  // control the highet of expand panal
   @ViewChild('myExpand') myExpand!: ElementRef;
   expandHeight: number = 0;
 
-
-  @ViewChild('myIdentifier')
-  myIdentifier: ElementRef;
+// control the size of div
+  @ViewChild('myIdentifier') myIdentifier: ElementRef;
 
   @Input() noMobile: boolean = false;
-  currentEditRow: number = -1;
   destroySubject$: Subject<void> = new Subject();
 
 
@@ -58,51 +58,25 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Input() set draggable(val: boolean) {
     this.dragable = val;
   }
-
   dragDisabled = true;
 
   oneColumns: TableBase[];
   @Input()
   set columns(value: TableBase[]) {
-    if(this.oneColumns && this.searchRow) {
-      const newVals: TableBase[] = [];
-      const sameVals: TableBase[] = [];
-      value.forEach(a => {
-        if(this.oneColumns.find( vendor => Object.assign(vendor) === Object.assign(a) )) {
-          sameVals.push(this.oneColumns.find( vendor => Object.assign(vendor) === Object.assign(a) ));
-        } else {
-          newVals.push(a);
-        }
-      });
-      const removed = this.oneColumns.filter(b => !sameVals.includes(b));
-      removed.forEach(c => {
-        this.searchRow.removeControl(c.key);
-        this.rows.controls.forEach(d => {
-          (d as FormGroup).removeControl(c.key);
-        });
-      });
-      setControls(newVals, this.searchRow, this.fb, this.localObservables);
-      this.rows.controls.forEach((h, index) => {
-        setControls(newVals, h as FormGroup, this.fb, this.editObservables.get(index));
-      });
-    }
     this.oneColumns = value;
-    // const row = this.fb.group({});
-    // this.oneColumns.forEach(col => {
-    //   row.addControl(col.key, this.fb.control(null));
-    // })
-    // this.searchRow = row;
   }
 
 
   dataTable: any[];
-
+  allData: any[];
   @Input() set dataSource(value: any[]) {
     if(value) {
+      this.allData = [...value]
       this.dataTable = value;
       this.isLoading = false;
     }
     else {
+      this.allData = [];
       this.dataTable = [];
     }
   }
@@ -113,60 +87,28 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.localButtons = val;
   }
 
-  editItems: any[] = [];
-  rows: FormArray = this.fb.array([]);
-  @Input() searchRow: FormGroup;
-  form: FormGroup;
-
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort)
   sort!: MatSort;
 
 
+  searchRow = {};
+  editItems = [];
+  editItemsData = [];
 
 
   isDesktop: boolean = true;
 
 
 
-  myOptions: OptionsModel[] = [];
-  @Input() set options(val: OptionsModel[]) {
-    if(val) {
-      this.myOptions = val;
-      if(this.form) {
-        this.putOptions();
-      }
-    }
-  }
-
-
-
-  localObservables: Map<string, BehaviorSubject<KklSelectOption[]>> = new Map<string, BehaviorSubject<KklSelectOption[]>>();
-  editObservables:  Map<number, Map<string, BehaviorSubject<KklSelectOption[]>>> = new Map<number, Map<string, BehaviorSubject<KklSelectOption[]>>>();
-
-
   ngOnInit(): void {
-    if(!this.searchRow) {
-      this.searchRow = this.fb.group({});
-    }
-    this.form = this.fb.group({ 'myRows': this.rows, 'search': this.searchRow });
-    setControls(this.oneColumns, this.searchRow, this.fb, this.localObservables);
   }
 
-
-
-
-
-
-
-
-  constructor(private fb: FormBuilder, private dialogService: DialogService, private breakpointService: BreakpointService,
-    private routerService: RouterService) {
+  constructor(private dialogService: DialogService, private routerService: RouterService) {
   }
 
   ngAfterViewInit() {
-    this.putOptions();
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
       if(size <= 600 && !this.noMobile) {
@@ -177,15 +119,16 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
+
+  updateFilter(event, key) {
+    this.searchRow[key] = event;
+  }
+
   searchChanged() {
     this.connectFilters(this.oneColumns);
   }
-  searchFiltersChanged(arr: TableBase[]) {
-    this.connectFilters(this.oneColumns.concat(arr));
-    this.currentEditRow = -1;
-  }
   connectFilters(arr: TableBase[]) {
-    const searchVal = this.searchRow.value;
+    const searchVal = this.searchRow;
     let filters = [];
     const keys = [];
     arr.forEach(a => {
@@ -194,7 +137,13 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
         filters.push({key: a.key, controlType: a.controlType, val: searchVal[a.key]});
       }
     });
-    // this.dataTable.filter = JSON.stringify(filters);
+    const temp = this.allData.filter(d => {
+      return customFilterPredicate(d, JSON.stringify(filters));
+    });
+    // update the rows
+    this.dataTable = temp;
+    // Whenever the filter changes, always go back to the first page
+    this.ngxTable.offset = 0;
   }
 
 
@@ -235,89 +184,58 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onExpandOut(obj: any) {
-    if(this.rowActions?.some(a => a.type == 'inlineExpand')) {
-      this.addExpandedRow(obj);
+  saveRowClick(row: any) {
+    const index = this.editItems.indexOf(row);
+    this.editItems.splice(index, 1);
+    this.editItems = [...this.editItems];
+    this.saveRow.emit(this.editItemsData.splice(index, 1)[0]);
+    this.editItemsData = [...this.editItemsData];
+
+    if(!Object.keys(row).length) {
+      const dIndex = this.dataTable.indexOf(row);
+      if(dIndex > -1) {
+        this.dataTable.splice(dIndex, 1);
+        this.dataTable = this.dataTable.slice();
+        // this.ngxTable.recalculate();
+      }
     }
   }
 
-  saveRowClick(ele: any) {
-    const index = this.editItems.indexOf(ele);
-    if (index > -1) {
-      this.editItems.splice(index, 1);
-      this.editItems = [...this.editItems];
-      if(!Object.keys(ele).length) {
-        const dIndex = this.dataTable.indexOf(ele);
-        if(dIndex > -1) {
-          this.dataTable.splice(dIndex, 1);
-          this.dataTable = this.dataTable.slice();
-          this.ngxTable.recalculate();
-        }
-      }
-      // Object.assign(ele, this.rows.at(index).value);
-      this.saveRow.emit(this.rows.at(index));
-      this.rows.removeAt(index);
-      let ind = index;
-      while(this.editObservables.has(ind+1)) {
-        this.editObservables.set(ind, this.editObservables.get(ind+1));
-        ind++;
-      }
-      this.editObservables.delete(ind);
-    }
-  }
+  cancelRowClick(row: any) {
+    const index = this.editItems.indexOf(row);
+    this.editItems.splice(index, 1);
+    this.editItems = [...this.editItems];
+    this.editItemsData.splice(index, 1);
+    this.editItemsData = [...this.editItemsData];
 
-  cancelRowClick(ele: any) {
-    const index = this.editItems.indexOf(ele);
-    if (index > -1) {
-      this.editItems.splice(index, 1);
-      this.editItems = [...this.editItems];
-      if(!Object.keys(ele).length) {
-        const dIndex =this.dataTable.indexOf(ele);
-        if(dIndex > -1) {
-          this.dataTable.splice(dIndex, 1);
-          this.dataTable = this.dataTable.slice();
-          this.ngxTable.recalculate();
-        }
+    if(!Object.keys(row).length) {
+      const dIndex = this.dataTable.indexOf(row);
+      if(dIndex > -1) {
+        this.dataTable.splice(dIndex, 1);
+        this.dataTable = this.dataTable.slice();
+        // this.ngxTable.recalculate();
       }
-      this.rows.removeAt(index);
-      let ind = index;
-      while(this.editObservables.has(ind+1)) {
-        this.editObservables.set(ind, this.editObservables.get(ind+1));
-        ind++;
-      }
-      this.editObservables.delete(ind);
     }
   }
 
   addRowGroup(obj: any) {
-    const row = this.fb.group({});
-    // this.oneColumns.forEach(col => {
-    //   row.addControl(col.key, this.fb.control(obj[col.key]));
-    // });
-    const temp = new Map<string, BehaviorSubject<KklSelectOption[]>>();
-    this.editObservables.set(this.editItems.length, temp);
-    setControls(this.oneColumns, row, this.fb, temp);
-    row.patchValue(obj);
-    this.rows.push(row);
     this.editItems = [...this.editItems, obj];
+    this.editItemsData = [...this.editItemsData, Object.assign({}, obj)];
   }
 
   addNewRowGroup() {
-    const row = this.fb.group({});
-    // this.oneColumns.forEach(col => {
-    //   row.addControl(col.key, this.fb.control(null));
-    // })
-    const temp = new Map<string, BehaviorSubject<KklSelectOption[]>>();
-    this.editObservables.set(this.editItems.length, temp);
-    setControls(this.oneColumns, row, this.fb, temp);
-    this.rows.push(row);
     const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
+    this.editItemsData = [...this.editItemsData, Object.assign({}, rowData)];
     this.dataTable.unshift(rowData);
     this.dataTable = [...this.dataTable];
   }
 
 
+  onRowEditChange(event, row, key) {
+    const index = this.editItems.indexOf(row);
+    this.editItemsData[index][key] = event;
+  }
 
 
   dropTable(event: CdkDragDrop<MatTableDataSource<any>, any>) {
@@ -335,26 +253,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.ngxTable.recalculate();
   }
 
-  putOptions() {
-    if(this.currentEditRow == -1) {
-      this.myOptions.forEach(b => {
-        (this.localObservables.get(b.key))?.next(b.val);
-      });
-    } else{
-      const temp = this.editObservables.get(this.currentEditRow);
-      this.myOptions.forEach(b => {
-        (temp?.get(b.key))?.next(b.val);
-      });
-    }
-  }
 
-  onRowEditChange(ind: number | any) {
-    if(ind !== -1) {
-      this.currentEditRow = this.editItems.indexOf(ind);
-    } else {
-      this.currentEditRow = ind;
-    }
-  }
 
 
   onResize(event) {

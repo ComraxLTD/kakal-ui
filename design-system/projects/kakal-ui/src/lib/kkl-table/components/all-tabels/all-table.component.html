@@ -1,14 +1,12 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
-<form
-  [formGroup]="form"
-  class="all-table-form"
-  (resized)="onResize($event)"
-  #myIdentifier
->
-  <div [ngClass]="{ 'hidden-class': !isDesktop }">
-    <div
-      *ngIf="displayedColumns.length"
-      class="table-wrapper"
+
+<form [formGroup]="form" class="all-table-form"  (resized)="onResize($event)" #myIdentifier>
+  <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
+    {{ newRowAction }}
+    <mat-icon>add</mat-icon>
+  </button>
+  <div [ngClass]="{'hidden-class': !isDesktop}">
+    <div *ngIf="displayedColumns.length" class="table-wrapper"
       cdkDropList
       (cdkDropListDropped)="dropTable($event)"
       [cdkDropListDisabled]="dragDisabled"
@@ -48,14 +46,14 @@
           </td>
         </ng-container>
 
-        <ng-container 
-          *ngFor="let column of oneColumns" 
+        <ng-container
+          *ngFor="let column of oneColumns"
           [matColumnDef]="column.key"
         >
-          <th 
-            mat-header-cell 
-            *matHeaderCellDef 
-            style="white-space: nowrap;" 
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            style="white-space: nowrap;"
             [ngClass]="{'mat-header-cell-text': column.controlType !== 'number'}"
           >
             <h4 style="display: inline-block; font-size: 14px !important;">{{column.label}}</h4>
@@ -68,14 +66,14 @@
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
             </button>
-            <mat-menu 
-              class="filter" 
-              #menu="matMenu" 
+            <mat-menu
+              class="filter"
+              #menu="matMenu"
               (closed)="searchChanged()"
             >
-              <kkl-table-form  
-                [formGroup]="searchRow" 
-                [question]="column" 
+              <kkl-table-form
+                [formGroup]="searchRow"
+                [question]="column"
                 (rowEdited)="onRowEditChange(-1)"
               ></kkl-table-form>
               <span mat-sort-header></span>
@@ -164,12 +162,12 @@
               {{ newRowAction }}
               <mat-icon>add</mat-icon>
             </button>
-            <h4 
+            <h4
               style="
-                font-size: 14px !important; 
-                text-align: start; 
+                font-size: 14px !important;
+                text-align: start;
                 margin-bottom: 2px;
-              " 
+              "
               *ngIf="!newRowAction"
             > פעולות</h4>
           </th>
@@ -237,29 +235,8 @@
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
-      <button
-        *ngIf="newRowAction"
-        kkl-border
-        [thick]="2"
-        mat-stroked-button
-        color="primary"
-        (click)="addNewRowGroup()"
-      >
-        {{ newRowAction }}
-        <mat-icon>add</mat-icon>
-      </button>
-      <mat-accordion
-        class="example-headers-align"
-        multi
-        formArrayName="myRows"
-        dir="rtl"
-      >
-        <ng-container
-          *ngFor="
-            let item of typeLocal ? dataTable?.filteredData : dataTable;
-            let i = index
-          "
-        >
+      <mat-accordion class="example-headers-align" multi formArrayName="myRows" dir="rtl">
+        <ng-container *ngFor="let item of (typeLocal? dataTable?.filteredData : dataTable);let i = index">
           <mat-expansion-panel
             class="expansion-panel"
             style="margin: 8px 8px"

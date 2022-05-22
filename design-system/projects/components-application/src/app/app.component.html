@@ -40,11 +40,12 @@
 
 
 <!-- <kkl-form [controls]="myCols"></kkl-form> -->
-
+{{currStr}}
 <kkl-local-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
+  newRowAction="hghd gdgd"
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
 ></kkl-local-table>
@@ -53,6 +54,7 @@
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
+  newRowAction="hghd gdgd"
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
 ></kkl-ngx-local-table>
