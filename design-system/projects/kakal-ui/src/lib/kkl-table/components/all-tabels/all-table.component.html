@@ -50,24 +50,33 @@
           *ngFor="let column of oneColumns"
           [matColumnDef]="column.key"
         >
-          <th mat-header-cell *matHeaderCellDef style="white-space: nowrap">
-            <h3 mat-sort-header style="display: inline-block">
-              {{ column.label }}
-            </h3>
+          <th
+            mat-header-cell
+            *matHeaderCellDef
+            style="white-space: nowrap;"
+            [ngClass]="{'mat-header-cell-text': column.controlType !== 'number'}"
+          >
+            <h4 style="display: inline-block; font-size: 14px !important;">{{column.label}}</h4>
             <button
               *ngIf="!column.noFilter"
               mat-icon-button
               [matMenuTriggerFor]="menu"
             >
+              <!-- mat-sort-header -->
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" (closed)="searchChanged()">
+            <mat-menu
+              class="filter"
+              #menu="matMenu"
+              (closed)="searchChanged()"
+            >
               <kkl-table-form
                 [formGroup]="searchRow"
                 [question]="column"
                 (rowEdited)="onRowEditChange(-1)"
               ></kkl-table-form>
+              <span mat-sort-header></span>
             </mat-menu>
           </th>
           <td
@@ -147,7 +156,25 @@
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="center-butt">
-            <h3> פעולות</h3>
+            <button
+              *ngIf="newRowAction"
+              kkl-border
+              [thick]="2"
+              mat-stroked-button
+              color="primary"
+              (click)="addNewRowGroup()"
+            >
+              {{ newRowAction }}
+              <mat-icon>add</mat-icon>
+            </button>
+            <h4
+              style="
+                font-size: 14px !important;
+                text-align: start;
+                margin-bottom: 2px;
+              "
+              *ngIf="!newRowAction"
+            > פעולות</h4>
           </th>
           <td
             mat-cell
@@ -236,6 +263,7 @@
                         fxLayoutAlign="start start"
                       >
                         <kkl-table-cell
+                          [isMobile]="true"
                           class="kkl-table-cell"
                           [data]="item[oneColumns[0].key]"
                           [question]="oneColumns[0]"
@@ -285,12 +313,14 @@
                         height: 6rem;
                         font-weight: bolder;
                         border-bottom: 1px solid #e4e4e4;
+                        width: 40%;
                       "
                     >
                       {{ col.label }}
                     </td>
                     <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
                       <kkl-table-cell
+                        [isMobile]="true"
                         [data]="item[col.key]"
                         [question]="col"
                         (buttClick)="buttonClick(col.button, item, col.key)"
@@ -303,6 +333,7 @@
                       <td style="font-weight: bolder">{{ col.label }}</td>
                       <td>
                         <kkl-table-cell
+                          [isMobile]="true"
                           [data]="item[col.key]"
                           [question]="col"
                           (buttClick)="buttonClick(col.button, item, col.key)"
