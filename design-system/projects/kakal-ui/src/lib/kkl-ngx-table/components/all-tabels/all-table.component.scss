@@ -379,7 +379,10 @@ th > h3 {
 
       datatable-header-cell {
         background-color: main.color(secondLine);
-        height: 90%;
+      }
+
+      .datatable-header-inner {
+        height: main.spacing(4);
       }
     }
   }
