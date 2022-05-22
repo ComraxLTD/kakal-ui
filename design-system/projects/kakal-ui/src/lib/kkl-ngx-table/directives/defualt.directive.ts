@@ -3,12 +3,11 @@ import { Directive, Input, HostBinding } from '@angular/core';
 import { DatatableComponent, ColumnMode } from '@swimlane/ngx-datatable';
 
 @Directive({
-  // tslint:disable-next-line
   selector: 'ngx-datatable[default]',
   exportAs: 'ngxDatatableDefault',
 })
 export class NgxDatatableDefaultDirective {
-  @Input() class = 'material expandable';
+  @Input() class = 'expandable';
 
   @HostBinding('class')
   get classes(): string {
