@@ -1,4 +1,5 @@
 @use "../../../../styles/variables" as main;
+@use '@angular/material' as mat;
 @import '~@swimlane/ngx-datatable/index.css';
 @import '~@swimlane/ngx-datatable/themes/material.scss';
 @import '~@swimlane/ngx-datatable/assets/icons.css';
@@ -8,6 +9,9 @@
   border-bottom: 1px solid main.color(primary) !important;
 }
 
+:host ::ng-deep .expand-class {
+  @include mat.elevation(2);
+}
 
 tr.example-detail-row {
   height: 0;

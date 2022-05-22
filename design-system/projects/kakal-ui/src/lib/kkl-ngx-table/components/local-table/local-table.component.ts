@@ -277,6 +277,11 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
 
+  getRowClass(row) {
+    return {
+      'expand-class': !this.expandTemplate
+    };
+  }
 
   onPage(event) {
     // clearTimeout(this.timeout);
