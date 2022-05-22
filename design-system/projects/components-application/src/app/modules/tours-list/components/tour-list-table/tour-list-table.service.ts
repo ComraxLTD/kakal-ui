@@ -17,6 +17,17 @@ export class TourListTableService {
       marketer: 'אליהו בלום',
       prePay: 450,
       status: { authorizedBars: 1, totalBars: 3, label: 'ממתין' },
+    },  {
+      tourId: 12,
+      tourName: { schoolName: 'עירוני ח אשדוד', count: '120' },
+      date: { date: '01.04.21-21.21.21', count: 2 },
+      destenation: { value: 'נס הרים', svgIcon: 'check' },
+      attribute: 'מעוף,',
+      location: 'פנים נס הרים',
+      instructors: 1,
+      marketer: 'אליהו בלום',
+      prePay: 450,
+      status: { authorizedBars: 1, totalBars: 3, label: 'ממתין' },
     },
   ];
 
@@ -38,6 +49,8 @@ export class TourListTableService {
     { key: 'permission', label: 'הרשאה' },
     { key: 'status', label: 'סטטוס' },
   ];
+
+
 
   prePayColumns:TableBase[]=[
     {key:'budjet',label:'תקצוב בקקל,'},

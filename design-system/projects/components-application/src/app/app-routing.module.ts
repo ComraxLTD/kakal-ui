@@ -24,7 +24,7 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'marketers',
+    path: 'reports',
     loadChildren: () =>
       import('./modules/marketers/marketers.module').then(
         (m) => m.MarketersModule
