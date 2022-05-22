@@ -1,6 +1,7 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 <div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
   <button
+    class="button-center-start"
     *ngIf="newRowAction"
     kkl-border
     [thick]="2"
