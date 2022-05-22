@@ -1,4 +1,4 @@
-<div (click)="$event.stopPropagation()" style="width: 200px;">
+<div (click)="$event.stopPropagation()" class="table-form-wrapper">
   <ng-container [ngSwitch]="question?.controlType">
     <ng-container *ngSwitchCase="'select'">
       <kkl-select
@@ -28,7 +28,8 @@
           [withButton]="question.withButton"
           [icon]="question.icon"
           [panelWidth]="question.panelWidth"
-          (selectChanged)="onSelectChanged($event, question)">
+          (selectChanged)="onSelectChanged($event, question)"
+        >
         </kkl-multi-autocomplete>
       </ng-container>
       <ng-template #simpleAutocomplete>
@@ -68,7 +69,8 @@
         [appearance]="question?.appearance"
         [maxDate]="question.maxDate"
         [minDate]="question.minDate"
-        (valueChanged)="onValueChanged($event, question)">
+        (valueChanged)="onValueChanged($event, question)"
+      >
       </kkl-range-datepicker>
     </ng-container>
     <ng-container *ngSwitchCase="'radio'">
@@ -106,7 +108,8 @@
         [theme]="question.theme"
         [appearance]="question.appearance"
         [debounce]="question.debounce"
-        (valueChanged)="onValueChanged($event, question)">
+        (valueChanged)="onValueChanged($event, question)"
+      >
       </kkl-currency>
     </ng-container>
     <ng-container *ngSwitchCase="'texteditor'">
@@ -159,7 +162,5 @@
         (valueChanged)="onValueChanged($event, question)"
       ></kkl-input>
     </ng-container>
-
   </ng-container>
-
 </div>

@@ -22,10 +22,10 @@
   min-height: 50px !important;
   display: flex !important;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-::ng-deep datatable-body-row{
+::ng-deep datatable-body-row {
   margin: 3px;
 }
 
@@ -361,35 +361,54 @@ th > h3 {
   }
 }
 
-
-
-::ng-deep.expand-class + .datatable-row-detail{
+::ng-deep.expand-class + .datatable-row-detail {
   @include mat.elevation(2);
   margin-top: -5px;
   margin-right: 2px;
   height: fit-content !important;
-  width: 101%;
-& > .example-element-detail{
-& > kkl-tabs{
-  ::ng-deep   .datatable-header{
-    border-bottom: 0px !important;
-    border-bottom: none;
-    background-color: main.color(secondLine);
+  & > .example-element-detail {
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #ffffff !important;
+    .datatable-header {
+      border-top: dashed 1.5px main.color(primaryLight);
+      border-bottom: 0px !important;
+      border-bottom: none;
+      display: flex;
+      align-items: center;
+
+      datatable-header-cell {
+        background-color: main.color(secondLine);
+      }
+
+      .datatable-header-inner {
+        height: main.spacing(4);
+      }
+    }
   }
-}
-  width: 100%;
-  padding: 10px 20px;
-  background-color: #ffffff !important;
-  .datatable-header{
-    border-top: dashed 1.5px main.color(primaryLight);
-    border-bottom: 0px !important;
-    border-bottom: none;
-    background-color: main.color(secondLine);
-  }
-}
 }
 ::ng-deep button[table-add-button] {
   span {
     color: main.color(text);
+  }
+}
+
+::ng-deep datatable-header-cell.datatable-header-cell {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.table-form-wrapper {
+  width: 200px;
+}
+
+@media screen and (max-width: 1280px) {
+  .table-form-wrapper {
+    width: 100%;
+  }
+
+  mat-form-field {
+    width: 100%;
+    font-size: 14px;
   }
 }
