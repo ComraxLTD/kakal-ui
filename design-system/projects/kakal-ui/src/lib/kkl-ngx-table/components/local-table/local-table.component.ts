@@ -127,19 +127,19 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   page = new Page();
 
-
   constructor(
     private dialogService: DialogService,
     private routerService: RouterService
   ) {
     this.page.pageIndex = 0;
     this.page.pageSize = 5;
-
-
   }
 
   ngOnInit(): void {
-    if(this.localButtons?.some(a => a.type === 'inlineExpand') || this.oneColumns.some(a => a.button.type === 'inlineExpand')) {
+    if (
+      this.localButtons?.some((a) => a.type === 'inlineExpand') ||
+      this.oneColumns.some((a) => a.button.type === 'inlineExpand')
+    ) {
       this.expand = true;
     }
   }
@@ -322,7 +322,13 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
   pageChanged(event: PageEvent) {
-    console.log(event)
+    console.log(event);
     this.page = { ...this.page, ...event };
   }
+  
+  getRowClass = (row) => {
+    return {
+      'expand-class': this.expand,
+    };
+  };
 }
