@@ -25,11 +25,19 @@
   justify-content: center;
 }
 
+::ng-deep datatable-body-row{
+  margin: 5px;
+}
+
 // ::ng-deep .datatable-body-cell>span{
 //   height: 50px !important;
 // }
 :host ::ng-deep .expand-class {
   @include mat.elevation(2);
+  // box-shadow:
+  //   0px 3px 1px 2px rgba(0, 0, 0, 5%),
+  //   0px 2px 2px 2px rgb(0 0 0 / 5%),
+  //   0px 1px 5px 2px rgb(0 0 0 / 5%) !important;
 }
 
 tr.example-detail-row {
@@ -339,5 +347,19 @@ th>h3 {
       ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"]{
       transform: rotate(0) ;
       transition: .2s all;
+  }
+}
+
+
+
+::ng-deep.expand-class + .datatable-row-detail > .example-element-detail{
+  width: 100%;
+  border-top: dashed 1.5px main.color(primaryLight);
+  padding: 10px 20px;
+  background-color: #ffffff !important;
+  .datatable-header{
+    border-bottom: 0px !important;
+    border-bottom: none;
+    background-color: main.color(secondLine);
   }
 }
