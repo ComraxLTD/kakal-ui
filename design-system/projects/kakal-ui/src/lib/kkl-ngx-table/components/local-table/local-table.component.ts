@@ -130,10 +130,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   constructor(
     private dialogService: DialogService,
     private routerService: RouterService
-  ) {
-    this.page.pageIndex = 0;
-    this.page.pageSize = 5;
-  }
+  ) {}
 
   ngOnInit(): void {
     if (
@@ -142,6 +139,9 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     ) {
       this.expand = true;
     }
+
+    this.page.pageIndex = 0;
+    this.page.pageSize = this.paging ? 5 : this.dataSource.length;
   }
 
   ngAfterViewInit() {
@@ -322,10 +322,9 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
   pageChanged(event: PageEvent) {
-    console.log(event);
     this.page = { ...this.page, ...event };
   }
-  
+
   getRowClass = (row) => {
     return {
       'expand-class': this.expand,

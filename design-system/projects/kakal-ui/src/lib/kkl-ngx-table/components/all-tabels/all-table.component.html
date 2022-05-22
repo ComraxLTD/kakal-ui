@@ -1,8 +1,20 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 <div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
-  <div fxLayout="column" fxLayoutAlign=" start" fxLayoutGap="1rem" [ngClass]="{'hidden-class': !isDesktop}">
-    <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
-      {{newRowAction}}
+  <div
+    fxLayout="column"
+    fxLayoutAlign=" start"
+    fxLayoutGap="1rem"
+    [ngClass]="{ 'hidden-class': !isDesktop }"
+  >
+    <button
+      *ngIf="newRowAction"
+      kkl-border
+      [thick]="2"
+      mat-stroked-button
+      color="primary"
+      (click)="addNewRowGroup()"
+    >
+      {{ newRowAction }}
       <mat-icon>add</mat-icon>
     </button>
     <div class="table-wrapper">
@@ -27,7 +39,6 @@
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
         [rowClass]="getRowClass"
-        [limit]="5"
       >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
@@ -72,16 +83,15 @@
           *ngFor="let column of oneColumns"
           [name]="column.key"
         >
-            <!-- style="background-color: blue;" -->
-          <ng-template
-            let-sort="sortFn"
-            ngx-datatable-header-template
-          >
-          <!-- column.controlType === 'number' || column.controlType === 'sum' -->
-            <span
-            (click)="sort()"
-            >{{ column.label }}</span>
-            <button *ngIf="!column.noFilter" mat-icon-button [matMenuTriggerFor]="menu">
+          <!-- style="background-color: blue;" -->
+          <ng-template let-sort="sortFn" ngx-datatable-header-template>
+            <!-- column.controlType === 'number' || column.controlType === 'sum' -->
+            <span (click)="sort()">{{ column.label }}</span>
+            <button
+              *ngIf="!column.noFilter"
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+            >
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
             </button>
@@ -171,18 +181,20 @@
             let-isVisible="isVisible"
           >
             <div class="container">
-              <mat-paginator
-                #myPaging
-                dir="ltr"
-                fxLayout="row"
-                fxLayoutAlign="center center"
-                kklNewPagination
-                [pageIndex]="offset"
-                [pageSize]="pageSize"
-                [length]="rowCount"
-                [pageSizeOptions]="[5, 10, 25]"
-                (page)="pageChanged($event)"
-              ></mat-paginator>
+              <ng-container *ngIf="paging">
+                <mat-paginator
+                  #myPaging
+                  dir="ltr"
+                  fxLayout="row"
+                  fxLayoutAlign="center center"
+                  kklNewPagination
+                  [pageIndex]="offset"
+                  [pageSize]="pageSize"
+                  [length]="rowCount"
+                  [pageSizeOptions]="[5, 10, 25]"
+                  (page)="pageChanged($event)"
+                ></mat-paginator>
+              </ng-container>
             </div>
           </ng-template>
         </ngx-datatable-footer>
