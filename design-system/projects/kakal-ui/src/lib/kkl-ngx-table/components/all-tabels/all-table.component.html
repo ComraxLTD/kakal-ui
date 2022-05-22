@@ -6,9 +6,9 @@
       {{newRowAction}}
       <mat-icon>add</mat-icon>
     </button>
-    <div class="table-wrapper"
-      cdkDropList
-      (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled">
+    <div class="table-wrapper">
+      <!-- cdkDropList
+      (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled"> -->
       <!-- [cdkDropListData]="dataTable" -->
       <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
 
@@ -16,12 +16,13 @@
       <ngx-datatable
         dir="rtl"
         #myTable
-        class="material expandable"
+        class="expandable"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
         [footerHeight]="50"
         rowHeight="auto"
         [rows]="dataTable"
+        [rowClass]="getRowClass"
         [limit]="5"
       >
         <!-- Row Detail Template -->
