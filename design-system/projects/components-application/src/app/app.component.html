@@ -1,4 +1,3 @@
-
 <kkl-layout
   [hideFooterPath]="['lobby']"
   [status]="status"
@@ -38,9 +37,8 @@
   </div>
 </ng-template>
 
-
 <!-- <kkl-form [controls]="myCols"></kkl-form> -->
-{{currStr}}
+{{ currStr }}
 <kkl-local-table
   [dataSource]="dataSource"
   [columns]="columns"
@@ -80,7 +78,6 @@
   (saveRow)="onSave($event)"
 ></kkl-local-table> -->
 
-
 <!-- <kkl-local-table
             [dataSource]="dataSource"
             [columns]="columns"
@@ -89,9 +86,8 @@
             (expandRow)="onExpand($event)"
           ></kkl-local-table> -->
 
-
-      <!-- the inner table -->
-      <!-- <ng-template #expand>
+<!-- the inner table -->
+<!-- <ng-template #expand>
         <kkl-local-table
           fxFill
           [dataSource]="dataSource2"
@@ -99,4 +95,3 @@
           [paging]="false"
         ></kkl-local-table>
       </ng-template> -->
-
