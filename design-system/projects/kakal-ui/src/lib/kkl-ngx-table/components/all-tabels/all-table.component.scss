@@ -250,7 +250,7 @@ th > h3 {
 // }
 
 .hidden-class {
-  display: none;
+  display: none !important;
 }
 
 ::ng-deep .example-headers-align {

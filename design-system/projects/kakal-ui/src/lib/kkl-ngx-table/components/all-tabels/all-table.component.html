@@ -1,26 +1,22 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 <div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
+  <button
+    *ngIf="newRowAction"
+    kkl-border
+    [thick]="2"
+    mat-stroked-button
+    color="primary"
+    (click)="addNewRowGroup()"
+  >
+    {{ newRowAction }}
+    <mat-icon>add</mat-icon>
+  </button>
   <div
     fxLayout="column"
     fxLayoutAlign=" start"
     fxLayoutGap="1rem"
     [ngClass]="{ 'hidden-class': !isDesktop }"
   >
-    <ng-container *ngIf="newRowAction">
-      <button
-        kkl-border
-        table-add-button
-        [thick]="2"
-        mat-stroked-button
-        color="primary"
-        (click)="addNewRowGroup()"
-      >
-        <span>
-          {{ newRowAction }}
-        </span>
-        <mat-icon color="primary">add</mat-icon>
-      </button>
-    </ng-container>
     <div class="table-wrapper">
       <!-- cdkDropList
       (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled"> -->
@@ -361,12 +357,12 @@
               </tr>
             </table>
 
-            <div *ngIf="item == expandedElement" class="example-element-detail">
+            <div *ngIf="item | arrInclueds: expanded" class="example-element-detail">
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: expandedElement }
+                    context: { $implicit: item }
                   "
                 ></ng-template>
               </ng-container>
@@ -375,18 +371,20 @@
         </ng-container>
       </mat-accordion>
     </ng-container>
-  </div>
-  <div [hidden]="!paging">
-    <mat-paginator
-      #myPaging
-      dir="ltr"
-      fxLayout="row"
-      fxLayoutAlign="center center"
-      kklNewPagination
-      [pageSizeOptions]="[10, 25, 100]"
-      (page)="pageChanged($event)"
-      aria-label="Select page"
-    ></mat-paginator>
+    <div [hidden]="!paging">
+      <mat-paginator
+        #myPaging
+        dir="ltr"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+        kklNewPagination
+        [pageIndex]="page.pageIndex"
+        [pageSize]="page.pageSize"
+        [length]="dataTable.length"
+        [pageSizeOptions]="[5, 10, 25]"
+        (page)="pageChanged($event)"
+      ></mat-paginator>
+    </div>
   </div>
 
 

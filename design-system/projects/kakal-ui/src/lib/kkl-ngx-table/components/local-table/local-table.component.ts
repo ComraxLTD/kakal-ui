@@ -77,6 +77,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
   expand: boolean = false;
+  expanded: any[] = [];
 
   @Input() colsTemplate: any;
 
@@ -222,6 +223,14 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   addExpandedRow(obj: any) {
     this.ngxTable.rowDetail.toggleExpandRow(obj);
+    const ind = this.expanded.indexOf(obj);
+    if(ind == -1) {
+      this.expanded.push(obj);
+      this.expanded = [...this.expanded];
+    } else {
+      this.expanded.splice(ind, 1);
+      this.expanded = [...this.expanded];
+    }
     setTimeout(() => {
       this.onResizeExpand();
     }, 300);
