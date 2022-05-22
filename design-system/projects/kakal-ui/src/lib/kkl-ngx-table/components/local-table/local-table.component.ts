@@ -47,7 +47,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Output() expandRow = new EventEmitter<RowExpandEvent>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
-  expand: boolean = true;
+  expand: boolean = false;
 
   @Input() colsTemplate: any;
 
@@ -104,7 +104,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
-    if(this.localButtons?.some(a => a.type === 'inlineExpand')) {
+    if(this.localButtons?.some(a => a.type === 'inlineExpand') || this.oneColumns.some(a => a.button.type === 'inlineExpand')) {
       this.expand = true;
     }
   }
