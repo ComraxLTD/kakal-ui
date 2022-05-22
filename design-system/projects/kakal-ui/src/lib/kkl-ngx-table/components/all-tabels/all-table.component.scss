@@ -1,8 +1,8 @@
 @use "../../../../styles/variables" as main;
 @use '@angular/material' as mat;
-@import '~@swimlane/ngx-datatable/index.css';
-@import '~@swimlane/ngx-datatable/themes/material.scss';
-@import '~@swimlane/ngx-datatable/assets/icons.css';
+@import "~@swimlane/ngx-datatable/index.css";
+@import "~@swimlane/ngx-datatable/themes/material.scss";
+@import "~@swimlane/ngx-datatable/assets/icons.css";
 // @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
 :host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
@@ -10,7 +10,7 @@
   border-bottom: 2px solid main.color(accent) !important;
 }
 
-::ng-deep .datatable-header-cell-template-wrap{
+::ng-deep .datatable-header-cell-template-wrap {
   font-size: 14px;
   font-weight: 600;
   display: flex;
@@ -18,7 +18,7 @@
   justify-content: center;
 }
 
-::ng-deep .datatable-body-cell{
+::ng-deep .datatable-body-cell {
   min-height: 50px !important;
   display: flex !important;
   align-items: center;
@@ -112,12 +112,12 @@ thead {
   overflow: auto;
   height: 100%;
 }
-.all-table-form>div{
+.all-table-form > div {
   width: 99%;
   margin: auto;
 }
 
-.all-table-form>div>div{
+.all-table-form > div > div {
   width: 100%;
 }
 
@@ -346,7 +346,6 @@ th > h3 {
   justify-content: center;
 }
 
-
 // Summary row styles
 .datatable-summary-row {
   .datatable-body-row {
@@ -381,4 +380,9 @@ th > h3 {
     background-color: main.color(secondLine);
   }
 }
+}
+::ng-deep button[table-add-button] {
+  span {
+    color: main.color(text);
+  }
 }
