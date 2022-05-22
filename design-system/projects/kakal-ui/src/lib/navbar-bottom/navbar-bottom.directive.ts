@@ -7,8 +7,5 @@ import { NavbarBottomComponent } from './navbar-bottom.component';
 export class FooterButtonDirective {
   constructor(public template: TemplateRef<any>) {}
 
-  ngOnInit(): void {
-    console.log('works')
-    console.log(this.template)
-  }
+  ngOnInit(): void {}
 }

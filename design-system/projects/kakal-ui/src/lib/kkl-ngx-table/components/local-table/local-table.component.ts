@@ -47,6 +47,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Output() expandRow = new EventEmitter<RowExpandEvent>();
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
+  expand: boolean = false;
 
   @Input() colsTemplate: any;
 
@@ -103,6 +104,9 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
 
   ngOnInit(): void {
+    if(this.localButtons?.some(a => a.type === 'inlineExpand') || this.oneColumns.some(a => a.button.type === 'inlineExpand')) {
+      this.expand = true;
+    }
   }
 
   constructor(private dialogService: DialogService, private routerService: RouterService) {
@@ -277,6 +281,11 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
 
+  getRowClass = (row) => {
+    return {
+      'expand-class': this.expand
+    };
+  }
 
   onPage(event) {
     // clearTimeout(this.timeout);
