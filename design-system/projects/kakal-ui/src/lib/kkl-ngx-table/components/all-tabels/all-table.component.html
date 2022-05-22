@@ -14,7 +14,7 @@
   </button>
   <div
     fxLayout="column"
-    fxLayoutAlign=" start"
+    fxLayoutAlign="start"
     fxLayoutGap="1rem"
     [ngClass]="{ 'hidden-class': !isDesktop }"
   >
@@ -321,7 +321,7 @@
                 <td class="actions" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngIf="
-                      !(element | arrInclueds: editItems);
+                      !(item | arrInclueds: editItems);
                       else addButtonTemplate
                     "
                   >
@@ -335,7 +335,7 @@
                       <ng-template #closeExpand>
                         <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
                       <button
-                        [ngClass]="{ expanded: item === expandedElement }"
+                        [ngClass]="{ expanded: (item | arrInclueds: expanded) }"
                         [matTooltip]="butt.label"
                         mat-icon-button
                         color="primary"
@@ -390,3 +390,15 @@
     </div>
   </div>
 </div>
+<ng-template #addButtonTemplate let-element="element">
+  <kkl-stroke-button
+    table-save-button
+    color="primary"
+    (clickEvent)="saveRowClick(element)"
+  >
+    שמור
+  </kkl-stroke-button>
+  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
+    <kkl-icon key="cancel"></kkl-icon>
+  </button>
+</ng-template>

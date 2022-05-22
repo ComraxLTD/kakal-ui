@@ -1,7 +1,15 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 
 <form [formGroup]="form" class="all-table-form"  (resized)="onResize($event)" #myIdentifier>
-  <button *ngIf="newRowAction" kkl-border [thick]="2" mat-stroked-button color="primary" (click)="addNewRowGroup()">
+  <button
+    class="button-center-start"
+    *ngIf="newRowAction"
+    kkl-border
+    [thick]="2"
+    mat-stroked-button
+    color="primary"
+    (click)="addNewRowGroup()"
+  >
     {{ newRowAction }}
     <mat-icon>add</mat-icon>
   </button>
@@ -156,24 +164,12 @@
 
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="center-butt">
-            <button
-              *ngIf="newRowAction"
-              kkl-border
-              [thick]="2"
-              mat-stroked-button
-              color="primary"
-              (click)="addNewRowGroup()"
-            >
-              {{ newRowAction }}
-              <mat-icon>add</mat-icon>
-            </button>
             <h4
               style="
                 font-size: 14px !important;
                 text-align: start;
                 margin-bottom: 2px;
               "
-              *ngIf="!newRowAction"
             > פעולות</h4>
           </th>
           <td
@@ -358,7 +354,7 @@
                 <td class="actions" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngIf="
-                      !(element | arrInclueds: editItems);
+                      !(item | arrInclueds: editItems);
                       else addButtonTemplate
                     "
                   >
