@@ -19,13 +19,13 @@ export class IconService {
   ) {}
 
   public icons = {
-      
+
     // new icons for table
     allDirections: AppIcons.ALL_DIRECTIONS,
     cancel: AppIcons.CANCEL_ICON,
     trash_delete: AppIcons.TRASH_DELETE_ICON,
     duplicateIcon: AppIcons.DUPLICATE_ICON,
-    edit: AppIcons.EDIT,
+    kkl_edit: AppIcons.EDIT,
     eye: AppIcons.EYE,
     print_new: AppIcons.PRINT,
     send: AppIcons.SEND_ICON,

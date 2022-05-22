@@ -1,6 +1,11 @@
 @use "../../../../styles/variables" as main;
 
 
+::ng-deep .datatable-header-cell-label{
+  font-size: 14px;
+  font-weight: 600;
+}
+
 
 tr.example-detail-row {
   height: 0;
