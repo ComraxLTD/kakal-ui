@@ -113,6 +113,7 @@ export class NavbarBottomService {
   setNextLabel(value: string): void {
     this.nextLabel$.next(value);
   }
+  
   listenNextLabel(): Observable<string> {
     return this.nextLabel$.asObservable();
   }
