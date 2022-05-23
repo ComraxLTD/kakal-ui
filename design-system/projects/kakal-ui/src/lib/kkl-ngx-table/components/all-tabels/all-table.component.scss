@@ -18,6 +18,10 @@
   justify-content: center;
 }
 
+::ng-deep .datatable-body {
+  width: 101% !important;
+}
+
 ::ng-deep .datatable-body-cell {
   min-height: 50px !important;
   display: flex !important;
