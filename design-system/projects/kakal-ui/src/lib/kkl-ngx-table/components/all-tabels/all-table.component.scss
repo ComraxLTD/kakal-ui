@@ -5,6 +5,15 @@
 @import "~@swimlane/ngx-datatable/assets/icons.css";
 // @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
+::ng-deep .datatable-scroll {
+  width: fit-content !important;
+  // width: auto !important;
+}
+
+::ng-deep .datatable-body {
+  width: 101% !important;
+}
+
 :host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
 :host ::ng-deep .datatable-header {
   border-bottom: 2px solid main.color(accent) !important;
@@ -16,10 +25,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-::ng-deep .datatable-body {
-  width: 101% !important;
 }
 
 ::ng-deep .datatable-body-cell {
