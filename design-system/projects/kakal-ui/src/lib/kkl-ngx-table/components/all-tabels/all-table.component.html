@@ -7,21 +7,16 @@
   fxLayout="column"
   fxLayoutGap="1rem"
 >
-  <header fxLayoutAlign="end">
-    <button
-      class="button-center-start"
-      *ngIf="newRowAction"
-      kkl-border
-      [thick]="2"
-      mat-stroked-button
-      color="primary"
-      (click)="addNewRowGroup()"
-    >
-      <span>
+  <header fxLayout="row" fxLayoutAlign.sm="end" fxLayoutAlign.gt-sm="end" fxLayoutAlign.lt-sm="center">
+    <ng-container *ngIf="newRowAction">
+      <kkl-add-button
+        table-add-button
+        color="primary"
+        (clickEvent)="addNewRowGroup()"
+      >
         {{ newRowAction }}
-      </span>
-      <mat-icon>add</mat-icon>
-    </button>
+      </kkl-add-button>
+    </ng-container>
   </header>
 
   <!-- DESKTOP TABLE -->

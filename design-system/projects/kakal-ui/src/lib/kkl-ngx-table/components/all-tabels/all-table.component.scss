@@ -45,16 +45,12 @@
       }
     }
   }
-  @media screen and (min-width: 600px) {
-    .button-center-start {
-      // margin-left: 100px;
-    }
-  }
-  @media screen and (max-width: 600px) {
-    .button-center-start {
-      margin: 0 auto;
-      display: block;
-    }
+}
+// header - button alignment
+@media screen and (max-width: 800px) {
+  header {
+    justify-content: center;
+    display: flex;
   }
 }
 
