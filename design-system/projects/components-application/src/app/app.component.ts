@@ -497,7 +497,20 @@ export class AppComponent {
     { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
     { key: 'city', label: 'עיר', controlType: 'select' },
     { key: 'dob', label: 'תאריך', controlType: 'date' },
-
+    // { key: 'id1', label: 'Id', controlType: 'number', button: { type: 'inlineNavigation' } },
+    // { key: 'name1', label: 'Name', controlType: 'text', notEditable: true},
+    // // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
+    // { key: 'yearsOfExperience1', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
+    // { key: 'occupation1', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
+    // { key: 'city1', label: 'עיר', controlType: 'select' },
+    // { key: 'dob1', label: 'תאריך', controlType: 'date' },
+    // { key: 'id2', label: 'Id', controlType: 'number', button: { type: 'inlineNavigation' } },
+    // { key: 'name2', label: 'Name', controlType: 'text', notEditable: true},
+    // // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
+    // { key: 'yearsOfExperience2', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
+    // { key: 'occupation2', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
+    // { key: 'city2', label: 'עיר', controlType: 'select' },
+    // { key: 'dob2', label: 'תאריך', controlType: 'date' },
   ];
 
 //   // every object in the rowActions array is a button that will appear on the left side of every row of the table
@@ -505,6 +518,12 @@ export class AppComponent {
     { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
     { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
     { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' },
+    { type: 'visibility', icon: 'visibility', label: 'Show' },
+  ]
+
+  rowActions2: RowActionModel[] = [
+    { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
+    { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
     { type: 'visibility', icon: 'visibility', label: 'Show' },
   ]
 
