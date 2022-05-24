@@ -28,15 +28,13 @@ export class NavbarBottomComponent implements OnInit {
   showBack$: Observable<boolean>;
   showNextMiddle$: Observable<{ show: boolean; next: boolean }>;
   nextLabel$: Observable<string>;
+  saveLabel$: Observable<string>;
 
   disableNext$: Observable<boolean>;
 
   autoBack: boolean = true;
 
   formGroup: FormGroup = new FormGroup({});
-
-  nextLabel: string;
-  saveLabel: string;
 
   bottomIcon: string = 'bottom_tree_';
 
@@ -57,6 +55,7 @@ export class NavbarBottomComponent implements OnInit {
     this.showNextMiddle$ = this.navbarBottomService.listenToShowNextMiddle();
     this.disableNext$ = this.navbarBottomService.listenToDisableNext();
     this.nextLabel$ = this.navbarBottomService.listenNextLabel();
+    this.saveLabel$ = this.navbarBottomService.listenSaveLabel();
 
     this.navbarBottomService
       .listenToFormGroup()
@@ -73,19 +72,6 @@ export class NavbarBottomComponent implements OnInit {
       .pipe(takeUntil(this.destroySubject$))
       .subscribe((a: boolean) => {
         this.autoBack = a;
-      });
-
-    this.navbarBottomService
-      .listenNextLabel()
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a: string) => {
-        this.nextLabel = a;
-      });
-    this.navbarBottomService
-      .getTextSave()
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a: string) => {
-        this.saveLabel = a;
       });
   }
 
