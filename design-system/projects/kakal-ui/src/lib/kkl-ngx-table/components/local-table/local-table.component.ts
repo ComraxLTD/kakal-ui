@@ -77,12 +77,15 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   @Input() expandTemplate: TemplateRef<any> | undefined;
   expand: boolean = false;
+  expanded: any[] = [];
 
   @Input() colsTemplate: any;
 
   @Input() newRowAction: string;
 
   @Input() paging: boolean = true;
+
+  hasSummary: boolean = false;
 
   dragable: boolean;
   @Input() set draggable(val: boolean) {
@@ -94,6 +97,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Input()
   set columns(value: TableBase[]) {
     this.oneColumns = value;
+    this.hasSummary = value.some(a => a.sumFunc);
   }
 
   dataTable: any[];
@@ -135,13 +139,13 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     if (
       this.localButtons?.some((a) => a.type === 'inlineExpand') ||
-      this.oneColumns.some((a) => a.button.type === 'inlineExpand')
+      this.oneColumns.some((a) => a.button?.type === 'inlineExpand')
     ) {
       this.expand = true;
     }
 
     this.page.pageIndex = 0;
-    this.page.pageSize = this.paging ? 5 : this.dataSource.length;
+    this.page.pageSize = this.paging ? 5 : this.dataTable.length;
   }
 
   ngAfterViewInit() {
@@ -156,7 +160,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
   updateFilter(event, key) {
-    this.searchRow[key] = event;
+    this.searchRow[key] = event.value;
   }
 
   searchChanged() {
@@ -222,6 +226,14 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   addExpandedRow(obj: any) {
     this.ngxTable.rowDetail.toggleExpandRow(obj);
+    const ind = this.expanded.indexOf(obj);
+    if(ind == -1) {
+      this.expanded.push(obj);
+      this.expanded = [...this.expanded];
+    } else {
+      this.expanded.splice(ind, 1);
+      this.expanded = [...this.expanded];
+    }
     setTimeout(() => {
       this.onResizeExpand();
     }, 300);

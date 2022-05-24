@@ -1,4 +1,4 @@
-<div (click)="$event.stopPropagation()" style="width: 200px;">
+<div (click)="$event.stopPropagation()" class="table-form-wrapper">
   <ng-container [ngSwitch]="question?.controlType">
     <ng-container *ngSwitchCase="'select'">
       <kkl-select
@@ -11,7 +11,7 @@
         [theme]="question.theme"
         [appearance]="question.appearance"
         [disabled]="question.disabled"
-        (selectChanged)="onSelectChanged($event, question)"
+        (selectChanged)="onSelectChanged($event)"
       ></kkl-select>
     </ng-container>
     <ng-container *ngSwitchCase="'autocomplete'">
@@ -28,7 +28,8 @@
           [withButton]="question.withButton"
           [icon]="question.icon"
           [panelWidth]="question.panelWidth"
-          (selectChanged)="onSelectChanged($event, question)">
+          (selectChanged)="onSelectChanged($event)"
+        >
         </kkl-multi-autocomplete>
       </ng-container>
       <ng-template #simpleAutocomplete>
@@ -44,7 +45,7 @@
           [withButton]="question.withButton"
           [icon]="question.icon"
           [panelWidth]="question.panelWidth"
-          (selectChanged)="onSelectChanged($event, question)"
+          (selectChanged)="onSelectChanged($event)"
         ></kkl-autocomplete>
       </ng-template>
     </ng-container>
@@ -57,7 +58,7 @@
         [maxDate]="question.maxDate"
         [minDate]="question.minDate"
         [appearance]="question.appearance"
-        (valueChanged)="onValueChanged($event, question)"
+        (valueChanged)="onValueChanged($event)"
       ></kkl-datepicker>
     </ng-container>
     <ng-container *ngSwitchCase="'dateRange'">
@@ -68,7 +69,8 @@
         [appearance]="question?.appearance"
         [maxDate]="question.maxDate"
         [minDate]="question.minDate"
-        (valueChanged)="onValueChanged($event, question)">
+        (valueChanged)="onValueChanged($event)"
+      >
       </kkl-range-datepicker>
     </ng-container>
     <ng-container *ngSwitchCase="'radio'">
@@ -78,7 +80,7 @@
         [key]="question.key"
         [placeHolder]="question.placeHolder"
         [options]="question.options"
-        (selectChanged)="onSelectChanged($event, question)"
+        (selectChanged)="onSelectChanged($event)"
       ></kkl-radio-group>
     </ng-container>
     <ng-container *ngSwitchCase="'toggle'">
@@ -86,7 +88,7 @@
         [control]="control"
         [label]="question.label"
         [key]="question.key"
-        (selectChanged)="onSelectChanged($event, question)"
+        (selectChanged)="onSelectChanged($event)"
       ></kkl-slide-toggle>
     </ng-container>
     <ng-container *ngSwitchCase="'checkbox'">
@@ -94,7 +96,7 @@
         [control]="control"
         [label]="question.label"
         [key]="question.key"
-        (selectChanged)="onSelectChanged($event, question)"
+        (selectChanged)="onSelectChanged($event)"
       ></kkl-checkbox>
     </ng-container>
     <ng-container *ngSwitchCase="'currency'">
@@ -106,7 +108,8 @@
         [theme]="question.theme"
         [appearance]="question.appearance"
         [debounce]="question.debounce"
-        (valueChanged)="onValueChanged($event, question)">
+        (valueChanged)="onValueChanged($event)"
+      >
       </kkl-currency>
     </ng-container>
     <ng-container *ngSwitchCase="'texteditor'">
@@ -115,7 +118,7 @@
         [control]="control"
         [placeHolder]="question.placeHolder"
         [debounce]="question.debounce"
-        (valueChanged)="onValueChanged($event, question)"
+        (valueChanged)="onValueChanged($event)"
       ></kkl-text-editor>
     </ng-container>
     <ng-container *ngSwitchCase="'range'">
@@ -126,7 +129,7 @@
         [theme]="question.theme"
         [appearance]="question.appearance"
         [debounce]="question.debounce"
-        (valueChanged)="onValueChanged($event, question)"
+        (valueChanged)="onValueChanged($event)"
       ></kkl-range>
     </ng-container>
     <ng-container *ngSwitchCase="'counter'">
@@ -137,7 +140,7 @@
         [placeHolder]="question.placeHolder"
         [icon]="question.icon"
         [debounce]="question.debounce"
-        (valueChanged)="onValueChanged($event, question)"
+        (valueChanged)="onValueChanged($event)"
       >
       </kkl-counter>
     </ng-container>
@@ -156,10 +159,8 @@
         [format]="question.format"
         [debounce]="question.debounce"
         [controlType]="question.controlType"
-        (valueChanged)="onValueChanged($event, question)"
+        (valueChanged)="onValueChanged($event)"
       ></kkl-input>
     </ng-container>
-
   </ng-container>
-
 </div>

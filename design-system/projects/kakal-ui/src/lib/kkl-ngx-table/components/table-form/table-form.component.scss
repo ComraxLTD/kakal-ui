@@ -1,0 +1,19 @@
+@use "../../../../styles/variables" as main;
+
+::ng-deep .table-form-wrapper {
+  min-width: 200px;
+  mat-form-field {
+    width: 90% !important;
+    margin-right: 10px;
+    font-size: 14px !important;
+    .mat-form-field-wrapper {
+      padding-bottom: 1px !important;
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .table-form-wrapper {
+    width: 100%;
+  }
+}

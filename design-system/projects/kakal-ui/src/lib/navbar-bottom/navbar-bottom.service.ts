@@ -12,9 +12,6 @@ export class NavbarBottomService {
   private showNextMiddle$: BehaviorSubject<{ show: boolean; next: boolean }> =
     new BehaviorSubject({ show: false, next: true });
 
-  private textNext$: Subject<string> = new Subject();
-  private textSave$: Subject<string> = new Subject();
-
   private next$: Subject<void> = new Subject();
   private save$: Subject<void> = new Subject();
   private back$: Subject<void> = new Subject();
@@ -22,6 +19,7 @@ export class NavbarBottomService {
   private formGroup$: Subject<FormGroup> = new Subject();
 
   private nextLabel$: BehaviorSubject<string> = new BehaviorSubject('המשך');
+  private saveLabel$: BehaviorSubject<string> = new BehaviorSubject('שמור');
 
   private disableNext$: BehaviorSubject<boolean> = new BehaviorSubject(false);
   private autoBack$: BehaviorSubject<boolean> = new BehaviorSubject(true);
@@ -112,20 +110,19 @@ export class NavbarBottomService {
     this.nextMiddle$.next();
   }
 
-
   setNextLabel(value: string): void {
     this.nextLabel$.next(value);
   }
+  
   listenNextLabel(): Observable<string> {
     return this.nextLabel$.asObservable();
   }
 
-
-  getTextSave(): Observable<string> {
-    return this.textSave$.asObservable();
-  }
-  setTextSave(val: string) {
-    this.textSave$.next(val);
+  listenSaveLabel(): Observable<string> {
+    return this.saveLabel$.asObservable();
   }
 
+  seSaveLabel(val: string) {
+    this.saveLabel$.next(val);
+  }
 }

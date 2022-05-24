@@ -164,7 +164,8 @@ export * from './lib/kkl-table/components/mei-filters/mei-filters.component';
 
 // NGX TABLE
 export * from './lib/kkl-ngx-table/kkl-ngx-table.module';
-
+export * from './lib/kkl-ngx-table/components/table-form/table-form.component';
+export * from './lib/kkl-ngx-table/directives/pagination.directive';
 export * from './lib/kkl-ngx-table/components/local-table/local-table.component';
 
 
