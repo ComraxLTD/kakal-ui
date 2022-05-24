@@ -17,7 +17,7 @@
       .ngx-datatable{
         overflow: inherit;
         ::ng-deep .datatable-header {
-          border-bottom: 2px solid main.color(accent) !important;
+          border-bottom: 2px solid main.color(accent);
           .datatable-header-inner {
             height: main.spacing(4);
             .datatable-header-cell {
@@ -67,7 +67,7 @@
   min-height: 50px !important;
   display: flex !important;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   white-space: pre-line;
 }
 
@@ -387,7 +387,13 @@ th > h3 {
   margin-top: -3px;
   margin-right: 3px;
   height: fit-content !important;
-  width: 99%;
+  width: 99.7%;
+  .ngx-datatable>div{
+    width: 99%;
+    .datatable-header {
+      border-bottom: none !important;
+    }
+  }
   & > .example-element-detail {
     padding: 10px 20px;
     background-color: white !important;
