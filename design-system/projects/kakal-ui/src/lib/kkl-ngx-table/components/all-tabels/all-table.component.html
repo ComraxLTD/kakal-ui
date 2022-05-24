@@ -32,19 +32,18 @@
       <ngx-datatable
         dir="rtl"
         #myTable
-        default
         class="expandable"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
-        [footerHeight]="paging? 65 : 0"
         rowHeight="auto"
+        [footerHeight]="paging? 65 : 0"
+        [summaryPosition]="'bottom'"
+        [summaryHeight]="55"
         [rows]="dataTable"
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
         [rowClass]="getRowClass"
         [summaryRow]="hasSummary"
-        [summaryPosition]="'bottom'"
-        [summaryHeight]="55"
         [scrollbarH]="true"
         >
         <!-- Row Detail Template -->
