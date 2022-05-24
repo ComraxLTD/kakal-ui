@@ -38,19 +38,17 @@ export class CostumerDetailsComponent implements OnInit {
 
   rowActions: RowActionModel[] = [
     {
+      type: 'inlineExpand',
+      label: 'אשר',
+      button: true,
+    },
+    {
       type: 'inlineEdit',
       icon: 'edit',
-      button: false,
     },
     {
       type: 'deleteEdit',
       icon: 'delete',
-      button: false,
-    },
-    {
-      type: 'inlineExpand',
-      label: 'אשר',
-      button: true,
     },
   ];
 

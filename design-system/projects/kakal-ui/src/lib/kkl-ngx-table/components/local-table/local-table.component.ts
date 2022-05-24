@@ -190,6 +190,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
   buttonClick(butt: RowActionModel, obj: any, key: string) {
+
     if (normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':

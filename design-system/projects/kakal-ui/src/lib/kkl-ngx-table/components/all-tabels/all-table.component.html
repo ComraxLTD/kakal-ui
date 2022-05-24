@@ -136,55 +136,61 @@
             </ng-template>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column *ngIf="localButtons?.length" name="פעולות">
+        <ngx-datatable-column
+          *ngIf="localButtons?.length"
+          name="פעולות"
+          class="actions-cell"
+        >
           <ng-template
             let-row="row"
             let-rowIndex="rowIndex"
             ngx-datatable-cell-template
           >
-            <ng-container
-              *ngIf="!(row | arrInclueds: editItems); else addButton"
-            >
-              <ng-container *ngFor="let butt of localButtons">
-                <ng-container *ngIf="butt.button">
-                  <kkl-stroke-button
-                    kkl-action-table
-                    (clickEvent)="buttonClick(butt, row, 'actions')"
-                    color="primary"
-                  >
-                    {{ butt.label }}
-                  </kkl-stroke-button>
-                </ng-container>
-                <ng-container *ngIf="!butt.button">
-                  <button
-                    [matTooltip]="butt.label"
-                    mat-icon-button
-                    color="primary"
-                    (click)="buttonClick(butt, row, 'actions')"
-                  >
-                    <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                  </button>
+            <div fxLayout="row" fxLayoutGap="1rem">
+              <ng-container
+                *ngIf="!(row | arrInclueds: editItems); else addButton"
+              >
+                <ng-container *ngFor="let butt of localButtons">
+                  <ng-container *ngIf="butt.button">
+                    <kkl-stroke-button
+                      kkl-action-table
+                      (clickEvent)="buttonClick(butt, row, 'actions')"
+                      color="primary"
+                    >
+                      {{ butt.label }}
+                    </kkl-stroke-button>
+                  </ng-container>
+                  <ng-container *ngIf="!butt.button">
+                    <button
+                      [matTooltip]="butt.label"
+                      mat-icon-button
+                      color="primary"
+                      (click)="buttonClick(butt, row, 'actions')"
+                    >
+                      <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                    </button>
+                  </ng-container>
                 </ng-container>
               </ng-container>
-            </ng-container>
-            <ng-template #addButton>
-              <button
-                matTooltip="save"
-                mat-button
-                color="primary"
-                (click)="saveRowClick(row)"
-              >
-                <kkl-icon key="save"></kkl-icon>
-              </button>
-              <button
-                matTooltip="cancel"
-                mat-button
-                color="primary"
-                (click)="cancelRowClick(row)"
-              >
-                <kkl-icon key="cancel"></kkl-icon>
-              </button>
-            </ng-template>
+              <ng-template #addButton>
+                <button
+                  matTooltip="save"
+                  mat-button
+                  color="primary"
+                  (click)="saveRowClick(row)"
+                >
+                  <kkl-icon key="save"></kkl-icon>
+                </button>
+                <button
+                  matTooltip="cancel"
+                  mat-button
+                  color="primary"
+                  (click)="cancelRowClick(row)"
+                >
+                  <kkl-icon key="cancel"></kkl-icon>
+                </button>
+              </ng-template>
+            </div>
           </ng-template>
         </ngx-datatable-column>
 
@@ -386,7 +392,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: { row: item, col: col.key } }
+                    context: { $implicit: { row: item, col: col?.key } }
                   "
                 ></ng-template>
               </ng-container>

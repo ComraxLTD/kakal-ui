@@ -9,26 +9,26 @@
     ></kkl-advanced-search-layout>
   </div>
 
-  <section fxLayout="row" fxLayoutAlign="end center">
+  <!-- <section fxLayout="row" fxLayoutAlign="end center">
     <kkl-add-button (clickEvent)="onCreateNewCommittee()"
       >הוסף לקוח חדש</kkl-add-button
     >
-  </section>
+  </section> -->
 
   <!-- KKL-TABLE-NEW -->
-  <kkl-local-table
+  <kkl-ngx-local-table
     [columns]="columns"
     [rowActions]="rowActions"
     [dataSource]="dataSource"
+    [newRowAction]="'הוסף שורה'"
     [expandTemplate]="expandTemplate"
-  ></kkl-local-table>
+  ></kkl-ngx-local-table>
 </div>
 
 <ng-template #expandTemplate>
-  <kkl-local-table
+  <kkl-ngx-local-table
     [columns]="columns"
     [rowActions]="rowActions"
-    [newRowAction]="'הוסף שורה'"
     [dataSource]="dataSource"
-  ></kkl-local-table>
+  ></kkl-ngx-local-table>
 </ng-template>
