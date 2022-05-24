@@ -47,6 +47,11 @@ export class CostumerDetailsComponent implements OnInit {
       icon: 'delete',
       button: false,
     },
+    {
+      type: 'inlineExpand',
+      label: 'אשר',
+      button: true,
+    },
   ];
 
   datasource = [{}];

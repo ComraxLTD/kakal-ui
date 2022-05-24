@@ -35,7 +35,7 @@
         class="expandable"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
-        [footerHeight]="paging? 65 : 0"
+        [footerHeight]="paging ? 65 : 0"
         rowHeight="auto"
         [rows]="dataTable"
         [offset]="page.pageIndex"
@@ -45,7 +45,7 @@
         [summaryPosition]="'bottom'"
         [summaryHeight]="55"
         [scrollbarH]="true"
-        >
+      >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
           <ng-template
@@ -59,7 +59,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: {row: row, col: col }}
+                    context: { $implicit: { row: row, col: col } }
                   "
                 ></ng-template>
               </ng-container>
@@ -146,14 +146,25 @@
               *ngIf="!(row | arrInclueds: editItems); else addButton"
             >
               <ng-container *ngFor="let butt of localButtons">
-                <button
-                  [matTooltip]="butt.label"
-                  mat-icon-button
-                  color="primary"
-                  (click)="buttonClick(butt, row, 'actions')"
-                >
-                  <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                </button>
+                <ng-container *ngIf="butt.button">
+                  <kkl-stroke-button
+                    kkl-action-table
+                    (clickEvent)="buttonClick(butt, row, 'actions')"
+                    color="primary"
+                  >
+                    {{ butt.label }}
+                  </kkl-stroke-button>
+                </ng-container>
+                <ng-container *ngIf="!butt.button">
+                  <button
+                    [matTooltip]="butt.label"
+                    mat-icon-button
+                    color="primary"
+                    (click)="buttonClick(butt, row, 'actions')"
+                  >
+                    <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                  </button>
+                </ng-container>
               </ng-container>
             </ng-container>
             <ng-template #addButton>
@@ -375,7 +386,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: {row: item, col: col.key }}
+                    context: { $implicit: { row: item, col: col.key } }
                   "
                 ></ng-template>
               </ng-container>
