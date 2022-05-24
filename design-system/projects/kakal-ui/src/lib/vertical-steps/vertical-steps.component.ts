@@ -45,8 +45,8 @@ export interface StepSelectEvent {
   ],
 })
 export class VerticalStepsComponent implements OnInit {
-  isSmallScreen$: Observable<boolean>=of(true);
-  listenToShowNextMiddle$:Observable<any>;
+  isSmallScreen$: Observable<boolean> = of(true);
+  listenToShowNextMiddle$: Observable<any>;
   @Input() linear: boolean;
 
   @Input() steps: Step[];
@@ -57,7 +57,7 @@ export class VerticalStepsComponent implements OnInit {
 
   _selectedIndex: number = 0;
   @Input() set selectedIndex(val: number) {
-    if (val || val ===0) {
+    if (val || val === 0) {
       this._selectedIndex = val;
       if (this.steps) {
         this.cellTemplate = this.steps[val].key as string;
@@ -71,10 +71,14 @@ export class VerticalStepsComponent implements OnInit {
   // @Output() interacted: EventEmitter<CdkStep> = new EventEmitter();
   @Output() stepChanged: EventEmitter<StepSelectEvent> = new EventEmitter();
 
-  constructor(private breakPointService: BreakpointService,private navbarBottomService: NavbarBottomService) {}
+  constructor(
+    private breakPointService: BreakpointService,
+    private navbarBottomService: NavbarBottomService
+  ) {}
 
   ngOnInit(): void {
-    this.listenToShowNextMiddle$ = this.navbarBottomService.listenToShowNextMiddle();
+    this.listenToShowNextMiddle$ =
+      this.navbarBottomService.listenToShowNextMiddle();
     this.cellTemplate = this.steps[this._selectedIndex].key as string;
     this.isSmallScreen$ = this.getIsSmallScreen();
   }
@@ -82,7 +86,7 @@ export class VerticalStepsComponent implements OnInit {
   getIsSmallScreen(): Observable<boolean> {
     return this.breakPointService.isMobile().pipe(
       tap((value) => {
-        return value
+        return value;
       })
     );
   }
@@ -99,7 +103,7 @@ export class VerticalStepsComponent implements OnInit {
       last: selectedIndex === this.steps.length - 1,
     };
     this.cellTemplate = this.steps[selectedIndex].key as string;
-    this._selectedIndex = selectedIndex
+    this._selectedIndex = selectedIndex;
     this.stepChanged.emit(stepSelectEvent);
   }
 }

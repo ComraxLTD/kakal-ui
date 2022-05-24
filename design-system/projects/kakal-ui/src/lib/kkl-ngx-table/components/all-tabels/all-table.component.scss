@@ -17,6 +17,10 @@
   justify-content: center;
 }
 
+::ng-deep .datatable-body {
+  width: 101% !important;
+}
+
 ::ng-deep .datatable-body-cell {
   min-height: 50px !important;
   display: flex !important;
@@ -26,18 +30,21 @@
 }
 
 ::ng-deep datatable-body-row {
-  margin: 3px;
+  margin: 5px;
+  width: 99% !important;
+  margin: auto;
 }
 
 // ::ng-deep .datatable-body-cell>span{
 //   height: 50px !important;
 // }
 :host ::ng-deep .expand-class {
-  @include mat.elevation(2);
-  // box-shadow:
-  //   0px 3px 1px 2px rgba(0, 0, 0, 5%),
-  //   0px 2px 2px 2px rgb(0 0 0 / 5%),
-  //   0px 1px 5px 2px rgb(0 0 0 / 5%) !important;
+  margin: 3px;
+  // @include mat.elevation(2);
+  box-shadow:
+    0px 2px 1px 1px rgba(0, 0, 0, 5%),
+    0px 2px 2px 1px rgb(0 0 0 / 5%),
+    0px 2px 5px 1px rgb(0 0 0 / 5%) !important;
 }
 
 tr.example-detail-row {
@@ -112,6 +119,7 @@ thead {
   // position: relative;
   overflow: auto;
   height: 100%;
+  background-color: white;
 }
 .all-table-form > div {
   width: 99%;
@@ -256,9 +264,10 @@ th > h3 {
 
 ::ng-deep .example-headers-align {
   .expansion-panel {
-    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 5%),
-      0px 2px 2px 0px rgb(0 0 0 / 5%), 0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
-
+    box-shadow:
+      0px 2px 1px -2px rgba(0, 0, 0, 5%),
+      0px 2px 2px 0px rgb(0 0 0 / 5%),
+      0px 2px 5px 0px rgb(0 0 0 / 5%) !important;
     .expansion-panel-header > span {
       height: 10rem;
     }
@@ -363,14 +372,19 @@ th > h3 {
 }
 
 ::ng-deep.expand-class + .datatable-row-detail {
-  @include mat.elevation(2);
-  margin-top: -5px;
-  margin-right: 2px;
+  // @include mat.elevation(2);
+  box-shadow:
+    0px 2px 1px 1px rgba(0, 0, 0, 5%),
+    0px 2px 2px 1px rgb(0 0 0 / 5%),
+    0px 2px 2px 1px rgb(0 0 0 / 5%) !important;
+  margin: auto;
+  margin-top: -3px;
+  margin-right: 3px;
   height: fit-content !important;
+  width: 99%;
   & > .example-element-detail {
-    width: 100%;
     padding: 10px 20px;
-    background-color: #ffffff !important;
+    background-color: white !important;
     .datatable-header {
       border-top: dashed 1.5px main.color(primaryLight);
       border-bottom: 0px !important;
@@ -397,6 +411,7 @@ th > h3 {
 ::ng-deep datatable-header-cell.datatable-header-cell {
   display: flex !important;
   align-items: center !important;
+  justify-content: center;
 }
 
 .table-form-wrapper {
@@ -415,15 +430,32 @@ th > h3 {
 }
 
 @media screen and (min-width: 600px) {
-  .button-center-start{
+  .button-center-start {
     float: left;
     margin-left: 100px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .button-center-start{
+  .button-center-start {
     margin: 0 auto;
     display: block;
+  }
+}
+
+::ng-deep mat-paginator.kkl-pagination {
+  .mat-paginator-page-size {
+    width: 50px !important;
+  }
+  .mat-paginator-container {
+    justify-content: center !important;
+
+    mat-form-field {
+      text-align: center;
+    }
+
+    .mat-select-arrow-wrapper {
+      display: none;
+    }
   }
 }

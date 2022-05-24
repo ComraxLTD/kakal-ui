@@ -34,7 +34,7 @@
         class="expandable"
         [columnMode]="ColumnMode.force"
         [headerHeight]="50"
-        [footerHeight]="65"
+        [footerHeight]="paging? 65 : 0"
         rowHeight="auto"
         [rows]="dataTable"
         [offset]="page.pageIndex"
@@ -43,7 +43,8 @@
         [summaryRow]="hasSummary"
         [summaryPosition]="'bottom'"
         [summaryHeight]="55"
-      >
+        [scrollbarH]="true"
+        >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
           <ng-template
@@ -188,6 +189,7 @@
             <div class="container">
               <ng-container *ngIf="paging">
                 <mat-paginator
+                  class="kkl-pagination"
                   #myPaging
                   dir="ltr"
                   fxLayout="row"
@@ -207,14 +209,13 @@
     </div>
   </div>
 
-
   <div [ngClass]="{ 'hidden-class': isDesktop }">
     <ng-container *ngIf="dataTable">
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
       <mat-accordion class="example-headers-align" multi dir="rtl">
-        <ng-container *ngFor="let item of dataTable;let i = index">
+        <ng-container *ngFor="let item of dataTable; let i = index">
           <mat-expansion-panel
             class="expansion-panel"
             style="margin: 8px 8px"
@@ -285,7 +286,10 @@
               <tr *ngFor="let col of oneColumns">
                 <ng-container *ngIf="col.key !== oneColumns[0].key">
                   <ng-container
-                    *ngIf="!(item | arrInclueds: editItems) || col.notEditable; else editBlock"
+                    *ngIf="
+                      !(item | arrInclueds: editItems) || col.notEditable;
+                      else editBlock
+                    "
                   >
                     <td
                       style="
@@ -362,7 +366,10 @@
               </tr>
             </table>
 
-            <div *ngIf="item | arrInclueds: expanded" class="example-element-detail">
+            <div
+              *ngIf="item | arrInclueds: expanded"
+              class="example-element-detail"
+            >
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
@@ -376,12 +383,10 @@
         </ng-container>
       </mat-accordion>
     </ng-container>
-    <div [hidden]="!paging">
+    <div *ngIf="paging">
       <mat-paginator
+        class="kkl-pagination"
         #myPaging
-        dir="ltr"
-        fxLayout="row"
-        fxLayoutAlign="center center"
         kklNewPagination
         [pageIndex]="page.pageIndex"
         [pageSize]="page.pageSize"
@@ -391,10 +396,6 @@
       ></mat-paginator>
     </div>
   </div>
-
-
-
-
 </div>
 <ng-template #addButtonTemplate let-element="element">
   <kkl-stroke-button

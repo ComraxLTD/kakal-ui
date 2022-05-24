@@ -1,19 +1,41 @@
 <div fxFill fxLayout="column" fxLayoutGap="1rem" dir="rtl">
   <!-- the checkbox will appear only if the "multi" value is set to true, the checkbox controls and presents weather all panels are open or not -->
-  <header fxLayout="row" fxLayoutGap="3rem" fxLayoutAlign="end center">
-    <mat-checkbox [color]="'primary'" (change)="expandAll($event)">
-      פתח הכול</mat-checkbox
-    >
-    <kkl-add-button *ngIf="buttonLabel" (click)="onClick()">{{
-      buttonLabel
-    }}</kkl-add-button>
+  <header>
+    <ng-container *ngIf="!(mobile$ | async); else mobileBlock">
+      <div fxLayout="row" fxLayoutGap="3rem" fxLayoutAlign="end center">
+        <mat-checkbox [color]="'primary'" (change)="expandAll($event)">
+          פתח הכול</mat-checkbox
+        >
+        <kkl-add-button *ngIf="buttonLabel" (click)="onClick()">{{
+          buttonLabel
+        }}</kkl-add-button>
+      </div>
+    </ng-container>
+    <ng-template #mobileBlock>
+
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <kkl-add-button *ngIf="buttonLabel" (click)="onClick()">{{
+          buttonLabel
+        }}</kkl-add-button>
+        <div class="checkbox" fxLayout="row" fxLayoutAlign="end center">
+          <mat-checkbox [color]="'primary'" (change)="expandAll($event)">
+            פתח הכול</mat-checkbox
+          >
+        </div>
+      </div>
+    </ng-template>
   </header>
 
   <!-- the "multi" attribute determines weather the mat-accordion will allow multiple panels to open at the same time or not -->
   <main>
     <mat-accordion #accordion multi hideToggle>
       <ng-container *ngFor="let panel of panels; let i = index">
-        <mat-expansion-panel #expandPanel [expanded]="i === 0" fxLayoutGap="1rem" fxLayout="column">
+        <mat-expansion-panel
+          #expandPanel
+          [expanded]="i === 0"
+          fxLayoutGap="1rem"
+          fxLayout="column"
+        >
           <mat-expansion-panel-header>
             <mat-panel-title [ngClass]="['default']">
               <div
