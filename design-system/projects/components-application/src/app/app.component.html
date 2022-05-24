@@ -41,31 +41,14 @@
 
 {{ currStr }}
 
-<kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions"
-  newRowAction="hghd gdgd"
-></kkl-local-table>
-
-
-<kkl-ngx-local-table
-[dataSource]="dataSource"
-[columns]="columns"
-[rowActions]="rowActions2"
-newRowAction="הוסף שורה"
-[expandTemplate]="expand"
-(expandRow)="onExpand($event)"
-></kkl-ngx-local-table>
-
-<kkl-local-table
+<!-- <kkl-local-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
   newRowAction="hghd gdgd"
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
-></kkl-local-table>
+></kkl-local-table> -->
 
 <kkl-ngx-local-table
   [dataSource]="dataSource"
