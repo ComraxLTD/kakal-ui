@@ -40,6 +40,9 @@
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
         [rowClass]="getRowClass"
+        [summaryRow]="hasSummary"
+        [summaryPosition]="'bottom'"
+        [summaryHeight]="55"
         [scrollbarH]="true"
         >
         <!-- Row Detail Template -->
@@ -47,7 +50,7 @@
           <ng-template
             let-row="row"
             let-expanded="expanded"
-            let-co="col"
+            let-col="col"
             ngx-datatable-row-detail-template
           >
             <div *ngIf="expanded" class="example-element-detail" #myExpand>
@@ -55,7 +58,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: row }
+                    context: { $implicit: {row: row, col: col }}
                   "
                 ></ng-template>
               </ng-container>
@@ -84,6 +87,7 @@
         <ngx-datatable-column
           *ngFor="let column of oneColumns"
           [name]="column.key"
+          [summaryFunc]="column.sumFunc"
         >
           <!-- style="background-color: blue;" -->
           <ng-template let-sort="sortFn" ngx-datatable-header-template>
@@ -131,7 +135,7 @@
             </ng-template>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="פעולות">
+        <ngx-datatable-column *ngIf="localButtons?.length" name="פעולות">
           <ng-template
             let-row="row"
             let-rowIndex="rowIndex"
@@ -370,7 +374,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: item }
+                    context: { $implicit: {row: item, col: col.key }}
                   "
                 ></ng-template>
               </ng-container>

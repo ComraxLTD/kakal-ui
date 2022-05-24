@@ -497,6 +497,7 @@ export class AppComponent {
     { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
     { key: 'city', label: 'עיר', controlType: 'select' },
     { key: 'dob', label: 'תאריך', controlType: 'date' },
+
   ];
 
 //   // every object in the rowActions array is a button that will appear on the left side of every row of the table

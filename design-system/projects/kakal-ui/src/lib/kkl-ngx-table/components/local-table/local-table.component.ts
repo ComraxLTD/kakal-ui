@@ -85,6 +85,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   @Input() paging: boolean = true;
 
+  hasSummary: boolean = false;
+
   dragable: boolean;
   @Input() set draggable(val: boolean) {
     this.dragable = val;
@@ -95,6 +97,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Input()
   set columns(value: TableBase[]) {
     this.oneColumns = value;
+    this.hasSummary = value.some(a => a.sumFunc);
   }
 
   dataTable: any[];
@@ -157,7 +160,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
   updateFilter(event, key) {
-    this.searchRow[key] = event;
+    this.searchRow[key] = event.value;
   }
 
   searchChanged() {

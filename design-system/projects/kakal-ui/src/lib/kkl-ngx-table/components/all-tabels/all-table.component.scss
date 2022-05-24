@@ -1,8 +1,7 @@
 @use "../../../../styles/variables" as main;
 @use '@angular/material' as mat;
-@import "~@swimlane/ngx-datatable/index.css";
 @import "~@swimlane/ngx-datatable/themes/material.scss";
-@import "~@swimlane/ngx-datatable/assets/icons.css";
+
 // @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
 :host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
@@ -26,7 +25,8 @@
   min-height: 50px !important;
   display: flex !important;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  white-space: pre-line;
 }
 
 ::ng-deep datatable-body-row {
