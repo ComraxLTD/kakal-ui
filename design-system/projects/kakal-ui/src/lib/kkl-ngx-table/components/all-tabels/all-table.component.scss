@@ -9,12 +9,11 @@
   height: 100%;
   background-color: white;
   .table-wrapper-wrapper {
-    width: 97%;
-    margin: auto;
+    // margin: auto;
     .table-wrapper {
-      margin: auto;
-      width: 99%;
-      .ngx-datatable{
+      // margin: auto;
+      // width: 99%;
+      .ngx-datatable {
         overflow: inherit;
         ::ng-deep .datatable-header {
           border-bottom: 2px solid main.color(accent) !important;
@@ -32,7 +31,7 @@
           }
         }
         ::ng-deep .datatable-body {
-          width: 101% !important;
+          // width: 101% !important;
           .datatable-scroll {
             width: fit-content !important;
           }
@@ -48,8 +47,7 @@
   }
   @media screen and (min-width: 600px) {
     .button-center-start {
-      float: left;
-      margin-left: 100px;
+      // margin-left: 100px;
     }
   }
   @media screen and (max-width: 600px) {
@@ -73,10 +71,8 @@
 
 :host ::ng-deep .expand-class {
   margin: 3px;
-  box-shadow:
-    0px 3px 1px -2px rgba(0, 0, 0, 5%),
-    0px 2px 2px 0px rgb(0 0 0 / 5%),
-    0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 5%),
+    0px 2px 2px 0px rgb(0 0 0 / 5%), 0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
 }
 
 tr.example-detail-row {
@@ -116,8 +112,6 @@ td.mat-cell {
   border-bottom: 0.5px solid main.color(table-background);
   // padding: 0 !important;
 }
-
-
 
 table {
   width: 98%;
@@ -271,10 +265,8 @@ th > h3 {
 
 ::ng-deep .example-headers-align {
   .expansion-panel {
-    box-shadow:
-      0px 3px 1px -2px rgba(0, 0, 0, 5%),
-      0px 2px 2px 0px rgb(0 0 0 / 5%),
-      0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 5%),
+      0px 2px 2px 0px rgb(0 0 0 / 5%), 0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
     .expansion-panel-header > span {
       height: 10rem;
     }
@@ -379,10 +371,8 @@ th > h3 {
 }
 
 ::ng-deep.expand-class + .datatable-row-detail {
-  box-shadow:
-      0px 3px 1px -2px rgba(0, 0, 0, 5%),
-      0px 2px 2px 0px rgb(0 0 0 / 5%),
-      0px 1px 2px 0px rgb(0 0 0 / 5%) !important;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 5%),
+    0px 2px 2px 0px rgb(0 0 0 / 5%), 0px 1px 2px 0px rgb(0 0 0 / 5%) !important;
   margin: auto;
   margin-top: -3px;
   margin-right: 3px;

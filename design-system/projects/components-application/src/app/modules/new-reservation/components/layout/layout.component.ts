@@ -101,11 +101,11 @@ export class LayoutComponent implements OnInit {
       { value: 'third' },
     ]);
 
-    this.layoutService.emitDrawerPortion({
-      open: 50,
-      close: 5,
-      hasButton: true,
-    });
+    // this.layoutService.emitDrawerPortion({
+    //   open: 50,
+    //   close: 5,
+    //   hasButton: true,
+    // });
 
     this.navbarBottomService.setShowNext(true);
   }

@@ -1,25 +1,39 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
-<div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
-  <button
-    class="button-center-start"
-    *ngIf="newRowAction"
-    kkl-border
-    [thick]="2"
-    mat-stroked-button
-    color="primary"
-    (click)="addNewRowGroup()"
-  >
-    {{ newRowAction }}
-    <mat-icon>add</mat-icon>
-  </button>
-  <div
+<div
+  dir="rtl"
+  class="all-table-form"
+  (resized)="onResize($event)"
+  #myIdentifier
+  fxLayout="column"
+  fxLayoutGap="1rem"
+>
+  <header fxLayoutAlign="end">
+    <button
+      class="button-center-start"
+      *ngIf="newRowAction"
+      kkl-border
+      [thick]="2"
+      mat-stroked-button
+      color="primary"
+      (click)="addNewRowGroup()"
+    >
+      <span>
+        {{ newRowAction }}
+      </span>
+      <mat-icon>add</mat-icon>
+    </button>
+  </header>
+
+  <!-- DESKTOP TABLE -->
+
+  <main
     class="table-wrapper-wrapper"
     fxLayout="column"
     fxLayoutAlign="start"
     fxLayoutGap="1rem"
     [ngClass]="{ 'hidden-class': !isDesktop }"
   >
-    <div class="table-wrapper">
+    <div class="table-wrapper" fxLayout="row">
       <!-- cdkDropList
       (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled"> -->
       <!-- [cdkDropListData]="dataTable" -->
@@ -30,7 +44,7 @@
 
       <!-- [scrollbarV]="true" -->
       <ngx-datatable
-        dir="rtl"
+        fxFlex
         #myTable
         class="expandable"
         [columnMode]="ColumnMode.force"
@@ -225,9 +239,10 @@
         </ngx-datatable-footer>
       </ngx-datatable>
     </div>
-  </div>
+  </main>
 
-  <div [ngClass]="{ 'hidden-class': isDesktop }">
+  <!-- MOBILE TABLE -->
+  <main [ngClass]="{ 'hidden-class': isDesktop }">
     <ng-container *ngIf="dataTable">
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"
@@ -401,7 +416,7 @@
         </ng-container>
       </mat-accordion>
     </ng-container>
-    <div *ngIf="paging">
+    <footer *ngIf="paging">
       <mat-paginator
         class="kkl-pagination"
         #myPaging
@@ -412,9 +427,10 @@
         [pageSizeOptions]="[5, 10, 25]"
         (page)="pageChanged($event)"
       ></mat-paginator>
-    </div>
-  </div>
+    </footer>
+  </main>
 </div>
+
 <ng-template #addButtonTemplate let-element="element">
   <kkl-stroke-button
     table-save-button
