@@ -141,6 +141,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   // ACTIONS SECTION
+
   private setDrawerAction(actions: ButtonModel[]): ButtonModel {
     const iconMap = {
       file: 'file',
@@ -153,6 +154,29 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     return action ? { ...action, svgIcon: iconMap[action.type] } : null;
   }
 
+  private setRowActions(actions: ButtonModel[]) {
+    const iconLabelMap = {
+      [FormActions.EDIT]: { matIcon: 'edit', label: 'עריכה', type: 'edit' },
+      [FormActions.VALUE_CHANGED]: {
+        svgIcon: 'print',
+        label: 'הדפס',
+        type: 'print',
+      },
+    };
+
+    return actions
+      .filter(
+        (action: ButtonModel) =>
+          action.type !== 'file' && action.type !== 'notes'
+      )
+      .map((action: ButtonModel) => {
+        return {
+          ...action,
+          ...iconLabelMap[action.action],
+        };
+      });
+  }
+
   private setActions(actions: ButtonModel[]) {
     this.rowActions = this.setRowActions(actions);
     this.drawerAction = this.setDrawerAction(actions);
@@ -160,54 +184,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     if (this.drawerAction) {
       this.stepsLayoutService.showDrawer();
     }
-  }
-
-  // private setRowActionsFromActonState() {
-  //   this.stepsLayoutService.getButtonAction().pipe(
-  //     map((actionState: ActionButtonState) => {
-  //       const { action, disabled, key, buttons } = actionState;
-
-  //       switch (action) {
-  //         case 'disable':
-  //           disabled[key] = true;
-  //           break;
-  //         case 'enable':
-  //           disabled[key] = false;
-  //           break;
-  //         case 'add':
-  //           this.rowActions = this.rowActions.concat(buttons);
-  //           break;
-  //         case 'remove':
-  //           this.rowActions = this.rowActions.filter((v) => v.label !== key);
-  //           break;
-  //         case 'removeAll':
-  //           this.rowActions = [];
-  //         default:
-  //           break;
-  //       }
-  //     })
-  //   );
-  // }
-
-  // private setRowActions$() {
-  //   const setFromInout$ = of(this.rowActions);
-  //   const setFromState$ = this.setRowActionsFromActonState();
-  // }
-
-  private setRowActions(actions: ButtonModel[]) {
-    const iconLabelMap = {
-      [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
-      [FormActions.VALUE_CHANGED]: { svgIcon: 'print', label: 'הדפס' },
-    };
-
-    return actions
-      .filter((action: ButtonModel) => action.type === 'form')
-      .map((action: ButtonModel) => {
-        return {
-          ...action,
-          ...iconLabelMap[action.action],
-        };
-      });
   }
 
   // NAVIGATION EVENTS SECTION
@@ -220,8 +196,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     this.navigate(event.selectedStep.path);
   }
 
-  onAction(event: ButtonModel): void {
-    this.stepsLayoutService.setButtonClicked(event);
+  onActionClicked(event: ButtonModel): void {
+    this.stepsLayoutService.emitActionButton(event);
   }
 
   private _emitChanged() {

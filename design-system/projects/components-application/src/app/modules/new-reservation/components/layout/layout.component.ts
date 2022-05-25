@@ -30,7 +30,10 @@ export interface DataEx {
   providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
-  actions: ButtonModel[] = [{ type: 'file' }];
+  actions: ButtonModel[] = [
+    { type: 'file' },
+    { type: 'custom', svgIcon: 'add', label: 'הוסף' },
+  ];
   actions$: Observable<ButtonModel[]>;
 
   steps: CardStep[] = [
@@ -84,7 +87,11 @@ export class LayoutComponent implements OnInit {
     budget: 100,
     date: new Date(),
     tour: 'בית ספר נחלים',
-    status: { totalBars: 5, authorizedBars: 3, label: 'התקדמות' } as StatusProgress,
+    status: {
+      totalBars: 5,
+      authorizedBars: 3,
+      label: 'התקדמות',
+    } as StatusProgress,
     progress: 40,
   };
 

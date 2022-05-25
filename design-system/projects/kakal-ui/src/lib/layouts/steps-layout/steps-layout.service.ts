@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ButtonModel } from '../../button/models/button.types';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, filter, Observable, Subject } from 'rxjs';
 import { DrawerLayoutService } from '../drawer-layout/drawer-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 
@@ -62,12 +62,18 @@ export class StepsLayoutService {
   }
 
   // *** use to listen to the left action buttons
-  getButtonClicked(): Observable<ButtonModel> {
-    return this.buttonClicked$.asObservable();
+  listenToActionButtons(filters?: string[]): Observable<ButtonModel> {
+    return this.buttonClicked$
+      .asObservable()
+      .pipe(
+        filter((action: ButtonModel) =>
+          filters.length ? filters.includes(action.type) : true
+        )
+      );
   }
 
   // *** use to set the action buttons
-  setButtonClicked(butt: ButtonModel) {
+  emitActionButton(butt: ButtonModel) {
     this.buttonClicked$.next(butt);
   }
 

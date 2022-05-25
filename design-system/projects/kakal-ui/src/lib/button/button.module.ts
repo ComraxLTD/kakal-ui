@@ -17,11 +17,11 @@ import { KKLStrokedButtonDirective } from './directives/stroked-button.directive
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLActionButtonDirective } from './directives/action-button.directive';
 import { KKLFormButtonDirective } from './directives/form-button.directive';
+import { ActionButtonComponent } from './icon-button/icon-button.component';
 
 @NgModule({
   imports: [
     CommonModule,
-
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
@@ -38,12 +38,14 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
     KKLActionButtonDirective,
+    ActionButtonComponent,
   ],
   exports: [
     MatButtonModule,
     ButtonComponent,
     AddButtonComponent,
     StrokeButtonComponent,
+    ActionButtonComponent,
     KKLButtonDirective,
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
