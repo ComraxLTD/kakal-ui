@@ -12,187 +12,165 @@
     {{ newRowAction }}
     <mat-icon>add</mat-icon>
   </button>
-  <div
-    class="table-wrapper-wrapper"
-    fxLayout="column"
-    fxLayoutAlign="start"
-    fxLayoutGap="1rem"
-    [ngClass]="{ 'hidden-class': !isDesktop }"
-  >
-    <div class="table-wrapper">
-      <!-- cdkDropList
-      (cdkDropListDropped)="dropTable($event)" [cdkDropListDisabled]="dragDisabled"> -->
-      <!-- [cdkDropListData]="dataTable" -->
-      <mat-progress-bar
-        mode="indeterminate"
-        *ngIf="isLoading"
-      ></mat-progress-bar>
 
-      <!-- [scrollbarV]="true" -->
-      <ngx-datatable
-        dir="rtl"
-        #myTable
-        class="expandable"
-        [columnMode]="ColumnMode.force"
-        [headerHeight]="50"
-        [footerHeight]="paging? 65 : 0"
-        rowHeight="auto"
-        [rows]="dataTable"
-        [offset]="page.pageIndex"
-        [limit]="page.pageSize"
-        [rowClass]="getRowClass"
-        [summaryRow]="hasSummary"
-        [summaryPosition]="'bottom'"
-        [summaryHeight]="55"
-        [scrollbarH]="true"
+  <!-- DESKTOP TABLE -->
+
+  <ng-container *ngIf="isDesktop">
+    <div
+      class="table-wrapper-wrapper"
+      fxLayout="column"
+      fxLayoutAlign="start"
+      fxLayoutGap="1rem"
+    >
+      <div class="table-wrapper">
+        <mat-progress-bar
+          mode="indeterminate"
+          *ngIf="isLoading"
+        ></mat-progress-bar>
+
+        <ngx-datatable
+          dir="rtl"
+          #myTable
+          class="expandable"
+          [columnMode]="ColumnMode.force"
+          [headerHeight]="50"
+          [footerHeight]="paging ? 65 : 0"
+          rowHeight="auto"
+          [rows]="dataTable"
+          [offset]="page.pageIndex"
+          [limit]="page.pageSize"
+          [rowClass]="getRowClass"
+          [summaryRow]="hasSummary"
+          [summaryPosition]="'bottom'"
+          [summaryHeight]="55"
+          [scrollbarH]="true"
         >
-        <!-- Row Detail Template -->
-        <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
-          <ng-template
-            let-row="row"
-            let-expanded="expanded"
-            let-col="col"
-            ngx-datatable-row-detail-template
-          >
-            <div *ngIf="expanded" class="example-element-detail" #myExpand>
-              <ng-container *ngIf="expandTemplate">
-                <ng-template
-                  *ngTemplateOutlet="
-                    expandTemplate;
-                    context: { $implicit: {row: row, col: col }}
-                  "
-                ></ng-template>
-              </ng-container>
-            </div>
-          </ng-template>
-        </ngx-datatable-row-detail>
-        <!-- Column Templates -->
-        <!-- <ngx-datatable-column
-          [width]="50"
-          [resizeable]="false"
-          [sortable]="false"
-          [draggable]="false"
-          [canAutoResize]="false"
-        >
-          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
-            <a
-              href="javascript:void(0)"
-              [class.datatable-icon-right]="!expanded"
-              [class.datatable-icon-down]="expanded"
-              title="Expand/Collapse Row"
-              (click)="toggleExpandRow(row)"
+          <!-- Row Detail Template -->
+          <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
+            <ng-template
+              let-row="row"
+              let-expanded="expanded"
+              let-col="col"
+              ngx-datatable-row-detail-template
             >
-            </a>
-          </ng-template>
-        </ngx-datatable-column> -->
-        <ngx-datatable-column
-          *ngFor="let column of oneColumns"
-          [name]="column.key"
-          [summaryFunc]="column.sumFunc"
-        >
-          <!-- style="background-color: blue;" -->
-          <ng-template let-sort="sortFn" ngx-datatable-header-template>
-            <!-- column.controlType === 'number' || column.controlType === 'sum' -->
-            <span (click)="sort()">{{ column.label }}</span>
-            <button
-              *ngIf="!column.noFilter"
-              mat-icon-button
-              [matMenuTriggerFor]="menu"
-            >
-              <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
-              <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" (closed)="searchChanged()">
-              <kkl-ngx-table-form
-                [question]="column"
-                (rowEdited)="updateFilter($event, column.key)"
-              ></kkl-ngx-table-form>
-            </mat-menu>
-          </ng-template>
-          <ng-template
-            let-row="row"
-            let-value="value"
-            ngx-datatable-cell-template
-          >
-            <ng-container
-              *ngIf="
-                !(row | arrInclueds: editItems) || column.notEditable;
-                else editBlock
-              "
-            >
-              <kkl-table-cell
-                [data]="value"
-                [question]="column"
-                (buttClick)="buttonClick(column.button, row, column.key)"
-                [colsTemplate]="colsTemplate"
-              ></kkl-table-cell>
-            </ng-container>
-            <ng-template #editBlock>
-              <kkl-ngx-table-form
-                [initial]="editItemsData[row | arrIndex: editItems]"
-                [question]="column"
-                (rowEdited)="onRowEditChange($event, row, column.key)"
-              ></kkl-ngx-table-form>
+              <div *ngIf="expanded" class="example-element-detail" #myExpand>
+                <ng-container *ngIf="expandTemplate">
+                  <ng-template
+                    *ngTemplateOutlet="
+                      expandTemplate;
+                      context: { $implicit: { row: row, col: col } }
+                    "
+                  ></ng-template>
+                </ng-container>
+              </div>
             </ng-template>
-          </ng-template>
-        </ngx-datatable-column>
-        <ngx-datatable-column *ngIf="localButtons?.length" name="פעולות">
-          <ng-template
-            let-row="row"
-            let-rowIndex="rowIndex"
-            ngx-datatable-cell-template
+          </ngx-datatable-row-detail>
+
+          <!-- Column Templates -->
+          <ngx-datatable-column
+            *ngFor="let column of oneColumns"
+            [name]="column.key"
+            [summaryFunc]="column.sumFunc"
           >
-            <ng-container
-              *ngIf="!(row | arrInclueds: editItems); else addButton"
+            <ng-template let-sort="sortFn" ngx-datatable-header-template>
+              <span (click)="sort()">{{ column.label }}</span>
+              <button
+                *ngIf="!column.noFilter"
+                mat-icon-button
+                [matMenuTriggerFor]="menu"
+              >
+                <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu" (closed)="searchChanged()">
+                <kkl-ngx-table-form
+                  [question]="column"
+                  (rowEdited)="updateFilter($event, column.key)"
+                ></kkl-ngx-table-form>
+              </mat-menu>
+            </ng-template>
+            <ng-template
+              let-row="row"
+              let-value="value"
+              ngx-datatable-cell-template
             >
-              <ng-container *ngFor="let butt of localButtons">
+              <ng-container
+                *ngIf="
+                  !(row | arrIncludes: editItems) || column.notEditable;
+                  else editBlock
+                "
+              >
+                <kkl-table-cell
+                  [data]="value"
+                  [question]="column"
+                  (buttClick)="buttonClick(column.button, row, column.key)"
+                  [colsTemplate]="colsTemplate"
+                ></kkl-table-cell>
+              </ng-container>
+              <ng-template #editBlock>
+                <kkl-ngx-table-form
+                  [initial]="editItemsData[row | arrIndex: editItems]"
+                  [question]="column"
+                  (rowEdited)="onRowEditChange($event, row, column.key)"
+                ></kkl-ngx-table-form>
+              </ng-template>
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column *ngIf="localButtons?.length" name="פעולות">
+            <ng-template
+              let-row="row"
+              let-rowIndex="rowIndex"
+              ngx-datatable-cell-template
+            >
+              <ng-container
+                *ngIf="!(row | arrIncludes: editItems); else addButton"
+              >
+                <ng-container *ngFor="let butt of localButtons">
+                  <button
+                    [matTooltip]="butt.label"
+                    mat-icon-button
+                    color="primary"
+                    (click)="buttonClick(butt, row, 'actions')"
+                  >
+                    <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                  </button>
+                </ng-container>
+              </ng-container>
+              <ng-template #addButton>
                 <button
-                  [matTooltip]="butt.label"
-                  mat-icon-button
+                  matTooltip="save"
+                  mat-button
                   color="primary"
-                  (click)="buttonClick(butt, row, 'actions')"
+                  (click)="saveRowClick(row)"
                 >
-                  <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                  <kkl-icon key="save"></kkl-icon>
                 </button>
-              </ng-container>
-            </ng-container>
-            <ng-template #addButton>
-              <button
-                matTooltip="save"
-                mat-button
-                color="primary"
-                (click)="saveRowClick(row)"
-              >
-                <kkl-icon key="save"></kkl-icon>
-              </button>
-              <button
-                matTooltip="cancel"
-                mat-button
-                color="primary"
-                (click)="cancelRowClick(row)"
-              >
-                <kkl-icon key="cancel"></kkl-icon>
-              </button>
+                <button
+                  matTooltip="cancel"
+                  mat-button
+                  color="primary"
+                  (click)="cancelRowClick(row)"
+                >
+                  <kkl-icon key="cancel"></kkl-icon>
+                </button>
+              </ng-template>
             </ng-template>
-          </ng-template>
-        </ngx-datatable-column>
+          </ngx-datatable-column>
 
-        <ngx-datatable-footer>
-          <ng-template
-            ngx-datatable-footer-template
-            let-rowCount="rowCount"
-            let-pageSize="pageSize"
-            let-selectedCount="selectedCount"
-            let-curPage="curPage"
-            let-offset="offset"
-            let-isVisible="isVisible"
-          >
-            <div class="container">
+          <ngx-datatable-footer>
+            <ng-template
+              ngx-datatable-footer-template
+              let-rowCount="rowCount"
+              let-pageSize="pageSize"
+              let-selectedCount="selectedCount"
+              let-curPage="curPage"
+              let-offset="offset"
+              let-isVisible="isVisible"
+            >
               <ng-container *ngIf="paging">
                 <mat-paginator
+                  dir="ltr"
                   class="kkl-pagination"
                   #myPaging
-                  dir="ltr"
                   fxLayout="row"
                   fxLayoutAlign="center center"
                   kklNewPagination
@@ -203,188 +181,169 @@
                   (page)="pageChanged($event)"
                 ></mat-paginator>
               </ng-container>
-            </div>
-          </ng-template>
-        </ngx-datatable-footer>
-      </ngx-datatable>
+            </ng-template>
+          </ngx-datatable-footer>
+        </ngx-datatable>
+      </div>
     </div>
-  </div>
+  </ng-container>
 
-  <div [ngClass]="{ 'hidden-class': isDesktop }">
-    <ng-container *ngIf="dataTable">
-      <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
-        [colsTemplate]="colsTemplate" [editItems]="editItems"
-      ></kkl-mobile-table> -->
-      <mat-accordion class="example-headers-align" multi dir="rtl">
-        <ng-container *ngFor="let item of dataTable; let i = index">
-          <mat-expansion-panel
-            class="expansion-panel"
-            style="margin: 8px 8px"
-            *ngIf="
-              !paging ||
-              (i >= page.pageIndex * page.pageSize &&
-                (page.pageIndex + 1) * page.pageSize > i)
-            "
-            [hideToggle]="true"
+  <!-- MOBILE TABLE -->
+  <ng-container *ngIf="!isDesktop && dataTable">
+    <mat-accordion class="example-headers-align" multi dir="rtl">
+      <ng-container *ngFor="let item of dataTable; let i = index">
+        <mat-expansion-panel
+          class="expansion-panel"
+          style="margin: 8px 8px"
+          *ngIf="
+            !paging ||
+            (i >= page.pageIndex * page.pageSize &&
+              (page.pageIndex + 1) * page.pageSize > i)
+          "
+          [hideToggle]="true"
+        >
+          <mat-expansion-panel-header
+            style="height: 10rem"
+            class="expansion-panel-header"
           >
-            <mat-expansion-panel-header
-              style="height: 10rem"
-              class="expansion-panel-header"
-            >
-              <mat-panel-title>
-                <table style="width: 100%; height: 100%">
-                  <tr fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100">
-                    <span style="width: 100%" fxLayout="row">
-                      <td style="font-weight: bolder; padding: 14.5px 0 0 30px">
-                        {{ oneColumns[0].label }}
-                      </td>
-                      <td
-                        style="margin-top: 13px"
-                        fxLayout="column"
-                        fxLayoutAlign="start start"
-                      >
-                        <kkl-table-cell
-                          [isMobile]="true"
-                          class="kkl-table-cell"
-                          [data]="item[oneColumns[0].key]"
-                          [question]="oneColumns[0]"
-                          (buttClick)="
-                            buttonClick(
-                              oneColumns[0].button,
-                              item,
-                              oneColumns[0].key
-                            )
-                          "
-                          [colsTemplate]="colsTemplate"
-                        ></kkl-table-cell>
-                      </td>
-                      <span></span>
-                    </span>
-                    <span
-                      style="height: 100%"
-                      fxLayout="column"
-                      fxLayoutAlign="start"
-                    >
-                      <kkl-icon
-                        class="mobile-drop-down"
-                        style="margin-top: 2.2rem"
-                        color="primary"
-                        key="mobile_drop_down"
-                      ></kkl-icon>
-                    </span>
-                  </tr>
-                </table>
-              </mat-panel-title>
-            </mat-expansion-panel-header>
-
-            <table
-              style="
-                width: 100%;
-                border-spacing: 0 10px;
-                border-top: 1px solid #e4e4e4;
-              "
-            >
-              <tr *ngFor="let col of oneColumns">
-                <ng-container *ngIf="col.key !== oneColumns[0].key">
-                  <ng-container
-                    *ngIf="
-                      !(item | arrInclueds: editItems) || col.notEditable;
-                      else editBlock
-                    "
-                  >
-                    <td
-                      style="
-                        height: 6rem;
-                        font-weight: bolder;
-                        border-bottom: 1px solid #e4e4e4;
-                        width: 40%;
-                      "
-                    >
-                      {{ col.label }}
+            <mat-panel-title>
+              <table style="width: 100%; height: 100%">
+                <tr fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100">
+                  <span style="width: 100%" fxLayout="row">
+                    <td style="font-weight: bolder; padding: 14.5px 0 0 30px">
+                      {{ oneColumns[0].label }}
                     </td>
-                    <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
+                    <td
+                      style="margin-top: 13px"
+                      fxLayout="column"
+                      fxLayoutAlign="start start"
+                    >
                       <kkl-table-cell
                         [isMobile]="true"
-                        [data]="item[col.key]"
-                        [question]="col"
-                        (buttClick)="buttonClick(col.button, item, col.key)"
+                        class="kkl-table-cell"
+                        [data]="item[oneColumns[0].key]"
+                        [question]="oneColumns[0]"
+                        (buttClick)="
+                          buttonClick(
+                            oneColumns[0].button,
+                            item,
+                            oneColumns[0].key
+                          )
+                        "
                         [colsTemplate]="colsTemplate"
                       ></kkl-table-cell>
                     </td>
-                  </ng-container>
-                  <ng-template #editBlock>
-                    <td colspan="2">
-                      <kkl-ngx-table-form
-                        [initial]="editItemsData[item | arrIndex: editItems]"
-                        [question]="col"
-                        (rowEdited)="onRowEditChange($event, item, col.key)"
-                      ></kkl-ngx-table-form>
-                    </td>
-                  </ng-template>
-                </ng-container>
-              </tr>
-              <tr *ngIf="localButtons?.length">
-                <td style="font-weight: bolder">פעולות</td>
-                <td class="actions" fxLayoutAlign="space-evenly">
-                  <ng-container
-                    *ngIf="
-                      !(item | arrInclueds: editItems);
-                      else addButtonTemplate
+                    <span></span>
+                  </span>
+                  <span
+                    style="height: 100%"
+                    fxLayout="column"
+                    fxLayoutAlign="start"
+                  >
+                    <kkl-icon
+                      class="mobile-drop-down"
+                      style="margin-top: 2.2rem"
+                      color="primary"
+                      key="mobile_drop_down"
+                    ></kkl-icon>
+                  </span>
+                </tr>
+              </table>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+
+          <table
+            style="
+              width: 100%;
+              border-spacing: 0 10px;
+              border-top: 1px solid #e4e4e4;
+            "
+          >
+            <tr *ngFor="let col of oneColumns">
+              <ng-container *ngIf="col.key !== oneColumns[0].key">
+                <ng-container
+                  *ngIf="
+                    !(item | arrIncludes: editItems) || col.notEditable;
+                    else editBlock
+                  "
+                >
+                  <td
+                    style="
+                      height: 6rem;
+                      font-weight: bolder;
+                      border-bottom: 1px solid #e4e4e4;
+                      width: 40%;
                     "
                   >
-                    <ng-container *ngFor="let butt of localButtons">
-                      <!-- <ng-container *ngIf="element == expandedElement && butt.type === 'inlineExpand'; else closeExpand">
-                        <button class="container-button" mat-raised-button color="primary" (click)="buttonClick(butt, item, 'actions')">
-                          <kkl-icon [color]="'paper'" key="keyboard_arrow_up"></kkl-icon>
-                        </button>
-                      </ng-container>
-
-                      <ng-template #closeExpand>
-                        <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
-                      <button
-                        [ngClass]="{ expanded: (item | arrInclueds: expanded) }"
-                        [matTooltip]="butt.label"
-                        mat-icon-button
-                        color="primary"
-                        (click)="buttonClick(butt, item, 'actions')"
-                      >
-                        <kkl-icon
-                          *ngIf="butt.icon"
-                          [key]="butt.icon"
-                        ></kkl-icon>
-                      </button>
-                      <!-- </ng-container>
-
-                        <ng-template #expandButton>
-                          <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, item, 'actions')">
-                            <kkl-icon [size]="3" [color]="'primary'" *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                          </button>
-                        </ng-template>
-                      </ng-template> -->
-                    </ng-container>
-                  </ng-container>
-                </td>
-              </tr>
-            </table>
-
-            <div
-              *ngIf="item | arrInclueds: expanded"
-              class="example-element-detail"
-            >
-              <ng-container *ngIf="expandTemplate">
-                <ng-template
-                  *ngTemplateOutlet="
-                    expandTemplate;
-                    context: { $implicit: {row: item }}
-                  "
-                ></ng-template>
+                    {{ col.label }}
+                  </td>
+                  <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
+                    <kkl-table-cell
+                      [isMobile]="true"
+                      [data]="item[col.key]"
+                      [question]="col"
+                      (buttClick)="buttonClick(col.button, item, col.key)"
+                      [colsTemplate]="colsTemplate"
+                    ></kkl-table-cell>
+                  </td>
+                </ng-container>
+                <ng-template #editBlock>
+                  <td colspan="2">
+                    <kkl-ngx-table-form
+                      [initial]="editItemsData[item | arrIndex: editItems]"
+                      [question]="col"
+                      (rowEdited)="onRowEditChange($event, item, col.key)"
+                    ></kkl-ngx-table-form>
+                  </td>
+                </ng-template>
               </ng-container>
-            </div>
-          </mat-expansion-panel>
-        </ng-container>
-      </mat-accordion>
-    </ng-container>
-    <div *ngIf="paging">
+            </tr>
+            <tr *ngIf="localButtons?.length">
+              <td style="font-weight: bolder">פעולות</td>
+              <td class="actions" fxLayoutAlign="space-evenly">
+                <ng-container
+                  *ngIf="
+                    !(item | arrIncludes: editItems);
+                    else addButtonTemplate
+                  "
+                >
+                  <ng-container *ngFor="let butt of localButtons">
+
+                    <button
+                      [ngClass]="{
+                        expanded: (item | arrIncludes: expanded)
+                      }"
+                      [matTooltip]="butt.label"
+                      mat-icon-button
+                      color="primary"
+                      (click)="buttonClick(butt, item, 'actions')"
+                    >
+                      <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+                    </button>
+
+                  </ng-container>
+                </ng-container>
+              </td>
+            </tr>
+          </table>
+
+          <div
+            *ngIf="item | arrIncludes: expanded"
+            class="example-element-detail"
+          >
+            <ng-container *ngIf="expandTemplate">
+              <ng-template
+                *ngTemplateOutlet="
+                  expandTemplate;
+                  context: { $implicit: { row: item } }
+                "
+              ></ng-template>
+            </ng-container>
+          </div>
+        </mat-expansion-panel>
+      </ng-container>
+    </mat-accordion>
+    <ng-container *ngIf="paging">
       <mat-paginator
         class="kkl-pagination"
         #myPaging
@@ -395,8 +354,8 @@
         [pageSizeOptions]="[5, 10, 25]"
         (page)="pageChanged($event)"
       ></mat-paginator>
-    </div>
-  </div>
+    </ng-container>
+  </ng-container>
 </div>
 <ng-template #addButtonTemplate let-element="element">
   <kkl-stroke-button

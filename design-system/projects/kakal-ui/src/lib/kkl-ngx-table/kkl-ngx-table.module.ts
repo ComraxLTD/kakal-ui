@@ -35,14 +35,7 @@ import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
   declarations: [
     NgxLocalTableComponent,
     NgxTableFormComponent,
-    // EventTableComponent,
-    // EventAdvancedSearchComponent,
-    // TableFormComponent,
-    // TableCellComponent,
-    // LocalAdvancedSearchComponent,
-    // MeiFiltersComponent,
-    // KKLNewPaginatorDirective,
-    // MobileTableComponent,
+    KKLNgxPaginatorDirective,
   ],
   imports: [
     CommonModule,
@@ -74,15 +67,7 @@ import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
   exports: [
     NgxLocalTableComponent,
     NgxTableFormComponent,
-    // EventTableComponent,
-    // EventAdvancedSearchComponent,
-    // TableFormComponent,
-    // TableCellComponent,
-    // KKLNewPaginatorDirective,
-    // MeiFiltersComponent,
-    // LocalAdvancedSearchComponent,
-    // MobileTableComponent,
+    KKLNgxPaginatorDirective,
   ],
-  // providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
 export class KKLNgxTableModule {}
