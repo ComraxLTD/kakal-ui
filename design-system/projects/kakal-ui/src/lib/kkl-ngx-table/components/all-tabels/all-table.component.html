@@ -12,6 +12,8 @@
     {{ newRowAction }}
     <mat-icon>add</mat-icon>
   </button>
+
+  <!-- MOBILE TABLE -->
   <div
     class="table-wrapper-wrapper"
     fxLayout="column"
@@ -119,6 +121,7 @@
                 (buttClick)="buttonClick(column.button, row, column.key)"
                 [colsTemplate]="colsTemplate"
               ></kkl-table-cell>
+              
             </ng-container>
             <ng-template #editBlock>
               <kkl-ngx-table-form
@@ -187,7 +190,7 @@
                   #myPaging
                   fxLayout="row"
                   fxLayoutAlign="center center"
-                  kklNewPagination
+                  kklNgxPagination
                   [pageIndex]="offset"
                   [pageSize]="pageSize"
                   [length]="rowCount"
@@ -202,7 +205,7 @@
     </div>
   </div>
 
-  <!--  -->
+  <!-- DESKTOP TABLE -->
   <div *ngIf="isDesktop">
     <ng-container *ngIf="dataTable">
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
@@ -381,7 +384,7 @@
       <mat-paginator
         class="kkl-pagination"
         #myPaging
-        kklNewPagination
+        kklNgxPagination
         [pageIndex]="page.pageIndex"
         [pageSize]="page.pageSize"
         [length]="dataTable.length"
