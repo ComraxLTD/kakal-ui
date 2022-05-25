@@ -52,6 +52,13 @@
 
 <kkl-icon [key]="'duplicate_icon'"></kkl-icon>
 
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions2"
+  newRowAction="הוסף שורה"
+></kkl-local-table>
+
 <kkl-ngx-local-table
   [dataSource]="dataSource"
   [columns]="columns"
@@ -60,6 +67,15 @@
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
 ></kkl-ngx-local-table>
+
+<kkl-local-table
+  [dataSource]="dataSource"
+  [columns]="columns"
+  [rowActions]="rowActions"
+  newRowAction="הוסף שורה"
+  [expandTemplate]="expandd"
+  (expandRow)="onExpand($event)"
+  ></kkl-local-table>
 
 <kkl-ngx-local-table
   [dataSource]="dataSource"
@@ -77,5 +93,15 @@
     [columns]="columns2"
     [paging]="false"
   ></kkl-ngx-local-table>
+  <!-- im open -->
+</ng-template>
+
+<ng-template #expandd>
+  <kkl-local-table
+    fxFill
+    [dataSource]="dataSource2"
+    [columns]="columns2"
+    [paging]="false"
+  ></kkl-local-table>
   <!-- im open -->
 </ng-template>

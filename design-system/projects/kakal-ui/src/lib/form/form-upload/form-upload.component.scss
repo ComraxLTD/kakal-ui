@@ -12,6 +12,9 @@
     }
   }
 
+  mat-option.file {
+    display: none !important;
+  }
   mat-icon {
     font-size: 1.8rem;
 
@@ -21,9 +24,6 @@
     &:not(.active) {
       stroke: main.color(default) !important;
     }
-  }
-  mat-option.file {
-    display: none !important;
   }
 }
 

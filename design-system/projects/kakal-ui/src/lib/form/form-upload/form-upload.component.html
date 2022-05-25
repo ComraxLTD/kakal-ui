@@ -1,5 +1,5 @@
 <mat-form-field
-  class="kkl-form-uplaod"
+  class="kkl-form-upload"
   [appearance]="disabled ? 'fill' : 'outline'"
 >
   <mat-label
@@ -9,8 +9,6 @@
     [class.active]="!disabled"
   >
     {{ label$ | async }}
-    <!-- <kkl-typography color="primary" [disabled]="disabled" underline="true">
-    </kkl-typography> -->
   </mat-label>
   <mat-select [disabled]="disabled" (click)="onClick(fileUpload, menuTrigger)">
     <input
