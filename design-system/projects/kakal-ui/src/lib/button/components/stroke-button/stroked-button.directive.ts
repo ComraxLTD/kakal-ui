@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
-import { palletteClassesMap } from '../../../styles/theme';
+import { palletteClassesMap } from '../../../../styles/theme';
 
 @Directive({
   selector: '[kkl-stroked-button]',
