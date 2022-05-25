@@ -28,7 +28,6 @@
         *ngIf="isLoading"
       ></mat-progress-bar>
 
-      <!-- [scrollbarV]="true" -->
       <ngx-datatable
         dir="rtl"
         #myTable
@@ -44,7 +43,7 @@
         [summaryRow]="hasSummary"
         [summaryPosition]="'bottom'"
         [summaryHeight]="55"
-        >
+      >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
           <ng-template
