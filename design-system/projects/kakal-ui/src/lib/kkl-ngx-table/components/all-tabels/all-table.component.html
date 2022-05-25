@@ -32,20 +32,13 @@
       <ngx-datatable
         dir="rtl"
         #myTable
-        class="expandable"
-        [columnMode]="ColumnMode.force"
-        [headerHeight]="50"
-        rowHeight="auto"
-        [footerHeight]="paging? 65 : 0"
-        [summaryPosition]="'bottom'"
-        [summaryHeight]="55"
+        default
         [rows]="dataTable"
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
         [rowClass]="getRowClass"
         [summaryRow]="hasSummary"
-        [scrollbarH]="true"
-        >
+      >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
           <ng-template
@@ -59,7 +52,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: {row: row, col: col }}
+                    context: { $implicit: { row: row, col: col } }
                   "
                 ></ng-template>
               </ng-container>
@@ -375,7 +368,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: {row: item }}
+                    context: { $implicit: { row: item } }
                   "
                 ></ng-template>
               </ng-container>
