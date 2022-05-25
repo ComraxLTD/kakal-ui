@@ -128,6 +128,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   editItemsData = [];
 
   isDesktop: boolean = true;
+  viewSize!: number;
 
   page = new Page();
 
@@ -151,7 +152,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
-      if (size <= 600 && !this.noMobile) {
+      this.viewSize = Math.floor(size/130);
+      if (this.oneColumns.length > this.viewSize && !this.noMobile) {
         this.isDesktop = false;
       } else {
         this.isDesktop = true;
@@ -317,7 +319,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   onResize(event) {
     const size = event.newRect.width;
-    if (size <= 600 && !this.noMobile) {
+    this.viewSize = Math.floor(size/130);
+    if (this.oneColumns.length > this.viewSize && !this.noMobile) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;
