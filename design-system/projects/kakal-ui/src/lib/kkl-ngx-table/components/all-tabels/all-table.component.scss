@@ -2,7 +2,7 @@
 @use '@angular/material' as mat;
 @import "~@swimlane/ngx-datatable/themes/material.scss";
 
-.all-table-form {
+::ng-deep .kkl-ngx-local-table-wrapper {
   overflow: auto;
   height: 100%;
   background-color: white;
@@ -14,7 +14,7 @@
       .ngx-datatable {
         overflow: inherit;
         // header
-        ::ng-deep .datatable-header {
+        .datatable-header {
           border-bottom: 2px solid main.color(accent);
           margin-right: 0.5% !important;
           width: 98% !important;
@@ -31,8 +31,9 @@
             }
           }
         }
+
         // body
-        ::ng-deep .datatable-body {
+        .datatable-body {
           // width: 101% !important;
           .datatable-scroll {
             width: fit-content !important;
@@ -130,8 +131,6 @@
   }
 }
 // header - button alignment
-
-
 
 @media screen and (max-width: 800px) {
   header {
