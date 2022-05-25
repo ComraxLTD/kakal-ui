@@ -24,7 +24,7 @@ export class IconService {
     allDirections: AppIcons.ALL_DIRECTIONS,
     cancel: AppIcons.CANCEL_ICON,
     trash_delete: AppIcons.TRASH_DELETE_ICON,
-    duplicateIcon: AppIcons.DUPLICATE_ICON,
+    duplicate_icon: AppIcons.DUPLICATE_ICON,
     kkl_edit: AppIcons.EDIT,
     eye: AppIcons.EYE,
     print_new: AppIcons.PRINT,
