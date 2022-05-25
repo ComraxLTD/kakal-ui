@@ -17,7 +17,7 @@
     fxLayout="column"
     fxLayoutAlign="start"
     fxLayoutGap="1rem"
-    [ngClass]="{ 'hidden-class': !isDesktop }"
+    *ngIf="!isDesktop"
   >
     <div class="table-wrapper">
       <!-- cdkDropList
@@ -185,7 +185,6 @@
                 <mat-paginator
                   class="kkl-pagination"
                   #myPaging
-                  dir="ltr"
                   fxLayout="row"
                   fxLayoutAlign="center center"
                   kklNewPagination
@@ -203,7 +202,8 @@
     </div>
   </div>
 
-  <div [ngClass]="{ 'hidden-class': isDesktop }">
+  <!--  -->
+  <div *ngIf="isDesktop">
     <ng-container *ngIf="dataTable">
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"

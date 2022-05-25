@@ -29,19 +29,15 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxTableFormComponent } from './components/table-form/table-form.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import {NgxDatatableDefaultDirective} from './directives/defualt.directive'
+
+import { NgxDatatableDefaultDirective } from './directives/default.directive';
+import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
 @NgModule({
   declarations: [
     NgxLocalTableComponent,
     NgxTableFormComponent,
-    // EventTableComponent,
-    // EventAdvancedSearchComponent,
-    // TableFormComponent,
-    // TableCellComponent,
-    // LocalAdvancedSearchComponent,
-    // MeiFiltersComponent,
-    // KKLNewPaginatorDirective,
-    // MobileTableComponent,
+    NgxDatatableDefaultDirective,
+    KKLNgxPaginatorDirective
   ],
   imports: [
     CommonModule,
@@ -73,15 +69,8 @@ import {NgxDatatableDefaultDirective} from './directives/defualt.directive'
   exports: [
     NgxLocalTableComponent,
     NgxTableFormComponent,
-    // EventTableComponent,
-    // EventAdvancedSearchComponent,
-    // TableFormComponent,
-    // TableCellComponent,
-    // KKLNewPaginatorDirective,
-    // MeiFiltersComponent,
-    // LocalAdvancedSearchComponent,
-    // MobileTableComponent,
+    NgxDatatableDefaultDirective,
+    KKLNgxPaginatorDirective
   ],
-  // providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
 export class KKLNgxTableModule {}
