@@ -44,7 +44,6 @@
         [summaryRow]="hasSummary"
         [summaryPosition]="'bottom'"
         [summaryHeight]="55"
-        [scrollbarH]="true"
         >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
@@ -234,32 +233,48 @@
               <mat-panel-title>
                 <table style="width: 100%; height: 100%">
                   <tr fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100">
-                    <span style="width: 100%" fxLayout="row">
-                      <td style="font-weight: bolder; padding: 14.5px 0 0 30px">
-                        {{ oneColumns[0].label }}
-                      </td>
-                      <td
-                        style="margin-top: 13px"
-                        fxLayout="column"
-                        fxLayoutAlign="start start"
-                      >
-                        <kkl-table-cell
-                          [isMobile]="true"
-                          class="kkl-table-cell"
-                          [data]="item[oneColumns[0].key]"
-                          [question]="oneColumns[0]"
-                          (buttClick)="
-                            buttonClick(
-                              oneColumns[0].button,
-                              item,
-                              oneColumns[0].key
-                            )
-                          "
-                          [colsTemplate]="colsTemplate"
-                        ></kkl-table-cell>
-                      </td>
-                      <span></span>
-                    </span>
+                    <ng-container *ngFor="let col of oneColumns; let i = index">
+                      <ng-container *ngIf="viewSize > i">
+                        <span style="width: 100%" fxLayout="row">
+                          <ng-container
+                            *ngIf="
+                              !(item | arrInclueds: editItems) || col.notEditable;
+                              else editBlock
+                            "
+                          >
+                            <td
+                              style="
+                                height: 6rem;
+                                font-weight: bolder;
+                                border-bottom: 1px solid #e4e4e4;
+                                width: 40%;
+                              "
+                            >
+                              {{ col.label }}
+                            </td>
+                            <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
+                              <kkl-table-cell
+                                [isMobile]="true"
+                                [data]="item[col.key]"
+                                [question]="col"
+                                (buttClick)="buttonClick(col.button, item, col.key)"
+                                [colsTemplate]="colsTemplate"
+                              ></kkl-table-cell>
+                            </td>
+                          </ng-container>
+                          <ng-template #editBlock>
+                            <td colspan="2">
+                              <kkl-ngx-table-form
+                                [initial]="editItemsData[item | arrIndex: editItems]"
+                                [question]="col"
+                                (rowEdited)="onRowEditChange($event, item, col.key)"
+                              ></kkl-ngx-table-form>
+                            </td>
+                          </ng-template>
+                          <span></span>
+                        </span>
+                      </ng-container>
+                    </ng-container>
                     <span
                       style="height: 100%"
                       fxLayout="column"
@@ -284,8 +299,8 @@
                 border-top: 1px solid #e4e4e4;
               "
             >
-              <tr *ngFor="let col of oneColumns">
-                <ng-container *ngIf="col.key !== oneColumns[0].key">
+              <tr *ngFor="let col of oneColumns; let i = index">
+                <ng-container *ngIf="i >= viewSize">
                   <ng-container
                     *ngIf="
                       !(item | arrInclueds: editItems) || col.notEditable;
