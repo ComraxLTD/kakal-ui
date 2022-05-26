@@ -10,7 +10,6 @@ export class TableCellComponent implements OnInit  {
   @Input() data!: any;
 
   @Input() colsTemplate: any;
-  @Input() isMobile: boolean;
 
   @Output() buttClick = new EventEmitter<null>();
 

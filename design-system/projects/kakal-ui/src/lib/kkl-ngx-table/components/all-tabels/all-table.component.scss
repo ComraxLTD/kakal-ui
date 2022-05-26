@@ -134,6 +134,24 @@
         }
       }
     }
+    .tablet{
+      @include mat.elevation(2);
+      margin: 10px;
+      direction: rtl;
+      &:nth-child(even){
+        background-color: main.color(secondLine) !important;
+      }
+      mat-card{
+        padding: 30px 20px;
+        kkl-typography{
+          min-width: fit-content;
+        }
+        .kkl-display-group-label {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
   }
   // button above table
   @media screen and (min-width: 600px) {
