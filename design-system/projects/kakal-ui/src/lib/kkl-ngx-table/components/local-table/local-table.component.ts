@@ -142,7 +142,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
       this.viewSize = Math.floor(size / 130);
-      if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+      if (size <= 600 && !this.noMobile) {
         this.isDesktop = false;
       } else {
         this.isDesktop = true;
@@ -308,7 +308,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   onResize(event) {
     const size = event.newRect.width;
     this.viewSize = Math.floor(size / 130);
-    if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+    if (size <= 600 && !this.noMobile) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;
