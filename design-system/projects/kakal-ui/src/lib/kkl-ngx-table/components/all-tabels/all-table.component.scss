@@ -140,6 +140,24 @@
         }
       }
     }
+    .tablet{
+      @include mat.elevation(2);
+      margin: 10px;
+      direction: rtl;
+      &:nth-child(even){
+        background-color: main.color(secondLine) !important;
+      }
+      mat-card{
+        padding: 30px 20px;
+        kkl-typography{
+          min-width: fit-content;
+        }
+        .kkl-display-group-label {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+    }
   }
   // button above table
   @media screen and (min-width: 600px) {
@@ -162,14 +180,6 @@
 
 // mobile
 .example-headers-align {
-  ::ng-deep kkl-ngx-table-form .table-form-wrapper {
-    min-width: unset!important;
-  }
-  ::ng-deep mat-form-field {
-    font-size: 12px!important;
-    width: 15rem!important;
-  }
-
   .expansion-panel {
     box-shadow:
       0px 3px 1px -2px rgba(0, 0, 0, 5%),
@@ -210,11 +220,6 @@
 @media screen and (max-width: 1280px) {
   .table-form-wrapper {
     width: 100%;
-  }
-
-  mat-form-field {
-    width: 100%;
-    font-size: 14px;
   }
 }
 

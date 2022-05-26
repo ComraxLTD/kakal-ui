@@ -31,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
+import { KKLTypographyModule } from '../typography/typography.module';
 @NgModule({
   declarations: [
     NgxLocalTableComponent,
@@ -59,6 +60,7 @@ import { KKLNgxPaginatorDirective } from './directives/pagination.directive';
     HttpClientModule,
     KKLIconModule,
     KKLButtonModule,
+    KKLTypographyModule,
     FlexLayoutModule,
     MatTooltipModule,
     MeiFormModule,
