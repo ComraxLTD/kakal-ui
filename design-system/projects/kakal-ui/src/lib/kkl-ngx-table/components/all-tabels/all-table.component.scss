@@ -6,6 +6,24 @@
   overflow: auto;
   height: 100%;
   background-color: white;
+  // for switching between mobile, tablet and desktop view
+  .hidden-class {
+    display: none !important;
+  }
+  // button above table
+  @media screen and (min-width: 600px) {
+    .button-center-start {
+      float: left;
+      margin-left: 100px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .button-center-start {
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  // the table
   .table-wrapper-wrapper {
     width: 98%;
     margin: auto;
@@ -106,36 +124,10 @@
             }
           }
         }
-        // footer
+        // aligning footer in the middle
         ::ng-deep .datatable-footer{
           .datatable-footer-inner {
             justify-content: center;
-            mat-paginator.kkl-pagination {
-              .mat-paginator-page-size {
-                width: 50px !important;
-              }
-              .mat-paginator-container {
-                justify-content: center !important;
-                mat-form-field {
-                  text-align: center;
-                }
-                .mat-select-arrow-wrapper {
-                  display: none;
-                }
-                .paginator-button {
-                  border: none !important;
-                  background-color: transparent !important;
-                  color: main.color(primary) !important;
-                  cursor: pointer;
-                }
-                .paginator-button-active {
-                  border: solid 2px main.color(primary) !important;
-                  border-radius: 5px !important;
-                  background-color: transparent !important;
-                  color: main.color(primary) !important;
-                }
-              }
-            }
           }
         }
       }
@@ -163,6 +155,7 @@
             direction: ltr;
           }
         }
+        // inner content of expand table tablet view
         .example-element-detail{
           margin: 50px;
           @include mat.elevation(2);
@@ -170,64 +163,74 @@
       }
     }
   }
-  // button above table
-  @media screen and (min-width: 600px) {
-    .button-center-start {
-      float: left;
-      margin-left: 100px;
-    }
-  }
-  @media screen and (max-width: 600px) {
-    .button-center-start {
-      margin: 0 auto;
-      display: block;
-    }
-  }
-  // for switching between mobile and desktop view
-  .hidden-class {
-    display: none !important;
-  }
-}
-
-// mobile
-.example-headers-align {
-  .expansion-panel {
-    box-shadow:
-      0px 3px 1px -2px rgba(0, 0, 0, 5%),
-      0px 2px 2px 0px rgb(0 0 0 / 5%),
-      0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
-    .expansion-panel-header{
-      span {
-        height: 10rem;
-      }
-      &.mat-expanded .mobile-drop-down {
-        transform: rotate(180deg) !important;
-        transition: 0.2s all;
-      }
-      .mobile-drop-down {
-        transform: rotate(0);
-        transition: 0.2s all;
-      }
-    }
-    table {
-      .actions {
-        .expanded {
-          ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-            transform: rotate(180deg) !important;
-            transition: 0.2s all;
-          }
+  // mobile
+  .example-headers-align {
+    .expansion-panel {
+      box-shadow:
+        0px 3px 1px -2px rgba(0, 0, 0, 5%),
+        0px 2px 2px 0px rgb(0 0 0 / 5%),
+        0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
+      .expansion-panel-header{
+        span {
+          height: 10rem;
         }
-        button {
-          ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-            transform: rotate(0);
-            transition: 0.2s all;
+        &.mat-expanded .mobile-drop-down {
+          transform: rotate(180deg) !important;
+          transition: 0.2s all;
+        }
+        .mobile-drop-down {
+          transform: rotate(0);
+          transition: 0.2s all;
+        }
+      }
+      table {
+        .actions {
+          .expanded {
+            ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+              transform: rotate(180deg) !important;
+              transition: 0.2s all;
+            }
+          }
+          button {
+            ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+              transform: rotate(0);
+              transition: 0.2s all;
+            }
           }
         }
       }
     }
   }
+  // footer
+  ::ng-deep mat-paginator.kkl-pagination {
+    .mat-paginator-page-size {
+      width: 50px !important;
+    }
+    .mat-paginator-container {
+      justify-content: center !important;
+      mat-form-field {
+        text-align: center;
+      }
+      .mat-select-arrow-wrapper {
+        display: none;
+      }
+      .paginator-button {
+        border: none !important;
+        background-color: transparent !important;
+        color: main.color(primary) !important;
+        cursor: pointer;
+      }
+      .paginator-button-active {
+        border: solid 2px main.color(primary) !important;
+        border-radius: 5px !important;
+        background-color: transparent !important;
+        color: main.color(primary) !important;
+      }
+    }
+  }
 }
 
+// needs to be better placed
 @media screen and (max-width: 1280px) {
   .table-form-wrapper {
     width: 100%;
