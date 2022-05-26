@@ -1,10 +1,3 @@
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   AfterViewInit,
@@ -17,15 +10,12 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
-import { setControls } from '../../../mei-services/services/form-create';
-import { ControlBase } from '../../../mei-form/models/control.model';
-import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
-import { OptionsModel } from '../../../mei-form/models/options.model';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+
 import {
   RowActionEvent,
   RowActionModel,
@@ -34,14 +24,13 @@ import {
 import { TableBase } from '../../../kkl-table/models/table.model';
 
 import { DialogService } from '../../../dialog/dialog.service';
-import {
-  BreakpointService,
-  RouterService,
-} from '../../../../services/services';
-import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+import { RouterService } from '../../../../services/services';
+
 import { customFilterPredicate } from '../../../kkl-table/components/local-table/local-filter';
 
 import { Page } from '../../models/page';
+
+import { Subject } from 'rxjs';
 
 const normalActions = [
   'inlineEdit',
@@ -85,6 +74,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   @Input() paging: boolean = true;
 
+  hasSummary: boolean = false;
+
   dragable: boolean;
   @Input() set draggable(val: boolean) {
     this.dragable = val;
@@ -95,6 +86,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Input()
   set columns(value: TableBase[]) {
     this.oneColumns = value;
+    this.hasSummary = value.some((a) => a.sumFunc);
   }
 
   dataTable: any[];
@@ -125,6 +117,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   editItemsData = [];
 
   isDesktop: boolean = true;
+  viewSize!: number;
 
   page = new Page();
 
@@ -148,7 +141,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
-      if (size <= 600 && !this.noMobile) {
+      this.viewSize = Math.floor(size / 130);
+      if (this.oneColumns.length > this.viewSize && !this.noMobile) {
         this.isDesktop = false;
       } else {
         this.isDesktop = true;
@@ -157,7 +151,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   }
 
   updateFilter(event, key) {
-    this.searchRow[key] = event;
+    this.searchRow[key] = event.value;
   }
 
   searchChanged() {
@@ -224,7 +218,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   addExpandedRow(obj: any) {
     this.ngxTable.rowDetail.toggleExpandRow(obj);
     const ind = this.expanded.indexOf(obj);
-    if(ind == -1) {
+    if (ind == -1) {
       this.expanded.push(obj);
       this.expanded = [...this.expanded];
     } else {
@@ -313,7 +307,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   onResize(event) {
     const size = event.newRect.width;
-    if (size <= 600 && !this.noMobile) {
+    this.viewSize = Math.floor(size / 130);
+    if (this.oneColumns.length > this.viewSize && !this.noMobile) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;

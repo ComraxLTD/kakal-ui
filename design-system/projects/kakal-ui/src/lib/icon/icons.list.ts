@@ -244,12 +244,12 @@ export const CHART_ICONS  = `
 `
 
 export const DUPLICATE_ICON = `
-
-<svg id="Layer_97" data-name="Layer 97" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
-  <path id="Path_1322" data-name="Path 1322" d="M35.333,2H23.667a.667.667,0,1,0,0,1.333h11v11a.667.667,0,1,0,1.333,0V2.667A.667.667,0,0,0,35.333,2Z" transform="translate(-16 -2)" fill="'none'"/>
-  <path id="Path_1323" data-name="Path 1323" d="M18.667,10h-16A.667.667,0,0,0,2,10.667v16a.667.667,0,0,0,.667.667h16a.667.667,0,0,0,.667-.667v-16A.667.667,0,0,0,18.667,10Zm-3.83,9.333h-3.5v3.5a.667.667,0,0,1-1.333,0v-3.5H6.5A.667.667,0,0,1,6.5,18H10V14.5a.667.667,0,0,1,1.333,0V18h3.5a.667.667,0,1,1,0,1.333Z" transform="translate(-2 -7.333)" fill="'none'"/>
-</svg>
-
+  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19.999" viewBox="0 0 20 19.999">
+    <g id="Group_4185" data-name="Group 4185" transform="translate(-481 -28)">
+      <path id="Path_1322" data-name="Path 1322" d="M35.333,2H23.667a.667.667,0,1,0,0,1.333h11v11a.667.667,0,1,0,1.333,0V2.667A.667.667,0,0,0,35.333,2Z" transform="translate(465 26)" fill="'none'"/>
+      <path id="Path_1323" data-name="Path 1323" d="M18.667,10h-16A.667.667,0,0,0,2,10.667v16a.667.667,0,0,0,.667.667h16a.667.667,0,0,0,.667-.667v-16A.667.667,0,0,0,18.667,10Zm-3.83,9.333h-3.5v3.5a.667.667,0,0,1-1.333,0v-3.5H6.5A.667.667,0,0,1,6.5,18H10V14.5a.667.667,0,0,1,1.333,0V18h3.5a.667.667,0,1,1,0,1.333Z" transform="translate(479 20.666)" fill="'none'"/>
+    </g>
+  </svg>
 `
 
 export const AAL_DIRECTIONS = `

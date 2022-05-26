@@ -1,332 +1,139 @@
-@use "../../../../styles/variables" as main;
+@use "../../../../styles/_variables" as main;
 @use '@angular/material' as mat;
-@import "~@swimlane/ngx-datatable/index.css";
 @import "~@swimlane/ngx-datatable/themes/material.scss";
-@import "~@swimlane/ngx-datatable/assets/icons.css";
-// @import '../../../../../../../node_modules/@swimlane/ngx-datatable/release/assets/icons.css';
 
-:host ::ng-deep .ngx-datatable.bootstrap .datatable-header,
-:host ::ng-deep .datatable-header {
-  border-bottom: 2px solid main.color(accent) !important;
-}
-
-::ng-deep .datatable-header-cell-template-wrap {
-  font-size: 14px;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-::ng-deep .datatable-body {
-  width: 101% !important;
-}
-
-::ng-deep .datatable-body-cell {
-  min-height: 50px !important;
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-}
-
-::ng-deep datatable-body-row {
-  margin: 5px;
-  width: 99% !important;
-  margin: auto;
-}
-
-// ::ng-deep .datatable-body-cell>span{
-//   height: 50px !important;
-// }
-:host ::ng-deep .expand-class {
-  margin: 3px;
-  // @include mat.elevation(2);
-  box-shadow:
-    0px 2px 1px 1px rgba(0, 0, 0, 5%),
-    0px 2px 2px 1px rgb(0 0 0 / 5%),
-    0px 2px 5px 1px rgb(0 0 0 / 5%) !important;
-}
-
-tr.example-detail-row {
-  height: 0;
-}
-
-tr.example-element-row:not(.example-expanded-row):hover {
-  background: whitesmoke;
-}
-
-tr.example-element-row:not(.example-expanded-row):active {
-  background: #efefef;
-}
-
-.example-element-detail {
-  // display: flex;
-  // padding: 16px;
-  background-color: main.color(table);
-  // background-color: red;
-  width: 100%;
-  // margin-right: -16px;
-}
-
-// .mat-table{
-//   border-collapse: separate !important;
-//   border-spacing: 0 4px !important;
-// }
-th.mat-header-cell {
-  text-align: center !important;
-}
-
-.center-butt {
-  text-align: center !important;
-}
-
-td.mat-cell {
-  border-bottom: 0.5px solid main.color(table-background);
-  // padding: 0 !important;
-}
-
-.table-wrapper {
-  // display: flex;
-  // flex-direction: column;
-  // align-items: center;
-  // justify-content: center;
-  margin: auto;
-  width: 99%;
-  // overflow-x: scroll;
-  // padding: 1px;
-  .table-wrapper {
-    overflow: auto;
-    margin: auto;
-    width: 100%;
-    padding: 0px;
-  }
-}
-
-table {
-  width: 98%;
-  margin: auto;
-}
-
-thead {
-  margin: auto;
-}
-
-.expand-table {
-  border-spacing: 0 3px !important;
-}
 .all-table-form {
-  // width: 100%;
-  // position: relative;
   overflow: auto;
   height: 100%;
   background-color: white;
-}
-.all-table-form > div {
-  width: 99%;
-  margin: auto;
-}
-
-.all-table-form > div > div {
-  width: 100%;
-}
-
-table table {
-  width: 100%;
-  border-top: dashed 1.5px main.color(primaryLight);
-  padding: 10px 20px;
-  tr.mat-header-row {
-    th.mat-header-cell.cdk-header-cell {
-      border-bottom: none;
-      background-color: main.color(secondLine);
-    }
-  }
-}
-// table tr {
-//   border-spacing: 0 !important;
-//   // border-bottom: 10px ;
-// }
-
-// table td tr:nth-child(1) {
-//   border-bottom: none;
-//   width: 20px;
-// }
-// .table-wrapper {
-
-//   margin: auto;
-//   // overflow: auto;
-// }
-
-// mat-paginator {
-//   direction: ltr;
-// }
-
-.expanded-container {
-  padding: 0 !important;
-  margin: 10px 0 !important;
-}
-
-.expand {
-  margin-top: -3px !important;
-}
-
-.hide {
-  display: none;
-  border-spacing: 0 !important;
-}
-
-tr.mat-header-row {
-  th.mat-header-cell.cdk-header-cell {
-    border-bottom: 2px solid main.color(accent);
-  }
-}
-
-.arrow-down {
-  color: main.color(primary);
-  font-size: 3rem;
-}
-
-th > h3 {
-  font-weight: 600;
-  color: main.color(text);
-}
-
-.dragCursor:hover {
-  cursor: grab;
-}
-
-.dragCursor:active {
-  cursor: grabbing;
-}
-
-::ng-deep.paginator-button {
-  border: none !important;
-  background-color: transparent !important;
-  color: main.color(primary) !important;
-  cursor: pointer;
-}
-
-// ::ng-deep.paginator-button-disabled{
-//   color: main.color(disable);
-// }
-
-::ng-deep.paginator-button-active {
-  border: solid 2px main.color(primary) !important;
-  border-radius: 5px !important;
-  background-color: transparent !important;
-  color: main.color(primary) !important;
-}
-// ::ng-deep .mat-progress-bar-fill::after{
-//   // color: main.color(primary) !important;
-//   color: red !important;
-// }
-
-//  scroll css
-/* width & height*/
-::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  background: #e4e4e4;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #707070;
-  border-radius: 30px;
-}
-
-// shorten the track size and add border radius
-//shorter a liitle bit before the pagination
-
-// @media screen and (max-width: 600px) {
-//   .desktop-hidden {
-//     display: initial;
-//   }
-//   .mobile-hidden {
-//     display: none;
-//   }
-// }
-// @media screen and (min-width: 600px) {
-//   .desktop-hidden {
-//     display: none;
-//   }
-//   .mobile-hidden {
-//     display: initial;
-//   }
-// }
-
-.hidden-class {
-  display: none !important;
-}
-
-::ng-deep .example-headers-align {
-  .expansion-panel {
-    box-shadow:
-      0px 2px 1px -2px rgba(0, 0, 0, 5%),
-      0px 2px 2px 0px rgb(0 0 0 / 5%),
-      0px 2px 5px 0px rgb(0 0 0 / 5%) !important;
-    .expansion-panel-header > span {
-      height: 10rem;
-    }
-
-    .mat-expanded .mobile-drop-down {
-      transform: rotate(180deg) !important;
-      transition: 0.5s all;
-    }
-
-    .mobile-drop-down {
-      transform: rotate(0);
-      transition: 0.5s all;
-    }
-
-    .kkl-table-cell {
-      // .ng-star-inserted{
-      //   font-weight: bolder;
-      // }
-      button {
-        padding: 0;
-      }
-    }
-
-    .actions {
-      .expanded {
-        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-          transform: rotate(180deg) !important;
-          transition: 0.2s all;
+  .table-wrapper-wrapper {
+    width: 98%;
+    margin: auto;
+    .table-wrapper {
+      margin: auto;
+      width: 100%;
+      .ngx-datatable{
+        overflow: inherit;
+        // header
+        ::ng-deep .datatable-header {
+          border-bottom: 2px solid main.color(accent);
+          margin-right: .5% !important;
+          width: 98% !important;
+          .datatable-header-inner {
+            height: main.spacing(4);
+            .datatable-header-cell {
+              display: flex !important;
+              align-items: center;
+              justify-content: center;
+              .datatable-header-cell-template-wrap {
+                font-size: 14px;
+                font-weight: 600;
+                .arrow-down{
+                  color: main.color(primary);
+                  font-size: 3rem;
+                }
+              }
+            }
+          }
         }
-      }
-      button {
-        ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-          transform: rotate(0);
-          transition: 0.2s all;
+        // body
+        ::ng-deep .datatable-body {
+          width: 100% !important;
+          datatable-scroller {
+            width: 100% !important;
+            .datatable-row-wrapper{
+              // expand table
+              .expand-class {
+                width: 98% !important;
+                max-width: 98% !important;
+                margin: 0.5%;
+                box-shadow:
+                0px 3px 1px -2px rgba(0, 0, 0, 5%),
+                0px 2px 2px 0px rgb(0 0 0 / 5%),
+                0px 1px 5px 0px rgb(0 0 0 / 5%);
+                .datatable-row-center{
+                  width: 98% !important;
+                  .datatable-body-cell {
+                    min-height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    white-space: pre-line;
+                  }
+                }
+              }
+               // inner content of expand table
+              .datatable-row-detail {
+                // different box-shadow for expand table inner content
+                box-shadow:
+                  0px 3px 1px -2px rgba(0, 0, 0, 5%),
+                  0px 2px 2px 0px rgb(0 0 0 / 5%),
+                  0px 1px 2px 0px rgb(0 0 0 / 5%) !important;
+                margin-top: -10px;
+                margin-right: .5%;
+                height: fit-content !important;
+                width: 98%;
+                .ngx-datatable>div{
+                  width: 99%;
+                  .datatable-header {
+                    border-bottom: none !important;
+                  }
+                }
+                & > .example-element-detail {
+                  padding: 10px 20px;
+                  background-color: white !important;
+                  border-top: dashed 1.5px main.color(primaryLight);
+                  .datatable-header {
+                    width: 100% !important;
+                    border-bottom: 0px !important;
+                    border-bottom: none;
+                    display: flex;
+                    align-items: center;
+                    background-color: main.color(secondLine);
+                  }
+                }
+              }
+              // not expand table
+              .datatable-body-row{
+                .datatable-body-cell {
+                  min-height: 50px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  white-space: pre-line;
+                }
+              }
+            }
+          }
         }
-      }
-    }
-
-    // .container-button {
-    //   padding: 0 11px 0 14px !important;
-    //   border-radius: 25px;
-    // }
-
-    .example-element-detail {
-      kkl-local-table {
-        .desktop-hidden {
-          display: none;
-        }
-        .mobile-hidden {
-          display: initial;
-        }
-        .table-wrapper {
-          width: 100%;
-          table {
-            width: 100%;
-            tr.mat-header-row {
-              th.mat-header-cell.cdk-header-cell {
-                border-bottom: none;
-                background-color: main.color(secondLine);
+        // footer
+        ::ng-deep .datatable-footer{
+          .datatable-footer-inner {
+            justify-content: center;
+            mat-paginator.kkl-pagination {
+              .mat-paginator-page-size {
+                width: 50px !important;
+              }
+              .mat-paginator-container {
+                justify-content: center !important;
+                mat-form-field {
+                  text-align: center;
+                }
+                .mat-select-arrow-wrapper {
+                  display: none;
+                }
+                .paginator-button {
+                  border: none !important;
+                  background-color: transparent !important;
+                  color: main.color(primary) !important;
+                  cursor: pointer;
+                }
+                .paginator-button-active {
+                  border: solid 2px main.color(primary) !important;
+                  border-radius: 5px !important;
+                  background-color: transparent !important;
+                  color: main.color(primary) !important;
+                }
               }
             }
           }
@@ -334,88 +141,70 @@ th > h3 {
       }
     }
   }
-}
-
-::ng-deep .example-expanded-row .center-butt {
-  ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-    transform: rotate(180deg) !important;
-    transition: 0.2s all;
-  }
-}
-::ng-deep .example-element-row .center-butt {
-  ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-    transform: rotate(0);
-    transition: 0.2s all;
-  }
-}
-
-/**
-   * Footer Styles
-   */
-::ng-deep .datatable-footer-inner {
-  justify-content: center;
-}
-
-// Summary row styles
-.datatable-summary-row {
-  .datatable-body-row {
-    background-color: $datatable-summary-row-background;
-
-    &:hover {
-      background-color: $datatable-summary-row-background-hover;
-    }
-
-    .datatable-body-cell {
-      font-weight: bold;
+  // button above table
+  @media screen and (min-width: 600px) {
+    .button-center-start {
+      float: left;
+      margin-left: 100px;
     }
   }
+  @media screen and (max-width: 600px) {
+    .button-center-start {
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  // for switching between mobile and desktop view
+  .hidden-class {
+    display: none !important;
+  }
 }
 
-::ng-deep.expand-class + .datatable-row-detail {
-  // @include mat.elevation(2);
-  box-shadow:
-    0px 2px 1px 1px rgba(0, 0, 0, 5%),
-    0px 2px 2px 1px rgb(0 0 0 / 5%),
-    0px 2px 2px 1px rgb(0 0 0 / 5%) !important;
-  margin: auto;
-  margin-top: -3px;
-  margin-right: 3px;
-  height: fit-content !important;
-  width: 99%;
-  & > .example-element-detail {
-    padding: 10px 20px;
-    background-color: white !important;
-    .datatable-header {
-      border-top: dashed 1.5px main.color(primaryLight);
-      border-bottom: 0px !important;
-      border-bottom: none;
-      display: flex;
-      align-items: center;
+// mobile
+.example-headers-align {
+  ::ng-deep kkl-ngx-table-form .table-form-wrapper {
+    min-width: unset!important;
+  }
+  ::ng-deep mat-form-field {
+    font-size: 12px!important;
+    width: 15rem!important;
+  }
 
-      datatable-header-cell {
-        background-color: main.color(secondLine);
+  .expansion-panel {
+    box-shadow:
+      0px 3px 1px -2px rgba(0, 0, 0, 5%),
+      0px 2px 2px 0px rgb(0 0 0 / 5%),
+      0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
+    .expansion-panel-header{
+      span {
+        height: 10rem;
       }
-
-      .datatable-header-inner {
-        height: main.spacing(4);
+      &.mat-expanded .mobile-drop-down {
+        transform: rotate(180deg) !important;
+        transition: 0.2s all;
+      }
+      .mobile-drop-down {
+        transform: rotate(0);
+        transition: 0.2s all;
+      }
+    }
+    table {
+      .actions {
+        .expanded {
+          ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+            transform: rotate(180deg) !important;
+            transition: 0.2s all;
+          }
+        }
+        button {
+          ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+            transform: rotate(0);
+            transition: 0.2s all;
+          }
+        }
       }
     }
   }
-}
-::ng-deep button[table-add-button] {
-  span {
-    color: main.color(text);
-  }
-}
-
-::ng-deep datatable-header-cell.datatable-header-cell {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center;
-}
-
-.table-form-wrapper {
-  width: 200px;
 }
 
 @media screen and (max-width: 1280px) {
@@ -429,33 +218,28 @@ th > h3 {
   }
 }
 
-@media screen and (min-width: 600px) {
-  .button-center-start {
-    float: left;
-    margin-left: 100px;
-  }
-}
+//     Scroll css
+// /* width & height*/
+// ::-webkit-scrollbar {
+//   height: 15px;
+//   width: 15px;
+// }
 
-@media screen and (max-width: 600px) {
-  .button-center-start {
-    margin: 0 auto;
-    display: block;
-  }
-}
+// /* Scroll Track */
+// ::-webkit-scrollbar-track {
+//   background: #e4e4e4;
+// }
 
-::ng-deep mat-paginator.kkl-pagination {
-  .mat-paginator-page-size {
-    width: 50px !important;
-  }
-  .mat-paginator-container {
-    justify-content: center !important;
+// /* Scroll Handle */
+// ::-webkit-scrollbar-thumb {
+//   background: #707070;
+// }
 
-    mat-form-field {
-      text-align: center;
-    }
-
-    .mat-select-arrow-wrapper {
-      display: none;
-    }
-  }
-}
+// /* Scroll Buttons */
+// ::-webkit-scrollbar-button{
+//   background-color: #e4e4e4;
+//   display: block;
+//   border-style: solid;
+//   height: 15px;
+//   width: 15px;
+// }

@@ -53,5 +53,7 @@ export interface TableBase {
   cellTemplate?: string;
   notEditable?: boolean;
 
+  sumFunc?: Function;
+
 
 }

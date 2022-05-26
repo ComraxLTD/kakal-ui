@@ -13,6 +13,7 @@
     <mat-icon>add</mat-icon>
   </button>
   <div
+    class="table-wrapper-wrapper"
     fxLayout="column"
     fxLayoutAlign="start"
     fxLayoutGap="1rem"
@@ -27,7 +28,6 @@
         *ngIf="isLoading"
       ></mat-progress-bar>
 
-      <!-- [scrollbarV]="true" -->
       <ngx-datatable
         dir="rtl"
         #myTable
@@ -40,14 +40,16 @@
         [offset]="page.pageIndex"
         [limit]="page.pageSize"
         [rowClass]="getRowClass"
-        [scrollbarH]="true"
-        >
+        [summaryRow]="hasSummary"
+        [summaryPosition]="'bottom'"
+        [summaryHeight]="55"
+      >
         <!-- Row Detail Template -->
         <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
           <ng-template
             let-row="row"
             let-expanded="expanded"
-            let-co="col"
+            let-col="col"
             ngx-datatable-row-detail-template
           >
             <div *ngIf="expanded" class="example-element-detail" #myExpand>
@@ -55,7 +57,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: row }
+                    context: { $implicit: {row: row, col: col }}
                   "
                 ></ng-template>
               </ng-container>
@@ -84,6 +86,7 @@
         <ngx-datatable-column
           *ngFor="let column of oneColumns"
           [name]="column.key"
+          [summaryFunc]="column.sumFunc"
         >
           <!-- style="background-color: blue;" -->
           <ng-template let-sort="sortFn" ngx-datatable-header-template>
@@ -131,7 +134,7 @@
             </ng-template>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="פעולות">
+        <ngx-datatable-column *ngIf="localButtons?.length" name="פעולות">
           <ng-template
             let-row="row"
             let-rowIndex="rowIndex"
@@ -228,35 +231,50 @@
             >
               <mat-panel-title>
                 <table style="width: 100%; height: 100%">
-                  <tr fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100">
-                    <span style="width: 100%" fxLayout="row">
-                      <td style="font-weight: bolder; padding: 14.5px 0 0 30px">
-                        {{ oneColumns[0].label }}
-                      </td>
-                      <td
-                        style="margin-top: 13px"
-                        fxLayout="column"
-                        fxLayoutAlign="start start"
-                      >
-                        <kkl-table-cell
-                          [isMobile]="true"
-                          class="kkl-table-cell"
-                          [data]="item[oneColumns[0].key]"
-                          [question]="oneColumns[0]"
-                          (buttClick)="
-                            buttonClick(
-                              oneColumns[0].button,
-                              item,
-                              oneColumns[0].key
-                            )
-                          "
-                          [colsTemplate]="colsTemplate"
-                        ></kkl-table-cell>
-                      </td>
-                      <span></span>
-                    </span>
+                  <tr fxLayout="row" fxLayoutAlign="space-evenly" fxFlex="100" fxLayoutGap="1rem">
+                    <ng-container *ngFor="let col of oneColumns; let i = index">
+                      <ng-container *ngIf="viewSize > i">
+                        <span fxLayout="column" fxLayoutGap="0.5rem" fxLayoutAlign=" center">
+                          <ng-container
+                            *ngIf="
+                              !(item | arrInclueds: editItems) || col.notEditable;
+                              else editBlock
+                            "
+                          >
+                            <td
+                              style="
+                                height: 6rem;
+                                font-weight: bolder;
+                                border-bottom: 1px solid #e4e4e4;
+                              "
+                            >
+                              {{ col.label }}
+                            </td>
+                            <td style="height: 6rem;">
+                              <kkl-table-cell
+                                [isMobile]="true"
+                                [data]="item[col.key]"
+                                [question]="col"
+                                (buttClick)="buttonClick(col.button, item, col.key)"
+                                [colsTemplate]="colsTemplate"
+                              ></kkl-table-cell>
+                            </td>
+                          </ng-container>
+                          <ng-template #editBlock>
+                            <td colspan="2">
+                              <kkl-ngx-table-form
+                                [initial]="editItemsData[item | arrIndex: editItems]"
+                                [question]="col"
+                                (rowEdited)="onRowEditChange($event, item, col.key)"
+                              ></kkl-ngx-table-form>
+                            </td>
+                          </ng-template>
+                          <span></span>
+                        </span>
+                      </ng-container>
+                    </ng-container>
                     <span
-                      style="height: 100%"
+                      style="height: 100%;"
                       fxLayout="column"
                       fxLayoutAlign="start"
                     >
@@ -279,45 +297,46 @@
                 border-top: 1px solid #e4e4e4;
               "
             >
-              <tr *ngFor="let col of oneColumns">
-                <ng-container *ngIf="col.key !== oneColumns[0].key">
+            <ng-container *ngFor="let col of oneColumns; let i = index">
+              <tr *ngIf="i >= viewSize" fxLayout="row"  fxFlex="100" fxLayoutGap="1rem">
+                <span fxLayout="column" fxLayoutGap="0.5rem" fxLayoutAlign=" center">
                   <ng-container
-                    *ngIf="
-                      !(item | arrInclueds: editItems) || col.notEditable;
-                      else editBlock
+                  *ngIf="
+                    !(item | arrInclueds: editItems) || col.notEditable;
+                    else editBlock
+                  "
+                >
+                  <td
+                    style="
+                      font-weight: bolder;
+                      border-bottom: 1px solid #e4e4e4;
                     "
                   >
-                    <td
-                      style="
-                        height: 6rem;
-                        font-weight: bolder;
-                        border-bottom: 1px solid #e4e4e4;
-                        width: 40%;
-                      "
-                    >
-                      {{ col.label }}
-                    </td>
-                    <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
-                      <kkl-table-cell
-                        [isMobile]="true"
-                        [data]="item[col.key]"
-                        [question]="col"
-                        (buttClick)="buttonClick(col.button, item, col.key)"
-                        [colsTemplate]="colsTemplate"
-                      ></kkl-table-cell>
-                    </td>
-                  </ng-container>
-                  <ng-template #editBlock>
-                    <td colspan="2">
-                      <kkl-ngx-table-form
-                        [initial]="editItemsData[item | arrIndex: editItems]"
-                        [question]="col"
-                        (rowEdited)="onRowEditChange($event, item, col.key)"
-                      ></kkl-ngx-table-form>
-                    </td>
-                  </ng-template>
+                    {{ col.label }}
+                  </td>
+                  <td style="height: 6rem;">
+                    <kkl-table-cell
+                      [isMobile]="true"
+                      [data]="item[col.key]"
+                      [question]="col"
+                      (buttClick)="buttonClick(col.button, item, col.key)"
+                      [colsTemplate]="colsTemplate"
+                    ></kkl-table-cell>
+                  </td>
                 </ng-container>
+                <ng-template #editBlock>
+                  <td colspan="2">
+                    <kkl-ngx-table-form
+                      [initial]="editItemsData[item | arrIndex: editItems]"
+                      [question]="col"
+                      (rowEdited)="onRowEditChange($event, item, col.key)"
+                    ></kkl-ngx-table-form>
+                  </td>
+                </ng-template>
+                </span>
+          
               </tr>
+            </ng-container>
               <tr *ngIf="localButtons?.length">
                 <td style="font-weight: bolder">פעולות</td>
                 <td class="actions" fxLayoutAlign="space-evenly">
@@ -370,7 +389,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: item }
+                    context: { $implicit: {row: item }}
                   "
                 ></ng-template>
               </ng-container>
