@@ -186,8 +186,7 @@
         </ngx-datatable-footer>
       </ngx-datatable>
     </div>
-    <!-- [ngClass]="{ 'hidden-class': !(oneColumns.length > viewSize) }" -->
-    <div >
+    <div [ngClass]="{ 'hidden-class': !(oneColumns.length > viewSize) }">
       <ng-container *ngIf="dataTable">
         <div
           *ngFor="let item of dataTable; let i = index"
