@@ -48,9 +48,9 @@
                 max-width: 98% !important;
                 margin: 0.5%;
                 box-shadow:
-                0px 3px 1px -2px rgba(0, 0, 0, 5%),
-                0px 2px 2px 0px rgb(0 0 0 / 5%),
-                0px 1px 5px 0px rgb(0 0 0 / 5%);
+                  0px 3px 1px -2px rgba(0, 0, 0, 5%),
+                  0px 2px 2px 0px rgb(0 0 0 / 5%),
+                  0px 1px 5px 0px rgb(0 0 0 / 5%);
                 .datatable-row-center{
                   width: 98% !important;
                   .datatable-body-cell {
@@ -163,7 +163,10 @@
             direction: ltr;
           }
         }
-
+        .example-element-detail{
+          margin: 50px;
+          @include mat.elevation(2);
+        }
       }
     }
   }
