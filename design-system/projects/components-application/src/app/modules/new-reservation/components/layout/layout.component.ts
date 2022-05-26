@@ -85,15 +85,18 @@ export class LayoutComponent implements OnInit {
     budget: 100,
     date: new Date(),
     tour: 'בית ספר נחלים',
-    status: { totalBars: 5, authorizedBars: 3, label: 'התקדמות' } as StatusProgress,
+    status: {
+      totalBars: 5,
+      authorizedBars: 3,
+      label: 'התקדמות',
+    } as StatusProgress,
     progress: 40,
   };
 
   constructor(
     private pageHeadlineSource: PageHeadlineService,
     private navbarBottomService: NavbarBottomService,
-    private layoutService: LayoutService,
-    private drawerLayoutService : DrawerLayoutService
+    private layoutService: LayoutService
   ) {}
 
   ngOnInit(): void {
@@ -110,8 +113,6 @@ export class LayoutComponent implements OnInit {
     });
 
     this.navbarBottomService.setShowNext(true);
-
-    this.layoutService.listenToOpenChanged().subscribe((v) => console.log(v))
   }
 
   ngOnDestroy() {
