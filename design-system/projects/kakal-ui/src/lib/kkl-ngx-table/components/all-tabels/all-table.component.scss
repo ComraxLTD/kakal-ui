@@ -93,15 +93,15 @@
                   }
                 }
               }
-            }
-            // not expand table
-            .datatable-body-row{
-              .datatable-body-cell {
-                min-height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                white-space: pre-line;
+              // not expand table
+              .datatable-body-row{
+                .datatable-body-cell {
+                  min-height: 50px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  white-space: pre-line;
+                }
               }
             }
           }
@@ -169,7 +169,7 @@
     font-size: 12px!important;
     width: 15rem!important;
   }
-  
+
   .expansion-panel {
     box-shadow:
       0px 3px 1px -2px rgba(0, 0, 0, 5%),
