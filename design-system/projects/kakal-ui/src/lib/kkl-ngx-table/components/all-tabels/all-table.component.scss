@@ -28,6 +28,10 @@
               .datatable-header-cell-template-wrap {
                 font-size: 14px;
                 font-weight: 600;
+                .arrow-down{
+                  color: main.color(primary);
+                  font-size: 3rem;
+                }
               }
             }
           }
@@ -37,62 +41,66 @@
           width: 100% !important;
           datatable-scroller {
             width: 100% !important;
-            // expand table
-            .expand-class {
-              width: 98% !important;
-              max-width: 98% !important;
-              margin: 0.5%;
-              box-shadow:
-              0px 3px 1px -2px rgba(0, 0, 0, 5%),
-              0px 2px 2px 0px rgb(0 0 0 / 5%),
-              0px 1px 5px 0px rgb(0 0 0 / 5%);
-              .datatable-row-center{
+            .datatable-row-wrapper{
+              // expand table
+              .expand-class {
                 width: 98% !important;
+                max-width: 98% !important;
+                margin: 0.5%;
+                box-shadow:
+                0px 3px 1px -2px rgba(0, 0, 0, 5%),
+                0px 2px 2px 0px rgb(0 0 0 / 5%),
+                0px 1px 5px 0px rgb(0 0 0 / 5%);
+                .datatable-row-center{
+                  width: 98% !important;
+                  .datatable-body-cell {
+                    min-height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    white-space: pre-line;
+                  }
+                }
+              }
+               // inner content of expand table
+              .datatable-row-detail {
+                // different box-shadow for expand table inner content
+                box-shadow:
+                  0px 3px 1px -2px rgba(0, 0, 0, 5%),
+                  0px 2px 2px 0px rgb(0 0 0 / 5%),
+                  0px 1px 2px 0px rgb(0 0 0 / 5%) !important;
+                margin-top: -10px;
+                margin-right: .5%;
+                height: fit-content !important;
+                width: 98%;
+                .ngx-datatable>div{
+                  width: 99%;
+                  .datatable-header {
+                    border-bottom: none !important;
+                  }
+                }
+                & > .example-element-detail {
+                  padding: 10px 20px;
+                  background-color: white !important;
+                  border-top: dashed 1.5px main.color(primaryLight);
+                  .datatable-header {
+                    width: 100% !important;
+                    border-bottom: 0px !important;
+                    border-bottom: none;
+                    display: flex;
+                    align-items: center;
+                    background-color: main.color(secondLine);
+                  }
+                }
+              }
+              // not expand table
+              .datatable-body-row{
                 .datatable-body-cell {
                   min-height: 50px;
                   display: flex;
                   align-items: center;
                   justify-content: center;
-                }
-              }
-            }
-            // not expand table
-            .datatable-body-row{
-              .datatable-body-cell {
-                min-height: 50px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-              }
-            }
-            .datatable-row-detail {
-              box-shadow:
-                0px 3px 1px -2px rgba(0, 0, 0, 5%),
-                0px 2px 2px 0px rgb(0 0 0 / 5%),
-                0px 1px 2px 0px rgb(0 0 0 / 5%) !important;
-              margin-top: -10px;
-              margin-right: .5%;
-              height: fit-content !important;
-              width: 98%;
-              .ngx-datatable>div{
-                width: 99%;
-                .datatable-header {
-                  border-bottom: none !important;
-                }
-              }
-              & > .example-element-detail {
-                padding: 10px 20px;
-                background-color: white !important;
-                border-top: dashed 1.5px main.color(primaryLight);
-                .datatable-header {
-                  width: 100% !important;
-                  border-bottom: 0px !important;
-                  border-bottom: none;
-                  display: flex;
-                  align-items: center;
-                  datatable-header-cell {
-                    background-color: main.color(secondLine);
-                  }
+                  white-space: pre-line;
                 }
               }
             }
@@ -161,7 +169,7 @@
     font-size: 12px!important;
     width: 15rem!important;
   }
-  
+
   .expansion-panel {
     box-shadow:
       0px 3px 1px -2px rgba(0, 0, 0, 5%),
