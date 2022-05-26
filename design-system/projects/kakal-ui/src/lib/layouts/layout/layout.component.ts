@@ -197,5 +197,6 @@ export class LayoutComponent implements OnInit {
 
     this.portionSource$.next(portionState);
     this.openChanged.emit(portionState.opened);
+    this.layoutService.emitOpenChanged(portionState.opened)
   }
 }

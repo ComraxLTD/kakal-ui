@@ -14,6 +14,7 @@ import {
 import { NewReservationService } from '../../new-reservation.service';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { map, Observable } from 'rxjs';
+import { DrawerLayoutService } from '../../../../../../../kakal-ui/src/lib/layouts/drawer-layout/drawer-layout.service';
 
 export interface DataEx {
   budget: number;
@@ -91,7 +92,8 @@ export class LayoutComponent implements OnInit {
   constructor(
     private pageHeadlineSource: PageHeadlineService,
     private navbarBottomService: NavbarBottomService,
-    private layoutService: LayoutService
+    private layoutService: LayoutService,
+    private drawerLayoutService : DrawerLayoutService
   ) {}
 
   ngOnInit(): void {
@@ -108,6 +110,8 @@ export class LayoutComponent implements OnInit {
     });
 
     this.navbarBottomService.setShowNext(true);
+
+    this.layoutService.listenToOpenChanged().subscribe((v) => console.log(v))
   }
 
   ngOnDestroy() {

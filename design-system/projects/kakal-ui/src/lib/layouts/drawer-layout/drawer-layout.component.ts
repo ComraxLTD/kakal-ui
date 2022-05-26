@@ -4,9 +4,8 @@ import { BreakpointService } from '../../../services/services';
 
 import { ButtonModel } from '../../button/models/button.types';
 import { DrawerLayoutService } from './drawer-layout.service';
-import { map, merge, Observable, of } from 'rxjs';
-import { DrawerDocumentComponent } from '../../drawers/drawer-document/drawer-document.component';
 import { MatDrawer } from '@angular/material/sidenav';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kkl-drawer-layout',
@@ -33,6 +32,7 @@ export class DrawerLayoutComponent implements OnInit {
 
   onDrawerToggle(drawer: MatDrawer) {
     drawer.toggle();
+    console.log(drawer.opened);
     this.drawerLayoutService.emitToggle(drawer.opened);
   }
 }
