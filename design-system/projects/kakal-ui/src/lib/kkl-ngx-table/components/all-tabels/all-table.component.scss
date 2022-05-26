@@ -152,10 +152,18 @@
         kkl-typography{
           min-width: fit-content;
         }
-        .kkl-display-group-label {
-          font-size: 14px;
-          font-weight: 600;
+        tr{
+          margin: 0 50px 20px 50px;
+          width: 130px;
+          .kkl-display-group-label {
+            font-size: 14px;
+            font-weight: 600;
+          }
+          kkl-ngx-table-form{
+            direction: ltr;
+          }
         }
+
       }
     }
   }

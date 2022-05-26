@@ -199,94 +199,73 @@
               (i >= page.pageIndex * page.pageSize &&
               (page.pageIndex + 1) * page.pageSize > i)
             "
-            fxLayout="row"
-            fxLayoutGap="3rem"
           >
-            <kkl-typography
-              [size]="2"
-              [weight]="600"
-            >
-              simple card {{i + 1}}
-            </kkl-typography>
-            <div
-              fxLayout="row wrap"
-            >
-              <tr
-                *ngFor="let col of oneColumns"
-                style="
-                  display: inline-block;
-                  margin: 0 50px 10px 50px;
-                  width: 130px;
-                "
-              >
-                <ng-container
-                  *ngIf="
-                    !(item | arrInclueds: editItems) || col.notEditable;
-                    else editBlock
-                  "
-                >
-                  <header>
-                    <span class="kkl-display-group-label">
-                      {{ col.label }}
-                    </span>
-                  </header>
-                  <td style="height: 6rem;">
-                    <kkl-table-cell
-                    [data]="item[col.key]"
-                    [question]="col"
-                    (buttClick)="buttonClick(col.button, item, col.key)"
-                    [colsTemplate]="colsTemplate"
-                    ></kkl-table-cell>
-                  </td>
-                </ng-container>
-                <ng-template #editBlock>
-                  <td colspan="2">
-                    <kkl-ngx-table-form
-                    dir="ltr"
-                    [initial]="editItemsData[item | arrIndex: editItems]"
-                    [question]="col"
-                    (rowEdited)="onRowEditChange($event, item, col.key)"
-                    ></kkl-ngx-table-form>
-                  </td>
-                </ng-template>
-              </tr>
-              <div
-                *ngIf="localButtons?.length"
-                style="
-                  display: inline-block;
-                  margin: 0 50px;
-                  width: 130px;
-                "
-              >
-                <header>
-                  <span class="kkl-display-group-label">
-                    פעולות
-                  </span>
-                </header>
-                <!-- <td style="font-weight: bolder">פעולות</td> -->
-                <td class="actions" fxLayoutAlign="space-evenly">
+            <div fxLayout="row" fxLayoutGap="3rem">
+              <kkl-typography [size]="2" [weight]="600">
+                simple card {{i + 1}}
+              </kkl-typography>
+              <div fxLayout="row wrap">
+                <tr *ngFor="let col of oneColumns">
                   <ng-container
                     *ngIf="
-                      !(item | arrInclueds: editItems);
-                      else addButtonTemplate
+                      !(item | arrInclueds: editItems) || col.notEditable;
+                      else editBlock
                     "
                   >
-                    <ng-container *ngFor="let butt of localButtons">
-                      <button
-                        [ngClass]="{ expanded: (item | arrInclueds: expanded) }"
-                        [matTooltip]="butt.label"
-                        mat-icon-button
-                        color="primary"
-                        (click)="buttonClick(butt, item, 'actions')"
-                      >
-                        <kkl-icon
-                          *ngIf="butt.icon"
-                          [key]="butt.icon"
-                        ></kkl-icon>
-                      </button>
-                    </ng-container>
+                    <header>
+                      <span class="kkl-display-group-label">
+                        {{ col.label }}
+                      </span>
+                    </header>
+                    <td>
+                      <kkl-table-cell
+                        [data]="item[col.key]"
+                        [question]="col"
+                        (buttClick)="buttonClick(col.button, item, col.key)"
+                        [colsTemplate]="colsTemplate"
+                      ></kkl-table-cell>
+                    </td>
                   </ng-container>
-                </td>
+                  <ng-template #editBlock>
+                    <td colspan="2">
+                      <kkl-ngx-table-form
+                        [initial]="editItemsData[item | arrIndex: editItems]"
+                        [question]="col"
+                        (rowEdited)="onRowEditChange($event, item, col.key)"
+                      ></kkl-ngx-table-form>
+                    </td>
+                  </ng-template>
+                </tr>
+                <tr *ngIf="localButtons?.length">
+                  <header>
+                    <span class="kkl-display-group-label">
+                      פעולות
+                    </span>
+                  </header>
+                  <td class="actions" fxLayoutAlign="space-evenly">
+                    <ng-container
+                      *ngIf="
+                        !(item | arrInclueds: editItems);
+                        else addButtonTemplate
+                      "
+                    >
+                      <ng-container *ngFor="let butt of localButtons">
+                        <button
+                          [ngClass]="{ expanded: (item | arrInclueds: expanded) }"
+                          [matTooltip]="butt.label"
+                          mat-icon-button
+                          color="primary"
+                          (click)="buttonClick(butt, item, 'actions')"
+                        >
+                          <kkl-icon
+                            *ngIf="butt.icon"
+                            [key]="butt.icon"
+                          ></kkl-icon>
+                        </button>
+                      </ng-container>
+                    </ng-container>
+                  </td>
+                </tr>
               </div>
             </div>
             <div
