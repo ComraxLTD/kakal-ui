@@ -30,7 +30,7 @@ import { RouterService } from '../../../../services/services';
 
 import { customFilterPredicate } from '../../../kkl-table/components/local-table/local-filter';
 
-import { Page } from '../../models/page';
+import { NgxPage } from '../../models/page';
 
 import { Subject } from 'rxjs';
 import { MatExpansionPanel } from '@angular/material/expansion';
@@ -122,7 +122,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   isDesktop: boolean = true;
   viewSize!: number;
 
-  page = new Page();
+  page = new NgxPage();
 
   constructor(
     private dialogService: DialogService,

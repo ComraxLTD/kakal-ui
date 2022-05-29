@@ -137,7 +137,7 @@
       margin: 10px;
       direction: rtl;
       &:nth-child(even){
-        background-color: main.color(secondLine) !important;
+        background-color: main.color(secondLine);
       }
       mat-card{
         padding: 30px 20px;
