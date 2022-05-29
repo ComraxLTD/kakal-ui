@@ -24,6 +24,39 @@ export class AppComponent {
   title = 'education';
   isOpened: boolean = false;
 
+  menu: MenuCard[] = [
+    {
+      label: 'ספר נכסים',
+      svgIcon: 'estate',
+      path: 'estate',
+      templateName: 'estate'
+    },
+    {
+      label: 'בקרת רישום',
+      svgIcon: 'evaluation',
+      path: 'records',
+    },
+    {
+      label: 'בקרת הכנסות',
+      svgIcon: 'incoming',
+      path: 'incoming',
+    },
+    {
+      label: 'בקרת הוצאות',
+      svgIcon: 'expense',
+      path: 'expense',
+    },
+    {
+      label: 'משקיפים',
+      svgIcon: 'committee',
+      path: 'spectator',
+    },
+    {
+      label: 'בקרה תכנונית',
+      svgIcon: 'planing',
+      path: 'planing',
+    },
+  ];
 
   steps: CardStep[] = [
     {
@@ -60,29 +93,29 @@ export class AppComponent {
     { path: 'as', templateName: 'newTest', label: 'test3',isChildren:true } as MenuCard,
   ];
 
-  status: CardStatus[] = [
-    {
-      key: 'first',
-      svgIcon: 'home',
-      label: 'working',
-      path: '',
-      options: [],
-    },
-    {
-      key: 'second',
-      svgIcon: 'home',
-      label: 'working',
-      path: '',
-      options: [],
-    },
-    {
-      key: 'third',
-      svgIcon: 'home',
-      label: 'working',
-      path: '',
-      options: [],
-    },
-  ];
+  // status: CardStatus[] = [
+  //   {
+  //     key: 'first',
+  //     svgIcon: 'home',
+  //     label: 'working',
+  //     path: '',
+  //     options: [],
+  //   },
+  //   {
+  //     key: 'second',
+  //     svgIcon: 'home',
+  //     label: 'working',
+  //     path: '',
+  //     options: [],
+  //   },
+  //   {
+  //     key: 'third',
+  //     svgIcon: 'home',
+  //     label: 'working',
+  //     path: '',
+  //     options: [],
+  //   },
+  // ];
 
   constructor(
     private routerService: RouterService,
@@ -559,5 +592,28 @@ export class AppComponent {
   onDelete(event: any) {
     this.description = `Delete Action: (ID: ${event.id}, Name: ${event.name}, City: ${event.city.label}, Date: ${event.dob}, Occupation: ${event.occupation}, YearsOfExperience: ${event.yearsOfExperience})`
   }
+
+
+
+
+  status: CardStatus[] = [
+    {
+      key: 'movements',
+      label: 'אישור תנועות',
+      svgIcon: 'reload',
+      value: 6,
+      path: 'register',
+      options: [],
+    },
+  ];
+  secondCards:MenuCard[] = [ {
+    label: 'TEST',
+    svgIcon: 'estate',
+    path: 'estate',
+    templateName:'test',
+    isChildren:true
+  },]
+
+  // menu!: MenuCard[];
 
 }
