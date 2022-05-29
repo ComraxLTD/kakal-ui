@@ -335,9 +335,18 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.page = { ...this.page, ...event };
   }
 
-  getRowClass = (row) => {
+  // for coloring row when expand is open
+  findExpanded(row: any) {
+    if (this.expanded.length == 0) return false;
+    const find = this.expanded.find(obj => row.id === obj.id);
+    return find ? true : false
+  }
+
+  // for coloring row when expand is open
+  getRowClass = (row: any) => {
     return {
       'expand-class': this.expand,
+      'expanded-open': this.findExpanded(row)
     };
   };
 }
