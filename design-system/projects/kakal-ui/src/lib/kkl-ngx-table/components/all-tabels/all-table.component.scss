@@ -42,10 +42,11 @@
             .datatable-header-cell {
               display: flex !important;
               align-items: center;
-              justify-content: center;
+              justify-content: flex-start ;
               .datatable-header-cell-template-wrap {
                 font-size: 14px;
                 font-weight: 600;
+                padding-right: 10%;
                 .arrow-down{
                   color: main.color(primary);
                   font-size: 3rem;
@@ -60,7 +61,7 @@
           datatable-scroller {
             width: 100% !important;
             .datatable-row-wrapper{
-              // expand table
+              // expand row
               .expand-class {
                 width: 98% !important;
                 max-width: 98% !important;
@@ -69,17 +70,28 @@
                   0px 3px 1px -2px rgba(0, 0, 0, 5%),
                   0px 2px 2px 0px rgb(0 0 0 / 5%),
                   0px 1px 5px 0px rgb(0 0 0 / 5%);
+                  // add this line below if you activate expanded-open class
+                  // padding: 7px 0;
                 .datatable-row-center{
                   width: 98% !important;
+                  margin: auto;
                   .datatable-body-cell {
                     min-height: 50px;
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
                     white-space: pre-line;
                   }
                 }
               }
+              // for coloring expand row when open
+              // .expanded-open{
+              //   padding: 7px 0;
+              //   .datatable-row-center{
+              //     background-color: main.$secondLine;
+              //     margin: auto;
+              //   }
+              // }
                // inner content of expand table
               .datatable-row-detail {
                 // different box-shadow for expand table inner content
@@ -98,7 +110,8 @@
                   }
                 }
                 & > .example-element-detail {
-                  padding: 10px 20px;
+                  // padding: 10px 20px;
+                  padding: 10px 0;
                   background-color: white !important;
                   border-top: dashed 1.5px main.color(primaryLight);
                   .datatable-header {
@@ -109,6 +122,9 @@
                     align-items: center;
                     background-color: main.color(secondLine);
                   }
+                  .datatable-body-cell{
+                    padding-right: 3.5%;
+                  }
                 }
               }
               // not expand table
@@ -117,7 +133,7 @@
                   min-height: 50px;
                   display: flex;
                   align-items: center;
-                  justify-content: center;
+                  justify-content: flex-start;
                   white-space: pre-line;
                 }
               }
@@ -236,6 +252,11 @@
     width: 100%;
   }
 }
+
+// for coloring row when expand is open
+// ::ng-deep .expanded-open{
+//   background-color: main.$secondLine;
+// }
 
 //     Scroll css
 // /* width & height*/
