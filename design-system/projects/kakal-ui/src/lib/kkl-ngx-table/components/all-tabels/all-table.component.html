@@ -121,37 +121,11 @@
             ngx-datatable-cell-template
           >
             <ng-container
-              *ngIf="!(row | arrInclueds: editItems); else addButton"
-            >
-              <ng-container *ngFor="let butt of localButtons">
-                <button
-                  [matTooltip]="butt.label"
-                  mat-icon-button
-                  color="primary"
-                  (click)="buttonClick(butt, row, 'actions')"
-                >
-                  <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                </button>
-              </ng-container>
-            </ng-container>
-            <ng-template #addButton>
-              <button
-                matTooltip="save"
-                mat-button
-                color="primary"
-                (click)="saveRowClick(row)"
-              >
-                <kkl-icon key="save"></kkl-icon>
-              </button>
-              <button
-                matTooltip="cancel"
-                mat-button
-                color="primary"
-                (click)="cancelRowClick(row)"
-              >
-                <kkl-icon key="cancel"></kkl-icon>
-              </button>
-            </ng-template>
+              *ngTemplateOutlet="
+              !(row | arrInclueds: editItems)
+              ? actions : addButtonTemplate;
+              context: { $implicit: row }"
+            ></ng-container>
           </ng-template>
         </ngx-datatable-column>
 
@@ -243,26 +217,11 @@
                   </header>
                   <td class="actions" fxLayoutAlign="space-evenly">
                     <ng-container
-                      *ngIf="
-                        !(item | arrInclueds: editItems);
-                        else addButtonTemplate
-                      "
-                    >
-                      <ng-container *ngFor="let butt of localButtons">
-                        <button
-                          [ngClass]="{ expanded: (item | arrInclueds: expanded) }"
-                          [matTooltip]="butt.label"
-                          mat-icon-button
-                          color="primary"
-                          (click)="buttonClick(butt, item, 'actions')"
-                        >
-                          <kkl-icon
-                            *ngIf="butt.icon"
-                            [key]="butt.icon"
-                          ></kkl-icon>
-                        </button>
-                      </ng-container>
-                    </ng-container>
+                      *ngTemplateOutlet="
+                      !(item | arrInclueds: editItems)
+                      ? actions : addButtonTemplate;
+                      context: { $implicit: item }"
+                    ></ng-container>
                   </td>
                 </tr>
               </div>
@@ -385,41 +344,12 @@
               <tr *ngIf="localButtons?.length">
                 <td style="font-weight: bolder">פעולות</td>
                 <td class="actions" fxLayoutAlign="space-evenly">
-                  <ng-container
-                    *ngIf="
-                      !(item | arrInclueds: editItems);
-                      else addButtonTemplate
-                    "
-                  >
-                    <ng-container *ngFor="let butt of localButtons">
-                      <!-- <ng-container *ngIf="element == expandedElement && butt.type === 'inlineExpand'; else closeExpand">
-                        <button class="container-button" mat-raised-button color="primary" (click)="buttonClick(butt, item, 'actions')">
-                          <kkl-icon [color]="'paper'" key="keyboard_arrow_up"></kkl-icon>
-                        </button>
-                      </ng-container>
-                      <ng-template #closeExpand>
-                        <ng-container *ngIf="butt.type !== 'inlineExpand'; else expandButton"> -->
-                      <button
-                        [ngClass]="{ expanded: (item | arrInclueds: expanded) }"
-                        [matTooltip]="butt.label"
-                        mat-icon-button
-                        color="primary"
-                        (click)="buttonClick(butt, item, 'actions')"
-                      >
-                        <kkl-icon
-                          *ngIf="butt.icon"
-                          [key]="butt.icon"
-                        ></kkl-icon>
-                      </button>
-                      <!-- </ng-container>
-                        <ng-template #expandButton>
-                          <button [matTooltip]="butt.label" mat-button color="primary" (click)="buttonClick(butt, item, 'actions')">
-                            <kkl-icon [size]="3" [color]="'primary'" *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-                          </button>
-                        </ng-template>
-                      </ng-template> -->
-                    </ng-container>
-                  </ng-container>
+                    <ng-container
+                      *ngTemplateOutlet="
+                      !(item | arrInclueds: editItems)
+                      ? actions : addButtonTemplate;
+                      context: { $implicit: item }"
+                    ></ng-container>
                 </td>
               </tr>
             </table>
@@ -455,7 +385,23 @@
     </div>
   </div>
 </div>
-<ng-template #addButtonTemplate let-element="element">
+
+
+<ng-template #actions let-element>
+  <ng-container *ngFor="let butt of localButtons">
+    <button
+      [matTooltip]="butt.label"
+      mat-icon-button
+      color="primary"
+      (click)="buttonClick(butt, element, 'actions')"
+    >
+      <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+    </button>
+  </ng-container>
+</ng-template>
+
+
+<ng-template #addButtonTemplate let-element>
   <kkl-stroke-button
     table-save-button
     color="primary"
