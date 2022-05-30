@@ -7,12 +7,16 @@ import {
   Input,
   OnInit,
   Output,
+  QueryList,
   TemplateRef,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { Subject } from 'rxjs';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
 
 import {
   RowActionEvent,
@@ -23,11 +27,13 @@ import { TableBase } from '../../../kkl-table/models/table.model';
 
 import { DialogService } from '../../../dialog/dialog.service';
 import { RouterService } from '../../../../services/services';
-import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+
 import { customFilterPredicate } from '../../../kkl-table/components/local-table/local-filter';
 
-import { Page } from '../../models/page';
-import { MatTableDataSource } from '@angular/material/table';
+import { NgxPage } from '../../models/page';
+
+import { Subject } from 'rxjs';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 const normalActions = [
   'inlineEdit',
@@ -50,7 +56,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   // control the size of div
   @ViewChild('myIdentifier') myIdentifier: ElementRef;
-
+  @ViewChildren(MatExpansionPanel) matExpansionPanelElement: QueryList<MatExpansionPanel>
   @Input() noMobile: boolean = false;
   destroySubject$: Subject<void> = new Subject();
 
@@ -116,7 +122,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   isDesktop: boolean = true;
   viewSize!: number;
 
-  page = new Page();
+  page = new NgxPage();
 
   constructor(
     private dialogService: DialogService,
@@ -139,7 +145,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
       this.viewSize = Math.floor(size / 130);
-      if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+      if (size <= 600 && !this.noMobile) {
         this.isDesktop = false;
       } else {
         this.isDesktop = true;
@@ -272,6 +278,9 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.editItemsData = [...this.editItemsData, Object.assign({}, rowData)];
     this.dataTable.unshift(rowData);
     this.dataTable = [...this.dataTable];
+    setTimeout(() => {
+      this.matExpansionPanelElement.first.open()
+    }, 300);
   }
 
   onRowEditChange(event, row, key) {
@@ -305,7 +314,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   onResize(event) {
     const size = event.newRect.width;
     this.viewSize = Math.floor(size / 130);
-    if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+    if (size <= 600 && !this.noMobile) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;
