@@ -85,6 +85,8 @@
                 [question]="column"
                 (rowEdited)="updateFilter($event, column.key)"
               ></kkl-ngx-table-form>
+              <!-- insert sorting arrows down here instead -->
+              <span (click)="sort()">^V</span>
             </mat-menu>
           </ng-template>
           <ng-template

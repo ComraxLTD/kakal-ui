@@ -86,6 +86,7 @@
                     align-items: center;
                     justify-content: flex-start;
                     white-space: pre-line;
+                    // for making content not bold
                     // .mat-button {
                     //   font-weight: 400 !important;
                     // }
@@ -272,6 +273,13 @@
   .table-form-wrapper {
     width: 100%;
   }
+}
+
+// filtering
+::ng-deep .mat-menu-content{
+  padding: 8px;
+  display: flex;
+  align-items: center;
 }
 
 //     Scroll css
