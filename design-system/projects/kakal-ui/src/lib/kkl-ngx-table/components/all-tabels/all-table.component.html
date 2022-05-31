@@ -72,7 +72,7 @@
           <!-- style="background-color: blue;" -->
           <ng-template let-sort="sortFn" ngx-datatable-header-template>
             <!-- column.controlType === 'number' || column.controlType === 'sum' -->
-            <span (click)="sort()">{{ column.label }}</span>
+            <span>{{ column.label }}</span>
             <button
               *ngIf="!column.noFilter"
               mat-icon-button
