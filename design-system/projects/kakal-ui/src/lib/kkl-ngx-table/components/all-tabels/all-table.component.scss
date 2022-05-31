@@ -40,7 +40,8 @@
           .datatable-header-inner {
             height: main.spacing(4);
             .datatable-row-center{
-              width: 96%;
+              width: 98% !important;
+              padding: 0 10px;
               .datatable-header-cell {
                 display: flex !important;
                 align-items: center;
