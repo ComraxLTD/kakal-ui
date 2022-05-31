@@ -33,7 +33,7 @@
         #myTable
         class="expandable"
         [columnMode]="ColumnMode.force"
-        [headerHeight]="50"
+        [headerHeight]="35"
         [footerHeight]="paging? 65 : 0"
         rowHeight="auto"
         [rows]="dataTable"
@@ -144,7 +144,6 @@
                 <mat-paginator
                   class="kkl-pagination"
                   #myPaging
-                  dir="ltr"
                   fxLayout="row"
                   fxLayoutAlign="center center"
                   kklNewPagination
@@ -152,6 +151,7 @@
                   [pageSize]="pageSize"
                   [length]="rowCount"
                   [pageSizeOptions]="[5, 10, 25]"
+                  [showFirstLastButtons]="true"
                   (page)="pageChanged($event)"
                 ></mat-paginator>
               </ng-container>
@@ -245,6 +245,7 @@
           <mat-paginator
           class="kkl-pagination"
           #myPaging
+          dir="rtl"
           kklNewPagination
           [pageIndex]="page.pageIndex"
           [pageSize]="page.pageSize"
@@ -376,10 +377,12 @@
         class="kkl-pagination"
         #myPaging
         kklNewPagination
+        dir="rtl"
         [pageIndex]="page.pageIndex"
         [pageSize]="page.pageSize"
         [length]="dataTable.length"
         [pageSizeOptions]="[5, 10, 25]"
+        [showFirstLastButtons]="true"
         (page)="pageChanged($event)"
       ></mat-paginator>
     </div>
