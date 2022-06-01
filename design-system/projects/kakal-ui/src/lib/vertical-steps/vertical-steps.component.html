@@ -5,6 +5,7 @@
 >
   <div class="mobile-hidden">
     <mat-vertical-stepper
+      [linear]="linear"
       #stepper
       fxFlex="nogrow"
       class="kkl-vertical-steps"
@@ -12,14 +13,12 @@
       [disableRipple]="true"
       (selectionChange)="onSelectionChanged($event)"
     >
-      <ng-container>
         <mat-step
           [completed]="step.completed"
-          [stepControl]="step.control"
+          [stepControl]="step.control? step.control : form"
           *ngFor="let step of steps; let i = index"
         >
         </mat-step>
-      </ng-container>
 
       <!-- Icon overrides. -->
       <ng-template matStepperIcon="done">
