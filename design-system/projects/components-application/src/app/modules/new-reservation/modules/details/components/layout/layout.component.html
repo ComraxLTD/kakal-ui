@@ -1,8 +1,11 @@
 <kkl-steps-accordion-layout
   [panels]="cases"
   [steps]="steps"
+  [isLinear]="true"
   [templates]="{costumerDetails, propertiesBudget, reservationDetails}"
   buttonLabel="המשך"
+  [selectedIndex]="selectedIndex"
+  (stepChanged)="onStepSelect($event)"
 >
   <ng-template #costumerDetails>
     <app-costumer-details></app-costumer-details>
