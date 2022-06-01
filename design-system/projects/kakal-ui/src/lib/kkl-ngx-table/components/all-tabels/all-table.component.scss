@@ -14,12 +14,13 @@
   @media screen and (min-width: 600px) {
     .button-center-start {
       float: left;
-      margin-left: 100px;
+      margin-left: 2%;
+      margin-bottom: 15px;
     }
   }
   @media screen and (max-width: 600px) {
     .button-center-start {
-      margin: 0 auto;
+      margin: 15px auto;
       display: block;
     }
   }
@@ -39,16 +40,21 @@
           width: 98% !important;
           .datatable-header-inner {
             height: main.spacing(4);
-            .datatable-header-cell {
-              display: flex !important;
-              align-items: center;
-              justify-content: center;
-              .datatable-header-cell-template-wrap {
-                font-size: 14px;
-                font-weight: 600;
-                .arrow-down{
-                  color: main.color(primary);
-                  font-size: 3rem;
+            .datatable-row-center{
+              width: 98% !important;
+              padding: 0 10px;
+              .datatable-header-cell {
+                display: flex !important;
+                align-items: center;
+                // justify-content: start;
+                .datatable-header-cell-template-wrap {
+                  font-size: 14px;
+                  font-weight: 600;
+                  margin-right: 5%;
+                  .arrow-down{
+                    color: main.color(primary);
+                    font-size: 3rem;
+                  }
                 }
               }
             }
@@ -60,7 +66,7 @@
           datatable-scroller {
             width: 100% !important;
             .datatable-row-wrapper{
-              // expand table
+              // expand row
               .expand-class {
                 width: 98% !important;
                 max-width: 98% !important;
@@ -69,17 +75,32 @@
                   0px 3px 1px -2px rgba(0, 0, 0, 5%),
                   0px 2px 2px 0px rgb(0 0 0 / 5%),
                   0px 1px 5px 0px rgb(0 0 0 / 5%);
+                  // add this line below if you activate expanded-open class
+                  // padding: 7px 0;
                 .datatable-row-center{
                   width: 98% !important;
+                  margin: auto;
                   .datatable-body-cell {
                     min-height: 50px;
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
                     white-space: pre-line;
+                    // for making content not bold
+                    // .mat-button {
+                    //   font-weight: 400 !important;
+                    // }
                   }
                 }
               }
+              // for coloring expand row when open
+              // .expanded-open{
+              //   padding: 7px 0;
+              //   .datatable-row-center{
+              //     background-color: main.$secondLine;
+              //     margin: auto;
+              //   }
+              // }
                // inner content of expand table
               .datatable-row-detail {
                 // different box-shadow for expand table inner content
@@ -98,7 +119,8 @@
                   }
                 }
                 & > .example-element-detail {
-                  padding: 10px 20px;
+                  // padding: 10px 20px;
+                  padding: 10px 0;
                   background-color: white !important;
                   border-top: dashed 1.5px main.color(primaryLight);
                   .datatable-header {
@@ -109,16 +131,23 @@
                     align-items: center;
                     background-color: main.color(secondLine);
                   }
+                  .datatable-body-cell{
+                    padding-right: 3.5%;
+                  }
                 }
               }
               // not expand table
               .datatable-body-row{
+                padding: 5px;
                 .datatable-body-cell {
                   min-height: 50px;
                   display: flex;
                   align-items: center;
-                  justify-content: center;
+                  justify-content: flex-start;
                   white-space: pre-line;
+                  .datatable-body-cell-label{
+                    width: 100%;
+                  }
                 }
               }
             }
@@ -203,9 +232,6 @@
   }
   // footer
   ::ng-deep mat-paginator.kkl-pagination {
-    .mat-paginator-page-size {
-      width: 50px !important;
-    }
     .mat-paginator-container {
       justify-content: center !important;
       mat-form-field {
@@ -226,6 +252,18 @@
         background-color: transparent !important;
         color: main.color(primary) !important;
       }
+      .mat-paginator-range-actions{
+        direction: ltr;
+      }
+      .mat-paginator-icon{
+        transform: rotate(0deg);
+      }
+      .mat-paginator-range-label{
+        direction: rtl;
+      }
+      .mat-paginator-range-label{
+        margin: 0 10px;
+      }
     }
   }
 }
@@ -235,6 +273,13 @@
   .table-form-wrapper {
     width: 100%;
   }
+}
+
+// filtering
+::ng-deep .mat-menu-content{
+  padding: 8px;
+  display: flex;
+  align-items: center;
 }
 
 //     Scroll css

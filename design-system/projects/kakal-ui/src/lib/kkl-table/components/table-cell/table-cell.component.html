@@ -12,8 +12,9 @@
 </ng-container>
 <ng-template #noTemplate>
   <span
+    style="width: 100%; padding: 0 5px;"
     fxLayout="row"
-    fxLayoutAlign="center center"
+    fxLayoutAlign="start center"
   >
     <kkl-icon
       *ngIf="question.colIcon"
@@ -27,20 +28,20 @@
       else withoutButton"
     >
       <button
-        style="width: 100%; padding: 0;"
+        style="width: 100%; padding: 0 5px;"
         mat-button
         color="primary"
         (click)="buttonClick()"
       >
         <span
-          fxLayoutAlign="center center"
+          fxLayoutAlign="start center"
         >
           <span
               *ngIf="data"
               fxLayout="row"
               style="white-space: pre-wrap; line-height: normal;"
             >
-            <span style="border-bottom: 1px solid;">
+            <span style="border-bottom: 1px solid; text-align: start;">
               {{
                 question.button?.label
                   ? question.button.label
