@@ -119,8 +119,7 @@
                   }
                 }
                 & > .example-element-detail {
-                  // padding: 10px 20px;
-                  padding: 10px 0;
+                  padding: 10px 10px;
                   background-color: white !important;
                   border-top: dashed 1.5px main.color(primaryLight);
                   .datatable-header {
@@ -139,14 +138,18 @@
               // not expand table
               .datatable-body-row{
                 padding: 5px;
-                .datatable-body-cell {
-                  min-height: 50px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: flex-start;
-                  white-space: pre-line;
-                  .datatable-body-cell-label{
-                    width: 100%;
+                .datatable-row-center{
+                  width: 98% !important;
+                  margin: auto !important;
+                  .datatable-body-cell {
+                    min-height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    white-space: pre-line;
+                    .datatable-body-cell-label{
+                      width: 100%;
+                    }
                   }
                 }
               }
