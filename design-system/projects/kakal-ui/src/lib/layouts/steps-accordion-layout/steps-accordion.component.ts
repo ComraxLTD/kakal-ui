@@ -41,6 +41,8 @@ export class StepsAccordionComponent implements OnInit {
   // ** an interface for ui **
   @Input() buttonLabel: string;
 
+  @Input() autoButtons: boolean = true;
+
   // ** for accordion checked **
   currentStep: StepSelectEvent;
 
@@ -58,92 +60,98 @@ export class StepsAccordionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.navbarBottomService.setShowNextMiddle({ show: true, next: true });
-    this.navbarBottomService.setAutoBack(false);
-    this.navbarBottomService.setDisableNext(true);
-    this.navbarBottomService
-      .listenToBack()
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a) => {
-        if (this.completed) {
-          this.completed = false;
-          this.navbarBottomService.setShowNextMiddle({
-            show:true,next:false
-          })
-          this.navbarBottomService.setShowSave(false)
-          this.selectedIndex = this.steps.length - 1;
-          this.navbarBottomService.setFormGroup(
-            this.steps[this.selectedIndex].control
-          );
-        } else {
-          if (this.currentStep && this.currentStep.selectedIndex) {
-            this.selectedIndex = this.currentStep.selectedIndex-1;
+    if(this.autoButtons) {
+      this.navbarBottomService.setShowNextMiddle({ show: true, next: true });
+      this.navbarBottomService.setAutoBack(false);
+      this.navbarBottomService.setDisableNext(true);
+      this.navbarBottomService
+        .listenToBack()
+        .pipe(takeUntil(this.destroySubject$))
+        .subscribe((a) => {
+          if (this.completed) {
+            this.completed = false;
+            this.navbarBottomService.setShowNextMiddle({
+              show:true,next:false
+            })
+            this.navbarBottomService.setShowSave(false)
+            this.selectedIndex = this.steps.length - 1;
             this.navbarBottomService.setFormGroup(
               this.steps[this.selectedIndex].control
             );
-            setTimeout(() => {
-              if (this.currentStep.last) {
-                this.navbarBottomService.setShowNextMiddle({
-                  show: true,
-                  next: false,
-                });
-              } else {
-                this.navbarBottomService.setShowNextMiddle({
-                  show: true,
-                  next: true,
-                });
-              }
-            }, 100);
           } else {
-            this.routerService.goBack();
+            if (this.currentStep && this.currentStep.selectedIndex) {
+              this.selectedIndex = this.currentStep.selectedIndex-1;
+              this.navbarBottomService.setFormGroup(
+                this.steps[this.selectedIndex].control
+              );
+              setTimeout(() => {
+                if (this.currentStep.last) {
+                  this.navbarBottomService.setShowNextMiddle({
+                    show: true,
+                    next: false,
+                  });
+                } else {
+                  this.navbarBottomService.setShowNextMiddle({
+                    show: true,
+                    next: true,
+                  });
+                }
+              }, 100);
+            } else {
+              this.routerService.goBack();
+            }
           }
-        }
-      });
-    this.navbarBottomService
-      .listenToNextMiddle()
-      .pipe(takeUntil(this.destroySubject$))
-      .subscribe((a) => {
-        if (this.currentStep?.selectedIndex === this.steps.length - 1) {
-          this.completed = true;
-          this.navbarBottomService.setDisableNext(false);
-          this.navbarBottomService.setShowSave(true);
-          this.save.emit();
-          this.navbarBottomService.setShowNextMiddle({
-            show: false,
-            next: false,
-          });
-        } else {
-          if (this.currentStep) {
-            this.selectedIndex = this.currentStep.selectedIndex + 1;
+        });
+      this.navbarBottomService
+        .listenToNextMiddle()
+        .pipe(takeUntil(this.destroySubject$))
+        .subscribe((a) => {
+          if (this.currentStep?.selectedIndex === this.steps.length - 1) {
+            this.completed = true;
+            this.navbarBottomService.setDisableNext(false);
+            this.navbarBottomService.setShowSave(true);
+            this.save.emit();
+            this.navbarBottomService.setShowNextMiddle({
+              show: false,
+              next: false,
+            });
           } else {
-            this.selectedIndex = this.selectedIndex + 1;
+            if (this.currentStep) {
+              this.selectedIndex = this.currentStep.selectedIndex + 1;
+            } else {
+              this.selectedIndex = this.selectedIndex + 1;
+            }
+            this.navbarBottomService.setFormGroup(
+              this.steps[this.selectedIndex].control
+            );
           }
-          this.navbarBottomService.setFormGroup(
-            this.steps[this.selectedIndex].control
-          );
-        }
-      });
+        });
+      }
   }
 
   ngOnDestroy() {
-    this.navbarBottomService.setAutoBack(true);
-    this.navbarBottomService.setFormGroup(null);
-    this.navbarBottomService.setShowNextMiddle({ show: false, next: true });
-    this.navbarBottomService.setDisableNext(false);
+    if(this.autoButtons) {
+      this.navbarBottomService.setAutoBack(true);
+      this.navbarBottomService.setFormGroup(null);
+      this.navbarBottomService.setShowNextMiddle({ show: false, next: true });
+      this.navbarBottomService.setDisableNext(false);
+    }
     this.destroySubject$.next();
     this.destroySubject$.complete();
   }
 
   onStepChanged(event: StepSelectEvent) {
     this.currentStep = event;
-    if (this.currentStep.last) {
-      this.navbarBottomService.setShowNextMiddle({ show: true, next: false });
-    } else {
-      this.navbarBottomService.setShowNextMiddle({ show: true, next: true });
+    if(this.autoButtons) {
+      if (this.currentStep.last) {
+        this.navbarBottomService.setShowNextMiddle({ show: true, next: false });
+      } else {
+        this.navbarBottomService.setShowNextMiddle({ show: true, next: true });
+      }
+      this.navbarBottomService.setFormGroup(
+        this.steps[this.currentStep.selectedIndex].control
+      );
     }
-    this.navbarBottomService.setFormGroup(
-      this.steps[this.currentStep.selectedIndex].control
-    );
     this.stepChanged.emit(event);
   }
 
