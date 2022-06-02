@@ -15,7 +15,7 @@ fxFill class="kkl-card-menu-wrapper">
   </button>
 </div>
 
-<hover-popup [CdkOverlayOrigin]="CdkOverlayOrigin" [isChildren]="card.isChildren"
+<hover-popup [CdkOverlayOrigin]="CdkOverlayOrigin" *ngIf="template" [isChildren]="card.isChildren"
         (close)="isOpened = false"
         (open)="isOpened = true">
       <ng-template [ngTemplateOutlet]="template"></ng-template>
