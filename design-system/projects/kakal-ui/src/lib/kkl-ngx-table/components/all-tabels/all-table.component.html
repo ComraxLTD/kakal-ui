@@ -49,7 +49,6 @@
           <ng-template
             let-row="row"
             let-expanded="expanded"
-            let-col="col"
             ngx-datatable-row-detail-template
           >
             <div *ngIf="expanded" class="example-element-detail" #myExpand>
@@ -57,7 +56,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: {row: row, col: col }}
+                    context: { $implicit: row }
                   "
                 ></ng-template>
               </ng-container>
@@ -234,7 +233,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: {row: item }}
+                    context: { $implicit: item }
                   "
                 ></ng-template>
               </ng-container>
@@ -362,7 +361,7 @@
                 <ng-template
                   *ngTemplateOutlet="
                     expandTemplate;
-                    context: { $implicit: {row: item }}
+                    context: { $implicit: item }
                   "
                 ></ng-template>
               </ng-container>
