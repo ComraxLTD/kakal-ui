@@ -500,8 +500,8 @@ export class AppComponent {
     // { key: 'id1', label: 'Id', controlType: 'number', button: { type: 'inlineNavigation' } },
     // { key: 'name1', label: 'Name', controlType: 'text', notEditable: true},
     // // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
-    { key: 'yearsOfExperience1', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
-    { key: 'occupation1', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
+    // { key: 'yearsOfExperience1', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
+    // { key: 'occupation1', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
     // { key: 'city1', label: 'עיר', controlType: 'select' },
     // { key: 'dob1', label: 'תאריך', controlType: 'date' },
     // { key: 'id2', label: 'Id', controlType: 'number', button: { type: 'inlineNavigation' } },
@@ -517,8 +517,8 @@ export class AppComponent {
   rowActions: RowActionModel[] = [
     { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
     { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
-    { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' },
     { type: 'visibility', icon: 'visibility', label: 'Show' },
+    { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' },
   ]
 
   rowActions2: RowActionModel[] = [
