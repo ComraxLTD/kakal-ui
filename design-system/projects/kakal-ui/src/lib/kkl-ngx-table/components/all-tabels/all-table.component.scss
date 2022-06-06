@@ -11,17 +11,22 @@
     display: none !important;
   }
   // button above table
-  @media screen and (min-width: 600px) {
-    .button-center-start {
-      float: left;
-      margin-left: 2%;
-      margin-bottom: 15px;
+  @media (min-width: 600px) {
+    .button-wrapper{
+      display: flex;
+      .button-center-start {
+        float: left;
+        margin-left: 2%;
+        margin-bottom: 15px;
+      }
     }
   }
   @media screen and (max-width: 600px) {
-    .button-center-start {
-      margin: 15px auto;
-      display: block;
+    .button-wrapper{
+      .button-center-start {
+        margin: 15px auto;
+        display: block;
+      }
     }
   }
   // the table
