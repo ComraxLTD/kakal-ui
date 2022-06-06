@@ -103,7 +103,7 @@
               *ngIf="!(element | arrInclueds: editItems); else editBlock"
             >
               <kkl-table-cell
-                [data]="element[column.key]"
+                [row]="element"
                 [question]="column"
                 (buttClick)="buttonClick(column.button, element, column.key)"
                 [colsTemplate]="colsTemplate"
@@ -112,7 +112,7 @@
             <ng-template #editBlock>
               <ng-container *ngIf="column.notEditable; else innerEditBlock">
                 <kkl-table-cell
-                  [data]="element[column.key]"
+                  [row]="element"
                   [question]="column"
                   (buttClick)="buttonClick(column.button, element, column.key)"
                   [colsTemplate]="colsTemplate"
@@ -261,7 +261,7 @@
                         <kkl-table-cell
                           [isMobile]="true"
                           class="kkl-table-cell"
-                          [data]="element[oneColumns[0].key]"
+                          [row]="element"
                           [question]="oneColumns[0]"
                           (buttClick)="
                             buttonClick(
@@ -317,7 +317,7 @@
                     <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
                       <kkl-table-cell
                         [isMobile]="true"
-                        [data]="element[col.key]"
+                        [row]="element"
                         [question]="col"
                         (buttClick)="buttonClick(col.button, element, col.key)"
                         [colsTemplate]="colsTemplate"
@@ -330,7 +330,7 @@
                       <td>
                         <kkl-table-cell
                           [isMobile]="true"
-                          [data]="element[col.key]"
+                          [row]="element"
                           [question]="col"
                           (buttClick)="buttonClick(col.button, element, col.key)"
                           [colsTemplate]="colsTemplate"

@@ -16,11 +16,11 @@
               <td style="font-weight: bolder;">{{col.label}}</td>
               <td>{{item[col.key]}}
                 <ng-container *ngIf="!(item | arrInclueds : editItems); else editBlock">
-                  <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                  <kkl-table-cell [row]="item" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
                 </ng-container>
                 <ng-template #editBlock>
                   <ng-container *ngIf="col.notEditable; else innerEditBlock">
-                    <kkl-table-cell [data]="item[col.key]" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
+                    <kkl-table-cell [row]="item" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
                   </ng-container>
                   <ng-template #innerEditBlock>
                     <kkl-table-form [formGroupName]="(item | arrIndex : editItems)" [question]="col"></kkl-table-form>
