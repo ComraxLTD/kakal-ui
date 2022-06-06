@@ -100,6 +100,7 @@
             >
               <kkl-table-cell
                 [row]="row"
+                [data]="row[column.key]"
                 [question]="column"
                 (buttClick)="buttonClick(column.button, row, column.key)"
                 [colsTemplate]="colsTemplate"
@@ -193,6 +194,7 @@
                     <td>
                       <kkl-table-cell
                         [row]="item"
+                        [data]="item[col.key]"
                         [question]="col"
                         (buttClick)="buttonClick(col.button, item, col.key)"
                         [colsTemplate]="colsTemplate"
@@ -326,6 +328,7 @@
                     <td style="height: 6rem; border-bottom: 1px solid #e4e4e4">
                       <kkl-table-cell
                         [row]="item"
+                        [data]="item[col.key]"
                         [question]="col"
                         (buttClick)="buttonClick(col.button, item, col.key)"
                         [colsTemplate]="colsTemplate"
