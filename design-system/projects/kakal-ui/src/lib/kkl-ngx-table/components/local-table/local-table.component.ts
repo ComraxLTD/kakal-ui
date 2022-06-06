@@ -79,6 +79,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   hasSummary: boolean = false;
 
+  @Input() headline: string = 'Something';
+
   dragable: boolean;
   @Input() set draggable(val: boolean) {
     this.dragable = val;
