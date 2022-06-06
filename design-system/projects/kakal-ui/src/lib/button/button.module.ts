@@ -11,18 +11,17 @@ import { KKLTypographyModule } from '../typography/typography.module';
 import { ButtonComponent } from './components/button/button.component';
 import { StrokeButtonComponent } from './components/stroke-button/stroke-button.component';
 import { AddButtonComponent } from './components/add-button/add-button.component';
+import { SortButtonComponent } from './components/sort-button/sort-button.component';
 
 import { KKLButtonDirective } from './directives/button.directive';
 import { KKLStrokedButtonDirective } from './directives/stroked-button.directive';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLActionButtonDirective } from './directives/action-button.directive';
 import { KKLFormButtonDirective } from './directives/form-button.directive';
-import { KKLSortButtonModule } from './components/sort-button/sort-button.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    KKLSortButtonModule,
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
@@ -34,6 +33,7 @@ import { KKLSortButtonModule } from './components/sort-button/sort-button.module
   declarations: [
     ButtonComponent,
     AddButtonComponent,
+    SortButtonComponent,
     StrokeButtonComponent,
     KKLButtonDirective,
     KKLStrokedButtonDirective,
@@ -42,7 +42,7 @@ import { KKLSortButtonModule } from './components/sort-button/sort-button.module
   ],
   exports: [
     MatButtonModule,
-    KKLSortButtonModule,
+    SortButtonComponent,
     ButtonComponent,
     AddButtonComponent,
     StrokeButtonComponent,
