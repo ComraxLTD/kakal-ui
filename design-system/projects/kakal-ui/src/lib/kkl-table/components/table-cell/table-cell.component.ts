@@ -8,14 +8,18 @@ import { TableBase } from '../../models/table.model';
 export class TableCellComponent implements OnInit  {
   @Input() question!: TableBase;
   @Input() row!: any;
+  @Input() data!: any;
 
   @Input() colsTemplate: any;
+
+  column!: string;
 
   @Output() buttClick = new EventEmitter<null>();
 
   constructor() {
   }
   ngOnInit(): void {
+    this.column = this.question.key;
   }
 
   buttonClick() {

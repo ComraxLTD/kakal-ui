@@ -104,6 +104,7 @@
             >
               <kkl-table-cell
                 [row]="element"
+                [data]="element[column.key]"
                 [question]="column"
                 (buttClick)="buttonClick(column.button, element, column.key)"
                 [colsTemplate]="colsTemplate"
@@ -113,6 +114,7 @@
               <ng-container *ngIf="column.notEditable; else innerEditBlock">
                 <kkl-table-cell
                   [row]="element"
+                  [data]="element[column.key]"
                   [question]="column"
                   (buttClick)="buttonClick(column.button, element, column.key)"
                   [colsTemplate]="colsTemplate"
@@ -262,6 +264,7 @@
                           [isMobile]="true"
                           class="kkl-table-cell"
                           [row]="element"
+                          [data]="element[oneColumns[0].key]"
                           [question]="oneColumns[0]"
                           (buttClick)="
                             buttonClick(
@@ -318,6 +321,7 @@
                       <kkl-table-cell
                         [isMobile]="true"
                         [row]="element"
+                        [data]="element[col.key]"
                         [question]="col"
                         (buttClick)="buttonClick(col.button, element, col.key)"
                         [colsTemplate]="colsTemplate"
@@ -331,6 +335,7 @@
                         <kkl-table-cell
                           [isMobile]="true"
                           [row]="element"
+                          [data]="element[col.key]"
                           [question]="col"
                           (buttClick)="buttonClick(col.button, element, col.key)"
                           [colsTemplate]="colsTemplate"
