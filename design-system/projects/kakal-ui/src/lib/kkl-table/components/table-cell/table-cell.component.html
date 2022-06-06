@@ -4,7 +4,7 @@
       <ng-container
         *ngTemplateOutlet="
           colsTemplate[question.cellTemplate];
-          context: { $implicit: data }
+          context: { $implicit: {data: row[question.key], row, column: question.key} }
         "
       ></ng-container>
     </div>
@@ -37,7 +37,7 @@
           fxLayoutAlign="start center"
         >
           <span
-              *ngIf="data"
+              *ngIf="row[question.key]"
               fxLayout="row"
               style="white-space: pre-wrap; line-height: normal;"
             >
@@ -45,7 +45,7 @@
               {{
                 question.button?.label
                   ? question.button.label
-                  : (data | tableCellPipe: question.controlType)
+                  : (row[question.key] | tableCellPipe: question.controlType)
               }}
             </span>
           </span>
@@ -63,11 +63,11 @@
     </span>
     <ng-template #withoutButton>
       <div
-        *ngIf="data"
+        *ngIf="row[question.key]"
         style="white-space: pre-wrap; font-size: 14px !important;"
       >
         <span>
-          {{ data | tableCellPipe: question.controlType }}
+          {{ row[question.key] | tableCellPipe: question.controlType }}
         </span>
       </div>
     </ng-template>

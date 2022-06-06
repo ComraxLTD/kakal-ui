@@ -7,7 +7,7 @@ import { TableBase } from '../../models/table.model';
 })
 export class TableCellComponent implements OnInit  {
   @Input() question!: TableBase;
-  @Input() data!: any;
+  @Input() row!: any;
 
   @Input() colsTemplate: any;
 
@@ -19,7 +19,6 @@ export class TableCellComponent implements OnInit  {
   }
 
   buttonClick() {
-    console.log(this.data)
     this.buttClick.emit(null);
   }
 

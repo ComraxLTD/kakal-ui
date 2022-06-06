@@ -493,7 +493,7 @@ export class AppComponent {
     { key: 'id', label: 'Id', controlType: 'number', button: { type: 'inlineNavigation' } },
     { key: 'name', label: 'Name', controlType: 'text', notEditable: true},
     // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
-    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree', cellTemplate: 'yearsOfExperienceTemplateName' },
     { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
     { key: 'city', label: 'עיר', controlType: 'select' },
     // { key: 'dob', label: 'תאריך', controlType: 'date' },
