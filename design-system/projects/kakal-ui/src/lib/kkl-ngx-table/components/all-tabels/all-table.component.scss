@@ -80,6 +80,7 @@
                 .datatable-row-center{
                   width: 98% !important;
                   margin: auto;
+                  border-bottom: none !important;
                   .datatable-body-cell {
                     min-height: 50px;
                     display: flex;
@@ -130,9 +131,9 @@
                     align-items: center;
                     background-color: main.color(secondLine);
                   }
-                  .datatable-body-cell{
-                    padding-right: 3.5%;
-                  }
+                  // .datatable-body-cell{
+                  //   padding-right: 3.5%;
+                  // }
                 }
               }
               // not expand table
@@ -141,6 +142,7 @@
                 .datatable-row-center{
                   width: 98% !important;
                   margin: auto !important;
+                  border-bottom: 2px #f2f2f2f2 solid;
                   .datatable-body-cell {
                     min-height: 50px;
                     display: flex;
@@ -153,6 +155,9 @@
                   }
                 }
               }
+            }
+            .datatable-row-wrapper:last-child .datatable-row-center{
+              border-bottom: none !important;
             }
           }
         }
