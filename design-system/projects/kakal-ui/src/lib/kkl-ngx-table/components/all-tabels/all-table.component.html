@@ -1,17 +1,19 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 <div class="all-table-form" (resized)="onResize($event)" #myIdentifier>
-  <button
-    class="button-center-start"
-    *ngIf="newRowAction"
-    kkl-border
-    [thick]="2"
-    mat-stroked-button
-    color="primary"
-    (click)="addNewRowGroup()"
-  >
-    {{ newRowAction }}
-    <mat-icon>add</mat-icon>
-  </button>
+  <div class="button-wrapper">
+    <button
+      class="button-center-start"
+      *ngIf="newRowAction"
+      kkl-border
+      [thick]="2"
+      mat-stroked-button
+      color="primary"
+      (click)="addNewRowGroup()"
+    >
+      {{ newRowAction }}
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
   <div
     class="table-wrapper-wrapper"
     fxLayout="column"
