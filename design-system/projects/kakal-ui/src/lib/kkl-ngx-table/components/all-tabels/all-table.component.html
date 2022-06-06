@@ -175,7 +175,7 @@
           >
             <div fxLayout="row" fxLayoutGap="3rem">
               <kkl-typography [size]="2" [weight]="600">
-                simple card {{i + 1}}
+                {{headline}} {{i + 1}}
               </kkl-typography>
               <div fxLayout="row wrap">
                 <tr *ngFor="let col of oneColumns">
@@ -280,7 +280,7 @@
               <mat-panel-title>
                     <span style="width: 100%" fxLayout="row">
                       <h1 style="font-weight: bolder; padding: 14.5px 0 0 30px">
-                        Somthing {{i + 1}}
+                        {{headline}} {{i + 1}}
                       </h1>
                       <span></span>
                     </span>
