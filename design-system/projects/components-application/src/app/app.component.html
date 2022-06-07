@@ -126,3 +126,12 @@
       totalBars : 10
     }"></kkl-status-progress> -->
 </ng-template>
+<kkl-list-menu [options]="options" (emitOption)="updateOption($event)">
+  <kkl-typography>Click me!</kkl-typography>
+</kkl-list-menu>
+<kkl-radio-group
+            [control]="control"
+            [options]="options"
+            [label]="'radio'"
+            [key]="'radio'"
+          ></kkl-radio-group>
