@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {
   CardStatus,
   CardStep,
+  KklSelectOption,
   MenuCard,
   PageHeadlineService,
   RouterService,
@@ -483,6 +484,21 @@ export class AppComponent {
     },
   ]
 
+
+
+  // options: any[] = ['option1', 'option2', 'option3'];
+  updateOption(option: any) {
+    console.log(option);
+
+  }
+  control = new FormControl();
+
+  options: KklSelectOption[] = [
+    { label: 'first radio option label', value: 'first radio option value' },
+    { label: 'second radio option label', value: 'second radio option value' },
+    { label: 'third radio option label', value: 'third radio option value' },
+    { label: 'fourth radio option label', value: 'fourth radio option value' },
+  ];
 
   currStr = new CurrencyPipe('he-HE').transform(1500, 'USD', 'symbol', '1.0-3');
   description;

@@ -101,8 +101,7 @@
               "
             >
               <kkl-table-cell
-                [row]="row"
-                [data]="row[column.key]"
+                [row]="row" [data]="value"
                 [question]="column"
                 (buttClick)="buttonClick(column.button, row, column.key)"
                 [colsTemplate]="colsTemplate"
