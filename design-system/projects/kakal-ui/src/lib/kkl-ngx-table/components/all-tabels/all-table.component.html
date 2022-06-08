@@ -412,28 +412,51 @@
   </main>
 </div>
 
-<ng-template #actionsTemplate let-element>
-  <ng-container *ngFor="let butt of localButtons">
-    <button
-      [matTooltip]="butt.label"
-      mat-icon-button
-      color="primary"
-      (click)="buttonClick(butt, element, 'actions')"
-    >
-      <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
-    </button>
-  </ng-container>
+<ng-template #actionsTemplate let-row let-rowIndex="rowIndex">
+  <div
+    fxFlex="100"
+    class="actions"
+    fxLayout="row"
+    fxLayoutGap=".5rem"
+    dir="rtl"
+    fxLayoutAlign="end center"
+  >
+    <ng-container *ngFor="let butt of rowActions">
+      <ng-container *ngIf="!butt.button">
+        <button
+          [matTooltip]="butt.label"
+          mat-icon-button
+          color="primary"
+          (click)="onActionClicked(butt, row, 'actions', rowIndex)"
+        >
+          <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+        </button>
+      </ng-container>
+      <ng-container *ngIf="butt.button && row.approve">
+        <kkl-stroke-button
+          class="approve"
+          color="primary"
+          (clickEvent)="onActionClicked(butt, row, 'actions', rowIndex)"
+        >
+          {{ butt.label }}
+        </kkl-stroke-button>
+      </ng-container>
+    </ng-container>
+  </div>
 </ng-template>
 
-<ng-template #addButtonTemplate let-element>
-  <kkl-stroke-button
-    table-save-button
-    color="primary"
-    (clickEvent)="saveRowClick(element)"
-  >
-    שמור
-  </kkl-stroke-button>
-  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
-    <kkl-icon key="cancel"></kkl-icon>
-  </button>
+<ng-template #addButtonTemplate let-element let-rowIndex="rowIndex">
+  <div dir="rtl" fxLayout="row" fxLayoutGap="1rem">
+    <kkl-stroke-button
+      table-save-button
+      color="primary"
+      (clickEvent)="onSaveEvent(rowIndex)"
+    >
+      שמור
+    </kkl-stroke-button>
+    <button ma tTooltip="בטל" mat-icon-button (click)="onCancelEvent(rowIndex)">
+      <kkl-icon key="cancel"></kkl-icon>
+    </button>
+  </div>
 </ng-template>
+
