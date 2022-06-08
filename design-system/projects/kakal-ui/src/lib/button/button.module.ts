@@ -10,7 +10,7 @@ import { KKLTypographyModule } from '../typography/typography.module';
 
 import { ButtonComponent } from './components/button/button.component';
 import { StrokeButtonComponent } from './components/stroke-button/stroke-button.component';
-import { KKLStrokedButtonDirective } from './components/stroke-button/stroked-button.directive';
+import { ActionButtonComponent } from './components/action-button/action-button.component';
 
 import { AddButtonComponent } from './components/add-button/add-button.component';
 import { SortButtonComponent } from './components/sort-button/sort-button.component';
@@ -18,7 +18,8 @@ import { SortButtonComponent } from './components/sort-button/sort-button.compon
 import { KKLButtonDirective } from './directives/button.directive';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLFormButtonDirective } from './directives/form-button.directive';
-import { KKLActionButtonDirective, ActionButtonComponent } from '../../public-api';
+import { KKLStrokedButtonDirective } from './components/stroke-button/stroked-button.directive';
+import { KKLActionButtonDirective } from './components/action-button/action-button.directive';
 
 @NgModule({
   imports: [
@@ -49,10 +50,10 @@ import { KKLActionButtonDirective, ActionButtonComponent } from '../../public-ap
     AddButtonComponent,
     StrokeButtonComponent,
     ActionButtonComponent,
+    KKLActionButtonDirective,
     KKLButtonDirective,
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
-    KKLActionButtonDirective,
   ],
 })
 export class KKLButtonModule {}
