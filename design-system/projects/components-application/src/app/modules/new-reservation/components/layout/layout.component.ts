@@ -32,7 +32,8 @@ export interface DataEx {
 export class LayoutComponent implements OnInit {
   actions: ButtonModel[] = [
     { type: 'file' },
-    { type: 'custom', svgIcon: 'add', label: 'הוסף' },
+    { type: 'custom', svgIcon: 'estate', label: 'הוסף' },
+    { type: 'custom', matIcon: 'add', label: 'הוסף' },
   ];
   actions$: Observable<ButtonModel[]>;
 
