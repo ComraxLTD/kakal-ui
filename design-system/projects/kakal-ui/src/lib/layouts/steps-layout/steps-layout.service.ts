@@ -67,7 +67,7 @@ export class StepsLayoutService {
       .asObservable()
       .pipe(
         filter((action: ButtonModel) =>
-          filters.length ? filters.includes(action.type) : true
+          (filters && filters.length) ? filters.includes(action.type) : true
         )
       );
   }

@@ -32,8 +32,8 @@ export interface DataEx {
 export class LayoutComponent implements OnInit {
   actions: ButtonModel[] = [
     { type: 'file' },
-    { type: 'custom', svgIcon: 'estate', label: 'הוסף' },
-    { type: 'custom', matIcon: 'add', label: 'הוסף' },
+    { type: 'estate', svgIcon: 'estate', label: 'הוסף' },
+    { type: 'add', matIcon: 'add', label: 'הוסף' },
   ];
   actions$: Observable<ButtonModel[]>;
 
@@ -99,7 +99,8 @@ export class LayoutComponent implements OnInit {
   constructor(
     private pageHeadlineSource: PageHeadlineService,
     private navbarBottomService: NavbarBottomService,
-    private layoutService: LayoutService
+    private layoutService: LayoutService,
+    private stepsLayoutService: StepsLayoutService
   ) {}
 
   ngOnInit(): void {
@@ -116,6 +117,12 @@ export class LayoutComponent implements OnInit {
     // });
 
     this.navbarBottomService.setShowNext(true);
+
+    // this.stepsLayoutService
+    //   .listenToActionButtons(['estate'])
+    //   .subscribe((button) => {
+    //     alert(button.type);
+    //   });
   }
 
   ngOnDestroy() {
