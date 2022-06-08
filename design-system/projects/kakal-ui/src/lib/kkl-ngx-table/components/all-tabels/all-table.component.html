@@ -423,40 +423,45 @@
     dir="rtl"
     fxLayoutAlign="end center"
   >
-    <ng-container *ngFor="let butt of localButtons">
-      <ng-container *ngIf="!butt.button">
+    <ng-container *ngFor="let button of localButtons">
+      <ng-container *ngIf="!button.button">
         <button
-          [matTooltip]="butt.label"
+          [matTooltip]="button.label"
           mat-icon-button
           color="primary"
-          (click)="onActionClicked(butt, row, 'actions', rowIndex)"
+          (click)="onActionClicked(button, row, 'actions', rowIndex)"
         >
-          <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
+          <kkl-icon *ngIf="button.icon" [key]="button.icon"></kkl-icon>
         </button>
       </ng-container>
-      <ng-container *ngIf="butt.button && row.approve">
+      <ng-container *ngIf="button.button">
         <kkl-stroke-button
-          class="approve"
+          kkl-action-table
           color="primary"
-          (clickEvent)="onActionClicked(butt, row, 'actions', rowIndex)"
+          (clickEvent)="onActionClicked(button, row, 'actions', rowIndex)"
         >
-          {{ butt.label }}
+          {{ button.label }}
         </kkl-stroke-button>
       </ng-container>
     </ng-container>
   </div>
 </ng-template>
 
-<ng-template #addButtonTemplate let-element let-rowIndex="rowIndex">
+<ng-template #addButtonTemplate let-row let-rowIndex="rowIndex">
   <div dir="rtl" fxLayout="row" fxLayoutGap="1rem">
     <kkl-stroke-button
       table-save-button
       color="primary"
-      (clickEvent)="onSaveEvent(rowIndex)"
+      (clickEvent)="onSaveEvent(row, rowIndex)"
     >
       שמור
     </kkl-stroke-button>
-    <button ma tTooltip="בטל" mat-icon-button (click)="onCancelEvent(rowIndex)">
+    <button
+      ma
+      tTooltip="בטל"
+      mat-icon-button
+      (click)="onCancelEvent(row, rowIndex)"
+    >
       <kkl-icon key="cancel"></kkl-icon>
     </button>
   </div>
