@@ -32,7 +32,7 @@ export class RouterService {
     return routes.join('/');
   }
 
-  getUrlFromBase(path: string, base: string) {
+  getUrlFromBase(path: string, base: string) : string {
     const routes = this.router.url.split('/');
     routes.unshift();
 
