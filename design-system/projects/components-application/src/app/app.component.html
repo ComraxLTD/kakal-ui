@@ -3,7 +3,7 @@
   [status]="status"
   (logoClicked)="onLogoClicked()"
   [cards]="cards"
-  [menuTemplates]="{temp,test,test3}"
+  [menuTemplates]="{}"
   (statusSelection)="onStatus($event)"
 >
   <router-outlet content></router-outlet>
@@ -13,95 +13,13 @@
   </ng-container>
 </kkl-layout>
 
-<ng-template #test>
-  <div class="test">
-    <kkl-menu-bar [cards]="cards2" [templates]="{newTest}"></kkl-menu-bar>
-  </div>
-</ng-template>
 
-<ng-template #temp>
-  <div class="newTest">
-    <p>test</p>
-    <p>test</p>
-    <p>test</p>
-    <p>test</p>
-  </div>
-</ng-template>
-
-<ng-template #test3>
-  <div class="test">
-    <p>test</p>
-    <p>test</p>
-    <p>test</p>
-    <p>test</p>
-  </div>
-</ng-template>
-
-<!-- <kkl-form [controls]="myCols"></kkl-form> -->
-
-{{ currStr }}
-
-<!-- <kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions"
-  newRowAction="hghd gdgd"
-  [expandTemplate]="expand"
-  (expandRow)="onExpand($event)"
-></kkl-local-table> -->
-
-<kkl-icon [key]="'duplicate_icon'"></kkl-icon>
-
-<kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions2"
-  newRowAction="הוסף שורה"
-></kkl-local-table>
-
-<kkl-ngx-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions2"
-  newRowAction="הוסף שורה"
-  [expandTemplate]="expand"
-  (expandRow)="onExpand($event)"
-></kkl-ngx-local-table>
-
-<kkl-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions"
-  newRowAction="הוסף שורה"
-  [expandTemplate]="expandd"
-  (expandRow)="onExpand($event)"
-  ></kkl-local-table>
 
 <kkl-ngx-local-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
   newRowAction="הוסף שורה"
-  [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
   ></kkl-ngx-local-table>
 
-<ng-template #expand>
-  <kkl-ngx-local-table
-    fxFill
-    [dataSource]="dataSource2"
-    [columns]="columns2"
-    [paging]="false"
-  ></kkl-ngx-local-table>
-  <!-- im open -->
-</ng-template>
-
-<ng-template #expandd>
-  <kkl-local-table
-    fxFill
-    [dataSource]="dataSource2"
-    [columns]="columns2"
-    [paging]="false"
-  ></kkl-local-table>
-  <!-- im open -->
-</ng-template>

@@ -2,66 +2,111 @@
 @use '@angular/material' as mat;
 @import "~@swimlane/ngx-datatable/themes/material.scss";
 
-.all-table-form {
+::ng-deep .kkl-ngx-local-table-wrapper {
   overflow: auto;
   height: 100%;
   background-color: white;
+  // for switching between mobile, tablet and desktop view
+  .hidden-class {
+    display: none !important;
+  }
+  // button above table
+  @media (min-width: 600px) {
+    .button-wrapper{
+      display: flex;
+      .button-center-start {
+        float: left;
+        margin-left: 2%;
+        margin-bottom: 15px;
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .button-wrapper{
+      .button-center-start {
+        margin: 15px auto;
+        display: block;
+      }
+    }
+  }
+  // the table
   .table-wrapper-wrapper {
-    width: 98%;
-    margin: auto;
+    // margin: auto;
     .table-wrapper {
-      margin: auto;
-      width: 100%;
-      .ngx-datatable{
+      // margin: auto;
+      // width: 99%;
+      .ngx-datatable {
         overflow: inherit;
         // header
-        ::ng-deep .datatable-header {
+        .datatable-header {
           border-bottom: 2px solid main.color(accent);
-          margin-right: .5% !important;
+          margin-right: 0.5% !important;
           width: 98% !important;
           .datatable-header-inner {
             height: main.spacing(4);
-            .datatable-header-cell {
-              display: flex !important;
-              align-items: center;
-              justify-content: center;
-              .datatable-header-cell-template-wrap {
-                font-size: 14px;
-                font-weight: 600;
-                .arrow-down{
-                  color: main.color(primary);
-                  font-size: 3rem;
+            .datatable-row-center{
+              width: 98% !important;
+              padding: 0 10px;
+              .datatable-header-cell {
+                display: flex !important;
+                align-items: center;
+                // justify-content: start;
+                .datatable-header-cell-template-wrap {
+                  font-size: 14px;
+                  font-weight: 600;
+                  margin-right: 5%;
+                  .arrow-down{
+                    color: main.color(primary);
+                    font-size: 3rem;
+                  }
                 }
               }
             }
           }
         }
+
         // body
         ::ng-deep .datatable-body {
           width: 100% !important;
           datatable-scroller {
             width: 100% !important;
             .datatable-row-wrapper{
-              // expand table
+              // expand row
               .expand-class {
                 width: 98% !important;
                 max-width: 98% !important;
                 margin: 0.5%;
                 box-shadow:
-                0px 3px 1px -2px rgba(0, 0, 0, 5%),
-                0px 2px 2px 0px rgb(0 0 0 / 5%),
-                0px 1px 5px 0px rgb(0 0 0 / 5%);
+                  0px 3px 1px -2px rgba(0, 0, 0, 5%),
+                  0px 2px 2px 0px rgb(0 0 0 / 5%),
+                  0px 1px 5px 0px rgb(0 0 0 / 5%);
+                  // add this line below if you activate expanded-open class
+                  // padding: 7px 0;
                 .datatable-row-center{
                   width: 98% !important;
+                  margin: auto;
+                  border-bottom: none !important;
                   .datatable-body-cell {
                     min-height: 50px;
                     display: flex;
                     align-items: center;
-                    justify-content: center;
+                    justify-content: flex-start;
                     white-space: pre-line;
+                    // for making content not bold
+                    // .mat-button {
+                    //   font-weight: 400 !important;
+                    // }
                   }
                 }
               }
+              // for coloring expand row when open
+              // .expanded-open{
+              //   padding: 7px 0;
+              //   .datatable-row-center{
+              //     background-color: main.$secondLine;
+              //     margin: auto;
+              //   }
+              // }
                // inner content of expand table
               .datatable-row-detail {
                 // different box-shadow for expand table inner content
@@ -80,7 +125,7 @@
                   }
                 }
                 & > .example-element-detail {
-                  padding: 10px 20px;
+                  padding: 10px 10px;
                   background-color: white !important;
                   border-top: dashed 1.5px main.color(primaryLight);
                   .datatable-header {
@@ -91,131 +136,163 @@
                     align-items: center;
                     background-color: main.color(secondLine);
                   }
+                  // .datatable-body-cell{
+                  //   padding-right: 3.5%;
+                  // }
                 }
               }
               // not expand table
               .datatable-body-row{
-                .datatable-body-cell {
-                  min-height: 50px;
-                  display: flex;
-                  align-items: center;
-                  justify-content: center;
-                  white-space: pre-line;
+                padding: 5px;
+                .datatable-row-center{
+                  width: 98% !important;
+                  margin: auto !important;
+                  border-bottom: 2px #f2f2f2f2 solid;
+                  .datatable-body-cell {
+                    min-height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    white-space: pre-line;
+                    .datatable-body-cell-label{
+                      width: 100%;
+                    }
+                  }
                 }
               }
             }
+            .datatable-row-wrapper:last-child .datatable-row-center{
+              border-bottom: none !important;
+            }
           }
         }
-        // footer
+        // aligning footer in the middle
         ::ng-deep .datatable-footer{
           .datatable-footer-inner {
             justify-content: center;
-            mat-paginator.kkl-pagination {
-              .mat-paginator-page-size {
-                width: 50px !important;
-              }
-              .mat-paginator-container {
-                justify-content: center !important;
-                mat-form-field {
-                  text-align: center;
-                }
-                .mat-select-arrow-wrapper {
-                  display: none;
-                }
-                .paginator-button {
-                  border: none !important;
-                  background-color: transparent !important;
-                  color: main.color(primary) !important;
-                  cursor: pointer;
-                }
-                .paginator-button-active {
-                  border: solid 2px main.color(primary) !important;
-                  border-radius: 5px !important;
-                  background-color: transparent !important;
-                  color: main.color(primary) !important;
-                }
-              }
+          }
+        }
+      }
+    }
+    .tablet{
+      @include mat.elevation(2);
+      margin: 10px;
+      direction: rtl;
+      &:nth-child(even){
+        background-color: main.color(secondLine);
+      }
+      mat-card{
+        padding: 30px 20px;
+        kkl-typography{
+          min-width: fit-content;
+        }
+        tr{
+          margin: 0 50px 20px 50px;
+          width: 130px;
+          .kkl-display-group-label {
+            font-size: 14px;
+            font-weight: 600;
+          }
+          kkl-ngx-table-form{
+            direction: ltr;
+          }
+        }
+        // inner content of expand table tablet view
+        .example-element-detail{
+          margin: 50px;
+          @include mat.elevation(2);
+        }
+      }
+    }
+  }
+  // mobile
+  .example-headers-align {
+    .expansion-panel {
+      box-shadow:
+        0px 3px 1px -2px rgba(0, 0, 0, 5%),
+        0px 2px 2px 0px rgb(0 0 0 / 5%),
+        0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
+      .expansion-panel-header{
+        span {
+          height: 10rem;
+        }
+        &.mat-expanded .mobile-drop-down {
+          transform: rotate(180deg) !important;
+          transition: 0.2s all;
+        }
+        .mobile-drop-down {
+          transform: rotate(0);
+          transition: 0.2s all;
+        }
+      }
+      table {
+        .actions {
+          .expanded {
+            ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+              transform: rotate(180deg) !important;
+              transition: 0.2s all;
+            }
+          }
+          button {
+            ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
+              transform: rotate(0);
+              transition: 0.2s all;
             }
           }
         }
       }
     }
   }
-  // button above table
-  @media screen and (min-width: 600px) {
-    .button-center-start {
-      float: left;
-      margin-left: 100px;
-    }
-  }
-  @media screen and (max-width: 600px) {
-    .button-center-start {
-      margin: 0 auto;
-      display: block;
-    }
-  }
-  // for switching between mobile and desktop view
-  .hidden-class {
-    display: none !important;
-  }
-}
-
-// mobile
-.example-headers-align {
-  ::ng-deep kkl-ngx-table-form .table-form-wrapper {
-    min-width: unset!important;
-  }
-  ::ng-deep mat-form-field {
-    font-size: 12px!important;
-    width: 15rem!important;
-  }
-
-  .expansion-panel {
-    box-shadow:
-      0px 3px 1px -2px rgba(0, 0, 0, 5%),
-      0px 2px 2px 0px rgb(0 0 0 / 5%),
-      0px 1px 5px 0px rgb(0 0 0 / 5%) !important;
-    .expansion-panel-header{
-      span {
-        height: 10rem;
+  // footer
+  ::ng-deep mat-paginator.kkl-pagination {
+    .mat-paginator-container {
+      justify-content: center !important;
+      mat-form-field {
+        text-align: center;
       }
-      &.mat-expanded .mobile-drop-down {
-        transform: rotate(180deg) !important;
-        transition: 0.2s all;
+      .mat-select-arrow-wrapper {
+        display: none;
       }
-      .mobile-drop-down {
-        transform: rotate(0);
-        transition: 0.2s all;
+      .paginator-button {
+        border: none !important;
+        background-color: transparent !important;
+        color: main.color(primary) !important;
+        cursor: pointer;
       }
-    }
-    table {
-      .actions {
-        .expanded {
-          ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-            transform: rotate(180deg) !important;
-            transition: 0.2s all;
-          }
-        }
-        button {
-          ::ng-deep kkl-icon[ng-reflect-key="keyboard_arrow_down"] {
-            transform: rotate(0);
-            transition: 0.2s all;
-          }
-        }
+      .paginator-button-active {
+        border: solid 2px main.color(primary) !important;
+        border-radius: 5px !important;
+        background-color: transparent !important;
+        color: main.color(primary) !important;
+      }
+      .mat-paginator-range-actions{
+        direction: ltr;
+      }
+      .mat-paginator-icon{
+        transform: rotate(0deg);
+      }
+      .mat-paginator-range-label{
+        direction: rtl;
+      }
+      .mat-paginator-range-label{
+        margin: 0 10px;
       }
     }
   }
 }
 
+// needs to be better placed
 @media screen and (max-width: 1280px) {
   .table-form-wrapper {
     width: 100%;
   }
+}
 
-  mat-form-field {
-    width: 100%;
-    font-size: 14px;
-  }
+// filtering
+::ng-deep .mat-menu-content{
+  padding: 8px;
+  display: flex;
+  align-items: center;
 }
 
 //     Scroll css

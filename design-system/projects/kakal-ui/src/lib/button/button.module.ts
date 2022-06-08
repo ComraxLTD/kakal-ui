@@ -10,18 +10,20 @@ import { KKLTypographyModule } from '../typography/typography.module';
 
 import { ButtonComponent } from './components/button/button.component';
 import { StrokeButtonComponent } from './components/stroke-button/stroke-button.component';
+import { ActionButtonComponent } from './components/action-button/action-button.component';
+
 import { AddButtonComponent } from './components/add-button/add-button.component';
+import { SortButtonComponent } from './components/sort-button/sort-button.component';
 
 import { KKLButtonDirective } from './directives/button.directive';
-import { KKLStrokedButtonDirective } from './directives/stroked-button.directive';
 import { KKLDirectivesModule } from '../directives/directives.module';
-import { KKLActionButtonDirective } from './directives/action-button.directive';
 import { KKLFormButtonDirective } from './directives/form-button.directive';
+import { KKLStrokedButtonDirective } from './components/stroke-button/stroked-button.directive';
+import { KKLActionButtonDirective } from './components/action-button/action-button.directive';
 
 @NgModule({
   imports: [
     CommonModule,
-
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
@@ -33,21 +35,25 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
   declarations: [
     ButtonComponent,
     AddButtonComponent,
+    SortButtonComponent,
     StrokeButtonComponent,
     KKLButtonDirective,
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
     KKLActionButtonDirective,
+    ActionButtonComponent,
   ],
   exports: [
     MatButtonModule,
+    SortButtonComponent,
     ButtonComponent,
     AddButtonComponent,
     StrokeButtonComponent,
+    ActionButtonComponent,
+    KKLActionButtonDirective,
     KKLButtonDirective,
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
-    KKLActionButtonDirective,
   ],
 })
 export class KKLButtonModule {}

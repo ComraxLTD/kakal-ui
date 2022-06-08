@@ -3,7 +3,7 @@
     <div fxLayout="row" fxFlex="20" fxLayoutAlign="end center">
       <label>{{ label }}</label>
     </div>
-    <div fxLayout="row" fxFlex="20" fxLayoutGap="1.5rem" fxLayoutAlign="space-between center">
+    <div fxLayout="column" fxFlex="20" fxLayoutGap="1.5rem" fxLayoutAlign="center">
       <mat-radio-button [disabled]="option.disabled" color="primary"
         *ngFor="let option of options$ | async" [value]="option">{{ option.label }}
       </mat-radio-button>

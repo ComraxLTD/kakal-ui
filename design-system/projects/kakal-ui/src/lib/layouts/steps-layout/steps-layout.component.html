@@ -24,8 +24,20 @@
             </ng-template>
           </ng-container>
         </div>
+
+        <div class="actins-group" fxLayoutGap="1rem">
+          <ng-container *ngFor="let action of rowActions">
+            <kkl-action-button
+              [matTooltip]="action.label"
+              [svgIcon]="action?.svgIcon"
+              [matIcon]="action?.matIcon"
+              (clickEvent)="onActionClicked(action)"
+            ></kkl-action-button>
+          </ng-container>
+        </div>
       </mat-toolbar>
     </header>
+
     <main fxLayout="row" fxLayoutAlign="center center">
       <div fxFlex="90">
         <ng-content select="[content]"></ng-content>

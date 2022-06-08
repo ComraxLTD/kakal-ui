@@ -4,7 +4,7 @@ import { MatPaginatorDefaultOptions } from '@angular/material/paginator';
 /**
  * An object used to get page information from the server
  */
-export class Page implements MatPaginatorDefaultOptions {
+export class NgxPage implements MatPaginatorDefaultOptions {
   /** The current page index. */
   pageIndex: number;
   /** Number of items to display on a page. By default set to 50. */

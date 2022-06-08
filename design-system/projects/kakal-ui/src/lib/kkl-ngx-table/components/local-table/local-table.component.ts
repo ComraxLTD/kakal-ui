@@ -7,8 +7,10 @@ import {
   Input,
   OnInit,
   Output,
+  QueryList,
   TemplateRef,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -28,9 +30,10 @@ import { RouterService } from '../../../../services/services';
 
 import { customFilterPredicate } from '../../../kkl-table/components/local-table/local-filter';
 
-import { Page } from '../../models/page';
+import { NgxPage } from '../../models/page';
 
 import { Subject } from 'rxjs';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 const normalActions = [
   'inlineEdit',
@@ -53,7 +56,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   // control the size of div
   @ViewChild('myIdentifier') myIdentifier: ElementRef;
-
+  @ViewChildren(MatExpansionPanel) matExpansionPanelElement: QueryList<MatExpansionPanel>
   @Input() noMobile: boolean = false;
   destroySubject$: Subject<void> = new Subject();
 
@@ -75,6 +78,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Input() paging: boolean = true;
 
   hasSummary: boolean = false;
+
+  @Input() headline: string = 'Something';
 
   dragable: boolean;
   @Input() set draggable(val: boolean) {
@@ -119,7 +124,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   isDesktop: boolean = true;
   viewSize!: number;
 
-  page = new Page();
+  page = new NgxPage();
 
   constructor(
     private dialogService: DialogService,
@@ -142,7 +147,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
       this.viewSize = Math.floor(size / 130);
-      if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+      if (size <= 600 && !this.noMobile) {
         this.isDesktop = false;
       } else {
         this.isDesktop = true;
@@ -180,7 +185,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.ngxTable.offset = 0;
   }
 
-  buttonClick(butt: RowActionModel, obj: any, key: string) {
+  onActionClicked(butt: RowActionModel, obj: any, key: string) {
     if (normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
@@ -197,11 +202,11 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
             });
           break;
         case 'inlineEdit':
-          this.addRowGroup(obj);
+          this.onEditEvent(obj);
           break;
         case 'inlineExpand':
           this.expandRow.emit({ row: obj, key: key });
-          this.addExpandedRow(obj);
+          this.onExpandEvent(obj);
           break;
         case 'inlineNavigation':
           const url = this.routerService.getUrl(butt.navigation);
@@ -215,7 +220,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addExpandedRow(obj: any) {
+  onExpandEvent(obj: any) {
     this.ngxTable.rowDetail.toggleExpandRow(obj);
     const ind = this.expanded.indexOf(obj);
     if (ind == -1) {
@@ -230,7 +235,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  saveRowClick(row: any) {
+  onSaveEvent(row: any) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -247,7 +252,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cancelRowClick(row: any) {
+  onCancelEvent(row: any) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -264,17 +269,20 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addRowGroup(obj: any) {
+  onEditEvent(obj: any) {
     this.editItems = [...this.editItems, obj];
     this.editItemsData = [...this.editItemsData, Object.assign({}, obj)];
   }
 
-  addNewRowGroup() {
+  onNewRowEvent() {
     const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
     this.editItemsData = [...this.editItemsData, Object.assign({}, rowData)];
     this.dataTable.unshift(rowData);
     this.dataTable = [...this.dataTable];
+    setTimeout(() => {
+      this.matExpansionPanelElement.first.open()
+    }, 300);
   }
 
   onRowEditChange(event, row, key) {
@@ -308,7 +316,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   onResize(event) {
     const size = event.newRect.width;
     this.viewSize = Math.floor(size / 130);
-    if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+    if (size <= 600 && !this.noMobile) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;
@@ -329,9 +337,19 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.page = { ...this.page, ...event };
   }
 
-  getRowClass = (row) => {
+  // for coloring row when expand is open
+  // remember to check scss file for expanded-open class selector
+  //  findExpanded(row: any) {
+  //   if (this.expanded.length == 0) return false;
+  //   const find = this.expanded.find(obj => row.id === obj.id);
+  //   return find ? true : false
+  // }
+
+  getRowClass = (row: any) => {
     return {
       'expand-class': this.expand,
+      // for coloring row when expand is open
+      // 'expanded-open': this.findExpanded(row)
     };
   };
 }

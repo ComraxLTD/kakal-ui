@@ -27,7 +27,7 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     const CdkOverlayOriginEl = this.CdkOverlayOrigin.elementRef.nativeElement;
-  
+
     // open popup if mouse stopped in CdkOverlayOriginEl (for short time).
     // If user just quickly got over CdkOverlayOriginEl element - do not open
     const open$ = fromEvent(CdkOverlayOriginEl, 'mouseenter').pipe(
@@ -76,7 +76,27 @@ export class HoverPopupComponent implements OnDestroy, OnInit {
   }
 
   private isMovedOutside(CdkOverlayOriginEl, dialog, event): boolean {
-    return !(CdkOverlayOriginEl.contains(event['target']) ||     dialog.nativeElement.contains(event['target']));
+    if(CdkOverlayOriginEl.contains(event['target']) || dialog.nativeElement.contains(event['target'])){
+      return false;
+    } else if(this.checkParent(event['target'])){
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  checkParent(parentNode): boolean {
+    if(parentNode.classList?.contains('child-menu')) {
+      return true;
+    }
+    let parent = parentNode.parentNode;
+    while(parent) {
+      if(parent.classList?.contains('child-menu')) {
+        return true;
+      }
+      parent = parent.parentNode;
+    }
+    return false;
   }
 
   positionPairs: ConnectionPositionPair[] = [

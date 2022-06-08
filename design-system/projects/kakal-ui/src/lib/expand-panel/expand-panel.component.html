@@ -39,7 +39,7 @@
 <ng-template #actionTemplate>
   <div fxLayout="row" fxLayoutGap="0.5rem" dir="rtl">
     <ng-container *ngFor="let action of panelActions">
-      <button mat-icon-button (click)="onAction(action)">
+      <button class="kkl-expand-panel-action" mat-icon-button (click)="onAction(action)">
         <mat-icon>{{ action.svgIcon }}</mat-icon>
       </button>
     </ng-container>
