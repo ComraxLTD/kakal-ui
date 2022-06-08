@@ -13,7 +13,7 @@ export * from './lib/button/components/action-button/action-button.component';
 export * from './lib/button/components/action-button/action-button.directive';
 
 export * from './lib/button/components/stroke-button/stroke-button.component';
-export * from './lib/button/components/stroke-button/stroked-button.directive';
+export * from './lib/button/components/sort-button/sort-button.component';
 
 export * from './lib/button/directives/button.directive';
 export * from './lib/button/directives/form-button.directive';
@@ -168,9 +168,9 @@ export * from './lib/kkl-table/components/mei-filters/mei-filters.component';
 // NGX TABLE
 export * from './lib/kkl-ngx-table/kkl-ngx-table.module';
 export * from './lib/kkl-ngx-table/components/table-form/table-form.component';
-export * from './lib/kkl-ngx-table/directives/pagination.directive';
 export * from './lib/kkl-ngx-table/components/local-table/local-table.component';
-
+export * from './lib/kkl-ngx-table/directives/pagination.directive';
+export * from './lib/kkl-ngx-table/models/page';
 
 // NEW SERVICES
 export * from './lib/mei-services/mei-services.module';

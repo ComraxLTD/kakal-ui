@@ -13,12 +13,12 @@ import { StrokeButtonComponent } from './components/stroke-button/stroke-button.
 import { KKLStrokedButtonDirective } from './components/stroke-button/stroked-button.directive';
 
 import { AddButtonComponent } from './components/add-button/add-button.component';
-import { ActionButtonComponent } from './components/action-button/action-button.component';
-import { KKLActionButtonDirective } from './components/action-button/action-button.directive';
+import { SortButtonComponent } from './components/sort-button/sort-button.component';
 
 import { KKLButtonDirective } from './directives/button.directive';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLFormButtonDirective } from './directives/form-button.directive';
+import { KKLActionButtonDirective, ActionButtonComponent } from '../../public-api';
 
 @NgModule({
   imports: [
@@ -34,6 +34,7 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
   declarations: [
     ButtonComponent,
     AddButtonComponent,
+    SortButtonComponent,
     StrokeButtonComponent,
     KKLButtonDirective,
     KKLStrokedButtonDirective,
@@ -43,6 +44,7 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
   ],
   exports: [
     MatButtonModule,
+    SortButtonComponent,
     ButtonComponent,
     AddButtonComponent,
     StrokeButtonComponent,

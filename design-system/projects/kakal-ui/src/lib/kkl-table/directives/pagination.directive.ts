@@ -41,8 +41,8 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       const endIndex = startIndex < length ?
         Math.min(startIndex + pageSize, length) :
         startIndex + pageSize;
-      // return length > 0 ? 'Showing ' + (startIndex + 1) + ' – ' + endIndex + ' of ' + length + ' records' : 'Showing 0 – 0 of 0 records';
-      return ''
+      return length > 0 ? ' ' + (startIndex + 1) + ' – ' + endIndex + ' רשומות מתוך ' + length + ' ' : ' 0 רשומות מתוך 0 ';
+      // return ''
     };
     // Subscribe to rerender buttons when next page and last page button is used
     this.subscription = this.matPag.page.subscribe((paginator: PageEvent) => {
@@ -141,8 +141,8 @@ export class KKLNewPaginatorDirective implements DoCheck, AfterViewInit {
       page = this.showTotalPages + 2;
       pageDifference = totalPages - page;
       startIndex = Math.max(this.currentPage - this.showTotalPages - 2, 1);
-      actionContainer.childNodes[2].innerText = 'הקודם'
-      actionContainer.childNodes[actionContainer.childNodes.length - 3].innerText = 'הבא'
+      // actionContainer.childNodes[2].innerText = 'הקודם'
+      // actionContainer.childNodes[actionContainer.childNodes.length - 3].innerText = 'הבא'
 
       for (let index = startIndex; index < totalPages - 1; index = index + 1) {
 

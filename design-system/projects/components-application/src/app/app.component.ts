@@ -4,6 +4,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 import {
   CardStatus,
   CardStep,
+  KklSelectOption,
   MenuCard,
   PageHeadlineService,
   RouterService,
@@ -484,6 +485,21 @@ export class AppComponent {
   ]
 
 
+
+  // options: any[] = ['option1', 'option2', 'option3'];
+  updateOption(option: any) {
+    console.log(option);
+
+  }
+  control = new FormControl();
+
+  options: KklSelectOption[] = [
+    { label: 'first radio option label', value: 'first radio option value' },
+    { label: 'second radio option label', value: 'second radio option value' },
+    { label: 'third radio option label', value: 'third radio option value' },
+    { label: 'fourth radio option label', value: 'fourth radio option value' },
+  ];
+
   currStr = new CurrencyPipe('he-HE').transform(1500, 'USD', 'symbol', '1.0-3');
   description;
 //   // the columns of the table, according to the data coming from ComraxTablesService
@@ -491,12 +507,12 @@ export class AppComponent {
     // in the first column, there is an additional 'button' property, which makes the cells in that column into buttons
     // the 'button' property correlates with the RowActionModel, accept for the 'label', which has no effect on the UI
     { key: 'id', label: 'Id', controlType: 'number', button: { type: 'inlineNavigation' } },
-    { key: 'name', label: 'Name', controlType: 'text', notEditable: true},
+    { key: 'name', label: 'Name', controlType: 'toggle'},
     // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
-    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree' },
+    { key: 'yearsOfExperience', label: 'YearsOfExperience', controlType: 'number', colIcon: 'tree',  },
     { key: 'occupation', label: 'Occupation', controlType: 'text', button: { type: 'visibility', icon: 'add' } },
     { key: 'city', label: 'עיר', controlType: 'select' },
-    { key: 'dob', label: 'תאריך', controlType: 'date' },
+    // { key: 'dob', label: 'תאריך', controlType: 'date' },
     // { key: 'id1', label: 'Id', controlType: 'number', button: { type: 'inlineNavigation' } },
     // { key: 'name1', label: 'Name', controlType: 'text', notEditable: true},
     // // in yearsOfExperience column, we can see the 'colIcon' which is used for adding an icon to all cells in that column
@@ -517,8 +533,8 @@ export class AppComponent {
   rowActions: RowActionModel[] = [
     { type: 'inlineEdit', icon: 'edit', label: 'Edit' },
     { type: 'inlineDelete', icon: 'delete', label: 'Delete' },
-    { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' },
     { type: 'visibility', icon: 'visibility', label: 'Show' },
+    { type: 'inlineExpand', icon: 'keyboard_arrow_down', label: 'Expand' },
   ]
 
   rowActions2: RowActionModel[] = [

@@ -1,10 +1,3 @@
-import {
-  trigger,
-  state,
-  style,
-  transition,
-  animate,
-} from '@angular/animations';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import {
   AfterViewInit,
@@ -14,18 +7,17 @@ import {
   Input,
   OnInit,
   Output,
+  QueryList,
   TemplateRef,
   ViewChild,
+  ViewChildren,
 } from '@angular/core';
-import { FormArray, FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
-import { setControls } from '../../../mei-services/services/form-create';
-import { ControlBase } from '../../../mei-form/models/control.model';
-import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
-import { OptionsModel } from '../../../mei-form/models/options.model';
+import { MatTableDataSource } from '@angular/material/table';
+
+import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+
 import {
   RowActionEvent,
   RowActionModel,
@@ -34,14 +26,14 @@ import {
 import { TableBase } from '../../../kkl-table/models/table.model';
 
 import { DialogService } from '../../../dialog/dialog.service';
-import {
-  BreakpointService,
-  RouterService,
-} from '../../../../services/services';
-import { ColumnMode, DatatableComponent } from '@swimlane/ngx-datatable';
+import { RouterService } from '../../../../services/services';
+
 import { customFilterPredicate } from '../../../kkl-table/components/local-table/local-filter';
 
-import { Page } from '../../models/page';
+import { NgxPage } from '../../models/page';
+
+import { Subject } from 'rxjs';
+import { MatExpansionPanel } from '@angular/material/expansion';
 
 const normalActions = [
   'inlineEdit',
@@ -64,7 +56,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   // control the size of div
   @ViewChild('myIdentifier') myIdentifier: ElementRef;
-
+  @ViewChildren(MatExpansionPanel) matExpansionPanelElement: QueryList<MatExpansionPanel>
   @Input() noMobile: boolean = false;
   destroySubject$: Subject<void> = new Subject();
 
@@ -87,6 +79,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   hasSummary: boolean = false;
 
+  @Input() headline: string = 'Something';
+
   dragable: boolean;
   @Input() set draggable(val: boolean) {
     this.dragable = val;
@@ -97,7 +91,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @Input()
   set columns(value: TableBase[]) {
     this.oneColumns = value;
-    this.hasSummary = value.some(a => a.sumFunc);
+    this.hasSummary = value.some((a) => a.sumFunc);
   }
 
   dataTable: any[];
@@ -130,7 +124,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   isDesktop: boolean = true;
   viewSize!: number;
 
-  page = new Page();
+  page = new NgxPage();
 
   constructor(
     private dialogService: DialogService,
@@ -152,8 +146,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
-      this.viewSize = Math.floor(size/130);
-      if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+      this.viewSize = Math.floor(size / 130);
+      if (size <= 600 && !this.noMobile) {
         this.isDesktop = false;
       } else {
         this.isDesktop = true;
@@ -229,7 +223,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   addExpandedRow(obj: any) {
     this.ngxTable.rowDetail.toggleExpandRow(obj);
     const ind = this.expanded.indexOf(obj);
-    if(ind == -1) {
+    if (ind == -1) {
       this.expanded.push(obj);
       this.expanded = [...this.expanded];
     } else {
@@ -286,6 +280,9 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.editItemsData = [...this.editItemsData, Object.assign({}, rowData)];
     this.dataTable.unshift(rowData);
     this.dataTable = [...this.dataTable];
+    setTimeout(() => {
+      this.matExpansionPanelElement.first.open()
+    }, 300);
   }
 
   onRowEditChange(event, row, key) {
@@ -318,8 +315,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   onResize(event) {
     const size = event.newRect.width;
-    this.viewSize = Math.floor(size/130);
-    if (this.oneColumns.length > this.viewSize && !this.noMobile) {
+    this.viewSize = Math.floor(size / 130);
+    if (size <= 600 && !this.noMobile) {
       this.isDesktop = false;
     } else {
       this.isDesktop = true;
@@ -340,9 +337,19 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.page = { ...this.page, ...event };
   }
 
-  getRowClass = (row) => {
+  // for coloring row when expand is open
+  // remember to check scss file for expanded-open class selector
+  //  findExpanded(row: any) {
+  //   if (this.expanded.length == 0) return false;
+  //   const find = this.expanded.find(obj => row.id === obj.id);
+  //   return find ? true : false
+  // }
+
+  getRowClass = (row: any) => {
     return {
       'expand-class': this.expand,
+      // for coloring row when expand is open
+      // 'expanded-open': this.findExpanded(row)
     };
   };
 }
