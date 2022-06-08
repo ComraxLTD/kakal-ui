@@ -100,7 +100,7 @@
               <mat-menu #menu="matMenu" (closed)="searchChanged()">
                 <kkl-ngx-table-form
                   [question]="column"
-                  (rowEdited)="updateFilter($event, column.key)"
+                  (rowEdited)="onFilterChanged($event, column.key)"
                 ></kkl-ngx-table-form>
                 <kkl-sort-button (click)="sort()"></kkl-sort-button>
               </mat-menu>

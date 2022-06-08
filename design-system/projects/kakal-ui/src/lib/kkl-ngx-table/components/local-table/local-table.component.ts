@@ -155,7 +155,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
-  updateFilter(event, key) {
+  onFilterChanged(event, key) {
     this.searchRow[key] = event.value;
   }
 
