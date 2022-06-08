@@ -118,7 +118,7 @@
             "
           >
             <ng-container
-              *ngIf="!(element | arrInclueds: editItems); else editBlock"
+              *ngIf="!(element | arrIncludes: editItems); else editBlock"
             >
               <kkl-table-cell
                 [row]="element"
@@ -203,7 +203,7 @@
           >
             <ng-container
               *ngTemplateOutlet="
-              !(element | arrInclueds: editItems)
+              !(element | arrIncludes: editItems)
               ? actions : addButtonTemplate;
                context: { $implicit: element }"
             ></ng-container>
@@ -325,7 +325,7 @@
               <tr *ngFor="let col of oneColumns">
                 <ng-container *ngIf="col.key !== oneColumns[0].key">
                   <ng-container
-                    *ngIf="!(element | arrInclueds: editItems); else editBlock"
+                    *ngIf="!(element | arrIncludes: editItems); else editBlock"
                   >
                     <td
                       style="
@@ -379,7 +379,7 @@
                 <td class="actions" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngTemplateOutlet="
-                    !(element | arrInclueds: editItems)
+                    !(element | arrIncludes: editItems)
                     ? actions : addButtonTemplate;
                     context: { $implicit: element }"
                   ></ng-container>

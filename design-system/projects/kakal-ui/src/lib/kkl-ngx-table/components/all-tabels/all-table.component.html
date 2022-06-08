@@ -111,7 +111,7 @@
           >
             <ng-container
               *ngIf="
-                !(row | arrInclueds: editItems) || column.notEditable;
+                !(row | arrIncludes: editItems) || column.notEditable;
                 else editBlock
               "
             >
@@ -144,7 +144,7 @@
           >
             <ng-container
               *ngTemplateOutlet="
-                !(row | arrInclueds: editItems)
+                !(row | arrIncludes: editItems)
                   ? actionsTemplate
                   : addButtonTemplate;
                 context: { $implicit: row }
@@ -202,7 +202,7 @@
                 <tr *ngFor="let col of oneColumns">
                   <ng-container
                     *ngIf="
-                      !(item | arrInclueds: editItems) || col.notEditable;
+                      !(item | arrIncludes: editItems) || col.notEditable;
                       else editBlock
                     "
                   >
@@ -238,7 +238,7 @@
                   <td class="actionsTemplate" fxLayoutAlign="space-evenly">
                     <ng-container
                       *ngTemplateOutlet="
-                        !(item | arrInclueds: editItems)
+                        !(item | arrIncludes: editItems)
                           ? actionsTemplate
                           : addButtonTemplate;
                         context: { $implicit: item }
@@ -249,7 +249,7 @@
               </div>
             </div>
             <div
-              *ngIf="item | arrInclueds: expanded"
+              *ngIf="item | arrIncludes: expanded"
               class="example-element-detail"
             >
               <ng-container *ngIf="expandTemplate">
@@ -331,7 +331,7 @@
               <tr *ngFor="let col of oneColumns">
                 <ng-container
                   *ngIf="
-                    !(item | arrInclueds: editItems) || col.notEditable;
+                    !(item | arrIncludes: editItems) || col.notEditable;
                     else editBlock
                   "
                 >
@@ -370,7 +370,7 @@
                 <td class="actionsTemplate" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngTemplateOutlet="
-                      !(item | arrInclueds: editItems)
+                      !(item | arrIncludes: editItems)
                         ? actionsTemplate
                         : addButtonTemplate;
                       context: { $implicit: item }
@@ -381,7 +381,7 @@
             </table>
 
             <div
-              *ngIf="item | arrInclueds: expanded"
+              *ngIf="item | arrIncludes: expanded"
               class="example-element-detail"
             >
               <ng-container *ngIf="expandTemplate">
