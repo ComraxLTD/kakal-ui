@@ -333,7 +333,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.destroySubject$.complete();
   }
 
-  pageChanged(event: PageEvent) {
+  onPageChanged(event: PageEvent) {
     this.page = { ...this.page, ...event };
   }
 

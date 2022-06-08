@@ -177,7 +177,7 @@
                   [length]="rowCount"
                   [pageSizeOptions]="[5, 10, 25]"
                   [showFirstLastButtons]="true"
-                  (page)="pageChanged($event)"
+                  (page)="onPageChanged($event)"
                 ></mat-paginator>
               </ng-container>
             </div>
@@ -278,7 +278,7 @@
             [pageSize]="page.pageSize"
             [length]="dataTable.length"
             [pageSizeOptions]="[5, 10, 25]"
-            (page)="pageChanged($event)"
+            (page)="onPageChanged($event)"
           ></mat-paginator>
         </div>
       </ng-container>
@@ -419,7 +419,7 @@
           [length]="dataTable.length"
           [pageSizeOptions]="[5, 10, 25]"
           [showFirstLastButtons]="true"
-          (page)="pageChanged($event)"
+          (page)="onPageChanged($event)"
         ></mat-paginator>
       </footer>
     </ng-container>

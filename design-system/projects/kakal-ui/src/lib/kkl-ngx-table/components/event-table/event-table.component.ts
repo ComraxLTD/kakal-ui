@@ -262,7 +262,7 @@
 //     this.currentEditRow = -1;
 //   }
 
-//   pageChanged(event: PageEvent) {
+//   onPageChanged(event: PageEvent) {
 //     if (this.myDataSourceUrl) {
 //       this.getData(0, this.paginator.pageSize, null, this.searchRow.value);
 //     } else {

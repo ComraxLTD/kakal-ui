@@ -125,7 +125,7 @@
 //       this.isLoading = false;
 //     });
 //   }
-//   pageChanged(event: PageEvent) {
+//   onPageChanged(event: PageEvent) {
 //     this.getData(event.pageIndex, event.pageSize, undefined);
 //     this.cleanPreLoading();
 //   }

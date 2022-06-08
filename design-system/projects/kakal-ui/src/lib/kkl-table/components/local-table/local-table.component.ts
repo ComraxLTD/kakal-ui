@@ -325,7 +325,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     this.dataTable.filter = JSON.stringify(filters);
   }
 
-  pageChanged(event: PageEvent) {
+  onPageChanged(event: PageEvent) {
     this.readySpanData(
       event.pageIndex * event.pageSize,
       Math.min(
