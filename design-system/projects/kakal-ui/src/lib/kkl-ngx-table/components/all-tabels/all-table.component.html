@@ -135,7 +135,7 @@
         <ngx-datatable-column
           *ngIf="localButtons?.length"
           name="פעולות"
-          class="actions-cell"
+          class="actionsTemplate-cell"
         >
           <ng-template
             let-row="row"
@@ -144,7 +144,7 @@
           >
             <ng-container
               *ngTemplateOutlet="
-                !(row | arrInclueds: editItems) ? actions : addButtonTemplate;
+                !(row | arrInclueds: editItems) ? actionsTemplate : addButtonTemplate;
                 context: { $implicit: row }
               "
             ></ng-container>
@@ -233,11 +233,11 @@
                   <header>
                     <span class="kkl-display-group-label"> פעולות </span>
                   </header>
-                  <td class="actions" fxLayoutAlign="space-evenly">
+                  <td class="actionsTemplate" fxLayoutAlign="space-evenly">
                     <ng-container
                       *ngTemplateOutlet="
                         !(item | arrInclueds: editItems)
-                          ? actions
+                          ? actionsTemplate
                           : addButtonTemplate;
                         context: { $implicit: item }
                       "
@@ -365,11 +365,11 @@
               </tr>
               <tr *ngIf="localButtons?.length">
                 <td style="font-weight: bolder">פעולות</td>
-                <td class="actions" fxLayoutAlign="space-evenly">
+                <td class="actionsTemplate" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngTemplateOutlet="
                       !(item | arrInclueds: editItems)
-                        ? actions
+                        ? actionsTemplate
                         : addButtonTemplate;
                       context: { $implicit: item }
                     "
@@ -412,7 +412,7 @@
   </main>
 </div>
 
-<ng-template #actions let-element>
+<ng-template #actionsTemplate let-element>
   <ng-container *ngFor="let butt of localButtons">
     <button
       [matTooltip]="butt.label"
