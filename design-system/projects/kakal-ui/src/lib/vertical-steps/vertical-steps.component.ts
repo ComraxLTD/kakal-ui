@@ -16,6 +16,7 @@ import { Step } from './step/step.model';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { Observable, of, tap } from 'rxjs';
 import { NavbarBottomService } from '../navbar-bottom/navbar-bottom.service';
+import { FormGroup } from '@angular/forms';
 
 export interface StepSelectEvent {
   selectedIndex: number;
@@ -47,12 +48,13 @@ export interface StepSelectEvent {
 export class VerticalStepsComponent implements OnInit {
   isSmallScreen$: Observable<boolean> = of(true);
   listenToShowNextMiddle$: Observable<any>;
-  @Input() linear: boolean;
+  @Input() linear: boolean = false;
 
   @Input() steps: Step[];
 
   @Input() templates: { [key: string]: TemplateRef<any> };
 
+  form = new FormGroup({});
   cellTemplate: string;
 
   _selectedIndex: number = 0;

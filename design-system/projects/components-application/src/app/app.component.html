@@ -37,6 +37,15 @@
   </div>
 </ng-template>
 
+<ng-template #newTest>
+  <div class="test child-menu">
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+    <p>test</p>
+  </div>
+</ng-template>
+
 <!-- <kkl-form [controls]="myCols"></kkl-form> -->
 
 {{ currStr }}
@@ -52,12 +61,12 @@
 
 <kkl-icon [key]="'duplicate_icon'"></kkl-icon>
 
-<kkl-local-table
+<!-- <kkl-local-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions2"
   newRowAction="הוסף שורה"
-></kkl-local-table>
+></kkl-local-table> -->
 
 <kkl-ngx-local-table
   [dataSource]="dataSource"
@@ -66,16 +75,17 @@
   newRowAction="הוסף שורה"
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
+  [colsTemplate]="{yearsOfExperienceTemplateName:yearsOfExperienceTemplate}"
 ></kkl-ngx-local-table>
 
-<kkl-local-table
+<!-- <kkl-local-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions"
   newRowAction="הוסף שורה"
   [expandTemplate]="expandd"
   (expandRow)="onExpand($event)"
-  ></kkl-local-table>
+  ></kkl-local-table> -->
 
 <kkl-ngx-local-table
   [dataSource]="dataSource"
@@ -105,3 +115,23 @@
   ></kkl-local-table>
   <!-- im open -->
 </ng-template>
+<ng-template #yearsOfExperienceTemplate let-data>
+  {{data | json}}
+
+  <!-- in 'authorizedBars', the data of yearsOfExperience column in each row is being adjusted to fit the kkl-status-steps format where each bar represents 10 years -->
+  <!-- <kkl-status-progress
+    [status]="{
+      label : 'Years Of Experience Displayed As kkl-status-steps',
+      authorizedBars : (data-data%10)/10,
+      totalBars : 10
+    }"></kkl-status-progress> -->
+</ng-template>
+<kkl-list-menu [options]="options" (emitOption)="updateOption($event)">
+  <kkl-typography>Click me!</kkl-typography>
+</kkl-list-menu>
+<kkl-radio-group
+            [control]="control"
+            [options]="options"
+            [label]="'radio'"
+            [key]="'radio'"
+          ></kkl-radio-group>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { combineLatest, map, Observable, of } from 'rxjs';
 import { Step } from '../../../../../../../../../kakal-ui/src/lib/vertical-steps/step/step.model';
@@ -28,14 +29,16 @@ export class LayoutComponent implements OnInit {
     complete$!: Observable<boolean>;
 
     // use selectIndex to navigate to desired step index
-    selectedIndex$: Observable<number> = of(0);
+    selectedIndex: number = 0;
+
+    form: FormGroup = new FormGroup({}, [Validators.required]);
 
     // whet set to false present steps ui, when set to true present accordion ui
     title: string = 'תיקי רמ"י חדש';
 
     steps: Step[] = [
       { svgIcon: 'done', label: 'פרטי לקוח',key:'costumerDetails' } as Step,
-      { svgIcon: 'done', label: 'מאפיינים ותקציב',key:'propertiesBudget' } as Step,
+      { svgIcon: 'done', label: 'מאפיינים ותקציב',key:'propertiesBudget', control: this.form } as Step,
       { svgIcon: 'done', label: 'פרטי הזמנה',key:'reservationDetails' } as Step,
     ];
 
@@ -48,8 +51,19 @@ export class LayoutComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+      this.form.setErrors({ required: true })
       this.complete$ = this.customerDetailsLayoutService.listenComplete();
-      this.selectedIndex$ = this.customerDetailsLayoutService.listenSelectIndex();
+      // this.selectedIndex$ = this.customerDetailsLayoutService.listenSelectIndex();
       this.customerDetailsLayoutService.setInnerStepsLength(this.steps.length);
+    }
+
+    onStepSelect(event){
+      // this.selectedIndex = event.selectedIndex;
+      // if(event.selectedIndex == 2) {
+      //   setTimeout(() => {
+      //     console.log('kkkk');
+      //     this.selectedIndex = 1
+      //   }, 0);
+      // }
     }
   }

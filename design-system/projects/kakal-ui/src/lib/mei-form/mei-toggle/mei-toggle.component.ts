@@ -3,7 +3,7 @@ import { FormControl } from '@angular/forms';
 import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
 
 @Component({
-  selector: 'kkl-toggle',
+  selector: 'kkl-slide-toggle',
   templateUrl: './mei-toggle.component.html',
   styleUrls: ['./mei-toggle.component.scss']
 })

@@ -79,6 +79,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   hasSummary: boolean = false;
 
+  @Input() headline: string = 'Something';
+
   dragable: boolean;
   @Input() set draggable(val: boolean) {
     this.dragable = val;
@@ -335,9 +337,19 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.page = { ...this.page, ...event };
   }
 
-  getRowClass = (row) => {
+  // for coloring row when expand is open
+  // remember to check scss file for expanded-open class selector
+  //  findExpanded(row: any) {
+  //   if (this.expanded.length == 0) return false;
+  //   const find = this.expanded.find(obj => row.id === obj.id);
+  //   return find ? true : false
+  // }
+
+  getRowClass = (row: any) => {
     return {
       'expand-class': this.expand,
+      // for coloring row when expand is open
+      // 'expanded-open': this.findExpanded(row)
     };
   };
 }
