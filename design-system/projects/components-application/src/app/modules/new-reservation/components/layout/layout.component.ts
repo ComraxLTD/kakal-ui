@@ -31,7 +31,11 @@ export interface DataEx {
   providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
-  actions: ButtonModel[] = [{ type: 'file' }];
+  actions: ButtonModel[] = [
+    { type: 'file' },
+    { type: 'estate', svgIcon: 'estate', label: 'הוסף' },
+    { type: 'add', matIcon: 'add', label: 'הוסף' },
+  ];
   actions$: Observable<ButtonModel[]>;
 
   steps: CardStep[] = [
@@ -96,7 +100,8 @@ export class LayoutComponent implements OnInit {
   constructor(
     private pageHeadlineSource: PageHeadlineService,
     private navbarBottomService: NavbarBottomService,
-    private layoutService: LayoutService
+    private layoutService: LayoutService,
+    private stepsLayoutService: StepsLayoutService
   ) {}
 
   ngOnInit(): void {
@@ -106,13 +111,19 @@ export class LayoutComponent implements OnInit {
       { value: 'third' },
     ]);
 
-    this.layoutService.emitDrawerPortion({
-      open: 50,
-      close: 5,
-      hasButton: true,
-    });
+    // this.layoutService.emitDrawerPortion({
+    //   open: 50,
+    //   close: 5,
+    //   hasButton: true,
+    // });
 
     this.navbarBottomService.setShowNext(true);
+
+    // this.stepsLayoutService
+    //   .listenToActionButtons(['estate'])
+    //   .subscribe((button) => {
+    //     alert(button.type);
+    //   });
   }
 
   ngOnDestroy() {

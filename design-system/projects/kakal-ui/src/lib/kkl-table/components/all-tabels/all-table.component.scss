@@ -33,17 +33,17 @@ th.mat-header-cell-text {
   text-align: right !important;
 }
 
-.mat-icon-button{
+.mat-icon-button {
   width: fit-content;
   padding: 5px;
 }
 
 // .filter{
-  // .mat-menu-content{
-    // background-color: red !important;
-    // display: flex;
-    // padding: 10px;
-  // }
+// .mat-menu-content{
+// background-color: red !important;
+// display: flex;
+// padding: 10px;
+// }
 // }
 
 td.mat-cell {
@@ -141,7 +141,7 @@ tr.mat-header-row {
   font-size: 3rem;
 }
 
-th>h4 {
+th > h4 {
   font-weight: 600;
   color: main.color(text);
 }
@@ -304,13 +304,11 @@ th>h4 {
   }
 }
 
-
 ::ng-deep kkl-stroke-button[table-action-button] {
   button {
     transform: translateY(-5px);
   }
 }
-
 
 @media screen and (max-width: 1280px) {
   .table-form-wrapper {
@@ -318,16 +316,20 @@ th>h4 {
   }
 }
 
-@media screen and (min-width: 600px) {
-  .button-center-start{
-    float: left;
-    margin-left: 100px;
+button.add-table-button {
+  .mat-button-wrapper > span {
+    color: main.color(text);
   }
 }
 
-@media screen and (max-width: 600px) {
-  .button-center-start{
-    margin: 0 auto;
-    display: block;
+@media screen and (min-width: 600px) {
+  // .add-table-button {
+  //   float: left;
+  // }
+}
+
+@media screen and (max-width: 820px) {
+  header {
+    justify-content: center;
   }
 }
