@@ -185,7 +185,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.ngxTable.offset = 0;
   }
 
-  buttonClick(butt: RowActionModel, obj: any, key: string) {
+  onActionClicked(butt: RowActionModel, obj: any, key: string) {
     if (normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
@@ -202,11 +202,11 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
             });
           break;
         case 'inlineEdit':
-          this.addRowGroup(obj);
+          this.onEditEvent(obj);
           break;
         case 'inlineExpand':
           this.expandRow.emit({ row: obj, key: key });
-          this.addExpandedRow(obj);
+          this.onExpandEvent(obj);
           break;
         case 'inlineNavigation':
           const url = this.routerService.getUrl(butt.navigation);
@@ -220,7 +220,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addExpandedRow(obj: any) {
+  onExpandEvent(obj: any) {
     this.ngxTable.rowDetail.toggleExpandRow(obj);
     const ind = this.expanded.indexOf(obj);
     if (ind == -1) {
@@ -235,7 +235,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  saveRowClick(row: any) {
+  onSaveEvent(row: any) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -252,7 +252,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cancelRowClick(row: any) {
+  onCancelEvent(row: any) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -269,12 +269,12 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addRowGroup(obj: any) {
+  onEditEvent(obj: any) {
     this.editItems = [...this.editItems, obj];
     this.editItemsData = [...this.editItemsData, Object.assign({}, obj)];
   }
 
-  addNewRowGroup() {
+  onNewRowEvent() {
     const rowData: any = {} as any;
     this.editItems = [...this.editItems, rowData];
     this.editItemsData = [...this.editItemsData, Object.assign({}, rowData)];

@@ -149,6 +149,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   // ACTIONS SECTION
+
   private setDrawerAction(actions: ButtonModel[]): ButtonModel {
     const iconMap = {
       file: 'file',
@@ -161,6 +162,29 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     return action ? { ...action, svgIcon: iconMap[action.type] } : null;
   }
 
+  private setRowActions(actions: ButtonModel[]) {
+    const iconLabelMap = {
+      [FormActions.EDIT]: { matIcon: 'edit', label: 'עריכה', type: 'edit' },
+      [FormActions.VALUE_CHANGED]: {
+        svgIcon: 'print',
+        label: 'הדפס',
+        type: 'print',
+      },
+    };
+
+    return actions
+      .filter(
+        (action: ButtonModel) =>
+          action.type !== 'file' && action.type !== 'notes'
+      )
+      .map((action: ButtonModel) => {
+        return {
+          ...action,
+          ...iconLabelMap[action.action],
+        };
+      });
+  }
+
   private setActions(actions: ButtonModel[]) {
     this.rowActions = this.setRowActions(actions);
     this.drawerAction = this.setDrawerAction(actions);
@@ -168,22 +192,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     if (this.drawerAction) {
       this.stepsLayoutService.showDrawer();
     }
-  }
-
-  private setRowActions(actions: ButtonModel[]) {
-    const iconLabelMap = {
-      [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
-      [FormActions.VALUE_CHANGED]: { svgIcon: 'print', label: 'הדפס' },
-    };
-
-    return actions
-      .filter((action: ButtonModel) => action.type === 'form')
-      .map((action: ButtonModel) => {
-        return {
-          ...action,
-          ...iconLabelMap[action.action],
-        };
-      });
   }
 
   // NAVIGATION EVENTS SECTION
@@ -201,8 +209,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     }
   }
 
-  onAction(event: ButtonModel): void {
-    this.stepsLayoutService.setButtonClicked(event);
+  onActionClicked(event: ButtonModel): void {
+    this.stepsLayoutService.emitActionButton(event);
   }
 
   private _emitChanged() {
