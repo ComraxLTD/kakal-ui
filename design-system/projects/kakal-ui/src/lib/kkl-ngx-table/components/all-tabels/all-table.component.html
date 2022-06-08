@@ -97,7 +97,7 @@
               >
                 <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
               </button>
-              <mat-menu #menu="matMenu" (closed)="searchChanged()">
+              <mat-menu #menu="matMenu" (closed)="onSearchChanged()">
                 <kkl-ngx-table-form
                   [question]="column"
                   (rowEdited)="onFilterChanged($event, column.key)"
