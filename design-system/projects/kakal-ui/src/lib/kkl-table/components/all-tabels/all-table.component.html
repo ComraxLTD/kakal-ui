@@ -13,7 +13,7 @@
     [thick]="2"
     mat-stroked-button
     color="primary"
-    (click)="addNewRowGroup()"
+    (click)="onNewRowEvent()"
   >
     <span>
       {{ newRowAction }}
@@ -24,7 +24,7 @@
     <kkl-add-button
       table-add-button
       color="primary"
-      (clickEvent)="addNewRowGroup()"
+      (clickEvent)="onNewRowEvent()"
     >
       {{ newRowAction }}
     </kkl-add-button>
@@ -438,11 +438,11 @@
   <kkl-stroke-button
     table-save-button
     color="primary"
-    (clickEvent)="saveRowClick(element)"
+    (clickEvent)="onSaveEvent(element)"
   >
     שמור
   </kkl-stroke-button>
-  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
+  <button matTooltip="בטל" mat-icon-button (click)="onCancelEvent(element)">
     <kkl-icon key="cancel"></kkl-icon>
   </button>
 </ng-template>

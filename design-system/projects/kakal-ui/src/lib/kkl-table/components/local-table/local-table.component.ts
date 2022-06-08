@@ -375,11 +375,11 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
             });
           break;
         case 'inlineEdit':
-          this.addRowGroup(obj);
+          this.onEditEvent(obj);
           break;
         case 'inlineExpand':
           this.expandRow.emit({ row: obj, key: key });
-          this.addExpandedRow(obj);
+          this.onExpandEvent(obj);
           break;
         case 'inlineNavigation':
           const url = this.routerService.getUrl(butt.navigation);
@@ -394,17 +394,17 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addExpandedRow(obj: any) {
+  onExpandEvent(obj: any) {
     this.expandedElement = this.expandedElement == obj ? null : obj;
   }
 
   onExpandOut(obj: any) {
     if (this.rowActions?.some((a) => a.type == 'inlineExpand')) {
-      this.addExpandedRow(obj);
+      this.onExpandEvent(obj);
     }
   }
 
-  saveRowClick(ele: any) {
+  onSaveEvent(ele: any) {
     const index = this.editItems.indexOf(ele);
     if (index > -1) {
       this.editItems.splice(index, 1);
@@ -430,7 +430,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  cancelRowClick(ele: any) {
+  onCancelEvent(ele: any) {
     const index = this.editItems.indexOf(ele);
     if (index > -1) {
       this.editItems.splice(index, 1);
@@ -469,7 +469,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  addRowGroup(obj: any) {
+  onEditEvent(obj: any) {
     const row = this.fb.group({});
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(obj[col.key]));
@@ -482,7 +482,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     this.editItems = [...this.editItems, obj];
   }
 
-  addNewRowGroup() {
+  onNewRowEvent() {
     const row = this.fb.group({});
     // this.oneColumns.forEach(col => {
     //   row.addControl(col.key, this.fb.control(null));
