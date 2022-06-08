@@ -9,6 +9,7 @@ const routes: Routes = [
     data: { breadcrumb: 'דף הבית', homepage: true },
     children: [],
   },
+
   {
     path: 'availability-check',
     loadChildren: () =>

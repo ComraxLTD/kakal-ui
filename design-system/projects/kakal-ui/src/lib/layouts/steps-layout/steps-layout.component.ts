@@ -1,12 +1,20 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
-import { map,  Observable, Subject, takeUntil } from 'rxjs';
+import { map, Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -17,19 +25,20 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   destroySubject$: Subject<void> = new Subject();
 
   @Input() steps: CardStep[];
+  @Input() manuel: boolean = false;
 
   rowActions!: ButtonModel[];
 
   @Input() set actions(value: ButtonModel[]) {
     if (value?.length) {
       this.setActions(value);
-
     } else {
       this.rowActions = [];
     }
   }
 
   @Input() baseUrl: string;
+  @Input() prefixUrl: string;
 
   drawerAction: ButtonModel;
 
@@ -39,6 +48,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   mobile$: Observable<boolean>;
 
   disabled: { [key: string]: boolean };
+
+  @Output() stepChanged: EventEmitter<StepsSelectionEvent> = new EventEmitter();
 
   constructor(
     private stepsLayoutService: StepsLayoutService,
@@ -159,7 +170,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     }
   }
 
-
   private setRowActions(actions: ButtonModel[]) {
     const iconLabelMap = {
       [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
@@ -178,12 +188,17 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    const url = this.routerService.getUrlFromBase(path, this.baseUrl);
+    // const url = this.routerService.getUrlFromBase(path, this.baseUrl);
+    const url = this.prefixUrl + '/' + path;
     this.routerService.navigate(url);
   }
 
   onSelectStep(event: StepsSelectionEvent): void {
-    this.navigate(event.selectedStep.path);
+    if (!this.manuel) {
+      this.navigate(event.selectedStep.path);
+    } else {
+      this.stepChanged.emit(event);
+    }
   }
 
   onAction(event: ButtonModel): void {
