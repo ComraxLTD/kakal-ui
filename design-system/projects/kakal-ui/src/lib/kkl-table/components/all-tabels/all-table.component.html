@@ -1,20 +1,38 @@
 <!-- <ng-container *ngIf="noMobile || !(mobile$ | async); else webBlock"> -->
 
-<form [formGroup]="form" class="all-table-form"  (resized)="onResize($event)" #myIdentifier>
-  <button
-    class="button-center-start"
+<form
+  [formGroup]="form"
+  class="all-table-form"
+  (resized)="onResize($event)"
+  #myIdentifier
+>
+  <!-- <button
+    class="add-table-button"
     *ngIf="newRowAction"
     kkl-border
     [thick]="2"
     mat-stroked-button
     color="primary"
-    (click)="addNewRowGroup()"
+    (click)="onNewRowEvent()"
   >
-    {{ newRowAction }}
-    <mat-icon>add</mat-icon>
-  </button>
-  <div [ngClass]="{'hidden-class': !isDesktop}">
-    <div *ngIf="displayedColumns.length" class="table-wrapper"
+    <span>
+      {{ newRowAction }}
+    </span>
+    <mat-icon color="primary">add</mat-icon>
+  </button> -->
+  <ng-container *ngIf="newRowAction">
+    <kkl-add-button
+      table-add-button
+      color="primary"
+      (clickEvent)="onNewRowEvent()"
+    >
+      {{ newRowAction }}
+    </kkl-add-button>
+  </ng-container>
+  <div [ngClass]="{ 'hidden-class': !isDesktop }">
+    <div
+      *ngIf="displayedColumns.length"
+      class="table-wrapper"
       cdkDropList
       (cdkDropListDropped)="dropTable($event)"
       [cdkDropListDisabled]="dragDisabled"
@@ -61,10 +79,14 @@
           <th
             mat-header-cell
             *matHeaderCellDef
-            style="white-space: nowrap;"
-            [ngClass]="{'mat-header-cell-text': column.controlType !== 'number'}"
+            style="white-space: nowrap"
+            [ngClass]="{
+              'mat-header-cell-text': column.controlType !== 'number'
+            }"
           >
-            <h4 style="display: inline-block; font-size: 14px !important;">{{column.label}}</h4>
+            <h4 style="display: inline-block; font-size: 14px !important">
+              {{ column.label }}
+            </h4>
             <button
               *ngIf="!column.noFilter"
               mat-icon-button
@@ -74,11 +96,7 @@
               <!-- <kkl-icon class="arrow-down" key="arrow_drop_down"></kkl-icon> -->
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
             </button>
-            <mat-menu
-              class="filter"
-              #menu="matMenu"
-              (closed)="searchChanged()"
-            >
+            <mat-menu class="filter" #menu="matMenu" (closed)="searchChanged()">
               <kkl-table-form
                 [formGroup]="searchRow"
                 [question]="column"
@@ -172,7 +190,9 @@
                 text-align: start;
                 margin-bottom: 2px;
               "
-            > פעולות</h4>
+            >
+              פעולות
+            </h4>
           </th>
           <td
             mat-cell
@@ -418,11 +438,11 @@
   <kkl-stroke-button
     table-save-button
     color="primary"
-    (clickEvent)="saveRowClick(element)"
+    (clickEvent)="onSaveEvent(element)"
   >
     שמור
   </kkl-stroke-button>
-  <button matTooltip="בטל" mat-icon-button (click)="cancelRowClick(element)">
+  <button matTooltip="בטל" mat-icon-button (click)="onCancelEvent(element)">
     <kkl-icon key="cancel"></kkl-icon>
   </button>
 </ng-template>
