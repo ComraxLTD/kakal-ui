@@ -49,15 +49,17 @@ const normalActions = [
 })
 export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   ColumnMode = ColumnMode;
-  @ViewChild('myTable') ngxTable: DatatableComponent;
-  // control the highet of expand panal
-  @ViewChild('myExpand') myExpand!: ElementRef;
+  @ViewChild('tableRef') tableRef: DatatableComponent;
+
+  // control the hight of expand panel
+  @ViewChild('expandRef') expandRef!: ElementRef;
   expandHeight: number = 0;
 
   // control the size of div
-  @ViewChild('myIdentifier') myIdentifier: ElementRef;
+  @ViewChild('wrapperRef') wrapperRef: ElementRef;
   @ViewChildren(MatExpansionPanel)
   matExpansionPanelElement: QueryList<MatExpansionPanel>;
+  
   @Input() noMobile: boolean = false;
   destroySubject$: Subject<void> = new Subject();
 
@@ -147,7 +149,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     setTimeout(() => {
-      const size = this.myIdentifier.nativeElement.offsetWidth;
+      const size = this.wrapperRef.nativeElement.offsetWidth;
       this.viewSize = Math.floor(size / 130);
       if (size <= 600 && !this.noMobile) {
         this.isDesktop = false;
@@ -184,7 +186,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     // update the rows
     this.dataTable = temp;
     // Whenever the filter changes, always go back to the first page
-    this.ngxTable.offset = 0;
+    this.tableRef.offset = 0;
   }
 
   onActionClicked(event: RowActionModel, row: T, key: string, rowIndex : number) {
@@ -223,7 +225,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   }
 
   onExpandEvent(row: T) {
-    this.ngxTable.rowDetail.toggleExpandRow(row);
+    this.tableRef.rowDetail.toggleExpandRow(row);
     const ind = this.expanded.indexOf(row);
     if (ind == -1) {
       this.expanded.push(row);
@@ -249,7 +251,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
       if (dIndex > -1) {
         this.dataTable.splice(dIndex, 1);
         this.dataTable = this.dataTable.slice();
-        // this.ngxTable.recalculate();
+        // this.tableRef.recalculate();
       }
     }
   }
@@ -266,7 +268,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
       if (dIndex > -1) {
         this.dataTable.splice(dIndex, 1);
         this.dataTable = this.dataTable.slice();
-        // this.ngxTable.recalculate();
+        // this.tableRef.recalculate();
       }
     }
   }
@@ -312,7 +314,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }
     this.dataTable = this.dataTable.slice();
     // moveItemInArray(this.dataTable.data, event.previousIndex, event.currentIndex);
-    this.ngxTable.recalculate();
+    this.tableRef.recalculate();
   }
 
   onResize(event) {
@@ -326,7 +328,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     this.onResizeExpand();
   }
   onResizeExpand() {
-    this.expandHeight = this.myExpand?.nativeElement.offsetHeight;
+    this.expandHeight = this.expandRef?.nativeElement.offsetHeight;
     this.dataTable = [...this.dataTable];
   }
 

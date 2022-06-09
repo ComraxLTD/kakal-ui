@@ -3,7 +3,7 @@
   dir="rtl"
   class="kkl-ngx-local-table-wrapper"
   (resized)="onResize($event)"
-  #myIdentifier
+  #wrapperRef
   fxLayout="column"
   fxLayoutGap="1rem"
 >
@@ -47,7 +47,7 @@
 
       <ngx-datatable
         fxFlex
-        #myTable
+        #tableRef
         class="expandable"
         [columnMode]="ColumnMode.force"
         [headerHeight]="35"
@@ -62,13 +62,13 @@
         [summaryHeight]="55"
       >
         <!-- Row Detail Template -->
-        <ngx-datatable-row-detail [rowHeight]="expandHeight" #myDetailRow>
+        <ngx-datatable-row-detail [rowHeight]="expandHeight" #detailRowRef>
           <ng-template
             let-row="row"
             let-expanded="expanded"
             ngx-datatable-row-detail-template
           >
-            <div *ngIf="expanded" class="example-element-detail" #myExpand>
+            <div *ngIf="expanded" class="example-element-detail" #expandRef>
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
