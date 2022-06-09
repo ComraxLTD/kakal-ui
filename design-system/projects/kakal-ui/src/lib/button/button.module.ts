@@ -19,6 +19,7 @@ import { KKLButtonDirective } from './directives/button.directive';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { KKLActionButtonDirective } from './directives/action-button.directive';
 import { KKLFormButtonDirective } from './directives/form-button.directive';
+import { ActionButtonComponent } from './components/action-button/action-button.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
     KKLActionButtonDirective,
+    ActionButtonComponent,
   ],
   exports: [
     MatButtonModule,
@@ -51,6 +53,7 @@ import { KKLFormButtonDirective } from './directives/form-button.directive';
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
     KKLActionButtonDirective,
+    ActionButtonComponent
   ],
 })
 export class KKLButtonModule {}
