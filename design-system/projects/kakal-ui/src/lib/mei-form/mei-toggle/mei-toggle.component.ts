@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { KklFormChangeEvent, KklFormActions } from '../models/kkl-form-events';
 
 @Component({
@@ -23,7 +24,7 @@ export class MeiToggleComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onToggleChange(event) {
+  onToggleChange(event : MatSlideToggleChange) {
     this.selectChanged.emit({
       key: this.key,
       value: event.checked,
