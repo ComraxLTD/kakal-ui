@@ -13,11 +13,13 @@ export class ActionButtonComponent implements OnInit {
 
   @Output() clickEvent: EventEmitter<void> = new EventEmitter();
 
+  isSvg!: boolean;
+
   constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
     if (this.svgIcon) {
-      this.iconService.setIcon(this.svgIcon);
+      this.isSvg = this.iconService.setIcon(this.svgIcon);
     }
   }
 

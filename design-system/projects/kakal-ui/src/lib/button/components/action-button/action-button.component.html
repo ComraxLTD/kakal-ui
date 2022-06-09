@@ -5,6 +5,6 @@
   mat-icon-button="true"
   color="primary"
 >
-  <mat-icon *ngIf="svgIcon" [svgIcon]="svgIcon"></mat-icon>
-  <mat-icon *ngIf="matIcon">{{ matIcon }}</mat-icon>
+  <mat-icon *ngIf="isSvg" [svgIcon]="svgIcon"></mat-icon>
+  <mat-icon *ngIf="!isSvg">{{ svgIcon }}</mat-icon>
 </button>
