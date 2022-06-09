@@ -204,7 +204,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
             });
           break;
         case 'inlineEdit':
-          this.onEditEvent(row);
+          this.onEditEvent(row, rowIndex);
           break;
         case 'inlineExpand':
           this.expandRow.emit({ row: row, key: key });
@@ -226,7 +226,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     this.ngxTable.rowDetail.toggleExpandRow(row);
     const ind = this.expanded.indexOf(row);
     if (ind == -1) {
-      this.expanded.push(obj);
+      this.expanded.push(row);
       this.expanded = [...this.expanded];
     } else {
       this.expanded.splice(ind, 1);
@@ -271,7 +271,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }
   }
 
-  onEditEvent(row: T) {
+  onEditEvent(row: T, rowIndex : number) {
     this.editItems = [...this.editItems, row];
     this.editItemsData = [...this.editItemsData, Object.assign({}, row)];
   }
