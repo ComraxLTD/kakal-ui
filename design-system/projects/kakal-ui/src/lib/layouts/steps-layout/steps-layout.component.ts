@@ -1,12 +1,20 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import { BreakpointService, RouterService } from '../../../services/services';
 import { ButtonModel } from '../../button/models/button.types';
 import { CardStep } from '../../cards/card-step/card-step.component';
 import { FormActions } from '../../form/models/form.actions';
 import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
-import { map, merge, Observable, Subject, takeUntil } from 'rxjs';
+import { map, Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -17,22 +25,20 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   destroySubject$: Subject<void> = new Subject();
 
   @Input() steps: CardStep[];
+  @Input() manuel: boolean = false;
 
-  // rowActionSource$: BehaviorSubject<ButtonModel[]> = new BehaviorSubject([]);
-  // rowActions$!: Observable<ButtonModel[]>;
   rowActions!: ButtonModel[];
 
   @Input() set actions(value: ButtonModel[]) {
     if (value?.length) {
       this.setActions(value);
-
-      // this.rowActionSource$.next(this.rowActions);
     } else {
       this.rowActions = [];
     }
   }
 
   @Input() baseUrl: string;
+  @Input() prefixUrl: string;
 
   drawerAction: ButtonModel;
 
@@ -42,6 +48,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   mobile$: Observable<boolean>;
 
   disabled: { [key: string]: boolean };
+
+  @Output() stepChanged: EventEmitter<StepsSelectionEvent> = new EventEmitter();
 
   constructor(
     private stepsLayoutService: StepsLayoutService,
@@ -141,6 +149,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   // ACTIONS SECTION
+
   private setDrawerAction(actions: ButtonModel[]): ButtonModel {
     const iconMap = {
       file: 'file',
@@ -153,6 +162,29 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     return action ? { ...action, svgIcon: iconMap[action.type] } : null;
   }
 
+  private setRowActions(actions: ButtonModel[]) {
+    const iconLabelMap = {
+      [FormActions.EDIT]: { matIcon: 'edit', label: 'עריכה', type: 'edit' },
+      [FormActions.VALUE_CHANGED]: {
+        svgIcon: 'print',
+        label: 'הדפס',
+        type: 'print',
+      },
+    };
+
+    return actions
+      .filter(
+        (action: ButtonModel) =>
+          action.type !== 'file' && action.type !== 'notes'
+      )
+      .map((action: ButtonModel) => {
+        return {
+          ...action,
+          ...iconLabelMap[action.action],
+        };
+      });
+  }
+
   private setActions(actions: ButtonModel[]) {
     this.rowActions = this.setRowActions(actions);
     this.drawerAction = this.setDrawerAction(actions);
@@ -162,66 +194,23 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
     }
   }
 
-  // private setRowActionsFromActonState() {
-  //   this.stepsLayoutService.getButtonAction().pipe(
-  //     map((actionState: ActionButtonState) => {
-  //       const { action, disabled, key, buttons } = actionState;
-
-  //       switch (action) {
-  //         case 'disable':
-  //           disabled[key] = true;
-  //           break;
-  //         case 'enable':
-  //           disabled[key] = false;
-  //           break;
-  //         case 'add':
-  //           this.rowActions = this.rowActions.concat(buttons);
-  //           break;
-  //         case 'remove':
-  //           this.rowActions = this.rowActions.filter((v) => v.label !== key);
-  //           break;
-  //         case 'removeAll':
-  //           this.rowActions = [];
-  //         default:
-  //           break;
-  //       }
-  //     })
-  //   );
-  // }
-
-  // private setRowActions$() {
-  //   const setFromInout$ = of(this.rowActions);
-  //   const setFromState$ = this.setRowActionsFromActonState();
-  // }
-
-  private setRowActions(actions: ButtonModel[]) {
-    const iconLabelMap = {
-      [FormActions.EDIT]: { svgIcon: 'edit', label: 'עריכה' },
-      [FormActions.VALUE_CHANGED]: { svgIcon: 'print', label: 'הדפס' },
-    };
-
-    return actions
-      .filter((action: ButtonModel) => action.type === 'form')
-      .map((action: ButtonModel) => {
-        return {
-          ...action,
-          ...iconLabelMap[action.action],
-        };
-      });
-  }
-
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    const url = this.routerService.getUrlFromBase(path, this.baseUrl);
+    // const url = this.routerService.getUrlFromBase(path, this.baseUrl);
+    const url = this.prefixUrl + '/' + path;
     this.routerService.navigate(url);
   }
 
   onSelectStep(event: StepsSelectionEvent): void {
-    this.navigate(event.selectedStep.path);
+    if (!this.manuel) {
+      this.navigate(event.selectedStep.path);
+    } else {
+      this.stepChanged.emit(event);
+    }
   }
 
-  onAction(event: ButtonModel): void {
-    this.stepsLayoutService.setButtonClicked(event);
+  onActionClicked(event: ButtonModel): void {
+    this.stepsLayoutService.emitActionButton(event);
   }
 
   private _emitChanged() {
