@@ -108,6 +108,7 @@ export class LayoutComponent implements OnInit {
     });
 
     this.navbarBottomService.setShowNext(true);
+
   }
 
   ngOnDestroy() {
