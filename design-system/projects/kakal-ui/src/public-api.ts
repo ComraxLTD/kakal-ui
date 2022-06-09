@@ -18,7 +18,6 @@ export * from './lib/button/components/action-button/action-button.directive';
 export * from './lib/button/components/sort-button/sort-button.component';
 
 export * from './lib/button/directives/button.directive';
-export * from './lib/button/components/action-button/action-button.directive';
 export * from './lib/button/directives/form-button.directive';
 
 export * from './lib/button/models/button.types';
