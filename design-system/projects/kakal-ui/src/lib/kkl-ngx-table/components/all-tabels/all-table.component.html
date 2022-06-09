@@ -119,7 +119,7 @@
                 <kkl-table-cell
                   [row]="row"
                   [data]="value"
-                  [question]="column"
+                  [column]="column"
                   (actionClicked)="onActionClicked(column.button, row, column.key)"
                   [colsTemplate]="colsTemplate"
                 ></kkl-table-cell>
@@ -217,7 +217,7 @@
                         <kkl-table-cell
                           [row]="item"
                           [data]="item[col.key]"
-                          [question]="col"
+                          [column]="col"
                           (actionClicked)="onActionClicked(col.button, item, col.key)"
                           [colsTemplate]="colsTemplate"
                         ></kkl-table-cell>
@@ -355,7 +355,7 @@
                       <kkl-table-cell
                         [row]="item"
                         [data]="item[col.key]"
-                        [question]="col"
+                        [column]="col"
                         (actionClicked)="onActionClicked(col.button, item, col.key)"
                         [colsTemplate]="colsTemplate"
                       ></kkl-table-cell>

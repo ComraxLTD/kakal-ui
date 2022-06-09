@@ -1,10 +1,10 @@
-<ng-container *ngIf="question.cellTemplate; else noTemplate">
-  <div [ngSwitch]="question.cellTemplate">
+<ng-container *ngIf="column.cellTemplate; else noTemplate">
+  <div [ngSwitch]="column.cellTemplate">
     <div *ngSwitchDefault>
       <ng-container
         *ngTemplateOutlet="
-          colsTemplate[question.cellTemplate];
-          context: { $implicit: data, row, column }
+          colsTemplate[column.cellTemplate];
+          context: { $implicit: data, row, columnKey }
         "
       ></ng-container>
     </div>
@@ -17,14 +17,14 @@
     fxLayoutAlign="start center"
   >
     <kkl-icon
-      *ngIf="question.colIcon"
+      *ngIf="column.colIcon"
       color="primary"
-      [key]="question.colIcon"
+      [key]="column.colIcon"
       style="display: inline-block; padding-left: 8px"
     ></kkl-icon>
     <span
       style="width: 100%;"
-      *ngIf="question.button;
+      *ngIf="column.button;
       else withoutButton"
     >
       <button
@@ -43,9 +43,9 @@
             >
             <span style="border-bottom: 1px solid; text-align: start;">
               {{
-                question.button?.label
-                  ? question.button.label
-                  : (data | tableCellPipe: question.controlType)
+                column.button?.label
+                  ? column.button.label
+                  : (data | tableCellPipe: column.controlType)
               }}
             </span>
           </span>
@@ -53,10 +53,10 @@
             style="padding: 0 10px;"
             [color]="'primary'"
             *ngIf="
-              question.button.icon ||
-              question.button.type === 'inlineExpand'
+              column.button.icon ||
+              column.button.type === 'inlineExpand'
             "
-            [key]="question.button.icon || 'expand_more'"
+            [key]="column.button.icon || 'expand_more'"
           ></kkl-icon>
         </span>
       </button>
@@ -67,7 +67,7 @@
         style="white-space: pre-wrap; font-size: 14px !important;"
       >
         <span>
-          {{ data | tableCellPipe: question.controlType }}
+          {{ data | tableCellPipe: column.controlType }}
         </span>
       </div>
     </ng-template>

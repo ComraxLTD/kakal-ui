@@ -6,20 +6,20 @@ import { TableBase } from '../../models/table.model';
   templateUrl: './table-cell.component.html',
 })
 export class TableCellComponent implements OnInit  {
-  @Input() question!: TableBase;
+  @Input() column!: TableBase;
   @Input() row!: any;
   @Input() data!: any;
 
   @Input() colsTemplate: any;
 
-  column!: string;
+  columnKey!: string;
 
   @Output() actionClicked = new EventEmitter<void>();
 
   constructor() {
   }
   ngOnInit(): void {
-    this.column = this.question.key;
+    this.columnKey = this.column.key;
   }
 
   onClick() {
