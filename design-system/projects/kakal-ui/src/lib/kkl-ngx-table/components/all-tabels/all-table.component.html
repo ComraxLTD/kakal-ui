@@ -426,6 +426,14 @@
   </main>
 </div>
 
+<ng-template #editTemplate let-column let-row="row" let-rowIndex="rowIndex">
+  <kkl-ngx-table-form
+    [initial]="editItemsData[row | arrIndex: editItems]"
+    [column]="column"
+    (rowEdited)="onRowEditChange($event, row, column.key)"
+  ></kkl-ngx-table-form>
+</ng-template>
+
 <ng-template #actionsTemplate let-row let-rowIndex="rowIndex">
   <div
     fxFlex="100"
