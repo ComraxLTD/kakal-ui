@@ -14,7 +14,6 @@ import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 import { map, Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
-import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 
 @Component({
   selector: 'kkl-steps-layout',
@@ -38,7 +37,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   @Input() baseUrl: string;
-  @Input() prefixUrl: string;
 
   drawerAction: ButtonModel;
 
@@ -196,8 +194,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    // const url = this.routerService.getUrlFromBase(path, this.baseUrl);
-    const url = this.prefixUrl + '/' + path;
+    const url = this.routerService.getUrlFromBase(path, this.baseUrl);
     this.routerService.navigate(url);
   }
 
