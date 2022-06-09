@@ -23,6 +23,7 @@ export class NgxTableFormComponent implements OnInit {
     this.question = { ...this.column } as QuestionBase;
 
     const data = this.getCellData(this.question.key);
+
     switch (this.question.controlType) {
       case 'dateRange':
       case 'range':
@@ -37,8 +38,6 @@ export class NgxTableFormComponent implements OnInit {
           currency: new FormControl(data?.currency),
         });
         break;
-      // case 'costum':
-      //   break;
       default:
         this.control = new FormControl(data);
         break;
@@ -53,12 +52,12 @@ export class NgxTableFormComponent implements OnInit {
     }
   }
 
-
-  onSelectChanged(event : KklFormChangeEvent) {
+  onSelectChanged(event: KklFormChangeEvent) {
     this.rowEdited.emit(event);
   }
 
-  onValueChanged(event : KklFormChangeEvent) {
+  onValueChanged(event: KklFormChangeEvent) {
+    console.log(event)
     this.rowEdited.emit(event);
   }
 }
