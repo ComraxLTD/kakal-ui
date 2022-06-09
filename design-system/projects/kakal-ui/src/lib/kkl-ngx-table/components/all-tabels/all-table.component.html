@@ -112,7 +112,7 @@
               ngx-datatable-cell-template
             >
               <ng-container
-                *ngTemplateOutlet="dataTemplate; context {$implicit : row, column, rowIndex, value}"
+                *ngTemplateOutlet=" (!(row | arrIncludes: editItems) || column.notEditable ) ? dataTemplate : editTemplate; context {$implicit : row, column, rowIndex, value}"
               ></ng-container>
               <!-- <ng-container
                 *ngIf="
@@ -458,6 +458,7 @@
 
 <ng-template #editTemplate let-row let-column="column" let-rowIndex="rowIndex">
   <kkl-ngx-table-form
+    dir="rtl"
     [initial]="editItemsData[row | arrIndex: editItems]"
     [column]="column"
     (rowEdited)="onRowEditChange($event, row, column.key)"

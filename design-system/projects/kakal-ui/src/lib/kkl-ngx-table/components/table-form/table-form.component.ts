@@ -57,7 +57,6 @@ export class NgxTableFormComponent implements OnInit {
   }
 
   onValueChanged(event: KklFormChangeEvent) {
-    console.log(event)
     this.rowEdited.emit(event);
   }
 }
