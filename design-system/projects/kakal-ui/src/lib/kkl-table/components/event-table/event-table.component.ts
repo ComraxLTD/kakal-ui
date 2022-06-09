@@ -61,7 +61,7 @@ export class EventTableComponent implements OnInit {
   @Input() pageSize: number = 10;
 
   draggable: boolean;
-  @Input() set draggable(val: boolean) {
+  @Input() set drag(val: boolean) {
     if(val) {
       if(!this.displayedColumns.includes('dragHandeler')){
         this.displayedColumns.unshift('dragHandeler')
