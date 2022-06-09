@@ -60,7 +60,7 @@ export class EventTableComponent implements OnInit {
   @Input() paging: boolean = true;
   @Input() pageSize: number = 10;
 
-  dragable: boolean;
+  draggable: boolean;
   @Input() set draggable(val: boolean) {
     if(val) {
       if(!this.displayedColumns.includes('dragHandeler')){
@@ -74,7 +74,7 @@ export class EventTableComponent implements OnInit {
         }
       }
     }
-    this.dragable = val;
+    this.draggable = val;
   }
 
 
@@ -107,7 +107,7 @@ export class EventTableComponent implements OnInit {
     if(this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
-    if(this.dragable) {
+    if(this.draggable) {
       this.displayedColumns.unshift('dragHandeler')
     }
     // const row = this.fb.group({});

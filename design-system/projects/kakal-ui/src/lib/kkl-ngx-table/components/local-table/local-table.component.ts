@@ -59,7 +59,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   @ViewChild('wrapperRef') wrapperRef: ElementRef;
   @ViewChildren(MatExpansionPanel)
   matExpansionPanelElement: QueryList<MatExpansionPanel>;
-  
+
   @Input() noMobile: boolean = false;
   destroySubject$: Subject<void> = new Subject();
 
@@ -84,9 +84,10 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
 
   @Input() headline: string = 'Something';
 
-  dragable: boolean;
-  @Input() set draggable(val: boolean) {
-    this.dragable = val;
+  draggable: boolean;
+  
+  @Input() set drag(val: boolean) {
+    this.draggable = val;
   }
   dragDisabled = true;
 
