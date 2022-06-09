@@ -187,9 +187,9 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     this.ngxTable.offset = 0;
   }
 
-  onActionClicked(butt: RowActionModel, obj: T, key: string) {
-    if (normalActions.includes(butt.type)) {
-      switch (butt.type) {
+  onActionClicked(event: RowActionModel, obj: any, key: string, rowIndex : number) {
+    if (normalActions.includes(event.type)) {
+      switch (event.type) {
         case 'inlineDelete':
           this.dialogService
             .openAlert({
@@ -211,14 +211,14 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
           this.onExpandEvent(obj);
           break;
         case 'inlineNavigation':
-          const url = this.routerService.getUrl(butt.navigation);
+          const url = this.routerService.getUrl(event.navigation);
           this.routerService.navigate(url);
           break;
         default:
           break;
       }
     } else {
-      this.actionClicked.emit({ action: butt.type, row: obj, key: key });
+      this.actionClicked.emit({ action: event.type, row: obj, key: key });
     }
   }
 
@@ -237,7 +237,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onSaveEvent(row: T) {
+  onSaveEvent(row: any, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -254,7 +254,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }
   }
 
-  onCancelEvent(row: T) {
+  onCancelEvent(row: any, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -287,7 +287,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onRowEditChange(event, row : T, key) {
+  onRowEditChange(event, row, key, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItemsData[index][key] = event;
   }
