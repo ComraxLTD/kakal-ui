@@ -29,8 +29,7 @@
           <ng-container *ngFor="let action of rowActions">
             <kkl-action-button
               [matTooltip]="action.label"
-              [svgIcon]="action?.svgIcon"
-              [matIcon]="action?.matIcon"
+              [svgIcon]="action.svgIcon"
               (clickEvent)="onActionClicked(action)"
             ></kkl-action-button>
           </ng-container>
