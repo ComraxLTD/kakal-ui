@@ -30,7 +30,11 @@ export interface DataEx {
   providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
-  actions: ButtonModel[] = [{ type: 'file' }, { icon: 'add', type: 'add' }];
+  actions: ButtonModel[] = [
+    { type: 'file' },
+    { svgIcon: 'add', type: 'add' },
+    { svgIcon: 'estate', type: 'estate' },
+  ];
 
   steps: CardStep[] = [
     {

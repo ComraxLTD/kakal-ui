@@ -1,4 +1,9 @@
-<kkl-steps-layout kklNextNavigation [steps]="steps" [baseUrl]="'reservation'">
+<kkl-steps-layout
+  kklNextNavigation
+  [steps]="steps"
+  [actions]="actions"
+  [baseUrl]="'reservation'"
+>
   <kkl-drawer-document drawer></kkl-drawer-document>
   <router-outlet content></router-outlet>
 </kkl-steps-layout>
