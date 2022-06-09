@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, mergeMap, startWith } from 'rxjs';
+import { BehaviorSubject, map, mergeMap, startWith, Subject } from 'rxjs';
 import { RouterService, BreakpointService } from '../../../services/services';
 export interface Portion {
   content: number;
@@ -10,7 +10,6 @@ export interface Portion {
   hasButton: boolean;
 }
 export interface DrawerPortion {
-
   // ** width in % of the drawer when open - 0 by default
   open: number;
 
@@ -27,6 +26,7 @@ export interface DrawerPortion {
 export class LayoutService {
   private drawerState$: BehaviorSubject<DrawerPortion>;
 
+  private openChanged$: Subject<boolean>;
 
   constructor(
     private breakpointService: BreakpointService,
@@ -37,6 +37,8 @@ export class LayoutService {
       close: 0,
       hasButton: false,
     });
+
+    this.openChanged$ = new Subject();
   }
 
   getDrawerPortion() {
@@ -53,6 +55,14 @@ export class LayoutService {
 
   destroyDrawer() {
     this.drawerState$.next({ close: 0, open: 0, hasButton: false });
+  }
+
+  emitOpenChanged(value: boolean) {
+    this.openChanged$.next(value);
+  }
+
+  listenToOpenChanged() {
+    return this.openChanged$.asObservable();
   }
 
   // routing logic

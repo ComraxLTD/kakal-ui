@@ -24,7 +24,7 @@ export class RouterService {
     // this.listenToRoute$();
   }
 
-  getUrl(path: string) {
+  getUrl(path: string): string {
     const routes = this.router.url.split('/');
     routes.unshift();
     routes.pop();
@@ -32,7 +32,7 @@ export class RouterService {
     return routes.join('/');
   }
 
-  getUrlFromBase(path: string, base: string) {
+  getUrlFromBase(path: string, base: string): string {
     const routes = this.router.url.split('/');
     routes.unshift();
 
@@ -48,14 +48,14 @@ export class RouterService {
     }
   }
 
-  getParentPath() {
+  getParentPath(): string {
     const routes = this.router.url.split('/');
     routes.unshift();
     routes.pop();
     return routes.pop();
   }
 
-  goBack() {
+  goBack(): void {
     this.history.pop();
     if (this.history.length > 0) {
       this.location.back();
@@ -104,13 +104,14 @@ export class RouterService {
     }, {});
   }
 
-  async navigate(path: string) {
+  async navigate(path: string): Promise<void> {
     try {
       await this.router.navigateByUrl(path);
     } catch (err) {
       console.log(err);
     }
   }
+
   setLastPathWithSteps(path: string, steps: CardStep[]): string {
     let currentStep: CardStep;
     const pathArr = path.split('/');
@@ -122,7 +123,7 @@ export class RouterService {
     return currentStep?.path;
   }
 
-  setLastPath(url: string) {
+  setLastPath(url: string) : string{
     const path = url.split('/');
     return path[path.length - 1];
   }

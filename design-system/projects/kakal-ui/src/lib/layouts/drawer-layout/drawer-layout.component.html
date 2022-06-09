@@ -5,7 +5,7 @@
         <div fxFlex="95" fxFill>
           <ng-container *ngIf="drawer.opened">
             <button
-              (click)="drawer.toggle()"
+              (click)="onDrawerToggle(drawer)"
               mat-fab
               [ngClass]="{
                 'kkl-drawer-button': true,

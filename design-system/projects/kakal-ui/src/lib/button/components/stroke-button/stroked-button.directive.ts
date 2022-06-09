@@ -1,5 +1,5 @@
 import { Directive, ElementRef, HostBinding, Input } from '@angular/core';
-import { palletteClassesMap } from '../../../styles/theme';
+import { palletteClassesMap } from '../../../../styles/theme';
 
 @Directive({
   selector: '[kkl-stroked-button]',
@@ -28,7 +28,7 @@ export class KKLStrokedButtonDirective {
     this._color = value;
   }
 
-  constructor(private el: ElementRef) {}
+  constructor() {}
   private baseClass = `mat-focus-indicator mat-button-base mat-stroked-button `;
 
   ngOnInit(): void {
