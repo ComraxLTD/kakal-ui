@@ -120,7 +120,7 @@
                   [row]="row"
                   [data]="value"
                   [question]="column"
-                  (buttClick)="buttonClick(column.button, row, column.key)"
+                  (actionClicked)="onActionClicked(column.button, row, column.key)"
                   [colsTemplate]="colsTemplate"
                 ></kkl-table-cell>
               </ng-container>
@@ -218,7 +218,7 @@
                           [row]="item"
                           [data]="item[col.key]"
                           [question]="col"
-                          (buttClick)="buttonClick(col.button, item, col.key)"
+                          (actionClicked)="onActionClicked(col.button, item, col.key)"
                           [colsTemplate]="colsTemplate"
                         ></kkl-table-cell>
                       </td>
@@ -356,7 +356,7 @@
                         [row]="item"
                         [data]="item[col.key]"
                         [question]="col"
-                        (buttClick)="buttonClick(col.button, item, col.key)"
+                        (actionClicked)="onActionClicked(col.button, item, col.key)"
                         [colsTemplate]="colsTemplate"
                       ></kkl-table-cell>
                     </td>
