@@ -85,7 +85,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   @Input() headline: string = 'Something';
 
   draggable: boolean;
-  
+
   @Input() set drag(val: boolean) {
     this.draggable = val;
   }
@@ -191,6 +191,12 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   }
 
   onActionClicked(event: RowActionModel, row: T, key: string, rowIndex : number) {
+
+    console.log(event)
+    console.log(row)
+    console.log(rowIndex)
+
+
     if (normalActions.includes(event.type)) {
       switch (event.type) {
         case 'inlineDelete':

@@ -112,7 +112,7 @@
               ngx-datatable-cell-template
             >
               <ng-container
-                *ngTemplateOutlet=" (!(row | arrIncludes: editItems) || column.notEditable ) ? dataTemplate : editTemplate; context {$implicit : row, column, rowIndex, value}"
+                *ngTemplateOutlet="(!(row | arrIncludes: editItems) || column.notEditable ) ? dataTemplate : editTemplate; context {$implicit : row, column, rowIndex, value}"
               ></ng-container>
               <!-- <ng-container
                 *ngIf="
@@ -193,7 +193,7 @@
       </ngx-datatable>
     </div>
     <div [ngClass]="{ 'hidden-class': !(oneColumns.length > viewSize) }">
-      <ng-container *ngFor="let item of dataTable; let rowIndex = index">
+      <ng-container *ngFor="let row of dataTable; let rowIndex = index">
         <div class="tablet">
           <mat-card
             *ngIf="
@@ -210,11 +210,15 @@
                 "
               ></ng-container>
               <div fxLayout="row wrap">
-                <ng-container *ngFor="let col of oneColumns">
-                  <tr>
+                <ng-container *ngFor="let column of oneColumns">
+                  <ng-container
+                    *ngTemplateOutlet=" !(row | arrIncludes: editItems) || column.notEditable ? dataTemplate : editTemplate;
+                    context {$implicit : row, column, rowIndex, ui : 'tablet'}"
+                  ></ng-container>
+                  <!-- <tr>
                     <ng-container
                       *ngIf="
-                        !(item | arrIncludes: editItems) || col.notEditable;
+                        !(row | arrIncludes: editItems) || col.notEditable;
                         else editBlock
                       "
                     >
@@ -225,11 +229,11 @@
                       </header>
                       <td>
                         <kkl-table-cell
-                          [row]="item"
-                          [data]="item[col.key]"
+                          [row]="row"
+                          [data]="row[col.key]"
                           [column]="col"
                           (actionClicked)="
-                            onActionClicked(col.button, item, col.key, rowIndex)
+                            onActionClicked(col.button, row, col.key, rowIndex)
                           "
                           [colsTemplate]="colsTemplate"
                         ></kkl-table-cell>
@@ -238,13 +242,13 @@
                     <ng-template #editBlock>
                       <td colspan="2">
                         <kkl-ngx-table-form
-                          [initial]="editItemsData[item | arrIndex: editItems]"
+                          [initial]="editItemsData[row | arrIndex: editItems]"
                           [column]="col"
-                          (rowEdited)="onRowEditChange($event, item, col.key)"
+                          (rowEdited)="onRowEditChange($event, row, col.key)"
                         ></kkl-ngx-table-form>
                       </td>
                     </ng-template>
-                  </tr>
+                  </tr> -->
                 </ng-container>
 
                 <ng-container *ngIf="localButtons?.length">
@@ -258,7 +262,7 @@
                           !(item | arrIncludes: editItems)
                             ? actionsTemplate
                             : addButtonTemplate;
-                          context: { $implicit: item }
+                          context: { $implicit: row }
                         "
                       ></ng-container>
                     </td>
@@ -266,13 +270,13 @@
                 </ng-container>
               </div>
             </div>
-            <ng-container *ngIf="item | arrIncludes: expanded">
+            <ng-container *ngIf="row | arrIncludes: expanded">
               <div class="example-element-detail">
                 <ng-container *ngIf="expandTemplate">
                   <ng-template
                     *ngTemplateOutlet="
                       expandTemplate;
-                      context: { $implicit: item }
+                      context: { $implicit: row }
                     "
                   ></ng-template>
                 </ng-container>
@@ -449,8 +453,28 @@
   let-ui="ui"
 >
   <ng-container [ngSwitch]="ui">
-    <ng-container *ngSwitchCase="'tablet'">output</ng-container>
+    <ng-container *ngSwitchCase="'tablet'">
+      <tr>
+        <header>
+          <span class="kkl-display-group-label">
+            {{ column.label }}
+          </span>
+        </header>
+        <td>
+          <kkl-table-cell
+            [row]="row"
+            [data]="row[column.key]"
+            [column]="column"
+            (actionClicked)="
+            onActionClicked(column.button, row, column.key, rowIndex)
+            "
+            [colsTemplate]="colsTemplate"
+          ></kkl-table-cell>
+        </td>
+      </tr>
+    </ng-container>
     <ng-container *ngSwitchCase="'mobile'">output</ng-container>
+
     <ng-container *ngSwitchDefault>
       <kkl-table-cell
         [row]="row"
