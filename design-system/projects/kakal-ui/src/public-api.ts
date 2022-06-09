@@ -12,6 +12,9 @@ export * from './lib/button/components/add-button/add-button.component';
 export * from './lib/button/components/stroke-button/stroke-button.component';
 export * from './lib/button/components/stroke-button/stroked-button.directive';
 
+export * from './lib/button/components/action-button/action-button.component';
+export * from './lib/button/components/action-button/action-button.directive';
+
 export * from './lib/button/components/sort-button/sort-button.component';
 
 export * from './lib/button/directives/button.directive';
