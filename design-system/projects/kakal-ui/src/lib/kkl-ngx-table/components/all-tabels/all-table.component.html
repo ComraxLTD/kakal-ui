@@ -99,7 +99,7 @@
               </button>
               <mat-menu #menu="matMenu" (closed)="onSearchChanged()">
                 <kkl-ngx-table-form
-                  [question]="column"
+                  [column]="column"
                   (rowEdited)="onFilterChanged($event, column.key)"
                 ></kkl-ngx-table-form>
                 <kkl-sort-button (click)="sort()"></kkl-sort-button>
@@ -127,7 +127,7 @@
               <ng-template #editBlock>
                 <kkl-ngx-table-form
                   [initial]="editItemsData[row | arrIndex: editItems]"
-                  [question]="column"
+                  [column]="column"
                   (rowEdited)="onRowEditChange($event, row, column.key)"
                 ></kkl-ngx-table-form>
               </ng-template>
@@ -227,7 +227,7 @@
                       <td colspan="2">
                         <kkl-ngx-table-form
                           [initial]="editItemsData[item | arrIndex: editItems]"
-                          [question]="col"
+                          [column]="col"
                           (rowEdited)="onRowEditChange($event, item, col.key)"
                         ></kkl-ngx-table-form>
                       </td>
@@ -365,7 +365,7 @@
                     <td colspan="2">
                       <kkl-ngx-table-form
                         [initial]="editItemsData[item | arrIndex: editItems]"
-                        [question]="col"
+                        [column]="col"
                         (rowEdited)="onRowEditChange($event, item, col.key)"
                       ></kkl-ngx-table-form>
                     </td>
