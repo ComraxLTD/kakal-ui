@@ -187,7 +187,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     this.ngxTable.offset = 0;
   }
 
-  onActionClicked(event: RowActionModel, obj: T, key: string, rowIndex : number) {
+  onActionClicked(event: RowActionModel, row: T, key: string, rowIndex : number) {
     if (normalActions.includes(event.type)) {
       switch (event.type) {
         case 'inlineDelete':
@@ -199,16 +199,16 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
             .afterClosed()
             .subscribe((result) => {
               if (result) {
-                this.deleteRow.emit(obj);
+                this.deleteRow.emit(row);
               }
             });
           break;
         case 'inlineEdit':
-          this.onEditEvent(obj);
+          this.onEditEvent(row);
           break;
         case 'inlineExpand':
-          this.expandRow.emit({ row: obj, key: key });
-          this.onExpandEvent(obj);
+          this.expandRow.emit({ row: row, key: key });
+          this.onExpandEvent(row);
           break;
         case 'inlineNavigation':
           const url = this.routerService.getUrl(event.navigation);
@@ -218,13 +218,13 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
           break;
       }
     } else {
-      this.actionClicked.emit({ action: event.type, row: obj, key: key });
+      this.actionClicked.emit({ action: event.type, row: row, key: key });
     }
   }
 
-  onExpandEvent(obj: T) {
-    this.ngxTable.rowDetail.toggleExpandRow(obj);
-    const ind = this.expanded.indexOf(obj);
+  onExpandEvent(row: T) {
+    this.ngxTable.rowDetail.toggleExpandRow(row);
+    const ind = this.expanded.indexOf(row);
     if (ind == -1) {
       this.expanded.push(obj);
       this.expanded = [...this.expanded];
@@ -271,9 +271,9 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }
   }
 
-  onEditEvent(obj: T) {
-    this.editItems = [...this.editItems, obj];
-    this.editItemsData = [...this.editItemsData, Object.assign({}, obj)];
+  onEditEvent(row: T) {
+    this.editItems = [...this.editItems, row];
+    this.editItemsData = [...this.editItemsData, Object.assign({}, row)];
   }
 
   onNewRowEvent() {
