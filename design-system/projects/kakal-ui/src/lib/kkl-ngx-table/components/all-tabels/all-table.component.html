@@ -122,7 +122,7 @@
                   [data]="value"
                   [column]="column"
                   (actionClicked)="
-                    onActionClicked(column.button, row, column.key)
+                    onActionClicked(column.button, row, column.key, rowIndex)
                   "
                   [colsTemplate]="colsTemplate"
                 ></kkl-table-cell>
@@ -131,7 +131,7 @@
                 <kkl-ngx-table-form
                   [initial]="editItemsData[row | arrIndex: editItems]"
                   [question]="column"
-                  (rowEdited)="onRowEditChange($event, row, column.key)"
+                  (rowEdited)="onRowEditChange($event, row, column.key, rowIndex)"
                 ></kkl-ngx-table-form>
               </ng-template>
             </ng-template>
@@ -222,7 +222,7 @@
                           [data]="item[col.key]"
                           [column]="col"
                           (actionClicked)="
-                            onActionClicked(col.button, item, col.key)
+                            onActionClicked(col.button, item, col.key, rowIndex)
                           "
                           [colsTemplate]="colsTemplate"
                         ></kkl-table-cell>
@@ -362,7 +362,7 @@
                         [data]="item[col.key]"
                         [column]="col"
                         (actionClicked)="
-                          onActionClicked(col.button, item, col.key)
+                          onActionClicked(col.button, item, col.key, rowIndex)
                         "
                         [colsTemplate]="colsTemplate"
                       ></kkl-table-cell>

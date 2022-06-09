@@ -235,7 +235,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onSaveEvent(row: any) {
+  onSaveEvent(row: any, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -252,7 +252,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onCancelEvent(row: any) {
+  onCancelEvent(row: any, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -285,7 +285,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onRowEditChange(event, row, key) {
+  onRowEditChange(event, row, key, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItemsData[index][key] = event;
   }
