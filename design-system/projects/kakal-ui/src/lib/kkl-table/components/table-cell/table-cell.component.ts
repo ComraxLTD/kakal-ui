@@ -14,7 +14,7 @@ export class TableCellComponent implements OnInit  {
 
   column!: string;
 
-  @Output() actionClicked = new EventEmitter<null>();
+  @Output() actionClicked = new EventEmitter<void>();
 
   constructor() {
   }
@@ -22,8 +22,8 @@ export class TableCellComponent implements OnInit  {
     this.column = this.question.key;
   }
 
-  buttonClick() {
-    this.actionClicked.emit(null);
+  onClick() {
+    this.actionClicked.emit();
   }
 
 
