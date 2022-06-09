@@ -22,7 +22,6 @@ export interface DataEx {
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
   actions: ButtonModel[] = [
@@ -110,6 +109,7 @@ export class LayoutComponent implements OnInit {
     });
 
     this.navbarBottomService.setShowNext(true);
+
   }
 
   ngOnDestroy() {
