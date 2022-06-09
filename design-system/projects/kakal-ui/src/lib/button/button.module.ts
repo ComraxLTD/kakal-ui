@@ -17,7 +17,7 @@ import { KKLStrokedButtonDirective } from './components/stroke-button/stroked-bu
 
 import { KKLButtonDirective } from './directives/button.directive';
 import { KKLDirectivesModule } from '../directives/directives.module';
-import { KKLActionButtonDirective } from './directives/action-button.directive';
+import { KKLActionButtonDirective } from './components/action-button/action-button.directive';
 import { KKLFormButtonDirective } from './directives/form-button.directive';
 import { ActionButtonComponent } from './components/action-button/action-button.component';
 
