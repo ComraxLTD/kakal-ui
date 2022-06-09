@@ -16,7 +16,7 @@ export interface ActionButtonState {
 export class StepsLayoutService {
   private actionState$: Subject<ActionButtonState> = new Subject();
 
-  private buttonClicked$: Subject<ButtonModel> = new Subject();
+  private actionClicked$: Subject<ButtonModel> = new Subject();
 
   private stepsSelectionEvent$: BehaviorSubject<StepsSelectionEvent>;
 
@@ -63,7 +63,7 @@ export class StepsLayoutService {
 
   // *** use to listen to the left action buttons
   listenToActionButtons(filters?: string[]): Observable<ButtonModel> {
-    return this.buttonClicked$
+    return this.actionClicked$
       .asObservable()
       .pipe(
         filter((action: ButtonModel) =>
@@ -73,8 +73,8 @@ export class StepsLayoutService {
   }
 
   // *** use to set the action buttons
-  emitActionButton(butt: ButtonModel) {
-    this.buttonClicked$.next(butt);
+  emitActionButton(button: ButtonModel) {
+    this.actionClicked$.next(button);
   }
 
   // *** use to show drawer button

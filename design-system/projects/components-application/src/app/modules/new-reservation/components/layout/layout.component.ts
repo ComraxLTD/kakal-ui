@@ -3,18 +3,12 @@ import {
   ButtonModel,
   CardStep,
   DisplayItem,
-  FormActions,
   LayoutService,
   NavbarBottomService,
   PageHeadlineService,
-  RouterService,
   StatusProgress,
   StepsLayoutService,
 } from '../../../../../../../kakal-ui/src/public-api';
-import { NewReservationService } from '../../new-reservation.service';
-import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { map, Observable } from 'rxjs';
-import { DrawerLayoutService } from '../../../../../../../kakal-ui/src/lib/layouts/drawer-layout/drawer-layout.service';
 
 export interface DataEx {
   budget: number;
@@ -28,15 +22,13 @@ export interface DataEx {
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
-  providers: [StepsLayoutService],
 })
 export class LayoutComponent implements OnInit {
   actions: ButtonModel[] = [
     { type: 'file' },
-    { type: 'estate', svgIcon: 'estate', label: 'הוסף' },
-    { type: 'add', matIcon: 'add', label: 'הוסף' },
+    { svgIcon: 'add', type: 'add' },
+    { svgIcon: 'estate', type: 'estate' },
   ];
-  actions$: Observable<ButtonModel[]>;
 
   steps: CardStep[] = [
     {
@@ -119,11 +111,6 @@ export class LayoutComponent implements OnInit {
 
     this.navbarBottomService.setShowNext(true);
 
-    // this.stepsLayoutService
-    //   .listenToActionButtons(['estate'])
-    //   .subscribe((button) => {
-    //     alert(button.type);
-    //   });
   }
 
   ngOnDestroy() {

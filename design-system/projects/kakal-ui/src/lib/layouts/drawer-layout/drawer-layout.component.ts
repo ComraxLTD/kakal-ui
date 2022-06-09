@@ -32,7 +32,6 @@ export class DrawerLayoutComponent implements OnInit {
 
   onDrawerToggle(drawer: MatDrawer) {
     drawer.toggle();
-    console.log(drawer.opened);
     this.drawerLayoutService.emitToggle(drawer.opened);
   }
 }
