@@ -204,7 +204,10 @@
           >
             <div fxLayout="row" fxLayoutGap="3rem">
               <ng-container
-                *ngTemplateOutlet="headlineTemplate; context: { $implicit: rowIndex }"
+                *ngTemplateOutlet="
+                  headlineTemplate;
+                  context: { $implicit: rowIndex }
+                "
               ></ng-container>
               <div fxLayout="row wrap">
                 <ng-container *ngFor="let col of oneColumns">
@@ -443,14 +446,23 @@
   let-column="column"
   let-rowIndex="rowIndex"
   let-value="value"
+  let-ui="ui"
 >
-  <kkl-table-cell
-    [row]="row"
-    [data]="value"
-    [column]="column"
-    (actionClicked)="onActionClicked(column.button, row, column.key, rowIndex)"
-    [colsTemplate]="colsTemplate"
-  ></kkl-table-cell>
+  <ng-container [ngSwitch]="ui">
+    <ng-container *ngSwitchCase="'tablet'">output</ng-container>
+    <ng-container *ngSwitchCase="'mobile'">output</ng-container>
+    <ng-container *ngSwitchDefault>
+      <kkl-table-cell
+        [row]="row"
+        [data]="value"
+        [column]="column"
+        (actionClicked)="
+          onActionClicked(column.button, row, column.key, rowIndex)
+        "
+        [colsTemplate]="colsTemplate"
+      ></kkl-table-cell
+    ></ng-container>
+  </ng-container>
 </ng-template>
 
 <ng-template #editTemplate let-row let-column="column" let-rowIndex="rowIndex">
