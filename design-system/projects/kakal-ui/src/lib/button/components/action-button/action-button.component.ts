@@ -9,7 +9,6 @@ import { IconService } from '../../../icon/icons.service';
 export class ActionButtonComponent implements OnInit {
   @Input() label: string;
   @Input() svgIcon: string;
-  @Input() matIcon: string;
 
   @Output() clickEvent: EventEmitter<void> = new EventEmitter();
 
