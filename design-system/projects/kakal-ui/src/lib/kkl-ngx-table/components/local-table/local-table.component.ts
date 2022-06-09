@@ -47,7 +47,7 @@ const normalActions = [
   templateUrl: '../all-tabels/all-table.component.html',
   styleUrls: ['../all-tabels/all-table.component.scss'],
 })
-export class NgxLocalTableComponent implements OnInit, AfterViewInit {
+export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   ColumnMode = ColumnMode;
   @ViewChild('myTable') ngxTable: DatatableComponent;
   // control the highet of expand panal
@@ -56,7 +56,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   // control the size of div
   @ViewChild('myIdentifier') myIdentifier: ElementRef;
-  @ViewChildren(MatExpansionPanel) matExpansionPanelElement: QueryList<MatExpansionPanel>
+  @ViewChildren(MatExpansionPanel)
+  matExpansionPanelElement: QueryList<MatExpansionPanel>;
   @Input() noMobile: boolean = false;
   destroySubject$: Subject<void> = new Subject();
 
@@ -94,9 +95,10 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.hasSummary = value.some((a) => a.sumFunc);
   }
 
-  dataTable: any[];
-  allData: any[];
-  @Input() set dataSource(value: any[]) {
+  dataTable: T[];
+  allData: T[];
+
+  @Input() set dataSource(value: T[]) {
     if (value) {
       this.allData = [...value];
       this.dataTable = value;
@@ -118,8 +120,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   sort!: MatSort;
 
   searchRow = {};
-  editItems = [];
-  editItemsData = [];
+  editItems : T[] = [];
+  editItemsData : T[] = [];
 
   isDesktop: boolean = true;
   viewSize!: number;
@@ -185,7 +187,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     this.ngxTable.offset = 0;
   }
 
-  onActionClicked(butt: RowActionModel, obj: any, key: string) {
+  onActionClicked(butt: RowActionModel, obj: T, key: string) {
     if (normalActions.includes(butt.type)) {
       switch (butt.type) {
         case 'inlineDelete':
@@ -220,7 +222,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onExpandEvent(obj: any) {
+  onExpandEvent(obj: T) {
     this.ngxTable.rowDetail.toggleExpandRow(obj);
     const ind = this.expanded.indexOf(obj);
     if (ind == -1) {
@@ -235,7 +237,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onSaveEvent(row: any) {
+  onSaveEvent(row: T) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -252,7 +254,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onCancelEvent(row: any) {
+  onCancelEvent(row: T) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -269,23 +271,23 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onEditEvent(obj: any) {
+  onEditEvent(obj: T) {
     this.editItems = [...this.editItems, obj];
     this.editItemsData = [...this.editItemsData, Object.assign({}, obj)];
   }
 
   onNewRowEvent() {
-    const rowData: any = {} as any;
+    const rowData: T = {} as T;
     this.editItems = [...this.editItems, rowData];
     this.editItemsData = [...this.editItemsData, Object.assign({}, rowData)];
     this.dataTable.unshift(rowData);
     this.dataTable = [...this.dataTable];
     setTimeout(() => {
-      this.matExpansionPanelElement.first.open()
+      this.matExpansionPanelElement.first.open();
     }, 300);
   }
 
-  onRowEditChange(event, row, key) {
+  onRowEditChange(event, row : T, key) {
     const index = this.editItems.indexOf(row);
     this.editItemsData[index][key] = event;
   }
