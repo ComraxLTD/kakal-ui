@@ -68,7 +68,7 @@
             let-expanded="expanded"
             ngx-datatable-row-detail-template
           >
-            <div *ngIf="expanded" class="example-element-detail" #expandRef>
+            <div *ngIf="expanded" class="expand-element-detail" #expandRef>
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
@@ -271,7 +271,7 @@
               </div>
             </div>
             <ng-container *ngIf="row | arrIncludes: expanded">
-              <div class="example-element-detail">
+              <div class="expand-element-detail">
                 <ng-container *ngIf="expandTemplate">
                   <ng-template
                     *ngTemplateOutlet="
@@ -409,7 +409,7 @@
             </table>
 
             <ng-container *ngIf="item | arrIncludes: expanded">
-              <div class="example-element-detail">
+              <div class="expand-element-detail">
                 <ng-container *ngIf="expandTemplate">
                   <ng-template
                     *ngTemplateOutlet="
@@ -466,7 +466,7 @@
             [data]="row[column.key]"
             [column]="column"
             (actionClicked)="
-            onActionClicked(column.button, row, column.key, rowIndex)
+              onActionClicked(column.button, row, column.key, rowIndex)
             "
             [colsTemplate]="colsTemplate"
           ></kkl-table-cell>

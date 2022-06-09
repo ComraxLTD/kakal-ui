@@ -124,7 +124,7 @@
                     border-bottom: none !important;
                   }
                 }
-                & > .example-element-detail {
+                & > .expand-element-detail {
                   padding: 10px 10px;
                   background-color: white !important;
                   border-top: dashed 1.5px main.color(primaryLight);
@@ -198,7 +198,7 @@
           }
         }
         // inner content of expand table tablet view
-        .example-element-detail{
+        .expand-element-detail{
           margin: 50px;
           @include mat.elevation(2);
         }

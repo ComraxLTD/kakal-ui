@@ -167,7 +167,7 @@
             >
               <div
                 *ngIf="element == expandedElement"
-                class="example-element-detail"
+                class="expand-element-detail"
               >
                 <ng-container *ngIf="expandTemplate">
                   <ng-template
@@ -387,7 +387,7 @@
               </tr>
             </table>
 
-            <div *ngIf="element == expandedElement" class="example-element-detail">
+            <div *ngIf="element == expandedElement" class="expand-element-detail">
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
