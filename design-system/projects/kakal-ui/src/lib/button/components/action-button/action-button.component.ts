@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { IconService } from '../../../icon/icons.service';
 
 @Component({
-  selector: 'pl-action-button',
+  selector: 'kkl-action-button',
   templateUrl: './action-button.component.html',
-  styleUrls: ['./action-button.component.scss']
+  styleUrls: ['./action-button.component.scss'],
 })
 export class ActionButtonComponent implements OnInit {
+  @Input() label: string;
+  @Input() svgIcon: string;
+  @Input() matIcon: string;
 
-  constructor() { }
+  @Output() clickEvent: EventEmitter<void> = new EventEmitter();
+
+  constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
+    if (this.svgIcon) {
+      this.iconService.setIcon(this.svgIcon);
+    }
   }
 
+  onClick() {
+    this.clickEvent.emit();
+  }
 }
