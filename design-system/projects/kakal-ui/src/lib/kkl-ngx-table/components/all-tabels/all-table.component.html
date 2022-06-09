@@ -193,11 +193,8 @@
       </ngx-datatable>
     </div>
     <div [ngClass]="{ 'hidden-class': !(oneColumns.length > viewSize) }">
-      <ng-container *ngIf="dataTable">
-        <div
-          *ngFor="let item of dataTable; let rowIndex = index"
-          class="tablet"
-        >
+      <ng-container *ngFor="let item of dataTable; let rowIndex = index">
+        <div class="tablet">
           <mat-card
             *ngIf="
               !paging ||
@@ -206,9 +203,9 @@
             "
           >
             <div fxLayout="row" fxLayoutGap="3rem">
-              <kkl-typography [size]="2" [weight]="600">
-                {{ headline }}. {{ rowIndex + 1 }}
-              </kkl-typography>
+              <ng-container
+                *ngTemplateOutlet="headlineTemplate; context: { $implicit: rowIndex }"
+              ></ng-container>
               <div fxLayout="row wrap">
                 <ng-container *ngFor="let col of oneColumns">
                   <tr>
@@ -451,7 +448,7 @@
     [row]="row"
     [data]="value"
     [column]="column"
-    (buttClick)="onActionClicked(column.button, row, column.key, rowIndex)"
+    (actionClicked)="onActionClicked(column.button, row, column.key, rowIndex)"
     [colsTemplate]="colsTemplate"
   ></kkl-table-cell>
 </ng-template>
@@ -516,4 +513,10 @@
       <kkl-icon key="cancel"></kkl-icon>
     </button>
   </div>
+</ng-template>
+
+<ng-template #headlineTemplate let-rowIndex>
+  <kkl-typography [size]="2" [weight]="600">
+    {{ headline }}. {{ rowIndex + 1 }}
+  </kkl-typography>
 </ng-template>
