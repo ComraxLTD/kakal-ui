@@ -99,7 +99,7 @@
               </button>
               <mat-menu #menu="matMenu" (closed)="onSearchChanged()">
                 <kkl-ngx-table-form
-                  [question]="column"
+                  [column]="column"
                   (rowEdited)="onFilterChanged($event, column.key)"
                 ></kkl-ngx-table-form>
                 <kkl-sort-button (click)="sort()"></kkl-sort-button>
@@ -124,13 +124,14 @@
                   [colsTemplate]="colsTemplate"
                 ></kkl-table-cell>
               </ng-container>
-              <ng-template #editBlock>
+
+              <!-- <ng-template #editBlock>
                 <kkl-ngx-table-form
                   [initial]="editItemsData[row | arrIndex: editItems]"
-                  [question]="column"
+                  [column]="column"
                   (rowEdited)="onRowEditChange($event, row, column.key)"
                 ></kkl-ngx-table-form>
-              </ng-template>
+              </ng-template> -->
             </ng-template>
           </ngx-datatable-column>
         </ng-container>
@@ -227,7 +228,7 @@
                       <td colspan="2">
                         <kkl-ngx-table-form
                           [initial]="editItemsData[item | arrIndex: editItems]"
-                          [question]="col"
+                          [column]="col"
                           (rowEdited)="onRowEditChange($event, item, col.key)"
                         ></kkl-ngx-table-form>
                       </td>
@@ -365,7 +366,7 @@
                     <td colspan="2">
                       <kkl-ngx-table-form
                         [initial]="editItemsData[item | arrIndex: editItems]"
-                        [question]="col"
+                        [column]="col"
                         (rowEdited)="onRowEditChange($event, item, col.key)"
                       ></kkl-ngx-table-form>
                     </td>
@@ -425,6 +426,24 @@
     </ng-container>
   </main>
 </div>
+
+<ng-template #dataTemplate let-column let-row="row" let-rowIndex="rowIndex">
+  <kkl-table-cell
+    [row]="row"
+    [data]="value"
+    [question]="column"
+    (buttClick)="buttonClick(column.button, row, column.key)"
+    [colsTemplate]="colsTemplate"
+  ></kkl-table-cell>
+</ng-template>
+
+<ng-template #editTemplate let-column let-row="row" let-rowIndex="rowIndex">
+  <kkl-ngx-table-form
+    [initial]="editItemsData[row | arrIndex: editItems]"
+    [column]="column"
+    (rowEdited)="onRowEditChange($event, row, column.key)"
+  ></kkl-ngx-table-form>
+</ng-template>
 
 <ng-template #actionsTemplate let-row let-rowIndex="rowIndex">
   <div
