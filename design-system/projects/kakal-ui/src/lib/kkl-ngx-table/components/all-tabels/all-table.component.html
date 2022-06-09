@@ -112,6 +112,9 @@
               ngx-datatable-cell-template
             >
               <ng-container
+                *ngTemplateOutlet="dataTemplate; context {$implicit : row, column, rowIndex, value}"
+              ></ng-container>
+              <!-- <ng-container
                 *ngIf="
                   !(row | arrIncludes: editItems) || column.notEditable;
                   else editBlock
@@ -126,7 +129,7 @@
                   "
                   [colsTemplate]="colsTemplate"
                 ></kkl-table-cell>
-              </ng-container>
+              </ng-container> -->
 
               <!-- <ng-template #editBlock>
                 <kkl-ngx-table-form
@@ -191,7 +194,10 @@
     </div>
     <div [ngClass]="{ 'hidden-class': !(oneColumns.length > viewSize) }">
       <ng-container *ngIf="dataTable">
-        <div *ngFor="let item of dataTable; let rowIndex = index" class="tablet">
+        <div
+          *ngFor="let item of dataTable; let rowIndex = index"
+          class="tablet"
+        >
           <mat-card
             *ngIf="
               !paging ||
@@ -434,17 +440,23 @@
   </main>
 </div>
 
-<ng-template #dataTemplate let-column let-row="row" let-rowIndex="rowIndex">
+<ng-template
+  #dataTemplate
+  let-row
+  let-column="column"
+  let-rowIndex="rowIndex"
+  let-value="value"
+>
   <kkl-table-cell
     [row]="row"
     [data]="value"
-    [question]="column"
-    (buttClick)="buttonClick(column.button, row, column.key)"
+    [column]="column"
+    (buttClick)="onActionClicked(column.button, row, column.key, rowIndex)"
     [colsTemplate]="colsTemplate"
   ></kkl-table-cell>
 </ng-template>
 
-<ng-template #editTemplate let-column let-row="row" let-rowIndex="rowIndex">
+<ng-template #editTemplate let-row let-column="column" let-rowIndex="rowIndex">
   <kkl-ngx-table-form
     [initial]="editItemsData[row | arrIndex: editItems]"
     [column]="column"
