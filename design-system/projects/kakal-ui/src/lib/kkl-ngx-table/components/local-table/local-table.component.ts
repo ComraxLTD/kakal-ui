@@ -187,7 +187,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     this.ngxTable.offset = 0;
   }
 
-  onActionClicked(event: RowActionModel, obj: any, key: string, rowIndex : number) {
+  onActionClicked(event: RowActionModel, obj: T, key: string, rowIndex : number) {
     if (normalActions.includes(event.type)) {
       switch (event.type) {
         case 'inlineDelete':
@@ -237,7 +237,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onSaveEvent(row: any, rowIndex : number) {
+  onSaveEvent(row: T, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -254,7 +254,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }
   }
 
-  onCancelEvent(row: any, rowIndex : number) {
+  onCancelEvent(row: T, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItems.splice(index, 1);
     this.editItems = [...this.editItems];
@@ -287,7 +287,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }, 300);
   }
 
-  onRowEditChange(event, row, key, rowIndex : number) {
+  onRowEditChange(event, row : T, key, rowIndex : number) {
     const index = this.editItems.indexOf(row);
     this.editItemsData[index][key] = event;
   }
