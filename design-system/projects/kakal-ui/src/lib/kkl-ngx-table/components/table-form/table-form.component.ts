@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { QuestionBase } from '../../../form/models/question.model';
 import { TableBase } from '../../../kkl-table/models/table.model';
+import { KklFormChangeEvent } from '../../../mei-form/models/kkl-form-events';
 
 @Component({
   selector: 'kkl-ngx-table-form',
@@ -11,11 +12,11 @@ import { TableBase } from '../../../kkl-table/models/table.model';
 export class NgxTableFormComponent implements OnInit {
   @Input() column!: TableBase;
   @Input() initial!: any;
-  
+
   question!: QuestionBase;
   control: FormControl | FormGroup;
 
-  @Output() rowEdited = new EventEmitter<any>();
+  @Output() rowEdited = new EventEmitter<KklFormChangeEvent>();
 
   constructor() {}
   ngOnInit(): void {
@@ -52,28 +53,12 @@ export class NgxTableFormComponent implements OnInit {
     }
   }
 
-  // onQueryChanged(event, control: ControlBase) {
-  //   this.rowEdited.emit();
-  //   if(control.queryChanged) {
-  //     control.queryChanged({value: event.value, query: event.query});
-  //   }
-  // }
-  onSelectChanged(event) {
+
+  onSelectChanged(event : KklFormChangeEvent) {
     this.rowEdited.emit(event);
   }
-  // onOpenedChange(event, control: ControlBase) {
-  //   this.rowEdited.emit();
-  //   if(control.openedChange) {
-  //     control.openedChange({value: event.value, opened: event.action === KklFormActions.OPENED_SELECT});
-  //   }
-  // }
-  onValueChanged(event) {
+
+  onValueChanged(event : KklFormChangeEvent) {
     this.rowEdited.emit(event);
   }
-  // onFocusChanged(event, control: ControlBase) {
-  //   this.rowEdited.emit();
-  //   if(control.focusChanged) {
-  //     control.focusChanged(event.value);
-  //   }
-  // }
 }
