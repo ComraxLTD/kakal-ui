@@ -6,20 +6,6 @@
   (resized)="onResize($event)"
   #myIdentifier
 >
-  <!-- <button
-    class="add-table-button"
-    *ngIf="newRowAction"
-    kkl-border
-    [thick]="2"
-    mat-stroked-button
-    color="primary"
-    (click)="onNewRowEvent()"
-  >
-    <span>
-      {{ newRowAction }}
-    </span>
-    <mat-icon color="primary">add</mat-icon>
-  </button> -->
   <ng-container *ngIf="newRowAction">
     <kkl-add-button
       table-add-button
@@ -203,9 +189,11 @@
           >
             <ng-container
               *ngTemplateOutlet="
-              !(element | arrIncludes: editItems)
-              ? actions : addButtonTemplate;
-               context: { $implicit: element }"
+                !(element | arrIncludes: editItems)
+                  ? actions
+                  : addButtonTemplate;
+                context: { $implicit: element }
+              "
             ></ng-container>
           </td>
         </ng-container>
@@ -252,8 +240,18 @@
       <!-- <kkl-mobile-table [oneColumns]="oneColumns" [dataSource]="typeLocal? dataTable.filteredData : dataTable"
         [colsTemplate]="colsTemplate" [editItems]="editItems"
       ></kkl-mobile-table> -->
-      <mat-accordion class="example-headers-align" multi formArrayName="myRows" dir="rtl">
-        <ng-container *ngFor="let element of (typeLocal? dataTable?.filteredData : dataTable);let i = index">
+      <mat-accordion
+        class="example-headers-align"
+        multi
+        formArrayName="myRows"
+        dir="rtl"
+      >
+        <ng-container
+          *ngFor="
+            let element of typeLocal ? dataTable?.filteredData : dataTable;
+            let i = index
+          "
+        >
           <mat-expansion-panel
             class="expansion-panel"
             style="margin: 8px 8px"
@@ -357,7 +355,9 @@
                           [row]="element"
                           [data]="element[col.key]"
                           [question]="col"
-                          (buttClick)="buttonClick(col.button, element, col.key)"
+                          (buttClick)="
+                            buttonClick(col.button, element, col.key)
+                          "
                           [colsTemplate]="colsTemplate"
                         ></kkl-table-cell>
                       </td>
@@ -379,15 +379,20 @@
                 <td class="actions" fxLayoutAlign="space-evenly">
                   <ng-container
                     *ngTemplateOutlet="
-                    !(element | arrIncludes: editItems)
-                    ? actions : addButtonTemplate;
-                    context: { $implicit: element }"
+                      !(element | arrIncludes: editItems)
+                        ? actions
+                        : addButtonTemplate;
+                      context: { $implicit: element }
+                    "
                   ></ng-container>
                 </td>
               </tr>
             </table>
 
-            <div *ngIf="element == expandedElement" class="expand-element-detail">
+            <div
+              *ngIf="element == expandedElement"
+              class="expand-element-detail"
+            >
               <ng-container *ngIf="expandTemplate">
                 <ng-template
                   *ngTemplateOutlet="
@@ -425,14 +430,10 @@
       color="primary"
       (click)="buttonClick(butt, element, 'actions')"
     >
-      <kkl-icon
-        *ngIf="butt.icon"
-        [key]="butt.icon"
-      ></kkl-icon>
+      <kkl-icon *ngIf="butt.icon" [key]="butt.icon"></kkl-icon>
     </button>
   </ng-container>
 </ng-template>
-
 
 <ng-template #addButtonTemplate let-element>
   <kkl-stroke-button

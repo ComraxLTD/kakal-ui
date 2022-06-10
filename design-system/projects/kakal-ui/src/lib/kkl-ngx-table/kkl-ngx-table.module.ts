@@ -36,14 +36,6 @@ import { KKLTypographyModule } from '../typography/typography.module';
   declarations: [
     NgxLocalTableComponent,
     NgxTableFormComponent,
-    // EventTableComponent,
-    // EventAdvancedSearchComponent,
-    // TableFormComponent,
-    // TableCellComponent,
-    // LocalAdvancedSearchComponent,
-    // MeiFiltersComponent,
-    // KKLNewPaginatorDirective,
-    // MobileTableComponent,
   ],
   imports: [
     CommonModule,
@@ -76,15 +68,6 @@ import { KKLTypographyModule } from '../typography/typography.module';
   exports: [
     NgxLocalTableComponent,
     NgxTableFormComponent,
-    // EventTableComponent,
-    // EventAdvancedSearchComponent,
-    // TableFormComponent,
-    // TableCellComponent,
-    // KKLNewPaginatorDirective,
-    // MeiFiltersComponent,
-    // LocalAdvancedSearchComponent,
-    // MobileTableComponent,
   ],
-  // providers: [{ provide: MatPaginatorIntl, useClass: KklPaginatorService}]
 })
 export class KKLNgxTableModule {}
