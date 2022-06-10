@@ -204,9 +204,8 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   onSelectStep(event: StepsSelectionEvent): void {
     if (!this.manuel) {
       this.navigate(event.selectedStep.path);
-    } else {
-      this.stepChanged.emit(event);
     }
+    this.stepChanged.emit(event);
   }
 
   onActionClicked(event: ButtonModel): void {

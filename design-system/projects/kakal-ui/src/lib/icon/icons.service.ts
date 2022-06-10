@@ -65,7 +65,7 @@ export class IconService {
     print: AppIcons.PRINT_ICON,
     save: AppIcons.SAVE_ICON,
     clipboard: AppIcons.CLIPBOARD_ICON,
-    add_kkl: AppIcons.ADD_ICON,
+    add_kkl: AppIcons.ADD_KKL_ICON,
     email: AppIcons.EMAIL_ICON,
     logo: AppIcons.LOGO_ICON,
     location: AppIcons.LOCATION_ICON,

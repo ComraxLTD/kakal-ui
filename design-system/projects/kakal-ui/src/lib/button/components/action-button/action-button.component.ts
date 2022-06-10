@@ -9,15 +9,16 @@ import { IconService } from '../../../icon/icons.service';
 export class ActionButtonComponent implements OnInit {
   @Input() label: string;
   @Input() svgIcon: string;
-  @Input() matIcon: string;
 
   @Output() clickEvent: EventEmitter<void> = new EventEmitter();
+
+  isSvg!: boolean;
 
   constructor(private iconService: IconService) {}
 
   ngOnInit(): void {
     if (this.svgIcon) {
-      this.iconService.setIcon(this.svgIcon);
+      this.isSvg = this.iconService.setIcon(this.svgIcon);
     }
   }
 

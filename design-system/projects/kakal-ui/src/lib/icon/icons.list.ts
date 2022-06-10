@@ -552,7 +552,7 @@ width="29.56" height="32.535" viewBox="0 0 29.56 32.535"><defs>
 <path class="list" d="M219.218,398.8h-15.9a.821.821,0,1,0,0,1.641h15.9a.821.821,0,1,0,0-1.641Z" transform="translate(-190.479 -372.196)"/></g></g>
 </svg>`;
 
-export const ADD_ICON = `
+export const ADD_KKL_ICON = `
 <svg xmlns="http://www.w3.org/2000/svg"
 width="27.481" height="27.481"
 viewBox="0 0 27.481 27.481"><defs>

@@ -28,7 +28,7 @@ export class KKLStrokedButtonDirective {
     this._color = value;
   }
 
-  constructor(private el: ElementRef) {}
+  constructor() {}
   private baseClass = `mat-focus-indicator mat-button-base mat-stroked-button `;
 
   ngOnInit(): void {
