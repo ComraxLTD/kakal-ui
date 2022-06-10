@@ -38,7 +38,6 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
   }
 
   @Input() baseUrl: string;
-  @Input() prefixUrl: string;
 
   drawerAction: ButtonModel;
 
@@ -196,8 +195,7 @@ export class StepsLayoutComponent implements OnInit, OnDestroy {
 
   // NAVIGATION EVENTS SECTION
   private navigate(path: string) {
-    // const url = this.routerService.getUrlFromBase(path, this.baseUrl);
-    const url = this.prefixUrl + '/' + path;
+    const url = this.routerService.getUrlFromBase(path, this.baseUrl);
     this.routerService.navigate(url);
   }
 
