@@ -16,6 +16,7 @@ export enum KklFormActions {
 
   // Event emitted when the select panel has been toggled.
   OPENED_SELECT = 'openChanged',
+  
   CLOSED_SELECT = 'closeChanged',
 
   // Event emitted when the user is typing in simple input.

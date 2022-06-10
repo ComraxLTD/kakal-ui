@@ -86,8 +86,8 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
 
   @Input() paging: boolean = true;
 
-  dragable: boolean;
-  @Input() set draggable(val: boolean) {
+  draggable: boolean;
+  @Input() set drag(val: boolean) {
     if (val) {
       if (!this.displayedColumns.includes('dragHandeler')) {
         this.displayedColumns.unshift('dragHandeler');
@@ -100,7 +100,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
         }
       }
     }
-    this.dragable = val;
+    this.draggable = val;
   }
 
   dragDisabled = true;
@@ -148,7 +148,7 @@ export class LocalTableComponent implements OnInit, AfterViewInit {
     if (this.localButtons?.length) {
       this.displayedColumns.push('actions');
     }
-    if (this.dragable) {
+    if (this.draggable) {
       this.displayedColumns.unshift('dragHandeler');
     }
     // const row = this.fb.group({});

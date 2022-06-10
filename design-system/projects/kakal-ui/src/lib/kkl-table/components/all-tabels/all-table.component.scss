@@ -12,7 +12,7 @@ tr.example-element-row:not(.example-expanded-row):active {
   background: #efefef;
 }
 
-.example-element-detail {
+.expand-element-detail {
   // display: flex;
   // padding: 16px;
   background-color: main.color(table);
@@ -266,7 +266,7 @@ th > h4 {
     //   border-radius: 25px;
     // }
 
-    .example-element-detail {
+    .expand-element-detail {
       kkl-local-table {
         .desktop-hidden {
           display: none;
