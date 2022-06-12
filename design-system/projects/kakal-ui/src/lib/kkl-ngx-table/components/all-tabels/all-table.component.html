@@ -196,40 +196,6 @@
                     *ngTemplateOutlet=" !(row | arrIncludes: editItems) || column.notEditable ? dataTemplate : editTemplate;
                     context {$implicit : row, column, rowIndex, ui : 'tablet'}"
                   ></ng-container>
-                  <!-- <tr>
-                    <ng-container
-                      *ngIf="
-                        !(row | arrIncludes: editItems) || col.notEditable;
-                        else editBlock
-                      "
-                    >
-                      <header>
-                        <span class="kkl-display-group-label">
-                          {{ col.label }}
-                        </span>
-                      </header>
-                      <td>
-                        <kkl-table-cell
-                          [row]="row"
-                          [data]="row[col.key]"
-                          [column]="col"
-                          (actionClicked)="
-                            onActionClicked(col.button, row, col.key, rowIndex)
-                          "
-                          [colsTemplate]="colsTemplate"
-                        ></kkl-table-cell>
-                      </td>
-                    </ng-container>
-                    <ng-template #editBlock>
-                      <td colspan="2">
-                        <kkl-ngx-table-form
-                          [initial]="editItemsData[row | arrIndex: editItems]"
-                          [column]="col"
-                          (rowEdited)="onRowEditChange($event, row, col.key)"
-                        ></kkl-ngx-table-form>
-                      </td>
-                    </ng-template>
-                  </tr> -->
                 </ng-container>
 
                 <ng-container *ngIf="localButtons?.length">
@@ -450,6 +416,7 @@
               onActionClicked(column.button, row, column.key, rowIndex)
             "
             [colsTemplate]="colsTemplate"
+            [expanded]="row | arrIncludes: expanded"
           ></kkl-table-cell>
         </td>
       </tr>
@@ -465,6 +432,7 @@
           onActionClicked(column.button, row, column.key, rowIndex)
         "
         [colsTemplate]="colsTemplate"
+        [expanded]="row | arrIncludes: expanded"
       ></kkl-table-cell
     ></ng-container>
   </ng-container>

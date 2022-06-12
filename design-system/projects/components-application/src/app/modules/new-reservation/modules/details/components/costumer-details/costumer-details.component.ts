@@ -78,6 +78,12 @@ export class CostumerDetailsComponent implements OnInit {
   dataSource = [
     {
       costumerName: 'works',
+      costumerType: 'f3232',
+      contactName: 'f555',
+      cellPhone: 'fewew',
+      email: 'fr54353',
+      address: 'fewe',
+      payingCostumer: 'f4e3',
     },
   ];
 

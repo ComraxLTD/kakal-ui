@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DateFnsAdapter, MatDateFnsModule } from '@angular/material-date-fns-adapter';
+import {
+  DateFnsAdapter,
+  MatDateFnsModule,
+} from '@angular/material-date-fns-adapter';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatChipsModule } from '@angular/material/chips';
@@ -26,12 +29,12 @@ import { MeiRadiogroupComponent } from './mei-radiogroup/mei-radiogroup.componen
 import { MeiRangeDatepickerComponent } from './mei-range-datepicker/mei-range-datepicker.component';
 import { MeiSelectComponent } from './mei-select/mei-select.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { MeiTextEditorComponent } from './mei-text-editor/mei-text-editor.component';
 import { NgxEditorModule } from 'ngx-editor';
 import { MeiRangeComponent } from './mei-range/mei-range.component';
-import {MatSliderModule} from '@angular/material/slider';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatDividerModule } from '@angular/material/divider';
 import { MeiAdvancedSearchComponent } from './mei-advanced-search/mei-advanced-search.component';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -39,10 +42,6 @@ import { MeiCounterComponent } from './mei-counter/mei-counter.component';
 import { MeiCheckboxComponent } from './mei-checkbox/mei-checkbox.component';
 import { MeiToggleComponent } from './mei-toggle/mei-toggle.component';
 import { MatGridListModule } from '@angular/material/grid-list';
-// import { MeiFiltersComponent } from '../kkl-table/components/mei-filters/mei-filters.component';
-// import { TableCellPipe } from '../../public-api';
-// import { TableCellPipe } from '../mei-services/pipes/table-cell-pipe.pipe';
-// import { MeiServiceModule } from '../mei-services/mei-services.module';
 
 export const MY_MY_FORMATS = {
   parse: {
@@ -79,15 +78,49 @@ export const MY_MY_FORMATS = {
     MatDividerModule,
     MatExpansionModule,
     KKLDirectivesModule,
-    MatGridListModule
+    MatGridListModule,
   ],
-  declarations: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiAutocompleteComponent, MeiMultiAutocompleteComponent, MeiInputComponent,
-     SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiCurrencyComponent, MeiTextEditorComponent, MeiRangeComponent, MeiCounterComponent, MeiCheckboxComponent, MeiToggleComponent],
-  exports: [MeiFormComponent, MeiAdvancedSearchComponent, MeiSelectComponent, MeiMultiAutocompleteComponent, MeiAutocompleteComponent, MeiInputComponent,
-    SumInputDirective, PhoneInputDirective, MeiDatepickerComponent, MeiRangeDatepickerComponent, MeiRadiogroupComponent, MeiTextEditorComponent, MeiCurrencyComponent, MeiRangeComponent, MeiCounterComponent, MeiCheckboxComponent, MeiToggleComponent],
-    providers: [
-      { provide: DateAdapter, useClass: DateFnsAdapter },
-      { provide: MAT_DATE_LOCALE, useValue: he },
+  declarations: [
+    MeiFormComponent,
+    MeiAdvancedSearchComponent,
+    MeiSelectComponent,
+    MeiAutocompleteComponent,
+    MeiMultiAutocompleteComponent,
+    MeiInputComponent,
+    SumInputDirective,
+    PhoneInputDirective,
+    MeiDatepickerComponent,
+    MeiRangeDatepickerComponent,
+    MeiRadiogroupComponent,
+    MeiCurrencyComponent,
+    MeiTextEditorComponent,
+    MeiRangeComponent,
+    MeiCounterComponent,
+    MeiCheckboxComponent,
+    MeiToggleComponent,
+  ],
+  exports: [
+    MeiFormComponent,
+    MeiAdvancedSearchComponent,
+    MeiSelectComponent,
+    MeiMultiAutocompleteComponent,
+    MeiAutocompleteComponent,
+    MeiInputComponent,
+    SumInputDirective,
+    PhoneInputDirective,
+    MeiDatepickerComponent,
+    MeiRangeDatepickerComponent,
+    MeiRadiogroupComponent,
+    MeiTextEditorComponent,
+    MeiCurrencyComponent,
+    MeiRangeComponent,
+    MeiCounterComponent,
+    MeiCheckboxComponent,
+    MeiToggleComponent,
+  ],
+  providers: [
+    { provide: DateAdapter, useClass: DateFnsAdapter },
+    { provide: MAT_DATE_LOCALE, useValue: he },
     // {provide: MAT_DATE_FORMATS, useValue: MY_MY_FORMATS},
     // { provide: MAT_DATE_FORMATS, useValue: MAT_DATE_FNS_FORMATS },
     // { provide: MAT_DATE_FNS_FORMATS, useValue: frenchConfig }
@@ -98,6 +131,6 @@ export const MY_MY_FORMATS = {
     // },
 
     // {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
-  ]
+  ],
 })
 export class MeiFormModule {}

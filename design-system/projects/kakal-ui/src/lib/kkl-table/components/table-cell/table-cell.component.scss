@@ -2,11 +2,28 @@
 
 ::ng-deep button.mat-button.table-button {
   > span.mat-button-wrapper {
-    display: flex;
+    // display: flex;
     > span.button-text {
-      text-align: start;
-      white-space: normal !important;
-      line-height: normal !important;
+      // text-align: start;
+      // white-space: normal !important;
+      // line-height: normal !important;
     }
+  }
+}
+
+
+::ng-deep button.mat-flat-button.table-tab-button {
+  border-radius: 2rem;
+  line-height: 2rem;
+
+  > span.mat-button-wrapper {
+    border-bottom: 1px solid main.color(primary);
+  }
+
+  &.expanded {
+    color: main.color(paper) !important;
+  }
+  &:not(.expanded) {
+    color: main.color(primary) !important;
   }
 }

@@ -52,6 +52,7 @@ import { KKLPipesModule } from '../pipes/pipes.module';
     ReactiveFormsModule,
     DragDropModule,
     HttpClientModule,
+    
 
     MatTableModule,
     MatPaginatorModule,

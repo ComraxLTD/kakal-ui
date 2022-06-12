@@ -29,18 +29,6 @@
   </div>
 </ng-template>
 
-<!-- <ng-container *ngIf="question.cellTemplate; else noTemplate">
-  <div [ngSwitch]="question.cellTemplate">
-    <div *ngSwitchDefault>
-      <ng-container
-        *ngTemplateOutlet="
-          colsTemplate[question.cellTemplate];
-          context: { $implicit: data, row, column }
-        "
-      ></ng-container>
-    </div>
-  </div>
-</ng-container> -->
 <ng-template #noTemplate>
   <span
     style="width: 100%; padding: 0 5px"
@@ -93,13 +81,13 @@
 
 <ng-template #defaultButtonTemplate let-column>
   <button class="table-button" mat-button color="primary" (click)="onClick()">
-    <span class="button-text">
+    <!-- <span class="button-text"> -->
       {{
         column.button?.label
           ? column.button.label
           : (data | tableCellPipe: column.controlType)
       }}
-    </span>
+    <!-- </span> -->
     <mat-icon
       [color]="'primary'"
       *ngIf="isSvg"
@@ -112,14 +100,18 @@
 </ng-template>
 
 <ng-template #expandButtonTemplate let-column>
-  <button mat-button color="primary" (click)="onClick()">
-    <span>
-      {{
-        column.button?.label
-          ? column.button.label
-          : (data | tableCellPipe: column.controlType)
-      }}
-    </span>
-    <mat-icon [color]="'primary'">expand_more</mat-icon>
+  <button
+    class="table-tab-button"
+    [class.expanded]="expanded"
+    mat-flat-button
+    [color]="expanded && 'primary'"
+    (click)="onClick()"
+  >
+    {{
+      column.button?.label
+        ? column.button.label
+        : (data | tableCellPipe: column.controlType)
+    }}
+    <mat-icon>expand_more</mat-icon>
   </button>
 </ng-template>

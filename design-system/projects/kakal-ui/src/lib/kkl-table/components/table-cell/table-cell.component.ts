@@ -18,7 +18,7 @@ export class TableCellComponent implements OnInit {
   @Input() column!: TableBase;
   @Input() row!: any;
   @Input() data!: any;
-
+  @Input() expanded!: boolean;
   @Input() colsTemplate: { [key: string]: TemplateRef<any> } = {};
 
   columnKey!: string;

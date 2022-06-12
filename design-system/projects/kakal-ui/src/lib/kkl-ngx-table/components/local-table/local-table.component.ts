@@ -149,15 +149,15 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    setTimeout(() => {
-      const size = this.wrapperRef.nativeElement.offsetWidth;
-      this.viewSize = Math.floor(size / 130);
-      if (size <= 600 && !this.noMobile) {
-        this.isDesktop = false;
-      } else {
-        this.isDesktop = true;
-      }
-    }, 0);
+    // setTimeout(() => {
+    //   const size = this.wrapperRef.nativeElement.offsetWidth;
+    //   this.viewSize = Math.floor(size / 130);
+    //   if (size <= 600 && !this.noMobile) {
+    //     this.isDesktop = false;
+    //   } else {
+    //     this.isDesktop = true;
+    //   }
+    // }, 0);
   }
 
   onFilterChanged(event, key) {
@@ -191,11 +191,6 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
   }
 
   onActionClicked(event: RowActionModel, row: T, key: string, rowIndex : number) {
-
-    console.log(event)
-    console.log(row)
-    console.log(rowIndex)
-
 
     if (normalActions.includes(event.type)) {
       switch (event.type) {
@@ -334,6 +329,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     }
     this.onResizeExpand();
   }
+
   onResizeExpand() {
     this.expandHeight = this.expandRef?.nativeElement.offsetHeight;
     this.dataTable = [...this.dataTable];
