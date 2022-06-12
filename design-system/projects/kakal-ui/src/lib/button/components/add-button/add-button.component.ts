@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Color } from '../../../../styles/theme';
+import { Palette } from '../../../../styles/theme';
 
 @Component({
   selector: 'kkl-add-button',
@@ -7,7 +7,7 @@ import { Color } from '../../../../styles/theme';
   styleUrls: ['./add-button.component.scss'],
 })
 export class AddButtonComponent implements OnInit {
-  @Input() color: Color;
+  @Input() color: Palette;
   @Input() disabled: boolean;
 
   @Output() clickEvent: EventEmitter<void> = new EventEmitter();
