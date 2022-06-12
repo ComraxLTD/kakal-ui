@@ -30,15 +30,8 @@ export class TableCellComponent implements OnInit {
   @Output() actionClicked = new EventEmitter<void>();
 
   ngOnInit(): void {
-
-
-    // this.hasIcon = !!this.column.button.icon || this.column.button.type === 'expand_more'
-
-    console.log(this.column.button)
-
     if (this.column.button && this.column.button.icon) {
       this.isSvg = this.iconService.setIcon(this.column.button.icon);
-      console.log(this.isSvg)
     }
     this.columnKey = this.column.key;
   }
