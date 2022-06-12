@@ -11,7 +11,7 @@
     display: none !important;
   }
   // button above table
-  @media (min-width: 600px) {
+  @media screen and (min-width: 600px) {
     .button-wrapper{
       display: flex;
       .button-center-start {
@@ -22,11 +22,9 @@
     }
   }
   @media screen and (max-width: 600px) {
-    .button-wrapper{
-      .button-center-start {
-        margin: 15px auto;
-        display: block;
-      }
+    .button-center-start {
+      margin: 15px auto;
+      display: block;
     }
   }
   // the table
@@ -179,16 +177,18 @@
       margin: 10px;
       direction: rtl;
       &:nth-child(even){
-        background-color: main.color(secondLine);
+        // .card{
+          background-color: main.color(secondLine);
+        // }
       }
-      mat-card{
+      .card{
         padding: 30px 20px;
         kkl-typography{
           min-width: fit-content;
         }
         tr{
           margin: 0 50px 20px 50px;
-          width: 130px;
+          width: 120px;
           .kkl-display-group-label {
             font-size: 14px;
             font-weight: 600;
@@ -198,8 +198,10 @@
           }
         }
         // inner content of expand table tablet view
-        .example-element-detail{
+        .example-element-detail {
           margin: 50px;
+          // padding: 10px;
+          // background-color: main.color(table);
           @include mat.elevation(2);
         }
       }
