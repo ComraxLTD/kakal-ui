@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ButtonModel } from '../../button/models/button.types';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, filter, Observable, Subject } from 'rxjs';
 import { DrawerLayoutService } from '../drawer-layout/drawer-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 
@@ -16,7 +16,7 @@ export interface ActionButtonState {
 export class StepsLayoutService {
   private actionState$: Subject<ActionButtonState> = new Subject();
 
-  private buttonClicked$: Subject<ButtonModel> = new Subject();
+  private actionClicked$: Subject<ButtonModel> = new Subject();
 
   private stepsSelectionEvent$: BehaviorSubject<StepsSelectionEvent>;
 
@@ -62,13 +62,19 @@ export class StepsLayoutService {
   }
 
   // *** use to listen to the left action buttons
-  getButtonClicked(): Observable<ButtonModel> {
-    return this.buttonClicked$.asObservable();
+  listenToActionButtons(filters?: string[]): Observable<ButtonModel> {
+    return this.actionClicked$
+      .asObservable()
+      .pipe(
+        filter((action: ButtonModel) =>
+          (filters && filters.length) ? filters.includes(action.type) : true
+        )
+      );
   }
 
   // *** use to set the action buttons
-  setButtonClicked(butt: ButtonModel) {
-    this.buttonClicked$.next(butt);
+  emitActionButton(button: ButtonModel) {
+    this.actionClicked$.next(button);
   }
 
   // *** use to show drawer button

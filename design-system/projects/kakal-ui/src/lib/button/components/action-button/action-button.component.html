@@ -1,0 +1,10 @@
+<button
+  [disableRipple]="true"
+  (click)="onClick()"
+  kkl-action-button
+  mat-icon-button="true"
+  color="primary"
+>
+  <mat-icon *ngIf="isSvg" [svgIcon]="svgIcon"></mat-icon>
+  <mat-icon *ngIf="!isSvg">{{ svgIcon }}</mat-icon>
+</button>
