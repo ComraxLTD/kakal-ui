@@ -97,7 +97,7 @@ export class AppComponent {
 
         name: 'Hillyer Bowkley',
 
-        DOB: '2022-06-05T11:40:04Z',
+        dob: new Date(),
 
         occupation: 'Physical Therapy Assistant',
 
@@ -110,7 +110,7 @@ export class AppComponent {
 
         name: 'Jodie Bartholat',
 
-        DOB: '2022-09-07T04:32:27Z',
+        dob: new Date(),
 
         occupation: 'Administrative Officer',
 
@@ -123,7 +123,7 @@ export class AppComponent {
 
         name: 'Reeba Frandsen',
 
-        DOB: '2022-06-09T10:56:22Z',
+        dob: new Date(),
 
         occupation: 'Web Designer I',
 
@@ -136,7 +136,7 @@ export class AppComponent {
 
         name: 'Ricky Chettoe',
 
-        DOB: '2022-01-11T12:52:15Z',
+        dob: new Date(),
 
         occupation: 'Safety Technician IV',
 
@@ -149,7 +149,7 @@ export class AppComponent {
 
         name: 'Ward Du Barry',
 
-        DOB: '2021-12-19T09:05:38Z',
+        dob: new Date(),
 
         occupation: 'Media Manager IV',
 
@@ -162,7 +162,7 @@ export class AppComponent {
 
         name: 'Maximilian Spratley',
 
-        DOB: '2022-07-15T04:59:57Z',
+        dob: new Date(),
 
         occupation: 'VP Quality Control',
 
@@ -175,7 +175,7 @@ export class AppComponent {
 
         name: 'Hersh Cronin',
 
-        DOB: '2022-05-02T02:11:21Z',
+        dob: new Date(),
 
         occupation: 'Statistician II',
 
@@ -188,7 +188,7 @@ export class AppComponent {
 
         name: 'Paloma Althorp',
 
-        DOB: '2022-04-01T23:21:52Z',
+        dob: new Date(),
 
         occupation: 'Staff Accountant II',
 
@@ -201,7 +201,7 @@ export class AppComponent {
 
         name: 'Mariel Dondon',
 
-        DOB: '2022-05-16T20:03:30Z',
+        dob: new Date(),
 
         occupation: 'VP Sales',
 
@@ -214,7 +214,7 @@ export class AppComponent {
 
         name: 'Flinn Rickeard',
 
-        DOB: '2021-05-29T19:53:40Z',
+        dob: new Date(),
 
         occupation: 'Graphic Designer',
 
@@ -227,7 +227,7 @@ export class AppComponent {
 
         name: 'Nancie Glazebrook',
 
-        DOB: '2022-06-12T22:41:49Z',
+        dob: new Date(),
 
         occupation: 'Automation Specialist II',
 
@@ -240,7 +240,7 @@ export class AppComponent {
 
         name: 'Reidar Carnihan',
 
-        DOB: '2021-04-21T19:08:27Z',
+        dob: new Date(),
 
         occupation: 'Software Engineer III',
 
@@ -253,7 +253,7 @@ export class AppComponent {
 
         name: 'Ric Culpan',
 
-        DOB: '2021-12-05T22:56:40Z',
+        dob: new Date(),
 
         occupation: 'Statistician II',
 
@@ -266,7 +266,7 @@ export class AppComponent {
 
         name: 'Arlyne Stroulger',
 
-        DOB: '2022-02-26T08:25:09Z',
+        dob: new Date(),
 
         occupation: 'Data Coordiator',
 
@@ -279,7 +279,7 @@ export class AppComponent {
 
         name: 'Robinia Muncer',
 
-        DOB: '2022-07-16T13:19:05Z',
+        dob: new Date(),
 
         occupation: 'Administrative Officer',
 
@@ -292,7 +292,7 @@ export class AppComponent {
 
         name: 'Doug Hazeup',
 
-        DOB: '2022-09-17T02:55:51Z',
+        dob: new Date(),
 
         occupation: 'Accountant II',
 
@@ -305,7 +305,7 @@ export class AppComponent {
 
         name: 'Sheppard Bovaird',
 
-        DOB: '2022-01-19T11:02:21Z',
+        dob: new Date(),
 
         occupation: 'Dental Hygienist',
 
@@ -318,7 +318,7 @@ export class AppComponent {
 
         name: 'Kath Dominichelli',
 
-        DOB: '2022-01-19T00:50:50Z',
+        dob: new Date(),
 
         occupation: 'VP Product Management',
 
@@ -331,7 +331,7 @@ export class AppComponent {
 
         name: 'Rosamond Tzar',
 
-        DOB: '2021-07-08T01:07:10Z',
+        dob: new Date(),
 
         occupation: 'VP Sales',
 
@@ -344,7 +344,7 @@ export class AppComponent {
 
         name: 'Helsa Cork',
 
-        DOB: '2021-08-24T23:51:47Z',
+        dob: new Date(),
 
         occupation: 'Database Administrator I',
 
@@ -357,7 +357,7 @@ export class AppComponent {
 
         name: 'Tremayne Jenkyn',
 
-        DOB: '2021-11-05T06:59:06Z',
+        dob: new Date(),
 
         occupation: 'Automation Specialist I',
 
@@ -370,7 +370,7 @@ export class AppComponent {
 
         name: 'Charlena Chiene',
 
-        DOB: '2021-06-30T12:54:41Z',
+        dob: new Date(),
 
         occupation: 'Biostatistician IV',
 
@@ -383,7 +383,7 @@ export class AppComponent {
 
         name: 'Wit Kneeshaw',
 
-        DOB: '2021-07-21T19:35:38Z',
+        dob: new Date(),
 
         occupation: 'Nurse Practicioner',
 
@@ -396,7 +396,7 @@ export class AppComponent {
 
         name: 'Galen Taber',
 
-        DOB: '2022-01-11T01:03:45Z',
+        dob: new Date(),
 
         occupation: 'Environmental Tech',
 
@@ -409,7 +409,7 @@ export class AppComponent {
 
         name: 'Sutton Clemmens',
 
-        DOB: '2021-06-13T00:54:22Z',
+        dob: new Date(),
 
         occupation: 'Operator',
 
@@ -424,17 +424,8 @@ export class AppComponent {
   onLogoClicked() {
     this.routerService.navigate('/');
   }
-  onStatus(event: StatusSelectionEvent) {
-    console.log(event);
-  }
-
-  updateOption(option: any) {
-    console.log(option);
-  }
 
   columns: TableBase[] = [
-    // in the first column, there is an additional 'button' property, which makes the cells in that column into buttons
-    // the 'button' property correlates with the RowActionModel, accept for the 'label', which has no effect on the UI
     {
       key: 'id',
       label: 'Id',
@@ -442,6 +433,7 @@ export class AppComponent {
       button: { type: 'inlineNavigation' },
     },
     { key: 'name', label: 'Name', controlType: 'toggle' },
+    { key: 'dob',controlType : 'date', label : 'Birth Date'},
     {
       key: 'yearsOfExperience',
       label: 'YearsOfExperience',
@@ -460,8 +452,6 @@ export class AppComponent {
       button: { type: 'inlineExpand', label: 'פרטים' },
     },
     { key: 'city', label: 'עיר', controlType: 'select' },
-
-    // { key: 'dob2', label: 'תאריך', controlType: 'date' },
   ];
 
   //   // every object in the rowActions array is a button that will appear on the left side of every row of the table

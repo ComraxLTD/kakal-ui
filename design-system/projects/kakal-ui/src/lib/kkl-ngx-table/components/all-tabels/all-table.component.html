@@ -99,13 +99,13 @@
                 <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
               </button>
               <mat-menu #menu="matMenu" (closed)="onSearchChanged()">
-                <kkl-ngx-table-form
-                  [column]="column"
-                  (rowEdited)="onFilterChanged($event, column.key)"
-                ></kkl-ngx-table-form>
-                <kkl-sort-button
-                  (sortChange)="sort()"
-                ></kkl-sort-button>
+                <div class="table-filter-wrapper">
+                  <kkl-ngx-table-form
+                    [column]="column"
+                    (rowEdited)="onFilterChanged($event, column.key)"
+                  ></kkl-ngx-table-form>
+                  <kkl-sort-button (sortChange)="sort()"></kkl-sort-button>
+                </div>
               </mat-menu>
             </ng-template>
             <ng-template

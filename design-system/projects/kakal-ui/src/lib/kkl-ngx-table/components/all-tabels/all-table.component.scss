@@ -288,12 +288,16 @@
   }
 }
 
-// filtering
-::ng-deep .mat-menu-content{
-  padding: 8px;
-  display: flex;
-  align-items: center;
-}
+  // filtering
+  ::ng-deep .table-filter-wrapper{
+    padding: 8px;
+    display: flex;
+    align-items: center;
+
+    kkl-ngx-table-form {
+      max-width: 84%;
+    }
+  }
 
 //     Scroll css
 // /* width & height*/
