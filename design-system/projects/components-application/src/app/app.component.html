@@ -6,20 +6,17 @@
   [menuTemplates]="{}"
   (statusSelection)="onStatus($event)"
 >
-  <router-outlet content></router-outlet>
+  <kkl-ngx-local-table
+    content
+    [dataSource]="dataSource"
+    [columns]="columns"
+    [rowActions]="rowActions"
+    newRowAction="הוסף שורה"
+    (expandRow)="onExpand($event)"
+  ></kkl-ngx-local-table>
+  <!-- <router-outlet content></router-outlet>
 
   <ng-container *kklFooterButton>
     <button mat-button>כפתור עם טקסט</button>
-  </ng-container>
+  </ng-container> -->
 </kkl-layout>
-
-
-
-<kkl-ngx-local-table
-  [dataSource]="dataSource"
-  [columns]="columns"
-  [rowActions]="rowActions"
-  newRowAction="הוסף שורה"
-  (expandRow)="onExpand($event)"
-  ></kkl-ngx-local-table>
-

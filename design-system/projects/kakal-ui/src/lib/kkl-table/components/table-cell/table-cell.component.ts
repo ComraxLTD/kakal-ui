@@ -12,6 +12,7 @@ import { TableBase } from '../../models/table.model';
 @Component({
   selector: 'kkl-table-cell',
   templateUrl: './table-cell.component.html',
+  styleUrls: ['./table-cell.component.scss'],
 })
 export class TableCellComponent implements OnInit {
   @Input() column!: TableBase;

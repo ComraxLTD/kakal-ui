@@ -1,5 +1,5 @@
 <ng-container
-  *ngTemplateOutlet="column.cellTemplate ? colsTemplate[column.cellTemplate] : noTemplate;
+  *ngTemplateOutlet="column.cellTemplate ? colsTemplate[column.cellTemplate] : defaultTemplate;
   context: { $implicit: data, row, columnKey }"
 ></ng-container>
 <ng-template #defaultTemplate>
@@ -17,36 +17,14 @@
     </ng-container>
 
     <ng-container *ngIf="column.button">
-      <!-- <ng-container *ngIf="data"> -->
-      <button mat-button color="primary" (click)="onClick()">
-        {{
-          column.button?.label
-            ? column.button.label
-            : (data | tableCellPipe: column.controlType)
-        }}
-        <mat-icon
-          [color]="'primary'"
-          *ngIf="isSvg"
-          [svgIcon]="column.button.icon"
-        ></mat-icon>
-        <mat-icon [color]="'primary'" *ngIf="!isSvg">{{
-          column.button.icon
-        }}</mat-icon>
-        <!-- <kkl-icon
-          [color]="'primary'"
-          *ngIf="column.button.icon || column.button.type === 'inlineExpand'"
-          [key]="column.button.icon || 'expand_more'"
-        ></kkl-icon> -->
-      </button>
-      <!-- </ng-container> -->
-      <!-- <ng-container *ngIf="!data">
-        <button mat-icon-button color="primary" (click)="onClick()">
-          <kkl-icon
-            [color]="'primary'"
-            [key]="column.button.icon || 'expand_more'"
-          ></kkl-icon>
-        </button>
-      </ng-container> -->
+      <ng-container
+        *ngTemplateOutlet="
+          column.button.type === 'inlineExpand'
+            ? expandButtonTemplate
+            : defaultButtonTemplate;
+          context: { $implicit: column }
+        "
+      ></ng-container>
     </ng-container>
   </div>
 </ng-template>
@@ -111,4 +89,37 @@
       </div>
     </ng-template>
   </span>
+</ng-template>
+
+<ng-template #defaultButtonTemplate let-column>
+  <button class="table-button" mat-button color="primary" (click)="onClick()">
+    <span class="button-text">
+      {{
+        column.button?.label
+          ? column.button.label
+          : (data | tableCellPipe: column.controlType)
+      }}
+    </span>
+    <mat-icon
+      [color]="'primary'"
+      *ngIf="isSvg"
+      [svgIcon]="column.button.icon"
+    ></mat-icon>
+    <mat-icon [color]="'primary'" *ngIf="!isSvg">{{
+      column.button.icon
+    }}</mat-icon>
+  </button>
+</ng-template>
+
+<ng-template #expandButtonTemplate let-column>
+  <button mat-button color="primary" (click)="onClick()">
+    <span>
+      {{
+        column.button?.label
+          ? column.button.label
+          : (data | tableCellPipe: column.controlType)
+      }}
+    </span>
+    <mat-icon [color]="'primary'">expand_more</mat-icon>
+  </button>
 </ng-template>
