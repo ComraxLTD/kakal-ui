@@ -30,13 +30,13 @@
     }
   }
   // the table
-  .table-wrapper-wrapper {
+  .table-wrapper {
     // margin: auto;
-    .table-wrapper {
+    .table-desktop {
       // margin: auto;
       // width: 99%;
       .ngx-datatable {
-        overflow: inherit;
+        // overflow: inherit;
         // header
         .datatable-header {
           border-bottom: 2px solid main.color(accent);

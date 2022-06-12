@@ -16,13 +16,15 @@
   </section> -->
 
   <!-- KKL-TABLE-NEW -->
-
+  <div fxLayout="row">
     <kkl-ngx-local-table
-    [dataSource]="dataSource"
-    [columns]="columns"
-    [rowActions]="rowActions"
-    newRowAction="הוסף שורה"
-  ></kkl-ngx-local-table>
+      fxFlex="90"
+      [dataSource]="dataSource"
+      [columns]="columns"
+      [rowActions]="rowActions"
+      newRowAction="הוסף שורה"
+    ></kkl-ngx-local-table>
+  </div>
 </div>
 
 <ng-template #expandTemplate>
