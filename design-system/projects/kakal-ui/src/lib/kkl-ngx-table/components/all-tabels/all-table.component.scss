@@ -177,7 +177,9 @@
       margin: 10px;
       direction: rtl;
       &:nth-child(even){
-        background-color: main.color(secondLine);
+        // .card{
+          background-color: main.color(secondLine);
+        // }
       }
       .card{
         padding: 30px 20px;
