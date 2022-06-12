@@ -51,7 +51,7 @@
     "comrax-alex-airbnb-calendar": "^3.5.5",
     "moment": "^2.29.1",
     "ngx-cleave-directive": "^1.1.3",
-    "ngx-editor": "^12.2.1",
+    "ngx-editor": "^13.0.0",
     "ngx-pagination": "^5.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
