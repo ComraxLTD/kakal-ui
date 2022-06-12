@@ -103,7 +103,9 @@
                   [column]="column"
                   (rowEdited)="onFilterChanged($event, column.key)"
                 ></kkl-ngx-table-form>
-                <kkl-sort-button (click)="sort()"></kkl-sort-button>
+                <kkl-sort-button
+                  (sortChange)="sort()"
+                ></kkl-sort-button>
               </mat-menu>
             </ng-template>
             <ng-template

@@ -1,4 +1,4 @@
-<button mat-icon-button (click)="onSortChange()">
+<button mat-icon-button (click)="onSortChange(); $event.stopPropagation()">
   <mat-icon [color]="sortBy === 'asc' ? 'primary' : 'text'" class="up"
     >arrow_right_alt</mat-icon
   >

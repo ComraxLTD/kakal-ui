@@ -327,7 +327,7 @@ export class NgxLocalTableComponent<T = any> implements OnInit, AfterViewInit {
     } else {
       this.isDesktop = true;
     }
-    this.onResizeExpand();
+    // this.onResizeExpand();
   }
 
   onResizeExpand() {
