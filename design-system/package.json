@@ -55,7 +55,7 @@
     "ngx-pagination": "^5.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "rxjs": "7.5",
+    "rxjs": "7.5.5",
     "static-extend": "^0.1.2",
     "svg-icon": "^0.0.0",
     "tslib": "^2.4.0",
