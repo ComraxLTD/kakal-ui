@@ -292,9 +292,11 @@
 
 // filtering
 ::ng-deep .mat-menu-content{
-  padding: 8px;
-  display: flex;
-  align-items: center;
+  .table-filter-wrapper{
+    padding: 8px;
+    display: flex;
+    align-items: center;
+  }
 }
 
 //     Scroll css

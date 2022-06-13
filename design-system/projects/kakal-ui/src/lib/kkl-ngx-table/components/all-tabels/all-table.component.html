@@ -82,11 +82,13 @@
               <mat-icon class="arrow-down">arrow_drop_down</mat-icon>
             </button>
             <mat-menu #menu="matMenu" (closed)="searchChanged()">
-              <kkl-ngx-table-form
+              <div class="table-filter-wrapper">
+                <kkl-ngx-table-form
                 [question]="column"
                 (rowEdited)="updateFilter($event, column.key)"
-              ></kkl-ngx-table-form>
-              <kkl-sort-button (click)="sort()"></kkl-sort-button>
+                ></kkl-ngx-table-form>
+                <kkl-sort-button (sortChange)="sort()"></kkl-sort-button>
+              </div>
             </mat-menu>
           </ng-template>
           <ng-template
