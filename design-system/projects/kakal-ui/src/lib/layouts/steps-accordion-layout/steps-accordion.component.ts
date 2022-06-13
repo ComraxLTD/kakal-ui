@@ -41,7 +41,7 @@ export class StepsAccordionComponent implements OnInit {
   // ** an interface for ui **
   @Input() buttonLabel: string;
 
-  @Input() autoButtons: boolean = true;
+  @Input() manuel: boolean = false;
 
   // ** for accordion checked **
   currentStep: StepSelectEvent;
@@ -60,7 +60,7 @@ export class StepsAccordionComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    if(this.autoButtons) {
+    if(!this.manuel) {
       this.navbarBottomService.setShowNextMiddle({ show: true, next: true });
       this.navbarBottomService.setAutoBack(false);
       this.navbarBottomService.setDisableNext(true);
@@ -130,7 +130,7 @@ export class StepsAccordionComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    if(this.autoButtons) {
+    if(!this.manuel) {
       this.navbarBottomService.setAutoBack(true);
       this.navbarBottomService.setFormGroup(null);
       this.navbarBottomService.setShowNextMiddle({ show: false, next: true });
@@ -142,7 +142,7 @@ export class StepsAccordionComponent implements OnInit {
 
   onStepChanged(event: StepSelectEvent) {
     this.currentStep = event;
-    if(this.autoButtons) {
+    if(!this.manuel) {
       if (this.currentStep.last) {
         this.navbarBottomService.setShowNextMiddle({ show: true, next: false });
       } else {

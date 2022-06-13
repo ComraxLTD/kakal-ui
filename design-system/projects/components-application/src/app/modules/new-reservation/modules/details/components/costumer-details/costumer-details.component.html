@@ -16,19 +16,20 @@
   </section>
 
   <!-- KKL-TABLE-NEW -->
-  <kkl-local-table
+  <kkl-ngx-local-table
     [columns]="columns"
     [rowActions]="rowActions"
-    [dataSource]="dataSource"
+    [dataSource]="dataSource1"
     [expandTemplate]="expandTemplate"
-  ></kkl-local-table>
+  ></kkl-ngx-local-table>
 </div>
 
 <ng-template #expandTemplate>
-  <kkl-local-table
+  <kkl-ngx-local-table
     [columns]="columns"
     [rowActions]="rowActions"
     [newRowAction]="'הוסף שורה'"
     [dataSource]="dataSource"
-  ></kkl-local-table>
+  ></kkl-ngx-local-table>
 </ng-template>
+
