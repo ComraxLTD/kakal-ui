@@ -2,7 +2,7 @@
 @use '@angular/material' as mat;
 @import "~@swimlane/ngx-datatable/themes/material.scss";
 
-.all-table-form {
+::ng-deep .kkl-ngx-local-table-wrapper {
   overflow: auto;
   height: 100%;
   background-color: white;
@@ -28,19 +28,18 @@
     }
   }
   // the table
-  .table-wrapper-wrapper {
-    width: 98%;
-    margin: auto;
-    .table-wrapper {
-      margin: auto;
-      width: 100%;
-      .ngx-datatable{
-        overflow: inherit;
+  .table-wrapper {
+    // margin: auto;
+    .table-desktop {
+      // margin: auto;
+      // width: 99%;
+      .ngx-datatable {
+        // overflow: inherit;
         // header
-        ::ng-deep .datatable-header {
+        .datatable-header {
           border-bottom: 2px solid main.color(accent);
-          margin-right: .5% !important;
-          width: 98% !important;
+          // margin-right: 0.5% !important;
+          // width: 98% !important;
           .datatable-header-inner {
             height: main.spacing(4);
             .datatable-row-center{
@@ -63,6 +62,7 @@
             }
           }
         }
+
         // body
         ::ng-deep .datatable-body {
           width: 100% !important;
@@ -122,7 +122,7 @@
                     border-bottom: none !important;
                   }
                 }
-                & > .example-element-detail {
+                & > .expand-element-detail {
                   padding: 10px 10px;
                   background-color: white !important;
                   border-top: dashed 1.5px main.color(primaryLight);
@@ -198,7 +198,7 @@
           }
         }
         // inner content of expand table tablet view
-        .example-element-detail {
+        .expand-element-detail{
           margin: 50px;
           // padding: 10px;
           // background-color: main.color(table);
@@ -290,12 +290,16 @@
   }
 }
 
-// filtering
-::ng-deep .mat-menu-content{
-  padding: 8px;
-  display: flex;
-  align-items: center;
-}
+  // filtering
+  ::ng-deep .table-filter-wrapper{
+    padding: 8px;
+    display: flex;
+    align-items: center;
+
+    kkl-ngx-table-form {
+      max-width: 84%;
+    }
+  }
 
 //     Scroll css
 // /* width & height*/

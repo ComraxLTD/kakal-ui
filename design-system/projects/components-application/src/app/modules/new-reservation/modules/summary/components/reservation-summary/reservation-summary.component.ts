@@ -25,10 +25,8 @@ export class ReservationSummaryComponent implements OnInit {
     this.columns = this.reservationSummaryService.columns;
     this.rowActions = this.reservationSummaryService.rowActions;
 
-    console.log(this.rowActions)
   }
   onExpand(event: any): void {
-    console.log(event);
   }
   toggleShow(): void {
     this.expandColumns = this.showCancel

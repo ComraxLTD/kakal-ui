@@ -125,7 +125,7 @@
 //       this.isLoading = false;
 //     });
 //   }
-//   pageChanged(event: PageEvent) {
+//   onPageChanged(event: PageEvent) {
 //     this.getData(event.pageIndex, event.pageSize, undefined);
 //     this.cleanPreLoading();
 //   }
@@ -149,7 +149,7 @@
 //           }
 //           break;
 //         case 'inlineEdit':
-//           this.addRowGroup(obj);
+//           this.onEditEvent(obj);
 //           this.editItems = [...this.editItems, obj];
 //           break;
 //         case 'inlineExpand':
@@ -164,7 +164,7 @@
 //     }
 //   }
 
-//   saveRowClick(ele: any) {
+//   onSaveEvent(ele: any) {
 //     const index = this.editItems.indexOf(ele);
 //     if (index > -1) {
 //       this.editItems.splice(index, 1);
@@ -175,7 +175,7 @@
 //     }
 //   }
 
-//   addRowGroup(obj: any) {
+//   onEditEvent(obj: any) {
 //     const row = this.fb.group({});
 //     this.oneColumns.forEach(col => {
 //       row.addControl(col.key, this.fb.control(obj[col.key]));
@@ -183,7 +183,7 @@
 //     this.rows.push(row);
 //   }
 
-//   addNewRowGroup() {
+//   onNewRowEvent() {
 //     const row = this.fb.group({});
 //     this.oneColumns.forEach(col => {
 //       row.addControl(col.key, this.fb.control(null));

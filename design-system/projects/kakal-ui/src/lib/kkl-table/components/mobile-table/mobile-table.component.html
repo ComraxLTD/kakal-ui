@@ -15,7 +15,7 @@
             <tr *ngFor="let col of oneColumns">
               <td style="font-weight: bolder;">{{col.label}}</td>
               <td>{{item[col.key]}}
-                <ng-container *ngIf="!(item | arrInclueds : editItems); else editBlock">
+                <ng-container *ngIf="!(item | arrIncludes : editItems); else editBlock">
                   <kkl-table-cell [row]="item" [question]="col" (buttClick)="buttonClick(col.button, item, col.key)" [colsTemplate]="colsTemplate"></kkl-table-cell>
                 </ng-container>
                 <ng-template #editBlock>

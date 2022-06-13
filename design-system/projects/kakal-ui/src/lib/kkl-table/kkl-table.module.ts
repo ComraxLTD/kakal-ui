@@ -31,6 +31,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MobileTableComponent } from './components/mobile-table/mobile-table.component';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { ContentAlignmentDirective } from './directives/content-alignment.directive';
+import { KKLTypographyModule } from '../typography/typography.module';
+import { KKLPipesModule } from '../pipes/pipes.module';
 @NgModule({
   declarations: [
     LocalTableComponent,
@@ -46,26 +48,31 @@ import { ContentAlignmentDirective } from './directives/content-alignment.direct
  ],
   imports: [
     CommonModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    DragDropModule,
+    HttpClientModule,
+    
+
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
-    ReactiveFormsModule,
     MatFormFieldModule,
-    MatButtonModule,
     MatProgressBarModule,
-    DragDropModule,
-    MatMenuModule,
-    HttpClientModule,
-    KKLIconModule,
-    KKLButtonModule,
-    FlexLayoutModule,
     MatTooltipModule,
-    MeiFormModule,
-    MeiServiceModule,
     MatChipsModule,
     MatExpansionModule,
-    KKLDirectivesModule
+    MatMenuModule,
+
+    MeiFormModule,
+    MeiServiceModule,
+
+    KKLIconModule,
+    KKLPipesModule,
+    KKLButtonModule,
+    KKLDirectivesModule,
+    KKLTypographyModule,
   ],
   exports: [
     LocalTableComponent,

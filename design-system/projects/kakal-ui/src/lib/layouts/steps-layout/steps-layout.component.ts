@@ -14,6 +14,7 @@ import { StepsLayoutService } from './steps-layout.service';
 import { StepsSelectionEvent } from '../../groups/step-group/step-group.component';
 import { map, Observable, Subject, takeUntil } from 'rxjs';
 import { Router } from '@angular/router';
+import { StepSelectEvent } from '../../vertical-steps/vertical-steps.component';
 
 @Component({
   selector: 'kkl-steps-layout',

@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'arrInclueds'
+  name: 'arrIncludes'
 })
 export class ArrIncludesPipe implements PipeTransform {
 

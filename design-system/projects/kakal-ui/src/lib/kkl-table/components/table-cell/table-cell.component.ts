@@ -1,30 +1,43 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
+import { IconService } from '../../../icon/icons.service';
 import { TableBase } from '../../models/table.model';
 
 @Component({
   selector: 'kkl-table-cell',
   templateUrl: './table-cell.component.html',
+  styleUrls: ['./table-cell.component.scss'],
 })
-export class TableCellComponent implements OnInit  {
-  @Input() question!: TableBase;
+export class TableCellComponent implements OnInit {
+  @Input() column!: TableBase;
   @Input() row!: any;
   @Input() data!: any;
+  @Input() expanded!: boolean;
+  @Input() colsTemplate: { [key: string]: TemplateRef<any> } = {};
 
-  @Input() colsTemplate: any;
+  columnKey!: string;
 
-  column!: string;
+  isSvg!: boolean;
+  hasIcon!: boolean;
 
-  @Output() buttClick = new EventEmitter<null>();
+  constructor(private iconService: IconService) {}
 
-  constructor() {
-  }
+  @Output() actionClicked = new EventEmitter<void>();
+
   ngOnInit(): void {
-    this.column = this.question.key;
+    if (this.column.button && this.column.button.icon) {
+      this.isSvg = this.iconService.setIcon(this.column.button.icon);
+    }
+    this.columnKey = this.column.key;
   }
 
-  buttonClick() {
-    this.buttClick.emit(null);
+  onClick() {
+    this.actionClicked.emit();
   }
-
-
 }

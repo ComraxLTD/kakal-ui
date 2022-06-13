@@ -26,7 +26,7 @@ export interface TableBase {
   //for input and autocomplete
   debounce?: number;
   //for input
-  format?: string;
+   format?: { type: string; args?: any };
   //for input and autocomplete
   icon?: string;
   //for select and autocomplete

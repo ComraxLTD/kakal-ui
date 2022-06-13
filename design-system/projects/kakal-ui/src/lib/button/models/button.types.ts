@@ -4,6 +4,7 @@ export interface ButtonModel {
   type: 'form' | 'notes' | 'file' | string;
   label?: string;
   svgIcon?: string;
+  matIcon?: string;
   state?: ButtonState;
   action?: FormActions;
 }

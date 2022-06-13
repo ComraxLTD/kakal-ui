@@ -49,6 +49,8 @@ import { ActionButtonComponent } from './components/action-button/action-button.
     ButtonComponent,
     AddButtonComponent,
     StrokeButtonComponent,
+    ActionButtonComponent,
+    KKLActionButtonDirective,
     KKLButtonDirective,
     KKLStrokedButtonDirective,
     KKLFormButtonDirective,
