@@ -179,6 +179,7 @@
       <ng-container *ngFor="let row of dataTable; let rowIndex = index">
         <div class="tablet">
           <mat-card
+            class="card"
             *ngIf="
               !paging ||
               (rowIndex >= page.pageIndex * page.pageSize &&
