@@ -1,9 +1,5 @@
 @use "../../styles/variables" as main;
 
-.center-container {
-  left: 50%;
-  position: absolute;
-}
 .nav-buttons {
   z-index: 1;
 }
@@ -12,11 +8,17 @@ mat-toolbar {
   background-color: rgba($color: #ffffff, $alpha: 0.72) !important;
 }
 
-mat-icon {
-  color: main.color(primary);
+.icon-wrapper {
+  left: 43%;
+  position: absolute;
 
-  &.bottom_icon {
-    transform: scale(8);
+  mat-icon {
+    color: main.color(primary);
+
+    &.bottom_icon {
+      height: initial !important;
+      width: initial !important;
+      transform: scale(0.7);    }
   }
 }
 
