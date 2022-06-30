@@ -85,9 +85,10 @@ export class NavbarBottomComponent implements OnInit {
 
   // Event emitter section
   onPrevious(): void {
-    this.autoBack
-      ? this.routerService.goBack()
-      : this.navbarBottomService.setBack();
+    if(this.autoBack) {
+      this.routerService.goBack();
+    }
+    this.navbarBottomService.setBack();
   }
 
   onNext(): void {
