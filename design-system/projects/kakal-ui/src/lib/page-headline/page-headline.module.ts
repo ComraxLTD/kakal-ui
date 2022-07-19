@@ -6,6 +6,7 @@ import { KKLIconModule } from '../icon/icon.module';
 import { PageHeadlineComponent } from './page-headline.component';
 import { KKLPipesModule } from '../pipes/pipes.module';
 import { StatusProgressModule } from '../status-progress/status-progress.module';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [PageHeadlineComponent],
   imports: [
@@ -14,7 +15,8 @@ import { StatusProgressModule } from '../status-progress/status-progress.module'
     KKLTypographyModule,
     KKLPipesModule,
     KKLIconModule,
-    StatusProgressModule
+    StatusProgressModule,
+    MatButtonModule
   ],
   exports: [PageHeadlineComponent],
 })

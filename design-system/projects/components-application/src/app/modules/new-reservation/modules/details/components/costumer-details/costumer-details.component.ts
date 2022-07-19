@@ -457,8 +457,14 @@ export class CostumerDetailsComponent implements OnInit {
     // this.questions = this.detailsService.getFormQuestions();
     this.formGrid = { cols: 2 };
     this.pageHeadlineService.emitPageHeadlineItems([
-      { value: 'הוספת הזמנה חדשה' },
+      { value: 'הוספת הbbbbזמנה חדשה'},
+      { value: 'הוספת הזמנה חדשה', button: true, icon: 'tree' },
+      { value: 'הוספת הbbbbbbbbbזמנה חדשה'},
     ]);
+    this.pageHeadlineService.listenToHeadlineClick().subscribe(a => {
+      console.log(a);
+
+    })
   }
 
   // DOM EVENTS SECTION

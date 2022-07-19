@@ -16,9 +16,40 @@
       </ng-container>
 
       <ng-template #normalTemp>
-        <kkl-typography *ngIf="first; else other" [size]="2.125" [weight]="600">
-          {{ item?.value | format: item?.format }}
-        </kkl-typography>
+        <ng-container *ngIf="item.button;else noButton">
+          <button
+            style="width: 100%; padding: 0 5px;"
+            mat-button
+            color="primary"
+            (click)="onHeadlineClick(item)"
+          >
+            <span
+              fxLayoutAlign="start center"
+            >
+              <span
+                  fxLayout="row"
+
+                >
+                <span style="border-bottom: 1px solid; text-align: start;">
+                  <kkl-typography *ngIf="first; else other" [size]="2.125" [weight]="600">
+                    {{ item?.value | format: item?.format }}
+                  </kkl-typography>
+                </span>
+              </span>
+              <kkl-icon
+                style="padding: 0 10px;"
+                [color]="'primary'"
+                *ngIf="item.icon"
+                [key]="item.icon"
+              ></kkl-icon>
+            </span>
+          </button>
+        </ng-container>
+        <ng-template #noButton>
+          <kkl-typography *ngIf="first; else other" [size]="2.125" [weight]="600" (click)="onHeadlineClick(item)">
+            {{ item?.value | format: item?.format }}
+          </kkl-typography>
+        </ng-template>
       </ng-template>
 
       <ng-template #other>

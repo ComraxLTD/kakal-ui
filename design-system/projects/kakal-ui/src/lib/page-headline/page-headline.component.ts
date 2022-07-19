@@ -6,6 +6,8 @@ export interface PageHeadline {
   value: any;
   format?: string;
   status?: boolean;
+  button?: boolean;
+  icon?: string;
 }
 
 @Component({
@@ -26,5 +28,9 @@ export class PageHeadlineComponent implements OnInit {
   ngOnInit(): void {
     this.pageHeadline$ = this.pageHeadlineService.listenToPageHeadline()
     this.slice = this.mobile ? 1 : 1000;
+  }
+
+  onHeadlineClick(item) {
+    this.pageHeadlineService.emitHeadlineClick(item);
   }
 }
