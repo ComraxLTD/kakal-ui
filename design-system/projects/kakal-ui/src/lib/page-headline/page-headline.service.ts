@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject, Subject } from 'rxjs';
 import { PageHeadline } from './page-headline.component';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { PageHeadline } from './page-headline.component';
 })
 export class PageHeadlineService {
 
+  private buttonClicked$: Subject<PageHeadline> = new Subject();
   private pageHeadlineSource$: BehaviorSubject<PageHeadline[]> = new BehaviorSubject<
     PageHeadline[]
   >([]);
@@ -23,5 +24,14 @@ export class PageHeadlineService {
 
   public addPageHeadlineItems(pageHeadlines: PageHeadline[]): void {
     this.pageHeadlineSource$.next(this.pageHeadlineSource$.getValue().concat(pageHeadlines));
+  }
+
+
+  public listenToHeadlineClick(): Observable<PageHeadline> {
+    return this.buttonClicked$;
+  }
+
+  public emitHeadlineClick(pageHeadline: PageHeadline): void {
+    this.buttonClicked$.next(pageHeadline);
   }
 }
