@@ -100,7 +100,6 @@ export class AppComponent {
       }, status: true }]);
     // }, 3000);
 
-
     // setTimeout(() => {
       this.dataSource = [{
 
