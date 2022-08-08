@@ -11,6 +11,7 @@ export function customFilterPredicate(data: any, myFilters): boolean {
         break;
       case 'select':
       case 'autocomplete':
+      case 'radio':
         if(Array.isArray(data[filters[i].key])) {
           if(data[filters[i].key].some(a => a.label !== filters[i].val.label || JSON.stringify(a.value) === JSON.stringify(filters[i].val.value))) {
             break;
@@ -27,6 +28,16 @@ export function customFilterPredicate(data: any, myFilters): boolean {
         const dateStamp1 = (new Date(data[filters[i].key])).setHours(0,0,0,0);
         const dateStamp2 = (new Date(filters[i].val)).getTime();
         if(dateStamp1 !== dateStamp2){
+          return false;
+        }
+        break;
+      case 'range':
+        if(!(dateStamp > filters[i].val.start && dateStamp < filters[i].val.end)){
+          return false;
+        }
+        break;
+      case 'currency':
+        if(data[filters[i].key].sum !== filters[i].val.sum){
           return false;
         }
         break;

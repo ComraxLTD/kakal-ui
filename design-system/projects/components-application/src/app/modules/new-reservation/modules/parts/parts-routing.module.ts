@@ -28,7 +28,7 @@ const routes: Routes = [
         component: SleepingComponent
       },
       {
-        path: 'economy',
+        path: 'economy/:id',
         component: EconomyComponent
       },
       {
