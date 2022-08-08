@@ -32,8 +32,12 @@ import { customFilterPredicate } from '../../../kkl-table/components/local-table
 
 import { NgxPage } from '../../models/page';
 
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { MatExpansionPanel } from '@angular/material/expansion';
+import { setControls } from '../../../mei-services/services/form-create';
+import { KklSelectOption } from '../../../mei-form/models/kkl-select.model';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { OptionsModel } from '../../../mei-form/models/options.model';
 
 const normalActions = [
   'inlineEdit',
@@ -54,6 +58,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   @ViewChild('myExpand') myExpand!: ElementRef;
   expandHeight: number = 0;
 
+  typeLocal: boolean = true;
+  
   // control the size of div
   @ViewChild('myIdentifier') myIdentifier: ElementRef;
   @ViewChildren(MatExpansionPanel) matExpansionPanelElement: QueryList<MatExpansionPanel>
@@ -90,6 +96,30 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
   oneColumns: TableBase[];
   @Input()
   set columns(value: TableBase[]) {
+    if (this.oneColumns && this.searchRow) {
+      const newVals: TableBase[] = [];
+      const sameVals: TableBase[] = [];
+      value.forEach((a) => {
+        if (
+          this.oneColumns.find(
+            (vendor) => Object.assign(vendor) === Object.assign(a)
+          )
+        ) {
+          sameVals.push(
+            this.oneColumns.find(
+              (vendor) => Object.assign(vendor) === Object.assign(a)
+            )
+          );
+        } else {
+          newVals.push(a);
+        }
+      });
+      const removed = this.oneColumns.filter((b) => !sameVals.includes(b));
+      removed.forEach((c) => {
+        this.searchRow.removeControl(c.key);
+      });
+      setControls(newVals, this.searchRow, this.fb, this.localObservables);
+    }
     this.oneColumns = value;
     this.hasSummary = value.some((a) => a.sumFunc);
   }
@@ -107,6 +137,21 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }
   }
 
+  localObservables: Map<string, BehaviorSubject<KklSelectOption[]>> = new Map<
+    string,
+    BehaviorSubject<KklSelectOption[]>
+  >();
+  @Input() searchRow: FormGroup;
+  myOptions: OptionsModel[] = [];
+  @Input() set options(val: OptionsModel[]) {
+    if (val) {
+      this.myOptions = val;
+      if (this.searchRow) {
+        this.putOptions();
+      }
+    }
+  }
+
   localButtons: RowActionModel[];
   @Input() set rowActions(val: RowActionModel[]) {
     this.localButtons = val;
@@ -114,10 +159,7 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
-  @ViewChild(MatSort)
-  sort!: MatSort;
 
-  searchRow = {};
   editItems = [];
   editItemsData = [];
 
@@ -128,7 +170,8 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   constructor(
     private dialogService: DialogService,
-    private routerService: RouterService
+    private routerService: RouterService,
+    private fb: FormBuilder,
   ) {}
 
   ngOnInit(): void {
@@ -138,12 +181,21 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     ) {
       this.expand = true;
     }
-
+    if (!this.searchRow) {
+      this.searchRow = this.fb.group({});
+    }
+    setControls(
+      this.oneColumns,
+      this.searchRow,
+      this.fb,
+      this.localObservables
+    );
     this.page.pageIndex = 0;
     this.page.pageSize = this.paging ? 5 : this.dataTable.length;
   }
 
   ngAfterViewInit() {
+    this.putOptions();
     setTimeout(() => {
       const size = this.myIdentifier.nativeElement.offsetWidth;
       this.viewSize = Math.floor(size / 130);
@@ -155,15 +207,12 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
     }, 0);
   }
 
-  updateFilter(event, key) {
-    this.searchRow[key] = event.value;
-  }
 
   searchChanged() {
     this.connectFilters(this.oneColumns);
   }
   connectFilters(arr: TableBase[]) {
-    const searchVal = this.searchRow;
+    const searchVal = this.searchRow.value;
     let filters = [];
     const keys = [];
     arr.forEach((a) => {
@@ -335,6 +384,12 @@ export class NgxLocalTableComponent implements OnInit, AfterViewInit {
 
   pageChanged(event: PageEvent) {
     this.page = { ...this.page, ...event };
+  }
+
+  putOptions() {
+      this.myOptions.forEach((b) => {
+        this.localObservables.get(b.key)?.next(b.val);
+      });
   }
 
   // for coloring row when expand is open

@@ -24,6 +24,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { KKLDirectivesModule } from '../directives/directives.module';
 import { NgxLocalTableComponent } from './components/local-table/local-table.component';
+import { NgxEventTableComponent } from './components/event-table/event-table.component';
 import { KKLNewTableModule } from '../kkl-table/kkl-table.module';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { NgxTableFormComponent } from './components/table-form/table-form.component';
@@ -44,6 +45,7 @@ import { KKLTypographyModule } from '../typography/typography.module';
     // MeiFiltersComponent,
     // KKLNewPaginatorDirective,
     // MobileTableComponent,
+    NgxEventTableComponent
   ],
   imports: [
     CommonModule,
@@ -76,6 +78,7 @@ import { KKLTypographyModule } from '../typography/typography.module';
   exports: [
     NgxLocalTableComponent,
     NgxTableFormComponent,
+    NgxEventTableComponent
     // EventTableComponent,
     // EventAdvancedSearchComponent,
     // TableFormComponent,

@@ -68,7 +68,7 @@
   newRowAction="הוסף שורה"
 ></kkl-local-table> -->
 
-<kkl-ngx-local-table
+<kkl-ngx-event-table
   [dataSource]="dataSource"
   [columns]="columns"
   [rowActions]="rowActions2"
@@ -76,7 +76,7 @@
   [expandTemplate]="expand"
   (expandRow)="onExpand($event)"
   [colsTemplate]="{yearsOfExperienceTemplateName:yearsOfExperienceTemplate}"
-></kkl-ngx-local-table>
+></kkl-ngx-event-table>
 
 <!-- <kkl-local-table
   [dataSource]="dataSource"

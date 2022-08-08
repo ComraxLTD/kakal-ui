@@ -35,6 +35,7 @@ export class LayoutComponent implements OnInit {
       label: 'פרטי הזמנה',
       svgIcon: 'plant',
       path: 'details',
+      selected: true
     },
     {
       label: 'מרכיבי הזמנה',

@@ -52,7 +52,7 @@ export class LayoutComponent implements OnInit {
       label: 'כלכלה',
       value: 0,
       svgIcon: 'food',
-      path: 'economy',
+      path: 'economy/0',
     },
     {
       label: 'אתרים',
